@@ -1,0 +1,22 @@
+{
+  "name": "japanese-date/japanese-date",
+  "description": "日本の暦、祝日を取り扱うライブラリ",
+  "type": "library",
+  "license": "BSD 2-Clause Simplified License",
+  "authors": [
+    {
+      "name": "Suzunone",
+      "email": "suzunone.eleven@gmail.com"
+    }
+  ],
+  "require": {
+  },
+  "require-dev": {
+  },
+  "autoload": {
+    "psr-4": {
+      "JapaneseDate\\": "libs/"
+    }
+  }
+
+}

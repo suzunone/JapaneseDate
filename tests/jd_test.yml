@@ -1,0 +1,86 @@
+all:
+  ## <?php $test_dir = dirname(__FILE__); ?>
+  ## <?php $app_name = substr(basename(__FILE__), 0, strlen(basename(__FILE__))-9); ?>
+
+  # デフォルトのテストタイムアウト時間
+  default_time_out: 1
+  # グループごとのタイムアウト時間
+  time_out:
+    small: 1
+    medium: 5
+    large:  10
+
+  # 色を付けるかどうか
+  no_color: false
+  # テスト毎にPHPプロセスを新規に立ち上げてテストする
+  # segmentation fault とかが出る場合はtrueにしてください
+  multi: false
+
+  # テストカバレッジ
+  code_coverage:
+    use: true
+    # テストカバレッジの詳細表示を使用する
+    use_coverage_detail: true
+    # カバレッジ100%のメソッドは表示しない
+    use_all_covered_filter: true
+    save_path: '/tmp/code_coverage.log'
+    black_list:
+      - "<?php echo $test_dir.DIRECTORY_SEPARATOR.$app_name.DIRECTORY_SEPARATOR; ?>"
+      - "<?php echo ENVI_BASE_DIR;?>"
+    white_list:
+
+
+  scenario:
+    path: "<?php echo $test_dir.DIRECTORY_SEPARATOR.$app_name.DIRECTORY_SEPARATOR; ?>scenario.php"
+    class_name: "Scenario"
+
+    dirs:
+      # テストファイルのディレクトリ
+
+      jd: "<?php echo $test_dir.DIRECTORY_SEPARATOR.$app_name.DIRECTORY_SEPARATOR.'JapaneseDate'.DIRECTORY_SEPARATOR; ?>"
+
+
+  app:
+    # リクエストURL
+    url: "http://localhost/<?php echo $app_name;?>.php"
+    # アプリキー
+    key: "<?php echo $app_name;?>"
+    # コンフィグファイルのパス(defaultでいい場合は省略可能)
+    appkey_path: ""
+    # キャッシュディレクトリのパス(defaultでいい場合は省略可能)
+    cache_path: ""
+
+  parameter:
+    headers:
+      # テスト内でデフォルト送信されるヘッダ
+
+      referer: "http://localhost/<?php echo $app_name;?>.php"
+    get:
+      # テスト内でデフォルトで付加されるクエリストリングス
+
+      XDEBUG_PROFILE:1
+    post:
+      # テスト内でポストする際にデフォルトで付加されるデータ
+
+    cookie:
+      # テスト内でデフォルトで付加されるクッキー
+
+    # テストモード
+    # dummy => EnviおよびLoggerをダミーのものに置き換えて実行します(デフォルト)
+    # resist_only => 通常通りEnviを実行します。
+    test_mode: "dummy"
+
+    # デフォルトのRequestmethod
+    request_method: "GET"
+  extension:
+    # テスト内で利用するエクステンションの設定
+
+    DBI:
+      # ここをtrueにすると、リクエストごとにロードされ、オブジェクトが生成されます
+      constant: false
+      class:
+        resource: "<?php echo ENVI_BASE_DIR.'vendor'.DIRECTORY_SEPARATOR;?>EnviDB.php"
+        class_name: "DBInstance"
+        singleton: true
+      router:
+        resource: "<?php echo dirname(__FILE__).'/../config/'.$app_name.'_databases.yml';?>"
