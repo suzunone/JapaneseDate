@@ -1,5 +1,6 @@
 JapaneseDate
 =========================================
+[![CircleCI](https://circleci.com/gh/suzunone/JapaneseDate.svg?style=svg)](https://circleci.com/gh/suzunone/JapaneseDate)
 
 はじめに
 -----------------------------------------
