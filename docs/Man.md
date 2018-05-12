@@ -132,7 +132,7 @@ echo JapaneseDateTime::parse('first day of December 2018')->addWeeks(2);    // 2
 
 ``` .php
 
-echo JapaneseDateTime::parse(time());    // Throw Exception DateTime::__construct(): Failed to parse time string (1526114028) at position 7 (0): Unexpected character
+echo JapaneseDateTime::parse(time());    // Throw Exception DateTime::__construct(): Failed to parse time string (1526118261) at position 7 (2): Unexpected character
 echo JapaneseDateTime::parse(new DateTime('now'));    // PHP Fatal error:  Uncaught TypeError: DateTime::__construct() expects parameter 1 to be string, object given
 ```
 
@@ -143,9 +143,9 @@ echo JapaneseDateTime::parse(new DateTime('now'));    // PHP Fatal error:  Uncau
 そういった場合は、`JapaneseDate\DateTime::factory()`を使用します。
 
 ``` .php
-echo JapaneseDateTime::factory(time());    // 2018-05-12 17:33:48
+echo JapaneseDateTime::factory(time());    // 2018-05-12 18:44:21
 
-echo JapaneseDateTime::factory(new DateTime('now'));    // 2018-05-12 17:33:48
+echo JapaneseDateTime::factory(new DateTime('now'));    // 2018-05-12 18:44:21
 
 // もちろんこういったコードも動作します
 echo JapaneseDateTime::factory('first day of December 2018')->addWeeks(2);    // 2018-12-15 00:00:00
@@ -171,7 +171,7 @@ echo JapaneseDateTime::factory(20180404050505);    // 2061-07-19 16:48:25
 
 ``` .php
 $now = JapaneseDateTime::now();
-echo $now;                               // 2018-05-12 17:33:48
+echo $now;                               // 2018-05-12 18:44:21
 $today = JapaneseDateTime::today();
 echo $today;                             // 2018-05-12 00:00:00
 $tomorrow = JapaneseDateTime::tomorrow('Europe/London');
@@ -180,12 +180,41 @@ $yesterday = JapaneseDateTime::yesterday();
 echo $yesterday;                         // 2018-05-11 00:00:00
 ```
 
+ローカライゼーション
+=================================================
+基本クラスのDateTimeにはローカライゼーションのサポートがありません。
+ローカライゼーションをサポートするために、formatLocalized($format)メソッドや、formatLocalizedSimple()があります。
+
+基本的な実装は、現在のインスタンスのタイムスタンプを使用してstrftime()を呼び出します。
+PHP関数[setlocale()](http://php.net/manual/ja/function.setlocale.php)を使用して現在のロケールを最初に設定することで、
+返される文字列は正しいロケールでフォーマットされます。
+
+formatLocalized($format)メソッドには追加で、日本語日付に特化したオプションが用意されています。
+
+[詳しくはこちら](https://github.com/suzunone/JapaneseDate/blob/v4.X/docs/README.md#formatlocalized)を参照してください。
+
+
+``` .php
+setlocale(LC_ALL, 'ja_JP');
+
+$dt = JapaneseDateTime::parse('2018-3-21 23:26:11.123789');
+echo $dt->formatLocalized('%A %d %B %Y'); // 水曜日 21 3月 2018
+echo $dt->formatLocalized('%#F%#E年%m月%d日(%A) 80%% %%#J');   // 平成30年03月21日(水曜日) 80% %#J
+    echo $dt->formatLocalized('%#J %#e %#g %#k %#6 %#K %#l %#L %#o %#O %#N %#E %#G %#F %#f');   // 21 21  3 赤口 1 水 5 春分の日 11 戌 30 弥生 平成 1003
+echo $dt->formatLocalizedSimple('%#J %#e %#g %#k %#6 %#K %#l %#L %#o %#O %#N %#E %#G %#F %#f');   // #J #e #g #k #6 #K #l #L #o #O #E #G #F #f
+
+
+
+```
+
+
 
 Getter
 =================================================
 
 getterはMagicMethodの__get()メソッドで実装されています。
 
+propertiesにアクセスするだけで、様々な情報を取得できます。
 
 
 ``` .php

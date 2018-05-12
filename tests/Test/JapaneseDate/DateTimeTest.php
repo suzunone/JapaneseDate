@@ -86,7 +86,7 @@ class DateTimeTest extends TestCase
 
         $this->assertEquals(
             $japanese_date->strftime('%Y-%m-%d %K'),
-            $japanese_date->formatLocalized('%Y-%m-%d %K')
+            $japanese_date->formatLocalized('%Y-%m-%d %#K')
 
         );
 
@@ -582,6 +582,111 @@ class DateTimeTest extends TestCase
 
     /**
      * @throws \ErrorException
+     * @covers \JapaneseDate\DateTime::formatLocalized()
+     * @covers \JapaneseDate\DateTime::strftimeJa()
+     */
+    public function test_formatLocalized()
+    {
+        $DateTime = DateTime::factory('2018-05-03');
+        $this->assertSame(
+            '%#123',
+            $DateTime->formatLocalized('%%#123')
+        );
+
+        $this->assertSame(
+            '%#o123',
+            $DateTime->formatLocalized('%%#o123')
+        );
+
+        $this->assertSame(
+            (string)$DateTime->oriental_zodiac,
+            $DateTime->formatLocalized('%#o')
+        );
+
+        $this->assertSame(
+            (string)$DateTime->oriental_zodiac_text,
+            $DateTime->formatLocalized('%#O')
+        );
+
+        $this->assertSame(
+            (string)$DateTime->holiday,
+            $DateTime->formatLocalized('%#l')
+        );
+
+        $this->assertSame(
+            (string)$DateTime->holiday_text,
+            $DateTime->formatLocalized('%#L')
+        );
+
+        $this->assertSame(
+            (string)$DateTime->era_name,
+            $DateTime->formatLocalized('%#f')
+        );
+
+        $this->assertSame(
+            (string)$DateTime->era_name_text,
+            $DateTime->formatLocalized('%#F')
+        );
+
+        $this->assertSame(
+            (string)$DateTime->era_year,
+            $DateTime->formatLocalized('%#E')
+        );
+
+
+        $this->assertSame(
+            (string)$DateTime->six_weekday_text,
+            $DateTime->formatLocalized('%#k')
+        );
+        $this->assertSame(
+            (string)$DateTime->six_weekday,
+            $DateTime->formatLocalized('%#6')
+        );
+
+        $this->assertSame(
+            (string)$DateTime->weekday_text,
+            $DateTime->formatLocalized('%#K')
+        );
+
+        $this->assertSame(
+            ' ' . $DateTime->format('j'),
+            $DateTime->formatLocalized('%#e')
+        );
+        $this->assertSame(
+            ' ' . $DateTime->format('n'),
+            $DateTime->formatLocalized('%#g')
+        );
+
+        $this->assertSame(
+            $DateTime->format('j'),
+            $DateTime->formatLocalized('%#J')
+        );
+        $this->assertSame(
+            $DateTime->month_text,
+            $DateTime->formatLocalized('%#G')
+        );
+
+        $this->assertSame(
+            '2018-05-03',
+            $DateTime->formatLocalized('%Y-%m-%d')
+        );
+
+
+        $DateTime = DateTime::factory('2018-10-10');
+        $this->assertSame(
+            $DateTime->format('j'),
+            $DateTime->formatLocalized('%#e')
+        );
+
+        $DateTime = DateTime::factory('2018-10-10');
+        $this->assertSame(
+            $DateTime->format('n'),
+            $DateTime->formatLocalized('%#g')
+        );
+    }
+
+    /**
+     * @throws \ErrorException
      * @covers \JapaneseDate\DateTime::strftime()
      * @covers \JapaneseDate\DateTime::strftimeJa()
      */
@@ -654,10 +759,6 @@ class DateTimeTest extends TestCase
         $this->assertSame(
             $DateTime->month_text,
             $DateTime->strftime('%G')
-        );
-        $this->assertSame(
-            (string)$DateTime->month,
-            $DateTime->strftime('%N')
         );
 
         $this->assertSame(

@@ -458,7 +458,6 @@ class DateTime extends Carbon
      * - %L 祝日
      * - %o 干支番号
      * - %O 干支
-     * - %N 1～12の月
      * - %E 旧暦年
      * - %G 旧暦の月
      * - %F 年号
@@ -470,10 +469,11 @@ class DateTime extends Carbon
      * @param string $format フォーマット
      * @return string  指定したフォーマット文字列に基づき文字列をフォーマットして返します。 月および曜日の名前、およびその他の言語依存の文字列は、 setlocale() で設定された現在のロケールを尊重して表示されます。
      * @throws \ErrorException
+     * @deprecated
      */
     public function strftime($format)
     {
-        $res_str      = $this->strftimeJa($format);
+        $res_str      = $this->strftimeJa($format, '%');
         return strftime($res_str, $this->timestamp);
     }
 
@@ -484,21 +484,20 @@ class DateTime extends Carbon
      * {@link http://php.net/manual/ja/function.strftime.php function.strftime strftimeの仕様}
      * に加え、
      *
-     * - %J 1～31の日
-     * - %e 1～9なら先頭にスペースを付ける、1～31の日
-     * - %g 1～9なら先頭にスペースを付ける、1～12の月
-     * - %k 六曜番号
-     * - %6 六曜
-     * - %K 曜日
-     * - %l 祝日番号
-     * - %L 祝日
-     * - %o 干支番号
-     * - %O 干支
-     * - %N 1～12の月
-     * - %E 旧暦年
-     * - %G 旧暦の月
-     * - %F 年号
-     * - %f 年号ID
+     * - %#J 1～31の日
+     * - %#e 1～9なら先頭にスペースを付ける、1～31の日
+     * - %#g 1～9なら先頭にスペースを付ける、1～12の月
+     * - %#k 六曜番号
+     * - %#6 六曜
+     * - %#K 曜日
+     * - %#l 祝日番号
+     * - %#L 祝日
+     * - %#o 干支番号
+     * - %#O 干支
+     * - %#E 旧暦年
+     * - %#G 旧暦の月
+     * - %#F 年号
+     * - %#f 年号ID
      *
      * が使用できます。
      *
@@ -537,16 +536,21 @@ class DateTime extends Carbon
      * @return string  指定したフォーマット文字列に基づき文字列をフォーマットして返します。 月および曜日の名前、およびその他の言語依存の文字列は、 setlocale() で設定された現在のロケールを尊重して表示されます。
      * @throws \ErrorException
      */
-    protected function strftimeJa($format)
+    protected function strftimeJa($format, $delimiter = '%#')
     {
         $res_str      = '';
-        $format_array = explode('%', $format);
+        $format_array = explode($delimiter, $format);
         foreach ($format_array as $key => $strings) {
             if ($key === 0) {
                 $res_str .= $strings;
                 continue;
             }
-            switch (substr($strings, 0, 1)) {
+            if ($delimiter !== '%' && mb_substr($format_array[$key -1], -1, 1) === '%') {
+                $re_format = $delimiter . $strings;
+                $res_str .= $re_format;
+                continue;
+            }
+            switch (mb_substr($strings, 0, 1)) {
                 case 'o':
                     $re_format = $this->getOrientalZodiac();
                     break;
@@ -585,10 +589,7 @@ class DateTime extends Carbon
                     break;
                 case 'G':
                     $re_format = $this->viewMonth();
-                    break;
-                case 'N':
-                    $re_format = $this->month;
-                    break;
+                    break;;
                 case 'F':
                     $re_format = $this->viewEraName();
                     break;
@@ -599,7 +600,9 @@ class DateTime extends Carbon
                     $re_format = $this->getEraYear();
                     break;
                 default:
-                    $re_format = '%' . substr($strings, 0, 1);
+                    $re_format = $delimiter . $strings;
+                    $res_str .= $re_format;
+                    continue 2;
                     break;
             }
             $res_str .= $re_format . mb_substr($strings, 1);
