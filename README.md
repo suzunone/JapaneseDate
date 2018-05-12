@@ -6,6 +6,10 @@ JapaneseDate
 このLibraryは、かつて、php.five-foxes.comで公開していたものを、GitHubに移行したものです。
 
 
+使い方
+-----------------------------------------
+
+ [PHP Doc](https://github.com/suzunone/JapaneseDate/blob/v3.X/docs/README.md)
 
 概要
 -----------------------------------------
