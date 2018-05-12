@@ -299,12 +299,56 @@ echo $yesterday;
 
 ```
 
+ローカライゼーション
+=================================================
+基本クラスのDateTimeにはローカライゼーションのサポートがありません。
+ローカライゼーションをサポートするために、formatLocalized($format)メソッドや、formatLocalizedSimple()があります。
+
+基本的な実装は、現在のインスタンスのタイムスタンプを使用してstrftime()を呼び出します。
+PHP関数[setlocale()](http://php.net/manual/ja/function.setlocale.php)を使用して現在のロケールを最初に設定することで、
+返される文字列は正しいロケールでフォーマットされます。
+
+formatLocalized($format)メソッドには追加で、日本語日付に特化したオプションが用意されています。
+
+[詳しくはこちら](https://github.com/suzunone/JapaneseDate/blob/v4.X/docs/README.md#formatlocalized)を参照してください。
+
+
+``` .php
+setlocale(LC_ALL, 'ja_JP');
+
+$dt = JapaneseDateTime::parse('2018-3-21 23:26:11.123789');
+echo $dt->formatLocalized('%A %d %B %Y'); // <?php
+setlocale(LC_TIME, 'ja_JP');
+
+$dt = JapaneseDateTime::parse('2018-3-21 23:26:11.123789');
+echo $dt->formatLocalized('%A %d %B %Y');
+?>
+
+echo $dt->formatLocalized('%#F%#E年%m月%d日(%A) 80%% %%#J');   // <?php
+echo $dt->formatLocalized('%#F%#E年%m月%d日(%A) 80%% %%#J');
+?>
+
+    echo $dt->formatLocalized('%#J %#e %#g %#k %#6 %#K %#l %#L %#o %#O %#N %#E %#G %#F %#f');   // <?php
+echo $dt->formatLocalized('%#J %#e %#g %#k %#6 %#K %#l %#L %#o %#O %#E %#G %#F %#f');
+?>
+
+echo $dt->formatLocalizedSimple('%#J %#e %#g %#k %#6 %#K %#l %#L %#o %#O %#N %#E %#G %#F %#f');   // <?php
+echo $dt->formatLocalizedSimple('%#J %#e %#g %#k %#6 %#K %#l %#L %#o %#O %#E %#G %#F %#f');
+?>
+
+
+
+
+```
+
+
 
 Getter
 =================================================
 
 getterはMagicMethodの__get()メソッドで実装されています。
 
+propertiesにアクセスするだけで、様々な情報を取得できます。
 
 
 ``` .php

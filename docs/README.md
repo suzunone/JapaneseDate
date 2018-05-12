@@ -457,7 +457,6 @@ DateTime::strftime( string $format ): string
 - %L 祝日
 - %o 干支番号
 - %O 干支
-- %N 1～12の月
 - %E 旧暦年
 - %G 旧暦の月
 - %F 年号
@@ -465,6 +464,7 @@ DateTime::strftime( string $format ): string
 
 が使用できます。
 
+* **Warning:** this method is **deprecated**. This means that this method will likely be removed in a future version.
 
 **Parameters:**
 
@@ -492,21 +492,20 @@ DateTime::formatLocalized( string $format ): string
 [function.strftime strftimeの仕様](http://php.net/manual/ja/function.strftime.php)
 に加え、
 
-- %J 1～31の日
-- %e 1～9なら先頭にスペースを付ける、1～31の日
-- %g 1～9なら先頭にスペースを付ける、1～12の月
-- %k 六曜番号
-- %6 六曜
-- %K 曜日
-- %l 祝日番号
-- %L 祝日
-- %o 干支番号
-- %O 干支
-- %N 1～12の月
-- %E 旧暦年
-- %G 旧暦の月
-- %F 年号
-- %f 年号ID
+- %#J 1～31の日
+- %#e 1～9なら先頭にスペースを付ける、1～31の日
+- %#g 1～9なら先頭にスペースを付ける、1～12の月
+- %#k 六曜番号
+- %#6 六曜
+- %#K 曜日
+- %#l 祝日番号
+- %#L 祝日
+- %#o 干支番号
+- %#O 干支
+- %#E 旧暦年
+- %#G 旧暦の月
+- %#F 年号
+- %#f 年号ID
 
 が使用できます。
 
