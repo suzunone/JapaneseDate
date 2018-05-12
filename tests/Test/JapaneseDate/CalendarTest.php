@@ -54,7 +54,7 @@ class CalendarTest extends TestCase
 
         // 日付オブジェクト
         $test_date_time = $FakerGenerator->dateTime();
-        $test_date_time = new DateTime($test_date_time);
+        $test_date_time = new DateTime($test_date_time->format('Y-m-d H:i:s'));
 
         $Calendar = new Calendar($test_date_time);
 
@@ -82,7 +82,7 @@ class CalendarTest extends TestCase
 
         // 日付オブジェクト
         $test_date_time = $FakerGenerator->dateTime();
-        $test_date_time = new DateTime($test_date_time);
+        $test_date_time = DateTime::factory($test_date_time);
 
         $Calendar = new Calendar($test_date_time);
         $res      = $Calendar->getDatesOfMonth();
@@ -96,8 +96,6 @@ class CalendarTest extends TestCase
      * @test
      * @covers \JapaneseDate\Calendar
      * @throws \Exception
-     * @throws \Exception
-     * @throws \Exception
      */
     public function test_getWorkingDayByLimit()
     {
@@ -108,7 +106,7 @@ class CalendarTest extends TestCase
 
         // 日付オブジェクト
         $test_date_time = $FakerGenerator->dateTime();
-        $test_date_time = new DateTime($test_date_time);
+        $test_date_time = DateTime::factory($test_date_time);
 
 
         // 日付指定のBypass
@@ -204,7 +202,7 @@ class CalendarTest extends TestCase
 
         // 日付オブジェクト
         $test_date_time = $FakerGenerator->dateTime();
-        $test_date_time = new DateTime($test_date_time);
+        $test_date_time = DateTime::factory($test_date_time);
 
         $Calendar = new Calendar();
 
