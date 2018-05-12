@@ -91,7 +91,7 @@ class DateTimeTest extends TestCase
         );
 
         $this->assertEquals(
-            $japanese_date->strftime('%Y-%m-%d '.'K'),
+            strftime('%Y-%m-%d %K', $japanese_date->timestamp),
             $japanese_date->formatLocalizedSimple('%Y-%m-%d %K')
 
         );
