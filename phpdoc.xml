@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <phpdoc>
-    <title>CDN PROXY Document</title>
+    <title>Japanese DateTime Document</title>
 
     <parser>
         <target>works/doc/</target>
@@ -12,7 +12,9 @@
         <template name="vendor/cvuorinen/phpdoc-markdown-public/data/templates/markdown-public" />
     </transformations>
     <files>
-        <directory>src</directory>
+        <file>src/DateTime.php</file>
+        <file>src/CacheMode.php</file>
+        <file>src/Calendar.php</file>
         <ignore>test/*</ignore>
     </files>
 </phpdoc>
