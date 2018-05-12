@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<phpdoc>
+    <title>JapaneseDate DateTime Document</title>
+
+    <parser>
+        <target>works/doc/</target>
+    </parser>
+    <transformer>
+        <target>docs</target>
+    </transformer>
+    <transformations>
+        <template name="vendor/cvuorinen/phpdoc-markdown-public/data/templates/markdown-public" />
+    </transformations>
+    <files>
+        <file>libs/JapaneseDateCalendar.php</file>
+        <file>libs/JapaneseDateTime.php</file>
+        <ignore>test/*</ignore>
+    </files>
+</phpdoc>

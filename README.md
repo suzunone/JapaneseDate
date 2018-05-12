@@ -13,17 +13,13 @@ JapaneseDate
 日本の祝日、六曜、干支、日本語での曜日表記など、日本での日付処理をまとめた物です。
 Sampleコードのようなカレンダーも簡単に作れます。
 
-また、Version1.1から、mb_strftime();を搭載。
-日本語対応のstrftimeを使用できます。
-
-速度を求める場合は、$luna引数をfalseにしてください。
-旧暦計算が出来ないかわりに、高速に動作します。(休日だけ欲しい方など･･･)
+日本語対応のstrftimeも使用できます。
 
 インストール手順
 -----------------------------------------
 
 ### Composer
-composer require  suzunone/cdn-proxy
+composer require  japanese-date/japanese-date
 
 
 更新履歴

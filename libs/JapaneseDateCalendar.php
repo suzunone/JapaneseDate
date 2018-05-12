@@ -39,6 +39,12 @@ class JapaneseDateCalendar
     protected $bypass_day_arr = array();
     protected $is_bypass_holiday = false;
 
+    /**
+     * JapaneseDateCalendar constructor.
+     *
+     * @param string $time
+     * @param \DateTimeZone|null $timezone
+     */
     public function __construct($time = 'now', DateTimeZone $timezone = NULL)
     {
         $this->start_time_stamp     = $this->JapaneseDateTime($time, $timezone);
@@ -143,7 +149,7 @@ class JapaneseDateCalendar
      * 除く場合true、そうでない場合false
      *
      * @access      public
-     * @param       bool $val
+     * @param       bool $val 除く場合true、そうでない場合false
      * @return \JapaneseDate\JapaneseDateCalendar
      */
     public function setBypassHoliday($val)
@@ -159,6 +165,7 @@ class JapaneseDateCalendar
      * @access      public
      * @param       int|string $JDT_end 取得終了日
      * @return      array
+     * @throws \Exception
      */
     public function getWorkingDayBySpan($JDT_end)
     {
@@ -188,6 +195,7 @@ class JapaneseDateCalendar
      * @access      public
      * @param       int $lim_day 取得日数
      * @return      array
+     * @throws \Exception
      */
     public function getWorkingDay($lim_day)
     {
@@ -201,6 +209,7 @@ class JapaneseDateCalendar
      * @access      public
      * @param       int $lim_day 取得日数
      * @return      array
+     * @throws \Exception
      */
     public function getWorkingDayByLimit($lim_day)
     {
