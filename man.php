@@ -14,7 +14,7 @@ $close_tag = '?>';
 ?>
 はじめに
 =====================================
-__JapaneseDate\DateTime__クラスは、[Carbon](https://carbon.nesbot.com/docs/)継承しており、
+__JapaneseDate\DateTime__ クラスは、[Carbon](https://carbon.nesbot.com/docs/)継承しており、
 CarbonはPHP [DateTime](http://php.net/manual/ja/class.datetime.php)クラスを継承しています。
 
 ```DateTime.php
@@ -39,11 +39,11 @@ class Carbon extends \DateTime
 }
 ```
 
-__JapaneseDate\DateTime__では、DateTimeクラスに存在する機能、Carbonクラスに存在する機能のすべてを使用することができます。
+__JapaneseDate\DateTime__ では、DateTimeクラスに存在する機能、Carbonクラスに存在する機能のすべてを使用することができます。
 
 このドキュメントから漏れている機能であっても……です。
 
-そのため、__JapaneseDate\DateTime__のすべての機能を使用するには、
+そのため、__JapaneseDate\DateTime__ のすべての機能を使用するには、
 [Carbonのドキュメント](https://carbon.nesbot.com/docs/)と、
 [DateTimeのドキュメント](http://php.net/manual/ja/class.datetime.php)
 も参照してください。
@@ -61,7 +61,7 @@ use JapaneseDate\DateTime as JapaneseDateTime;
 
 インスタンス化
 =====================================
-__JapaneseDate\DateTime__の新しいインスタンスを作成するには、いくつかの方法があります。
+__JapaneseDate\DateTime__ の新しいインスタンスを作成するには、いくつかの方法があります。
 まず、最初にコンストラクタがあります。
 
 
