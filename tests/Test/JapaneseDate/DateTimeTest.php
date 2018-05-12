@@ -15,10 +15,12 @@
 
 namespace Test\JapaneseDate;
 
+use Carbon\Carbon;
 use Faker\Generator as FakerGenerator;
 use Faker\Provider\DateTime as FakerDateTime;
 use JapaneseDate\DateTime;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Validator\Constraints\Date;
 use Tests\JapaneseDate\InvokeTrait;
 
 
@@ -41,6 +43,147 @@ class DateTimeTest extends TestCase
     /**
      *
      * @test
+     * @covers \JapaneseDate\DateTime::setLocale()
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
+     */
+    public function test_setLocale()
+    {
+        DateTime::setLocale('de');
+        $this->assertEquals('de', DateTime::getLocale());
+        $this->assertEquals('de', Carbon::getLocale());
+
+
+        DateTime::setLocale('en');
+        $this->assertEquals('en', DateTime::getLocale());
+        $this->assertEquals('en', Carbon::getLocale());
+    }
+
+    /**
+     * @test
+     * @covers \JapaneseDate\DateTime::formatLocalizedSimple()
+     * @covers \JapaneseDate\DateTime::strftimeJa()
+     */
+    public function test_formatLocalizedSimple()
+    {
+        $FakerGenerator = new FakerGenerator();
+        $FakerGenerator->addProvider(FakerDateTime::class);
+
+        $carbon = Carbon::parse($FakerGenerator->dateTime()->format('Y-m-d H:i:s'));
+        $japanese_date = DateTime::factory($carbon);
+
+        $this->assertEquals(
+            $carbon->formatLocalized('%Y-%m-%d'),
+            $japanese_date->formatLocalized('%Y-%m-%d')
+
+        );
+
+        $this->assertEquals(
+            $carbon->formatLocalized('%Y-%m-%d'),
+            $japanese_date->formatLocalizedSimple('%Y-%m-%d')
+
+        );
+
+        $this->assertEquals(
+            $japanese_date->strftime('%Y-%m-%d %K'),
+            $japanese_date->formatLocalized('%Y-%m-%d %#K')
+
+        );
+
+        $this->assertEquals(
+            $japanese_date->strftime('%Y-%m-%d '.'K'),
+            $japanese_date->formatLocalizedSimple('%Y-%m-%d %K')
+
+        );
+    }
+
+
+    /**
+     *
+     * @test
+     * @covers \JapaneseDate\DateTime::safeCreateDateTimeZone()
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
+     */
+    public function test_safeCreateDateTimeZone()
+    {
+        date_default_timezone_set('Europe/London');
+        $this->assertEquals('Asia/Tokyo', DateTime::factory('now', 9)->tzName);
+        $this->assertEquals('Europe/London', DateTime::factory('now',1)->tzName);
+
+
+        $this->assertEquals('Asia/Tokyo', DateTime::parse('now', 9)->tzName);
+        $this->assertEquals('Europe/London', DateTime::parse('now',1)->tzName);
+
+        $this->assertEquals('Asia/Tokyo', DateTime::now(9)->tzName);
+        $this->assertEquals('Europe/London', DateTime::now(1)->tzName);
+
+        date_default_timezone_set('Asia/Tokyo');
+        $this->assertEquals('Asia/Tokyo', DateTime::factory('now', 9)->tzName);
+        $this->assertEquals('Europe/Paris', DateTime::factory('now',1)->tzName);
+
+
+        $this->assertEquals('Asia/Tokyo', DateTime::parse('now', 9)->tzName);
+        $this->assertEquals('Europe/Paris', DateTime::parse('now',1)->tzName);
+
+        $this->assertEquals('Asia/Tokyo', DateTime::now(9)->tzName);
+        $this->assertEquals('Europe/Paris', DateTime::now(1)->tzName);
+    }
+
+
+    /**
+     *
+     * @test
+     * @covers \JapaneseDate\DateTime::create()
+     */
+    public function test_create()
+    {
+        $date1 = DateTime::create(2018, 1, 1, 0, 0, 0);
+
+        $this->assertInstanceOf(DateTime::class, $date1);
+    }
+
+    /**
+     *
+     * @test
+     * @covers \JapaneseDate\DateTime::setLocale()
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
+     */
+    public function test_setTestNow()
+    {
+        // create testing date
+        $knownDate = DateTime::create(2001, 5, 21, 12);
+        DateTime::setTestNow($knownDate);
+
+        $this->assertEquals('2001-05-21 12:00:00', DateTime::getTestNow());
+        $this->assertEquals('2001-05-21 12:00:00', Carbon::getTestNow());
+
+
+        $this->assertEquals('2001-05-21 12:00:00', DateTime::now());
+        $this->assertEquals('2001-05-21 12:00:00', Carbon::now());
+
+
+        $this->assertEquals('2001-05-21 12:00:00', DateTime::factory());
+        $this->assertEquals('2001-05-21 12:00:00', (new DateTime()));
+        $this->assertEquals('2001-05-21 12:00:00', DateTime::factory()->format('Y-m-d H:i:s'));
+        $this->assertEquals('2001-05-21 12:00:00', (new DateTime())->format('Y-m-d H:i:s'));
+
+
+        $this->assertEquals('2001-05-21 12:00:00', DateTime::parse('now'));
+        $this->assertEquals('1 month ago', DateTime::create(2001, 4, 21, 12)->diffForHumans());
+
+        $this->assertTrue(DateTime::hasTestNow());
+        $this->assertTrue(Carbon::hasTestNow());
+
+        DateTime::setTestNow();
+        $this->assertFalse(DateTime::hasTestNow());
+        $this->assertFalse(Carbon::hasTestNow());
+    }
+
+    /**
+     *
+     * @test
      * @covers \JapaneseDate\DateTime::__construct()
      */
     public function test_construct()
@@ -50,13 +193,8 @@ class DateTimeTest extends TestCase
 
         // 日付オブジェクト
         $test_date_time = $FakerGenerator->dateTime();
-        $DateTime       = new DateTime($test_date_time);
+        $DateTime       = new DateTime($test_date_time->format('Y-m-d H:i:s'));
         $this->assertEquals($test_date_time->format('Y-m-d H:i:s'), $DateTime->format('Y-m-d H:i:s'));
-
-        // タイムスタンプ
-        $test_unix_time = $FakerGenerator->unixTime('+3 year');
-        $DateTime       = new DateTime($test_unix_time);
-        $this->assertEquals($test_unix_time, $DateTime->timestamp);
 
         // 日付文字列
         $test_date_time = $FakerGenerator->dateTime();
@@ -70,6 +208,8 @@ class DateTimeTest extends TestCase
      *
      * @test
      * @covers \JapaneseDate\DateTime::factory()
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
      */
     public function test_factory()
     {
@@ -92,6 +232,12 @@ class DateTimeTest extends TestCase
         $test_date_time = $test_date_time->format('Y-m-d H:i:s');
         $DateTime       = DateTime::factory($test_date_time);
         $this->assertEquals($test_date_time, $DateTime->format('Y-m-d H:i:s'));
+
+        $test_date_time = $FakerGenerator->dateTime();
+        $test_date_time = $test_date_time->format('YmdHis');
+        $DateTime       = DateTime::factory($test_date_time);
+        $this->assertEquals($test_date_time, $DateTime->format('YmdHis'));
+
     }
 
     /**
@@ -436,7 +582,113 @@ class DateTimeTest extends TestCase
 
     /**
      * @throws \ErrorException
+     * @covers \JapaneseDate\DateTime::formatLocalized()
+     * @covers \JapaneseDate\DateTime::strftimeJa()
+     */
+    public function test_formatLocalized()
+    {
+        $DateTime = DateTime::factory('2018-05-03');
+        $this->assertSame(
+            '%#123',
+            $DateTime->formatLocalized('%%#123')
+        );
+
+        $this->assertSame(
+            '%#o123',
+            $DateTime->formatLocalized('%%#o123')
+        );
+
+        $this->assertSame(
+            (string)$DateTime->oriental_zodiac,
+            $DateTime->formatLocalized('%#o')
+        );
+
+        $this->assertSame(
+            (string)$DateTime->oriental_zodiac_text,
+            $DateTime->formatLocalized('%#O')
+        );
+
+        $this->assertSame(
+            (string)$DateTime->holiday,
+            $DateTime->formatLocalized('%#l')
+        );
+
+        $this->assertSame(
+            (string)$DateTime->holiday_text,
+            $DateTime->formatLocalized('%#L')
+        );
+
+        $this->assertSame(
+            (string)$DateTime->era_name,
+            $DateTime->formatLocalized('%#f')
+        );
+
+        $this->assertSame(
+            (string)$DateTime->era_name_text,
+            $DateTime->formatLocalized('%#F')
+        );
+
+        $this->assertSame(
+            (string)$DateTime->era_year,
+            $DateTime->formatLocalized('%#E')
+        );
+
+
+        $this->assertSame(
+            (string)$DateTime->six_weekday_text,
+            $DateTime->formatLocalized('%#k')
+        );
+        $this->assertSame(
+            (string)$DateTime->six_weekday,
+            $DateTime->formatLocalized('%#6')
+        );
+
+        $this->assertSame(
+            (string)$DateTime->weekday_text,
+            $DateTime->formatLocalized('%#K')
+        );
+
+        $this->assertSame(
+            ' ' . $DateTime->format('j'),
+            $DateTime->formatLocalized('%#e')
+        );
+        $this->assertSame(
+            ' ' . $DateTime->format('n'),
+            $DateTime->formatLocalized('%#g')
+        );
+
+        $this->assertSame(
+            $DateTime->format('j'),
+            $DateTime->formatLocalized('%#J')
+        );
+        $this->assertSame(
+            $DateTime->month_text,
+            $DateTime->formatLocalized('%#G')
+        );
+
+        $this->assertSame(
+            '2018-05-03',
+            $DateTime->formatLocalized('%Y-%m-%d')
+        );
+
+
+        $DateTime = DateTime::factory('2018-10-10');
+        $this->assertSame(
+            $DateTime->format('j'),
+            $DateTime->formatLocalized('%#e')
+        );
+
+        $DateTime = DateTime::factory('2018-10-10');
+        $this->assertSame(
+            $DateTime->format('n'),
+            $DateTime->formatLocalized('%#g')
+        );
+    }
+
+    /**
+     * @throws \ErrorException
      * @covers \JapaneseDate\DateTime::strftime()
+     * @covers \JapaneseDate\DateTime::strftimeJa()
      */
     public function test_strftime()
     {
@@ -507,10 +759,6 @@ class DateTimeTest extends TestCase
         $this->assertSame(
             $DateTime->month_text,
             $DateTime->strftime('%G')
-        );
-        $this->assertSame(
-            (string)$DateTime->month,
-            $DateTime->strftime('%N')
         );
 
         $this->assertSame(

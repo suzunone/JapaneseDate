@@ -1,28 +1,33 @@
-# JapaneseDate
+JapaneseDate
+=========================================
 
-## はじめに
+はじめに
+-----------------------------------------
 このLibraryは、かつて、[php.five-foxes.com](http://php.five-foxes.com) や、
 [ENVIのサブパッケージ](https://github.com/EnviFramework/JapaneseDate) として公開していたものを、GitHubに移行したものです。
 
 
+使用方法
+-----------------------------------------
 
-## 概要
+ - [ドキュメント](https://github.com/suzunone/JapaneseDate/blob/v4.X/docs/Man.md)
+ - [APIドキュメント](https://github.com/suzunone/JapaneseDate/blob/v4.X/docs/README.md)
+
+
+概要
+-----------------------------------------
 
 日本の祝日、六曜、干支、日本語での曜日表記など、日本での日付処理をまとめた物です。
-Sampleコードのようなカレンダーも簡単に作れます。
 
-また、Version1.1から、mb_strftime();を搭載。
-日本語対応のstrftimeを使用できます。
+インストール手順
+-----------------------------------------
 
-速度を求める場合は、$luna引数をfalseにしてください。
-旧暦計算が出来ないかわりに、高速に動作します。(休日だけ欲しい方など･･･)
-
-## 使用方法について
-Sample.phpと、ARTISAN PROJECTで公開されているドキュメント
-を参照ください。
+### Composer
+composer require japanese-date/japanese-date
 
 
-## 更新履歴
+更新履歴
+-----------------------------------------
  * 2005年7月29日 Version 0.1
     * とりあえずの公開
  * 2005年8月 1日 Version 1.0

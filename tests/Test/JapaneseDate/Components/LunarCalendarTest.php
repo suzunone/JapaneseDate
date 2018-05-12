@@ -80,40 +80,6 @@ class LunarCalendarTest extends TestCase
 
     }
 
-    /**
-     * @throws \ReflectionException
-     * @test
-     * @covers              \JapaneseDate\Components\LunarCalendar
-     * @runInSeparateProcess
-     * @preserveGlobalState disabled
-     */
-    public function test_gregorian2J2000()
-    {
-        $LunarCalendar = LunarCalendar::factory();
-
-        $this->assertEquals(
-            0.125,
-            $this->invokeExecuteMethod($LunarCalendar, 'gregorian2J2000', [2000, 1, 2])
-        );
-
-
-        $this->assertEquals(
-            $this->gregorian2J2000(2018, 03, 1),
-            $this->invokeExecuteMethod($LunarCalendar, 'gregorian2J2000', [2018, 3, 1])
-        );
-
-
-        $this->assertEquals(
-            $this->gregorian2J2000(2017, 03, 1),
-            $this->invokeExecuteMethod($LunarCalendar, 'gregorian2J2000', [2017, 3, 1])
-        );
-
-
-        $this->assertEquals(
-            $this->gregorian2J2000(2016, 03, 1),
-            $this->invokeExecuteMethod($LunarCalendar, 'gregorian2J2000', [2016, 3, 1])
-        );
-    }
 
     /**
      * 2000年1月1日力学時正午からの経過日数

@@ -19,7 +19,9 @@ namespace JapaneseDate;
 use Carbon\Carbon;
 use DateTimeInterface;
 use DateTimeZone;
+use Closure;
 use JapaneseDate\Components\JapaneseDate;
+use JapaneseDate\Components\Cache;
 use JapaneseDate\Components\LunarCalendar;
 
 
@@ -322,17 +324,11 @@ class DateTime extends Carbon
     /**
      * DateTime constructor.
      *
-     * @param string|null|DateTimeInterface $time
-     * @param DateTimeZone|null $time_zone
+     * @param string|int|DateTimeInterface $time
+     * @param DateTimeZone|null|string $time_zone
      */
-    public function __construct($time = null, DateTimeZone $time_zone = null)
+    public function __construct($time = 'now', $time_zone = null)
     {
-        if (is_int($time) || ctype_digit($time)) {
-            $time = date('Y-m-d H:i:s', $time);
-        } elseif ($time instanceof DateTimeInterface) {
-            $time = $time->format('Y-m-d H:i:s');
-        }
-
         parent::__construct($time, $time_zone);
 
         $this->JapaneseDate  = JapaneseDate::factory();
@@ -340,13 +336,21 @@ class DateTime extends Carbon
     }
 
     /**
-     * @param mixed $date_time
-     * @param DateTimeZone|null $time_zone
+     * DateTimeオブジェクトの生成
+     *
+     * @param string|int|DateTimeInterface $date_time 日付オブジェクト OR Unix Time Stamp OR 日付文字列
+     * @param DateTimeZone|null|string $time_zone
      * @return static
      */
-    public static function factory($date_time = 'now', DateTimeZone $time_zone = null)
+    public static function factory($date_time = 'now', $time_zone = null)
     {
-        if (is_int($date_time) || ctype_digit($date_time)) {
+        if (is_int($date_time)) {
+            return new static(date('Y-m-d H:i:s', $date_time), $time_zone);
+        } elseif (ctype_digit($date_time)) {
+            $check_time = strtotime($date_time);
+            if ($check_time) {
+                $date_time = $check_time;
+            }
             return new static(date('Y-m-d H:i:s', $date_time), $time_zone);
         } elseif ($date_time instanceof DateTimeInterface) {
             return new static($date_time->format('Y-m-d H:i:s'), $time_zone ?? $date_time->getTimezone());
@@ -356,45 +360,197 @@ class DateTime extends Carbon
     }
 
 
+
     /**
-     * +-- 日本語カレンダー対応したstrftime()
+     * Creates a DateTimeZone from a string, DateTimeZone or integer offset.
      *
-     * <pre>{@link http://php.five-foxes.com/module/php_man/index.php?web=public function.strftime strftimeの仕様}
+     * @param \DateTimeZone|string|int|null $object
+     *
+     * @throws \InvalidArgumentException
+     *
+     * @return \DateTimeZone
+     */
+    protected static function safeCreateDateTimeZone($object)
+    {
+        if (is_int($object) || ctype_digit($object)) {
+            // $is_dst = date('I', strtotime('2017-07-01')) === '1';
+            $is_dst = date('I', 1498863600) === '1';
+
+            $tzName = timezone_name_from_abbr(null, $object * 3600, $is_dst);
+
+            if ($tzName === false) {
+                $tzName = timezone_name_from_abbr(null, $object * 3600, !$is_dst);
+            }
+
+            if ($tzName !== false) {
+                $object = $tzName;
+            }
+        }
+
+
+        return parent::safeCreateDateTimeZone($object);
+    }
+
+    /**
+     * キャッシュモードを指定する
+     *
+     * 指定するキャッシュモードは、{@see \JapaneseDate\CacheMode}参照。
+     *
+     * @see \JapaneseDate\CacheMode::MODE_NONE キャッシュなし
+     * @see \JapaneseDate\CacheMode::MODE_AUTO 自動でキャッシュモードを選択
+     * @see \JapaneseDate\CacheMode::MODE_APC APCを使用したキャッシュ
+     * @see \JapaneseDate\CacheMode::MODE_FILE ファイルを使用したキャッシュ
+     * @see \JapaneseDate\CacheMode::MODE_ORIGINAL 独自キャッシュ
+     * @param int $mode キャッシュモード
+     */
+    public static function setCacheMode(int $mode)
+    {
+        Cache::setMode($mode);
+    }
+
+
+    /**
+     * キャッシュファイル保存ディレクトリをセットします
+     *
+     * キャッシュモードがファイル{@see \JapaneseDate\CacheMode::MODE_FILE}の時に使用する、キャッシュファイル保存ディレクトリをセットします。
+     *
+     * @param string $cache_file_path キャッシュファイルを保存するディレクトリ
+     */
+    public static function setCacheFilePath(string $cache_file_path)
+    {
+        Cache::setCacheFilePath($cache_file_path);
+    }
+
+    /**
+     * 独自キャッシュロジックのセット
+     *
+     * キャッシュモードが独自キャッシュ{@see \JapaneseDate\CacheMode::MODE_ORIGINAL}の時に使用する、クロージャをセットします。
+     *
+     * セットされるクロージャは、
+     *
+     * mixed ClosureFunction(string $key, Closure $Cloosure)
+     *
+     * | Parameter | Type | Description |
+     * |-----------|------|-------------|
+     * | `$key` | **string** | キャッシュ単位の一意なキー。このキーにマッチしたキャッシュデータが有る場合は、キャッシュされたデータをreturnしてください。 |
+     * | `$Cloosure` | **\Closure** | キャッシュされたデータが取得できない場合に実行するクロージャです。実行すれば、キャッシュするべきデータが返されます。 |
+     *
+     * @param Closure $function 独自キャッシュのロジックが含まれたクロージャ
+     */
+    public static function setCacheClosure(Closure $function)
+    {
+        Cache::setCacheClosure($function);
+    }
+
+    /**
+     * 日本語カレンダー対応したstrftime()
+     *
+     * {@link http://php.net/manual/ja/function.strftime.php function.strftime strftimeの仕様}
      * に加え、
-     * %J 1～31の日
-     * %e 1～9なら先頭にスペースを付ける、1～31の日
-     * %g 1～9なら先頭にスペースを付ける、1～12の月
-     * %K 和名曜日
-     * %k 六曜番号
-     * %6 六曜
-     * %K 曜日
-     * %l 祝日番号
-     * %L 祝日
-     * %o 干支番号
-     * %O 干支
-     * %N 1～12の月
-     * %E 旧暦年
-     * %G 旧暦の月
-     * %F 年号
-     * %f 年号ID
      *
-     * が使用できます。</pre>
+     * - %J 1～31の日
+     * - %e 1～9なら先頭にスペースを付ける、1～31の日
+     * - %g 1～9なら先頭にスペースを付ける、1～12の月
+     * - %k 六曜番号
+     * - %6 六曜
+     * - %K 曜日
+     * - %l 祝日番号
+     * - %L 祝日
+     * - %o 干支番号
+     * - %O 干支
+     * - %E 旧暦年
+     * - %G 旧暦の月
+     * - %F 年号
+     * - %f 年号ID
+     *
+     * が使用できます。
      *
      * @since 1.1
      * @param string $format フォーマット
-     * @return string
+     * @return string  指定したフォーマット文字列に基づき文字列をフォーマットして返します。 月および曜日の名前、およびその他の言語依存の文字列は、 setlocale() で設定された現在のロケールを尊重して表示されます。
      * @throws \ErrorException
+     * @deprecated
      */
     public function strftime($format)
     {
+        $res_str      = $this->strftimeJa($format, '%');
+        return strftime($res_str, $this->timestamp);
+    }
+
+
+    /**
+     * 日本語カレンダー対応したstrftime()
+     *
+     * {@link http://php.net/manual/ja/function.strftime.php function.strftime strftimeの仕様}
+     * に加え、
+     *
+     * - %#J 1～31の日
+     * - %#e 1～9なら先頭にスペースを付ける、1～31の日
+     * - %#g 1～9なら先頭にスペースを付ける、1～12の月
+     * - %#k 六曜番号
+     * - %#6 六曜
+     * - %#K 曜日
+     * - %#l 祝日番号
+     * - %#L 祝日
+     * - %#o 干支番号
+     * - %#O 干支
+     * - %#E 旧暦年
+     * - %#G 旧暦の月
+     * - %#F 年号
+     * - %#f 年号ID
+     *
+     * が使用できます。
+     *
+     * @since 1.1
+     * @param string $format フォーマット
+     * @return string  指定したフォーマット文字列に基づき文字列をフォーマットして返します。 月および曜日の名前、およびその他の言語依存の文字列は、 setlocale() で設定された現在のロケールを尊重して表示されます。
+     * @throws \ErrorException
+     */
+    public function formatLocalized($format)
+    {
+        $format      = $this->strftimeJa($format);
+
+        return parent::formatLocalized($format);
+    }
+
+    /**
+     * CarbonデフォルトのformatLocalizedへのエイリアス
+     *
+     * @param string $format
+     * @return string
+     */
+    public function formatLocalizedSimple($format)
+    {
+        return parent::formatLocalized($format);
+    }
+
+
+
+
+
+    /**
+     * 日本語カレンダー対応したstrftime()の事前メソッド
+     *
+     * @since 1.1
+     * @param string $format フォーマット
+     * @return string  指定したフォーマット文字列に基づき文字列をフォーマットして返します。 月および曜日の名前、およびその他の言語依存の文字列は、 setlocale() で設定された現在のロケールを尊重して表示されます。
+     * @throws \ErrorException
+     */
+    protected function strftimeJa($format, $delimiter = '%#')
+    {
         $res_str      = '';
-        $format_array = explode('%', $format);
+        $format_array = explode($delimiter, $format);
         foreach ($format_array as $key => $strings) {
             if ($key === 0) {
                 $res_str .= $strings;
                 continue;
             }
-            switch (substr($strings, 0, 1)) {
+            if ($delimiter !== '%' && mb_substr($format_array[$key -1], -1, 1) === '%') {
+                $re_format = $delimiter . $strings;
+                $res_str .= $re_format;
+                continue;
+            }
+            switch (mb_substr($strings, 0, 1)) {
                 case 'o':
                     $re_format = $this->getOrientalZodiac();
                     break;
@@ -433,10 +589,7 @@ class DateTime extends Carbon
                     break;
                 case 'G':
                     $re_format = $this->viewMonth();
-                    break;
-                case 'N':
-                    $re_format = $this->month;
-                    break;
+                    break;;
                 case 'F':
                     $re_format = $this->viewEraName();
                     break;
@@ -447,23 +600,26 @@ class DateTime extends Carbon
                     $re_format = $this->getEraYear();
                     break;
                 default:
-                    $re_format = '%' . substr($strings, 0, 1);
+                    $re_format = $delimiter . $strings;
+                    $res_str .= $re_format;
+                    continue 2;
                     break;
             }
             $res_str .= $re_format . mb_substr($strings, 1);
         }
 
-        return strftime($res_str, $this->timestamp);
+        return $res_str;
     }
-    /* ----------------------------------------- */
 
 
     /**
-     * カレンダーの取得
+     * サポートされるカレンダーに変換する
+     *
+     * サポートされる calendar の値は、 CAL_GREGORIAN、 CAL_JULIAN、 CAL_JEWISH および CAL_FRENCH です。
      *
      * @access      public
-     * @param int $calendar
-     * @return      array
+     * @param int $calendar サポートされるカレンダー
+     * @return      array カレンダーの情報を含む配列を返します。この配列には、 年、月、日、週、曜日名、月名、"月/日/年" 形式の文字列 などが含まれます。
      */
     public function getCalendar($calendar = CAL_GREGORIAN)
     {
@@ -471,6 +627,9 @@ class DateTime extends Carbon
     }
 
     /**
+     * MagicMethod:__get()
+     *
+     * @link https://carbon.nesbot.com/docs/#api-getters
      * @param string $name
      * @return DateTimeZone|int|string
      * @throws \ErrorException
