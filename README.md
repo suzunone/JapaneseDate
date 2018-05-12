@@ -10,6 +10,8 @@ JapaneseDate
 使用方法
 -----------------------------------------
 
+ - [ドキュメント](https://github.com/suzunone/JapaneseDate/blob/v4.X/docs/Man.md)
+ - [APIドキュメント](https://github.com/suzunone/JapaneseDate/blob/v4.X/docs/README.md)
 
 
 概要
