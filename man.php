@@ -650,5 +650,5 @@ echo JapaneseDateTime::now()->tzName;
 <?php
 $content = ob_get_contents();
 ob_end_flush();
-file_put_contents(__DIR__.'/docs/mam.md', $content);
+file_put_contents(__DIR__.'/docs/Man.md', $content);
 ?>
