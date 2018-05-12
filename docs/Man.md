@@ -1,6 +1,6 @@
 はじめに
 =====================================
-__JapaneseDate\DateTime__クラスは、[Carbon](https://carbon.nesbot.com/docs/)継承しており、
+__JapaneseDate\DateTime__ クラスは、[Carbon](https://carbon.nesbot.com/docs/)継承しており、
 CarbonはPHP [DateTime](http://php.net/manual/ja/class.datetime.php)クラスを継承しています。
 
 ```DateTime.php
@@ -23,11 +23,11 @@ class Carbon extends \DateTime
 }
 ```
 
-__JapaneseDate\DateTime__では、DateTimeクラスに存在する機能、Carbonクラスに存在する機能のすべてを使用することができます。
+__JapaneseDate\DateTime__ では、DateTimeクラスに存在する機能、Carbonクラスに存在する機能のすべてを使用することができます。
 
 このドキュメントから漏れている機能であっても……です。
 
-そのため、__JapaneseDate\DateTime__のすべての機能を使用するには、
+そのため、__JapaneseDate\DateTime__ のすべての機能を使用するには、
 [Carbonのドキュメント](https://carbon.nesbot.com/docs/)と、
 [DateTimeのドキュメント](http://php.net/manual/ja/class.datetime.php)
 も参照してください。
@@ -45,7 +45,7 @@ use JapaneseDate\DateTime as JapaneseDateTime;
 
 インスタンス化
 =====================================
-__JapaneseDate\DateTime__の新しいインスタンスを作成するには、いくつかの方法があります。
+__JapaneseDate\DateTime__ の新しいインスタンスを作成するには、いくつかの方法があります。
 まず、最初にコンストラクタがあります。
 
 
@@ -130,7 +130,7 @@ echo JapaneseDateTime::parse('first day of December 2018')->addWeeks(2);    // 2
 
 ``` .php
 
-echo JapaneseDateTime::parse(time());    // Throw Exception DateTime::__construct(): Failed to parse time string (1526113773) at position 7 (7): Unexpected character
+echo JapaneseDateTime::parse(time());    // Throw Exception DateTime::__construct(): Failed to parse time string (1526113941) at position 7 (9): Unexpected character
 echo JapaneseDateTime::parse(new DateTime('now'));    // PHP Fatal error:  Uncaught TypeError: DateTime::__construct() expects parameter 1 to be string, object given
 ```
 
@@ -141,9 +141,9 @@ echo JapaneseDateTime::parse(new DateTime('now'));    // PHP Fatal error:  Uncau
 そういった場合は、`JapaneseDate\DateTime::factory()`を使用します。
 
 ``` .php
-echo JapaneseDateTime::factory(time());    // 2018-05-12 17:29:33
+echo JapaneseDateTime::factory(time());    // 2018-05-12 17:32:21
 
-echo JapaneseDateTime::factory(new DateTime('now'));    // 2018-05-12 17:29:33
+echo JapaneseDateTime::factory(new DateTime('now'));    // 2018-05-12 17:32:21
 
 // もちろんこういったコードも動作します
 echo JapaneseDateTime::factory('first day of December 2018')->addWeeks(2);    // 2018-12-15 00:00:00
@@ -169,7 +169,7 @@ echo JapaneseDateTime::factory(20180404050505);    // 2061-07-19 16:48:25
 
 ``` .php
 $now = JapaneseDateTime::now();
-echo $now;                               // 2018-05-12 17:29:33
+echo $now;                               // 2018-05-12 17:32:21
 $today = JapaneseDateTime::today();
 echo $today;                             // 2018-05-12 00:00:00
 $tomorrow = JapaneseDateTime::tomorrow('Europe/London');
