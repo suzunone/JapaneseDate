@@ -156,7 +156,9 @@ try{
 echo JapaneseDateTime::now(9)->tzName;             // <?php
 echo JapaneseDateTime::now(9)->tzName;
 ?>
+
 ```
+
 
 `new`を使用せずメソッドチェーンを使用するなら、
 
