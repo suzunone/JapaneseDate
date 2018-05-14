@@ -164,7 +164,7 @@ class JapaneseDate
      * @access      public
      * @param       DateTime $DateTime DateTime
      * @return      array
-     * @throws ErrorException
+     * @throws \ErrorException
      */
     public function getHolidayList(DateTime $DateTime): array
     {
@@ -285,7 +285,7 @@ class JapaneseDate
      * @param       int $year 年
      * @param $timezone
      * @return      array
-     * @throws ErrorException
+     * @throws \ErrorException
      */
     protected function getJanuaryHoliday(int $year, $timezone): array
     {
@@ -585,7 +585,7 @@ class JapaneseDate
      * @param       int $year 年
      * @param DateTimeZone $timezone
      * @return      array
-     * @throws ErrorException
+     * @throws \ErrorException
      */
     protected function getJulyHoliday(int $year, DateTimeZone $timezone)
     {
@@ -641,7 +641,7 @@ class JapaneseDate
      * @param       int $year 年
      * @param DateTimeZone $timezone
      * @return      array
-     * @throws ErrorException
+     * @throws \ErrorException
      */
     protected function getSeptemberHoliday(int $year, DateTimeZone $timezone)
     {
@@ -683,7 +683,6 @@ class JapaneseDate
      * @param int $year
      * @return      int タイムスタンプ
      * @throws \ErrorException
-     * @throws \ErrorException
      */
     public function getAutumnEquinoxDay(int $year)
     {
@@ -716,7 +715,7 @@ class JapaneseDate
      * @param       int $year 年
      * @param DateTimeZone $timezone
      * @return      array
-     * @throws ErrorException
+     * @throws \ErrorException
      */
     protected function getOctoberHoliday(int $year, DateTimeZone $timezone)
     {
