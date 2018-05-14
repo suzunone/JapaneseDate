@@ -4,7 +4,7 @@
 
     "compression": "GZ",
 
-    "output": "../build/suzunone-cdn-proxy.phar",
+    "output": "../build/japanese-date.phar",
     "files": [
         "vendor/autoload.php"
     ],

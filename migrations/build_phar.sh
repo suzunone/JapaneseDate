@@ -12,7 +12,7 @@ fi
 
 cp -rf ../src ./src
 
-composer install --no-dev --optimize-autoloader
+composer install --no-dev --optimize-autoloader -vvv
 
 mkdir -p ../build
 
