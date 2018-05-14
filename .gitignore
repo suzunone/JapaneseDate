@@ -211,5 +211,6 @@ covers/
 migrations/src/
 migrations/composer.lock
 migrations/box.phar
+build/
 grind/*
 !grind/.gitkeep
