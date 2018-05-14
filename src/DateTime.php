@@ -544,12 +544,12 @@ class DateTime extends Carbon
     }
 
 
-
     /**
      * 日本語カレンダー対応したstrftime()の事前メソッド
      *
      * @since 1.1
      * @param string $format フォーマット
+     * @param string $delimiter
      * @return string  指定したフォーマット文字列に基づき文字列をフォーマットして返します。 月および曜日の名前、およびその他の言語依存の文字列は、 setlocale() で設定された現在のロケールを尊重して表示されます。
      * @throws \ErrorException
      */
@@ -726,7 +726,6 @@ class DateTime extends Carbon
      *
      * @return bool|int
      * @throws \ErrorException
-     * @throws \ErrorException
      */
     protected function getSolarTermKey()
     {
@@ -740,7 +739,6 @@ class DateTime extends Carbon
      * 24節気を取得する
      *
      * @return string
-     * @throws \ErrorException
      * @throws \ErrorException
      */
     protected function getSolarTerm()
@@ -952,7 +950,6 @@ class DateTime extends Carbon
      *
      * @return      string
      * @throws \ErrorException
-     * @throws \ErrorException
      */
     protected function getLunarMonth(): string
     {
@@ -965,7 +962,6 @@ class DateTime extends Carbon
      * 旧暦（年）
      *
      * @return      string
-     * @throws \ErrorException
      * @throws \ErrorException
      */
     protected function getLunarYear(): string
@@ -980,7 +976,6 @@ class DateTime extends Carbon
      *
      * @return      string
      * @throws \ErrorException
-     * @throws \ErrorException
      */
     protected function getLunarDay(): string
     {
@@ -993,7 +988,6 @@ class DateTime extends Carbon
      * 閏月かどうか
      *
      * @return      bool
-     * @throws \ErrorException
      * @throws \ErrorException
      */
     protected function isLeapMonth(): bool
