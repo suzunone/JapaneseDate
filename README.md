@@ -22,9 +22,10 @@ JapaneseDate
 
 インストール手順
 -----------------------------------------
-
 ### Composer
+```
 composer require japanese-date/japanese-date
+```
 
 
 更新履歴
