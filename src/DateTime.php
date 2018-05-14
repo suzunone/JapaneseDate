@@ -52,12 +52,31 @@ use JapaneseDate\Components\LunarCalendar;
  * @property string $month_text
  * @property string $holiday_text
  * @property int $holiday
+ * @property bool $is_holiday
  * @property string $lunar_month_text
  * @property int $lunar_month
  * @property int $lunar_year
  * @property int $lunar_day
  * @property bool $is_leap_month
- *
+ * @property  int|bool $solarTerm
+ * @property  string $solarTermText
+ * @property bool $isSolarTerm
+ * @property string $eraNameText
+ * @property int $eraName
+ * @property int $eraYear
+ * @property string $orientalZodiacText
+ * @property int $orientalZodiac
+ * @property string $sixWeekdayText
+ * @property int $sixWeekday
+ * @property int $weekdayText
+ * @property string $monthText
+ * @property string $holidayText
+ * @property bool $isHoliday
+ * @property string $lunarMonthText
+ * @property int $lunarMonth
+ * @property int $lunarYear
+ * @property int $lunarYay
+ * @property bool $isLeapMonth
  */
 class DateTime extends Carbon
 {
@@ -526,8 +545,6 @@ class DateTime extends Carbon
 
 
 
-
-
     /**
      * 日本語カレンダー対応したstrftime()の事前メソッド
      *
@@ -589,7 +606,7 @@ class DateTime extends Carbon
                     break;
                 case 'G':
                     $re_format = $this->viewMonth();
-                    break;;
+                    break;
                 case 'F':
                     $re_format = $this->viewEraName();
                     break;
@@ -638,42 +655,63 @@ class DateTime extends Carbon
     {
         switch ($name) {
             case 'solar_term_text':
+            case 'solarTermText':
                 return $this->getSolarTerm();
             case 'solar_term':
+            case 'solarTerm':
                 return $this->getSolarTermKey();
             case 'is_solar_term':
+            case 'isSolarTerm':
                 return $this->isSolarTerm();
             case 'era_name_text':
+            case 'eraNameText':
                 return $this->viewEraName();
             case 'era_name':
+            case 'eraName':
                 return $this->getEraName();
             case 'era_year':
+            case 'eraYear':
                 return $this->getEraYear();
             case 'oriental_zodiac_text':
+            case 'orientalZodiacText':
                 return $this->viewOrientalZodiac();
             case 'oriental_zodiac':
+            case 'orientalZodiac':
                 return $this->getOrientalZodiac();
             case 'six_weekday_text':
+            case 'sixWeekdayText':
                 return $this->viewSixWeekday();
             case 'six_weekday':
+            case 'sixWeekday':
                 return $this->getSixWeekday();
             case 'weekday_text':
+            case 'weekdayText':
                 return $this->viewWeekday();
             case 'month_text':
+            case 'monthText':
                 return $this->viewMonth();
             case 'holiday_text':
+            case 'holidayText':
                 return $this->viewHoliday();
             case 'holiday':
                 return $this->getHoliday();
+            case 'is_holiday':
+            case 'isHoliday':
+                return $this->getHoliday() !== self::NO_HOLIDAY;
             case 'lunar_month_text':
+            case 'lunarMonthText':
                 return $this->viewLunarMonth();
             case 'lunar_month':
+            case 'lunarMonth':
                 return $this->getLunarMonth();
             case 'lunar_year':
+            case 'lunarYear':
                 return $this->getLunarYear();
             case 'lunar_day':
+            case 'lunarDay':
                 return $this->getLunarDay();
             case 'is_leap_month':
+            case 'isLeapMonth':
                 return $this->isLeapMonth();
 
 
