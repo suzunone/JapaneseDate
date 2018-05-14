@@ -1,5 +1,6 @@
 JapaneseDate
 =========================================
+[![CircleCI](https://circleci.com/gh/suzunone/JapaneseDate.svg?style=svg)](https://circleci.com/gh/suzunone/JapaneseDate)
 
 はじめに
 -----------------------------------------
@@ -21,9 +22,10 @@ JapaneseDate
 
 インストール手順
 -----------------------------------------
-
 ### Composer
+```
 composer require japanese-date/japanese-date
+```
 
 
 更新履歴
