@@ -661,6 +661,7 @@ class DateTimeTest extends TestCase
             $DateTime->format('j'),
             $DateTime->formatLocalized('%#J')
         );
+
         $this->assertSame(
             $DateTime->month_text,
             $DateTime->formatLocalized('%#G')
@@ -671,19 +672,90 @@ class DateTimeTest extends TestCase
             $DateTime->formatLocalized('%Y-%m-%d')
         );
 
-
-        $DateTime = DateTime::factory('2018-10-10');
+        $DateTime = DateTime::factory('2018-10-09');
         $this->assertSame(
-            $DateTime->format('j'),
+            ' '.$DateTime->format('j'),
             $DateTime->formatLocalized('%#e')
         );
 
-        $DateTime = DateTime::factory('2018-10-10');
+        $DateTime = DateTime::factory('2018-09-10');
         $this->assertSame(
-            $DateTime->format('n'),
+            ' '.$DateTime->format('n'),
             $DateTime->formatLocalized('%#g')
         );
+
+        $DateTime = DateTime::factory('2018-10-10');
+        $this->assertSame(
+            '0'.$DateTime->lunar_day,
+            $DateTime->formatLocalized('%#d')
+        );
+
+        $DateTime = DateTime::factory('2018-10-10');
+        $this->assertSame(
+            $DateTime->lunar_day,
+            $DateTime->formatLocalized('%#-d')
+        );
+
+        $DateTime = DateTime::factory('2018-10-10');
+        $this->assertSame(
+            ' '.$DateTime->lunar_day,
+            $DateTime->formatLocalized('%#j')
+        );
+
+        $DateTime = DateTime::factory('2017-7-1');
+        $this->assertSame(
+            '閏',
+            $DateTime->formatLocalized('%#u')
+        );
+
+        $DateTime = DateTime::factory('2017-7-1');
+        $this->assertSame(
+            '(閏)',
+            $DateTime->formatLocalized('%#U')
+        );
+
+        $DateTime = DateTime::factory('2017-04-02');
+        $this->assertSame(
+            $DateTime->lunar_month,
+            $DateTime->formatLocalized('%#-m')
+        );
+
+        $DateTime = DateTime::factory('2017-04-02');
+        $this->assertSame(
+            $DateTime->lunar_month_text,
+            $DateTime->formatLocalized('%#b')
+        );
+        $this->assertSame(
+            $DateTime->lunar_month_text,
+            $DateTime->formatLocalized('%#h')
+        );
+
+        $DateTime = DateTime::factory('2017-04-02');
+        $this->assertSame(
+            '0'.$DateTime->lunar_month,
+            $DateTime->formatLocalized('%#m')
+        );
+
+        $DateTime = DateTime::factory('2017-04-02');
+        $this->assertSame(
+            ' '.$DateTime->lunar_month,
+            $DateTime->formatLocalized('%#n')
+        );
+
+        $DateTime = DateTime::factory('2017-7-1');
+        $this->assertSame(
+            $DateTime->lunar_month_text.'(閏月)',
+            $DateTime->formatLocalized('%#B')
+        );
+
+
+        $DateTime = DateTime::factory('2017-7-1');
+        $this->assertSame(
+            '#v',
+            $DateTime->formatLocalized('%#v')
+        );
     }
+
 
     /**
      * @throws \ErrorException

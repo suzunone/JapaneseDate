@@ -509,10 +509,10 @@ class DateTime extends Carbon
      *
      * {@link http://php.net/manual/ja/function.strftime.php function.strftime strftimeの仕様}
      * に加え、
-     *
-     * - %#J 1～31の日
-     * - %#e 1～9なら先頭にスペースを付ける、1～31の日
+     * - %#J %-dへのエイリアス
+     * - %#e 1～9なら先頭にスペースを付ける、1～31の日(%eのwin対応版)
      * - %#g 1～9なら先頭にスペースを付ける、1～12の月
+     * - %#G 古い名前の月名(睦月、如月)
      * - %#k 六曜番号
      * - %#6 六曜
      * - %#K 曜日
@@ -521,7 +521,17 @@ class DateTime extends Carbon
      * - %#o 干支番号
      * - %#O 干支
      * - %#E 旧暦年
-     * - %#G 旧暦の月
+     * - %#d 旧暦の日(01,02...)
+     * - %#-d 旧暦の日(1,2,3....)
+     * - %#j 旧暦の1桁の場合は先頭にスペースをいれた日（ 1, 2, 3）
+     * - %#m 旧暦の月(01,02...)
+     * - %#-m 旧暦の月(1,2,3....)
+     * - %#n 旧暦の1桁の場合は先頭にスペースをいれた月（ 1, 2, 3）
+     * - %#b 旧暦の月(睦月,如月...)
+     * - %#h %#bへのエイリアス
+     * - %#B 旧暦の月で閏月まで表示する 皐月(閏月)
+     * - %#u 閏月の場合 閏 と出力させる
+     * - %#U 閏月の場合 (閏) と出力させる
      * - %#F 年号
      * - %#f 年号ID
      *
@@ -574,7 +584,14 @@ class DateTime extends Carbon
                 $res_str   .= $re_format;
                 continue;
             }
-            switch (mb_substr($strings, 0, 1)) {
+
+            $pattern = mb_substr($strings, 0, 1);
+
+            if ($pattern === '-') {
+                $pattern = mb_substr($strings, 0, 2);
+            }
+
+            switch ($pattern) {
                 case 'o':
                     $re_format = $this->getOrientalZodiac();
                     break;
@@ -624,12 +641,68 @@ class DateTime extends Carbon
                     $re_format = $this->getEraYear();
                     break;
                 default:
-                    $re_format = $delimiter . $strings;
-                    $res_str   .= $re_format;
-                    continue 2;
+                    $re_format = false;
+
+                    if ($delimiter !== '%') {
+
+                        switch ($pattern) {
+                            case '-d':
+                                $re_format = $this->getLunarDay();
+                                break;
+                            case 'd':
+                                $re_format = $this->getLunarDay();
+                                if (strlen($re_format) === 1) {
+                                    $re_format = '0'.$re_format;
+                                }
+                                break;
+                            case 'j':
+                                $re_format = $this->getLunarDay();
+                                if (strlen($re_format) === 1) {
+                                    $re_format = ' '.$re_format;
+                                }
+                                break;
+                            case '-m':
+                                $re_format = $this->getLunarMonth();
+                                break;
+                            case 'm':
+                                $re_format = $this->getLunarMonth();
+                                if (strlen($re_format) === 1) {
+                                    $re_format = '0'.$re_format;
+                                }
+                                break;
+                            case 'n':
+                                $re_format = $this->getLunarMonth();
+                                if (strlen($re_format) === 1) {
+                                    $re_format = ' '.$re_format;
+                                }
+                                break;
+                            case 'b':
+                            case 'h':
+                                $re_format = $this->viewLunarMonth();
+                                break;
+                            case'B':
+                                $re_format = $this->viewLunarMonth();
+                                if ($this->isLeapMonth()) {
+                                    $re_format .= '(閏月)';
+                                }
+                                break;
+                            case 'u':
+                                $re_format = $this->isLeapMonth() ? '閏' : '';
+                                break;
+                            case 'U':
+                                $re_format = $this->isLeapMonth() ? '(閏)' : '';
+                                break;
+                        }
+                    }
+
+                    if ($re_format === false) {
+                        $re_format = $delimiter . $strings;
+                        $res_str   .= $re_format;
+                        continue 2;
+                    }
                     break;
             }
-            $res_str .= $re_format . mb_substr($strings, 1);
+            $res_str .= $re_format . mb_substr($strings, strlen($pattern));
         }
 
         return $res_str;
