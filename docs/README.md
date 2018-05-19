@@ -379,7 +379,11 @@ DateTime::setCacheMode( integer $mode )
 
 **See Also:**
 
-* \JapaneseDate\CacheMode::MODE_NONE - キャッシュなし* \JapaneseDate\CacheMode::MODE_AUTO - 自動でキャッシュモードを選択* \JapaneseDate\CacheMode::MODE_APC - APCを使用したキャッシュ* \JapaneseDate\CacheMode::MODE_FILE - ファイルを使用したキャッシュ* \JapaneseDate\CacheMode::MODE_ORIGINAL - 独自キャッシュ
+* \JapaneseDate\CacheMode::MODE_NONE - キャッシュなし
+* \JapaneseDate\CacheMode::MODE_AUTO - 自動でキャッシュモードを選択
+* \JapaneseDate\CacheMode::MODE_APC - APCを使用したキャッシュ
+* \JapaneseDate\CacheMode::MODE_FILE - ファイルを使用したキャッシュ
+* \JapaneseDate\CacheMode::MODE_ORIGINAL - 独自キャッシュ
 
 ---
 
