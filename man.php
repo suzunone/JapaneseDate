@@ -687,14 +687,45 @@ echo JapaneseDateTime::now()->tzName;                                  // <?php
 echo JapaneseDateTime::now()->tzName;
 ?>
 
-
-
-
 ```
+
+
+キャッシュ
+=================================================
+
+旧暦に関する計算はCPUコストが比較的高く、高負荷なアプリケーションでの使用は不向きに見えます。
+
+当然、旧暦に関する計算は必要がない場合は行われません。
+
+そのため、旧暦に関する計算結果をキャッシュする仕組みを用意しています。
+
+デフォルトでは、APCuが使用可能ならAPCuでのキャッシュを行い、そうでないなら、オブジェクト内に静的にキャッシュされるのみとなります。
+
+キャッシュをoffにするには、
+``` .php
+use \JapaneseDate\CacheMode;
+JapaneseDateTime::setCacheMode(CacheMode::MODE_NONE);
+<?php
+use \JapaneseDate\CacheMode;
+JapaneseDateTime::setCacheMode(CacheMode::MODE_NONE);
+?>
+```
+を使用してください。
+静的に処理されるため、同一Request内では、次にsetCacheModeするまでは同一のキャッシュモードが使用されることに注意してください。
+
+キャッシュモードの切り替えは、`JapaneseDateTime::setCacheMode`での切り替え以外に、
+[JapaneseDateTime::setCacheFilePath](https://github.com/suzunone/JapaneseDate/blob/master/docs/README.md#setcachefilepath)を使用してキャッシュファイルのパスを指定したり、
+[JapaneseDateTime::setCacheClosure](https://github.com/suzunone/JapaneseDate/blob/master/docs/README.md#setcacheclosure)をして、独自のキャッシュロジックを登録することでも切り替えることができます。
 
 
 <?php
 $content = ob_get_contents();
 ob_end_flush();
 file_put_contents(__DIR__.'/docs/Man.md', $content);
+
+$content = file_get_contents(__DIR__.'/docs/README.md');
+
+$content = mb_ereg_replace('([^*\s])[*]([^*])', "\\1\n*\\2", $content);
+
+file_put_contents(__DIR__.'/docs/README.md', $content);
 ?>
