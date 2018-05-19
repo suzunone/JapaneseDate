@@ -23,7 +23,7 @@ class Carbon extends \DateTime
 }
 ```
 
-__JapaneseDate\DateTime__ では、DateTimeクラスに存在する機能、Carbonクラスに存在する機能のすべてを使用することができます。
+新しい__JapaneseDate\DateTime__ では、DateTimeクラスに存在する機能、Carbonクラスに存在する機能のすべてを使用することができます。
 
 このドキュメントから漏れている機能であっても……です。
 
@@ -132,7 +132,7 @@ echo JapaneseDateTime::parse('first day of December 2018')->addWeeks(2);    // 2
 
 ``` .php
 
-echo JapaneseDateTime::parse(time());    // Throw Exception DateTime::__construct(): Failed to parse time string (1526691103) at position 8 (0): Unexpected character
+echo JapaneseDateTime::parse(time());    // Throw Exception DateTime::__construct(): Failed to parse time string (1526701126) at position 8 (2): Unexpected character
 echo JapaneseDateTime::parse(new DateTime('now'));    // PHP Fatal error:  Uncaught TypeError: DateTime::__construct() expects parameter 1 to be string, object given
 ```
 
@@ -143,9 +143,9 @@ echo JapaneseDateTime::parse(new DateTime('now'));    // PHP Fatal error:  Uncau
 そういった場合は、`JapaneseDate\DateTime::factory()`を使用します。
 
 ``` .php
-echo JapaneseDateTime::factory(time());    // 2018-05-19 09:51:43
+echo JapaneseDateTime::factory(time());    // 2018-05-19 12:38:46
 
-echo JapaneseDateTime::factory(new DateTime('now'));    // 2018-05-19 09:51:43
+echo JapaneseDateTime::factory(new DateTime('now'));    // 2018-05-19 12:38:46
 
 // もちろんこういったコードも動作します
 echo JapaneseDateTime::factory('first day of December 2018')->addWeeks(2);    // 2018-12-15 00:00:00
@@ -171,7 +171,7 @@ echo JapaneseDateTime::factory(20180404050505);    // 2061-07-19 16:48:25
 
 ``` .php
 $now = JapaneseDateTime::now();
-echo $now;                               // 2018-05-19 09:51:43
+echo $now;                               // 2018-05-19 12:38:46
 $today = JapaneseDateTime::today();
 echo $today;                             // 2018-05-19 00:00:00
 $tomorrow = JapaneseDateTime::tomorrow('Europe/London');
@@ -406,9 +406,30 @@ echo get_class(JapaneseDateTime::now()->tz);                           // DateTi
 // ->timezone->getName() へのエイリアスです
 echo JapaneseDateTime::now()->timezoneName;                            // Asia/Tokyo
 echo JapaneseDateTime::now()->tzName;                                  // Asia/Tokyo
-
-
-
 ```
+
+
+キャッシュ
+=================================================
+
+旧暦に関する計算はCPUコストが比較的高く、高負荷なアプリケーションでの使用は不向きに見えます。
+
+当然、旧暦に関する計算は必要がない場合は行われません。
+
+そのため、旧暦に関する計算結果をキャッシュする仕組みを用意しています。
+
+デフォルトでは、APCuが使用可能ならAPCuでのキャッシュを行い、そうでないなら、オブジェクト内に静的にキャッシュされるのみとなります。
+
+キャッシュをoffにするには、
+``` .php
+use \JapaneseDate\CacheMode;
+JapaneseDateTime::setCacheMode(CacheMode::MODE_NONE);
+```
+を使用してください。
+静的に処理されるため、同一Request内では、次にsetCacheModeするまでは同一のキャッシュモードが使用されることに注意してください。
+
+キャッシュモードの切り替えは、`JapaneseDateTime::setCacheMode`での切り替え以外に、
+[JapaneseDateTime::setCacheFilePath](https://github.com/suzunone/JapaneseDate/blob/master/docs/README.md#setcachefilepath)を使用してキャッシュファイルのパスを指定したり、
+[JapaneseDateTime::setCacheClosure](https://github.com/suzunone/JapaneseDate/blob/master/docs/README.md#setcacheclosure)をして、独自のキャッシュロジックを登録することでも切り替えることができます。
 
 

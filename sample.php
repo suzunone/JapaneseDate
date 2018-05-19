@@ -11,7 +11,7 @@
  */
 $start_microtime = microtime(true);
 
-include_once __DIR__.'/vendor/autoload.php';
+include_once __DIR__.'/build/japanese-date.phar';
 
 use JapaneseDate\DateTime as JapaneseDateTime;
 use JapaneseDate\Calendar as JapaneseDateCalendar;
