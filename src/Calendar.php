@@ -19,6 +19,8 @@ namespace JapaneseDate;
 /**
  * 日付オブジェクト配列作成
  *
+ * 様々な条件の元、一定期間内の日付の配列を取得します。
+ *
  * @category    DateTime
  * @package     JapaneseDate
  * @subpackage  Calendar
@@ -32,24 +34,36 @@ namespace JapaneseDate;
 class Calendar
 {
     /**
+     * 取得開始日時
+     *
      * @var \JapaneseDate\DateTime
      */
     protected $start_time_stamp;
 
     /**
+     * タイムゾーン
+     *
      * @var \DateTimeZone
      */
     protected $timezone;
 
     /**
+     * スキップする曜日
+     *
      * @var array
      */
     protected $bypass_week_day_arr = [];
+
     /**
+     * スキップする日
+     *
      * @var array
      */
     protected $bypass_day_arr = [];
+
     /**
+     * 祝日をスキップするかどうか
+     *
      * @var bool
      */
     protected $is_bypass_holiday = false;
@@ -57,8 +71,10 @@ class Calendar
     /**
      * JapaneseDateCalendar constructor.
      *
-     * @param string|\JapaneseDate\DateTime $time
-     * @param \DateTimeZone|null $timezone
+     * 日付/時刻 文字列の書式については {@link http://php.net/manual/ja/datetime.formats.php サポートする日付と時刻の書式} を参考にしてください。
+     *
+     * @param string|\JapaneseDate\DateTimeInterface $time 日付配列取得の起点となる、日付オブジェクト OR Unix Time Stamp OR 日付/時刻 文字列
+     * @param \DateTimeZone|int|null $timezone  オブジェクトか、時差の時間、タイムゾーンテキスト
      */
     public function __construct($time = 'now', \DateTimeZone $timezone = null)
     {
@@ -70,7 +86,7 @@ class Calendar
      * スキップする曜日を追加する
      *
      * @access      public
-     * @param       int $val
+     * @param       int $val スキップする曜日(0:日曜-6:土曜)
      * @return \JapaneseDate\Calendar
      */
     public function addBypassWeekDay($val)
@@ -109,7 +125,7 @@ class Calendar
      * スキップする曜日を削除する
      *
      * @access      public
-     * @param       int $val
+     * @param       int $val スキップする曜日(0:日曜-6:土曜)
      * @return \JapaneseDate\Calendar
      */
     public function removeBypassWeekDay($val)
@@ -139,8 +155,10 @@ class Calendar
     /**
      * スキップする日を追加する
      *
+     * 日付/時刻 文字列の書式については {@link http://php.net/manual/ja/datetime.formats.php サポートする日付と時刻の書式} を参考にしてください。
+     *
      * @access      public
-     * @param string|\JapaneseDate\DateTime $time
+     * @param string|\JapaneseDate\DateTime $time 日付/時刻 文字列。DateTimeオブジェクト
      * @return \JapaneseDate\Calendar
      */
     public function addBypassDay($time)
@@ -156,8 +174,10 @@ class Calendar
     /**
      * スキップする日を削除する
      *
+     * 日付/時刻 文字列の書式については {@link http://php.net/manual/ja/datetime.formats.php サポートする日付と時刻の書式} を参考にしてください。
+     *
      * @access      public
-     * @param string|\JapaneseDate\DateTime $time
+     * @param string|\JapaneseDate\DateTime $time 日付/時刻 文字列。DateTimeオブジェクト
      * @return \JapaneseDate\Calendar
      */
     public function removeBypassDay($time)
@@ -200,12 +220,12 @@ class Calendar
      * 除く場合true、そうでない場合false
      *
      * @access      public
-     * @param       bool $val
+     * @param       bool $val 除く場合true、そうでない場合false
      * @return \JapaneseDate\Calendar
      */
-    public function setBypassHoliday($val)
+    public function setBypassHoliday(bool $val)
     {
-        $this->is_bypass_holiday = (bool)$val;
+        $this->is_bypass_holiday = $val;
 
         return $this;
     }
@@ -213,6 +233,8 @@ class Calendar
 
     /**
      * 期間内の営業日を取得する
+     *
+     * 日付/時刻 文字列の書式については {@link http://php.net/manual/ja/datetime.formats.php サポートする日付と時刻の書式} を参考にしてください。
      *
      * @access      public
      * @param       int|string $jdt_end 取得終了日
@@ -268,7 +290,7 @@ class Calendar
      * @return      \JapaneseDate\DateTime[]
      * @throws \Exception
      */
-    public function getWorkingDay($lim_day)
+    public function getWorkingDay(int $lim_day)
     {
         return $this->getWorkingDayByLimit($lim_day);
     }
@@ -282,7 +304,7 @@ class Calendar
      * @return      \JapaneseDate\DateTime[]
      * @throws \Exception
      */
-    public function getWorkingDayByLimit($lim_day): array
+    public function getWorkingDayByLimit(int $lim_day): array
     {
         $JDT = clone $this->start_time_stamp;
 

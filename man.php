@@ -39,7 +39,7 @@ class Carbon extends \DateTime
 }
 ```
 
-__JapaneseDate\DateTime__ では、DateTimeクラスに存在する機能、Carbonクラスに存在する機能のすべてを使用することができます。
+新しい__JapaneseDate\DateTime__ では、DateTimeクラスに存在する機能、Carbonクラスに存在する機能のすべてを使用することができます。
 
 このドキュメントから漏れている機能であっても……です。
 
