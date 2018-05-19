@@ -436,8 +436,7 @@ echo $dt->formatLocalized('%#J %#e %#g %#k %#6 %#K %#l %#L %#o %#O %#E %#G %#F %
 
 
 
-
-    Getter
+Getter
 =================================================
 
 getterはMagicMethodの__get()メソッドで実装されています。
