@@ -750,8 +750,8 @@ class DateTimeTest extends TestCase
 
 
         $DateTime = DateTime::factory('2017-7-1');
-        $this->assertSame(
-            '#v',
+        $this->assertRegExp(
+            '/#v/',
             $DateTime->formatLocalized('%#v')
         );
     }
