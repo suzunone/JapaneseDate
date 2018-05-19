@@ -352,6 +352,7 @@ setlocale(LC_ALL, 'UTC');
 JapaneseDateTime::setLocale('ja');
 echo JapaneseDateTime::getLocale();
 ?>
+
     $dt = JapaneseDateTime::parse('2018-3-21 23:26:11.123789');
     echo $dt->formatLocalized('%A %d %B %Y'); // <?php
 $dt = JapaneseDateTime::parse('2018-3-21 23:26:11.123789');
