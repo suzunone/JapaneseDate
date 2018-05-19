@@ -359,7 +359,7 @@ echo $dt->formatLocalized('%A %d %B %Y');
 ?>
 
 
-    echo $dt->formatLocalized('%#F%#E年%m月%d日(%A) 80%% %%#J');   // <?php
+    echo $dt->formatLocalized('%#F%#E年%m月%d日(%A)');   // <?php
 echo $dt->formatLocalized('%#F%#E年%m月%d日(%A)');
 ?>
 
