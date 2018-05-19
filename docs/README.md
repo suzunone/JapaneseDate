@@ -44,7 +44,7 @@ Class CacheMode
 
 日付オブジェクト配列作成
 
-
+様々な条件の元、一定期間内の日付の配列を取得します。
 
 * Full name: \JapaneseDate\Calendar
 
@@ -57,18 +57,18 @@ Class CacheMode
 JapaneseDateCalendar constructor.
 
 ```php
-Calendar::__construct( string|\JapaneseDate\DateTime $time = &#039;now&#039;, \DateTimeZone|null $timezone = null )
+Calendar::__construct( string|\JapaneseDate\DateTimeInterface $time = &#039;now&#039;, \DateTimeZone|integer|null $timezone = null )
 ```
 
-
+日付/時刻 文字列の書式については [サポートする日付と時刻の書式](http://php.net/manual/ja/datetime.formats.php) を参考にしてください。
 
 
 **Parameters:**
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$time` | **string&#124;\JapaneseDate\DateTime** |  |
-| `$timezone` | **\DateTimeZone&#124;null** |  |
+| `$time` | **string&#124;\JapaneseDate\DateTimeInterface** | 日付配列取得の起点となる、日付オブジェクト OR Unix Time Stamp OR 日付/時刻 文字列 |
+| `$timezone` | **\DateTimeZone&#124;integer&#124;null** | オブジェクトか、時差の時間、タイムゾーンテキスト |
 
 
 
@@ -90,7 +90,7 @@ Calendar::addBypassWeekDay( integer $val ): \JapaneseDate\Calendar
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$val` | **integer** |  |
+| `$val` | **integer** | スキップする曜日(0:日曜-6:土曜) |
 
 
 
@@ -128,7 +128,7 @@ Calendar::removeBypassWeekDay( integer $val ): \JapaneseDate\Calendar
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$val` | **integer** |  |
+| `$val` | **integer** | スキップする曜日(0:日曜-6:土曜) |
 
 
 
@@ -159,14 +159,14 @@ Calendar::resetBypassWeekDay(  ): \JapaneseDate\Calendar
 Calendar::addBypassDay( string|\JapaneseDate\DateTime $time ): \JapaneseDate\Calendar
 ```
 
-
+日付/時刻 文字列の書式については [サポートする日付と時刻の書式](http://php.net/manual/ja/datetime.formats.php) を参考にしてください。
 
 
 **Parameters:**
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$time` | **string&#124;\JapaneseDate\DateTime** |  |
+| `$time` | **string&#124;\JapaneseDate\DateTime** | 日付/時刻 文字列。DateTimeオブジェクト |
 
 
 
@@ -181,14 +181,14 @@ Calendar::addBypassDay( string|\JapaneseDate\DateTime $time ): \JapaneseDate\Cal
 Calendar::removeBypassDay( string|\JapaneseDate\DateTime $time ): \JapaneseDate\Calendar
 ```
 
-
+日付/時刻 文字列の書式については [サポートする日付と時刻の書式](http://php.net/manual/ja/datetime.formats.php) を参考にしてください。
 
 
 **Parameters:**
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$time` | **string&#124;\JapaneseDate\DateTime** |  |
+| `$time` | **string&#124;\JapaneseDate\DateTime** | 日付/時刻 文字列。DateTimeオブジェクト |
 
 
 
@@ -226,7 +226,7 @@ Calendar::setBypassHoliday( boolean $val ): \JapaneseDate\Calendar
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$val` | **boolean** |  |
+| `$val` | **boolean** | 除く場合true、そうでない場合false |
 
 
 
@@ -241,7 +241,7 @@ Calendar::setBypassHoliday( boolean $val ): \JapaneseDate\Calendar
 Calendar::getWorkingDayBySpan( integer|string $jdt_end ): array&lt;mixed,\JapaneseDate\DateTime&gt;
 ```
 
-
+日付/時刻 文字列の書式については [サポートする日付と時刻の書式](http://php.net/manual/ja/datetime.formats.php) を参考にしてください。
 
 
 **Parameters:**
@@ -317,18 +317,18 @@ Calendar::getWorkingDayByLimit( integer $lim_day ): array&lt;mixed,\JapaneseDate
 DateTime constructor.
 
 ```php
-DateTime::__construct( string|integer|\DateTimeInterface $time = &#039;now&#039;, \DateTimeZone|null|string $time_zone = null )
+DateTime::__construct( string|\DateTimeInterface|null $time = null, \DateTimeZone|string|null|integer $time_zone = null )
 ```
 
-
+日付/時刻 文字列の書式については [サポートする日付と時刻の書式](http://php.net/manual/ja/datetime.formats.php) を参考にしてください。
 
 
 **Parameters:**
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$time` | **string&#124;integer&#124;\DateTimeInterface** |  |
-| `$time_zone` | **\DateTimeZone&#124;null&#124;string** |  |
+| `$time` | **string&#124;\DateTimeInterface&#124;null** | 日付/時刻 文字列。DateTimeオブジェクト |
+| `$time_zone` | **\DateTimeZone&#124;string&#124;null&#124;integer** | DateTimeZone オブジェクトか、時差の時間、タイムゾーンテキスト |
 
 
 
@@ -340,18 +340,18 @@ DateTime::__construct( string|integer|\DateTimeInterface $time = &#039;now&#039;
 DateTimeオブジェクトの生成
 
 ```php
-DateTime::factory( string|integer|\DateTimeInterface $date_time = &#039;now&#039;, \DateTimeZone|null|string $time_zone = null ): static
+DateTime::factory( string|integer|\DateTimeInterface|null $date_time = null, \DateTimeZone|null|string $time_zone = null ): static
 ```
 
-
+日付/時刻 文字列の書式については [サポートする日付と時刻の書式](http://php.net/manual/ja/datetime.formats.php) を参考にしてください。
 
 * This method is **static**.
 **Parameters:**
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$date_time` | **string&#124;integer&#124;\DateTimeInterface** | 日付オブジェクト OR Unix Time Stamp OR 日付文字列 |
-| `$time_zone` | **\DateTimeZone&#124;null&#124;string** |  |
+| `$date_time` | **string&#124;integer&#124;\DateTimeInterface&#124;null** | 日付オブジェクト OR Unix Time Stamp OR 日付/時刻 文字列 |
+| `$time_zone` | **\DateTimeZone&#124;null&#124;string** | オブジェクトか、時差の時間、タイムゾーンテキスト |
 
 
 
@@ -464,6 +464,8 @@ DateTime::strftime( string $format ): string
 
 が使用できます。
 
+このメソッドは非推奨です。 \DateTime::formatLocalized()を使用してください。
+
 * **Warning:** this method is **deprecated**. This means that this method will likely be removed in a future version.
 
 **Parameters:**
@@ -540,7 +542,7 @@ DateTime::formatLocalizedSimple( string $format ): string
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$format` | **string** |  |
+| `$format` | **string** | フォーマット |
 
 
 
@@ -601,4 +603,4 @@ DateTime::__get( string $name ): \DateTimeZone|integer|string
 
 
 --------
-> This document was automatically generated from source code comments on 2018-05-14 using [phpDocumentor](http://www.phpdoc.org/) and [cvuorinen/phpdoc-markdown-public](https://github.com/cvuorinen/phpdoc-markdown-public)
+> This document was automatically generated from source code comments on 2018-05-19 using [phpDocumentor](http://www.phpdoc.org/) and [cvuorinen/phpdoc-markdown-public](https://github.com/cvuorinen/phpdoc-markdown-public)
