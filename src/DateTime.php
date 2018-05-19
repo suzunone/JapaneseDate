@@ -662,7 +662,7 @@ class DateTime extends Carbon
                                 }
                                 break;
                             case '-m':
-                                $re_format = $this->getLunarDay();
+                                $re_format = $this->getLunarMonth();
                                 break;
                             case 'm':
                                 $re_format = $this->getLunarMonth();
@@ -692,8 +692,6 @@ class DateTime extends Carbon
                             case 'U':
                                 $re_format = $this->isLeapMonth() ? '(閏)' : '';
                                 break;
-                            case '-':
-                                $format = mb_substr($strings, 0, 2);
                         }
                     }
 

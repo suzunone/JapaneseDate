@@ -713,7 +713,49 @@ class DateTimeTest extends TestCase
             '(閏)',
             $DateTime->formatLocalized('%#U')
         );
+
+        $DateTime = DateTime::factory('2017-04-02');
+        $this->assertSame(
+            $DateTime->lunar_month,
+            $DateTime->formatLocalized('%#-m')
+        );
+
+        $DateTime = DateTime::factory('2017-04-02');
+        $this->assertSame(
+            $DateTime->lunar_month_text,
+            $DateTime->formatLocalized('%#b')
+        );
+        $this->assertSame(
+            $DateTime->lunar_month_text,
+            $DateTime->formatLocalized('%#h')
+        );
+
+        $DateTime = DateTime::factory('2017-04-02');
+        $this->assertSame(
+            '0'.$DateTime->lunar_month,
+            $DateTime->formatLocalized('%#m')
+        );
+
+        $DateTime = DateTime::factory('2017-04-02');
+        $this->assertSame(
+            ' '.$DateTime->lunar_month,
+            $DateTime->formatLocalized('%#n')
+        );
+
+        $DateTime = DateTime::factory('2017-7-1');
+        $this->assertSame(
+            $DateTime->lunar_month_text.'(閏月)',
+            $DateTime->formatLocalized('%#B')
+        );
+
+
+        $DateTime = DateTime::factory('2017-7-1');
+        $this->assertSame(
+            '#v',
+            $DateTime->formatLocalized('%#v')
+        );
     }
+
 
     /**
      * @throws \ErrorException
