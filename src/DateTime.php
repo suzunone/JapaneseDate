@@ -17,11 +17,11 @@ namespace JapaneseDate;
  * @since       Class available since Release 1.0.0
  */
 use Carbon\Carbon;
+use Closure;
 use DateTimeInterface;
 use DateTimeZone;
-use Closure;
-use JapaneseDate\Components\JapaneseDate;
 use JapaneseDate\Components\Cache;
+use JapaneseDate\Components\JapaneseDate;
 use JapaneseDate\Components\LunarCalendar;
 
 
@@ -81,139 +81,139 @@ use JapaneseDate\Components\LunarCalendar;
 class DateTime extends Carbon
 {
     /**
-     * 祝日定数
+     * 祝日定数:非祝日
      *
      * @var int
      */
     const NO_HOLIDAY = 0;
     /**
-     * 祝日定数
+     * 祝日定数:元旦
      *
      * @var int
      */
     const NEW_YEAR_S_DAY = 1;
     /**
-     * 祝日定数
+     * 祝日定数:成人の日
      *
      * @var int
      */
     const COMING_OF_AGE_DAY = 2;
     /**
-     * 祝日定数
+     * 祝日定数:建国記念の日
      *
      * @var int
      */
     const NATIONAL_FOUNDATION_DAY = 3;
     /**
-     * 祝日定数
+     * 祝日定数:昭和天皇の大喪の礼
      *
      * @var int
      */
     const THE_SHOWA_EMPEROR_DIED = 4;
     /**
-     * 祝日定数
+     * 祝日定数:春分の日
      *
      * @var int
      */
     const VERNAL_EQUINOX_DAY = 5;
     /**
-     * 祝日定数
+     * 祝日定数:昭和の日
      *
      * @var int
      */
     const DAY_OF_SHOWA = 6;
     /**
-     * 祝日定数
+     * 祝日定数:みどりの日
      *
      * @var int
      */
     const GREENERY_DAY = 7;
     /**
-     * 祝日定数
+     * 祝日定数:天皇誕生日
      *
      * @var int
      */
     const THE_EMPEROR_S_BIRTHDAY = 8;
     /**
-     * 祝日定数
+     * 祝日定数:皇太子明仁親王の結婚の儀
      *
      * @var int
      */
     const CROWN_PRINCE_HIROHITO_WEDDING = 9;
     /**
-     * 祝日定数
+     * 祝日定数:憲法記念日
      *
      * @var int
      */
     const CONSTITUTION_DAY = 10;
     /**
-     * 祝日定数
+     * 祝日定数:国民の休日
      *
      * @var int
      */
     const NATIONAL_HOLIDAY = 11;
     /**
-     * 祝日定数
+     * 祝日定数:こどもの日
      *
      * @var int
      */
     const CHILDREN_S_DAY = 12;
     /**
-     * 祝日定数
+     * 祝日定数:振替休日
      *
      * @var int
      */
     const COMPENSATING_HOLIDAY = 13;
     /**
-     * 祝日定数
+     * 祝日定数:皇太子徳仁親王の結婚の儀
      *
      * @var int
      */
     const CROWN_PRINCE_NARUHITO_WEDDING = 14;
     /**
-     * 祝日定数
+     * 祝日定数:海の日
      *
      * @var int
      */
     const MARINE_DAY = 15;
     /**
-     * 祝日定数
+     * 祝日定数:秋分の日
      *
      * @var int
      */
     const AUTUMNAL_EQUINOX_DAY = 16;
     /**
-     * 祝日定数
+     * 祝日定数:敬老の日
      *
      * @var int
      */
     const RESPECT_FOR_SENIOR_CITIZENS_DAY = 17;
     /**
-     * 祝日定数
+     * 祝日定数:体育の日
      *
      * @var int
      */
     const SPORTS_DAY = 18;
     /**
-     * 祝日定数
+     * 祝日定数:文化の日
      *
      * @var int
      */
     const CULTURE_DAY = 19;
     /**
-     * 祝日定数
+     * 祝日定数:勤労感謝の日
      *
      * @var int
      */
     const LABOR_THANKSGIVING_DAY = 20;
     /**
-     * 祝日定数
+     * 祝日定数:即位礼正殿の儀
      *
      * @var int
      */
     const REGNAL_DAY = 21;
     /**
-     * 祝日定数
+     * 祝日定数:山の日
      *
      * @var int
      */
@@ -343,10 +343,12 @@ class DateTime extends Carbon
     /**
      * DateTime constructor.
      *
-     * @param string|int|DateTimeInterface $time
-     * @param DateTimeZone|null|string $time_zone
+     * 日付/時刻 文字列の書式については {@link http://php.net/manual/ja/datetime.formats.php サポートする日付と時刻の書式} を参考にしてください。
+     *
+     * @param string|DateTimeInterface|null $time 日付/時刻 文字列。DateTimeオブジェクト
+     * @param DateTimeZone|string|null|int $time_zone DateTimeZone オブジェクトか、時差の時間、タイムゾーンテキスト
      */
-    public function __construct($time = 'now', $time_zone = null)
+    public function __construct($time = null, $time_zone = null)
     {
         parent::__construct($time, $time_zone);
 
@@ -357,11 +359,13 @@ class DateTime extends Carbon
     /**
      * DateTimeオブジェクトの生成
      *
-     * @param string|int|DateTimeInterface $date_time 日付オブジェクト OR Unix Time Stamp OR 日付文字列
-     * @param DateTimeZone|null|string $time_zone
+     * 日付/時刻 文字列の書式については {@link http://php.net/manual/ja/datetime.formats.php サポートする日付と時刻の書式} を参考にしてください。
+     *
+     * @param string|int|DateTimeInterface|null $date_time 日付オブジェクト OR Unix Time Stamp OR 日付/時刻 文字列
+     * @param DateTimeZone|null|string $time_zone  オブジェクトか、時差の時間、タイムゾーンテキスト
      * @return static
      */
-    public static function factory($date_time = 'now', $time_zone = null)
+    public static function factory($date_time = null, $time_zone = null)
     {
         if (is_int($date_time)) {
             return new static(date('Y-m-d H:i:s', $date_time), $time_zone);
@@ -370,6 +374,7 @@ class DateTime extends Carbon
             if ($check_time) {
                 $date_time = $check_time;
             }
+
             return new static(date('Y-m-d H:i:s', $date_time), $time_zone);
         } elseif ($date_time instanceof DateTimeInterface) {
             return new static($date_time->format('Y-m-d H:i:s'), $time_zone ?? $date_time->getTimezone());
@@ -377,7 +382,6 @@ class DateTime extends Carbon
 
         return new static($date_time, $time_zone);
     }
-
 
 
     /**
@@ -484,6 +488,8 @@ class DateTime extends Carbon
      *
      * が使用できます。
      *
+     * このメソッドは非推奨です。 {@see DateTime::formatLocalized()}を使用してください。
+     *
      * @since 1.1
      * @param string $format フォーマット
      * @return string  指定したフォーマット文字列に基づき文字列をフォーマットして返します。 月および曜日の名前、およびその他の言語依存の文字列は、 setlocale() で設定された現在のロケールを尊重して表示されます。
@@ -492,7 +498,8 @@ class DateTime extends Carbon
      */
     public function strftime($format)
     {
-        $res_str      = $this->strftimeJa($format, '%');
+        $res_str = $this->strftimeJa($format, '%');
+
         return strftime($res_str, $this->timestamp);
     }
 
@@ -527,7 +534,7 @@ class DateTime extends Carbon
      */
     public function formatLocalized($format)
     {
-        $format      = $this->strftimeJa($format);
+        $format = $this->strftimeJa($format);
 
         return parent::formatLocalized($format);
     }
@@ -535,7 +542,7 @@ class DateTime extends Carbon
     /**
      * CarbonデフォルトのformatLocalizedへのエイリアス
      *
-     * @param string $format
+     * @param string $format フォーマット
      * @return string
      */
     public function formatLocalizedSimple($format)
@@ -562,9 +569,9 @@ class DateTime extends Carbon
                 $res_str .= $strings;
                 continue;
             }
-            if ($delimiter !== '%' && mb_substr($format_array[$key -1], -1, 1) === '%') {
+            if ($delimiter !== '%' && mb_substr($format_array[$key - 1], -1, 1) === '%') {
                 $re_format = $delimiter . $strings;
-                $res_str .= $re_format;
+                $res_str   .= $re_format;
                 continue;
             }
             switch (mb_substr($strings, 0, 1)) {
@@ -618,7 +625,7 @@ class DateTime extends Carbon
                     break;
                 default:
                     $re_format = $delimiter . $strings;
-                    $res_str .= $re_format;
+                    $res_str   .= $re_format;
                     continue 2;
                     break;
             }
