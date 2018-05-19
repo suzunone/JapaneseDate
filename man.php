@@ -403,21 +403,21 @@ foreach (JapaneseDate\Components\JapaneseDate::SOLAR_TERM as $key => $item) {
 }
 ?>
 
-var_export($dt->solar_term);                                   // <?php
-var_export($dt->solar_term);
+var_export($dt->solarTerm);                                   // <?php
+var_export($dt->solarTerm);
 ?>
 
-var_export($dt->solar_term_text);                              // <?php
-var_export($dt->solar_term_text);
+var_export($dt->solarTermText);                              // <?php
+var_export($dt->solarTermText);
 ?>
 
 
-var_export(JapaneseDateTime::parse('2018-04-01 12:23:45.6789')->solar_term);                                   // <?php
-var_export(JapaneseDateTime::parse('2018-04-01 12:23:45.6789')->solar_term);
+var_export(JapaneseDateTime::parse('2018-04-01 12:23:45.6789')->solarTerm);                                   // <?php
+var_export(JapaneseDateTime::parse('2018-04-01 12:23:45.6789')->solarTerm);
 ?>
 
-var_export(JapaneseDateTime::parse('2018-04-01 12:23:45.6789')->solar_term_text);                              // <?php
-var_export(JapaneseDateTime::parse('2018-04-01 12:23:45.6789')->solar_term_text);
+var_export(JapaneseDateTime::parse('2018-04-01 12:23:45.6789')->solarTermText);                              // <?php
+var_export(JapaneseDateTime::parse('2018-04-01 12:23:45.6789')->solarTermText);
 ?>
 
 
@@ -435,16 +435,16 @@ foreach ([
 }
 ?>
 
-var_export($dt->era_name);                                     // <?php
-var_export($dt->era_name);
+var_export($dt->eraName);                                     // <?php
+var_export($dt->eraName);
 ?>
 
-var_export($dt->era_name_text);                                // <?php
-var_export($dt->era_name_text);
+var_export($dt->eraNameText);                                // <?php
+var_export($dt->eraNameText);
 ?>
 
-var_export($dt->era_year);                                     // <?php
-var_export($dt->era_year);
+var_export($dt->eraYear);                                     // <?php
+var_export($dt->eraYear);
 ?>
 
 
@@ -455,12 +455,12 @@ foreach (JapaneseDate\Components\JapaneseDate::ORIENTAL_ZODIAC as $key => $item)
     echo "// {$key} => $item\n";
 }
 ?>
-var_export($dt->oriental_zodiac);                              // <?php
-var_export($dt->oriental_zodiac);
+var_export($dt->orientalorientalZodiac);                              // <?php
+var_export($dt->orientalZodiac);
 ?>
 
-var_export($dt->oriental_zodiac_text);                         // <?php
-var_export($dt->oriental_zodiac_text);
+var_export($dt->orientalZodiacText);                         // <?php
+var_export($dt->orientalZodiacText);
 ?>
 
 
@@ -471,30 +471,30 @@ foreach (JapaneseDate\Components\JapaneseDate::SIX_WEEKDAY as $key => $item) {
     echo "// {$key} => $item\n";
 }
 ?>
-var_export($dt->six_weekday);                                  // <?php
-var_export($dt->six_weekday);
+var_export($dt->sixWeekday);                                  // <?php
+var_export($dt->sixWeekday);
 ?>
 
-var_export($dt->six_weekday_text);                             // <?php
-var_export($dt->six_weekday_text);
+var_export($dt->sixWeekdayText);                             // <?php
+var_export($dt->sixWeekdayText);
 ?>
 
 
 // 曜日文字列
-var_export($dt->weekday_text);                                 // <?php
-var_export($dt->weekday_text);
+var_export($dt->weekdayText);                                 // <?php
+var_export($dt->weekdayText);
 ?>
 
 // 月
-var_export($dt->month_text);                                   // <?php
-var_export($dt->month_text);
+var_export($dt->monthText);                                   // <?php
+var_export($dt->monthText);
 ?>
 
 // 祝日
 
 <?php
 foreach ([
-             JapaneseDateTime::NO_HOLIDAY                  => '非祝日(holiday_textでは空文字列が返ります)',
+             JapaneseDateTime::NO_HOLIDAY                  => '非祝日(holidayTextでは空文字列が返ります)',
              JapaneseDateTime::NEW_YEAR_S_DAY                  => '元旦',
              JapaneseDateTime::COMING_OF_AGE_DAY               => '成人の日',
              JapaneseDateTime::NATIONAL_FOUNDATION_DAY         => '建国記念の日',
@@ -525,8 +525,8 @@ var_export($dt->holiday);                                      // <?php
 var_export($dt->holiday);
 ?>
 
-var_export($dt->holiday_text);                                 // <?php
-var_export($dt->holiday_text);
+var_export($dt->holidayText);                                 // <?php
+var_export($dt->holidayText);
 ?>
 
 
@@ -534,33 +534,33 @@ var_export(JapaneseDateTime::parse('2018-04-01 12:23:45.6789')->holiday);       
 var_export(JapaneseDateTime::parse('2018-04-01 12:23:45.6789')->holiday);
 ?>
 
-var_export(JapaneseDateTime::parse('2018-04-01 12:23:45.6789')->holiday_text);                              // <?php
-var_export(JapaneseDateTime::parse('2018-04-01 12:23:45.6789')->holiday_text);
+var_export(JapaneseDateTime::parse('2018-04-01 12:23:45.6789')->holidayText);                              // <?php
+var_export(JapaneseDateTime::parse('2018-04-01 12:23:45.6789')->holidayText);
 ?>
 
 
 // 旧暦：月
-var_export($dt->lunar_month);                                  // <?php
-var_export($dt->lunar_month);
+var_export($dt->lunarMonth);                                  // <?php
+var_export($dt->lunarMonth);
 ?>
 
-var_export($dt->lunar_month_text);                             // <?php
-var_export($dt->lunar_month_text);
+var_export($dt->lunarMonthText);                              // <?php
+var_export($dt->lunarMonthText);
 ?>
 
 // 旧暦：年
-var_export($dt->lunar_year);                                   // <?php
-var_export($dt->lunar_year);
+var_export($dt->lunarYear);                                   // <?php
+var_export($dt->lunarYear);
 ?>
 
 // 旧暦：日
-var_export($dt->lunar_day);                                    // <?php
-var_export($dt->lunar_day);
+var_export($dt->lunarDay);                                    // <?php
+var_export($dt->lunarDay);
 ?>
 
 // 閏月かどうか
-var_export($dt->is_leap_month);                                // <?php
-var_export($dt->is_leap_month);
+var_export($dt->isLeapMonth);                                // <?php
+var_export($dt->isLeapMonth);
 ?>
 
 

@@ -132,7 +132,7 @@ echo JapaneseDateTime::parse('first day of December 2018')->addWeeks(2);    // 2
 
 ``` .php
 
-echo JapaneseDateTime::parse(time());    // Throw Exception DateTime::__construct(): Failed to parse time string (1526701126) at position 8 (2): Unexpected character
+echo JapaneseDateTime::parse(time());    // Throw Exception DateTime::__construct(): Failed to parse time string (1526701653) at position 8 (5): Unexpected character
 echo JapaneseDateTime::parse(new DateTime('now'));    // PHP Fatal error:  Uncaught TypeError: DateTime::__construct() expects parameter 1 to be string, object given
 ```
 
@@ -143,9 +143,9 @@ echo JapaneseDateTime::parse(new DateTime('now'));    // PHP Fatal error:  Uncau
 そういった場合は、`JapaneseDate\DateTime::factory()`を使用します。
 
 ``` .php
-echo JapaneseDateTime::factory(time());    // 2018-05-19 12:38:46
+echo JapaneseDateTime::factory(time());    // 2018-05-19 12:47:33
 
-echo JapaneseDateTime::factory(new DateTime('now'));    // 2018-05-19 12:38:46
+echo JapaneseDateTime::factory(new DateTime('now'));    // 2018-05-19 12:47:33
 
 // もちろんこういったコードも動作します
 echo JapaneseDateTime::factory('first day of December 2018')->addWeeks(2);    // 2018-12-15 00:00:00
@@ -171,7 +171,7 @@ echo JapaneseDateTime::factory(20180404050505);    // 2061-07-19 16:48:25
 
 ``` .php
 $now = JapaneseDateTime::now();
-echo $now;                               // 2018-05-19 12:38:46
+echo $now;                               // 2018-05-19 12:47:33
 $today = JapaneseDateTime::today();
 echo $today;                             // 2018-05-19 00:00:00
 $tomorrow = JapaneseDateTime::tomorrow('Europe/London');
@@ -264,11 +264,11 @@ var_export($dt->micro);                                        // 123789
 // 22 => 雨水
 // 23 => 啓蟄
 
-var_export($dt->solar_term);                                   // 0
-var_export($dt->solar_term_text);                              // '春分'
+var_export($dt->solarTerm);                                   // 0
+var_export($dt->solarTermText);                              // '春分'
 
-var_export(JapaneseDateTime::parse('2018-04-01 12:23:45.6789')->solar_term);                                   // false
-var_export(JapaneseDateTime::parse('2018-04-01 12:23:45.6789')->solar_term_text);                              // ''
+var_export(JapaneseDateTime::parse('2018-04-01 12:23:45.6789')->solarTerm);                                   // false
+var_export(JapaneseDateTime::parse('2018-04-01 12:23:45.6789')->solarTermText);                              // ''
 
 // 元号
 
@@ -278,9 +278,9 @@ var_export(JapaneseDateTime::parse('2018-04-01 12:23:45.6789')->solar_term_text)
 // 1003 => 平成
 // 1004 => 平成の次
 
-var_export($dt->era_name);                                     // 1003
-var_export($dt->era_name_text);                                // '平成'
-var_export($dt->era_year);                                     // 30
+var_export($dt->eraName);                                     // 1003
+var_export($dt->eraNameText);                                // '平成'
+var_export($dt->eraYear);                                     // 30
 
 // 干支
 
@@ -296,8 +296,8 @@ var_export($dt->era_year);                                     // 30
 // 9 => 申
 // 10 => 酉
 // 11 => 戌
-var_export($dt->oriental_zodiac);                              // 11
-var_export($dt->oriental_zodiac_text);                         // '戌'
+var_export($dt->orientalorientalZodiac);                              // 11
+var_export($dt->orientalZodiacText);                         // '戌'
 
 // ６曜
 
@@ -307,16 +307,16 @@ var_export($dt->oriental_zodiac_text);                         // '戌'
 // 3 => 友引
 // 4 => 先負
 // 5 => 仏滅
-var_export($dt->six_weekday);                                  // 1
-var_export($dt->six_weekday_text);                             // '赤口'
+var_export($dt->sixWeekday);                                  // 1
+var_export($dt->sixWeekdayText);                             // '赤口'
 
 // 曜日文字列
-var_export($dt->weekday_text);                                 // '水'
+var_export($dt->weekdayText);                                 // '水'
 // 月
-var_export($dt->month_text);                                   // '弥生'
+var_export($dt->monthText);                                   // '弥生'
 // 祝日
 
-// 0 => 非祝日(holiday_textでは空文字列が返ります)
+// 0 => 非祝日(holidayTextでは空文字列が返ります)
 // 1 => 元旦
 // 2 => 成人の日
 // 3 => 建国記念の日
@@ -340,20 +340,20 @@ var_export($dt->month_text);                                   // '弥生'
 // 21 => 即位礼正殿の儀
 // 22 => 山の日
 var_export($dt->holiday);                                      // 5
-var_export($dt->holiday_text);                                 // '春分の日'
+var_export($dt->holidayText);                                 // '春分の日'
 
 var_export(JapaneseDateTime::parse('2018-04-01 12:23:45.6789')->holiday);                                   // 0
-var_export(JapaneseDateTime::parse('2018-04-01 12:23:45.6789')->holiday_text);                              // ''
+var_export(JapaneseDateTime::parse('2018-04-01 12:23:45.6789')->holidayText);                              // ''
 
 // 旧暦：月
-var_export($dt->lunar_month);                                  // '2'
-var_export($dt->lunar_month_text);                             // '如月'
+var_export($dt->lunarMonth);                                  // '2'
+var_export($dt->lunarMonthText);                              // '如月'
 // 旧暦：年
-var_export($dt->lunar_year);                                   // '2018'
+var_export($dt->lunarYear);                                   // '2018'
 // 旧暦：日
-var_export($dt->lunar_day);                                    // '5'
+var_export($dt->lunarDay);                                    // '5'
 // 閏月かどうか
-var_export($dt->is_leap_month);                                // false
+var_export($dt->isLeapMonth);                                // false
 
 
 // dayOfWeek は 0 (日) から 6 (土)の数値を返します
