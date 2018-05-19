@@ -132,7 +132,7 @@ echo JapaneseDateTime::parse('first day of December 2018')->addWeeks(2);    // 2
 
 ``` .php
 
-echo JapaneseDateTime::parse(time());    // Throw Exception DateTime::__construct(): Failed to parse time string (1526701653) at position 8 (5): Unexpected character
+echo JapaneseDateTime::parse(time());    // Throw Exception DateTime::__construct(): Failed to parse time string (1526702411) at position 8 (1): Unexpected character
 echo JapaneseDateTime::parse(new DateTime('now'));    // PHP Fatal error:  Uncaught TypeError: DateTime::__construct() expects parameter 1 to be string, object given
 ```
 
@@ -143,9 +143,9 @@ echo JapaneseDateTime::parse(new DateTime('now'));    // PHP Fatal error:  Uncau
 そういった場合は、`JapaneseDate\DateTime::factory()`を使用します。
 
 ``` .php
-echo JapaneseDateTime::factory(time());    // 2018-05-19 12:47:33
+echo JapaneseDateTime::factory(time());    // 2018-05-19 13:00:11
 
-echo JapaneseDateTime::factory(new DateTime('now'));    // 2018-05-19 12:47:33
+echo JapaneseDateTime::factory(new DateTime('now'));    // 2018-05-19 13:00:11
 
 // もちろんこういったコードも動作します
 echo JapaneseDateTime::factory('first day of December 2018')->addWeeks(2);    // 2018-12-15 00:00:00
@@ -171,7 +171,7 @@ echo JapaneseDateTime::factory(20180404050505);    // 2061-07-19 16:48:25
 
 ``` .php
 $now = JapaneseDateTime::now();
-echo $now;                               // 2018-05-19 12:47:33
+echo $now;                               // 2018-05-19 13:00:11
 $today = JapaneseDateTime::today();
 echo $today;                             // 2018-05-19 00:00:00
 $tomorrow = JapaneseDateTime::tomorrow('Europe/London');
@@ -199,13 +199,27 @@ setlocale(LC_ALL, 'ja_JP');
 
 $dt = JapaneseDateTime::parse('2018-3-21 23:26:11.123789');
 echo $dt->formatLocalized('%A %d %B %Y'); // 水曜日 21 3月 2018
+// %を文字列として表示したい場合は、%%のように2つ重ねる
 echo $dt->formatLocalized('%#F%#E年%m月%d日(%A) 80%% %%#J');   // 平成30年03月21日(水曜日) 80% %#J
     echo $dt->formatLocalized('%#J %#e %#g %#k %#6 %#K %#l %#L %#o %#O %#N %#E %#G %#F %#f');   // 21 21  3 赤口 1 水 5 春分の日 11 戌 30 弥生 平成 1003
+// formatLocalizedSimpleを使えば、単なるstrftimeとしても使用できます。
 echo $dt->formatLocalizedSimple('%#J %#e %#g %#k %#6 %#K %#l %#L %#o %#O %#N %#E %#G %#F %#f');   // #J #e #g #k #6 #K #l #L #o #O #E #G #F #f
-
-
-
 ```
+
+
+`JapaneseDateTime::setLocale()`を使用することで、[setlocale()](http://php.net/manual/ja/function.setlocale.php)を使用せずとも、同様の効果を得ることができます。
+
+
+``` .php
+    JapaneseDateTime::setLocale('ja');
+    echo JapaneseDateTime::getLocale();                          // ja    $dt = JapaneseDateTime::parse('2018-3-21 23:26:11.123789');
+    echo $dt->formatLocalized('%A %d %B %Y'); // 水曜日 21 3月 2018
+
+    echo $dt->formatLocalized('%#F%#E年%m月%d日(%A) 80%% %%#J');   // 平成30年03月21日(水曜日)
+    echo $dt->formatLocalized('%#J %#e %#g %#k %#6 %#K %#l %#L %#o %#O %#N %#E %#G %#F %#f');   // 21 21  3 赤口 1 水 5 春分の日 11 戌 30 弥生 平成 1003
+?>
+
+    ```
 
 
 

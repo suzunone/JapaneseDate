@@ -324,6 +324,7 @@ $dt = JapaneseDateTime::parse('2018-3-21 23:26:11.123789');
 echo $dt->formatLocalized('%A %d %B %Y');
 ?>
 
+// %を文字列として表示したい場合は、%%のように2つ重ねる
 echo $dt->formatLocalized('%#F%#E年%m月%d日(%A) 80%% %%#J');   // <?php
 echo $dt->formatLocalized('%#F%#E年%m月%d日(%A) 80%% %%#J');
 ?>
@@ -332,14 +333,43 @@ echo $dt->formatLocalized('%#F%#E年%m月%d日(%A) 80%% %%#J');
 echo $dt->formatLocalized('%#J %#e %#g %#k %#6 %#K %#l %#L %#o %#O %#E %#G %#F %#f');
 ?>
 
+// formatLocalizedSimpleを使えば、単なるstrftimeとしても使用できます。
 echo $dt->formatLocalizedSimple('%#J %#e %#g %#k %#6 %#K %#l %#L %#o %#O %#N %#E %#G %#F %#f');   // <?php
 echo $dt->formatLocalizedSimple('%#J %#e %#g %#k %#6 %#K %#l %#L %#o %#O %#E %#G %#F %#f');
+
+setlocale(LC_ALL, 'UTC');
+?>
+
+```
+
+
+`JapaneseDateTime::setLocale()`を使用することで、[setlocale()](http://php.net/manual/ja/function.setlocale.php)を使用せずとも、同様の効果を得ることができます。
+
+
+``` .php
+    JapaneseDateTime::setLocale('ja');
+    echo JapaneseDateTime::getLocale();                          // <?php
+JapaneseDateTime::setLocale('ja');
+echo JapaneseDateTime::getLocale();
+?>
+    $dt = JapaneseDateTime::parse('2018-3-21 23:26:11.123789');
+    echo $dt->formatLocalized('%A %d %B %Y'); // <?php
+$dt = JapaneseDateTime::parse('2018-3-21 23:26:11.123789');
+echo $dt->formatLocalized('%A %d %B %Y');
 ?>
 
 
+    echo $dt->formatLocalized('%#F%#E年%m月%d日(%A) 80%% %%#J');   // <?php
+echo $dt->formatLocalized('%#F%#E年%m月%d日(%A)');
+?>
 
+    echo $dt->formatLocalized('%#J %#e %#g %#k %#6 %#K %#l %#L %#o %#O %#N %#E %#G %#F %#f');   // <?php
+echo $dt->formatLocalized('%#J %#e %#g %#k %#6 %#K %#l %#L %#o %#O %#E %#G %#F %#f');
+?>
 
-```
+?>
+
+    ```
 
 
 
