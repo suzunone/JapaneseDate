@@ -364,6 +364,11 @@ echo $dt->formatLocalized('%A %d %B %Y');
 echo $dt->formatLocalized('%#F%#E年%m月%d日(%A)');
 ?>
 
+    echo $dt->formatLocalized('%#F%#E年%-m月%-d日(%A)');   // <?php
+echo $dt->formatLocalized('%#F%#E年%-m月%-d日(%A)');
+?>
+
+
     echo $dt->formatLocalized('%#J %#e %#g %#k %#6 %#K %#l %#L %#o %#O %#N %#E %#G %#F %#f');   // <?php
 echo $dt->formatLocalized('%#J %#e %#g %#k %#6 %#K %#l %#L %#o %#O %#E %#G %#F %#f');
 ?>
