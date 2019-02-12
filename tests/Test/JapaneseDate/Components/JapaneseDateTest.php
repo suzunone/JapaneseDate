@@ -921,6 +921,14 @@ class JapaneseDateTest extends TestCase
         $this->assertCount(2, $res);
         $this->assertEquals('昭和の日', $JapaneseDate->viewHoliday($res[29]));
         $this->assertEquals('振替休日', $JapaneseDate->viewHoliday($res[30]));
+
+
+        $res = $this->invokeExecuteMethod($JapaneseDate, 'getAprilHoliday', ['2019', $JapaneseDateTime->getTimezone()]);
+        $this->assertArrayHasKey(29, $res);
+        $this->assertArrayHasKey(30, $res);
+        $this->assertCount(2, $res);
+        $this->assertEquals('昭和の日', $JapaneseDate->viewHoliday($res[29]));
+        $this->assertEquals('国民の休日', $JapaneseDate->viewHoliday($res[30]));
     }
 
     /**
@@ -954,11 +962,15 @@ class JapaneseDateTest extends TestCase
 
         // 振替休日
         $res = $this->invokeExecuteMethod($JapaneseDate, 'getMayHoliday', ['2019', $JapaneseDateTime->getTimezone()]);
+        $this->assertArrayHasKey(1, $res);
+        $this->assertArrayHasKey(2, $res);
         $this->assertArrayHasKey(3, $res);
         $this->assertArrayHasKey(4, $res);
         $this->assertArrayHasKey(5, $res);
         $this->assertArrayHasKey(6, $res);
-        $this->assertCount(4, $res);
+        $this->assertCount(6, $res);
+        $this->assertEquals('天皇の即位の日', $JapaneseDate->viewHoliday($res[1]));
+        $this->assertEquals('国民の休日', $JapaneseDate->viewHoliday($res[2]));
         $this->assertEquals('憲法記念日', $JapaneseDate->viewHoliday($res[3]));
         $this->assertEquals('みどりの日', $JapaneseDate->viewHoliday($res[4]));
         $this->assertEquals('こどもの日', $JapaneseDate->viewHoliday($res[5]));

@@ -111,7 +111,7 @@ class JapaneseDate
             DateTime::ERA_TAISHO      => '大正',
             DateTime::ERA_SHOWA       => '昭和',
             DateTime::ERA_HEISEI      => '平成',
-            DateTime::ERA_HEISEI_NEXT => '平成の次',
+            DateTime::ERA_HEISEI_NEXT => '平成',
         ];
 
         $this->holiday_name = [
@@ -138,6 +138,7 @@ class JapaneseDate
             DateTime::LABOR_THANKSGIVING_DAY          => '勤労感謝の日',
             DateTime::REGNAL_DAY                      => '即位礼正殿の儀',
             DateTime::MOUNTAIN_DAY                    => '山の日',
+            DateTime::EMPERORS_THRONE_DAY             => '天皇の即位の日',
         ];
     }
 
@@ -493,7 +494,7 @@ class JapaneseDate
             return [];
         }
         $res = [];
-        if ($year == 1959) {
+        if ($year === 1959) {
             $res[10] = DateTime::CROWN_PRINCE_HIROHITO_WEDDING;
         }
         if ($year >= 2007) {
@@ -504,8 +505,11 @@ class JapaneseDate
             $res[29] = DateTime::THE_EMPEROR_S_BIRTHDAY;
         }
         // 振替休日確認
-        if ($this->getWeekday(mktime(0, 0, 0, 4, 29, $year), $timezone) == DateTime::SUNDAY) {
+        if ($this->getWeekday(mktime(0, 0, 0, 4, 29, $year), $timezone) === DateTime::SUNDAY) {
             $res[30] = DateTime::COMPENSATING_HOLIDAY;
+        } elseif ($year === 2019) {
+            // 2019年、特別な祝日
+            $res[30] = DateTime::NATIONAL_HOLIDAY;
         }
 
         return $res;
@@ -551,6 +555,12 @@ class JapaneseDate
             if (($this->getWeekday(mktime(0, 0, 0, 5, 4, $year), $timezone) == DateTime::SUNDAY) || ($this->getWeekday(mktime(0, 0, 0, 5, 3, $year), $timezone) == DateTime::SUNDAY)) {
                 $res[6] = DateTime::COMPENSATING_HOLIDAY;
             }
+        }
+
+        // 2019年、特別な祝日
+        if ($year === 2019) {
+            $res[1] = DateTime::EMPERORS_THRONE_DAY;
+            $res[2] = DateTime::NATIONAL_HOLIDAY;
         }
 
         return $res;
