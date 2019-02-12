@@ -10,7 +10,9 @@
     }
   ],
   "require": {
-    "nesbot/carbon": "~1.18"
+    "nesbot/carbon": "~1.18",
+    "ext-calendar": "*",
+    "ext-json": "*"
   },
   "require-dev": {
     "phpunit/phpunit": "6.4.1",
