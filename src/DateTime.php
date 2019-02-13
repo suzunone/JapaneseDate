@@ -16,6 +16,7 @@ namespace JapaneseDate;
  * @see         https://carbon.nesbot.com/docs/
  * @since       Class available since Release 1.0.0
  */
+
 use Carbon\Carbon;
 use Closure;
 use DateTimeInterface;
@@ -220,6 +221,13 @@ class DateTime extends Carbon
     const MOUNTAIN_DAY = 22;
 
     /**
+     * 天皇の即位の日
+     *
+     * @var int
+     */
+    const EMPERORS_THRONE_DAY = 23;
+
+    /**
      * 祝日法制定年
      *
      * @var int
@@ -352,7 +360,7 @@ class DateTime extends Carbon
     {
         parent::__construct($time, $time_zone);
 
-        $this->JapaneseDate  = JapaneseDate::factory();
+        $this->JapaneseDate = JapaneseDate::factory();
         $this->LunarCalendar = LunarCalendar::factory();
     }
 
@@ -362,7 +370,7 @@ class DateTime extends Carbon
      * 日付/時刻 文字列の書式については {@link http://php.net/manual/ja/datetime.formats.php サポートする日付と時刻の書式} を参考にしてください。
      *
      * @param string|int|DateTimeInterface|null $date_time 日付オブジェクト OR Unix Time Stamp OR 日付/時刻 文字列
-     * @param DateTimeZone|null|string $time_zone  オブジェクトか、時差の時間、タイムゾーンテキスト
+     * @param DateTimeZone|null|string $time_zone オブジェクトか、時差の時間、タイムゾーンテキスト
      * @return static
      */
     public static function factory($date_time = null, $time_zone = null)
@@ -572,7 +580,7 @@ class DateTime extends Carbon
      */
     protected function strftimeJa($format, $delimiter = '%#')
     {
-        $res_str      = '';
+        $res_str = '';
         $format_array = explode($delimiter, $format);
         foreach ($format_array as $key => $strings) {
             if ($key === 0) {
@@ -581,7 +589,7 @@ class DateTime extends Carbon
             }
             if ($delimiter !== '%' && mb_substr($format_array[$key - 1], -1, 1) === '%') {
                 $re_format = $delimiter . $strings;
-                $res_str   .= $re_format;
+                $res_str .= $re_format;
                 continue;
             }
 
@@ -592,115 +600,115 @@ class DateTime extends Carbon
             }
 
             switch ($pattern) {
-                case 'o':
-                    $re_format = $this->getOrientalZodiac();
-                    break;
-                case 'O':
-                    $re_format = $this->viewOrientalZodiac();
-                    break;
-                case 'l':
-                    $re_format = $this->getHoliday();
-                    break;
-                case 'L':
-                    $re_format = $this->viewHoliday();
-                    break;
-                case 'K':
-                    $re_format = $this->viewWeekday();
-                    break;
-                case 'k':
-                    $re_format = $this->viewSixWeekday();
-                    break;
-                case '6':
-                    $re_format = $this->getSixWeekday();
-                    break;
-                case 'e':
-                    $re_format = $this->format('j');
-                    if (strlen($re_format) === 1) {
-                        $re_format = ' ' . $re_format;
-                    }
-                    break;
-                case 'g':
-                    $re_format = $this->format('n');
-                    if (strlen($re_format) === 1) {
-                        $re_format = ' ' . $re_format;
-                    }
-                    break;
-                case 'J':
-                    $re_format = $this->format('j');
-                    break;
-                case 'G':
-                    $re_format = $this->viewMonth();
-                    break;
-                case 'F':
-                    $re_format = $this->viewEraName();
-                    break;
-                case 'f':
-                    $re_format = $this->getEraName();
-                    break;
-                case 'E':
-                    $re_format = $this->getEraYear();
-                    break;
-                default:
-                    $re_format = false;
+            case 'o':
+                $re_format = $this->getOrientalZodiac();
+                break;
+            case 'O':
+                $re_format = $this->viewOrientalZodiac();
+                break;
+            case 'l':
+                $re_format = $this->getHoliday();
+                break;
+            case 'L':
+                $re_format = $this->viewHoliday();
+                break;
+            case 'K':
+                $re_format = $this->viewWeekday();
+                break;
+            case 'k':
+                $re_format = $this->viewSixWeekday();
+                break;
+            case '6':
+                $re_format = $this->getSixWeekday();
+                break;
+            case 'e':
+                $re_format = $this->format('j');
+                if (strlen($re_format) === 1) {
+                    $re_format = ' ' . $re_format;
+                }
+                break;
+            case 'g':
+                $re_format = $this->format('n');
+                if (strlen($re_format) === 1) {
+                    $re_format = ' ' . $re_format;
+                }
+                break;
+            case 'J':
+                $re_format = $this->format('j');
+                break;
+            case 'G':
+                $re_format = $this->viewMonth();
+                break;
+            case 'F':
+                $re_format = $this->viewEraName();
+                break;
+            case 'f':
+                $re_format = $this->getEraName();
+                break;
+            case 'E':
+                $re_format = $this->getEraYear();
+                break;
+            default:
+                $re_format = false;
 
-                    if ($delimiter !== '%') {
+                if ($delimiter !== '%') {
 
-                        switch ($pattern) {
-                            case '-d':
-                                $re_format = $this->getLunarDay();
-                                break;
-                            case 'd':
-                                $re_format = $this->getLunarDay();
-                                if (strlen($re_format) === 1) {
-                                    $re_format = '0'.$re_format;
-                                }
-                                break;
-                            case 'j':
-                                $re_format = $this->getLunarDay();
-                                if (strlen($re_format) === 1) {
-                                    $re_format = ' '.$re_format;
-                                }
-                                break;
-                            case '-m':
-                                $re_format = $this->getLunarMonth();
-                                break;
-                            case 'm':
-                                $re_format = $this->getLunarMonth();
-                                if (strlen($re_format) === 1) {
-                                    $re_format = '0'.$re_format;
-                                }
-                                break;
-                            case 'n':
-                                $re_format = $this->getLunarMonth();
-                                if (strlen($re_format) === 1) {
-                                    $re_format = ' '.$re_format;
-                                }
-                                break;
-                            case 'b':
-                            case 'h':
-                                $re_format = $this->viewLunarMonth();
-                                break;
-                            case'B':
-                                $re_format = $this->viewLunarMonth();
-                                if ($this->isLeapMonth()) {
-                                    $re_format .= '(閏月)';
-                                }
-                                break;
-                            case 'u':
-                                $re_format = $this->isLeapMonth() ? '閏' : '';
-                                break;
-                            case 'U':
-                                $re_format = $this->isLeapMonth() ? '(閏)' : '';
-                                break;
+                    switch ($pattern) {
+                    case '-d':
+                        $re_format = $this->getLunarDay();
+                        break;
+                    case 'd':
+                        $re_format = $this->getLunarDay();
+                        if (strlen($re_format) === 1) {
+                            $re_format = '0' . $re_format;
                         }
+                        break;
+                    case 'j':
+                        $re_format = $this->getLunarDay();
+                        if (strlen($re_format) === 1) {
+                            $re_format = ' ' . $re_format;
+                        }
+                        break;
+                    case '-m':
+                        $re_format = $this->getLunarMonth();
+                        break;
+                    case 'm':
+                        $re_format = $this->getLunarMonth();
+                        if (strlen($re_format) === 1) {
+                            $re_format = '0' . $re_format;
+                        }
+                        break;
+                    case 'n':
+                        $re_format = $this->getLunarMonth();
+                        if (strlen($re_format) === 1) {
+                            $re_format = ' ' . $re_format;
+                        }
+                        break;
+                    case 'b':
+                    case 'h':
+                        $re_format = $this->viewLunarMonth();
+                        break;
+                    case'B':
+                        $re_format = $this->viewLunarMonth();
+                        if ($this->isLeapMonth()) {
+                            $re_format .= '(閏月)';
+                        }
+                        break;
+                    case 'u':
+                        $re_format = $this->isLeapMonth() ? '閏' : '';
+                        break;
+                    case 'U':
+                        $re_format = $this->isLeapMonth() ? '(閏)' : '';
+                        break;
                     }
+                }
 
-                    if ($re_format === false) {
-                        $re_format = $delimiter . $strings;
-                        $res_str   .= $re_format;
-                        continue 2;
-                    }
-                    break;
+                if ($re_format === false) {
+                    $re_format = $delimiter . $strings;
+                    $res_str .= $re_format;
+                    continue 2;
+                }
+                break;
             }
             $res_str .= $re_format . mb_substr($strings, strlen($pattern));
         }
@@ -734,65 +742,65 @@ class DateTime extends Carbon
     public function __get($name)
     {
         switch ($name) {
-            case 'solar_term_text':
-            case 'solarTermText':
-                return $this->getSolarTerm();
-            case 'solar_term':
-            case 'solarTerm':
-                return $this->getSolarTermKey();
-            case 'is_solar_term':
-            case 'isSolarTerm':
-                return $this->isSolarTerm();
-            case 'era_name_text':
-            case 'eraNameText':
-                return $this->viewEraName();
-            case 'era_name':
-            case 'eraName':
-                return $this->getEraName();
-            case 'era_year':
-            case 'eraYear':
-                return $this->getEraYear();
-            case 'oriental_zodiac_text':
-            case 'orientalZodiacText':
-                return $this->viewOrientalZodiac();
-            case 'oriental_zodiac':
-            case 'orientalZodiac':
-                return $this->getOrientalZodiac();
-            case 'six_weekday_text':
-            case 'sixWeekdayText':
-                return $this->viewSixWeekday();
-            case 'six_weekday':
-            case 'sixWeekday':
-                return $this->getSixWeekday();
-            case 'weekday_text':
-            case 'weekdayText':
-                return $this->viewWeekday();
-            case 'month_text':
-            case 'monthText':
-                return $this->viewMonth();
-            case 'holiday_text':
-            case 'holidayText':
-                return $this->viewHoliday();
-            case 'holiday':
-                return $this->getHoliday();
-            case 'is_holiday':
-            case 'isHoliday':
-                return $this->getHoliday() !== self::NO_HOLIDAY;
-            case 'lunar_month_text':
-            case 'lunarMonthText':
-                return $this->viewLunarMonth();
-            case 'lunar_month':
-            case 'lunarMonth':
-                return $this->getLunarMonth();
-            case 'lunar_year':
-            case 'lunarYear':
-                return $this->getLunarYear();
-            case 'lunar_day':
-            case 'lunarDay':
-                return $this->getLunarDay();
-            case 'is_leap_month':
-            case 'isLeapMonth':
-                return $this->isLeapMonth();
+        case 'solar_term_text':
+        case 'solarTermText':
+            return $this->getSolarTerm();
+        case 'solar_term':
+        case 'solarTerm':
+            return $this->getSolarTermKey();
+        case 'is_solar_term':
+        case 'isSolarTerm':
+            return $this->isSolarTerm();
+        case 'era_name_text':
+        case 'eraNameText':
+            return $this->viewEraName();
+        case 'era_name':
+        case 'eraName':
+            return $this->getEraName();
+        case 'era_year':
+        case 'eraYear':
+            return $this->getEraYear();
+        case 'oriental_zodiac_text':
+        case 'orientalZodiacText':
+            return $this->viewOrientalZodiac();
+        case 'oriental_zodiac':
+        case 'orientalZodiac':
+            return $this->getOrientalZodiac();
+        case 'six_weekday_text':
+        case 'sixWeekdayText':
+            return $this->viewSixWeekday();
+        case 'six_weekday':
+        case 'sixWeekday':
+            return $this->getSixWeekday();
+        case 'weekday_text':
+        case 'weekdayText':
+            return $this->viewWeekday();
+        case 'month_text':
+        case 'monthText':
+            return $this->viewMonth();
+        case 'holiday_text':
+        case 'holidayText':
+            return $this->viewHoliday();
+        case 'holiday':
+            return $this->getHoliday();
+        case 'is_holiday':
+        case 'isHoliday':
+            return $this->getHoliday() !== self::NO_HOLIDAY;
+        case 'lunar_month_text':
+        case 'lunarMonthText':
+            return $this->viewLunarMonth();
+        case 'lunar_month':
+        case 'lunarMonth':
+            return $this->getLunarMonth();
+        case 'lunar_year':
+        case 'lunarYear':
+            return $this->getLunarYear();
+        case 'lunar_day':
+        case 'lunarDay':
+            return $this->getLunarDay();
+        case 'is_leap_month':
+        case 'isLeapMonth':
+            return $this->isLeapMonth();
 
 
         }
@@ -884,9 +892,9 @@ class DateTime extends Carbon
      */
     protected function getEraName()
     {
-        $TaishoStart     = new DateTime('1912-07-30 00:00:00', $this->getTimezone());
-        $ShowaStart      = new DateTime('1926-12-25 00:00:00', $this->getTimezone());
-        $HeiseiStart     = new DateTime('1989-01-08 00:00:00', $this->getTimezone());
+        $TaishoStart = new DateTime('1912-07-30 00:00:00', $this->getTimezone());
+        $ShowaStart = new DateTime('1926-12-25 00:00:00', $this->getTimezone());
+        $HeiseiStart = new DateTime('1989-01-08 00:00:00', $this->getTimezone());
         $HeiseiNextStart = new DateTime('2019-05-01 00:00:00', $this->getTimezone());
 
         if ($TaishoStart > $this) {
@@ -1085,11 +1093,11 @@ class DateTime extends Carbon
      */
     protected function getEraYear($era_key = null): int
     {
-        $era_calc = [self::ERA_MEIJI       => 1868,
-                     self::ERA_TAISHO      => 1912,
-                     self::ERA_SHOWA       => 1926,
-                     self::ERA_HEISEI      => 1989,
-                     self::ERA_HEISEI_NEXT => 2019,
+        $era_calc = [self::ERA_MEIJI => 1868,
+            self::ERA_TAISHO => 1912,
+            self::ERA_SHOWA => 1926,
+            self::ERA_HEISEI => 1989,
+            self::ERA_HEISEI_NEXT => 2019,
         ];
 
         $era_key = $era_key ?? $this->getEraName();
