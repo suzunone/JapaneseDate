@@ -214,3 +214,6 @@ migrations/box.phar
 build/
 grind/*
 !grind/.gitkeep
+
+composer.lock
+
