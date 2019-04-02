@@ -111,7 +111,7 @@ class JapaneseDate
             DateTime::ERA_TAISHO      => '大正',
             DateTime::ERA_SHOWA       => '昭和',
             DateTime::ERA_HEISEI      => '平成',
-            DateTime::ERA_HEISEI_NEXT => '平成',
+            DateTime::ERA_REIWA       => '令和',
         ];
 
         $this->holiday_name = [
