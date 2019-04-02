@@ -210,8 +210,8 @@ class JapaneseDateTest extends TestCase
         );
 
         $this->assertEquals(
-            '平成',
-            $JapaneseDate->viewEraName(DateTime::ERA_HEISEI_NEXT)
+            '礼和',
+            $JapaneseDate->viewEraName(DateTime::ERA_REIWA)
         );
     }
 

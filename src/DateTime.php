@@ -334,6 +334,14 @@ class DateTime extends Carbon
     const ERA_HEISEI_NEXT = 1004;
 
     /**
+     * 元号 (平成の次)
+     *
+     * @var int
+     */
+    const ERA_REIWA = 1004;
+
+
+    /**
      * @var \JapaneseDate\Components\JapaneseDate
      */
     private $JapaneseDate;
@@ -895,7 +903,7 @@ class DateTime extends Carbon
         $TaishoStart = new DateTime('1912-07-30 00:00:00', $this->getTimezone());
         $ShowaStart = new DateTime('1926-12-25 00:00:00', $this->getTimezone());
         $HeiseiStart = new DateTime('1989-01-08 00:00:00', $this->getTimezone());
-        $HeiseiNextStart = new DateTime('2019-05-01 00:00:00', $this->getTimezone());
+        $ReiwaStart = new DateTime('2019-05-01 00:00:00', $this->getTimezone());
 
         if ($TaishoStart > $this) {
             // 明治
@@ -911,13 +919,13 @@ class DateTime extends Carbon
             // 昭和
             return self::ERA_SHOWA;
         }
-        if ($HeiseiStart <= $this && $HeiseiNextStart > $this) {
+        if ($HeiseiStart <= $this && $ReiwaStart > $this) {
             // 平成
             return self::ERA_HEISEI;
         }
 
         // 平成の次
-        return self::ERA_HEISEI_NEXT;
+        return self::ERA_REIWA;
     }
 
     /**
@@ -1097,7 +1105,7 @@ class DateTime extends Carbon
             self::ERA_TAISHO => 1912,
             self::ERA_SHOWA => 1926,
             self::ERA_HEISEI => 1989,
-            self::ERA_HEISEI_NEXT => 2019,
+            self::ERA_REIWA => 2019,
         ];
 
         $era_key = $era_key ?? $this->getEraName();

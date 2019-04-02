@@ -14,7 +14,7 @@
          verbose="true"
 >
     <testsuites>
-        <testsuite name="Suzunone\CDN">
+        <testsuite name="Suzunone\JapaneseDate">
             <directory suffix="Test.php">tests</directory>
         </testsuite>
     </testsuites>
@@ -29,7 +29,7 @@
 
     <logging>
         <log type="coverage-text" target="./covers/coverage" showUncoveredFiles="true" showOnlySummary="false"/>
-        <log type="coverage-html" target="./covers/suzunone/cdn-proxy"/>
+        <log type="coverage-html" target="./covers/suzunone/JapaneseDate"/>
         <log type="testdox-text" target="php://stdout"/>
     </logging>
 </phpunit>
