@@ -3,6 +3,10 @@
 # Check https://circleci.com/docs/2.0/language-php/ for more details
 #
 version: 2
+dependencies:
+  cache_directories:
+    - ~/.composer/cache
+    
 jobs:
   build:
     docker:
