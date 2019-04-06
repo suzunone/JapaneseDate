@@ -10,7 +10,7 @@
     }
   ],
   "require": {
-    "nesbot/carbon": "^1.26.3",
+    "nesbot/carbon": "^1.26.3 || ^2.0",
     "ext-calendar": "*",
     "ext-json": "*"
   },

@@ -361,8 +361,9 @@ class DateTime extends Carbon
      *
      * 日付/時刻 文字列の書式については {@link http://php.net/manual/ja/datetime.formats.php サポートする日付と時刻の書式} を参考にしてください。
      *
-     * @param string|DateTimeInterface|null $time 日付/時刻 文字列。DateTimeオブジェクト
-     * @param DateTimeZone|string|null|int $time_zone DateTimeZone オブジェクトか、時差の時間、タイムゾーンテキスト
+     * @param string|DateTimeInterface|null $time      日付/時刻 文字列。DateTimeオブジェクト
+     * @param DateTimeZone|string|null|int  $time_zone DateTimeZone オブジェクトか、時差の時間、タイムゾーンテキスト(omit 予定)
+     * @throws \Exception
      */
     public function __construct($time = null, $time_zone = null)
     {
@@ -378,8 +379,9 @@ class DateTime extends Carbon
      * 日付/時刻 文字列の書式については {@link http://php.net/manual/ja/datetime.formats.php サポートする日付と時刻の書式} を参考にしてください。
      *
      * @param string|int|DateTimeInterface|null $date_time 日付オブジェクト OR Unix Time Stamp OR 日付/時刻 文字列
-     * @param DateTimeZone|null|string $time_zone オブジェクトか、時差の時間、タイムゾーンテキスト
+     * @param DateTimeZone|null|string          $time_zone オブジェクトか、時差の時間、タイムゾーンテキスト(omit 予定)
      * @return static
+     * @throws \Exception
      */
     public static function factory($date_time = null, $time_zone = null)
     {
@@ -397,37 +399,6 @@ class DateTime extends Carbon
         }
 
         return new static($date_time, $time_zone);
-    }
-
-
-    /**
-     * Creates a DateTimeZone from a string, DateTimeZone or integer offset.
-     *
-     * @param \DateTimeZone|string|int|null $object
-     *
-     * @throws \InvalidArgumentException
-     *
-     * @return \DateTimeZone
-     */
-    protected static function safeCreateDateTimeZone($object)
-    {
-        if (is_int($object) || ctype_digit($object)) {
-            // $is_dst = date('I', strtotime('2017-07-01')) === '1';
-            $is_dst = date('I', 1498863600) === '1';
-
-            $tzName = timezone_name_from_abbr(null, $object * 3600, $is_dst);
-
-            if ($tzName === false) {
-                $tzName = timezone_name_from_abbr(null, $object * 3600, !$is_dst);
-            }
-
-            if ($tzName !== false) {
-                $object = $tzName;
-            }
-        }
-
-
-        return parent::safeCreateDateTimeZone($object);
     }
 
     /**
