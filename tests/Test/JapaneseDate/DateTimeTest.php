@@ -97,40 +97,6 @@ class DateTimeTest extends TestCase
         );
     }
 
-
-    /**
-     *
-     * @test
-     * @covers \JapaneseDate\DateTime::safeCreateDateTimeZone()
-     * @runInSeparateProcess
-     * @preserveGlobalState disabled
-     */
-    public function test_safeCreateDateTimeZone()
-    {
-        date_default_timezone_set('Europe/London');
-        $this->assertEquals('Asia/Tokyo', DateTime::factory('now', 9)->tzName);
-        $this->assertEquals('Europe/London', DateTime::factory('now',1)->tzName);
-
-
-        $this->assertEquals('Asia/Tokyo', DateTime::parse('now', 9)->tzName);
-        $this->assertEquals('Europe/London', DateTime::parse('now',1)->tzName);
-
-        $this->assertEquals('Asia/Tokyo', DateTime::now(9)->tzName);
-        $this->assertEquals('Europe/London', DateTime::now(1)->tzName);
-
-        date_default_timezone_set('Asia/Tokyo');
-        $this->assertEquals('Asia/Tokyo', DateTime::factory('now', 9)->tzName);
-        $this->assertEquals('Europe/Paris', DateTime::factory('now',1)->tzName);
-
-
-        $this->assertEquals('Asia/Tokyo', DateTime::parse('now', 9)->tzName);
-        $this->assertEquals('Europe/Paris', DateTime::parse('now',1)->tzName);
-
-        $this->assertEquals('Asia/Tokyo', DateTime::now(9)->tzName);
-        $this->assertEquals('Europe/Paris', DateTime::now(1)->tzName);
-    }
-
-
     /**
      *
      * @test
