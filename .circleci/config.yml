@@ -3,6 +3,10 @@
 # Check https://circleci.com/docs/2.0/language-php/ for more details
 #
 version: 2
+dependencies:
+  cache_directories:
+    - ~/.composer/cache
+
 jobs:
   build:
     docker:
@@ -29,7 +33,7 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
-      - run: composer install -n --prefer-dist
+      - run: composer install -vvv
 
       - save_cache:
           paths:

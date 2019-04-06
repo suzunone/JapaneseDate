@@ -482,7 +482,7 @@ class DateTimeTest extends TestCase
         $this->assertEquals(31, $DateTime->era_year);
 
         $DateTime = new DateTime('2019-05-01');
-        $this->assertEquals('平成', $DateTime->era_name_text);
+        $this->assertEquals('令和', $DateTime->era_name_text);
         $this->assertEquals('1004', $DateTime->era_name);
         $this->assertEquals(1, $DateTime->era_year);
     }
