@@ -74,7 +74,8 @@ class Calendar
      * 日付/時刻 文字列の書式については {@link http://php.net/manual/ja/datetime.formats.php サポートする日付と時刻の書式} を参考にしてください。
      *
      * @param string|\JapaneseDate\DateTime $time 日付配列取得の起点となる、日付オブジェクト OR Unix Time Stamp OR 日付/時刻 文字列
-     * @param \DateTimeZone|int|null $timezone  オブジェクトか、時差の時間、タイムゾーンテキスト
+     * @param \DateTimeZone|int|null $timezone オブジェクトか、時差の時間、タイムゾーンテキスト
+     * @throws \Exception
      */
     public function __construct($time = 'now', \DateTimeZone $timezone = null)
     {
@@ -160,6 +161,7 @@ class Calendar
      * @access      public
      * @param string|\JapaneseDate\DateTime $time 日付/時刻 文字列。DateTimeオブジェクト
      * @return \JapaneseDate\Calendar
+     * @throws \Exception
      */
     public function addBypassDay($time)
     {
@@ -179,6 +181,7 @@ class Calendar
      * @access      public
      * @param string|\JapaneseDate\DateTime $time 日付/時刻 文字列。DateTimeオブジェクト
      * @return \JapaneseDate\Calendar
+     * @throws \Exception
      */
     public function removeBypassDay($time)
     {
@@ -327,6 +330,7 @@ class Calendar
      * @param       string|int|DateTime $JDT
      * @param \DateTimeZone|null $time_zone
      * @return      \JapaneseDate\DateTime
+     * @throws \Exception
      */
     protected function createDateTime($JDT, \DateTimeZone $time_zone = null)
     {

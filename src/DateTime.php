@@ -86,244 +86,244 @@ class DateTime extends Carbon
      *
      * @var int
      */
-    const NO_HOLIDAY = 0;
+    public const NO_HOLIDAY = 0;
     /**
      * 祝日定数:元旦
      *
      * @var int
      */
-    const NEW_YEAR_S_DAY = 1;
+    public const NEW_YEAR_S_DAY = 1;
     /**
      * 祝日定数:成人の日
      *
      * @var int
      */
-    const COMING_OF_AGE_DAY = 2;
+    public const COMING_OF_AGE_DAY = 2;
     /**
      * 祝日定数:建国記念の日
      *
      * @var int
      */
-    const NATIONAL_FOUNDATION_DAY = 3;
+    public const NATIONAL_FOUNDATION_DAY = 3;
     /**
      * 祝日定数:昭和天皇の大喪の礼
      *
      * @var int
      */
-    const THE_SHOWA_EMPEROR_DIED = 4;
+    public const THE_SHOWA_EMPEROR_DIED = 4;
     /**
      * 祝日定数:春分の日
      *
      * @var int
      */
-    const VERNAL_EQUINOX_DAY = 5;
+    public const VERNAL_EQUINOX_DAY = 5;
     /**
      * 祝日定数:昭和の日
      *
      * @var int
      */
-    const DAY_OF_SHOWA = 6;
+    public const DAY_OF_SHOWA = 6;
     /**
      * 祝日定数:みどりの日
      *
      * @var int
      */
-    const GREENERY_DAY = 7;
+    public const GREENERY_DAY = 7;
     /**
      * 祝日定数:天皇誕生日
      *
      * @var int
      */
-    const THE_EMPEROR_S_BIRTHDAY = 8;
+    public const THE_EMPEROR_S_BIRTHDAY = 8;
     /**
      * 祝日定数:皇太子明仁親王の結婚の儀
      *
      * @var int
      */
-    const CROWN_PRINCE_HIROHITO_WEDDING = 9;
+    public const CROWN_PRINCE_HIROHITO_WEDDING = 9;
     /**
      * 祝日定数:憲法記念日
      *
      * @var int
      */
-    const CONSTITUTION_DAY = 10;
+    public const CONSTITUTION_DAY = 10;
     /**
      * 祝日定数:国民の休日
      *
      * @var int
      */
-    const NATIONAL_HOLIDAY = 11;
+    public const NATIONAL_HOLIDAY = 11;
     /**
      * 祝日定数:こどもの日
      *
      * @var int
      */
-    const CHILDREN_S_DAY = 12;
+    public const CHILDREN_S_DAY = 12;
     /**
      * 祝日定数:振替休日
      *
      * @var int
      */
-    const COMPENSATING_HOLIDAY = 13;
+    public const COMPENSATING_HOLIDAY = 13;
     /**
      * 祝日定数:皇太子徳仁親王の結婚の儀
      *
      * @var int
      */
-    const CROWN_PRINCE_NARUHITO_WEDDING = 14;
+    public const CROWN_PRINCE_NARUHITO_WEDDING = 14;
     /**
      * 祝日定数:海の日
      *
      * @var int
      */
-    const MARINE_DAY = 15;
+    public const MARINE_DAY = 15;
     /**
      * 祝日定数:秋分の日
      *
      * @var int
      */
-    const AUTUMNAL_EQUINOX_DAY = 16;
+    public const AUTUMNAL_EQUINOX_DAY = 16;
     /**
      * 祝日定数:敬老の日
      *
      * @var int
      */
-    const RESPECT_FOR_SENIOR_CITIZENS_DAY = 17;
+    public const RESPECT_FOR_SENIOR_CITIZENS_DAY = 17;
     /**
      * 祝日定数:体育の日
      *
      * @var int
      */
-    const SPORTS_DAY = 18;
+    public const SPORTS_DAY = 18;
     /**
      * 祝日定数:文化の日
      *
      * @var int
      */
-    const CULTURE_DAY = 19;
+    public const CULTURE_DAY = 19;
     /**
      * 祝日定数:勤労感謝の日
      *
      * @var int
      */
-    const LABOR_THANKSGIVING_DAY = 20;
+    public const LABOR_THANKSGIVING_DAY = 20;
     /**
      * 祝日定数:即位礼正殿の儀
      *
      * @var int
      */
-    const REGNAL_DAY = 21;
+    public const REGNAL_DAY = 21;
     /**
      * 祝日定数:山の日
      *
      * @var int
      */
-    const MOUNTAIN_DAY = 22;
+    public const MOUNTAIN_DAY = 22;
 
     /**
      * 天皇の即位の日
      *
      * @var int
      */
-    const EMPERORS_THRONE_DAY = 23;
+    public const EMPERORS_THRONE_DAY = 23;
 
     /**
      * 祝日法制定年
      *
      * @var int
      */
-    const HOLIDAY_START_YEAR = 1948;
+    public const HOLIDAY_START_YEAR = 1948;
 
     /**
      * 特定月定数 春分の日
      *
      * @var int
      */
-    const VERNAL_EQUINOX_DAY_MONTH = 3;
+    public const VERNAL_EQUINOX_DAY_MONTH = 3;
 
     /**
      * 特定月定数 秋分の日
      *
      * @var int
      */
-    const AUTUMNAL_EQUINOX_DAY_MONTH = 9;
+    public const AUTUMNAL_EQUINOX_DAY_MONTH = 9;
 
     /**
      * 曜日定数(日)
      *
      * @var int
      */
-    const SUNDAY = 0;
+    public const SUNDAY = 0;
 
     /**
      * 曜日定数(月)
      *
      * @var int
      */
-    const MONDAY = 1;
+    public const MONDAY = 1;
 
     /**
      * 曜日定数(火)
      *
      * @var int
      */
-    const TUESDAY = 2;
+    public const TUESDAY = 2;
 
     /**
      * 曜日定数(水)
      *
      * @var int
      */
-    const WEDNESDAY = 3;
+    public const WEDNESDAY = 3;
 
     /**
      * 曜日定数(木)
      *
      * @var int
      */
-    const THURSDAY = 4;
+    public const THURSDAY = 4;
 
     /**
      * 曜日定数(金)
      *
      * @var int
      */
-    const FRIDAY = 5;
+    public const FRIDAY = 5;
 
     /**
      * 曜日定数(土)
      *
      * @var int
      */
-    const SATURDAY = 6;
+    public const SATURDAY = 6;
 
     /**
      * 元号 (明治)
      *
      * @var int
      */
-    const ERA_MEIJI = 1000;
+    public const ERA_MEIJI = 1000;
 
     /**
      * 元号 (対象)
      *
      * @var int
      */
-    const ERA_TAISHO = 1001;
+    public const ERA_TAISHO = 1001;
 
     /**
      * 元号 (昭和)
      *
      * @var int
      */
-    const ERA_SHOWA = 1002;
+    public const ERA_SHOWA = 1002;
 
     /**
      * 元号 (平成)
      *
      * @var int
      */
-    const ERA_HEISEI = 1003;
+    public const ERA_HEISEI = 1003;
 
     /**
      * 元号 (平成の次)
@@ -331,14 +331,14 @@ class DateTime extends Carbon
      * @var int
      * @deprecated
      */
-    const ERA_HEISEI_NEXT = 1004;
+    public const ERA_HEISEI_NEXT = 1004;
 
     /**
      * 元号 (平成の次)
      *
      * @var int
      */
-    const ERA_REIWA = 1004;
+    public const ERA_REIWA = 1004;
 
 
     /**
@@ -363,6 +363,7 @@ class DateTime extends Carbon
      *
      * @param string|DateTimeInterface|null $time 日付/時刻 文字列。DateTimeオブジェクト
      * @param DateTimeZone|string|null|int $time_zone DateTimeZone オブジェクトか、時差の時間、タイムゾーンテキスト
+     * @throws \Exception
      */
     public function __construct($time = null, $time_zone = null)
     {
@@ -380,6 +381,7 @@ class DateTime extends Carbon
      * @param string|int|DateTimeInterface|null $date_time 日付オブジェクト OR Unix Time Stamp OR 日付/時刻 文字列
      * @param DateTimeZone|null|string $time_zone オブジェクトか、時差の時間、タイムゾーンテキスト
      * @return static
+     * @throws \Exception
      */
     public static function factory($date_time = null, $time_zone = null)
     {
@@ -397,37 +399,6 @@ class DateTime extends Carbon
         }
 
         return new static($date_time, $time_zone);
-    }
-
-
-    /**
-     * Creates a DateTimeZone from a string, DateTimeZone or integer offset.
-     *
-     * @param \DateTimeZone|string|int|null $object
-     *
-     * @throws \InvalidArgumentException
-     *
-     * @return \DateTimeZone
-     */
-    protected static function safeCreateDateTimeZone($object)
-    {
-        if (is_int($object) || ctype_digit($object)) {
-            // $is_dst = date('I', strtotime('2017-07-01')) === '1';
-            $is_dst = date('I', 1498863600) === '1';
-
-            $tzName = timezone_name_from_abbr(null, $object * 3600, $is_dst);
-
-            if ($tzName === false) {
-                $tzName = timezone_name_from_abbr(null, $object * 3600, !$is_dst);
-            }
-
-            if ($tzName !== false) {
-                $object = $tzName;
-            }
-        }
-
-
-        return parent::safeCreateDateTimeZone($object);
     }
 
     /**
@@ -585,6 +556,9 @@ class DateTime extends Carbon
      * @param string $delimiter
      * @return string  指定したフォーマット文字列に基づき文字列をフォーマットして返します。 月および曜日の名前、およびその他の言語依存の文字列は、 setlocale() で設定された現在のロケールを尊重して表示されます。
      * @throws \ErrorException
+     * @throws \Exception
+     * @throws \Exception
+     * @throws \Exception
      */
     protected function strftimeJa($format, $delimiter = '%#')
     {
@@ -746,6 +720,10 @@ class DateTime extends Carbon
      * @param string $name
      * @return DateTimeZone|int|string
      * @throws \ErrorException
+     * @throws \ReflectionException
+     * @throws \Exception
+     * @throws \Exception
+     * @throws \Exception
      */
     public function __get($name)
     {
@@ -885,6 +863,7 @@ class DateTime extends Carbon
      * 日本語フォーマットされた年号を返す
      *
      * @return      string
+     * @throws \Exception
      */
     protected function viewEraName()
     {
@@ -897,6 +876,7 @@ class DateTime extends Carbon
      * 年号キーを返す
      *
      * @return int
+     * @throws \Exception
      */
     protected function getEraName()
     {
@@ -1098,6 +1078,7 @@ class DateTime extends Carbon
      *
      * @param null|int $era_key 元号キー
      * @return int
+     * @throws \Exception
      */
     protected function getEraYear($era_key = null): int
     {
