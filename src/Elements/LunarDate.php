@@ -38,11 +38,11 @@ use ErrorException;
  */
 class LunarDate
 {
-    const YEAR_KEY = 0;
-    const IS_LEAP_MONTH_FLAG_KEY = 1;
-    const MONTH_KEY = 2;
-    const DAY_KEY = 3;
-    const SOLAR_TERM_KEY = 4;
+    public const YEAR_KEY = 0;
+    public const IS_LEAP_MONTH_FLAG_KEY = 1;
+    public const MONTH_KEY = 2;
+    public const DAY_KEY = 3;
+    public const SOLAR_TERM_KEY = 4;
 
     /**
      * @var array
