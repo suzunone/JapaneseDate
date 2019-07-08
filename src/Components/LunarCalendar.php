@@ -47,14 +47,14 @@ class LunarCalendar
      *
      * @var float
      */
-    const CONVERGE = 0.00005;
+    public const CONVERGE = 0.00005;
 
     /**
      * 2000/1/2 のユリウス日
      *
      * @var float
      */
-    const BASE_JD_2000 = 2451546.0;
+    public const BASE_JD_2000 = 2451546.0;
 
 
     /**
@@ -62,7 +62,7 @@ class LunarCalendar
      *
      * @var float
      */
-    const JD_2000_TIME_DIFFERENCE = 0.125;
+    public const JD_2000_TIME_DIFFERENCE = 0.125;
 
 
     /**
@@ -70,7 +70,7 @@ class LunarCalendar
      *
      * @var float
      */
-    const ASTRO_REFRACT = 0.585556;
+    public const ASTRO_REFRACT = 0.585556;
 
     /**
      * 朔の一覧
@@ -160,9 +160,10 @@ class LunarCalendar
     /**
      * 指定した月の日数を返す
      *
-     * @param    int $year  西暦年
+     * @param    int $year 西暦年
      * @param    int $month 月
      * @return    int 日数／FALSE:引数の異常
+     * @throws \Exception
      */
     private function getDaysInMonth($year, $month)
     {
@@ -218,6 +219,7 @@ class LunarCalendar
      * @param float $min
      * @param int $sec
      * @return float
+     * @throws \Exception
      */
     private function gregorian2JY($year, $month, $day, $hour, $min, $sec)
     {
@@ -230,7 +232,7 @@ class LunarCalendar
         $base_time = 946814400;
 
         $timestamp = DateTime::factory(
-            join('-', [$year, $month, $day]) . ' ' . join(':', [$hour, $min, $sec]),
+            implode('-', [$year, $month, $day]) . ' ' . implode(':', [$hour, $min, $sec]),
             new DateTimeZone('UTC')
         )->timestamp;
 
@@ -282,6 +284,7 @@ class LunarCalendar
      * @param float $min
      * @param float $sec
      * @return    float 太陽の黄経（視黄経）
+     * @throws \Exception
      */
     private function longitudeSun($year, $month, $day, $hour, $min, $sec)
     {
@@ -300,13 +303,14 @@ class LunarCalendar
     /**
      * 月の黄経計算（視黄経）
      *
-     * @param int $year   グレゴリオ暦
+     * @param int $year グレゴリオ暦
      * @param int $month
      * @param int $day
      * @param float $hour 時
-     * @param float $min  分
-     * @param float $sec  秒
+     * @param float $min 分
+     * @param float $sec 秒
      * @return    float 月の黄経（視黄経）
+     * @throws \Exception
      */
     private function longitudeMoon($year, $month, $day, $hour, $min, $sec)
     {
@@ -329,6 +333,7 @@ class LunarCalendar
      * @param $month
      * @param $day
      * @return    int|bool
+     * @throws \Exception
      */
     public function findSolarTerm($year, $month, $day)
     {
@@ -431,13 +436,14 @@ class LunarCalendar
     /**
      * 月齢を求める（視黄経）
      *
-     * @param    int $year   , $month, $day  グレゴリオ暦による年月日
+     * @param    int $year , $month, $day  グレゴリオ暦による年月日
      * @param $month
      * @param $day
      * @param    float $hour , $min, $sec 時分秒（世界時）
      * @param $min
      * @param $sec
      * @return    float 月齢（視黄経）
+     * @throws \Exception
      */
     public function moonAge($year, $month, $day, $hour, $min, $sec)
     {
@@ -456,7 +462,7 @@ class LunarCalendar
         $days_par_1_sec = 0.00001157407;
         while (($delta_t1 + abs($delta_t2)) > $days_par_1_sec) {
             $julian_date = $tm1 + $tm2;
-            list($year, $month, $day, $hour, $min, $sec) = $this->jD2Gregorian($julian_date);
+            [$year, $month, $day, $hour, $min, $sec] = $this->jD2Gregorian($julian_date);
             $longitude_sun  = $this->longitudeSun($year, $month, $day, $hour, $min, $sec);
             $longitude_moon = $this->longitudeMoon($year, $month, $day, $hour, $min, $sec);
 
@@ -482,8 +488,8 @@ class LunarCalendar
             $delta_t2 -= $delta_t1;
 
             // 時刻引数の補正
-            $tm1 = $tm1 - $delta_t1;
-            $tm2 = $tm2 - $delta_t2;
+            $tm1 -= $delta_t1;
+            $tm2 -= $delta_t2;
             if ($tm2 < 0) {
                 $tm2++;
                 $tm1--;
@@ -539,6 +545,7 @@ class LunarCalendar
      *
      * @param    int $year 西暦年
      * @return array 朔のテーブル
+     * @throws \Exception
      */
     private function makeLunarCalendar(int $year): array
     {
@@ -567,7 +574,7 @@ class LunarCalendar
                 $find_day++;
             }
             $find_month++;
-            $find_day = $find_day - $days_in_month;
+            $find_day -= $days_in_month;
             $find_day = max($find_day, 1);
 
             if ($find_month > 12) {
@@ -606,7 +613,7 @@ class LunarCalendar
             }
 
             $find_month++;
-            $find_day = $find_day - $days_in_month;
+            $find_day -= $days_in_month;
             $find_day = max($find_day, 1);
             if ($find_month > 12) {
                 $find_year++;
