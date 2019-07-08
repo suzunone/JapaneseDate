@@ -32,25 +32,25 @@ class CacheMode
     /**
      * Cacheなし
      */
-    const MODE_NONE = 0;
+    public const MODE_NONE = 0;
 
     /**
      * 自動的に最適なCacheモードを選択する
      */
-    const MODE_AUTO = 1;
+    public const MODE_AUTO = 1;
 
     /**
      * APCにキャッシュする
      */
-    const MODE_APC = 2;
+    public const MODE_APC = 2;
 
     /**
      * ファイルにキャッシュする
      */
-    const MODE_FILE = 3;
+    public const MODE_FILE = 3;
 
     /**
      * 独自のキャッシュモード
      */
-    const MODE_ORIGINAL = 4;
+    public const MODE_ORIGINAL = 4;
 }

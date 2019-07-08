@@ -82,19 +82,19 @@ echo $date_time->format('Y-m-d H:i:s');    // 2018-01-01 00:00:00
 ``` .php
 date_default_timezone_set('Europe/London');
 // 夏時間が有効なデフォルトタイムゾーンで、+1時間
-echo Carbon::now(1)->tzName;             // Europe/London
-echo JapaneseDateTime::now(1)->tzName;             // Europe/Paris
+echo Carbon::now()->tzName;             // Asia/Tokyo
+echo JapaneseDateTime::now()->tzName;             // Asia/Tokyo
 // 夏時間が有効なデフォルトタイムゾーンで、+9時間(夏時間があるタイムゾーンがない)
-echo Carbon::now(9)->tzName;             // Throw InvalidArgumentException Unknown or bad timezone (9)
-echo JapaneseDateTime::now(9)->tzName;             // Asia/Tokyo
+echo Carbon::now()->tzName;             // 
+echo JapaneseDateTime::now()->tzName;             // Asia/Tokyo
 
 date_default_timezone_set('Asia/Tokyo');
 // 夏時間が無効なデフォルトタイムゾーンで、+1時間
-echo Carbon::now(1)->tzName;             // Europe/London
-echo JapaneseDateTime::now(1)->tzName;             // Europe/Paris
+echo Carbon::now()->tzName;             // Asia/Tokyo
+echo JapaneseDateTime::now()->tzName;             // Asia/Tokyo
 // 夏時間が無効なデフォルトタイムゾーンで、+9時間(夏時間があるタイムゾーンがない)
-echo Carbon::now(9)->tzName;             // Throw InvalidArgumentException Unknown or bad timezone (9)
-echo JapaneseDateTime::now(9)->tzName;             // Asia/Tokyo
+echo Carbon::now()->tzName;             // 
+echo JapaneseDateTime::now()->tzName;             // Asia/Tokyo
 ```
 
 
@@ -132,7 +132,7 @@ echo JapaneseDateTime::parse('first day of December 2018')->addWeeks(2);    // 2
 
 ``` .php
 
-echo JapaneseDateTime::parse(time());    // Throw Exception DateTime::__construct(): Failed to parse time string (1526709775) at position 8 (7): Unexpected character
+echo JapaneseDateTime::parse(time());    // 2019-07-08 14:47:47
 echo JapaneseDateTime::parse(new DateTime('now'));    // PHP Fatal error:  Uncaught TypeError: DateTime::__construct() expects parameter 1 to be string, object given
 ```
 
@@ -143,15 +143,17 @@ echo JapaneseDateTime::parse(new DateTime('now'));    // PHP Fatal error:  Uncau
 そういった場合は、`JapaneseDate\DateTime::factory()`を使用します。
 
 ``` .php
-echo JapaneseDateTime::factory(time());    // 2018-05-19 15:02:55
+echo JapaneseDateTime::factory(time());    // 2019-07-08 23:47:47
 
-echo JapaneseDateTime::factory(new DateTime('now'));    // 2018-05-19 15:02:55
+echo JapaneseDateTime::factory(new DateTime('now'));    // 2019-07-08 23:47:47
 
 // もちろんこういったコードも動作します
 echo JapaneseDateTime::factory('first day of December 2018')->addWeeks(2);    // 2018-12-15 00:00:00
 
 // 一見数字文字列であっても、JapaneseDateTime::parse でパースできる場合は、同様の結果を返すことに注意してください。
-echo JapaneseDateTime::parse('100');    // Throw Exception DateTime::__construct(): Failed to parse time string (100) at position 0 (1): Unexpected character
+echo JapaneseDateTime::parse('100');    // 
+Warning: DateTime::modify(): Failed to parse time string (100) at position 0 (1): Unexpected character in /Users/fumikazu/workspace/JapaneseDate/vendor/nesbot/carbon/src/Carbon/Traits/Modifiers.php on line 450
+
 echo JapaneseDateTime::factory('100');    // 1970-01-01 09:01:40
 echo JapaneseDateTime::parse('20180404050505');    // 2018-04-04 05:05:05
 echo JapaneseDateTime::factory('20180404050505');    // 2018-04-04 05:05:05
@@ -171,13 +173,13 @@ echo JapaneseDateTime::factory(20180404050505);    // 2061-07-19 16:48:25
 
 ``` .php
 $now = JapaneseDateTime::now();
-echo $now;                               // 2018-05-19 15:02:55
+echo $now;                               // 2019-07-08 23:47:47
 $today = JapaneseDateTime::today();
-echo $today;                             // 2018-05-19 00:00:00
+echo $today;                             // 2019-07-08 00:00:00
 $tomorrow = JapaneseDateTime::tomorrow('Europe/London');
-echo $tomorrow;                          // 2018-05-20 00:00:00
+echo $tomorrow;                          // 2019-07-09 00:00:00
 $yesterday = JapaneseDateTime::yesterday();
-echo $yesterday;                         // 2018-05-18 00:00:00
+echo $yesterday;                         // 2019-07-07 00:00:00
 ```
 
 ローカライゼーション
@@ -435,7 +437,7 @@ var_export($dt->dayOfWeek);                                    // 3
 
 // dayOfWeekIso は between 1 (月) and 7 (日)の数値を返します
 var_export($dt->dayOfWeekIso);                                 // 3
-var_export($dt->dayOfYear);                                    // 79
+var_export($dt->dayOfYear);                                    // 80
 var_export($dt->weekNumberInMonth);                            // 4
 
 // weekNumberInMonthは月曜日から日曜日までの週を考慮しているので、1週目は月が日曜日で始まる場合は1日を、
@@ -447,7 +449,7 @@ var_export($dt->weekOfMonth);                                  // 3
 var_export($dt->weekOfYear);                                   // 12
 var_export($dt->daysInMonth);                                  // 31
 var_export($dt->timestamp);                                    // 1521642371
-var_export(JapaneseDateTime::createFromDate(1975, 5, 21)->age);          // 42
+var_export(JapaneseDateTime::createFromDate(1975, 5, 21)->age);          // 44
 var_export($dt->quarter);                                      // 1
 
 // UTCからの秒の差をintで返します（+/-符号を含む）
@@ -474,8 +476,8 @@ var_export(JapaneseDateTime::now('Europe/London')->utc);                 // fals
 var_export(JapaneseDateTime::createFromTimestampUTC(0)->utc);            // true
 
 // DateTimeZoneインスタンスを取得します。
-echo get_class(JapaneseDateTime::now()->timezone);                     // DateTimeZone
-echo get_class(JapaneseDateTime::now()->tz);                           // DateTimeZone
+echo get_class(JapaneseDateTime::now()->timezone);                     // Carbon\CarbonTimeZone
+echo get_class(JapaneseDateTime::now()->tz);                           // Carbon\CarbonTimeZone
 
 // ->timezone->getName() へのエイリアスです
 echo JapaneseDateTime::now()->timezoneName;                            // Asia/Tokyo

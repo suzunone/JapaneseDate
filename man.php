@@ -112,49 +112,49 @@ echo $date_time->format('Y-m-d H:i:s');
 ``` .php
 date_default_timezone_set('Europe/London');
 // 夏時間が有効なデフォルトタイムゾーンで、+1時間
-echo Carbon::now(1)->tzName;             // <?php
-echo Carbon::now(1)->tzName;
+echo Carbon::now()->tzName;             // <?php
+echo Carbon::now()->tzName;
 ?>
 
-echo JapaneseDateTime::now(1)->tzName;             // <?php
-echo JapaneseDateTime::now(1)->tzName;
+echo JapaneseDateTime::now()->tzName;             // <?php
+echo JapaneseDateTime::now()->tzName;
 ?>
 
 // 夏時間が有効なデフォルトタイムゾーンで、+9時間(夏時間があるタイムゾーンがない)
-echo Carbon::now(9)->tzName;             // <?php
+echo Carbon::now()->tzName;             // <?php
 try{
-    Carbon::now(9)->tzName;
+    Carbon::now()->tzName;
 } catch (Exception $exception) {
     echo 'Throw ',get_class($exception), ' '.$exception->getMessage();
 }
 ?>
 
-echo JapaneseDateTime::now(9)->tzName;             // <?php
-echo JapaneseDateTime::now(9)->tzName;
+echo JapaneseDateTime::now()->tzName;             // <?php
+echo JapaneseDateTime::now()->tzName;
 ?>
 
 
 date_default_timezone_set('Asia/Tokyo');
 // 夏時間が無効なデフォルトタイムゾーンで、+1時間
-echo Carbon::now(1)->tzName;             // <?php
-echo Carbon::now(1)->tzName;
+echo Carbon::now()->tzName;             // <?php
+echo Carbon::now()->tzName;
 ?>
 
-echo JapaneseDateTime::now(1)->tzName;             // <?php
-echo JapaneseDateTime::now(1)->tzName;
+echo JapaneseDateTime::now()->tzName;             // <?php
+echo JapaneseDateTime::now()->tzName;
 ?>
 
 // 夏時間が無効なデフォルトタイムゾーンで、+9時間(夏時間があるタイムゾーンがない)
-echo Carbon::now(9)->tzName;             // <?php
+echo Carbon::now()->tzName;             // <?php
 try{
-    Carbon::now(9)->tzName;
+    Carbon::now()->tzName;
 } catch (Exception $exception) {
     echo 'Throw ',get_class($exception), ' '.$exception->getMessage();
 }
 ?>
 
-echo JapaneseDateTime::now(9)->tzName;             // <?php
-echo JapaneseDateTime::now(9)->tzName;
+echo JapaneseDateTime::now()->tzName;             // <?php
+echo JapaneseDateTime::now()->tzName;
 ?>
 
 ```
