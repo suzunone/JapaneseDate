@@ -751,6 +751,10 @@ class JapaneseDate
             }
         }
 
+        if ($year === 2019) {
+            $res[22] = DateTime::REGNAL_DAY;
+        }
+
         return $res;
     }
 

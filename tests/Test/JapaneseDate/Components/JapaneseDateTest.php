@@ -73,6 +73,20 @@ class JapaneseDateTest extends TestCase
         return [[$JapaneseDate, $JapaneseDateTime]];
     }
 
+
+    public function test_regnalDay()
+    {
+        $JapaneseDate     = new JapaneseDate();
+        $JapaneseDateTime = new DateTime('2019-10-22');
+
+        $res = $this->invokeExecuteMethod($JapaneseDate, 'getOctoberHoliday', ['2020', $JapaneseDateTime->getTimezone()]);
+
+
+        $this->assertEquals('即位礼正殿の儀', $JapaneseDateTime->holiday_text);
+        $this->assertEquals(DateTime::REGNAL_DAY, $JapaneseDateTime->holiday);
+    }
+
+
     /**
      * +-- 祝日法の開始
      *
@@ -1656,6 +1670,16 @@ class JapaneseDateTest extends TestCase
         $this->assertArrayHasKey(9, $res);
         $this->assertCount(1, $res);
         $this->assertEquals('体育の日', $JapaneseDate->viewHoliday($res[9]));
+
+
+        $res = $this->invokeExecuteMethod($JapaneseDate, 'getOctoberHoliday', ['2019', $JapaneseDateTime->getTimezone()]);
+        $this->assertArrayHasKey(14, $res);
+        $this->assertArrayHasKey(22, $res);
+        $this->assertCount(2, $res);
+        $this->assertEquals('体育の日', $JapaneseDate->viewHoliday($res[14]));
+        $this->assertEquals('即位礼正殿の儀', $JapaneseDate->viewHoliday($res[22]));
+
+        var_dump($res);
     }
 
     /** @noinspection PhpMethodNamingConventionInspection */
