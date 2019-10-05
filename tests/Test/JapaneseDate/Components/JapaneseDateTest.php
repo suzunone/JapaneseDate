@@ -1228,9 +1228,12 @@ class JapaneseDateTest extends TestCase
         $this->assertCount(1, $res);
         $this->assertEquals('海の日', $JapaneseDate->viewHoliday($res[20]));
         $res = $this->invokeExecuteMethod($JapaneseDate, 'getJulyHoliday', ['2020', $JapaneseDateTime->getTimezone()]);
-        $this->assertArrayHasKey(20, $res);
-        $this->assertCount(1, $res);
-        $this->assertEquals('海の日', $JapaneseDate->viewHoliday($res[20]));
+        $this->assertArrayHasKey(23, $res);
+        $this->assertArrayHasKey(24, $res);
+        $this->assertCount(2, $res);
+        $this->assertEquals('海の日', $JapaneseDate->viewHoliday($res[23]));
+        $this->assertEquals('スポーツの日', $JapaneseDate->viewHoliday($res[24]));
+
         $res = $this->invokeExecuteMethod($JapaneseDate, 'getJulyHoliday', ['2026', $JapaneseDateTime->getTimezone()]);
         $this->assertArrayHasKey(20, $res);
         $this->assertCount(1, $res);
@@ -1275,6 +1278,8 @@ class JapaneseDateTest extends TestCase
         $this->assertArrayHasKey(21, $res);
         $this->assertCount(1, $res);
         $this->assertEquals('海の日', $JapaneseDate->viewHoliday($res[21]));
+
+
     }
 
     /**
@@ -1317,6 +1322,11 @@ class JapaneseDateTest extends TestCase
         $this->assertArrayHasKey(11, $res);
         $this->assertCount(1, $res);
         $this->assertEquals('山の日', $JapaneseDate->viewHoliday($res[11]));
+
+        $res = $this->invokeExecuteMethod($JapaneseDate, 'getAugustHoliday', ['2020', $JapaneseDateTime->getTimezone()]);
+        $this->assertArrayHasKey(10, $res);
+        $this->assertCount(1, $res);
+        $this->assertEquals('山の日', $JapaneseDate->viewHoliday($res[10]));
     }
 
     /** @noinspection PhpMethodNamingConventionInspection */
@@ -1679,7 +1689,19 @@ class JapaneseDateTest extends TestCase
         $this->assertEquals('体育の日', $JapaneseDate->viewHoliday($res[14]));
         $this->assertEquals('即位礼正殿の儀', $JapaneseDate->viewHoliday($res[22]));
 
-        var_dump($res);
+
+        $res = $this->invokeExecuteMethod($JapaneseDate, 'getOctoberHoliday', ['2020', $JapaneseDateTime->getTimezone()]);
+        $this->assertCount(0, $res);
+
+
+        $res = $this->invokeExecuteMethod($JapaneseDate, 'getOctoberHoliday', ['2021', $JapaneseDateTime->getTimezone()]);
+        $this->assertArrayHasKey(11, $res);
+        $this->assertCount(1, $res);
+        $this->assertEquals('スポーツの日', $JapaneseDate->viewHoliday($res[11]));
+
+
+
+
     }
 
     /** @noinspection PhpMethodNamingConventionInspection */

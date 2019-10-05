@@ -28,10 +28,10 @@ use ErrorException;
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
  * @since       Class available since Release 1.0.0
- * @property-read int year
- * @property-read int month
- * @property-read int day
- * @property-read bool $is_leap_month
+ * @property-read int      year
+ * @property-read int      month
+ * @property-read int      day
+ * @property-read bool     $is_leap_month
  * @property-read int|bool solar_term
  *
  *
@@ -58,6 +58,30 @@ class LunarDate
     {
         throw new ErrorException('cannot set property:' . $name);
     }
+
+
+    /**
+     * @param $name
+     * @return bool
+     */
+    public function __isset($name)
+    {
+        switch ($name) {
+            case 'year':
+
+            case 'month':
+
+            case 'day':
+
+            case 'is_leap_month':
+
+            case 'solar_term':
+                return true;
+            default:
+                return false;
+        }
+    }
+
 
     /**
      * @param string $name
@@ -89,7 +113,7 @@ class LunarDate
     /**
      * LunarDate constructor.
      *
-     * @param array $lunar
+     * @param array    $lunar
      * @param int|bool $solar_term
      * @throws \ErrorException
      */
@@ -100,6 +124,6 @@ class LunarDate
         }
 
         $lunar[self::SOLAR_TERM_KEY] = $solar_term;
-        $this->lunar                 = $lunar;
+        $this->lunar = $lunar;
     }
 }

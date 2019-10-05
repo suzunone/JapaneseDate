@@ -113,6 +113,7 @@ class LunarCalendar
      * @param \JapaneseDate\DateTime $DateTime
      * @return \JapaneseDate\Elements\LunarDate
      * @throws \ErrorException
+     * @throws \Exception
      */
     public function getLunarDate(DateTime $DateTime): LunarDate
     {
@@ -349,7 +350,7 @@ class LunarCalendar
         $tmp_1 = (int)floor($longitude_sun_1 / 15);
         $tmp_2 = (int)floor($longitude_sun_2 / 15);
 
-        return ($tmp_1 != $tmp_2 && isset($solar_term[$tmp_2])) ? $tmp_2 : false;
+        return ($tmp_1 !== $tmp_2 && isset($solar_term[$tmp_2])) ? $tmp_2 : false;
     }
 
 
@@ -596,7 +597,7 @@ class LunarCalendar
                 $longitude_sun_2 = $this->longitudeSun($find_year, $find_month, $find_day, 24, 0, 0);
                 $tmp_ls_1        = floor($longitude_sun_1 / 15.0);
                 $tml_ls_2        = floor($longitude_sun_2 / 15.0);
-                if (($tml_ls_2 != $tmp_ls_1) && ($tml_ls_2 % 2 == 0)) {
+                if (($tml_ls_2 !== $tmp_ls_1) && ($tml_ls_2 % 2 === 0)) {
                     $sun_calendar[$counter]['jd'] = $this->gregorian2JD($find_year, $find_month, $find_day, 0, 0, 0);
                     $lunar_month                  = floor($tml_ls_2 / 2) + 2;
                     if ($lunar_month > 12) {
