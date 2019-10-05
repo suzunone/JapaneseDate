@@ -72,7 +72,7 @@ class JapaneseDate
     /**
      * @var array
      */
-    public const ORIENTAL_ZODIAC = ['亥', '子', '丑', '寅', '卯', '辰', '巳', '午', '未', '申', '酉', '戌',];
+    public const ORIENTAL_ZODIAC = ['亥', '子', '丑', '寅', '卯', '辰', '巳', '午', '未', '申', '酉', '戌', ];
 
     /**
      * @var array
@@ -94,7 +94,6 @@ class JapaneseDate
      * @var int
      */
     public const AUTUMNAL_EQUINOX = 12;
-
 
     /**
      * コンストラクタ
@@ -172,7 +171,7 @@ class JapaneseDate
      */
     public function getHolidayList(DateTime $DateTime): array
     {
-        switch ((int)$DateTime->month) {
+        switch ((int) $DateTime->month) {
             case 1:
                 return $this->getJanuaryHoliday($DateTime->year, $DateTime->getTimezone());
             case 2:
@@ -335,25 +334,25 @@ class JapaneseDate
     {
         switch ($weekly) {
             case DateTime::SUNDAY:
-                $map = [7, 1, 2, 3, 4, 5, 6,];
+                $map = [7, 1, 2, 3, 4, 5, 6, ];
                 break;
             case DateTime::MONDAY:
-                $map = [6, 7, 1, 2, 3, 4, 5,];
+                $map = [6, 7, 1, 2, 3, 4, 5, ];
                 break;
             case DateTime::TUESDAY:
-                $map = [5, 6, 7, 1, 2, 3, 4,];
+                $map = [5, 6, 7, 1, 2, 3, 4, ];
                 break;
             case DateTime::WEDNESDAY:
-                $map = [4, 5, 6, 7, 1, 2, 3,];
+                $map = [4, 5, 6, 7, 1, 2, 3, ];
                 break;
             case DateTime::THURSDAY:
-                $map = [3, 4, 5, 6, 7, 1, 2,];
+                $map = [3, 4, 5, 6, 7, 1, 2, ];
                 break;
             case DateTime::FRIDAY:
-                $map = [2, 3, 4, 5, 6, 7, 1,];
+                $map = [2, 3, 4, 5, 6, 7, 1, ];
                 break;
             case DateTime::SATURDAY:
-                $map = [1, 2, 3, 4, 5, 6, 7,];
+                $map = [1, 2, 3, 4, 5, 6, 7, ];
                 break;
             default:
                 throw new ErrorException('undefined weekly ' . $weekly);
@@ -655,7 +654,6 @@ class JapaneseDate
         if ($year === DateTime::SECOND_TIME_TOKYO_OLYMPIC_YEAR) {
             // 東京オリンピックのため山の日
             $res[10] = DateTime::MOUNTAIN_DAY;
-
         } elseif ($year >= 2016) {
             $res[11] = DateTime::MOUNTAIN_DAY;
             // 振替休日確認
@@ -729,7 +727,7 @@ class JapaneseDate
             $day = floor(24.2488 + (0.242194 * ($year - 1980)) - floor(($year - 1980) / 4));
         } else {
             $DateTime = new DateTime($year . '-09-15');
-            while ((int)$DateTime->month === 9) {
+            while ((int) $DateTime->month === 9) {
                 $DateTime->addDay(1);
                 $Element = $this->LunarCalendar->getLunarDate($DateTime);
                 if ($Element->solar_term === self::AUTUMNAL_EQUINOX) {

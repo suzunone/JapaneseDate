@@ -50,7 +50,6 @@ class Cache extends CacheMode
      */
     protected static $cache_file_path;
 
-
     /**
      * キャッシュデータ
      *
@@ -88,7 +87,6 @@ class Cache extends CacheMode
 
         return $cache[$cache_name] = $function();
     }
-
 
     /**
      * キャッシュモードをセットする

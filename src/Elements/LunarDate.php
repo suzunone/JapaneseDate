@@ -38,11 +38,11 @@ use ErrorException;
  */
 class LunarDate
 {
-    public const YEAR_KEY = 0;
+    public const YEAR_KEY               = 0;
     public const IS_LEAP_MONTH_FLAG_KEY = 1;
-    public const MONTH_KEY = 2;
-    public const DAY_KEY = 3;
-    public const SOLAR_TERM_KEY = 4;
+    public const MONTH_KEY              = 2;
+    public const DAY_KEY                = 3;
+    public const SOLAR_TERM_KEY         = 4;
 
     /**
      * @var array
@@ -58,7 +58,6 @@ class LunarDate
     {
         throw new ErrorException('cannot set property:' . $name);
     }
-
 
     /**
      * @param $name
@@ -82,7 +81,6 @@ class LunarDate
         }
     }
 
-
     /**
      * @param string $name
      * @return bool|string
@@ -92,16 +90,16 @@ class LunarDate
     {
         switch ($name) {
             case 'year':
-                return (int)$this->lunar[self::YEAR_KEY];
+                return (int) $this->lunar[self::YEAR_KEY];
 
             case 'month':
-                return (int)$this->lunar[self::MONTH_KEY];
+                return (int) $this->lunar[self::MONTH_KEY];
 
             case 'day':
-                return (int)$this->lunar[self::DAY_KEY];
+                return (int) $this->lunar[self::DAY_KEY];
 
             case 'is_leap_month':
-                return (bool)$this->lunar[self::IS_LEAP_MONTH_FLAG_KEY];
+                return (bool) $this->lunar[self::IS_LEAP_MONTH_FLAG_KEY];
 
             case 'solar_term':
                 return $this->lunar[self::SOLAR_TERM_KEY];
@@ -124,6 +122,6 @@ class LunarDate
         }
 
         $lunar[self::SOLAR_TERM_KEY] = $solar_term;
-        $this->lunar = $lunar;
+        $this->lunar                 = $lunar;
     }
 }

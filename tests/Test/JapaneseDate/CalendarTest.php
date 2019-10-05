@@ -24,7 +24,6 @@ use JapaneseDate\DateTime;
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 
-
 /**
  * Class CalendarTest
  *
@@ -39,7 +38,6 @@ use PHPUnit\Framework\TestCase;
  */
 class CalendarTest extends TestCase
 {
-
     use InvokeTrait;
 
     /**
@@ -66,9 +64,7 @@ class CalendarTest extends TestCase
             $test_date_time->getTimezone()->getName(),
             $this->invokeGetProperty($Calendar, 'timezone')->getName()
         );
-
     }
-
 
     /**
      * @test
@@ -108,7 +104,6 @@ class CalendarTest extends TestCase
         $test_date_time = $FakerGenerator->dateTime();
         $test_date_time = DateTime::factory($test_date_time);
 
-
         // 日付指定のBypass
         $Calendar = new Calendar('2018-05-01');
         // 範囲内のスキップ
@@ -125,7 +120,6 @@ class CalendarTest extends TestCase
         $this->assertEquals('2018-05-16', $res[13]->format('Y-m-d'));
         $this->assertEquals('2018-05-22', $res[19]->format('Y-m-d'));
 
-
         // 範囲外も範囲内にして再計算
         $res = $Calendar->getWorkingDayByLimit(50);
         $this->assertCount(50, $res);
@@ -135,7 +129,6 @@ class CalendarTest extends TestCase
         $this->assertEquals('2018-05-31', $res[28]->format('Y-m-d'));
         $this->assertEquals('2018-06-02', $res[29]->format('Y-m-d'));
 
-
         //  全件テスト
         $Calendar = new Calendar($test_date_time);
         $lim      = $faker->numberBetween(10, 1000);
@@ -144,7 +137,6 @@ class CalendarTest extends TestCase
         $this->assertEquals($test_date_time->format('Y-m-d'), $res[0]->format('Y-m-d'));
         $this->assertArrayHasKey(1, $res);
         $this->assertCount($lim, $res);
-
 
         return $res;
     }
@@ -173,7 +165,6 @@ class CalendarTest extends TestCase
          * @var Calendar $Calendar
          */
         $this->assertEquals($res, $Calendar->getWorkingDay($lim));
-
     }
 
     /**
@@ -206,13 +197,11 @@ class CalendarTest extends TestCase
 
         $Calendar = new Calendar();
 
-        $this->assertEquals((int)$test_date_time->format('Ymd'),
+        $this->assertEquals(
+            (int) $test_date_time->format('Ymd'),
                             $this->invokeExecuteMethod($Calendar, 'getCompareFormat', [$test_date_time])
         );
-
-
     }
-
 
     /**
      * @test
@@ -231,7 +220,6 @@ class CalendarTest extends TestCase
             $test_date_time2 = $FakerGenerator->dateTime();
         }
 
-
         // 特定日
         $Calendar = new Calendar();
         $this->assertTrue(
@@ -247,7 +235,6 @@ class CalendarTest extends TestCase
             $this->invokeExecuteMethod($Calendar, 'isWorkingDay', [DateTime::factory($test_date_time2)])
         );
 
-
         // 祝日
         $Calendar = new Calendar();
 
@@ -260,7 +247,6 @@ class CalendarTest extends TestCase
         $this->assertFalse(
             $this->invokeExecuteMethod($Calendar, 'isWorkingDay', [DateTime::factory('2018-05-03')])
         );
-
 
         // 曜日
         $Calendar = new Calendar();
@@ -275,7 +261,6 @@ class CalendarTest extends TestCase
             $this->invokeExecuteMethod($Calendar, 'isWorkingDay', [DateTime::factory('2018-05-06')])
         );
 
-
         $this->assertTrue(
             $this->invokeExecuteMethod($Calendar, 'isWorkingDay', [DateTime::factory('2018-05-05')])
         );
@@ -285,7 +270,6 @@ class CalendarTest extends TestCase
         $this->assertFalse(
             $this->invokeExecuteMethod($Calendar, 'isWorkingDay', [DateTime::factory('2018-05-05')])
         );
-
     }
 
     /**
@@ -298,11 +282,14 @@ class CalendarTest extends TestCase
     {
         $Calendar = new Calendar();
 
-        $this->assertEquals([],
-                            $this->invokeGetProperty($Calendar, 'bypass_week_day_arr'));
+        $this->assertEquals(
+            [],
+                            $this->invokeGetProperty($Calendar, 'bypass_week_day_arr')
+        );
 
         $Calendar->addBypassWeekDay(0);
-        $this->assertEquals([0 => true],
+        $this->assertEquals(
+            [0 => true],
                             $this->invokeGetProperty($Calendar, 'bypass_week_day_arr')
         );
 
@@ -335,17 +322,23 @@ class CalendarTest extends TestCase
 
         $Calendar = new Calendar();
 
-        $this->assertEquals([],
-                            $this->invokeGetProperty($Calendar, 'bypass_day_arr'));
+        $this->assertEquals(
+            [],
+                            $this->invokeGetProperty($Calendar, 'bypass_day_arr')
+        );
 
         $Calendar->addBypassDay($test_date_time);
-        $this->assertArrayHasKey((int)$test_date_time->format('Ymd'),
-                                 $this->invokeGetProperty($Calendar, 'bypass_day_arr'));
+        $this->assertArrayHasKey(
+            (int) $test_date_time->format('Ymd'),
+                                 $this->invokeGetProperty($Calendar, 'bypass_day_arr')
+        );
         $this->assertCount(1, $this->invokeGetProperty($Calendar, 'bypass_day_arr'));
 
         $Calendar->addBypassDay($test_date_time2);
-        $this->assertArrayHasKey((int)$test_date_time2->format('Ymd'),
-                                 $this->invokeGetProperty($Calendar, 'bypass_day_arr'));
+        $this->assertArrayHasKey(
+            (int) $test_date_time2->format('Ymd'),
+                                 $this->invokeGetProperty($Calendar, 'bypass_day_arr')
+        );
         $this->assertCount(2, $this->invokeGetProperty($Calendar, 'bypass_day_arr'));
 
         return $Calendar;
@@ -363,18 +356,15 @@ class CalendarTest extends TestCase
             $this->invokeGetProperty($Calendar, 'is_bypass_holiday')
         );
 
-
         $Calendar->setBypassHoliday(true);
         $this->assertTrue(
             $this->invokeGetProperty($Calendar, 'is_bypass_holiday')
         );
 
-
         $Calendar->setBypassHoliday(false);
         $this->assertFalse(
             $this->invokeGetProperty($Calendar, 'is_bypass_holiday')
         );
-
     }
 
     /**
@@ -397,7 +387,7 @@ class CalendarTest extends TestCase
 
         // 空削除用の日付
         $test_date_time = $FakerGenerator->dateTime();
-        while (isset($bypass_day_arr[(int)$test_date_time->format('Ymd')])) {
+        while (isset($bypass_day_arr[(int) $test_date_time->format('Ymd')])) {
             $test_date_time = $FakerGenerator->dateTime();
         }
 
@@ -405,11 +395,9 @@ class CalendarTest extends TestCase
         $Calendar->removeBypassDay($test_date_time);
         $this->assertCount(2, $this->invokeGetProperty($Calendar, 'bypass_day_arr'));
 
-
         // 実削除
         $Calendar->removeBypassDay($bypass_day_arr[$key]);
         $this->assertCount(1, $this->invokeGetProperty($Calendar, 'bypass_day_arr'));
-
     }
 
     /**
@@ -425,10 +413,7 @@ class CalendarTest extends TestCase
 
         $Calendar->resetBypassDay();
         $this->assertCount(0, $this->invokeGetProperty($Calendar, 'bypass_day_arr'));
-
-
     }
-
 
     /**
      * @test
@@ -449,7 +434,6 @@ class CalendarTest extends TestCase
 
         $Calendar->removeBypassWeekDay(0);
         $this->assertCount(1, $this->invokeGetProperty($Calendar, 'bypass_week_day_arr'));
-
     }
 
     /**
@@ -464,10 +448,7 @@ class CalendarTest extends TestCase
         $this->invokeGetProperty($Calendar, 'bypass_week_day_arr');
         $this->assertCount(2, $this->invokeGetProperty($Calendar, 'bypass_week_day_arr'));
 
-
         $Calendar->resetBypassWeekDay();
         $this->assertCount(0, $this->invokeGetProperty($Calendar, 'bypass_week_day_arr'));
-
-
     }
 }
