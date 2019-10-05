@@ -23,7 +23,6 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\Validator\Constraints\Date;
 use Tests\JapaneseDate\InvokeTrait;
 
-
 /**
  * Class DateTimeTest
  *
@@ -53,7 +52,6 @@ class DateTimeTest extends TestCase
         $this->assertEquals('de', DateTime::getLocale());
         $this->assertEquals('de', Carbon::getLocale());
 
-
         DateTime::setLocale('en');
         $this->assertEquals('en', DateTime::getLocale());
         $this->assertEquals('en', Carbon::getLocale());
@@ -69,7 +67,7 @@ class DateTimeTest extends TestCase
         $FakerGenerator = new FakerGenerator();
         $FakerGenerator->addProvider(FakerDateTime::class);
 
-        $carbon = Carbon::parse($FakerGenerator->dateTime()->format('Y-m-d H:i:s'));
+        $carbon        = Carbon::parse($FakerGenerator->dateTime()->format('Y-m-d H:i:s'));
         $japanese_date = DateTime::factory($carbon);
 
         $this->assertEquals(
@@ -125,16 +123,13 @@ class DateTimeTest extends TestCase
         $this->assertEquals('2001-05-21 12:00:00', DateTime::getTestNow());
         $this->assertEquals('2001-05-21 12:00:00', Carbon::getTestNow());
 
-
         $this->assertEquals('2001-05-21 12:00:00', DateTime::now());
         $this->assertEquals('2001-05-21 12:00:00', Carbon::now());
-
 
         $this->assertEquals('2001-05-21 12:00:00', DateTime::factory());
         $this->assertEquals('2001-05-21 12:00:00', (new DateTime()));
         $this->assertEquals('2001-05-21 12:00:00', DateTime::factory()->format('Y-m-d H:i:s'));
         $this->assertEquals('2001-05-21 12:00:00', (new DateTime())->format('Y-m-d H:i:s'));
-
 
         $this->assertEquals('2001-05-21 12:00:00', DateTime::parse('now'));
         $this->assertEquals('1 month ago', DateTime::create(2001, 4, 21, 12)->diffForHumans());
@@ -169,7 +164,6 @@ class DateTimeTest extends TestCase
         $this->assertEquals($test_date_time, $DateTime->format('Y-m-d H:i:s'));
     }
 
-
     /**
      *
      * @test
@@ -203,7 +197,6 @@ class DateTimeTest extends TestCase
         $test_date_time = $test_date_time->format('YmdHis');
         $DateTime       = DateTime::factory($test_date_time);
         $this->assertEquals($test_date_time, $DateTime->format('YmdHis'));
-
     }
 
     /**
@@ -220,13 +213,15 @@ class DateTimeTest extends TestCase
         $test_date_time = $FakerGenerator->dateTime();
         $DateTime       = DateTime::factory($test_date_time);
         $this->assertSame(
-            cal_from_jd(unixtojd(
-                            $test_date_time->getTimestamp()), CAL_GREGORIAN
+            cal_from_jd(
+                unixtojd(
+                            $test_date_time->getTimestamp()
+            ),
+                CAL_GREGORIAN
             ),
             $DateTime->getCalendar()
         );
     }
-
 
     /**
      * @test
@@ -267,9 +262,7 @@ class DateTimeTest extends TestCase
 
         $DateTime = new DateTime('2017-06-23');
         $this->assertFalse($DateTime->is_leap_month);
-
     }
-
 
     /**
      * @test
@@ -400,7 +393,6 @@ class DateTimeTest extends TestCase
         $this->assertTrue($DateTime->is_solar_term);
     }
 
-
     /**
      * @covers \JapaneseDate\DateTime
      * @test
@@ -476,7 +468,6 @@ class DateTimeTest extends TestCase
 
         $this->assertEquals('友引', $DateTime->six_weekday_text);
         $this->assertEquals(3, $DateTime->six_weekday);
-
     }
 
     /**
@@ -492,20 +483,17 @@ class DateTimeTest extends TestCase
         $this->assertEquals('師走', $DateTime->lunar_month_text);
         $this->assertEquals('16', $DateTime->lunar_day);
 
-
         $DateTime = DateTime::factory('2018-03-17');
         $this->assertEquals('2018', $DateTime->lunar_year);
         $this->assertEquals('2', $DateTime->lunar_month);
         $this->assertEquals('如月', $DateTime->lunar_month_text);
         $this->assertEquals('1', $DateTime->lunar_day);
 
-
         $DateTime = DateTime::factory('2018-03-01');
         $this->assertEquals('2018', $DateTime->lunar_year);
         $this->assertEquals('1', $DateTime->lunar_month);
         $this->assertEquals('睦月', $DateTime->lunar_month_text);
         $this->assertEquals('14', $DateTime->lunar_day);
-
 
         $DateTime = DateTime::factory('2016-08-03');
 
@@ -521,14 +509,12 @@ class DateTimeTest extends TestCase
         $this->assertEquals('文月', $DateTime->lunar_month_text);
         $this->assertEquals('2', $DateTime->lunar_day);
 
-
         $DateTime->addDay(1);
 
         $this->assertEquals('2016', $DateTime->lunar_year);
         $this->assertEquals('7', $DateTime->lunar_month);
         $this->assertEquals('文月', $DateTime->lunar_month_text);
         $this->assertEquals('3', $DateTime->lunar_day);
-
 
         $DateTime->addDay(1);
 
@@ -537,14 +523,12 @@ class DateTimeTest extends TestCase
         $this->assertEquals('文月', $DateTime->lunar_month_text);
         $this->assertEquals('4', $DateTime->lunar_day);
 
-
         $DateTime = DateTime::factory('2016-08-07');
         $this->assertEquals('2016', $DateTime->lunar_year);
         $this->assertEquals('7', $DateTime->lunar_month);
         $this->assertEquals('文月', $DateTime->lunar_month_text);
         $this->assertEquals('5', $DateTime->lunar_day);
     }
-
 
     /**
      * @throws \ErrorException
@@ -565,52 +549,51 @@ class DateTimeTest extends TestCase
         );
 
         $this->assertSame(
-            (string)$DateTime->oriental_zodiac,
+            (string) $DateTime->oriental_zodiac,
             $DateTime->formatLocalized('%#o')
         );
 
         $this->assertSame(
-            (string)$DateTime->oriental_zodiac_text,
+            (string) $DateTime->oriental_zodiac_text,
             $DateTime->formatLocalized('%#O')
         );
 
         $this->assertSame(
-            (string)$DateTime->holiday,
+            (string) $DateTime->holiday,
             $DateTime->formatLocalized('%#l')
         );
 
         $this->assertSame(
-            (string)$DateTime->holiday_text,
+            (string) $DateTime->holiday_text,
             $DateTime->formatLocalized('%#L')
         );
 
         $this->assertSame(
-            (string)$DateTime->era_name,
+            (string) $DateTime->era_name,
             $DateTime->formatLocalized('%#f')
         );
 
         $this->assertSame(
-            (string)$DateTime->era_name_text,
+            (string) $DateTime->era_name_text,
             $DateTime->formatLocalized('%#F')
         );
 
         $this->assertSame(
-            (string)$DateTime->era_year,
+            (string) $DateTime->era_year,
             $DateTime->formatLocalized('%#E')
         );
 
-
         $this->assertSame(
-            (string)$DateTime->six_weekday_text,
+            (string) $DateTime->six_weekday_text,
             $DateTime->formatLocalized('%#k')
         );
         $this->assertSame(
-            (string)$DateTime->six_weekday,
+            (string) $DateTime->six_weekday,
             $DateTime->formatLocalized('%#6')
         );
 
         $this->assertSame(
-            (string)$DateTime->weekday_text,
+            (string) $DateTime->weekday_text,
             $DateTime->formatLocalized('%#K')
         );
 
@@ -714,14 +697,12 @@ class DateTimeTest extends TestCase
             $DateTime->formatLocalized('%#B')
         );
 
-
         $DateTime = DateTime::factory('2017-7-1');
         $this->assertRegExp(
             '/#v/',
             $DateTime->formatLocalized('%#v')
         );
     }
-
 
     /**
      * @throws \ErrorException
@@ -732,52 +713,51 @@ class DateTimeTest extends TestCase
     {
         $DateTime = DateTime::factory('2018-05-03');
         $this->assertSame(
-            (string)$DateTime->oriental_zodiac,
+            (string) $DateTime->oriental_zodiac,
             $DateTime->strftime('%o')
         );
 
         $this->assertSame(
-            (string)$DateTime->oriental_zodiac_text,
+            (string) $DateTime->oriental_zodiac_text,
             $DateTime->strftime('%O')
         );
 
         $this->assertSame(
-            (string)$DateTime->holiday,
+            (string) $DateTime->holiday,
             $DateTime->strftime('%l')
         );
 
         $this->assertSame(
-            (string)$DateTime->holiday_text,
+            (string) $DateTime->holiday_text,
             $DateTime->strftime('%L')
         );
 
         $this->assertSame(
-            (string)$DateTime->era_name,
+            (string) $DateTime->era_name,
             $DateTime->strftime('%f')
         );
 
         $this->assertSame(
-            (string)$DateTime->era_name_text,
+            (string) $DateTime->era_name_text,
             $DateTime->strftime('%F')
         );
 
         $this->assertSame(
-            (string)$DateTime->era_year,
+            (string) $DateTime->era_year,
             $DateTime->strftime('%E')
         );
 
-
         $this->assertSame(
-            (string)$DateTime->six_weekday_text,
+            (string) $DateTime->six_weekday_text,
             $DateTime->strftime('%k')
         );
         $this->assertSame(
-            (string)$DateTime->six_weekday,
+            (string) $DateTime->six_weekday,
             $DateTime->strftime('%6')
         );
 
         $this->assertSame(
-            (string)$DateTime->weekday_text,
+            (string) $DateTime->weekday_text,
             $DateTime->strftime('%K')
         );
 
@@ -804,7 +784,6 @@ class DateTimeTest extends TestCase
             $DateTime->strftime('%Y-%m-%d')
         );
 
-
         $DateTime = DateTime::factory('2018-10-10');
         $this->assertSame(
             $DateTime->format('j'),
@@ -817,6 +796,4 @@ class DateTimeTest extends TestCase
             $DateTime->strftime('%g')
         );
     }
-
-
 }

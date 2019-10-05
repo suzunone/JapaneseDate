@@ -132,7 +132,7 @@ echo JapaneseDateTime::parse('first day of December 2018')->addWeeks(2);    // 2
 
 ``` .php
 
-echo JapaneseDateTime::parse(time());    // 2019-07-08 15:02:38
+echo JapaneseDateTime::parse(time());    // 2019-10-05 02:52:03
 echo JapaneseDateTime::parse(new DateTime('now'));    // PHP Fatal error:  Uncaught TypeError: DateTime::__construct() expects parameter 1 to be string, object given
 ```
 
@@ -143,17 +143,15 @@ echo JapaneseDateTime::parse(new DateTime('now'));    // PHP Fatal error:  Uncau
 そういった場合は、`JapaneseDate\DateTime::factory()`を使用します。
 
 ``` .php
-echo JapaneseDateTime::factory(time());    // 2019-07-09 00:02:38
+echo JapaneseDateTime::factory(time());    // 2019-10-05 11:52:03
 
-echo JapaneseDateTime::factory(new DateTime('now'));    // 2019-07-09 00:02:38
+echo JapaneseDateTime::factory(new DateTime('now'));    // 2019-10-05 11:52:03
 
 // もちろんこういったコードも動作します
 echo JapaneseDateTime::factory('first day of December 2018')->addWeeks(2);    // 2018-12-15 00:00:00
 
 // 一見数字文字列であっても、JapaneseDateTime::parse でパースできる場合は、同様の結果を返すことに注意してください。
-echo JapaneseDateTime::parse('100');    // 
-Warning: DateTime::modify(): Failed to parse time string (100) at position 0 (1): Unexpected character in /Users/fumikazu/workspace/JapaneseDate/vendor/nesbot/carbon/src/Carbon/Traits/Modifiers.php on line 450
-
+echo JapaneseDateTime::parse('100');    // Throw Exception DateTime::__construct(): Failed to parse time string (100) at position 0 (1): Unexpected character
 echo JapaneseDateTime::factory('100');    // 1970-01-01 09:01:40
 echo JapaneseDateTime::parse('20180404050505');    // 2018-04-04 05:05:05
 echo JapaneseDateTime::factory('20180404050505');    // 2018-04-04 05:05:05
@@ -173,13 +171,13 @@ echo JapaneseDateTime::factory(20180404050505);    // 2061-07-19 16:48:25
 
 ``` .php
 $now = JapaneseDateTime::now();
-echo $now;                               // 2019-07-09 00:02:38
+echo $now;                               // 2019-10-05 11:52:03
 $today = JapaneseDateTime::today();
-echo $today;                             // 2019-07-09 00:00:00
+echo $today;                             // 2019-10-05 00:00:00
 $tomorrow = JapaneseDateTime::tomorrow('Europe/London');
-echo $tomorrow;                          // 2019-07-09 00:00:00
+echo $tomorrow;                          // 2019-10-06 00:00:00
 $yesterday = JapaneseDateTime::yesterday();
-echo $yesterday;                         // 2019-07-08 00:00:00
+echo $yesterday;                         // 2019-10-04 00:00:00
 ```
 
 ローカライゼーション
@@ -411,6 +409,7 @@ var_export($dt->monthText);                                   // '弥生'
 // 16 => 秋分の日
 // 17 => 敬老の日
 // 18 => 体育の日
+// 24 => スポーツの日
 // 19 => 文化の日
 // 20 => 勤労感謝の日
 // 21 => 即位礼正殿の儀

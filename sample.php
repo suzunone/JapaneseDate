@@ -60,7 +60,6 @@ use JapaneseDate\Calendar as JapaneseDateCalendar;
 <body>
 <?php
 
-
 // 年のフォームデータの受け取り
 if (isset($_GET['y']) ? (strlen($_GET['y']) == 4 && is_numeric($_GET['y']) ? (int) $_GET['y'] < 1980 : true) : true) {
     $year = date('Y');
