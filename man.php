@@ -8,7 +8,7 @@ use Carbon\Carbon;
 use JapaneseDate\DateTime as JapaneseDateTime;
 use JapaneseDate\Calendar as JapaneseDateCalendar;
 
-$open_tag = '<?php';
+$open_tag  = '<?php';
 $close_tag = '?>';
 
 ?>
@@ -122,7 +122,7 @@ echo JapaneseDateTime::now()->tzName;
 
 // 夏時間が有効なデフォルトタイムゾーンで、+9時間(夏時間があるタイムゾーンがない)
 echo Carbon::now()->tzName;             // <?php
-try{
+try {
     Carbon::now()->tzName;
 } catch (Exception $exception) {
     echo 'Throw ',get_class($exception), ' '.$exception->getMessage();
@@ -146,7 +146,7 @@ echo JapaneseDateTime::now()->tzName;
 
 // 夏時間が無効なデフォルトタイムゾーンで、+9時間(夏時間があるタイムゾーンがない)
 echo Carbon::now()->tzName;             // <?php
-try{
+try {
     Carbon::now()->tzName;
 } catch (Exception $exception) {
     echo 'Throw ',get_class($exception), ' '.$exception->getMessage();
@@ -201,7 +201,7 @@ echo JapaneseDateTime::parse('first day of December 2018')->addWeeks(2);
 ``` .php
 
 echo JapaneseDateTime::parse(time());    // <?php
-try{
+try {
     echo JapaneseDateTime::parse(time());
 } catch (Exception $exception) {
     echo 'Throw ',get_class($exception), ' '.$exception->getMessage();
@@ -236,7 +236,7 @@ echo JapaneseDateTime::factory('first day of December 2018')->addWeeks(2);
 
 // 一見数字文字列であっても、JapaneseDateTime::parse でパースできる場合は、同様の結果を返すことに注意してください。
 echo JapaneseDateTime::parse('100');    // <?php
-try{
+try {
     echo JapaneseDateTime::parse('100');
 } catch (Exception $exception) {
     echo 'Throw ',get_class($exception), ' '.$exception->getMessage();
@@ -800,6 +800,7 @@ use \JapaneseDate\CacheMode;
 JapaneseDateTime::setCacheMode(CacheMode::MODE_NONE);
 <?php
 use \JapaneseDate\CacheMode;
+
 JapaneseDateTime::setCacheMode(CacheMode::MODE_NONE);
 ?>
 ```

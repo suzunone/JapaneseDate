@@ -27,7 +27,6 @@ use DateTimeZone;
 use JapaneseDate\DateTime;
 use JapaneseDate\Elements\LunarDate;
 
-
 /**
  * Class LunarCalendar
  *
@@ -56,14 +55,12 @@ class LunarCalendar
      */
     public const BASE_JD_2000 = 2451546.0;
 
-
     /**
      * 時差  (12-9)/24
      *
      * @var float
      */
     public const JD_2000_TIME_DIFFERENCE = 0.125;
-
 
     /**
      * 大気差
@@ -89,10 +86,8 @@ class LunarCalendar
         'longitudeSun'  => [],
     ];
 
-
     public function __construct()
     {
-
     }
 
     /**
@@ -156,7 +151,6 @@ class LunarCalendar
         // 基準以上なら、正規化
         return $angle - 360 * floor($angle / 360);
     }
-
 
     /**
      * 指定した月の日数を返す
@@ -242,7 +236,6 @@ class LunarCalendar
         return ($diff_time + 32400.0) / 86400.25 / 365.25;
     }
 
-
     /**
      * 太陽の黄経計算（視黄経）
      *
@@ -300,7 +293,6 @@ class LunarCalendar
         return $cache[$key] = $this->jy2LongitudeSun($julian_year);
     }
 
-
     /**
      * 月の黄経計算（視黄経）
      *
@@ -326,7 +318,6 @@ class LunarCalendar
         return $cache[$key] = $this->jY2LongitudeMoon($julian_year);
     }
 
-
     /**
      * その日が二十四節気かどうか
      *
@@ -347,12 +338,11 @@ class LunarCalendar
         $longitude_sun_1 = $this->longitudeSun($year, $month, $day, 0, 0, 0);
         $longitude_sun_2 = $this->longitudeSun($year, $month, $day, 24, 0, 0);
 
-        $tmp_1 = (int)floor($longitude_sun_1 / 15);
-        $tmp_2 = (int)floor($longitude_sun_2 / 15);
+        $tmp_1 = (int) floor($longitude_sun_1 / 15);
+        $tmp_2 = (int) floor($longitude_sun_2 / 15);
 
         return ($tmp_1 !== $tmp_2 && isset($solar_term[$tmp_2])) ? $tmp_2 : false;
     }
-
 
     /**
      * 月の黄経計算（視黄経）
@@ -363,9 +353,9 @@ class LunarCalendar
     private function jY2LongitudeMoon($julian_year)
     {
         $tmp     = 0.0006 * sin(deg2rad($this->normalizeAngle(54.0 + 19.3 * $julian_year)));
-        $tmp     += 0.0006 * sin(deg2rad($this->normalizeAngle(71.0 + 0.2 * $julian_year)));
-        $tmp     += 0.0020 * sin(deg2rad($this->normalizeAngle(55.0 + 19.34 * $julian_year)));
-        $tmp     += 0.0040 * sin(deg2rad($this->normalizeAngle(119.5 + 1.33 * $julian_year)));
+        $tmp += 0.0006 * sin(deg2rad($this->normalizeAngle(71.0 + 0.2 * $julian_year)));
+        $tmp += 0.0020 * sin(deg2rad($this->normalizeAngle(55.0 + 19.34 * $julian_year)));
+        $tmp += 0.0040 * sin(deg2rad($this->normalizeAngle(119.5 + 1.33 * $julian_year)));
         $rm_moon = 0.0003 * sin(deg2rad($this->normalizeAngle(280.0 + 23221.3 * $julian_year)));
         $rm_moon += 0.0003 * sin(deg2rad($this->normalizeAngle(161.0 + 40.7 * $julian_year)));
         $rm_moon += 0.0003 * sin(deg2rad($this->normalizeAngle(311.0 + 5492.0 * $julian_year)));
@@ -433,7 +423,6 @@ class LunarCalendar
         return $rm_moon + $this->normalizeAngle(218.3161 + 4812.67881 * $julian_year);
     }
 
-
     /**
      * 月齢を求める（視黄経）
      *
@@ -462,10 +451,10 @@ class LunarCalendar
         // $days_par_1_sec = 1.0 / 86400.0;
         $days_par_1_sec = 0.00001157407;
         while (($delta_t1 + abs($delta_t2)) > $days_par_1_sec) {
-            $julian_date = $tm1 + $tm2;
+            $julian_date                             = $tm1 + $tm2;
             [$year, $month, $day, $hour, $min, $sec] = $this->jD2Gregorian($julian_date);
-            $longitude_sun  = $this->longitudeSun($year, $month, $day, $hour, $min, $sec);
-            $longitude_moon = $this->longitudeMoon($year, $month, $day, $hour, $min, $sec);
+            $longitude_sun                           = $this->longitudeSun($year, $month, $day, $hour, $min, $sec);
+            $longitude_moon                          = $this->longitudeMoon($year, $month, $day, $hour, $min, $sec);
 
             // ΔΛ ＝Λ moon－Λ sun
             $delta_rm = $longitude_moon - $longitude_sun;
@@ -688,5 +677,4 @@ class LunarCalendar
 
         return $items;
     }
-
 }

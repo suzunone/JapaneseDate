@@ -15,7 +15,6 @@
 
 namespace Tests\JapaneseDate;
 
-
 /**
  * Class InvokeTrait
  *
@@ -77,4 +76,3 @@ trait InvokeTrait
         $property->setValue($instance, $data);
     }
 }
-

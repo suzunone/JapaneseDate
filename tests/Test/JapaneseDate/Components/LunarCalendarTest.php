@@ -52,12 +52,10 @@ class LunarCalendarTest extends TestCase
             $this->invokeExecuteMethod($LunarCalendar, 'gregorian2JD', [-4714, 1, 1, 0, 0, 0])
         );
 
-
         $this->assertEquals(
             2458179.0,
             $this->invokeExecuteMethod($LunarCalendar, 'gregorian2JD', [2018, 3, 1, 0, 0, 0])
         );
-
     }
 
     /**
@@ -71,15 +69,11 @@ class LunarCalendarTest extends TestCase
     {
         $LunarCalendar = LunarCalendar::factory();
 
-
         $this->assertEquals(
             0.0,
             $this->invokeExecuteMethod($LunarCalendar, 'gregorian2JY', [2000, 1, 2, 3, 0, 0, 0])
         );
-
-
     }
-
 
     /**
      * 2000年1月1日力学時正午からの経過日数
@@ -103,7 +97,6 @@ class LunarCalendarTest extends TestCase
 
         return $j2000;
     }
-
 
     /**
      * @covers              \JapaneseDate\Components\LunarCalendar
@@ -133,44 +126,51 @@ class LunarCalendarTest extends TestCase
         // 2016年
         $res = $this->invokeExecuteMethod(
             $LunarCalendar,
-            'getLunarCalendarArray', [2016, 2, 8]);
+            'getLunarCalendarArray',
+            [2016, 2, 8]
+        );
         $this->assertSame([
                               2016,
                               false,
                               1.0,
-                              1.0], $res);
-
+                              1.0, ], $res);
 
         // 2018年年の変わり目
         $res = $this->invokeExecuteMethod(
             $LunarCalendar,
-            'getLunarCalendarArray', [2018, 2, 14]);
+            'getLunarCalendarArray',
+            [2018, 2, 14]
+        );
 
         $this->assertSame([
                               2017,
                               false,
                               12.0,
-                              29.0], $res);
+                              29.0, ], $res);
 
         $res = $this->invokeExecuteMethod(
             $LunarCalendar,
-            'getLunarCalendarArray', [2018, 2, 15]);
+            'getLunarCalendarArray',
+            [2018, 2, 15]
+        );
 
         $this->assertSame([
                               2017,
                               false,
                               12.0,
-                              30.0], $res);
+                              30.0, ], $res);
 
         $res = $this->invokeExecuteMethod(
             $LunarCalendar,
-            'getLunarCalendarArray', [2018, 2, 16]);
+            'getLunarCalendarArray',
+            [2018, 2, 16]
+        );
 
         $this->assertSame([
                               2018,
                               false,
                               1.0,
-                              1.0], $res);
+                              1.0, ], $res);
     }
 
     /**
@@ -185,7 +185,6 @@ class LunarCalendarTest extends TestCase
         $LunarCalendar = LunarCalendar::factory();
 
         $res = $this->invokeExecuteMethod($LunarCalendar, 'makeLunarCalendar', [2017]);
-
 
         $this->assertFalse($res[0]['lunar_month_leap']);
         $this->assertFalse($res[1]['lunar_month_leap']);
@@ -202,9 +201,6 @@ class LunarCalendarTest extends TestCase
         $this->assertFalse($res[12]['lunar_month_leap']);
         $this->assertFalse($res[13]['lunar_month_leap']);
 
-
         $this->assertCount(15, $res);
-
     }
-
 }

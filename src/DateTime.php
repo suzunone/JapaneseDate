@@ -16,7 +16,6 @@ namespace JapaneseDate;
  * @see         https://carbon.nesbot.com/docs/
  * @since       Class available since Release 1.0.0
  */
-
 use Carbon\Carbon;
 use Closure;
 use DateTimeInterface;
@@ -24,7 +23,6 @@ use DateTimeZone;
 use JapaneseDate\Components\Cache;
 use JapaneseDate\Components\JapaneseDate;
 use JapaneseDate\Components\LunarCalendar;
-
 
 /**
  * 日本の暦対応のDateTimeオブジェクト拡張
@@ -239,7 +237,6 @@ class DateTime extends Carbon
      */
     public const SPORTS_DAY = 24;
 
-
     /**
      * 祝日法制定年
      *
@@ -362,7 +359,6 @@ class DateTime extends Carbon
      */
     public const ERA_REIWA = 1004;
 
-
     /**
      * @var \JapaneseDate\Components\JapaneseDate
      */
@@ -391,7 +387,7 @@ class DateTime extends Carbon
     {
         parent::__construct($time, $time_zone);
 
-        $this->JapaneseDate = JapaneseDate::factory();
+        $this->JapaneseDate  = JapaneseDate::factory();
         $this->LunarCalendar = LunarCalendar::factory();
     }
 
@@ -439,7 +435,6 @@ class DateTime extends Carbon
     {
         Cache::setMode($mode);
     }
-
 
     /**
      * キャッシュファイル保存ディレクトリをセットします
@@ -512,7 +507,6 @@ class DateTime extends Carbon
         return strftime($res_str, $this->timestamp);
     }
 
-
     /**
      * 日本語カレンダー対応したstrftime()
      *
@@ -569,7 +563,6 @@ class DateTime extends Carbon
         return parent::formatLocalized($format);
     }
 
-
     /**
      * 日本語カレンダー対応したstrftime()の事前メソッド
      *
@@ -582,7 +575,7 @@ class DateTime extends Carbon
      */
     protected function strftimeJa($format, $delimiter = '%#')
     {
-        $res_str = '';
+        $res_str      = '';
         $format_array = explode($delimiter, $format);
         foreach ($format_array as $key => $strings) {
             if ($key === 0) {
@@ -654,7 +647,6 @@ class DateTime extends Carbon
                     $re_format = false;
 
                     if ($delimiter !== '%') {
-
                         switch ($pattern) {
                             case '-d':
                                 $re_format = $this->getLunarDay();
@@ -717,7 +709,6 @@ class DateTime extends Carbon
 
         return $res_str;
     }
-
 
     /**
      * サポートされるカレンダーに変換する
@@ -806,12 +797,10 @@ class DateTime extends Carbon
             case 'isLeapMonth':
                 return $this->isLeapMonth();
 
-
         }
 
         return parent::__get($name);
     }
-
 
     /**
      * 24節気を取得する
@@ -825,7 +814,6 @@ class DateTime extends Carbon
 
         return $lunar_calendar->solar_term;
     }
-
 
     /**
      * 24節気を取得する
@@ -843,7 +831,6 @@ class DateTime extends Carbon
 
         return JapaneseDate::SOLAR_TERM[$lunar_calendar->solar_term];
     }
-
 
     /**
      * 旧暦データ取得
@@ -876,7 +863,6 @@ class DateTime extends Carbon
         return $lunar_calendar->solar_term !== false;
     }
 
-
     /**
      * 日本語フォーマットされた年号を返す
      *
@@ -899,9 +885,9 @@ class DateTime extends Carbon
     protected function getEraName()
     {
         $TaishoStart = new DateTime('1912-07-30 00:00:00', $this->getTimezone());
-        $ShowaStart = new DateTime('1926-12-25 00:00:00', $this->getTimezone());
+        $ShowaStart  = new DateTime('1926-12-25 00:00:00', $this->getTimezone());
         $HeiseiStart = new DateTime('1989-01-08 00:00:00', $this->getTimezone());
-        $ReiwaStart = new DateTime('2019-05-01 00:00:00', $this->getTimezone());
+        $ReiwaStart  = new DateTime('2019-05-01 00:00:00', $this->getTimezone());
 
         if ($TaishoStart > $this) {
             // 明治
@@ -1101,10 +1087,10 @@ class DateTime extends Carbon
     protected function getEraYear($era_key = null): int
     {
         $era_calc = [self::ERA_MEIJI => 1868,
-            self::ERA_TAISHO => 1912,
-            self::ERA_SHOWA => 1926,
-            self::ERA_HEISEI => 1989,
-            self::ERA_REIWA => 2019,
+            self::ERA_TAISHO         => 1912,
+            self::ERA_SHOWA          => 1926,
+            self::ERA_HEISEI         => 1989,
+            self::ERA_REIWA          => 2019,
         ];
 
         $era_key = $era_key ?? $this->getEraName();

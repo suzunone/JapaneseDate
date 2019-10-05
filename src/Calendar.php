@@ -15,7 +15,6 @@
 
 namespace JapaneseDate;
 
-
 /**
  * 日付オブジェクト配列作成
  *
@@ -97,7 +96,6 @@ class Calendar
         return $this;
     }
 
-
     /**
      * 指定月の日付配列を取得します
      *
@@ -121,7 +119,6 @@ class Calendar
         return $res;
     }
 
-
     /**
      * スキップする曜日を削除する
      *
@@ -138,7 +135,6 @@ class Calendar
         return $this;
     }
 
-
     /**
      * スキップする曜日を初期化する
      *
@@ -151,7 +147,6 @@ class Calendar
 
         return $this;
     }
-
 
     /**
      * スキップする日を追加する
@@ -171,7 +166,6 @@ class Calendar
 
         return $this;
     }
-
 
     /**
      * スキップする日を削除する
@@ -193,14 +187,13 @@ class Calendar
         return $this;
     }
 
-
     /**
      * @param \DateTimeInterface
      * @return int
      */
     protected function getCompareFormat(\DateTimeInterface $DateTime): int
     {
-        return (int)$DateTime->format('Ymd');
+        return (int) $DateTime->format('Ymd');
     }
 
     /**
@@ -215,7 +208,6 @@ class Calendar
 
         return $this;
     }
-
 
     /**
      * 祝日を除くかどうか
@@ -232,7 +224,6 @@ class Calendar
 
         return $this;
     }
-
 
     /**
      * 期間内の営業日を取得する
@@ -267,7 +258,7 @@ class Calendar
      */
     protected function isWorkingDay(DateTime $JDT): bool
     {
-        if (array_key_exists((int)$JDT->dayOfWeek, $this->bypass_week_day_arr)) {
+        if (array_key_exists((int) $JDT->dayOfWeek, $this->bypass_week_day_arr)) {
             return false;
         }
 
@@ -281,7 +272,6 @@ class Calendar
 
         return true;
     }
-
 
     /**
      * 営業日を取得します
@@ -297,7 +287,6 @@ class Calendar
     {
         return $this->getWorkingDayByLimit($lim_day);
     }
-
 
     /**
      * 営業日を取得します
@@ -322,7 +311,6 @@ class Calendar
         return $res;
     }
 
-
     /**
      * JapaneseDateTimeを取得する
      *
@@ -336,6 +324,4 @@ class Calendar
     {
         return DateTime::factory($JDT, $time_zone);
     }
-
-
 }

@@ -21,7 +21,6 @@ use JapaneseDate\Components\Cache;
 use PHPUnit\Framework\TestCase;
 use Tests\JapaneseDate\InvokeTrait;
 
-
 /**
  * Class CacheTest
  *
@@ -48,15 +47,16 @@ class CacheTest extends TestCase
      */
     public function test_setMode()
     {
-        $this->assertEquals(Cache::MODE_AUTO,
+        $this->assertEquals(
+            Cache::MODE_AUTO,
                             $this->invokeGetProperty(Cache::class, 'mode')
         );
 
         Cache::setMode(Cache::MODE_APC);
-        $this->assertEquals(Cache::MODE_APC,
+        $this->assertEquals(
+            Cache::MODE_APC,
                             $this->invokeGetProperty(Cache::class, 'mode')
         );
-
     }
 
     /**
@@ -73,16 +73,16 @@ class CacheTest extends TestCase
         };
 
         Cache::setCacheClosure($closure);
-        $this->assertEquals(Cache::MODE_ORIGINAL,
+        $this->assertEquals(
+            Cache::MODE_ORIGINAL,
                             $this->invokeGetProperty(Cache::class, 'mode')
         );
 
-        $this->assertSame($closure,
+        $this->assertSame(
+            $closure,
                           $this->invokeGetProperty(Cache::class, 'cache_closure')
         );
-
     }
-
 
     /**
      * @test
@@ -96,15 +96,14 @@ class CacheTest extends TestCase
     {
         $file = __DIR__ . '/example_text.txt';
         Cache::setCacheFilePath($file);
-        $this->assertEquals(Cache::MODE_FILE,
+        $this->assertEquals(
+            Cache::MODE_FILE,
                             $this->invokeGetProperty(Cache::class, 'mode')
         );
 
-        $this->assertSame($file,
+        $this->assertSame(
+            $file,
                           $this->invokeGetProperty(Cache::class, 'cache_file_path')
         );
-
     }
-
-
 }
