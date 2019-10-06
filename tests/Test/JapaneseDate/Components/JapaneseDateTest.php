@@ -1214,9 +1214,11 @@ class JapaneseDateTest extends TestCase
         $this->assertCount(1, $res);
         $this->assertEquals('海の日', $JapaneseDate->viewHoliday($res[20]));
         $res = $this->invokeExecuteMethod($JapaneseDate, 'getJulyHoliday', ['2020', $JapaneseDateTime->getTimezone()]);
-        $this->assertArrayHasKey(20, $res);
-        $this->assertCount(1, $res);
-        $this->assertEquals('海の日', $JapaneseDate->viewHoliday($res[20]));
+        $this->assertArrayHasKey(23, $res);
+        $this->assertArrayHasKey(24, $res);
+        $this->assertCount(2, $res);
+        $this->assertEquals('海の日', $JapaneseDate->viewHoliday($res[23]));
+        $this->assertEquals('スポーツの日', $JapaneseDate->viewHoliday($res[24]));
         $res = $this->invokeExecuteMethod($JapaneseDate, 'getJulyHoliday', ['2026', $JapaneseDateTime->getTimezone()]);
         $this->assertArrayHasKey(20, $res);
         $this->assertCount(1, $res);

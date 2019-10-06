@@ -398,7 +398,7 @@ class DateTimeTest extends TestCase
 
         $DateTime = new DateTime('2018-10-08');
         $this->assertEquals('体育の日', $DateTime->holiday_text);
-        $this->assertEquals(DateTime::SPORTS_DAY, $DateTime->holiday);
+        $this->assertEquals(DateTime::LEGACY_SPORTS_DAY, $DateTime->holiday);
 
         $DateTime = new DateTime('2018-11-03');
         $this->assertEquals('文化の日', $DateTime->holiday_text);
