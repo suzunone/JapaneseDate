@@ -2,8 +2,22 @@ JapaneseDate
 =========================================
 [![CircleCI](https://circleci.com/gh/suzunone/JapaneseDate.svg?style=svg)](https://circleci.com/gh/suzunone/JapaneseDate)
 
+
+概要
+-----------------------------------------
+
+日本の祝日、六曜、干支、和暦、日本語での曜日表記など、日本での日付処理をまとめた物です。
+
+主に以下の２つの機能を提供しています、
+
+ - DateTimeを拡張した、`JapaneseDate\DateTime`
+ - 日付の配列を扱う、`JapaneseDate\Calendar`
+ 
+
+
 はじめに
 -----------------------------------------
+
 このLibraryは、かつて、[php.five-foxes.com](http://php.five-foxes.com) や、
 [ENVIのサブパッケージ](https://github.com/EnviFramework/JapaneseDate) として公開していたものを、GitHubに移行したものです。
 
@@ -15,10 +29,6 @@ JapaneseDate
  - [APIドキュメント](https://github.com/suzunone/JapaneseDate/blob/v5.X/docs/README.md)
 
 
-概要
------------------------------------------
-
-日本の祝日、六曜、干支、日本語での曜日表記など、日本での日付処理をまとめた物です。
 
 インストール手順
 -----------------------------------------
@@ -28,7 +38,7 @@ composer require japanese-date/japanese-date
 ```
 
 
-更新履歴
+GitHubに完全移行するまでの更新履歴
 -----------------------------------------
  * 2005年7月29日 Version 0.1
     * とりあえずの公開
