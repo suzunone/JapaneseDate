@@ -67,31 +67,27 @@ class DateTimeTest extends TestCase
         $FakerGenerator = new FakerGenerator();
         $FakerGenerator->addProvider(FakerDateTime::class);
 
-        $carbon        = Carbon::parse($FakerGenerator->dateTime()->format('Y-m-d H:i:s'));
+        $carbon = Carbon::parse($FakerGenerator->dateTime()->format('Y-m-d H:i:s'));
         $japanese_date = DateTime::factory($carbon);
 
         $this->assertEquals(
             $carbon->formatLocalized('%Y-%m-%d'),
             $japanese_date->formatLocalized('%Y-%m-%d')
-
         );
 
         $this->assertEquals(
             $carbon->formatLocalized('%Y-%m-%d'),
             $japanese_date->formatLocalizedSimple('%Y-%m-%d')
-
         );
 
         $this->assertEquals(
             $japanese_date->strftime('%Y-%m-%d %K'),
             $japanese_date->formatLocalized('%Y-%m-%d %#K')
-
         );
 
         $this->assertEquals(
             strftime('%Y-%m-%d %K', $japanese_date->timestamp),
             $japanese_date->formatLocalizedSimple('%Y-%m-%d %K')
-
         );
     }
 
@@ -154,13 +150,13 @@ class DateTimeTest extends TestCase
 
         // 日付オブジェクト
         $test_date_time = $FakerGenerator->dateTime();
-        $DateTime       = new DateTime($test_date_time->format('Y-m-d H:i:s'));
+        $DateTime = new DateTime($test_date_time->format('Y-m-d H:i:s'));
         $this->assertEquals($test_date_time->format('Y-m-d H:i:s'), $DateTime->format('Y-m-d H:i:s'));
 
         // 日付文字列
         $test_date_time = $FakerGenerator->dateTime();
         $test_date_time = $test_date_time->format('Y-m-d H:i:s');
-        $DateTime       = new DateTime($test_date_time);
+        $DateTime = new DateTime($test_date_time);
         $this->assertEquals($test_date_time, $DateTime->format('Y-m-d H:i:s'));
     }
 
@@ -178,24 +174,24 @@ class DateTimeTest extends TestCase
 
         // 日付オブジェクト
         $test_date_time = $FakerGenerator->dateTime();
-        $DateTime       = DateTime::factory($test_date_time);
+        $DateTime = DateTime::factory($test_date_time);
         $this->assertEquals($test_date_time->format('Y-m-d H:i:s'), $DateTime->format('Y-m-d H:i:s'));
         $this->assertEquals($test_date_time->getTimestamp(), $DateTime->getTimestamp());
 
         // タイムスタンプ
         $test_unix_time = $FakerGenerator->unixTime('+3 year');
-        $DateTime       = DateTime::factory($test_unix_time);
+        $DateTime = DateTime::factory($test_unix_time);
         $this->assertEquals($test_unix_time, $DateTime->timestamp);
 
         // 日付文字列
         $test_date_time = $FakerGenerator->dateTime();
         $test_date_time = $test_date_time->format('Y-m-d H:i:s');
-        $DateTime       = DateTime::factory($test_date_time);
+        $DateTime = DateTime::factory($test_date_time);
         $this->assertEquals($test_date_time, $DateTime->format('Y-m-d H:i:s'));
 
         $test_date_time = $FakerGenerator->dateTime();
         $test_date_time = $test_date_time->format('YmdHis');
-        $DateTime       = DateTime::factory($test_date_time);
+        $DateTime = DateTime::factory($test_date_time);
         $this->assertEquals($test_date_time, $DateTime->format('YmdHis'));
     }
 
@@ -211,12 +207,12 @@ class DateTimeTest extends TestCase
 
         // 日付オブジェクト
         $test_date_time = $FakerGenerator->dateTime();
-        $DateTime       = DateTime::factory($test_date_time);
+        $DateTime = DateTime::factory($test_date_time);
         $this->assertSame(
             cal_from_jd(
                 unixtojd(
-                            $test_date_time->getTimestamp()
-            ),
+                    $test_date_time->getTimestamp()
+                ),
                 CAL_GREGORIAN
             ),
             $DateTime->getCalendar()
@@ -531,7 +527,7 @@ class DateTimeTest extends TestCase
     }
 
     /**
-     * @throws \ErrorException
+     * @throws \JapaneseDate\Exceptions\ErrorException
      * @covers \JapaneseDate\DateTime::formatLocalized()
      * @covers \JapaneseDate\DateTime::strftimeJa()
      */
@@ -705,7 +701,7 @@ class DateTimeTest extends TestCase
     }
 
     /**
-     * @throws \ErrorException
+     * @throws \JapaneseDate\Exceptions\ErrorException
      * @covers \JapaneseDate\DateTime::strftime()
      * @covers \JapaneseDate\DateTime::strftimeJa()
      */

@@ -15,7 +15,7 @@
 
 namespace JapaneseDate\Elements;
 
-use ErrorException;
+use JapaneseDate\Exceptions\ErrorException;
 
 /**
  * Class LunarDate
@@ -28,21 +28,21 @@ use ErrorException;
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
  * @since       Class available since Release 1.0.0
- * @property-read int      year
- * @property-read int      month
- * @property-read int      day
- * @property-read bool     $is_leap_month
+ * @property-read int year
+ * @property-read int month
+ * @property-read int day
+ * @property-read bool $is_leap_month
  * @property-read int|bool solar_term
  *
  *
  */
 class LunarDate
 {
-    public const YEAR_KEY               = 0;
+    public const YEAR_KEY = 0;
     public const IS_LEAP_MONTH_FLAG_KEY = 1;
-    public const MONTH_KEY              = 2;
-    public const DAY_KEY                = 3;
-    public const SOLAR_TERM_KEY         = 4;
+    public const MONTH_KEY = 2;
+    public const DAY_KEY = 3;
+    public const SOLAR_TERM_KEY = 4;
 
     /**
      * @var array
@@ -50,13 +50,20 @@ class LunarDate
     protected $lunar;
 
     /**
-     * @param $name
-     * @param $value
-     * @throws \ErrorException
+     * LunarDate constructor.
+     *
+     * @param array $lunar
+     * @param int|bool $solar_term
+     * @throws \JapaneseDate\Exceptions\ErrorException
      */
-    public function __set($name, $value)
+    public function __construct(array $lunar, $solar_term)
     {
-        throw new ErrorException('cannot set property:' . $name);
+        if (!isset($lunar[self::DAY_KEY])) {
+            throw new ErrorException('undefined day key' . json_encode($lunar) . json_encode($solar_term));
+        }
+
+        $lunar[self::SOLAR_TERM_KEY] = $solar_term;
+        $this->lunar = $lunar;
     }
 
     /**
@@ -84,7 +91,7 @@ class LunarDate
     /**
      * @param string $name
      * @return bool|string
-     * @throws \ErrorException
+     * @throws \JapaneseDate\Exceptions\ErrorException
      */
     public function __get(string $name)
     {
@@ -104,24 +111,17 @@ class LunarDate
             case 'solar_term':
                 return $this->lunar[self::SOLAR_TERM_KEY];
             default:
-                throw new \ErrorException('undefined property:' . $name);
+                throw new ErrorException('undefined property:' . $name);
         }
     }
 
     /**
-     * LunarDate constructor.
-     *
-     * @param array    $lunar
-     * @param int|bool $solar_term
-     * @throws \ErrorException
+     * @param $name
+     * @param $value
+     * @throws \JapaneseDate\Exceptions\ErrorException
      */
-    public function __construct(array $lunar, $solar_term)
+    public function __set($name, $value)
     {
-        if (!isset($lunar[self::DAY_KEY])) {
-            throw new ErrorException('undefined day key' . json_encode($lunar) . json_encode($solar_term));
-        }
-
-        $lunar[self::SOLAR_TERM_KEY] = $solar_term;
-        $this->lunar                 = $lunar;
+        throw new ErrorException('cannot set property:' . $name);
     }
 }

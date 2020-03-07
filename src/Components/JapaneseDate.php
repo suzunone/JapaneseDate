@@ -15,10 +15,9 @@
 
 namespace JapaneseDate\Components;
 
-use Carbon\Traits\Date;
 use DateTimeZone;
-use ErrorException;
 use JapaneseDate\DateTime;
+use JapaneseDate\Exceptions\ErrorException;
 
 /**
  * 日本語/和暦日付クラス
@@ -39,25 +38,6 @@ class JapaneseDate
      * @access private
      */
     /**
-     * 旧暦クラスオブジェクト
-     *
-     * @var \JapaneseDate\Components\LunarCalendar
-     */
-    private $LunarCalendar;
-
-    /**
-     * @var array
-     */
-    private $holiday_name = [];
-
-    /**
-     * @var array
-     */
-    private $era_name;
-
-    /**#@-*/
-
-    /**
      * @var array
      */
     public const WEEKDAY_NAME = ['日', '月', '火', '水', '木', '金', '土'];
@@ -69,11 +49,12 @@ class JapaneseDate
      * @var array
      */
     public const SIX_WEEKDAY = ['大安', '赤口', '先勝', '友引', '先負', '仏滅'];
+
+    /**#@-*/
     /**
      * @var array
      */
     public const ORIENTAL_ZODIAC = ['亥', '子', '丑', '寅', '卯', '辰', '巳', '午', '未', '申', '酉', '戌', ];
-
     /**
      * @var array
      */
@@ -84,16 +65,28 @@ class JapaneseDate
         '立冬', '小雪', '大雪', '冬至', '小寒',
         '大寒', '立春', '雨水', '啓蟄',
     ];
-
     /**
      * @var int
      */
     public const VERNAL_EQUINOX = 0;
-
     /**
      * @var int
      */
     public const AUTUMNAL_EQUINOX = 12;
+    /**
+     * 旧暦クラスオブジェクト
+     *
+     * @var \JapaneseDate\Components\LunarCalendar
+     */
+    private $LunarCalendar;
+    /**
+     * @var array
+     */
+    private $holiday_name;
+    /**
+     * @var array
+     */
+    private $era_name;
 
     /**
      * コンストラクタ
@@ -107,11 +100,11 @@ class JapaneseDate
         $this->LunarCalendar = LunarCalendar::factory();
 
         $this->era_name = [
-            DateTime::ERA_MEIJI       => '明治',
-            DateTime::ERA_TAISHO      => '大正',
-            DateTime::ERA_SHOWA       => '昭和',
-            DateTime::ERA_HEISEI      => '平成',
-            DateTime::ERA_REIWA       => '令和',
+            DateTime::ERA_MEIJI  => '明治',
+            DateTime::ERA_TAISHO => '大正',
+            DateTime::ERA_SHOWA  => '昭和',
+            DateTime::ERA_HEISEI => '平成',
+            DateTime::ERA_REIWA  => '令和',
         ];
 
         $this->holiday_name = [
@@ -150,7 +143,7 @@ class JapaneseDate
      * @static
      * @return \JapaneseDate\Components\JapaneseDate
      */
-    public static function factory()
+    public static function factory(): JapaneseDate
     {
         static $instance;
         if (!$instance) {
@@ -164,10 +157,10 @@ class JapaneseDate
      * 指定月の祝日リストを取得する
      *
      * @access      public
-     * @param       DateTime $DateTime DateTime
+     * @param DateTime $DateTime DateTime
      * @return      array
-     * @throws \ErrorException
-     * @throws \Exception
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\Exception
      */
     public function getHolidayList(DateTime $DateTime): array
     {
@@ -206,97 +199,21 @@ class JapaneseDate
     }
 
     /**
-     * 日本語フォーマットされた休日名を返す
-     *
-     * @access      public
-     * @param       int $key 休日キー
-     * @return      string
-     */
-    public function viewHoliday($key): string
-    {
-        return $this->holiday_name[$key] ?? '';
-    }
-
-    /**
-     * 日本語フォーマットされた曜日名を返す
-     *
-     * @access      public
-     * @param       int $key 曜日キー
-     * @return      string
-     */
-    public function viewWeekday($key): string
-    {
-        if ($key >= count(self::WEEKDAY_NAME)) {
-            $key -= count(self::WEEKDAY_NAME);
-        }
-
-        return self::WEEKDAY_NAME[$key];
-    }
-
-    /**
-     * 日本語フォーマットされた旧暦月名を返す
-     *
-     * @access      public
-     * @param       int $key 月キー
-     * @return      string
-     */
-    public function viewMonth($key): string
-    {
-        return self::MONTH_NAME[$key];
-    }
-
-    /**
-     * 日本語フォーマットされた六曜名を返す
-     *
-     * @access      public
-     * @param       int $key 六曜キー
-     * @return      string
-     */
-    public function viewSixWeekday($key): string
-    {
-        return self::SIX_WEEKDAY[$key] ?? '';
-    }
-
-    /**
-     * 日本語フォーマットされた干支を返す
-     *
-     * @access      public
-     * @param       int $key 干支キー
-     * @return      string
-     */
-    public function viewOrientalZodiac($key): string
-    {
-        return self::ORIENTAL_ZODIAC[$key] ?? '';
-    }
-
-    /**
-     * 日本語フォーマットされた年号を返す
-     *
-     * @access      public
-     * @param       int $key 年号キー
-     * @return      string
-     */
-    public function viewEraName($key): string
-    {
-        return $this->era_name[$key] ?? '';
-    }
-
-    /**
      * 祝日判定ロジック一月
      *
      * @access      protected
-     * @param       int $year 年
+     * @param int $year 年
      * @param           $timezone
      * @return      array
-     * @throws \ErrorException
-     * @throws \Exception
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\Exception
      */
     protected function getJanuaryHoliday(int $year, $timezone): array
     {
         if ($year <= DateTime::HOLIDAY_START_YEAR) {
             return [];
         }
-        $res    = [];
+        $res = [];
         $res[1] = DateTime::NEW_YEAR_S_DAY;
         // 振替休日確認
         if ($this->getWeekday(mktime(0, 0, 0, 1, 1, $year), $timezone) === DateTime::SUNDAY) {
@@ -304,7 +221,7 @@ class JapaneseDate
         }
         if ($year >= 2000) {
             //2000年以降は第二月曜日に変更
-            $second_monday       = $this->getDayByWeekly($year, 1, DateTime::MONDAY, 2, $timezone);
+            $second_monday = $this->getDayByWeekly($year, 1, DateTime::MONDAY, 2, $timezone);
             $res[$second_monday] = DateTime::COMING_OF_AGE_DAY;
         } else {
             $res[15] = DateTime::COMING_OF_AGE_DAY;
@@ -318,17 +235,30 @@ class JapaneseDate
     }
 
     /**
+     * 曜日を数値化して返します
+     *
+     * @param string|null|int|\DateTime $time
+     * @param DateTimeZone|null $time_zone
+     * @return int
+     * @throws \JapaneseDate\Exceptions\Exception
+     */
+    protected function getWeekday($time = null, DateTimeZone $time_zone = null): int
+    {
+        return DateTime::factory($time, $time_zone)->dayOfWeek;
+    }
+
+    /**
      * 第○ ■曜日の日付を取得します。
      *
      * @access      public
-     * @param       int         $year   年
-     * @param       int         $month  月
-     * @param       int         $weekly 曜日
-     * @param       int         $weeks  何週目か
+     * @param int $year   年
+     * @param int $month  月
+     * @param int $weekly 曜日
+     * @param int $weeks  何週目か
      * @param null|DateTimeZone $timezone
      * @return      int
      * @throws ErrorException
-     * @throws \Exception
+     * @throws \JapaneseDate\Exceptions\Exception
      */
     public function getDayByWeekly(int $year, int $month, int $weekly, int $weeks = 1, $timezone = null): int
     {
@@ -365,40 +295,13 @@ class JapaneseDate
     }
 
     /**
-     * 日を数値化して返します
-     *
-     * @access      protected
-     * @param string|null|int|\DateTime $time
-     * @param DateTimeZone|null $time_zone
-     * @return      int
-     * @throws \Exception
-     */
-    protected function getDay($time = null, DateTimeZone $time_zone = null): int
-    {
-        return DateTime::factory($time, $time_zone)->day;
-    }
-
-    /**
-     * 曜日を数値化して返します
-     *
-     * @param string|null|int|\DateTime $time
-     * @param DateTimeZone|null $time_zone
-     * @return int
-     * @throws \Exception
-     */
-    protected function getWeekday($time = null, DateTimeZone $time_zone = null): int
-    {
-        return DateTime::factory($time, $time_zone)->dayOfWeek;
-    }
-
-    /**
      * 祝日判定ロジック二月
      *
      * @access      protected
-     * @param       int $year 年
+     * @param int $year 年
      * @param DateTimeZone $timezone
      * @return      array
-     * @throws \Exception
+     * @throws \JapaneseDate\Exceptions\Exception
      */
     protected function getFebruaryHoliday(int $year, DateTimeZone $timezone): array
     {
@@ -406,14 +309,14 @@ class JapaneseDate
             return [];
         }
 
-        $res     = [];
+        $res = [];
         $res[11] = DateTime::NATIONAL_FOUNDATION_DAY;
 
         // 振替休日確認
         if ($this->getWeekday(mktime(0, 0, 0, 2, 11, $year), $timezone) === DateTime::SUNDAY) {
             $res[12] = DateTime::COMPENSATING_HOLIDAY;
         }
-        if ($year == 1989) {
+        if ($year === 1989) {
             $res[24] = DateTime::THE_SHOWA_EMPEROR_DIED;
         }
 
@@ -433,11 +336,11 @@ class JapaneseDate
      * 祝日判定ロジック三月
      *
      * @access      protected
-     * @param       int    $year 年
+     * @param int $year 年
      * @param DateTimeZone $timezone
      * @return      array
-     * @throws \ErrorException
-     * @throws \Exception
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\Exception
      */
     protected function getMarchHoliday(int $year, DateTimeZone $timezone): array
     {
@@ -445,8 +348,8 @@ class JapaneseDate
             return [];
         }
 
-        $res                                              = [];
-        $VernalEquinoxDay                                 = $this->getVernalEquinoxDay($year);
+        $res = [];
+        $VernalEquinoxDay = $this->getVernalEquinoxDay($year);
         $res[$this->getDay($VernalEquinoxDay, $timezone)] = DateTime::VERNAL_EQUINOX_DAY;
         // 振替休日確認
         if ($this->getWeekday($VernalEquinoxDay, $timezone) === DateTime::SUNDAY) {
@@ -462,8 +365,8 @@ class JapaneseDate
      * @access      public
      * @param int $year
      * @return      int タイムスタンプ
-     * @throws \ErrorException
-     * @throws \Exception
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\Exception
      */
     public function getVernalEquinoxDay(int $year): int
     {
@@ -475,8 +378,8 @@ class JapaneseDate
             $day = floor(21.851 + (0.242194 * ($year - 1980)) - floor(($year - 1980) / 4));
         } else {
             $DateTime = new DateTime($year . '-03-15');
-            while ($DateTime->month == 3) {
-                $DateTime->addDay(1);
+            while ($DateTime->month === 3) {
+                $DateTime->addDay();
                 $Element = $this->LunarCalendar->getLunarDate($DateTime);
                 if ($Element->solar_term === self::VERNAL_EQUINOX) {
                     break;
@@ -490,15 +393,29 @@ class JapaneseDate
     }
 
     /**
+     * 日を数値化して返します
+     *
+     * @access      protected
+     * @param string|null|int|\DateTime $time
+     * @param DateTimeZone|null $time_zone
+     * @return      int
+     * @throws \JapaneseDate\Exceptions\Exception
+     */
+    protected function getDay($time = null, DateTimeZone $time_zone = null): int
+    {
+        return DateTime::factory($time, $time_zone)->day;
+    }
+
+    /**
      * 祝日判定ロジック四月
      *
      * @access      protected
-     * @param       int $year 年
+     * @param int $year 年
      * @param DateTimeZone $timezone
      * @return      array
-     * @throws \Exception
+     * @throws \JapaneseDate\Exceptions\Exception
      */
-    protected function getAprilHoliday(int $year, DateTimeZone $timezone)
+    protected function getAprilHoliday(int $year, DateTimeZone $timezone): array
     {
         if ($year <= DateTime::HOLIDAY_START_YEAR) {
             return [];
@@ -529,12 +446,12 @@ class JapaneseDate
      * 祝日判定ロジック五月
      *
      * @access      protected
-     * @param       int $year 年
+     * @param int $year 年
      * @param DateTimeZone $timezone
      * @return      array
-     * @throws \Exception
+     * @throws \JapaneseDate\Exceptions\Exception
      */
-    protected function getMayHoliday(int $year, DateTimeZone $timezone)
+    protected function getMayHoliday(int $year, DateTimeZone $timezone): array
     {
         if ($year <= DateTime::HOLIDAY_START_YEAR) {
             return [];
@@ -563,7 +480,7 @@ class JapaneseDate
         }
         if ($year >= 2007) {
             // [5/3, 5/4が日曜]なら、振替休日
-            if (($this->getWeekday(mktime(0, 0, 0, 5, 4, $year), $timezone) === DateTime::SUNDAY) || ($this->getWeekday(mktime(0, 0, 0, 5, 3, $year), $timezone) == DateTime::SUNDAY)) {
+            if (($this->getWeekday(mktime(0, 0, 0, 5, 4, $year), $timezone) === DateTime::SUNDAY) || ($this->getWeekday(mktime(0, 0, 0, 5, 3, $year), $timezone) === DateTime::SUNDAY)) {
                 $res[6] = DateTime::COMPENSATING_HOLIDAY;
             }
         }
@@ -581,10 +498,10 @@ class JapaneseDate
      * 祝日判定ロジック六月
      *
      * @access      protected
-     * @param       int $year 年
+     * @param int $year 年
      * @return      array
      */
-    protected function getJuneHoliday(int $year)
+    protected function getJuneHoliday(int $year): array
     {
         if ($year <= DateTime::HOLIDAY_START_YEAR) {
             return [];
@@ -603,13 +520,13 @@ class JapaneseDate
      * 祝日判定ロジック七月
      *
      * @access      protected
-     * @param       int    $year 年
+     * @param int $year 年
      * @param DateTimeZone $timezone
      * @return      array
-     * @throws \ErrorException
-     * @throws \Exception
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\Exception
      */
-    protected function getJulyHoliday(int $year, DateTimeZone $timezone)
+    protected function getJulyHoliday(int $year, DateTimeZone $timezone): array
     {
         if ($year <= DateTime::HOLIDAY_START_YEAR) {
             return [];
@@ -621,7 +538,7 @@ class JapaneseDate
             // 2020以降はスポーツの日
             $res[24] = DateTime::SPORTS_DAY;
         } elseif ($year >= 2003) {
-            $third_monday       = $this->getDayByWeekly($year, 7, DateTime::MONDAY, 3, $timezone);
+            $third_monday = $this->getDayByWeekly($year, 7, DateTime::MONDAY, 3, $timezone);
             $res[$third_monday] = DateTime::MARINE_DAY;
         } elseif ($year >= 1996) {
             $res[20] = DateTime::MARINE_DAY;
@@ -640,12 +557,12 @@ class JapaneseDate
      * 祝日判定ロジック八月
      *
      * @access      protected
-     * @param       int $year 年
+     * @param int $year 年
      * @param DateTimeZone $timezone
      * @return      array
-     * @throws \Exception
+     * @throws \JapaneseDate\Exceptions\Exception
      */
-    protected function getAugustHoliday(int $year, DateTimeZone $timezone)
+    protected function getAugustHoliday(int $year, DateTimeZone $timezone): array
     {
         if ($year < DateTime::HOLIDAY_START_YEAR) {
             return [];
@@ -669,19 +586,19 @@ class JapaneseDate
      * 祝日判定ロジック九月
      *
      * @access      protected
-     * @param       int    $year 年
+     * @param int $year 年
      * @param DateTimeZone $timezone
      * @return      array
-     * @throws \ErrorException
-     * @throws \Exception
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\Exception
      */
-    protected function getSeptemberHoliday(int $year, DateTimeZone $timezone)
+    protected function getSeptemberHoliday(int $year, DateTimeZone $timezone): array
     {
         if ($year < DateTime::HOLIDAY_START_YEAR) {
             return [];
         }
-        $res                                              = [];
-        $autumnEquinoxDay                                 = $this->getAutumnEquinoxDay($year);
+        $res = [];
+        $autumnEquinoxDay = $this->getAutumnEquinoxDay($year);
         $res[$this->getDay($autumnEquinoxDay, $timezone)] = DateTime::AUTUMNAL_EQUINOX_DAY;
 
         // 振替休日確認
@@ -690,7 +607,7 @@ class JapaneseDate
         }
 
         if ($year >= 2003) {
-            $third_monday       = $this->getDayByWeekly($year, 9, DateTime::MONDAY, 3, $timezone);
+            $third_monday = $this->getDayByWeekly($year, 9, DateTime::MONDAY, 3, $timezone);
             $res[$third_monday] = DateTime::RESPECT_FOR_SENIOR_CITIZENS_DAY;
 
             // 敬老の日と、秋分の日の間の日は休みになる
@@ -714,10 +631,10 @@ class JapaneseDate
      * @access      public
      * @param int $year
      * @return      int タイムスタンプ
-     * @throws \ErrorException
-     * @throws \Exception
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\Exception
      */
-    public function getAutumnEquinoxDay(int $year)
+    public function getAutumnEquinoxDay(int $year): int
     {
         if ($year <= 1979) {
             $day = floor(23.2588 + (0.242194 * ($year - 1980)) - floor(($year - 1980) / 4));
@@ -728,7 +645,7 @@ class JapaneseDate
         } else {
             $DateTime = new DateTime($year . '-09-15');
             while ((int) $DateTime->month === 9) {
-                $DateTime->addDay(1);
+                $DateTime->addDay();
                 $Element = $this->LunarCalendar->getLunarDate($DateTime);
                 if ($Element->solar_term === self::AUTUMNAL_EQUINOX) {
                     break;
@@ -745,27 +662,36 @@ class JapaneseDate
      * 祝日判定ロジック十月
      *
      * @access      protected
-     * @param       int    $year 年
+     * @param int $year 年
      * @param DateTimeZone $timezone
      * @return      array
-     * @throws \ErrorException
-     * @throws \Exception
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\Exception
      */
-    protected function getOctoberHoliday(int $year, DateTimeZone $timezone)
+    protected function getOctoberHoliday(int $year, DateTimeZone $timezone): array
     {
         if ($year < DateTime::HOLIDAY_START_YEAR) {
             return [];
         }
         $res = [];
+
+        if ($year === 2019) {
+            $res[22] = DateTime::REGNAL_DAY;
+        }
+
         if ($year === DateTime::SECOND_TIME_TOKYO_OLYMPIC_YEAR) {
-            // 東京オリンピックのため移動
-        } elseif ($year >= 2021) {
+            // 東京オリンピックのため体育の日移動
+            return $res;
+        }
+
+        // 体育の日・スポーツの日判定
+        if ($year >= 2021) {
             // 2020年以降はスポーツの日
-            $second_monday       = $this->getDayByWeekly($year, 10, DateTime::MONDAY, 2, $timezone);
+            $second_monday = $this->getDayByWeekly($year, 10, DateTime::MONDAY, 2, $timezone);
             $res[$second_monday] = DateTime::SPORTS_DAY;
         } elseif ($year >= 2000) {
             // 2000年以降は第二月曜日に変更
-            $second_monday       = $this->getDayByWeekly($year, 10, DateTime::MONDAY, 2, $timezone);
+            $second_monday = $this->getDayByWeekly($year, 10, DateTime::MONDAY, 2, $timezone);
             $res[$second_monday] = DateTime::LEGACY_SPORTS_DAY;
         } elseif ($year >= 1966) {
             $res[10] = DateTime::LEGACY_SPORTS_DAY;
@@ -775,10 +701,6 @@ class JapaneseDate
             }
         }
 
-        if ($year === 2019) {
-            $res[22] = DateTime::REGNAL_DAY;
-        }
-
         return $res;
     }
 
@@ -786,24 +708,24 @@ class JapaneseDate
      * 祝日判定ロジック十一月
      *
      * @access      protected
-     * @param       int $year 年
+     * @param int $year 年
      * @param DateTimeZone $timezone
      * @return      array
-     * @throws \Exception
+     * @throws \JapaneseDate\Exceptions\Exception
      */
-    protected function getNovemberHoliday(int $year, DateTimeZone $timezone)
+    protected function getNovemberHoliday(int $year, DateTimeZone $timezone): array
     {
         if ($year < DateTime::HOLIDAY_START_YEAR) {
             return [];
         }
-        $res    = [];
+        $res = [];
         $res[3] = DateTime::CULTURE_DAY;
         // 振替休日確認
         if ($this->getWeekday(mktime(0, 0, 0, 11, 3, $year), $timezone) === DateTime::SUNDAY) {
             $res[4] = DateTime::COMPENSATING_HOLIDAY;
         }
 
-        if ($year == 1990) {
+        if ($year === 1990) {
             $res[12] = DateTime::REGNAL_DAY;
         }
 
@@ -820,12 +742,12 @@ class JapaneseDate
      * 祝日判定ロジック十二月
      *
      * @access      protected
-     * @param       int $year 年
+     * @param int $year 年
      * @param DateTimeZone $timezone
      * @return      array
-     * @throws \Exception
+     * @throws \JapaneseDate\Exceptions\Exception
      */
-    protected function getDecemberHoliday(int $year, DateTimeZone $timezone)
+    protected function getDecemberHoliday(int $year, DateTimeZone $timezone): array
     {
         if ($year < DateTime::HOLIDAY_START_YEAR) {
             return [];
@@ -840,5 +762,81 @@ class JapaneseDate
         }
 
         return $res;
+    }
+
+    /**
+     * 日本語フォーマットされた休日名を返す
+     *
+     * @access      public
+     * @param int $key 休日キー
+     * @return      string
+     */
+    public function viewHoliday($key): string
+    {
+        return $this->holiday_name[$key] ?? '';
+    }
+
+    /**
+     * 日本語フォーマットされた曜日名を返す
+     *
+     * @access      public
+     * @param int $key 曜日キー
+     * @return      string
+     */
+    public function viewWeekday($key): string
+    {
+        if ($key >= count(self::WEEKDAY_NAME)) {
+            $key -= count(self::WEEKDAY_NAME);
+        }
+
+        return self::WEEKDAY_NAME[$key];
+    }
+
+    /**
+     * 日本語フォーマットされた旧暦月名を返す
+     *
+     * @access      public
+     * @param int $key 月キー
+     * @return      string
+     */
+    public function viewMonth($key): string
+    {
+        return self::MONTH_NAME[$key];
+    }
+
+    /**
+     * 日本語フォーマットされた六曜名を返す
+     *
+     * @access      public
+     * @param int $key 六曜キー
+     * @return      string
+     */
+    public function viewSixWeekday($key): string
+    {
+        return self::SIX_WEEKDAY[$key] ?? '';
+    }
+
+    /**
+     * 日本語フォーマットされた干支を返す
+     *
+     * @access      public
+     * @param int $key 干支キー
+     * @return      string
+     */
+    public function viewOrientalZodiac($key): string
+    {
+        return self::ORIENTAL_ZODIAC[$key] ?? '';
+    }
+
+    /**
+     * 日本語フォーマットされた年号を返す
+     *
+     * @access      public
+     * @param int $key 年号キー
+     * @return      string
+     */
+    public function viewEraName($key): string
+    {
+        return $this->era_name[$key] ?? '';
     }
 }

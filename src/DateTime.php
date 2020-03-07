@@ -23,6 +23,8 @@ use DateTimeZone;
 use JapaneseDate\Components\Cache;
 use JapaneseDate\Components\JapaneseDate;
 use JapaneseDate\Components\LunarCalendar;
+use JapaneseDate\Exceptions\NativeDateTimeException;
+use Exception;
 
 /**
  * 日本の暦対応のDateTimeオブジェクト拡張
@@ -38,44 +40,44 @@ use JapaneseDate\Components\LunarCalendar;
  * @see         https://carbon.nesbot.com/docs/
  * @since       Class available since Release 1.0.0
  * @property  int|bool $solar_term
- * @property  string   $solar_term_text
- * @property bool      $is_solar_term
- * @property string    $era_name_text
- * @property int       $era_name
- * @property int       $era_year
- * @property string    $oriental_zodiac_text
- * @property int       $oriental_zodiac
- * @property string    $six_weekday_text
- * @property int       $six_weekday
- * @property int       $weekday_text
- * @property string    $month_text
- * @property string    $holiday_text
- * @property int       $holiday
- * @property bool      $is_holiday
- * @property string    $lunar_month_text
- * @property int       $lunar_month
- * @property int       $lunar_year
- * @property int       $lunar_day
- * @property bool      $is_leap_month
+ * @property  string $solar_term_text
+ * @property bool $is_solar_term
+ * @property string $era_name_text
+ * @property int $era_name
+ * @property int $era_year
+ * @property string $oriental_zodiac_text
+ * @property int $oriental_zodiac
+ * @property string $six_weekday_text
+ * @property int $six_weekday
+ * @property int $weekday_text
+ * @property string $month_text
+ * @property string $holiday_text
+ * @property int $holiday
+ * @property bool $is_holiday
+ * @property string $lunar_month_text
+ * @property int $lunar_month
+ * @property int $lunar_year
+ * @property int $lunar_day
+ * @property bool $is_leap_month
  * @property  int|bool $solarTerm
- * @property  string   $solarTermText
- * @property bool      $isSolarTerm
- * @property string    $eraNameText
- * @property int       $eraName
- * @property int       $eraYear
- * @property string    $orientalZodiacText
- * @property int       $orientalZodiac
- * @property string    $sixWeekdayText
- * @property int       $sixWeekday
- * @property int       $weekdayText
- * @property string    $monthText
- * @property string    $holidayText
- * @property bool      $isHoliday
- * @property string    $lunarMonthText
- * @property int       $lunarMonth
- * @property int       $lunarYear
- * @property int       $lunarYay
- * @property bool      $isLeapMonth
+ * @property  string $solarTermText
+ * @property bool $isSolarTerm
+ * @property string $eraNameText
+ * @property int $eraName
+ * @property int $eraYear
+ * @property string $orientalZodiacText
+ * @property int $orientalZodiac
+ * @property string $sixWeekdayText
+ * @property int $sixWeekday
+ * @property int $weekdayText
+ * @property string $monthText
+ * @property string $holidayText
+ * @property bool $isHoliday
+ * @property string $lunarMonthText
+ * @property int $lunarMonth
+ * @property int $lunarYear
+ * @property int $lunarYay
+ * @property bool $isLeapMonth
  */
 class DateTime extends Carbon
 {
@@ -379,15 +381,19 @@ class DateTime extends Carbon
      *
      * 日付/時刻 文字列の書式については {@link http://php.net/manual/ja/datetime.formats.php サポートする日付と時刻の書式} を参考にしてください。
      *
-     * @param string|DateTimeInterface|null $time      日付/時刻 文字列。DateTimeオブジェクト
-     * @param DateTimeZone|string|null|int  $time_zone DateTimeZone オブジェクトか、時差の時間、タイムゾーンテキスト(omit 予定)
-     * @throws \Exception
+     * @param string|DateTimeInterface|null $time     日付/時刻 文字列。DateTimeオブジェクト
+     * @param DateTimeZone|string|null|int $time_zone DateTimeZone オブジェクトか、時差の時間、タイムゾーンテキスト(omit 予定)
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     public function __construct($time = null, $time_zone = null)
     {
-        parent::__construct($time, $time_zone);
+        try {
+            parent::__construct($time, $time_zone);
+        } catch (Exception $exception) {
+            throw new NativeDateTimeException('Throwing native DateTime class construct exception.', $exception->getCode(), $exception);
+        }
 
-        $this->JapaneseDate  = JapaneseDate::factory();
+        $this->JapaneseDate = JapaneseDate::factory();
         $this->LunarCalendar = LunarCalendar::factory();
     }
 
@@ -397,22 +403,25 @@ class DateTime extends Carbon
      * 日付/時刻 文字列の書式については {@link http://php.net/manual/ja/datetime.formats.php サポートする日付と時刻の書式} を参考にしてください。
      *
      * @param string|int|DateTimeInterface|null $date_time 日付オブジェクト OR Unix Time Stamp OR 日付/時刻 文字列
-     * @param DateTimeZone|null|string          $time_zone オブジェクトか、時差の時間、タイムゾーンテキスト(omit 予定)
+     * @param DateTimeZone|null|string $time_zone          オブジェクトか、時差の時間、タイムゾーンテキスト(omit 予定)
      * @return static
-     * @throws \Exception
+     * @throws \JapaneseDate\Exceptions\Exception
      */
-    public static function factory($date_time = null, $time_zone = null)
+    public static function factory($date_time = null, $time_zone = null): DateTime
     {
         if (is_int($date_time)) {
             return new static(date('Y-m-d H:i:s', $date_time), $time_zone);
-        } elseif (ctype_digit($date_time)) {
+        }
+        if (ctype_digit($date_time)) {
             $check_time = strtotime($date_time);
-            if ($check_time) {
+            if (is_int($check_time)) {
                 $date_time = $check_time;
             }
 
             return new static(date('Y-m-d H:i:s', $date_time), $time_zone);
-        } elseif ($date_time instanceof DateTimeInterface) {
+        }
+
+        if ($date_time instanceof DateTimeInterface) {
             return new static($date_time->format('Y-m-d H:i:s'), $time_zone ?? $date_time->getTimezone());
         }
 
@@ -424,14 +433,14 @@ class DateTime extends Carbon
      *
      * 指定するキャッシュモードは、{@see \JapaneseDate\CacheMode}参照。
      *
-     * @see \JapaneseDate\CacheMode::MODE_NONE キャッシュなし
+     * @param int $mode キャッシュモード
      * @see \JapaneseDate\CacheMode::MODE_AUTO 自動でキャッシュモードを選択
      * @see \JapaneseDate\CacheMode::MODE_APC APCを使用したキャッシュ
      * @see \JapaneseDate\CacheMode::MODE_FILE ファイルを使用したキャッシュ
      * @see \JapaneseDate\CacheMode::MODE_ORIGINAL 独自キャッシュ
-     * @param int $mode キャッシュモード
+     * @see \JapaneseDate\CacheMode::MODE_NONE キャッシュなし
      */
-    public static function setCacheMode(int $mode)
+    public static function setCacheMode(int $mode): void
     {
         Cache::setMode($mode);
     }
@@ -443,7 +452,7 @@ class DateTime extends Carbon
      *
      * @param string $cache_file_path キャッシュファイルを保存するディレクトリ
      */
-    public static function setCacheFilePath(string $cache_file_path)
+    public static function setCacheFilePath(string $cache_file_path): void
     {
         Cache::setCacheFilePath($cache_file_path);
     }
@@ -464,7 +473,7 @@ class DateTime extends Carbon
      *
      * @param Closure $function 独自キャッシュのロジックが含まれたクロージャ
      */
-    public static function setCacheClosure(Closure $function)
+    public static function setCacheClosure(Closure $function): void
     {
         Cache::setCacheClosure($function);
     }
@@ -494,13 +503,14 @@ class DateTime extends Carbon
      *
      * このメソッドは非推奨です。 {@see DateTime::formatLocalized()}を使用してください。
      *
-     * @since 1.1
      * @param string $format フォーマット
      * @return string  指定したフォーマット文字列に基づき文字列をフォーマットして返します。 月および曜日の名前、およびその他の言語依存の文字列は、 setlocale() で設定された現在のロケールを尊重して表示されます。
-     * @throws \ErrorException
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @since 1.1
      * @deprecated
      */
-    public function strftime($format)
+    public function strftime($format): string
     {
         $res_str = $this->strftimeJa($format, '%');
 
@@ -508,74 +518,18 @@ class DateTime extends Carbon
     }
 
     /**
-     * 日本語カレンダー対応したstrftime()
-     *
-     * {@link http://php.net/manual/ja/function.strftime.php function.strftime strftimeの仕様}
-     * に加え、
-     * - %#J %-dへのエイリアス
-     * - %#e 1～9なら先頭にスペースを付ける、1～31の日(%eのwin対応版)
-     * - %#g 1～9なら先頭にスペースを付ける、1～12の月
-     * - %#G 古い名前の月名(睦月、如月)
-     * - %#k 六曜番号
-     * - %#6 六曜
-     * - %#K 曜日
-     * - %#l 祝日番号
-     * - %#L 祝日
-     * - %#o 干支番号
-     * - %#O 干支
-     * - %#E 旧暦年
-     * - %#d 旧暦の日(01,02...)
-     * - %#-d 旧暦の日(1,2,3....)
-     * - %#j 旧暦の1桁の場合は先頭にスペースをいれた日（ 1, 2, 3）
-     * - %#m 旧暦の月(01,02...)
-     * - %#-m 旧暦の月(1,2,3....)
-     * - %#n 旧暦の1桁の場合は先頭にスペースをいれた月（ 1, 2, 3）
-     * - %#b 旧暦の月(睦月,如月...)
-     * - %#h %#bへのエイリアス
-     * - %#B 旧暦の月で閏月まで表示する 皐月(閏月)
-     * - %#u 閏月の場合 閏 と出力させる
-     * - %#U 閏月の場合 (閏) と出力させる
-     * - %#F 年号
-     * - %#f 年号ID
-     *
-     * が使用できます。
-     *
-     * @since 1.1
-     * @param string $format フォーマット
-     * @return string  指定したフォーマット文字列に基づき文字列をフォーマットして返します。 月および曜日の名前、およびその他の言語依存の文字列は、 setlocale() で設定された現在のロケールを尊重して表示されます。
-     * @throws \ErrorException
-     */
-    public function formatLocalized($format)
-    {
-        $format = $this->strftimeJa($format);
-
-        return parent::formatLocalized($format);
-    }
-
-    /**
-     * CarbonデフォルトのformatLocalizedへのエイリアス
-     *
-     * @param string $format フォーマット
-     * @return string
-     */
-    public function formatLocalizedSimple($format)
-    {
-        return parent::formatLocalized($format);
-    }
-
-    /**
      * 日本語カレンダー対応したstrftime()の事前メソッド
      *
-     * @since 1.1
      * @param string $format フォーマット
      * @param string $delimiter
      * @return string  指定したフォーマット文字列に基づき文字列をフォーマットして返します。 月および曜日の名前、およびその他の言語依存の文字列は、 setlocale() で設定された現在のロケールを尊重して表示されます。
-     * @throws \ErrorException
-     * @throws \Exception
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @since 1.1
      */
-    protected function strftimeJa($format, $delimiter = '%#')
+    protected function strftimeJa($format, $delimiter = '%#'): string
     {
-        $res_str      = '';
+        $res_str = '';
         $format_array = explode($delimiter, $format);
         foreach ($format_array as $key => $strings) {
             if ($key === 0) {
@@ -711,15 +665,313 @@ class DateTime extends Carbon
     }
 
     /**
+     * 干支キーを返す
+     *
+     * @return int
+     */
+    protected function getOrientalZodiac(): int
+    {
+        return ($this->year + 9) % 12;
+    }
+
+    /**
+     * 日本語フォーマットされた干支を返す
+     *
+     * @return      string
+     */
+    protected function viewOrientalZodiac(): string
+    {
+        $key = $this->getOrientalZodiac();
+
+        return $this->JapaneseDate->viewOrientalZodiac($key);
+    }
+
+    /**
+     * 祝日キーを返す
+     *
+     * @return      int
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\Exception
+     */
+    protected function getHoliday(): int
+    {
+        $holiday_list = $this->JapaneseDate->getHolidayList($this);
+
+        return $holiday_list[$this->day] ?? self::NO_HOLIDAY;
+    }
+
+    /**
+     * 日本語フォーマットされた休日名を返す
+     *
+     * @return      string
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\Exception
+     */
+    protected function viewHoliday(): string
+    {
+        $key = $this->getHoliday();
+
+        return $this->JapaneseDate->viewHoliday($key);
+    }
+
+    /**
+     * 日本語フォーマットされた曜日名を返す
+     *
+     * @return      string
+     */
+    protected function viewWeekday(): string
+    {
+        $key = $this->dayOfWeek;
+
+        return $this->JapaneseDate->viewWeekday($key);
+    }
+
+    /**
+     * 日本語フォーマットされた六曜名を返す
+     *
+     * @return      string
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\Exception
+     */
+    protected function viewSixWeekday(): string
+    {
+        $key = $this->getSixWeekday();
+
+        return $this->JapaneseDate->viewSixWeekday($key);
+    }
+
+    /**
+     * 六曜を数値化して返します
+     *
+     * @return      int
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\Exception
+     */
+    protected function getSixWeekday(): int
+    {
+        $lunar_calendar = $this->getLunarCalendar();
+
+        return ($lunar_calendar->month + $lunar_calendar->day) % 6;
+    }
+
+    /**
+     * 旧暦データ取得
+     *
+     * @return      \JapaneseDate\Elements\LunarDate
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\Exception
+     */
+    protected function getLunarCalendar(): Elements\LunarDate
+    {
+        $mdy = $this->month . '-' . $this->day . '-' . $this->year;
+        if (!isset($this->lunar_calendar[$mdy])) {
+            $this->lunar_calendar[$mdy] = $this->LunarCalendar->getLunarDate(
+                $this
+            );
+        }
+
+        return $this->lunar_calendar[$mdy];
+    }
+
+    /**
+     * 日本語フォーマットされた日本月名を返す
+     *
+     * @return string
+     */
+    protected function viewMonth(): string
+    {
+        $key = $this->month;
+
+        return $this->JapaneseDate->viewMonth($key);
+    }
+
+    /**
+     * 日本語フォーマットされた年号を返す
+     *
+     * @return      string
+     * @throws \JapaneseDate\Exceptions\Exception
+     */
+    protected function viewEraName(): string
+    {
+        $key = $this->getEraName();
+
+        return $this->JapaneseDate->viewEraName($key);
+    }
+
+    /**
+     * 年号キーを返す
+     *
+     * @return int
+     * @throws \JapaneseDate\Exceptions\Exception
+     */
+    protected function getEraName(): int
+    {
+        $TaishoStart = new DateTime('1912-07-30 00:00:00', $this->getTimezone());
+        $ShowaStart = new DateTime('1926-12-25 00:00:00', $this->getTimezone());
+        $HeiseiStart = new DateTime('1989-01-08 00:00:00', $this->getTimezone());
+        $ReiwaStart = new DateTime('2019-05-01 00:00:00', $this->getTimezone());
+
+        if ($TaishoStart > $this) {
+            // 明治
+            return self::ERA_MEIJI;
+        }
+
+        if ($TaishoStart <= $this && $ShowaStart > $this) {
+            // 大正
+            return self::ERA_TAISHO;
+        }
+
+        if ($ShowaStart <= $this && $HeiseiStart > $this) {
+            // 昭和
+            return self::ERA_SHOWA;
+        }
+        if ($HeiseiStart <= $this && $ReiwaStart > $this) {
+            // 平成
+            return self::ERA_HEISEI;
+        }
+
+        // 平成の次
+        return self::ERA_REIWA;
+    }
+
+    /**
+     * 和暦を返す
+     *
+     * @param null|int $era_key 元号キー
+     * @return int
+     * @throws \JapaneseDate\Exceptions\Exception
+     */
+    protected function getEraYear($era_key = null): int
+    {
+        $era_calc = [self::ERA_MEIJI => 1868,
+            self::ERA_TAISHO         => 1912,
+            self::ERA_SHOWA          => 1926,
+            self::ERA_HEISEI         => 1989,
+            self::ERA_REIWA          => 2019,
+        ];
+
+        $era_key = $era_key ?? $this->getEraName();
+
+        return $this->year - $era_calc[$era_key] + 1;
+    }
+
+    /**
+     * 旧暦（日）
+     *
+     * @return      string
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\Exception
+     */
+    protected function getLunarDay(): string
+    {
+        return $this->getLunarCalendar()->day;
+    }
+
+    /**
+     * 旧暦（月）
+     *
+     * @return      string
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\Exception
+     */
+    protected function getLunarMonth(): string
+    {
+        return $this->getLunarCalendar()->month;
+    }
+
+    /**
+     * 旧暦(月)
+     *
+     * @return      string
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\Exception
+     */
+    protected function viewLunarMonth(): string
+    {
+        $key = $this->getLunarMonth();
+
+        return $this->JapaneseDate->viewMonth($key);
+    }
+
+    /**
+     * 閏月かどうか
+     *
+     * @return      bool
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\Exception
+     */
+    protected function isLeapMonth(): bool
+    {
+        return $this->getLunarCalendar()->is_leap_month;
+    }
+
+    /**
+     * 日本語カレンダー対応したstrftime()
+     *
+     * {@link http://php.net/manual/ja/function.strftime.php function.strftime strftimeの仕様}
+     * に加え、
+     * - %#J %-dへのエイリアス
+     * - %#e 1～9なら先頭にスペースを付ける、1～31の日(%eのwin対応版)
+     * - %#g 1～9なら先頭にスペースを付ける、1～12の月
+     * - %#G 古い名前の月名(睦月、如月)
+     * - %#k 六曜番号
+     * - %#6 六曜
+     * - %#K 曜日
+     * - %#l 祝日番号
+     * - %#L 祝日
+     * - %#o 干支番号
+     * - %#O 干支
+     * - %#E 旧暦年
+     * - %#d 旧暦の日(01,02...)
+     * - %#-d 旧暦の日(1,2,3....)
+     * - %#j 旧暦の1桁の場合は先頭にスペースをいれた日（ 1, 2, 3）
+     * - %#m 旧暦の月(01,02...)
+     * - %#-m 旧暦の月(1,2,3....)
+     * - %#n 旧暦の1桁の場合は先頭にスペースをいれた月（ 1, 2, 3）
+     * - %#b 旧暦の月(睦月,如月...)
+     * - %#h %#bへのエイリアス
+     * - %#B 旧暦の月で閏月まで表示する 皐月(閏月)
+     * - %#u 閏月の場合 閏 と出力させる
+     * - %#U 閏月の場合 (閏) と出力させる
+     * - %#F 年号
+     * - %#f 年号ID
+     *
+     * が使用できます。
+     *
+     * @param string $format フォーマット
+     * @return string  指定したフォーマット文字列に基づき文字列をフォーマットして返します。 月および曜日の名前、およびその他の言語依存の文字列は、 setlocale() で設定された現在のロケールを尊重して表示されます。
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @since 1.1
+     */
+    public function formatLocalized($format)
+    {
+        $format = $this->strftimeJa($format);
+
+        return parent::formatLocalized($format);
+    }
+
+    /**
+     * CarbonデフォルトのformatLocalizedへのエイリアス
+     *
+     * @param string $format フォーマット
+     * @return string
+     */
+    public function formatLocalizedSimple($format): string
+    {
+        return parent::formatLocalized($format);
+    }
+
+    /**
      * サポートされるカレンダーに変換する
      *
-     * サポートされる calendar の値は、 CAL_GREGORIAN、 CAL_JULIAN、 CAL_JEWISH および CAL_FRENCH です。
+     * サポートされる $calendar の値は、 CAL_GREGORIAN、 CAL_JULIAN、 CAL_JEWISH および CAL_FRENCH です。
      *
      * @access      public
      * @param int $calendar サポートされるカレンダー
      * @return      array カレンダーの情報を含む配列を返します。この配列には、 年、月、日、週、曜日名、月名、"月/日/年" 形式の文字列 などが含まれます。
      */
-    public function getCalendar($calendar = CAL_GREGORIAN)
+    public function getCalendar($calendar = CAL_GREGORIAN): array
     {
         return cal_from_jd(unixtojd($this->timestamp), $calendar);
     }
@@ -730,9 +982,9 @@ class DateTime extends Carbon
      * @link https://carbon.nesbot.com/docs/#api-getters
      * @param string $name
      * @return DateTimeZone|int|string
-     * @throws \ErrorException
+     * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \ReflectionException
-     * @throws \Exception
+     * @throws \JapaneseDate\Exceptions\Exception
      */
     public function __get($name)
     {
@@ -805,23 +1057,11 @@ class DateTime extends Carbon
     /**
      * 24節気を取得する
      *
-     * @return bool|int
-     * @throws \ErrorException
-     */
-    protected function getSolarTermKey()
-    {
-        $lunar_calendar = $this->getLunarCalendar();
-
-        return $lunar_calendar->solar_term;
-    }
-
-    /**
-     * 24節気を取得する
-     *
      * @return string
-     * @throws \ErrorException
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\Exception
      */
-    protected function getSolarTerm()
+    protected function getSolarTerm(): string
     {
         $lunar_calendar = $this->getLunarCalendar();
 
@@ -833,30 +1073,25 @@ class DateTime extends Carbon
     }
 
     /**
-     * 旧暦データ取得
+     * 24節気を取得する
      *
-     * @return      \JapaneseDate\Elements\LunarDate
-     * @throws \ErrorException
+     * @return bool|int
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\Exception
      */
-    protected function getLunarCalendar()
+    protected function getSolarTermKey()
     {
-        $mdy = $this->month . '-' . $this->day . '-' . $this->year;
-        if (!isset($this->lunar_calendar[$mdy])) {
-            $this->lunar_calendar[$mdy] = $this->LunarCalendar->getLunarDate(
-                $this
-            );
-        }
-
-        return $this->lunar_calendar[$mdy];
+        return $this->getLunarCalendar()->solar_term;
     }
 
     /**
      * ２４節気かどうか
      *
      * @return      boolean
-     * @throws \ErrorException
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\Exception
      */
-    protected function isSolarTerm()
+    protected function isSolarTerm(): bool
     {
         $lunar_calendar = $this->getLunarCalendar();
 
@@ -864,237 +1099,14 @@ class DateTime extends Carbon
     }
 
     /**
-     * 日本語フォーマットされた年号を返す
-     *
-     * @return      string
-     * @throws \Exception
-     */
-    protected function viewEraName()
-    {
-        $key = $this->getEraName();
-
-        return $this->JapaneseDate->viewEraName($key);
-    }
-
-    /**
-     * 年号キーを返す
-     *
-     * @return int
-     * @throws \Exception
-     */
-    protected function getEraName()
-    {
-        $TaishoStart = new DateTime('1912-07-30 00:00:00', $this->getTimezone());
-        $ShowaStart  = new DateTime('1926-12-25 00:00:00', $this->getTimezone());
-        $HeiseiStart = new DateTime('1989-01-08 00:00:00', $this->getTimezone());
-        $ReiwaStart  = new DateTime('2019-05-01 00:00:00', $this->getTimezone());
-
-        if ($TaishoStart > $this) {
-            // 明治
-            return self::ERA_MEIJI;
-        }
-
-        if ($TaishoStart <= $this && $ShowaStart > $this) {
-            // 大正
-            return self::ERA_TAISHO;
-        }
-
-        if ($ShowaStart <= $this && $HeiseiStart > $this) {
-            // 昭和
-            return self::ERA_SHOWA;
-        }
-        if ($HeiseiStart <= $this && $ReiwaStart > $this) {
-            // 平成
-            return self::ERA_HEISEI;
-        }
-
-        // 平成の次
-        return self::ERA_REIWA;
-    }
-
-    /**
-     * 日本語フォーマットされた干支を返す
-     *
-     * @return      string
-     */
-    protected function viewOrientalZodiac(): string
-    {
-        $key = $this->getOrientalZodiac();
-
-        return $this->JapaneseDate->viewOrientalZodiac($key);
-    }
-
-    /**
-     * 干支キーを返す
-     *
-     * @return int
-     */
-    protected function getOrientalZodiac(): int
-    {
-        $res = ($this->year + 9) % 12;
-
-        return $res;
-    }
-
-    /**
-     * 日本語フォーマットされた六曜名を返す
-     *
-     * @return      string
-     * @throws \ErrorException
-     */
-    protected function viewSixWeekday(): string
-    {
-        $key = $this->getSixWeekday();
-
-        return $this->JapaneseDate->viewSixWeekday($key);
-    }
-
-    /**
-     * 六曜を数値化して返します
-     *
-     * @return      int
-     * @throws \ErrorException
-     */
-    protected function getSixWeekday(): int
-    {
-        $lunar_calendar = $this->getLunarCalendar();
-
-        return ($lunar_calendar->month + $lunar_calendar->day) % 6;
-    }
-
-    /**
-     * 日本語フォーマットされた曜日名を返す
-     *
-     * @return      string
-     */
-    protected function viewWeekday(): string
-    {
-        $key = $this->dayOfWeek;
-
-        return $this->JapaneseDate->viewWeekday($key);
-    }
-
-    /**
-     * 日本語フォーマットされた日本月名を返す
-     *
-     * @return string
-     */
-    protected function viewMonth(): string
-    {
-        $key = $this->month;
-
-        return $this->JapaneseDate->viewMonth($key);
-    }
-
-    /**
-     * 日本語フォーマットされた休日名を返す
-     *
-     * @return      string
-     * @throws \ErrorException
-     */
-    protected function viewHoliday(): string
-    {
-        $key = $this->getHoliday();
-
-        return $this->JapaneseDate->viewHoliday($key);
-    }
-
-    /**
-     * 祝日キーを返す
-     *
-     * @return      int
-     * @throws \ErrorException
-     */
-    protected function getHoliday(): int
-    {
-        $holiday_list = $this->JapaneseDate->getHolidayList($this);
-
-        return isset($holiday_list[$this->day]) ? $holiday_list[$this->day] : self::NO_HOLIDAY;
-    }
-
-    /**
-     * 旧暦(月)
-     *
-     * @return      string
-     * @throws \ErrorException
-     */
-    protected function viewLunarMonth(): string
-    {
-        $key = $this->getLunarMonth();
-
-        return $this->JapaneseDate->viewMonth($key);
-    }
-
-    /**
-     * 旧暦（月）
-     *
-     * @return      string
-     * @throws \ErrorException
-     */
-    protected function getLunarMonth(): string
-    {
-        $lunar_calendar = $this->getLunarCalendar();
-
-        return $lunar_calendar->month;
-    }
-
-    /**
      * 旧暦（年）
      *
      * @return      string
-     * @throws \ErrorException
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\Exception
      */
     protected function getLunarYear(): string
     {
-        $lunar_calendar = $this->getLunarCalendar();
-
-        return $lunar_calendar->year;
-    }
-
-    /**
-     * 旧暦（日）
-     *
-     * @return      string
-     * @throws \ErrorException
-     */
-    protected function getLunarDay(): string
-    {
-        $lunar_calendar = $this->getLunarCalendar();
-
-        return $lunar_calendar->day;
-    }
-
-    /**
-     * 閏月かどうか
-     *
-     * @return      bool
-     * @throws \ErrorException
-     */
-    protected function isLeapMonth(): bool
-    {
-        $lunar_calendar = $this->getLunarCalendar();
-
-        return $lunar_calendar->is_leap_month;
-    }
-
-    /**
-     * 和暦を返す
-     *
-     * @param null|int $era_key 元号キー
-     * @return int
-     * @throws \Exception
-     */
-    protected function getEraYear($era_key = null): int
-    {
-        $era_calc = [self::ERA_MEIJI => 1868,
-            self::ERA_TAISHO         => 1912,
-            self::ERA_SHOWA          => 1926,
-            self::ERA_HEISEI         => 1989,
-            self::ERA_REIWA          => 2019,
-        ];
-
-        $era_key = $era_key ?? $this->getEraName();
-
-        return $this->year - $era_calc[$era_key] + 1;
+        return $this->getLunarCalendar()->year;
     }
 }

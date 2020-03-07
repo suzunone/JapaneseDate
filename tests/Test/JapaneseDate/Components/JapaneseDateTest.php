@@ -63,7 +63,7 @@ class JapaneseDateTest extends TestCase
      */
     public function createTestObject()
     {
-        $JapaneseDate     = new JapaneseDate();
+        $JapaneseDate = new JapaneseDate();
         $JapaneseDateTime = new DateTime();
 
         return [[$JapaneseDate, $JapaneseDateTime]];
@@ -71,7 +71,7 @@ class JapaneseDateTest extends TestCase
 
     public function test_regnalDay()
     {
-        $JapaneseDate     = new JapaneseDate();
+        $JapaneseDate = new JapaneseDate();
         $JapaneseDateTime = new DateTime('2019-10-22');
 
         $res = $this->invokeExecuteMethod($JapaneseDate, 'getOctoberHoliday', ['2020', $JapaneseDateTime->getTimezone()]);
@@ -85,7 +85,7 @@ class JapaneseDateTest extends TestCase
      *
      * @access      public
      * @return      void
-     * @throws \ErrorException
+     * @throws \JapaneseDate\Exceptions\ErrorException
      * @covers      \JapaneseDate\Components\JapaneseDate::getHolidayList()
      * @covers      \JapaneseDate\Components\JapaneseDate::getJanuaryHoliday()
      * @covers      \JapaneseDate\Components\JapaneseDate::getFebruaryHoliday()
@@ -103,42 +103,42 @@ class JapaneseDateTest extends TestCase
      */
     public function test_holidayStart()
     {
-        $JapaneseDate     = new JapaneseDate();
+        $JapaneseDate = new JapaneseDate();
         $JapaneseDateTime = new DateTime('1948-01-01');
-        $res              = $JapaneseDate->getHolidayList($JapaneseDateTime);
+        $res = $JapaneseDate->getHolidayList($JapaneseDateTime);
         $this->assertCount(0, $res);
         $JapaneseDateTime = new DateTime('1948-02-01');
-        $res              = $JapaneseDate->getHolidayList($JapaneseDateTime);
+        $res = $JapaneseDate->getHolidayList($JapaneseDateTime);
         $this->assertCount(0, $res);
         $JapaneseDateTime = new DateTime('1948-03-01');
-        $res              = $JapaneseDate->getHolidayList($JapaneseDateTime);
+        $res = $JapaneseDate->getHolidayList($JapaneseDateTime);
         $this->assertCount(0, $res);
         $JapaneseDateTime = new DateTime('1948-04-01');
-        $res              = $JapaneseDate->getHolidayList($JapaneseDateTime);
+        $res = $JapaneseDate->getHolidayList($JapaneseDateTime);
         $this->assertCount(0, $res);
         $JapaneseDateTime = new DateTime('1948-05-01');
-        $res              = $JapaneseDate->getHolidayList($JapaneseDateTime);
+        $res = $JapaneseDate->getHolidayList($JapaneseDateTime);
         $this->assertCount(0, $res);
         $JapaneseDateTime = new DateTime('1948-06-01');
-        $res              = $JapaneseDate->getHolidayList($JapaneseDateTime);
+        $res = $JapaneseDate->getHolidayList($JapaneseDateTime);
         $this->assertCount(0, $res);
         $JapaneseDateTime = new DateTime('1948-07-01');
-        $res              = $JapaneseDate->getHolidayList($JapaneseDateTime);
+        $res = $JapaneseDate->getHolidayList($JapaneseDateTime);
         $this->assertCount(0, $res);
         $JapaneseDateTime = new DateTime('1947-08-01');
-        $res              = $JapaneseDate->getHolidayList($JapaneseDateTime);
+        $res = $JapaneseDate->getHolidayList($JapaneseDateTime);
         $this->assertCount(0, $res);
         $JapaneseDateTime = new DateTime('1947-09-01');
-        $res              = $JapaneseDate->getHolidayList($JapaneseDateTime);
+        $res = $JapaneseDate->getHolidayList($JapaneseDateTime);
         $this->assertCount(0, $res);
         $JapaneseDateTime = new DateTime('1947-10-01');
-        $res              = $JapaneseDate->getHolidayList($JapaneseDateTime);
+        $res = $JapaneseDate->getHolidayList($JapaneseDateTime);
         $this->assertCount(0, $res);
         $JapaneseDateTime = new DateTime('1947-11-01');
-        $res              = $JapaneseDate->getHolidayList($JapaneseDateTime);
+        $res = $JapaneseDate->getHolidayList($JapaneseDateTime);
         $this->assertCount(0, $res);
         $JapaneseDateTime = new DateTime('1947-12-01');
-        $res              = $JapaneseDate->getHolidayList($JapaneseDateTime);
+        $res = $JapaneseDate->getHolidayList($JapaneseDateTime);
         $this->assertCount(0, $res);
     }
 
@@ -170,12 +170,12 @@ class JapaneseDateTest extends TestCase
      * @access       public
      * @return      void
      * @covers       \JapaneseDate\Components\JapaneseDate::getHolidayList()
-     * @throws \ErrorException
+     * @throws \JapaneseDate\Exceptions\ErrorException
      */
     public function test_getHolidayList()
     {
         $JapaneseDate = new JapaneseDate();
-        $holidays     = $JapaneseDate->getHolidayList(new DateTime('2018-05-01'));
+        $holidays = $JapaneseDate->getHolidayList(new DateTime('2018-05-01'));
         $this->assertSame(
             [
                 3 => DateTime::CONSTITUTION_DAY,
@@ -261,13 +261,13 @@ class JapaneseDateTest extends TestCase
      *
      * @access              public
      * @return      void
-     * @throws \ErrorException
+     * @throws \JapaneseDate\Exceptions\ErrorException
      * @covers              \JapaneseDate\Components\JapaneseDate::getVernalEquinoxDay()
-     * @throws \ErrorException
-     * @throws \ErrorException
-     * @throws \ErrorException
-     * @throws \ErrorException
-     * @throws \ErrorException
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\ErrorException
      */
     public function test_getVernalEquinoxDay()
     {
@@ -309,7 +309,7 @@ class JapaneseDateTest extends TestCase
      */
     public function test_factory()
     {
-        $JapaneseDate  = JapaneseDate::factory();
+        $JapaneseDate = JapaneseDate::factory();
         $JapaneseDate2 = JapaneseDate::factory();
 
         $this->assertSame($JapaneseDate, $JapaneseDate2);
@@ -339,13 +339,13 @@ class JapaneseDateTest extends TestCase
      *
      * @access              public
      * @return      void
-     * @throws \ErrorException
+     * @throws \JapaneseDate\Exceptions\ErrorException
      * @covers              \JapaneseDate\Components\JapaneseDate::getAutumnEquinoxDay()
-     * @throws \ErrorException
-     * @throws \ErrorException
-     * @throws \ErrorException
-     * @throws \ErrorException
-     * @throws \ErrorException
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\ErrorException
      */
     public function test_getAutumnEquinoxDay()
     {
@@ -415,31 +415,31 @@ class JapaneseDateTest extends TestCase
     /**
      * @test
      * @covers \JapaneseDate\Components\JapaneseDate::getDayByWeekly()
-     * @throws \ErrorException
-     * @throws \ErrorException
-     * @throws \ErrorException
-     * @throws \ErrorException
-     * @throws \ErrorException
-     * @throws \ErrorException
-     * @throws \ErrorException
-     * @throws \ErrorException
-     * @throws \ErrorException
-     * @throws \ErrorException
-     * @throws \ErrorException
-     * @throws \ErrorException
-     * @throws \ErrorException
-     * @throws \ErrorException
-     * @throws \ErrorException
-     * @throws \ErrorException
-     * @throws \ErrorException
-     * @throws \ErrorException
-     * @throws \ErrorException
-     * @throws \ErrorException
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\ErrorException
      */
     public function test_getDayByWeekly()
     {
         $JapaneseDate = new JapaneseDate();
-        $res          = $JapaneseDate->getDayByWeekly(2016, 6, DateTime::SUNDAY, 1, $timezone = null);
+        $res = $JapaneseDate->getDayByWeekly(2016, 6, DateTime::SUNDAY, 1, $timezone = null);
         $this->assertEquals(5, $res);
         $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::SUNDAY, 1, $timezone = null);
         $this->assertEquals(1, $res);
@@ -492,7 +492,7 @@ class JapaneseDateTest extends TestCase
 
     /**
      * @test
-     * @expectedException \ErrorException
+     * @expectedException \JapaneseDate\Exceptions\ErrorException
      * @covers \JapaneseDate\Components\JapaneseDate::getDayByWeekly()
      */
     public function test_getDayByWeekly_error()
@@ -2077,7 +2077,7 @@ class JapaneseDateTest extends TestCase
      */
     public function test_nationalHolidayTest()
     {
-        $JapaneseDate     = JapaneseDate::factory();
+        $JapaneseDate = JapaneseDate::factory();
         $JapaneseDateTime = DateTime::factory('2018-03-01');
 
         $res = $this->invokeExecuteMethod($JapaneseDate, 'getMayHoliday', ['1988', $JapaneseDateTime->getTimezone()]);

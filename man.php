@@ -8,7 +8,7 @@ use Carbon\Carbon;
 use JapaneseDate\DateTime as JapaneseDateTime;
 use JapaneseDate\Calendar as JapaneseDateCalendar;
 
-$open_tag  = '<?php';
+$open_tag = '<?php';
 $close_tag = '?>';
 
 ?>
