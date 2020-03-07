@@ -33,8 +33,6 @@ use JapaneseDate\Exceptions\ErrorException;
  * @property-read int day
  * @property-read bool $is_leap_month
  * @property-read int|bool solar_term
- *
- *
  */
 class LunarDate
 {

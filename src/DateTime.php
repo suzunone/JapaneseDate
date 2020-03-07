@@ -464,12 +464,12 @@ class DateTime extends Carbon
      *
      * セットされるクロージャは、
      *
-     * mixed ClosureFunction(string $key, Closure $Cloosure)
+     * mixed ClosureFunction(string $key, Closure $function)
      *
      * | Parameter | Type | Description |
      * |-----------|------|-------------|
      * | `$key` | **string** | キャッシュ単位の一意なキー。このキーにマッチしたキャッシュデータが有る場合は、キャッシュされたデータをreturnしてください。 |
-     * | `$Cloosure` | **\Closure** | キャッシュされたデータが取得できない場合に実行するクロージャです。実行すれば、キャッシュするべきデータが返されます。 |
+     * | `$function` | **\Closure** | キャッシュされたデータが取得できない場合に実行するクロージャです。実行すれば、キャッシュするべきデータが返されます。 |
      *
      * @param Closure $function 独自キャッシュのロジックが含まれたクロージャ
      */
@@ -731,7 +731,6 @@ class DateTime extends Carbon
      *
      * @return      string
      * @throws \JapaneseDate\Exceptions\ErrorException
-     * @throws \JapaneseDate\Exceptions\Exception
      */
     protected function viewSixWeekday(): string
     {
@@ -745,7 +744,6 @@ class DateTime extends Carbon
      *
      * @return      int
      * @throws \JapaneseDate\Exceptions\ErrorException
-     * @throws \JapaneseDate\Exceptions\Exception
      */
     protected function getSixWeekday(): int
     {
@@ -759,7 +757,6 @@ class DateTime extends Carbon
      *
      * @return      \JapaneseDate\Elements\LunarDate
      * @throws \JapaneseDate\Exceptions\ErrorException
-     * @throws \JapaneseDate\Exceptions\Exception
      */
     protected function getLunarCalendar(): Elements\LunarDate
     {
@@ -799,6 +796,21 @@ class DateTime extends Carbon
     }
 
     /**
+     * @param string $date_text
+     * @return $this|static
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     */
+    protected function innerDateTime(string $date_text)
+    {
+        static $cache;
+        if (isset($cache[$date_text])) {
+            return $cache[$date_text];
+        }
+
+        return $cache[$date_text] = new static($date_text, $this->getTimezone());
+    }
+
+    /**
      * 年号キーを返す
      *
      * @return int
@@ -806,10 +818,10 @@ class DateTime extends Carbon
      */
     protected function getEraName(): int
     {
-        $TaishoStart = new DateTime('1912-07-30 00:00:00', $this->getTimezone());
-        $ShowaStart = new DateTime('1926-12-25 00:00:00', $this->getTimezone());
-        $HeiseiStart = new DateTime('1989-01-08 00:00:00', $this->getTimezone());
-        $ReiwaStart = new DateTime('2019-05-01 00:00:00', $this->getTimezone());
+        $TaishoStart = $this->innerDateTime('1912-07-30 00:00:00');
+        $ShowaStart = $this->innerDateTime('1926-12-25 00:00:00');
+        $HeiseiStart = $this->innerDateTime('1989-01-08 00:00:00');
+        $ReiwaStart = $this->innerDateTime('2019-05-01 00:00:00');
 
         if ($TaishoStart > $this) {
             // 明治
@@ -830,7 +842,7 @@ class DateTime extends Carbon
             return self::ERA_HEISEI;
         }
 
-        // 平成の次
+        // 令和
         return self::ERA_REIWA;
     }
 
@@ -860,7 +872,6 @@ class DateTime extends Carbon
      *
      * @return      string
      * @throws \JapaneseDate\Exceptions\ErrorException
-     * @throws \JapaneseDate\Exceptions\Exception
      */
     protected function getLunarDay(): string
     {
@@ -872,7 +883,6 @@ class DateTime extends Carbon
      *
      * @return      string
      * @throws \JapaneseDate\Exceptions\ErrorException
-     * @throws \JapaneseDate\Exceptions\Exception
      */
     protected function getLunarMonth(): string
     {
@@ -884,7 +894,6 @@ class DateTime extends Carbon
      *
      * @return      string
      * @throws \JapaneseDate\Exceptions\ErrorException
-     * @throws \JapaneseDate\Exceptions\Exception
      */
     protected function viewLunarMonth(): string
     {
@@ -898,7 +907,6 @@ class DateTime extends Carbon
      *
      * @return      bool
      * @throws \JapaneseDate\Exceptions\ErrorException
-     * @throws \JapaneseDate\Exceptions\Exception
      */
     protected function isLeapMonth(): bool
     {
@@ -1059,7 +1067,6 @@ class DateTime extends Carbon
      *
      * @return string
      * @throws \JapaneseDate\Exceptions\ErrorException
-     * @throws \JapaneseDate\Exceptions\Exception
      */
     protected function getSolarTerm(): string
     {
@@ -1077,7 +1084,6 @@ class DateTime extends Carbon
      *
      * @return bool|int
      * @throws \JapaneseDate\Exceptions\ErrorException
-     * @throws \JapaneseDate\Exceptions\Exception
      */
     protected function getSolarTermKey()
     {
@@ -1089,7 +1095,6 @@ class DateTime extends Carbon
      *
      * @return      boolean
      * @throws \JapaneseDate\Exceptions\ErrorException
-     * @throws \JapaneseDate\Exceptions\Exception
      */
     protected function isSolarTerm(): bool
     {
@@ -1103,7 +1108,6 @@ class DateTime extends Carbon
      *
      * @return      string
      * @throws \JapaneseDate\Exceptions\ErrorException
-     * @throws \JapaneseDate\Exceptions\Exception
      */
     protected function getLunarYear(): string
     {
