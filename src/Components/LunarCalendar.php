@@ -133,7 +133,7 @@ class LunarCalendar
     }
 
     /**
-     * @param \JapaneseDate\DateTime $DateTime
+     * @param \JapaneseDate\DateTime|\JapaneseDate\Traits\Lunar $DateTime
      * @return \JapaneseDate\Elements\LunarDate
      * @throws \JapaneseDate\Exceptions\ErrorException
      */

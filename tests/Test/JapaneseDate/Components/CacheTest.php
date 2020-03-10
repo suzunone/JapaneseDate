@@ -1,4 +1,5 @@
-<?php
+<?php /** @noinspection PhpDocMissingThrowsInspection */
+/** @noinspection PhpUnhandledExceptionInspection */
 
 /**
  *
@@ -38,12 +39,9 @@ class CacheTest extends TestCase
     use InvokeTrait;
 
     /**
-     * @test
      * @covers              \JapaneseDate\Components\Cache
      * @runInSeparateProcess
      * @preserveGlobalState disabled
-     * @throws \ReflectionException
-     * @throws \ReflectionException
      */
     public function test_setMode()
     {
@@ -60,16 +58,13 @@ class CacheTest extends TestCase
     }
 
     /**
-     * @test
      * @covers              \JapaneseDate\Components\Cache
      * @runInSeparateProcess
      * @preserveGlobalState disabled
-     * @throws \ReflectionException
-     * @throws \ReflectionException
      */
     public function test_setCacheClosure()
     {
-        $closure = function () {
+        $closure = static function () {
         };
 
         Cache::setCacheClosure($closure);
@@ -85,12 +80,9 @@ class CacheTest extends TestCase
     }
 
     /**
-     * @test
      * @covers              \JapaneseDate\Components\Cache
      * @runInSeparateProcess
      * @preserveGlobalState disabled
-     * @throws \ReflectionException
-     * @throws \ReflectionException
      */
     public function test_setCacheFilePath()
     {

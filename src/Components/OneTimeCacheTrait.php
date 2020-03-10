@@ -2,23 +2,34 @@
 /**
  * OneTimeCashTrait.php
  *
- * @category   GitCommand
- * @package    Git-Live
- * @subpackage Core
- * @author     akito<akito-artisan@five-foxes.com>
- * @author     suzunone<suzunone.eleven@gmail.com>
- * @copyright  Project Git Live
- * @license    MIT
- * @version    GIT: $
- * @link       https://github.com/Git-Live/git-live
- * @see        https://github.com/Git-Live/git-live
- * @since      2020/03/07
+ * @category    DateTime
+ * @package     JapaneseDate
+ * @subpackage  Component
+ * @author      Suzunone <suzunone.eleven@gmail.com>
+ * @copyright   Suzunone
+ * @license     BSD-2
+ * @link        https://github.com/suzunone/JapaneseDate
+ * @see         https://github.com/suzunone/JapaneseDate
+ * @since       Class available since Release 1.0.0
  */
 
 namespace JapaneseDate\Components;
 
 use Closure;
 
+/**
+ * Class OneTimeCacheTrait
+ *
+ * @category    DateTime
+ * @package     JapaneseDate
+ * @subpackage  Component
+ * @author      Suzunone <suzunone.eleven@gmail.com>
+ * @copyright   Suzunone
+ * @license     BSD-2
+ * @link        https://github.com/suzunone/JapaneseDate
+ * @see         https://github.com/suzunone/JapaneseDate
+ * @since       Class available since Release 1.0.0
+ */
 trait OneTimeCacheTrait
 {
     /**

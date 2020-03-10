@@ -1,4 +1,6 @@
-<?php
+<?php /** @noinspection PhpDocMissingThrowsInspection */
+/** @noinspection PhpUnhandledExceptionInspection */
+
 /**
  * Class CalendarTest
  *
@@ -41,9 +43,7 @@ class CalendarTest extends TestCase
     use InvokeTrait;
 
     /**
-     * @test
      * @covers \JapaneseDate\Calendar
-     * @throws \ReflectionException
      */
     public function test_construct()
     {
@@ -67,9 +67,7 @@ class CalendarTest extends TestCase
     }
 
     /**
-     * @test
      * @covers \JapaneseDate\Calendar
-     * @throws \JapaneseDate\Exceptions\Exception
      */
     public function test_getDatesOfMonth()
     {
@@ -89,9 +87,7 @@ class CalendarTest extends TestCase
     }
 
     /**
-     * @test
      * @covers \JapaneseDate\Calendar
-     * @throws \JapaneseDate\Exceptions\Exception
      */
     public function test_getWorkingDayByLimit()
     {
@@ -142,11 +138,9 @@ class CalendarTest extends TestCase
     }
 
     /**
-     * @test
      * @covers  \JapaneseDate\Calendar::getWorkingDay()
      * @depends test_getWorkingDayByLimit
      * @param array $res
-     * @throws \JapaneseDate\Exceptions\Exception
      */
     public function test_getWorkingDay($res = [])
     {
@@ -168,9 +162,7 @@ class CalendarTest extends TestCase
     }
 
     /**
-     * @test
      * @covers \JapaneseDate\Calendar
-     * @throws \JapaneseDate\Exceptions\Exception
      */
     public function test_getWorkingDayBySpan()
     {
@@ -182,9 +174,7 @@ class CalendarTest extends TestCase
     }
 
     /**
-     * @test
      * @covers \JapaneseDate\Calendar::getCompareFormat
-     * @throws \ReflectionException
      */
     public function test_getCompareFormat()
     {
@@ -204,9 +194,7 @@ class CalendarTest extends TestCase
     }
 
     /**
-     * @test
      * @covers \JapaneseDate\Calendar::isWorkingDay
-     * @throws \ReflectionException
      */
     public function test_isWorkingDay()
     {
@@ -216,7 +204,7 @@ class CalendarTest extends TestCase
         // 日付オブジェクト
         $test_date_time = $FakerGenerator->dateTime();
         $test_date_time2 = $FakerGenerator->dateTime();
-        while ($test_date_time->format('Ymd') == $test_date_time2->format('Ymd')) {
+        while ($test_date_time->format('Ymd') === $test_date_time2->format('Ymd')) {
             $test_date_time2 = $FakerGenerator->dateTime();
         }
 
@@ -273,10 +261,8 @@ class CalendarTest extends TestCase
     }
 
     /**
-     * @test
      * @covers \JapaneseDate\Calendar
      * @return Calendar
-     * @throws \ReflectionException
      */
     public function test_addBypassWeekDay()
     {
@@ -303,10 +289,8 @@ class CalendarTest extends TestCase
     }
 
     /**
-     * @test
      * @covers \JapaneseDate\Calendar
      * @return Calendar
-     * @throws \ReflectionException
      */
     public function test_addBypassDay()
     {
@@ -316,7 +300,7 @@ class CalendarTest extends TestCase
         // 日付オブジェクト
         $test_date_time = $FakerGenerator->dateTime();
         $test_date_time2 = $FakerGenerator->dateTime();
-        while ($test_date_time->format('Ymd') == $test_date_time2->format('Ymd')) {
+        while ($test_date_time->format('Ymd') === $test_date_time2->format('Ymd')) {
             $test_date_time2 = $FakerGenerator->dateTime();
         }
 
@@ -345,9 +329,7 @@ class CalendarTest extends TestCase
     }
 
     /**
-     * @test
      * @covers \JapaneseDate\Calendar
-     * @throws \ReflectionException
      */
     public function test_setBypassHoliday()
     {
@@ -368,11 +350,9 @@ class CalendarTest extends TestCase
     }
 
     /**
-     * @test
      * @covers  \JapaneseDate\Calendar
      * @depends test_addBypassDay
      * @param \JapaneseDate\Calendar $Calendar
-     * @throws \ReflectionException
      */
     public function test_removeBypassDay(Calendar $Calendar)
     {
@@ -401,11 +381,9 @@ class CalendarTest extends TestCase
     }
 
     /**
-     * @test
      * @covers  \JapaneseDate\Calendar
      * @depends test_addBypassDay
      * @param \JapaneseDate\Calendar $Calendar
-     * @throws \ReflectionException
      */
     public function test_resetBypassDay(Calendar $Calendar)
     {
@@ -416,11 +394,9 @@ class CalendarTest extends TestCase
     }
 
     /**
-     * @test
      * @covers  \JapaneseDate\Calendar
      * @depends test_addBypassWeekDay
      * @param \JapaneseDate\Calendar $Calendar
-     * @throws \ReflectionException
      */
     public function test_removeBypassWeekDay(Calendar $Calendar)
     {
@@ -437,11 +413,9 @@ class CalendarTest extends TestCase
     }
 
     /**
-     * @test
      * @covers  \JapaneseDate\Calendar
      * @depends test_addBypassWeekDay
      * @param \JapaneseDate\Calendar $Calendar
-     * @throws \ReflectionException
      */
     public function test_resetBypassWeekDay(Calendar $Calendar)
     {

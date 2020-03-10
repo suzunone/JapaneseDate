@@ -48,11 +48,10 @@ class LunarCalendarTest extends TestCase
     }
 
     /**
-     * @throws \ReflectionException
      * @covers              \JapaneseDate\Components\LunarCalendar
      * @runInSeparateProcess
      * @preserveGlobalState disabled
-     * @dataProvider makeLunarCalendar_refactorDataProvider
+     * @dataProvider        makeLunarCalendar_refactorDataProvider
      */
     public function test_makeLunarCalendar_refactor($year)
     {
@@ -65,9 +64,8 @@ class LunarCalendarTest extends TestCase
     /**
      * グレゴオリオ暦＝旧暦テーブル 作成
      *
-     * @param    int $year 西暦年
+     * @param int $year 西暦年
      * @return array 朔のテーブル
-     * @throws \JapaneseDate\Exceptions\Exception
      */
     private function Legacy_makeLunarCalendar(int $year): array
     {
@@ -177,8 +175,6 @@ class LunarCalendarTest extends TestCase
     }
 
     /**
-     * @throws \ReflectionException
-     * @test
      * @covers              \JapaneseDate\Components\LunarCalendar
      * @runInSeparateProcess
      * @preserveGlobalState disabled
@@ -199,8 +195,6 @@ class LunarCalendarTest extends TestCase
     }
 
     /**
-     * @throws \ReflectionException
-     * @test
      * @covers              \JapaneseDate\Components\LunarCalendar
      * @runInSeparateProcess
      * @preserveGlobalState disabled
@@ -218,7 +212,7 @@ class LunarCalendarTest extends TestCase
     /**
      * 2000年1月1日力学時正午からの経過日数
      *
-     * @param    int $year , $month, $day  グレゴリオ暦による年月日
+     * @param int $year , $month, $day  グレゴリオ暦による年月日
      * @param $month
      * @param $day
      * @return    float 経過日数（日本標準時）
@@ -240,7 +234,6 @@ class LunarCalendarTest extends TestCase
 
     /**
      * @covers              \JapaneseDate\Components\LunarCalendar
-     * @test
      * @runInSeparateProcess
      * @preserveGlobalState disabled
      */
@@ -253,8 +246,6 @@ class LunarCalendarTest extends TestCase
     }
 
     /**
-     * @throws \ReflectionException
-     * @test
      * @covers              \JapaneseDate\Components\LunarCalendar
      * @runInSeparateProcess
      * @preserveGlobalState disabled
@@ -270,10 +261,10 @@ class LunarCalendarTest extends TestCase
             [2016, 2, 8]
         );
         $this->assertSame([
-                              2016,
-                              false,
-                              1.0,
-                              1.0, ], $res);
+            2016,
+            false,
+            1.0,
+            1.0, ], $res);
 
         // 2018年年の変わり目
         $res = $this->invokeExecuteMethod(
@@ -283,10 +274,10 @@ class LunarCalendarTest extends TestCase
         );
 
         $this->assertSame([
-                              2017,
-                              false,
-                              12.0,
-                              29.0, ], $res);
+            2017,
+            false,
+            12.0,
+            29.0, ], $res);
 
         $res = $this->invokeExecuteMethod(
             $LunarCalendar,
@@ -295,10 +286,10 @@ class LunarCalendarTest extends TestCase
         );
 
         $this->assertSame([
-                              2017,
-                              false,
-                              12.0,
-                              30.0, ], $res);
+            2017,
+            false,
+            12.0,
+            30.0, ], $res);
 
         $res = $this->invokeExecuteMethod(
             $LunarCalendar,
@@ -307,15 +298,13 @@ class LunarCalendarTest extends TestCase
         );
 
         $this->assertSame([
-                              2018,
-                              false,
-                              1.0,
-                              1.0, ], $res);
+            2018,
+            false,
+            1.0,
+            1.0, ], $res);
     }
 
     /**
-     * @throws \ReflectionException
-     * @test
      * @covers              \JapaneseDate\Components\LunarCalendar
      * @runInSeparateProcess
      * @preserveGlobalState disabled

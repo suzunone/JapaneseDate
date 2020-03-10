@@ -157,7 +157,7 @@ class JapaneseDate
      * 指定月の祝日リストを取得する
      *
      * @access      public
-     * @param DateTime $DateTime DateTime
+     * @param DateTime|\JapaneseDate\Traits\Modern $DateTime DateTime
      * @return      array
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
