@@ -136,7 +136,7 @@ foreach ($month_array as $month) {
 (<?=$jd->era_name_text.$jd->era_year; ?>年/<?=$jd->oriental_zodiac; ?>)<br />
 <?=$jd->format('m'); ?>月(<?php echo $jd->month_text; ?>)
 <?php
-$noday     = '-';
+$noday = '-';
 
     $JapaneseDateCalendar = new JapaneseDateCalendar($jd);
 

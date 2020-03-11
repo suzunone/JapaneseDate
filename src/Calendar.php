@@ -15,6 +15,12 @@
 
 namespace JapaneseDate;
 
+use DateInterval;
+use DateTimeInterface;
+use DateTimeZone;
+use Exception;
+use JapaneseDate\Exceptions\NativeDateTimeException;
+
 /**
  * 日付オブジェクト配列作成
  *
@@ -73,23 +79,37 @@ class Calendar
      * 日付/時刻 文字列の書式については {@link http://php.net/manual/ja/datetime.formats.php サポートする日付と時刻の書式} を参考にしてください。
      *
      * @param string|\JapaneseDate\DateTime $time 日付配列取得の起点となる、日付オブジェクト OR Unix Time Stamp OR 日付/時刻 文字列
-     * @param \DateTimeZone|int|null $timezone オブジェクトか、時差の時間、タイムゾーンテキスト
-     * @throws \Exception
+     * @param \DateTimeZone|int|null $timezone    オブジェクトか、時差の時間、タイムゾーンテキスト
+     * @throws \JapaneseDate\Exceptions\Exception
      */
-    public function __construct($time = 'now', \DateTimeZone $timezone = null)
+    public function __construct($time = 'now', DateTimeZone $timezone = null)
     {
         $this->start_time_stamp = $this->createDateTime($time, $timezone);
-        $this->timezone         = $this->start_time_stamp->getTimezone();
+        $this->timezone = $this->start_time_stamp->getTimezone();
+    }
+
+    /**
+     * JapaneseDateTimeを取得する
+     *
+     * @access      protected
+     * @param string|int|DateTime $JDT
+     * @param \DateTimeZone|null $time_zone
+     * @return      \JapaneseDate\DateTime|\Carbon\Carbon|\DateTime|DateTimeInterface
+     * @throws \JapaneseDate\Exceptions\Exception
+     */
+    protected function createDateTime($JDT, DateTimeZone $time_zone = null): DateTime
+    {
+        return DateTime::factory($JDT, $time_zone);
     }
 
     /**
      * スキップする曜日を追加する
      *
      * @access      public
-     * @param       int $val スキップする曜日(0:日曜-6:土曜)
+     * @param int $val スキップする曜日(0:日曜-6:土曜)
      * @return \JapaneseDate\Calendar
      */
-    public function addBypassWeekDay($val)
+    public function addBypassWeekDay($val): Calendar
     {
         $this->bypass_week_day_arr[$val] = true;
 
@@ -101,19 +121,19 @@ class Calendar
      *
      * @access      public
      * @return      array
-     * @throws \Exception
+     * @throws \JapaneseDate\Exceptions\Exception
      */
-    public function getDatesOfMonth()
+    public function getDatesOfMonth(): array
     {
         $JDT = DateTime::factory($this->start_time_stamp);
 
         $JDT->setDate($JDT->year, $JDT->month, 1);
         $compare_month = $JDT->format('m');
-        $res           = [];
+        $res = [];
 
         while ($JDT->format('m') === $compare_month) {
             $res[] = clone $JDT;
-            $JDT->add(new \DateInterval('P1D'));
+            $JDT->add(new DateInterval('P1D'));
         }
 
         return $res;
@@ -123,10 +143,10 @@ class Calendar
      * スキップする曜日を削除する
      *
      * @access      public
-     * @param       int $val スキップする曜日(0:日曜-6:土曜)
+     * @param int $val スキップする曜日(0:日曜-6:土曜)
      * @return \JapaneseDate\Calendar
      */
-    public function removeBypassWeekDay($val)
+    public function removeBypassWeekDay($val): Calendar
     {
         if (isset($this->bypass_week_day_arr[$val])) {
             unset($this->bypass_week_day_arr[$val]);
@@ -141,7 +161,7 @@ class Calendar
      * @access      public
      * @return \JapaneseDate\Calendar
      */
-    public function resetBypassWeekDay()
+    public function resetBypassWeekDay(): Calendar
     {
         $this->bypass_week_day_arr = [];
 
@@ -156,15 +176,24 @@ class Calendar
      * @access      public
      * @param string|\JapaneseDate\DateTime $time 日付/時刻 文字列。DateTimeオブジェクト
      * @return \JapaneseDate\Calendar
-     * @throws \Exception
+     * @throws \JapaneseDate\Exceptions\Exception
      */
-    public function addBypassDay($time)
+    public function addBypassDay($time): Calendar
     {
         $val = $this->createDateTime($time, $this->timezone);
 
         $this->bypass_day_arr[$this->getCompareFormat($val)] = $val;
 
         return $this;
+    }
+
+    /**
+     * @param \DateTimeInterface
+     * @return int
+     */
+    protected function getCompareFormat(DateTimeInterface $DateTime): int
+    {
+        return (int) $DateTime->format('Ymd');
     }
 
     /**
@@ -175,9 +204,9 @@ class Calendar
      * @access      public
      * @param string|\JapaneseDate\DateTime $time 日付/時刻 文字列。DateTimeオブジェクト
      * @return \JapaneseDate\Calendar
-     * @throws \Exception
+     * @throws \JapaneseDate\Exceptions\Exception
      */
-    public function removeBypassDay($time)
+    public function removeBypassDay($time): Calendar
     {
         $val = $this->createDateTime($time, $this->timezone);
         if (isset($this->bypass_day_arr[$this->getCompareFormat($val)])) {
@@ -188,21 +217,12 @@ class Calendar
     }
 
     /**
-     * @param \DateTimeInterface
-     * @return int
-     */
-    protected function getCompareFormat(\DateTimeInterface $DateTime): int
-    {
-        return (int) $DateTime->format('Ymd');
-    }
-
-    /**
      * スキップする曜日を初期化する
      *
      * @access      public
      * @return \JapaneseDate\Calendar
      */
-    public function resetBypassDay()
+    public function resetBypassDay(): Calendar
     {
         $this->bypass_day_arr = [];
 
@@ -215,10 +235,10 @@ class Calendar
      * 除く場合true、そうでない場合false
      *
      * @access      public
-     * @param       bool $val 除く場合true、そうでない場合false
+     * @param bool $val 除く場合true、そうでない場合false
      * @return \JapaneseDate\Calendar
      */
-    public function setBypassHoliday(bool $val)
+    public function setBypassHoliday(bool $val): Calendar
     {
         $this->is_bypass_holiday = $val;
 
@@ -231,22 +251,22 @@ class Calendar
      * 日付/時刻 文字列の書式については {@link http://php.net/manual/ja/datetime.formats.php サポートする日付と時刻の書式} を参考にしてください。
      *
      * @access      public
-     * @param       int|string $jdt_end 取得終了日
+     * @param int|string $jdt_end 取得終了日
      * @return      \JapaneseDate\DateTime[]
-     * @throws \Exception
+     * @throws \JapaneseDate\Exceptions\Exception
      */
-    public function getWorkingDayBySpan($jdt_end)
+    public function getWorkingDayBySpan($jdt_end): array
     {
-        $jdt_end     = $this->createDateTime($jdt_end);
-        $JDT         = clone $this->start_time_stamp;
-        $end_compare = $this->getCompareFormat($jdt_end);
+        $jdt_end_datetime = $this->createDateTime($jdt_end);
+        $JDT = clone $this->start_time_stamp;
+        $end_compare = $this->getCompareFormat($jdt_end_datetime);
 
         $res = [];
         while ($this->getCompareFormat($JDT) <= $end_compare) {
             if ($this->isWorkingDay($JDT)) {
                 $res[] = clone $JDT;
             }
-            $JDT->add(new \DateInterval('P1D'));
+            $JDT->add(new DateInterval('P1D'));
         }
 
         return $res;
@@ -279,11 +299,11 @@ class Calendar
      * getWorkingDayByLimitへのエイリアスです。
      *
      * @access      public
-     * @param       int $lim_day 取得日数
+     * @param int $lim_day 取得日数
      * @return      \JapaneseDate\DateTime[]
-     * @throws \Exception
+     * @throws \JapaneseDate\Exceptions\Exception
      */
-    public function getWorkingDay(int $lim_day)
+    public function getWorkingDay(int $lim_day): array
     {
         return $this->getWorkingDayByLimit($lim_day);
     }
@@ -292,9 +312,9 @@ class Calendar
      * 営業日を取得します
      *
      * @access      public
-     * @param       int $lim_day 取得日数
+     * @param int $lim_day 取得日数
      * @return      \JapaneseDate\DateTime[]
-     * @throws \Exception
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     public function getWorkingDayByLimit(int $lim_day): array
     {
@@ -305,23 +325,13 @@ class Calendar
             if ($this->isWorkingDay($JDT)) {
                 $res[] = clone $JDT;
             }
-            $JDT->add(new \DateInterval('P1D'));
+            try {
+                $JDT->add(new DateInterval('P1D'));
+            } catch (Exception $exception) {
+                throw new NativeDateTimeException('Throwing native DateInterval class construct exception.', $exception->getCode(), $exception);
+            }
         }
 
         return $res;
-    }
-
-    /**
-     * JapaneseDateTimeを取得する
-     *
-     * @access      protected
-     * @param       string|int|DateTime $JDT
-     * @param \DateTimeZone|null $time_zone
-     * @return      \JapaneseDate\DateTime
-     * @throws \Exception
-     */
-    protected function createDateTime($JDT, \DateTimeZone $time_zone = null)
-    {
-        return DateTime::factory($JDT, $time_zone);
     }
 }

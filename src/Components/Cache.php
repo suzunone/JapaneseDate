@@ -76,48 +76,20 @@ class Cache extends CacheMode
             $closure = static::$cache_closure;
 
             return $cache[$cache_name] = $closure($cache_name, $function);
-        } elseif (static::$mode === static::MODE_APC ||
+        }
+
+        if (static::$mode === static::MODE_APC ||
             (static::$mode === static::MODE_AUTO && function_exists('apcu_add'))) {
             // APCモード
             return $cache[$cache_name] = static::apcForever($cache_name, $function);
-        } elseif (static::$cache_file_path && (static::$mode === static::MODE_FILE || static::$mode === static::MODE_AUTO)) {
+        }
+
+        if (static::$cache_file_path && (static::$mode === static::MODE_FILE || static::$mode === static::MODE_AUTO)) {
             // ファイルモード
             return $cache[$cache_name] = static::fileForever($cache_name, $function);
         }
 
         return $cache[$cache_name] = $function();
-    }
-
-    /**
-     * キャッシュモードをセットする
-     *
-     * @param int $mode
-     */
-    public static function setMode(int $mode)
-    {
-        static::$mode = $mode;
-    }
-
-    /**
-     * キャッシュファイルパスをセットする
-     *
-     * @param string $cache_file_path
-     */
-    public static function setCacheFilePath(string $cache_file_path)
-    {
-        static::$mode            = static::MODE_FILE;
-        static::$cache_file_path = $cache_file_path;
-    }
-
-    /**
-     * 独自キャッシュロジックのセット
-     *
-     * @param Closure $function
-     */
-    public static function setCacheClosure(Closure $function)
-    {
-        static::$mode          = static::MODE_ORIGINAL;
-        static::$cache_closure = $function;
     }
 
     /**
@@ -127,14 +99,20 @@ class Cache extends CacheMode
      */
     protected static function apcForever(string $cache_name, Closure $function)
     {
+        if (!(function_exists('apcu_fetch') && function_exists('apcu_add'))) {
+            return $function();
+        }
+
         $success = false;
-        $res     = apcu_fetch($cache_name, $success);
+        /** @noinspection PhpComposerExtensionStubsInspection */
+        $res = apcu_fetch($cache_name, $success);
         if ($success && $res) {
             return $res;
         }
 
         $res = $function();
 
+        /** @noinspection PhpComposerExtensionStubsInspection */
         apcu_add($cache_name, $res);
 
         return $res;
@@ -150,14 +128,45 @@ class Cache extends CacheMode
         $cache_name_path = realpath(static::$cache_file_path) . DIRECTORY_SEPARATOR . sha1($cache_name);
 
         if (is_file($cache_name_path)) {
-            $res = unserialize(file_get_contents($cache_name_path));
-
-            return $res;
+            /** @noinspection UnserializeExploitsInspection */
+            return unserialize(file_get_contents($cache_name_path));
         }
 
         $res = $function();
         file_put_contents($cache_name_path, serialize($res));
 
         return $res;
+    }
+
+    /**
+     * キャッシュモードをセットする
+     *
+     * @param int $mode
+     */
+    public static function setMode(int $mode): void
+    {
+        static::$mode = $mode;
+    }
+
+    /**
+     * キャッシュファイルパスをセットする
+     *
+     * @param string $cache_file_path
+     */
+    public static function setCacheFilePath(string $cache_file_path): void
+    {
+        static::$mode = static::MODE_FILE;
+        static::$cache_file_path = $cache_file_path;
+    }
+
+    /**
+     * 独自キャッシュロジックのセット
+     *
+     * @param Closure $function
+     */
+    public static function setCacheClosure(Closure $function): void
+    {
+        static::$mode = static::MODE_ORIGINAL;
+        static::$cache_closure = $function;
     }
 }

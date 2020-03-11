@@ -1,10 +1,10 @@
 <?php
 /**
- * 汎用例外
+ * Component.php
  *
  * @category    DateTime
  * @package     JapaneseDate
- * @subpackage  Exception
+ * @subpackage  Traits
  * @author      Suzunone <suzunone.eleven@gmail.com>
  * @copyright   Suzunone
  * @license     BSD-2
@@ -13,19 +13,35 @@
  * @since       Class available since Release 1.0.0
  */
 
-namespace JapaneseDate\Exceptions;
+namespace JapaneseDate\Traits;
 
 /**
- * Class Exception
+ * Trait Component
  *
+ * @category    DateTime
  * @package     JapaneseDate
- * @subpackage  Exceptions
- * @author      Suzunone<suzunone.eleven@gmail.com>
- * @version     GIT: $Id$
+ * @subpackage  Traits
+ * @author      Suzunone <suzunone.eleven@gmail.com>
+ * @copyright   Suzunone
+ * @license     BSD-2
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
  * @since       Class available since Release 1.0.0
  */
-class Exception extends \Exception
+trait Component
 {
+    /**
+     * @var \JapaneseDate\Components\JapaneseDate
+     */
+    protected $JapaneseDate;
+
+    /**
+     * @var \JapaneseDate\Components\LunarCalendar
+     */
+    protected $LunarCalendar;
+
+    /**
+     * @var array
+     */
+    protected $lunar_calendar = [];
 }

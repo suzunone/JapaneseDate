@@ -1,4 +1,6 @@
-<?php
+<?php /** @noinspection PhpDocMissingThrowsInspection */
+/** @noinspection PhpUnhandledExceptionInspection */
+
 /**
  * Class CalendarTest
  *
@@ -41,9 +43,7 @@ class CalendarTest extends TestCase
     use InvokeTrait;
 
     /**
-     * @test
      * @covers \JapaneseDate\Calendar
-     * @throws \ReflectionException
      */
     public function test_construct()
     {
@@ -67,9 +67,7 @@ class CalendarTest extends TestCase
     }
 
     /**
-     * @test
      * @covers \JapaneseDate\Calendar
-     * @throws \Exception
      */
     public function test_getDatesOfMonth()
     {
@@ -81,7 +79,7 @@ class CalendarTest extends TestCase
         $test_date_time = DateTime::factory($test_date_time);
 
         $Calendar = new Calendar($test_date_time);
-        $res      = $Calendar->getDatesOfMonth();
+        $res = $Calendar->getDatesOfMonth();
         $this->assertCount($test_date_time->daysInMonth, $res);
         $this->assertEquals($test_date_time->month, $res[0]->month);
         $this->assertEquals(1, $res[0]->day);
@@ -89,9 +87,7 @@ class CalendarTest extends TestCase
     }
 
     /**
-     * @test
      * @covers \JapaneseDate\Calendar
-     * @throws \Exception
      */
     public function test_getWorkingDayByLimit()
     {
@@ -131,8 +127,8 @@ class CalendarTest extends TestCase
 
         //  全件テスト
         $Calendar = new Calendar($test_date_time);
-        $lim      = $faker->numberBetween(10, 1000);
-        $res      = $Calendar->getWorkingDayByLimit($lim);
+        $lim = $faker->numberBetween(10, 1000);
+        $res = $Calendar->getWorkingDayByLimit($lim);
 
         $this->assertEquals($test_date_time->format('Y-m-d'), $res[0]->format('Y-m-d'));
         $this->assertArrayHasKey(1, $res);
@@ -142,11 +138,9 @@ class CalendarTest extends TestCase
     }
 
     /**
-     * @test
      * @covers  \JapaneseDate\Calendar::getWorkingDay()
      * @depends test_getWorkingDayByLimit
      * @param array $res
-     * @throws \Exception
      */
     public function test_getWorkingDay($res = [])
     {
@@ -168,23 +162,19 @@ class CalendarTest extends TestCase
     }
 
     /**
-     * @test
      * @covers \JapaneseDate\Calendar
-     * @throws \Exception
      */
     public function test_getWorkingDayBySpan()
     {
         $Calendar = new Calendar('2018-05-01');
-        $res      = $Calendar->getWorkingDayBySpan('2018-05-31');
+        $res = $Calendar->getWorkingDayBySpan('2018-05-31');
         $this->assertEquals('2018-05-01', $res[0]->format('Y-m-d'));
         $this->assertEquals('2018-05-31', $res[30]->format('Y-m-d'));
         $this->assertCount(31, $res);
     }
 
     /**
-     * @test
      * @covers \JapaneseDate\Calendar::getCompareFormat
-     * @throws \ReflectionException
      */
     public function test_getCompareFormat()
     {
@@ -199,14 +189,12 @@ class CalendarTest extends TestCase
 
         $this->assertEquals(
             (int) $test_date_time->format('Ymd'),
-                            $this->invokeExecuteMethod($Calendar, 'getCompareFormat', [$test_date_time])
+            $this->invokeExecuteMethod($Calendar, 'getCompareFormat', [$test_date_time])
         );
     }
 
     /**
-     * @test
      * @covers \JapaneseDate\Calendar::isWorkingDay
-     * @throws \ReflectionException
      */
     public function test_isWorkingDay()
     {
@@ -214,9 +202,9 @@ class CalendarTest extends TestCase
         $FakerGenerator->addProvider(FakerDateTime::class);
 
         // 日付オブジェクト
-        $test_date_time  = $FakerGenerator->dateTime();
+        $test_date_time = $FakerGenerator->dateTime();
         $test_date_time2 = $FakerGenerator->dateTime();
-        while ($test_date_time->format('Ymd') == $test_date_time2->format('Ymd')) {
+        while ($test_date_time->format('Ymd') === $test_date_time2->format('Ymd')) {
             $test_date_time2 = $FakerGenerator->dateTime();
         }
 
@@ -273,10 +261,8 @@ class CalendarTest extends TestCase
     }
 
     /**
-     * @test
      * @covers \JapaneseDate\Calendar
      * @return Calendar
-     * @throws \ReflectionException
      */
     public function test_addBypassWeekDay()
     {
@@ -284,13 +270,13 @@ class CalendarTest extends TestCase
 
         $this->assertEquals(
             [],
-                            $this->invokeGetProperty($Calendar, 'bypass_week_day_arr')
+            $this->invokeGetProperty($Calendar, 'bypass_week_day_arr')
         );
 
         $Calendar->addBypassWeekDay(0);
         $this->assertEquals(
             [0 => true],
-                            $this->invokeGetProperty($Calendar, 'bypass_week_day_arr')
+            $this->invokeGetProperty($Calendar, 'bypass_week_day_arr')
         );
 
         $Calendar->addBypassWeekDay('6');
@@ -303,10 +289,8 @@ class CalendarTest extends TestCase
     }
 
     /**
-     * @test
      * @covers \JapaneseDate\Calendar
      * @return Calendar
-     * @throws \ReflectionException
      */
     public function test_addBypassDay()
     {
@@ -314,9 +298,9 @@ class CalendarTest extends TestCase
         $FakerGenerator->addProvider(FakerDateTime::class);
 
         // 日付オブジェクト
-        $test_date_time  = $FakerGenerator->dateTime();
+        $test_date_time = $FakerGenerator->dateTime();
         $test_date_time2 = $FakerGenerator->dateTime();
-        while ($test_date_time->format('Ymd') == $test_date_time2->format('Ymd')) {
+        while ($test_date_time->format('Ymd') === $test_date_time2->format('Ymd')) {
             $test_date_time2 = $FakerGenerator->dateTime();
         }
 
@@ -324,20 +308,20 @@ class CalendarTest extends TestCase
 
         $this->assertEquals(
             [],
-                            $this->invokeGetProperty($Calendar, 'bypass_day_arr')
+            $this->invokeGetProperty($Calendar, 'bypass_day_arr')
         );
 
         $Calendar->addBypassDay($test_date_time);
         $this->assertArrayHasKey(
             (int) $test_date_time->format('Ymd'),
-                                 $this->invokeGetProperty($Calendar, 'bypass_day_arr')
+            $this->invokeGetProperty($Calendar, 'bypass_day_arr')
         );
         $this->assertCount(1, $this->invokeGetProperty($Calendar, 'bypass_day_arr'));
 
         $Calendar->addBypassDay($test_date_time2);
         $this->assertArrayHasKey(
             (int) $test_date_time2->format('Ymd'),
-                                 $this->invokeGetProperty($Calendar, 'bypass_day_arr')
+            $this->invokeGetProperty($Calendar, 'bypass_day_arr')
         );
         $this->assertCount(2, $this->invokeGetProperty($Calendar, 'bypass_day_arr'));
 
@@ -345,9 +329,7 @@ class CalendarTest extends TestCase
     }
 
     /**
-     * @test
      * @covers \JapaneseDate\Calendar
-     * @throws \ReflectionException
      */
     public function test_setBypassHoliday()
     {
@@ -368,11 +350,9 @@ class CalendarTest extends TestCase
     }
 
     /**
-     * @test
      * @covers  \JapaneseDate\Calendar
      * @depends test_addBypassDay
      * @param \JapaneseDate\Calendar $Calendar
-     * @throws \ReflectionException
      */
     public function test_removeBypassDay(Calendar $Calendar)
     {
@@ -382,7 +362,7 @@ class CalendarTest extends TestCase
         $FakerGenerator->addProvider(FakerDateTime::class);
 
         $bypass_day_arr = $this->invokeGetProperty($Calendar, 'bypass_day_arr');
-        $key            = current(array_keys($bypass_day_arr));
+        $key = current(array_keys($bypass_day_arr));
         $this->assertCount(2, $this->invokeGetProperty($Calendar, 'bypass_day_arr'));
 
         // 空削除用の日付
@@ -401,11 +381,9 @@ class CalendarTest extends TestCase
     }
 
     /**
-     * @test
      * @covers  \JapaneseDate\Calendar
      * @depends test_addBypassDay
      * @param \JapaneseDate\Calendar $Calendar
-     * @throws \ReflectionException
      */
     public function test_resetBypassDay(Calendar $Calendar)
     {
@@ -416,11 +394,9 @@ class CalendarTest extends TestCase
     }
 
     /**
-     * @test
      * @covers  \JapaneseDate\Calendar
      * @depends test_addBypassWeekDay
      * @param \JapaneseDate\Calendar $Calendar
-     * @throws \ReflectionException
      */
     public function test_removeBypassWeekDay(Calendar $Calendar)
     {
@@ -437,11 +413,9 @@ class CalendarTest extends TestCase
     }
 
     /**
-     * @test
      * @covers  \JapaneseDate\Calendar
      * @depends test_addBypassWeekDay
      * @param \JapaneseDate\Calendar $Calendar
-     * @throws \ReflectionException
      */
     public function test_resetBypassWeekDay(Calendar $Calendar)
     {

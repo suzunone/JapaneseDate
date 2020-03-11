@@ -6,19 +6,19 @@
  *
  * 高野英明氏による「旧暦計算サンプルスクリプト」を参考にしています。<br />
  *
- * @link(http:// www.vector.co.jp/soft/dos/personal/se016093.html)<br />
+ * @link        (http:// www.vector.co.jp/soft/dos/personal/se016093.html)<br />
  * お手数ですが、再配布ご利用の際は、高野英明氏の「旧暦計算サンプルスクリプト」をDLし、
  * 規定に従ってください。<br />
  *
  * @category    DateTime
- * @package    JapaneseDate
- * @subpackage Component
- * @author     Suzunone <suzunone.eleven@gmail.com>
- * @copyright  Suzunone
- * @license    BSD-2
- * @link       https://github.com/suzunone/JapaneseDate
- * @see        https://github.com/suzunone/JapaneseDate
- * @since      Class available since Release 1.0.0
+ * @package     JapaneseDate
+ * @subpackage  Component
+ * @author      Suzunone <suzunone.eleven@gmail.com>
+ * @copyright   Suzunone
+ * @license     BSD-2
+ * @link        https://github.com/suzunone/JapaneseDate
+ * @see         https://github.com/suzunone/JapaneseDate
+ * @since       Class available since Release 1.0.0
  */
 
 namespace JapaneseDate\Components;
@@ -31,8 +31,8 @@ use JapaneseDate\Elements\LunarDate;
  * Class LunarCalendar
  *
  * @category    DateTime
- * @package    JapaneseDate
- * @subpackage Component
+ * @package     JapaneseDate
+ * @subpackage  Component
  * @author      Suzunone<suzunone.eleven@gmail.com>
  * @version     GIT: $Id$
  * @link        https://github.com/suzunone/JapaneseDate
@@ -41,9 +41,12 @@ use JapaneseDate\Elements\LunarDate;
  */
 class LunarCalendar
 {
+    use OneTimeCacheTrait;
+
     /**
      * 逐次近似計算収束判定値
      *
+     * @deprecated
      * @var float
      */
     public const CONVERGE = 0.00005;
@@ -51,6 +54,7 @@ class LunarCalendar
     /**
      * 2000/1/2 のユリウス日
      *
+     * @deprecated
      * @var float
      */
     public const BASE_JD_2000 = 2451546.0;
@@ -58,6 +62,7 @@ class LunarCalendar
     /**
      * 時差  (12-9)/24
      *
+     * @deprecated
      * @var float
      */
     public const JD_2000_TIME_DIFFERENCE = 0.125;
@@ -65,9 +70,32 @@ class LunarCalendar
     /**
      * 大気差
      *
+     * @deprecated
      * @var float
      */
     public const ASTRO_REFRACT = 0.585556;
+
+    public const DAY_TO_HOUR_FLOAT = 24.0;
+    public const DAY_TO_MINUTE_FLOAT = 1440.0;
+    public const DAY_TO_SECOND_FLOAT = 86400.0;
+
+    /**
+     * 9/24
+     */
+    public const JD_TIME_ZONE_ADJUSTMENT = 0.375;
+
+    /**
+     *  1.0 / 86400.0;
+     */
+    public const DAYS_PER_SEC = 0.00001157407;
+
+    /**
+     * $base_time = DateTime::factory(
+     * '2000-01-02 12:00:00',
+     * new DateTimeZone('UTC')
+     * )->timestamp;
+     */
+    public const BASE_TIME = 946814400;
 
     /**
      * 朔の一覧
@@ -93,7 +121,7 @@ class LunarCalendar
     /**
      * @return static
      */
-    public static function factory()
+    public static function factory(): LunarCalendar
     {
         static $instance;
 
@@ -105,14 +133,13 @@ class LunarCalendar
     }
 
     /**
-     * @param \JapaneseDate\DateTime $DateTime
+     * @param \JapaneseDate\DateTime|\JapaneseDate\Traits\Lunar $DateTime
      * @return \JapaneseDate\Elements\LunarDate
-     * @throws \ErrorException
-     * @throws \Exception
+     * @throws \JapaneseDate\Exceptions\ErrorException
      */
     public function getLunarDate(DateTime $DateTime): LunarDate
     {
-        $element = new LunarDate(
+        return new LunarDate(
             $this->getLunarCalendarArray(
                 $DateTime->year,
                 $DateTime->month,
@@ -122,45 +149,191 @@ class LunarCalendar
                 $DateTime->year,
                 $DateTime->month,
                 $DateTime->day
-
             )
         );
-
-        return $element;
     }
 
     /**
-     * 角度の正規化（$angle を 0≦$angle＜360 にする）
+     * 旧暦を求める
      *
-     * @param    float $angle 角度
-     * @return    float 角度（正規化後）
+     * @param int $year  西暦年
+     * @param int $month 月
+     * @param int $day   日
+     * @return    array [旧暦年, 平月／閏月 flag .... 平月:0 閏月:1, 旧暦月, 旧暦日]
      */
-    private function normalizeAngle(float $angle)
+    private function getLunarCalendarArray($year, $month, $day): array
     {
-        if ($angle < 0) {
-            // マイナスなら、逆から正規化
-            $angle1 = $angle * -1;
-            $angle1 -= 360 * floor($angle1 / 360);
+        $lunar_calendar = $this->getLunarCalendar($year);
 
-            return 360 - $angle1;
-        } elseif ($angle <= 360) {
-            // 基準値以内なら何もしない
-            return $angle;
+        $julian_date = $this->gregorian2JD($year, $month, $day, 0, 0, 0);
+
+        $items = [];
+        foreach ($lunar_calendar as $index => $lunar) {
+            if (!isset($lunar_calendar[$index + 1])) {
+                // @codeCoverageIgnoreStart
+                continue;
+                // @codeCoverageIgnoreEnd
+            }
+            if ($julian_date >= $lunar['jd'] && $julian_date < $lunar_calendar[$index + 1]['jd']) {
+                $day = $julian_date - $lunar['jd'] + 1.0;
+                $items = [
+                    LunarDate::YEAR_KEY               => $lunar['lunar_year'],
+                    LunarDate::IS_LEAP_MONTH_FLAG_KEY => $lunar['lunar_month_leap'],
+                    LunarDate::MONTH_KEY              => $lunar['lunar_month'],
+                    LunarDate::DAY_KEY                => $day,
+                ];
+                break;
+            }
         }
 
-        // 基準以上なら、正規化
-        return $angle - 360 * floor($angle / 360);
+        return $items;
+    }
+
+    /**
+     * @param int year
+     * @return array
+     */
+    private function getLunarCalendar(int $year): array
+    {
+        if (isset($this->lunar_calendar[$year])) {
+            return $this->lunar_calendar[$year];
+        }
+
+        $this->lunar_calendar[$year] = Cache::forever(
+            __METHOD__ . ':' . $year,
+            function () use ($year) {
+                return $this->makeLunarCalendar($year);
+            }
+        );
+
+        return $this->lunar_calendar[$year];
+    }
+
+    /**
+     * グレゴオリオ暦＝旧暦テーブル 作成
+     *
+     * @param int $year 西暦年
+     * @return array 朔のテーブル
+     * @throws \JapaneseDate\Exceptions\Exception
+     */
+    protected function makeLunarCalendar(int $year): array
+    {
+        // 朔の日を求める
+        $lunar_calendar = [];
+        $find_year = $year - 1;
+        $counter = 0;
+        $find_day = 10;
+        $find_month = 11;
+        while ($find_year <= $year || $find_month <= 2) {
+            $days_in_month = $this->getDaysInMonth($find_year, $find_month);
+            while ($find_day <= $days_in_month) {
+                $age1 = $this->moonAge($find_year, $find_month, $find_day, 0, 0, 0);
+                $age2 = $this->moonAge($find_year, $find_month, $find_day, 23, 59, 59);
+                if ($age2 <= $age1) {
+                    $lunar_calendar[$counter]['year'] = $find_year;
+                    $lunar_calendar[$counter]['month'] = $find_month;
+                    $lunar_calendar[$counter]['day'] = $find_day;
+                    $lunar_calendar[$counter]['age'] = $age1;
+                    $lunar_calendar[$counter]['jd'] = $this->gregorian2JD($find_year, $find_month, $find_day, 0, 0, 0);
+                    // $lunar_calendar[$counter]['gregorian'] = $this->jD2Gregorian($lunar_calendar[$counter]['jd']);
+                    $counter++;
+                    // 実行時間短縮のため20日ほどすすめる
+                    $find_day += 20;
+                }
+                $find_day++;
+            }
+            $find_month++;
+            $find_day -= $days_in_month;
+            $find_day = max($find_day, 1);
+
+            if ($find_month > 12) {
+                $find_year++;
+                $find_month = 1;
+            }
+        }
+
+        // 中気を求める
+        $sun_calendar = [];
+        $find_year = $year - 1;
+        $counter = 0;
+        $find_day = 1;
+        $find_month = 11;
+        while ($find_year <= $year || $find_month <= 2) {
+            $days_in_month = $this->getDaysInMonth($find_year, $find_month);
+            while ($find_day <= $days_in_month) {
+                $longitude_sun_1 = $this->longitudeSun($find_year, $find_month, $find_day, 0, 0, 0);
+                $longitude_sun_2 = $this->longitudeSun($find_year, $find_month, $find_day, 24, 0, 0);
+                $tmp_ls_1 = floor($longitude_sun_1 / 15.0);
+                $tml_ls_2 = floor($longitude_sun_2 / 15.0);
+
+                if ($tml_ls_2 === $tmp_ls_1 || ($tml_ls_2 % 2 !== 0)) {
+                    $find_day++;
+                    continue;
+                }
+
+                $sun_calendar[$counter]['jd'] = $this->gregorian2JD($find_year, $find_month, $find_day, 0, 0, 0);
+                $lunar_month = floor($tml_ls_2 / 2) + 2;
+                if ($lunar_month > 12) {
+                    $lunar_month -= 12;
+                }
+                $sun_calendar[$counter]['lunar_month'] = $lunar_month;
+                $sun_calendar[$counter]['year'] = $find_year;
+                $counter++;
+
+                // 実行時間短縮のため、20日ほどすすめる
+                $find_day += 20;
+
+                $find_day++;
+            }
+
+            $find_month++;
+            $find_day -= $days_in_month;
+            $find_day = max($find_day, 1);
+            if ($find_month > 12) {
+                $find_year++;
+                $find_month = 1;
+            }
+        }
+
+        // 旧暦月と、閏月のフラグを追加
+        $lunar_calendar_count = count($lunar_calendar);
+        for ($iterator_1 = 0; $iterator_1 < $lunar_calendar_count - 1; $iterator_1++) {
+            foreach ($sun_calendar as $sun_item) {
+                if (!($lunar_calendar[$iterator_1]['jd'] <= $sun_item['jd'] && $lunar_calendar[$iterator_1 + 1]['jd'] > $sun_item['jd'])) {
+                    continue;
+                }
+                $lunar_calendar[$iterator_1]['lunar_month'] = $sun_item['lunar_month'];
+                $lunar_calendar[$iterator_1]['lunar_month_leap'] = false;
+
+                $lunar_calendar[$iterator_1 + 1]['lunar_month'] = $sun_item['lunar_month'];
+                $lunar_calendar[$iterator_1 + 1]['lunar_month_leap'] = true;
+
+                $lunar_calendar[$iterator_1]['lunar_year'] = $year;
+                $lunar_calendar[$iterator_1 + 1]['lunar_year'] = $year;
+
+                if ($iterator_1 < $lunar_calendar[$iterator_1]['lunar_month']) {
+                    $lunar_calendar[$iterator_1]['lunar_year']--;
+                    $lunar_calendar[$iterator_1 + 1]['lunar_year']--;
+                }
+
+                break;
+            }
+        }
+
+        array_pop($lunar_calendar);
+
+        return $lunar_calendar;
     }
 
     /**
      * 指定した月の日数を返す
      *
-     * @param    int $year 西暦年
-     * @param    int $month 月
+     * @param int $year  西暦年
+     * @param int $month 月
      * @return    int 日数／FALSE:引数の異常
-     * @throws \Exception
+     * @throws \JapaneseDate\Exceptions\Exception
      */
-    private function getDaysInMonth($year, $month)
+    private function getDaysInMonth($year, $month): int
     {
         return DateTime::factory(
             mktime(0, 0, 0, $month, 1, $year)
@@ -168,20 +341,104 @@ class LunarCalendar
     }
 
     /**
-     * グレゴリオ暦→ユリウス日 変換
+     * 月齢を求める（視黄経）
      *
-     * @param    int $year   グレゴリオ暦による年月日
+     * @param int $year   , $month, $day  グレゴリオ暦による年月日
      * @param $month
      * @param $day
-     * @param    float $hour , $min, $sec 時分秒（世界時）
+     * @param float $hour , $min, $sec 時分秒（世界時）
+     * @param $min
+     * @param $sec
+     * @return    float 月齢（視黄経）
+     */
+    public function moonAge($year, $month, $day, $hour, $min, $sec): float
+    {
+        $julian_date_0 = $this->gregorian2JD($year, $month, $day, $hour, $min, $sec) + self::JD_TIME_ZONE_ADJUSTMENT;
+
+        $tm1 = floor($julian_date_0);
+        $tm2 = $julian_date_0 - $tm1;
+
+        // 朔の時刻を計算
+        // 誤差が±1 sec以内になったら打ち切る
+        $counter = 1;
+        $delta_t1 = 0;
+        $delta_t2 = 1;
+
+        while (($delta_t1 + abs($delta_t2)) > self::DAYS_PER_SEC) {
+            $julian_date = $tm1 + $tm2;
+            [$year, $month, $day, $hour, $min, $sec] = $this->jD2Gregorian($julian_date);
+            $longitude_sun = $this->longitudeSun($year, $month, $day, $hour, $min, $sec);
+            $longitude_moon = $this->longitudeMoon($year, $month, $day, $hour, $min, $sec);
+
+            // ΔΛ ＝Λ moon－Λ sun
+            $delta_rm = $longitude_moon - $longitude_sun;
+
+            if ($counter === 1 && $delta_rm < 0) {
+                // ループ1回目 で $delta_rm < 0 の場合には引き込み範囲に入るよう補正
+                $delta_rm = $this->normalizeAngle($delta_rm);
+            } elseif ($longitude_sun >= 0 && $longitude_sun <= 20 && $longitude_moon >= 300) {
+                // 春分の近くで朔がある場合 ( 0 ≦Λ sun≦ 20 ) で、月の黄経Λ moon≧300 の
+                // 場合には、ΔΛ ＝ 360 － ΔΛ  と計算して補正
+                $delta_rm = $this->normalizeAngle($delta_rm);
+                $delta_rm = 360 - $delta_rm;
+            } elseif (abs($delta_rm) > 40.0) {
+                // ΔΛ の引き込み範囲 ( ±40°) を逸脱した場合には補正
+                $delta_rm = $this->normalizeAngle($delta_rm);
+            }
+
+            // 時刻引数の補正値 Δt
+            $delta_t2 = $delta_rm * 29.530589 / 360.0;
+            $delta_t1 = floor($delta_t2);
+            $delta_t2 -= $delta_t1;
+
+            // 時刻引数の補正
+            $tm1 -= $delta_t1;
+            $tm2 -= $delta_t2;
+            if ($tm2 < 0) {
+                $tm2++;
+                $tm1--;
+            }
+
+            // @codeCoverageIgnoreStart
+            if ($counter === 15 && abs($delta_t1 + $delta_t2) > self::DAYS_PER_SEC) {
+                // ループ回数が15回になったら、初期値を-26
+                $tm1 = floor($julian_date_0 - 26);
+                $tm2 = 0;
+            } elseif ($counter > 30 && abs($delta_t1 + $delta_t2) > self::DAYS_PER_SEC) {
+                // 初期値を補正したにも関わらず振動を続ける場合は、
+                // 初期値を答えとして返して強制的にループを抜け出して異常終了
+                $tm1 = $julian_date_0;
+                $tm2 = 0;
+                break;
+            }
+            // @codeCoverageIgnoreEnd
+            $counter++;
+        }
+
+        // 時刻引数を合成
+        $res = $julian_date_0 - ($tm2 + $tm1);
+        if ($res > 30) {
+            $res -= 30;
+        }
+
+        return $res;
+    }
+
+    /**
+     * グレゴリオ暦→ユリウス日 変換
+     *
+     * @param int $year   グレゴリオ暦による年月日
+     * @param $month
+     * @param $day
+     * @param float $hour , $min, $sec 時分秒（世界時）
      * @param $min
      * @param $sec
      * @return    float ユリウス日
      */
-    private function gregorian2JD($year, $month, $day, $hour, $min, $sec)
+    private function gregorian2JD($year, $month, $day, $hour, $min, $sec): float
     {
         $julian_date = gregoriantojd($month, $day, $year);
-        $julian_date += $hour / 24.0 + $min / (24.0 * 60.0) + $sec / (24.0 * 60.0 * 60.0);
+        $julian_date += $hour / self::DAY_TO_HOUR_FLOAT + $min / self::DAY_TO_MINUTE_FLOAT + $sec / self::DAY_TO_SECOND_FLOAT;
 
         return $julian_date;
     }
@@ -189,60 +446,75 @@ class LunarCalendar
     /**
      * ユリウス日⇒グレゴリオ暦　変換
      *
-     * @param    float $jd ユリウス日
+     * @param float $jd ユリウス日
      * @return    array($year, $month, $day, $hour, $min, $sec)  西暦年月日，世界時
      */
-    private function jD2Gregorian($jd)
+    private function jD2Gregorian($jd): array
     {
         $cal = cal_from_jd($jd, CAL_GREGORIAN);
 
         $time = 86400 * ($jd - floor($jd));
         $hour = floor($time / 3600.0);
-        $min  = floor(($time - 3600 * $hour) / 60.0);
-        $sec  = floor($time - 3600 * $hour - 60 * $min);
+        $min = floor(($time - 3600 * $hour) / 60.0);
+        $sec = floor($time - 3600 * $hour - 60 * $min);
 
         return [$cal['year'], $cal['month'], $cal['day'], $hour, $min, $sec];
     }
 
     /**
+     * 太陽の黄経計算（視黄経）
+     *
+     * @param int $year
+     * @param int $month
+     * @param float $day
+     * @param float $hour
+     * @param float $min
+     * @param float $sec
+     * @return    float 太陽の黄経（視黄経）
+     */
+    private function longitudeSun($year, $month, $day, $hour, $min, $sec): float
+    {
+        $key = __METHOD__ . '-' . $year . '-' . $month . '-' . $day . '-' . $hour . '-' . $min . '-' . $sec;
+
+        return $this->oneTimeCache($key, function () use ($year, $month, $day, $hour, $min, $sec) {
+            $julian_year = $this->gregorian2JY($year, $month, $day, $hour, $min, $sec);
+
+            return $this->jy2LongitudeSun($julian_year);
+        });
+    }
+
+    /**
      * 2000からの経過年数
      *
-     * @param    int $year グレゴリオ暦による年月日
+     * @param int $year グレゴリオ暦による年月日
      * @param int $month
      * @param int $day
-     * @param    float $hour
+     * @param float $hour
      * @param float $min
      * @param int $sec
      * @return float
-     * @throws \Exception
+     * @throws \JapaneseDate\Exceptions\Exception
      */
-    private function gregorian2JY($year, $month, $day, $hour, $min, $sec)
+    private function gregorian2JY($year, $month, $day, $hour, $min, $sec): float
     {
-        /*
-        $base_time = DateTime::factory(
-            '2000-01-02 12:00:00',
-            new DateTimeZone('UTC')
-        )->timestamp;
-        */
-        $base_time = 946814400;
-
         $timestamp = DateTime::factory(
             implode('-', [$year, $month, $day]) . ' ' . implode(':', [$hour, $min, $sec]),
             new DateTimeZone('UTC')
         )->timestamp;
 
-        $diff_time = $timestamp - $base_time;
+        $diff_time = $timestamp - self::BASE_TIME;
 
-        return ($diff_time + 32400.0) / 86400.25 / 365.25;
+        // return ($diff_time + 32400.0) / 86400.25 / 365.25;
+        return ($diff_time + 32400.0) / 31557691.3125;
     }
 
     /**
      * 太陽の黄経計算（視黄経）
      *
-     * @param    float $julian_year 2000.0からの経過年数
+     * @param float $julian_year 2000.0からの経過年数
      * @return    float 太陽の黄経（視黄経）
      */
-    private function jy2LongitudeSun($julian_year)
+    private function jy2LongitudeSun($julian_year): float
     {
         $res = 0.0003 * sin(deg2rad($this->normalizeAngle(329.7 + 44.43 * $julian_year)));
         $res += 0.0003 * sin(deg2rad($this->normalizeAngle(352.5 + 1079.97 * $julian_year)));
@@ -269,90 +541,60 @@ class LunarCalendar
     }
 
     /**
-     * 太陽の黄経計算（視黄経）
+     * 角度の正規化（$angle を 0≦$angle＜360 にする）
      *
-     * @param int $year
-     * @param int $month
-     * @param float $day
-     * @param float $hour
-     * @param float $min
-     * @param float $sec
-     * @return    float 太陽の黄経（視黄経）
-     * @throws \Exception
+     * @param float $angle 角度
+     * @return    float 角度（正規化後）
      */
-    private function longitudeSun($year, $month, $day, $hour, $min, $sec)
+    private function normalizeAngle(float $angle): float
     {
-        $cache = &$this->cache['longitudeSun'];
+        if ($angle < 0) {
+            // マイナスなら、逆から正規化
+            $angle1 = $angle * -1;
+            $angle1 -= 360 * floor($angle1 / 360);
 
-        $key = $year . '-' . $month . '-' . $day . '-' . $hour . '-' . $min . '-' . $sec;
-        if (isset($cache[$key])) {
-            return $cache[$key];
+            return 360 - $angle1;
         }
-        $julian_year = $this->gregorian2JY($year, $month, $day, $hour, $min, $sec);
+        if ($angle <= 360) {
+            // 基準値以内なら何もしない
+            return $angle;
+        }
 
-        return $cache[$key] = $this->jy2LongitudeSun($julian_year);
+        // 基準以上なら、正規化
+        return $angle - 360 * floor($angle / 360);
     }
 
     /**
      * 月の黄経計算（視黄経）
      *
-     * @param int $year グレゴリオ暦
+     * @param int $year   グレゴリオ暦
      * @param int $month
      * @param int $day
      * @param float $hour 時
-     * @param float $min 分
-     * @param float $sec 秒
+     * @param float $min  分
+     * @param float $sec  秒
      * @return    float 月の黄経（視黄経）
-     * @throws \Exception
      */
-    private function longitudeMoon($year, $month, $day, $hour, $min, $sec)
+    private function longitudeMoon($year, $month, $day, $hour, $min, $sec): float
     {
-        $cache = &$this->cache['longitudeMoon'];
+        $key = __METHOD__ . '-' . $year . '-' . $month . '-' . $day . '-' . $hour . '-' . $min . '-' . $sec;
 
-        $key = $year . '-' . $month . '-' . $day . '-' . $hour . '-' . $min . '-' . $sec;
-        if (isset($cache[$key])) {
-            return $cache[$key];
-        }
-        $julian_year = $this->gregorian2JY($year, $month, $day, $hour, $min, $sec);
+        return $this->oneTimeCache($key, function () use ($year, $month, $day, $hour, $min, $sec) {
+            $julian_year = $this->gregorian2JY($year, $month, $day, $hour, $min, $sec);
 
-        return $cache[$key] = $this->jY2LongitudeMoon($julian_year);
-    }
-
-    /**
-     * その日が二十四節気かどうか
-     *
-     * @param    int $year , $month, $day  グレゴリオ暦による年月日
-     * @param $month
-     * @param $day
-     * @return    int|bool
-     * @throws \Exception
-     */
-    public function findSolarTerm($year, $month, $day)
-    {
-        /**
-         * @var array $solar_term
-         */
-        $solar_term = JapaneseDate::SOLAR_TERM;
-
-        // 太陽黄経
-        $longitude_sun_1 = $this->longitudeSun($year, $month, $day, 0, 0, 0);
-        $longitude_sun_2 = $this->longitudeSun($year, $month, $day, 24, 0, 0);
-
-        $tmp_1 = (int) floor($longitude_sun_1 / 15);
-        $tmp_2 = (int) floor($longitude_sun_2 / 15);
-
-        return ($tmp_1 !== $tmp_2 && isset($solar_term[$tmp_2])) ? $tmp_2 : false;
+            return $this->jY2LongitudeMoon($julian_year);
+        });
     }
 
     /**
      * 月の黄経計算（視黄経）
      *
-     * @param    float $julian_year 2000.0からの経過年数
+     * @param float $julian_year 2000.0からの経過年数
      * @return    float 月の黄経（視黄経）
      */
-    private function jY2LongitudeMoon($julian_year)
+    private function jY2LongitudeMoon($julian_year): float
     {
-        $tmp     = 0.0006 * sin(deg2rad($this->normalizeAngle(54.0 + 19.3 * $julian_year)));
+        $tmp = 0.0006 * sin(deg2rad($this->normalizeAngle(54.0 + 19.3 * $julian_year)));
         $tmp += 0.0006 * sin(deg2rad($this->normalizeAngle(71.0 + 0.2 * $julian_year)));
         $tmp += 0.0020 * sin(deg2rad($this->normalizeAngle(55.0 + 19.34 * $julian_year)));
         $tmp += 0.0040 * sin(deg2rad($this->normalizeAngle(119.5 + 1.33 * $julian_year)));
@@ -424,257 +666,27 @@ class LunarCalendar
     }
 
     /**
-     * 月齢を求める（視黄経）
+     * その日が二十四節気かどうか
      *
-     * @param    int $year , $month, $day  グレゴリオ暦による年月日
+     * @param int $year , $month, $day  グレゴリオ暦による年月日
      * @param $month
      * @param $day
-     * @param    float $hour , $min, $sec 時分秒（世界時）
-     * @param $min
-     * @param $sec
-     * @return    float 月齢（視黄経）
-     * @throws \Exception
+     * @return    int|bool
      */
-    public function moonAge($year, $month, $day, $hour, $min, $sec)
+    public function findSolarTerm($year, $month, $day)
     {
-        $julian_date_0 = $this->gregorian2JD($year, $month, $day, $hour, $min, $sec) + (9 / 24);
+        /**
+         * @var array $solar_term
+         */
+        $solar_term = JapaneseDate::SOLAR_TERM;
 
-        $tm1 = floor($julian_date_0);
-        $tm2 = $julian_date_0 - $tm1;
+        // 太陽黄経
+        $longitude_sun_1 = $this->longitudeSun($year, $month, $day, 0, 0, 0);
+        $longitude_sun_2 = $this->longitudeSun($year, $month, $day, 24, 0, 0);
 
-        // 朔の時刻を計算
-        // 誤差が±1 sec以内になったら打ち切る
-        $counter  = 1;
-        $delta_t1 = 0;
-        $delta_t2 = 1;
+        $tmp_1 = (int) floor($longitude_sun_1 / 15);
+        $tmp_2 = (int) floor($longitude_sun_2 / 15);
 
-        // $days_par_1_sec = 1.0 / 86400.0;
-        $days_par_1_sec = 0.00001157407;
-        while (($delta_t1 + abs($delta_t2)) > $days_par_1_sec) {
-            $julian_date                             = $tm1 + $tm2;
-            [$year, $month, $day, $hour, $min, $sec] = $this->jD2Gregorian($julian_date);
-            $longitude_sun                           = $this->longitudeSun($year, $month, $day, $hour, $min, $sec);
-            $longitude_moon                          = $this->longitudeMoon($year, $month, $day, $hour, $min, $sec);
-
-            // ΔΛ ＝Λ moon－Λ sun
-            $delta_rm = $longitude_moon - $longitude_sun;
-
-            if ($counter === 1 && $delta_rm < 0) {
-                // ループ1回目 で $delta_rm < 0 の場合には引き込み範囲に入るよう補正
-                $delta_rm = $this->normalizeAngle($delta_rm);
-            } elseif ($longitude_sun >= 0 && $longitude_sun <= 20 && $longitude_moon >= 300) {
-                // 春分の近くで朔がある場合 ( 0 ≦Λ sun≦ 20 ) で、月の黄経Λ moon≧300 の
-                // 場合には、ΔΛ ＝ 360 － ΔΛ  と計算して補正
-                $delta_rm = $this->normalizeAngle($delta_rm);
-                $delta_rm = 360 - $delta_rm;
-            } elseif (abs($delta_rm) > 40.0) {
-                // ΔΛ の引き込み範囲 ( ±40°) を逸脱した場合には補正
-                $delta_rm = $this->normalizeAngle($delta_rm);
-            }
-
-            // 時刻引数の補正値 Δt
-            $delta_t1 = floor($delta_rm * 29.530589 / 360.0);
-            $delta_t2 = $delta_rm * 29.530589 / 360.0;
-            $delta_t2 -= $delta_t1;
-
-            // 時刻引数の補正
-            $tm1 -= $delta_t1;
-            $tm2 -= $delta_t2;
-            if ($tm2 < 0) {
-                $tm2++;
-                $tm1--;
-            }
-
-            // @codeCoverageIgnoreStart
-            if ($counter === 15 && abs($delta_t1 + $delta_t2) > $days_par_1_sec) {
-                // ループ回数が15回になったら、初期値を-26
-                $tm1 = floor($julian_date_0 - 26);
-                $tm2 = 0;
-            } elseif ($counter > 30 && abs($delta_t1 + $delta_t2) > $days_par_1_sec) {
-                // 初期値を補正したにも関わらず振動を続ける場合は、
-                // 初期値を答えとして返して強制的にループを抜け出して異常終了
-                $tm1 = $julian_date_0;
-                $tm2 = 0;
-                break;
-            }
-            // @codeCoverageIgnoreEnd
-            $counter++;
-        }
-
-        // 時刻引数を合成
-        $res = $julian_date_0 - ($tm2 + $tm1);
-        if ($res > 30) {
-            $res -= 30;
-        }
-
-        return $res;
-    }
-
-    /**
-     * @param int year
-     * @return array
-     */
-    private function getLunarCalendar(int $year): array
-    {
-        if (isset($this->lunar_calendar[$year])) {
-            return $this->lunar_calendar[$year];
-        }
-
-        $this->lunar_calendar[$year] = Cache::forever(
-            __METHOD__ . ':' . $year,
-            function () use ($year) {
-                return $this->makeLunarCalendar($year);
-            }
-        );
-
-        return $this->lunar_calendar[$year];
-    }
-
-    /**
-     * グレゴオリオ暦＝旧暦テーブル 作成
-     *
-     * @param    int $year 西暦年
-     * @return array 朔のテーブル
-     * @throws \Exception
-     */
-    private function makeLunarCalendar(int $year): array
-    {
-        // 朔の日を求める
-        $lunar_calendar = [];
-        $find_year      = $year - 1;
-        $counter        = 0;
-        $find_day       = 10;
-        $find_month     = 11;
-        while ($find_year <= $year || $find_month <= 2) {
-            $days_in_month = $this->getDaysInMonth($find_year, $find_month);
-            while ($find_day <= $days_in_month) {
-                $age1 = $this->moonAge($find_year, $find_month, $find_day, 0, 0, 0);
-                $age2 = $this->moonAge($find_year, $find_month, $find_day, 23, 59, 59);
-                if ($age2 <= $age1) {
-                    $lunar_calendar[$counter]['year']  = $find_year;
-                    $lunar_calendar[$counter]['month'] = $find_month;
-                    $lunar_calendar[$counter]['day']   = $find_day;
-                    $lunar_calendar[$counter]['age']   = $age1;
-                    $lunar_calendar[$counter]['jd']    = $this->gregorian2JD($find_year, $find_month, $find_day, 0, 0, 0);
-                    // $lunar_calendar[$counter]['gregorian'] = $this->jD2Gregorian($lunar_calendar[$counter]['jd']);
-                    $counter++;
-                    // 実行時間短縮のため20日ほどすすめる
-                    $find_day += 20;
-                }
-                $find_day++;
-            }
-            $find_month++;
-            $find_day -= $days_in_month;
-            $find_day = max($find_day, 1);
-
-            if ($find_month > 12) {
-                $find_year++;
-                $find_month = 1;
-            }
-        }
-
-        // 中気を求める
-        $sun_calendar = [];
-        $find_year    = $year - 1;
-        $counter      = 0;
-        $find_day     = 1;
-        $find_month   = 11;
-        while ($find_year <= $year || $find_month <= 2) {
-            $days_in_month = $this->getDaysInMonth($find_year, $find_month);
-            while ($find_day <= $days_in_month) {
-                $longitude_sun_1 = $this->longitudeSun($find_year, $find_month, $find_day, 0, 0, 0);
-                $longitude_sun_2 = $this->longitudeSun($find_year, $find_month, $find_day, 24, 0, 0);
-                $tmp_ls_1        = floor($longitude_sun_1 / 15.0);
-                $tml_ls_2        = floor($longitude_sun_2 / 15.0);
-                if (($tml_ls_2 !== $tmp_ls_1) && ($tml_ls_2 % 2 === 0)) {
-                    $sun_calendar[$counter]['jd'] = $this->gregorian2JD($find_year, $find_month, $find_day, 0, 0, 0);
-                    $lunar_month                  = floor($tml_ls_2 / 2) + 2;
-                    if ($lunar_month > 12) {
-                        $lunar_month -= 12;
-                    }
-                    $sun_calendar[$counter]['lunar_month'] = $lunar_month;
-                    $sun_calendar[$counter]['year']        = $find_year;
-                    $counter++;
-
-                    // 実行時間短縮のため、20日ほどすすめる
-                    $find_day += 20;
-                }
-                $find_day++;
-            }
-
-            $find_month++;
-            $find_day -= $days_in_month;
-            $find_day = max($find_day, 1);
-            if ($find_month > 12) {
-                $find_year++;
-                $find_month = 1;
-            }
-        }
-
-        // 旧暦月と、閏月のフラグを追加
-        $lunar_calendar_count = count($lunar_calendar);
-        $sun_calendar_count   = count($sun_calendar);
-        for ($iterator_1 = 0; $iterator_1 < $lunar_calendar_count - 1; $iterator_1++) {
-            for ($iterator_2 = 0; $iterator_2 < $sun_calendar_count; $iterator_2++) {
-                if (($lunar_calendar[$iterator_1]['jd'] <= $sun_calendar[$iterator_2]['jd'])
-                    && ($lunar_calendar[$iterator_1 + 1]['jd'] > $sun_calendar[$iterator_2]['jd'])) {
-                    $lunar_calendar[$iterator_1]['lunar_month']      = $sun_calendar[$iterator_2]['lunar_month'];
-                    $lunar_calendar[$iterator_1]['lunar_month_leap'] = false;
-
-                    $lunar_calendar[$iterator_1 + 1]['lunar_month']      = $sun_calendar[$iterator_2]['lunar_month'];
-                    $lunar_calendar[$iterator_1 + 1]['lunar_month_leap'] = true;
-
-                    $lunar_calendar[$iterator_1]['lunar_year']     = $year;
-                    $lunar_calendar[$iterator_1 + 1]['lunar_year'] = $year;
-
-                    if ($iterator_1 < $lunar_calendar[$iterator_1]['lunar_month']) {
-                        $lunar_calendar[$iterator_1]['lunar_year']--;
-                        $lunar_calendar[$iterator_1 + 1]['lunar_year']--;
-                    }
-
-                    break;
-                }
-            }
-        }
-
-        array_pop($lunar_calendar);
-
-        return $lunar_calendar;
-    }
-
-    /**
-     * 旧暦を求める
-     *
-     * @param    int $year  西暦年
-     * @param    int $month 月
-     * @param    int $day   日
-     * @return    array [旧暦年, 平月／閏月 flag .... 平月:0 閏月:1, 旧暦月, 旧暦日]
-     */
-    private function getLunarCalendarArray($year, $month, $day)
-    {
-        $lunar_calendar = $this->getLunarCalendar($year);
-
-        $julian_date = $this->gregorian2JD($year, $month, $day, 0, 0, 0);
-
-        $items = [];
-        foreach ($lunar_calendar as $index => $lunar) {
-            if (!isset($lunar_calendar[$index + 1])) {
-                // @codeCoverageIgnoreStart
-                continue;
-                // @codeCoverageIgnoreEnd
-            }
-            if ($julian_date >= $lunar['jd'] && $julian_date < $lunar_calendar[$index + 1]['jd']) {
-                $day   = $julian_date - $lunar['jd'] + 1;
-                $items = [
-                    LunarDate::YEAR_KEY               => $lunar['lunar_year'],
-                    LunarDate::IS_LEAP_MONTH_FLAG_KEY => $lunar['lunar_month_leap'],
-                    LunarDate::MONTH_KEY              => $lunar['lunar_month'],
-                    LunarDate::DAY_KEY                => $day,
-                ];
-                break;
-            }
-        }
-
-        return $items;
+        return ($tmp_1 !== $tmp_2 && isset($solar_term[$tmp_2])) ? $tmp_2 : false;
     }
 }
