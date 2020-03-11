@@ -12,7 +12,8 @@
   "require": {
     "nesbot/carbon": "^1.26.3 || ^2.0",
     "ext-calendar": "*",
-    "ext-json": "*"
+    "ext-json": "*",
+    "ext-ctype": "*"
   },
   "require-dev": {
     "phpunit/phpunit": "^7.4.4",

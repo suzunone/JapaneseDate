@@ -29,7 +29,7 @@ $fixers = [
 
     'binary_operator_spaces' => [
         'align_double_arrow' => true,
-        'align_equals' => true,
+        'align_equals' => false,
     ],
 
     'no_leading_namespace_whitespace' => true,

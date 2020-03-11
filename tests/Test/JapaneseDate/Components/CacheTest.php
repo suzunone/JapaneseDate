@@ -1,4 +1,5 @@
-<?php
+<?php /** @noinspection PhpDocMissingThrowsInspection */
+/** @noinspection PhpUnhandledExceptionInspection */
 
 /**
  *
@@ -38,59 +39,50 @@ class CacheTest extends TestCase
     use InvokeTrait;
 
     /**
-     * @test
      * @covers              \JapaneseDate\Components\Cache
      * @runInSeparateProcess
      * @preserveGlobalState disabled
-     * @throws \ReflectionException
-     * @throws \ReflectionException
      */
     public function test_setMode()
     {
         $this->assertEquals(
             Cache::MODE_AUTO,
-                            $this->invokeGetProperty(Cache::class, 'mode')
+            $this->invokeGetProperty(Cache::class, 'mode')
         );
 
         Cache::setMode(Cache::MODE_APC);
         $this->assertEquals(
             Cache::MODE_APC,
-                            $this->invokeGetProperty(Cache::class, 'mode')
+            $this->invokeGetProperty(Cache::class, 'mode')
         );
     }
 
     /**
-     * @test
      * @covers              \JapaneseDate\Components\Cache
      * @runInSeparateProcess
      * @preserveGlobalState disabled
-     * @throws \ReflectionException
-     * @throws \ReflectionException
      */
     public function test_setCacheClosure()
     {
-        $closure = function () {
+        $closure = static function () {
         };
 
         Cache::setCacheClosure($closure);
         $this->assertEquals(
             Cache::MODE_ORIGINAL,
-                            $this->invokeGetProperty(Cache::class, 'mode')
+            $this->invokeGetProperty(Cache::class, 'mode')
         );
 
         $this->assertSame(
             $closure,
-                          $this->invokeGetProperty(Cache::class, 'cache_closure')
+            $this->invokeGetProperty(Cache::class, 'cache_closure')
         );
     }
 
     /**
-     * @test
      * @covers              \JapaneseDate\Components\Cache
      * @runInSeparateProcess
      * @preserveGlobalState disabled
-     * @throws \ReflectionException
-     * @throws \ReflectionException
      */
     public function test_setCacheFilePath()
     {
@@ -98,12 +90,12 @@ class CacheTest extends TestCase
         Cache::setCacheFilePath($file);
         $this->assertEquals(
             Cache::MODE_FILE,
-                            $this->invokeGetProperty(Cache::class, 'mode')
+            $this->invokeGetProperty(Cache::class, 'mode')
         );
 
         $this->assertSame(
             $file,
-                          $this->invokeGetProperty(Cache::class, 'cache_file_path')
+            $this->invokeGetProperty(Cache::class, 'cache_file_path')
         );
     }
 }

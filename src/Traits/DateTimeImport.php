@@ -1,10 +1,10 @@
 <?php
 /**
- * 汎用例外
+ * DateTimeImport.php
  *
  * @category    DateTime
  * @package     JapaneseDate
- * @subpackage  Exception
+ * @subpackage  Traits
  * @author      Suzunone <suzunone.eleven@gmail.com>
  * @copyright   Suzunone
  * @license     BSD-2
@@ -13,19 +13,30 @@
  * @since       Class available since Release 1.0.0
  */
 
-namespace JapaneseDate\Exceptions;
+namespace JapaneseDate\Traits;
 
 /**
- * Class Exception
+ * Trait DateTimeImport
  *
+ * @category    DateTime
  * @package     JapaneseDate
- * @subpackage  Exceptions
- * @author      Suzunone<suzunone.eleven@gmail.com>
- * @version     GIT: $Id$
+ * @subpackage  Traits
+ * @author      Suzunone <suzunone.eleven@gmail.com>
+ * @copyright   Suzunone
+ * @license     BSD-2
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
  * @since       Class available since Release 1.0.0
+ * @mixin \JapaneseDate\DateTime
  */
-class Exception extends \Exception
+trait DateTimeImport
 {
+    use Component;
+    use Factory;
+    use CacheSetting;
+    use Lunar;
+    use Modern;
+    use LocalizedFormat;
+    use Modifier;
+    use Getter;
 }

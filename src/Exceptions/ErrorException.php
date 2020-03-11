@@ -1,6 +1,6 @@
 <?php
 /**
- * 汎用例外
+ * エラー例外
  *
  * @category    DateTime
  * @package     JapaneseDate
@@ -26,6 +26,6 @@ namespace JapaneseDate\Exceptions;
  * @see         https://github.com/suzunone/JapaneseDate
  * @since       Class available since Release 1.0.0
  */
-class Exception extends \Exception
+class ErrorException extends \ErrorException
 {
 }
