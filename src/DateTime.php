@@ -17,8 +17,6 @@ namespace JapaneseDate;
  * @since       Class available since Release 1.0.0
  */
 use Carbon\Carbon;
-use DateTimeInterface;
-use DateTimeZone;
 use Exception;
 use JapaneseDate\Components\JapaneseDate;
 use JapaneseDate\Components\LunarCalendar;
@@ -367,14 +365,14 @@ class DateTime extends Carbon
      *
      * 日付/時刻 文字列の書式については {@link http://php.net/manual/ja/datetime.formats.php サポートする日付と時刻の書式} を参考にしてください。
      *
-     * @param string|DateTimeInterface|null $time     日付/時刻 文字列。DateTimeオブジェクト
-     * @param DateTimeZone|string|null|int $time_zone DateTimeZone オブジェクトか、時差の時間、タイムゾーンテキスト(omit 予定)
+     * @param string|\DateTime|int|null $date_time      日付/時刻 文字列。DateTimeオブジェクト
+     * @param \DateTimeZone|null $time_zone DateTimeZone オブジェクトか、時差の時間、タイムゾーンテキスト(omit 予定)
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
-    public function __construct($time = null, $time_zone = null)
+    public function __construct($date_time = null, $time_zone = null)
     {
         try {
-            parent::__construct($time, $time_zone);
+            parent::__construct($date_time, $time_zone);
         } catch (Exception $exception) {
             throw new NativeDateTimeException('Throwing native DateTime class construct exception.', $exception->getCode(), $exception);
         }

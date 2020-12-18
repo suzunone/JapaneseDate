@@ -157,7 +157,7 @@ trait Modern
     /**
      * 和暦を返す
      *
-     * @param null|int $era_key 元号キー
+     * @param null $era_key 元号キー
      * @return int
      * @throws \JapaneseDate\Exceptions\Exception
      */

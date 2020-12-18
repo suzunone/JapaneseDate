@@ -31,6 +31,7 @@ use JapaneseDate\Components\Cache;
  * @see         https://github.com/suzunone/JapaneseDate
  * @since       Class available since Release 1.0.0
  * @mixin \JapaneseDate\DateTime
+ * @mixin \JapaneseDate\DateTimeImmutable
  */
 trait CacheSetting
 {
@@ -86,16 +87,13 @@ trait CacheSetting
 
     /**
      * @param string $date_text
-     * @return $this|static|\JapaneseDate\DateTime
+     * @return static|\JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable|\DateTimeInterface
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     protected function innerDateTime(string $date_text)
     {
         static $cache;
-        if (isset($cache[$date_text])) {
-            return $cache[$date_text];
-        }
 
-        return $cache[$date_text] = new static($date_text, $this->getTimezone());
+        return $cache[$date_text] ?? ($cache[$date_text] = new static($date_text, $this->getTimezone()));
     }
 }

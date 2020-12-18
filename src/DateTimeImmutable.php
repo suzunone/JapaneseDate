@@ -17,8 +17,6 @@ namespace JapaneseDate;
  * @since       Class available since Release 1.0.0
  */
 use Carbon\CarbonImmutable;
-use DateTimeInterface;
-use DateTimeZone;
 use Exception;
 use JapaneseDate\Components\JapaneseDate;
 use JapaneseDate\Components\LunarCalendar;
@@ -87,8 +85,8 @@ class DateTimeImmutable extends CarbonImmutable
      *
      * 日付/時刻 文字列の書式については {@link http://php.net/manual/ja/datetime.formats.php サポートする日付と時刻の書式} を参考にしてください。
      *
-     * @param string|DateTimeInterface|null $time     日付/時刻 文字列。DateTimeオブジェクト
-     * @param DateTimeZone|string|null|int $time_zone DateTimeZone オブジェクトか、時差の時間、タイムゾーンテキスト(omit 予定)
+     * @param null $time      日付/時刻 文字列。DateTimeオブジェクト
+     * @param null $time_zone DateTimeZone オブジェクトか、時差の時間、タイムゾーンテキスト(omit 予定)
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     public function __construct($time = null, $time_zone = null)

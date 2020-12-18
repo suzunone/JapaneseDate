@@ -90,8 +90,9 @@ class LunarDate
      * @param string $name
      * @return bool|string
      * @throws \JapaneseDate\Exceptions\ErrorException
+     * @noinspection PhpMissingParamTypeInspection
      */
-    public function __get(string $name)
+    public function __get($name)
     {
         switch ($name) {
             case 'year':

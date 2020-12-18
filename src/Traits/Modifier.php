@@ -15,8 +15,6 @@
 
 namespace JapaneseDate\Traits;
 
-use function Couchbase\defaultDecoder;
-
 /**
  * Trait Modifier
  *
@@ -61,7 +59,9 @@ trait Modifier
     {
         if ($this->six_weekday === $week_day) {
             return $this;
-        } elseif ($this->six_weekday < $week_day) {
+        }
+
+        if ($this->six_weekday < $week_day) {
             return $this->addDays($week_day - $this->six_weekday);
         }
 

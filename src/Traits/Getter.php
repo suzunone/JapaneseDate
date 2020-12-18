@@ -53,6 +53,7 @@ trait Getter
      * @return \DateTimeZone|int|string
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
+     * @noinspection PhpMissingParamTypeInspection
      */
     public function __get($name)
     {
