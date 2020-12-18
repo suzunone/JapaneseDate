@@ -157,7 +157,7 @@ class JapaneseDate
      * 指定月の祝日リストを取得する
      *
      * @access      public
-     * @param DateTime|\JapaneseDate\Traits\Modern $DateTime DateTime
+     * @param \JapaneseDate\DateTime $DateTime |\JapaneseDate\Traits\Modern $DateTime DateTime
      * @return      array
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
@@ -237,7 +237,7 @@ class JapaneseDate
     /**
      * 曜日を数値化して返します
      *
-     * @param string|null|int|\DateTime $time
+     * @param null $time
      * @param DateTimeZone|null $time_zone
      * @return int
      * @throws \JapaneseDate\Exceptions\Exception
@@ -255,9 +255,9 @@ class JapaneseDate
      * @param int $month  月
      * @param int $weekly 曜日
      * @param int $weeks  何週目か
-     * @param null|DateTimeZone $timezone
+     * @param null $timezone
      * @return      int
-     * @throws ErrorException
+     * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
      */
     public function getDayByWeekly(int $year, int $month, int $weekly, int $weeks = 1, $timezone = null): int
@@ -396,7 +396,7 @@ class JapaneseDate
      * 日を数値化して返します
      *
      * @access      protected
-     * @param string|null|int|\DateTime $time
+     * @param null $time
      * @param DateTimeZone|null $time_zone
      * @return      int
      * @throws \JapaneseDate\Exceptions\Exception
@@ -771,7 +771,7 @@ class JapaneseDate
      * @param int $key 休日キー
      * @return      string
      */
-    public function viewHoliday($key): string
+    public function viewHoliday(int $key): string
     {
         return $this->holiday_name[$key] ?? '';
     }
@@ -783,7 +783,7 @@ class JapaneseDate
      * @param int $key 曜日キー
      * @return      string
      */
-    public function viewWeekday($key): string
+    public function viewWeekday(int $key): string
     {
         if ($key >= count(self::WEEKDAY_NAME)) {
             $key -= count(self::WEEKDAY_NAME);
@@ -799,7 +799,7 @@ class JapaneseDate
      * @param int $key 月キー
      * @return      string
      */
-    public function viewMonth($key): string
+    public function viewMonth(int $key): string
     {
         return self::MONTH_NAME[$key];
     }
@@ -811,7 +811,7 @@ class JapaneseDate
      * @param int $key 六曜キー
      * @return      string
      */
-    public function viewSixWeekday($key): string
+    public function viewSixWeekday(int $key): string
     {
         return self::SIX_WEEKDAY[$key] ?? '';
     }
@@ -823,7 +823,7 @@ class JapaneseDate
      * @param int $key 干支キー
      * @return      string
      */
-    public function viewOrientalZodiac($key): string
+    public function viewOrientalZodiac(int $key): string
     {
         return self::ORIENTAL_ZODIAC[$key] ?? '';
     }
@@ -835,7 +835,7 @@ class JapaneseDate
      * @param int $key 年号キー
      * @return      string
      */
-    public function viewEraName($key): string
+    public function viewEraName(int $key): string
     {
         return $this->era_name[$key] ?? '';
     }

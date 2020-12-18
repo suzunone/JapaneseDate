@@ -25,8 +25,8 @@ JapaneseDate
 使用方法
 -----------------------------------------
 
- - [ドキュメント](https://github.com/suzunone/JapaneseDate/blob/v5.X/docs/Man.md)
- - [APIドキュメント](https://github.com/suzunone/JapaneseDate/blob/v5.X/docs/README.md)
+ - [ドキュメント](https://github.com/suzunone/JapaneseDate/blob/v6.X/docs/Man.md)
+ - [APIドキュメント](https://github.com/suzunone/JapaneseDate/blob/v6.X/docs/README.md)
 
 
 

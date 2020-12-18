@@ -63,7 +63,7 @@ trait LocalizedFormat
      * @since 1.1
      * @deprecated
      */
-    public function strftime($format): string
+    public function strftime(string $format): string
     {
         $res_str = $this->strftimeJa($format, '%');
 
@@ -80,7 +80,7 @@ trait LocalizedFormat
      * @throws \JapaneseDate\Exceptions\Exception
      * @since 1.1
      */
-    protected function strftimeJa($format, $delimiter = '%#'): string
+    protected function strftimeJa(string $format, $delimiter = '%#'): string
     {
         $res_str = '';
         $format_array = explode($delimiter, $format);
@@ -255,6 +255,7 @@ trait LocalizedFormat
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
      * @since 1.1
+     * @noinspection PhpMissingParamTypeInspection
      */
     public function formatLocalized($format)
     {
@@ -268,6 +269,7 @@ trait LocalizedFormat
      *
      * @param string $format フォーマット
      * @return string
+     * @noinspection PhpMissingParamTypeInspection
      */
     public function formatLocalizedSimple($format): string
     {

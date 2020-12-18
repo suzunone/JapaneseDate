@@ -78,8 +78,8 @@ class Calendar
      *
      * 日付/時刻 文字列の書式については {@link http://php.net/manual/ja/datetime.formats.php サポートする日付と時刻の書式} を参考にしてください。
      *
-     * @param string|\JapaneseDate\DateTime $time 日付配列取得の起点となる、日付オブジェクト OR Unix Time Stamp OR 日付/時刻 文字列
-     * @param \DateTimeZone|int|null $timezone    オブジェクトか、時差の時間、タイムゾーンテキスト
+     * @param string $time                 日付配列取得の起点となる、日付オブジェクト OR Unix Time Stamp OR 日付/時刻 文字列
+     * @param \DateTimeZone|null $timezone オブジェクトか、時差の時間、タイムゾーンテキスト
      * @throws \JapaneseDate\Exceptions\Exception
      */
     public function __construct($time = 'now', DateTimeZone $timezone = null)
@@ -94,7 +94,7 @@ class Calendar
      * @access      protected
      * @param string|int|DateTime $JDT
      * @param \DateTimeZone|null $time_zone
-     * @return      \JapaneseDate\DateTime|\Carbon\Carbon|\DateTime|DateTimeInterface
+     * @return \JapaneseDate\DateTime
      * @throws \JapaneseDate\Exceptions\Exception
      */
     protected function createDateTime($JDT, DateTimeZone $time_zone = null): DateTime
@@ -109,7 +109,7 @@ class Calendar
      * @param int $val スキップする曜日(0:日曜-6:土曜)
      * @return \JapaneseDate\Calendar
      */
-    public function addBypassWeekDay($val): Calendar
+    public function addBypassWeekDay(int $val): Calendar
     {
         $this->bypass_week_day_arr[$val] = true;
 
@@ -146,7 +146,7 @@ class Calendar
      * @param int $val スキップする曜日(0:日曜-6:土曜)
      * @return \JapaneseDate\Calendar
      */
-    public function removeBypassWeekDay($val): Calendar
+    public function removeBypassWeekDay(int $val): Calendar
     {
         if (isset($this->bypass_week_day_arr[$val])) {
             unset($this->bypass_week_day_arr[$val]);

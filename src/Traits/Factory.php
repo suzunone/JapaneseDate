@@ -16,7 +16,6 @@
 namespace JapaneseDate\Traits;
 
 use DateTimeInterface;
-use DateTimeZone;
 
 /**
  * Trait Factory
@@ -39,10 +38,10 @@ trait Factory
      *
      * 日付/時刻 文字列の書式については {@link http://php.net/manual/ja/datetime.formats.php サポートする日付と時刻の書式} を参考にしてください。
      *
-     * @param string|int|DateTimeInterface|null $date_time 日付オブジェクト OR Unix Time Stamp OR 日付/時刻 文字列
-     * @param DateTimeZone|null|string $time_zone          オブジェクトか、時差の時間、タイムゾーンテキスト(omit 予定)
-     * @return static|DateTimeInterface
-     * @throws \JapaneseDate\Exceptions\Exception
+     * @param string|\DateTime|int|null $date_time      日付/時刻 文字列。DateTimeオブジェクト
+     * @param \DateTimeZone|null $time_zone DateTimeZone オブジェクトか、時差の時間、タイムゾーンテキスト(omit 予定)
+     * @return \DateTimeInterface|\JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     public static function factory($date_time = null, $time_zone = null): DateTimeInterface
     {

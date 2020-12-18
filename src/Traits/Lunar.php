@@ -38,6 +38,8 @@ trait Lunar
      * 月齢を求める
      *
      * @return float
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\Exception
      */
     public function getMoonAge()
     {
@@ -47,19 +49,15 @@ trait Lunar
     /**
      * 旧暦データ取得
      *
-     * @return      \JapaneseDate\Elements\LunarDate
+     * @return \JapaneseDate\Elements\LunarDate
      * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\Exception
      */
     protected function getLunarCalendar(): LunarDate
     {
         $mdy = $this->month . '-' . $this->day . '-' . $this->year;
-        if (!isset($this->lunar_calendar[$mdy])) {
-            $this->lunar_calendar[$mdy] = $this->LunarCalendar->getLunarDate(
-                $this
-            );
-        }
 
-        return $this->lunar_calendar[$mdy];
+        return $this->lunar_calendar[$mdy] ?? $this->lunar_calendar[$mdy] = $this->LunarCalendar->getLunarDate($this);
     }
 
     /**
@@ -67,6 +65,7 @@ trait Lunar
      *
      * @return      string
      * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\Exception
      */
     protected function viewSixWeekday(): string
     {
@@ -80,6 +79,7 @@ trait Lunar
      *
      * @return      int
      * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\Exception
      */
     protected function getSixWeekday(): int
     {
@@ -93,6 +93,7 @@ trait Lunar
      *
      * @return      string
      * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\Exception
      */
     protected function getLunarDay(): string
     {
@@ -104,6 +105,7 @@ trait Lunar
      *
      * @return      string
      * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\Exception
      */
     protected function getLunarMonth(): string
     {
@@ -115,6 +117,7 @@ trait Lunar
      *
      * @return      string
      * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\Exception
      */
     protected function viewLunarMonth(): string
     {
@@ -128,6 +131,7 @@ trait Lunar
      *
      * @return      bool
      * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\Exception
      */
     protected function isLeapMonth(): bool
     {
@@ -139,6 +143,7 @@ trait Lunar
      *
      * @return string
      * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\Exception
      */
     protected function getSolarTerm(): string
     {
@@ -156,6 +161,7 @@ trait Lunar
      *
      * @return bool|int
      * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\Exception
      */
     protected function getSolarTermKey()
     {
@@ -167,6 +173,7 @@ trait Lunar
      *
      * @return      boolean
      * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\Exception
      */
     protected function isSolarTerm(): bool
     {
@@ -180,6 +187,7 @@ trait Lunar
      *
      * @return      string
      * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\Exception
      */
     protected function getLunarYear(): string
     {
