@@ -538,6 +538,11 @@ class JapaneseDate
             $res[23] = DateTime::MARINE_DAY;
             // 2020以降はスポーツの日
             $res[24] = DateTime::SPORTS_DAY;
+        } elseif ($year === DateTime::SECOND_TIME_TOKYO_OLYMPIC_RESCHEDULE_YEAR) {
+            // 東京オリンピックのため海の日移動
+            $res[22] = DateTime::MARINE_DAY;
+            // 2020以降はスポーツの日
+            $res[23] = DateTime::SPORTS_DAY;
         } elseif ($year >= 2003) {
             $third_monday = $this->getDayByWeekly($year, 7, DateTime::MONDAY, 3, $timezone);
             $res[$third_monday] = DateTime::MARINE_DAY;
@@ -572,6 +577,9 @@ class JapaneseDate
         if ($year === DateTime::SECOND_TIME_TOKYO_OLYMPIC_YEAR) {
             // 東京オリンピックのため山の日
             $res[10] = DateTime::MOUNTAIN_DAY;
+        } elseif ($year === DateTime::SECOND_TIME_TOKYO_OLYMPIC_RESCHEDULE_YEAR) {
+            // 東京オリンピックのため山の日
+            $res[8] = DateTime::MOUNTAIN_DAY;
         } elseif ($year >= 2016) {
             $res[11] = DateTime::MOUNTAIN_DAY;
             // 振替休日確認
@@ -681,6 +689,11 @@ class JapaneseDate
         }
 
         if ($year === DateTime::SECOND_TIME_TOKYO_OLYMPIC_YEAR) {
+            // 東京オリンピックのため体育の日移動
+            return $res;
+        }
+
+        if ($year === DateTime::SECOND_TIME_TOKYO_OLYMPIC_RESCHEDULE_YEAR) {
             // 東京オリンピックのため体育の日移動
             return $res;
         }
