@@ -699,7 +699,7 @@ class JapaneseDate
         }
 
         // 体育の日・スポーツの日判定
-        if ($year >= 2022) {
+        if ($year >= DateTime::SECOND_TIME_TOKYO_OLYMPIC_RESCHEDULE_YEAR) {
             // 2020年以降はスポーツの日
             $second_monday = $this->getDayByWeekly($year, 10, DateTime::MONDAY, 2, $timezone);
             $res[$second_monday] = DateTime::SPORTS_DAY;
