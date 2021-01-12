@@ -33,11 +33,14 @@ namespace JapaneseDate\Components;
  */
 class Config
 {
-    protected static $lc_path = [
-        __DIR__ . '/../config/LC/',
-    ];
+    public const KEY_LUNAR_CALENDAR = 'lunarCalendar';
+    public const KEY_SOLAR_TERM = 'solarTerm';
+
+    protected static $lc_path = [];
 
     /**
+     * 配列で、パスを置き換えます
+     *
      * @param array $lc_path
      */
     public static function setLCPath(array $lc_path)
@@ -57,20 +60,51 @@ class Config
 
     /**
      * @param int $year
-     * @return array|mixed
+     * @return array
      */
-    public static function getLC(int $year)
+    public static function getLC(int $year): array
     {
+        $config = self::getConfig($year);
+        if (!count($config) || isset($config[self::KEY_LUNAR_CALENDAR])) {
+            return [];
+        }
+
+        $res = $config[self::KEY_LUNAR_CALENDAR];
+
+        foreach ($res as &$val) {
+            $val['jd'] = gregoriantojd($val['month'], $val['day'], $val['year']);
+        }
+
+        return $res;
+    }
+
+    /**
+     * @param int $year
+     * @return array
+     */
+    public static function getST(int $year): array
+    {
+        $config = self::getConfig($year);
+        if (!count($config) || isset($config[self::KEY_SOLAR_TERM])) {
+            return [];
+        }
+
+        return $config[self::KEY_SOLAR_TERM];
+    }
+
+    /**
+     * @param int $year
+     * @return array
+     */
+    public static function getConfig(int $year): array
+    {
+        $res = [];
         foreach (self::$lc_path as $lc_path) {
             $path = realpath($lc_path) . DIRECTORY_SEPARATOR . $year . '.php';
             $res = is_file($path) ? (include $path) : [];
             if (count($res)) {
                 break;
             }
-        }
-
-        foreach ($res as &$val) {
-            $val['jd'] = gregoriantojd($val['month'], $val['day'], $val['year']);
         }
 
         return $res;
