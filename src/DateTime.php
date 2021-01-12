@@ -257,6 +257,15 @@ class DateTime extends Carbon
     public const SECOND_TIME_TOKYO_OLYMPIC_YEAR = 2020;
 
     /**
+     * 二回目の東京オリンピックの年(リスケ)
+     *
+     * 特別祝日
+     *
+     * @var int
+     */
+    public const SECOND_TIME_TOKYO_OLYMPIC_RESCHEDULE_YEAR = 2021;
+
+    /**
      * 特定月定数 春分の日
      *
      * @var int
