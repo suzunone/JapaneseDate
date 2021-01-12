@@ -163,7 +163,7 @@ class LunarCalendar
      * @return    array [旧暦年, 平月／閏月 flag .... 平月:0 閏月:1, 旧暦月, 旧暦日]
      * @throws \JapaneseDate\Exceptions\Exception
      */
-    private function getLunarCalendarArray(int $year, int $month, int $day): array
+    protected function getLunarCalendarArray(int $year, int $month, int $day): array
     {
         $lunar_calendar = $this->getLunarCalendar($year);
 
@@ -196,7 +196,7 @@ class LunarCalendar
      * @return array
      * @throws \JapaneseDate\Exceptions\Exception
      */
-    private function getLunarCalendar(int $year): array
+    protected function getLunarCalendar(int $year): array
     {
         if (isset($this->lunar_calendar[$year])) {
             return $this->lunar_calendar[$year];
@@ -221,6 +221,11 @@ class LunarCalendar
      */
     protected function makeLunarCalendar(int $year): array
     {
+        $res = Config::getLC($year);
+        if (count($res)) {
+            return $res;
+        }
+
         // 朔の日を求める
         $lunar_calendar = [];
         $find_year = $year - 1;
@@ -336,7 +341,7 @@ class LunarCalendar
      * @return    int 日数／FALSE:引数の異常
      * @throws \JapaneseDate\Exceptions\Exception
      */
-    private function getDaysInMonth(int $year, int $month): int
+    protected function getDaysInMonth(int $year, int $month): int
     {
         return DateTime::factory(
             mktime(0, 0, 0, $month, 1, $year)
@@ -439,7 +444,7 @@ class LunarCalendar
      * @param float $sec
      * @return    float ユリウス日
      */
-    private function gregorian2JD(int $year, int $month, int $day, float $hour, float $min, float $sec): float
+    protected function gregorian2JD(int $year, int $month, int $day, float $hour, float $min, float $sec): float
     {
         $julian_date = gregoriantojd($month, $day, $year);
         $julian_date += $hour / self::DAY_TO_HOUR_FLOAT + $min / self::DAY_TO_MINUTE_FLOAT + $sec / self::DAY_TO_SECOND_FLOAT;
@@ -453,7 +458,7 @@ class LunarCalendar
      * @param float $jd ユリウス日
      * @return    array($year, $month, $day, $hour, $min, $sec)  西暦年月日，世界時
      */
-    private function jD2Gregorian(float $jd): array
+    protected function jD2Gregorian(float $jd): array
     {
         $cal = cal_from_jd($jd, CAL_GREGORIAN);
 
@@ -477,7 +482,7 @@ class LunarCalendar
      * @return    float 太陽の黄経（視黄経）
      * @throws \JapaneseDate\Exceptions\Exception
      */
-    private function longitudeSun(int $year, int $month, float $day, float $hour, float $min, float $sec): float
+    protected function longitudeSun(int $year, int $month, float $day, float $hour, float $min, float $sec): float
     {
         $key = __METHOD__ . '-' . $year . '-' . $month . '-' . $day . '-' . $hour . '-' . $min . '-' . $sec;
 
@@ -500,7 +505,7 @@ class LunarCalendar
      * @return float
      * @throws \JapaneseDate\Exceptions\Exception
      */
-    private function gregorian2JY(int $year, int $month, int $day, float $hour, float $min, int $sec): float
+    protected function gregorian2JY(int $year, int $month, int $day, float $hour, float $min, int $sec): float
     {
         $timestamp = DateTime::factory(
             implode('-', [$year, $month, $day]) . ' ' . implode(':', [$hour, $min, $sec]),
@@ -519,7 +524,7 @@ class LunarCalendar
      * @param float $julian_year 2000.0からの経過年数
      * @return    float 太陽の黄経（視黄経）
      */
-    private function jy2LongitudeSun(float $julian_year): float
+    protected function jy2LongitudeSun(float $julian_year): float
     {
         $res = 0.0003 * sin(deg2rad($this->normalizeAngle(329.7 + 44.43 * $julian_year)));
         $res += 0.0003 * sin(deg2rad($this->normalizeAngle(352.5 + 1079.97 * $julian_year)));
@@ -551,7 +556,7 @@ class LunarCalendar
      * @param float $angle 角度
      * @return    float 角度（正規化後）
      */
-    private function normalizeAngle(float $angle): float
+    protected function normalizeAngle(float $angle): float
     {
         if ($angle < 0) {
             // マイナスなら、逆から正規化
@@ -581,7 +586,7 @@ class LunarCalendar
      * @return    float 月の黄経（視黄経）
      * @throws \JapaneseDate\Exceptions\Exception
      */
-    private function longitudeMoon(int $year, int $month, int $day, float $hour, float $min, float $sec): float
+    protected function longitudeMoon(int $year, int $month, int $day, float $hour, float $min, float $sec): float
     {
         $key = __METHOD__ . '-' . $year . '-' . $month . '-' . $day . '-' . $hour . '-' . $min . '-' . $sec;
 
@@ -598,7 +603,7 @@ class LunarCalendar
      * @param float $julian_year 2000.0からの経過年数
      * @return    float 月の黄経（視黄経）
      */
-    private function jY2LongitudeMoon(float $julian_year): float
+    protected function jY2LongitudeMoon(float $julian_year): float
     {
         $tmp = 0.0006 * sin(deg2rad($this->normalizeAngle(54.0 + 19.3 * $julian_year)));
         $tmp += 0.0006 * sin(deg2rad($this->normalizeAngle(71.0 + 0.2 * $julian_year)));

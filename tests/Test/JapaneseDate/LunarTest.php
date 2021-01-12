@@ -136,4 +136,22 @@ class LunarTest extends TestCase
         $DateTime = new DateTime('2017-06-23');
         $this->assertFalse($DateTime->is_leap_month);
     }
+
+    /**
+     * @see https://github.com/suzunone/JapaneseDate/issues/30
+     */
+    public function test_issue30()
+    {
+        $dateTime = new DateTime('2020-12-13');
+
+        $this->assertEquals('2020', $dateTime->lunar_year);
+        $this->assertEquals('10', $dateTime->lunar_month);
+        $this->assertEquals('29', $dateTime->lunar_day);
+
+        $dateTime->addDays(1);
+
+        $this->assertEquals('2020', $dateTime->lunar_year);
+        $this->assertEquals('10', $dateTime->lunar_month);
+        $this->assertEquals('30', $dateTime->lunar_day);
+    }
 }
