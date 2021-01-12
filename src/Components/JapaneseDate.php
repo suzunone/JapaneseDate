@@ -107,11 +107,11 @@ class JapaneseDate
         $this->LunarCalendar = LunarCalendar::factory();
 
         $this->era_name = [
-            DateTime::ERA_MEIJI       => '明治',
-            DateTime::ERA_TAISHO      => '大正',
-            DateTime::ERA_SHOWA       => '昭和',
-            DateTime::ERA_HEISEI      => '平成',
-            DateTime::ERA_REIWA       => '令和',
+            DateTime::ERA_MEIJI  => '明治',
+            DateTime::ERA_TAISHO => '大正',
+            DateTime::ERA_SHOWA  => '昭和',
+            DateTime::ERA_HEISEI => '平成',
+            DateTime::ERA_REIWA  => '令和',
         ];
 
         $this->holiday_name = [
@@ -164,7 +164,7 @@ class JapaneseDate
      * 指定月の祝日リストを取得する
      *
      * @access      public
-     * @param       DateTime $DateTime DateTime
+     * @param DateTime $DateTime DateTime
      * @return      array
      * @throws \ErrorException
      * @throws \Exception
@@ -209,7 +209,7 @@ class JapaneseDate
      * 日本語フォーマットされた休日名を返す
      *
      * @access      public
-     * @param       int $key 休日キー
+     * @param int $key 休日キー
      * @return      string
      */
     public function viewHoliday($key): string
@@ -221,7 +221,7 @@ class JapaneseDate
      * 日本語フォーマットされた曜日名を返す
      *
      * @access      public
-     * @param       int $key 曜日キー
+     * @param int $key 曜日キー
      * @return      string
      */
     public function viewWeekday($key): string
@@ -237,7 +237,7 @@ class JapaneseDate
      * 日本語フォーマットされた旧暦月名を返す
      *
      * @access      public
-     * @param       int $key 月キー
+     * @param int $key 月キー
      * @return      string
      */
     public function viewMonth($key): string
@@ -249,7 +249,7 @@ class JapaneseDate
      * 日本語フォーマットされた六曜名を返す
      *
      * @access      public
-     * @param       int $key 六曜キー
+     * @param int $key 六曜キー
      * @return      string
      */
     public function viewSixWeekday($key): string
@@ -261,7 +261,7 @@ class JapaneseDate
      * 日本語フォーマットされた干支を返す
      *
      * @access      public
-     * @param       int $key 干支キー
+     * @param int $key 干支キー
      * @return      string
      */
     public function viewOrientalZodiac($key): string
@@ -273,7 +273,7 @@ class JapaneseDate
      * 日本語フォーマットされた年号を返す
      *
      * @access      public
-     * @param       int $key 年号キー
+     * @param int $key 年号キー
      * @return      string
      */
     public function viewEraName($key): string
@@ -285,7 +285,7 @@ class JapaneseDate
      * 祝日判定ロジック一月
      *
      * @access      protected
-     * @param       int $year 年
+     * @param int $year 年
      * @param           $timezone
      * @return      array
      * @throws \ErrorException
@@ -321,10 +321,10 @@ class JapaneseDate
      * 第○ ■曜日の日付を取得します。
      *
      * @access      public
-     * @param       int         $year   年
-     * @param       int         $month  月
-     * @param       int         $weekly 曜日
-     * @param       int         $weeks  何週目か
+     * @param int $year   年
+     * @param int $month  月
+     * @param int $weekly 曜日
+     * @param int $weeks  何週目か
      * @param null|DateTimeZone $timezone
      * @return      int
      * @throws ErrorException
@@ -395,7 +395,7 @@ class JapaneseDate
      * 祝日判定ロジック二月
      *
      * @access      protected
-     * @param       int $year 年
+     * @param int $year 年
      * @param DateTimeZone $timezone
      * @return      array
      * @throws \Exception
@@ -433,7 +433,7 @@ class JapaneseDate
      * 祝日判定ロジック三月
      *
      * @access      protected
-     * @param       int    $year 年
+     * @param int $year 年
      * @param DateTimeZone $timezone
      * @return      array
      * @throws \ErrorException
@@ -493,7 +493,7 @@ class JapaneseDate
      * 祝日判定ロジック四月
      *
      * @access      protected
-     * @param       int $year 年
+     * @param int $year 年
      * @param DateTimeZone $timezone
      * @return      array
      * @throws \Exception
@@ -529,7 +529,7 @@ class JapaneseDate
      * 祝日判定ロジック五月
      *
      * @access      protected
-     * @param       int $year 年
+     * @param int $year 年
      * @param DateTimeZone $timezone
      * @return      array
      * @throws \Exception
@@ -581,7 +581,7 @@ class JapaneseDate
      * 祝日判定ロジック六月
      *
      * @access      protected
-     * @param       int $year 年
+     * @param int $year 年
      * @return      array
      */
     protected function getJuneHoliday(int $year)
@@ -603,7 +603,7 @@ class JapaneseDate
      * 祝日判定ロジック七月
      *
      * @access      protected
-     * @param       int    $year 年
+     * @param int $year 年
      * @param DateTimeZone $timezone
      * @return      array
      * @throws \ErrorException
@@ -620,6 +620,11 @@ class JapaneseDate
             $res[23] = DateTime::MARINE_DAY;
             // 2020以降はスポーツの日
             $res[24] = DateTime::SPORTS_DAY;
+        } elseif ($year === DateTime::SECOND_TIME_TOKYO_OLYMPIC_RESCHEDULE_YEAR) {
+            // 東京オリンピックのため海の日移動
+            $res[22] = DateTime::MARINE_DAY;
+            // スポーツの日
+            $res[23] = DateTime::SPORTS_DAY;
         } elseif ($year >= 2003) {
             $third_monday       = $this->getDayByWeekly($year, 7, DateTime::MONDAY, 3, $timezone);
             $res[$third_monday] = DateTime::MARINE_DAY;
@@ -640,7 +645,7 @@ class JapaneseDate
      * 祝日判定ロジック八月
      *
      * @access      protected
-     * @param       int $year 年
+     * @param int $year 年
      * @param DateTimeZone $timezone
      * @return      array
      * @throws \Exception
@@ -654,6 +659,9 @@ class JapaneseDate
         if ($year === DateTime::SECOND_TIME_TOKYO_OLYMPIC_YEAR) {
             // 東京オリンピックのため山の日
             $res[10] = DateTime::MOUNTAIN_DAY;
+        } elseif ($year === DateTime::SECOND_TIME_TOKYO_OLYMPIC_RESCHEDULE_YEAR) {
+            // 東京オリンピックのため山の日
+            $res[11] = DateTime::MOUNTAIN_DAY;
         } elseif ($year >= 2016) {
             $res[11] = DateTime::MOUNTAIN_DAY;
             // 振替休日確認
@@ -669,7 +677,7 @@ class JapaneseDate
      * 祝日判定ロジック九月
      *
      * @access      protected
-     * @param       int    $year 年
+     * @param int $year 年
      * @param DateTimeZone $timezone
      * @return      array
      * @throws \ErrorException
@@ -745,7 +753,7 @@ class JapaneseDate
      * 祝日判定ロジック十月
      *
      * @access      protected
-     * @param       int    $year 年
+     * @param int $year 年
      * @param DateTimeZone $timezone
      * @return      array
      * @throws \ErrorException
@@ -759,6 +767,8 @@ class JapaneseDate
         $res = [];
         if ($year === DateTime::SECOND_TIME_TOKYO_OLYMPIC_YEAR) {
             // 東京オリンピックのため移動
+        } elseif ($year === DateTime::SECOND_TIME_TOKYO_OLYMPIC_RESCHEDULE_YEAR) {
+            // リスケされた東京オリンピックのため移動
         } elseif ($year >= 2021) {
             // 2020年以降はスポーツの日
             $second_monday       = $this->getDayByWeekly($year, 10, DateTime::MONDAY, 2, $timezone);
@@ -786,7 +796,7 @@ class JapaneseDate
      * 祝日判定ロジック十一月
      *
      * @access      protected
-     * @param       int $year 年
+     * @param int $year 年
      * @param DateTimeZone $timezone
      * @return      array
      * @throws \Exception
@@ -820,7 +830,7 @@ class JapaneseDate
      * 祝日判定ロジック十二月
      *
      * @access      protected
-     * @param       int $year 年
+     * @param int $year 年
      * @param DateTimeZone $timezone
      * @return      array
      * @throws \Exception
