@@ -579,6 +579,7 @@ class JapaneseDate
         } elseif ($year === DateTime::SECOND_TIME_TOKYO_OLYMPIC_RESCHEDULE_YEAR) {
             // 東京オリンピックのため山の日
             $res[8] = DateTime::MOUNTAIN_DAY;
+            $res[9] = DateTime::COMPENSATING_HOLIDAY;
         } elseif ($year >= 2016) {
             $res[11] = DateTime::MOUNTAIN_DAY;
             // 振替休日確認
