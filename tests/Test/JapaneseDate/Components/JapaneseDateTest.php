@@ -62,7 +62,7 @@ class JapaneseDateTest extends TestCase
      * @access      public
      * @return      array
      */
-    public function createTestObject()
+    public static function createTestObject()
     {
         $JapaneseDate = new JapaneseDate();
         $JapaneseDateTime = new DateTime();

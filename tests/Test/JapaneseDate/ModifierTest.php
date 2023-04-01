@@ -49,7 +49,7 @@ class ModifierTest extends TestCase
         $this->assertSame($res, $dateTime);
     }
 
-    public function dataProviderNextSixWeek()
+    public static function dataProviderNextSixWeek()
     {
         return [
             'equals' => [
