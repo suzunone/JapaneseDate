@@ -188,7 +188,7 @@ class Calendar
     }
 
     /**
-     * @param \DateTimeInterface
+     * @param \DateTimeInterface $DateTime
      * @return int
      */
     protected function getCompareFormat(DateTimeInterface $DateTime): int

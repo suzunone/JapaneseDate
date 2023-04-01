@@ -11,7 +11,7 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-      - image: circleci/php:7.1-cli-jessie-node-browsers
+      - image: cimg/php:8.2.4-browsers
       
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -22,9 +22,18 @@ jobs:
 
     steps:
       - checkout
-      - run: sudo apt install -y libsqlite3-dev zlib1g-dev
-      - run: sudo docker-php-ext-install zip calendar
-      - run: sudo composer self-update
+      - run:
+          name: Composer self-update
+          command: |
+            sudo composer self-update
+      - run:
+          name: Install dependencies
+          command: |
+            composer install -vvv
+      - run:
+          name: Install xdebug
+          command: |
+            sudo pecl install xdebug
 
       # Download and cache dependencies
       - restore_cache:
@@ -33,12 +42,13 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
-      - run: composer install -vvv
-
       - save_cache:
           paths:
             - ./vendor
           key: v1-dependencies-{{ checksum "composer.json" }}
-        
-      # run tests!
-      - run: ./vendor/bin/phpunit
+
+      - run:
+          name: Run tests
+          command: |
+            export XDEBUG_MODE=coverage
+            vendor/bin/phpunit tests
