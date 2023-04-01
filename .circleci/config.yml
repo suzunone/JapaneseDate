@@ -38,7 +38,7 @@ jobs:
           name: Run tests
           command: |
             export XDEBUG_MODE=coverage
-            vendor/bin/phpunit tests --coverage-clover=coverage.xml
+            vendor/bin/phpunit tests
 
       # Download and cache dependencies
       - restore_cache:
