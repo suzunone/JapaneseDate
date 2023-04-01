@@ -192,7 +192,7 @@ class LunarCalendar
     }
 
     /**
-     * @param int year
+     * @param int $year
      * @return array
      * @throws \JapaneseDate\Exceptions\Exception
      */

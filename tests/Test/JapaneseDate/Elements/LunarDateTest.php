@@ -17,6 +17,7 @@ namespace Tests\JapaneseDate\Elements;
 use JapaneseDate\Components\LunarCalendar;
 use JapaneseDate\DateTime;
 use JapaneseDate\Elements\LunarDate;
+use JapaneseDate\Exceptions\ErrorException;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -62,6 +63,7 @@ class LunarDateTest extends TestCase
      */
     public function test__get_error()
     {
+        $this->expectException(ErrorException::class);
         $LunarCalendar = new LunarCalendar();
         $LunarDate = $LunarCalendar->getLunarDate(DateTime::factory('2020-03-01'));
         $LunarDate->aaaaaaaaaaaa;
@@ -80,6 +82,7 @@ class LunarDateTest extends TestCase
      */
     public function test__set()
     {
+        $this->expectException(ErrorException::class);
         $LunarCalendar = new LunarCalendar();
         $LunarDate = $LunarCalendar->getLunarDate(DateTime::factory('2020-03-01'));
         $LunarDate->__set('is_leap_month', true);

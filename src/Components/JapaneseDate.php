@@ -287,7 +287,6 @@ class JapaneseDate
                 break;
             default:
                 throw new ErrorException('undefined weekly ' . $weekly);
-                break;
         }
 
         $weeks = 7 * $weeks + 1;
@@ -510,8 +509,6 @@ class JapaneseDate
         $res = [];
         if ($year === 1993) {
             $res[9] = DateTime::CROWN_PRINCE_NARUHITO_WEDDING;
-        } else {
-            $res = [];
         }
 
         return $res;
@@ -552,8 +549,6 @@ class JapaneseDate
             if ($this->getWeekday(mktime(0, 0, 0, 7, 20, $year), $timezone) === DateTime::SUNDAY) {
                 $res[21] = DateTime::COMPENSATING_HOLIDAY;
             }
-        } else {
-            $res = [];
         }
 
         return $res;
