@@ -34,11 +34,6 @@ jobs:
           name: Install xdebug
           command: |
             sudo pecl install xdebug
-      - run:
-          name: Run tests
-          command: |
-            export XDEBUG_MODE=coverage
-            vendor/bin/phpunit tests
 
       # Download and cache dependencies
       - restore_cache:
@@ -51,6 +46,9 @@ jobs:
           paths:
             - ./vendor
           key: v1-dependencies-{{ checksum "composer.json" }}
-        
-      # run tests!
-      - run: ./vendor/bin/phpunit
+
+      - run:
+          name: Run tests
+          command: |
+            export XDEBUG_MODE=coverage
+            vendor/bin/phpunit tests
