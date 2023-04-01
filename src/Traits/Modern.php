@@ -136,16 +136,16 @@ trait Modern
             return self::ERA_MEIJI;
         }
 
-        if ($TaishoStart <= $this && $ShowaStart > $this) {
+        if ($ShowaStart > $this) {
             // 大正
             return self::ERA_TAISHO;
         }
 
-        if ($ShowaStart <= $this && $HeiseiStart > $this) {
+        if ($HeiseiStart > $this) {
             // 昭和
             return self::ERA_SHOWA;
         }
-        if ($HeiseiStart <= $this && $ReiwaStart > $this) {
+        if ($ReiwaStart > $this) {
             // 平成
             return self::ERA_HEISEI;
         }

@@ -36,7 +36,7 @@ class LunarCalendarTest extends TestCase
 {
     use InvokeTrait;
 
-    public function makeLunarCalendar_refactorDataProvider()
+    public static function makeLunarCalendar_refactorDataProvider()
     {
         $res = [];
         foreach (range(1948, 2040) as $year) {
