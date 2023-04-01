@@ -33,7 +33,7 @@ jobs:
       - run:
           name: Install xdebug
           command: |
-            sudo pecl install << parameters.xdebug-package >>
+            sudo pecl install xdebug
       - run:
           name: Run tests
           command: |
