@@ -256,40 +256,45 @@ class JapaneseDateTest extends TestCase
         );
     }
 
+
+
+    /**
+     * @return array
+     */
+    public static function vernalEquinoxDayDataProvider(): array
+    {
+        return [
+            '1599' => [1599, '0321'],
+            '1600' => [1600, '0320'],
+            '1979' => [1979, '0321'],
+            '1980' => [1980, '0320'],
+            '2000' => [2000, '0320'],
+            '2099' => [2099, '0320'],
+            '2100' => [2100, '0320'],
+            '2150' => [2150, '0321'],
+            '2151' => [2151, '0321'],
+            '2399' => [2399, '0321'],
+            '2400' => [2400, '0321'],
+        ];
+    }
+
+
     /**
      *
      * @access              public
      * @return      void
      * @covers              \JapaneseDate\Components\JapaneseDate::getVernalEquinoxDay()
+     * @dataProvider vernalEquinoxDayDataProvider
      */
-    public function test_getVernalEquinoxDay()
+    public function test_getVernalEquinoxDay($year, $expected)
     {
         $JapaneseDate = new JapaneseDate();
 
         $this->assertEquals(
-            '0321',
-            DateTime::factory($JapaneseDate->getVernalEquinoxDay(1979))->format('md')
+            $expected,
+            DateTime::factory($JapaneseDate->getVernalEquinoxDay($year))->format('md')
         );
 
-        $this->assertEquals(
-            '0320',
-            DateTime::factory($JapaneseDate->getVernalEquinoxDay(2000))->format('md')
-        );
-
-        $this->assertEquals(
-            '0321',
-            DateTime::factory($JapaneseDate->getVernalEquinoxDay(2150))->format('md')
-        );
-
-        $this->assertEquals(
-            '0321',
-            DateTime::factory($JapaneseDate->getVernalEquinoxDay(2151))->format('md')
-        );
-
-        $this->assertEquals(
-            '0320',
-            DateTime::factory($JapaneseDate->getVernalEquinoxDay(2152))->format('md')
-        );
     }
 
     /**
@@ -329,39 +334,42 @@ class JapaneseDateTest extends TestCase
     }
 
     /**
+     * @return array
+     */
+    public static function autumnEquinoxDayDataProvider(): array
+    {
+        return [
+            '1599' => [1599, '0923'],
+            '1600' => [1600, '0923'],
+            '1979' => [1979, '0924'],
+            '1980' => [1980, '0923'],
+            '2000' => [2000, '0923'],
+            '2099' => [2099, '0923'],
+            '2100' => [2100, '0923'],
+            '2150' => [2150, '0923'],
+            '2151' => [2151, '0923'],
+            '2399' => [2399, '0923'],
+            '2400' => [2400, '0923'],
+        ];
+    }
+
+
+    /**
      *
      * @access              public
      * @return      void
      * @covers              \JapaneseDate\Components\JapaneseDate::getAutumnEquinoxDay()
+     * @dataProvider autumnEquinoxDayDataProvider
      */
-    public function test_getAutumnEquinoxDay()
+    public function test_getAutumnEquinoxDay($year, $expected)
     {
         $JapaneseDate = new JapaneseDate();
 
         $this->assertEquals(
-            '0924',
-            DateTime::factory($JapaneseDate->getAutumnEquinoxDay(1979))->format('md')
+            $expected,
+            DateTime::factory($JapaneseDate->getAutumnEquinoxDay($year))->format('md')
         );
 
-        $this->assertEquals(
-            '0923',
-            DateTime::factory($JapaneseDate->getAutumnEquinoxDay(2000))->format('md')
-        );
-
-        $this->assertEquals(
-            '0923',
-            DateTime::factory($JapaneseDate->getAutumnEquinoxDay(2150))->format('md')
-        );
-
-        $this->assertEquals(
-            '0924',
-            DateTime::factory($JapaneseDate->getAutumnEquinoxDay(2151))->format('md')
-        );
-
-        $this->assertEquals(
-            '0923',
-            DateTime::factory($JapaneseDate->getAutumnEquinoxDay(2152))->format('md')
-        );
     }
 
     /**
@@ -1273,7 +1281,7 @@ class JapaneseDateTest extends TestCase
         $this->assertArrayHasKey(10, $res);
         $this->assertCount(1, $res);
         $this->assertEquals('山の日', $JapaneseDate->viewHoliday($res[10]));
-        
+
         $res = $this->invokeExecuteMethod($JapaneseDate, 'getAugustHoliday', ['2021', $JapaneseDateTime->getTimezone()]);
         $this->assertArrayHasKey(8, $res);
         $this->assertArrayHasKey(9, $res);

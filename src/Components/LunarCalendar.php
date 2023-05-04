@@ -26,6 +26,7 @@ namespace JapaneseDate\Components;
 use DateTimeZone;
 use JapaneseDate\DateTime;
 use JapaneseDate\Elements\LunarDate;
+use Throwable;
 
 /**
  * Class LunarCalendar
@@ -111,7 +112,7 @@ class LunarCalendar
      */
     protected $cache = [
         'longitudeMoon' => [],
-        'longitudeSun'  => [],
+        'longitudeSun' => [],
     ];
 
     public function __construct()
@@ -157,9 +158,9 @@ class LunarCalendar
     /**
      * 旧暦を求める
      *
-     * @param int $year  西暦年
+     * @param int $year 西暦年
      * @param int $month 月
-     * @param int $day   日
+     * @param int $day 日
      * @return    array [旧暦年, 平月／閏月 flag .... 平月:0 閏月:1, 旧暦月, 旧暦日]
      * @throws \JapaneseDate\Exceptions\Exception
      */
@@ -179,10 +180,10 @@ class LunarCalendar
             if ($julian_date >= $lunar['jd'] && $julian_date < $lunar_calendar[$index + 1]['jd']) {
                 $day = $julian_date - $lunar['jd'] + 1.0;
                 $items = [
-                    LunarDate::YEAR_KEY               => $lunar['lunar_year'],
+                    LunarDate::YEAR_KEY => $lunar['lunar_year'],
                     LunarDate::IS_LEAP_MONTH_FLAG_KEY => $lunar['lunar_month_leap'],
-                    LunarDate::MONTH_KEY              => $lunar['lunar_month'],
-                    LunarDate::DAY_KEY                => $day,
+                    LunarDate::MONTH_KEY => $lunar['lunar_month'],
+                    LunarDate::DAY_KEY => $day,
                 ];
                 break;
             }
@@ -336,7 +337,7 @@ class LunarCalendar
     /**
      * 指定した月の日数を返す
      *
-     * @param int $year  西暦年
+     * @param int $year 西暦年
      * @param int $month 月
      * @return    int 日数／FALSE:引数の異常
      * @throws \JapaneseDate\Exceptions\Exception
@@ -351,7 +352,7 @@ class LunarCalendar
     /**
      * 月齢を求める（視黄経）
      *
-     * @param int $year   , $month, $day  グレゴリオ暦による年月日
+     * @param int $year , $month, $day  グレゴリオ暦による年月日
      * @param int $month
      * @param int $day
      * @param float $hour , $min, $sec 時分秒（世界時）
@@ -436,7 +437,7 @@ class LunarCalendar
     /**
      * グレゴリオ暦→ユリウス日 変換
      *
-     * @param int $year   グレゴリオ暦による年月日
+     * @param int $year グレゴリオ暦による年月日
      * @param int $month
      * @param int $day
      * @param float $hour , $min, $sec 時分秒（世界時）
@@ -577,12 +578,12 @@ class LunarCalendar
     /**
      * 月の黄経計算（視黄経）
      *
-     * @param int $year   グレゴリオ暦
+     * @param int $year グレゴリオ暦
      * @param int $month
      * @param int $day
      * @param float $hour 時
-     * @param float $min  分
-     * @param float $sec  秒
+     * @param float $min 分
+     * @param float $sec 秒
      * @return    float 月の黄経（視黄経）
      * @throws \JapaneseDate\Exceptions\Exception
      */
@@ -680,25 +681,32 @@ class LunarCalendar
      * その日が二十四節気かどうか
      *
      * @param int $year , $month, $day  グレゴリオ暦による年月日
-     * @param $month
-     * @param $day
+     * @param int $month
+     * @param int $day
      * @return    int|bool
      * @throws \JapaneseDate\Exceptions\Exception
      */
-    public function findSolarTerm(int $year, $month, $day)
+    public function findSolarTerm(int $year, int $month, int $day)
     {
-        /**
-         * @var array $solar_term
-         */
-        $solar_term = JapaneseDate::SOLAR_TERM;
+        try {
+            $solar_terms = (new SolarTerm())->getSolarTerms($year);
 
-        // 太陽黄経
-        $longitude_sun_1 = $this->longitudeSun($year, $month, $day, 0, 0, 0);
-        $longitude_sun_2 = $this->longitudeSun($year, $month, $day, 24, 0, 0);
+            foreach ($solar_terms as $solar_term) {
+                if ($solar_term->day === $day && $solar_term->month === $month) {
+                    return $solar_term->solar_term;
+                }
+            }
 
-        $tmp_1 = (int) floor($longitude_sun_1 / 15);
-        $tmp_2 = (int) floor($longitude_sun_2 / 15);
+            return false;
+        } catch (Throwable $e) {
+            // 太陽黄経
+            $longitude_sun_1 = $this->longitudeSun($year, $month, $day, 0, 0, 0);
+            $longitude_sun_2 = $this->longitudeSun($year, $month, $day, 24, 0, 0);
 
-        return ($tmp_1 !== $tmp_2 && isset($solar_term[$tmp_2])) ? $tmp_2 : false;
+            $tmp_1 = (int)floor($longitude_sun_1 / 15);
+            $tmp_2 = (int)floor($longitude_sun_2 / 15);
+
+            return ($tmp_1 !== $tmp_2 && array_key_exists($tmp_2, JapaneseDate::SOLAR_TERM)) ? $tmp_2 : false;
+        }
     }
 }

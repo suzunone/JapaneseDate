@@ -34,28 +34,33 @@ use JapaneseDate\Exceptions\ErrorException;
  */
 class JapaneseDate
 {
-    /**#@+
-     * @access private
-     */
     /**
+     * 曜日配列
+     *
      * @var array
      */
     public const WEEKDAY_NAME = ['日', '月', '火', '水', '木', '金', '土'];
+
     /**
+     * 月名配列
      * @var array
      */
     public const MONTH_NAME = ['', '睦月', '如月', '弥生', '卯月', '皐月', '水無月', '文月', '葉月', '長月', '神無月', '霜月', '師走'];
+
     /**
+     * 六曜配列
      * @var array
      */
     public const SIX_WEEKDAY = ['大安', '赤口', '先勝', '友引', '先負', '仏滅'];
 
-    /**#@-*/
     /**
+     * 干支配列
      * @var array
      */
-    public const ORIENTAL_ZODIAC = ['亥', '子', '丑', '寅', '卯', '辰', '巳', '午', '未', '申', '酉', '戌', ];
+    public const ORIENTAL_ZODIAC = ['亥', '子', '丑', '寅', '卯', '辰', '巳', '午', '未', '申', '酉', '戌',];
+
     /**
+     * 二十四節気配列
      * @var array
      */
     public const SOLAR_TERM = [
@@ -70,20 +75,24 @@ class JapaneseDate
      * @var int
      */
     public const VERNAL_EQUINOX = 0;
+
     /**
      * @var int
      */
     public const AUTUMNAL_EQUINOX = 12;
+
     /**
      * 旧暦クラスオブジェクト
      *
      * @var \JapaneseDate\Components\LunarCalendar
      */
     private $LunarCalendar;
+
     /**
      * @var array
      */
     private $holiday_name;
+
     /**
      * @var array
      */
@@ -101,39 +110,39 @@ class JapaneseDate
         $this->LunarCalendar = LunarCalendar::factory();
 
         $this->era_name = [
-            DateTime::ERA_MEIJI  => '明治',
+            DateTime::ERA_MEIJI => '明治',
             DateTime::ERA_TAISHO => '大正',
-            DateTime::ERA_SHOWA  => '昭和',
+            DateTime::ERA_SHOWA => '昭和',
             DateTime::ERA_HEISEI => '平成',
-            DateTime::ERA_REIWA  => '令和',
+            DateTime::ERA_REIWA => '令和',
         ];
 
         $this->holiday_name = [
-            DateTime::NO_HOLIDAY                      => '',
-            DateTime::NEW_YEAR_S_DAY                  => '元旦',
-            DateTime::COMING_OF_AGE_DAY               => '成人の日',
-            DateTime::NATIONAL_FOUNDATION_DAY         => '建国記念の日',
-            DateTime::THE_SHOWA_EMPEROR_DIED          => '昭和天皇の大喪の礼',
-            DateTime::VERNAL_EQUINOX_DAY              => '春分の日',
-            DateTime::DAY_OF_SHOWA                    => '昭和の日',
-            DateTime::GREENERY_DAY                    => 'みどりの日',
-            DateTime::THE_EMPEROR_S_BIRTHDAY          => '天皇誕生日',
-            DateTime::CROWN_PRINCE_HIROHITO_WEDDING   => '皇太子明仁親王の結婚の儀',
-            DateTime::CONSTITUTION_DAY                => '憲法記念日',
-            DateTime::NATIONAL_HOLIDAY                => '国民の休日',
-            DateTime::CHILDREN_S_DAY                  => 'こどもの日',
-            DateTime::COMPENSATING_HOLIDAY            => '振替休日',
-            DateTime::CROWN_PRINCE_NARUHITO_WEDDING   => '皇太子徳仁親王の結婚の儀',
-            DateTime::MARINE_DAY                      => '海の日',
-            DateTime::AUTUMNAL_EQUINOX_DAY            => '秋分の日',
+            DateTime::NO_HOLIDAY => '',
+            DateTime::NEW_YEAR_S_DAY => '元旦',
+            DateTime::COMING_OF_AGE_DAY => '成人の日',
+            DateTime::NATIONAL_FOUNDATION_DAY => '建国記念の日',
+            DateTime::THE_SHOWA_EMPEROR_DIED => '昭和天皇の大喪の礼',
+            DateTime::VERNAL_EQUINOX_DAY => '春分の日',
+            DateTime::DAY_OF_SHOWA => '昭和の日',
+            DateTime::GREENERY_DAY => 'みどりの日',
+            DateTime::THE_EMPEROR_S_BIRTHDAY => '天皇誕生日',
+            DateTime::CROWN_PRINCE_HIROHITO_WEDDING => '皇太子明仁親王の結婚の儀',
+            DateTime::CONSTITUTION_DAY => '憲法記念日',
+            DateTime::NATIONAL_HOLIDAY => '国民の休日',
+            DateTime::CHILDREN_S_DAY => 'こどもの日',
+            DateTime::COMPENSATING_HOLIDAY => '振替休日',
+            DateTime::CROWN_PRINCE_NARUHITO_WEDDING => '皇太子徳仁親王の結婚の儀',
+            DateTime::MARINE_DAY => '海の日',
+            DateTime::AUTUMNAL_EQUINOX_DAY => '秋分の日',
             DateTime::RESPECT_FOR_SENIOR_CITIZENS_DAY => '敬老の日',
-            DateTime::LEGACY_SPORTS_DAY               => '体育の日',
-            DateTime::SPORTS_DAY                      => 'スポーツの日',
-            DateTime::CULTURE_DAY                     => '文化の日',
-            DateTime::LABOR_THANKSGIVING_DAY          => '勤労感謝の日',
-            DateTime::REGNAL_DAY                      => '即位礼正殿の儀',
-            DateTime::MOUNTAIN_DAY                    => '山の日',
-            DateTime::EMPERORS_THRONE_DAY             => '天皇の即位の日',
+            DateTime::LEGACY_SPORTS_DAY => '体育の日',
+            DateTime::SPORTS_DAY => 'スポーツの日',
+            DateTime::CULTURE_DAY => '文化の日',
+            DateTime::LABOR_THANKSGIVING_DAY => '勤労感謝の日',
+            DateTime::REGNAL_DAY => '即位礼正殿の儀',
+            DateTime::MOUNTAIN_DAY => '山の日',
+            DateTime::EMPERORS_THRONE_DAY => '天皇の即位の日',
         ];
     }
 
@@ -165,7 +174,7 @@ class JapaneseDate
      */
     public function getHolidayList(DateTime $DateTime): array
     {
-        switch ((int) $DateTime->month) {
+        switch ((int)$DateTime->month) {
             case 1:
                 return $this->getJanuaryHoliday($DateTime->year, $DateTime->getTimezone());
             case 2:
@@ -252,10 +261,10 @@ class JapaneseDate
      * 第○ ■曜日の日付を取得します。
      *
      * @access      public
-     * @param int $year   年
-     * @param int $month  月
+     * @param int $year 年
+     * @param int $month 月
      * @param int $weekly 曜日
-     * @param int $weeks  何週目か
+     * @param int $weeks 何週目か
      * @param null $timezone
      * @return      int
      * @throws \JapaneseDate\Exceptions\ErrorException
@@ -265,25 +274,25 @@ class JapaneseDate
     {
         switch ($weekly) {
             case DateTime::SUNDAY:
-                $map = [7, 1, 2, 3, 4, 5, 6, ];
+                $map = [7, 1, 2, 3, 4, 5, 6,];
                 break;
             case DateTime::MONDAY:
-                $map = [6, 7, 1, 2, 3, 4, 5, ];
+                $map = [6, 7, 1, 2, 3, 4, 5,];
                 break;
             case DateTime::TUESDAY:
-                $map = [5, 6, 7, 1, 2, 3, 4, ];
+                $map = [5, 6, 7, 1, 2, 3, 4,];
                 break;
             case DateTime::WEDNESDAY:
-                $map = [4, 5, 6, 7, 1, 2, 3, ];
+                $map = [4, 5, 6, 7, 1, 2, 3,];
                 break;
             case DateTime::THURSDAY:
-                $map = [3, 4, 5, 6, 7, 1, 2, ];
+                $map = [3, 4, 5, 6, 7, 1, 2,];
                 break;
             case DateTime::FRIDAY:
-                $map = [2, 3, 4, 5, 6, 7, 1, ];
+                $map = [2, 3, 4, 5, 6, 7, 1,];
                 break;
             case DateTime::SATURDAY:
-                $map = [1, 2, 3, 4, 5, 6, 7, ];
+                $map = [1, 2, 3, 4, 5, 6, 7,];
                 break;
             default:
                 throw new ErrorException('undefined weekly ' . $weekly);
@@ -370,13 +379,18 @@ class JapaneseDate
      */
     public function getVernalEquinoxDay(int $year): int
     {
-        if ($year <= 1979) {
-            $day = floor(20.8357 + (0.242194 * ($year - 1980)) - floor(($year - 1980) / 4));
+        if ($year < 1600) {
+            goto syunbun_lunar;
+        } elseif ($year <= 1979) {
+            $day = (new SolarTerm())->syunbun($year)->day;
         } elseif ($year <= 2099) {
             $day = floor(20.8431 + (0.242194 * ($year - 1980)) - floor(($year - 1980) / 4));
         } elseif ($year <= 2150) {
             $day = floor(21.851 + (0.242194 * ($year - 1980)) - floor(($year - 1980) / 4));
+        } elseif ($year <= 2399) {
+            $day = (new SolarTerm())->syunbun($year)->day;
         } else {
+            syunbun_lunar:
             $DateTime = new DateTime($year . '-03-15');
             while ($DateTime->month === 3) {
                 $DateTime->addDay();
@@ -641,15 +655,20 @@ class JapaneseDate
      */
     public function getAutumnEquinoxDay(int $year): int
     {
-        if ($year <= 1979) {
-            $day = floor(23.2588 + (0.242194 * ($year - 1980)) - floor(($year - 1980) / 4));
+        if ($year < 1600) {
+            goto syuubun_lunar;
+        } elseif ($year <= 1979) {
+            $day = (new SolarTerm())->syuubun($year)->day;
         } elseif ($year <= 2099) {
             $day = floor(23.2488 + (0.242194 * ($year - 1980)) - floor(($year - 1980) / 4));
         } elseif ($year <= 2150) {
             $day = floor(24.2488 + (0.242194 * ($year - 1980)) - floor(($year - 1980) / 4));
+        } else if ($year <= 2399) {
+            $day = (new SolarTerm())->syuubun($year)->day;
         } else {
+            syuubun_lunar:
             $DateTime = new DateTime($year . '-09-15');
-            while ((int) $DateTime->month === 9) {
+            while ((int)$DateTime->month === 9) {
                 $DateTime->addDay();
                 $Element = $this->LunarCalendar->getLunarDate($DateTime);
                 if ($Element->solar_term === self::AUTUMNAL_EQUINOX) {
