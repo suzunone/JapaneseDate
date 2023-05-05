@@ -370,7 +370,6 @@ class DateTime extends Carbon
      */
     public const ERA_REIWA = 1004;
 
-
     /**
      * 春分
      */
@@ -396,30 +395,25 @@ class DateTime extends Carbon
      */
     public const SOLAR_TERM_SYOUMAN = 4;
 
-
     /**
      * 芒種
      */
     public const SOLAR_TERM_BOUSYU = 5;
-
 
     /**
      * 夏至
      */
     public const SOLAR_TERM_GESHI = 6;
 
-
     /**
      * 小暑
      */
     public const SOLAR_TERM_SYOUSYO = 7;
 
-
     /**
      * 大暑
      */
     public const SOLAR_TERM_TAISYO = 8;
-
 
     /**
      * 立秋
@@ -430,7 +424,6 @@ class DateTime extends Carbon
      * 処暑
      */
     public const SOLAR_TERM_SYOSYO = 10;
-
 
     /**
      * 白露
@@ -484,7 +477,6 @@ class DateTime extends Carbon
      * 啓蟄
      */
     public const SOLAR_TERM_KEICHITSU = 23;
-
 
     /**
      * DateTime constructor.

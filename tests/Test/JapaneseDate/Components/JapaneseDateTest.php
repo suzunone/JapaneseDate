@@ -256,8 +256,6 @@ class JapaneseDateTest extends TestCase
         );
     }
 
-
-
     /**
      * @return array
      */
@@ -278,7 +276,6 @@ class JapaneseDateTest extends TestCase
         ];
     }
 
-
     /**
      *
      * @access              public
@@ -294,7 +291,6 @@ class JapaneseDateTest extends TestCase
             $expected,
             DateTime::factory($JapaneseDate->getVernalEquinoxDay($year))->format('md')
         );
-
     }
 
     /**
@@ -353,7 +349,6 @@ class JapaneseDateTest extends TestCase
         ];
     }
 
-
     /**
      *
      * @access              public
@@ -369,7 +364,6 @@ class JapaneseDateTest extends TestCase
             $expected,
             DateTime::factory($JapaneseDate->getAutumnEquinoxDay($year))->format('md')
         );
-
     }
 
     /**

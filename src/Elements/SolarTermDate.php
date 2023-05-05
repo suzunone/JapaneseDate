@@ -22,15 +22,15 @@ class SolarTermDate
         'is_sekki' => false,
         'is_chuki' => false,
 
-        'year' => 0,
-        'solar_term' => -1,
-        'month' => 0,
-        'day' => 0,
+        'year'            => 0,
+        'solar_term'      => -1,
+        'month'           => 0,
+        'day'             => 0,
         'solar_longitude' => 0.0,
     ];
 
     const SOLAR_TERM_MONTH = [
-        3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12, 1, 1, 2, 2, 3
+        3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12, 1, 1, 2, 2, 3,
     ];
 
     /**
@@ -55,7 +55,6 @@ class SolarTermDate
         $this->attribute['solar_longitude'] = 15 * $solar_term;
     }
 
-
     /**
      * @param string $key
      * @return mixed|null
@@ -69,7 +68,7 @@ class SolarTermDate
         switch ($key) {
             case 'solarTermText':
                 return JapaneseDate::SOLAR_TERM[$this->solar_term];
-            case 'dateTime';
+            case 'dateTime':
                 return DateTime::create($this->year, $this->month, $this->day);
         }
 

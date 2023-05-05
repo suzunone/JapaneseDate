@@ -112,7 +112,7 @@ class LunarCalendar
      */
     protected $cache = [
         'longitudeMoon' => [],
-        'longitudeSun' => [],
+        'longitudeSun'  => [],
     ];
 
     public function __construct()
@@ -180,10 +180,10 @@ class LunarCalendar
             if ($julian_date >= $lunar['jd'] && $julian_date < $lunar_calendar[$index + 1]['jd']) {
                 $day = $julian_date - $lunar['jd'] + 1.0;
                 $items = [
-                    LunarDate::YEAR_KEY => $lunar['lunar_year'],
+                    LunarDate::YEAR_KEY               => $lunar['lunar_year'],
                     LunarDate::IS_LEAP_MONTH_FLAG_KEY => $lunar['lunar_month_leap'],
-                    LunarDate::MONTH_KEY => $lunar['lunar_month'],
-                    LunarDate::DAY_KEY => $day,
+                    LunarDate::MONTH_KEY              => $lunar['lunar_month'],
+                    LunarDate::DAY_KEY                => $day,
                 ];
                 break;
             }
@@ -703,8 +703,8 @@ class LunarCalendar
             $longitude_sun_1 = $this->longitudeSun($year, $month, $day, 0, 0, 0);
             $longitude_sun_2 = $this->longitudeSun($year, $month, $day, 24, 0, 0);
 
-            $tmp_1 = (int)floor($longitude_sun_1 / 15);
-            $tmp_2 = (int)floor($longitude_sun_2 / 15);
+            $tmp_1 = (int) floor($longitude_sun_1 / 15);
+            $tmp_2 = (int) floor($longitude_sun_2 / 15);
 
             return ($tmp_1 !== $tmp_2 && array_key_exists($tmp_2, JapaneseDate::SOLAR_TERM)) ? $tmp_2 : false;
         }
