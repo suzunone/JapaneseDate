@@ -23,6 +23,7 @@
 
 namespace JapaneseDate\Components;
 
+use Carbon\Carbon;
 use DateTimeZone;
 use JapaneseDate\DateTime;
 use JapaneseDate\Elements\LunarDate;
@@ -229,36 +230,38 @@ class LunarCalendar
 
         // 朔の日を求める
         $lunar_calendar = [];
-        $find_year = $year - 1;
         $counter = 0;
-        $find_day = 10;
-        $find_month = 11;
-        while ($find_year <= $year || $find_month <= 2) {
-            $days_in_month = $this->getDaysInMonth($find_year, $find_month);
-            while ($find_day <= $days_in_month) {
-                $age1 = $this->moonAge($find_year, $find_month, $find_day, 0, 0, 0);
-                $age2 = $this->moonAge($find_year, $find_month, $find_day, 23, 59, 59);
-                if ($age2 <= $age1) {
-                    $lunar_calendar[$counter]['year'] = $find_year;
-                    $lunar_calendar[$counter]['month'] = $find_month;
-                    $lunar_calendar[$counter]['day'] = $find_day;
-                    $lunar_calendar[$counter]['age'] = $age1;
-                    $lunar_calendar[$counter]['jd'] = $this->gregorian2JD($find_year, $find_month, $find_day, 0, 0, 0);
-                    // $lunar_calendar[$counter]['gregorian'] = $this->jD2Gregorian($lunar_calendar[$counter]['jd']);
-                    $counter++;
-                    // 実行時間短縮のため20日ほどすすめる
-                    $find_day += 20;
-                }
-                $find_day++;
-            }
-            $find_month++;
-            $find_day -= $days_in_month;
-            $find_day = max($find_day, 1);
+        $Date = Carbon::create($year - 1, 11, 10, 0, 0, 0);
+        $EndDate = Carbon::create($year + 1, 3, 1, 0, 0, 0);
 
-            if ($find_month > 12) {
-                $find_year++;
-                $find_month = 1;
+        $end_timestamp = $EndDate->timestamp;
+        while ($end_timestamp > $Date->timestamp) {
+            $age1 = $this->moonAge($Date->year, $Date->month, $Date->day, 0, 0, 0);
+            $age2 = $this->moonAge($Date->year, $Date->month, $Date->day, 23, 59, 59);
+            if ($age2 <= $age1) {
+                // 誤差をキャリブレーションする
+                if ($age1 < 29 && $age2 < 0.1) {
+                    $Date = $Date->addDay(1);
+                    $lunar_calendar[$counter]['age_before_calibration'] = $age1;
+                    $lunar_calendar[$counter]['age_before_calibration_end'] = $age2;
+                    $age1 = $this->moonAge($Date->year, $Date->month, $Date->day, 0, 0, 0);
+                    $age2 = $this->moonAge($Date->year, $Date->month, $Date->day, 23, 59, 59);
+                }
+
+                $lunar_calendar[$counter]['year'] = $Date->year;
+                $lunar_calendar[$counter]['month'] = $Date->month;
+                $lunar_calendar[$counter]['day'] = $Date->day;
+                $lunar_calendar[$counter]['age'] = $age1;
+                $lunar_calendar[$counter]['age_end'] = $age2;
+                $lunar_calendar[$counter]['jd'] = $this->gregorian2JD($Date->year, $Date->month, $Date->day, 0, 0, 0);
+                // $lunar_calendar[$counter]['gregorian'] = $this->jD2Gregorian($lunar_calendar[$counter]['jd']);
+
+                $counter++;
+                // 実行時間短縮のため20日ほどすすめる
+                $Date = $Date->addDays(20);
             }
+
+            $Date = $Date->addDay(1);
         }
 
         // 中気を求める
@@ -347,6 +350,24 @@ class LunarCalendar
         return DateTime::factory(
             mktime(0, 0, 0, $month, 1, $year)
         )->format('t');
+    }
+
+    /**
+     * 簡易計算で月齢を求める
+     * @param int $year
+     * @param int $month
+     * @param int $day
+     * @return float
+     */
+    public function moonAgeSimple(int $year, int $month, int $day): float
+    {
+        if ($year < 5) {
+            return 0.0;
+        }
+
+        $c = (($year - 14) % 19) * 11 + $month + $day + ($month >= 2 ? 2 : 0);
+
+        return $c % 30;
     }
 
     /**

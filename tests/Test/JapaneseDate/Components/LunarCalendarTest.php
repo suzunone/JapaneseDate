@@ -304,32 +304,398 @@ class LunarCalendarTest extends TestCase
             1.0, ], $res);
     }
 
+    public static function makeLunarCalendarDataProvider()
+    {
+        return [
+            '2017' => [
+                2017,
+                [
+
+                    [
+                        'year'  => 2016,
+                        'month' => 11,
+                        'day'   => 29,
+
+                        'jd'               => 2457722.0,
+                        'lunar_month'      => 11.0,
+                        'lunar_month_leap' => false,
+                        'lunar_year'       => 2016,
+                    ],
+
+                    [
+                        'year'  => 2016,
+                        'month' => 12,
+                        'day'   => 29,
+
+                        'jd'               => 2457752.0,
+                        'lunar_month'      => 12.0,
+                        'lunar_month_leap' => false,
+                        'lunar_year'       => 2016,
+                    ],
+
+                    [
+                        'year'  => 2017,
+                        'month' => 1,
+                        'day'   => 28,
+
+                        'jd'               => 2457782.0,
+                        'lunar_month'      => 1.0,
+                        'lunar_month_leap' => false,
+                        'lunar_year'       => 2017,
+                    ],
+
+                    [
+                        'year'  => 2017,
+                        'month' => 2,
+                        'day'   => 26,
+
+                        'jd'               => 2457811.0,
+                        'lunar_month'      => 2.0,
+                        'lunar_month_leap' => false,
+                        'lunar_year'       => 2017,
+                    ],
+
+                    [
+                        'year'  => 2017,
+                        'month' => 3,
+                        'day'   => 28,
+
+                        'jd'               => 2457841.0,
+                        'lunar_month'      => 3.0,
+                        'lunar_month_leap' => false,
+                        'lunar_year'       => 2017,
+                    ],
+
+                    [
+                        'year'  => 2017,
+                        'month' => 4,
+                        'day'   => 26,
+
+                        'jd'               => 2457870.0,
+                        'lunar_month'      => 4.0,
+                        'lunar_month_leap' => false,
+                        'lunar_year'       => 2017,
+                    ],
+
+                    [
+                        'year'  => 2017,
+                        'month' => 5,
+                        'day'   => 26,
+
+                        'jd'               => 2457900.0,
+                        'lunar_month'      => 5.0,
+                        'lunar_month_leap' => false,
+                        'lunar_year'       => 2017,
+                    ],
+
+                    [
+                        'year'  => 2017,
+                        'month' => 6,
+                        'day'   => 24,
+
+                        'jd'               => 2457929.0,
+                        'lunar_month'      => 5.0,
+                        'lunar_month_leap' => true,
+                        'lunar_year'       => 2017,
+                    ],
+
+                    [
+                        'year'  => 2017,
+                        'month' => 7,
+                        'day'   => 23,
+
+                        'jd'               => 2457958.0,
+                        'lunar_month'      => 6.0,
+                        'lunar_month_leap' => false,
+                        'lunar_year'       => 2017,
+                    ],
+
+                    [
+                        'year'  => 2017,
+                        'month' => 8,
+                        'day'   => 22,
+
+                        'jd'               => 2457988.0,
+                        'lunar_month'      => 7.0,
+                        'lunar_month_leap' => false,
+                        'lunar_year'       => 2017,
+                    ],
+
+                    [
+                        'year'  => 2017,
+                        'month' => 9,
+                        'day'   => 20,
+
+                        'jd'               => 2458017.0,
+                        'lunar_month'      => 8.0,
+                        'lunar_month_leap' => false,
+                        'lunar_year'       => 2017,
+                    ],
+
+                    [
+                        'year'  => 2017,
+                        'month' => 10,
+                        'day'   => 20,
+
+                        'jd'               => 2458047.0,
+                        'lunar_month'      => 9.0,
+                        'lunar_month_leap' => false,
+                        'lunar_year'       => 2017,
+                    ],
+
+                    [
+                        'year'  => 2017,
+                        'month' => 11,
+                        'day'   => 18,
+
+                        'jd'               => 2458076.0,
+                        'lunar_month'      => 10.0,
+                        'lunar_month_leap' => false,
+                        'lunar_year'       => 2017,
+                    ],
+
+                    [
+                        'year'  => 2017,
+                        'month' => 12,
+                        'day'   => 18,
+
+                        'jd'               => 2458106.0,
+                        'lunar_month'      => 11.0,
+                        'lunar_month_leap' => false,
+                        'lunar_year'       => 2017,
+                    ],
+
+                    [
+                        'year'  => 2018,
+                        'month' => 1,
+                        'day'   => 17,
+
+                        'jd'               => 2458136.0,
+                        'lunar_month'      => 12.0,
+                        'lunar_month_leap' => false,
+                        'lunar_year'       => 2017,
+                    ],
+                ],
+            ],
+
+            '2020' => [
+                2020,
+                [
+                    
+                    [
+                        'year'  => 2019,
+                        'month' => 11,
+                        'day'   => 27,
+
+                        'jd'               => 2458814.0,
+                        'lunar_month'      => 11.0,
+                        'lunar_month_leap' => false,
+                        'lunar_year'       => 2019,
+                    ],
+
+                    [
+                        'year'  => 2019,
+                        'month' => 12,
+                        'day'   => 26,
+
+                        'jd'               => 2458844.0,
+                        'lunar_month'      => 12.0,
+                        'lunar_month_leap' => false,
+                        'lunar_year'       => 2019,
+                    ],
+
+                    [
+                        'year'  => 2020,
+                        'month' => 1,
+                        'day'   => 25,
+
+                        'jd'               => 2458874.0,
+                        'lunar_month'      => 1.0,
+                        'lunar_month_leap' => false,
+                        'lunar_year'       => 2020,
+                    ],
+
+                    [
+                        'year'  => 2020,
+                        'month' => 2,
+                        'day'   => 24,
+
+                        'jd'               => 2458903.0,
+                        'lunar_month'      => 2.0,
+                        'lunar_month_leap' => false,
+                        'lunar_year'       => 2020,
+                    ],
+
+                    [
+                        'year'  => 2020,
+                        'month' => 3,
+                        'day'   => 24,
+
+                        'jd'               => 2458933.0,
+                        'lunar_month'      => 3.0,
+                        'lunar_month_leap' => false,
+                        'lunar_year'       => 2020,
+                    ],
+
+                    [
+                        'year'  => 2020,
+                        'month' => 4,
+                        'day'   => 23,
+
+                        'jd'               => 2458963.0,
+                        'lunar_month'      => 4.0,
+                        'lunar_month_leap' => false,
+                        'lunar_year'       => 2020,
+                    ],
+
+                    [
+                        'year'  => 2020,
+                        'month' => 5,
+                        'day'   => 23,
+
+                        'jd'               => 2458993.0,
+                        'lunar_month'      => 4.0,
+                        'lunar_month_leap' => true,
+                        'lunar_year'       => 2020,
+                    ],
+
+                    [
+                        'year'  => 2020,
+                        'month' => 6,
+                        'day'   => 21,
+
+                        'jd'               => 2459022.0,
+                        'lunar_month'      => 5.0,
+                        'lunar_month_leap' => false,
+                        'lunar_year'       => 2020,
+                    ],
+
+                    [
+                        'year'  => 2020,
+                        'month' => 7,
+                        'day'   => 21,
+
+                        'jd'               => 2459052.0,
+                        'lunar_month'      => 6.0,
+                        'lunar_month_leap' => false,
+                        'lunar_year'       => 2020,
+                    ],
+
+                    [
+                        'year'  => 2020,
+                        'month' => 8,
+                        'day'   => 19,
+
+                        'jd'               => 2459081.0,
+                        'lunar_month'      => 7.0,
+                        'lunar_month_leap' => false,
+                        'lunar_year'       => 2020,
+                    ],
+
+                    [
+                        'year'  => 2020,
+                        'month' => 9,
+                        'day'   => 17,
+
+                        'jd'               => 2459110.0,
+                        'lunar_month'      => 8.0,
+                        'lunar_month_leap' => false,
+                        'lunar_year'       => 2020,
+                    ],
+
+                    [
+                        'year'  => 2020,
+                        'month' => 10,
+                        'day'   => 17,
+
+                        'jd'               => 2459140.0,
+                        'lunar_month'      => 9.0,
+                        'lunar_month_leap' => false,
+                        'lunar_year'       => 2020,
+                    ],
+
+                    [
+                        'year'  => 2020,
+                        'month' => 11,
+                        'day'   => 15,
+
+                        'jd'               => 2459169.0,
+                        'lunar_month'      => 10.0,
+                        'lunar_month_leap' => false,
+                        'lunar_year'       => 2020,
+                    ],
+
+                    [
+                        'year'  => 2020,
+                        'month' => 12,
+                        'day'   => 15,
+
+                        'jd'               => 2459198.0,
+                        'lunar_month'      => 11.0,
+                        'lunar_month_leap' => false,
+                        'lunar_year'       => 2020,
+                    ],
+
+                    [
+                        'year'  => 2021,
+                        'month' => 1,
+                        'day'   => 13,
+
+                        'jd'               => 2459228.0,
+                        'lunar_month'      => 12.0,
+                        'lunar_month_leap' => false,
+                        'lunar_year'       => 2020,
+                    ],
+                ],
+            ],
+        ];
+    }
+
     /**
      * @covers              \JapaneseDate\Components\LunarCalendar
      * @runInSeparateProcess
      * @preserveGlobalState disabled
+     * @dataProvider        makeLunarCalendarDataProvider
      */
-    public function test_makeLunarCalendar()
+    public function test_makeLunarCalendar($year, $calendar)
     {
         $LunarCalendar = LunarCalendar::factory();
 
-        $res = $this->invokeExecuteMethod($LunarCalendar, 'makeLunarCalendar', [2017]);
+        $res = $this->invokeExecuteMethod($LunarCalendar, 'makeLunarCalendar', [$year]);
+        foreach ($calendar as $key => $item) {
+            $this->assertEquals($item['year'], $res[$key]['year'], "#$key => year\n".json_encode($item)."\n".json_encode($res[$key]));
+            $this->assertEquals($item['month'], $res[$key]['month'], "#$key => month\n".json_encode($item)."\n".json_encode($res[$key]));
+            $this->assertEquals($item['day'], $res[$key]['day'], "#$key => day\n".json_encode($item)."\n".json_encode($res[$key]));
+            $this->assertEquals($item['lunar_month'], $res[$key]['lunar_month'], "#$key => lunar_month\n".json_encode($item)."\n".json_encode($res[$key]));
+            $this->assertEquals($item['lunar_month_leap'], $res[$key]['lunar_month_leap'], "#$key => lunar_month_leap\n".json_encode($item)."\n".json_encode($res[$key]));
+            $this->assertEquals($item['lunar_year'], $res[$key]['lunar_year'], "#$key => lunar_year\n".json_encode($item)."\n".json_encode($res[$key]));
+        }
 
-        $this->assertFalse($res[0]['lunar_month_leap']);
-        $this->assertFalse($res[1]['lunar_month_leap']);
-        $this->assertFalse($res[2]['lunar_month_leap']);
-        $this->assertFalse($res[3]['lunar_month_leap']);
-        $this->assertFalse($res[4]['lunar_month_leap']);
-        $this->assertFalse($res[5]['lunar_month_leap']);
-        $this->assertFalse($res[6]['lunar_month_leap']);
-        $this->assertTrue($res[7]['lunar_month_leap']);
-        $this->assertFalse($res[8]['lunar_month_leap']);
-        $this->assertFalse($res[9]['lunar_month_leap']);
-        $this->assertFalse($res[10]['lunar_month_leap']);
-        $this->assertFalse($res[11]['lunar_month_leap']);
-        $this->assertFalse($res[12]['lunar_month_leap']);
-        $this->assertFalse($res[13]['lunar_month_leap']);
+        $this->assertCount(count($calendar), $res);
+    }
 
-        $this->assertCount(15, $res);
+    public static function moonAgeDataProvider()
+    {
+        return [
+            '2023朔'               => [2023, 1, 22, 5, 53, 0, 0],
+            '2023望'               => [2023, 2, 6, 3, 29, 0, 15],
+            '2020朔_before'        => [2020, 12, 14, 0, 0, 0, 29],
+            '2020朔'               => [2020, 12, 15, 1, 17, 0, 0],
+            '2020朔_after'         => [2020, 12, 16, 1, 17, 0, 1],
+            '2019朔_before'        => [2019, 11, 26, 0, 0, 0, 29],
+            '2019朔'               => [2019, 11, 27, 0, 6, 0, 0],
+        ];
+    }
+
+    /**
+     * @dataProvider moonAgeDataProvider
+     * @return void
+     * @throws \JapaneseDate\Exceptions\Exception
+     */
+    public function test_moonAge($year, $month, $day, $hour, $minute, $second, $moon_age)
+    {
+        $LunarCalendar = LunarCalendar::factory();
+
+        $this->assertEquals($moon_age, round($LunarCalendar->moonAge($year, $month, $day, $hour, $minute, $second)));
     }
 }
