@@ -214,6 +214,101 @@ class LunarCalendar
         return $this->lunar_calendar[$year];
     }
 
+    public function moonAgeSimple(int $year, int $month, int $day, float $hour, float $min, float $sec)
+    {
+        $date = mktime($hour - 9, $min - 1, $sec, $month, $day, $year);
+
+        // Astronomical constants. 1980 January 0.0
+        $epoch = 2444238.5;
+
+        // Constants defining the Sun's apparent orbit
+        $elonge = 278.833540;        // Ecliptic longitude of the Sun at epoch 1980.0
+        $elongp = 282.596403;        // Ecliptic longitude of the Sun at perigee
+        $eccent = 0.016718;            // Eccentricity of Earth's orbit
+//        $sunsmax = 1.495985e8;        // Semi-major axis of Earth's orbit, km
+//        $sunangsiz = 0.533128;        // Sun's angular size, degrees, at semi-major axis distance
+
+        // Elements of the Moon's orbit, epoch 1980.0
+        $mmlong = 64.975464;        // Moon's mean longitude at the epoch
+        $mmlongp = 349.383063;        // Mean longitude of the perigee at the epoch
+//        $mlnode = 151.950429;        // Mean longitude of the node at the epoch
+//        $minc = 5.145396;            // Inclination of the Moon's orbit
+//        $mecc = 0.054900;            // Eccentricity of the Moon's orbit
+//        $mangsiz = 0.5181;            // Moon's angular size at distance a from Earth
+//        $msmax = 384401;            // Semi-major axis of Moon's orbit in km
+//        $mparallax = 0.9507;        // Parallax at distance a from Earth
+        $synmonth = 29.53058868;    // Synodic month (new Moon to new Moon)
+
+        // date is coming in as a UNIX timstamp, so convert it to Julian
+        $date = $date / 86400 + 2440587.5;
+
+        // Calculation of the Sun's position
+        $Day = $date - $epoch;                                // Date within epoch
+        $N = $this->fixAngle((360 / 365.2422) * $Day);        // Mean anomaly of the Sun
+        $M = $this->fixAngle($N + $elonge - $elongp);        // Convert from perigee co-ordinates to epoch 1980.0
+        $Ec = $this->kepler($M, $eccent);                    // Solve equation of Kepler
+        $Ec = sqrt((1 + $eccent) / (1 - $eccent)) * tan($Ec / 2);
+        $Ec = 2 * rad2deg(atan($Ec));                        // True anomaly
+        $Lambdasun = $this->fixAngle($Ec + $elongp);        // Sun's geocentric ecliptic longitude
+
+//        $F = ((1 + $eccent * cos(deg2rad($Ec))) / (1 - $eccent * $eccent)); // Orbital distance factor
+//        $SunDist = $sunsmax / $F;                            // Distance to Sun in km
+//        $SunAng = $F * $sunangsiz;                            // Sun's angular size in degrees
+
+        // Calculation of the Moon's position
+        $ml = $this->fixAngle(13.1763966 * $Day + $mmlong);                // Moon's mean longitude
+        $MM = $this->fixAngle($ml - 0.1114041 * $Day - $mmlongp);        // Moon's mean anomaly
+//        $MN = $this->fixAngle($mlnode - 0.0529539 * $Day);                // Moon's ascending node mean longitude
+        $Ev = 1.2739 * sin(deg2rad(2 * ($ml - $Lambdasun) - $MM));        // Evection
+        $Ae = 0.1858 * sin(deg2rad($M));                                // Annual equation
+        $A3 = 0.37 * sin(deg2rad($M));                                    // Correction term
+        $MmP = $MM + $Ev - $Ae - $A3;                                    // Corrected anomaly
+        $mEc = 6.2886 * sin(deg2rad($MmP));                                // Correction for the equation of the centre
+        $A4 = 0.214 * sin(deg2rad(2 * $MmP));                            // Another correction term
+        $lP = $ml + $Ev + $mEc - $Ae + $A4;                                // Corrected longitude
+        $V = 0.6583 * sin(deg2rad(2 * ($lP - $Lambdasun)));                // Variation
+        $lPP = $lP + $V;                                                // True longitude
+//        $NP = $MN - 0.16 * sin(deg2rad($M));                            // Corrected longitude of the node
+//        $y = sin(deg2rad($lPP - $NP)) * cos(deg2rad($minc));            // Y inclination coordinate
+//        $x = cos(deg2rad($lPP - $NP));                                    // X inclination coordinate
+
+//        $Lambdamoon = rad2deg(atan2($y, $x)) + $NP;                        // Ecliptic longitude
+//        $BetaM = rad2deg(asin(sin(deg2rad($lPP - $NP)) * sin(deg2rad($minc)))); // Ecliptic latitude
+
+        // Calculation of the phase of the Moon
+        $moonAge = $lPP - $Lambdasun;                                    // Age of the Moon in degrees
+        $phase = $this->fixAngle($moonAge) / 360;
+
+        return $this->fixAngle($moonAge);
+
+        return $synmonth * $phase;
+        /*
+
+        $MoonPhase = (1 - cos(deg2rad($moonAge))) / 2;                    // Phase of the Moon
+
+        // Distance of moon from the centre of the Earth
+        $MoonDist = ($msmax * (1 - $mecc * $mecc)) / (1 + $mecc * cos(deg2rad($MmP + $mEc)));
+
+        $MoonDFrac = $MoonDist / $msmax;
+        $MoonAng = $mangsiz / $MoonDFrac;                                // Moon's angular diameter
+        // $MoonPar = $mparallax / $MoonDFrac;                            // Moon's parallax
+
+        // Store results
+        $this->phase = $this->fixAngle($moonAge) / 360;                    // Phase (0 to 1)
+        $this->illumination = $MoonPhase;                                // Illuminated fraction (0 to 1)
+        $this->age = $synmonth * $this->phase;                            // Age of moon (days)
+        $this->distance = $MoonDist;                                    // Distance (kilometres)
+        $this->diameter = $MoonAng;                                        // Angular diameter (degrees)
+        $this->sundistance = $SunDist;                                    // Distance to Sun (kilometres)
+        $this->sundiameter = $SunAng;
+        */
+    }
+
+    protected function fixAngle(float $a): float
+    {
+        return ($a - 360 * floor($a / 360));
+    }
+
     /**
      * グレゴオリオ暦＝旧暦テーブル 作成
      *
@@ -234,77 +329,66 @@ class LunarCalendar
         $Date = Carbon::create($year - 1, 11, 10, 0, 0, 0);
         $EndDate = Carbon::create($year + 1, 3, 1, 0, 0, 0);
 
+        $moon = new Moon();
         $end_timestamp = $EndDate->timestamp;
         while ($end_timestamp > $Date->timestamp) {
             $age1 = $this->moonAge($Date->year, $Date->month, $Date->day, 0, 0, 0);
             $age2 = $this->moonAge($Date->year, $Date->month, $Date->day, 23, 59, 59);
-            if ($age2 <= $age1) {
-                // 誤差をキャリブレーションする
-                if ($age1 < 29 && $age2 < 0.1) {
-                    $Date = $Date->addDay(1);
-                    $lunar_calendar[$counter]['age_before_calibration'] = $age1;
-                    $lunar_calendar[$counter]['age_before_calibration_end'] = $age2;
-                    $age1 = $this->moonAge($Date->year, $Date->month, $Date->day, 0, 0, 0);
-                    $age2 = $this->moonAge($Date->year, $Date->month, $Date->day, 23, 59, 59);
-                }
 
-                $lunar_calendar[$counter]['year'] = $Date->year;
-                $lunar_calendar[$counter]['month'] = $Date->month;
-                $lunar_calendar[$counter]['day'] = $Date->day;
-                $lunar_calendar[$counter]['age'] = $age1;
-                $lunar_calendar[$counter]['age_end'] = $age2;
-                $lunar_calendar[$counter]['jd'] = $this->gregorian2JD($Date->year, $Date->month, $Date->day, 0, 0, 0);
-                // $lunar_calendar[$counter]['gregorian'] = $this->jD2Gregorian($lunar_calendar[$counter]['jd']);
-
-                $counter++;
-                // 実行時間短縮のため20日ほどすすめる
-                $Date = $Date->addDays(20);
+            if ($age2 > $age1) {
+                $Date = $Date->addDay(1);
+                continue;
             }
 
-            $Date = $Date->addDay(1);
+            // 月齢がギリギリの場合、新月時間でキャリブレーションする
+            if ($Date->year >= 1900 && $age1 > 20 && $age2 < 0.17) {
+                $Date = $moon->moonPhase($Date->subDays(2), 0.0);
+                $age1 = $this->moonAge($Date->year, $Date->month, $Date->day, 0, 0, 0);
+                $age2 = $this->moonAge($Date->year, $Date->month, $Date->day, 23, 59, 59);
+            }
+
+            $lunar_calendar[$counter]['year'] = $Date->year;
+            $lunar_calendar[$counter]['month'] = $Date->month;
+            $lunar_calendar[$counter]['day'] = $Date->day;
+            $lunar_calendar[$counter]['age'] = $age1;
+            $lunar_calendar[$counter]['age_end'] = $age2;
+            $lunar_calendar[$counter]['jd'] = $this->gregorian2JD($Date->year, $Date->month, $Date->day, 0, 0, 0);
+            // $lunar_calendar[$counter]['gregorian'] = $this->jD2Gregorian($lunar_calendar[$counter]['jd']);
+
+            // 実行時間短縮のため21日ほどすすめる
+            $Date = $Date->addDays(21);
+            $counter++;
         }
 
         // 中気を求める
         $sun_calendar = [];
-        $find_year = $year - 1;
         $counter = 0;
-        $find_day = 1;
-        $find_month = 11;
-        while ($find_year <= $year || $find_month <= 2) {
-            $days_in_month = $this->getDaysInMonth($find_year, $find_month);
-            while ($find_day <= $days_in_month) {
-                $longitude_sun_1 = $this->longitudeSun($find_year, $find_month, $find_day, 0, 0, 0);
-                $longitude_sun_2 = $this->longitudeSun($find_year, $find_month, $find_day, 24, 0, 0);
-                $tmp_ls_1 = floor($longitude_sun_1 / 15.0);
-                $tml_ls_2 = floor($longitude_sun_2 / 15.0);
+        $Date = Carbon::create($year - 1, 11, 10, 0, 0, 0);
+        $EndDate = Carbon::create($year + 1, 3, 1, 0, 0, 0);
 
-                if ($tml_ls_2 === $tmp_ls_1 || ($tml_ls_2 % 2 !== 0)) {
-                    $find_day++;
-                    continue;
-                }
+        $end_timestamp = $EndDate->timestamp;
+        while ($end_timestamp > $Date->timestamp) {
+            $longitude_sun_1 = $this->longitudeSun($Date->year, $Date->month, $Date->day, 0, 0, 0);
+            $longitude_sun_2 = $this->longitudeSun($Date->year, $Date->month, $Date->day, 24, 0, 0);
+            $tmp_ls_1 = floor($longitude_sun_1 / 15.0);
+            $tml_ls_2 = floor($longitude_sun_2 / 15.0);
 
-                $sun_calendar[$counter]['jd'] = $this->gregorian2JD($find_year, $find_month, $find_day, 0, 0, 0);
-                $lunar_month = floor($tml_ls_2 / 2) + 2;
-                if ($lunar_month > 12) {
-                    $lunar_month -= 12;
-                }
-                $sun_calendar[$counter]['lunar_month'] = $lunar_month;
-                $sun_calendar[$counter]['year'] = $find_year;
-                $counter++;
-
-                // 実行時間短縮のため、20日ほどすすめる
-                $find_day += 20;
-
-                $find_day++;
+            if ($tml_ls_2 === $tmp_ls_1 || ($tml_ls_2 % 2 !== 0)) {
+                $Date->addDay();
+                continue;
             }
 
-            $find_month++;
-            $find_day -= $days_in_month;
-            $find_day = max($find_day, 1);
-            if ($find_month > 12) {
-                $find_year++;
-                $find_month = 1;
+            $sun_calendar[$counter]['jd'] = $this->gregorian2JD($Date->year, $Date->month, $Date->day, 0, 0, 0);
+            $lunar_month = floor($tml_ls_2 / 2) + 2;
+            if ($lunar_month > 12) {
+                $lunar_month -= 12;
             }
+            $sun_calendar[$counter]['lunar_month'] = $lunar_month;
+            $sun_calendar[$counter]['year'] = $Date->year;
+            $counter++;
+
+            // 実行時間短縮のため、21日ほどすすめる
+            $Date->addDays(21);
         }
 
         // 旧暦月と、閏月のフラグを追加
@@ -338,6 +422,27 @@ class LunarCalendar
     }
 
     /**
+     * Kepler
+     *
+     * @param float $m
+     * @param float $ecc
+     * @return float
+     */
+    protected function kepler(float $m, float $ecc): float
+    {
+        // 1E-6
+        $epsilon = 0.000001;
+        $e = $m = deg2rad($m);
+
+        do {
+            $delta = $e - $ecc * sin($e) - $m;
+            $e -= $delta / (1 - $ecc * cos($e));
+        } while (abs($delta) > $epsilon);
+
+        return $e;
+    }
+
+    /**
      * 指定した月の日数を返す
      *
      * @param int $year 西暦年
@@ -350,24 +455,6 @@ class LunarCalendar
         return DateTime::factory(
             mktime(0, 0, 0, $month, 1, $year)
         )->format('t');
-    }
-
-    /**
-     * 簡易計算で月齢を求める
-     * @param int $year
-     * @param int $month
-     * @param int $day
-     * @return float
-     */
-    public function moonAgeSimple(int $year, int $month, int $day): float
-    {
-        if ($year < 5) {
-            return 0.0;
-        }
-
-        $c = (($year - 14) % 19) * 11 + $month + $day + ($month >= 2 ? 2 : 0);
-
-        return $c % 30;
     }
 
     /**
