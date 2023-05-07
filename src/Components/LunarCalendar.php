@@ -345,12 +345,17 @@ class LunarCalendar
                 $Date = $moon->moonPhase($Date->subDays(2), 0.0);
                 $age1 = $this->moonAge($Date->year, $Date->month, $Date->day, 0, 0, 0);
                 $age2 = $this->moonAge($Date->year, $Date->month, $Date->day, 23, 59, 59);
+            } elseif ($Date->year < 1900 && $age1 > 20 && $age2 < 0.1) {
+                $Date = $Date->addDay(1);
+                $age1 = $this->moonAge($Date->year, $Date->month, $Date->day, 0, 0, 0);
+                $age2 = $this->moonAge($Date->year, $Date->month, $Date->day, 23, 59, 59);
             }
 
             $lunar_calendar[$counter]['year'] = $Date->year;
             $lunar_calendar[$counter]['month'] = $Date->month;
             $lunar_calendar[$counter]['day'] = $Date->day;
             $lunar_calendar[$counter]['age'] = $age1;
+            $lunar_calendar[$counter]['age_last'] = $age2;
             $lunar_calendar[$counter]['jd'] = $this->gregorian2JD($Date->year, $Date->month, $Date->day, 0, 0, 0);
             // $lunar_calendar[$counter]['gregorian'] = $this->jD2Gregorian($lunar_calendar[$counter]['jd']);
 
