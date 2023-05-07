@@ -50,7 +50,7 @@ class LunarDateTest extends TestCase
 
         $this->assertEquals(2, $LunarDate->month);
 
-        $this->assertEquals(8, $LunarDate->day);
+        $this->assertEquals(7, $LunarDate->day);
         $this->assertFalse($LunarDate->is_leap_month);
         $this->assertFalse($LunarDate->solar_term);
 

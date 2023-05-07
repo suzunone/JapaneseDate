@@ -44,6 +44,8 @@ trait OneTimeCacheTrait
      */
     protected function oneTimeCache(string $key, Closure $closure)
     {
+        return $closure();
+
         if (array_key_exists($key, $this->one_time_cache)) {
             return $this->one_time_cache[$key];
         }

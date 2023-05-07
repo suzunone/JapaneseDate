@@ -34,28 +34,33 @@ use JapaneseDate\Exceptions\ErrorException;
  */
 class JapaneseDate
 {
-    /**#@+
-     * @access private
-     */
     /**
+     * 曜日配列
+     *
      * @var array
      */
     public const WEEKDAY_NAME = ['日', '月', '火', '水', '木', '金', '土'];
+
     /**
+     * 月名配列
      * @var array
      */
     public const MONTH_NAME = ['', '睦月', '如月', '弥生', '卯月', '皐月', '水無月', '文月', '葉月', '長月', '神無月', '霜月', '師走'];
+
     /**
+     * 六曜配列
      * @var array
      */
     public const SIX_WEEKDAY = ['大安', '赤口', '先勝', '友引', '先負', '仏滅'];
 
-    /**#@-*/
     /**
+     * 干支配列
      * @var array
      */
     public const ORIENTAL_ZODIAC = ['亥', '子', '丑', '寅', '卯', '辰', '巳', '午', '未', '申', '酉', '戌', ];
+
     /**
+     * 二十四節気配列
      * @var array
      */
     public const SOLAR_TERM = [
@@ -70,20 +75,24 @@ class JapaneseDate
      * @var int
      */
     public const VERNAL_EQUINOX = 0;
+
     /**
      * @var int
      */
     public const AUTUMNAL_EQUINOX = 12;
+
     /**
      * 旧暦クラスオブジェクト
      *
      * @var \JapaneseDate\Components\LunarCalendar
      */
     private $LunarCalendar;
+
     /**
      * @var array
      */
     private $holiday_name;
+
     /**
      * @var array
      */
@@ -252,10 +261,10 @@ class JapaneseDate
      * 第○ ■曜日の日付を取得します。
      *
      * @access      public
-     * @param int $year   年
-     * @param int $month  月
+     * @param int $year 年
+     * @param int $month 月
      * @param int $weekly 曜日
-     * @param int $weeks  何週目か
+     * @param int $weeks 何週目か
      * @param null $timezone
      * @return      int
      * @throws \JapaneseDate\Exceptions\ErrorException
@@ -370,13 +379,18 @@ class JapaneseDate
      */
     public function getVernalEquinoxDay(int $year): int
     {
-        if ($year <= 1979) {
-            $day = floor(20.8357 + (0.242194 * ($year - 1980)) - floor(($year - 1980) / 4));
+        if ($year < 1600) {
+            goto syunbun_lunar;
+        } elseif ($year <= 1979) {
+            $day = (new SolarTerm())->syunbun($year)->day;
         } elseif ($year <= 2099) {
             $day = floor(20.8431 + (0.242194 * ($year - 1980)) - floor(($year - 1980) / 4));
         } elseif ($year <= 2150) {
             $day = floor(21.851 + (0.242194 * ($year - 1980)) - floor(($year - 1980) / 4));
+        } elseif ($year <= 2399) {
+            $day = (new SolarTerm())->syunbun($year)->day;
         } else {
+            syunbun_lunar:
             $DateTime = new DateTime($year . '-03-15');
             while ($DateTime->month === 3) {
                 $DateTime->addDay();
@@ -641,13 +655,18 @@ class JapaneseDate
      */
     public function getAutumnEquinoxDay(int $year): int
     {
-        if ($year <= 1979) {
-            $day = floor(23.2588 + (0.242194 * ($year - 1980)) - floor(($year - 1980) / 4));
+        if ($year < 1600) {
+            goto syuubun_lunar;
+        } elseif ($year <= 1979) {
+            $day = (new SolarTerm())->syuubun($year)->day;
         } elseif ($year <= 2099) {
             $day = floor(23.2488 + (0.242194 * ($year - 1980)) - floor(($year - 1980) / 4));
         } elseif ($year <= 2150) {
             $day = floor(24.2488 + (0.242194 * ($year - 1980)) - floor(($year - 1980) / 4));
+        } elseif ($year <= 2399) {
+            $day = (new SolarTerm())->syuubun($year)->day;
         } else {
+            syuubun_lunar:
             $DateTime = new DateTime($year . '-09-15');
             while ((int) $DateTime->month === 9) {
                 $DateTime->addDay();
