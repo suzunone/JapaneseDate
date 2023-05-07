@@ -351,7 +351,6 @@ class LunarCalendar
             $lunar_calendar[$counter]['month'] = $Date->month;
             $lunar_calendar[$counter]['day'] = $Date->day;
             $lunar_calendar[$counter]['age'] = $age1;
-            $lunar_calendar[$counter]['age_end'] = $age2;
             $lunar_calendar[$counter]['jd'] = $this->gregorian2JD($Date->year, $Date->month, $Date->day, 0, 0, 0);
             // $lunar_calendar[$counter]['gregorian'] = $this->jD2Gregorian($lunar_calendar[$counter]['jd']);
 
