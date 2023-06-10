@@ -9,7 +9,7 @@ dependencies:
 
 jobs:
 
-test7.3.24:
+test73:
     docker:
       # specify the version you desire here
       - image: cimg/php:7.3.24-browsers
@@ -54,7 +54,7 @@ test7.3.24:
             export XDEBUG_MODE=coverage
             vendor/bin/phpunit tests
 
-  test8.2.4:
+  test82:
     docker:
       # specify the version you desire here
       - image: cimg/php:8.2.4-browsers
