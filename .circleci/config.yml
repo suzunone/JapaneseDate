@@ -101,8 +101,8 @@ jobs:
             vendor/bin/phpunit tests
 
 
-  workflows:
-    tests:
-      jobs:
-        - test73
-        - test82
+workflows:
+  tests:
+    jobs:
+      - test73
+      - test82
