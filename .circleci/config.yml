@@ -35,7 +35,7 @@ jobs:
       - run:
           name: Install xdebug
           command: |
-            pecl channel-update pecl.php.net
+            sudo pecl channel-update pecl.php.net
             sudo pecl install xdebug
 
       # Download and cache dependencies
