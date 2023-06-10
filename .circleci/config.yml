@@ -54,7 +54,7 @@ jobs:
           name: Run tests
           command: |
             export XDEBUG_MODE=coverage
-            phpdbg -qrr vendor/bin/phpunit tests
+            vendor/bin/phpunit tests
 
   test82:
     docker:
