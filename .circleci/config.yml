@@ -8,7 +8,53 @@ dependencies:
     - ~/.composer/cache
 
 jobs:
-  build:
+
+test7.3.24:
+    docker:
+      # specify the version you desire here
+      - image: cimg/php:7.3.24-browsers
+      
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      # - image: circleci/mysql:9.4
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+      - run:
+          name: Composer self-update
+          command: |
+            sudo composer self-update
+      - run:
+          name: Install dependencies
+          command: |
+            composer install -vvv
+      - run:
+          name: Install xdebug
+          command: |
+            sudo pecl install xdebug
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "composer.json" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-dependencies-
+
+      - save_cache:
+          paths:
+            - ./vendor
+          key: v1-dependencies-{{ checksum "composer.json" }}
+
+      - run:
+          name: Run tests
+          command: |
+            export XDEBUG_MODE=coverage
+            vendor/bin/phpunit tests
+
+  test8.2.4:
     docker:
       # specify the version you desire here
       - image: cimg/php:8.2.4-browsers
