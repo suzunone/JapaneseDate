@@ -44,6 +44,9 @@ class LunarTest extends TestCase
     #[Covers('getMoonAge')]
     public function test_getMoonAge()
     {
+        $DateTime = DateTime::factory('2020-03-01 20:00:00');
+        $DateTime->getMoonAge();
+        $this->assertEquals(7, $DateTime->getMoonAge());
     }
 
     #[Covers('__get')]
