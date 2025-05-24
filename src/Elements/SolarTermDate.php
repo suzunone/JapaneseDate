@@ -63,7 +63,7 @@ class SolarTermDate
      * @param string $key
      * @return string|\JapaneseDate\DateTime|null
      */
-    public function __get(string $key): null|string|DateTime
+    public function __get(string $key): null|string|DateTime|int
     {
         if (isset($this->attribute[$key])) {
             return $this->attribute[$key];

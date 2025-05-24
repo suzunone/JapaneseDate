@@ -171,11 +171,18 @@ class ModernTest extends TestCase
         $this->assertFalse($DateTime->isHoliday);
     }
 
-    #[Covers(\JapaneseDate\DateTime::class)] #[Covers(\JapaneseDate\Traits\Lunar::class)] #[Covers(\JapaneseDate\Traits\Modern::class)] #[Covers('__get')] #[Covers(\JapaneseDate\Components\LunarCalendar::class)]
+    #[Covers(\JapaneseDate\DateTime::class)]
+    #[Covers(\JapaneseDate\Traits\Lunar::class)]
+    #[Covers(\JapaneseDate\Traits\Modern::class)]
+    #[Covers('__get')]
+    #[Covers(\JapaneseDate\Components\LunarCalendar::class)]
     public function test_getSolarTerm()
     {
         $DateTime = new DateTime('2018-04-05');
 
+
+        $this->assertSame(4, $DateTime->month);
+        $this->assertSame(5, $DateTime->day);
         $this->assertSame(1, $DateTime->solar_term);
         $this->assertSame('清明', $DateTime->solar_term_text);
         $this->assertTrue($DateTime->is_solar_term);

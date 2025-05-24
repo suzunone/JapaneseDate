@@ -725,8 +725,10 @@ class LunarCalendar
         try {
             $solar_terms = (new SolarTerm())->getSolarTerms($year);
 
+
             foreach ($solar_terms as $solar_term) {
                 if ($solar_term->day === $day && $solar_term->month === $month) {
+
                     return $solar_term->solar_term;
                 }
             }
