@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Getter.php
  *
@@ -28,6 +29,7 @@ namespace JapaneseDate\Traits;
  * @see         https://github.com/suzunone/JapaneseDate
  * @since       Class available since Release 1.0.0
  * @mixin \JapaneseDate\DateTime
+ * @mixin \JapaneseDate\DateTimeImmutable
  */
 trait Getter
 {
@@ -40,7 +42,7 @@ trait Getter
      * @param int $calendar サポートされるカレンダー
      * @return      array カレンダーの情報を含む配列を返します。この配列には、 年、月、日、週、曜日名、月名、"月/日/年" 形式の文字列 などが含まれます。
      */
-    public function getCalendar($calendar = CAL_GREGORIAN): array
+    public function getCalendar(int $calendar = CAL_GREGORIAN): array
     {
         return cal_from_jd(unixtojd($this->timestamp), $calendar);
     }
@@ -53,7 +55,8 @@ trait Getter
      * @return \DateTimeZone|int|string
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
-     * @noinspection PhpMissingParamTypeInspection
+     * @throws \JsonException
+     * @noinspection PhpMultipleClassDeclarationsInspection
      */
     public function __get($name)
     {
@@ -117,7 +120,6 @@ trait Getter
             case 'is_leap_month':
             case 'isLeapMonth':
                 return $this->isLeapMonth();
-
         }
 
         /** @noinspection PhpUndefinedMethodInspection */

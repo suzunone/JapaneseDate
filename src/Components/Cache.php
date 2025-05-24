@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Class Cache
  *
@@ -40,24 +41,24 @@ class Cache extends CacheMode
      *
      * @var int
      */
-    protected static $mode = 1;
+    protected static int $mode = 1;
 
     /**
-     * @var Closure
+     * @var ?Closure
      */
-    protected static $cache_closure;
+    protected static ?Closure $cache_closure = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    protected static $cache_file_path;
+    protected static ?string $cache_file_path = null;
 
     /**
      * キャッシュデータ
      *
      * @var array
      */
-    protected static $cache = [];
+    protected static array $cache = [];
 
     /**
      * 永続キャッシュ
@@ -66,7 +67,7 @@ class Cache extends CacheMode
      * @param Closure $function
      * @return mixed
      */
-    public static function forever(string $cache_name, Closure $function)
+    public static function forever(string $cache_name, Closure $function): mixed
     {
         $cache = &static::$cache;
 
@@ -102,7 +103,7 @@ class Cache extends CacheMode
      * @param Closure $function
      * @return mixed
      */
-    protected static function apcForever(string $cache_name, Closure $function)
+    protected static function apcForever(string $cache_name, Closure $function): mixed
     {
         if (!(function_exists('apcu_fetch') && function_exists('apcu_add'))) {
             return $function();
@@ -130,7 +131,7 @@ class Cache extends CacheMode
      * @param Closure $function
      * @return mixed
      */
-    protected static function fileForever(string $cache_name, Closure $function)
+    protected static function fileForever(string $cache_name, Closure $function): mixed
     {
         $cache_name_path = realpath(static::$cache_file_path) . DIRECTORY_SEPARATOR . sha1($cache_name);
 

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Class InvokeTrait
  *
@@ -10,11 +11,11 @@
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
  * @since       Class available since Release 1.0.0
- * @codeCoverageIgnore
  */
 
 namespace Tests\JapaneseDate;
 
+use PHPUnit\Framework\Attributes\CodeCoverageIgnore;
 use ReflectionClass;
 
 /**
@@ -28,8 +29,8 @@ use ReflectionClass;
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
  * @since       Class available since Release 1.0.0
- * @codeCoverageIgnore
  */
+#[CodeCoverageIgnore]
 trait InvokeTrait
 {
     /**

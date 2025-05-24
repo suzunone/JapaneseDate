@@ -1,4 +1,6 @@
-<?php /** @noinspection PhpDocMissingThrowsInspection */
+<?php
+
+/** @noinspection PhpDocMissingThrowsInspection */
 /** @noinspection PhpUnhandledExceptionInspection */
 
 /**
@@ -24,6 +26,9 @@ use Faker\Provider\DateTime as FakerDateTime;
 use JapaneseDate\Calendar;
 use JapaneseDate\DateTime;
 use Mockery as m;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\CoversFunction;
+use PHPUnit\Framework\Attributes\Depends;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -38,13 +43,11 @@ use PHPUnit\Framework\TestCase;
  * @see         https://github.com/suzunone/JapaneseDate
  * @since       Class available since Release 1.0.0
  */
+#[CoversClass(\JapaneseDate\Calendar::class)]
 class CalendarTest extends TestCase
 {
     use InvokeTrait;
 
-    /**
-     * @covers \JapaneseDate\Calendar
-     */
     public function test_construct()
     {
         $FakerGenerator = new FakerGenerator();
@@ -66,9 +69,6 @@ class CalendarTest extends TestCase
         );
     }
 
-    /**
-     * @covers \JapaneseDate\Calendar
-     */
     public function test_getDatesOfMonth()
     {
         $FakerGenerator = new FakerGenerator();
@@ -86,9 +86,6 @@ class CalendarTest extends TestCase
         $this->assertInstanceOf(DateTime::class, $res[0]);
     }
 
-    /**
-     * @covers \JapaneseDate\Calendar
-     */
     public function test_getWorkingDayByLimit()
     {
         $faker = FakerFactory::create();
@@ -138,10 +135,10 @@ class CalendarTest extends TestCase
     }
 
     /**
-     * @covers  \JapaneseDate\Calendar::getWorkingDay()
-     * @depends test_getWorkingDayByLimit
      * @param array $res
      */
+    #[Covers(\JapaneseDate\Calendar::class.'::getWorkingDay')]
+    #[Depends('test_getWorkingDayByLimit')]
     public function test_getWorkingDay($res = [])
     {
         $faker = FakerFactory::create();
@@ -161,9 +158,6 @@ class CalendarTest extends TestCase
         $this->assertEquals($res, $Calendar->getWorkingDay($lim));
     }
 
-    /**
-     * @covers \JapaneseDate\Calendar
-     */
     public function test_getWorkingDayBySpan()
     {
         $Calendar = new Calendar('2018-05-01');
@@ -173,9 +167,7 @@ class CalendarTest extends TestCase
         $this->assertCount(31, $res);
     }
 
-    /**
-     * @covers \JapaneseDate\Calendar::getCompareFormat
-     */
+    #[Covers(\JapaneseDate\Calendar::class.'::getCompareFormat')]
     public function test_getCompareFormat()
     {
         $FakerGenerator = new FakerGenerator();
@@ -193,9 +185,7 @@ class CalendarTest extends TestCase
         );
     }
 
-    /**
-     * @covers \JapaneseDate\Calendar::isWorkingDay
-     */
+    #[Covers(\JapaneseDate\Calendar::class.'::isWorkingDay')]
     public function test_isWorkingDay()
     {
         $FakerGenerator = new FakerGenerator();
@@ -261,7 +251,6 @@ class CalendarTest extends TestCase
     }
 
     /**
-     * @covers \JapaneseDate\Calendar
      * @return Calendar
      */
     public function test_addBypassWeekDay()
@@ -289,7 +278,6 @@ class CalendarTest extends TestCase
     }
 
     /**
-     * @covers \JapaneseDate\Calendar
      * @return Calendar
      */
     public function test_addBypassDay()
@@ -328,9 +316,6 @@ class CalendarTest extends TestCase
         return $Calendar;
     }
 
-    /**
-     * @covers \JapaneseDate\Calendar
-     */
     public function test_setBypassHoliday()
     {
         $Calendar = new Calendar();
@@ -350,10 +335,9 @@ class CalendarTest extends TestCase
     }
 
     /**
-     * @covers  \JapaneseDate\Calendar
-     * @depends test_addBypassDay
      * @param \JapaneseDate\Calendar $Calendar
      */
+    #[Depends('test_addBypassDay')]
     public function test_removeBypassDay(Calendar $Calendar)
     {
         $Calendar = clone $Calendar;
@@ -381,10 +365,9 @@ class CalendarTest extends TestCase
     }
 
     /**
-     * @covers  \JapaneseDate\Calendar
-     * @depends test_addBypassDay
      * @param \JapaneseDate\Calendar $Calendar
      */
+    #[Depends('test_addBypassDay')]
     public function test_resetBypassDay(Calendar $Calendar)
     {
         $this->assertCount(2, $this->invokeGetProperty($Calendar, 'bypass_day_arr'));
@@ -394,10 +377,9 @@ class CalendarTest extends TestCase
     }
 
     /**
-     * @covers  \JapaneseDate\Calendar
-     * @depends test_addBypassWeekDay
      * @param \JapaneseDate\Calendar $Calendar
      */
+    #[Depends('test_addBypassWeekDay')]
     public function test_removeBypassWeekDay(Calendar $Calendar)
     {
         $Calendar = clone $Calendar;
@@ -413,10 +395,9 @@ class CalendarTest extends TestCase
     }
 
     /**
-     * @covers  \JapaneseDate\Calendar
-     * @depends test_addBypassWeekDay
      * @param \JapaneseDate\Calendar $Calendar
      */
+    #[Depends('test_addBypassWeekDay')]
     public function test_resetBypassWeekDay(Calendar $Calendar)
     {
         $this->invokeGetProperty($Calendar, 'bypass_week_day_arr');

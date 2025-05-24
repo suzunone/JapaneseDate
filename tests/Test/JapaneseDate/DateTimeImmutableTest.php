@@ -1,4 +1,6 @@
-<?php /** @noinspection PhpDeprecationInspection */
+<?php
+
+/** @noinspection PhpDeprecationInspection */
 /** @noinspection PhpUnhandledExceptionInspection */
 /**
  *
@@ -21,6 +23,7 @@ use Faker\Generator as FakerGenerator;
 use Faker\Provider\DateTime as FakerDateTime;
 use JapaneseDate\DateTimeImmutable;
 use JapaneseDate\Exceptions\NativeDateTimeException;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Tests\JapaneseDate\InvokeTrait;
 
@@ -35,14 +38,14 @@ use Tests\JapaneseDate\InvokeTrait;
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
  * @since       Class available since Release 1.0.0
- * @covers \JapaneseDate\Traits\Component
- * @covers \JapaneseDate\Traits\DateTimeImport
  */
+#[CoversClass(\JapaneseDate\Traits\Component::class)]
+#[CoversClass(\JapaneseDate\Traits\DateTimeImport::class)]
+#[CoversClass(\JapaneseDate\DateTimeImmutable::class)]
 class DateTimeImmutableTest extends TestCase
 {
     /**
      * @throws NativeDateTimeException
-     * @covers \JapaneseDate\DateTimeImmutable
      */
     public function testCreate_Success()
     {
@@ -53,12 +56,9 @@ class DateTimeImmutableTest extends TestCase
         $this->assertEquals('2020-03-05', $DateTime2->format('Y-m-d'));
     }
 
-    /**
-     * @expectedException  NativeDateTimeException
-     * @covers \JapaneseDate\DateTimeImmutable
-     */
     public function test_create_Error()
     {
+        $this->expectException(NativeDateTimeException::class);
         $this->expectException(NativeDateTimeException::class);
         $dateTime = new DateTimeImmutable('あああああ');
     }

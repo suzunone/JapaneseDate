@@ -5,8 +5,10 @@ namespace Tests\JapaneseDate\Components;
 use JapaneseDate\Components\SolarTerm;
 use JapaneseDate\DateTime;
 use JapaneseDate\Elements\SolarTermDate;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(SolarTerm::class)]
 class SolarTermTest extends TestCase
 {
     public static function getSolarTermDataProvider()
@@ -42,8 +44,8 @@ class SolarTermTest extends TestCase
     /**
      * @return void
      * @throws \JapaneseDate\Exceptions\SolarTermException
-     * @dataProvider getSolarTermDataProvider
      */
+    #[DataProvider('getSolarTermDataProvider')]
     public function test_getSolarTerm($year, $solar_term_code, $month, $day)
     {
         $SolarTerm = new SolarTerm();

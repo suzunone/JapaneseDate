@@ -167,13 +167,13 @@ $noday = '-';
 
     if ($_foreach['calendar']['total'] > 0):
 
-    foreach ($_from as $key => $value):
-        /**
-         * @var \JapaneseDate\DateTime $value
-         */
-    $_foreach['calendar']['iteration']++;
-    if (($_foreach['calendar']['iteration'] <= 1)):
-?>
+        foreach ($_from as $key => $value):
+            /**
+             * @var \JapaneseDate\DateTime $value
+             */
+            $_foreach['calendar']['iteration']++;
+            if (($_foreach['calendar']['iteration'] <= 1)):
+                ?>
 
 <table border="1" cellspacing="0" cellpadding="0" summary="カレンダー" width="700">
 <tr class="calendarhead">
@@ -218,22 +218,22 @@ $noday = '-';
 <tr class="calendarday">
 <td class="weekday"><?php echo $noday; ?></td>
 <?php endif;
-    if ($value->format('w') > 1 && ($_foreach['calendar']['iteration'] <= 1)): ?>
+            if ($value->format('w') > 1 && ($_foreach['calendar']['iteration'] <= 1)): ?>
 <td class="weekday"><?php echo $noday; ?></td>
 <?php endif;
-    if ($value->format('w') > 2 && ($_foreach['calendar']['iteration'] <= 1)): ?>
+            if ($value->format('w') > 2 && ($_foreach['calendar']['iteration'] <= 1)): ?>
 <td class="weekday"><?php echo $noday; ?></td>
 <?php endif;
-    if ($value->format('w') > 3 && ($_foreach['calendar']['iteration'] <= 1)): ?>
+            if ($value->format('w') > 3 && ($_foreach['calendar']['iteration'] <= 1)): ?>
 <td class="weekday"><?php echo $noday; ?></td>
 <?php endif;
-    if ($value->format('w') > 4 && ($_foreach['calendar']['iteration'] <= 1)): ?>
+            if ($value->format('w') > 4 && ($_foreach['calendar']['iteration'] <= 1)): ?>
 <td class="weekday"><?php echo $noday; ?></td>
 <?php endif;
-    if ($value->format('w') > 5 && ($_foreach['calendar']['iteration'] <= 1)): ?>
+            if ($value->format('w') > 5 && ($_foreach['calendar']['iteration'] <= 1)): ?>
 <td class="weekday"><?php echo $noday; ?></td>
 <?php endif;
-    if ($value->format('w') == 6): ?>
+            if ($value->format('w') == 6): ?>
 <td class="<?php if ($value->holiday == 0): ?>saturday<?php else: ?>holiday<?php endif; ?>">
 <?php echo $value->format('n'); ?><br />
 <?php echo $value->six_weekday_text; ?><br />
@@ -263,27 +263,27 @@ $noday = '-';
 <?php endif; ?>
 </td>
 <?php endif;
-    if (($_foreach['calendar']['iteration'] == $_foreach['calendar']['total'])):  if ($value->format('w') < 1): ?>
+            if (($_foreach['calendar']['iteration'] == $_foreach['calendar']['total'])):  if ($value->format('w') < 1): ?>
 <td class="weekday"><?php echo $noday; ?></td>
 <?php endif;
-    if ($value->format('w') < 2): ?>
+                if ($value->format('w') < 2): ?>
 <td class="weekday"><?php echo $noday; ?></td>
 <?php endif;
-    if ($value->format('w') < 3): ?>
+                if ($value->format('w') < 3): ?>
 <td class="weekday"><?php echo $noday; ?></td>
 <?php endif;
-    if ($value->format('w') < 4): ?>
+                if ($value->format('w') < 4): ?>
 <td class="weekday"><?php echo $noday; ?></td>
 <?php endif;
-    if ($value->format('w') < 5): ?>
+                if ($value->format('w') < 5): ?>
 <td class="weekday"><?php echo $noday; ?></td>
 <?php endif;
-    if ($value->format('w') < 6): ?>
+                if ($value->format('w') < 6): ?>
 <td class="weekday"><?php echo $noday; ?></td>
 <?php endif; ?>
 </table>
 <?php endif;
-    endforeach;
+        endforeach;
     endif;
     unset($_from); ?>
 <hr>

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * 月の位相計算
  *
@@ -36,7 +37,7 @@ class Moon
      * 新月から新月の平均期間
      * @var float synmonth
      */
-    protected $synmonth = 29.53058868;
+    protected float $synmonth = 29.53058868;
 
     /**
      * 与えられた基準日の平均新月時刻を計算する。
@@ -45,11 +46,11 @@ class Moon
      * $k = (年 - 1900) * 12.3685
      * ここで、yearは年号と端数年号で表されます。
      *
-     * @param int $date
+     * @param float $date
      * @param float $k
      * @return float
      */
-    protected function meanPhase(int $date, float $k): float
+    protected function meanPhase(float $date, float $k): float
     {
         // Time in Julian centuries from 1900 January 0.5
         $jt = ($date - 2415020.0) / 36525;

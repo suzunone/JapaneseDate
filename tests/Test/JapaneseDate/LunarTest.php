@@ -1,4 +1,6 @@
-<?php /** @noinspection PhpUnhandledExceptionInspection */
+<?php
+
+/** @noinspection PhpUnhandledExceptionInspection */
 
 /**
  *
@@ -17,6 +19,8 @@
 namespace Test\JapaneseDate;
 
 use JapaneseDate\DateTime;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Covers;
 use PHPUnit\Framework\TestCase;
 use Tests\JapaneseDate\InvokeTrait;
 
@@ -32,21 +36,20 @@ use Tests\JapaneseDate\InvokeTrait;
  * @see         https://github.com/suzunone/JapaneseDate
  * @since       Class available since Release 1.0.0
  */
+#[CoversClass(\JapaneseDate\Traits\Lunar::class)]
 class LunarTest extends TestCase
 {
     use InvokeTrait;
 
-    /**
-     * @covers \JapaneseDate\Traits\Lunar::getMoonAge
-     */
+    #[Covers('getMoonAge')]
     public function test_getMoonAge()
     {
+        $DateTime = DateTime::factory('2020-03-01 20:00:00');
+        $DateTime->getMoonAge();
+        $this->assertEquals(7, $DateTime->getMoonAge());
     }
 
-    /**
-     * @covers \JapaneseDate\Traits\Lunar
-     * @covers \JapaneseDate\Traits\Getter::__get()
-     */
+    #[Covers('__get')]
     public function test_getSixWeekday()
     {
         $DateTime = DateTime::factory('2018-03-01');
@@ -55,10 +58,7 @@ class LunarTest extends TestCase
         $this->assertEquals(3, $DateTime->six_weekday);
     }
 
-    /**
-     * @covers \JapaneseDate\Traits\Lunar
-     * @covers \JapaneseDate\Traits\Getter::__get()
-     */
+    #[Covers('__get')]
     public function test_getLunarYMD()
     {
         $DateTime = DateTime::factory('2018-02-01');
@@ -121,10 +121,7 @@ class LunarTest extends TestCase
         $this->assertEquals('1', $DateTime->lunar_day);
     }
 
-    /**
-     * @covers \JapaneseDate\Traits\Lunar::isLeapMonth()
-     * @covers \JapaneseDate\Traits\Getter::__get()
-     */
+    #[Covers('isLeapMonth')] #[Covers('__get')]
     public function test_isLeapMonth()
     {
         $DateTime = new DateTime('2017-06-24');

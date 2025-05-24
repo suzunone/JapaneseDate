@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Modern.php
  *
@@ -28,6 +29,7 @@ namespace JapaneseDate\Traits;
  * @see         https://github.com/suzunone/JapaneseDate
  * @since       Class available since Release 1.0.0
  * @mixin \JapaneseDate\DateTime
+ * @mixin \JapaneseDate\DateTimeImmutable
  */
 trait Modern
 {
@@ -59,6 +61,11 @@ trait Modern
      * @return      int
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     * @throws \JapaneseDate\Exceptions\SolarTermException
+     * @throws \JsonException
+     * @noinspection PhpMultipleClassDeclarationsInspection
+     * @noinspection PhpMultipleClassDeclarationsInspection
      */
     protected function getHoliday(): int
     {
@@ -73,6 +80,10 @@ trait Modern
      * @return      string
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     * @throws \JapaneseDate\Exceptions\SolarTermException
+     * @throws \JsonException
+     * @noinspection PhpMultipleClassDeclarationsInspection
      */
     protected function viewHoliday(): string
     {
@@ -157,11 +168,11 @@ trait Modern
     /**
      * 和暦を返す
      *
-     * @param null $era_key 元号キー
+     * @param int|null $era_key 元号キー
      * @return int
      * @throws \JapaneseDate\Exceptions\Exception
      */
-    protected function getEraYear($era_key = null): int
+    protected function getEraYear(?int $era_key = null): int
     {
         $era_calc = [self::ERA_MEIJI => 1868,
             self::ERA_TAISHO         => 1912,

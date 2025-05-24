@@ -132,7 +132,7 @@ echo JapaneseDateTime::parse('first day of December 2018')->addWeeks(2);    // 2
 
 ``` .php
 
-echo JapaneseDateTime::parse(time());    // 2021-01-12 09:28:36
+echo JapaneseDateTime::parse(time());    // 2025-05-24 05:57:17
 echo JapaneseDateTime::parse(new DateTime('now'));    // PHP Fatal error:  Uncaught TypeError: DateTime::__construct() expects parameter 1 to be string, object given
 ```
 
@@ -143,9 +143,9 @@ echo JapaneseDateTime::parse(new DateTime('now'));    // PHP Fatal error:  Uncau
 そういった場合は、`JapaneseDate\DateTime::factory()`を使用します。
 
 ``` .php
-echo JapaneseDateTime::factory(time());    // 2021-01-12 18:28:36
+echo JapaneseDateTime::factory(time());    // 2025-05-24 14:57:17
 
-echo JapaneseDateTime::factory(new DateTime('now'));    // 2021-01-12 18:28:36
+echo JapaneseDateTime::factory(new DateTime('now'));    // 2025-05-24 14:57:17
 
 // もちろんこういったコードも動作します
 echo JapaneseDateTime::factory('first day of December 2018')->addWeeks(2);    // 2018-12-15 00:00:00
@@ -171,117 +171,14 @@ echo JapaneseDateTime::factory(20180404050505);    // 2061-07-19 16:48:25
 
 ``` .php
 $now = JapaneseDateTime::now();
-echo $now;                               // 2021-01-12 18:28:36
+echo $now;                               // 2025-05-24 14:57:17
 $today = JapaneseDateTime::today();
-echo $today;                             // 2021-01-12 00:00:00
+echo $today;                             // 2025-05-24 00:00:00
 $tomorrow = JapaneseDateTime::tomorrow('Europe/London');
-echo $tomorrow;                          // 2021-01-13 00:00:00
+echo $tomorrow;                          // 2025-05-25 00:00:00
 $yesterday = JapaneseDateTime::yesterday();
-echo $yesterday;                         // 2021-01-11 00:00:00
+echo $yesterday;                         // 2025-05-23 00:00:00
 ```
-
-ローカライゼーション
-=================================================
-基本クラスのDateTimeにはローカライゼーションのサポートがありません。
-ローカライゼーションをサポートするために、formatLocalized($format)メソッドや、formatLocalizedSimple()があります。
-
-基本的な実装は、現在のインスタンスのタイムスタンプを使用してstrftime()を呼び出します。
-PHP関数[setlocale()](http://php.net/manual/ja/function.setlocale.php)を使用して現在のロケールを最初に設定することで、
-返される文字列は正しいロケールでフォーマットされます。
-
-formatLocalized($format)メソッドには追加で、日本語日付に特化したオプションが用意されています。
-
-[詳しくはこちら](https://github.com/suzunone/JapaneseDate/blob/v4.X/docs/README.md#formatlocalized)を参照してください。
-
-
-``` .php
-setlocale(LC_ALL, 'ja_JP');
-
-$dt = JapaneseDateTime::parse('2018-3-21 23:26:11.123789');
-echo $dt->formatLocalized('%A %d %B %Y'); // 水曜日 21 3月 2018
-// %を文字列として表示したい場合は、%%のように2つ重ねる
-echo $dt->formatLocalized('%#F%#E年%m月%d日(%A) 80%% %%#J');   // 平成30年03月21日(水曜日) 80% %#J
-    echo $dt->formatLocalized('%#J %#e %#g %#k %#6 %#K %#l %#L %#o %#O %#N %#E %#G %#F %#f');   // 21 21  3 赤口 1 水 5 春分の日 11 戌 30 弥生 平成 1003
-// formatLocalizedSimpleを使えば、単なるstrftimeとしても使用できます。
-echo $dt->formatLocalizedSimple('%#J %#e %#g %#k %#6 %#K %#l %#L %#o %#O %#N %#E %#G %#F %#f');   // #J #e #g #k #6 #K #l #L #o #O #E #G #F #f
-```
-
-
-`JapaneseDateTime::setLocale()`を使用することで、[setlocale()](http://php.net/manual/ja/function.setlocale.php)を使用せずとも、同様の効果を得ることができます。
-
-
-``` .php
-    JapaneseDateTime::setLocale('ja');
-    echo JapaneseDateTime::getLocale();                          // ja
-    $dt = JapaneseDateTime::parse('2018-3-21 23:26:11.123789');
-    echo $dt->formatLocalized('%A %d %B %Y'); // 水曜日 21 3月 2018
-
-    echo $dt->formatLocalized('%#F%#E年%m月%d日(%A)');   // 平成30年03月21日(水曜日)
-    echo $dt->formatLocalized('%#F%#E年%-m月%-d日(%A)');   // 平成30年3月21日(水曜日)
-
-    echo $dt->formatLocalized('%#J %#e %#g %#k %#6 %#K %#l %#L %#o %#O %#N %#E %#G %#F %#f');   // 21 21  3 赤口 1 水 5 春分の日 11 戌 30 弥生 平成 1003
-```
-
-フォーマット文字対応表
-
-### 新暦の日
-| 文字 | 説明 |
-|:-----------------:|:------------------|
-| %#J | %-dへのエイリアス |
-| %#e | 1～9なら先頭にスペースを付ける、1～31の日(%eのwin対応版) |
-
-### 新暦の月
-| 文字 | 説明 |
-|:-----------------:|:------------------|
-| %#g | 1～9なら先頭にスペースを付ける、1～12の月 |
-| %#G | 古い名前の月名(睦月、如月) |
-| %#K | 曜日 |
-| %#l | 祝日番号 |
-| %#L | 祝日 |
-| %#o | 干支番号 |
-| %#O | 干支 |
-
-### 年号
-| 文字 | 説明 |
-|:-----------------:|:------------------|
-| %#f | 年号ID |
-| %#F | 年号 |
-
-
-### 六曜
-| 文字 | 説明 |
-|:-----------------:|:------------------|
-| %#k | 六曜番号 |
-| %#6 | 六曜 |
-
-
-### 旧暦年
-| 文字 | 説明 |
-|:-----------------:|:------------------|
-| %#E | 旧暦年 |
-
-
-### 旧暦日
-| 文字 | 説明 |
-|:-----------------:|:------------------|
-| %#d | 旧暦の日(01,02...) |
-| %#-d|  旧暦の日(1,2,3....) |
-| %#j | 旧暦の1桁の場合は先頭にスペースをいれた日（ 1, 2, 3） |
-
-
-### 旧暦月
-| 文字 | 説明 |
-|:-----------------:|:------------------|
-| %#m | 旧暦の月(01,02...) |
-| %#-m|  旧暦の月(1,2,3....) |
-| %#n | 旧暦の1桁の場合は先頭にスペースをいれた月（ 1, 2, 3） |
-| %#b | 旧暦の月(睦月,如月...) |
-| %#h | %#bへのエイリアス |
-| %#B | 旧暦の月で閏月まで表示する 皐月(閏月) |
-| %#u | 閏月の場合 閏 と出力させる |
-| %#U | 閏月の場合 (閏) と出力させる |
-
-
 
 Getter
 =================================================
@@ -338,8 +235,8 @@ var_export($dt->micro);                                        // 123789
 // 22 => 雨水
 // 23 => 啓蟄
 
-var_export($dt->solarTerm);                                   // 0
-var_export($dt->solarTermText);                              // '春分'
+var_export($dt->solarTerm);                                   // false
+var_export($dt->solarTermText);                              // ''
 
 var_export(JapaneseDateTime::parse('2018-04-01 12:23:45.6789')->solarTerm);                                   // false
 var_export(JapaneseDateTime::parse('2018-04-01 12:23:45.6789')->solarTermText);                              // ''
@@ -448,7 +345,7 @@ var_export($dt->weekOfMonth);                                  // 3
 var_export($dt->weekOfYear);                                   // 12
 var_export($dt->daysInMonth);                                  // 31
 var_export($dt->timestamp);                                    // 1521642371
-var_export(JapaneseDateTime::createFromDate(1975, 5, 21)->age);          // 45
+var_export(JapaneseDateTime::createFromDate(1975, 5, 21)->age);          // 50
 var_export($dt->quarter);                                      // 1
 
 // UTCからの秒の差をintで返します（+/-符号を含む）
@@ -471,7 +368,7 @@ var_export(JapaneseDateTime::now('America/Vancouver')->local);
 
 // インスタンスがUTCタイムゾーンにあるかどうかを示します。
 var_export(JapaneseDateTime::now()->utc);                                // false
-var_export(JapaneseDateTime::now('Europe/London')->utc);                 // true
+var_export(JapaneseDateTime::now('Europe/London')->utc);                 // false
 var_export(JapaneseDateTime::createFromTimestampUTC(0)->utc);            // true
 
 // DateTimeZoneインスタンスを取得します。

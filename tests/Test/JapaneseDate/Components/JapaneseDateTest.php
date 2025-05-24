@@ -1,4 +1,6 @@
-<?php /** @noinspection PhpDocMissingThrowsInspection */
+<?php
+
+/** @noinspection PhpDocMissingThrowsInspection */
 /** @noinspection PhpUnhandledExceptionInspection */
 
 /**
@@ -24,6 +26,11 @@ use JapaneseDate\Components\JapaneseDate;
 use JapaneseDate\Components\LunarCalendar;
 use JapaneseDate\DateTime;
 use JapaneseDate\Exceptions\ErrorException;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\CoversFunction;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\PreserveGlobalState;
+use PHPUnit\Framework\Attributes\RunInSeparateProcess;
 use PHPUnit\Framework\TestCase;
 use Tests\JapaneseDate\InvokeTrait;
 
@@ -39,13 +46,12 @@ use Tests\JapaneseDate\InvokeTrait;
  * @see         https://github.com/suzunone/JapaneseDate
  * @since       Class available since Release 1.0.0
  */
+#[CoversClass(JapaneseDate::class)]
 class JapaneseDateTest extends TestCase
 {
     use InvokeTrait;
 
-    /**
-     * @covers \JapaneseDate\Components\JapaneseDate::__construct
-     */
+    #[Covers(JapaneseDate::class . '::__construct')]
     public function test_construct()
     {
         $JapaneseDate = new JapaneseDate();
@@ -86,21 +92,9 @@ class JapaneseDateTest extends TestCase
      *
      * @access      public
      * @return      void
-     * @covers      \JapaneseDate\Components\JapaneseDate::getHolidayList()
-     * @covers      \JapaneseDate\Components\JapaneseDate::getJanuaryHoliday()
-     * @covers      \JapaneseDate\Components\JapaneseDate::getFebruaryHoliday()
-     * @covers      \JapaneseDate\Components\JapaneseDate::getMarchHoliday()
-     * @covers      \JapaneseDate\Components\JapaneseDate::getAprilHoliday()
-     * @covers      \JapaneseDate\Components\JapaneseDate::getMayHoliday()
-     * @covers      \JapaneseDate\Components\JapaneseDate::getJuneHoliday()
-     * @covers      \JapaneseDate\Components\JapaneseDate::getJulyHoliday()
-     * @covers      \JapaneseDate\Components\JapaneseDate::getAugustHoliday()
-     * @covers      \JapaneseDate\Components\JapaneseDate::getSeptemberHoliday()
-     * @covers      \JapaneseDate\Components\JapaneseDate::getOctoberHoliday()
-     * @covers      \JapaneseDate\Components\JapaneseDate::getNovemberHoliday()
-     * @covers      \JapaneseDate\Components\JapaneseDate::getDecemberHoliday()
      *
      */
+    #[Covers(JapaneseDate::class . '::getHolidayList')] #[Covers(JapaneseDate::class . '::getJanuaryHoliday')] #[Covers(JapaneseDate::class . '::getFebruaryHoliday')] #[Covers(JapaneseDate::class . '::getMarchHoliday')] #[Covers(JapaneseDate::class . '::getAprilHoliday')] #[Covers(JapaneseDate::class . '::getMayHoliday')] #[Covers(JapaneseDate::class . '::getJuneHoliday')] #[Covers(JapaneseDate::class . '::getJulyHoliday')] #[Covers(JapaneseDate::class . '::getAugustHoliday')] #[Covers(JapaneseDate::class . '::getSeptemberHoliday')] #[Covers(JapaneseDate::class . '::getOctoberHoliday')] #[Covers(JapaneseDate::class . '::getNovemberHoliday')] #[Covers(JapaneseDate::class . '::getDecemberHoliday')]
     public function test_holidayStart()
     {
         $JapaneseDate = new JapaneseDate();
@@ -146,8 +140,8 @@ class JapaneseDateTest extends TestCase
      *
      * @access       public
      * @return      void
-     * @covers       \JapaneseDate\Components\JapaneseDate::viewMonth()
      */
+    #[Covers(JapaneseDate::class . '::viewMonth')]
     public function test_viewMonth()
     {
         $JapaneseDate = new JapaneseDate();
@@ -169,8 +163,8 @@ class JapaneseDateTest extends TestCase
      *
      * @access       public
      * @return      void
-     * @covers       \JapaneseDate\Components\JapaneseDate::getHolidayList()
      */
+    #[Covers(JapaneseDate::class . '::getHolidayList')]
     public function test_getHolidayList()
     {
         $JapaneseDate = new JapaneseDate();
@@ -180,7 +174,6 @@ class JapaneseDateTest extends TestCase
                 3 => DateTime::CONSTITUTION_DAY,
                 4 => DateTime::GREENERY_DAY,
                 5 => DateTime::CHILDREN_S_DAY,
-
             ],
             $holidays
         );
@@ -190,8 +183,8 @@ class JapaneseDateTest extends TestCase
      *
      * @access       public
      * @return      void
-     * @covers       \JapaneseDate\Components\JapaneseDate::viewEraName()
      */
+    #[Covers(JapaneseDate::class . '::viewEraName')]
     public function test_viewEraName()
     {
         $JapaneseDate = new JapaneseDate();
@@ -225,8 +218,8 @@ class JapaneseDateTest extends TestCase
      *
      * @access       public
      * @return      void
-     * @covers       \JapaneseDate\Components\JapaneseDate::viewSixWeekday()
      */
+    #[Covers(JapaneseDate::class . '::viewSixWeekday')]
     public function test_viewSixWeekday()
     {
         $JapaneseDate = new JapaneseDate();
@@ -280,9 +273,8 @@ class JapaneseDateTest extends TestCase
      *
      * @access              public
      * @return      void
-     * @covers              \JapaneseDate\Components\JapaneseDate::getVernalEquinoxDay()
-     * @dataProvider vernalEquinoxDayDataProvider
      */
+    #[Covers(JapaneseDate::class . '::getVernalEquinoxDay')] #[DataProvider('vernalEquinoxDayDataProvider')]
     public function test_getVernalEquinoxDay($year, $expected)
     {
         $JapaneseDate = new JapaneseDate();
@@ -297,10 +289,8 @@ class JapaneseDateTest extends TestCase
      *
      * @access              public
      * @return      void
-     * @covers              \JapaneseDate\Components\JapaneseDate::factory()
-     * @runInSeparateProcess
-     * @preserveGlobalState disabled
      */
+    #[Covers(JapaneseDate::class . '::factory')] #[RunInSeparateProcess] #[PreserveGlobalState(false)]
     public function test_factory()
     {
         $JapaneseDate = JapaneseDate::factory();
@@ -313,8 +303,8 @@ class JapaneseDateTest extends TestCase
      *
      * @access       public
      * @return      void
-     * @covers       \JapaneseDate\Components\JapaneseDate::viewOrientalZodiac()
      */
+    #[Covers(JapaneseDate::class . '::viewOrientalZodiac')]
     public function test_viewOrientalZodiac()
     {
         $JapaneseDate = new JapaneseDate();
@@ -353,9 +343,8 @@ class JapaneseDateTest extends TestCase
      *
      * @access              public
      * @return      void
-     * @covers              \JapaneseDate\Components\JapaneseDate::getAutumnEquinoxDay()
-     * @dataProvider autumnEquinoxDayDataProvider
      */
+    #[Covers(JapaneseDate::class . '::getAutumnEquinoxDay')] #[DataProvider('autumnEquinoxDayDataProvider')]
     public function test_getAutumnEquinoxDay($year, $expected)
     {
         $JapaneseDate = new JapaneseDate();
@@ -370,8 +359,8 @@ class JapaneseDateTest extends TestCase
      *
      * @access       public
      * @return      void
-     * @covers       \JapaneseDate\Components\JapaneseDate::viewHoliday()
      */
+    #[Covers(JapaneseDate::class . '::viewHoliday')]
     public function test_viewHoliday()
     {
         $JapaneseDate = new JapaneseDate();
@@ -385,8 +374,8 @@ class JapaneseDateTest extends TestCase
      *
      * @access       public
      * @return      void
-     * @covers       \JapaneseDate\Components\JapaneseDate::viewWeekday()
      */
+    #[Covers(JapaneseDate::class . '::viewWeekday')]
     public function test_viewWeekday()
     {
         $JapaneseDate = new JapaneseDate();
@@ -401,9 +390,7 @@ class JapaneseDateTest extends TestCase
         );
     }
 
-    /**
-     * @covers \JapaneseDate\Components\JapaneseDate::getDayByWeekly()
-     */
+    #[Covers(JapaneseDate::class . '::getDayByWeekly')]
     public function test_getDayByWeekly()
     {
         $JapaneseDate = new JapaneseDate();
@@ -458,9 +445,7 @@ class JapaneseDateTest extends TestCase
         $this->assertEquals(7 + 7, $res);
     }
 
-    /**
-     * @covers \JapaneseDate\Components\JapaneseDate::getDayByWeekly()
-     */
+    #[Covers(JapaneseDate::class . '::getDayByWeekly')]
     public function test_getDayByWeekly_error()
     {
         $this->expectException(ErrorException::class);
@@ -475,9 +460,8 @@ class JapaneseDateTest extends TestCase
      * @param JapaneseDate $JapaneseDate
      * @param DateTime $JapaneseDateTime
      * @return      void
-     * @dataProvider createTestObject
-     * @covers       \JapaneseDate\Components\JapaneseDate::getJanuaryHoliday()
      */
+    #[DataProvider('createTestObject')] #[Covers(JapaneseDate::class . '::getJanuaryHoliday')]
     public function test_getJanuaryHoliday(JapaneseDate $JapaneseDate, DateTime $JapaneseDateTime)
     {
         $res = $this->invokeExecuteMethod($JapaneseDate, 'getJanuaryHoliday', ['2000', $JapaneseDateTime->getTimezone()]);
@@ -504,9 +488,8 @@ class JapaneseDateTest extends TestCase
      * @param JapaneseDate $JapaneseDate
      * @param DateTime $JapaneseDateTime
      * @return      void
-     * @dataProvider createTestObject
-     * @covers       \JapaneseDate\Components\JapaneseDate::getJanuaryHoliday()
      */
+    #[DataProvider('createTestObject')] #[Covers(JapaneseDate::class . '::getJanuaryHoliday')]
     public function test_getJanuaryHolidayTransferHoliday(JapaneseDate $JapaneseDate, DateTime $JapaneseDateTime)
     {
         $res = $this->invokeExecuteMethod($JapaneseDate, 'getJanuaryHoliday', ['1978', $JapaneseDateTime->getTimezone()]);
@@ -562,9 +545,8 @@ class JapaneseDateTest extends TestCase
      * @param JapaneseDate $JapaneseDate
      * @param DateTime $JapaneseDateTime
      * @return      void
-     * @dataProvider createTestObject
-     * @covers       \JapaneseDate\Components\JapaneseDate::getFebruaryHoliday()
      */
+    #[DataProvider('createTestObject')] #[Covers(JapaneseDate::class . '::getFebruaryHoliday')]
     public function test_getFebruaryHoliday(JapaneseDate $JapaneseDate, DateTime $JapaneseDateTime)
     {
         $res = $this->invokeExecuteMethod($JapaneseDate, 'getFebruaryHoliday', ['2016', $JapaneseDateTime->getTimezone()]);
@@ -608,9 +590,8 @@ class JapaneseDateTest extends TestCase
      * @param JapaneseDate $JapaneseDate
      * @param DateTime $JapaneseDateTime
      * @return      void
-     * @dataProvider createTestObject
-     * @covers       \JapaneseDate\Components\JapaneseDate::getFebruaryHoliday()
      */
+    #[DataProvider('createTestObject')] #[Covers(JapaneseDate::class . '::getFebruaryHoliday')]
     public function test_getFebruaryHolidayTransferHoliday(JapaneseDate $JapaneseDate, DateTime $JapaneseDateTime)
     {
         $res = $this->invokeExecuteMethod($JapaneseDate, 'getFebruaryHoliday', ['1979', $JapaneseDateTime->getTimezone()]);
@@ -678,9 +659,8 @@ class JapaneseDateTest extends TestCase
      * @param JapaneseDate $JapaneseDate
      * @param DateTime $JapaneseDateTime
      * @return      void
-     * @dataProvider createTestObject
-     * @covers       \JapaneseDate\Components\JapaneseDate::getMarchHoliday()
      */
+    #[DataProvider('createTestObject')] #[Covers(JapaneseDate::class . '::getMarchHoliday')]
     public function test_getMarchHoliday(JapaneseDate $JapaneseDate, DateTime $JapaneseDateTime)
     {
         $res = $this->invokeExecuteMethod($JapaneseDate, 'getMarchHoliday', ['2015', $JapaneseDateTime->getTimezone()]);
@@ -696,9 +676,8 @@ class JapaneseDateTest extends TestCase
      * @param JapaneseDate $JapaneseDate
      * @param DateTime $JapaneseDateTime
      * @return      void
-     * @dataProvider createTestObject
-     * @covers       \JapaneseDate\Components\JapaneseDate::getMarchHoliday()
      */
+    #[DataProvider('createTestObject')] #[Covers(JapaneseDate::class . '::getMarchHoliday')]
     public function test_getMarchHoliday_TransferHoliday(JapaneseDate $JapaneseDate, DateTime $JapaneseDateTime)
     {
         $res = $this->invokeExecuteMethod($JapaneseDate, 'getMarchHoliday', ['1988', $JapaneseDateTime->getTimezone()]);
@@ -762,9 +741,8 @@ class JapaneseDateTest extends TestCase
      * @param JapaneseDate $JapaneseDate
      * @param DateTime $JapaneseDateTime
      * @return      void
-     * @dataProvider createTestObject
-     * @covers       \JapaneseDate\Components\JapaneseDate::getAprilHoliday()
      */
+    #[DataProvider('createTestObject')] #[Covers(JapaneseDate::class . '::getAprilHoliday')]
     public function test_getAprilHoliday(JapaneseDate $JapaneseDate, DateTime $JapaneseDateTime)
     {
         $res = $this->invokeExecuteMethod($JapaneseDate, 'getAprilHoliday', ['1959', $JapaneseDateTime->getTimezone()]);
@@ -798,9 +776,8 @@ class JapaneseDateTest extends TestCase
      * @param JapaneseDate $JapaneseDate
      * @param DateTime $JapaneseDateTime
      * @return      void
-     * @dataProvider createTestObject
-     * @covers       \JapaneseDate\Components\JapaneseDate::getAprilHoliday()
      */
+    #[DataProvider('createTestObject')] #[Covers(JapaneseDate::class . '::getAprilHoliday')]
     public function test_getAprilHoliday_TransferHoliday(JapaneseDate $JapaneseDate, DateTime $JapaneseDateTime)
     {
         $res = $this->invokeExecuteMethod($JapaneseDate, 'getAprilHoliday', ['1973', $JapaneseDateTime->getTimezone()]);
@@ -902,9 +879,8 @@ class JapaneseDateTest extends TestCase
      * @param JapaneseDate $JapaneseDate
      * @param DateTime $JapaneseDateTime
      * @return      void
-     * @dataProvider createTestObject
-     * @covers       \JapaneseDate\Components\JapaneseDate::getMayHoliday()
      */
+    #[DataProvider('createTestObject')] #[Covers(JapaneseDate::class . '::getMayHoliday')]
     public function test_getMayHoliday(JapaneseDate $JapaneseDate, DateTime $JapaneseDateTime)
     {
         $res = $this->invokeExecuteMethod($JapaneseDate, 'getMayHoliday', ['2016', $JapaneseDateTime->getTimezone()]);
@@ -947,9 +923,8 @@ class JapaneseDateTest extends TestCase
      * @param JapaneseDate $JapaneseDate
      * @param DateTime $JapaneseDateTime
      * @return      void
-     * @dataProvider createTestObject
-     * @covers       \JapaneseDate\Components\JapaneseDate::getMayHoliday()
      */
+    #[DataProvider('createTestObject')] #[Covers(JapaneseDate::class . '::getMayHoliday')]
     public function test_getMayHoliday_TransferHoliday(JapaneseDate $JapaneseDate, DateTime $JapaneseDateTime)
     {
         $res = $this->invokeExecuteMethod($JapaneseDate, 'getMayHoliday', ['2015', $JapaneseDateTime->getTimezone()]);
@@ -989,9 +964,8 @@ class JapaneseDateTest extends TestCase
      * @param JapaneseDate $JapaneseDate
      * @param DateTime $JapaneseDateTime
      * @return      void
-     * @dataProvider createTestObject
-     * @covers       \JapaneseDate\Components\JapaneseDate::getJuneHoliday()
      */
+    #[DataProvider('createTestObject')] #[Covers(JapaneseDate::class . '::getJuneHoliday')]
     public function test_getJuneHoliday(JapaneseDate $JapaneseDate, DateTime $JapaneseDateTime)
     {
         $res = $this->invokeExecuteMethod($JapaneseDate, 'getJuneHoliday', ['2015', $JapaneseDateTime->getTimezone()]);
@@ -1009,9 +983,8 @@ class JapaneseDateTest extends TestCase
      * @param JapaneseDate $JapaneseDate
      * @param DateTime $JapaneseDateTime
      * @return      void
-     * @dataProvider createTestObject
-     * @covers       \JapaneseDate\Components\JapaneseDate::getJulyHoliday()
      */
+    #[DataProvider('createTestObject')] #[Covers(JapaneseDate::class . '::getJulyHoliday')]
     public function test_getJulyHoliday(JapaneseDate $JapaneseDate, DateTime $JapaneseDateTime)
     {
         $res = $this->invokeExecuteMethod($JapaneseDate, 'getJulyHoliday', ['1995', $JapaneseDateTime->getTimezone()]);
@@ -1239,9 +1212,8 @@ class JapaneseDateTest extends TestCase
      * @param JapaneseDate $JapaneseDate
      * @param DateTime $JapaneseDateTime
      * @return      void
-     * @dataProvider createTestObject
-     * @covers       \JapaneseDate\Components\JapaneseDate::getJulyHoliday()
      */
+    #[DataProvider('createTestObject')] #[Covers(JapaneseDate::class . '::getJulyHoliday')]
     public function test_getJulyHoliday_TransferHoliday(JapaneseDate $JapaneseDate, DateTime $JapaneseDateTime)
     {
         $res = $this->invokeExecuteMethod($JapaneseDate, 'getJulyHoliday', ['1997', $JapaneseDateTime->getTimezone()]);
@@ -1259,9 +1231,8 @@ class JapaneseDateTest extends TestCase
      * @param JapaneseDate $JapaneseDate
      * @param DateTime $JapaneseDateTime
      * @return      void
-     * @dataProvider createTestObject
-     * @covers       \JapaneseDate\Components\JapaneseDate::getAugustHoliday()
      */
+    #[DataProvider('createTestObject')] #[Covers(JapaneseDate::class . '::getAugustHoliday')]
     public function test_getAugustHoliday(JapaneseDate $JapaneseDate, DateTime $JapaneseDateTime)
     {
         $res = $this->invokeExecuteMethod($JapaneseDate, 'getAugustHoliday', ['2015', $JapaneseDateTime->getTimezone()]);
@@ -1294,9 +1265,8 @@ class JapaneseDateTest extends TestCase
      * @param JapaneseDate $JapaneseDate
      * @param DateTime $JapaneseDateTime
      * @return      void
-     * @dataProvider createTestObject
-     * @covers       \JapaneseDate\Components\JapaneseDate::getAugustHoliday()
      */
+    #[DataProvider('createTestObject')] #[Covers(JapaneseDate::class . '::getAugustHoliday')]
     public function test_getAugustHoliday_TransferHoliday(JapaneseDate $JapaneseDate, DateTime $JapaneseDateTime)
     {
         $res = $this->invokeExecuteMethod($JapaneseDate, 'getAugustHoliday', ['2019', $JapaneseDateTime->getTimezone()]);
@@ -1337,10 +1307,8 @@ class JapaneseDateTest extends TestCase
      * @param JapaneseDate $JapaneseDate
      * @param DateTime $JapaneseDateTime
      * @return      void
-     * @dataProvider createTestObject
-     * @covers       \JapaneseDate\Components\JapaneseDate::getMayHoliday()
-     * @covers       \JapaneseDate\Components\JapaneseDate::getSeptemberHoliday()
      */
+    #[DataProvider('createTestObject')] #[Covers(JapaneseDate::class . '::getMayHoliday')] #[Covers(JapaneseDate::class . '::getSeptemberHoliday')]
     public function test_nationalHoliday(JapaneseDate $JapaneseDate, DateTime $JapaneseDateTime)
     {
         $res = $this->invokeExecuteMethod($JapaneseDate, 'getMayHoliday', ['1988', $JapaneseDateTime->getTimezone()]);
@@ -1447,9 +1415,8 @@ class JapaneseDateTest extends TestCase
      * @param JapaneseDate $JapaneseDate
      * @param DateTime $JapaneseDateTime
      * @return      void
-     * @dataProvider createTestObject
-     * @covers       \JapaneseDate\Components\JapaneseDate::getSeptemberHoliday()
      */
+    #[DataProvider('createTestObject')] #[Covers(JapaneseDate::class . '::getSeptemberHoliday')]
     public function test_getSeptemberHoliday(JapaneseDate $JapaneseDate, DateTime $JapaneseDateTime)
     {
         $res = $this->invokeExecuteMethod($JapaneseDate, 'getSeptemberHoliday', ['1965', $JapaneseDateTime->getTimezone()]);
@@ -1496,9 +1463,8 @@ class JapaneseDateTest extends TestCase
      * @param JapaneseDate $JapaneseDate
      * @param DateTime $JapaneseDateTime
      * @return      void
-     * @dataProvider createTestObject
-     * @covers       \JapaneseDate\Components\JapaneseDate::getSeptemberHoliday()
      */
+    #[DataProvider('createTestObject')] #[Covers(JapaneseDate::class . '::getSeptemberHoliday')]
     public function test_getSeptemberHoliday_TransferHoliday(JapaneseDate $JapaneseDate, DateTime $JapaneseDateTime)
     {
         $res = $this->invokeExecuteMethod($JapaneseDate, 'getSeptemberHoliday', ['1974', $JapaneseDateTime->getTimezone()]);
@@ -1614,9 +1580,8 @@ class JapaneseDateTest extends TestCase
      * @param JapaneseDate $JapaneseDate
      * @param DateTime $JapaneseDateTime
      * @return      void
-     * @dataProvider createTestObject
-     * @covers       \JapaneseDate\Components\JapaneseDate::getOctoberHoliday()
      */
+    #[DataProvider('createTestObject')] #[Covers(JapaneseDate::class . '::getOctoberHoliday')]
     public function test_getOctoberHoliday(JapaneseDate $JapaneseDate, DateTime $JapaneseDateTime)
     {
         $res = $this->invokeExecuteMethod($JapaneseDate, 'getOctoberHoliday', ['1965', $JapaneseDateTime->getTimezone()]);
@@ -1660,9 +1625,8 @@ class JapaneseDateTest extends TestCase
      * @param JapaneseDate $JapaneseDate
      * @param DateTime $JapaneseDateTime
      * @return      void
-     * @dataProvider createTestObject
-     * @covers       \JapaneseDate\Components\JapaneseDate::getOctoberHoliday()
      */
+    #[DataProvider('createTestObject')] #[Covers(JapaneseDate::class . '::getOctoberHoliday')]
     public function test_getOctoberHoliday_TransferHoliday(JapaneseDate $JapaneseDate, DateTime $JapaneseDateTime)
     {
         $res = $this->invokeExecuteMethod($JapaneseDate, 'getOctoberHoliday', ['1976', $JapaneseDateTime->getTimezone()]);
@@ -1701,9 +1665,8 @@ class JapaneseDateTest extends TestCase
      * @param JapaneseDate $JapaneseDate
      * @param DateTime $JapaneseDateTime
      * @return      void
-     * @dataProvider createTestObject
-     * @covers       \JapaneseDate\Components\JapaneseDate::getNovemberHoliday()
      */
+    #[DataProvider('createTestObject')] #[Covers(JapaneseDate::class . '::getNovemberHoliday')]
     public function test_getNovemberHoliday(JapaneseDate $JapaneseDate, DateTime $JapaneseDateTime)
     {
         $res = $this->invokeExecuteMethod($JapaneseDate, 'getNovemberHoliday', ['2015', $JapaneseDateTime->getTimezone()]);
@@ -1733,9 +1696,8 @@ class JapaneseDateTest extends TestCase
      * @param JapaneseDate $JapaneseDate
      * @param DateTime $JapaneseDateTime
      * @return      void
-     * @dataProvider createTestObject
-     * @covers       \JapaneseDate\Components\JapaneseDate::getNovemberHoliday()
      */
+    #[DataProvider('createTestObject')] #[Covers(JapaneseDate::class . '::getNovemberHoliday')]
     public function test_getNovemberHoliday_TransferHoliday(JapaneseDate $JapaneseDate, DateTime $JapaneseDateTime)
     {
         $res = $this->invokeExecuteMethod($JapaneseDate, 'getNovemberHoliday', ['1974', $JapaneseDateTime->getTimezone()]);
@@ -1913,9 +1875,8 @@ class JapaneseDateTest extends TestCase
      * @param JapaneseDate $JapaneseDate
      * @param DateTime $JapaneseDateTime
      * @return      void
-     * @dataProvider createTestObject
-     * @covers       \JapaneseDate\Components\JapaneseDate::getDecemberHoliday()
      */
+    #[DataProvider('createTestObject')] #[Covers(JapaneseDate::class . '::getDecemberHoliday')]
     public function test_getDecemberHoliday(JapaneseDate $JapaneseDate, DateTime $JapaneseDateTime)
     {
         $res = $this->invokeExecuteMethod($JapaneseDate, 'getDecemberHoliday', ['2015', $JapaneseDateTime->getTimezone()]);
@@ -1936,9 +1897,8 @@ class JapaneseDateTest extends TestCase
      * @param JapaneseDate $JapaneseDate
      * @param DateTime $JapaneseDateTime
      * @return      void
-     * @dataProvider createTestObject
-     * @covers       \JapaneseDate\Components\JapaneseDate::getDecemberHoliday()
      */
+    #[DataProvider('createTestObject')] #[Covers(JapaneseDate::class . '::getDecemberHoliday')]
     public function test_getDecemberHoliday_TransferHoliday(JapaneseDate $JapaneseDate, DateTime $JapaneseDateTime)
     {
         $res = $this->invokeExecuteMethod($JapaneseDate, 'getDecemberHoliday', ['1990', $JapaneseDateTime->getTimezone()]);
@@ -1981,9 +1941,7 @@ class JapaneseDateTest extends TestCase
         $this->assertCount(0, $res);
     }
 
-    /**
-     * @covers \JapaneseDate\Components\JapaneseDate::getDay()
-     */
+    #[Covers(JapaneseDate::class . '::getDay')]
     public function test_getDay()
     {
         $FakerGenerator = new FakerGenerator();
@@ -2002,10 +1960,7 @@ class JapaneseDateTest extends TestCase
         $this->assertEquals($test_date_time->format('d'), $res);
     }
 
-    /**
-     *
-     * @covers \JapaneseDate\Components\JapaneseDate::getWeekday()
-     */
+    #[Covers(JapaneseDate::class . '::getWeekday')]
     public function test_getWeekday()
     {
         $FakerGenerator = new FakerGenerator();
@@ -2029,9 +1984,8 @@ class JapaneseDateTest extends TestCase
      *
      * @access      public
      * @return      void
-     * @covers      \JapaneseDate\DateTime
-     * @covers      \JapaneseDate\Components\JapaneseDate
      */
+    #[Covers(\JapaneseDate\DateTime::class)] #[Covers(\JapaneseDate\Components\JapaneseDate::class)]
     public function test_nationalHolidayTest()
     {
         $JapaneseDate = JapaneseDate::factory();

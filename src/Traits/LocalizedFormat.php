@@ -1,4 +1,5 @@
 <?php
+
 /**
  * LocalizedFormat.php
  *
@@ -28,6 +29,7 @@ namespace JapaneseDate\Traits;
  * @see         https://github.com/suzunone/JapaneseDate
  * @since       Class available since Release 1.0.0
  * @mixin \JapaneseDate\DateTime
+ * @mixin \JapaneseDate\DateTimeImmutable
  */
 trait LocalizedFormat
 {
@@ -60,6 +62,8 @@ trait LocalizedFormat
      * @return string  指定したフォーマット文字列に基づき文字列をフォーマットして返します。 月および曜日の名前、およびその他の言語依存の文字列は、 setlocale() で設定された現在のロケールを尊重して表示されます。
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JsonException
+     * @noinspection PhpMultipleClassDeclarationsInspection
      * @since 1.1
      * @deprecated
      */
@@ -78,20 +82,25 @@ trait LocalizedFormat
      * @return string  指定したフォーマット文字列に基づき文字列をフォーマットして返します。 月および曜日の名前、およびその他の言語依存の文字列は、 setlocale() で設定された現在のロケールを尊重して表示されます。
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JsonException
+     * @noinspection PhpMultipleClassDeclarationsInspection
      * @since 1.1
+     * @deprecated
      */
-    protected function strftimeJa(string $format, $delimiter = '%#'): string
+    protected function strftimeJa(string $format, string $delimiter = '%#'): string
     {
         $res_str = '';
         $format_array = explode($delimiter, $format);
         foreach ($format_array as $key => $strings) {
             if ($key === 0) {
                 $res_str .= $strings;
+
                 continue;
             }
             if ($delimiter !== '%' && mb_substr($format_array[$key - 1], -1, 1) === '%') {
                 $re_format = $delimiter . $strings;
                 $res_str .= $re_format;
+
                 continue;
             }
 
@@ -104,51 +113,65 @@ trait LocalizedFormat
             switch ($pattern) {
                 case 'o':
                     $re_format = $this->getOrientalZodiac();
+
                     break;
                 case 'O':
                     $re_format = $this->viewOrientalZodiac();
+
                     break;
                 case 'l':
                     $re_format = $this->getHoliday();
+
                     break;
                 case 'L':
                     $re_format = $this->viewHoliday();
+
                     break;
                 case 'K':
                     $re_format = $this->viewWeekday();
+
                     break;
                 case 'k':
                     $re_format = $this->viewSixWeekday();
+
                     break;
                 case '6':
                     $re_format = $this->getSixWeekday();
+
                     break;
                 case 'e':
                     $re_format = $this->format('j');
                     if (strlen($re_format) === 1) {
                         $re_format = ' ' . $re_format;
                     }
+
                     break;
                 case 'g':
                     $re_format = $this->format('n');
                     if (strlen($re_format) === 1) {
                         $re_format = ' ' . $re_format;
                     }
+
                     break;
                 case 'J':
                     $re_format = $this->format('j');
+
                     break;
                 case 'G':
                     $re_format = $this->viewMonth();
+
                     break;
                 case 'F':
                     $re_format = $this->viewEraName();
+
                     break;
                 case 'f':
                     $re_format = $this->getEraName();
+
                     break;
                 case 'E':
                     $re_format = $this->getEraYear();
+
                     break;
                 default:
                     $re_format = false;
@@ -157,49 +180,59 @@ trait LocalizedFormat
                         switch ($pattern) {
                             case '-d':
                                 $re_format = $this->getLunarDay();
+
                                 break;
                             case 'd':
                                 $re_format = $this->getLunarDay();
                                 if (strlen($re_format) === 1) {
                                     $re_format = '0' . $re_format;
                                 }
+
                                 break;
                             case 'j':
                                 $re_format = $this->getLunarDay();
                                 if (strlen($re_format) === 1) {
                                     $re_format = ' ' . $re_format;
                                 }
+
                                 break;
                             case '-m':
                                 $re_format = $this->getLunarMonth();
+
                                 break;
                             case 'm':
                                 $re_format = $this->getLunarMonth();
                                 if (strlen($re_format) === 1) {
                                     $re_format = '0' . $re_format;
                                 }
+
                                 break;
                             case 'n':
                                 $re_format = $this->getLunarMonth();
                                 if (strlen($re_format) === 1) {
                                     $re_format = ' ' . $re_format;
                                 }
+
                                 break;
                             case 'b':
                             case 'h':
                                 $re_format = $this->viewLunarMonth();
+
                                 break;
-                            case'B':
+                            case 'B':
                                 $re_format = $this->viewLunarMonth();
                                 if ($this->isLeapMonth()) {
                                     $re_format .= '(閏月)';
                                 }
+
                                 break;
                             case 'u':
                                 $re_format = $this->isLeapMonth() ? '閏' : '';
+
                                 break;
                             case 'U':
                                 $re_format = $this->isLeapMonth() ? '(閏)' : '';
+
                                 break;
                         }
                     }
@@ -207,8 +240,10 @@ trait LocalizedFormat
                     if ($re_format === false) {
                         $re_format = $delimiter . $strings;
                         $res_str .= $re_format;
+
                         continue 2;
                     }
+
                     break;
             }
             $res_str .= $re_format . mb_substr($strings, strlen($pattern));
@@ -254,13 +289,16 @@ trait LocalizedFormat
      * @return string  指定したフォーマット文字列に基づき文字列をフォーマットして返します。 月および曜日の名前、およびその他の言語依存の文字列は、 setlocale() で設定された現在のロケールを尊重して表示されます。
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JsonException
+     * @noinspection PhpMultipleClassDeclarationsInspection
      * @since 1.1
-     * @noinspection PhpMissingParamTypeInspection
+     * @deprecated
      */
-    public function formatLocalized($format)
+    public function formatLocalized($format): string
     {
         $format = $this->strftimeJa($format);
 
+        /** @noinspection PhpDeprecationInspection */
         return parent::formatLocalized($format);
     }
 
@@ -270,9 +308,11 @@ trait LocalizedFormat
      * @param string $format フォーマット
      * @return string
      * @noinspection PhpMissingParamTypeInspection
+     * @deprecated
      */
     public function formatLocalizedSimple($format): string
     {
+        /** @noinspection PhpDeprecationInspection */
         return parent::formatLocalized($format);
     }
 }
