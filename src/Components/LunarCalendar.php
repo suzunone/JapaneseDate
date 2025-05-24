@@ -1,4 +1,5 @@
 <?php
+
 /** @noinspection PhpTooManyParametersInspection */
 
 /**
@@ -78,7 +79,9 @@ class LunarCalendar
     public const ASTRO_REFRACT = 0.585556;
 
     public const DAY_TO_HOUR_FLOAT = 24.0;
+
     public const DAY_TO_MINUTE_FLOAT = 1440.0;
+
     public const DAY_TO_SECOND_FLOAT = 86400.0;
 
     /**
@@ -87,7 +90,8 @@ class LunarCalendar
     public const JD_TIME_ZONE_ADJUSTMENT = 0.375;
 
     /**
-     *  1.0 / 86400.0;
+     * 1.0 / 86400.0;
+     *  @var float
      */
     public const DAYS_PER_SEC = 0.00001157407;
 
@@ -96,6 +100,8 @@ class LunarCalendar
      * '2000-01-02 12:00:00',
      * new DateTimeZone('UTC')
      * )->timestamp;
+     *
+     * @var int
      */
     public const BASE_TIME = 946814400;
 
@@ -104,14 +110,14 @@ class LunarCalendar
      *
      * @var array
      */
-    protected $lunar_calendar;
+    protected array $lunar_calendar;
 
     /**
      * キャッシュ
      *
      * @var array
      */
-    protected $cache = [
+    protected array $cache = [
         'longitudeMoon' => [],
         'longitudeSun'  => [],
     ];
@@ -139,6 +145,8 @@ class LunarCalendar
      * @return \JapaneseDate\Elements\LunarDate
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JsonException
+     * @noinspection PhpMultipleClassDeclarationsInspection
      */
     public function getLunarDate(DateTime $DateTime): LunarDate
     {
@@ -186,6 +194,7 @@ class LunarCalendar
                     LunarDate::MONTH_KEY              => $lunar['lunar_month'],
                     LunarDate::DAY_KEY                => $day,
                 ];
+
                 break;
             }
         }
@@ -213,7 +222,7 @@ class LunarCalendar
 
         return $this->lunar_calendar[$year];
     }
-    
+
     protected function fixAngle(float $a): float
     {
         return ($a - 360 * floor($a / 360));
@@ -236,8 +245,8 @@ class LunarCalendar
         // 朔の日を求める
         $lunar_calendar = [];
         $counter = 0;
-        $Date = Carbon::create($year - 1, 11, 10, 0, 0, 0);
-        $EndDate = Carbon::create($year + 1, 3, 1, 0, 0, 0);
+        $Date = Carbon::create($year - 1, 11, 10);
+        $EndDate = Carbon::create($year + 1, 3);
 
         $moon = new Moon();
         $end_timestamp = $EndDate->timestamp;
@@ -246,7 +255,8 @@ class LunarCalendar
             $age2 = $this->moonAge($Date->year, $Date->month, $Date->day, 23, 59, 59);
 
             if ($age2 > $age1) {
-                $Date = $Date->addDay(1);
+                $Date = $Date->addDay();
+
                 continue;
             }
 
@@ -256,7 +266,7 @@ class LunarCalendar
                 $age1 = $this->moonAge($Date->year, $Date->month, $Date->day, 0, 0, 0);
                 $age2 = $this->moonAge($Date->year, $Date->month, $Date->day, 23, 59, 59);
             } elseif ($Date->year < 1900 && $age1 > 20 && $age2 < 0.1) {
-                $Date = $Date->addDay(1);
+                $Date = $Date->addDay();
                 $age1 = $this->moonAge($Date->year, $Date->month, $Date->day, 0, 0, 0);
                 $age2 = $this->moonAge($Date->year, $Date->month, $Date->day, 23, 59, 59);
             }
@@ -277,8 +287,8 @@ class LunarCalendar
         // 中気を求める
         $sun_calendar = [];
         $counter = 0;
-        $Date = Carbon::create($year - 1, 11, 10, 0, 0, 0);
-        $EndDate = Carbon::create($year + 1, 3, 1, 0, 0, 0);
+        $Date = Carbon::create($year - 1, 11, 10);
+        $EndDate = Carbon::create($year + 1, 3);
 
         $end_timestamp = $EndDate->timestamp;
         while ($end_timestamp > $Date->timestamp) {
@@ -289,6 +299,7 @@ class LunarCalendar
 
             if ($tml_ls_2 === $tmp_ls_1 || ($tml_ls_2 % 2 !== 0)) {
                 $Date->addDay();
+
                 continue;
             }
 
@@ -441,6 +452,7 @@ class LunarCalendar
                 // 初期値を答えとして返して強制的にループを抜け出して異常終了
                 $tm1 = $julian_date_0;
                 $tm2 = 0;
+
                 break;
             }
             // @codeCoverageIgnoreEnd
@@ -483,7 +495,7 @@ class LunarCalendar
      */
     protected function jD2Gregorian(float $jd): array
     {
-        $cal = cal_from_jd($jd, CAL_GREGORIAN);
+        $cal = cal_from_jd(floor($jd), CAL_GREGORIAN);
 
         $time = 86400 * ($jd - floor($jd));
         $hour = floor($time / 3600.0);
@@ -708,7 +720,7 @@ class LunarCalendar
      * @return    int|bool
      * @throws \JapaneseDate\Exceptions\Exception
      */
-    public function findSolarTerm(int $year, int $month, int $day)
+    public function findSolarTerm(int $year, int $month, int $day): bool|int
     {
         try {
             $solar_terms = (new SolarTerm())->getSolarTerms($year);
@@ -720,7 +732,7 @@ class LunarCalendar
             }
 
             return false;
-        } catch (Throwable $e) {
+        } catch (Throwable) {
             // 太陽黄経
             $longitude_sun_1 = $this->longitudeSun($year, $month, $day, 0, 0, 0);
             $longitude_sun_2 = $this->longitudeSun($year, $month, $day, 24, 0, 0);

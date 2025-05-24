@@ -1,4 +1,5 @@
 <?php
+
 /**
  * CacheSetting.php
  *
@@ -87,10 +88,10 @@ trait CacheSetting
 
     /**
      * @param string $date_text
-     * @return static|\JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable|\DateTimeInterface
+     * @return static
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
-    protected function innerDateTime(string $date_text)
+    protected function innerDateTime(string $date_text): static
     {
         static $cache;
 

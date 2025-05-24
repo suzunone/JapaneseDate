@@ -1,4 +1,6 @@
-<?php /** @noinspection PhpDocMissingThrowsInspection */
+<?php
+
+/** @noinspection PhpDocMissingThrowsInspection */
 /** @noinspection PhpUnhandledExceptionInspection */
 
 /**
@@ -19,6 +21,9 @@
 namespace Tests\JapaneseDate\Components;
 
 use JapaneseDate\Components\Cache;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\PreserveGlobalState;
+use PHPUnit\Framework\Attributes\RunInSeparateProcess;
 use PHPUnit\Framework\TestCase;
 use Tests\JapaneseDate\InvokeTrait;
 
@@ -34,15 +39,12 @@ use Tests\JapaneseDate\InvokeTrait;
  * @see         https://github.com/suzunone/JapaneseDate
  * @since       Class available since Release 1.0.0
  */
+#[CoversClass(\JapaneseDate\Components\Cache::class)]
 class CacheTest extends TestCase
 {
     use InvokeTrait;
 
-    /**
-     * @covers              \JapaneseDate\Components\Cache
-     * @runInSeparateProcess
-     * @preserveGlobalState disabled
-     */
+    #[RunInSeparateProcess] #[PreserveGlobalState(false)]
     public function test_setMode()
     {
         $this->assertEquals(
@@ -57,11 +59,7 @@ class CacheTest extends TestCase
         );
     }
 
-    /**
-     * @covers              \JapaneseDate\Components\Cache
-     * @runInSeparateProcess
-     * @preserveGlobalState disabled
-     */
+    #[RunInSeparateProcess] #[PreserveGlobalState(false)]
     public function test_setCacheClosure()
     {
         $closure = static function () {
@@ -79,11 +77,7 @@ class CacheTest extends TestCase
         );
     }
 
-    /**
-     * @covers              \JapaneseDate\Components\Cache
-     * @runInSeparateProcess
-     * @preserveGlobalState disabled
-     */
+    #[RunInSeparateProcess] #[PreserveGlobalState(false)]
     public function test_setCacheFilePath()
     {
         $file = __DIR__ . '/example_text.txt';

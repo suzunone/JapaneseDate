@@ -1,4 +1,6 @@
-<?php /** @noinspection PhpUnhandledExceptionInspection */
+<?php
+
+/** @noinspection PhpUnhandledExceptionInspection */
 
 /**
  *
@@ -17,6 +19,8 @@
 namespace Tests\JapaneseDate;
 
 use JapaneseDate\DateTime;
+use PHPUnit\Framework\Attributes\Covers;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -35,8 +39,8 @@ class ModifierTest extends TestCase
 {
     /**
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
-     * @covers       \JapaneseDate\Traits\Modifier::nextHoliday
      */
+    #[Covers('nextHoliday')]
     public function test_nextHoliday()
     {
         $dateTime = new DateTime('2020-03-01');
@@ -80,9 +84,8 @@ class ModifierTest extends TestCase
      * @param int $six_weekday
      * @param string $expected
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
-     * @covers       \JapaneseDate\Traits\Modifier::nextSixWeek
-     * @dataProvider dataProviderNextSixWeek
      */
+    #[Covers('nextSixWeek')] #[DataProvider('dataProviderNextSixWeek')]
     public function test_nextSixWeek(string $start, int $six_weekday, string $expected)
     {
         $dateTime = new DateTime($start);

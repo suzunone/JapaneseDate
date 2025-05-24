@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Config.php
  *
@@ -36,16 +37,17 @@ namespace JapaneseDate\Components;
 class Config
 {
     public const KEY_LUNAR_CALENDAR = 'lunarCalendar';
+
     public const KEY_SOLAR_TERM = 'solarTerm';
 
-    protected static $lc_path = [];
+    protected static array $lc_path = [];
 
     /**
      * 配列で旧暦マッピングデータのパスを置き換えます
      *
      * @param array $lc_path
      */
-    public static function setLCPath(array $lc_path)
+    public static function setLCPath(array $lc_path): void
     {
         self::$lc_path = $lc_path;
     }
@@ -55,7 +57,7 @@ class Config
      *
      * @param string $lc_path
      */
-    public static function addLCPath(string $lc_path)
+    public static function addLCPath(string $lc_path): void
     {
         array_unshift(self::$lc_path, $lc_path);
     }

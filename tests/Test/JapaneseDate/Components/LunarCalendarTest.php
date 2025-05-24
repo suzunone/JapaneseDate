@@ -1,4 +1,5 @@
 <?php
+
 /**
  *
  *
@@ -18,6 +19,10 @@ namespace Tests\JapaneseDate\Components;
 
 use Carbon\Carbon;
 use JapaneseDate\Components\LunarCalendar;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\PreserveGlobalState;
+use PHPUnit\Framework\Attributes\RunInSeparateProcess;
 use PHPUnit\Framework\TestCase;
 use Tests\JapaneseDate\InvokeTrait;
 
@@ -33,15 +38,12 @@ use Tests\JapaneseDate\InvokeTrait;
  * @see         https://github.com/suzunone/JapaneseDate
  * @since       Class available since Release 1.0.0
  */
+#[CoversClass(\JapaneseDate\Components\LunarCalendar::class)]
 class LunarCalendarTest extends TestCase
 {
     use InvokeTrait;
 
-    /**
-     * @covers              \JapaneseDate\Components\LunarCalendar
-     * @runInSeparateProcess
-     * @preserveGlobalState disabled
-     */
+    #[RunInSeparateProcess] #[PreserveGlobalState(false)]
     public function test_gregorian2JD()
     {
         $LunarCalendar = LunarCalendar::factory();
@@ -57,11 +59,7 @@ class LunarCalendarTest extends TestCase
         );
     }
 
-    /**
-     * @covers              \JapaneseDate\Components\LunarCalendar
-     * @runInSeparateProcess
-     * @preserveGlobalState disabled
-     */
+    #[RunInSeparateProcess] #[PreserveGlobalState(false)]
     public function test_gregorian2JY()
     {
         $LunarCalendar = LunarCalendar::factory();
@@ -95,11 +93,7 @@ class LunarCalendarTest extends TestCase
         return $j2000;
     }
 
-    /**
-     * @covers              \JapaneseDate\Components\LunarCalendar
-     * @runInSeparateProcess
-     * @preserveGlobalState disabled
-     */
+    #[RunInSeparateProcess] #[PreserveGlobalState(false)]
     public function test_factory()
     {
         $LunarCalendar1 = LunarCalendar::factory();
@@ -108,11 +102,7 @@ class LunarCalendarTest extends TestCase
         $this->assertSame($LunarCalendar1, $LunarCalendar2);
     }
 
-    /**
-     * @covers              \JapaneseDate\Components\LunarCalendar
-     * @runInSeparateProcess
-     * @preserveGlobalState disabled
-     */
+    #[RunInSeparateProcess] #[PreserveGlobalState(false)]
     public function test_getLunarCalendarArray()
     {
         $LunarCalendar = LunarCalendar::factory();
@@ -371,12 +361,7 @@ class LunarCalendarTest extends TestCase
         ];
     }
 
-    /**
-     * @covers              \JapaneseDate\Components\LunarCalendar
-     * @runInSeparateProcess
-     * @preserveGlobalState disabled
-     * @dataProvider        makeLunarCalendarDataProvider
-     */
+    #[RunInSeparateProcess] #[PreserveGlobalState(false)] #[DataProvider('makeLunarCalendarDataProvider')]
     public function test_makeLunarCalendar($date, $calendar)
     {
         $LunarCalendar = LunarCalendar::factory();
@@ -411,10 +396,10 @@ class LunarCalendarTest extends TestCase
     }
 
     /**
-     * @dataProvider moonAgeDataProvider
      * @return void
      * @throws \JapaneseDate\Exceptions\Exception
      */
+    #[DataProvider('moonAgeDataProvider')]
     public function test_moonAge($year, $month, $day, $hour, $minute, $second, $moon_age)
     {
         $LunarCalendar = LunarCalendar::factory();

@@ -1,4 +1,6 @@
-<?php /** @noinspection PhpUnhandledExceptionInspection */
+<?php
+
+/** @noinspection PhpUnhandledExceptionInspection */
 
 /**
  *
@@ -20,6 +22,8 @@ use Carbon\Carbon;
 use Faker\Generator as FakerGenerator;
 use Faker\Provider\DateTime as FakerDateTime;
 use JapaneseDate\DateTime;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Covers;
 use PHPUnit\Framework\TestCase;
 use Tests\JapaneseDate\InvokeTrait;
 
@@ -35,14 +39,12 @@ use Tests\JapaneseDate\InvokeTrait;
  * @see         https://github.com/suzunone/JapaneseDate
  * @since       Class available since Release 1.0.0
  */
+#[CoversClass(\JapaneseDate\Traits\Modern::class)]
 class ModernTest extends TestCase
 {
     use InvokeTrait;
-    
-    /**
-     * @covers \JapaneseDate\Traits\Modern::viewWeekday()
-     * @covers \JapaneseDate\Traits\Getter::__get()
-     */
+
+    #[Covers('viewWeekday')] #[Covers('__get')]
     public function test_viewWeekday()
     {
         $DateTime = new DateTime('2018-01-01');
@@ -61,21 +63,14 @@ class ModernTest extends TestCase
         $this->assertEquals('日', $DateTime->weekday_text);
     }
 
-    /**
-     * @covers \JapaneseDate\Traits\Modern::viewMonth()
-     * @covers \JapaneseDate\Traits\Getter::__get()
-     */
+    #[Covers('viewMonth')] #[Covers('__get')]
     public function test_viewMonth()
     {
         $DateTime = new DateTime('2018-01-01');
         $this->assertEquals('睦月', $DateTime->month_text);
     }
 
-    /**
-     * @covers \JapaneseDate\Traits\Modern::viewHoliday()
-     * @covers \JapaneseDate\Traits\Modern::getHoliday()
-     * @covers \JapaneseDate\Traits\Getter::__get()
-     */
+    #[Covers('viewHoliday')] #[Covers('getHoliday')] #[Covers('__get')]
     public function test_getHoliday()
     {
         $DateTime = new DateTime('2018-01-01');
@@ -164,11 +159,7 @@ class ModernTest extends TestCase
         $this->assertEquals(DateTime::COMPENSATING_HOLIDAY, $DateTime->holiday);
     }
 
-    /**
-     * @covers \JapaneseDate\DateTime
-     * @covers \JapaneseDate\Traits\Modern
-     * @covers \JapaneseDate\Traits\Getter::__get()
-     */
+    #[Covers(\JapaneseDate\DateTime::class)] #[Covers(\JapaneseDate\Traits\Modern::class)] #[Covers('__get')]
     public function test_isHoliday()
     {
         $DateTime = new DateTime('2018-12-23');
@@ -180,16 +171,11 @@ class ModernTest extends TestCase
         $this->assertFalse($DateTime->isHoliday);
     }
 
-    /**
-     * @covers \JapaneseDate\DateTime
-     * @covers \JapaneseDate\Traits\Lunar
-     * @covers \JapaneseDate\Traits\Modern
-     * @covers \JapaneseDate\Traits\Getter::__get()
-     * @covers \JapaneseDate\Components\LunarCalendar
-     */
+    #[Covers(\JapaneseDate\DateTime::class)] #[Covers(\JapaneseDate\Traits\Lunar::class)] #[Covers(\JapaneseDate\Traits\Modern::class)] #[Covers('__get')] #[Covers(\JapaneseDate\Components\LunarCalendar::class)]
     public function test_getSolarTerm()
     {
         $DateTime = new DateTime('2018-04-05');
+
         $this->assertSame(1, $DateTime->solar_term);
         $this->assertSame('清明', $DateTime->solar_term_text);
         $this->assertTrue($DateTime->is_solar_term);
@@ -205,11 +191,7 @@ class ModernTest extends TestCase
         $this->assertTrue($DateTime->is_solar_term);
     }
 
-    /**
-     * @covers \JapaneseDate\DateTime
-     * @covers \JapaneseDate\Traits\Modern
-     * @covers \JapaneseDate\Traits\Getter::__get()
-     */
+    #[Covers(\JapaneseDate\DateTime::class)] #[Covers(\JapaneseDate\Traits\Modern::class)] #[Covers('__get')]
     public function test_eraName()
     {
         $DateTime = new DateTime('1868-01-25');
@@ -258,11 +240,7 @@ class ModernTest extends TestCase
         $this->assertEquals(1, $DateTime->era_year);
     }
 
-    /**
-     * @covers \JapaneseDate\DateTime
-     * @covers \JapaneseDate\Traits\Modern
-     * @covers \JapaneseDate\Traits\Getter::__get()
-     */
+    #[Covers(\JapaneseDate\DateTime::class)] #[Covers(\JapaneseDate\Traits\Modern::class)] #[Covers('__get')]
     public function test_getOrientalZodiac()
     {
         $DateTime = DateTime::factory('2016-05-21');

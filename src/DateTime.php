@@ -18,6 +18,8 @@ namespace JapaneseDate;
  */
 
 use Carbon\Carbon;
+use DateTimeInterface;
+use DateTimeZone;
 use Exception;
 use JapaneseDate\Components\JapaneseDate;
 use JapaneseDate\Components\LunarCalendar;
@@ -87,102 +89,119 @@ class DateTime extends Carbon
      * @var int
      */
     public const NO_HOLIDAY = 0;
+
     /**
      * 祝日定数:元旦
      *
      * @var int
      */
     public const NEW_YEAR_S_DAY = 1;
+
     /**
      * 祝日定数:成人の日
      *
      * @var int
      */
     public const COMING_OF_AGE_DAY = 2;
+
     /**
      * 祝日定数:建国記念の日
      *
      * @var int
      */
     public const NATIONAL_FOUNDATION_DAY = 3;
+
     /**
      * 祝日定数:昭和天皇の大喪の礼
      *
      * @var int
      */
     public const THE_SHOWA_EMPEROR_DIED = 4;
+
     /**
      * 祝日定数:春分の日
      *
      * @var int
      */
     public const VERNAL_EQUINOX_DAY = 5;
+
     /**
      * 祝日定数:昭和の日
      *
      * @var int
      */
     public const DAY_OF_SHOWA = 6;
+
     /**
      * 祝日定数:みどりの日
      *
      * @var int
      */
     public const GREENERY_DAY = 7;
+
     /**
      * 祝日定数:天皇誕生日
      *
      * @var int
      */
     public const THE_EMPEROR_S_BIRTHDAY = 8;
+
     /**
      * 祝日定数:皇太子明仁親王の結婚の儀
      *
      * @var int
      */
     public const CROWN_PRINCE_HIROHITO_WEDDING = 9;
+
     /**
      * 祝日定数:憲法記念日
      *
      * @var int
      */
     public const CONSTITUTION_DAY = 10;
+
     /**
      * 祝日定数:国民の休日
      *
      * @var int
      */
     public const NATIONAL_HOLIDAY = 11;
+
     /**
      * 祝日定数:こどもの日
      *
      * @var int
      */
     public const CHILDREN_S_DAY = 12;
+
     /**
      * 祝日定数:振替休日
      *
      * @var int
      */
     public const COMPENSATING_HOLIDAY = 13;
+
     /**
      * 祝日定数:皇太子徳仁親王の結婚の儀
      *
      * @var int
      */
     public const CROWN_PRINCE_NARUHITO_WEDDING = 14;
+
     /**
      * 祝日定数:海の日
      *
      * @var int
      */
     public const MARINE_DAY = 15;
+
     /**
      * 祝日定数:秋分の日
      *
      * @var int
      */
     public const AUTUMNAL_EQUINOX_DAY = 16;
+
     /**
      * 祝日定数:敬老の日
      *
@@ -429,50 +448,62 @@ class DateTime extends Carbon
      * 白露
      */
     public const SOLAR_TERM_HAKURO = 11;
+
     /**
      * 秋分
      */
     public const SOLAR_TERM_SYUUBUN = 12;
+
     /**
      * 寒露
      */
     public const SOLAR_TERM_KANRO = 13;
+
     /**
      * 霜降
      */
     public const SOLAR_TERM_SOUKOU = 14;
+
     /**
      * 立冬
      */
     public const SOLAR_TERM_RITTOU = 15;
+
     /**
      * 小雪
      */
     public const SOLAR_TERM_SYOUSETSU = 16;
+
     /**
      * 大雪
      */
     public const SOLAR_TERM_TAISETSU = 17;
+
     /**
      * 冬至
      */
     public const SOLAR_TERM_TOUJI = 18;
+
     /**
      * 小寒
      */
     public const SOLAR_TERM_SYOUKAN = 19;
+
     /**
      * 大寒
      */
     public const SOLAR_TERM_DAIKAN = 20;
+
     /**
      * 立春
      */
     public const SOLAR_TERM_RISSYUN = 21;
+
     /**
      * 雨水
      */
     public const SOLAR_TERM_USUI = 22;
+
     /**
      * 啓蟄
      */
@@ -483,8 +514,8 @@ class DateTime extends Carbon
      *
      * 日付/時刻 文字列の書式については {@link http://php.net/manual/ja/datetime.formats.php サポートする日付と時刻の書式} を参考にしてください。
      *
-     * @param string|\DateTime|int|null $date_time 日付/時刻 文字列。DateTimeオブジェクト
-     * @param \DateTimeZone|null $time_zone DateTimeZone オブジェクトか、時差の時間、タイムゾーンテキスト(omit 予定)
+     * @param int|float|string|\DateTimeInterface|null $date_time 日付/時刻 文字列。DateTimeオブジェクト
+     * @param ?\DateTimeZone $time_zone DateTimeZone オブジェクトか、時差の時間、タイムゾーンテキスト(omit 予定)
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     public function __construct($date_time = null, $time_zone = null)

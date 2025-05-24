@@ -1,4 +1,5 @@
 <?php
+
 /**
  * LunarDateTest.php
  *
@@ -18,6 +19,7 @@ use JapaneseDate\Components\LunarCalendar;
 use JapaneseDate\DateTime;
 use JapaneseDate\Elements\LunarDate;
 use JapaneseDate\Exceptions\ErrorException;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -31,8 +33,8 @@ use PHPUnit\Framework\TestCase;
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
  * @since       Class available since Release 1.0.0
- * @covers \JapaneseDate\Elements\LunarDate
  */
+#[CoversClass(\JapaneseDate\Elements\LunarDate::class)]
 class LunarDateTest extends TestCase
 {
     public function test__construct()
@@ -58,11 +60,9 @@ class LunarDateTest extends TestCase
         $this->assertEquals(0, $LunarDate->solar_term);
     }
 
-    /**
-     * @expectedException \JapaneseDate\Exceptions\ErrorException
-     */
     public function test__get_error()
     {
+        $this->expectException(\JapaneseDate\Exceptions\ErrorException::class);
         $this->expectException(ErrorException::class);
         $LunarCalendar = new LunarCalendar();
         $LunarDate = $LunarCalendar->getLunarDate(DateTime::factory('2020-03-01'));
@@ -77,11 +77,9 @@ class LunarDateTest extends TestCase
         $this->assertFalse(isset($LunarDate->solar_termaaa));
     }
 
-    /**
-     * @expectedException \JapaneseDate\Exceptions\ErrorException
-     */
     public function test__set()
     {
+        $this->expectException(\JapaneseDate\Exceptions\ErrorException::class);
         $this->expectException(ErrorException::class);
         $LunarCalendar = new LunarCalendar();
         $LunarDate = $LunarCalendar->getLunarDate(DateTime::factory('2020-03-01'));

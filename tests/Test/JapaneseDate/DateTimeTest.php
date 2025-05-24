@@ -1,4 +1,6 @@
-<?php /** @noinspection PhpUnhandledExceptionInspection */
+<?php
+
+/** @noinspection PhpUnhandledExceptionInspection */
 
 /**
  *
@@ -21,6 +23,10 @@ use Faker\Generator as FakerGenerator;
 use Faker\Provider\DateTime as FakerDateTime;
 use JapaneseDate\DateTime;
 use JapaneseDate\Exceptions\NativeDateTimeException;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\CoversFunction;
+use PHPUnit\Framework\Attributes\PreserveGlobalState;
+use PHPUnit\Framework\Attributes\RunInSeparateProcess;
 use PHPUnit\Framework\TestCase;
 use Tests\JapaneseDate\InvokeTrait;
 
@@ -35,19 +41,13 @@ use Tests\JapaneseDate\InvokeTrait;
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
  * @since       Class available since Release 1.0.0
- * @covers \JapaneseDate\Traits\Component
- * @covers \JapaneseDate\Traits\DateTimeImport
  */
+#[CoversClass(\JapaneseDate\Traits\Component::class)] #[CoversClass(\JapaneseDate\Traits\DateTimeImport::class)]
 class DateTimeTest extends TestCase
 {
     use InvokeTrait;
 
-    /**
-     *
-     * @covers              \JapaneseDate\DateTime::setLocale()
-     * @runInSeparateProcess
-     * @preserveGlobalState disabled
-     */
+    #[Covers('setLocale')] #[RunInSeparateProcess] #[PreserveGlobalState(false)]
     public function test_setLocale()
     {
         DateTime::setLocale('de');
@@ -59,10 +59,7 @@ class DateTimeTest extends TestCase
         $this->assertEquals('en', Carbon::getLocale());
     }
 
-    /**
-     *
-     * @covers \JapaneseDate\DateTime::create()
-     */
+    #[Covers('create')]
     public function test_create()
     {
         $date1 = DateTime::create(2018, 1, 1, 0, 0, 0);
@@ -70,12 +67,7 @@ class DateTimeTest extends TestCase
         $this->assertInstanceOf(DateTime::class, $date1);
     }
 
-    /**
-     *
-     * @covers              \JapaneseDate\DateTime::setLocale()
-     * @runInSeparateProcess
-     * @preserveGlobalState disabled
-     */
+    #[Covers('setLocale')] #[RunInSeparateProcess] #[PreserveGlobalState(false)]
     public function test_setTestNow()
     {
         // create testing date
@@ -104,10 +96,7 @@ class DateTimeTest extends TestCase
         $this->assertFalse(Carbon::hasTestNow());
     }
 
-    /**
-     *
-     * @covers \JapaneseDate\DateTime::__construct()
-     */
+    #[Covers('__construct')]
     public function test_construct()
     {
         $FakerGenerator = new FakerGenerator();
@@ -125,12 +114,7 @@ class DateTimeTest extends TestCase
         $this->assertEquals($test_date_time, $DateTime->format('Y-m-d H:i:s'));
     }
 
-    /**
-     *
-     * @covers              \JapaneseDate\Traits\Factory::factory()
-     * @runInSeparateProcess
-     * @preserveGlobalState disabled
-     */
+    #[Covers('factory')] #[RunInSeparateProcess] #[PreserveGlobalState(false)]
     public function test_factory()
     {
         $FakerGenerator = new FakerGenerator();
@@ -159,10 +143,7 @@ class DateTimeTest extends TestCase
         $this->assertEquals($test_date_time, $DateTime->format('YmdHis'));
     }
 
-    /**
-     *
-     * @covers \JapaneseDate\Traits\Getter::getCalendar()
-     */
+    #[Covers('getCalendar')]
     public function test_getCalendar()
     {
         $FakerGenerator = new FakerGenerator();
@@ -182,12 +163,10 @@ class DateTimeTest extends TestCase
         );
     }
 
-    /**
-     * @expectedException  \JapaneseDate\Exceptions\NativeDateTimeException
-     * @covers \JapaneseDate\DateTime
-     */
+    #[Covers(\JapaneseDate\DateTime::class)]
     public function test_create_Error()
     {
+        $this->expectException(\JapaneseDate\Exceptions\NativeDateTimeException::class);
         $this->expectException(NativeDateTimeException::class);
         $dateTime = new DateTime('あああああ');
     }

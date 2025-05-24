@@ -1,4 +1,6 @@
-<?php /** @noinspection PhpDeprecationInspection */
+<?php
+
+/** @noinspection PhpDeprecationInspection */
 /** @noinspection PhpUnhandledExceptionInspection */
 /**
  *
@@ -20,6 +22,7 @@ use Carbon\Carbon;
 use Faker\Generator as FakerGenerator;
 use Faker\Provider\DateTime as FakerDateTime;
 use JapaneseDate\DateTime;
+use PHPUnit\Framework\Attributes\CoversFunction;
 use PHPUnit\Framework\TestCase;
 use Tests\JapaneseDate\InvokeTrait;
 
@@ -39,10 +42,7 @@ class LocalizeFormatTest extends TestCase
 {
     use InvokeTrait;
 
-    /**
-     * @covers \JapaneseDate\Traits\LocalizedFormat::formatLocalizedSimple()
-     * @covers \JapaneseDate\Traits\LocalizedFormat::strftimeJa()
-     */
+    #[Covers('formatLocalizedSimple')] #[Covers('strftimeJa')]
     public function test_formatLocalizedSimple()
     {
         $FakerGenerator = new FakerGenerator();
@@ -72,10 +72,7 @@ class LocalizeFormatTest extends TestCase
         );
     }
 
-    /**
-     * @covers \JapaneseDate\Traits\LocalizedFormat::formatLocalized()
-     * @covers \JapaneseDate\Traits\LocalizedFormat::strftimeJa()
-     */
+    #[Covers('formatLocalized')] #[Covers('strftimeJa')]
     public function test_formatLocalized()
     {
         $DateTime = DateTime::factory('2018-05-03');
@@ -245,10 +242,7 @@ class LocalizeFormatTest extends TestCase
         );
     }
 
-    /**
-     * @covers \JapaneseDate\Traits\LocalizedFormat::strftime()
-     * @covers \JapaneseDate\Traits\LocalizedFormat::strftimeJa()
-     */
+    #[Covers('strftime')] #[Covers('strftimeJa')]
     public function test_strftime()
     {
         $DateTime = DateTime::factory('2018-05-03');
