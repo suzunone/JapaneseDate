@@ -155,7 +155,7 @@ class JapaneseDate
      * @static
      * @return \JapaneseDate\Components\JapaneseDate
      */
-    public static function factory(): JapaneseDate
+    public static function factory(): self
     {
         static $instance;
         if (!$instance) {

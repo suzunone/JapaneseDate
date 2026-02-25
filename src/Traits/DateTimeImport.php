@@ -43,8 +43,6 @@ trait DateTimeImport
 
     use Modern;
 
-    use LocalizedFormat;
-
     use Modifier;
 
     use Getter;
