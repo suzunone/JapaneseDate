@@ -178,7 +178,7 @@ class SolarTerm
         } elseif ($year >= 2384 && $year <= 2399) {
             $days = [20, 20, 21, 21, ];
         } else {
-            throw new SolarTermException();
+            throw new SolarTermException('Input year is outside the supported temporal scope.');
         }
 
         return new SolarTermDate($year, DateTime::SOLAR_TERM_SYUNBUN, $days[$year % 4]);
@@ -254,7 +254,7 @@ class SolarTerm
         } elseif ($year >= 2368 && $year <= 2399) {
             $days = [4, 5, 5, 5, ];
         } else {
-            throw new SolarTermException();
+            throw new SolarTermException('Input year is outside the supported temporal scope.');
         }
 
         return new SolarTermDate($year, DateTime::SOLAR_TERM_SEIMEI, $days[$year % 4]);
@@ -332,7 +332,7 @@ class SolarTerm
         } elseif ($year >= 2364 && $year <= 2399) {
             $days = [20, 20, 20, 20, ];
         } else {
-            throw new SolarTermException();
+            throw new SolarTermException('Input year is outside the supported temporal scope.');
         }
 
         return new SolarTermDate($year, DateTime::SOLAR_TERM_KOKUU, $days[$year % 4]);
@@ -412,7 +412,7 @@ class SolarTerm
         } elseif ($year >= 2380 && $year <= 2399) {
             $days = [5, 5, 5, 6, ];
         } else {
-            throw new SolarTermException();
+            throw new SolarTermException('Input year is outside the supported temporal scope.');
         }
 
         return new SolarTermDate($year, DateTime::SOLAR_TERM_RIKKA, $days[$year % 4]);
@@ -492,7 +492,7 @@ class SolarTerm
         } elseif ($year >= 2380 && $year <= 2399) {
             $days = [20, 21, 21, 21, ];
         } else {
-            throw new SolarTermException();
+            throw new SolarTermException('Input year is outside the supported temporal scope.');
         }
 
         return new SolarTermDate($year, DateTime::SOLAR_TERM_SYOUMAN, $days[$year % 4]);
@@ -574,7 +574,7 @@ class SolarTerm
         } elseif ($year >= 2392 && $year <= 2399) {
             $days = [5, 5, 5, 6, ];
         } else {
-            throw new SolarTermException();
+            throw new SolarTermException('Input year is outside the supported temporal scope.');
         }
 
         return new SolarTermDate($year, DateTime::SOLAR_TERM_BOUSYU, $days[$year % 4]);
@@ -658,7 +658,7 @@ class SolarTerm
         } elseif ($year >= 2380 && $year <= 2399) {
             $days = [21, 21, 21, 21, ];
         } else {
-            throw new SolarTermException();
+            throw new SolarTermException('Input year is outside the supported temporal scope.');
         }
 
         return new SolarTermDate($year, DateTime::SOLAR_TERM_GESHI, $days[$year % 4]);
@@ -742,7 +742,7 @@ class SolarTerm
         } elseif ($year >= 2380 && $year <= 2399) {
             $days = [6, 7, 7, 7, ];
         } else {
-            throw new SolarTermException();
+            throw new SolarTermException('Input year is outside the supported temporal scope.');
         }
 
         return new SolarTermDate($year, DateTime::SOLAR_TERM_SYOUSYO, $days[$year % 4]);
@@ -822,7 +822,7 @@ class SolarTerm
         } elseif ($year >= 2376 && $year <= 2399) {
             $days = [22, 22, 23, 23, ];
         } else {
-            throw new SolarTermException();
+            throw new SolarTermException('Input year is outside the supported temporal scope.');
         }
 
         return new SolarTermDate($year, DateTime::SOLAR_TERM_TAISYO, $days[$year % 4]);
@@ -902,7 +902,7 @@ class SolarTerm
         } elseif ($year >= 2396 && $year <= 2399) {
             $days = [7, 7, 7, 7, ];
         } else {
-            throw new SolarTermException();
+            throw new SolarTermException('Input year is outside the supported temporal scope.');
         }
 
         return new SolarTermDate($year, DateTime::SOLAR_TERM_RISSYUU, $days[$year % 4]);
@@ -984,7 +984,7 @@ class SolarTerm
         } elseif ($year >= 2384 && $year <= 2399) {
             $days = [22, 23, 23, 23, ];
         } else {
-            throw new SolarTermException();
+            throw new SolarTermException('Input year is outside the supported temporal scope.');
         }
 
         return new SolarTermDate($year, DateTime::SOLAR_TERM_SYOSYO, $days[$year % 4]);
@@ -1062,7 +1062,7 @@ class SolarTerm
         } elseif ($year >= 2392 && $year <= 2399) {
             $days = [7, 7, 7, 8, ];
         } else {
-            throw new SolarTermException();
+            throw new SolarTermException('Input year is outside the supported temporal scope.');
         }
 
         return new SolarTermDate($year, DateTime::SOLAR_TERM_HAKURO, $days[$year % 4]);
@@ -1140,7 +1140,7 @@ class SolarTerm
         } elseif ($year >= 2384 && $year <= 2399) {
             $days = [22, 23, 23, 23, ];
         } else {
-            throw new SolarTermException();
+            throw new SolarTermException('Input year is outside the supported temporal scope.');
         }
 
         return new SolarTermDate($year, DateTime::SOLAR_TERM_SYUUBUN, $days[$year % 4]);
@@ -1218,7 +1218,7 @@ class SolarTerm
         } elseif ($year >= 2392 && $year <= 2399) {
             $days = [8, 8, 8, 8, ];
         } else {
-            throw new SolarTermException();
+            throw new SolarTermException('Input year is outside the supported temporal scope.');
         }
 
         return new SolarTermDate($year, DateTime::SOLAR_TERM_KANRO, $days[$year % 4]);
@@ -1296,7 +1296,7 @@ class SolarTerm
         } elseif ($year >= 2384 && $year <= 2399) {
             $days = [23, 23, 23, 24, ];
         } else {
-            throw new SolarTermException();
+            throw new SolarTermException('Input year is outside the supported temporal scope.');
         }
 
         return new SolarTermDate($year, DateTime::SOLAR_TERM_SOUKOU, $days[$year % 4]);
@@ -1368,7 +1368,7 @@ class SolarTerm
         } elseif ($year >= 2392 && $year <= 2399) {
             $days = [7, 7, 7, 8, ];
         } else {
-            throw new SolarTermException();
+            throw new SolarTermException('Input year is outside the supported temporal scope.');
         }
 
         return new SolarTermDate($year, DateTime::SOLAR_TERM_RITTOU, $days[$year % 4]);
@@ -1446,7 +1446,7 @@ class SolarTerm
         } elseif ($year >= 2384 && $year <= 2399) {
             $days = [22, 22, 22, 23, ];
         } else {
-            throw new SolarTermException();
+            throw new SolarTermException('Input year is outside the supported temporal scope.');
         }
 
         return new SolarTermDate($year, DateTime::SOLAR_TERM_SYOUSETSU, $days[$year % 4]);
@@ -1522,7 +1522,7 @@ class SolarTerm
         } elseif ($year >= 2396 && $year <= 2399) {
             $days = [7, 7, 7, 7, ];
         } else {
-            throw new SolarTermException();
+            throw new SolarTermException('Input year is outside the supported temporal scope.');
         }
 
         return new SolarTermDate($year, DateTime::SOLAR_TERM_TAISETSU, $days[$year % 4]);
@@ -1596,7 +1596,7 @@ class SolarTerm
         } elseif ($year >= 2364 && $year <= 2399) {
             $days = [22, 22, 22, 22, ];
         } else {
-            throw new SolarTermException();
+            throw new SolarTermException('Input year is outside the supported temporal scope.');
         }
 
         return new SolarTermDate($year, DateTime::SOLAR_TERM_TOUJI, $days[$year % 4]);
@@ -1672,7 +1672,7 @@ class SolarTerm
         } elseif ($year >= 2369 && $year <= 2400) {
             $days = [6, 6, 6, 5, ];
         } else {
-            throw new SolarTermException();
+            throw new SolarTermException('Input year is outside the supported temporal scope.');
         }
 
         return new SolarTermDate($year, DateTime::SOLAR_TERM_SYOUKAN, $days[$year % 4]);
@@ -1748,7 +1748,7 @@ class SolarTerm
         } elseif ($year >= 2397 && $year <= 2400) {
             $days = [21, 20, 20, 20, ];
         } else {
-            throw new SolarTermException();
+            throw new SolarTermException('Input year is outside the supported temporal scope.');
         }
 
         return new SolarTermDate($year, DateTime::SOLAR_TERM_DAIKAN, $days[$year % 4]);
@@ -1852,7 +1852,7 @@ class SolarTerm
         } elseif ($year >= 2769 && $year <= 2800) {
             $days = [5, 4, 4, 4, ];
         } else {
-            throw new SolarTermException();
+            throw new SolarTermException('Input year is outside the supported temporal scope.');
         }
 
         return new SolarTermDate($year, DateTime::SOLAR_TERM_RISSYUN, $days[$year % 4]);
@@ -1924,7 +1924,7 @@ class SolarTerm
         } elseif ($year >= 2369 && $year <= 2400) {
             $days = [19, 19, 19, 19, ];
         } else {
-            throw new SolarTermException();
+            throw new SolarTermException('Input year is outside the supported temporal scope.');
         }
 
         return new SolarTermDate($year, DateTime::SOLAR_TERM_USUI, $days[$year % 4]);
@@ -2002,7 +2002,7 @@ class SolarTerm
         } elseif ($year >= 2388 && $year <= 2399) {
             $days = [5, 5, 6, 6, ];
         } else {
-            throw new SolarTermException();
+            throw new SolarTermException('Input year is outside the supported temporal scope.');
         }
 
         return new SolarTermDate($year, DateTime::SOLAR_TERM_KEICHITSU, $days[$year % 4]);

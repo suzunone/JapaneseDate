@@ -28,6 +28,7 @@ use Carbon\Carbon;
 use DateTimeZone;
 use JapaneseDate\DateTime;
 use JapaneseDate\Elements\LunarDate;
+use JapaneseDate\Exceptions\ErrorException;
 use Throwable;
 
 /**
@@ -171,6 +172,7 @@ class LunarCalendar
      * @param int $month 月
      * @param int $day 日
      * @return    array [旧暦年, 平月／閏月 flag .... 平月:0 閏月:1, 旧暦月, 旧暦日]
+     * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
      */
     protected function getLunarCalendarArray(int $year, int $month, int $day): array
@@ -205,6 +207,7 @@ class LunarCalendar
     /**
      * @param int $year
      * @return array
+     * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
      */
     protected function getLunarCalendar(int $year): array
@@ -233,6 +236,7 @@ class LunarCalendar
      *
      * @param int $year 西暦年
      * @return array 朔のテーブル
+     * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
      */
     protected function makeLunarCalendar(int $year): array
@@ -247,6 +251,12 @@ class LunarCalendar
         $counter = 0;
         $Date = Carbon::create($year - 1, 11, 10);
         $EndDate = Carbon::create($year + 1, 3);
+        if (!$Date instanceof Carbon || !$EndDate instanceof Carbon) {
+            // @codeCoverageIgnoreStart
+            throw new ErrorException('Carbon instance expected');
+            // @codeCoverageIgnoreEnd
+        }
+
 
         $moon = new Moon();
         $end_timestamp = $EndDate->timestamp;
@@ -728,7 +738,6 @@ class LunarCalendar
 
             foreach ($solar_terms as $solar_term) {
                 if ($solar_term->day === $day && $solar_term->month === $month) {
-
                     return $solar_term->solar_term;
                 }
             }
