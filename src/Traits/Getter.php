@@ -58,7 +58,7 @@ trait Getter
      * @throws \JsonException
      * @noinspection PhpMultipleClassDeclarationsInspection
      */
-    public function __get(string $name)
+    public function __get(string $name): mixed
     {
         switch ($name) {
             case 'solar_term_text':
