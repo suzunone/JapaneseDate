@@ -129,7 +129,7 @@ class LunarCalendar
     /**
      * @return static
      */
-    public static function factory(): LunarCalendar
+    public static function factory(): self
     {
         static $instance;
 
