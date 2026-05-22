@@ -1,8 +1,5 @@
 日本の祝日、暦など日本での日付処理(Date processing including Japanese holiday processing)
 =========================================
-[![CircleCI](https://circleci.com/gh/suzunone/JapaneseDate.svg?style=svg)](https://circleci.com/gh/suzunone/JapaneseDate)
-
-
 Introduction
 -----------------------------------------
 
