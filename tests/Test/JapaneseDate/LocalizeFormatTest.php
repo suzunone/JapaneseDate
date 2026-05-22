@@ -239,7 +239,7 @@ class LocalizeFormatTest extends TestCase
         );
 
         $DateTime = DateTime::factory('2017-7-1');
-        $this->assertRegExp(
+        $this->assertMatchesRegularExpression(
             '/#v/',
             $DateTime->formatLocalized('%#v')
         );

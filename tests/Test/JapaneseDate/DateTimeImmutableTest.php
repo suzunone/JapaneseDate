@@ -20,6 +20,7 @@ use Carbon\Carbon;
 use Faker\Generator as FakerGenerator;
 use Faker\Provider\DateTime as FakerDateTime;
 use JapaneseDate\DateTimeImmutable;
+use JapaneseDate\Exceptions\NativeDateTimeException;
 use PHPUnit\Framework\TestCase;
 use Tests\JapaneseDate\InvokeTrait;
 
@@ -40,7 +41,7 @@ use Tests\JapaneseDate\InvokeTrait;
 class DateTimeImmutableTest extends TestCase
 {
     /**
-     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     * @throws NativeDateTimeException
      * @covers \JapaneseDate\DateTimeImmutable
      */
     public function testCreate_Success()
@@ -53,11 +54,12 @@ class DateTimeImmutableTest extends TestCase
     }
 
     /**
-     * @expectedException  \JapaneseDate\Exceptions\NativeDateTimeException
+     * @expectedException  NativeDateTimeException
      * @covers \JapaneseDate\DateTimeImmutable
      */
     public function test_create_Error()
     {
+        $this->expectException(NativeDateTimeException::class);
         $dateTime = new DateTimeImmutable('あああああ');
     }
 }

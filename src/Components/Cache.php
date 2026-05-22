@@ -22,6 +22,8 @@ use JapaneseDate\CacheMode;
 /**
  * Class Cache
  *
+ * キャッシュをコントロールする
+ *
  * @category    DateTime
  * @package     JapaneseDate
  * @subpackage  Component
@@ -58,6 +60,8 @@ class Cache extends CacheMode
     protected static $cache = [];
 
     /**
+     * 永続キャッシュ
+     *
      * @param string $cache_name
      * @param Closure $function
      * @return mixed
@@ -97,6 +101,7 @@ class Cache extends CacheMode
     }
 
     /**
+     * APCによる永続キャッシュ
      * @param string $cache_name
      * @param Closure $function
      * @return mixed
@@ -123,6 +128,8 @@ class Cache extends CacheMode
     }
 
     /**
+     * ファイルによる永続キャッシュ
+     *
      * @param string $cache_name
      * @param Closure $function
      * @return mixed

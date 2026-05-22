@@ -20,6 +20,7 @@ use Carbon\Carbon;
 use Faker\Generator as FakerGenerator;
 use Faker\Provider\DateTime as FakerDateTime;
 use JapaneseDate\DateTime;
+use JapaneseDate\Exceptions\NativeDateTimeException;
 use PHPUnit\Framework\TestCase;
 use Tests\JapaneseDate\InvokeTrait;
 
@@ -187,6 +188,7 @@ class DateTimeTest extends TestCase
      */
     public function test_create_Error()
     {
+        $this->expectException(NativeDateTimeException::class);
         $dateTime = new DateTime('あああああ');
     }
 }

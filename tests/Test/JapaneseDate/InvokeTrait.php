@@ -41,6 +41,10 @@ trait InvokeTrait
      */
     public function invokeExecuteMethod($instance, string $method_name, array $options)
     {
+        if (gettype($instance) === 'string') {
+            $instance = new $instance();
+        }
+
         $reflection = new ReflectionClass($instance);
         $method = $reflection->getMethod($method_name);
         $method->setAccessible(true);
@@ -56,6 +60,10 @@ trait InvokeTrait
      */
     public function invokeGetProperty($instance, string $property_name)
     {
+        if (gettype($instance) === 'string') {
+            $instance = new $instance();
+        }
+
         $reflection = new ReflectionClass($instance);
         $property = $reflection->getProperty($property_name);
         $property->setAccessible(true);
@@ -71,6 +79,10 @@ trait InvokeTrait
      */
     public function invokeSetProperty($instance, string $property_name, $data)
     {
+        if (gettype($instance) === 'string') {
+            $instance = new $instance();
+        }
+
         $reflection = new ReflectionClass($instance);
         $property = $reflection->getProperty($property_name);
         $property->setAccessible(true);

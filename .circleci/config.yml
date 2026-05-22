@@ -2,29 +2,40 @@
 #
 # Check https://circleci.com/docs/2.0/language-php/ for more details
 #
-version: 2
+
+version: 2.1
 dependencies:
   cache_directories:
     - ~/.composer/cache
 
 jobs:
-  build:
+  test73:
     docker:
       # specify the version you desire here
-      - image: circleci/php:7.1-cli-jessie-node-browsers
-      
+      - image: cimg/php:7.3.24-browsers
+
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
       # - image: circleci/mysql:9.4
 
-    working_directory: ~/repo
+    working_directory: ~/repo73
 
     steps:
       - checkout
-      - run: sudo apt install -y libsqlite3-dev zlib1g-dev
-      - run: sudo docker-php-ext-install zip calendar
-      - run: sudo composer self-update
+      - run:
+          name: Composer self-update
+          command: |
+            sudo composer self-update
+      - run:
+          name: Install dependencies
+          command: |
+            composer install -vvv
+#      - run:
+#          name: Install xdebug
+#          command: |
+#            sudo pecl channel-update pecl.php.net
+#            sudo pecl install xdebug
 
       # Download and cache dependencies
       - restore_cache:
@@ -33,12 +44,64 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
-      - run: composer install -vvv
+      - save_cache:
+          paths:
+            - ./vendor
+          key: v1-dependencies-{{ checksum "composer.json" }}
+
+      - run:
+          name: Run tests
+          command: |
+            vendor/bin/phpunit tests
+
+  test82:
+    docker:
+      # specify the version you desire here
+      - image: cimg/php:8.2.4-browsers
+      
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      # - image: circleci/mysql:9.4
+
+    working_directory: ~/repo82
+
+    steps:
+      - checkout
+      - run:
+          name: Composer self-update
+          command: |
+            sudo composer self-update
+      - run:
+          name: Install dependencies
+          command: |
+            composer install -vvv
+      - run:
+          name: Install xdebug
+          command: |
+            sudo pecl install xdebug
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "composer.json" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-dependencies-
 
       - save_cache:
           paths:
             - ./vendor
           key: v1-dependencies-{{ checksum "composer.json" }}
-        
-      # run tests!
-      - run: ./vendor/bin/phpunit
+
+      - run:
+          name: Run tests
+          command: |
+            export XDEBUG_MODE=coverage
+            vendor/bin/phpunit tests
+
+
+workflows:
+  tests:
+    jobs:
+      - test73
+      - test82

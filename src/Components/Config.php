@@ -20,6 +20,8 @@ namespace JapaneseDate\Components;
 /**
  * Class Config
  *
+ * 旧暦マッピングデータクラス
+ *
  * @category   JapaneseDate
  * @package    JapaneseDate\Components
  * @subpackage JapaneseDate\Components
@@ -39,7 +41,7 @@ class Config
     protected static $lc_path = [];
 
     /**
-     * 配列で、パスを置き換えます
+     * 配列で旧暦マッピングデータのパスを置き換えます
      *
      * @param array $lc_path
      */
@@ -59,6 +61,8 @@ class Config
     }
 
     /**
+     * 指定された年の旧暦カレンダーデータを取得する
+     *
      * @param int $year
      * @return array
      */
@@ -79,6 +83,8 @@ class Config
     }
 
     /**
+     * 指定された年の二十四節気データを取得する
+     *
      * @param int $year
      * @return array
      */
@@ -93,6 +99,8 @@ class Config
     }
 
     /**
+     * 指定された年の旧暦マッピングデータを取得する
+     *
      * @param int $year
      * @return array
      */

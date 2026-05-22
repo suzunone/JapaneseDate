@@ -136,6 +136,4 @@ class LunarTest extends TestCase
         $DateTime = new DateTime('2017-06-23');
         $this->assertFalse($DateTime->is_leap_month);
     }
-
-
 }

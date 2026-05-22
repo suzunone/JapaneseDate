@@ -23,9 +23,11 @@
 
 namespace JapaneseDate\Components;
 
+use Carbon\Carbon;
 use DateTimeZone;
 use JapaneseDate\DateTime;
 use JapaneseDate\Elements\LunarDate;
+use Throwable;
 
 /**
  * Class LunarCalendar
@@ -157,9 +159,9 @@ class LunarCalendar
     /**
      * 旧暦を求める
      *
-     * @param int $year  西暦年
+     * @param int $year 西暦年
      * @param int $month 月
-     * @param int $day   日
+     * @param int $day 日
      * @return    array [旧暦年, 平月／閏月 flag .... 平月:0 閏月:1, 旧暦月, 旧暦日]
      * @throws \JapaneseDate\Exceptions\Exception
      */
@@ -192,7 +194,7 @@ class LunarCalendar
     }
 
     /**
-     * @param int year
+     * @param int $year
      * @return array
      * @throws \JapaneseDate\Exceptions\Exception
      */
@@ -211,6 +213,11 @@ class LunarCalendar
 
         return $this->lunar_calendar[$year];
     }
+    
+    protected function fixAngle(float $a): float
+    {
+        return ($a - 360 * floor($a / 360));
+    }
 
     /**
      * グレゴオリオ暦＝旧暦テーブル 作成
@@ -228,79 +235,74 @@ class LunarCalendar
 
         // 朔の日を求める
         $lunar_calendar = [];
-        $find_year = $year - 1;
         $counter = 0;
-        $find_day = 10;
-        $find_month = 11;
-        while ($find_year <= $year || $find_month <= 2) {
-            $days_in_month = $this->getDaysInMonth($find_year, $find_month);
-            while ($find_day <= $days_in_month) {
-                $age1 = $this->moonAge($find_year, $find_month, $find_day, 0, 0, 0);
-                $age2 = $this->moonAge($find_year, $find_month, $find_day, 23, 59, 59);
-                if ($age2 <= $age1) {
-                    $lunar_calendar[$counter]['year'] = $find_year;
-                    $lunar_calendar[$counter]['month'] = $find_month;
-                    $lunar_calendar[$counter]['day'] = $find_day;
-                    $lunar_calendar[$counter]['age'] = $age1;
-                    $lunar_calendar[$counter]['jd'] = $this->gregorian2JD($find_year, $find_month, $find_day, 0, 0, 0);
-                    // $lunar_calendar[$counter]['gregorian'] = $this->jD2Gregorian($lunar_calendar[$counter]['jd']);
-                    $counter++;
-                    // 実行時間短縮のため20日ほどすすめる
-                    $find_day += 20;
-                }
-                $find_day++;
-            }
-            $find_month++;
-            $find_day -= $days_in_month;
-            $find_day = max($find_day, 1);
+        $Date = Carbon::create($year - 1, 11, 10, 0, 0, 0);
+        $EndDate = Carbon::create($year + 1, 3, 1, 0, 0, 0);
 
-            if ($find_month > 12) {
-                $find_year++;
-                $find_month = 1;
+        $moon = new Moon();
+        $end_timestamp = $EndDate->timestamp;
+        while ($end_timestamp > $Date->timestamp) {
+            $age1 = $this->moonAge($Date->year, $Date->month, $Date->day, 0, 0, 0);
+            $age2 = $this->moonAge($Date->year, $Date->month, $Date->day, 23, 59, 59);
+
+            if ($age2 > $age1) {
+                $Date = $Date->addDay(1);
+                continue;
             }
+
+            // 月齢がギリギリの場合、新月時間でキャリブレーションする
+            if ($Date->year >= 1900 && $age1 > 20 && $age2 < 0.17) {
+                $Date = $moon->moonPhase($Date->subDays(2), 0.0);
+                $age1 = $this->moonAge($Date->year, $Date->month, $Date->day, 0, 0, 0);
+                $age2 = $this->moonAge($Date->year, $Date->month, $Date->day, 23, 59, 59);
+            } elseif ($Date->year < 1900 && $age1 > 20 && $age2 < 0.1) {
+                $Date = $Date->addDay(1);
+                $age1 = $this->moonAge($Date->year, $Date->month, $Date->day, 0, 0, 0);
+                $age2 = $this->moonAge($Date->year, $Date->month, $Date->day, 23, 59, 59);
+            }
+
+            $lunar_calendar[$counter]['year'] = $Date->year;
+            $lunar_calendar[$counter]['month'] = $Date->month;
+            $lunar_calendar[$counter]['day'] = $Date->day;
+            $lunar_calendar[$counter]['age'] = $age1;
+            $lunar_calendar[$counter]['age_last'] = $age2;
+            $lunar_calendar[$counter]['jd'] = $this->gregorian2JD($Date->year, $Date->month, $Date->day, 0, 0, 0);
+            // $lunar_calendar[$counter]['gregorian'] = $this->jD2Gregorian($lunar_calendar[$counter]['jd']);
+
+            // 実行時間短縮のため21日ほどすすめる
+            $Date = $Date->addDays(21);
+            $counter++;
         }
 
         // 中気を求める
         $sun_calendar = [];
-        $find_year = $year - 1;
         $counter = 0;
-        $find_day = 1;
-        $find_month = 11;
-        while ($find_year <= $year || $find_month <= 2) {
-            $days_in_month = $this->getDaysInMonth($find_year, $find_month);
-            while ($find_day <= $days_in_month) {
-                $longitude_sun_1 = $this->longitudeSun($find_year, $find_month, $find_day, 0, 0, 0);
-                $longitude_sun_2 = $this->longitudeSun($find_year, $find_month, $find_day, 24, 0, 0);
-                $tmp_ls_1 = floor($longitude_sun_1 / 15.0);
-                $tml_ls_2 = floor($longitude_sun_2 / 15.0);
+        $Date = Carbon::create($year - 1, 11, 10, 0, 0, 0);
+        $EndDate = Carbon::create($year + 1, 3, 1, 0, 0, 0);
 
-                if ($tml_ls_2 === $tmp_ls_1 || ($tml_ls_2 % 2 !== 0)) {
-                    $find_day++;
-                    continue;
-                }
+        $end_timestamp = $EndDate->timestamp;
+        while ($end_timestamp > $Date->timestamp) {
+            $longitude_sun_1 = $this->longitudeSun($Date->year, $Date->month, $Date->day, 0, 0, 0);
+            $longitude_sun_2 = $this->longitudeSun($Date->year, $Date->month, $Date->day, 24, 0, 0);
+            $tmp_ls_1 = floor($longitude_sun_1 / 15.0);
+            $tml_ls_2 = floor($longitude_sun_2 / 15.0);
 
-                $sun_calendar[$counter]['jd'] = $this->gregorian2JD($find_year, $find_month, $find_day, 0, 0, 0);
-                $lunar_month = floor($tml_ls_2 / 2) + 2;
-                if ($lunar_month > 12) {
-                    $lunar_month -= 12;
-                }
-                $sun_calendar[$counter]['lunar_month'] = $lunar_month;
-                $sun_calendar[$counter]['year'] = $find_year;
-                $counter++;
-
-                // 実行時間短縮のため、20日ほどすすめる
-                $find_day += 20;
-
-                $find_day++;
+            if ($tml_ls_2 === $tmp_ls_1 || ($tml_ls_2 % 2 !== 0)) {
+                $Date->addDay();
+                continue;
             }
 
-            $find_month++;
-            $find_day -= $days_in_month;
-            $find_day = max($find_day, 1);
-            if ($find_month > 12) {
-                $find_year++;
-                $find_month = 1;
+            $sun_calendar[$counter]['jd'] = $this->gregorian2JD($Date->year, $Date->month, $Date->day, 0, 0, 0);
+            $lunar_month = floor($tml_ls_2 / 2) + 2;
+            if ($lunar_month > 12) {
+                $lunar_month -= 12;
             }
+            $sun_calendar[$counter]['lunar_month'] = $lunar_month;
+            $sun_calendar[$counter]['year'] = $Date->year;
+            $counter++;
+
+            // 実行時間短縮のため、21日ほどすすめる
+            $Date->addDays(21);
         }
 
         // 旧暦月と、閏月のフラグを追加
@@ -334,9 +336,30 @@ class LunarCalendar
     }
 
     /**
+     * Kepler
+     *
+     * @param float $m
+     * @param float $ecc
+     * @return float
+     */
+    protected function kepler(float $m, float $ecc): float
+    {
+        // 1E-6
+        $epsilon = 0.000001;
+        $e = $m = deg2rad($m);
+
+        do {
+            $delta = $e - $ecc * sin($e) - $m;
+            $e -= $delta / (1 - $ecc * cos($e));
+        } while (abs($delta) > $epsilon);
+
+        return $e;
+    }
+
+    /**
      * 指定した月の日数を返す
      *
-     * @param int $year  西暦年
+     * @param int $year 西暦年
      * @param int $month 月
      * @return    int 日数／FALSE:引数の異常
      * @throws \JapaneseDate\Exceptions\Exception
@@ -351,7 +374,7 @@ class LunarCalendar
     /**
      * 月齢を求める（視黄経）
      *
-     * @param int $year   , $month, $day  グレゴリオ暦による年月日
+     * @param int $year , $month, $day  グレゴリオ暦による年月日
      * @param int $month
      * @param int $day
      * @param float $hour , $min, $sec 時分秒（世界時）
@@ -436,7 +459,7 @@ class LunarCalendar
     /**
      * グレゴリオ暦→ユリウス日 変換
      *
-     * @param int $year   グレゴリオ暦による年月日
+     * @param int $year グレゴリオ暦による年月日
      * @param int $month
      * @param int $day
      * @param float $hour , $min, $sec 時分秒（世界時）
@@ -577,12 +600,12 @@ class LunarCalendar
     /**
      * 月の黄経計算（視黄経）
      *
-     * @param int $year   グレゴリオ暦
+     * @param int $year グレゴリオ暦
      * @param int $month
      * @param int $day
      * @param float $hour 時
-     * @param float $min  分
-     * @param float $sec  秒
+     * @param float $min 分
+     * @param float $sec 秒
      * @return    float 月の黄経（視黄経）
      * @throws \JapaneseDate\Exceptions\Exception
      */
@@ -680,25 +703,32 @@ class LunarCalendar
      * その日が二十四節気かどうか
      *
      * @param int $year , $month, $day  グレゴリオ暦による年月日
-     * @param $month
-     * @param $day
+     * @param int $month
+     * @param int $day
      * @return    int|bool
      * @throws \JapaneseDate\Exceptions\Exception
      */
-    public function findSolarTerm(int $year, $month, $day)
+    public function findSolarTerm(int $year, int $month, int $day)
     {
-        /**
-         * @var array $solar_term
-         */
-        $solar_term = JapaneseDate::SOLAR_TERM;
+        try {
+            $solar_terms = (new SolarTerm())->getSolarTerms($year);
 
-        // 太陽黄経
-        $longitude_sun_1 = $this->longitudeSun($year, $month, $day, 0, 0, 0);
-        $longitude_sun_2 = $this->longitudeSun($year, $month, $day, 24, 0, 0);
+            foreach ($solar_terms as $solar_term) {
+                if ($solar_term->day === $day && $solar_term->month === $month) {
+                    return $solar_term->solar_term;
+                }
+            }
 
-        $tmp_1 = (int) floor($longitude_sun_1 / 15);
-        $tmp_2 = (int) floor($longitude_sun_2 / 15);
+            return false;
+        } catch (Throwable $e) {
+            // 太陽黄経
+            $longitude_sun_1 = $this->longitudeSun($year, $month, $day, 0, 0, 0);
+            $longitude_sun_2 = $this->longitudeSun($year, $month, $day, 24, 0, 0);
 
-        return ($tmp_1 !== $tmp_2 && isset($solar_term[$tmp_2])) ? $tmp_2 : false;
+            $tmp_1 = (int) floor($longitude_sun_1 / 15);
+            $tmp_2 = (int) floor($longitude_sun_2 / 15);
+
+            return ($tmp_1 !== $tmp_2 && array_key_exists($tmp_2, JapaneseDate::SOLAR_TERM)) ? $tmp_2 : false;
+        }
     }
 }

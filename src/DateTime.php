@@ -16,6 +16,7 @@ namespace JapaneseDate;
  * @see         https://carbon.nesbot.com/docs/
  * @since       Class available since Release 1.0.0
  */
+
 use Carbon\Carbon;
 use Exception;
 use JapaneseDate\Components\JapaneseDate;
@@ -370,11 +371,119 @@ class DateTime extends Carbon
     public const ERA_REIWA = 1004;
 
     /**
+     * 春分
+     */
+    public const SOLAR_TERM_SYUNBUN = 0;
+
+    /**
+     * 清明
+     */
+    public const SOLAR_TERM_SEIMEI = 1;
+
+    /**
+     * 穀雨
+     */
+    public const SOLAR_TERM_KOKUU = 2;
+
+    /**
+     * 立夏
+     */
+    public const SOLAR_TERM_RIKKA = 3;
+
+    /**
+     * 小満
+     */
+    public const SOLAR_TERM_SYOUMAN = 4;
+
+    /**
+     * 芒種
+     */
+    public const SOLAR_TERM_BOUSYU = 5;
+
+    /**
+     * 夏至
+     */
+    public const SOLAR_TERM_GESHI = 6;
+
+    /**
+     * 小暑
+     */
+    public const SOLAR_TERM_SYOUSYO = 7;
+
+    /**
+     * 大暑
+     */
+    public const SOLAR_TERM_TAISYO = 8;
+
+    /**
+     * 立秋
+     */
+    public const SOLAR_TERM_RISSYUU = 9;
+
+    /**
+     * 処暑
+     */
+    public const SOLAR_TERM_SYOSYO = 10;
+
+    /**
+     * 白露
+     */
+    public const SOLAR_TERM_HAKURO = 11;
+    /**
+     * 秋分
+     */
+    public const SOLAR_TERM_SYUUBUN = 12;
+    /**
+     * 寒露
+     */
+    public const SOLAR_TERM_KANRO = 13;
+    /**
+     * 霜降
+     */
+    public const SOLAR_TERM_SOUKOU = 14;
+    /**
+     * 立冬
+     */
+    public const SOLAR_TERM_RITTOU = 15;
+    /**
+     * 小雪
+     */
+    public const SOLAR_TERM_SYOUSETSU = 16;
+    /**
+     * 大雪
+     */
+    public const SOLAR_TERM_TAISETSU = 17;
+    /**
+     * 冬至
+     */
+    public const SOLAR_TERM_TOUJI = 18;
+    /**
+     * 小寒
+     */
+    public const SOLAR_TERM_SYOUKAN = 19;
+    /**
+     * 大寒
+     */
+    public const SOLAR_TERM_DAIKAN = 20;
+    /**
+     * 立春
+     */
+    public const SOLAR_TERM_RISSYUN = 21;
+    /**
+     * 雨水
+     */
+    public const SOLAR_TERM_USUI = 22;
+    /**
+     * 啓蟄
+     */
+    public const SOLAR_TERM_KEICHITSU = 23;
+
+    /**
      * DateTime constructor.
      *
      * 日付/時刻 文字列の書式については {@link http://php.net/manual/ja/datetime.formats.php サポートする日付と時刻の書式} を参考にしてください。
      *
-     * @param string|\DateTime|int|null $date_time      日付/時刻 文字列。DateTimeオブジェクト
+     * @param string|\DateTime|int|null $date_time 日付/時刻 文字列。DateTimeオブジェクト
      * @param \DateTimeZone|null $time_zone DateTimeZone オブジェクトか、時差の時間、タイムゾーンテキスト(omit 予定)
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
