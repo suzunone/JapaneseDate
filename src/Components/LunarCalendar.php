@@ -559,8 +559,7 @@ class LunarCalendar
 
         $diff_time = $timestamp - self::BASE_TIME;
 
-        // return ($diff_time + 32400.0) / 86400.25 / 365.25;
-        return ($diff_time + 32400.0) / 31557691.3125;
+        return ($diff_time + 32400.0) / 31557600.0;
     }
 
     /**
@@ -603,20 +602,7 @@ class LunarCalendar
      */
     protected function normalizeAngle(float $angle): float
     {
-        if ($angle < 0) {
-            // マイナスなら、逆から正規化
-            $angle1 = $angle * -1;
-            $angle1 -= 360 * floor($angle1 / 360);
-
-            return 360 - $angle1;
-        }
-        if ($angle <= 360) {
-            // 基準値以内なら何もしない
-            return $angle;
-        }
-
-        // 基準以上なら、正規化
-        return $angle - 360 * floor($angle / 360);
+        return $angle - 360.0 * floor($angle / 360.0);
     }
 
     /**
@@ -718,7 +704,9 @@ class LunarCalendar
         $rm_moon += 1.2740 * sin(deg2rad($this->normalizeAngle(100.738 + 4133.3536 * $julian_year)));
         $rm_moon += 6.2887 * sin(deg2rad($this->normalizeAngle(134.961 + 4771.9886 * $julian_year + $tmp)));
 
-        return $rm_moon + $this->normalizeAngle(218.3161 + 4812.67881 * $julian_year);
+        return $this->normalizeAngle(
+            $rm_moon + $this->normalizeAngle(218.3161 + 4812.67881 * $julian_year)
+        );
     }
 
     /**

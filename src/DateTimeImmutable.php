@@ -75,7 +75,7 @@ use JapaneseDate\Traits\DateTimeImport;
  * @property string $lunarMonthText
  * @property int $lunarMonth
  * @property int $lunarYear
- * @property int $lunarYay
+ * @property int $lunarDay
  * @property bool $isLeapMonth
  */
 class DateTimeImmutable extends CarbonImmutable
