@@ -68,6 +68,10 @@ class Cache extends CacheMode
      */
     public static function forever(string $cache_name, Closure $function)
     {
+        if (static::$mode === static::MODE_NONE) {
+            return $function();
+        }
+
         $cache = &static::$cache;
 
         if (isset($cache[$cache_name])) {

@@ -46,7 +46,8 @@ trait Factory
     public static function factory($date_time = null, $time_zone = null): DateTimeInterface
     {
         if (is_int($date_time)) {
-            return new static(date('Y-m-d H:i:s', $date_time), $time_zone);
+            $obj = new static('@' . $date_time);
+            return $time_zone !== null ? $obj->setTimezone($time_zone) : $obj;
         }
         if (ctype_digit($date_time)) {
             $check_time = strtotime($date_time);
