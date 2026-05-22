@@ -61,9 +61,9 @@ class SolarTermDate
 
     /**
      * @param string $key
-     * @return string|\JapaneseDate\DateTime|null|int
+     * @return string|\JapaneseDate\DateTime|null|int|bool|float
      */
-    public function __get(string $key): null|string|DateTime|int
+    public function __get(string $key): null|string|DateTime|int|bool|float
     {
         return $this->attribute[$key] ?? match ($key) {
             'solarTermText' => JapaneseDate::SOLAR_TERM[$this->solar_term],

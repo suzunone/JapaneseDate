@@ -71,7 +71,7 @@ class Config
     public static function getLC(int $year): array
     {
         $config = self::getConfig($year);
-        if (!count($config) || isset($config[self::KEY_LUNAR_CALENDAR])) {
+        if (!count($config) || !isset($config[self::KEY_LUNAR_CALENDAR])) {
             return [];
         }
 
@@ -93,7 +93,7 @@ class Config
     public static function getST(int $year): array
     {
         $config = self::getConfig($year);
-        if (!count($config) || isset($config[self::KEY_SOLAR_TERM])) {
+        if (!count($config) || !isset($config[self::KEY_SOLAR_TERM])) {
             return [];
         }
 

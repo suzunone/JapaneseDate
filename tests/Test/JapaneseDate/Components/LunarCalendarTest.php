@@ -18,7 +18,9 @@
 namespace Tests\JapaneseDate\Components;
 
 use Carbon\Carbon;
+use DateTimeZone;
 use JapaneseDate\Components\LunarCalendar;
+use JapaneseDate\DateTime;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\PreserveGlobalState;
@@ -64,10 +66,22 @@ class LunarCalendarTest extends TestCase
     {
         $LunarCalendar = LunarCalendar::factory();
 
+        // JY=0 の基準点: 2000-01-02 03:00:00 UTC (= 2000-01-02 12:00:00 JST)
         $this->assertEquals(
             0.0,
-            $this->invokeExecuteMethod($LunarCalendar, 'gregorian2JY', [2000, 1, 2, 3, 0, 0, 0])
+            $this->invokeExecuteMethod($LunarCalendar, 'gregorian2JY', [2000, 1, 2, 3, 0, 0])
         );
+
+        // 1ユリウス年後 (= 365.25日 = 31557600秒)
+        $actual = $this->invokeExecuteMethod($LunarCalendar, 'gregorian2JY', [2001, 1, 1, 9, 0, 0]);
+        $this->assertEqualsWithDelta(1.0, $actual, 1e-10);
+
+        // 長期差分の検証: 2025-01-01 09:00:00 UTC
+        $base   = DateTime::factory('2000-01-02 12:00:00', new DateTimeZone('UTC'))->timestamp;
+        $target = DateTime::factory('2025-01-01 09:00:00', new DateTimeZone('UTC'))->timestamp;
+        $expected = (($target - $base) + 32400.0) / 31557600.0;
+        $actual25 = $this->invokeExecuteMethod($LunarCalendar, 'gregorian2JY', [2025, 1, 1, 9, 0, 0]);
+        $this->assertEqualsWithDelta($expected, $actual25, 1e-10);
     }
 
     /**
@@ -358,6 +372,8 @@ class LunarCalendarTest extends TestCase
             '2024/11/01' => ['2024/11/01', []],
             '2024/12/01' => ['2024/12/01', []],
             '2024/12/31' => ['2024/12/31', []],
+            // 月黄経負値バグ修正後: 2034-03-20 が朔日として認識されること
+            '2034/03/20' => ['2034/03/20', []],
         ];
     }
 
@@ -392,6 +408,12 @@ class LunarCalendarTest extends TestCase
             '2020朔_after'  => [2020, 12, 16, 1, 17, 0, 1],
             '2019朔_before' => [2019, 11, 26, 0, 0, 0, 29],
             '2019朔'        => [2019, 11, 27, 0, 6, 0, 0],
+            // 月黄経負値バグ修正後: 朔は0付近になること
+            '2026朔'        => [2026, 3, 19, 10, 23, 0, 0],
+            // 朔前(0:00 JST)は前周期の29.x のままであること
+            '2026朔_before' => [2026, 3, 19, 0, 0, 0, 29],
+            // 2034-03-20 19:15 JST が国立天文台の朔
+            '2034朔'        => [2034, 3, 20, 19, 15, 0, 0],
         ];
     }
 
@@ -405,5 +427,48 @@ class LunarCalendarTest extends TestCase
         $LunarCalendar = LunarCalendar::factory();
 
         $this->assertEquals($moon_age, round($LunarCalendar->moonAge($year, $month, $day, $hour, $minute, $second)));
+    }
+
+    #[RunInSeparateProcess] #[PreserveGlobalState(false)]
+    public function test_jY2LongitudeMoon_normalized()
+    {
+        $LunarCalendar = LunarCalendar::factory();
+
+        // 2024-05-05 12:00:00: 旧実装では -0.194579 を返していた → [0, 360) に正規化されること
+        $actual1 = $this->invokeExecuteMethod(
+            $LunarCalendar,
+            'longitudeMoon',
+            [2024, 5, 5, 12, 0, 0]
+        );
+        $this->assertGreaterThanOrEqual(0.0, $actual1, '月黄経は0以上でなければならない');
+        $this->assertLessThan(360.0, $actual1, '月黄経は360未満でなければならない');
+        // 月は0度付近にある (355°<θ<360° または 0°<θ<5°)
+        $near0_1 = $actual1 > 355.0 || $actual1 < 5.0;
+        $this->assertTrue($near0_1, "月黄経({$actual1})は0度付近 (355<θ<360 or 0<θ<5) でなければならない");
+
+        // 2026-03-19 16:56:18: 旧実装では -1.634862 を返していた → [0, 360) に正規化されること
+        $actual2 = $this->invokeExecuteMethod(
+            $LunarCalendar,
+            'longitudeMoon',
+            [2026, 3, 19, 16, 56, 18]
+        );
+        $this->assertGreaterThanOrEqual(0.0, $actual2, '月黄経は0以上でなければならない');
+        $this->assertLessThan(360.0, $actual2, '月黄経は360未満でなければならない');
+        // 月は0度付近にある
+        $near0_2 = $actual2 > 355.0 || $actual2 < 5.0;
+        $this->assertTrue($near0_2, "月黄経({$actual2})は0度付近 (355<θ<360 or 0<θ<5) でなければならない");
+    }
+
+    #[RunInSeparateProcess] #[PreserveGlobalState(false)]
+    public function test_lunarDate_2034()
+    {
+        // 2034-03-20 19:15 JST が朔 → 旧暦 2/1 であること
+        $DateTime = DateTime::factory('2034-03-20');
+        $this->assertEquals(2034, (int) $DateTime->lunar_year);
+        $this->assertEquals(2, (int) $DateTime->lunar_month);
+        $this->assertEquals(1, (int) $DateTime->lunar_day);
+
+        $DateTime2 = DateTime::factory('2034-03-21');
+        $this->assertEquals(2, (int) $DateTime2->lunar_day);
     }
 }
