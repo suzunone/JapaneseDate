@@ -44,9 +44,17 @@ class LunarTest extends TestCase
     #[Covers('getMoonAge')]
     public function test_getMoonAge()
     {
+        // 2020-03-01 20:00 JST: 旧暦2020/2月の朔は2020-02-24 00:32 JST なので月齢≒6.8
         $DateTime = DateTime::factory('2020-03-01 20:00:00');
-        $DateTime->getMoonAge();
-        $this->assertEquals(7, $DateTime->getMoonAge());
+        $this->assertEqualsWithDelta(6.8, $DateTime->getMoonAge(), 0.5);
+
+        // 朔 (新月) の直後 → 月齢 ≒ 0
+        $DateTime = DateTime::factory('2026-02-17 21:01:00');
+        $this->assertEqualsWithDelta(0.0, $DateTime->getMoonAge(), 0.5);
+
+        // 旧暦日(6)ではなく月齢(float)を返すことを確認
+        $DateTime = DateTime::factory('2026-05-22 00:00:00');
+        $this->assertEqualsWithDelta(4.775640, $DateTime->getMoonAge(), 0.5);
     }
 
     #[Covers('__get')]

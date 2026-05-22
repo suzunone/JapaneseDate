@@ -49,7 +49,8 @@ trait Factory
     public static function factory(int|float|string|DateTimeInterface|null $date_time = null, DateTimeZone|null $time_zone = null): static
     {
         if (is_int($date_time) || is_float($date_time)) {
-            return new static(date('Y-m-d H:i:s', $date_time), $time_zone);
+            $obj = new static('@' . (int) $date_time);
+            return $time_zone !== null ? $obj->setTimezone($time_zone) : $obj;
         }
 
 

@@ -47,7 +47,14 @@ trait Lunar
      */
     public function getMoonAge(): float
     {
-        return $this->getLunarCalendar()->day;
+        return $this->LunarCalendar->moonAge(
+            (int) $this->year,
+            (int) $this->month,
+            (int) $this->day,
+            (float) $this->hour,
+            (float) $this->minute,
+            (float) $this->second
+        );
     }
 
     /**
