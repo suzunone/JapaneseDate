@@ -93,7 +93,8 @@ trait CacheSetting
     protected function innerDateTime(string $date_text)
     {
         static $cache;
+        $key = static::class . ':' . $this->getTimezone()->getName() . ':' . $date_text;
 
-        return $cache[$date_text] ?? ($cache[$date_text] = new static($date_text, $this->getTimezone()));
+        return $cache[$key] ?? ($cache[$key] = new static($date_text, $this->getTimezone()));
     }
 }
