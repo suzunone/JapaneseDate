@@ -11,13 +11,13 @@
  * @license     BSD-2
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
- * @since       Class available since Release 1.0.0
+ * @since        1.0.0
  */
 
 namespace JapaneseDate\Components;
 
 use Carbon\Carbon;
-use DateTime;
+use DateTimeInterface;
 
 /**
  * Class Moon
@@ -29,7 +29,7 @@ use DateTime;
  * @version     GIT: $Id$
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
- * @since       Class available since Release 6.3.0
+ * @since        6.3.0
  */
 class Moon
 {
@@ -144,12 +144,12 @@ class Moon
     /**
      * 現在の日付を囲む月の満ち欠けの時刻を検索します。5つの位相が検出され、開始時刻と現在の月齢と重なる新月で終了します。
      *
-     * @param \DateTime $date
+     * @param DateTimeInterface $date
      * @param float $phase 探す位相
      * @param bool $is_next
      * @return \Carbon\Carbon
      */
-    public function moonPhase(DateTime $date, float $phase, bool $is_next = false): Carbon
+    public function moonPhase(DateTimeInterface $date, float $phase, bool $is_next = false): Carbon
     {
         $timestamp = $date->getTimestamp();
         $julian = $this->uts2Julian($timestamp);

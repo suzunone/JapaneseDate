@@ -1,0 +1,8 @@
+{% from "macros.twig" import class_link_md %}
+# All Interfaces
+
+| Interface | Description |
+|---|---|
+{% for iface in interfaces %}
+| _{{ class_link_md(iface, root_path) }}_ | {{ iface.shortdesc|desc(iface) }} |
+{% endfor %}

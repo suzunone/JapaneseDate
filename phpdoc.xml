@@ -1,20 +1,35 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<phpdoc>
+<phpdocumentor
+        configVersion="3"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="https://www.phpdoc.org"
+        xsi:noNamespaceSchemaLocation="data/xsd/phpdoc.xsd"
+>
+
     <title>Japanese DateTime Document</title>
 
-    <parser>
-        <target>works/doc/</target>
-    </parser>
-    <transformer>
-        <target>docs</target>
-    </transformer>
-    <transformations>
-        <template name="vendor/cvuorinen/phpdoc-markdown-public/data/templates/markdown-public" />
-    </transformations>
-    <files>
-        <file>src/DateTime.php</file>
-        <file>src/CacheMode.php</file>
-        <file>src/Calendar.php</file>
-        <ignore>test/*</ignore>
-    </files>
-</phpdoc>
+    <paths>
+        <output>docs/</output>
+        <cache>works/doc/</cache>
+    </paths>
+
+    <version number="3.0.0">
+        <api>
+            <source dsn=".">
+                <path>src/DateTime.php</path>
+                <path>src/DateTimeImmutable.php</path>
+                <path>src/DateTimeInterface.php</path>
+                <path>src/CacheMode.php</path>
+                <path>src/Calendar.php</path>
+                <path>src/Traits/</path>
+            </source>
+            <ignore>
+                <path>test</path>
+            </ignore>
+            <extensions>
+                <extension>php</extension>
+            </extensions>
+            <default-package-name>JapaneseDate</default-package-name>
+        </api>
+    </version>
+</phpdocumentor>

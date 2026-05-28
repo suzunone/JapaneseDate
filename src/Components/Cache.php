@@ -12,7 +12,7 @@
  * @version     GIT: $Id$
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
- * @since       Class available since Release 2018/04/29 23:36
+ * @since        2018/04/29 23:36
  */
 
 namespace JapaneseDate\Components;
@@ -32,7 +32,7 @@ use JapaneseDate\CacheMode;
  * @version     GIT: $Id$
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
- * @since       Class available since Release 1.0.0
+ * @since        1.0.0
  */
 class Cache extends CacheMode
 {
@@ -114,7 +114,6 @@ class Cache extends CacheMode
         }
 
         $success = false;
-        /** @noinspection PhpComposerExtensionStubsInspection */
         $res = apcu_fetch($cache_name, $success);
         if ($success && $res) {
             return $res;
@@ -122,7 +121,6 @@ class Cache extends CacheMode
 
         $res = $function();
 
-        /** @noinspection PhpComposerExtensionStubsInspection */
         apcu_add($cache_name, $res);
 
         return $res;

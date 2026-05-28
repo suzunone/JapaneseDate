@@ -90,7 +90,7 @@ class SolarTermDate
     {
         return match ($key) {
             'solarTermText', 'dateTime' => true,
-            default => isset($this->attribute[$key]),
+            default                     => isset($this->attribute[$key]),
         };
     }
 }
