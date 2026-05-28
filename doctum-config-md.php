@@ -6,7 +6,7 @@ use Symfony\Component\Finder\Finder;
 use Doctum\Reflection\MethodReflection;
 
 // 1. ソースコードのパース対象ファイルを定義
-$iterator = Finder::create()
+$srcIterator = Finder::create()
     ->files()
     ->name('*.php')
     ->in(__DIR__ . '/src')
@@ -17,6 +17,15 @@ $iterator = Finder::create()
     ->path('/^Calendar\.php/')
     ->path('/^Traits/') // Traits/ ディレクトリ以下を丸ごと対象にする
     ->exclude('test'); // ignore指定されていたtestディレクトリを除外
+
+$carbonIterator = Finder::create()
+    ->files()
+    ->name('/^Carbon(Immutable)?\.php$/')
+    ->in(__DIR__ . '/vendor/nesbot/carbon/src/Carbon');
+
+$iterator = new AppendIterator();
+$iterator->append($srcIterator->getIterator());
+$iterator->append($carbonIterator->getIterator());
 
 // 2. public のみを出力するフィルターを定義
 class NoMagicMethodFilter extends PublicFilter

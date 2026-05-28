@@ -4,9 +4,22 @@
 
 class **Calendar**
 
-日付オブジェクト配列作成
+様々な除外条件（設定）に基づいて、特定の期間や月の営業日・日付オブジェクトの配列を生成するクラス。
 
-様々な条件の元、一定期間内の日付の配列を取得します。
+特定の曜日、祝日、あるいは個別に指定した日付をスキップ（バイパス）するフィルタリング機能を備えており、
+企業の営業日計算、一括スケジュール生成、非稼働日を除外したタスク割り当てなどに利用できます。
+
+メソッドチェーンによる柔軟な条件指定が可能です。
+
+【ユースケース例：土日祝と特定の日を除外した5営業日を取得する】
+```php
+$calendar = new Calendar();
+$workingDays = $calendar->addBypassWeekDay(Calendar::SATURDAY)
+->addBypassWeekDay(Calendar::SUNDAY)
+->setBypassHoliday(true)
+->addBypassDay('2026-05-01') // 独自の臨時休業日
+->getWorkingDay(5);          // 本日から5営業日分を取得
+```
 
 ## Methods
 
