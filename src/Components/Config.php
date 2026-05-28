@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Config.php
  *
@@ -36,8 +37,12 @@ namespace JapaneseDate\Components;
 class Config
 {
     public const KEY_LUNAR_CALENDAR = 'lunarCalendar';
+
     public const KEY_SOLAR_TERM = 'solarTerm';
 
+    /**
+     * @var mixed[]
+     */
     protected static $lc_path = [];
 
     /**
@@ -45,7 +50,7 @@ class Config
      *
      * @param array $lc_path
      */
-    public static function setLCPath(array $lc_path)
+    public static function setLCPath($lc_path): void
     {
         self::$lc_path = $lc_path;
     }
@@ -55,7 +60,7 @@ class Config
      *
      * @param string $lc_path
      */
-    public static function addLCPath(string $lc_path)
+    public static function addLCPath($lc_path): void
     {
         array_unshift(self::$lc_path, $lc_path);
     }
@@ -66,10 +71,10 @@ class Config
      * @param int $year
      * @return array
      */
-    public static function getLC(int $year): array
+    public static function getLC($year): array
     {
         $config = self::getConfig($year);
-        if (!count($config) || isset($config[self::KEY_LUNAR_CALENDAR])) {
+        if (!count($config) || !isset($config[self::KEY_LUNAR_CALENDAR])) {
             return [];
         }
 
@@ -88,10 +93,10 @@ class Config
      * @param int $year
      * @return array
      */
-    public static function getST(int $year): array
+    public static function getST($year): array
     {
         $config = self::getConfig($year);
-        if (!count($config) || isset($config[self::KEY_SOLAR_TERM])) {
+        if (!count($config) || !isset($config[self::KEY_SOLAR_TERM])) {
             return [];
         }
 
@@ -104,7 +109,7 @@ class Config
      * @param int $year
      * @return array
      */
-    public static function getConfig(int $year): array
+    public static function getConfig($year): array
     {
         $res = [];
         foreach (self::$lc_path as $lc_path) {

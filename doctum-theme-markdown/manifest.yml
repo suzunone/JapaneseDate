@@ -1,0 +1,14 @@
+name: markdown
+
+global:
+    'index.twig':      'index.md'
+    'namespaces.twig': 'namespaces.md'
+    'classes.twig':    'classes.md'
+    'interfaces.twig': 'interfaces.md'
+    'traits.twig':     'traits.md'
+
+namespace:
+    'namespace.twig': '%s.md'
+
+class:
+    'class.twig': '%s.md'

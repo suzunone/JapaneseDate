@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Modifier.php
  *
@@ -10,7 +11,7 @@
  * @license     BSD-2
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
- * @since       Class available since Release 1.0.0
+ * @since        1.0.0
  */
 
 namespace JapaneseDate\Traits;
@@ -26,15 +27,16 @@ namespace JapaneseDate\Traits;
  * @license     BSD-2
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
- * @since       Class available since Release 1.0.0
+ * @since        1.0.0
  * @mixin \JapaneseDate\DateTime
+ * @mixin \JapaneseDate\DateTimeImmutable
  */
 trait Modifier
 {
     /**
      * 次の祝日にする
      *
-     * @return \JapaneseDate\DateTime|static|\JapaneseDate\Traits\Modifier|\Carbon\Carbon
+     * @return static
      */
     public function nextHoliday()
     {
@@ -53,9 +55,9 @@ trait Modifier
      * 指定された次の六曜にする
      *
      * @param int $week_day
-     * @return \JapaneseDate\DateTime|static|\JapaneseDate\Traits\Modifier|\Carbon\Carbon
+     * @return static
      */
-    public function nextSixWeek(int $week_day)
+    public function nextSixWeek($week_day)
     {
         if ($this->six_weekday === $week_day) {
             return $this;

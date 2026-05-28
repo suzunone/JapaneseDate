@@ -1,4 +1,5 @@
 <?php
+
 /**
  * CacheSetting.php
  *
@@ -10,7 +11,7 @@
  * @license     BSD-2
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
- * @since       Class available since Release 1.0.0
+ * @since        1.0.0
  */
 
 namespace JapaneseDate\Traits;
@@ -29,7 +30,7 @@ use JapaneseDate\Components\Cache;
  * @license     BSD-2
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
- * @since       Class available since Release 1.0.0
+ * @since        1.0.0
  * @mixin \JapaneseDate\DateTime
  * @mixin \JapaneseDate\DateTimeImmutable
  */
@@ -47,7 +48,7 @@ trait CacheSetting
      * @see \JapaneseDate\CacheMode::MODE_ORIGINAL 独自キャッシュ
      * @see \JapaneseDate\CacheMode::MODE_NONE キャッシュなし
      */
-    public static function setCacheMode(int $mode): void
+    public static function setCacheMode($mode): void
     {
         Cache::setMode($mode);
     }
@@ -59,7 +60,7 @@ trait CacheSetting
      *
      * @param string $cache_file_path キャッシュファイルを保存するディレクトリ
      */
-    public static function setCacheFilePath(string $cache_file_path): void
+    public static function setCacheFilePath($cache_file_path): void
     {
         Cache::setCacheFilePath($cache_file_path);
     }
@@ -80,17 +81,17 @@ trait CacheSetting
      *
      * @param Closure $function 独自キャッシュのロジックが含まれたクロージャ
      */
-    public static function setCacheClosure(Closure $function): void
+    public static function setCacheClosure($function): void
     {
         Cache::setCacheClosure($function);
     }
 
     /**
      * @param string $date_text
-     * @return static|\JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable|\DateTimeInterface
+     * @return static
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
-    protected function innerDateTime(string $date_text)
+    protected function innerDateTime($date_text)
     {
         static $cache;
         $key = static::class . ':' . $this->getTimezone()->getName() . ':' . $date_text;

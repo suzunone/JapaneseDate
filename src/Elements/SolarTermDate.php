@@ -4,6 +4,7 @@ namespace JapaneseDate\Elements;
 
 use JapaneseDate\Components\JapaneseDate;
 use JapaneseDate\DateTime;
+use RuntimeException;
 
 /**
  * Class SolarTermDate
@@ -18,6 +19,9 @@ use JapaneseDate\DateTime;
  */
 class SolarTermDate
 {
+    /**
+     * @var mixed[]
+     */
     protected $attribute = [
         'is_sekki' => false,
         'is_chuki' => false,
@@ -29,7 +33,10 @@ class SolarTermDate
         'solar_longitude' => 0.0,
     ];
 
-    const SOLAR_TERM_MONTH = [
+    /**
+     * @var array
+     */
+    protected const SOLAR_TERM_MONTH = [
         3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12, 1, 1, 2, 2, 3,
     ];
 
@@ -57,21 +64,42 @@ class SolarTermDate
 
     /**
      * @param string $key
-     * @return mixed|null
+     * @return string|\JapaneseDate\DateTime|null|int|bool|float
      */
     public function __get(string $key)
     {
-        if (isset($this->attribute[$key])) {
-            return $this->attribute[$key];
-        }
-
         switch ($key) {
             case 'solarTermText':
-                return JapaneseDate::SOLAR_TERM[$this->solar_term];
+                return $this->attribute[$key] ?? JapaneseDate::SOLAR_TERM[$this->solar_term];
             case 'dateTime':
-                return DateTime::create($this->year, $this->month, $this->day);
+                return $this->attribute[$key] ?? DateTime::create($this->year, $this->month, $this->day);
+            default:
+                return $this->attribute[$key] ?? null;
         }
+    }
 
-        return null;
+    /**
+     * @param string $key
+     * @param mixed $value
+     * @return void
+     */
+    public function __set(string $key, $value)
+    {
+        throw new RuntimeException('Can not set key:' . $key . ' =  ' . $value);
+    }
+
+    /**
+     * @param string $key
+     * @return bool
+     */
+    public function __isset(string $key): bool
+    {
+        switch ($key) {
+            case 'solarTermText':
+            case 'dateTime':
+                return true;
+            default:
+                return isset($this->attribute[$key]);
+        }
     }
 }

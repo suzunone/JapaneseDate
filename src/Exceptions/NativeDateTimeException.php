@@ -1,4 +1,5 @@
 <?php
+
 /**
  * 汎用例外
  *
@@ -10,7 +11,7 @@
  * @license     BSD-2
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
- * @since       Class available since Release 1.0.0
+ * @since        1.0.0
  */
 
 namespace JapaneseDate\Exceptions;
@@ -26,7 +27,7 @@ namespace JapaneseDate\Exceptions;
  * @license     BSD-2
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
- * @since       Class available since Release 1.0.0
+ * @since        1.0.0
  */
 class NativeDateTimeException extends Exception
 {

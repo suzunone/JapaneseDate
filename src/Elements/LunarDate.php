@@ -1,4 +1,5 @@
 <?php
+
 /**
  *
  * @category    DateTime
@@ -10,7 +11,7 @@
  * @version     GIT: $Id$
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
- * @since       Class available since Release 2018/04/28 2:55
+ * @since        2018/04/28 2:55
  */
 
 namespace JapaneseDate\Elements;
@@ -27,7 +28,7 @@ use JapaneseDate\Exceptions\ErrorException;
  * @version     GIT: $Id$
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
- * @since       Class available since Release 1.0.0
+ * @since        1.0.0
  * @property-read int year
  * @property-read int month
  * @property-read int day
@@ -37,9 +38,13 @@ use JapaneseDate\Exceptions\ErrorException;
 class LunarDate
 {
     public const YEAR_KEY = 0;
+
     public const IS_LEAP_MONTH_FLAG_KEY = 1;
+
     public const MONTH_KEY = 2;
+
     public const DAY_KEY = 3;
+
     public const SOLAR_TERM_KEY = 4;
 
     /**
@@ -53,11 +58,12 @@ class LunarDate
      * @param array $lunar
      * @param int|bool $solar_term
      * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JsonException
      */
     public function __construct(array $lunar, $solar_term)
     {
         if (!isset($lunar[self::DAY_KEY])) {
-            throw new ErrorException('undefined day key' . json_encode($lunar) . json_encode($solar_term));
+            throw new ErrorException('undefined day key' . json_encode($lunar, 0) . json_encode($solar_term, 0));
         }
 
         $lunar[self::SOLAR_TERM_KEY] = $solar_term;
@@ -72,13 +78,9 @@ class LunarDate
     {
         switch ($name) {
             case 'year':
-
             case 'month':
-
             case 'day':
-
             case 'is_leap_month':
-
             case 'solar_term':
                 return true;
             default:
@@ -88,7 +90,7 @@ class LunarDate
 
     /**
      * @param string $name
-     * @return bool|string
+     * @return bool|string|int
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @noinspection PhpMissingParamTypeInspection
      */
@@ -97,16 +99,12 @@ class LunarDate
         switch ($name) {
             case 'year':
                 return (int) $this->lunar[self::YEAR_KEY];
-
             case 'month':
                 return (int) $this->lunar[self::MONTH_KEY];
-
             case 'day':
                 return (int) $this->lunar[self::DAY_KEY];
-
             case 'is_leap_month':
                 return (bool) $this->lunar[self::IS_LEAP_MONTH_FLAG_KEY];
-
             case 'solar_term':
                 return $this->lunar[self::SOLAR_TERM_KEY];
             default:

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Class Cache
  *
@@ -11,7 +12,7 @@
  * @version     GIT: $Id$
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
- * @since       Class available since Release 2018/04/29 23:36
+ * @since        2018/04/29 23:36
  */
 
 namespace JapaneseDate\Components;
@@ -31,7 +32,7 @@ use JapaneseDate\CacheMode;
  * @version     GIT: $Id$
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
- * @since       Class available since Release 1.0.0
+ * @since        1.0.0
  */
 class Cache extends CacheMode
 {
@@ -43,12 +44,12 @@ class Cache extends CacheMode
     protected static $mode = 1;
 
     /**
-     * @var Closure
+     * @var ?Closure
      */
     protected static $cache_closure;
 
     /**
-     * @var string
+     * @var string|null
      */
     protected static $cache_file_path;
 
@@ -66,7 +67,7 @@ class Cache extends CacheMode
      * @param Closure $function
      * @return mixed
      */
-    public static function forever(string $cache_name, Closure $function)
+    public static function forever($cache_name, $function)
     {
         if (static::$mode === static::MODE_NONE) {
             return $function();
@@ -106,14 +107,13 @@ class Cache extends CacheMode
      * @param Closure $function
      * @return mixed
      */
-    protected static function apcForever(string $cache_name, Closure $function)
+    protected static function apcForever($cache_name, $function)
     {
         if (!(function_exists('apcu_fetch') && function_exists('apcu_add'))) {
             return $function();
         }
 
         $success = false;
-        /** @noinspection PhpComposerExtensionStubsInspection */
         $res = apcu_fetch($cache_name, $success);
         if ($success && $res) {
             return $res;
@@ -121,7 +121,6 @@ class Cache extends CacheMode
 
         $res = $function();
 
-        /** @noinspection PhpComposerExtensionStubsInspection */
         apcu_add($cache_name, $res);
 
         return $res;
@@ -134,7 +133,7 @@ class Cache extends CacheMode
      * @param Closure $function
      * @return mixed
      */
-    protected static function fileForever(string $cache_name, Closure $function)
+    protected static function fileForever($cache_name, $function)
     {
         $cache_name_path = realpath(static::$cache_file_path) . DIRECTORY_SEPARATOR . sha1($cache_name);
 
@@ -154,7 +153,7 @@ class Cache extends CacheMode
      *
      * @param int $mode
      */
-    public static function setMode(int $mode): void
+    public static function setMode($mode): void
     {
         static::$mode = $mode;
     }
@@ -164,7 +163,7 @@ class Cache extends CacheMode
      *
      * @param string $cache_file_path
      */
-    public static function setCacheFilePath(string $cache_file_path): void
+    public static function setCacheFilePath($cache_file_path): void
     {
         static::$mode = static::MODE_FILE;
         static::$cache_file_path = $cache_file_path;
@@ -175,7 +174,7 @@ class Cache extends CacheMode
      *
      * @param Closure $function
      */
-    public static function setCacheClosure(Closure $function): void
+    public static function setCacheClosure($function): void
     {
         static::$mode = static::MODE_ORIGINAL;
         static::$cache_closure = $function;

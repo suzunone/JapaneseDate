@@ -1,4 +1,5 @@
 <?php
+
 /**
  * 月の位相計算
  *
@@ -10,13 +11,13 @@
  * @license     BSD-2
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
- * @since       Class available since Release 1.0.0
+ * @since        1.0.0
  */
 
 namespace JapaneseDate\Components;
 
 use Carbon\Carbon;
-use DateTime;
+use DateTimeInterface;
 
 /**
  * Class Moon
@@ -28,7 +29,7 @@ use DateTime;
  * @version     GIT: $Id$
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
- * @since       Class available since Release 6.3.0
+ * @since        6.3.0
  */
 class Moon
 {
@@ -45,11 +46,11 @@ class Moon
      * $k = (年 - 1900) * 12.3685
      * ここで、yearは年号と端数年号で表されます。
      *
-     * @param int $date
+     * @param float $date
      * @param float $k
      * @return float
      */
-    protected function meanPhase(int $date, float $k): float
+    protected function meanPhase($date, $k): float
     {
         // Time in Julian centuries from 1900 January 0.5
         $jt = ($date - 2415020.0) / 36525;
@@ -69,7 +70,7 @@ class Moon
      * @param float $phase
      * @return float|null
      */
-    protected function truePhase(float $k, float $phase): ?float
+    protected function truePhase($k, $phase): ?float
     {
         // Add phase to new moon time
         $k += $phase;
@@ -143,12 +144,12 @@ class Moon
     /**
      * 現在の日付を囲む月の満ち欠けの時刻を検索します。5つの位相が検出され、開始時刻と現在の月齢と重なる新月で終了します。
      *
-     * @param \DateTime $date
+     * @param DateTimeInterface $date
      * @param float $phase 探す位相
      * @param bool $is_next
      * @return \Carbon\Carbon
      */
-    public function moonPhase(DateTime $date, float $phase, bool $is_next = false): Carbon
+    public function moonPhase($date, $phase, $is_next = false): Carbon
     {
         $timestamp = $date->getTimestamp();
         $julian = $this->uts2Julian($timestamp);
@@ -191,7 +192,7 @@ class Moon
      * @param int $timestamp
      * @return float
      */
-    protected function uts2Julian(int $timestamp): float
+    protected function uts2Julian($timestamp): float
     {
         return $timestamp / 86400 + 2440587.5;
     }
@@ -202,7 +203,7 @@ class Moon
      * @param float $julian
      * @return float
      */
-    protected function julian2Uts(float $julian): float
+    protected function julian2Uts($julian): float
     {
         return ($julian - 2440587.5) * 86400;
     }
