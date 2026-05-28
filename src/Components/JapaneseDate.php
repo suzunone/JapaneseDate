@@ -16,7 +16,6 @@
 
 namespace JapaneseDate\Components;
 
-use Cassandra\Date;
 use DateTimeInterface;
 use DateTimeZone;
 use JapaneseDate\DateTime;
