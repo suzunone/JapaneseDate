@@ -1,4 +1,5 @@
 <?php
+
 /**
  * DateTimeImport.php
  *
@@ -10,7 +11,7 @@
  * @license     BSD-2
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
- * @since       Class available since Release 1.0.0
+ * @since        1.0.0
  */
 
 namespace JapaneseDate\Traits;
@@ -26,17 +27,25 @@ namespace JapaneseDate\Traits;
  * @license     BSD-2
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
- * @since       Class available since Release 1.0.0
+ * @since        1.0.0
  * @mixin \JapaneseDate\DateTime
+ * @mixin \JapaneseDate\DateTimeImmutable
  */
 trait DateTimeImport
 {
     use Component;
+
     use Factory;
+
     use CacheSetting;
+
     use Lunar;
+
     use Modern;
-    use LocalizedFormat;
+
     use Modifier;
+
+    use FindSolarTerm;
+
     use Getter;
 }

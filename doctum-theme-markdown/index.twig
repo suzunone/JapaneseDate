@@ -1,0 +1,18 @@
+{% from "macros.twig" import class_link_md, namespace_link_md %}
+# {{ project.config('title') }}
+
+{% if has_namespaces %}
+## Namespaces
+
+{% for namespace in namespaces %}
+- {{ namespace_link_md(namespace, root_path) }}
+{% endfor %}
+
+{% endif %}
+## Classes
+
+| Class | Description |
+|---|---|
+{% for class in classes %}
+| {{ class_link_md(class, root_path) }} | {{ class.shortdesc|desc(class) }} |
+{% endfor %}

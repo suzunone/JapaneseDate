@@ -1,4 +1,5 @@
 <?php
+
 /**
  * CacheSetting.php
  *
@@ -10,7 +11,7 @@
  * @license     BSD-2
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
- * @since       Class available since Release 1.0.0
+ * @since        1.0.0
  */
 
 namespace JapaneseDate\Traits;
@@ -29,7 +30,7 @@ use JapaneseDate\Components\Cache;
  * @license     BSD-2
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
- * @since       Class available since Release 1.0.0
+ * @since        1.0.0
  * @mixin \JapaneseDate\DateTime
  * @mixin \JapaneseDate\DateTimeImmutable
  */
@@ -87,10 +88,10 @@ trait CacheSetting
 
     /**
      * @param string $date_text
-     * @return static|\JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable|\DateTimeInterface
+     * @return static
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
-    protected function innerDateTime(string $date_text)
+    protected function innerDateTime(string $date_text): static
     {
         static $cache;
         $key = static::class . ':' . $this->getTimezone()->getName() . ':' . $date_text;

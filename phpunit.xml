@@ -1,23 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" backupGlobals="false" beStrictAboutTestsThatDoNotTestAnything="false" bootstrap="vendor/autoload.php" colors="true" processIsolation="false" stopOnError="false" stopOnFailure="false" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.0/phpunit.xsd" cacheDirectory=".phpunit.cache" backupStaticProperties="false">
-  <coverage>
-    <include>
-      <directory suffix=".php">src</directory>
-    </include>
-    <report>
-      <html outputDirectory="./covers/suzunone/JapaneseDate"/>
-      <text outputFile="./covers/coverage" showUncoveredFiles="true" showOnlySummary="false"/>
-    </report>
-  </coverage>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         backupGlobals="false"
+         bootstrap="tests/bootstrap.php"
+         colors="true"
+         processIsolation="false"
+         stopOnError="false"
+         stopOnFailure="false"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/11.0/phpunit.xsd"
+         cacheDirectory=".phpunit.cache"
+         backupStaticProperties="false"
+         requireCoverageMetadata="true"
+>
   <testsuites>
-    <testsuite name="Suzunone\JapaneseDate">
+    <testsuite name="Suzunome\JapaneseDate">
       <directory suffix="Test.php">tests</directory>
     </testsuite>
   </testsuites>
+
+  <source>
+    <include>
+      <directory suffix=".php">src</directory>
+    </include>
+  </source>
+
   <php>
     <env name="APP_ENV" value="testing"/>
+    <env name="JAPANESE_DATE_TEST_PROCESS_LIMIT" value="20"/>
     <ini name="memory_limit" value="2G"/>
   </php>
+
   <logging>
     <testdoxText outputFile="php://stdout"/>
   </logging>
