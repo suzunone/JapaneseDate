@@ -41,7 +41,7 @@
 {{ hint.name|raw }}
         {%- endif -%}
         {%- if hint.array %}[]{% endif -%}
-        {%- if not loop.last %}{% if isIntersectionType %}&{% else %}|{% endif %}{% endif -%}
+        {%- if not loop.last %}{% if isIntersectionType %}&{% else %}\|{% endif %}{% endif -%}
     {%- endfor -%}
 {%- endif -%}
 {%- endmacro %}
@@ -51,7 +51,7 @@
     {%- for hint in hints -%}
         {%- if hint.class -%}{{ hint.name.shortname }}{%- elseif hint.name -%}{{ hint.name|raw }}{%- endif -%}
         {%- if hint.array %}[]{% endif -%}
-        {%- if not loop.last %}{% if isIntersectionType %}&{% else %}|{% endif %}{% endif -%}
+        {%- if not loop.last %}{% if isIntersectionType %}&{% else %}\|{% endif %}{% endif -%}
     {%- endfor -%}
 {%- endif -%}
 {%- endmacro %}

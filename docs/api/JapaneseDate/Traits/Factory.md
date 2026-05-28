@@ -30,8 +30,8 @@ DateTimeオブジェクトの生成
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float|string|[DateTimeInterface](https://www.php.net/class.datetimeinterface)|null | `$date_time` | `null` | 日付/時刻 文字列。DateTimeオブジェクト |
-| [DateTimeZone](https://www.php.net/class.datetimezone)|null | `$time_zone` | `null` | DateTimeZone オブジェクトか、時差の時間、タイムゾーンテキスト(omit 予定) |
+| int\|float\|string\|[DateTimeInterface](https://www.php.net/class.datetimeinterface)\|null | `$date_time` | `null` | 日付/時刻 文字列。DateTimeオブジェクト |
+| [DateTimeZone](https://www.php.net/class.datetimezone)\|null | `$time_zone` | `null` | DateTimeZone オブジェクトか、時差の時間、タイムゾーンテキスト(omit 予定) |
 
 **Returns:** [Factory](../../JapaneseDate/Traits/Factory.md)
 **Throws:**

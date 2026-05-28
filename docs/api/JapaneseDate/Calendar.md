@@ -101,7 +101,7 @@ public Calendar addBypassDay($time)
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float|string|[DateTimeInterface](https://www.php.net/class.datetimeinterface) | `$time` | —  | 日付/時刻 文字列。DateTimeオブジェクト |
+| int\|float\|string\|[DateTimeInterface](https://www.php.net/class.datetimeinterface) | `$time` | —  | 日付/時刻 文字列。DateTimeオブジェクト |
 
 **Returns:** [Calendar](../JapaneseDate/Calendar.md)
 **Throws:**
@@ -123,7 +123,7 @@ public Calendar removeBypassDay($time)
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float|string|[DateTimeInterface](https://www.php.net/class.datetimeinterface) | `$time` | —  | 日付/時刻 文字列。DateTimeオブジェクト |
+| int\|float\|string\|[DateTimeInterface](https://www.php.net/class.datetimeinterface) | `$time` | —  | 日付/時刻 文字列。DateTimeオブジェクト |
 
 **Returns:** [Calendar](../JapaneseDate/Calendar.md)
 **Throws:**
@@ -175,7 +175,7 @@ public array getWorkingDayBySpan($jdt_end)
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float|string|[DateTimeInterface](https://www.php.net/class.datetimeinterface) | `$jdt_end` | —  | 取得終了日 |
+| int\|float\|string\|[DateTimeInterface](https://www.php.net/class.datetimeinterface) | `$jdt_end` | —  | 取得終了日 |
 
 **Returns:** array
 **Throws:**

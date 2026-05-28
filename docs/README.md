@@ -132,7 +132,7 @@ echo JapaneseDateTime::parse('first day of December 2018')->addWeeks(2);    // 2
 
 ``` .php
 
-echo JapaneseDateTime::parse(time());    // 2026-05-28 14:13:21
+echo JapaneseDateTime::parse(time());    // 2026-05-28 17:22:34
 echo JapaneseDateTime::parse(new DateTime('now'));    // PHP Fatal error:  Uncaught TypeError: DateTime::__construct() expects parameter 1 to be string, object given
 ```
 
@@ -143,9 +143,9 @@ echo JapaneseDateTime::parse(new DateTime('now'));    // PHP Fatal error:  Uncau
 そういった場合は、`JapaneseDate\DateTime::factory()`を使用します。
 
 ``` .php
-echo JapaneseDateTime::factory(time());    // 2026-05-28 14:13:21
+echo JapaneseDateTime::factory(time());    // 2026-05-28 17:22:34
 
-echo JapaneseDateTime::factory(new DateTime('now'));    // 2026-05-28 23:13:21
+echo JapaneseDateTime::factory(new DateTime('now'));    // 2026-05-29 02:22:34
 
 // もちろんこういったコードも動作します
 echo JapaneseDateTime::factory('first day of December 2018')->addWeeks(2);    // 2018-12-15 00:00:00
@@ -171,13 +171,13 @@ echo JapaneseDateTime::factory(20180404050505);    // 2061-07-19 07:48:25
 
 ``` .php
 $now = JapaneseDateTime::now();
-echo $now;                               // 2026-05-28 23:13:21
+echo $now;                               // 2026-05-29 02:22:34
 $today = JapaneseDateTime::today();
-echo $today;                             // 2026-05-28 00:00:00
+echo $today;                             // 2026-05-29 00:00:00
 $tomorrow = JapaneseDateTime::tomorrow('Europe/London');
 echo $tomorrow;                          // 2026-05-29 00:00:00
 $yesterday = JapaneseDateTime::yesterday();
-echo $yesterday;                         // 2026-05-27 00:00:00
+echo $yesterday;                         // 2026-05-28 00:00:00
 ```
 
 Getter
