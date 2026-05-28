@@ -169,7 +169,7 @@ trait Modern
      * @return int
      * @throws \JapaneseDate\Exceptions\Exception
      */
-    protected function getEraYear(?int $era_key = null): int
+    protected function getEraYear($era_key = null): int
     {
         $era_calc = [self::ERA_MEIJI => 1868,
             self::ERA_TAISHO         => 1912,

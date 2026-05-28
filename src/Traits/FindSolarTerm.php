@@ -30,7 +30,7 @@ trait FindSolarTerm
      * 今年の春分の日を取得する
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
      */
-    protected function getSyunbun(): DateTime|DateTimeImmutable
+    protected function getSyunbun()
     {
         return $this->getSolarTermDate('syunbun', $this->year);
     }
@@ -39,7 +39,7 @@ trait FindSolarTerm
      * 次の春分の日を取得する
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
      */
-    protected function getNextSyunbun(): DateTime|DateTimeImmutable
+    protected function getNextSyunbun()
     {
         return $this->getNextSolarTermDate('syunbun');
     }
@@ -48,357 +48,567 @@ trait FindSolarTerm
      * 前回の春分の日を取得する
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
      */
-    protected function getBeforeSyunbun(): DateTime|DateTimeImmutable
+    protected function getBeforeSyunbun()
     {
         return $this->getBeforeSolarTermDate('syunbun');
     }
 
-    protected function getSeimei(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getSeimei()
     {
         return $this->getSolarTermDate('seimei', $this->year);
     }
 
-    protected function getNextSeimei(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getNextSeimei()
     {
         return $this->getNextSolarTermDate('seimei');
     }
 
-    protected function getBeforeSeimei(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getBeforeSeimei()
     {
         return $this->getBeforeSolarTermDate('seimei');
     }
 
-    protected function getKokuu(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getKokuu()
     {
         return $this->getSolarTermDate('kokuu', $this->year);
     }
 
-    protected function getNextKokuu(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getNextKokuu()
     {
         return $this->getNextSolarTermDate('kokuu');
     }
 
-    protected function getBeforeKokuu(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getBeforeKokuu()
     {
         return $this->getBeforeSolarTermDate('kokuu');
     }
 
-    protected function getRikka(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getRikka()
     {
         return $this->getSolarTermDate('rikka', $this->year);
     }
 
-    protected function getNextRikka(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getNextRikka()
     {
         return $this->getNextSolarTermDate('rikka');
     }
 
-    protected function getBeforeRikka(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getBeforeRikka()
     {
         return $this->getBeforeSolarTermDate('rikka');
     }
 
-    protected function getSyouman(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getSyouman()
     {
         return $this->getSolarTermDate('syouman', $this->year);
     }
 
-    protected function getNextSyouman(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getNextSyouman()
     {
         return $this->getNextSolarTermDate('syouman');
     }
 
-    protected function getBeforeSyouman(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getBeforeSyouman()
     {
         return $this->getBeforeSolarTermDate('syouman');
     }
 
-    protected function getBousyu(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getBousyu()
     {
         return $this->getSolarTermDate('bousyu', $this->year);
     }
 
-    protected function getNextBousyu(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getNextBousyu()
     {
         return $this->getNextSolarTermDate('bousyu');
     }
 
-    protected function getBeforeBousyu(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getBeforeBousyu()
     {
         return $this->getBeforeSolarTermDate('bousyu');
     }
 
-    protected function getGeshi(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getGeshi()
     {
         return $this->getSolarTermDate('geshi', $this->year);
     }
 
-    protected function getNextGeshi(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getNextGeshi()
     {
         return $this->getNextSolarTermDate('geshi');
     }
 
-    protected function getBeforeGeshi(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getBeforeGeshi()
     {
         return $this->getBeforeSolarTermDate('geshi');
     }
 
-    protected function getSyousyo(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getSyousyo()
     {
         return $this->getSolarTermDate('syousyo', $this->year);
     }
 
-    protected function getNextSyousyo(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getNextSyousyo()
     {
         return $this->getNextSolarTermDate('syousyo');
     }
 
-    protected function getBeforeSyousyo(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getBeforeSyousyo()
     {
         return $this->getBeforeSolarTermDate('syousyo');
     }
 
-    protected function getTaisyo(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getTaisyo()
     {
         return $this->getSolarTermDate('taisyo', $this->year);
     }
 
-    protected function getNextTaisyo(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getNextTaisyo()
     {
         return $this->getNextSolarTermDate('taisyo');
     }
 
-    protected function getBeforeTaisyo(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getBeforeTaisyo()
     {
         return $this->getBeforeSolarTermDate('taisyo');
     }
 
-    protected function getRissyuu(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getRissyuu()
     {
         return $this->getSolarTermDate('rissyuu', $this->year);
     }
 
-    protected function getNextRissyuu(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getNextRissyuu()
     {
         return $this->getNextSolarTermDate('rissyuu');
     }
 
-    protected function getBeforeRissyuu(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getBeforeRissyuu()
     {
         return $this->getBeforeSolarTermDate('rissyuu');
     }
 
-    protected function getSyosyo(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getSyosyo()
     {
         return $this->getSolarTermDate('syosyo', $this->year);
     }
 
-    protected function getNextSyosyo(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getNextSyosyo()
     {
         return $this->getNextSolarTermDate('syosyo');
     }
 
-    protected function getBeforeSyosyo(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getBeforeSyosyo()
     {
         return $this->getBeforeSolarTermDate('syosyo');
     }
 
-    protected function getHakuro(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getHakuro()
     {
         return $this->getSolarTermDate('hakuro', $this->year);
     }
 
-    protected function getNextHakuro(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getNextHakuro()
     {
         return $this->getNextSolarTermDate('hakuro');
     }
 
-    protected function getBeforeHakuro(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getBeforeHakuro()
     {
         return $this->getBeforeSolarTermDate('hakuro');
     }
 
-    protected function getSyuubun(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getSyuubun()
     {
         return $this->getSolarTermDate('syuubun', $this->year);
     }
 
-    protected function getNextSyuubun(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getNextSyuubun()
     {
         return $this->getNextSolarTermDate('syuubun');
     }
 
-    protected function getBeforeSyuubun(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getBeforeSyuubun()
     {
         return $this->getBeforeSolarTermDate('syuubun');
     }
 
-    protected function getKanro(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getKanro()
     {
         return $this->getSolarTermDate('kanro', $this->year);
     }
 
-    protected function getNextKanro(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getNextKanro()
     {
         return $this->getNextSolarTermDate('kanro');
     }
 
-    protected function getBeforeKanro(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getBeforeKanro()
     {
         return $this->getBeforeSolarTermDate('kanro');
     }
 
-    protected function getSoukou(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getSoukou()
     {
         return $this->getSolarTermDate('soukou', $this->year);
     }
 
-    protected function getNextSoukou(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getNextSoukou()
     {
         return $this->getNextSolarTermDate('soukou');
     }
 
-    protected function getBeforeSoukou(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getBeforeSoukou()
     {
         return $this->getBeforeSolarTermDate('soukou');
     }
 
-    protected function getRittou(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getRittou()
     {
         return $this->getSolarTermDate('rittou', $this->year);
     }
 
-    protected function getNextRittou(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getNextRittou()
     {
         return $this->getNextSolarTermDate('rittou');
     }
 
-    protected function getBeforeRittou(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getBeforeRittou()
     {
         return $this->getBeforeSolarTermDate('rittou');
     }
 
-    protected function getSyousetsu(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getSyousetsu()
     {
         return $this->getSolarTermDate('syousetsu', $this->year);
     }
 
-    protected function getNextSyousetsu(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getNextSyousetsu()
     {
         return $this->getNextSolarTermDate('syousetsu');
     }
 
-    protected function getBeforeSyousetsu(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getBeforeSyousetsu()
     {
         return $this->getBeforeSolarTermDate('syousetsu');
     }
 
-    protected function getTaisetsu(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getTaisetsu()
     {
         return $this->getSolarTermDate('taisetsu', $this->year);
     }
 
-    protected function getNextTaisetsu(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getNextTaisetsu()
     {
         return $this->getNextSolarTermDate('taisetsu');
     }
 
-    protected function getBeforeTaisetsu(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getBeforeTaisetsu()
     {
         return $this->getBeforeSolarTermDate('taisetsu');
     }
 
-    protected function getTouji(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getTouji()
     {
         return $this->getSolarTermDate('touji', $this->year);
     }
 
-    protected function getNextTouji(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getNextTouji()
     {
         return $this->getNextSolarTermDate('touji');
     }
 
-    protected function getBeforeTouji(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getBeforeTouji()
     {
         return $this->getBeforeSolarTermDate('touji');
     }
 
-    protected function getSyoukan(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getSyoukan()
     {
         return $this->getSolarTermDate('syoukan', $this->year);
     }
 
-    protected function getNextSyoukan(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getNextSyoukan()
     {
         return $this->getNextSolarTermDate('syoukan');
     }
 
-    protected function getBeforeSyoukan(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getBeforeSyoukan()
     {
         return $this->getBeforeSolarTermDate('syoukan');
     }
 
-    protected function getDaikan(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getDaikan()
     {
         return $this->getSolarTermDate('daikan', $this->year);
     }
 
-    protected function getNextDaikan(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getNextDaikan()
     {
         return $this->getNextSolarTermDate('daikan');
     }
 
-    protected function getBeforeDaikan(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getBeforeDaikan()
     {
         return $this->getBeforeSolarTermDate('daikan');
     }
 
-    protected function getRissyun(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getRissyun()
     {
         return $this->getSolarTermDate('rissyun', $this->year);
     }
 
-    protected function getNextRissyun(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getNextRissyun()
     {
         return $this->getNextSolarTermDate('rissyun');
     }
 
-    protected function getBeforeRissyun(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getBeforeRissyun()
     {
         return $this->getBeforeSolarTermDate('rissyun');
     }
 
-    protected function getUsui(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getUsui()
     {
         return $this->getSolarTermDate('usui', $this->year);
     }
 
-    protected function getNextUsui(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getNextUsui()
     {
         return $this->getNextSolarTermDate('usui');
     }
 
-    protected function getBeforeUsui(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getBeforeUsui()
     {
         return $this->getBeforeSolarTermDate('usui');
     }
 
-    protected function getKeichitsu(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getKeichitsu()
     {
         return $this->getSolarTermDate('keichitsu', $this->year);
     }
 
-    protected function getNextKeichitsu(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getNextKeichitsu()
     {
         return $this->getNextSolarTermDate('keichitsu');
     }
 
-    protected function getBeforeKeichitsu(): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getBeforeKeichitsu()
     {
         return $this->getBeforeSolarTermDate('keichitsu');
     }
 
-    private function getNextSolarTermDate(string $method): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    private function getNextSolarTermDate(string $method)
     {
         $year = $this->year;
         $st = $this->findSolarTerm($method, $year);
@@ -410,7 +620,10 @@ trait FindSolarTerm
         return $this->getSolarTermDate($method, $year);
     }
 
-    private function getBeforeSolarTermDate(string $method): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    private function getBeforeSolarTermDate(string $method)
     {
         $year = $this->year;
         $st = $this->findSolarTerm($method, $year);
@@ -422,7 +635,10 @@ trait FindSolarTerm
         return $this->getSolarTermDate($method, $year);
     }
 
-    private function getSolarTermDate(string $method, int $year): DateTime|DateTimeImmutable
+    /**
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    private function getSolarTermDate(string $method, int $year)
     {
         $st = $this->findSolarTerm($method, $year);
 
@@ -435,7 +651,7 @@ trait FindSolarTerm
             $SolarTerm = new SimpleSolarTerm();
 
             return $SolarTerm->{$method}($year);
-        } catch (Throwable) {
+        } catch (Throwable $exception) {
             $SolarTerm = new SolarTerm();
 
             return $SolarTerm->{$method}($year);

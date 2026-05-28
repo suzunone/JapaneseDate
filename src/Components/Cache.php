@@ -41,24 +41,24 @@ class Cache extends CacheMode
      *
      * @var int
      */
-    protected static int $mode = 1;
+    protected static $mode = 1;
 
     /**
      * @var ?Closure
      */
-    protected static ?Closure $cache_closure = null;
+    protected static $cache_closure;
 
     /**
      * @var string|null
      */
-    protected static ?string $cache_file_path = null;
+    protected static $cache_file_path;
 
     /**
      * キャッシュデータ
      *
      * @var array
      */
-    protected static array $cache = [];
+    protected static $cache = [];
 
     /**
      * 永続キャッシュ
@@ -67,7 +67,7 @@ class Cache extends CacheMode
      * @param Closure $function
      * @return mixed
      */
-    public static function forever(string $cache_name, Closure $function): mixed
+    public static function forever($cache_name, $function)
     {
         if (static::$mode === static::MODE_NONE) {
             return $function();
@@ -107,7 +107,7 @@ class Cache extends CacheMode
      * @param Closure $function
      * @return mixed
      */
-    protected static function apcForever(string $cache_name, Closure $function): mixed
+    protected static function apcForever($cache_name, $function)
     {
         if (!(function_exists('apcu_fetch') && function_exists('apcu_add'))) {
             return $function();
@@ -133,7 +133,7 @@ class Cache extends CacheMode
      * @param Closure $function
      * @return mixed
      */
-    protected static function fileForever(string $cache_name, Closure $function): mixed
+    protected static function fileForever($cache_name, $function)
     {
         $cache_name_path = realpath(static::$cache_file_path) . DIRECTORY_SEPARATOR . sha1($cache_name);
 
@@ -153,7 +153,7 @@ class Cache extends CacheMode
      *
      * @param int $mode
      */
-    public static function setMode(int $mode): void
+    public static function setMode($mode): void
     {
         static::$mode = $mode;
     }
@@ -163,7 +163,7 @@ class Cache extends CacheMode
      *
      * @param string $cache_file_path
      */
-    public static function setCacheFilePath(string $cache_file_path): void
+    public static function setCacheFilePath($cache_file_path): void
     {
         static::$mode = static::MODE_FILE;
         static::$cache_file_path = $cache_file_path;
@@ -174,7 +174,7 @@ class Cache extends CacheMode
      *
      * @param Closure $function
      */
-    public static function setCacheClosure(Closure $function): void
+    public static function setCacheClosure($function): void
     {
         static::$mode = static::MODE_ORIGINAL;
         static::$cache_closure = $function;

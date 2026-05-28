@@ -133,7 +133,7 @@ class SimpleSolarTermTest extends TestCase
                 DateTime::SOLAR_TERM_SYOUSETSU => [11, 22],
                 DateTime::SOLAR_TERM_TAISETSU  => [12, 7],
                 DateTime::SOLAR_TERM_TOUJI     => [12, 22],
-            ]),
+            ])
         );
     }
 
@@ -174,7 +174,7 @@ class SimpleSolarTermTest extends TestCase
             '/public function ([a-z]+)\(int \$year\): SolarTermDate\s*\{/m',
             $source,
             $methodMatches,
-            PREG_OFFSET_CAPTURE,
+            PREG_OFFSET_CAPTURE
         );
 
         foreach ($methodMatches[1] as $index => [$method, $methodOffset]) {
@@ -183,12 +183,12 @@ class SimpleSolarTermTest extends TestCase
             }
 
             $nextMethod = $methodMatches[0][$index + 1][1] ?? strlen($source);
-            $methodBody = substr($source, $methodOffset, $nextMethod - $methodOffset);
+            $methodBody = (string) substr($source, $methodOffset, $nextMethod - $methodOffset);
             preg_match_all(
                 '/\$year >= (\d+) && \$year <= (\d+)\) \{\R\s+\$days = \[([^\]]+)\]/',
                 $methodBody,
                 $rangeMatches,
-                PREG_SET_ORDER,
+                PREG_SET_ORDER
             );
 
             if ($rangeMatches === []) {
@@ -250,9 +250,10 @@ class SimpleSolarTermTest extends TestCase
 
     /**
      * 年単位で取得した二十四節気一覧が暦要項の期待値と一致することを確認する。
+     * @param mixed[] $expected
      */
     #[DataProvider('naoRekiYokoYearDataProvider')]
-    public function test_getSolarTermsMatchesNaoRekiYoko($year, array $expected): void
+    public function test_getSolarTermsMatchesNaoRekiYoko($year, $expected): void
     {
         $solarTerms = (new SimpleSolarTerm())->getSolarTerms($year);
 

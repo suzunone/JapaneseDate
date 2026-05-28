@@ -46,7 +46,7 @@ trait Factory
      * @return static
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
-    public static function factory(int|float|string|DateTimeInterface|null $date_time = null, DateTimeZone|null $time_zone = null): static
+    public static function factory($date_time = null, $time_zone = null)
     {
         if (is_int($date_time) || is_float($date_time)) {
             $obj = new static('@' . (int) $date_time);

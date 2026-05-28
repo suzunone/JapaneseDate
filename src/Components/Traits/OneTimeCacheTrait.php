@@ -36,14 +36,14 @@ trait OneTimeCacheTrait
     /**
      * @var array
      */
-    protected array $one_time_cache = [];
+    protected $one_time_cache = [];
 
     /**
      * @param string $key
      * @param \Closure $closure
      * @return mixed
      */
-    protected function oneTimeCache(string $key, Closure $closure): mixed
+    protected function oneTimeCache($key, $closure)
     {
         if (array_key_exists($key, $this->one_time_cache)) {
             return $this->one_time_cache[$key];

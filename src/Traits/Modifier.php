@@ -38,7 +38,7 @@ trait Modifier
      *
      * @return static
      */
-    public function nextHoliday(): static
+    public function nextHoliday()
     {
         /**
          * @var  \JapaneseDate\DateTime|static|\JapaneseDate\Traits\Modifier|\Carbon\Carbon $date
@@ -57,7 +57,7 @@ trait Modifier
      * @param int $week_day
      * @return static
      */
-    public function nextSixWeek(int $week_day): static
+    public function nextSixWeek($week_day)
     {
         if ($this->six_weekday === $week_day) {
             return $this;

@@ -16,7 +16,7 @@ class SimpleSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    public function getSolarTerm(int $year, int $solar_term): SolarTermDate
+    public function getSolarTerm($year, $solar_term): SolarTermDate
     {
         switch ($solar_term) {
             case DateTime::SOLAR_TERM_SYUNBUN:
@@ -78,7 +78,7 @@ class SimpleSolarTerm
      * @return SolarTermDate[]
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    public function getSolarTerms(int $year): array
+    public function getSolarTerms($year): array
     {
         return [
             DateTime::SOLAR_TERM_SYUNBUN   => $this->syunbun($year),
@@ -115,7 +115,7 @@ class SimpleSolarTerm
      * @return \JapaneseDate\Elements\SolarTermDate
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    public function syunbun(int $year): SolarTermDate
+    public function syunbun($year): SolarTermDate
     {
         if ($year >= 1600 && $year <= 1631) {
             $days = [20, 20, 21, 21, ];
@@ -191,7 +191,7 @@ class SimpleSolarTerm
      * @return \JapaneseDate\Elements\SolarTermDate
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    public function seimei(int $year): SolarTermDate
+    public function seimei($year): SolarTermDate
     {
         if ($year >= 1600 && $year <= 1627) {
             $days = [4, 5, 5, 5, ];
@@ -267,7 +267,7 @@ class SimpleSolarTerm
      * @return \JapaneseDate\Elements\SolarTermDate
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    public function kokuu(int $year): SolarTermDate
+    public function kokuu($year): SolarTermDate
     {
         if ($year >= 1600 && $year <= 1607) {
             $days = [20, 20, 20, 21, ];
@@ -345,7 +345,7 @@ class SimpleSolarTerm
      * @return \JapaneseDate\Elements\SolarTermDate
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    public function rikka(int $year): SolarTermDate
+    public function rikka($year): SolarTermDate
     {
         if ($year >= 1600 && $year <= 1607) {
             $days = [5, 6, 6, 6, ];
@@ -425,7 +425,7 @@ class SimpleSolarTerm
      * @return \JapaneseDate\Elements\SolarTermDate
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    public function syouman(int $year): SolarTermDate
+    public function syouman($year): SolarTermDate
     {
         if ($year >= 1600 && $year <= 1615) {
             $days = [21, 21, 21, 22, ];
@@ -505,7 +505,7 @@ class SimpleSolarTerm
      * @return \JapaneseDate\Elements\SolarTermDate
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    public function bousyu(int $year): SolarTermDate
+    public function bousyu($year): SolarTermDate
     {
         if ($year >= 1600 && $year <= 1611) {
             $days = [6, 6, 6, 6, ];
@@ -587,7 +587,7 @@ class SimpleSolarTerm
      * @return \JapaneseDate\Elements\SolarTermDate
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    public function geshi(int $year): SolarTermDate
+    public function geshi($year): SolarTermDate
     {
         if ($year >= 1600 && $year <= 1603) {
             $days = [21, 22, 22, 22, ];
@@ -671,7 +671,7 @@ class SimpleSolarTerm
      * @return \JapaneseDate\Elements\SolarTermDate
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    public function syousyo(int $year): SolarTermDate
+    public function syousyo($year): SolarTermDate
     {
         if ($year >= 1600 && $year <= 1603) {
             $days = [7, 7, 8, 8, ];
@@ -755,7 +755,7 @@ class SimpleSolarTerm
      * @return \JapaneseDate\Elements\SolarTermDate
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    public function taisyo(int $year): SolarTermDate
+    public function taisyo($year): SolarTermDate
     {
         if ($year >= 1600 && $year <= 1631) {
             $days = [23, 23, 23, 23, ];
@@ -835,7 +835,7 @@ class SimpleSolarTerm
      * @return \JapaneseDate\Elements\SolarTermDate
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    public function rissyuu(int $year): SolarTermDate
+    public function rissyuu($year): SolarTermDate
     {
         if ($year >= 1600 && $year <= 1619) {
             $days = [7, 8, 8, 8, ];
@@ -915,7 +915,7 @@ class SimpleSolarTerm
      * @return \JapaneseDate\Elements\SolarTermDate
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    public function syosyo(int $year): SolarTermDate
+    public function syosyo($year): SolarTermDate
     {
         if ($year >= 1600 && $year <= 1627) {
             $days = [23, 23, 23, 24, ];
@@ -997,7 +997,7 @@ class SimpleSolarTerm
      * @return \JapaneseDate\Elements\SolarTermDate
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    public function hakuro(int $year): SolarTermDate
+    public function hakuro($year): SolarTermDate
     {
         if ($year >= 1600 && $year <= 1623) {
             $days = [7, 8, 8, 8, ];
@@ -1075,7 +1075,7 @@ class SimpleSolarTerm
      * @return \JapaneseDate\Elements\SolarTermDate
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    public function syuubun(int $year): SolarTermDate
+    public function syuubun($year): SolarTermDate
     {
         if ($year >= 1600 && $year <= 1635) {
             $days = [23, 23, 23, 23, ];
@@ -1153,7 +1153,7 @@ class SimpleSolarTerm
      * @return \JapaneseDate\Elements\SolarTermDate
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    public function kanro(int $year): SolarTermDate
+    public function kanro($year): SolarTermDate
     {
         if ($year >= 1600 && $year <= 1627) {
             $days = [8, 8, 8, 9, ];
@@ -1231,7 +1231,7 @@ class SimpleSolarTerm
      * @return \JapaneseDate\Elements\SolarTermDate
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    public function soukou(int $year): SolarTermDate
+    public function soukou($year): SolarTermDate
     {
         if ($year >= 1600 && $year <= 1603) {
             $days = [23, 23, 24, 24, ];
@@ -1309,7 +1309,7 @@ class SimpleSolarTerm
      * @return \JapaneseDate\Elements\SolarTermDate
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    public function rittou(int $year): SolarTermDate
+    public function rittou($year): SolarTermDate
     {
         if ($year >= 1600 && $year <= 1631) {
             $days = [7, 7, 7, 8, ];
@@ -1381,7 +1381,7 @@ class SimpleSolarTerm
      * @return \JapaneseDate\Elements\SolarTermDate
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    public function syousetsu(int $year): SolarTermDate
+    public function syousetsu($year): SolarTermDate
     {
         if ($year >= 1600 && $year <= 1611) {
             $days = [22, 22, 22, 23, ];
@@ -1459,7 +1459,7 @@ class SimpleSolarTerm
      * @return \JapaneseDate\Elements\SolarTermDate
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    public function taisetsu(int $year): SolarTermDate
+    public function taisetsu($year): SolarTermDate
     {
         if ($year >= 1600 && $year <= 1615) {
             $days = [7, 7, 7, 7, ];
@@ -1535,7 +1535,7 @@ class SimpleSolarTerm
      * @return \JapaneseDate\Elements\SolarTermDate
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    public function touji(int $year): SolarTermDate
+    public function touji($year): SolarTermDate
     {
         if ($year >= 1600 && $year <= 1611) {
             $days = [21, 22, 22, 22, ];
@@ -1609,7 +1609,7 @@ class SimpleSolarTerm
      * @return \JapaneseDate\Elements\SolarTermDate
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    public function syoukan(int $year): SolarTermDate
+    public function syoukan($year): SolarTermDate
     {
         if ($year >= 1601 && $year <= 1604) {
             $days = [6, 5, 6, 5, ];
@@ -1685,7 +1685,7 @@ class SimpleSolarTerm
      * @return \JapaneseDate\Elements\SolarTermDate
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    public function daikan(int $year): SolarTermDate
+    public function daikan($year): SolarTermDate
     {
         if ($year >= 1601 && $year <= 1640) {
             $days = [20, 20, 20, 20, ];
@@ -1761,7 +1761,7 @@ class SimpleSolarTerm
      * @return \JapaneseDate\Elements\SolarTermDate
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    public function rissyun(int $year): SolarTermDate
+    public function rissyun($year): SolarTermDate
     {
         if ($year >= 1601 && $year <= 1612) {
             $days = [4, 4, 4, 4, ];
@@ -1865,7 +1865,7 @@ class SimpleSolarTerm
      * @return \JapaneseDate\Elements\SolarTermDate
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    public function usui(int $year): SolarTermDate
+    public function usui($year): SolarTermDate
     {
         if ($year >= 1601 && $year <= 1624) {
             $days = [19, 19, 19, 18, ];
@@ -1937,7 +1937,7 @@ class SimpleSolarTerm
      * @return \JapaneseDate\Elements\SolarTermDate
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    public function keichitsu(int $year): SolarTermDate
+    public function keichitsu($year): SolarTermDate
     {
         if ($year >= 1600 && $year <= 1619) {
             $days = [5, 5, 6, 6, ];

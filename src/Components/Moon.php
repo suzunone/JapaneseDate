@@ -37,7 +37,7 @@ class Moon
      * 新月から新月の平均期間
      * @var float synmonth
      */
-    protected float $synmonth = 29.53058868;
+    protected $synmonth = 29.53058868;
 
     /**
      * 与えられた基準日の平均新月時刻を計算する。
@@ -50,7 +50,7 @@ class Moon
      * @param float $k
      * @return float
      */
-    protected function meanPhase(float $date, float $k): float
+    protected function meanPhase($date, $k): float
     {
         // Time in Julian centuries from 1900 January 0.5
         $jt = ($date - 2415020.0) / 36525;
@@ -70,7 +70,7 @@ class Moon
      * @param float $phase
      * @return float|null
      */
-    protected function truePhase(float $k, float $phase): ?float
+    protected function truePhase($k, $phase): ?float
     {
         // Add phase to new moon time
         $k += $phase;
@@ -149,7 +149,7 @@ class Moon
      * @param bool $is_next
      * @return \Carbon\Carbon
      */
-    public function moonPhase(DateTimeInterface $date, float $phase, bool $is_next = false): Carbon
+    public function moonPhase($date, $phase, $is_next = false): Carbon
     {
         $timestamp = $date->getTimestamp();
         $julian = $this->uts2Julian($timestamp);
@@ -192,7 +192,7 @@ class Moon
      * @param int $timestamp
      * @return float
      */
-    protected function uts2Julian(int $timestamp): float
+    protected function uts2Julian($timestamp): float
     {
         return $timestamp / 86400 + 2440587.5;
     }
@@ -203,7 +203,7 @@ class Moon
      * @param float $julian
      * @return float
      */
-    protected function julian2Uts(float $julian): float
+    protected function julian2Uts($julian): float
     {
         return ($julian - 2440587.5) * 86400;
     }

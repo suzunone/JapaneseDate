@@ -48,7 +48,7 @@ trait CacheSetting
      * @see \JapaneseDate\CacheMode::MODE_ORIGINAL 独自キャッシュ
      * @see \JapaneseDate\CacheMode::MODE_NONE キャッシュなし
      */
-    public static function setCacheMode(int $mode): void
+    public static function setCacheMode($mode): void
     {
         Cache::setMode($mode);
     }
@@ -60,7 +60,7 @@ trait CacheSetting
      *
      * @param string $cache_file_path キャッシュファイルを保存するディレクトリ
      */
-    public static function setCacheFilePath(string $cache_file_path): void
+    public static function setCacheFilePath($cache_file_path): void
     {
         Cache::setCacheFilePath($cache_file_path);
     }
@@ -81,7 +81,7 @@ trait CacheSetting
      *
      * @param Closure $function 独自キャッシュのロジックが含まれたクロージャ
      */
-    public static function setCacheClosure(Closure $function): void
+    public static function setCacheClosure($function): void
     {
         Cache::setCacheClosure($function);
     }
@@ -91,7 +91,7 @@ trait CacheSetting
      * @return static
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
-    protected function innerDateTime(string $date_text): static
+    protected function innerDateTime($date_text)
     {
         static $cache;
         $key = static::class . ':' . $this->getTimezone()->getName() . ':' . $date_text;

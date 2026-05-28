@@ -63,7 +63,7 @@ class Astronomy
      * @return    float 月齢（視黄経）
      * @throws \JapaneseDate\Exceptions\Exception
      */
-    public function moonAge(int $year, int $month, int $day, float $hour, float $min, float $sec): float
+    public function moonAge($year, $month, $day, $hour, $min, $sec): float
     {
         $julian_date_0 = $this->gregorian2JD($year, $month, $day, $hour, $min, $sec) + self::JD_TIME_ZONE_ADJUSTMENT;
 
@@ -148,7 +148,7 @@ class Astronomy
      * @param float $sec
      * @return    float ユリウス日
      */
-    public function gregorian2JD(int $year, int $month, int $day, float $hour, float $min, float $sec): float
+    public function gregorian2JD($year, $month, $day, $hour, $min, $sec): float
     {
         $julian_date = gregoriantojd($month, $day, $year);
         $julian_date += $hour / self::DAY_TO_HOUR_FLOAT + $min / self::DAY_TO_MINUTE_FLOAT + $sec / self::DAY_TO_SECOND_FLOAT;
@@ -162,7 +162,7 @@ class Astronomy
      * @param float $jd ユリウス日
      * @return    array($year, $month, $day, $hour, $min, $sec)  西暦年月日，世界時
      */
-    public function jD2Gregorian(float $jd): array
+    public function jD2Gregorian($jd): array
     {
         $cal = cal_from_jd(floor($jd), CAL_GREGORIAN);
 
@@ -186,7 +186,7 @@ class Astronomy
      * @return    float 太陽の黄経（視黄経）
      * @throws \JapaneseDate\Exceptions\Exception
      */
-    public function longitudeSun(int $year, int $month, float $day, float $hour, float $min, float $sec): float
+    public function longitudeSun($year, $month, $day, $hour, $min, $sec): float
     {
         $key = __METHOD__ . '-' . $year . '-' . $month . '-' . $day . '-' . $hour . '-' . $min . '-' . $sec;
 
@@ -209,7 +209,7 @@ class Astronomy
      * @return float
      * @throws \JapaneseDate\Exceptions\Exception
      */
-    public function gregorian2JY(int $year, int $month, int $day, float $hour, float $min, float $sec): float
+    public function gregorian2JY($year, $month, $day, $hour, $min, $sec): float
     {
         $timestamp = DateTime::factory(
             implode('-', [$year, $month, $day]) . ' ' . implode(':', [$hour, $min, $sec]),
@@ -227,7 +227,7 @@ class Astronomy
      * @param float $julian_year 2000.0からの経過年数
      * @return    float 太陽の黄経（視黄経）
      */
-    public function jy2LongitudeSun(float $julian_year): float
+    public function jy2LongitudeSun($julian_year): float
     {
         $terms = [
             [0.0003, 329.7, 44.43],
@@ -263,7 +263,7 @@ class Astronomy
      * @param float $angle 角度
      * @return    float 角度（正規化後）
      */
-    public function normalizeAngle(float $angle): float
+    public function normalizeAngle($angle): float
     {
         return $angle - 360.0 * floor($angle / 360.0);
     }
@@ -280,7 +280,7 @@ class Astronomy
      * @return    float 月の黄経（視黄経）
      * @throws \JapaneseDate\Exceptions\Exception
      */
-    public function longitudeMoon(int $year, int $month, int $day, float $hour, float $min, float $sec): float
+    public function longitudeMoon($year, $month, $day, $hour, $min, $sec): float
     {
         $key = __METHOD__ . '-' . $year . '-' . $month . '-' . $day . '-' . $hour . '-' . $min . '-' . $sec;
 
@@ -297,7 +297,7 @@ class Astronomy
      * @param float $julian_year 2000.0からの経過年数
      * @return    float 月の黄経（視黄経）
      */
-    public function jY2LongitudeMoon(float $julian_year): float
+    public function jY2LongitudeMoon($julian_year): float
     {
         $tmp = $this->sumPeriodicTerms([
             [0.0006, 54.0, 19.3],

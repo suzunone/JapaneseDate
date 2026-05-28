@@ -46,35 +46,35 @@ class Calendar
      *
      * @var \JapaneseDate\DateTime|DateTimeInterface
      */
-    protected DateTime|DateTimeInterface $start_time_stamp;
+    protected $start_time_stamp;
 
     /**
      * タイムゾーン
      *
      * @var \DateTimeZone|false|\Carbon\CarbonTimeZone
      */
-    protected DateTimeZone|false|CarbonTimeZone $timezone;
+    protected $timezone;
 
     /**
      * スキップする曜日
      *
      * @var array
      */
-    protected array $bypass_week_day_arr = [];
+    protected $bypass_week_day_arr = [];
 
     /**
      * スキップする日
      *
      * @var array
      */
-    protected array $bypass_day_arr = [];
+    protected $bypass_day_arr = [];
 
     /**
      * 祝日をスキップするかどうか
      *
      * @var bool
      */
-    protected bool $is_bypass_holiday = false;
+    protected $is_bypass_holiday = false;
 
     /**
      * JapaneseDateCalendar constructor.
@@ -85,7 +85,7 @@ class Calendar
      * @param ?\DateTimeZone $timezone オブジェクトか、時差の時間、タイムゾーンテキスト
      * @throws \JapaneseDate\Exceptions\Exception
      */
-    public function __construct(int|float|string|DateTimeInterface $time = 'now', DateTimeZone|null $timezone = null)
+    public function __construct($time = 'now', ?\DateTimeZone $timezone = null)
     {
         $this->start_time_stamp = $this->createDateTime($time, $timezone);
         $this->timezone = $this->start_time_stamp->getTimezone();
@@ -100,7 +100,7 @@ class Calendar
      * @return \JapaneseDate\DateTime
      * @throws \JapaneseDate\Exceptions\Exception
      */
-    protected function createDateTime(int|float|string|DateTimeInterface $date_time, DateTimeZone|null $time_zone = null): DateTimeInterface
+    protected function createDateTime($date_time, $time_zone = null): DateTimeInterface
     {
         return DateTime::factory($date_time, $time_zone);
     }
@@ -112,7 +112,7 @@ class Calendar
      * @param int $val スキップする曜日(0:日曜-6:土曜)
      * @return \JapaneseDate\Calendar
      */
-    public function addBypassWeekDay(int $val): self
+    public function addBypassWeekDay($val): self
     {
         $this->bypass_week_day_arr[$val] = true;
 
@@ -149,7 +149,7 @@ class Calendar
      * @param int $val スキップする曜日(0:日曜-6:土曜)
      * @return \JapaneseDate\Calendar
      */
-    public function removeBypassWeekDay(int $val): self
+    public function removeBypassWeekDay($val): self
     {
         if (isset($this->bypass_week_day_arr[$val])) {
             unset($this->bypass_week_day_arr[$val]);
@@ -181,7 +181,7 @@ class Calendar
      * @return \JapaneseDate\Calendar
      * @throws \JapaneseDate\Exceptions\Exception
      */
-    public function addBypassDay(int|float|string|DateTimeInterface $time): self
+    public function addBypassDay($time): self
     {
         $val = $this->createDateTime($time, $this->timezone);
 
@@ -194,7 +194,7 @@ class Calendar
      * @param \DateTimeInterface $dateTime
      * @return int
      */
-    protected function getCompareFormat(DateTimeInterface $dateTime): int
+    protected function getCompareFormat($dateTime): int
     {
         return (int) $dateTime->format('Ymd');
     }
@@ -209,7 +209,7 @@ class Calendar
      * @return \JapaneseDate\Calendar
      * @throws \JapaneseDate\Exceptions\Exception
      */
-    public function removeBypassDay(int|float|string|DateTimeInterface $time): self
+    public function removeBypassDay($time): self
     {
         $val = $this->createDateTime($time, $this->timezone);
         if (isset($this->bypass_day_arr[$this->getCompareFormat($val)])) {
@@ -241,7 +241,7 @@ class Calendar
      * @param bool $val 除く場合true、そうでない場合false
      * @return \JapaneseDate\Calendar
      */
-    public function setBypassHoliday(bool $val): self
+    public function setBypassHoliday($val): self
     {
         $this->is_bypass_holiday = $val;
 
@@ -258,7 +258,7 @@ class Calendar
      * @return      \JapaneseDate\DateTime[]
      * @throws \JapaneseDate\Exceptions\Exception
      */
-    public function getWorkingDayBySpan(int|float|string|DateTimeInterface $jdt_end): array
+    public function getWorkingDayBySpan($jdt_end): array
     {
         $jdt_end_datetime = $this->createDateTime($jdt_end);
         $japaneseDateTime = clone $this->start_time_stamp;
@@ -279,12 +279,16 @@ class Calendar
      * @param \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable $dateTime
      * @return bool
      */
-    protected function isWorkingDay(DateTime|DateTimeImmutable $dateTime): bool
+    protected function isWorkingDay($dateTime): bool
     {
-        return match (true) {
-            array_key_exists($dateTime->dayOfWeek, $this->bypass_week_day_arr), isset($this->bypass_day_arr[$this->getCompareFormat($dateTime)]), $this->is_bypass_holiday && $dateTime->holiday !== DateTime::NO_HOLIDAY => false,
-            default                                                                                                                                                                                                       => true,
-        };
+        switch (true) {
+            case array_key_exists($dateTime->dayOfWeek, $this->bypass_week_day_arr):
+            case isset($this->bypass_day_arr[$this->getCompareFormat($dateTime)]):
+            case $this->is_bypass_holiday && $dateTime->holiday !== DateTime::NO_HOLIDAY:
+                return false;
+            default:
+                return true;
+        }
     }
 
     /**
@@ -297,7 +301,7 @@ class Calendar
      * @return      \JapaneseDate\DateTime[]
      * @throws \JapaneseDate\Exceptions\Exception
      */
-    public function getWorkingDay(int $lim_day): array
+    public function getWorkingDay($lim_day): array
     {
         return $this->getWorkingDayByLimit($lim_day);
     }
@@ -310,7 +314,7 @@ class Calendar
      * @return      \JapaneseDate\DateTime[]
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
-    public function getWorkingDayByLimit(int $lim_day): array
+    public function getWorkingDayByLimit($lim_day): array
     {
         $japaneseDateTime = clone $this->start_time_stamp;
 

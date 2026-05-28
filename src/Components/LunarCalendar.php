@@ -52,10 +52,13 @@ class LunarCalendar
      *
      * @var array
      */
-    protected array $lunar_calendar;
+    protected $lunar_calendar;
 
 
-    protected Astronomy $astronomy;
+    /**
+     * @var \JapaneseDate\Components\Astronomy
+     */
+    protected $astronomy;
 
     public function __construct(?Astronomy $astronomy = null)
     {
@@ -88,7 +91,7 @@ class LunarCalendar
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JsonException
      */
-    public function getLunarDate(DateTime|DateTimeImmutable $DateTime): LunarDate
+    public function getLunarDate($DateTime): LunarDate
     {
         return new LunarDate(
             $this->getLunarCalendarArray(
@@ -114,7 +117,7 @@ class LunarCalendar
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
      */
-    protected function getLunarCalendarArray(int $year, int $month, int $day): array
+    protected function getLunarCalendarArray($year, $month, $day): array
     {
         $lunar_calendar = $this->getLunarCalendar($year);
 
@@ -149,7 +152,7 @@ class LunarCalendar
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
      */
-    protected function getLunarCalendar(int $year): array
+    protected function getLunarCalendar($year): array
     {
         if (isset($this->lunar_calendar[$year])) {
             return $this->lunar_calendar[$year];
@@ -173,7 +176,7 @@ class LunarCalendar
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
      */
-    protected function makeLunarCalendar(int $year): array
+    protected function makeLunarCalendar($year): array
     {
         $res = Config::getLC($year);
         if (count($res)) {
@@ -301,7 +304,7 @@ class LunarCalendar
      * @return    float 月齢（視黄経）
      * @throws \JapaneseDate\Exceptions\Exception
      */
-    public function moonAge(int $year, int $month, int $day, float $hour, float $min, float $sec): float
+    public function moonAge($year, $month, $day, $hour, $min, $sec): float
     {
         return $this->astronomy()->moonAge($year, $month, $day, $hour, $min, $sec);
     }
@@ -315,7 +318,7 @@ class LunarCalendar
      * @return    int|bool
      * @throws \JapaneseDate\Exceptions\Exception
      */
-    public function findSolarTerm(int $year, int $month, int $day): bool|int
+    public function findSolarTerm($year, $month, $day)
     {
         return (new SolarTerm($this->astronomy()))->findSolarTerm($year, $month, $day);
     }

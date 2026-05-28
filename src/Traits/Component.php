@@ -39,15 +39,15 @@ trait Component
     /**
      * @var \JapaneseDate\Components\JapaneseDate
      */
-    protected JapaneseDate $JapaneseDate;
+    protected $JapaneseDate;
 
     /**
      * @var \JapaneseDate\Components\LunarCalendar
      */
-    protected LunarCalendar $LunarCalendar;
+    protected $LunarCalendar;
 
     /**
      * @var array
      */
-    protected array $lunar_calendar = [];
+    protected $lunar_calendar = [];
 }

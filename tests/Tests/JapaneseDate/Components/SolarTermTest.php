@@ -163,7 +163,7 @@ class SolarTermTest extends TestCase
                 DateTime::SOLAR_TERM_SYOUSETSU => [11, 22],
                 DateTime::SOLAR_TERM_TAISETSU  => [12, 7],
                 DateTime::SOLAR_TERM_TOUJI     => [12, 22],
-            ]),
+            ])
         );
     }
 
@@ -208,9 +208,13 @@ class SolarTermTest extends TestCase
      *
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
+     * @param int $year
+     * @param int $solarTerm
+     * @param int $month
+     * @param int $day
      */
     #[DataProvider('naoRekiYokoSolarTermDataProvider')]
-    public function test_getSolarTermMatchesNaoRekiYoko(int $year, int $solarTerm, int $month, int $day): void
+    public function test_getSolarTermMatchesNaoRekiYoko($year, $solarTerm, $month, $day): void
     {
         $solarTermDate = (new SolarTerm())->getSolarTerm($year, $solarTerm);
 
@@ -222,14 +226,19 @@ class SolarTermTest extends TestCase
      *
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
+     * @param string $method
+     * @param int $year
+     * @param int $solarTerm
+     * @param int $month
+     * @param int $day
      */
     #[DataProvider('solarTermMethodDataProvider')]
     public function test_eachSolarTermMethodMatchesNaoRekiYoko2000(
-        string $method,
-        int $year,
-        int $solarTerm,
-        int $month,
-        int $day
+        $method,
+        $year,
+        $solarTerm,
+        $month,
+        $day
     ): void {
         $solarTermDate = (new SolarTerm())->{$method}($year);
 
@@ -241,9 +250,11 @@ class SolarTermTest extends TestCase
      *
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
+     * @param int $year
+     * @param mixed[] $expected
      */
     #[DataProvider('naoRekiYokoYearDataProvider')]
-    public function test_getSolarTermsMatchesNaoRekiYoko(int $year, array $expected): void
+    public function test_getSolarTermsMatchesNaoRekiYoko($year, $expected): void
     {
         $solarTerms = (new SolarTerm())->getSolarTerms($year);
 
@@ -263,11 +274,22 @@ class SolarTermTest extends TestCase
     {
         $astronomy = new class extends Astronomy {
             /** @var int[] */
-            public array $hours = [];
+            public $hours = [];
 
-            private int $calls = 0;
+            /**
+             * @var int
+             */
+            private $calls = 0;
 
-            public function longitudeSun(int $year, int $month, float $day, float $hour, float $min, float $sec): float
+            /**
+             * @param int $year
+             * @param int $month
+             * @param float $day
+             * @param float $hour
+             * @param float $min
+             * @param float $sec
+             */
+            public function longitudeSun($year, $month, $day, $hour, $min, $sec): float
             {
                 $this->hours[] = (int) $hour;
 
@@ -289,7 +311,15 @@ class SolarTermTest extends TestCase
     public function test_findSolarTermReturnsFalseWhenLongitudeRangeDoesNotChange(): void
     {
         $astronomy = new class extends Astronomy {
-            public function longitudeSun(int $year, int $month, float $day, float $hour, float $min, float $sec): float
+            /**
+             * @param int $year
+             * @param int $month
+             * @param float $day
+             * @param float $hour
+             * @param float $min
+             * @param float $sec
+             */
+            public function longitudeSun($year, $month, $day, $hour, $min, $sec): float
             {
                 return 10.0;
             }
@@ -306,9 +336,20 @@ class SolarTermTest extends TestCase
     public function test_findSolarTermReturnsFalseWhenNextLongitudeIsOutsideSolarTermTable(): void
     {
         $astronomy = new class extends Astronomy {
-            private int $calls = 0;
+            /**
+             * @var int
+             */
+            private $calls = 0;
 
-            public function longitudeSun(int $year, int $month, float $day, float $hour, float $min, float $sec): float
+            /**
+             * @param int $year
+             * @param int $month
+             * @param float $day
+             * @param float $hour
+             * @param float $min
+             * @param float $sec
+             */
+            public function longitudeSun($year, $month, $day, $hour, $min, $sec): float
             {
                 return $this->calls++ === 0 ? 350.0 : 360.0;
             }
@@ -326,11 +367,22 @@ class SolarTermTest extends TestCase
     {
         $astronomy = new class extends Astronomy {
             /** @var int[] */
-            public array $hours = [];
+            public $hours = [];
 
-            private int $calls = 0;
+            /**
+             * @var int
+             */
+            private $calls = 0;
 
-            public function longitudeSun(int $year, int $month, float $day, float $hour, float $min, float $sec): float
+            /**
+             * @param int $year
+             * @param int $month
+             * @param float $day
+             * @param float $hour
+             * @param float $min
+             * @param float $sec
+             */
+            public function longitudeSun($year, $month, $day, $hour, $min, $sec): float
             {
                 $this->hours[] = (int) $hour;
 
@@ -350,7 +402,15 @@ class SolarTermTest extends TestCase
     public function test_getSolarTermThrowsWhenAstronomicalCalculationFindsNoMatchingDay(): void
     {
         $astronomy = new class extends Astronomy {
-            public function longitudeSun(int $year, int $month, float $day, float $hour, float $min, float $sec): float
+            /**
+             * @param int $year
+             * @param int $month
+             * @param float $day
+             * @param float $hour
+             * @param float $min
+             * @param float $sec
+             */
+            public function longitudeSun($year, $month, $day, $hour, $min, $sec): float
             {
                 return 10.0;
             }

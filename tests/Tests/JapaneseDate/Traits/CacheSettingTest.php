@@ -61,7 +61,7 @@ class CacheSettingTest extends TestCase
     #[RunInSeparateProcess] #[PreserveGlobalState(false)]
     public function test_setCacheClosure(): void
     {
-        $closure = static function (string $key, Closure $fn): mixed {
+        $closure = static function (string $key, Closure $fn) {
             return $fn();
         };
         DateTime::setCacheClosure($closure);
