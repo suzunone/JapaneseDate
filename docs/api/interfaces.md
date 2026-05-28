@@ -2,6 +2,4 @@
 
 | Interface | Description |
 |---|---|
-| _[DateTimeInterface](JapaneseDate/DateTimeInterface.md)_ | 日付オブジェクトインターフェース
-+
-\JapaneseDate\DateTimeと\DateTimeImmutableの両方で使用されるインターフェースです。 |
+| _[DateTimeInterface](JapaneseDate/DateTimeInterface.md)_ | 日本の暦機能を提供する日付オブジェクト用の共通インターフェース。 |
