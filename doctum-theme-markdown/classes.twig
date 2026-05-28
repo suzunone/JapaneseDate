@@ -1,0 +1,8 @@
+{% from "macros.twig" import class_link_md %}
+# All Classes
+
+| Class | Description |
+|---|---|
+{% for class in classes %}
+| {{ class_link_md(class, root_path) }} | {{ class.shortdesc|desc(class) }} |
+{% endfor %}

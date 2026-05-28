@@ -1,0 +1,112 @@
+{% from "macros.twig" import hint_link_md, hint_text, class_link_md, namespace_link_md, method_link_md, method_params_sig, modifier_md, deprecated_md %}
+# {{ class.name|split('\\')|last|raw }}{{ deprecated_md(class) }}
+
+{% if class.namespace %}**Namespace:** `{{ class.namespace }}`
+
+{% endif %}
+{% if class.isReadOnly() %}> **read-only**
+
+{% endif %}
+{% set sig %}
+{%- if class.final %}final {% endif -%}
+{%- if not class.interface and class.abstract %}abstract {% endif -%}
+{%- if class.interface %}interface{% elseif class.trait %}trait{% else %}class{% endif %} **{{ class.shortname|raw }}**
+{%- if class.parent %} extends {{ class_link_md(class.parent, root_path) }}{% endif -%}
+{%- if class.interfaces|length > 0 %} implements {% for iface in class.interfaces %}{{ class_link_md(iface, root_path) }}{% if not loop.last %}, {% endif %}{% endfor %}{% endif %}
+{% endset %}
+{{ sig|trim }}
+
+{% if class.shortdesc %}{{ class.shortdesc|desc(class) }}
+
+{% endif %}
+{% if class.longdesc %}{{ class.longdesc|desc(class) }}
+
+{% endif %}
+{% if traits %}
+## Traits
+
+{% for trait in traits %}
+- {{ class_link_md(trait, root_path) }}
+{% endfor %}
+
+{% endif %}
+{% if constants %}
+## Constants
+
+| Modifier | Name | Description |
+|---|---|---|
+{% for constant in constants %}
+| {% if constant.isPrivate() %}private{% elseif constant.isProtected() %}protected{% else %}public{% endif %}{% if constant.isDeprecated() %} _(deprecated)_{% endif %} | `{{ constant.name|raw }}` | {{ constant.shortdesc|desc(class) }} |
+{% endfor %}
+
+{% endif %}
+{% if properties %}
+## Properties
+
+| Modifier | Type | Name | Description |
+|---|---|---|---|
+{% for property in properties %}
+| {% if property.isStatic() %}static {% endif %}{% if property.isProtected() %}protected{% elseif property.isPrivate() %}private{% else %}public{% endif %}{% if property.isReadOnly() %} _(read-only)_{% endif %}{% if property.isDeprecated() %} _(deprecated)_{% endif %} | {{ hint_link_md(property.hint, property.isIntersectionType(), root_path) }} | `${{ property.name|raw }}`{% if property.class is not same as(class) %} _(from {{ class_link_md(property.class, root_path) }})_{% endif %} | {{ property.shortdesc|desc(class) }} |
+{% endfor %}
+
+{% endif %}
+{% if methods %}
+## Methods
+
+| Return | Method | Description |
+|---|---|---|
+{% for method in methods %}
+| {{ hint_text(method.hint, method.isIntersectionType()) }} | [{{ method.name|raw }}()](#{{ method.name|lower|raw }}){% if method.class is not same as(class) %} _(from {{ class_link_md(method.class, root_path) }})_{% endif %}{{ deprecated_md(method) }} | {{ method.shortdesc|desc(class) }} |
+{% endfor %}
+
+---
+
+## Method Details
+
+{% for method in methods %}
+### {{ method.name|raw }}
+
+```php
+{{ modifier_md(method) }}{{ hint_text(method.hint, method.isIntersectionType()) }} {{ method.name|raw }}{{ method_params_sig(method) }}
+```
+
+{% if method.shortdesc %}{{ method.shortdesc|desc(class) }}
+
+{% endif %}
+{% if method.longdesc %}{{ method.longdesc|desc(class) }}
+
+{% endif %}
+{% if method.parameters %}
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+{% for parameter in method.parameters %}
+| {{ hint_link_md(parameter.hint, parameter.isIntersectionType(), root_path) }} | {% if parameter.variadic %}...{% endif %}`${{ parameter.name|raw }}` | {% if parameter.default is not null %}`{{ parameter.default }}`{% else %}— {% endif %} | {{ parameter.shortdesc|desc(class) }} |
+{% endfor %}
+
+{% endif %}
+{% if method.hint %}
+**Returns:** {{ hint_link_md(method.hint, method.isIntersectionType(), root_path) }}{% if method.hintDesc %} — {{ method.hintDesc|desc(class) }}{% endif %}
+
+{% endif %}
+{% if method.exceptions %}
+**Throws:**
+
+{% for exception in method.exceptions %}
+- {{ class_link_md(exception[0], root_path) }}{% if exception[1] %} — {{ exception[1]|desc(class) }}{% endif %}
+
+{% endfor %}
+{% endif %}
+{% if method.getSee() %}
+**See also:**
+
+{% for see in method.getSee() %}
+- {% if see[4] %}[{{ see[4] }}]({{ see[4] }}){% elseif see[3] %}{{ method_link_md(see[3], root_path) }}{% elseif see[2] %}{{ class_link_md(see[2], root_path) }}{% else %}{{ see[0]|raw }}{% endif %}{% if see[1] %} — {{ see[1]|raw }}{% endif %}
+
+{% endfor %}
+{% endif %}
+---
+
+{% endfor %}
+{% endif %}

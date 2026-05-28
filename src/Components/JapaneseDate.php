@@ -11,14 +11,16 @@
  * @license     BSD-2
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
- * @since       Class available since Release 1.0.0
+ * @since        1.0.0
  */
 
 namespace JapaneseDate\Components;
 
+use Cassandra\Date;
 use DateTimeInterface;
 use DateTimeZone;
 use JapaneseDate\DateTime;
+use JapaneseDate\DateTimeImmutable;
 use JapaneseDate\Exceptions\ErrorException;
 
 /**
@@ -32,7 +34,7 @@ use JapaneseDate\Exceptions\ErrorException;
  * @license     BSD-2
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
- * @since       Class available since Release 1.0.0
+ * @since        1.0.0
  */
 class JapaneseDate
 {
@@ -169,16 +171,15 @@ class JapaneseDate
      * 指定月の祝日リストを取得する
      *
      * @access      public
-     * @param \JapaneseDate\DateTime $dateTime |\JapaneseDate\Traits\Modern $DateTime DateTime
+     * @param \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable $dateTime |\JapaneseDate\Traits\Modern $DateTime DateTime
      * @return      array
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      * @throws \JapaneseDate\Exceptions\SolarTermException
      * @throws \JsonException
-     * @noinspection PhpMultipleClassDeclarationsInspection
      */
-    public function getHolidayList(DateTime $dateTime): array
+    public function getHolidayList(DateTime|DateTimeImmutable $dateTime): array
     {
         return match ($dateTime->month) {
             1       => $this->getJanuaryHoliday($dateTime->year, $dateTime->getTimezone()),
@@ -329,7 +330,6 @@ class JapaneseDate
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      * @throws \JapaneseDate\Exceptions\SolarTermException
      * @throws \JsonException
-     * @noinspection PhpMultipleClassDeclarationsInspection
      */
     protected function getMarchHoliday(int $year, DateTimeZone $timezone): array
     {
@@ -359,20 +359,19 @@ class JapaneseDate
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      * @throws \JapaneseDate\Exceptions\SolarTermException
      * @throws \JsonException
-     * @noinspection PhpMultipleClassDeclarationsInspection
      */
     public function getVernalEquinoxDay(int $year): int
     {
         if ($year < 1600) {
             goto syunbun_lunar;
         } elseif ($year <= 1979) {
-            $day = (new SolarTerm())->syunbun($year)->day;
+            $day = (new SimpleSolarTerm())->syunbun($year)->day;
         } elseif ($year <= 2099) {
             $day = floor(20.8431 + (0.242194 * ($year - 1980)) - floor(($year - 1980) / 4));
         } elseif ($year <= 2150) {
             $day = floor(21.851 + (0.242194 * ($year - 1980)) - floor(($year - 1980) / 4));
         } elseif ($year <= 2399) {
-            $day = (new SolarTerm())->syunbun($year)->day;
+            $day = (new SimpleSolarTerm())->syunbun($year)->day;
         } else {
             syunbun_lunar:
             $DateTime = new DateTime($year . '-03-15');
@@ -597,7 +596,6 @@ class JapaneseDate
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      * @throws \JapaneseDate\Exceptions\SolarTermException
      * @throws \JsonException
-     * @noinspection PhpMultipleClassDeclarationsInspection
      */
     protected function getSeptemberHoliday(int $year, DateTimeZone $timezone): array
     {
@@ -643,20 +641,19 @@ class JapaneseDate
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      * @throws \JapaneseDate\Exceptions\SolarTermException
      * @throws \JsonException
-     * @noinspection PhpMultipleClassDeclarationsInspection
      */
     public function getAutumnEquinoxDay(int $year): int
     {
         if ($year < 1600) {
             goto syuubun_lunar;
         } elseif ($year <= 1979) {
-            $day = (new SolarTerm())->syuubun($year)->day;
+            $day = (new SimpleSolarTerm())->syuubun($year)->day;
         } elseif ($year <= 2099) {
             $day = floor(23.2488 + (0.242194 * ($year - 1980)) - floor(($year - 1980) / 4));
         } elseif ($year <= 2150) {
             $day = floor(24.2488 + (0.242194 * ($year - 1980)) - floor(($year - 1980) / 4));
         } elseif ($year <= 2399) {
-            $day = (new SolarTerm())->syuubun($year)->day;
+            $day = (new SimpleSolarTerm())->syuubun($year)->day;
         } else {
             syuubun_lunar:
             $DateTime = new DateTime($year . '-09-15');

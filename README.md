@@ -7,7 +7,7 @@ Introduction
 It is a package that summarizes the date processing in Japan such as Japanese national holidays, rokuyo, the Oriental zodiac, the Japanese calendar, and the day of the week in Japan.
 
 
-主に以下の２つの機能を提供しています。
+主に以下の3つの機能を提供しています。
 There are three main features:.
 
  - PHPの有名な日付処理ライブラリCarbonをextendし、日本の祝日や、旧暦を扱えるようにした`JapaneseDate\DateTime`
@@ -31,8 +31,8 @@ This date library was formerly known as [php.five-foxes.com] (http://php.five-fo
 How to use
 -----------------------------------------
 
- - [Documents](https://github.com/suzunone/JapaneseDate/blob/v6.X/docs/Man.md)
- - [API Documents](https://github.com/suzunone/JapaneseDate/blob/v6.X/docs/README.md)
+ - [Documents](https://github.com/suzunone/JapaneseDate/blob/v8.X/docs/README.md)
+ - [API Documents](https://github.com/suzunone/JapaneseDate/blob/v8.X/docs/API/index.md)
 
 
 Installation Instructions
