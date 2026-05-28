@@ -11,7 +11,7 @@
  * @license     BSD-2
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
- * @since       Class available since Release 1.0.0
+ * @since        1.0.0
  */
 
 namespace JapaneseDate\Traits;
@@ -30,7 +30,7 @@ use JapaneseDate\Elements\LunarDate;
  * @license     BSD-2
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
- * @since       Class available since Release 1.0.0
+ * @since        1.0.0
  * @mixin \JapaneseDate\DateTime
  * @mixin \JapaneseDate\DateTimeImmutable
  */
@@ -43,14 +43,13 @@ trait Lunar
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JsonException
-     * @noinspection PhpMultipleClassDeclarationsInspection
      */
-    public function getMoonAge(): float
+    protected function getMoonAge(): float
     {
         return $this->LunarCalendar->moonAge(
-            (int) $this->year,
-            (int) $this->month,
-            (int) $this->day,
+            $this->year,
+            $this->month,
+            $this->day,
             (float) $this->hour,
             (float) $this->minute,
             (float) $this->second
@@ -64,7 +63,6 @@ trait Lunar
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JsonException
-     * @noinspection PhpMultipleClassDeclarationsInspection
      */
     protected function getLunarCalendar(): LunarDate
     {
@@ -80,7 +78,6 @@ trait Lunar
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JsonException
-     * @noinspection PhpMultipleClassDeclarationsInspection
      */
     protected function viewSixWeekday(): string
     {
@@ -96,7 +93,6 @@ trait Lunar
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JsonException
-     * @noinspection PhpMultipleClassDeclarationsInspection
      */
     protected function getSixWeekday(): int
     {
@@ -112,7 +108,6 @@ trait Lunar
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JsonException
-     * @noinspection PhpMultipleClassDeclarationsInspection
      */
     protected function getLunarDay(): string
     {
@@ -126,7 +121,6 @@ trait Lunar
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JsonException
-     * @noinspection PhpMultipleClassDeclarationsInspection
      */
     protected function getLunarMonth(): string
     {
@@ -140,7 +134,6 @@ trait Lunar
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JsonException
-     * @noinspection PhpMultipleClassDeclarationsInspection
      */
     protected function viewLunarMonth(): string
     {
@@ -156,7 +149,6 @@ trait Lunar
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JsonException
-     * @noinspection PhpMultipleClassDeclarationsInspection
      */
     protected function isLeapMonth(): bool
     {
@@ -170,7 +162,6 @@ trait Lunar
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JsonException
-     * @noinspection PhpMultipleClassDeclarationsInspection
      */
     protected function getSolarTerm(): string
     {
@@ -190,7 +181,6 @@ trait Lunar
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JsonException
-     * @noinspection PhpMultipleClassDeclarationsInspection
      */
     protected function getSolarTermKey(): bool|int
     {
@@ -204,7 +194,6 @@ trait Lunar
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JsonException
-     * @noinspection PhpMultipleClassDeclarationsInspection
      */
     protected function isSolarTerm(): bool
     {
@@ -220,7 +209,6 @@ trait Lunar
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JsonException
-     * @noinspection PhpMultipleClassDeclarationsInspection
      */
     protected function getLunarYear(): string
     {

@@ -11,7 +11,7 @@
  * @license     BSD-2
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
- * @since       Class available since Release 1.0.0
+ * @since        1.0.0
  */
 
 namespace JapaneseDate;
@@ -22,6 +22,7 @@ use DateTimeInterface;
 use DateTimeZone;
 use Exception;
 use JapaneseDate\Exceptions\NativeDateTimeException;
+
 
 /**
  * 日付オブジェクト配列作成
@@ -36,7 +37,7 @@ use JapaneseDate\Exceptions\NativeDateTimeException;
  * @license     BSD-2
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
- * @since       Class available since Release 1.0.0
+ * @since        1.0.0
  */
 class Calendar
 {
@@ -111,7 +112,7 @@ class Calendar
      * @param int $val スキップする曜日(0:日曜-6:土曜)
      * @return \JapaneseDate\Calendar
      */
-    public function addBypassWeekDay(int $val): Calendar
+    public function addBypassWeekDay(int $val): self
     {
         $this->bypass_week_day_arr[$val] = true;
 
@@ -148,7 +149,7 @@ class Calendar
      * @param int $val スキップする曜日(0:日曜-6:土曜)
      * @return \JapaneseDate\Calendar
      */
-    public function removeBypassWeekDay(int $val): Calendar
+    public function removeBypassWeekDay(int $val): self
     {
         if (isset($this->bypass_week_day_arr[$val])) {
             unset($this->bypass_week_day_arr[$val]);
@@ -163,7 +164,7 @@ class Calendar
      * @access      public
      * @return \JapaneseDate\Calendar
      */
-    public function resetBypassWeekDay(): Calendar
+    public function resetBypassWeekDay(): self
     {
         $this->bypass_week_day_arr = [];
 
@@ -180,7 +181,7 @@ class Calendar
      * @return \JapaneseDate\Calendar
      * @throws \JapaneseDate\Exceptions\Exception
      */
-    public function addBypassDay(int|float|string|DateTimeInterface $time): Calendar
+    public function addBypassDay(int|float|string|DateTimeInterface $time): self
     {
         $val = $this->createDateTime($time, $this->timezone);
 
@@ -208,7 +209,7 @@ class Calendar
      * @return \JapaneseDate\Calendar
      * @throws \JapaneseDate\Exceptions\Exception
      */
-    public function removeBypassDay(int|float|string|DateTimeInterface $time): Calendar
+    public function removeBypassDay(int|float|string|DateTimeInterface $time): self
     {
         $val = $this->createDateTime($time, $this->timezone);
         if (isset($this->bypass_day_arr[$this->getCompareFormat($val)])) {
@@ -224,7 +225,7 @@ class Calendar
      * @access      public
      * @return \JapaneseDate\Calendar
      */
-    public function resetBypassDay(): Calendar
+    public function resetBypassDay(): self
     {
         $this->bypass_day_arr = [];
 
@@ -240,7 +241,7 @@ class Calendar
      * @param bool $val 除く場合true、そうでない場合false
      * @return \JapaneseDate\Calendar
      */
-    public function setBypassHoliday(bool $val): Calendar
+    public function setBypassHoliday(bool $val): self
     {
         $this->is_bypass_holiday = $val;
 
@@ -275,19 +276,15 @@ class Calendar
     }
 
     /**
-     * @param \JapaneseDate\DateTime $dateTime
+     * @param \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable $dateTime
      * @return bool
      */
-    protected function isWorkingDay(DateTime $dateTime): bool
+    protected function isWorkingDay(DateTime|DateTimeImmutable $dateTime): bool
     {
-        switch (true) {
-            case array_key_exists($dateTime->dayOfWeek, $this->bypass_week_day_arr):
-            case isset($this->bypass_day_arr[$this->getCompareFormat($dateTime)]):
-            case $this->is_bypass_holiday && $dateTime->holiday !== DateTime::NO_HOLIDAY:
-                return false;
-            default:
-                return true;
-        }
+        return match (true) {
+            array_key_exists($dateTime->dayOfWeek, $this->bypass_week_day_arr), isset($this->bypass_day_arr[$this->getCompareFormat($dateTime)]), $this->is_bypass_holiday && $dateTime->holiday !== DateTime::NO_HOLIDAY => false,
+            default                                                                                                                                                                                                       => true,
+        };
     }
 
     /**

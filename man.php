@@ -403,11 +403,11 @@ var_export(JapaneseDateTime::parse('2018-04-01 12:23:45.6789')->solarTermText);
 
 <?php
 foreach ([
-             JapaneseDateTime::ERA_MEIJI       => '明治',
-             JapaneseDateTime::ERA_TAISHO      => '大正',
-             JapaneseDateTime::ERA_SHOWA       => '昭和',
-             JapaneseDateTime::ERA_HEISEI      => '平成',
-             JapaneseDateTime::ERA_HEISEI_NEXT => '平成の次',
+             JapaneseDateTime::ERA_MEIJI  => '明治',
+             JapaneseDateTime::ERA_TAISHO => '大正',
+             JapaneseDateTime::ERA_SHOWA  => '昭和',
+             JapaneseDateTime::ERA_HEISEI => '平成',
+             JapaneseDateTime::ERA_REIWA  => '令和',
          ] as $key => $item) {
     echo "// {$key} => $item\n";
 }
@@ -433,7 +433,7 @@ foreach (JapaneseDate\Components\JapaneseDate::ORIENTAL_ZODIAC as $key => $item)
     echo "// {$key} => $item\n";
 }
 ?>
-var_export($dt->orientalorientalZodiac);                              // <?php
+var_export($dt->orientalZodiac);                              // <?php
 var_export($dt->orientalZodiac);
 ?>
 
@@ -496,6 +496,7 @@ foreach ([
              JapaneseDateTime::LABOR_THANKSGIVING_DAY          => '勤労感謝の日',
              JapaneseDateTime::REGNAL_DAY                      => '即位礼正殿の儀',
              JapaneseDateTime::MOUNTAIN_DAY                    => '山の日',
+             JapaneseDateTime::EMPERORS_THRONE_DAY             => '天皇の即位の日',
          ] as $key => $item) {
     echo "// {$key} => $item\n";
 }
@@ -629,9 +630,6 @@ var_export(JapaneseDateTime::now('America/Vancouver')->local);           // <?ph
 var_export(JapaneseDateTime::now('America/Vancouver')->local);
 ?>
 
-var_export(JapaneseDateTime::now('America/Vancouver')->local);
-?>
-
 
 // インスタンスがUTCタイムゾーンにあるかどうかを示します。
 var_export(JapaneseDateTime::now()->utc);                                // <?php
@@ -669,6 +667,199 @@ echo JapaneseDateTime::now()->tzName;
 ```
 
 
+二十四節気の検索メソッド
+=================================================
+
+`JapaneseDate\DateTime` には、二十四節気の日付を取得するためのgetterが用意されています。
+
+各節気について「当年の節気日」「次の節気日」「直前の節気日」をプロパティとして取得できます。
+
+同様のgetterが以下の二十四節気すべてに存在します:
+
+| プロパティ名 | 節気 |
+|---|---|
+| syunbun / nextSyunbun / beforeSyunbun | 春分 |
+| seimei / nextSeimei / beforeSeimei | 清明 |
+| kokuu / nextKokuu / beforeKokuu | 穀雨 |
+| rikka / nextRikka / beforeRikka | 立夏 |
+| syouman / nextSyouman / beforeSyouman | 小満 |
+| bousyu / nextBousyu / beforeBousyu | 芒種 |
+| geshi / nextGeshi / beforeGeshi | 夏至 |
+| syousyo / nextSyousyo / beforeSyousyo | 小暑 |
+| taisyo / nextTaisyo / beforeTaisyo | 大暑 |
+| rissyuu / nextRissyuu / beforeRissyuu | 立秋 |
+| syosyo / nextSyosyo / beforeSyosyo | 処暑 |
+| hakuro / nextHakuro / beforeHakuro | 白露 |
+| syuubun / nextSyuubun / beforeSyuubun | 秋分 |
+| kanro / nextKanro / beforeKanro | 寒露 |
+| soukou / nextSoukou / beforeSoukou | 霜降 |
+| rittou / nextRittou / beforeRittou | 立冬 |
+| syousetsu / nextSyousetsu / beforeSyousetsu | 小雪 |
+| taisetsu / nextTaisetsu / beforeTaisetsu | 大雪 |
+| touji / nextTouji / beforeTouji | 冬至 |
+| syoukan / nextSyoukan / beforeSyoukan | 小寒 |
+| daikan / nextDaikan / beforeDaikan | 大寒 |
+| rissyun / nextRissyun / beforeRissyun | 立春 |
+| usui / nextUsui / beforeUsui | 雨水 |
+| keichitsu / nextKeichitsu / beforeKeichitsu | 啓蟄 |
+
+
+Modifier
+=================================================
+
+`nextHoliday()` と `nextSixWeek()` が使用できます。
+
+``` .php
+// 次の祝日を取得する
+$dt = JapaneseDateTime::parse('2024-01-01');
+echo $dt->nextHoliday();                  // <?php
+echo JapaneseDateTime::parse('2024-01-01')->nextHoliday();
+?>
+
+// 次の「大安」を取得する
+$dt = JapaneseDateTime::parse('2024-01-01');
+echo $dt->nextSixWeek(JapaneseDateTime::SIX_WEEKDAY_TAIAN);
+
+```
+
+
+DateTimeImmutable
+=================================================
+
+`JapaneseDate\DateTimeImmutable` クラスは、[CarbonImmutable](https://carbon.nesbot.com/docs/)を継承した
+イミュータブルな日本暦対応オブジェクトです。
+
+```DateTimeImmutable.php
+<?= $open_tag ?>
+
+namespace JapaneseDate;
+
+class DateTimeImmutable extends \Carbon\CarbonImmutable
+{
+
+}
+```
+
+`JapaneseDate\DateTime` と同じメソッド・プロパティがすべて使用できますが、
+各操作は元のオブジェクトを変更せず新しいインスタンスを返します。
+
+``` .php
+use JapaneseDate\DateTimeImmutable as JapaneseDateTimeImmutable;
+
+$dt = JapaneseDateTimeImmutable::parse('2024-03-20');
+$dt2 = $dt->addDays(1);
+
+// $dt は変更されない
+echo $dt->format('Y-m-d');   // <?php
+echo \JapaneseDate\DateTimeImmutable::parse('2024-03-20')->format('Y-m-d');
+?>
+
+echo $dt2->format('Y-m-d');  // <?php
+echo \JapaneseDate\DateTimeImmutable::parse('2024-03-20')->addDays(1)->format('Y-m-d');
+?>
+
+// 日本暦プロパティも同様に使用できます
+$dt = JapaneseDateTimeImmutable::parse('2024-03-20');
+var_export($dt->solarTermText);  // <?php
+var_export(\JapaneseDate\DateTimeImmutable::parse('2024-03-20')->solarTermText);
+?>
+
+var_export($dt->eraName);        // <?php
+var_export(\JapaneseDate\DateTimeImmutable::parse('2024-03-20')->eraName);
+?>
+
+var_export($dt->eraYear);        // <?php
+var_export(\JapaneseDate\DateTimeImmutable::parse('2024-03-20')->eraYear);
+?>
+
+```
+
+
+Calendar
+=================================================
+
+`JapaneseDate\Calendar` クラスは、一定期間内の日付配列や営業日配列を取得するためのユーティリティクラスです。
+
+``` .php
+use JapaneseDate\Calendar as JapaneseDateCalendar;
+
+// 指定月の全日付を取得
+$calendar = new JapaneseDateCalendar('2024-03-01');
+$dates = $calendar->getDatesOfMonth();
+echo count($dates);  // <?php
+$calendar = new \JapaneseDate\Calendar('2024-03-01');
+echo count($calendar->getDatesOfMonth());
+?>
+
+// 期間内の営業日（土日を除く）を取得
+$calendar = new JapaneseDateCalendar('2024-03-01');
+$calendar->addBypassWeekDay(JapaneseDateTime::SATURDAY);
+$calendar->addBypassWeekDay(JapaneseDateTime::SUNDAY);
+$workDays = $calendar->getWorkingDayBySpan('2024-03-31');
+echo count($workDays);  // <?php
+$calendar = new \JapaneseDate\Calendar('2024-03-01');
+$calendar->addBypassWeekDay(\JapaneseDate\DateTime::SATURDAY);
+$calendar->addBypassWeekDay(\JapaneseDate\DateTime::SUNDAY);
+echo count($calendar->getWorkingDayBySpan('2024-03-31'));
+?>
+
+// 祝日も除外する
+$calendar = new JapaneseDateCalendar('2024-03-01');
+$calendar->addBypassWeekDay(JapaneseDateTime::SATURDAY);
+$calendar->addBypassWeekDay(JapaneseDateTime::SUNDAY);
+$calendar->setBypassHoliday(true);
+$workDays = $calendar->getWorkingDayBySpan('2024-03-31');
+echo count($workDays);  // <?php
+$calendar = new \JapaneseDate\Calendar('2024-03-01');
+$calendar->addBypassWeekDay(\JapaneseDate\DateTime::SATURDAY);
+$calendar->addBypassWeekDay(\JapaneseDate\DateTime::SUNDAY);
+$calendar->setBypassHoliday(true);
+echo count($calendar->getWorkingDayBySpan('2024-03-31'));
+?>
+
+// 件数指定で営業日を取得
+$calendar = new JapaneseDateCalendar('2024-03-01');
+$calendar->addBypassWeekDay(JapaneseDateTime::SATURDAY);
+$calendar->addBypassWeekDay(JapaneseDateTime::SUNDAY);
+$workDays = $calendar->getWorkingDay(10);
+echo count($workDays);  // <?php
+$calendar = new \JapaneseDate\Calendar('2024-03-01');
+$calendar->addBypassWeekDay(\JapaneseDate\DateTime::SATURDAY);
+$calendar->addBypassWeekDay(\JapaneseDate\DateTime::SUNDAY);
+echo count($calendar->getWorkingDay(10));
+?>
+
+// 特定日をスキップする
+$calendar = new JapaneseDateCalendar('2024-03-01');
+$calendar->addBypassDay('2024-03-11');
+$calendar->addBypassDay('2024-03-22');
+$workDays = $calendar->getWorkingDayBySpan('2024-03-15');
+echo count($workDays);  // <?php
+$calendar = new \JapaneseDate\Calendar('2024-03-01');
+$calendar->addBypassDay('2024-03-11');
+$calendar->addBypassDay('2024-03-22');
+echo count($calendar->getWorkingDayBySpan('2024-03-15'));
+?>
+
+```
+
+`Calendar` クラスで使用できる主なメソッド:
+
+| メソッド | 説明 |
+|---|---|
+| `getDatesOfMonth()` | 指定月の全日付配列を返す |
+| `getWorkingDayBySpan($end)` | 開始日〜終了日の営業日配列を返す |
+| `getWorkingDayByLimit($n)` | 開始日から $n 件の営業日配列を返す |
+| `getWorkingDay($n)` | `getWorkingDayByLimit` のエイリアス |
+| `addBypassWeekDay($dow)` | スキップする曜日を追加 (0=日〜6=土) |
+| `removeBypassWeekDay($dow)` | スキップする曜日を削除 |
+| `resetBypassWeekDay()` | スキップする曜日をリセット |
+| `addBypassDay($date)` | スキップする日を追加 |
+| `removeBypassDay($date)` | スキップする日を削除 |
+| `resetBypassDay()` | スキップする日をリセット |
+| `setBypassHoliday($bool)` | 祝日をスキップするか設定 |
+
+
 キャッシュ
 =================================================
 
@@ -678,7 +869,7 @@ echo JapaneseDateTime::now()->tzName;
 
 そのため、旧暦に関する計算結果をキャッシュする仕組みを用意しています。
 
-デフォルトでは、APCuが使用可能ならAPCuでのキャッシュを行い、そうでないなら、オブジェクト内に静的にキャッシュされるのみとなります。
+デフォルトでは、APCが使用可能ならAPCでのキャッシュを行い、そうでないなら、オブジェクト内に静的にキャッシュされるのみとなります。
 
 キャッシュをoffにするには、
 ``` .php
@@ -694,18 +885,12 @@ JapaneseDateTime::setCacheMode(CacheMode::MODE_NONE);
 静的に処理されるため、同一Request内では、次にsetCacheModeするまでは同一のキャッシュモードが使用されることに注意してください。
 
 キャッシュモードの切り替えは、`JapaneseDateTime::setCacheMode`での切り替え以外に、
-[JapaneseDateTime::setCacheFilePath](https://github.com/suzunone/JapaneseDate/blob/master/docs/README.md#setcachefilepath)を使用してキャッシュファイルのパスを指定したり、
-[JapaneseDateTime::setCacheClosure](https://github.com/suzunone/JapaneseDate/blob/master/docs/README.md#setcacheclosure)をして、独自のキャッシュロジックを登録することでも切り替えることができます。
+[JapaneseDateTime::setCacheFilePath](https://github.com/suzunone/JapaneseDate/blob/v7.X/docs/api/JapaneseDate/DateTime.md)を使用してキャッシュファイルのパスを指定したり、
+[JapaneseDateTime::setCacheClosure](https://github.com/suzunone/JapaneseDate/blob/v7.X/docs/api/JapaneseDate/DateTime.md)をして、独自のキャッシュロジックを登録することでも切り替えることができます。
 
 
 <?php
 $content = ob_get_contents();
 ob_end_flush();
-file_put_contents(__DIR__.'/docs/Man.md', $content);
-
-$content = file_get_contents(__DIR__.'/docs/README.md');
-
-$content = mb_ereg_replace('([^*\s])[*]([^*])', "\\1\n*\\2", $content);
-
 file_put_contents(__DIR__.'/docs/README.md', $content);
 ?>

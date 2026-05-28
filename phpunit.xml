@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          backupGlobals="false"
-         bootstrap="vendor/autoload.php"
+         bootstrap="tests/bootstrap.php"
          colors="true"
          processIsolation="false"
          stopOnError="false"
          stopOnFailure="false"
-         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.0/phpunit.xsd"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/11.0/phpunit.xsd"
          cacheDirectory=".phpunit.cache"
          backupStaticProperties="false"
+         requireCoverageMetadata="true"
 >
   <testsuites>
     <testsuite name="Suzunome\JapaneseDate">
@@ -24,15 +25,9 @@
 
   <php>
     <env name="APP_ENV" value="testing"/>
+    <env name="JAPANESE_DATE_TEST_PROCESS_LIMIT" value="20"/>
     <ini name="memory_limit" value="2G"/>
   </php>
-
-  <coverage>
-    <report>
-      <html outputDirectory="./covers/suzunome/JapaneseDate"/>
-      <text outputFile="./covers/coverage" showUncoveredFiles="true" showOnlySummary="false"/>
-    </report>
-  </coverage>
 
   <logging>
     <testdoxText outputFile="php://stdout"/>

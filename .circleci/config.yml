@@ -13,7 +13,7 @@ jobs:
   test80:
     docker:
       # specify the version you desire here
-      - image: cimg/8.0.30-browsers
+      - image: circleci/php:8.0-browsers
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -60,7 +60,7 @@ jobs:
   test81:
     docker:
       # specify the version you desire here
-      - image: cimg/8.1.32-browsers
+      - image: circleci/php:8.1-browsers
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -108,7 +108,7 @@ jobs:
   test82:
     docker:
       # specify the version you desire here
-      - image: cimg/php:8.2.4-browsers
+      - image: circleci/php:8.2-browsers
       
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -154,7 +154,7 @@ jobs:
   test83:
     docker:
       # specify the version you desire here
-      - image: cimg/8.3.21-browsers
+      - image: circleci/php:8.3-browsers
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -200,7 +200,7 @@ jobs:
   test84:
     docker:
       # specify the version you desire here
-      - image: cimg/8.4.7-browsers
+      - image: circleci/php:8.4-browsers
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
