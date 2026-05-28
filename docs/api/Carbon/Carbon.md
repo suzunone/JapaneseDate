@@ -1,792 +1,506 @@
-# DateTime
+# Carbon
 
-**Namespace:** `JapaneseDate`
+**Namespace:** `Carbon`
 
-class **DateTime** extends [Carbon](../Carbon/Carbon.md) implements [DateTimeInterface](../JapaneseDate/DateTimeInterface.md)
+class **Carbon** extends [DateTime](https://www.php.net/class.datetime) implements CarbonInterface
 
-日本の暦（祝日・元号・六曜・二十四節気）に完全対応したDateTime拡張クラス。
-
-日時操作ライブラリである [\Carbon\Carbon](../Carbon/Carbon.html) をベースに、
-* 日本のビジネスシーンや伝統的な暦の計算に必要となる判定・取得機能をシームレスに統合しています。
-
-【主な機能一覧】
-1. 国民の祝日判定:
-- 昭和23年（1948年）の祝日法施行以降から最新の祝日（スポーツの日等）に対応。
-- 振替休日、国民の休日、特定の年にのみ発生する特殊な祝日・慶弔行事（皇室の儀式等）の自動計算。
-2. 元号（和暦）変換:
-- 明治・大正・昭和・平成・令和の各元号への双方向変換および元号年の算出。
-3. 六曜の算出:
-- 旧暦（太陰太陽暦）ベースの計算による、大安・仏滅・友引などの六曜判定。
-4. 二十四節気:
-- 天文学的計算（太陽黄経）に基づく、立春・夏至・秋分・冬至など二十四節気の判定。
-
-本クラスは [\Carbon\Carbon](../Carbon/Carbon.html) のすべてのメソッド・プロパティを継承しているため、
-既存のインスタンスと同様のメソッドチェーンがそのまま利用可能です。
-
-【主な機能一覧】
-1. 国民の祝日判定:
-- 昭和23年（1948年）の祝日法施行以降から最新の祝日（スポーツの日等）に対応。
-- 振替休日、国民の休日、特定の年にのみ発生する特殊な祝日・慶弔行事（皇室の儀式等）の自動計算。
-2. 元号（和暦）変換:
-- 明治・大正・昭和・平成・令和の各元号への双方向変換および元号年の算出。
-3. 六曜の算出:
-- 旧暦（太陰太陽暦）ベースの計算による、大安・仏滅・友引などの六曜判定。
-4. 二十四節気:
-- 天文学的計算（太陽黄経）に基づく、立春・夏至・秋分・冬至など二十四節気の判定。
-
-本クラスは Carbon のすべてのメソッド・プロパティを継承しているため、既存の Carbon インスタンスと
-同様のメソッドチェーン（例: `$date->addDays(5)->isHoliday()` など）がそのまま利用可能です。
+A simple API extension for DateTime.
 
 ## Traits
 
-- [DateTimeImport](../JapaneseDate/Traits/DateTimeImport.md)
-- [Component](../JapaneseDate/Traits/Component.md)
-- [Factory](../JapaneseDate/Traits/Factory.md)
-- [CacheSetting](../JapaneseDate/Traits/CacheSetting.md)
-- [Lunar](../JapaneseDate/Traits/Lunar.md)
-- [Modern](../JapaneseDate/Traits/Modern.md)
-- [Modifier](../JapaneseDate/Traits/Modifier.md)
-- [FindSolarTerm](../JapaneseDate/Traits/FindSolarTerm.md)
-- [Getter](../JapaneseDate/Traits/Getter.md)
 - Date
-
-## Constants
-
-| Modifier | Name | Description |
-|---|---|---|
-| public | `NO_HOLIDAY` | 祝日定数:非祝日 |
-| public | `NEW_YEAR_S_DAY` | 祝日定数:元旦 |
-| public | `COMING_OF_AGE_DAY` | 祝日定数:成人の日 |
-| public | `NATIONAL_FOUNDATION_DAY` | 祝日定数:建国記念の日 |
-| public | `THE_SHOWA_EMPEROR_DIED` | 祝日定数:昭和天皇の大喪の礼 |
-| public | `VERNAL_EQUINOX_DAY` | 祝日定数:春分の日 |
-| public | `DAY_OF_SHOWA` | 祝日定数:昭和の日 |
-| public | `GREENERY_DAY` | 祝日定数:みどりの日 |
-| public | `THE_EMPEROR_S_BIRTHDAY` | 祝日定数:天皇誕生日 |
-| public | `CROWN_PRINCE_HIROHITO_WEDDING` | 祝日定数:皇太子明仁親王の結婚の儀 |
-| public | `CONSTITUTION_DAY` | 祝日定数:憲法記念日 |
-| public | `NATIONAL_HOLIDAY` | 祝日定数:国民の休日 |
-| public | `CHILDREN_S_DAY` | 祝日定数:こどもの日 |
-| public | `COMPENSATING_HOLIDAY` | 祝日定数:振替休日 |
-| public | `CROWN_PRINCE_NARUHITO_WEDDING` | 祝日定数:皇太子徳仁親王の結婚の儀 |
-| public | `MARINE_DAY` | 祝日定数:海の日 |
-| public | `AUTUMNAL_EQUINOX_DAY` | 祝日定数:秋分の日 |
-| public | `RESPECT_FOR_SENIOR_CITIZENS_DAY` | 祝日定数:敬老の日 |
-| public | `LEGACY_SPORTS_DAY` | 祝日定数:体育の日 |
-| public | `CULTURE_DAY` | 祝日定数:文化の日 |
-| public | `LABOR_THANKSGIVING_DAY` | 祝日定数:勤労感謝の日 |
-| public | `REGNAL_DAY` | 祝日定数:即位礼正殿の儀 |
-| public | `MOUNTAIN_DAY` | 祝日定数:山の日 |
-| public | `EMPERORS_THRONE_DAY` | 祝日定数:天皇の即位の日 |
-| public | `SPORTS_DAY` | 祝日定数:スポーツの日 |
-| public | `HOLIDAY_START_YEAR` | 祝日法制定年 |
-| public | `SECOND_TIME_TOKYO_OLYMPIC_YEAR` | 二回目の東京オリンピックの年 |
-| public | `SECOND_TIME_TOKYO_OLYMPIC_RESCHEDULE_YEAR` | 二回目の東京オリンピックの年(リスケ) |
-| public | `VERNAL_EQUINOX_DAY_MONTH` | 特定月定数:春分の日 |
-| public | `AUTUMNAL_EQUINOX_DAY_MONTH` | 特定月定数:秋分の日 |
-| public | `SUNDAY` | 曜日定数:日 |
-| public | `MONDAY` | 曜日定数:月 |
-| public | `TUESDAY` | 曜日定数:火 |
-| public | `WEDNESDAY` | 曜日定数:水 |
-| public | `THURSDAY` | 曜日定数:木 |
-| public | `FRIDAY` | 曜日定数:金 |
-| public | `SATURDAY` | 曜日定数:土 |
-| public | `SIX_WEEKDAY_TAIAN` | 六曜定数:大安 |
-| public | `SIX_WEEKDAY_SYAKKOU` | 六曜定数:赤口 |
-| public | `SIX_WEEKDAY_SENSYOU` | 六曜定数:先勝 |
-| public | `SIX_WEEKDAY_TOMOBIKI` | 六曜定数:友引 |
-| public | `SIX_WEEKDAY_SENBU` | 六曜定数:先負 |
-| public | `SIX_WEEKDAY_BUTSUMETSU` | 六曜定数:仏滅 |
-| public | `ERA_MEIJI` | 元号定数:元号 (明治) |
-| public | `ERA_TAISHO` | 元号定数:元号 (対象) |
-| public | `ERA_SHOWA` | 元号定数:元号 (昭和) |
-| public | `ERA_HEISEI` | 元号定数:元号 (平成) |
-| public _(deprecated)_ | `ERA_HEISEI_NEXT` | 元号定数:元号 (平成の次) |
-| public | `ERA_REIWA` | 元号定数:元号 (令和) |
-| public | `SOLAR_TERM_SYUNBUN` | 24節気定数:春分 |
-| public | `SOLAR_TERM_SEIMEI` | 24節気定数:清明 |
-| public | `SOLAR_TERM_KOKUU` | 24節気定数:穀雨 |
-| public | `SOLAR_TERM_RIKKA` | 24節気定数:立夏 |
-| public | `SOLAR_TERM_SYOUMAN` | 24節気定数:小満 |
-| public | `SOLAR_TERM_BOUSYU` | 24節気定数:芒種 |
-| public | `SOLAR_TERM_GESHI` | 24節気定数:夏至 |
-| public | `SOLAR_TERM_SYOUSYO` | 24節気定数:小暑 |
-| public | `SOLAR_TERM_TAISYO` | 24節気定数:大暑 |
-| public | `SOLAR_TERM_RISSYUU` | 24節気定数:立秋 |
-| public | `SOLAR_TERM_SYOSYO` | 24節気定数:処暑 |
-| public | `SOLAR_TERM_HAKURO` | 24節気定数:白露 |
-| public | `SOLAR_TERM_SYUUBUN` | 24節気定数:秋分 |
-| public | `SOLAR_TERM_KANRO` | 24節気定数:寒露 |
-| public | `SOLAR_TERM_SOUKOU` | 24節気定数:霜降 |
-| public | `SOLAR_TERM_RITTOU` | 24節気定数:立冬 |
-| public | `SOLAR_TERM_SYOUSETSU` | 24節気定数:小雪 |
-| public | `SOLAR_TERM_TAISETSU` | 24節気定数:大雪 |
-| public | `SOLAR_TERM_TOUJI` | 24節気定数:冬至 |
-| public | `SOLAR_TERM_SYOUKAN` | 24節気定数:小寒 |
-| public | `SOLAR_TERM_DAIKAN` | 24節気定数:大寒 |
-| public | `SOLAR_TERM_RISSYUN` | 24節気定数:立春 |
-| public | `SOLAR_TERM_USUI` | 24節気定数:雨水 |
-| public | `SOLAR_TERM_KEICHITSU` | 24節気定数:啓蟄 |
 
 ## Properties
 
 | Modifier | Type | Name | Description |
 |---|---|---|---|
-| public | int | `$year` _(from [Carbon](../Carbon/Carbon.md))_ |  |
-| public | int | `$yearIso` _(from [Carbon](../Carbon/Carbon.md))_ |  |
-| public | int | `$month` _(from [Carbon](../Carbon/Carbon.md))_ |  |
-| public | int | `$day` _(from [Carbon](../Carbon/Carbon.md))_ |  |
-| public | int | `$hour` _(from [Carbon](../Carbon/Carbon.md))_ |  |
-| public | int | `$minute` _(from [Carbon](../Carbon/Carbon.md))_ |  |
-| public | int | `$second` _(from [Carbon](../Carbon/Carbon.md))_ |  |
-| public | int | `$micro` _(from [Carbon](../Carbon/Carbon.md))_ |  |
-| public | int | `$microsecond` _(from [Carbon](../Carbon/Carbon.md))_ |  |
-| public | int\|float\|string | `$timestamp` _(from [Carbon](../Carbon/Carbon.md))_ | seconds since the Unix Epoch |
-| public | string | `$englishDayOfWeek` _(from [Carbon](../Carbon/Carbon.md))_ | the day of week in English |
-| public | string | `$shortEnglishDayOfWeek` _(from [Carbon](../Carbon/Carbon.md))_ | the abbreviated day of week in English |
-| public | string | `$englishMonth` _(from [Carbon](../Carbon/Carbon.md))_ | the month in English |
-| public | string | `$shortEnglishMonth` _(from [Carbon](../Carbon/Carbon.md))_ | the abbreviated month in English |
-| public | int | `$milliseconds` _(from [Carbon](../Carbon/Carbon.md))_ |  |
-| public | int | `$millisecond` _(from [Carbon](../Carbon/Carbon.md))_ |  |
-| public | int | `$milli` _(from [Carbon](../Carbon/Carbon.md))_ |  |
-| public | int | `$week` _(from [Carbon](../Carbon/Carbon.md))_ | 1 through 53 |
-| public | int | `$isoWeek` _(from [Carbon](../Carbon/Carbon.md))_ | 1 through 53 |
-| public | int | `$weekYear` _(from [Carbon](../Carbon/Carbon.md))_ | year according to week format |
-| public | int | `$isoWeekYear` _(from [Carbon](../Carbon/Carbon.md))_ | year according to ISO week format |
-| public | int | `$dayOfYear` _(from [Carbon](../Carbon/Carbon.md))_ | 1 through 366 |
-| public | int | `$age` _(from [Carbon](../Carbon/Carbon.md))_ | does a diffInYears() with default parameters |
-| public | int | `$offset` _(from [Carbon](../Carbon/Carbon.md))_ | the timezone offset in seconds from UTC |
-| public | int | `$offsetMinutes` _(from [Carbon](../Carbon/Carbon.md))_ | the timezone offset in minutes from UTC |
-| public | int | `$offsetHours` _(from [Carbon](../Carbon/Carbon.md))_ | the timezone offset in hours from UTC |
-| public | CarbonTimeZone | `$timezone` _(from [Carbon](../Carbon/Carbon.md))_ | the current timezone |
-| public | CarbonTimeZone | `$tz` _(from [Carbon](../Carbon/Carbon.md))_ | alias of $timezone |
-| public _(read-only)_ | int | `$dayOfWeek` _(from [Carbon](../Carbon/Carbon.md))_ | 0 (for Sunday) through 6 (for Saturday) |
-| public _(read-only)_ | int | `$dayOfWeekIso` _(from [Carbon](../Carbon/Carbon.md))_ | 1 (for Monday) through 7 (for Sunday) |
-| public _(read-only)_ | int | `$weekOfYear` _(from [Carbon](../Carbon/Carbon.md))_ | ISO-8601 week number of year, weeks starting on Monday |
-| public _(read-only)_ | int | `$daysInMonth` _(from [Carbon](../Carbon/Carbon.md))_ | number of days in the given month |
-| public _(read-only)_ | string | `$latinMeridiem` _(from [Carbon](../Carbon/Carbon.md))_ | "am"/"pm" (Ante meridiem or Post meridiem latin lowercase mark) |
-| public _(read-only)_ | string | `$latinUpperMeridiem` _(from [Carbon](../Carbon/Carbon.md))_ | "AM"/"PM" (Ante meridiem or Post meridiem latin uppercase mark) |
-| public _(read-only)_ | string | `$timezoneAbbreviatedName` _(from [Carbon](../Carbon/Carbon.md))_ | the current timezone abbreviated name |
-| public _(read-only)_ | string | `$tzAbbrName` _(from [Carbon](../Carbon/Carbon.md))_ | alias of $timezoneAbbreviatedName |
-| public _(read-only)_ | string | `$dayName` _(from [Carbon](../Carbon/Carbon.md))_ | long name of weekday translated according to Carbon locale, in english if no translation available for current language |
-| public _(read-only)_ | string | `$shortDayName` _(from [Carbon](../Carbon/Carbon.md))_ | short name of weekday translated according to Carbon locale, in english if no translation available for current language |
-| public _(read-only)_ | string | `$minDayName` _(from [Carbon](../Carbon/Carbon.md))_ | very short name of weekday translated according to Carbon locale, in english if no translation available for current language |
-| public _(read-only)_ | string | `$monthName` _(from [Carbon](../Carbon/Carbon.md))_ | long name of month translated according to Carbon locale, in english if no translation available for current language |
-| public _(read-only)_ | string | `$shortMonthName` _(from [Carbon](../Carbon/Carbon.md))_ | short name of month translated according to Carbon locale, in english if no translation available for current language |
-| public _(read-only)_ | string | `$meridiem` _(from [Carbon](../Carbon/Carbon.md))_ | lowercase meridiem mark translated according to Carbon locale, in latin if no translation available for current language |
-| public _(read-only)_ | string | `$upperMeridiem` _(from [Carbon](../Carbon/Carbon.md))_ | uppercase meridiem mark translated according to Carbon locale, in latin if no translation available for current language |
-| public _(read-only)_ | int | `$noZeroHour` _(from [Carbon](../Carbon/Carbon.md))_ | current hour from 1 to 24 |
-| public _(read-only)_ | int | `$weeksInYear` _(from [Carbon](../Carbon/Carbon.md))_ | 51 through 53 |
-| public _(read-only)_ | int | `$isoWeeksInYear` _(from [Carbon](../Carbon/Carbon.md))_ | 51 through 53 |
-| public _(read-only)_ | int | `$weekOfMonth` _(from [Carbon](../Carbon/Carbon.md))_ | 1 through 5 |
-| public _(read-only)_ | int | `$weekNumberInMonth` _(from [Carbon](../Carbon/Carbon.md))_ | 1 through 5 |
-| public _(read-only)_ | int | `$firstWeekDay` _(from [Carbon](../Carbon/Carbon.md))_ | 0 through 6 |
-| public _(read-only)_ | int | `$lastWeekDay` _(from [Carbon](../Carbon/Carbon.md))_ | 0 through 6 |
-| public _(read-only)_ | int | `$daysInYear` _(from [Carbon](../Carbon/Carbon.md))_ | 365 or 366 |
-| public _(read-only)_ | int | `$quarter` _(from [Carbon](../Carbon/Carbon.md))_ | the quarter of this instance, 1 - 4 |
-| public _(read-only)_ | int | `$decade` _(from [Carbon](../Carbon/Carbon.md))_ | the decade of this instance |
-| public _(read-only)_ | int | `$century` _(from [Carbon](../Carbon/Carbon.md))_ | the century of this instance |
-| public _(read-only)_ | int | `$millennium` _(from [Carbon](../Carbon/Carbon.md))_ | the millennium of this instance |
-| public _(read-only)_ | bool | `$dst` _(from [Carbon](../Carbon/Carbon.md))_ | daylight savings time indicator, true if DST, false otherwise |
-| public _(read-only)_ | bool | `$local` _(from [Carbon](../Carbon/Carbon.md))_ | checks if the timezone is local, true if local, false otherwise |
-| public _(read-only)_ | bool | `$utc` _(from [Carbon](../Carbon/Carbon.md))_ | checks if the timezone is UTC, true if UTC, false otherwise |
-| public _(read-only)_ | string | `$timezoneName` _(from [Carbon](../Carbon/Carbon.md))_ | the current timezone name |
-| public _(read-only)_ | string | `$tzName` _(from [Carbon](../Carbon/Carbon.md))_ | alias of $timezoneName |
-| public _(read-only)_ | string | `$locale` _(from [Carbon](../Carbon/Carbon.md))_ | locale of the current instance |
-| public _(read-only)_ | int\|bool | `$solar_term` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 24節気を取得する。値は、 1 から 24 までの整数、または 24節気でない場合は false になります。 |
-| public _(read-only)_ | string | `$solar_term_text` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 24節気の名前を取得する。値は、 24節気の名前を表す文字列、または 24節気でない場合は空文字列になります。 |
-| public _(read-only)_ | bool | `$is_solar_term` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が24節気の一つであるかどうかを示すブール値。値は、 24節気である場合は true、そうでない場合は false になります。 |
-| public _(read-only)_ | string | `$era_name_text` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が属する元号の名前を取得する。値は、 元号の名前を表す文字列、または 元号でない場合は空文字列になります。 |
-| public _(read-only)_ | int | `$era_name` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が属する元号を整数で取得する。値は、 元号を表す整数、または 元号でない場合は 0 になります。 |
-| public _(read-only)_ | int | `$era_year` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が属する元号の年を整数で取得する。値は、 元号の年を表す整数、または 元号でない場合は 0 になります。 |
-| public _(read-only)_ | string | `$oriental_zodiac_text` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が属する十二支の名前を取得する。値は、 十二支の名前を表す文字列、または 十二支でない場合は空文字列になります。 |
-| public _(read-only)_ | int | `$oriental_zodiac` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が属する十二支を整数で取得する。値は、 十二支を表す整数、または 十二支でない場合は 0 になります。 |
-| public _(read-only)_ | string | `$six_weekday_text` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が属する六曜の名前を取得する。値は、 六曜の名前を表す文字列、または 六曜でない場合は空文字列になります。 |
-| public _(read-only)_ | int | `$six_weekday` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が属する六曜を整数で取得する。値は、 六曜を表す整数、または 六曜でない場合は 0 になります。 |
-| public _(read-only)_ | int | `$weekday_text` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が属する曜日の名前を取得する。値は、 曜日の名前を表す文字列、または 曜日でない場合は空文字列になります。 |
-| public _(read-only)_ | string | `$month_text` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が属する月の名前を取得する。値は、 月の名前を表す文字列、または 月でない場合は空文字列になります。 |
-| public _(read-only)_ | string | `$holiday_text` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が祝日である場合、祝日の名前を取得する。値は、 祝日の名前を表す文字列、または 祝日でない場合は空文字列になります。 |
-| public _(read-only)_ | int | `$holiday` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が祝日である場合、祝日の番号を取得する。値は、 祝日の番号を表す整数、または 祝日でない場合は 0 になります。 |
-| public _(read-only)_ | bool | `$is_holiday` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が祝日であるかどうかを示すブール値。値は、 祝日である場合は true、そうでない場合は false になります。 |
-| public _(read-only)_ | string | `$lunar_month_text` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が属する陰暦の月の名前を取得する。値は、 陰暦の月の名前を表す文字列、または 陰暦の月でない場合は空文字列になります。 |
-| public _(read-only)_ | int | `$lunar_month` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が属する陰暦の月を整数で取得する。値は、 陰暦の月を表す整数、または 陰暦の月でない場合は 0 になります。 |
-| public _(read-only)_ | int | `$lunar_year` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が属する陰暦の年を整数で取得する。値は、 陰暦の年を表す整数、または 陰暦の年でない場合は 0 になります。 |
-| public _(read-only)_ | int | `$lunar_day` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が属する陰暦の日を整数で取得する。値は、 陰暦の日を表す整数、または 陰暦の日でない場合は 0 になります。 |
-| public _(read-only)_ | bool | `$is_leap_month` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が閏月であるかどうかを示すブール値。値は、 閏月である場合は true、そうでない場合は false になります。 |
-| public _(read-only)_ | float | `$moon_age` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日における月齢を取得する。値は、 月齢を表す浮動小数点数、または 不明な場合は false になります。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$syunbun` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その年の春分の日の日時を取得する。値は、 春分の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$next_syunbun` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の春分の日の日時を取得する。値は、 次の春分の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が春分の日の場合は翌年の春分の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$before_syunbun` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の春分の日の日時を取得する。値は、 前の春分の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が春分の日の場合は前年の春分の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$seimei` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その年の清明の日の日時を取得する。値は、 清明の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$next_seimei` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の清明の日の日時を取得する。値は、 次の清明の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が清明の日の場合は翌年の清明の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$before_seimei` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の清明の日の日時を取得する。値は、 前の清明の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が清明の日の場合は前年の清明の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$kokuu` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その年の穀雨の日の日時を取得する。値は、 穀雨の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$next_kokuu` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の穀雨の日の日時を取得する。値は、 次の穀雨の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が穀雨の日の場合は翌年の穀雨の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$before_kokuu` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の穀雨の日の日時を取得する。値は、 前の穀雨の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が穀雨の日の場合は前年の穀雨の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$rikka` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その年の立夏の日の日時を取得する。値は、 立夏の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$next_rikka` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の立夏の日の日時を取得する。値は、 次の立夏の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が立夏の日の場合は翌年の立夏の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$before_rikka` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の立夏の日の日時を取得する。値は、 前の立夏の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が立夏の日の場合は前年の立夏の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$syouman` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その年の小満の日の日時を取得する。値は、 小満の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$next_syouman` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の小満の日の日時を取得する。値は、 次の小満の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が小満の日の場合は翌年の小満の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$before_syouman` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の小満の日の日時を取得する。値は、 前の小満の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が小満の日の場合は前年の小満の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$bousyu` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その年の芒種の日の日時を取得する。値は、 芒種の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$next_bousyu` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の芒種の日の日時を取得する。値は、 次の芒種の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が芒種の日の場合は翌年の芒種の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$before_bousyu` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の芒種の日の日時を取得する。値は、 前の芒種の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が芒種の日の場合は前年の芒種の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$geshi` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その年の夏至の日の日時を取得する。値は、 夏至の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$next_geshi` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の夏至の日の日時を取得する。値は、 次の夏至の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が夏至の日の場合は翌年の夏至の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$before_geshi` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の夏至の日の日時を取得する。値は、 前の夏至の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が夏至の日の場合は前年の夏至の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$syousyo` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その年の小暑の日の日時を取得する。値は、 小暑の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$next_syousyo` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の小暑の日の日時を取得する。値は、 次の小暑の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が小暑の日の場合は翌年の小暑の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$before_syousyo` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の小暑の日の日時を取得する。値は、 前の小暑の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が小暑の日の場合は前年の小暑の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$taisyo` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その年の大暑の日の日時を取得する。値は、 大暑の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$next_taisyo` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の大暑の日の日時を取得する。値は、 次の大暑の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が大暑の日の場合は翌年の大暑の日が返されます。o |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$before_taisyo` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の大暑の日の日時を取得する。値は、 前の大暑の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が大暑の日の場合は前年の大暑の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$rissyuu` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その年の立秋の日の日時を取得する。値は、 立秋の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$next_rissyuu` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の立秋の日の日時を取得する。値は、 次の立秋の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が立秋の日の場合は翌年の立秋の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$before_rissyuu` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の立秋の日の日時を取得する。値は、 前の立秋の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が立秋の日の場合は前年の立秋の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$syosyo` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その年の処暑の日の日時を取得する。値は、 処暑の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$next_syosyo` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の処暑の日の日時を取得する。値は、 次の処暑の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が処暑の日の場合は翌年の処暑の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$before_syosyo` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の処暑の日の日時を取得する。値は、 前の処暑の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が処暑の日の場合は前年の処暑の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$hakuro` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その年の白露の日の日時を取得する。値は、 白露の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$next_hakuro` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の白露の日の日時を取得する。値は、 次の白露の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が白露の日の場合は翌年の白露の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$before_hakuro` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の白露の日の日時を取得する。値は、 前の白露の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が白露の日の場合は前年の白露の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$syuubun` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その年の秋分の日の日時を取得する。値は、 秋分の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$next_syuubun` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の秋分の日の日時を取得する。値は、 次の秋分の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が秋分の日の場合は翌年の秋分の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$before_syuubun` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の秋分の日の日時を取得する。値は、 前の秋分の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が秋分の日の場合は前年の秋分の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$kanro` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その年の寒露の日の日時を取得する。値は、 寒露の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$next_kanro` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の寒露の日の日時を取得する。値は、 次の寒露の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が寒露の日の場合は翌年の寒露の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$before_kanro` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の寒露の日の日時を取得する。値は、 前の寒露の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が寒露の日の場合は前年の寒露の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$soukou` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その年の霜降の日の日時を取得する。値は、 霜降の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$next_soukou` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の霜降の日の日時を取得する。値は、 次の霜降の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が霜降の日の場合は翌年の霜降の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$before_soukou` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の霜降の日の日時を取得する。値は、 前の霜降の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が霜降の日の場合は前年の霜降の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$rittou` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その年の立冬の日の日時を取得する。値は、 立冬の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$next_rittou` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の立冬の日の日時を取得する。値は、 次の立冬の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が立冬の日の場合は翌年の立冬の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$before_rittou` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の立冬の日の日時を取得する。値は、 前の立冬の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が立冬の日の場合は前年の立冬の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$syousetsu` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その年の小雪の日の日時を取得する。値は、 小雪の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$next_syousetsu` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の小雪の日の日時を取得する。値は、 次の小雪の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が小雪の日の場合は翌年の小雪の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$before_syousetsu` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の小雪の日の日時を取得する。値は、 前の小雪の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が小雪の日の場合は前年の小雪の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$taisetsu` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その年の大雪の日の日時を取得する。値は、 大雪の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$next_taisetsu` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の大雪の日の日時を取得する。値は、 次の大雪の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が大雪の日の場合は翌年の大雪の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$before_taisetsu` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の大雪の日の日時を取得する。値は、 前の大雪の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が大雪の日の場合は前年の大雪の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$touji` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その年の冬至の日の日時を取得する。値は、 冬至の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$next_touji` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の冬至の日の日時を取得する。値は、 次の冬至の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が冬至の日の場合は翌年の冬至の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$before_touji` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の冬至の日の日時を取得する。値は、 前の冬至の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が冬至の日の場合は前年の冬至の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$syoukan` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その年の小寒の日の日時を取得する。値は、 小寒の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$next_syoukan` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の小寒の日の日時を取得する。値は、 次の小寒の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が小寒の日の場合は翌年の小寒の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$before_syoukan` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の小寒の日の日時を取得する。値は、 前の小寒の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が小寒の日の場合は前年の小寒の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$daikan` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その年の大寒の日の日時を取得する。値は、 大寒の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。_syoukan |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$next_daikan` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の大寒の日の日時を取得する。値は、 次の大寒の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が大寒の日の場合は翌年の大寒の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$before_daikan` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の大寒の日の日時を取得する。値は、 前の大寒の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が大寒の日の場合は前年の大寒の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$rissyun` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その年の立春の日の日時を取得する。値は、 立春の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$next_rissyun` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の立春の日の日時を取得する。値は、 次の立春の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が立春の日の場合は翌年の立春の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$before_rissyun` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の立春の日の日時を取得する。値は、 前の立春の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が立春の日の場合は前年の立春の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$usui` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その年の雨水の日の日時を取得する。値は、 雨水の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$next_usui` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の雨水の日の日時を取得する。値は、 次の雨水の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が雨水の日の場合は翌年の雨水の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$before_usui` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の雨水の日の日時を取得する。値は、 前の雨水の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が雨水の日の場合は前年の雨水の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$keichitsu` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その年の啓蟄の日の日時を取得する。値は、 啓蟄の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$next_keichitsu` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の啓蟄の日の日時を取得する。値は、 次の啓蟄の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が啓蟄の日の場合は翌年の啓蟄の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$before_keichitsu` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の啓蟄の日の日時を取得する。値は、 前の啓蟄の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が啓蟄の日の場合は前年の啓蟄の日が返されます。 |
-| public _(read-only)_ | int\|bool | `$solarTerm` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 24節気を取得する。値は、 1 から 24 までの整数、または 24節気でない場合は false になります。 |
-| public _(read-only)_ | string | `$solarTermText` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 24節気の名前を取得する。値は、 24節気の名前を表す文字列、または 24節気でない場合は空文字列になります。 |
-| public _(read-only)_ | bool | `$isSolarTerm` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が24節気の一つであるかどうかを示すブール値。値は、 24節気である場合は true、そうでない場合は false になります。 |
-| public _(read-only)_ | string | `$eraNameText` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が属する元号の名前を取得する。値は、 元号の名前を表す文字列、または 元号でない場合は空文字列になります。 |
-| public _(read-only)_ | int | `$eraName` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が属する元号を整数で取得する。値は、 元号を表す整数、または 元号でない場合は 0 になります。 |
-| public _(read-only)_ | int | `$eraYear` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が属する元号の年を整数で取得する。値は、 元号の年を表す整数、または 元号でない場合は 0 になります。 |
-| public _(read-only)_ | string | `$orientalZodiacText` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が属する十二支の名前を取得する。値は、 十二支の名前を表す文字列、または 十二支でない場合は空文字列になります。 |
-| public _(read-only)_ | int | `$orientalZodiac` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が属する十二支を整数で取得する。値は、 十二支を表す整数、または 十二支でない場合は 0 になります。 |
-| public _(read-only)_ | string | `$sixWeekdayText` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が属する六曜の名前を取得する。値は、 六曜の名前を表す文字列、または 六曜でない場合は空文字列になります。 |
-| public _(read-only)_ | int | `$sixWeekday` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が属する六曜を整数で取得する。値は、 六曜を表す整数、または 六曜でない場合は 0 になります。 |
-| public _(read-only)_ | int | `$weekdayText` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が属する曜日の名前を取得する。値は、 曜日の名前を表す文字列、または 曜日でない場合は空文字列になります。 |
-| public _(read-only)_ | string | `$monthText` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が属する月の名前を取得する。値は、 月の名前を表す文字列、または 月でない場合は空文字列になります。 |
-| public _(read-only)_ | string | `$holidayText` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が祝日である場合、祝日の名前を取得する。値は、 祝日の名前を表す文字列、または 祝日でない場合は空文字列になります。 |
-| public _(read-only)_ | bool | `$isHoliday` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が祝日であるかどうかを示すブール値。値は、 祝日である場合は true、そうでない場合は false になります。 |
-| public _(read-only)_ | string | `$lunarMonthText` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が属する陰暦の月の名前を取得する。値は、 陰暦の月の名前を表す文字列、または 陰暦の月でない場合は空文字列になります。 |
-| public _(read-only)_ | int | `$lunarMonth` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が属する陰暦の月を整数で取得する。値は、 陰暦の月を表す整数、または 陰暦の月でない場合は 0 になります。 |
-| public _(read-only)_ | int | `$lunarYear` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が属する陰暦の年を整数で取得する。値は、 陰暦の年を表す整数、または 陰暦の年でない場合は 0 になります。 |
-| public _(read-only)_ | int | `$lunarDay` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が属する陰暦の日を整数で取得する。値は、 陰暦の日を表す整数、または 陰暦の日でない場合は 0 になります。 |
-| public _(read-only)_ | bool | `$isLeapMonth` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が閏月であるかどうかを示すブール値。値は、 閏月である場合は true、そうでない場合は false になります。 |
-| public _(read-only)_ | float | `$moonAge` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日における月齢を取得する。値は、 月齢を表す浮動小数点数、または 不明な場合は false になります。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$nextSyunbun` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の春分の日の日時を取得する。値は、 次の春分の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が春分の日の場合は翌年の春分の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$beforeSyunbun` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の春分の日の日時を取得する。値は、 前の春分の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が春分の日の場合は前年の春分の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$nextSeimei` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の清明の日の日時を取得する。値は、 次の清明の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が清明の日の場合は翌年の清明の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$beforeSeimei` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の清明の日の日時を取得する。値は、 前の清明の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が清明の日の場合は前年の清明の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$nextKokuu` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の穀雨の日の日時を取得する。値は、 次の穀雨の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が穀雨の日の場合は翌年の穀雨の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$beforeKokuu` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の穀雨の日の日時を取得する。値は、 前の穀雨の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が穀雨の日の場合は前年の穀雨の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$nextRikka` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の立夏の日の日時を取得する。値は、 次の立夏の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が立夏の日の場合は翌年の立夏の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$beforeRikka` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の立夏の日の日時を取得する。値は、 前の立夏の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が立夏の日の場合は前年の立夏の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$nextSyouman` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の小満の日の日時を取得する。値は、 次の小満の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が小満の日の場合は翌年の小満の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$beforeSyouman` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の小満の日の日時を取得する。値は、 前の小満の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が小満の日の場合は前年の小満の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$nextBousyu` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の芒種の日の日時を取得する。値は、 次の芒種の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が芒種の日の場合は翌年の芒種の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$beforeBousyu` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の芒種の日の日時を取得する。値は、 前の芒種の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が芒種の日の場合は前年の芒種の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$nextGeshi` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の夏至の日の日時を取得する。値は、 次の夏至の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が夏至の日の場合は翌年の夏至の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$beforeGeshi` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の夏至の日の日時を取得する。値は、 前の夏至の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が夏至の日の場合は前年の夏至の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$nextSyousyo` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の小暑の日の日時を取得する。値は、 次の小暑の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が小暑の日の場合は翌年の小暑の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$beforeSyousyo` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の小暑の日の日時を取得する。値は、 前の小暑の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が小暑の日の場合は前年の小暑の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$nextTaisyo` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の大暑の日の日時を取得する。値は、 次の大暑の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が大暑の日の場合は翌年の大暑の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$beforeTaisyo` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の大暑の日の日時を取得する。値は、 前の大暑の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が大暑の日の場合は前年の大暑の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$nextRissyuu` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の立秋の日の日時を取得する。値は、 次の立秋の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が立秋の日の場合は翌年の立秋の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$beforeRissyuu` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の立秋の日の日時を取得する。値は、 前の立秋の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が立秋の日の場合は前年の立秋の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$nextSyosyo` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の処暑の日の日時を取得する。値は、 次の処暑の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が処暑の日の場合は翌年の処暑の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$beforeSyosyo` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の処暑の日の日時を取得する。値は、 前の処暑の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が処暑の日の場合は前年の処暑の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$nextHakuro` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の白露の日の日時を取得する。値は、 次の白露の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が白露の日の場合は翌年の白露の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$beforeHakuro` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の白露の日の日時を取得する。値は、 前の白露の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が白露の日の場合は前年の白露の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$nextSyuubun` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の秋分の日の日時を取得する。値は、 次の秋分の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が秋分の日の場合は翌年の秋分の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$beforeSyuubun` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の秋分の日の日時を取得する。値は、 前の秋分の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が秋分の日の場合は前年の秋分の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$nextKanro` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の寒露の日の日時を取得する。値は、 次の寒露の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が寒露の日の場合は翌年の寒露の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$beforeKanro` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の寒露の日の日時を取得する。値は、 前の寒露の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が寒露の日の場合は前年の寒露の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$nextSoukou` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の霜降の日の日時を取得する。値は、 次の霜降の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が霜降の日の場合は翌年の霜降の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$beforeSoukou` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の霜降の日の日時を取得する。値は、 前の霜降の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が霜降の日の場合は前年の霜降の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$nextRittou` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の立冬の日の日時を取得する。値は、 次の立冬の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が立冬の日の場合は翌年の立冬の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$beforeRittou` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の立冬の日の日時を取得する。値は、 前の立冬の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が立冬の日の場合は前年の立冬の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$nextSyousetsu` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の小雪の日の日時を取得する。値は、 次の小雪の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が小雪の日の場合は翌年の小雪の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$beforeSyousetsu` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の小雪の日の日時を取得する。値は、 前の小雪の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が小雪の日の場合は前年の小雪の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$nextTaisetsu` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の大雪の日の日時を取得する。値は、 次の大雪の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が大雪の日の場合は翌年の大雪の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$beforeTaisetsu` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の大雪の日の日時を取得する。値は、 前の大雪の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が大雪の日の場合は前年の大雪の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$nextTouji` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の冬至の日の日時を取得する。値は、 次の冬至の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が冬至の日の場合は翌年の冬至の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$beforeTouji` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の冬至の日の日時を取得する。値は、 前の冬至の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が冬至の日の場合は前年の冬至の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$nextSyoukan` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の小寒の日の日時を取得する。値は、 次の小寒の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が小寒の日の場合は翌年の小寒の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$beforeSyoukan` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の小寒の日の日時を取得する。値は、 前の小寒の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が小寒の日の場合は前年の小寒の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$nextDaikan` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の大寒の日の日時を取得する。値は、 次の大寒の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が大寒の日の場合は翌年の大寒の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$beforeDaikan` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の大寒の日の日時を取得する。値は、 前の大寒の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が大寒の日の場合は前年の大寒の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$nextRissyun` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の立春の日の日時を取得する。値は、 次の立春の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が立春の日の場合は翌年の立春の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$beforeRissyun` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の立春の日の日時を取得する。値は、 前の立春の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が立春の日の場合は前年の立春の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$nextUsui` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の雨水の日の日時を取得する。値は、 次の雨水の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が雨水の日の場合は翌年の雨水の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$beforeUsui` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の雨水の日の日時を取得する。値は、 前の雨水の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が雨水の日の場合は前年の雨水の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$nextKeichitsu` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の啓蟄の日の日時を取得する。値は、 次の啓蟄の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が啓蟄の日の場合は翌年の啓蟄の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$beforeKeichitsu` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の啓蟄の日の日時を取得する。値は、 前の啓蟄の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が啓蟄の日の場合は前年の啓蟄の日が返されます。 |
+| public | int | `$year` |  |
+| public | int | `$yearIso` |  |
+| public | int | `$month` |  |
+| public | int | `$day` |  |
+| public | int | `$hour` |  |
+| public | int | `$minute` |  |
+| public | int | `$second` |  |
+| public | int | `$micro` |  |
+| public | int | `$microsecond` |  |
+| public | int\|float\|string | `$timestamp` | seconds since the Unix Epoch |
+| public | string | `$englishDayOfWeek` | the day of week in English |
+| public | string | `$shortEnglishDayOfWeek` | the abbreviated day of week in English |
+| public | string | `$englishMonth` | the month in English |
+| public | string | `$shortEnglishMonth` | the abbreviated month in English |
+| public | int | `$milliseconds` |  |
+| public | int | `$millisecond` |  |
+| public | int | `$milli` |  |
+| public | int | `$week` | 1 through 53 |
+| public | int | `$isoWeek` | 1 through 53 |
+| public | int | `$weekYear` | year according to week format |
+| public | int | `$isoWeekYear` | year according to ISO week format |
+| public | int | `$dayOfYear` | 1 through 366 |
+| public | int | `$age` | does a diffInYears() with default parameters |
+| public | int | `$offset` | the timezone offset in seconds from UTC |
+| public | int | `$offsetMinutes` | the timezone offset in minutes from UTC |
+| public | int | `$offsetHours` | the timezone offset in hours from UTC |
+| public | CarbonTimeZone | `$timezone` | the current timezone |
+| public | CarbonTimeZone | `$tz` | alias of $timezone |
+| public _(read-only)_ | int | `$dayOfWeek` | 0 (for Sunday) through 6 (for Saturday) |
+| public _(read-only)_ | int | `$dayOfWeekIso` | 1 (for Monday) through 7 (for Sunday) |
+| public _(read-only)_ | int | `$weekOfYear` | ISO-8601 week number of year, weeks starting on Monday |
+| public _(read-only)_ | int | `$daysInMonth` | number of days in the given month |
+| public _(read-only)_ | string | `$latinMeridiem` | "am"/"pm" (Ante meridiem or Post meridiem latin lowercase mark) |
+| public _(read-only)_ | string | `$latinUpperMeridiem` | "AM"/"PM" (Ante meridiem or Post meridiem latin uppercase mark) |
+| public _(read-only)_ | string | `$timezoneAbbreviatedName` | the current timezone abbreviated name |
+| public _(read-only)_ | string | `$tzAbbrName` | alias of $timezoneAbbreviatedName |
+| public _(read-only)_ | string | `$dayName` | long name of weekday translated according to Carbon locale, in english if no translation available for current language |
+| public _(read-only)_ | string | `$shortDayName` | short name of weekday translated according to Carbon locale, in english if no translation available for current language |
+| public _(read-only)_ | string | `$minDayName` | very short name of weekday translated according to Carbon locale, in english if no translation available for current language |
+| public _(read-only)_ | string | `$monthName` | long name of month translated according to Carbon locale, in english if no translation available for current language |
+| public _(read-only)_ | string | `$shortMonthName` | short name of month translated according to Carbon locale, in english if no translation available for current language |
+| public _(read-only)_ | string | `$meridiem` | lowercase meridiem mark translated according to Carbon locale, in latin if no translation available for current language |
+| public _(read-only)_ | string | `$upperMeridiem` | uppercase meridiem mark translated according to Carbon locale, in latin if no translation available for current language |
+| public _(read-only)_ | int | `$noZeroHour` | current hour from 1 to 24 |
+| public _(read-only)_ | int | `$weeksInYear` | 51 through 53 |
+| public _(read-only)_ | int | `$isoWeeksInYear` | 51 through 53 |
+| public _(read-only)_ | int | `$weekOfMonth` | 1 through 5 |
+| public _(read-only)_ | int | `$weekNumberInMonth` | 1 through 5 |
+| public _(read-only)_ | int | `$firstWeekDay` | 0 through 6 |
+| public _(read-only)_ | int | `$lastWeekDay` | 0 through 6 |
+| public _(read-only)_ | int | `$daysInYear` | 365 or 366 |
+| public _(read-only)_ | int | `$quarter` | the quarter of this instance, 1 - 4 |
+| public _(read-only)_ | int | `$decade` | the decade of this instance |
+| public _(read-only)_ | int | `$century` | the century of this instance |
+| public _(read-only)_ | int | `$millennium` | the millennium of this instance |
+| public _(read-only)_ | bool | `$dst` | daylight savings time indicator, true if DST, false otherwise |
+| public _(read-only)_ | bool | `$local` | checks if the timezone is local, true if local, false otherwise |
+| public _(read-only)_ | bool | `$utc` | checks if the timezone is UTC, true if UTC, false otherwise |
+| public _(read-only)_ | string | `$timezoneName` | the current timezone name |
+| public _(read-only)_ | string | `$tzName` | alias of $timezoneName |
+| public _(read-only)_ | string | `$locale` | locale of the current instance |
 
 ## Methods
 
 | Return | Method | Description |
 |---|---|---|
-| bool | [isMutable()](#ismutable) _(from [Carbon](../Carbon/Carbon.md))_ | Returns true if the current class/instance is mutable. |
-| bool | [isUtc()](#isutc) _(from [Carbon](../Carbon/Carbon.md))_ |  |
-| bool | [isLocal()](#islocal) _(from [Carbon](../Carbon/Carbon.md))_ | Check if the current instance has non-UTC timezone. |
-| bool | [isValid()](#isvalid) _(from [Carbon](../Carbon/Carbon.md))_ | Check if the current instance is a valid date. |
-| bool | [isDST()](#isdst) _(from [Carbon](../Carbon/Carbon.md))_ | Check if the current instance is in a daylight saving time. |
-| bool | [isSunday()](#issunday) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance day is sunday. |
-| bool | [isMonday()](#ismonday) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance day is monday. |
-| bool | [isTuesday()](#istuesday) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance day is tuesday. |
-| bool | [isWednesday()](#iswednesday) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance day is wednesday. |
-| bool | [isThursday()](#isthursday) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance day is thursday. |
-| bool | [isFriday()](#isfriday) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance day is friday. |
-| bool | [isSaturday()](#issaturday) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance day is saturday. |
-| bool | [isSameYear()](#issameyear) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| bool | [isCurrentYear()](#iscurrentyear) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same year as the current moment. |
-| bool | [isNextYear()](#isnextyear) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same year as the current moment next year. |
-| bool | [isLastYear()](#islastyear) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same year as the current moment last year. |
-| bool | [isSameWeek()](#issameweek) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| bool | [isCurrentWeek()](#iscurrentweek) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same week as the current moment. |
-| bool | [isNextWeek()](#isnextweek) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same week as the current moment next week. |
-| bool | [isLastWeek()](#islastweek) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same week as the current moment last week. |
-| bool | [isSameDay()](#issameday) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| bool | [isCurrentDay()](#iscurrentday) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same day as the current moment. |
-| bool | [isNextDay()](#isnextday) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same day as the current moment next day. |
-| bool | [isLastDay()](#islastday) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same day as the current moment last day. |
-| bool | [isSameHour()](#issamehour) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| bool | [isCurrentHour()](#iscurrenthour) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same hour as the current moment. |
-| bool | [isNextHour()](#isnexthour) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same hour as the current moment next hour. |
-| bool | [isLastHour()](#islasthour) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same hour as the current moment last hour. |
-| bool | [isSameMinute()](#issameminute) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| bool | [isCurrentMinute()](#iscurrentminute) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same minute as the current moment. |
-| bool | [isNextMinute()](#isnextminute) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same minute as the current moment next minute. |
-| bool | [isLastMinute()](#islastminute) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same minute as the current moment last minute. |
-| bool | [isSameSecond()](#issamesecond) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| bool | [isCurrentSecond()](#iscurrentsecond) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same second as the current moment. |
-| bool | [isNextSecond()](#isnextsecond) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same second as the current moment next second. |
-| bool | [isLastSecond()](#islastsecond) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same second as the current moment last second. |
-| bool | [isSameMicro()](#issamemicro) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| bool | [isCurrentMicro()](#iscurrentmicro) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same microsecond as the current moment. |
-| bool | [isNextMicro()](#isnextmicro) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same microsecond as the current moment next microsecond. |
-| bool | [isLastMicro()](#islastmicro) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same microsecond as the current moment last microsecond. |
-| bool | [isSameMicrosecond()](#issamemicrosecond) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| bool | [isCurrentMicrosecond()](#iscurrentmicrosecond) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same microsecond as the current moment. |
-| bool | [isNextMicrosecond()](#isnextmicrosecond) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same microsecond as the current moment next microsecond. |
-| bool | [isLastMicrosecond()](#islastmicrosecond) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same microsecond as the current moment last microsecond. |
-| bool | [isCurrentMonth()](#iscurrentmonth) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same month as the current moment. |
-| bool | [isNextMonth()](#isnextmonth) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same month as the current moment next month. |
-| bool | [isLastMonth()](#islastmonth) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same month as the current moment last month. |
-| bool | [isCurrentQuarter()](#iscurrentquarter) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same quarter as the current moment. |
-| bool | [isNextQuarter()](#isnextquarter) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same quarter as the current moment next quarter. |
-| bool | [isLastQuarter()](#islastquarter) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same quarter as the current moment last quarter. |
-| bool | [isSameDecade()](#issamedecade) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| bool | [isCurrentDecade()](#iscurrentdecade) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same decade as the current moment. |
-| bool | [isNextDecade()](#isnextdecade) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same decade as the current moment next decade. |
-| bool | [isLastDecade()](#islastdecade) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same decade as the current moment last decade. |
-| bool | [isSameCentury()](#issamecentury) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| bool | [isCurrentCentury()](#iscurrentcentury) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same century as the current moment. |
-| bool | [isNextCentury()](#isnextcentury) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same century as the current moment next century. |
-| bool | [isLastCentury()](#islastcentury) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same century as the current moment last century. |
-| bool | [isSameMillennium()](#issamemillennium) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| bool | [isCurrentMillennium()](#iscurrentmillennium) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same millennium as the current moment. |
-| bool | [isNextMillennium()](#isnextmillennium) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same millennium as the current moment next millennium. |
-| bool | [isLastMillennium()](#islastmillennium) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same millennium as the current moment last millennium. |
-| $this | [years()](#years) _(from [Carbon](../Carbon/Carbon.md))_ | Set current instance year to the given value. |
-| $this | [year()](#year) _(from [Carbon](../Carbon/Carbon.md))_ | Set current instance year to the given value. |
-| $this | [setYears()](#setyears) _(from [Carbon](../Carbon/Carbon.md))_ | Set current instance year to the given value. |
-| $this | [setYear()](#setyear) _(from [Carbon](../Carbon/Carbon.md))_ | Set current instance year to the given value. |
-| $this | [months()](#months) _(from [Carbon](../Carbon/Carbon.md))_ | Set current instance month to the given value. |
-| $this | [month()](#month) _(from [Carbon](../Carbon/Carbon.md))_ | Set current instance month to the given value. |
-| $this | [setMonths()](#setmonths) _(from [Carbon](../Carbon/Carbon.md))_ | Set current instance month to the given value. |
-| $this | [setMonth()](#setmonth) _(from [Carbon](../Carbon/Carbon.md))_ | Set current instance month to the given value. |
-| $this | [days()](#days) _(from [Carbon](../Carbon/Carbon.md))_ | Set current instance day to the given value. |
-| $this | [day()](#day) _(from [Carbon](../Carbon/Carbon.md))_ | Set current instance day to the given value. |
-| $this | [setDays()](#setdays) _(from [Carbon](../Carbon/Carbon.md))_ | Set current instance day to the given value. |
-| $this | [setDay()](#setday) _(from [Carbon](../Carbon/Carbon.md))_ | Set current instance day to the given value. |
-| $this | [hours()](#hours) _(from [Carbon](../Carbon/Carbon.md))_ | Set current instance hour to the given value. |
-| $this | [hour()](#hour) _(from [Carbon](../Carbon/Carbon.md))_ | Set current instance hour to the given value. |
-| $this | [setHours()](#sethours) _(from [Carbon](../Carbon/Carbon.md))_ | Set current instance hour to the given value. |
-| $this | [setHour()](#sethour) _(from [Carbon](../Carbon/Carbon.md))_ | Set current instance hour to the given value. |
-| $this | [minutes()](#minutes) _(from [Carbon](../Carbon/Carbon.md))_ | Set current instance minute to the given value. |
-| $this | [minute()](#minute) _(from [Carbon](../Carbon/Carbon.md))_ | Set current instance minute to the given value. |
-| $this | [setMinutes()](#setminutes) _(from [Carbon](../Carbon/Carbon.md))_ | Set current instance minute to the given value. |
-| $this | [setMinute()](#setminute) _(from [Carbon](../Carbon/Carbon.md))_ | Set current instance minute to the given value. |
-| $this | [seconds()](#seconds) _(from [Carbon](../Carbon/Carbon.md))_ | Set current instance second to the given value. |
-| $this | [second()](#second) _(from [Carbon](../Carbon/Carbon.md))_ | Set current instance second to the given value. |
-| $this | [setSeconds()](#setseconds) _(from [Carbon](../Carbon/Carbon.md))_ | Set current instance second to the given value. |
-| $this | [setSecond()](#setsecond) _(from [Carbon](../Carbon/Carbon.md))_ | Set current instance second to the given value. |
-| $this | [millis()](#millis) _(from [Carbon](../Carbon/Carbon.md))_ | Set current instance millisecond to the given value. |
-| $this | [milli()](#milli) _(from [Carbon](../Carbon/Carbon.md))_ | Set current instance millisecond to the given value. |
-| $this | [setMillis()](#setmillis) _(from [Carbon](../Carbon/Carbon.md))_ | Set current instance millisecond to the given value. |
-| $this | [setMilli()](#setmilli) _(from [Carbon](../Carbon/Carbon.md))_ | Set current instance millisecond to the given value. |
-| $this | [milliseconds()](#milliseconds) _(from [Carbon](../Carbon/Carbon.md))_ | Set current instance millisecond to the given value. |
-| $this | [millisecond()](#millisecond) _(from [Carbon](../Carbon/Carbon.md))_ | Set current instance millisecond to the given value. |
-| $this | [setMilliseconds()](#setmilliseconds) _(from [Carbon](../Carbon/Carbon.md))_ | Set current instance millisecond to the given value. |
-| $this | [setMillisecond()](#setmillisecond) _(from [Carbon](../Carbon/Carbon.md))_ | Set current instance millisecond to the given value. |
-| $this | [micros()](#micros) _(from [Carbon](../Carbon/Carbon.md))_ | Set current instance microsecond to the given value. |
-| $this | [micro()](#micro) _(from [Carbon](../Carbon/Carbon.md))_ | Set current instance microsecond to the given value. |
-| $this | [setMicros()](#setmicros) _(from [Carbon](../Carbon/Carbon.md))_ | Set current instance microsecond to the given value. |
-| $this | [setMicro()](#setmicro) _(from [Carbon](../Carbon/Carbon.md))_ | Set current instance microsecond to the given value. |
-| $this | [microseconds()](#microseconds) _(from [Carbon](../Carbon/Carbon.md))_ | Set current instance microsecond to the given value. |
-| $this | [microsecond()](#microsecond) _(from [Carbon](../Carbon/Carbon.md))_ | Set current instance microsecond to the given value. |
-| $this | [setMicroseconds()](#setmicroseconds) _(from [Carbon](../Carbon/Carbon.md))_ | Set current instance microsecond to the given value. |
-| $this | [setMicrosecond()](#setmicrosecond) _(from [Carbon](../Carbon/Carbon.md))_ | Set current instance microsecond to the given value. |
-| $this | [addYears()](#addyears) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [addYear()](#addyear) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [subYears()](#subyears) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [subYear()](#subyear) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [addYearsWithOverflow()](#addyearswithoverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly allowed. |
-| $this | [addYearWithOverflow()](#addyearwithoverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly allowed. |
-| $this | [subYearsWithOverflow()](#subyearswithoverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly allowed. |
-| $this | [subYearWithOverflow()](#subyearwithoverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly allowed. |
-| $this | [addYearsWithoutOverflow()](#addyearswithoutoverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [addYearWithoutOverflow()](#addyearwithoutoverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [subYearsWithoutOverflow()](#subyearswithoutoverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [subYearWithoutOverflow()](#subyearwithoutoverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [addYearsWithNoOverflow()](#addyearswithnooverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [addYearWithNoOverflow()](#addyearwithnooverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [subYearsWithNoOverflow()](#subyearswithnooverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [subYearWithNoOverflow()](#subyearwithnooverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [addYearsNoOverflow()](#addyearsnooverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [addYearNoOverflow()](#addyearnooverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [subYearsNoOverflow()](#subyearsnooverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [subYearNoOverflow()](#subyearnooverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [addMonths()](#addmonths) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [addMonth()](#addmonth) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [subMonths()](#submonths) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [subMonth()](#submonth) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [addMonthsWithOverflow()](#addmonthswithoverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly allowed. |
-| $this | [addMonthWithOverflow()](#addmonthwithoverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly allowed. |
-| $this | [subMonthsWithOverflow()](#submonthswithoverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly allowed. |
-| $this | [subMonthWithOverflow()](#submonthwithoverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly allowed. |
-| $this | [addMonthsWithoutOverflow()](#addmonthswithoutoverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [addMonthWithoutOverflow()](#addmonthwithoutoverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [subMonthsWithoutOverflow()](#submonthswithoutoverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [subMonthWithoutOverflow()](#submonthwithoutoverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [addMonthsWithNoOverflow()](#addmonthswithnooverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [addMonthWithNoOverflow()](#addmonthwithnooverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [subMonthsWithNoOverflow()](#submonthswithnooverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [subMonthWithNoOverflow()](#submonthwithnooverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [addMonthsNoOverflow()](#addmonthsnooverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [addMonthNoOverflow()](#addmonthnooverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [subMonthsNoOverflow()](#submonthsnooverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [subMonthNoOverflow()](#submonthnooverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [addDays()](#adddays) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [addDay()](#addday) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [subDays()](#subdays) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [subDay()](#subday) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [addHours()](#addhours) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [addHour()](#addhour) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [subHours()](#subhours) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [subHour()](#subhour) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [addMinutes()](#addminutes) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [addMinute()](#addminute) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [subMinutes()](#subminutes) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [subMinute()](#subminute) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [addSeconds()](#addseconds) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [addSecond()](#addsecond) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [subSeconds()](#subseconds) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [subSecond()](#subsecond) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [addMillis()](#addmillis) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [addMilli()](#addmilli) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [subMillis()](#submillis) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [subMilli()](#submilli) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [addMilliseconds()](#addmilliseconds) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [addMillisecond()](#addmillisecond) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [subMilliseconds()](#submilliseconds) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [subMillisecond()](#submillisecond) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [addMicros()](#addmicros) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [addMicro()](#addmicro) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [subMicros()](#submicros) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [subMicro()](#submicro) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [addMicroseconds()](#addmicroseconds) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [addMicrosecond()](#addmicrosecond) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [subMicroseconds()](#submicroseconds) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [subMicrosecond()](#submicrosecond) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [addMillennia()](#addmillennia) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [addMillennium()](#addmillennium) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [subMillennia()](#submillennia) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [subMillennium()](#submillennium) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [addMillenniaWithOverflow()](#addmillenniawithoverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly allowed. |
-| $this | [addMillenniumWithOverflow()](#addmillenniumwithoverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly allowed. |
-| $this | [subMillenniaWithOverflow()](#submillenniawithoverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly allowed. |
-| $this | [subMillenniumWithOverflow()](#submillenniumwithoverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly allowed. |
-| $this | [addMillenniaWithoutOverflow()](#addmillenniawithoutoverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [addMillenniumWithoutOverflow()](#addmillenniumwithoutoverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [subMillenniaWithoutOverflow()](#submillenniawithoutoverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [subMillenniumWithoutOverflow()](#submillenniumwithoutoverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [addMillenniaWithNoOverflow()](#addmillenniawithnooverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [addMillenniumWithNoOverflow()](#addmillenniumwithnooverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [subMillenniaWithNoOverflow()](#submillenniawithnooverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [subMillenniumWithNoOverflow()](#submillenniumwithnooverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [addMillenniaNoOverflow()](#addmillennianooverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [addMillenniumNoOverflow()](#addmillenniumnooverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [subMillenniaNoOverflow()](#submillennianooverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [subMillenniumNoOverflow()](#submillenniumnooverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [addCenturies()](#addcenturies) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [addCentury()](#addcentury) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [subCenturies()](#subcenturies) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [subCentury()](#subcentury) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [addCenturiesWithOverflow()](#addcenturieswithoverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly allowed. |
-| $this | [addCenturyWithOverflow()](#addcenturywithoverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly allowed. |
-| $this | [subCenturiesWithOverflow()](#subcenturieswithoverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly allowed. |
-| $this | [subCenturyWithOverflow()](#subcenturywithoverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly allowed. |
-| $this | [addCenturiesWithoutOverflow()](#addcenturieswithoutoverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [addCenturyWithoutOverflow()](#addcenturywithoutoverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [subCenturiesWithoutOverflow()](#subcenturieswithoutoverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [subCenturyWithoutOverflow()](#subcenturywithoutoverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [addCenturiesWithNoOverflow()](#addcenturieswithnooverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [addCenturyWithNoOverflow()](#addcenturywithnooverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [subCenturiesWithNoOverflow()](#subcenturieswithnooverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [subCenturyWithNoOverflow()](#subcenturywithnooverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [addCenturiesNoOverflow()](#addcenturiesnooverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [addCenturyNoOverflow()](#addcenturynooverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [subCenturiesNoOverflow()](#subcenturiesnooverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [subCenturyNoOverflow()](#subcenturynooverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [addDecades()](#adddecades) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [addDecade()](#adddecade) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [subDecades()](#subdecades) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [subDecade()](#subdecade) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [addDecadesWithOverflow()](#adddecadeswithoverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly allowed. |
-| $this | [addDecadeWithOverflow()](#adddecadewithoverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly allowed. |
-| $this | [subDecadesWithOverflow()](#subdecadeswithoverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly allowed. |
-| $this | [subDecadeWithOverflow()](#subdecadewithoverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly allowed. |
-| $this | [addDecadesWithoutOverflow()](#adddecadeswithoutoverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [addDecadeWithoutOverflow()](#adddecadewithoutoverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [subDecadesWithoutOverflow()](#subdecadeswithoutoverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [subDecadeWithoutOverflow()](#subdecadewithoutoverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [addDecadesWithNoOverflow()](#adddecadeswithnooverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [addDecadeWithNoOverflow()](#adddecadewithnooverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [subDecadesWithNoOverflow()](#subdecadeswithnooverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [subDecadeWithNoOverflow()](#subdecadewithnooverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [addDecadesNoOverflow()](#adddecadesnooverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [addDecadeNoOverflow()](#adddecadenooverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [subDecadesNoOverflow()](#subdecadesnooverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [subDecadeNoOverflow()](#subdecadenooverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [addQuarters()](#addquarters) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [addQuarter()](#addquarter) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [subQuarters()](#subquarters) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [subQuarter()](#subquarter) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [addQuartersWithOverflow()](#addquarterswithoverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly allowed. |
-| $this | [addQuarterWithOverflow()](#addquarterwithoverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly allowed. |
-| $this | [subQuartersWithOverflow()](#subquarterswithoverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly allowed. |
-| $this | [subQuarterWithOverflow()](#subquarterwithoverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly allowed. |
-| $this | [addQuartersWithoutOverflow()](#addquarterswithoutoverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [addQuarterWithoutOverflow()](#addquarterwithoutoverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [subQuartersWithoutOverflow()](#subquarterswithoutoverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [subQuarterWithoutOverflow()](#subquarterwithoutoverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [addQuartersWithNoOverflow()](#addquarterswithnooverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [addQuarterWithNoOverflow()](#addquarterwithnooverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [subQuartersWithNoOverflow()](#subquarterswithnooverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [subQuarterWithNoOverflow()](#subquarterwithnooverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [addQuartersNoOverflow()](#addquartersnooverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [addQuarterNoOverflow()](#addquarternooverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [subQuartersNoOverflow()](#subquartersnooverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [subQuarterNoOverflow()](#subquarternooverflow) _(from [Carbon](../Carbon/Carbon.md))_ | with overflow explicitly forbidden. |
-| $this | [addWeeks()](#addweeks) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [addWeek()](#addweek) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [subWeeks()](#subweeks) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [subWeek()](#subweek) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [addWeekdays()](#addweekdays) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [addWeekday()](#addweekday) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [subWeekdays()](#subweekdays) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [subWeekday()](#subweekday) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [addRealMicros()](#addrealmicros) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [addRealMicro()](#addrealmicro) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [subRealMicros()](#subrealmicros) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [subRealMicro()](#subrealmicro) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| CarbonPeriod | [microsUntil()](#microsuntil) _(from [Carbon](../Carbon/Carbon.md))_ | for each microsecond or every X microseconds if a factor is given. |
-| $this | [addRealMicroseconds()](#addrealmicroseconds) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [addRealMicrosecond()](#addrealmicrosecond) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [subRealMicroseconds()](#subrealmicroseconds) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [subRealMicrosecond()](#subrealmicrosecond) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| CarbonPeriod | [microsecondsUntil()](#microsecondsuntil) _(from [Carbon](../Carbon/Carbon.md))_ | for each microsecond or every X microseconds if a factor is given. |
-| $this | [addRealMillis()](#addrealmillis) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [addRealMilli()](#addrealmilli) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [subRealMillis()](#subrealmillis) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [subRealMilli()](#subrealmilli) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| CarbonPeriod | [millisUntil()](#millisuntil) _(from [Carbon](../Carbon/Carbon.md))_ | for each millisecond or every X milliseconds if a factor is given. |
-| $this | [addRealMilliseconds()](#addrealmilliseconds) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [addRealMillisecond()](#addrealmillisecond) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [subRealMilliseconds()](#subrealmilliseconds) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [subRealMillisecond()](#subrealmillisecond) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| CarbonPeriod | [millisecondsUntil()](#millisecondsuntil) _(from [Carbon](../Carbon/Carbon.md))_ | for each millisecond or every X milliseconds if a factor is given. |
-| $this | [addRealSeconds()](#addrealseconds) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [addRealSecond()](#addrealsecond) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [subRealSeconds()](#subrealseconds) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [subRealSecond()](#subrealsecond) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| CarbonPeriod | [secondsUntil()](#secondsuntil) _(from [Carbon](../Carbon/Carbon.md))_ | for each second or every X seconds if a factor is given. |
-| $this | [addRealMinutes()](#addrealminutes) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [addRealMinute()](#addrealminute) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [subRealMinutes()](#subrealminutes) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [subRealMinute()](#subrealminute) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| CarbonPeriod | [minutesUntil()](#minutesuntil) _(from [Carbon](../Carbon/Carbon.md))_ | for each minute or every X minutes if a factor is given. |
-| $this | [addRealHours()](#addrealhours) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [addRealHour()](#addrealhour) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [subRealHours()](#subrealhours) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [subRealHour()](#subrealhour) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| CarbonPeriod | [hoursUntil()](#hoursuntil) _(from [Carbon](../Carbon/Carbon.md))_ | for each hour or every X hours if a factor is given. |
-| $this | [addRealDays()](#addrealdays) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [addRealDay()](#addrealday) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [subRealDays()](#subrealdays) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [subRealDay()](#subrealday) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| CarbonPeriod | [daysUntil()](#daysuntil) _(from [Carbon](../Carbon/Carbon.md))_ | for each day or every X days if a factor is given. |
-| $this | [addRealWeeks()](#addrealweeks) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [addRealWeek()](#addrealweek) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [subRealWeeks()](#subrealweeks) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [subRealWeek()](#subrealweek) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| CarbonPeriod | [weeksUntil()](#weeksuntil) _(from [Carbon](../Carbon/Carbon.md))_ | for each week or every X weeks if a factor is given. |
-| $this | [addRealMonths()](#addrealmonths) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [addRealMonth()](#addrealmonth) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [subRealMonths()](#subrealmonths) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [subRealMonth()](#subrealmonth) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| CarbonPeriod | [monthsUntil()](#monthsuntil) _(from [Carbon](../Carbon/Carbon.md))_ | for each month or every X months if a factor is given. |
-| $this | [addRealQuarters()](#addrealquarters) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [addRealQuarter()](#addrealquarter) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [subRealQuarters()](#subrealquarters) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [subRealQuarter()](#subrealquarter) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| CarbonPeriod | [quartersUntil()](#quartersuntil) _(from [Carbon](../Carbon/Carbon.md))_ | for each quarter or every X quarters if a factor is given. |
-| $this | [addRealYears()](#addrealyears) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [addRealYear()](#addrealyear) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [subRealYears()](#subrealyears) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [subRealYear()](#subrealyear) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| CarbonPeriod | [yearsUntil()](#yearsuntil) _(from [Carbon](../Carbon/Carbon.md))_ | for each year or every X years if a factor is given. |
-| $this | [addRealDecades()](#addrealdecades) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [addRealDecade()](#addrealdecade) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [subRealDecades()](#subrealdecades) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [subRealDecade()](#subrealdecade) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| CarbonPeriod | [decadesUntil()](#decadesuntil) _(from [Carbon](../Carbon/Carbon.md))_ | for each decade or every X decades if a factor is given. |
-| $this | [addRealCenturies()](#addrealcenturies) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [addRealCentury()](#addrealcentury) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [subRealCenturies()](#subrealcenturies) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [subRealCentury()](#subrealcentury) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| CarbonPeriod | [centuriesUntil()](#centuriesuntil) _(from [Carbon](../Carbon/Carbon.md))_ | for each century or every X centuries if a factor is given. |
-| $this | [addRealMillennia()](#addrealmillennia) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [addRealMillennium()](#addrealmillennium) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [subRealMillennia()](#subrealmillennia) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [subRealMillennium()](#subrealmillennium) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| CarbonPeriod | [millenniaUntil()](#millenniauntil) _(from [Carbon](../Carbon/Carbon.md))_ | for each millennium or every X millennia if a factor is given. |
-| $this | [roundYear()](#roundyear) _(from [Carbon](../Carbon/Carbon.md))_ | Round the current instance year with given precision using the given function. |
-| $this | [roundYears()](#roundyears) _(from [Carbon](../Carbon/Carbon.md))_ | Round the current instance year with given precision using the given function. |
-| $this | [floorYear()](#flooryear) _(from [Carbon](../Carbon/Carbon.md))_ | Truncate the current instance year with given precision. |
-| $this | [floorYears()](#flooryears) _(from [Carbon](../Carbon/Carbon.md))_ | Truncate the current instance year with given precision. |
-| $this | [ceilYear()](#ceilyear) _(from [Carbon](../Carbon/Carbon.md))_ | Ceil the current instance year with given precision. |
-| $this | [ceilYears()](#ceilyears) _(from [Carbon](../Carbon/Carbon.md))_ | Ceil the current instance year with given precision. |
-| $this | [roundMonth()](#roundmonth) _(from [Carbon](../Carbon/Carbon.md))_ | Round the current instance month with given precision using the given function. |
-| $this | [roundMonths()](#roundmonths) _(from [Carbon](../Carbon/Carbon.md))_ | Round the current instance month with given precision using the given function. |
-| $this | [floorMonth()](#floormonth) _(from [Carbon](../Carbon/Carbon.md))_ | Truncate the current instance month with given precision. |
-| $this | [floorMonths()](#floormonths) _(from [Carbon](../Carbon/Carbon.md))_ | Truncate the current instance month with given precision. |
-| $this | [ceilMonth()](#ceilmonth) _(from [Carbon](../Carbon/Carbon.md))_ | Ceil the current instance month with given precision. |
-| $this | [ceilMonths()](#ceilmonths) _(from [Carbon](../Carbon/Carbon.md))_ | Ceil the current instance month with given precision. |
-| $this | [roundDay()](#roundday) _(from [Carbon](../Carbon/Carbon.md))_ | Round the current instance day with given precision using the given function. |
-| $this | [roundDays()](#rounddays) _(from [Carbon](../Carbon/Carbon.md))_ | Round the current instance day with given precision using the given function. |
-| $this | [floorDay()](#floorday) _(from [Carbon](../Carbon/Carbon.md))_ | Truncate the current instance day with given precision. |
-| $this | [floorDays()](#floordays) _(from [Carbon](../Carbon/Carbon.md))_ | Truncate the current instance day with given precision. |
-| $this | [ceilDay()](#ceilday) _(from [Carbon](../Carbon/Carbon.md))_ | Ceil the current instance day with given precision. |
-| $this | [ceilDays()](#ceildays) _(from [Carbon](../Carbon/Carbon.md))_ | Ceil the current instance day with given precision. |
-| $this | [roundHour()](#roundhour) _(from [Carbon](../Carbon/Carbon.md))_ | Round the current instance hour with given precision using the given function. |
-| $this | [roundHours()](#roundhours) _(from [Carbon](../Carbon/Carbon.md))_ | Round the current instance hour with given precision using the given function. |
-| $this | [floorHour()](#floorhour) _(from [Carbon](../Carbon/Carbon.md))_ | Truncate the current instance hour with given precision. |
-| $this | [floorHours()](#floorhours) _(from [Carbon](../Carbon/Carbon.md))_ | Truncate the current instance hour with given precision. |
-| $this | [ceilHour()](#ceilhour) _(from [Carbon](../Carbon/Carbon.md))_ | Ceil the current instance hour with given precision. |
-| $this | [ceilHours()](#ceilhours) _(from [Carbon](../Carbon/Carbon.md))_ | Ceil the current instance hour with given precision. |
-| $this | [roundMinute()](#roundminute) _(from [Carbon](../Carbon/Carbon.md))_ | Round the current instance minute with given precision using the given function. |
-| $this | [roundMinutes()](#roundminutes) _(from [Carbon](../Carbon/Carbon.md))_ | Round the current instance minute with given precision using the given function. |
-| $this | [floorMinute()](#floorminute) _(from [Carbon](../Carbon/Carbon.md))_ | Truncate the current instance minute with given precision. |
-| $this | [floorMinutes()](#floorminutes) _(from [Carbon](../Carbon/Carbon.md))_ | Truncate the current instance minute with given precision. |
-| $this | [ceilMinute()](#ceilminute) _(from [Carbon](../Carbon/Carbon.md))_ | Ceil the current instance minute with given precision. |
-| $this | [ceilMinutes()](#ceilminutes) _(from [Carbon](../Carbon/Carbon.md))_ | Ceil the current instance minute with given precision. |
-| $this | [roundSecond()](#roundsecond) _(from [Carbon](../Carbon/Carbon.md))_ | Round the current instance second with given precision using the given function. |
-| $this | [roundSeconds()](#roundseconds) _(from [Carbon](../Carbon/Carbon.md))_ | Round the current instance second with given precision using the given function. |
-| $this | [floorSecond()](#floorsecond) _(from [Carbon](../Carbon/Carbon.md))_ | Truncate the current instance second with given precision. |
-| $this | [floorSeconds()](#floorseconds) _(from [Carbon](../Carbon/Carbon.md))_ | Truncate the current instance second with given precision. |
-| $this | [ceilSecond()](#ceilsecond) _(from [Carbon](../Carbon/Carbon.md))_ | Ceil the current instance second with given precision. |
-| $this | [ceilSeconds()](#ceilseconds) _(from [Carbon](../Carbon/Carbon.md))_ | Ceil the current instance second with given precision. |
-| $this | [roundMillennium()](#roundmillennium) _(from [Carbon](../Carbon/Carbon.md))_ | Round the current instance millennium with given precision using the given function. |
-| $this | [roundMillennia()](#roundmillennia) _(from [Carbon](../Carbon/Carbon.md))_ | Round the current instance millennium with given precision using the given function. |
-| $this | [floorMillennium()](#floormillennium) _(from [Carbon](../Carbon/Carbon.md))_ | Truncate the current instance millennium with given precision. |
-| $this | [floorMillennia()](#floormillennia) _(from [Carbon](../Carbon/Carbon.md))_ | Truncate the current instance millennium with given precision. |
-| $this | [ceilMillennium()](#ceilmillennium) _(from [Carbon](../Carbon/Carbon.md))_ | Ceil the current instance millennium with given precision. |
-| $this | [ceilMillennia()](#ceilmillennia) _(from [Carbon](../Carbon/Carbon.md))_ | Ceil the current instance millennium with given precision. |
-| $this | [roundCentury()](#roundcentury) _(from [Carbon](../Carbon/Carbon.md))_ | Round the current instance century with given precision using the given function. |
-| $this | [roundCenturies()](#roundcenturies) _(from [Carbon](../Carbon/Carbon.md))_ | Round the current instance century with given precision using the given function. |
-| $this | [floorCentury()](#floorcentury) _(from [Carbon](../Carbon/Carbon.md))_ | Truncate the current instance century with given precision. |
-| $this | [floorCenturies()](#floorcenturies) _(from [Carbon](../Carbon/Carbon.md))_ | Truncate the current instance century with given precision. |
-| $this | [ceilCentury()](#ceilcentury) _(from [Carbon](../Carbon/Carbon.md))_ | Ceil the current instance century with given precision. |
-| $this | [ceilCenturies()](#ceilcenturies) _(from [Carbon](../Carbon/Carbon.md))_ | Ceil the current instance century with given precision. |
-| $this | [roundDecade()](#rounddecade) _(from [Carbon](../Carbon/Carbon.md))_ | Round the current instance decade with given precision using the given function. |
-| $this | [roundDecades()](#rounddecades) _(from [Carbon](../Carbon/Carbon.md))_ | Round the current instance decade with given precision using the given function. |
-| $this | [floorDecade()](#floordecade) _(from [Carbon](../Carbon/Carbon.md))_ | Truncate the current instance decade with given precision. |
-| $this | [floorDecades()](#floordecades) _(from [Carbon](../Carbon/Carbon.md))_ | Truncate the current instance decade with given precision. |
-| $this | [ceilDecade()](#ceildecade) _(from [Carbon](../Carbon/Carbon.md))_ | Ceil the current instance decade with given precision. |
-| $this | [ceilDecades()](#ceildecades) _(from [Carbon](../Carbon/Carbon.md))_ | Ceil the current instance decade with given precision. |
-| $this | [roundQuarter()](#roundquarter) _(from [Carbon](../Carbon/Carbon.md))_ | Round the current instance quarter with given precision using the given function. |
-| $this | [roundQuarters()](#roundquarters) _(from [Carbon](../Carbon/Carbon.md))_ | Round the current instance quarter with given precision using the given function. |
-| $this | [floorQuarter()](#floorquarter) _(from [Carbon](../Carbon/Carbon.md))_ | Truncate the current instance quarter with given precision. |
-| $this | [floorQuarters()](#floorquarters) _(from [Carbon](../Carbon/Carbon.md))_ | Truncate the current instance quarter with given precision. |
-| $this | [ceilQuarter()](#ceilquarter) _(from [Carbon](../Carbon/Carbon.md))_ | Ceil the current instance quarter with given precision. |
-| $this | [ceilQuarters()](#ceilquarters) _(from [Carbon](../Carbon/Carbon.md))_ | Ceil the current instance quarter with given precision. |
-| $this | [roundMillisecond()](#roundmillisecond) _(from [Carbon](../Carbon/Carbon.md))_ | Round the current instance millisecond with given precision using the given function. |
-| $this | [roundMilliseconds()](#roundmilliseconds) _(from [Carbon](../Carbon/Carbon.md))_ | Round the current instance millisecond with given precision using the given function. |
-| $this | [floorMillisecond()](#floormillisecond) _(from [Carbon](../Carbon/Carbon.md))_ | Truncate the current instance millisecond with given precision. |
-| $this | [floorMilliseconds()](#floormilliseconds) _(from [Carbon](../Carbon/Carbon.md))_ | Truncate the current instance millisecond with given precision. |
-| $this | [ceilMillisecond()](#ceilmillisecond) _(from [Carbon](../Carbon/Carbon.md))_ | Ceil the current instance millisecond with given precision. |
-| $this | [ceilMilliseconds()](#ceilmilliseconds) _(from [Carbon](../Carbon/Carbon.md))_ | Ceil the current instance millisecond with given precision. |
-| $this | [roundMicrosecond()](#roundmicrosecond) _(from [Carbon](../Carbon/Carbon.md))_ | Round the current instance microsecond with given precision using the given function. |
-| $this | [roundMicroseconds()](#roundmicroseconds) _(from [Carbon](../Carbon/Carbon.md))_ | Round the current instance microsecond with given precision using the given function. |
-| $this | [floorMicrosecond()](#floormicrosecond) _(from [Carbon](../Carbon/Carbon.md))_ | Truncate the current instance microsecond with given precision. |
-| $this | [floorMicroseconds()](#floormicroseconds) _(from [Carbon](../Carbon/Carbon.md))_ | Truncate the current instance microsecond with given precision. |
-| $this | [ceilMicrosecond()](#ceilmicrosecond) _(from [Carbon](../Carbon/Carbon.md))_ | Ceil the current instance microsecond with given precision. |
-| $this | [ceilMicroseconds()](#ceilmicroseconds) _(from [Carbon](../Carbon/Carbon.md))_ | Ceil the current instance microsecond with given precision. |
-| string | [shortAbsoluteDiffForHumans()](#shortabsolutediffforhumans) _(from [Carbon](../Carbon/Carbon.md))_ |  |
-| string | [longAbsoluteDiffForHumans()](#longabsolutediffforhumans) _(from [Carbon](../Carbon/Carbon.md))_ |  |
-| string | [shortRelativeDiffForHumans()](#shortrelativediffforhumans) _(from [Carbon](../Carbon/Carbon.md))_ |  |
-| string | [longRelativeDiffForHumans()](#longrelativediffforhumans) _(from [Carbon](../Carbon/Carbon.md))_ |  |
-| string | [shortRelativeToNowDiffForHumans()](#shortrelativetonowdiffforhumans) _(from [Carbon](../Carbon/Carbon.md))_ |  |
-| string | [longRelativeToNowDiffForHumans()](#longrelativetonowdiffforhumans) _(from [Carbon](../Carbon/Carbon.md))_ |  |
-| string | [shortRelativeToOtherDiffForHumans()](#shortrelativetootherdiffforhumans) _(from [Carbon](../Carbon/Carbon.md))_ |  |
-| string | [longRelativeToOtherDiffForHumans()](#longrelativetootherdiffforhumans) _(from [Carbon](../Carbon/Carbon.md))_ |  |
-| static|false | [createFromFormat()](#createfromformat) _(from [Carbon](../Carbon/Carbon.md))_ | Parse a string into a new Carbon object according to the specified format. |
-| static | [__set_state()](#__set_state) _(from [Carbon](../Carbon/Carbon.md))_ | https://php.net/manual/en/datetime.set-state.php
+| bool | [isMutable()](#ismutable) | Returns true if the current class/instance is mutable. |
+| bool | [isUtc()](#isutc) |  |
+| bool | [isLocal()](#islocal) | Check if the current instance has non-UTC timezone. |
+| bool | [isValid()](#isvalid) | Check if the current instance is a valid date. |
+| bool | [isDST()](#isdst) | Check if the current instance is in a daylight saving time. |
+| bool | [isSunday()](#issunday) | Checks if the instance day is sunday. |
+| bool | [isMonday()](#ismonday) | Checks if the instance day is monday. |
+| bool | [isTuesday()](#istuesday) | Checks if the instance day is tuesday. |
+| bool | [isWednesday()](#iswednesday) | Checks if the instance day is wednesday. |
+| bool | [isThursday()](#isthursday) | Checks if the instance day is thursday. |
+| bool | [isFriday()](#isfriday) | Checks if the instance day is friday. |
+| bool | [isSaturday()](#issaturday) | Checks if the instance day is saturday. |
+| bool | [isSameYear()](#issameyear) | . |
+| bool | [isCurrentYear()](#iscurrentyear) | Checks if the instance is in the same year as the current moment. |
+| bool | [isNextYear()](#isnextyear) | Checks if the instance is in the same year as the current moment next year. |
+| bool | [isLastYear()](#islastyear) | Checks if the instance is in the same year as the current moment last year. |
+| bool | [isSameWeek()](#issameweek) | . |
+| bool | [isCurrentWeek()](#iscurrentweek) | Checks if the instance is in the same week as the current moment. |
+| bool | [isNextWeek()](#isnextweek) | Checks if the instance is in the same week as the current moment next week. |
+| bool | [isLastWeek()](#islastweek) | Checks if the instance is in the same week as the current moment last week. |
+| bool | [isSameDay()](#issameday) | . |
+| bool | [isCurrentDay()](#iscurrentday) | Checks if the instance is in the same day as the current moment. |
+| bool | [isNextDay()](#isnextday) | Checks if the instance is in the same day as the current moment next day. |
+| bool | [isLastDay()](#islastday) | Checks if the instance is in the same day as the current moment last day. |
+| bool | [isSameHour()](#issamehour) | . |
+| bool | [isCurrentHour()](#iscurrenthour) | Checks if the instance is in the same hour as the current moment. |
+| bool | [isNextHour()](#isnexthour) | Checks if the instance is in the same hour as the current moment next hour. |
+| bool | [isLastHour()](#islasthour) | Checks if the instance is in the same hour as the current moment last hour. |
+| bool | [isSameMinute()](#issameminute) | . |
+| bool | [isCurrentMinute()](#iscurrentminute) | Checks if the instance is in the same minute as the current moment. |
+| bool | [isNextMinute()](#isnextminute) | Checks if the instance is in the same minute as the current moment next minute. |
+| bool | [isLastMinute()](#islastminute) | Checks if the instance is in the same minute as the current moment last minute. |
+| bool | [isSameSecond()](#issamesecond) | . |
+| bool | [isCurrentSecond()](#iscurrentsecond) | Checks if the instance is in the same second as the current moment. |
+| bool | [isNextSecond()](#isnextsecond) | Checks if the instance is in the same second as the current moment next second. |
+| bool | [isLastSecond()](#islastsecond) | Checks if the instance is in the same second as the current moment last second. |
+| bool | [isSameMicro()](#issamemicro) | . |
+| bool | [isCurrentMicro()](#iscurrentmicro) | Checks if the instance is in the same microsecond as the current moment. |
+| bool | [isNextMicro()](#isnextmicro) | Checks if the instance is in the same microsecond as the current moment next microsecond. |
+| bool | [isLastMicro()](#islastmicro) | Checks if the instance is in the same microsecond as the current moment last microsecond. |
+| bool | [isSameMicrosecond()](#issamemicrosecond) | . |
+| bool | [isCurrentMicrosecond()](#iscurrentmicrosecond) | Checks if the instance is in the same microsecond as the current moment. |
+| bool | [isNextMicrosecond()](#isnextmicrosecond) | Checks if the instance is in the same microsecond as the current moment next microsecond. |
+| bool | [isLastMicrosecond()](#islastmicrosecond) | Checks if the instance is in the same microsecond as the current moment last microsecond. |
+| bool | [isCurrentMonth()](#iscurrentmonth) | Checks if the instance is in the same month as the current moment. |
+| bool | [isNextMonth()](#isnextmonth) | Checks if the instance is in the same month as the current moment next month. |
+| bool | [isLastMonth()](#islastmonth) | Checks if the instance is in the same month as the current moment last month. |
+| bool | [isCurrentQuarter()](#iscurrentquarter) | Checks if the instance is in the same quarter as the current moment. |
+| bool | [isNextQuarter()](#isnextquarter) | Checks if the instance is in the same quarter as the current moment next quarter. |
+| bool | [isLastQuarter()](#islastquarter) | Checks if the instance is in the same quarter as the current moment last quarter. |
+| bool | [isSameDecade()](#issamedecade) | . |
+| bool | [isCurrentDecade()](#iscurrentdecade) | Checks if the instance is in the same decade as the current moment. |
+| bool | [isNextDecade()](#isnextdecade) | Checks if the instance is in the same decade as the current moment next decade. |
+| bool | [isLastDecade()](#islastdecade) | Checks if the instance is in the same decade as the current moment last decade. |
+| bool | [isSameCentury()](#issamecentury) | . |
+| bool | [isCurrentCentury()](#iscurrentcentury) | Checks if the instance is in the same century as the current moment. |
+| bool | [isNextCentury()](#isnextcentury) | Checks if the instance is in the same century as the current moment next century. |
+| bool | [isLastCentury()](#islastcentury) | Checks if the instance is in the same century as the current moment last century. |
+| bool | [isSameMillennium()](#issamemillennium) | . |
+| bool | [isCurrentMillennium()](#iscurrentmillennium) | Checks if the instance is in the same millennium as the current moment. |
+| bool | [isNextMillennium()](#isnextmillennium) | Checks if the instance is in the same millennium as the current moment next millennium. |
+| bool | [isLastMillennium()](#islastmillennium) | Checks if the instance is in the same millennium as the current moment last millennium. |
+| $this | [years()](#years) | Set current instance year to the given value. |
+| $this | [year()](#year) | Set current instance year to the given value. |
+| $this | [setYears()](#setyears) | Set current instance year to the given value. |
+| $this | [setYear()](#setyear) | Set current instance year to the given value. |
+| $this | [months()](#months) | Set current instance month to the given value. |
+| $this | [month()](#month) | Set current instance month to the given value. |
+| $this | [setMonths()](#setmonths) | Set current instance month to the given value. |
+| $this | [setMonth()](#setmonth) | Set current instance month to the given value. |
+| $this | [days()](#days) | Set current instance day to the given value. |
+| $this | [day()](#day) | Set current instance day to the given value. |
+| $this | [setDays()](#setdays) | Set current instance day to the given value. |
+| $this | [setDay()](#setday) | Set current instance day to the given value. |
+| $this | [hours()](#hours) | Set current instance hour to the given value. |
+| $this | [hour()](#hour) | Set current instance hour to the given value. |
+| $this | [setHours()](#sethours) | Set current instance hour to the given value. |
+| $this | [setHour()](#sethour) | Set current instance hour to the given value. |
+| $this | [minutes()](#minutes) | Set current instance minute to the given value. |
+| $this | [minute()](#minute) | Set current instance minute to the given value. |
+| $this | [setMinutes()](#setminutes) | Set current instance minute to the given value. |
+| $this | [setMinute()](#setminute) | Set current instance minute to the given value. |
+| $this | [seconds()](#seconds) | Set current instance second to the given value. |
+| $this | [second()](#second) | Set current instance second to the given value. |
+| $this | [setSeconds()](#setseconds) | Set current instance second to the given value. |
+| $this | [setSecond()](#setsecond) | Set current instance second to the given value. |
+| $this | [millis()](#millis) | Set current instance millisecond to the given value. |
+| $this | [milli()](#milli) | Set current instance millisecond to the given value. |
+| $this | [setMillis()](#setmillis) | Set current instance millisecond to the given value. |
+| $this | [setMilli()](#setmilli) | Set current instance millisecond to the given value. |
+| $this | [milliseconds()](#milliseconds) | Set current instance millisecond to the given value. |
+| $this | [millisecond()](#millisecond) | Set current instance millisecond to the given value. |
+| $this | [setMilliseconds()](#setmilliseconds) | Set current instance millisecond to the given value. |
+| $this | [setMillisecond()](#setmillisecond) | Set current instance millisecond to the given value. |
+| $this | [micros()](#micros) | Set current instance microsecond to the given value. |
+| $this | [micro()](#micro) | Set current instance microsecond to the given value. |
+| $this | [setMicros()](#setmicros) | Set current instance microsecond to the given value. |
+| $this | [setMicro()](#setmicro) | Set current instance microsecond to the given value. |
+| $this | [microseconds()](#microseconds) | Set current instance microsecond to the given value. |
+| $this | [microsecond()](#microsecond) | Set current instance microsecond to the given value. |
+| $this | [setMicroseconds()](#setmicroseconds) | Set current instance microsecond to the given value. |
+| $this | [setMicrosecond()](#setmicrosecond) | Set current instance microsecond to the given value. |
+| $this | [addYears()](#addyears) | . |
+| $this | [addYear()](#addyear) | . |
+| $this | [subYears()](#subyears) | . |
+| $this | [subYear()](#subyear) | . |
+| $this | [addYearsWithOverflow()](#addyearswithoverflow) | with overflow explicitly allowed. |
+| $this | [addYearWithOverflow()](#addyearwithoverflow) | with overflow explicitly allowed. |
+| $this | [subYearsWithOverflow()](#subyearswithoverflow) | with overflow explicitly allowed. |
+| $this | [subYearWithOverflow()](#subyearwithoverflow) | with overflow explicitly allowed. |
+| $this | [addYearsWithoutOverflow()](#addyearswithoutoverflow) | with overflow explicitly forbidden. |
+| $this | [addYearWithoutOverflow()](#addyearwithoutoverflow) | with overflow explicitly forbidden. |
+| $this | [subYearsWithoutOverflow()](#subyearswithoutoverflow) | with overflow explicitly forbidden. |
+| $this | [subYearWithoutOverflow()](#subyearwithoutoverflow) | with overflow explicitly forbidden. |
+| $this | [addYearsWithNoOverflow()](#addyearswithnooverflow) | with overflow explicitly forbidden. |
+| $this | [addYearWithNoOverflow()](#addyearwithnooverflow) | with overflow explicitly forbidden. |
+| $this | [subYearsWithNoOverflow()](#subyearswithnooverflow) | with overflow explicitly forbidden. |
+| $this | [subYearWithNoOverflow()](#subyearwithnooverflow) | with overflow explicitly forbidden. |
+| $this | [addYearsNoOverflow()](#addyearsnooverflow) | with overflow explicitly forbidden. |
+| $this | [addYearNoOverflow()](#addyearnooverflow) | with overflow explicitly forbidden. |
+| $this | [subYearsNoOverflow()](#subyearsnooverflow) | with overflow explicitly forbidden. |
+| $this | [subYearNoOverflow()](#subyearnooverflow) | with overflow explicitly forbidden. |
+| $this | [addMonths()](#addmonths) | . |
+| $this | [addMonth()](#addmonth) | . |
+| $this | [subMonths()](#submonths) | . |
+| $this | [subMonth()](#submonth) | . |
+| $this | [addMonthsWithOverflow()](#addmonthswithoverflow) | with overflow explicitly allowed. |
+| $this | [addMonthWithOverflow()](#addmonthwithoverflow) | with overflow explicitly allowed. |
+| $this | [subMonthsWithOverflow()](#submonthswithoverflow) | with overflow explicitly allowed. |
+| $this | [subMonthWithOverflow()](#submonthwithoverflow) | with overflow explicitly allowed. |
+| $this | [addMonthsWithoutOverflow()](#addmonthswithoutoverflow) | with overflow explicitly forbidden. |
+| $this | [addMonthWithoutOverflow()](#addmonthwithoutoverflow) | with overflow explicitly forbidden. |
+| $this | [subMonthsWithoutOverflow()](#submonthswithoutoverflow) | with overflow explicitly forbidden. |
+| $this | [subMonthWithoutOverflow()](#submonthwithoutoverflow) | with overflow explicitly forbidden. |
+| $this | [addMonthsWithNoOverflow()](#addmonthswithnooverflow) | with overflow explicitly forbidden. |
+| $this | [addMonthWithNoOverflow()](#addmonthwithnooverflow) | with overflow explicitly forbidden. |
+| $this | [subMonthsWithNoOverflow()](#submonthswithnooverflow) | with overflow explicitly forbidden. |
+| $this | [subMonthWithNoOverflow()](#submonthwithnooverflow) | with overflow explicitly forbidden. |
+| $this | [addMonthsNoOverflow()](#addmonthsnooverflow) | with overflow explicitly forbidden. |
+| $this | [addMonthNoOverflow()](#addmonthnooverflow) | with overflow explicitly forbidden. |
+| $this | [subMonthsNoOverflow()](#submonthsnooverflow) | with overflow explicitly forbidden. |
+| $this | [subMonthNoOverflow()](#submonthnooverflow) | with overflow explicitly forbidden. |
+| $this | [addDays()](#adddays) | . |
+| $this | [addDay()](#addday) | . |
+| $this | [subDays()](#subdays) | . |
+| $this | [subDay()](#subday) | . |
+| $this | [addHours()](#addhours) | . |
+| $this | [addHour()](#addhour) | . |
+| $this | [subHours()](#subhours) | . |
+| $this | [subHour()](#subhour) | . |
+| $this | [addMinutes()](#addminutes) | . |
+| $this | [addMinute()](#addminute) | . |
+| $this | [subMinutes()](#subminutes) | . |
+| $this | [subMinute()](#subminute) | . |
+| $this | [addSeconds()](#addseconds) | . |
+| $this | [addSecond()](#addsecond) | . |
+| $this | [subSeconds()](#subseconds) | . |
+| $this | [subSecond()](#subsecond) | . |
+| $this | [addMillis()](#addmillis) | . |
+| $this | [addMilli()](#addmilli) | . |
+| $this | [subMillis()](#submillis) | . |
+| $this | [subMilli()](#submilli) | . |
+| $this | [addMilliseconds()](#addmilliseconds) | . |
+| $this | [addMillisecond()](#addmillisecond) | . |
+| $this | [subMilliseconds()](#submilliseconds) | . |
+| $this | [subMillisecond()](#submillisecond) | . |
+| $this | [addMicros()](#addmicros) | . |
+| $this | [addMicro()](#addmicro) | . |
+| $this | [subMicros()](#submicros) | . |
+| $this | [subMicro()](#submicro) | . |
+| $this | [addMicroseconds()](#addmicroseconds) | . |
+| $this | [addMicrosecond()](#addmicrosecond) | . |
+| $this | [subMicroseconds()](#submicroseconds) | . |
+| $this | [subMicrosecond()](#submicrosecond) | . |
+| $this | [addMillennia()](#addmillennia) | . |
+| $this | [addMillennium()](#addmillennium) | . |
+| $this | [subMillennia()](#submillennia) | . |
+| $this | [subMillennium()](#submillennium) | . |
+| $this | [addMillenniaWithOverflow()](#addmillenniawithoverflow) | with overflow explicitly allowed. |
+| $this | [addMillenniumWithOverflow()](#addmillenniumwithoverflow) | with overflow explicitly allowed. |
+| $this | [subMillenniaWithOverflow()](#submillenniawithoverflow) | with overflow explicitly allowed. |
+| $this | [subMillenniumWithOverflow()](#submillenniumwithoverflow) | with overflow explicitly allowed. |
+| $this | [addMillenniaWithoutOverflow()](#addmillenniawithoutoverflow) | with overflow explicitly forbidden. |
+| $this | [addMillenniumWithoutOverflow()](#addmillenniumwithoutoverflow) | with overflow explicitly forbidden. |
+| $this | [subMillenniaWithoutOverflow()](#submillenniawithoutoverflow) | with overflow explicitly forbidden. |
+| $this | [subMillenniumWithoutOverflow()](#submillenniumwithoutoverflow) | with overflow explicitly forbidden. |
+| $this | [addMillenniaWithNoOverflow()](#addmillenniawithnooverflow) | with overflow explicitly forbidden. |
+| $this | [addMillenniumWithNoOverflow()](#addmillenniumwithnooverflow) | with overflow explicitly forbidden. |
+| $this | [subMillenniaWithNoOverflow()](#submillenniawithnooverflow) | with overflow explicitly forbidden. |
+| $this | [subMillenniumWithNoOverflow()](#submillenniumwithnooverflow) | with overflow explicitly forbidden. |
+| $this | [addMillenniaNoOverflow()](#addmillennianooverflow) | with overflow explicitly forbidden. |
+| $this | [addMillenniumNoOverflow()](#addmillenniumnooverflow) | with overflow explicitly forbidden. |
+| $this | [subMillenniaNoOverflow()](#submillennianooverflow) | with overflow explicitly forbidden. |
+| $this | [subMillenniumNoOverflow()](#submillenniumnooverflow) | with overflow explicitly forbidden. |
+| $this | [addCenturies()](#addcenturies) | . |
+| $this | [addCentury()](#addcentury) | . |
+| $this | [subCenturies()](#subcenturies) | . |
+| $this | [subCentury()](#subcentury) | . |
+| $this | [addCenturiesWithOverflow()](#addcenturieswithoverflow) | with overflow explicitly allowed. |
+| $this | [addCenturyWithOverflow()](#addcenturywithoverflow) | with overflow explicitly allowed. |
+| $this | [subCenturiesWithOverflow()](#subcenturieswithoverflow) | with overflow explicitly allowed. |
+| $this | [subCenturyWithOverflow()](#subcenturywithoverflow) | with overflow explicitly allowed. |
+| $this | [addCenturiesWithoutOverflow()](#addcenturieswithoutoverflow) | with overflow explicitly forbidden. |
+| $this | [addCenturyWithoutOverflow()](#addcenturywithoutoverflow) | with overflow explicitly forbidden. |
+| $this | [subCenturiesWithoutOverflow()](#subcenturieswithoutoverflow) | with overflow explicitly forbidden. |
+| $this | [subCenturyWithoutOverflow()](#subcenturywithoutoverflow) | with overflow explicitly forbidden. |
+| $this | [addCenturiesWithNoOverflow()](#addcenturieswithnooverflow) | with overflow explicitly forbidden. |
+| $this | [addCenturyWithNoOverflow()](#addcenturywithnooverflow) | with overflow explicitly forbidden. |
+| $this | [subCenturiesWithNoOverflow()](#subcenturieswithnooverflow) | with overflow explicitly forbidden. |
+| $this | [subCenturyWithNoOverflow()](#subcenturywithnooverflow) | with overflow explicitly forbidden. |
+| $this | [addCenturiesNoOverflow()](#addcenturiesnooverflow) | with overflow explicitly forbidden. |
+| $this | [addCenturyNoOverflow()](#addcenturynooverflow) | with overflow explicitly forbidden. |
+| $this | [subCenturiesNoOverflow()](#subcenturiesnooverflow) | with overflow explicitly forbidden. |
+| $this | [subCenturyNoOverflow()](#subcenturynooverflow) | with overflow explicitly forbidden. |
+| $this | [addDecades()](#adddecades) | . |
+| $this | [addDecade()](#adddecade) | . |
+| $this | [subDecades()](#subdecades) | . |
+| $this | [subDecade()](#subdecade) | . |
+| $this | [addDecadesWithOverflow()](#adddecadeswithoverflow) | with overflow explicitly allowed. |
+| $this | [addDecadeWithOverflow()](#adddecadewithoverflow) | with overflow explicitly allowed. |
+| $this | [subDecadesWithOverflow()](#subdecadeswithoverflow) | with overflow explicitly allowed. |
+| $this | [subDecadeWithOverflow()](#subdecadewithoverflow) | with overflow explicitly allowed. |
+| $this | [addDecadesWithoutOverflow()](#adddecadeswithoutoverflow) | with overflow explicitly forbidden. |
+| $this | [addDecadeWithoutOverflow()](#adddecadewithoutoverflow) | with overflow explicitly forbidden. |
+| $this | [subDecadesWithoutOverflow()](#subdecadeswithoutoverflow) | with overflow explicitly forbidden. |
+| $this | [subDecadeWithoutOverflow()](#subdecadewithoutoverflow) | with overflow explicitly forbidden. |
+| $this | [addDecadesWithNoOverflow()](#adddecadeswithnooverflow) | with overflow explicitly forbidden. |
+| $this | [addDecadeWithNoOverflow()](#adddecadewithnooverflow) | with overflow explicitly forbidden. |
+| $this | [subDecadesWithNoOverflow()](#subdecadeswithnooverflow) | with overflow explicitly forbidden. |
+| $this | [subDecadeWithNoOverflow()](#subdecadewithnooverflow) | with overflow explicitly forbidden. |
+| $this | [addDecadesNoOverflow()](#adddecadesnooverflow) | with overflow explicitly forbidden. |
+| $this | [addDecadeNoOverflow()](#adddecadenooverflow) | with overflow explicitly forbidden. |
+| $this | [subDecadesNoOverflow()](#subdecadesnooverflow) | with overflow explicitly forbidden. |
+| $this | [subDecadeNoOverflow()](#subdecadenooverflow) | with overflow explicitly forbidden. |
+| $this | [addQuarters()](#addquarters) | . |
+| $this | [addQuarter()](#addquarter) | . |
+| $this | [subQuarters()](#subquarters) | . |
+| $this | [subQuarter()](#subquarter) | . |
+| $this | [addQuartersWithOverflow()](#addquarterswithoverflow) | with overflow explicitly allowed. |
+| $this | [addQuarterWithOverflow()](#addquarterwithoverflow) | with overflow explicitly allowed. |
+| $this | [subQuartersWithOverflow()](#subquarterswithoverflow) | with overflow explicitly allowed. |
+| $this | [subQuarterWithOverflow()](#subquarterwithoverflow) | with overflow explicitly allowed. |
+| $this | [addQuartersWithoutOverflow()](#addquarterswithoutoverflow) | with overflow explicitly forbidden. |
+| $this | [addQuarterWithoutOverflow()](#addquarterwithoutoverflow) | with overflow explicitly forbidden. |
+| $this | [subQuartersWithoutOverflow()](#subquarterswithoutoverflow) | with overflow explicitly forbidden. |
+| $this | [subQuarterWithoutOverflow()](#subquarterwithoutoverflow) | with overflow explicitly forbidden. |
+| $this | [addQuartersWithNoOverflow()](#addquarterswithnooverflow) | with overflow explicitly forbidden. |
+| $this | [addQuarterWithNoOverflow()](#addquarterwithnooverflow) | with overflow explicitly forbidden. |
+| $this | [subQuartersWithNoOverflow()](#subquarterswithnooverflow) | with overflow explicitly forbidden. |
+| $this | [subQuarterWithNoOverflow()](#subquarterwithnooverflow) | with overflow explicitly forbidden. |
+| $this | [addQuartersNoOverflow()](#addquartersnooverflow) | with overflow explicitly forbidden. |
+| $this | [addQuarterNoOverflow()](#addquarternooverflow) | with overflow explicitly forbidden. |
+| $this | [subQuartersNoOverflow()](#subquartersnooverflow) | with overflow explicitly forbidden. |
+| $this | [subQuarterNoOverflow()](#subquarternooverflow) | with overflow explicitly forbidden. |
+| $this | [addWeeks()](#addweeks) | . |
+| $this | [addWeek()](#addweek) | . |
+| $this | [subWeeks()](#subweeks) | . |
+| $this | [subWeek()](#subweek) | . |
+| $this | [addWeekdays()](#addweekdays) | . |
+| $this | [addWeekday()](#addweekday) | . |
+| $this | [subWeekdays()](#subweekdays) | . |
+| $this | [subWeekday()](#subweekday) | . |
+| $this | [addRealMicros()](#addrealmicros) | . |
+| $this | [addRealMicro()](#addrealmicro) | . |
+| $this | [subRealMicros()](#subrealmicros) | . |
+| $this | [subRealMicro()](#subrealmicro) | . |
+| CarbonPeriod | [microsUntil()](#microsuntil) | for each microsecond or every X microseconds if a factor is given. |
+| $this | [addRealMicroseconds()](#addrealmicroseconds) | . |
+| $this | [addRealMicrosecond()](#addrealmicrosecond) | . |
+| $this | [subRealMicroseconds()](#subrealmicroseconds) | . |
+| $this | [subRealMicrosecond()](#subrealmicrosecond) | . |
+| CarbonPeriod | [microsecondsUntil()](#microsecondsuntil) | for each microsecond or every X microseconds if a factor is given. |
+| $this | [addRealMillis()](#addrealmillis) | . |
+| $this | [addRealMilli()](#addrealmilli) | . |
+| $this | [subRealMillis()](#subrealmillis) | . |
+| $this | [subRealMilli()](#subrealmilli) | . |
+| CarbonPeriod | [millisUntil()](#millisuntil) | for each millisecond or every X milliseconds if a factor is given. |
+| $this | [addRealMilliseconds()](#addrealmilliseconds) | . |
+| $this | [addRealMillisecond()](#addrealmillisecond) | . |
+| $this | [subRealMilliseconds()](#subrealmilliseconds) | . |
+| $this | [subRealMillisecond()](#subrealmillisecond) | . |
+| CarbonPeriod | [millisecondsUntil()](#millisecondsuntil) | for each millisecond or every X milliseconds if a factor is given. |
+| $this | [addRealSeconds()](#addrealseconds) | . |
+| $this | [addRealSecond()](#addrealsecond) | . |
+| $this | [subRealSeconds()](#subrealseconds) | . |
+| $this | [subRealSecond()](#subrealsecond) | . |
+| CarbonPeriod | [secondsUntil()](#secondsuntil) | for each second or every X seconds if a factor is given. |
+| $this | [addRealMinutes()](#addrealminutes) | . |
+| $this | [addRealMinute()](#addrealminute) | . |
+| $this | [subRealMinutes()](#subrealminutes) | . |
+| $this | [subRealMinute()](#subrealminute) | . |
+| CarbonPeriod | [minutesUntil()](#minutesuntil) | for each minute or every X minutes if a factor is given. |
+| $this | [addRealHours()](#addrealhours) | . |
+| $this | [addRealHour()](#addrealhour) | . |
+| $this | [subRealHours()](#subrealhours) | . |
+| $this | [subRealHour()](#subrealhour) | . |
+| CarbonPeriod | [hoursUntil()](#hoursuntil) | for each hour or every X hours if a factor is given. |
+| $this | [addRealDays()](#addrealdays) | . |
+| $this | [addRealDay()](#addrealday) | . |
+| $this | [subRealDays()](#subrealdays) | . |
+| $this | [subRealDay()](#subrealday) | . |
+| CarbonPeriod | [daysUntil()](#daysuntil) | for each day or every X days if a factor is given. |
+| $this | [addRealWeeks()](#addrealweeks) | . |
+| $this | [addRealWeek()](#addrealweek) | . |
+| $this | [subRealWeeks()](#subrealweeks) | . |
+| $this | [subRealWeek()](#subrealweek) | . |
+| CarbonPeriod | [weeksUntil()](#weeksuntil) | for each week or every X weeks if a factor is given. |
+| $this | [addRealMonths()](#addrealmonths) | . |
+| $this | [addRealMonth()](#addrealmonth) | . |
+| $this | [subRealMonths()](#subrealmonths) | . |
+| $this | [subRealMonth()](#subrealmonth) | . |
+| CarbonPeriod | [monthsUntil()](#monthsuntil) | for each month or every X months if a factor is given. |
+| $this | [addRealQuarters()](#addrealquarters) | . |
+| $this | [addRealQuarter()](#addrealquarter) | . |
+| $this | [subRealQuarters()](#subrealquarters) | . |
+| $this | [subRealQuarter()](#subrealquarter) | . |
+| CarbonPeriod | [quartersUntil()](#quartersuntil) | for each quarter or every X quarters if a factor is given. |
+| $this | [addRealYears()](#addrealyears) | . |
+| $this | [addRealYear()](#addrealyear) | . |
+| $this | [subRealYears()](#subrealyears) | . |
+| $this | [subRealYear()](#subrealyear) | . |
+| CarbonPeriod | [yearsUntil()](#yearsuntil) | for each year or every X years if a factor is given. |
+| $this | [addRealDecades()](#addrealdecades) | . |
+| $this | [addRealDecade()](#addrealdecade) | . |
+| $this | [subRealDecades()](#subrealdecades) | . |
+| $this | [subRealDecade()](#subrealdecade) | . |
+| CarbonPeriod | [decadesUntil()](#decadesuntil) | for each decade or every X decades if a factor is given. |
+| $this | [addRealCenturies()](#addrealcenturies) | . |
+| $this | [addRealCentury()](#addrealcentury) | . |
+| $this | [subRealCenturies()](#subrealcenturies) | . |
+| $this | [subRealCentury()](#subrealcentury) | . |
+| CarbonPeriod | [centuriesUntil()](#centuriesuntil) | for each century or every X centuries if a factor is given. |
+| $this | [addRealMillennia()](#addrealmillennia) | . |
+| $this | [addRealMillennium()](#addrealmillennium) | . |
+| $this | [subRealMillennia()](#subrealmillennia) | . |
+| $this | [subRealMillennium()](#subrealmillennium) | . |
+| CarbonPeriod | [millenniaUntil()](#millenniauntil) | for each millennium or every X millennia if a factor is given. |
+| $this | [roundYear()](#roundyear) | Round the current instance year with given precision using the given function. |
+| $this | [roundYears()](#roundyears) | Round the current instance year with given precision using the given function. |
+| $this | [floorYear()](#flooryear) | Truncate the current instance year with given precision. |
+| $this | [floorYears()](#flooryears) | Truncate the current instance year with given precision. |
+| $this | [ceilYear()](#ceilyear) | Ceil the current instance year with given precision. |
+| $this | [ceilYears()](#ceilyears) | Ceil the current instance year with given precision. |
+| $this | [roundMonth()](#roundmonth) | Round the current instance month with given precision using the given function. |
+| $this | [roundMonths()](#roundmonths) | Round the current instance month with given precision using the given function. |
+| $this | [floorMonth()](#floormonth) | Truncate the current instance month with given precision. |
+| $this | [floorMonths()](#floormonths) | Truncate the current instance month with given precision. |
+| $this | [ceilMonth()](#ceilmonth) | Ceil the current instance month with given precision. |
+| $this | [ceilMonths()](#ceilmonths) | Ceil the current instance month with given precision. |
+| $this | [roundDay()](#roundday) | Round the current instance day with given precision using the given function. |
+| $this | [roundDays()](#rounddays) | Round the current instance day with given precision using the given function. |
+| $this | [floorDay()](#floorday) | Truncate the current instance day with given precision. |
+| $this | [floorDays()](#floordays) | Truncate the current instance day with given precision. |
+| $this | [ceilDay()](#ceilday) | Ceil the current instance day with given precision. |
+| $this | [ceilDays()](#ceildays) | Ceil the current instance day with given precision. |
+| $this | [roundHour()](#roundhour) | Round the current instance hour with given precision using the given function. |
+| $this | [roundHours()](#roundhours) | Round the current instance hour with given precision using the given function. |
+| $this | [floorHour()](#floorhour) | Truncate the current instance hour with given precision. |
+| $this | [floorHours()](#floorhours) | Truncate the current instance hour with given precision. |
+| $this | [ceilHour()](#ceilhour) | Ceil the current instance hour with given precision. |
+| $this | [ceilHours()](#ceilhours) | Ceil the current instance hour with given precision. |
+| $this | [roundMinute()](#roundminute) | Round the current instance minute with given precision using the given function. |
+| $this | [roundMinutes()](#roundminutes) | Round the current instance minute with given precision using the given function. |
+| $this | [floorMinute()](#floorminute) | Truncate the current instance minute with given precision. |
+| $this | [floorMinutes()](#floorminutes) | Truncate the current instance minute with given precision. |
+| $this | [ceilMinute()](#ceilminute) | Ceil the current instance minute with given precision. |
+| $this | [ceilMinutes()](#ceilminutes) | Ceil the current instance minute with given precision. |
+| $this | [roundSecond()](#roundsecond) | Round the current instance second with given precision using the given function. |
+| $this | [roundSeconds()](#roundseconds) | Round the current instance second with given precision using the given function. |
+| $this | [floorSecond()](#floorsecond) | Truncate the current instance second with given precision. |
+| $this | [floorSeconds()](#floorseconds) | Truncate the current instance second with given precision. |
+| $this | [ceilSecond()](#ceilsecond) | Ceil the current instance second with given precision. |
+| $this | [ceilSeconds()](#ceilseconds) | Ceil the current instance second with given precision. |
+| $this | [roundMillennium()](#roundmillennium) | Round the current instance millennium with given precision using the given function. |
+| $this | [roundMillennia()](#roundmillennia) | Round the current instance millennium with given precision using the given function. |
+| $this | [floorMillennium()](#floormillennium) | Truncate the current instance millennium with given precision. |
+| $this | [floorMillennia()](#floormillennia) | Truncate the current instance millennium with given precision. |
+| $this | [ceilMillennium()](#ceilmillennium) | Ceil the current instance millennium with given precision. |
+| $this | [ceilMillennia()](#ceilmillennia) | Ceil the current instance millennium with given precision. |
+| $this | [roundCentury()](#roundcentury) | Round the current instance century with given precision using the given function. |
+| $this | [roundCenturies()](#roundcenturies) | Round the current instance century with given precision using the given function. |
+| $this | [floorCentury()](#floorcentury) | Truncate the current instance century with given precision. |
+| $this | [floorCenturies()](#floorcenturies) | Truncate the current instance century with given precision. |
+| $this | [ceilCentury()](#ceilcentury) | Ceil the current instance century with given precision. |
+| $this | [ceilCenturies()](#ceilcenturies) | Ceil the current instance century with given precision. |
+| $this | [roundDecade()](#rounddecade) | Round the current instance decade with given precision using the given function. |
+| $this | [roundDecades()](#rounddecades) | Round the current instance decade with given precision using the given function. |
+| $this | [floorDecade()](#floordecade) | Truncate the current instance decade with given precision. |
+| $this | [floorDecades()](#floordecades) | Truncate the current instance decade with given precision. |
+| $this | [ceilDecade()](#ceildecade) | Ceil the current instance decade with given precision. |
+| $this | [ceilDecades()](#ceildecades) | Ceil the current instance decade with given precision. |
+| $this | [roundQuarter()](#roundquarter) | Round the current instance quarter with given precision using the given function. |
+| $this | [roundQuarters()](#roundquarters) | Round the current instance quarter with given precision using the given function. |
+| $this | [floorQuarter()](#floorquarter) | Truncate the current instance quarter with given precision. |
+| $this | [floorQuarters()](#floorquarters) | Truncate the current instance quarter with given precision. |
+| $this | [ceilQuarter()](#ceilquarter) | Ceil the current instance quarter with given precision. |
+| $this | [ceilQuarters()](#ceilquarters) | Ceil the current instance quarter with given precision. |
+| $this | [roundMillisecond()](#roundmillisecond) | Round the current instance millisecond with given precision using the given function. |
+| $this | [roundMilliseconds()](#roundmilliseconds) | Round the current instance millisecond with given precision using the given function. |
+| $this | [floorMillisecond()](#floormillisecond) | Truncate the current instance millisecond with given precision. |
+| $this | [floorMilliseconds()](#floormilliseconds) | Truncate the current instance millisecond with given precision. |
+| $this | [ceilMillisecond()](#ceilmillisecond) | Ceil the current instance millisecond with given precision. |
+| $this | [ceilMilliseconds()](#ceilmilliseconds) | Ceil the current instance millisecond with given precision. |
+| $this | [roundMicrosecond()](#roundmicrosecond) | Round the current instance microsecond with given precision using the given function. |
+| $this | [roundMicroseconds()](#roundmicroseconds) | Round the current instance microsecond with given precision using the given function. |
+| $this | [floorMicrosecond()](#floormicrosecond) | Truncate the current instance microsecond with given precision. |
+| $this | [floorMicroseconds()](#floormicroseconds) | Truncate the current instance microsecond with given precision. |
+| $this | [ceilMicrosecond()](#ceilmicrosecond) | Ceil the current instance microsecond with given precision. |
+| $this | [ceilMicroseconds()](#ceilmicroseconds) | Ceil the current instance microsecond with given precision. |
+| string | [shortAbsoluteDiffForHumans()](#shortabsolutediffforhumans) |  |
+| string | [longAbsoluteDiffForHumans()](#longabsolutediffforhumans) |  |
+| string | [shortRelativeDiffForHumans()](#shortrelativediffforhumans) |  |
+| string | [longRelativeDiffForHumans()](#longrelativediffforhumans) |  |
+| string | [shortRelativeToNowDiffForHumans()](#shortrelativetonowdiffforhumans) |  |
+| string | [longRelativeToNowDiffForHumans()](#longrelativetonowdiffforhumans) |  |
+| string | [shortRelativeToOtherDiffForHumans()](#shortrelativetootherdiffforhumans) |  |
+| string | [longRelativeToOtherDiffForHumans()](#longrelativetootherdiffforhumans) |  |
+| static|false | [createFromFormat()](#createfromformat) | Parse a string into a new Carbon object according to the specified format. |
+| static | [__set_state()](#__set_state) | https://php.net/manual/en/datetime.set-state.php
 
 </autodoc> |
-| Factory | [factory()](#factory) _(from [Factory](../JapaneseDate/Traits/Factory.md))_ | DateTimeオブジェクトの生成 |
-| void | [setCacheMode()](#setcachemode) _(from [CacheSetting](../JapaneseDate/Traits/CacheSetting.md))_ | キャッシュモードを指定する |
-| void | [setCacheFilePath()](#setcachefilepath) _(from [CacheSetting](../JapaneseDate/Traits/CacheSetting.md))_ | キャッシュファイル保存ディレクトリをセットします |
-| void | [setCacheClosure()](#setcacheclosure) _(from [CacheSetting](../JapaneseDate/Traits/CacheSetting.md))_ | 独自キャッシュロジックのセット |
-| Modifier | [nextHoliday()](#nextholiday) _(from [Modifier](../JapaneseDate/Traits/Modifier.md))_ | 次の祝日にする |
-| Modifier | [nextSixWeek()](#nextsixweek) _(from [Modifier](../JapaneseDate/Traits/Modifier.md))_ | 指定された次の六曜にする |
-| array | [getCalendar()](#getcalendar) _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | サポートされるカレンダーに変換する |
 
 ---
 
@@ -7680,148 +7394,5 @@ https://php.net/manual/en/datetime.set-state.php
 | array | `$array` | —  |  |
 
 **Returns:** static
----
-
-### factory
-
-```php
-static public Factory factory($date_time = null, $time_zone = null)
-```
-
-DateTimeオブジェクトの生成
-
-日付/時刻 文字列の書式については http://php.net/manual/ja/datetime.formats.php サポートする日付と時刻の書式 を参考にしてください。
-
-**Parameters:**
-
-| Type | Name | Default | Description |
-|---|---|---|---|
-| int\|float\|string\|[DateTimeInterface](https://www.php.net/class.datetimeinterface)\|null | `$date_time` | `null` | 日付/時刻 文字列。DateTimeオブジェクト |
-| [DateTimeZone](https://www.php.net/class.datetimezone)\|null | `$time_zone` | `null` | DateTimeZone オブジェクトか、時差の時間、タイムゾーンテキスト(omit 予定) |
-
-**Returns:** [Factory](../JapaneseDate/Traits/Factory.md)
-**Throws:**
-
-- NativeDateTimeException
----
-
-### setCacheMode
-
-```php
-static public void setCacheMode($mode)
-```
-
-キャッシュモードを指定する
-
-指定するキャッシュモードは、{\JapaneseDate\CacheMode}参照。
-
-**Parameters:**
-
-| Type | Name | Default | Description |
-|---|---|---|---|
-| int | `$mode` | —  | キャッシュモード |
-
-**Returns:** void
-**See also:**
-
-- CacheMode::MODE_AUTO — 自動でキャッシュモードを選択
-- CacheMode::MODE_APC — APCを使用したキャッシュ
-- CacheMode::MODE_FILE — ファイルを使用したキャッシュ
-- CacheMode::MODE_ORIGINAL — 独自キャッシュ
-- CacheMode::MODE_NONE — キャッシュなし
----
-
-### setCacheFilePath
-
-```php
-static public void setCacheFilePath($cache_file_path)
-```
-
-キャッシュファイル保存ディレクトリをセットします
-
-キャッシュモードがファイル{[\JapaneseDate\CacheMode::MODE_FILE}の時に使用する、キャッシュファイル保存ディレクトリをセットします。](../JapaneseDate/CacheMode.html)
-
-**Parameters:**
-
-| Type | Name | Default | Description |
-|---|---|---|---|
-| string | `$cache_file_path` | —  | キャッシュファイルを保存するディレクトリ |
-
-**Returns:** void
----
-
-### setCacheClosure
-
-```php
-static public void setCacheClosure($function)
-```
-
-独自キャッシュロジックのセット
-
-キャッシュモードが独自キャッシュ{[\JapaneseDate\CacheMode::MODE_ORIGINAL}の時に使用する、クロージャをセットします。
-
-セットされるクロージャは、
-
-mixed](../JapaneseDate/CacheMode.html) ClosureFunction(string $key, Closure $function)
-
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `$key` | **string** | キャッシュ単位の一意なキー。このキーにマッチしたキャッシュデータが有る場合は、キャッシュされたデータをreturnしてください。 |
-| `$function` | **\Closure** | キャッシュされたデータが取得できない場合に実行するクロージャです。実行すれば、キャッシュするべきデータが返されます。 |
-
-**Parameters:**
-
-| Type | Name | Default | Description |
-|---|---|---|---|
-| [Closure](https://www.php.net/class.closure) | `$function` | —  | 独自キャッシュのロジックが含まれたクロージャ |
-
-**Returns:** void
----
-
-### nextHoliday
-
-```php
-public Modifier nextHoliday()
-```
-
-次の祝日にする
-
-**Returns:** [Modifier](../JapaneseDate/Traits/Modifier.md)
----
-
-### nextSixWeek
-
-```php
-public Modifier nextSixWeek($week_day)
-```
-
-指定された次の六曜にする
-
-**Parameters:**
-
-| Type | Name | Default | Description |
-|---|---|---|---|
-| int | `$week_day` | —  |  |
-
-**Returns:** [Modifier](../JapaneseDate/Traits/Modifier.md)
----
-
-### getCalendar
-
-```php
-public array getCalendar($calendar = CAL_GREGORIAN)
-```
-
-サポートされるカレンダーに変換する
-
-サポートされる $calendar の値は、 CAL_GREGORIAN、 CAL_JULIAN、 CAL_JEWISH および CAL_FRENCH です。
-
-**Parameters:**
-
-| Type | Name | Default | Description |
-|---|---|---|---|
-| int | `$calendar` | `CAL_GREGORIAN` | サポートされるカレンダー |
-
-**Returns:** array — カレンダーの情報を含む配列を返します。この配列には、 年、月、日、週、曜日名、月名、"月/日/年" 形式の文字列 などが含まれます。
 ---
 
