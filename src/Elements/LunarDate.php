@@ -11,7 +11,7 @@
  * @version     GIT: $Id$
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
- * @since       Class available since Release 2018/04/28 2:55
+ * @since        2018/04/28 2:55
  */
 
 namespace JapaneseDate\Elements;
@@ -28,7 +28,7 @@ use JapaneseDate\Exceptions\ErrorException;
  * @version     GIT: $Id$
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
- * @since       Class available since Release 1.0.0
+ * @since        1.0.0
  * @property-read int year
  * @property-read int month
  * @property-read int day
@@ -59,7 +59,6 @@ class LunarDate
      * @param int|bool $solar_term
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JsonException
-     * @noinspection PhpMultipleClassDeclarationsInspection
      */
     public function __construct(array $lunar, int|bool $solar_term)
     {
@@ -79,7 +78,7 @@ class LunarDate
     {
         return match ($name) {
             'year', 'month', 'day', 'is_leap_month', 'solar_term' => true,
-            default => false,
+            default                                               => false,
         };
     }
 

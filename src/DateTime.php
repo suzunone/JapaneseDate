@@ -14,12 +14,10 @@ namespace JapaneseDate;
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
  * @see         https://carbon.nesbot.com/docs/
- * @since       Class available since Release 1.0.0
+ * @since        1.0.0
  */
 
 use Carbon\Carbon;
-use DateTimeInterface;
-use DateTimeZone;
 use Exception;
 use JapaneseDate\Components\JapaneseDate;
 use JapaneseDate\Components\LunarCalendar;
@@ -38,48 +36,9 @@ use JapaneseDate\Traits\DateTimeImport;
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
  * @see         https://carbon.nesbot.com/docs/
- * @since       Class available since Release 1.0.0
- * @property  int|bool $solar_term
- * @property  string $solar_term_text
- * @property bool $is_solar_term
- * @property string $era_name_text
- * @property int $era_name
- * @property int $era_year
- * @property string $oriental_zodiac_text
- * @property int $oriental_zodiac
- * @property string $six_weekday_text
- * @property int $six_weekday
- * @property int $weekday_text
- * @property string $month_text
- * @property string $holiday_text
- * @property int $holiday
- * @property bool $is_holiday
- * @property string $lunar_month_text
- * @property int $lunar_month
- * @property int $lunar_year
- * @property int $lunar_day
- * @property bool $is_leap_month
- * @property  int|bool $solarTerm
- * @property  string $solarTermText
- * @property bool $isSolarTerm
- * @property string $eraNameText
- * @property int $eraName
- * @property int $eraYear
- * @property string $orientalZodiacText
- * @property int $orientalZodiac
- * @property string $sixWeekdayText
- * @property int $sixWeekday
- * @property int $weekdayText
- * @property string $monthText
- * @property string $holidayText
- * @property bool $isHoliday
- * @property string $lunarMonthText
- * @property int $lunarMonth
- * @property int $lunarYear
- * @property int $lunarDay
- * @property bool $isLeapMonth
+ * @since        1.0.0
  */
-class DateTime extends Carbon
+class DateTime extends Carbon implements DateTimeInterface
 {
     use DateTimeImport;
 
@@ -245,14 +204,14 @@ class DateTime extends Carbon
     public const MOUNTAIN_DAY = 22;
 
     /**
-     * 天皇の即位の日
+     * 祝日定数:天皇の即位の日
      *
      * @var int
      */
     public const EMPERORS_THRONE_DAY = 23;
 
     /**
-     * スポーツの日
+     * 祝日定数:スポーツの日
      *
      * @var int
      */
@@ -284,98 +243,140 @@ class DateTime extends Carbon
     public const SECOND_TIME_TOKYO_OLYMPIC_RESCHEDULE_YEAR = 2021;
 
     /**
-     * 特定月定数 春分の日
+     * 特定月定数:春分の日
      *
      * @var int
      */
     public const VERNAL_EQUINOX_DAY_MONTH = 3;
 
     /**
-     * 特定月定数 秋分の日
+     * 特定月定数:秋分の日
      *
      * @var int
      */
     public const AUTUMNAL_EQUINOX_DAY_MONTH = 9;
 
     /**
-     * 曜日定数(日)
+     * 曜日定数:日
      *
      * @var int
      */
     public const SUNDAY = 0;
 
     /**
-     * 曜日定数(月)
+     * 曜日定数:月
      *
      * @var int
      */
     public const MONDAY = 1;
 
     /**
-     * 曜日定数(火)
+     * 曜日定数:火
      *
      * @var int
      */
     public const TUESDAY = 2;
 
     /**
-     * 曜日定数(水)
+     * 曜日定数:水
      *
      * @var int
      */
     public const WEDNESDAY = 3;
 
     /**
-     * 曜日定数(木)
+     * 曜日定数:木
      *
      * @var int
      */
     public const THURSDAY = 4;
 
     /**
-     * 曜日定数(金)
+     * 曜日定数:金
      *
      * @var int
      */
     public const FRIDAY = 5;
 
     /**
-     * 曜日定数(土)
+     * 曜日定数:土
      *
      * @var int
      */
     public const SATURDAY = 6;
 
     /**
-     * 元号 (明治)
+     * 六曜定数:大安
+     *
+     * @var int
+     */
+    public const SIX_WEEKDAY_TAIAN = 0;
+
+    /**
+     * 六曜定数:赤口
+     *
+     * @var int
+     */
+    public const SIX_WEEKDAY_SYAKKOU = 1;
+
+    /**
+     * 六曜定数:先勝
+     *
+     * @var int
+     */
+    public const SIX_WEEKDAY_SENSYOU = 2;
+
+    /**
+     * 六曜定数:友引
+     *
+     * @var int
+     */
+    public const SIX_WEEKDAY_TOMOBIKI = 3;
+
+    /**
+     * 六曜定数:先負
+     *
+     * @var int
+     */
+    public const SIX_WEEKDAY_SENBU = 4;
+
+    /**
+     * 六曜定数:仏滅
+     *
+     * @var int
+     */
+    public const SIX_WEEKDAY_BUTSUMETSU = 5;
+
+    /**
+     * 元号定数:元号 (明治)
      *
      * @var int
      */
     public const ERA_MEIJI = 1000;
 
     /**
-     * 元号 (対象)
+     * 元号定数:元号 (対象)
      *
      * @var int
      */
     public const ERA_TAISHO = 1001;
 
     /**
-     * 元号 (昭和)
+     * 元号定数:元号 (昭和)
      *
      * @var int
      */
     public const ERA_SHOWA = 1002;
 
     /**
-     * 元号 (平成)
+     * 元号定数:元号 (平成)
      *
      * @var int
      */
     public const ERA_HEISEI = 1003;
 
     /**
-     * 元号 (平成の次)
+     * 元号定数:元号 (平成の次)
      *
      * @var int
      * @deprecated
@@ -383,129 +384,177 @@ class DateTime extends Carbon
     public const ERA_HEISEI_NEXT = 1004;
 
     /**
-     * 元号 (平成の次)
+     * 元号定数:元号 (令和)
      *
      * @var int
      */
     public const ERA_REIWA = 1004;
 
     /**
-     * 春分
+     * 24節気定数:春分
+     *
+     * @var int
      */
     public const SOLAR_TERM_SYUNBUN = 0;
 
     /**
-     * 清明
+     * 24節気定数:清明
+     *
+     * @var int
      */
     public const SOLAR_TERM_SEIMEI = 1;
 
     /**
-     * 穀雨
+     * 24節気定数:穀雨
+     *
+     * @var int
      */
     public const SOLAR_TERM_KOKUU = 2;
 
     /**
-     * 立夏
+     * 24節気定数:立夏
+     *
+     * @var int
      */
     public const SOLAR_TERM_RIKKA = 3;
 
     /**
-     * 小満
+     * 24節気定数:小満
+     *
+     * @var int
      */
     public const SOLAR_TERM_SYOUMAN = 4;
 
     /**
-     * 芒種
+     * 24節気定数:芒種
+     *
+     * @var int
      */
     public const SOLAR_TERM_BOUSYU = 5;
 
     /**
-     * 夏至
+     * 24節気定数:夏至
+     *
+     * @var int
      */
     public const SOLAR_TERM_GESHI = 6;
 
     /**
-     * 小暑
+     * 24節気定数:小暑
+     *
+     * @var int
      */
     public const SOLAR_TERM_SYOUSYO = 7;
 
     /**
-     * 大暑
+     * 24節気定数:大暑
+     *
+     * @var int
      */
     public const SOLAR_TERM_TAISYO = 8;
 
     /**
-     * 立秋
+     * 24節気定数:立秋
+     *
+     * @var int
      */
     public const SOLAR_TERM_RISSYUU = 9;
 
     /**
-     * 処暑
+     * 24節気定数:処暑
+     *
+     * @var int
      */
     public const SOLAR_TERM_SYOSYO = 10;
 
     /**
-     * 白露
+     * 24節気定数:白露
+     *
+     * @var int
      */
     public const SOLAR_TERM_HAKURO = 11;
 
     /**
-     * 秋分
+     * 24節気定数:秋分
+     *
+     * @var int
      */
     public const SOLAR_TERM_SYUUBUN = 12;
 
     /**
-     * 寒露
+     * 24節気定数:寒露
+     *
+     * @var int
      */
     public const SOLAR_TERM_KANRO = 13;
 
     /**
-     * 霜降
+     * 24節気定数:霜降
+     *
+     * @var int
      */
     public const SOLAR_TERM_SOUKOU = 14;
 
     /**
-     * 立冬
+     * 24節気定数:立冬
+     *
+     * @var int
      */
     public const SOLAR_TERM_RITTOU = 15;
 
     /**
-     * 小雪
+     * 24節気定数:小雪
+     *
+     * @var int
      */
     public const SOLAR_TERM_SYOUSETSU = 16;
 
     /**
-     * 大雪
+     * 24節気定数:大雪
+     *
+     * @var int
      */
     public const SOLAR_TERM_TAISETSU = 17;
 
     /**
-     * 冬至
+     * 24節気定数:冬至
+     *
+     * @var int
      */
     public const SOLAR_TERM_TOUJI = 18;
 
     /**
-     * 小寒
+     * 24節気定数:小寒
+     *
+     * @var int
      */
     public const SOLAR_TERM_SYOUKAN = 19;
 
     /**
-     * 大寒
+     * 24節気定数:大寒
+     *
+     * @var int
      */
     public const SOLAR_TERM_DAIKAN = 20;
 
     /**
-     * 立春
+     * 24節気定数:立春
+     *
+     * @var int
      */
     public const SOLAR_TERM_RISSYUN = 21;
 
     /**
-     * 雨水
+     * 24節気定数:雨水
+     *
+     * @var int
      */
     public const SOLAR_TERM_USUI = 22;
 
     /**
-     * 啓蟄
+     * 24節気定数:啓蟄
+     *
+     * @var int
      */
     public const SOLAR_TERM_KEICHITSU = 23;
 

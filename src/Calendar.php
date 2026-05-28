@@ -11,7 +11,7 @@
  * @license     BSD-2
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
- * @since       Class available since Release 1.0.0
+ * @since        1.0.0
  */
 
 namespace JapaneseDate;
@@ -22,6 +22,7 @@ use DateTimeInterface;
 use DateTimeZone;
 use Exception;
 use JapaneseDate\Exceptions\NativeDateTimeException;
+
 
 /**
  * 日付オブジェクト配列作成
@@ -36,7 +37,7 @@ use JapaneseDate\Exceptions\NativeDateTimeException;
  * @license     BSD-2
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
- * @since       Class available since Release 1.0.0
+ * @since        1.0.0
  */
 class Calendar
 {
@@ -275,14 +276,14 @@ class Calendar
     }
 
     /**
-     * @param \JapaneseDate\DateTime $dateTime
+     * @param \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable $dateTime
      * @return bool
      */
-    protected function isWorkingDay(DateTime $dateTime): bool
+    protected function isWorkingDay(DateTime|DateTimeImmutable $dateTime): bool
     {
         return match (true) {
             array_key_exists($dateTime->dayOfWeek, $this->bypass_week_day_arr), isset($this->bypass_day_arr[$this->getCompareFormat($dateTime)]), $this->is_bypass_holiday && $dateTime->holiday !== DateTime::NO_HOLIDAY => false,
-            default => true,
+            default                                                                                                                                                                                                       => true,
         };
     }
 

@@ -1,0 +1,78 @@
+{# root_path must be passed explicitly to macros that generate links #}
+
+{% macro class_link_md(class, root_path) -%}
+{%- if class.isProjectClass() -%}
+[{{ class.shortname }}]({{ root_path }}{{ class.name|replace({'\\': '/'})|trim('/') }}.md)
+{%- elseif class.isPhpClass() -%}
+[{{ class.shortname }}](https://www.php.net/class.{{ class.name|lower|replace({'\\': '-'}) }})
+{%- else -%}
+{{ class.shortname }}
+{%- endif %}
+{%- endmacro %}
+
+{% macro namespace_link_md(namespace, root_path) -%}
+{%- if namespace == '' -%}
+[Global Namespace]({{ root_path }}index.md)
+{%- else -%}
+[{{ namespace|raw }}]({{ root_path }}{{ namespace|replace({'\\': '/'})|trim('/') }}.md)
+{%- endif %}
+{%- endmacro %}
+
+{% macro method_link_md(method, root_path, classonly) -%}
+[{{ method.class.shortname }}{% if not classonly|default(false) %}::{{ method.name|raw }}{% endif %}]({{ root_path }}{{ method.class.name|replace({'\\': '/'})|trim('/') }}.md#{{ method.name|lower|raw }})
+{%- endmacro %}
+
+{% macro property_link_md(property, root_path, classonly) -%}
+[{{ property.class.shortname }}{% if not classonly|default(false) %}::${{ property.name|raw }}{% endif %}]({{ root_path }}{{ property.class.name|replace({'\\': '/'})|trim('/') }}.md#property_{{ property.name|raw }})
+{%- endmacro %}
+
+{% macro hint_link_md(hints, isIntersectionType, root_path) -%}
+{%- if hints -%}
+    {%- for hint in hints -%}
+        {%- if hint.class -%}
+            {%- if hint.name.isProjectClass() -%}
+[{{ hint.name.shortname }}]({{ root_path }}{{ hint.name.name|replace({'\\': '/'})|trim('/') }}.md)
+            {%- elseif hint.name.isPhpClass() -%}
+[{{ hint.name.shortname }}](https://www.php.net/class.{{ hint.name.name|lower|replace({'\\': '-'}) }})
+            {%- else -%}
+{{ hint.name.shortname }}
+            {%- endif -%}
+        {%- elseif hint.name -%}
+{{ hint.name|raw }}
+        {%- endif -%}
+        {%- if hint.array %}[]{% endif -%}
+        {%- if not loop.last %}{% if isIntersectionType %}&{% else %}|{% endif %}{% endif -%}
+    {%- endfor -%}
+{%- endif -%}
+{%- endmacro %}
+
+{% macro hint_text(hints, isIntersectionType) -%}
+{%- if hints -%}
+    {%- for hint in hints -%}
+        {%- if hint.class -%}{{ hint.name.shortname }}{%- elseif hint.name -%}{{ hint.name|raw }}{%- endif -%}
+        {%- if hint.array %}[]{% endif -%}
+        {%- if not loop.last %}{% if isIntersectionType %}&{% else %}|{% endif %}{% endif -%}
+    {%- endfor -%}
+{%- endif -%}
+{%- endmacro %}
+
+{% macro method_params_sig(method) -%}
+(
+    {%- for parameter in method.parameters -%}
+        {%- if parameter.variadic %}...{% endif -%}${{ parameter.name|raw }}
+        {%- if parameter.default is not null %} = {{ parameter.default }}{% endif -%}
+        {%- if not loop.last %}, {% endif -%}
+    {%- endfor -%}
+)
+{%- endmacro %}
+
+{% macro modifier_md(method) -%}
+{%- if method.final %}final {% endif -%}
+{%- if method.abstract %}abstract {% endif -%}
+{%- if method.static %}static {% endif -%}
+{%- if method.protected %}protected {% elseif method.private %}private {% else %}public {% endif -%}
+{%- endmacro %}
+
+{% macro deprecated_md(reflection) -%}
+{%- if reflection.deprecated %} _(deprecated)_{% endif -%}
+{%- endmacro %}
