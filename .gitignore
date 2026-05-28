@@ -224,3 +224,10 @@ composer.lock
 .phpunit.cache/
 
 package.xml
+phpDocumentor.phar
+doctum.phar
+doctum/
+docs/api/DOCTUM_VERSION
+docs/api/PROJECT_VERSION
+docs/api/renderer.index
+.claude

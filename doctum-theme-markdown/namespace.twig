@@ -1,0 +1,56 @@
+{% from "macros.twig" import class_link_md, namespace_link_md, hint_text, method_params_sig %}
+# Namespace: {{ namespace == '' ? 'Global' : namespace|raw }}
+
+{% if subnamespaces %}
+## Namespaces
+
+{% for ns in subnamespaces %}
+- {{ namespace_link_md(ns, root_path) }}
+{% endfor %}
+
+{% endif %}
+{% if classes %}
+## Classes
+
+| Class | Description |
+|---|---|
+{% for class in classes %}
+| {{ class_link_md(class, root_path) }} | {{ class.shortdesc|desc(class) }} |
+{% endfor %}
+
+{% endif %}
+{% if interfaces %}
+## Interfaces
+
+| Interface | Description |
+|---|---|
+{% for iface in interfaces %}
+| _{{ class_link_md(iface, root_path) }}_ | {{ iface.shortdesc|desc(iface) }} |
+{% endfor %}
+
+{% endif %}
+{% if exceptions %}
+## Exceptions
+
+| Exception | Description |
+|---|---|
+{% for exc in exceptions %}
+| {{ class_link_md(exc, root_path) }} | {{ exc.shortdesc|desc(exc) }} |
+{% endfor %}
+
+{% endif %}
+{% if functions %}
+## Functions
+
+{% for function in functions %}
+### {{ function.name|raw }}
+
+```php
+{{ hint_text(function.hint) }} {{ function.name|raw }}{{ method_params_sig(function) }}
+```
+
+{% if function.shortdesc %}{{ function.shortdesc|desc(function) }}
+
+{% endif %}
+{% endfor %}
+{% endif %}

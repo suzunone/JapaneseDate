@@ -1,0 +1,13 @@
+{% from "macros.twig" import namespace_link_md %}
+# All Namespaces
+
+{% set last_top = '' %}
+{% for namespace in namespaces %}
+{% set top = namespace|split('\\')|first %}
+{% if top != last_top %}
+## {{ top|raw }}
+
+{% set last_top = top %}
+{% endif %}
+- {{ namespace_link_md(namespace, root_path) }}
+{% endfor %}
