@@ -31,8 +31,8 @@ This date library was formerly known as [php.five-foxes.com] (http://php.five-fo
 How to use
 -----------------------------------------
 
- - [Documents](https://github.com/suzunone/JapaneseDate/blob/v8.X/docs/README.md)
- - [API Documents](https://github.com/suzunone/JapaneseDate/blob/v8.X/docs/API/index.md)
+ - [Documents](https://github.com/suzunone/JapaneseDate/blob/v7.X/docs/README.md)
+ - [API Documents](https://github.com/suzunone/JapaneseDate/blob/v7.X/docs/API/index.md)
 
 
 Installation Instructions

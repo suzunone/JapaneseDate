@@ -885,8 +885,8 @@ JapaneseDateTime::setCacheMode(CacheMode::MODE_NONE);
 静的に処理されるため、同一Request内では、次にsetCacheModeするまでは同一のキャッシュモードが使用されることに注意してください。
 
 キャッシュモードの切り替えは、`JapaneseDateTime::setCacheMode`での切り替え以外に、
-[JapaneseDateTime::setCacheFilePath](https://github.com/suzunone/JapaneseDate/blob/master/docs/api/JapaneseDate/DateTime.md)を使用してキャッシュファイルのパスを指定したり、
-[JapaneseDateTime::setCacheClosure](https://github.com/suzunone/JapaneseDate/blob/master/docs/api/JapaneseDate/DateTime.md)をして、独自のキャッシュロジックを登録することでも切り替えることができます。
+[JapaneseDateTime::setCacheFilePath](https://github.com/suzunone/JapaneseDate/blob/v7.X/docs/api/JapaneseDate/DateTime.md)を使用してキャッシュファイルのパスを指定したり、
+[JapaneseDateTime::setCacheClosure](https://github.com/suzunone/JapaneseDate/blob/v7.X/docs/api/JapaneseDate/DateTime.md)をして、独自のキャッシュロジックを登録することでも切り替えることができます。
 
 
 <?php
