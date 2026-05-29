@@ -64,14 +64,14 @@ class BusinessCalendar
      *
      * @var DateBusiness|null
      */
-    protected static ?DateBusiness $globalConfig = null;
+    protected static $globalConfig;
 
     /**
      * デフォルト設定（土日休み・祝日休み）
      *
      * @var DateBusiness|null
      */
-    protected static ?DateBusiness $defaultConfig = null;
+    protected static $defaultConfig;
 
     /**
      * グローバル設定を取得します。
@@ -102,7 +102,7 @@ class BusinessCalendar
      * @param  DateBusiness|null $config 設定オブジェクト、または null（リセット）
      * @return void
      */
-    public static function setGlobalConfig(?DateBusiness $config): void
+    public static function setGlobalConfig($config): void
     {
         static::$globalConfig = $config;
     }
@@ -133,7 +133,7 @@ class BusinessCalendar
      * @param  DateBusiness|null $config デフォルト設定オブジェクト、または null（リセット）
      * @return void
      */
-    public static function setDefaultConfig(?DateBusiness $config): void
+    public static function setDefaultConfig($config): void
     {
         static::$defaultConfig = $config;
     }
@@ -159,7 +159,7 @@ class BusinessCalendar
      * @param  DateBusiness|null $instanceConfig インスタンスが保持する個別設定（保持しない場合 null）
      * @return DateBusiness 判定に使用する有効な設定オブジェクト
      */
-    public static function resolveConfig(?DateBusiness $instanceConfig): DateBusiness
+    public static function resolveConfig($instanceConfig): DateBusiness
     {
         return $instanceConfig
             ?? static::$globalConfig
@@ -187,7 +187,7 @@ class BusinessCalendar
      * @param  DateBusiness|null $instanceConfig インスタンス個別設定（なければ null）
      * @return bool 営業日であれば true、休業日であれば false
      */
-    public static function isBusinessDay(DateTimeInterface $date, ?DateBusiness $instanceConfig = null): bool
+    public static function isBusinessDay($date, $instanceConfig = null): bool
     {
         $config = static::resolveConfig($instanceConfig);
 
@@ -266,7 +266,7 @@ class BusinessCalendar
      * @param  DateBusiness|null $instanceConfig インスタンス個別設定（なければ null）
      * @return string|null 休業ラベル、または null
      */
-    public static function getClosingLabel(DateTimeInterface $date, ?DateBusiness $instanceConfig = null): ?string
+    public static function getClosingLabel($date, $instanceConfig = null): ?string
     {
         if (static::isBusinessDay($date, $instanceConfig)) {
             return null;
@@ -327,7 +327,7 @@ class BusinessCalendar
      * @param  DateTimeInterface $date
      * @return int
      */
-    protected static function getHoliday(DateTimeInterface $date): int
+    protected static function getHoliday($date): int
     {
         if ($date instanceof DateTime) {
             return $date->holiday;
@@ -338,7 +338,7 @@ class BusinessCalendar
             $dt = DateTime::factory($date->format('Y-m-d'), $date->getTimezone());
 
             return $dt->holiday;
-        } catch (\Throwable) {
+        } catch (\Throwable $exception) {
             return DateTime::NO_HOLIDAY;
         }
     }
@@ -351,7 +351,7 @@ class BusinessCalendar
      * @param  DateTimeInterface $date
      * @return int 第何曜日か（1〜5）
      */
-    protected static function getNthWeekday(DateTimeInterface $date): int
+    protected static function getNthWeekday($date): int
     {
         return (int) ceil((int) $date->format('j') / 7);
     }

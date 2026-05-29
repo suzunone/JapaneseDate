@@ -52,17 +52,17 @@ trait Component
     /**
      * @var \JapaneseDate\Components\SexagenaryCycle
      */
-    protected SexagenaryCycle $SexagenaryCycle;
+    protected $SexagenaryCycle;
 
     /**
      * @var \JapaneseDate\Components\MiscSeasonalNode
      */
-    protected MiscSeasonalNode $MiscSeasonalNode;
+    protected $MiscSeasonalNode;
 
     /**
      * @var \JapaneseDate\Components\SeasonalFestival
      */
-    protected SeasonalFestival $SeasonalFestival;
+    protected $SeasonalFestival;
 
     /**
      * @var array

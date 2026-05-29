@@ -99,7 +99,7 @@ class SeasonalFestivalTest extends TestCase
      * @param string $expected 期待する式名
      * @dataProvider viewNameProvider
      */
-    public function test_viewName(int $key, string $expected): void
+    public function test_viewName($key, $expected): void
     {
         $festival = SeasonalFestival::factory();
         $this->assertSame($expected, $festival->viewName($key));
@@ -123,7 +123,7 @@ class SeasonalFestivalTest extends TestCase
      * @param string $expected 期待する別名
      * @dataProvider viewAliasProvider
      */
-    public function test_viewAlias(int $key, string $expected): void
+    public function test_viewAlias($key, $expected): void
     {
         $festival = SeasonalFestival::factory();
         $this->assertSame($expected, $festival->viewAlias($key));
@@ -150,7 +150,7 @@ class SeasonalFestivalTest extends TestCase
      * @param int    $expected 期待する五節句定数
      * @dataProvider solarFestivalProvider
      */
-    public function test_getSolarFestivalKey(string $date, int $expected): void
+    public function test_getSolarFestivalKey($date, $expected): void
     {
         $festival = SeasonalFestival::factory();
         $this->assertSame($expected, $festival->getSolarFestivalKey(DateTime::parse($date)));
@@ -210,7 +210,7 @@ class SeasonalFestivalTest extends TestCase
      * @param int    $expected 期待する五節句定数
      * @dataProvider lunarFestivalProvider
      */
-    public function test_getLunarFestivalKey(string $date, int $expected): void
+    public function test_getLunarFestivalKey($date, $expected): void
     {
         $festival = SeasonalFestival::factory();
         $result = $festival->getLunarFestivalKey(DateTime::parse($date));

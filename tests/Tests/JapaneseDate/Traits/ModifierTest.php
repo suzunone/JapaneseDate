@@ -112,7 +112,7 @@ class ModifierTest extends TestCase
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      * @dataProvider dataProviderNextSixWeek
      */
-    public function test_nextSixWeek(string $start, int $six_weekday, string $expected): void
+    public function test_nextSixWeek($start, $six_weekday, $expected): void
     {
         $dateTime = new DateTime($start);
         $this->assertEquals($six_weekday, $dateTime->nextSixWeek($six_weekday)->six_weekday);
@@ -127,7 +127,7 @@ class ModifierTest extends TestCase
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      * @dataProvider dataProviderNextSixWeek
      */
-    public function test_nextSixWeek_immutable(string $start, int $six_weekday, string $expected): void
+    public function test_nextSixWeek_immutable($start, $six_weekday, $expected): void
     {
         $dateTime = new DateTimeImmutable($start);
         $this->assertEquals($six_weekday, $dateTime->nextSixWeek($six_weekday)->six_weekday);

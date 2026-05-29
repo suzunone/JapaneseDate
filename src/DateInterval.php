@@ -197,7 +197,7 @@ class DateInterval extends CarbonInterval
      * @return \JapaneseDate\DateTime N 営業日後の日付
      * @throws \JapaneseDate\Exceptions\Exception
      */
-    public static function addBusinessDaysToDate(DateTime $from, int $n): DateTime
+    public static function addBusinessDaysToDate($from, $n): DateTime
     {
         $date = DateTime::factory($from);
         $count = 0;
@@ -231,7 +231,7 @@ class DateInterval extends CarbonInterval
      * @return \JapaneseDate\DateTime N 営業日前の日付
      * @throws \JapaneseDate\Exceptions\Exception
      */
-    public static function subBusinessDaysToDate(DateTime $from, int $n): DateTime
+    public static function subBusinessDaysToDate($from, $n): DateTime
     {
         $date = DateTime::factory($from);
         $count = 0;
@@ -254,7 +254,7 @@ class DateInterval extends CarbonInterval
      * @param \JapaneseDate\DateTime $date 判定対象の日付
      * @return bool 営業日であれば true、非営業日であれば false
      */
-    public static function isBusinessDay(DateTime $date): bool
+    public static function isBusinessDay($date): bool
     {
         if ($date->dayOfWeek === 0 || $date->dayOfWeek === 6) {
             return false;
@@ -285,7 +285,7 @@ class DateInterval extends CarbonInterval
      * @return static 次の祝日（当日 00:00:00）までの {@see DateInterval}
      * @throws \JapaneseDate\Exceptions\Exception
      */
-    public static function untilNextHoliday(DateTime $from): static
+    public static function untilNextHoliday($from)
     {
         $base = DateTime::factory($from);
         $nextHoliday = $base->copy()->nextHoliday()->startOfDay();
@@ -319,7 +319,7 @@ class DateInterval extends CarbonInterval
      * @return static 指定六曜の翌到来日（当日 00:00:00）までの {@see DateInterval}
      * @throws \JapaneseDate\Exceptions\Exception
      */
-    public static function untilNextSixWeek(DateTime $from, int $sixWeekday): static
+    public static function untilNextSixWeek($from, $sixWeekday)
     {
         $base = DateTime::factory($from);
         $current = $base->sixWeekday;
@@ -366,7 +366,7 @@ class DateInterval extends CarbonInterval
      * @param \JapaneseDate\DateTime|null $until 終了日（null の場合は現在日時）
      * @return static 元号の継続期間を表す {@see DateInterval}
      */
-    public static function eraSpan(int $eraKey, ?DateTime $until = null): static
+    public static function eraSpan($eraKey, $until = null)
     {
         if (!isset(static::ERA_START_DATES[$eraKey])) {
             throw new InvalidArgumentException('不明な元号キーです: ' . $eraKey);
@@ -411,7 +411,7 @@ class DateInterval extends CarbonInterval
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    public static function untilNextSolarTerm(DateTime $from, ?string $termMethod = null): static
+    public static function untilNextSolarTerm($from, $termMethod = null)
     {
         $target = static::findNextSolarTermDate($from, $termMethod);
         $diff = $from->diff($target->startOfDay());
@@ -439,7 +439,7 @@ class DateInterval extends CarbonInterval
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    public static function addSolarTermsToDate(DateTime $from, int $n): DateTime
+    public static function addSolarTermsToDate($from, $n): DateTime
     {
         $date = DateTime::factory($from);
         for ($i = 0; $i < $n; $i++) {
@@ -469,7 +469,7 @@ class DateInterval extends CarbonInterval
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    public static function subSolarTermsToDate(DateTime $from, int $n): DateTime
+    public static function subSolarTermsToDate($from, $n): DateTime
     {
         $date = DateTime::factory($from);
         for ($i = 0; $i < $n; $i++) {
@@ -547,7 +547,7 @@ class DateInterval extends CarbonInterval
      * @return static 次の新月日（当日 00:00:00）までの {@see DateInterval}
      * @throws \JapaneseDate\Exceptions\Exception
      */
-    public static function untilNextNewMoon(DateTime $from): static
+    public static function untilNextNewMoon($from)
     {
         $moon = new Moon();
         $nextNewMoon = $moon->moonPhase(DateTime::factory($from), 0.0);
@@ -572,7 +572,7 @@ class DateInterval extends CarbonInterval
      * @return \JapaneseDate\DateTime 次の節気日
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
-    protected static function findNextSolarTermDate(DateTime $from, ?string $termMethod = null): DateTime
+    protected static function findNextSolarTermDate($from, $termMethod = null): DateTime
     {
         $methods = $termMethod !== null ? [$termMethod] : array_keys(static::SOLAR_TERM_METHODS);
         $fromTimestamp = $from->timestamp;
@@ -594,7 +594,7 @@ class DateInterval extends CarbonInterval
                         $best = $candidate;
                     }
                     // @codeCoverageIgnoreStart
-                } catch (Throwable) {
+                } catch (Throwable $exception) {
                     continue;
                 }
                 // @codeCoverageIgnoreEnd
@@ -616,7 +616,7 @@ class DateInterval extends CarbonInterval
      * @return \JapaneseDate\DateTime 直前の節気日
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
-    protected static function findPrevSolarTermDate(DateTime $from, ?string $termMethod = null): DateTime
+    protected static function findPrevSolarTermDate($from, $termMethod = null): DateTime
     {
         $methods = $termMethod !== null ? [$termMethod] : array_keys(static::SOLAR_TERM_METHODS);
         $fromTimestamp = $from->timestamp;
@@ -638,7 +638,7 @@ class DateInterval extends CarbonInterval
                         $best = $candidate;
                     }
                     // @codeCoverageIgnoreStart
-                } catch (Throwable) {
+                } catch (Throwable $exception) {
                     continue;
                 }
                 // @codeCoverageIgnoreEnd
@@ -660,11 +660,11 @@ class DateInterval extends CarbonInterval
      * @return \JapaneseDate\Elements\SolarTermDate 節気日データ
      * @throws \JapaneseDate\Exceptions\SolarTermException 計算不可能な年の場合
      */
-    protected static function resolveSolarTerm(string $method, int $year): SolarTermDate
+    protected static function resolveSolarTerm($method, $year): SolarTermDate
     {
         try {
             return (new SimpleSolarTerm())->{$method}($year);
-        } catch (Throwable) {
+        } catch (Throwable $exception) {
             return (new SolarTerm())->{$method}($year);
         }
     }
@@ -679,7 +679,7 @@ class DateInterval extends CarbonInterval
      * @param  DateBusiness|null      $config       判定に使用する設定（省略時はインスタンス設定）
      * @return \JapaneseDate\DateTime N営業日後の日付
      */
-    public function addBusinessDaysTo(DateTime $baseDate, int $businessDays, ?DateBusiness $config = null): DateTime
+    public function addBusinessDaysTo($baseDate, $businessDays, $config = null): DateTime
     {
         $effectiveConfig = $config ?? $this->businessConfig;
         $dt = clone $baseDate;
@@ -702,7 +702,7 @@ class DateInterval extends CarbonInterval
      * @param  DateBusiness|null      $config       判定に使用する設定（省略時はインスタンス設定）
      * @return \JapaneseDate\DateTime N営業日前の日付
      */
-    public function subBusinessDaysFrom(DateTime $baseDate, int $businessDays, ?DateBusiness $config = null): DateTime
+    public function subBusinessDaysFrom($baseDate, $businessDays, $config = null): DateTime
     {
         $effectiveConfig = $config ?? $this->businessConfig;
         $dt = clone $baseDate;
@@ -725,7 +725,7 @@ class DateInterval extends CarbonInterval
      * @param  DateBusiness|null $config 判定に使用する設定（省略時はインスタンス設定）
      * @return int 営業日数（start以上end以下の営業日の数）
      */
-    public function countBusinessDaysBetween(\DateTimeInterface $start, \DateTimeInterface $end, ?DateBusiness $config = null): int
+    public function countBusinessDaysBetween($start, $end, $config = null): int
     {
         $effectiveConfig = $config ?? $this->businessConfig;
         $dt = DateTime::factory($start->format('Y-m-d'), $start->getTimezone());

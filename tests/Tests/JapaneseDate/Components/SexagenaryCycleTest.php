@@ -83,8 +83,11 @@ class SexagenaryCycleTest extends TestCase
     }
     /**
      * @dataProvider orientalZodiacProvider
+     * @param int $year
+     * @param int $expectedKey
+     * @param string $expectedText
      */
-    public function test_getOrientalZodiacKey(int $year, int $expectedKey, string $expectedText): void
+    public function test_getOrientalZodiacKey($year, $expectedKey, $expectedText): void
     {
         $cycle = new SexagenaryCycle();
         $this->assertSame($expectedKey, $cycle->getOrientalZodiacKey($year));
@@ -92,8 +95,11 @@ class SexagenaryCycleTest extends TestCase
     // ==================== viewOrientalZodiac ====================
     /**
      * @dataProvider orientalZodiacProvider
+     * @param int $year
+     * @param int $key
+     * @param string $expectedText
      */
-    public function test_viewOrientalZodiac_validKey(int $year, int $key, string $expectedText): void
+    public function test_viewOrientalZodiac_validKey($year, $key, $expectedText): void
     {
         $cycle = new SexagenaryCycle();
         $this->assertSame($expectedText, $cycle->viewOrientalZodiac($key));
@@ -125,8 +131,11 @@ class SexagenaryCycleTest extends TestCase
     }
     /**
      * @dataProvider heavenlyStemProvider
+     * @param int $year
+     * @param int $expectedKey
+     * @param string $expectedText
      */
-    public function test_getHeavenlyStemKey(int $year, int $expectedKey, string $expectedText): void
+    public function test_getHeavenlyStemKey($year, $expectedKey, $expectedText): void
     {
         $cycle = new SexagenaryCycle();
         $this->assertSame($expectedKey, $cycle->getHeavenlyStemKey($year));
@@ -134,8 +143,11 @@ class SexagenaryCycleTest extends TestCase
     // ==================== viewHeavenlyStem ====================
     /**
      * @dataProvider heavenlyStemProvider
+     * @param int $year
+     * @param int $key
+     * @param string $expectedText
      */
-    public function test_viewHeavenlyStem_validKey(int $year, int $key, string $expectedText): void
+    public function test_viewHeavenlyStem_validKey($year, $key, $expectedText): void
     {
         $cycle = new SexagenaryCycle();
         $this->assertSame($expectedText, $cycle->viewHeavenlyStem($key));

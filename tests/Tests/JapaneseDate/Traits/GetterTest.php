@@ -146,8 +146,10 @@ class GetterTest extends TestCase
     /**
      * 二十四節気の日付プロパティが期待する日時を返すことを確認する。
      * @dataProvider solarTermDateGetterDataProvider
+     * @param string $property
+     * @param string $expected
      */
-    public function test_get_solar_term_date_property(string $property, string $expected): void
+    public function test_get_solar_term_date_property($property, $expected): void
     {
         $DateTime = new DateTime('2018-01-01 12:34:56');
         $this->assertSame($expected, $DateTime->{$property}->format('Y-m-d H:i:s'));

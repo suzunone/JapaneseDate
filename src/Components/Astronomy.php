@@ -149,7 +149,7 @@ class Astronomy
      * @return float 月の位相角（0°=新月, 90°=上弦, 180°=満月, 270°=下弦）
      * @throws \JapaneseDate\Exceptions\Exception
      */
-    public function moonPhaseAngle(int $year, int $month, int $day, float $hour, float $min, float $sec): float
+    public function moonPhaseAngle($year, $month, $day, $hour, $min, $sec): float
     {
         $longitude_moon = $this->longitudeMoon($year, $month, $day, $hour, $min, $sec);
         $longitude_sun = $this->longitudeSun($year, $month, $day, $hour, $min, $sec);
@@ -173,7 +173,7 @@ class Astronomy
      * @return int 月相 (0〜7)
      * @throws \JapaneseDate\Exceptions\Exception
      */
-    public function moonPhase(int $year, int $month, int $day, float $hour, float $min, float $sec): int
+    public function moonPhase($year, $month, $day, $hour, $min, $sec): int
     {
         $phase_angle = $this->moonPhaseAngle($year, $month, $day, $hour, $min, $sec);
 

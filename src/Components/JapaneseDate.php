@@ -101,7 +101,7 @@ class JapaneseDate
      *
      * @var \JapaneseDate\Components\SexagenaryCycle
      */
-    private SexagenaryCycle $SexagenaryCycle;
+    private $SexagenaryCycle;
 
     /**
      * @var array
@@ -895,7 +895,7 @@ class JapaneseDate
      * @param int $key 月相キー (0〜7)
      * @return      string
      */
-    public function viewMoonPhase(int $key): string
+    public function viewMoonPhase($key): string
     {
         return self::MOON_PHASE[$key] ?? '';
     }

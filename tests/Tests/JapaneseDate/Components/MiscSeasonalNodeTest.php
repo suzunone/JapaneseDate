@@ -88,7 +88,7 @@ class MiscSeasonalNodeTest extends TestCase
      * @param string $expected 期待する日本語名
      * @dataProvider viewMiscSeasonalNodeProvider
      */
-    public function test_viewMiscSeasonalNode(int $key, string $expected): void
+    public function test_viewMiscSeasonalNode($key, $expected): void
     {
         $node = MiscSeasonalNode::factory();
         $this->assertSame($expected, $node->viewMiscSeasonalNode($key));

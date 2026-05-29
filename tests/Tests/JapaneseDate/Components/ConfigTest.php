@@ -26,7 +26,10 @@ use PHPUnit\Framework\TestCase;
  */
 class ConfigTest extends TestCase
 {
-    private string $tmpDir;
+    /**
+     * @var string
+     */
+    private $tmpDir;
     /**
      * テスト用の暦データファイルを一時ディレクトリに作成する。
      */

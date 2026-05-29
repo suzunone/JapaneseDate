@@ -72,8 +72,10 @@ class AstronomyTest extends TestCase
     }
     /**
      * @dataProvider normalizeAngleProvider
+     * @param float $input
+     * @param float $expected
      */
-    public function test_normalizeAngle(float $input, float $expected): void
+    public function test_normalizeAngle($input, $expected): void
     {
         $ast = new Astronomy();
         $result = $this->invokeExecuteMethod($ast, 'normalizeAngle', [$input]);
@@ -438,8 +440,15 @@ class AstronomyTest extends TestCase
     }
     /**
      * @dataProvider moonAgeProvider
+     * @param int $year
+     * @param int $month
+     * @param int $day
+     * @param float $hour
+     * @param float $min
+     * @param float $sec
+     * @param int $expectedRounded
      */
-    public function test_moonAge(int $year, int $month, int $day, float $hour, float $min, float $sec, int $expectedRounded): void
+    public function test_moonAge($year, $month, $day, $hour, $min, $sec, $expectedRounded): void
     {
         $ast = new Astronomy();
         $result = $ast->moonAge($year, $month, $day, $hour, $min, $sec);
