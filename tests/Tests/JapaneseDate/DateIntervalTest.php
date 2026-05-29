@@ -188,7 +188,7 @@ class DateIntervalTest extends TestCase
         $interval = DateInterval::untilNextHoliday($from);
 
         $this->assertInstanceOf(DateInterval::class, $interval);
-        $this->assertEquals(2, $interval->days);
+        $this->assertEquals(2, $interval->d);
     }
 
     /**
@@ -216,11 +216,11 @@ class DateIntervalTest extends TestCase
 
         $this->assertInstanceOf(DateInterval::class, $interval);
         // 大安は6日サイクルなので 1〜6 日後になる
-        $this->assertGreaterThanOrEqual(1, $interval->days);
-        $this->assertLessThanOrEqual(6, $interval->days);
+        $this->assertGreaterThanOrEqual(1, $interval->d);
+        $this->assertLessThanOrEqual(6, $interval->d);
 
         // 実際に到達した日が大安であることを確認する
-        $target = DateTime::parse('2026-05-01')->addDays($interval->days);
+        $target = DateTime::parse('2026-05-01')->addDays($interval->d);
         $this->assertEquals(DateTime::SIX_WEEKDAY_TAIAN, $target->six_weekday);
     }
 
@@ -236,7 +236,7 @@ class DateIntervalTest extends TestCase
         }
 
         $interval = DateInterval::untilNextSixWeek($date, DateTime::SIX_WEEKDAY_TAIAN);
-        $this->assertEquals(6, $interval->days);
+        $this->assertEquals(6, $interval->d);
     }
 
     /**
@@ -253,7 +253,7 @@ class DateIntervalTest extends TestCase
         }
         // 大安(0) → 友引(3): 3 日後
         $interval = DateInterval::untilNextSixWeek($date, DateTime::SIX_WEEKDAY_TOMOBIKI);
-        $this->assertEquals(3, $interval->days);
+        $this->assertEquals(3, $interval->d);
     }
 
     /**
@@ -340,7 +340,7 @@ class DateIntervalTest extends TestCase
         $from = DateTime::parse('1500-03-01');
         $interval = DateInterval::untilNextSolarTerm($from);
         $this->assertInstanceOf(DateInterval::class, $interval);
-        $this->assertGreaterThanOrEqual(0, $interval->days);
+        $this->assertGreaterThanOrEqual(0, $interval->d);
     }
 
     /**
@@ -353,8 +353,8 @@ class DateIntervalTest extends TestCase
 
         $this->assertInstanceOf(DateInterval::class, $interval);
         // 節気の間隔は 14〜16 日程度なので、次の節気は 30 日以内
-        $this->assertLessThanOrEqual(30, $interval->days);
-        $this->assertGreaterThanOrEqual(0, $interval->days);
+        $this->assertLessThanOrEqual(30, $interval->d);
+        $this->assertGreaterThanOrEqual(0, $interval->d);
     }
 
     /**
@@ -367,9 +367,9 @@ class DateIntervalTest extends TestCase
         $interval = DateInterval::untilNextSolarTerm($from, 'geshi');
 
         $this->assertInstanceOf(DateInterval::class, $interval);
-        $this->assertGreaterThan(0, $interval->days);
+        $this->assertGreaterThan(0, $interval->d);
         // 夏至は 6 月なので 20〜55 日後
-        $this->assertLessThanOrEqual(55, $interval->days);
+        $this->assertLessThanOrEqual(55, $interval->d);
     }
 
     /**
@@ -460,8 +460,8 @@ class DateIntervalTest extends TestCase
 
         $this->assertInstanceOf(DateInterval::class, $interval);
         // 次の新月は 0〜29.5 日後
-        $this->assertGreaterThanOrEqual(0, $interval->days);
-        $this->assertLessThanOrEqual(30, $interval->days);
+        $this->assertGreaterThanOrEqual(0, $interval->d);
+        $this->assertLessThanOrEqual(30, $interval->d);
     }
 
     /**

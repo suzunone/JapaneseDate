@@ -303,7 +303,7 @@ class DateBusinessCommonCalendarTest extends TestCase
 class ThrowingDateTimeForBusinessLimit extends DateTime
 {
     #[\ReturnTypeWillChange]
-    public function add($unit, $value = 1, ?bool $overflow = null): static
+    public function add($unit, $value = 1, $overflow = null): static
     {
         throw new \Exception('DateTime add failed.');
     }

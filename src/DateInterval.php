@@ -291,7 +291,7 @@ class DateInterval extends CarbonInterval
         $nextHoliday = $base->copy()->nextHoliday()->startOfDay();
         $diff = $base->diff($nextHoliday);
 
-        return static::instance($diff);
+        return static::days($diff->days);
     }
 
     // =========================================================================
@@ -336,7 +336,7 @@ class DateInterval extends CarbonInterval
         $target = $base->copy()->addDays($daysToAdd)->startOfDay();
         $diff = $base->diff($target);
 
-        return static::instance($diff);
+        return static::days($diff->days);
     }
 
     // =========================================================================
@@ -416,7 +416,7 @@ class DateInterval extends CarbonInterval
         $target = static::findNextSolarTermDate($from, $termMethod);
         $diff = $from->diff($target->startOfDay());
 
-        return static::instance($diff);
+        return static::days($diff->days);
     }
 
     /**
