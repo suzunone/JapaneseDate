@@ -74,6 +74,7 @@ use Tests\JapaneseDate\InvokeTrait;
 #[CoversMethod(JapaneseDate::class, 'getDayByWeekly')]
 #[CoversMethod(JapaneseDate::class, 'getDay')]
 #[CoversMethod(JapaneseDate::class, 'getWeekday')]
+#[CoversMethod(JapaneseDate::class, 'viewMoonPhase')]
 class JapaneseDateTest extends TestCase
 {
     use InvokeTrait;
@@ -2131,5 +2132,26 @@ class JapaneseDateTest extends TestCase
         $res = $this->invokeExecuteMethod($JapaneseDate, 'getSeptemberHoliday', ['2099', $JapaneseDateTime->getTimezone()]);
         $this->assertArrayHasKey(22, $res);
         $this->assertEquals('国民の休日', $JapaneseDate->viewHoliday($res[22]));
+    }
+
+    /**
+     * viewMoonPhase が月相名を正しく返すことを確認する。
+     *
+     * MOON_PHASE 配列: ['新月', '三日月', '上弦', '十三夜', '満月', '十六夜', '下弦', '有明']
+     */
+    public function test_viewMoonPhase(): void
+    {
+        $JapaneseDate = new JapaneseDate();
+
+        $this->assertSame('新月',   $JapaneseDate->viewMoonPhase(0));
+        $this->assertSame('三日月', $JapaneseDate->viewMoonPhase(1));
+        $this->assertSame('上弦',   $JapaneseDate->viewMoonPhase(2));
+        $this->assertSame('十三夜', $JapaneseDate->viewMoonPhase(3));
+        $this->assertSame('満月',   $JapaneseDate->viewMoonPhase(4));
+        $this->assertSame('十六夜', $JapaneseDate->viewMoonPhase(5));
+        $this->assertSame('下弦',   $JapaneseDate->viewMoonPhase(6));
+        $this->assertSame('有明',   $JapaneseDate->viewMoonPhase(7));
+        // 範囲外のキー → 空文字
+        $this->assertSame('', $JapaneseDate->viewMoonPhase(99));
     }
 }

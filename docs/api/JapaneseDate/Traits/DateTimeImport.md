@@ -16,11 +16,21 @@ Trait DateTimeImport
 - [Modifier](../../JapaneseDate/Traits/Modifier.md)
 - [FindSolarTerm](../../JapaneseDate/Traits/FindSolarTerm.md)
 - [Getter](../../JapaneseDate/Traits/Getter.md)
+- [DateBusinessCommon](../../JapaneseDate/Traits/DateBusinessCommon.md)
+- [Business](../../JapaneseDate/Traits/Business.md)
 
 ## Properties
 
 | Modifier | Type | Name | Description |
 |---|---|---|---|
+| public _(read-only)_ | int | `$solar_seasonal_festival` _(from [Getter](../../JapaneseDate/Traits/Getter.md))_ | 西暦の月日から五節句IDを取得する（スネークケース）。五節句定数（0〜5）を返す。節句でない場合は 0。 |
+| public _(read-only)_ | string | `$solar_seasonal_festival_name` _(from [Getter](../../JapaneseDate/Traits/Getter.md))_ | 西暦の月日から五節句の式名を取得する（スネークケース）。式名または空文字列。 |
+| public _(read-only)_ | string | `$solar_seasonal_festival_alias` _(from [Getter](../../JapaneseDate/Traits/Getter.md))_ | 西暦の月日から五節句の別名を取得する（スネークケース）。別名または空文字列。 |
+| public _(read-only)_ | int | `$lunar_seasonal_festival` _(from [Getter](../../JapaneseDate/Traits/Getter.md))_ | 旧暦の月日から五節句IDを取得する（スネークケース）。五節句定数（0〜5）を返す。節句でない場合は 0。 |
+| public _(read-only)_ | string | `$lunar_seasonal_festival_name` _(from [Getter](../../JapaneseDate/Traits/Getter.md))_ | 旧暦の月日から五節句の式名を取得する（スネークケース）。式名または空文字列。 |
+| public _(read-only)_ | string | `$lunar_seasonal_festival_alias` _(from [Getter](../../JapaneseDate/Traits/Getter.md))_ | 旧暦の月日から五節句の別名を取得する（スネークケース）。別名または空文字列。 |
+| public _(read-only)_ | int | `$misc_seasonal_node` _(from [Getter](../../JapaneseDate/Traits/Getter.md))_ | 雑節を取得する（スネークケース）。雑節定数（0〜9）を返す。雑節でない場合は 0。 |
+| public _(read-only)_ | string | `$misc_seasonal_node_text` _(from [Getter](../../JapaneseDate/Traits/Getter.md))_ | 雑節の日本語名を取得する（スネークケース）。雑節名または空文字列。 |
 | public _(read-only)_ | int\|bool | `$solar_term` _(from [Getter](../../JapaneseDate/Traits/Getter.md))_ | 24節気を取得する。値は、 1 から 24 までの整数、または 24節気でない場合は false になります。 |
 | public _(read-only)_ | string | `$solar_term_text` _(from [Getter](../../JapaneseDate/Traits/Getter.md))_ | 24節気の名前を取得する。値は、 24節気の名前を表す文字列、または 24節気でない場合は空文字列になります。 |
 | public _(read-only)_ | bool | `$is_solar_term` _(from [Getter](../../JapaneseDate/Traits/Getter.md))_ | その日が24節気の一つであるかどうかを示すブール値。値は、 24節気である場合は true、そうでない場合は false になります。 |
@@ -29,6 +39,8 @@ Trait DateTimeImport
 | public _(read-only)_ | int | `$era_year` _(from [Getter](../../JapaneseDate/Traits/Getter.md))_ | その日が属する元号の年を整数で取得する。値は、 元号の年を表す整数、または 元号でない場合は 0 になります。 |
 | public _(read-only)_ | string | `$oriental_zodiac_text` _(from [Getter](../../JapaneseDate/Traits/Getter.md))_ | その日が属する十二支の名前を取得する。値は、 十二支の名前を表す文字列、または 十二支でない場合は空文字列になります。 |
 | public _(read-only)_ | int | `$oriental_zodiac` _(from [Getter](../../JapaneseDate/Traits/Getter.md))_ | その日が属する十二支を整数で取得する。値は、 十二支を表す整数、または 十二支でない場合は 0 になります。 |
+| public _(read-only)_ | string | `$heavenly_stem_text` _(from [Getter](../../JapaneseDate/Traits/Getter.md))_ | その日が属する十干の名前を取得する。値は、 十干の名前を表す文字列です。 |
+| public _(read-only)_ | int | `$heavenly_stem` _(from [Getter](../../JapaneseDate/Traits/Getter.md))_ | その日が属する十干を整数で取得する。値は、 十干を表す整数 (0〜9) です。 |
 | public _(read-only)_ | string | `$six_weekday_text` _(from [Getter](../../JapaneseDate/Traits/Getter.md))_ | その日が属する六曜の名前を取得する。値は、 六曜の名前を表す文字列、または 六曜でない場合は空文字列になります。 |
 | public _(read-only)_ | int | `$six_weekday` _(from [Getter](../../JapaneseDate/Traits/Getter.md))_ | その日が属する六曜を整数で取得する。値は、 六曜を表す整数、または 六曜でない場合は 0 になります。 |
 | public _(read-only)_ | int | `$weekday_text` _(from [Getter](../../JapaneseDate/Traits/Getter.md))_ | その日が属する曜日の名前を取得する。値は、 曜日の名前を表す文字列、または 曜日でない場合は空文字列になります。 |
@@ -42,6 +54,9 @@ Trait DateTimeImport
 | public _(read-only)_ | int | `$lunar_day` _(from [Getter](../../JapaneseDate/Traits/Getter.md))_ | その日が属する陰暦の日を整数で取得する。値は、 陰暦の日を表す整数、または 陰暦の日でない場合は 0 になります。 |
 | public _(read-only)_ | bool | `$is_leap_month` _(from [Getter](../../JapaneseDate/Traits/Getter.md))_ | その日が閏月であるかどうかを示すブール値。値は、 閏月である場合は true、そうでない場合は false になります。 |
 | public _(read-only)_ | float | `$moon_age` _(from [Getter](../../JapaneseDate/Traits/Getter.md))_ | その日における月齢を取得する。値は、 月齢を表す浮動小数点数、または 不明な場合は false になります。 |
+| public _(read-only)_ | float | `$moon_phase_angle` _(from [Getter](../../JapaneseDate/Traits/Getter.md))_ | その日における月の位相角を取得する。値は 0°(新月)〜359.9° の浮動小数点数です。 |
+| public _(read-only)_ | int | `$moon_phase` _(from [Getter](../../JapaneseDate/Traits/Getter.md))_ | その日における月相を取得する。値は 0(新月)〜7(有明) の整数です。 |
+| public _(read-only)_ | string | `$moon_phase_text` _(from [Getter](../../JapaneseDate/Traits/Getter.md))_ | その日における月相名を日本語で取得する。値は「新月」「三日月」「上弦」「十三夜」「満月」「十六夜」「下弦」「有明」のいずれかです。 |
 | public _(read-only)_ | [DateTime](../../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../../JapaneseDate/DateTimeImmutable.md) | `$syunbun` _(from [Getter](../../JapaneseDate/Traits/Getter.md))_ | その年の春分の日の日時を取得する。値は、 春分の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。 |
 | public _(read-only)_ | [DateTime](../../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../../JapaneseDate/DateTimeImmutable.md) | `$next_syunbun` _(from [Getter](../../JapaneseDate/Traits/Getter.md))_ | 次の春分の日の日時を取得する。値は、 次の春分の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が春分の日の場合は翌年の春分の日が返されます。 |
 | public _(read-only)_ | [DateTime](../../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../../JapaneseDate/DateTimeImmutable.md) | `$before_syunbun` _(from [Getter](../../JapaneseDate/Traits/Getter.md))_ | 前の春分の日の日時を取得する。値は、 前の春分の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が春分の日の場合は前年の春分の日が返されます。 |
@@ -114,6 +129,14 @@ Trait DateTimeImport
 | public _(read-only)_ | [DateTime](../../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../../JapaneseDate/DateTimeImmutable.md) | `$keichitsu` _(from [Getter](../../JapaneseDate/Traits/Getter.md))_ | その年の啓蟄の日の日時を取得する。値は、 啓蟄の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。 |
 | public _(read-only)_ | [DateTime](../../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../../JapaneseDate/DateTimeImmutable.md) | `$next_keichitsu` _(from [Getter](../../JapaneseDate/Traits/Getter.md))_ | 次の啓蟄の日の日時を取得する。値は、 次の啓蟄の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が啓蟄の日の場合は翌年の啓蟄の日が返されます。 |
 | public _(read-only)_ | [DateTime](../../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../../JapaneseDate/DateTimeImmutable.md) | `$before_keichitsu` _(from [Getter](../../JapaneseDate/Traits/Getter.md))_ | 前の啓蟄の日の日時を取得する。値は、 前の啓蟄の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が啓蟄の日の場合は前年の啓蟄の日が返されます。 |
+| public _(read-only)_ | int | `$solarSeasonalFestival` _(from [Getter](../../JapaneseDate/Traits/Getter.md))_ | 西暦の月日から五節句IDを取得する。値は {[\JapaneseDate\DateTime::SEASONAL_FESTIVAL_NONE}（0）〜{@see](../../JapaneseDate/DateTime.html) \JapaneseDate\DateTime::SEASONAL_FESTIVAL_CHOYO}（5）のいずれかです。節句でない場合は 0 を返します。 |
+| public _(read-only)_ | string | `$solarSeasonalFestivalName` _(from [Getter](../../JapaneseDate/Traits/Getter.md))_ | 西暦の月日から五節句の式名を取得する。「人日の節句」「上巳の節句」「端午の節句」「七夕の節句」「重陽の節句」のいずれか、または節句でない場合は空文字列を返します。 |
+| public _(read-only)_ | string | `$solarSeasonalFestivalAlias` _(from [Getter](../../JapaneseDate/Traits/Getter.md))_ | 西暦の月日から五節句の別名を取得する。「七草の節句」「桃の節句」「菖蒲の節句」「笹の節句」「菊の節句」のいずれか、または節句でない場合は空文字列を返します。 |
+| public _(read-only)_ | int | `$lunarSeasonalFestival` _(from [Getter](../../JapaneseDate/Traits/Getter.md))_ | 旧暦の月日から五節句IDを取得する。値は {[\JapaneseDate\DateTime::SEASONAL_FESTIVAL_NONE}（0）〜{@see](../../JapaneseDate/DateTime.html) \JapaneseDate\DateTime::SEASONAL_FESTIVAL_CHOYO}（5）のいずれかです。節句でない場合は 0 を返します。 |
+| public _(read-only)_ | string | `$lunarSeasonalFestivalName` _(from [Getter](../../JapaneseDate/Traits/Getter.md))_ | 旧暦の月日から五節句の式名を取得する。「人日の節句」「上巳の節句」「端午の節句」「七夕の節句」「重陽の節句」のいずれか、または節句でない場合は空文字列を返します。 |
+| public _(read-only)_ | string | `$lunarSeasonalFestivalAlias` _(from [Getter](../../JapaneseDate/Traits/Getter.md))_ | 旧暦の月日から五節句の別名を取得する。「七草の節句」「桃の節句」「菖蒲の節句」「笹の節句」「菊の節句」のいずれか、または節句でない場合は空文字列を返します。 |
+| public _(read-only)_ | int | `$miscSeasonalNode` _(from [Getter](../../JapaneseDate/Traits/Getter.md))_ | その日が該当する雑節の定数を取得する。値は {[\JapaneseDate\DateTime::MISC_SEASONAL_NODE_NONE}（0）〜{@see](../../JapaneseDate/DateTime.html) \JapaneseDate\DateTime::MISC_SEASONAL_NODE_NIHYAKUNIJUUNICHI}（9）のいずれかです。雑節でない場合は 0 を返します。 |
+| public _(read-only)_ | string | `$miscSeasonalNodeText` _(from [Getter](../../JapaneseDate/Traits/Getter.md))_ | その日が該当する雑節の日本語名を取得する。「節分」「彼岸」「社日」「八十八夜」「入梅」「半夏生」「土用」「二百十日」「二百二十日」のいずれか、または雑節でない場合は空文字列を返します。 |
 | public _(read-only)_ | int\|bool | `$solarTerm` _(from [Getter](../../JapaneseDate/Traits/Getter.md))_ | 24節気を取得する。値は、 1 から 24 までの整数、または 24節気でない場合は false になります。 |
 | public _(read-only)_ | string | `$solarTermText` _(from [Getter](../../JapaneseDate/Traits/Getter.md))_ | 24節気の名前を取得する。値は、 24節気の名前を表す文字列、または 24節気でない場合は空文字列になります。 |
 | public _(read-only)_ | bool | `$isSolarTerm` _(from [Getter](../../JapaneseDate/Traits/Getter.md))_ | その日が24節気の一つであるかどうかを示すブール値。値は、 24節気である場合は true、そうでない場合は false になります。 |
@@ -122,6 +145,8 @@ Trait DateTimeImport
 | public _(read-only)_ | int | `$eraYear` _(from [Getter](../../JapaneseDate/Traits/Getter.md))_ | その日が属する元号の年を整数で取得する。値は、 元号の年を表す整数、または 元号でない場合は 0 になります。 |
 | public _(read-only)_ | string | `$orientalZodiacText` _(from [Getter](../../JapaneseDate/Traits/Getter.md))_ | その日が属する十二支の名前を取得する。値は、 十二支の名前を表す文字列、または 十二支でない場合は空文字列になります。 |
 | public _(read-only)_ | int | `$orientalZodiac` _(from [Getter](../../JapaneseDate/Traits/Getter.md))_ | その日が属する十二支を整数で取得する。値は、 十二支を表す整数、または 十二支でない場合は 0 になります。 |
+| public _(read-only)_ | string | `$heavenlyStemText` _(from [Getter](../../JapaneseDate/Traits/Getter.md))_ | その日が属する十干の名前を取得する。値は、 十干の名前を表す文字列です。 |
+| public _(read-only)_ | int | `$heavenlyStem` _(from [Getter](../../JapaneseDate/Traits/Getter.md))_ | その日が属する十干を整数で取得する。値は、 十干を表す整数 (0〜9) です。 |
 | public _(read-only)_ | string | `$sixWeekdayText` _(from [Getter](../../JapaneseDate/Traits/Getter.md))_ | その日が属する六曜の名前を取得する。値は、 六曜の名前を表す文字列、または 六曜でない場合は空文字列になります。 |
 | public _(read-only)_ | int | `$sixWeekday` _(from [Getter](../../JapaneseDate/Traits/Getter.md))_ | その日が属する六曜を整数で取得する。値は、 六曜を表す整数、または 六曜でない場合は 0 になります。 |
 | public _(read-only)_ | int | `$weekdayText` _(from [Getter](../../JapaneseDate/Traits/Getter.md))_ | その日が属する曜日の名前を取得する。値は、 曜日の名前を表す文字列、または 曜日でない場合は空文字列になります。 |
@@ -134,6 +159,9 @@ Trait DateTimeImport
 | public _(read-only)_ | int | `$lunarDay` _(from [Getter](../../JapaneseDate/Traits/Getter.md))_ | その日が属する陰暦の日を整数で取得する。値は、 陰暦の日を表す整数、または 陰暦の日でない場合は 0 になります。 |
 | public _(read-only)_ | bool | `$isLeapMonth` _(from [Getter](../../JapaneseDate/Traits/Getter.md))_ | その日が閏月であるかどうかを示すブール値。値は、 閏月である場合は true、そうでない場合は false になります。 |
 | public _(read-only)_ | float | `$moonAge` _(from [Getter](../../JapaneseDate/Traits/Getter.md))_ | その日における月齢を取得する。値は、 月齢を表す浮動小数点数、または 不明な場合は false になります。 |
+| public _(read-only)_ | float | `$moonPhaseAngle` _(from [Getter](../../JapaneseDate/Traits/Getter.md))_ | その日における月の位相角を取得する。値は 0°(新月)〜359.9° の浮動小数点数です。 |
+| public _(read-only)_ | int | `$moonPhase` _(from [Getter](../../JapaneseDate/Traits/Getter.md))_ | その日における月相を取得する。値は 0(新月)〜7(有明) の整数です。 |
+| public _(read-only)_ | string | `$moonPhaseText` _(from [Getter](../../JapaneseDate/Traits/Getter.md))_ | その日における月相名を日本語で取得する。値は「新月」「三日月」「上弦」「十三夜」「満月」「十六夜」「下弦」「有明」のいずれかです。 |
 | public _(read-only)_ | [DateTime](../../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../../JapaneseDate/DateTimeImmutable.md) | `$nextSyunbun` _(from [Getter](../../JapaneseDate/Traits/Getter.md))_ | 次の春分の日の日時を取得する。値は、 次の春分の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が春分の日の場合は翌年の春分の日が返されます。 |
 | public _(read-only)_ | [DateTime](../../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../../JapaneseDate/DateTimeImmutable.md) | `$beforeSyunbun` _(from [Getter](../../JapaneseDate/Traits/Getter.md))_ | 前の春分の日の日時を取得する。値は、 前の春分の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が春分の日の場合は前年の春分の日が返されます。 |
 | public _(read-only)_ | [DateTime](../../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../../JapaneseDate/DateTimeImmutable.md) | `$nextSeimei` _(from [Getter](../../JapaneseDate/Traits/Getter.md))_ | 次の清明の日の日時を取得する。値は、 次の清明の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が清明の日の場合は翌年の清明の日が返されます。 |
@@ -187,158 +215,37 @@ Trait DateTimeImport
 
 | Return | Method | Description |
 |---|---|---|
-| Factory | [factory()](#factory) _(from [Factory](../../JapaneseDate/Traits/Factory.md))_ | DateTimeオブジェクトの生成 |
-| void | [setCacheMode()](#setcachemode) _(from [CacheSetting](../../JapaneseDate/Traits/CacheSetting.md))_ | キャッシュモードを指定する |
-| void | [setCacheFilePath()](#setcachefilepath) _(from [CacheSetting](../../JapaneseDate/Traits/CacheSetting.md))_ | キャッシュファイル保存ディレクトリをセットします |
-| void | [setCacheClosure()](#setcacheclosure) _(from [CacheSetting](../../JapaneseDate/Traits/CacheSetting.md))_ | 独自キャッシュロジックのセット |
-| Modifier | [nextHoliday()](#nextholiday) _(from [Modifier](../../JapaneseDate/Traits/Modifier.md))_ | 次の祝日にする |
-| Modifier | [nextSixWeek()](#nextsixweek) _(from [Modifier](../../JapaneseDate/Traits/Modifier.md))_ | 指定された次の六曜にする |
-| array | [getCalendar()](#getcalendar) _(from [Getter](../../JapaneseDate/Traits/Getter.md))_ | サポートされるカレンダーに変換する |
+| Factory | [Factory::factory](../../JapaneseDate/Traits/Factory.md#factory) _(from [Factory](../../JapaneseDate/Traits/Factory.md))_ | 多様な型の引数から {\JapaneseDate\DateTime} / {\JapaneseDate\DateTimeImmutable}
+インスタンスを生成するユニバーサルファクトリメソッドです。 |
+| void | [CacheSetting::setCacheMode](../../JapaneseDate/Traits/CacheSetting.md#setcachemode) _(from [CacheSetting](../../JapaneseDate/Traits/CacheSetting.md))_ | 旧暦・祝日計算に使用するキャッシュモードを設定します。 |
+| void | [CacheSetting::setCacheFilePath](../../JapaneseDate/Traits/CacheSetting.md#setcachefilepath) _(from [CacheSetting](../../JapaneseDate/Traits/CacheSetting.md))_ | ファイルキャッシュの保存先ディレクトリを設定します。 |
+| void | [CacheSetting::setCacheClosure](../../JapaneseDate/Traits/CacheSetting.md#setcacheclosure) _(from [CacheSetting](../../JapaneseDate/Traits/CacheSetting.md))_ | 独自キャッシュロジックを実装したクロージャを登録します。 |
+| Modifier | [Modifier::nextHoliday](../../JapaneseDate/Traits/Modifier.md#nextholiday) _(from [Modifier](../../JapaneseDate/Traits/Modifier.md))_ | 次の祝日にする |
+| Modifier | [Modifier::nextSixWeek](../../JapaneseDate/Traits/Modifier.md#nextsixweek) _(from [Modifier](../../JapaneseDate/Traits/Modifier.md))_ | 指定された次の六曜にする |
+| array | [Getter::getCalendar](../../JapaneseDate/Traits/Getter.md#getcalendar) _(from [Getter](../../JapaneseDate/Traits/Getter.md))_ | サポートされるカレンダーに変換する |
+| DateBusinessCommon | [DateBusinessCommon::setBusinessConfig](../../JapaneseDate/Traits/DateBusinessCommon.md#setbusinessconfig) _(from [DateBusinessCommon](../../JapaneseDate/Traits/DateBusinessCommon.md))_ | インスタンスに個別の営業日設定を適用します。 |
+| DateBusiness\|null | [DateBusinessCommon::getBusinessConfig](../../JapaneseDate/Traits/DateBusinessCommon.md#getbusinessconfig) _(from [DateBusinessCommon](../../JapaneseDate/Traits/DateBusinessCommon.md))_ | インスタンスが保持している個別の営業日設定を取得します。 |
+| DateBusinessCommon | [DateBusinessCommon::setClosingDay](../../JapaneseDate/Traits/DateBusinessCommon.md#setclosingday) _(from [DateBusinessCommon](../../JapaneseDate/Traits/DateBusinessCommon.md))_ | 特定の日付を休業日として指定します。 |
+| DateBusinessCommon | [DateBusinessCommon::setOpenDay](../../JapaneseDate/Traits/DateBusinessCommon.md#setopenday) _(from [DateBusinessCommon](../../JapaneseDate/Traits/DateBusinessCommon.md))_ | 特定の日付を営業日として指定します。 |
+| DateBusinessCommon | [DateBusinessCommon::setClosingWeekdays](../../JapaneseDate/Traits/DateBusinessCommon.md#setclosingweekdays) _(from [DateBusinessCommon](../../JapaneseDate/Traits/DateBusinessCommon.md))_ | 休業曜日を一括設定します。 |
+| DateBusinessCommon | [DateBusinessCommon::setBypassHoliday](../../JapaneseDate/Traits/DateBusinessCommon.md#setbypassholiday) _(from [DateBusinessCommon](../../JapaneseDate/Traits/DateBusinessCommon.md))_ | 祝日を休業日として扱うかどうかを設定します。 |
+| DateBusinessCommon | [DateBusinessCommon::setOpenNthWeekday](../../JapaneseDate/Traits/DateBusinessCommon.md#setopennthweekday) _(from [DateBusinessCommon](../../JapaneseDate/Traits/DateBusinessCommon.md))_ | 第XX曜日を営業日として指定します。 |
+| DateBusinessCommon | [DateBusinessCommon::setClosingNthWeekday](../../JapaneseDate/Traits/DateBusinessCommon.md#setclosingnthweekday) _(from [DateBusinessCommon](../../JapaneseDate/Traits/DateBusinessCommon.md))_ | 第XX曜日を休業日として指定します。 |
+| DateBusinessCommon | [DateBusinessCommon::addOpenFilter](../../JapaneseDate/Traits/DateBusinessCommon.md#addopenfilter) _(from [DateBusinessCommon](../../JapaneseDate/Traits/DateBusinessCommon.md))_ | 営業指定フィルタを追加します。 |
+| DateBusinessCommon | [DateBusinessCommon::addClosingFilter](../../JapaneseDate/Traits/DateBusinessCommon.md#addclosingfilter) _(from [DateBusinessCommon](../../JapaneseDate/Traits/DateBusinessCommon.md))_ | 休業指定フィルタを追加します。 |
+| DateBusinessCommon | [DateBusinessCommon::setBusinessMacro](../../JapaneseDate/Traits/DateBusinessCommon.md#setbusinessmacro) _(from [DateBusinessCommon](../../JapaneseDate/Traits/DateBusinessCommon.md))_ | 判定ロジックを完全に上書きするマクロを設定します。 |
+| bool | [DateBusinessCommon::checkIsBusinessDay](../../JapaneseDate/Traits/DateBusinessCommon.md#checkisbusinessday) _(from [DateBusinessCommon](../../JapaneseDate/Traits/DateBusinessCommon.md))_ | 指定した日付（または自身が保持する日付）が営業日かどうかを判定します。 |
+| string\|null | [DateBusinessCommon::checkGetBusinessDayLabel](../../JapaneseDate/Traits/DateBusinessCommon.md#checkgetbusinessdaylabel) _(from [DateBusinessCommon](../../JapaneseDate/Traits/DateBusinessCommon.md))_ | 指定した日付（または自身が保持する日付）の休業ラベルを取得します。 |
+| bool | [Business::isBusinessDay](../../JapaneseDate/Traits/Business.md#isbusinessday) _(from [Business](../../JapaneseDate/Traits/Business.md))_ | このインスタンスの日付が営業日かどうかを判定します。 |
+| string\|null | [Business::getBusinessDayLabel](../../JapaneseDate/Traits/Business.md#getbusinessdaylabel) _(from [Business](../../JapaneseDate/Traits/Business.md))_ | このインスタンスの日付が休業日の場合、そのラベルを返します。 |
+| Business | [Business::nextBusinessDay](../../JapaneseDate/Traits/Business.md#nextbusinessday) _(from [Business](../../JapaneseDate/Traits/Business.md))_ | 次の営業日を取得します。 |
+| Business | [Business::previousBusinessDay](../../JapaneseDate/Traits/Business.md#previousbusinessday) _(from [Business](../../JapaneseDate/Traits/Business.md))_ | 前の営業日を取得します。 |
+| Business | [Business::shiftToClosestBusinessDayAfter](../../JapaneseDate/Traits/Business.md#shifttoclosestbusinessdayafter) _(from [Business](../../JapaneseDate/Traits/Business.md))_ | この日が休業日の場合、翌営業日にシフトしたインスタンスを返します。 |
+| Business | [Business::shiftToClosestBusinessDayBefore](../../JapaneseDate/Traits/Business.md#shifttoclosestbusinessdaybefore) _(from [Business](../../JapaneseDate/Traits/Business.md))_ | この日が休業日の場合、前営業日にシフトしたインスタンスを返します。 |
+| Business | [Business::addBusinessDays](../../JapaneseDate/Traits/Business.md#addbusinessdays) _(from [Business](../../JapaneseDate/Traits/Business.md))_ | 指定した営業日数後の日付を返します。 |
+| Business | [Business::subBusinessDays](../../JapaneseDate/Traits/Business.md#subbusinessdays) _(from [Business](../../JapaneseDate/Traits/Business.md))_ | 指定した営業日数前の日付を返します。 |
 
 ---
 
 ## Method Details
-
-### factory
-
-```php
-static public Factory factory($date_time = null, $time_zone = null)
-```
-
-DateTimeオブジェクトの生成
-
-日付/時刻 文字列の書式については http://php.net/manual/ja/datetime.formats.php サポートする日付と時刻の書式 を参考にしてください。
-
-**Parameters:**
-
-| Type | Name | Default | Description |
-|---|---|---|---|
-| int\|float\|string\|[DateTimeInterface](https://www.php.net/class.datetimeinterface)\|null | `$date_time` | `null` | 日付/時刻 文字列。DateTimeオブジェクト |
-| [DateTimeZone](https://www.php.net/class.datetimezone)\|null | `$time_zone` | `null` | DateTimeZone オブジェクトか、時差の時間、タイムゾーンテキスト(omit 予定) |
-
-**Returns:** [Factory](../../JapaneseDate/Traits/Factory.md)
-**Throws:**
-
-- NativeDateTimeException
----
-
-### setCacheMode
-
-```php
-static public void setCacheMode($mode)
-```
-
-キャッシュモードを指定する
-
-指定するキャッシュモードは、{\JapaneseDate\CacheMode}参照。
-
-**Parameters:**
-
-| Type | Name | Default | Description |
-|---|---|---|---|
-| int | `$mode` | —  | キャッシュモード |
-
-**Returns:** void
-**See also:**
-
-- CacheMode::MODE_AUTO — 自動でキャッシュモードを選択
-- CacheMode::MODE_APC — APCを使用したキャッシュ
-- CacheMode::MODE_FILE — ファイルを使用したキャッシュ
-- CacheMode::MODE_ORIGINAL — 独自キャッシュ
-- CacheMode::MODE_NONE — キャッシュなし
----
-
-### setCacheFilePath
-
-```php
-static public void setCacheFilePath($cache_file_path)
-```
-
-キャッシュファイル保存ディレクトリをセットします
-
-キャッシュモードがファイル{[\JapaneseDate\CacheMode::MODE_FILE}の時に使用する、キャッシュファイル保存ディレクトリをセットします。](../../JapaneseDate/CacheMode.html)
-
-**Parameters:**
-
-| Type | Name | Default | Description |
-|---|---|---|---|
-| string | `$cache_file_path` | —  | キャッシュファイルを保存するディレクトリ |
-
-**Returns:** void
----
-
-### setCacheClosure
-
-```php
-static public void setCacheClosure($function)
-```
-
-独自キャッシュロジックのセット
-
-キャッシュモードが独自キャッシュ{[\JapaneseDate\CacheMode::MODE_ORIGINAL}の時に使用する、クロージャをセットします。
-
-セットされるクロージャは、
-
-mixed](../../JapaneseDate/CacheMode.html) ClosureFunction(string $key, Closure $function)
-
-| Parameter | Type | Description |
-|-----------|------|-------------|
-| `$key` | **string** | キャッシュ単位の一意なキー。このキーにマッチしたキャッシュデータが有る場合は、キャッシュされたデータをreturnしてください。 |
-| `$function` | **\Closure** | キャッシュされたデータが取得できない場合に実行するクロージャです。実行すれば、キャッシュするべきデータが返されます。 |
-
-**Parameters:**
-
-| Type | Name | Default | Description |
-|---|---|---|---|
-| [Closure](https://www.php.net/class.closure) | `$function` | —  | 独自キャッシュのロジックが含まれたクロージャ |
-
-**Returns:** void
----
-
-### nextHoliday
-
-```php
-public Modifier nextHoliday()
-```
-
-次の祝日にする
-
-**Returns:** [Modifier](../../JapaneseDate/Traits/Modifier.md)
----
-
-### nextSixWeek
-
-```php
-public Modifier nextSixWeek($week_day)
-```
-
-指定された次の六曜にする
-
-**Parameters:**
-
-| Type | Name | Default | Description |
-|---|---|---|---|
-| int | `$week_day` | —  |  |
-
-**Returns:** [Modifier](../../JapaneseDate/Traits/Modifier.md)
----
-
-### getCalendar
-
-```php
-public array getCalendar($calendar = CAL_GREGORIAN)
-```
-
-サポートされるカレンダーに変換する
-
-サポートされる $calendar の値は、 CAL_GREGORIAN、 CAL_JULIAN、 CAL_JEWISH および CAL_FRENCH です。
-
-**Parameters:**
-
-| Type | Name | Default | Description |
-|---|---|---|---|
-| int | `$calendar` | `CAL_GREGORIAN` | サポートされるカレンダー |
-
-**Returns:** array — カレンダーの情報を含む配列を返します。この配列には、 年、月、日、週、曜日名、月名、"月/日/年" 形式の文字列 などが含まれます。
----
 

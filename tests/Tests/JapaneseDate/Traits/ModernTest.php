@@ -19,6 +19,7 @@
 
 namespace Test\JapaneseDate\Traits;
 
+use JapaneseDate\Components\SexagenaryCycle;
 use JapaneseDate\DateTime;
 use JapaneseDate\DateTimeImmutable;
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -42,12 +43,23 @@ use Tests\JapaneseDate\InvokeTrait;
 #[CoversTrait(\JapaneseDate\Traits\Modern::class)]
 #[CoversClass(\JapaneseDate\DateTime::class)]
 #[CoversClass(\JapaneseDate\Components\LunarCalendar::class)]
+#[CoversClass(SexagenaryCycle::class)]
 #[CoversTrait(\JapaneseDate\Traits\Lunar::class)]
 #[CoversMethod(\JapaneseDate\Traits\Modern::class, 'viewWeekday')]
 #[CoversMethod(\JapaneseDate\Traits\Getter::class, '__get')]
 #[CoversMethod(\JapaneseDate\Traits\Modern::class, 'viewMonth')]
 #[CoversMethod(\JapaneseDate\Traits\Modern::class, 'viewHoliday')]
 #[CoversMethod(\JapaneseDate\Traits\Modern::class, 'getHoliday')]
+#[CoversMethod(\JapaneseDate\Traits\Modern::class, 'getHeavenlyStem')]
+#[CoversMethod(\JapaneseDate\Traits\Modern::class, 'viewHeavenlyStem')]
+#[CoversMethod(\JapaneseDate\Traits\Modern::class, 'getMiscSeasonalNode')]
+#[CoversMethod(\JapaneseDate\Traits\Modern::class, 'viewMiscSeasonalNode')]
+#[CoversMethod(\JapaneseDate\Traits\Modern::class, 'getSolarSeasonalFestival')]
+#[CoversMethod(\JapaneseDate\Traits\Modern::class, 'viewSolarSeasonalFestivalName')]
+#[CoversMethod(\JapaneseDate\Traits\Modern::class, 'viewSolarSeasonalFestivalAlias')]
+#[CoversMethod(\JapaneseDate\Traits\Modern::class, 'getLunarSeasonalFestival')]
+#[CoversMethod(\JapaneseDate\Traits\Modern::class, 'viewLunarSeasonalFestivalName')]
+#[CoversMethod(\JapaneseDate\Traits\Modern::class, 'viewLunarSeasonalFestivalAlias')]
 #[CoversMethod(\JapaneseDate\Traits\Lunar::class, 'getSolarTerm')]
 #[CoversMethod(\JapaneseDate\Traits\Lunar::class, 'getSolarTermKey')]
 #[CoversMethod(\JapaneseDate\Traits\Lunar::class, 'isSolarTerm')]
@@ -502,5 +514,186 @@ class ModernTest extends TestCase
 
         $DateTime = DateTime::factory('2019-05-21');
         $this->assertEquals(0, $DateTime->oriental_zodiac);
+    }
+
+    /**
+     * DateTime で十干名と十干コードを取得できることを確認する。
+     *
+     * 検証出典: 国立天文台 理科年表 / 干支早見表
+     *   1984年=甲子(甲=0), 2023年=癸卯(癸=9), 2024年=甲辰(甲=0)
+     */
+    public function test_getHeavenlyStem(): void
+    {
+        // 1984年 = 甲子 → 十干: 甲 (key=0)
+        $DateTime = new DateTime('1984-01-01');
+        $this->assertSame(0, $DateTime->heavenly_stem);
+        $this->assertSame('甲', $DateTime->heavenly_stem_text);
+        $this->assertSame(0, $DateTime->heavenlyStem);
+        $this->assertSame('甲', $DateTime->heavenlyStemText);
+
+        // 2023年 = 癸卯 → 十干: 癸 (key=9)
+        $DateTime = new DateTime('2023-06-01');
+        $this->assertSame(9, $DateTime->heavenly_stem);
+        $this->assertSame('癸', $DateTime->heavenly_stem_text);
+
+        // 2024年 = 甲辰 → 十干: 甲 (key=0)
+        $DateTime = new DateTime('2024-06-01');
+        $this->assertSame(0, $DateTime->heavenly_stem);
+        $this->assertSame('甲', $DateTime->heavenly_stem_text);
+
+        // 十干が10年周期で循環することを確認
+        $stems = ['甲', '乙', '丙', '丁', '戊', '己', '庚', '辛', '壬', '癸'];
+        for ($i = 0; $i < 10; $i++) {
+            $DateTime = new DateTime((1984 + $i) . '-01-01');
+            $this->assertSame($stems[$i], $DateTime->heavenly_stem_text, (1984 + $i) . '年の十干が正しくない');
+        }
+    }
+
+    /**
+     * DateTimeImmutable で十干名と十干コードを取得できることを確認する。
+     */
+    public function test_getHeavenlyStem_immutable(): void
+    {
+        // 2025年 = 乙巳 → 十干: 乙 (key=1)
+        $DateTime = new DateTimeImmutable('2025-01-01');
+        $this->assertSame(1, $DateTime->heavenly_stem);
+        $this->assertSame('乙', $DateTime->heavenly_stem_text);
+        $this->assertSame(1, $DateTime->heavenlyStem);
+        $this->assertSame('乙', $DateTime->heavenlyStemText);
+    }
+
+    /**
+     * DateTime::HEAVENLY_STEM_* 定数が正しいことを確認する。
+     */
+    public function test_heavenlyStem_constants(): void
+    {
+        $this->assertSame(0, DateTime::HEAVENLY_STEM_KINOE);
+        $this->assertSame(1, DateTime::HEAVENLY_STEM_KINOTO);
+        $this->assertSame(2, DateTime::HEAVENLY_STEM_HINOE);
+        $this->assertSame(3, DateTime::HEAVENLY_STEM_HINOTO);
+        $this->assertSame(4, DateTime::HEAVENLY_STEM_TSUCHINOE);
+        $this->assertSame(5, DateTime::HEAVENLY_STEM_TSUCHINOTO);
+        $this->assertSame(6, DateTime::HEAVENLY_STEM_KANOE);
+        $this->assertSame(7, DateTime::HEAVENLY_STEM_KANOTO);
+        $this->assertSame(8, DateTime::HEAVENLY_STEM_MIZUNOE);
+        $this->assertSame(9, DateTime::HEAVENLY_STEM_MIZUNOTO);
+    }
+
+    /**
+     * getSolarSeasonalFestival が端午の節句（5月5日）に SEASONAL_FESTIVAL_TANGO を返すことを確認する。
+     */
+    public function test_getSolarSeasonalFestival_tango(): void
+    {
+        $date = new DateTime('2026-05-05');
+        $this->assertSame(DateTime::SEASONAL_FESTIVAL_TANGO, $date->solarSeasonalFestival);
+    }
+
+    /**
+     * viewSolarSeasonalFestivalName が端午の節句の式名を返すことを確認する。
+     */
+    public function test_viewSolarSeasonalFestivalName_tango(): void
+    {
+        $date = new DateTime('2026-05-05');
+        $this->assertSame('端午の節句', $date->solarSeasonalFestivalName);
+    }
+
+    /**
+     * viewSolarSeasonalFestivalAlias が端午の節句の別名を返すことを確認する。
+     */
+    public function test_viewSolarSeasonalFestivalAlias_tango(): void
+    {
+        $date = new DateTime('2026-05-05');
+        $this->assertSame('菖蒲の節句', $date->solarSeasonalFestivalAlias);
+    }
+
+    /**
+     * getLunarSeasonalFestival が旧暦5月5日（端午）に SEASONAL_FESTIVAL_TANGO を返すことを確認する。
+     *
+     * 2026-06-19 = 旧暦5月5日（端午）。
+     */
+    public function test_getLunarSeasonalFestival_tango(): void
+    {
+        // 2026-06-19 = 旧暦5月5日（端午）
+        $date = new DateTime('2026-06-19');
+        $this->assertSame(DateTime::SEASONAL_FESTIVAL_TANGO, $date->lunarSeasonalFestival);
+    }
+
+    /**
+     * viewLunarSeasonalFestivalName が旧暦端午の節句の式名を返すことを確認する。
+     */
+    public function test_viewLunarSeasonalFestivalName_tango(): void
+    {
+        $date = new DateTime('2026-06-19');
+        $this->assertSame('端午の節句', $date->lunarSeasonalFestivalName);
+    }
+
+    /**
+     * viewLunarSeasonalFestivalAlias が旧暦端午の節句の別名を返すことを確認する。
+     */
+    public function test_viewLunarSeasonalFestivalAlias_tango(): void
+    {
+        $date = new DateTime('2026-06-19');
+        $this->assertSame('菖蒲の節句', $date->lunarSeasonalFestivalAlias);
+    }
+
+    /**
+     * 五節句でない日はすべてのプロパティが 0 または空文字列を返すことを確認する。
+     */
+    public function test_solarSeasonalFestival_none(): void
+    {
+        $date = new DateTime('2026-04-15');
+        $this->assertSame(DateTime::SEASONAL_FESTIVAL_NONE, $date->solarSeasonalFestival);
+        $this->assertSame('', $date->solarSeasonalFestivalName);
+        $this->assertSame('', $date->solarSeasonalFestivalAlias);
+        $this->assertSame(DateTime::SEASONAL_FESTIVAL_NONE, $date->lunarSeasonalFestival);
+        $this->assertSame('', $date->lunarSeasonalFestivalName);
+        $this->assertSame('', $date->lunarSeasonalFestivalAlias);
+    }
+
+    /**
+     * getMiscSeasonalNode が節分の日に MISC_SEASONAL_NODE_SETSUBUN を返すことを確認する。
+     */
+    public function test_getMiscSeasonalNode_setsubun(): void
+    {
+        $date = new DateTime('2026-02-03');
+        $this->assertSame(DateTime::MISC_SEASONAL_NODE_SETSUBUN, $date->miscSeasonalNode);
+    }
+
+    /**
+     * viewMiscSeasonalNode が節分の日本語名を返すことを確認する。
+     */
+    public function test_viewMiscSeasonalNode_setsubun(): void
+    {
+        $date = new DateTime('2026-02-03');
+        $this->assertSame('節分', $date->miscSeasonalNodeText);
+    }
+
+    /**
+     * getMiscSeasonalNode が雑節でない日に MISC_SEASONAL_NODE_NONE を返すことを確認する。
+     */
+    public function test_getMiscSeasonalNode_none(): void
+    {
+        $date = new DateTime('2026-04-15');
+        $this->assertSame(DateTime::MISC_SEASONAL_NODE_NONE, $date->miscSeasonalNode);
+        $this->assertSame('', $date->miscSeasonalNodeText);
+    }
+
+    /**
+     * DateTime::ORIENTAL_ZODIAC_* 定数が正しいことを確認する。
+     */
+    public function test_orientalZodiac_constants(): void
+    {
+        $this->assertSame(0, DateTime::ORIENTAL_ZODIAC_I);
+        $this->assertSame(1, DateTime::ORIENTAL_ZODIAC_NE);
+        $this->assertSame(2, DateTime::ORIENTAL_ZODIAC_USHI);
+        $this->assertSame(3, DateTime::ORIENTAL_ZODIAC_TORA);
+        $this->assertSame(4, DateTime::ORIENTAL_ZODIAC_U);
+        $this->assertSame(5, DateTime::ORIENTAL_ZODIAC_TATSU);
+        $this->assertSame(6, DateTime::ORIENTAL_ZODIAC_MI);
+        $this->assertSame(7, DateTime::ORIENTAL_ZODIAC_UMA);
+        $this->assertSame(8, DateTime::ORIENTAL_ZODIAC_HITSUJI);
+        $this->assertSame(9, DateTime::ORIENTAL_ZODIAC_SARU);
+        $this->assertSame(10, DateTime::ORIENTAL_ZODIAC_TORI);
+        $this->assertSame(11, DateTime::ORIENTAL_ZODIAC_INU);
     }
 }

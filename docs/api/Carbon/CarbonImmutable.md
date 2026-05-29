@@ -5197,7 +5197,7 @@ for each microsecond or every X microseconds if a factor is given.
 | int|float | `$factor` | `&#039;1&#039;) Return an iterable period from current date to given end (string` |  |
 | [DateTime](https://www.php.net/class.datetime) | `$r Carbon instance` | —  |  |
 
-**Returns:** CarbonPeriod
+**Returns:** [CarbonPeriod](../Carbon/CarbonPeriod.md)
 ---
 
 ### diffInUTCMicros
@@ -5302,7 +5302,7 @@ for each microsecond or every X microseconds if a factor is given.
 | int|float | `$factor` | `&#039;1&#039;) Return an iterable period from current date to given end (string` |  |
 | [DateTime](https://www.php.net/class.datetime) | `$r Carbon instance` | —  |  |
 
-**Returns:** CarbonPeriod
+**Returns:** [CarbonPeriod](../Carbon/CarbonPeriod.md)
 ---
 
 ### diffInUTCMicroseconds
@@ -5407,7 +5407,7 @@ for each millisecond or every X milliseconds if a factor is given.
 | int|float | `$factor` | `&#039;1&#039;) Return an iterable period from current date to given end (string` |  |
 | [DateTime](https://www.php.net/class.datetime) | `$r Carbon instance` | —  |  |
 
-**Returns:** CarbonPeriod
+**Returns:** [CarbonPeriod](../Carbon/CarbonPeriod.md)
 ---
 
 ### diffInUTCMillis
@@ -5512,7 +5512,7 @@ for each millisecond or every X milliseconds if a factor is given.
 | int|float | `$factor` | `&#039;1&#039;) Return an iterable period from current date to given end (string` |  |
 | [DateTime](https://www.php.net/class.datetime) | `$r Carbon instance` | —  |  |
 
-**Returns:** CarbonPeriod
+**Returns:** [CarbonPeriod](../Carbon/CarbonPeriod.md)
 ---
 
 ### diffInUTCMilliseconds
@@ -5617,7 +5617,7 @@ for each second or every X seconds if a factor is given.
 | int|float | `$factor` | `&#039;1&#039;) Return an iterable period from current date to given end (string` |  |
 | [DateTime](https://www.php.net/class.datetime) | `$r Carbon instance` | —  |  |
 
-**Returns:** CarbonPeriod
+**Returns:** [CarbonPeriod](../Carbon/CarbonPeriod.md)
 ---
 
 ### diffInUTCSeconds
@@ -5722,7 +5722,7 @@ for each minute or every X minutes if a factor is given.
 | int|float | `$factor` | `&#039;1&#039;) Return an iterable period from current date to given end (string` |  |
 | [DateTime](https://www.php.net/class.datetime) | `$r Carbon instance` | —  |  |
 
-**Returns:** CarbonPeriod
+**Returns:** [CarbonPeriod](../Carbon/CarbonPeriod.md)
 ---
 
 ### diffInUTCMinutes
@@ -5827,7 +5827,7 @@ for each hour or every X hours if a factor is given.
 | int|float | `$factor` | `&#039;1&#039;) Return an iterable period from current date to given end (string` |  |
 | [DateTime](https://www.php.net/class.datetime) | `$r Carbon instance` | —  |  |
 
-**Returns:** CarbonPeriod
+**Returns:** [CarbonPeriod](../Carbon/CarbonPeriod.md)
 ---
 
 ### diffInUTCHours
@@ -5932,7 +5932,7 @@ for each day or every X days if a factor is given.
 | int|float | `$factor` | `&#039;1&#039;) Return an iterable period from current date to given end (string` |  |
 | [DateTime](https://www.php.net/class.datetime) | `$r Carbon instance` | —  |  |
 
-**Returns:** CarbonPeriod
+**Returns:** [CarbonPeriod](../Carbon/CarbonPeriod.md)
 ---
 
 ### diffInUTCDays
@@ -6037,7 +6037,7 @@ for each week or every X weeks if a factor is given.
 | int|float | `$factor` | `&#039;1&#039;) Return an iterable period from current date to given end (string` |  |
 | [DateTime](https://www.php.net/class.datetime) | `$r Carbon instance` | —  |  |
 
-**Returns:** CarbonPeriod
+**Returns:** [CarbonPeriod](../Carbon/CarbonPeriod.md)
 ---
 
 ### diffInUTCWeeks
@@ -6142,7 +6142,7 @@ for each month or every X months if a factor is given.
 | int|float | `$factor` | `&#039;1&#039;) Return an iterable period from current date to given end (string` |  |
 | [DateTime](https://www.php.net/class.datetime) | `$r Carbon instance` | —  |  |
 
-**Returns:** CarbonPeriod
+**Returns:** [CarbonPeriod](../Carbon/CarbonPeriod.md)
 ---
 
 ### diffInUTCMonths
@@ -6247,7 +6247,7 @@ for each quarter or every X quarters if a factor is given.
 | int|float | `$factor` | `&#039;1&#039;) Return an iterable period from current date to given end (string` |  |
 | [DateTime](https://www.php.net/class.datetime) | `$r Carbon instance` | —  |  |
 
-**Returns:** CarbonPeriod
+**Returns:** [CarbonPeriod](../Carbon/CarbonPeriod.md)
 ---
 
 ### diffInUTCQuarters
@@ -6352,7 +6352,7 @@ for each year or every X years if a factor is given.
 | int|float | `$factor` | `&#039;1&#039;) Return an iterable period from current date to given end (string` |  |
 | [DateTime](https://www.php.net/class.datetime) | `$r Carbon instance` | —  |  |
 
-**Returns:** CarbonPeriod
+**Returns:** [CarbonPeriod](../Carbon/CarbonPeriod.md)
 ---
 
 ### diffInUTCYears
@@ -6457,7 +6457,7 @@ for each decade or every X decades if a factor is given.
 | int|float | `$factor` | `&#039;1&#039;) Return an iterable period from current date to given end (string` |  |
 | [DateTime](https://www.php.net/class.datetime) | `$r Carbon instance` | —  |  |
 
-**Returns:** CarbonPeriod
+**Returns:** [CarbonPeriod](../Carbon/CarbonPeriod.md)
 ---
 
 ### diffInUTCDecades
@@ -6562,7 +6562,7 @@ for each century or every X centuries if a factor is given.
 | int|float | `$factor` | `&#039;1&#039;) Return an iterable period from current date to given end (string` |  |
 | [DateTime](https://www.php.net/class.datetime) | `$r Carbon instance` | —  |  |
 
-**Returns:** CarbonPeriod
+**Returns:** [CarbonPeriod](../Carbon/CarbonPeriod.md)
 ---
 
 ### diffInUTCCenturies
@@ -6667,7 +6667,7 @@ for each millennium or every X millennia if a factor is given.
 | int|float | `$factor` | `&#039;1&#039;) Return an iterable period from current date to given end (string` |  |
 | [DateTime](https://www.php.net/class.datetime) | `$r Carbon instance` | —  |  |
 
-**Returns:** CarbonPeriod
+**Returns:** [CarbonPeriod](../Carbon/CarbonPeriod.md)
 ---
 
 ### diffInUTCMillennia
