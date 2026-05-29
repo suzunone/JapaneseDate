@@ -16,6 +16,9 @@ executors:
 # 各ステップの共通化
 commands:
   run-tests:
+    parameters:
+      php-version:
+        type: string
     steps:
       - checkout
       # 先にキャッシュを戻す
@@ -26,7 +29,7 @@ commands:
       - run:
           name: Composer self-update
           command: |
-            sudo composer self-update
+            sudo composer self-update --2
       - run:
           name: Install dependencies
           command: |
@@ -39,7 +42,13 @@ commands:
       - run:
           name: Install xdebug
           command: |
-            sudo pecl install xdebug
+            sudo pecl channel-update pecl.php.net
+            # PHPのバージョンが7.2の場合は2.9.8を、それ以外は最新を入れる
+            if [ "<< parameters.php-version >>" = "7.2" ]; then
+              sudo pecl install xdebug-2.9.8
+            else
+              sudo pecl install xdebug
+            fi
       - run:
           name: Run tests
           command: |
@@ -53,28 +62,32 @@ jobs:
       php-version: "7.2"
     working_directory: ~/repo72
     steps:
-      - run-tests
+      - run-tests:
+          php-version: "7.2"
   test80:
     executor:
       name: php-executor
       php-version: "8.0"
     working_directory: ~/repo80
     steps:
-      - run-tests
+      - run-tests:
+          php-version: "8.0"
   test81:
     executor:
       name: php-executor
       php-version: "8.1"
     working_directory: ~/repo81
     steps:
-      - run-tests
+      - run-tests:
+          php-version: "8.1"
   test82:
     executor:
       name: php-executor
       php-version: "8.2"
     working_directory: ~/repo82
     steps:
-      - run-tests
+      - run-tests:
+          php-version: "8.2"
 
   test83:
     executor:
@@ -82,7 +95,8 @@ jobs:
       php-version: "8.3"
     working_directory: ~/repo83
     steps:
-      - run-tests
+      - run-tests:
+          php-version: "8.3"
 
   test84:
     executor:
@@ -90,7 +104,8 @@ jobs:
       php-version: "8.4"
     working_directory: ~/repo84
     steps:
-      - run-tests
+      - run-tests:
+          php-version: "8.4"
 
   test85:
     executor:
@@ -98,7 +113,8 @@ jobs:
       php-version: "8.5"
     working_directory: ~/repo85
     steps:
-      - run-tests
+      - run-tests:
+          php-version: "8.5"
 workflows:
   tests:
     jobs:
@@ -123,4 +139,3 @@ workflows:
       - test85:
           context:
             - dockerhub
-
