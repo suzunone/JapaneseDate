@@ -48,7 +48,9 @@ trait InvokeTrait
 
         $reflection = new ReflectionClass($instance);
         $method = $reflection->getMethod($method_name);
-        $method->setAccessible(true);
+        if (\PHP_VERSION_ID < 80100) {
+            $method->setAccessible(true);
+        }
 
         return $method->invokeArgs($instance, $options);
     }
@@ -67,7 +69,9 @@ trait InvokeTrait
 
         $reflection = new ReflectionClass($instance);
         $property = $reflection->getProperty($property_name);
-        $property->setAccessible(true);
+        if (\PHP_VERSION_ID < 80100) {
+            $property->setAccessible(true);
+        }
 
         return $property->getValue($instance);
     }
@@ -86,7 +90,9 @@ trait InvokeTrait
 
         $reflection = new ReflectionClass($instance);
         $property = $reflection->getProperty($property_name);
-        $property->setAccessible(true);
+        if (\PHP_VERSION_ID < 80100) {
+            $property->setAccessible(true);
+        }
 
         $property->setValue($instance, $data);
     }
