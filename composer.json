@@ -29,9 +29,6 @@
       "JapaneseDate\\": "src"
     }
   },
-  "bin": [
-    "make-japanese-date-mapping"
-  ],
   "autoload-dev": {
     "psr-4": {
       "Tests\\JapaneseDate\\": "tests/Tests/JapaneseDate"
