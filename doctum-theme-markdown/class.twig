@@ -56,7 +56,7 @@
 | Return | Method | Description |
 |---|---|---|
 {% for method in methods %}
-| {{ hint_text(method.hint, method.isIntersectionType()) }} | [{{ method.name|raw }}()](#{{ method.name|lower|raw }}){% if method.class is not same as(class) %} _(from {{ class_link_md(method.class, root_path) }})_{% endif %}{{ deprecated_md(method) }} | {{ method.shortdesc|desc(class) }} |
+| {{ hint_text(method.hint, method.isIntersectionType()) }} | {% if method.class is not same as(class) %}{{ method_link_md(method, root_path) }} _(from {{ class_link_md(method.class, root_path) }})_{% else %}[{{ method.name|raw }}()](#{{ method.name|lower|raw }}){% endif %}{{ deprecated_md(method) }} | {{ method.shortdesc|desc(class) }} |
 {% endfor %}
 
 ---
@@ -64,6 +64,7 @@
 ## Method Details
 
 {% for method in methods %}
+{% if method.class is same as(class) %}
 ### {{ method.name|raw }}
 
 ```php
@@ -108,5 +109,6 @@
 {% endif %}
 ---
 
+{% endif %}
 {% endfor %}
 {% endif %}

@@ -300,8 +300,8 @@ class GetterTest extends TestCase
     public function test_get_lunar_month(): void
     {
         $DateTime = new DateTime('2018-03-01');
-        $this->assertSame('1', $DateTime->lunar_month);
-        $this->assertSame('1', $DateTime->lunarMonth);
+        $this->assertSame(1, $DateTime->lunar_month);
+        $this->assertSame(1, $DateTime->lunarMonth);
     }
 
     /**
@@ -310,8 +310,8 @@ class GetterTest extends TestCase
     public function test_get_lunar_year(): void
     {
         $DateTime = new DateTime('2018-03-01');
-        $this->assertSame('2018', $DateTime->lunar_year);
-        $this->assertSame('2018', $DateTime->lunarYear);
+        $this->assertSame(2018, $DateTime->lunar_year);
+        $this->assertSame(2018, $DateTime->lunarYear);
     }
 
     /**
@@ -320,8 +320,8 @@ class GetterTest extends TestCase
     public function test_get_lunar_day(): void
     {
         $DateTime = new DateTime('2018-03-01');
-        $this->assertSame('14', $DateTime->lunar_day);
-        $this->assertSame('14', $DateTime->lunarDay);
+        $this->assertSame(14, $DateTime->lunar_day);
+        $this->assertSame(14, $DateTime->lunarDay);
     }
 
     /**
@@ -355,6 +355,90 @@ class GetterTest extends TestCase
         $DateTime = new DateTime('2018-01-01');
         $this->assertSame(13.47782236803323, $DateTime->moonAge);
 
+    }
+
+    /**
+     * 西暦五節句IDをキャメルケース・スネークケース両方で取得できることを確認する。
+     */
+    public function test_get_solarSeasonalFestival(): void
+    {
+        $DateTime = new DateTime('2026-05-05'); // 端午の節句
+        $this->assertSame(DateTime::SEASONAL_FESTIVAL_TANGO, $DateTime->solarSeasonalFestival);
+        $this->assertSame(DateTime::SEASONAL_FESTIVAL_TANGO, $DateTime->solar_seasonal_festival);
+    }
+
+    /**
+     * 西暦五節句の式名をキャメルケース・スネークケース両方で取得できることを確認する。
+     */
+    public function test_get_solarSeasonalFestivalName(): void
+    {
+        $DateTime = new DateTime('2026-05-05');
+        $this->assertSame('端午の節句', $DateTime->solarSeasonalFestivalName);
+        $this->assertSame('端午の節句', $DateTime->solar_seasonal_festival_name);
+    }
+
+    /**
+     * 西暦五節句の別名をキャメルケース・スネークケース両方で取得できることを確認する。
+     */
+    public function test_get_solarSeasonalFestivalAlias(): void
+    {
+        $DateTime = new DateTime('2026-05-05');
+        $this->assertSame('菖蒲の節句', $DateTime->solarSeasonalFestivalAlias);
+        $this->assertSame('菖蒲の節句', $DateTime->solar_seasonal_festival_alias);
+    }
+
+    /**
+     * 旧暦五節句IDをキャメルケース・スネークケース両方で取得できることを確認する。
+     *
+     * 2026-06-19 = 旧暦5月5日（端午の節句）。
+     */
+    public function test_get_lunarSeasonalFestival(): void
+    {
+        $DateTime = new DateTime('2026-06-19');
+        $this->assertSame(DateTime::SEASONAL_FESTIVAL_TANGO, $DateTime->lunarSeasonalFestival);
+        $this->assertSame(DateTime::SEASONAL_FESTIVAL_TANGO, $DateTime->lunar_seasonal_festival);
+    }
+
+    /**
+     * 旧暦五節句の式名をキャメルケース・スネークケース両方で取得できることを確認する。
+     */
+    public function test_get_lunarSeasonalFestivalName(): void
+    {
+        $DateTime = new DateTime('2026-06-19');
+        $this->assertSame('端午の節句', $DateTime->lunarSeasonalFestivalName);
+        $this->assertSame('端午の節句', $DateTime->lunar_seasonal_festival_name);
+    }
+
+    /**
+     * 旧暦五節句の別名をキャメルケース・スネークケース両方で取得できることを確認する。
+     */
+    public function test_get_lunarSeasonalFestivalAlias(): void
+    {
+        $DateTime = new DateTime('2026-06-19');
+        $this->assertSame('菖蒲の節句', $DateTime->lunarSeasonalFestivalAlias);
+        $this->assertSame('菖蒲の節句', $DateTime->lunar_seasonal_festival_alias);
+    }
+
+    /**
+     * 雑節IDをキャメルケース・スネークケース両方で取得できることを確認する。
+     */
+    public function test_get_miscSeasonalNode(): void
+    {
+        // 節分(2026-02-03)
+        $DateTime = new DateTime('2026-02-03');
+        $this->assertSame(DateTime::MISC_SEASONAL_NODE_SETSUBUN, $DateTime->miscSeasonalNode);
+        $this->assertSame(DateTime::MISC_SEASONAL_NODE_SETSUBUN, $DateTime->misc_seasonal_node);
+    }
+
+    /**
+     * 雑節名をキャメルケース・スネークケース両方で取得できることを確認する。
+     */
+    public function test_get_miscSeasonalNodeText(): void
+    {
+        // 節分(2026-02-03)
+        $DateTime = new DateTime('2026-02-03');
+        $this->assertSame('節分', $DateTime->miscSeasonalNodeText);
+        $this->assertSame('節分', $DateTime->misc_seasonal_node_text);
     }
 
     /**

@@ -889,6 +889,218 @@ JapaneseDateTime::setCacheMode(CacheMode::MODE_NONE);
 [JapaneseDateTime::setCacheClosure](https://github.com/suzunone/JapaneseDate/blob/master/docs/api/JapaneseDate/DateTime.md)をして、独自のキャッシュロジックを登録することでも切り替えることができます。
 
 
+DateInterval
+=================================================
+
+`JapaneseDate\DateInterval` クラスは、[CarbonInterval](https://carbon.nesbot.com/docs/)を継承した
+日本暦に対応した期間（インターバル）クラスです。
+
+```DateInterval.php
+<?= $open_tag ?>
+
+namespace JapaneseDate;
+
+class DateInterval extends \Carbon\CarbonInterval
+{
+
+}
+```
+
+営業日計算・六曜・元号・二十四節気・旧暦（月相）に基づく期間操作機能を提供します。
+
+``` .php
+use JapaneseDate\DateInterval;
+use JapaneseDate\DateTime as JapaneseDateTime;
+
+// N 営業日後の日付を取得する（土日・祝日をスキップ）
+$from = JapaneseDateTime::parse('2026-05-01');
+$result = DateInterval::addBusinessDaysToDate($from, 3);
+echo $result->format('Y-m-d');  // <?php
+use JapaneseDate\DateInterval;
+use JapaneseDate\DatePeriod;
+echo DateInterval::addBusinessDaysToDate(JapaneseDateTime::parse('2026-05-01'), 3)->format('Y-m-d');
+?>
+
+
+// N 営業日前の日付を取得する
+$result = DateInterval::subBusinessDaysToDate($from, 3);
+echo $result->format('Y-m-d');  // <?php
+echo DateInterval::subBusinessDaysToDate(JapaneseDateTime::parse('2026-05-11'), 3)->format('Y-m-d');
+?>
+
+
+// 次の祝日までの残り期間を DateInterval として取得する
+$interval = DateInterval::untilNextHoliday(JapaneseDateTime::parse('2026-05-01'));
+echo $interval->days . '日後が次の祝日';  // <?php
+$iv = DateInterval::untilNextHoliday(JapaneseDateTime::parse('2026-05-01'));
+echo $iv->days . '日後が次の祝日';
+?>
+
+
+// 次の大安までの残り期間を取得する
+$interval = DateInterval::untilNextSixWeek(
+    JapaneseDateTime::parse('2026-05-01'),
+    JapaneseDateTime::SIX_WEEKDAY_TAIAN
+);
+echo $interval->days . '日後が次の大安';  // <?php
+$iv2 = DateInterval::untilNextSixWeek(JapaneseDateTime::parse('2026-05-01'), JapaneseDateTime::SIX_WEEKDAY_TAIAN);
+echo $iv2->days . '日後が次の大安';
+?>
+
+
+// 令和の継続期間を取得する
+$interval = DateInterval::eraSpan(JapaneseDateTime::ERA_REIWA, JapaneseDateTime::parse('2026-05-01'));
+echo $interval->y . '年' . $interval->m . 'ヶ月';  // <?php
+$iv3 = DateInterval::eraSpan(JapaneseDateTime::ERA_REIWA, JapaneseDateTime::parse('2026-05-01'));
+echo $iv3->y . '年' . $iv3->m . 'ヶ月';
+?>
+
+
+// 30日が何節気分かを換算する
+$interval = new DateInterval('P30D');
+echo round($interval->toSolarTermCount(), 1) . '節気分';  // <?php
+$iv4 = new DateInterval('P30D');
+echo round($iv4->toSolarTermCount(), 1) . '節気分';
+?>
+
+
+// 59日が何朔望月分かを換算する
+$interval = new DateInterval('P59D');
+echo round($interval->toLunarMonthCount(), 1) . '朔望月';  // <?php
+$iv5 = new DateInterval('P59D');
+echo round($iv5->toLunarMonthCount(), 1) . '朔望月';
+?>
+
+
+// 次の新月までの残り日数を取得する
+$interval = DateInterval::untilNextNewMoon(JapaneseDateTime::parse('2026-05-01'));
+echo $interval->days . '日後が次の新月';  // <?php
+$iv6 = DateInterval::untilNextNewMoon(JapaneseDateTime::parse('2026-05-01'));
+echo $iv6->days . '日後が次の新月';
+?>
+
+```
+
+`DateInterval` クラスで使用できる主なメソッド:
+
+| メソッド | 説明 |
+|---|---|
+| `addBusinessDaysToDate(DateTime $from, int $n)` | N 営業日後の日付を返す（static） |
+| `subBusinessDaysToDate(DateTime $from, int $n)` | N 営業日前の日付を返す（static） |
+| `isBusinessDay(DateTime $date)` | 営業日かどうかを返す（static） |
+| `untilNextHoliday(DateTime $from)` | 次の祝日までの期間を返す（static） |
+| `untilNextSixWeek(DateTime $from, int $sixWeekday)` | 次の指定六曜までの期間を返す（static） |
+| `eraSpan(int $eraKey, ?DateTime $until)` | 元号の継続期間を返す（static） |
+| `untilNextSolarTerm(DateTime $from, ?string $termMethod)` | 次の節気までの期間を返す（static） |
+| `addSolarTermsToDate(DateTime $from, int $n)` | N 節気後の日付を返す（static） |
+| `subSolarTermsToDate(DateTime $from, int $n)` | N 節気前の日付を返す（static） |
+| `toSolarTermCount()` | 保持する日数を節気数に換算する |
+| `toLunarMonthCount()` | 保持する日数を朔望月数に換算する |
+| `untilNextNewMoon(DateTime $from)` | 次の新月までの期間を返す（static） |
+
+
+DatePeriod
+=================================================
+
+`JapaneseDate\DatePeriod` クラスは、[CarbonPeriod](https://carbon.nesbot.com/docs/)を継承した
+日本暦に対応した期間イテレータクラスです。
+
+```DatePeriod.php
+<?= $open_tag ?>
+
+namespace JapaneseDate;
+
+class DatePeriod extends \Carbon\CarbonPeriod
+{
+
+}
+```
+
+フィルタメソッドはメソッドチェーンで接続でき、`foreach` で直接利用可能なイテレータを返します。
+
+``` .php
+use JapaneseDate\DatePeriod;
+use JapaneseDate\DateTime as JapaneseDateTime;
+
+// 2026年度の祝日のみを取得する
+$period = DatePeriod::create('2026-04-01', '1 day', '2027-03-31')
+    ->onlyHolidays();
+
+foreach ($period as $date) {
+    $jd = JapaneseDateTime::factory($date);
+    echo $jd->format('Y-m-d') . ' ' . $jd->holidayText . PHP_EOL;
+}
+
+// 2026年5月の大安のみを取得する
+$taianDays = DatePeriod::create('2026-05-01', '1 day', '2026-05-31')
+    ->onlySixWeekday(JapaneseDateTime::SIX_WEEKDAY_TAIAN);
+
+// 2026年5月の営業日のみを取得する（土日・祝日を除外）
+$businessDays = DatePeriod::create('2026-05-01', '1 day', '2026-05-31')
+    ->onlyWeekdays();
+
+echo count(iterator_to_array($businessDays)) . '営業日';  // <?php
+echo count(iterator_to_array(DatePeriod::create('2026-05-01', '1 day', '2026-05-31')->onlyWeekdays())) . '営業日';
+?>
+
+
+// 2026年の節気区切りでイテレートする
+$period = DatePeriod::eachSolarTerm(
+    JapaneseDateTime::parse('2026-01-01'),
+    JapaneseDateTime::parse('2026-03-31')
+);
+
+foreach ($period as $date) {
+    $jd = JapaneseDateTime::factory($date);
+    echo $jd->format('Y-m-d') . ' ' . $jd->solarTermText . PHP_EOL;
+}
+
+// 2026年から4ヶ月分の旧暦朔日を取得する
+$period = DatePeriod::eachLunarMonth(JapaneseDateTime::parse('2026-01-01'), 4);
+foreach ($period as $date) {
+    $jd = JapaneseDateTime::factory($date);
+    echo $date->format('Y-m-d') . ' 旧暦' . $jd->lunarYear . '年' . $jd->lunarMonth . '月朔日' . PHP_EOL;
+}
+
+// 1988〜1990年の期間を元号で分割する
+$fullPeriod = DatePeriod::create('1988-01-01', '1 day', '1990-12-31');
+$split = $fullPeriod->splitByEra();
+foreach ($split as $eraKey => $subPeriod) {
+    $jd = JapaneseDateTime::factory($subPeriod->getStartDate());
+    echo $jd->eraNameText . ': '
+        . $subPeriod->getStartDate()->format('Y-m-d')
+        . ' 〜 '
+        . $subPeriod->getEndDate()->format('Y-m-d') . PHP_EOL;
+}
+
+// 令和6年度〜令和8年度の年度開始日を取得する
+$period = DatePeriod::eachJapaneseFiscalYear(2024, 2026);
+foreach ($period as $date) {
+    $jd = JapaneseDateTime::factory($date);
+    echo $jd->eraNameText . $jd->eraYear . '年度 (' . $date->format('Y/m/d') . ')' . PHP_EOL;
+}
+
+```
+
+`DatePeriod` クラスで使用できる主なメソッド:
+
+| メソッド | 説明 |
+|---|---|
+| `onlyHolidays()` | 祝日・休日のみを抽出するフィルタを追加 |
+| `withoutHolidays()` | 祝日・休日を除外するフィルタを追加 |
+| `withoutWeekends()` | 土日を除外するフィルタを追加 |
+| `onlyWeekdays()` | 土日・祝日を除外した平日のみを抽出 |
+| `onlyGotobi(string $adjust)` | 五十日（5・10・15・20・25・月末）かつ営業日のみを抽出 |
+| `onlySixWeekday(int ...$sixWeekdays)` | 指定した六曜のみを抽出するフィルタを追加 |
+| `withoutSixWeekday(int ...$sixWeekdays)` | 指定した六曜を除外するフィルタを追加 |
+| `onlyDoyo()` | 土用期間内の日付のみを抽出するフィルタを追加 |
+| `onlyHigan()` | 彼岸期間内の日付のみを抽出するフィルタを追加 |
+| `eachSolarTerm(DateTime $start, DateTime $end)` | 節気区切りの DatePeriod を生成（static） |
+| `eachLunarMonth(DateTime $start, int $months)` | 旧暦月の朔日を順次返す DatePeriod を生成（static） |
+| `splitByEra()` | 元号ごとにサブ期間に分割して配列を返す |
+| `eachJapaneseFiscalYear(int $start, int $end)` | 和暦年度開始日（4月1日）を順次返す DatePeriod を生成（static） |
+
+
 <?php
 $content = ob_get_contents();
 ob_end_flush();

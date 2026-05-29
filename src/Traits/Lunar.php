@@ -11,7 +11,7 @@
  * @license     BSD-2
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
- * @since        1.0.0
+ * @since        2020-03-11
  */
 
 namespace JapaneseDate\Traits;
@@ -30,7 +30,7 @@ use JapaneseDate\Elements\LunarDate;
  * @license     BSD-2
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
- * @since        1.0.0
+ * @since        2020-03-11
  * @mixin \JapaneseDate\DateTime
  * @mixin \JapaneseDate\DateTimeImmutable
  */
@@ -54,6 +54,53 @@ trait Lunar
             (float) $this->minute,
             (float) $this->second
         );
+    }
+
+    /**
+     * 月の位相角を求める（0°=新月、90°=上弦、180°=満月、270°=下弦）
+     *
+     * @return float
+     * @throws \JapaneseDate\Exceptions\Exception
+     */
+    protected function getMoonPhaseAngle(): float
+    {
+        return $this->LunarCalendar->moonPhaseAngle(
+            $this->year,
+            $this->month,
+            $this->day,
+            (float) $this->hour,
+            (float) $this->minute,
+            (float) $this->second
+        );
+    }
+
+    /**
+     * 月相を求める（0=新月〜7=有明）
+     *
+     * @return int
+     * @throws \JapaneseDate\Exceptions\Exception
+     */
+    protected function getMoonPhase(): int
+    {
+        return $this->LunarCalendar->moonPhase(
+            $this->year,
+            $this->month,
+            $this->day,
+            (float) $this->hour,
+            (float) $this->minute,
+            (float) $this->second
+        );
+    }
+
+    /**
+     * 月相の日本語名を返す
+     *
+     * @return string
+     * @throws \JapaneseDate\Exceptions\Exception
+     */
+    protected function viewMoonPhase(): string
+    {
+        return $this->JapaneseDate->viewMoonPhase($this->getMoonPhase());
     }
 
     /**
@@ -104,27 +151,27 @@ trait Lunar
     /**
      * 旧暦（日）
      *
-     * @return      string
+     * @return      int
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JsonException
      */
-    protected function getLunarDay(): string
+    protected function getLunarDay(): int
     {
-        return $this->getLunarCalendar()->day;
+        return (int) $this->getLunarCalendar()->day;
     }
 
     /**
      * 旧暦（月）
      *
-     * @return      string
+     * @return      int
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JsonException
      */
-    protected function getLunarMonth(): string
+    protected function getLunarMonth(): int
     {
-        return $this->getLunarCalendar()->month;
+        return (int) $this->getLunarCalendar()->month;
     }
 
     /**
@@ -205,13 +252,13 @@ trait Lunar
     /**
      * 旧暦（年）
      *
-     * @return      string
+     * @return      int
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JsonException
      */
-    protected function getLunarYear(): string
+    protected function getLunarYear(): int
     {
-        return $this->getLunarCalendar()->year;
+        return (int) $this->getLunarCalendar()->year;
     }
 }

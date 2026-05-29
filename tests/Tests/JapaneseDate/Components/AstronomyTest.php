@@ -502,4 +502,106 @@ class AstronomyTest extends TestCase
             $this->assertLessThan(30.0, $result, "{$y}-{$m}-{$d} で月齢が30以上になった");
         }
     }
+
+    // ==================== moonPhaseAngle ====================
+
+    /**
+     * 月の位相角は常に [0, 360) の範囲の値を返す
+     *
+     * 検証出典: 国立天文台 朔望データ
+     */
+    public function test_moonPhaseAngle_alwaysInRange(): void
+    {
+        $ast = new Astronomy();
+        $dates = [
+            [2023, 1, 1, 0, 0, 0],
+            [2023, 6, 15, 12, 0, 0],
+            [2025, 12, 31, 23, 59, 59],
+        ];
+        foreach ($dates as [$y, $m, $d, $h, $i, $s]) {
+            $result = $ast->moonPhaseAngle($y, $m, $d, $h, $i, $s);
+            $this->assertIsFloat($result);
+            $this->assertGreaterThanOrEqual(0.0, $result, "{$y}-{$m}-{$d} で位相角が負になった");
+            $this->assertLessThan(360.0, $result, "{$y}-{$m}-{$d} で位相角が360以上になった");
+        }
+    }
+
+    /**
+     * 新月時刻の位相角は 0° 付近になる
+     *
+     * 検証出典: 国立天文台 2023-01-22 05:53 JST = 2023-01-21 20:53 UTC が新月
+     */
+    public function test_moonPhaseAngle_nearNewMoon(): void
+    {
+        $ast = new Astronomy();
+        // 2023-01-21 20:53 UTC (新月時刻)
+        $result = $ast->moonPhaseAngle(2023, 1, 21, 20.0, 53.0, 0.0);
+        // 新月区間: 337.5° 〜 22.5°
+        $this->assertTrue(
+            $result < 22.5 || $result >= 337.5,
+            "新月付近の位相角({$result}°)が新月区間(337.5°〜22.5°)外です"
+        );
+    }
+
+    /**
+     * 満月時刻の位相角は 180° 付近になる
+     *
+     * 検証出典: 国立天文台 2023-02-05 18:29 UTC が満月
+     */
+    public function test_moonPhaseAngle_nearFullMoon(): void
+    {
+        $ast = new Astronomy();
+        // 2023-02-05 18:29 UTC (満月時刻)
+        $result = $ast->moonPhaseAngle(2023, 2, 5, 18.0, 29.0, 0.0);
+        // 満月区間: 157.5° 〜 202.5°
+        $this->assertGreaterThan(135.0, $result, "満月付近の位相角({$result}°)が小さすぎます");
+        $this->assertLessThan(225.0, $result, "満月付近の位相角({$result}°)が大きすぎます");
+    }
+
+    // ==================== moonPhase ====================
+
+    /**
+     * 月相は常に 0〜7 の整数を返す
+     */
+    public function test_moonPhase_alwaysInRange(): void
+    {
+        $ast = new Astronomy();
+        $dates = [
+            [2023, 1, 1, 0, 0, 0],
+            [2023, 6, 15, 12, 0, 0],
+            [2025, 12, 31, 23, 59, 59],
+        ];
+        foreach ($dates as [$y, $m, $d, $h, $i, $s]) {
+            $result = $ast->moonPhase($y, $m, $d, $h, $i, $s);
+            $this->assertIsInt($result);
+            $this->assertGreaterThanOrEqual(0, $result, "{$y}-{$m}-{$d} で月相が負になった");
+            $this->assertLessThanOrEqual(7, $result, "{$y}-{$m}-{$d} で月相が7を超えた");
+        }
+    }
+
+    /**
+     * 新月時刻の月相は 0 (新月) になる
+     *
+     * 検証出典: 国立天文台 2023-01-22 05:53 JST = 2023-01-21 20:53 UTC が新月
+     */
+    public function test_moonPhase_newMoon(): void
+    {
+        $ast = new Astronomy();
+        // 2023-01-21 20:53 UTC (新月時刻)
+        $result = $ast->moonPhase(2023, 1, 21, 20.0, 53.0, 0.0);
+        $this->assertSame(0, $result, '新月時刻の月相が 0 (新月) でありません');
+    }
+
+    /**
+     * 満月時刻の月相は 4 (満月) になる
+     *
+     * 検証出典: 国立天文台 2023-02-05 18:29 UTC が満月
+     */
+    public function test_moonPhase_fullMoon(): void
+    {
+        $ast = new Astronomy();
+        // 2023-02-05 18:29 UTC (満月時刻)
+        $result = $ast->moonPhase(2023, 2, 5, 18.0, 29.0, 0.0);
+        $this->assertSame(4, $result, '満月時刻の月相が 4 (満月) でありません');
+    }
 }

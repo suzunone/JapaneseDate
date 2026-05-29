@@ -57,6 +57,12 @@ class JapaneseDate
     public const SIX_WEEKDAY = ['大安', '赤口', '先勝', '友引', '先負', '仏滅'];
 
     /**
+     * 月相配列
+     * @var array
+     */
+    public const MOON_PHASE = ['新月', '三日月', '上弦', '十三夜', '満月', '十六夜', '下弦', '有明'];
+
+    /**
      * 干支配列
      * @var array
      */
@@ -92,6 +98,13 @@ class JapaneseDate
     private LunarCalendar $LunarCalendar;
 
     /**
+     * 干支計算クラスオブジェクト
+     *
+     * @var \JapaneseDate\Components\SexagenaryCycle
+     */
+    private SexagenaryCycle $SexagenaryCycle;
+
+    /**
      * @var array
      */
     private array $holiday_name;
@@ -111,6 +124,7 @@ class JapaneseDate
     public function __construct()
     {
         $this->LunarCalendar = LunarCalendar::factory();
+        $this->SexagenaryCycle = SexagenaryCycle::factory();
 
         $this->era_name = [
             DateTime::ERA_MEIJI  => '明治',
@@ -836,15 +850,27 @@ class JapaneseDate
     }
 
     /**
-     * 日本語フォーマットされた干支を返す
+     * 日本語フォーマットされた月相名を返す
      *
      * @access      public
-     * @param int $key 干支キー
+     * @param int $key 月相キー (0〜7)
+     * @return      string
+     */
+    public function viewMoonPhase(int $key): string
+    {
+        return self::MOON_PHASE[$key] ?? '';
+    }
+
+    /**
+     * 日本語フォーマットされた十二支を返す
+     *
+     * @access      public
+     * @param int $key 十二支キー
      * @return      string
      */
     public function viewOrientalZodiac(int $key): string
     {
-        return self::ORIENTAL_ZODIAC[$key] ?? '';
+        return $this->SexagenaryCycle->viewOrientalZodiac($key);
     }
 
     /**
