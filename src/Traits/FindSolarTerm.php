@@ -20,7 +20,7 @@ use Throwable;
  * @license     BSD-2
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
- * @since        1.0.0
+ * @since        2026-05-28
  * @mixin \JapaneseDate\DateTime
  * @mixin \JapaneseDate\DateTimeImmutable
  */
@@ -614,7 +614,7 @@ trait FindSolarTerm
         $st = $this->findSolarTerm($method, $year);
 
         if ($this->month > $st->month || ($this->month === $st->month && $this->day >= $st->day)) {
-            $year += 1;
+            ++$year;
         }
 
         return $this->getSolarTermDate($method, $year);
@@ -629,7 +629,7 @@ trait FindSolarTerm
         $st = $this->findSolarTerm($method, $year);
 
         if ($this->month < $st->month || ($this->month === $st->month && $this->day <= $st->day)) {
-            $year -= 1;
+            --$year;
         }
 
         return $this->getSolarTermDate($method, $year);

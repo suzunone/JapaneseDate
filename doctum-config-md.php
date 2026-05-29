@@ -10,17 +10,21 @@ $srcIterator = Finder::create()
     ->files()
     ->name('*.php')
     ->in(__DIR__ . '/src')
-    ->path('/^DateTime\.php/')
-    ->path('/^DateTimeImmutable\.php/')
+    ->path('/^DateTime(Immutable)?\.php/')
+    ->path('/^DateInterval\.php/')
+    ->path('/^DatePeriod\.php/')
     ->path('/^DateTimeInterface\.php/')
     ->path('/^CacheMode\.php/')
     ->path('/^Calendar\.php/')
+    ->path('/^DateBusiness\.php/')
+    ->path('/^Exceptions/')
+
     ->path('/^Traits/') // Traits/ ディレクトリ以下を丸ごと対象にする
     ->exclude('test'); // ignore指定されていたtestディレクトリを除外
 
 $carbonIterator = Finder::create()
     ->files()
-    ->name('/^Carbon(Immutable)?\.php$/')
+    ->name('/^Carbon(Immutable|Interval|Period)?\.php$/')
     ->in(__DIR__ . '/vendor/nesbot/carbon/src/Carbon');
 
 $iterator = new AppendIterator();

@@ -99,6 +99,8 @@ class SolarTerm
     }
 
     /**
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      * @param int $year
      */
     public function syunbun($year): SolarTermDate
@@ -107,6 +109,8 @@ class SolarTerm
     }
 
     /**
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      * @param int $year
      */
     public function seimei($year): SolarTermDate
@@ -115,6 +119,8 @@ class SolarTerm
     }
 
     /**
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      * @param int $year
      */
     public function kokuu($year): SolarTermDate
@@ -123,6 +129,8 @@ class SolarTerm
     }
 
     /**
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      * @param int $year
      */
     public function rikka($year): SolarTermDate
@@ -131,6 +139,8 @@ class SolarTerm
     }
 
     /**
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      * @param int $year
      */
     public function syouman($year): SolarTermDate
@@ -139,6 +149,8 @@ class SolarTerm
     }
 
     /**
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      * @param int $year
      */
     public function bousyu($year): SolarTermDate
@@ -147,6 +159,8 @@ class SolarTerm
     }
 
     /**
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      * @param int $year
      */
     public function geshi($year): SolarTermDate
@@ -155,6 +169,8 @@ class SolarTerm
     }
 
     /**
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      * @param int $year
      */
     public function syousyo($year): SolarTermDate
@@ -163,6 +179,8 @@ class SolarTerm
     }
 
     /**
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      * @param int $year
      */
     public function taisyo($year): SolarTermDate
@@ -171,6 +189,8 @@ class SolarTerm
     }
 
     /**
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      * @param int $year
      */
     public function rissyuu($year): SolarTermDate
@@ -179,6 +199,8 @@ class SolarTerm
     }
 
     /**
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      * @param int $year
      */
     public function syosyo($year): SolarTermDate
@@ -187,6 +209,8 @@ class SolarTerm
     }
 
     /**
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      * @param int $year
      */
     public function hakuro($year): SolarTermDate
@@ -195,6 +219,8 @@ class SolarTerm
     }
 
     /**
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      * @param int $year
      */
     public function syuubun($year): SolarTermDate
@@ -203,6 +229,8 @@ class SolarTerm
     }
 
     /**
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      * @param int $year
      */
     public function kanro($year): SolarTermDate
@@ -211,6 +239,8 @@ class SolarTerm
     }
 
     /**
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      * @param int $year
      */
     public function soukou($year): SolarTermDate
@@ -219,6 +249,8 @@ class SolarTerm
     }
 
     /**
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      * @param int $year
      */
     public function rittou($year): SolarTermDate
@@ -227,6 +259,8 @@ class SolarTerm
     }
 
     /**
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      * @param int $year
      */
     public function syousetsu($year): SolarTermDate
@@ -235,6 +269,8 @@ class SolarTerm
     }
 
     /**
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      * @param int $year
      */
     public function taisetsu($year): SolarTermDate
@@ -243,6 +279,8 @@ class SolarTerm
     }
 
     /**
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      * @param int $year
      */
     public function touji($year): SolarTermDate
@@ -251,6 +289,8 @@ class SolarTerm
     }
 
     /**
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      * @param int $year
      */
     public function syoukan($year): SolarTermDate
@@ -259,6 +299,8 @@ class SolarTerm
     }
 
     /**
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      * @param int $year
      */
     public function daikan($year): SolarTermDate
@@ -267,6 +309,8 @@ class SolarTerm
     }
 
     /**
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      * @param int $year
      */
     public function rissyun($year): SolarTermDate
@@ -275,6 +319,8 @@ class SolarTerm
     }
 
     /**
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      * @param int $year
      */
     public function usui($year): SolarTermDate
@@ -283,6 +329,8 @@ class SolarTerm
     }
 
     /**
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      * @param int $year
      */
     public function keichitsu($year): SolarTermDate

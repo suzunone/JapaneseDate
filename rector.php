@@ -2,10 +2,12 @@
 
 declare(strict_types=1);
 
+use JapaneseDateRector\PHPUnitAttributeToAnnotationRector;
 use Rector\Config\RectorConfig;
 use Rector\Php80\Rector\Class_\AnnotationToAttributeRector;
-use Rector\Php80\Rector\Class_\AttributeValueResolver;
-use Rector\DowngradePhp80\Rector\Class_\DowngradeAttributeToAnnotationRector;
+
+// カスタム Rector ルールをロード
+require_once __DIR__ . '/tools/Rector/PHPUnitAttributeToAnnotationRector.php';
 
 return RectorConfig::configure()
     // 1. 対象ディレクトリの指定
@@ -24,11 +26,12 @@ return RectorConfig::configure()
         phpunit: true
     )
 
-    // 4. アノテーションからアトリビュートへの自動変換ルールを除外する
-    ->withSkip([
-        // PHP 8.0標準のアノテーション→アトリビュート変換を停止
-        AnnotationToAttributeRector::class,
-        AttributeValueResolver::class,
-        DowngradeAttributeToAnnotationRector::class,
+    // 4. PHPUnit 10+ の Attribute を PHPUnit 9 互換のアノテーションに変換
+    ->withRules([
+        PHPUnitAttributeToAnnotationRector::class,
+    ])
 
+    // 5. アノテーションからアトリビュートへの自動変換ルールを除外する
+    ->withSkip([
+        AnnotationToAttributeRector::class,
     ]);

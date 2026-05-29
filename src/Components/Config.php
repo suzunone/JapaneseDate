@@ -13,7 +13,7 @@
  * @version    1.0
  * @link       https://github.com/suzunone/Contender
  * @see        https://github.com/suzunone/Contender
- * @since      2020/12/19
+ * @since      2020-12-19
  */
 
 namespace JapaneseDate\Components;
@@ -32,7 +32,7 @@ namespace JapaneseDate\Components;
  * @version    1.0
  * @link       https://github.com/suzunone/JapaneseDate
  * @see        https://github.com/suzunone/JapaneseDate
- * @since      2020/12/19
+ * @since      2020-12-19
  */
 class Config
 {

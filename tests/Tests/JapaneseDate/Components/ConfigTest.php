@@ -21,14 +21,15 @@ use PHPUnit\Framework\Attributes\PreserveGlobalState;
 use PHPUnit\Framework\Attributes\RunInSeparateProcess;
 use PHPUnit\Framework\TestCase;
 
-#[CoversClass(\JapaneseDate\Components\Config::class)]
+/**
+ * @covers \JapaneseDate\Components\Config
+ */
 class ConfigTest extends TestCase
 {
     /**
      * @var string
      */
     private $tmpDir;
-
     /**
      * テスト用の暦データファイルを一時ディレクトリに作成する。
      */
@@ -60,7 +61,6 @@ PHP
 
         Config::setLCPath([$this->tmpDir]);
     }
-
     /**
      * テスト用の暦データファイルと設定パスを後片付けする。
      */
@@ -70,18 +70,16 @@ PHP
         @rmdir($this->tmpDir);
         Config::setLCPath([]);
     }
-
     /**
      * 指定年の旧暦データを取得し、ユリウス通日が補完されることを確認する。
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
      */
-    #[RunInSeparateProcess] #[PreserveGlobalState(false)]
     public function test_getLC_returns_lunarCalendar_data(): void
     {
         $result = Config::getLC(2026);
-
         $this->assertNotEmpty($result, 'getLC(2026) は空配列ではなく lunarCalendar データを返すべき');
         $this->assertCount(1, $result);
-
         $entry = $result[0];
         $this->assertEquals(2026, $entry['year']);
         $this->assertEquals(1, $entry['month']);
@@ -89,58 +87,54 @@ PHP
         $this->assertEquals(2025, $entry['lunar_year']);
         $this->assertEquals(12, $entry['lunar_month']);
         $this->assertFalse($entry['lunar_month_leap']);
-
         // jd (ユリウス通日) が補完されること
         $this->assertArrayHasKey('jd', $entry, 'jd キーが補完されること');
         $this->assertGreaterThan(0, $entry['jd']);
     }
-
     /**
      * 指定年の二十四節気データを取得できることを確認する。
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
      */
-    #[RunInSeparateProcess] #[PreserveGlobalState(false)]
     public function test_getST_returns_solarTerm_data(): void
     {
         $result = Config::getST(2026);
-
         $this->assertNotEmpty($result, 'getST(2026) は空配列ではなく solarTerm データを返すべき');
         $this->assertCount(1, $result);
-
         $entry = $result[0];
         $this->assertEquals(1, $entry['month']);
         $this->assertEquals(5, $entry['day']);
         $this->assertEquals(21, $entry['solar_term']);
     }
-
     /**
      * 設定ファイルがない年の旧暦データは空配列になることを確認する。
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
      */
-    #[RunInSeparateProcess] #[PreserveGlobalState(false)]
     public function test_getLC_returns_empty_for_missing_year(): void
     {
         $result = Config::getLC(1800);
         $this->assertSame([], $result);
     }
-
     /**
      * 設定ファイルがない年の二十四節気データは空配列になることを確認する。
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
      */
-    #[RunInSeparateProcess] #[PreserveGlobalState(false)]
     public function test_getST_returns_empty_for_missing_year(): void
     {
         $result = Config::getST(1800);
         $this->assertSame([], $result);
     }
-
     /**
      * addLCPath() で追加したパスから旧暦データを読み込めることを確認する。
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
      */
-    #[RunInSeparateProcess] #[PreserveGlobalState(false)]
     public function test_addLCPath(): void
     {
         Config::setLCPath([]);
         Config::addLCPath($this->tmpDir);
-
         $result = Config::getLC(2026);
         $this->assertNotEmpty($result);
     }

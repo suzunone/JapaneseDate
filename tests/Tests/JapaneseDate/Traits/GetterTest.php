@@ -39,14 +39,13 @@ use Tests\JapaneseDate\InvokeTrait;
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
  * @since       1.0.0 リリースから利用可能
+ * @covers \JapaneseDate\Traits\Getter
+ * @covers \JapaneseDate\Traits\Getter::getCalendar
+ * @covers \JapaneseDate\Traits\Getter::__get
  */
-#[CoversTrait(\JapaneseDate\Traits\Getter::class)]
-#[CoversMethod(\JapaneseDate\Traits\Getter::class, 'getCalendar')]
-#[CoversMethod(\JapaneseDate\Traits\Getter::class, '__get')]
 class GetterTest extends TestCase
 {
     use InvokeTrait;
-
     /**
      * 二十四節気の日付プロパティを検証するための期待値を返す。
      */
@@ -93,7 +92,6 @@ class GetterTest extends TestCase
 
         return $data;
     }
-
     /**
      * グレゴリオ暦の年月日配列を取得できることを確認する。
      */
@@ -106,7 +104,6 @@ class GetterTest extends TestCase
         $this->assertArrayHasKey('month', $result);
         $this->assertArrayHasKey('day', $result);
     }
-
     /**
      * ユリウス暦の年月日配列を取得できることを確認する。
      */
@@ -119,7 +116,6 @@ class GetterTest extends TestCase
         $this->assertArrayHasKey('month', $result);
         $this->assertArrayHasKey('day', $result);
     }
-
     /**
      * 二十四節気名をスネークケースとキャメルケースのプロパティで取得できることを確認する。
      */
@@ -129,7 +125,6 @@ class GetterTest extends TestCase
         $this->assertSame('清明', $DateTime->solar_term_text);
         $this->assertSame('清明', $DateTime->solarTermText);
     }
-
     /**
      * 二十四節気コードをスネークケースとキャメルケースのプロパティで取得できることを確認する。
      */
@@ -139,7 +134,6 @@ class GetterTest extends TestCase
         $this->assertSame(1, $DateTime->solar_term);
         $this->assertSame(1, $DateTime->solarTerm);
     }
-
     /**
      * 二十四節気当日かどうかをスネークケースとキャメルケースのプロパティで取得できることを確認する。
      */
@@ -149,20 +143,17 @@ class GetterTest extends TestCase
         $this->assertTrue($DateTime->is_solar_term);
         $this->assertTrue($DateTime->isSolarTerm);
     }
-
     /**
      * 二十四節気の日付プロパティが期待する日時を返すことを確認する。
+     * @dataProvider solarTermDateGetterDataProvider
      * @param string $property
      * @param string $expected
      */
-    #[DataProvider('solarTermDateGetterDataProvider')]
     public function test_get_solar_term_date_property($property, $expected): void
     {
         $DateTime = new DateTime('2018-01-01 12:34:56');
-
         $this->assertSame($expected, $DateTime->{$property}->format('Y-m-d H:i:s'));
     }
-
     /**
      * 元号名をスネークケースとキャメルケースのプロパティで取得できることを確認する。
      */
@@ -172,7 +163,6 @@ class GetterTest extends TestCase
         $this->assertSame('令和', $DateTime->era_name_text);
         $this->assertSame('令和', $DateTime->eraNameText);
     }
-
     /**
      * 元号コードをスネークケースとキャメルケースのプロパティで取得できることを確認する。
      */
@@ -182,7 +172,6 @@ class GetterTest extends TestCase
         $this->assertSame(DateTime::ERA_REIWA, $DateTime->era_name);
         $this->assertSame(DateTime::ERA_REIWA, $DateTime->eraName);
     }
-
     /**
      * 元号年をスネークケースとキャメルケースのプロパティで取得できることを確認する。
      */
@@ -192,7 +181,6 @@ class GetterTest extends TestCase
         $this->assertSame(1, $DateTime->era_year);
         $this->assertSame(1, $DateTime->eraYear);
     }
-
     /**
      * 干支名をスネークケースとキャメルケースのプロパティで取得できることを確認する。
      */
@@ -202,7 +190,6 @@ class GetterTest extends TestCase
         $this->assertSame('申', $DateTime->oriental_zodiac_text);
         $this->assertSame('申', $DateTime->orientalZodiacText);
     }
-
     /**
      * 干支コードをスネークケースとキャメルケースのプロパティで取得できることを確認する。
      */
@@ -212,7 +199,6 @@ class GetterTest extends TestCase
         $this->assertSame(0, $DateTime->oriental_zodiac);
         $this->assertSame(0, $DateTime->orientalZodiac);
     }
-
     /**
      * 六曜名をスネークケースとキャメルケースのプロパティで取得できることを確認する。
      */
@@ -222,7 +208,6 @@ class GetterTest extends TestCase
         $this->assertSame('友引', $DateTime->six_weekday_text);
         $this->assertSame('友引', $DateTime->sixWeekdayText);
     }
-
     /**
      * 六曜コードをスネークケースとキャメルケースのプロパティで取得できることを確認する。
      */
@@ -232,7 +217,6 @@ class GetterTest extends TestCase
         $this->assertSame(3, $DateTime->six_weekday);
         $this->assertSame(3, $DateTime->sixWeekday);
     }
-
     /**
      * 曜日名をスネークケースとキャメルケースのプロパティで取得できることを確認する。
      */
@@ -242,7 +226,6 @@ class GetterTest extends TestCase
         $this->assertSame('月', $DateTime->weekday_text);
         $this->assertSame('月', $DateTime->weekdayText);
     }
-
     /**
      * 和風月名をスネークケースとキャメルケースのプロパティで取得できることを確認する。
      */
@@ -252,7 +235,6 @@ class GetterTest extends TestCase
         $this->assertSame('睦月', $DateTime->month_text);
         $this->assertSame('睦月', $DateTime->monthText);
     }
-
     /**
      * 祝日名をスネークケースとキャメルケースのプロパティで取得できることを確認する。
      */
@@ -262,7 +244,6 @@ class GetterTest extends TestCase
         $this->assertSame('元旦', $DateTime->holiday_text);
         $this->assertSame('元旦', $DateTime->holidayText);
     }
-
     /**
      * 祝日コードを取得できることを確認する。
      */
@@ -271,7 +252,6 @@ class GetterTest extends TestCase
         $DateTime = new DateTime('2018-01-01');
         $this->assertSame(DateTime::NEW_YEAR_S_DAY, $DateTime->holiday);
     }
-
     /**
      * 祝日かどうかをスネークケースとキャメルケースのプロパティで取得できることを確認する。
      */
@@ -285,7 +265,6 @@ class GetterTest extends TestCase
         $this->assertFalse($DateTime->is_holiday);
         $this->assertFalse($DateTime->isHoliday);
     }
-
     /**
      * 旧暦月名をスネークケースとキャメルケースのプロパティで取得できることを確認する。
      */
@@ -295,37 +274,33 @@ class GetterTest extends TestCase
         $this->assertSame('睦月', $DateTime->lunar_month_text);
         $this->assertSame('睦月', $DateTime->lunarMonthText);
     }
-
     /**
      * 旧暦月をスネークケースとキャメルケースのプロパティで取得できることを確認する。
      */
     public function test_get_lunar_month(): void
     {
         $DateTime = new DateTime('2018-03-01');
-        $this->assertSame('1', $DateTime->lunar_month);
-        $this->assertSame('1', $DateTime->lunarMonth);
+        $this->assertSame(1, $DateTime->lunar_month);
+        $this->assertSame(1, $DateTime->lunarMonth);
     }
-
     /**
      * 旧暦年をスネークケースとキャメルケースのプロパティで取得できることを確認する。
      */
     public function test_get_lunar_year(): void
     {
         $DateTime = new DateTime('2018-03-01');
-        $this->assertSame('2018', $DateTime->lunar_year);
-        $this->assertSame('2018', $DateTime->lunarYear);
+        $this->assertSame(2018, $DateTime->lunar_year);
+        $this->assertSame(2018, $DateTime->lunarYear);
     }
-
     /**
      * 旧暦日をスネークケースとキャメルケースのプロパティで取得できることを確認する。
      */
     public function test_get_lunar_day(): void
     {
         $DateTime = new DateTime('2018-03-01');
-        $this->assertSame('14', $DateTime->lunar_day);
-        $this->assertSame('14', $DateTime->lunarDay);
+        $this->assertSame(14, $DateTime->lunar_day);
+        $this->assertSame(14, $DateTime->lunarDay);
     }
-
     /**
      * 閏月かどうかをスネークケースとキャメルケースのプロパティで取得できることを確認する。
      */
@@ -339,7 +314,6 @@ class GetterTest extends TestCase
         $this->assertFalse($DateTime->is_leap_month);
         $this->assertFalse($DateTime->isLeapMonth);
     }
-
     /**
      * Getter Trait で扱わないプロパティは親クラスの取得処理へ委譲されることを確認する。
      */
@@ -348,7 +322,6 @@ class GetterTest extends TestCase
         $DateTime = new DateTime('2018-01-01');
         $this->assertSame(1, $DateTime->dayOfYear);
     }
-
     /**
      * 月齢をキャメルケースのプロパティで取得できることを確認する。
      */
@@ -358,7 +331,82 @@ class GetterTest extends TestCase
         $this->assertSame(13.47782236803323, $DateTime->moonAge);
 
     }
-
+    /**
+     * 西暦五節句IDをキャメルケース・スネークケース両方で取得できることを確認する。
+     */
+    public function test_get_solarSeasonalFestival(): void
+    {
+        $DateTime = new DateTime('2026-05-05'); // 端午の節句
+        $this->assertSame(DateTime::SEASONAL_FESTIVAL_TANGO, $DateTime->solarSeasonalFestival);
+        $this->assertSame(DateTime::SEASONAL_FESTIVAL_TANGO, $DateTime->solar_seasonal_festival);
+    }
+    /**
+     * 西暦五節句の式名をキャメルケース・スネークケース両方で取得できることを確認する。
+     */
+    public function test_get_solarSeasonalFestivalName(): void
+    {
+        $DateTime = new DateTime('2026-05-05');
+        $this->assertSame('端午の節句', $DateTime->solarSeasonalFestivalName);
+        $this->assertSame('端午の節句', $DateTime->solar_seasonal_festival_name);
+    }
+    /**
+     * 西暦五節句の別名をキャメルケース・スネークケース両方で取得できることを確認する。
+     */
+    public function test_get_solarSeasonalFestivalAlias(): void
+    {
+        $DateTime = new DateTime('2026-05-05');
+        $this->assertSame('菖蒲の節句', $DateTime->solarSeasonalFestivalAlias);
+        $this->assertSame('菖蒲の節句', $DateTime->solar_seasonal_festival_alias);
+    }
+    /**
+     * 旧暦五節句IDをキャメルケース・スネークケース両方で取得できることを確認する。
+     *
+     * 2026-06-19 = 旧暦5月5日（端午の節句）。
+     */
+    public function test_get_lunarSeasonalFestival(): void
+    {
+        $DateTime = new DateTime('2026-06-19');
+        $this->assertSame(DateTime::SEASONAL_FESTIVAL_TANGO, $DateTime->lunarSeasonalFestival);
+        $this->assertSame(DateTime::SEASONAL_FESTIVAL_TANGO, $DateTime->lunar_seasonal_festival);
+    }
+    /**
+     * 旧暦五節句の式名をキャメルケース・スネークケース両方で取得できることを確認する。
+     */
+    public function test_get_lunarSeasonalFestivalName(): void
+    {
+        $DateTime = new DateTime('2026-06-19');
+        $this->assertSame('端午の節句', $DateTime->lunarSeasonalFestivalName);
+        $this->assertSame('端午の節句', $DateTime->lunar_seasonal_festival_name);
+    }
+    /**
+     * 旧暦五節句の別名をキャメルケース・スネークケース両方で取得できることを確認する。
+     */
+    public function test_get_lunarSeasonalFestivalAlias(): void
+    {
+        $DateTime = new DateTime('2026-06-19');
+        $this->assertSame('菖蒲の節句', $DateTime->lunarSeasonalFestivalAlias);
+        $this->assertSame('菖蒲の節句', $DateTime->lunar_seasonal_festival_alias);
+    }
+    /**
+     * 雑節IDをキャメルケース・スネークケース両方で取得できることを確認する。
+     */
+    public function test_get_miscSeasonalNode(): void
+    {
+        // 節分(2026-02-03)
+        $DateTime = new DateTime('2026-02-03');
+        $this->assertSame(DateTime::MISC_SEASONAL_NODE_SETSUBUN, $DateTime->miscSeasonalNode);
+        $this->assertSame(DateTime::MISC_SEASONAL_NODE_SETSUBUN, $DateTime->misc_seasonal_node);
+    }
+    /**
+     * 雑節名をキャメルケース・スネークケース両方で取得できることを確認する。
+     */
+    public function test_get_miscSeasonalNodeText(): void
+    {
+        // 節分(2026-02-03)
+        $DateTime = new DateTime('2026-02-03');
+        $this->assertSame('節分', $DateTime->miscSeasonalNodeText);
+        $this->assertSame('節分', $DateTime->misc_seasonal_node_text);
+    }
     /**
      * SimpleSolarTerm から指定年の二十四節気日付を取得する。
      */
@@ -366,7 +414,6 @@ class GetterTest extends TestCase
     {
         return (new SimpleSolarTerm())->{$method}($year);
     }
-
     /**
      * 二十四節気日付を比較用の日時文字列へ変換する。
      */
