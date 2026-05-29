@@ -47,13 +47,6 @@ commands:
             vendor/bin/phpunit tests
 
 jobs:
-  test71:
-    executor:
-      name: php-executor
-      php-version: "7.1"
-    working_directory: ~/repo71
-    steps:
-      - run-tests
   test72:
     executor:
       name: php-executor
@@ -109,9 +102,6 @@ jobs:
 workflows:
   tests:
     jobs:
-      - test71:
-          context:
-            - dockerhub
       - test72:
           context:
             - dockerhub
