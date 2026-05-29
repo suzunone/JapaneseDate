@@ -39,16 +39,14 @@ use Tests\JapaneseDate\InvokeTrait;
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
  * @since       1.0.0 リリースから利用可能
+ * @covers \JapaneseDate\Traits\Factory
  */
-#[CoversClass(\JapaneseDate\Traits\Factory::class)]
 class FactoryTest extends TestCase
 {
     use InvokeTrait;
-
     // -----------------------------------------------------------------------
     // DateTime::factory() のテスト
     // -----------------------------------------------------------------------
-
     /**
      * null から DateTime を生成できることを確認する。
      */
@@ -57,7 +55,6 @@ class FactoryTest extends TestCase
         $result = DateTime::factory();
         $this->assertInstanceOf(DateTime::class, $result);
     }
-
     /**
      * null とタイムゾーンから DateTime を生成できることを確認する。
      */
@@ -68,7 +65,6 @@ class FactoryTest extends TestCase
         $this->assertInstanceOf(DateTime::class, $result);
         $this->assertSame('Asia/Tokyo', $result->getTimezone()->getName());
     }
-
     /**
      * 日時文字列から DateTime を生成できることを確認する。
      */
@@ -78,7 +74,6 @@ class FactoryTest extends TestCase
         $this->assertInstanceOf(DateTime::class, $result);
         $this->assertSame('2024-03-20 12:34:56', $result->format('Y-m-d H:i:s'));
     }
-
     /**
      * 日時文字列とタイムゾーンから DateTime を生成できることを確認する。
      */
@@ -90,7 +85,6 @@ class FactoryTest extends TestCase
         $this->assertSame('2024-03-20 12:34:56', $result->format('Y-m-d H:i:s'));
         $this->assertSame('Asia/Tokyo', $result->getTimezone()->getName());
     }
-
     /**
      * 整数の UNIX タイムスタンプから DateTime を生成できることを確認する。
      */
@@ -101,7 +95,6 @@ class FactoryTest extends TestCase
         $this->assertInstanceOf(DateTime::class, $result);
         $this->assertSame($timestamp, $result->getTimestamp());
     }
-
     /**
      * 整数の UNIX タイムスタンプとタイムゾーンから DateTime を生成できることを確認する。
      */
@@ -114,7 +107,6 @@ class FactoryTest extends TestCase
         $this->assertSame($timestamp, $result->getTimestamp());
         $this->assertSame('Asia/Tokyo', $result->getTimezone()->getName());
     }
-
     /**
      * float の UNIX タイムスタンプから DateTime を生成できることを確認する。
      */
@@ -125,7 +117,6 @@ class FactoryTest extends TestCase
         $this->assertInstanceOf(DateTime::class, $result);
         $this->assertSame((int) $timestamp, $result->getTimestamp());
     }
-
     /**
      * float の UNIX タイムスタンプとタイムゾーンから DateTime を生成できることを確認する。
      */
@@ -138,7 +129,6 @@ class FactoryTest extends TestCase
         $this->assertSame((int) $timestamp, $result->getTimestamp());
         $this->assertSame('America/New_York', $result->getTimezone()->getName());
     }
-
     /**
      * 数字文字列を UNIX タイムスタンプとして扱って DateTime を生成できることを確認する。
      */
@@ -149,7 +139,6 @@ class FactoryTest extends TestCase
         $this->assertInstanceOf(DateTime::class, $result);
         $this->assertSame($timestamp, $result->getTimestamp());
     }
-
     /**
      * 数字文字列とタイムゾーンから DateTime を生成できることを確認する。
      */
@@ -163,7 +152,6 @@ class FactoryTest extends TestCase
         $this->assertSame(date('Y-m-d H:i:s', $timestamp), $result->format('Y-m-d H:i:s'));
         $this->assertSame('Asia/Tokyo', $result->getTimezone()->getName());
     }
-
     /**
      * DateTimeInterface から DateTime を生成できることを確認する。
      */
@@ -175,7 +163,6 @@ class FactoryTest extends TestCase
         $this->assertSame('2024-05-15 10:20:30', $result->format('Y-m-d H:i:s'));
         $this->assertSame('UTC', $result->getTimezone()->getName());
     }
-
     /**
      * タイムゾーン指定がない場合、DateTimeInterface のタイムゾーンを引き継ぐことを確認する。
      */
@@ -188,7 +175,6 @@ class FactoryTest extends TestCase
         $this->assertSame('Asia/Tokyo', $result->getTimezone()->getName());
         $this->assertSame('2024-05-15 10:20:30', $result->format('Y-m-d H:i:s'));
     }
-
     /**
      * DateTimeInterface のタイムゾーンを指定タイムゾーンで上書きできることを確認する。
      */
@@ -201,7 +187,6 @@ class FactoryTest extends TestCase
         $this->assertInstanceOf(DateTime::class, $result);
         $this->assertSame('Asia/Tokyo', $result->getTimezone()->getName());
     }
-
     /**
      * JapaneseDate の DateTime オブジェクトから DateTime を生成できることを確認する。
      */
@@ -213,11 +198,9 @@ class FactoryTest extends TestCase
         $this->assertSame('2024-08-01 08:00:00', $result->format('Y-m-d H:i:s'));
         $this->assertSame('Asia/Tokyo', $result->getTimezone()->getName());
     }
-
     // -----------------------------------------------------------------------
     // DateTimeImmutable::factory() のテスト
     // -----------------------------------------------------------------------
-
     /**
      * null から DateTimeImmutable を生成できることを確認する。
      */
@@ -226,7 +209,6 @@ class FactoryTest extends TestCase
         $result = DateTimeImmutable::factory();
         $this->assertInstanceOf(DateTimeImmutable::class, $result);
     }
-
     /**
      * null とタイムゾーンから DateTimeImmutable を生成できることを確認する。
      */
@@ -237,7 +219,6 @@ class FactoryTest extends TestCase
         $this->assertInstanceOf(DateTimeImmutable::class, $result);
         $this->assertSame('Asia/Tokyo', $result->getTimezone()->getName());
     }
-
     /**
      * 日時文字列から DateTimeImmutable を生成できることを確認する。
      */
@@ -247,7 +228,6 @@ class FactoryTest extends TestCase
         $this->assertInstanceOf(DateTimeImmutable::class, $result);
         $this->assertSame('2024-03-20 12:34:56', $result->format('Y-m-d H:i:s'));
     }
-
     /**
      * 日時文字列とタイムゾーンから DateTimeImmutable を生成できることを確認する。
      */
@@ -259,7 +239,6 @@ class FactoryTest extends TestCase
         $this->assertSame('2024-03-20 12:34:56', $result->format('Y-m-d H:i:s'));
         $this->assertSame('Asia/Tokyo', $result->getTimezone()->getName());
     }
-
     /**
      * 整数の UNIX タイムスタンプから DateTimeImmutable を生成できることを確認する。
      */
@@ -270,7 +249,6 @@ class FactoryTest extends TestCase
         $this->assertInstanceOf(DateTimeImmutable::class, $result);
         $this->assertSame($timestamp, $result->getTimestamp());
     }
-
     /**
      * 整数の UNIX タイムスタンプとタイムゾーンから DateTimeImmutable を生成できることを確認する。
      */
@@ -283,7 +261,6 @@ class FactoryTest extends TestCase
         $this->assertSame($timestamp, $result->getTimestamp());
         $this->assertSame('Asia/Tokyo', $result->getTimezone()->getName());
     }
-
     /**
      * float の UNIX タイムスタンプから DateTimeImmutable を生成できることを確認する。
      */
@@ -294,7 +271,6 @@ class FactoryTest extends TestCase
         $this->assertInstanceOf(DateTimeImmutable::class, $result);
         $this->assertSame((int) $timestamp, $result->getTimestamp());
     }
-
     /**
      * float の UNIX タイムスタンプとタイムゾーンから DateTimeImmutable を生成できることを確認する。
      */
@@ -307,7 +283,6 @@ class FactoryTest extends TestCase
         $this->assertSame((int) $timestamp, $result->getTimestamp());
         $this->assertSame('America/New_York', $result->getTimezone()->getName());
     }
-
     /**
      * 数字文字列を UNIX タイムスタンプとして扱って DateTimeImmutable を生成できることを確認する。
      */
@@ -318,7 +293,6 @@ class FactoryTest extends TestCase
         $this->assertInstanceOf(DateTimeImmutable::class, $result);
         $this->assertSame($timestamp, $result->getTimestamp());
     }
-
     /**
      * 数字文字列とタイムゾーンから DateTimeImmutable を生成できることを確認する。
      */
@@ -332,7 +306,6 @@ class FactoryTest extends TestCase
         $this->assertSame(date('Y-m-d H:i:s', $timestamp), $result->format('Y-m-d H:i:s'));
         $this->assertSame('Asia/Tokyo', $result->getTimezone()->getName());
     }
-
     /**
      * DateTimeInterface から DateTimeImmutable を生成できることを確認する。
      */
@@ -344,7 +317,6 @@ class FactoryTest extends TestCase
         $this->assertSame('2024-05-15 10:20:30', $result->format('Y-m-d H:i:s'));
         $this->assertSame('UTC', $result->getTimezone()->getName());
     }
-
     /**
      * タイムゾーン指定がない場合、DateTimeInterface のタイムゾーンを引き継ぐことを確認する。
      */
@@ -357,7 +329,6 @@ class FactoryTest extends TestCase
         $this->assertSame('Asia/Tokyo', $result->getTimezone()->getName());
         $this->assertSame('2024-05-15 10:20:30', $result->format('Y-m-d H:i:s'));
     }
-
     /**
      * DateTimeInterface のタイムゾーンを指定タイムゾーンで上書きできることを確認する。
      */
@@ -370,7 +341,6 @@ class FactoryTest extends TestCase
         $this->assertInstanceOf(DateTimeImmutable::class, $result);
         $this->assertSame('Asia/Tokyo', $result->getTimezone()->getName());
     }
-
     /**
      * JapaneseDate の DateTimeImmutable オブジェクトから DateTimeImmutable を生成できることを確認する。
      */
@@ -382,11 +352,9 @@ class FactoryTest extends TestCase
         $this->assertSame('2024-08-01 08:00:00', $result->format('Y-m-d H:i:s'));
         $this->assertSame('Asia/Tokyo', $result->getTimezone()->getName());
     }
-
     // -----------------------------------------------------------------------
     // DateTime と DateTimeImmutable を相互に入力した場合のテスト
     // -----------------------------------------------------------------------
-
     /**
      * DateTimeImmutable 入力から DateTime を生成できることを確認する。
      */
@@ -397,7 +365,6 @@ class FactoryTest extends TestCase
         $this->assertInstanceOf(DateTime::class, $result);
         $this->assertSame('2024-11-03 09:00:00', $result->format('Y-m-d H:i:s'));
     }
-
     /**
      * DateTime 入力から DateTimeImmutable を生成できることを確認する。
      */
@@ -408,11 +375,9 @@ class FactoryTest extends TestCase
         $this->assertInstanceOf(DateTimeImmutable::class, $result);
         $this->assertSame('2024-11-03 09:00:00', $result->format('Y-m-d H:i:s'));
     }
-
     // -----------------------------------------------------------------------
     // 境界値と特殊な入力のテスト
     // -----------------------------------------------------------------------
-
     /**
      * "20240101" のような YYYYMMDD 形式の数字文字列は ctype_digit() = true かつ
      * strtotime() が int を返す。これにより Factory 内の `$date_time = $check_time;`
@@ -425,7 +390,6 @@ class FactoryTest extends TestCase
         $this->assertInstanceOf(DateTime::class, $result);
         $this->assertSame(date('Y-m-d H:i:s', strtotime($digitStr)), $result->format('Y-m-d H:i:s'));
     }
-
     /**
      * DateTimeImmutable でも、strtotime() で解釈できる数字文字列を日付として扱うことを確認する。
      */
@@ -436,7 +400,6 @@ class FactoryTest extends TestCase
         $this->assertInstanceOf(DateTimeImmutable::class, $result);
         $this->assertSame(date('Y-m-d H:i:s', strtotime($digitStr)), $result->format('Y-m-d H:i:s'));
     }
-
     /**
      * float の小数部分が UNIX タイムスタンプとして切り捨てられることを確認する。
      */
@@ -448,7 +411,6 @@ class FactoryTest extends TestCase
         $this->assertInstanceOf(DateTime::class, $result);
         $this->assertSame($base, $result->getTimestamp());
     }
-
     /**
      * UNIX タイムスタンプ 0 を指定できることを確認する。
      */
@@ -458,7 +420,6 @@ class FactoryTest extends TestCase
         $this->assertInstanceOf(DateTime::class, $result);
         $this->assertSame(0, $result->getTimestamp());
     }
-
     /**
      * 1970年以前の負の UNIX タイムスタンプを指定できることを確認する。
      */

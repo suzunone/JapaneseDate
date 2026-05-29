@@ -12,7 +12,9 @@ use JapaneseDate\DateBusiness;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
-#[CoversClass(DateBusiness::class)]
+/**
+ * @covers \JapaneseDate\DateBusiness
+ */
 class DateBusinessTest extends TestCase
 {
     public function test_setClosingWeekdays_and_getClosingWeekdays(): void
@@ -23,7 +25,6 @@ class DateBusinessTest extends TestCase
         $this->assertArrayHasKey(6, $db->getClosingWeekdays());
         $this->assertArrayNotHasKey(1, $db->getClosingWeekdays());
     }
-
     public function test_addClosingWeekday_and_removeClosingWeekday(): void
     {
         $db = new DateBusiness();
@@ -32,7 +33,6 @@ class DateBusinessTest extends TestCase
         $db->removeClosingWeekday(6);
         $this->assertArrayNotHasKey(6, $db->getClosingWeekdays());
     }
-
     public function test_setBypassHoliday_and_isBypassHoliday(): void
     {
         $db = new DateBusiness();
@@ -42,7 +42,6 @@ class DateBusinessTest extends TestCase
         $db->setBypassHoliday(true);
         $this->assertTrue($db->isBypassHoliday());
     }
-
     public function test_addOpenNthWeekday_and_removeOpenNthWeekday(): void
     {
         $db = new DateBusiness();
@@ -51,7 +50,6 @@ class DateBusinessTest extends TestCase
         $db->removeOpenNthWeekday(6, 2);
         $this->assertArrayNotHasKey('6_2', $db->getOpenNthWeekdays());
     }
-
     public function test_addClosingNthWeekday_and_removeClosingNthWeekday(): void
     {
         $db = new DateBusiness();
@@ -61,7 +59,6 @@ class DateBusinessTest extends TestCase
         $db->removeClosingNthWeekday(3, 3);
         $this->assertArrayNotHasKey('3_3', $db->getClosingNthWeekdays());
     }
-
     public function test_addOpenDate_and_removeOpenDate(): void
     {
         $db = new DateBusiness();
@@ -70,7 +67,6 @@ class DateBusinessTest extends TestCase
         $db->removeOpenDate('2026-12-30');
         $this->assertArrayNotHasKey('20261230', $db->getOpenDates());
     }
-
     public function test_addOpenDate_with_DateTimeInterface(): void
     {
         $db = new DateBusiness();
@@ -78,7 +74,6 @@ class DateBusinessTest extends TestCase
         $db->addOpenDate($dt);
         $this->assertArrayHasKey('20261230', $db->getOpenDates());
     }
-
     public function test_addClosingDate_and_removeClosingDate(): void
     {
         $db = new DateBusiness();
@@ -88,7 +83,6 @@ class DateBusinessTest extends TestCase
         $db->removeClosingDate('2026-08-15');
         $this->assertArrayNotHasKey('20260815', $db->getClosingDates());
     }
-
     public function test_addClosingDate_with_DateTimeInterface(): void
     {
         $db = new DateBusiness();
@@ -96,14 +90,12 @@ class DateBusinessTest extends TestCase
         $db->addClosingDate($dt, '夏期休暇');
         $this->assertArrayHasKey('20260815', $db->getClosingDates());
     }
-
     public function test_addClosingDate_null_label(): void
     {
         $db = new DateBusiness();
         $db->addClosingDate('2026-08-15');
         $this->assertNull($db->getClosingDates()['20260815']);
     }
-
     public function test_addOpenFilter_and_getOpenFilters(): void
     {
         $db = new DateBusiness();
@@ -112,7 +104,6 @@ class DateBusinessTest extends TestCase
         $this->assertCount(1, $db->getOpenFilters());
         $this->assertSame($filter, $db->getOpenFilters()[0]);
     }
-
     public function test_addClosingFilter_and_getClosingFilters(): void
     {
         $db = new DateBusiness();
@@ -123,7 +114,6 @@ class DateBusinessTest extends TestCase
         $this->assertSame($filter, $filters[0]['filter']);
         $this->assertSame('大晦日', $filters[0]['label']);
     }
-
     public function test_addClosingFilter_null_label(): void
     {
         $db = new DateBusiness();
@@ -131,7 +121,6 @@ class DateBusinessTest extends TestCase
         $db->addClosingFilter($filter);
         $this->assertNull($db->getClosingFilters()[0]['label']);
     }
-
     public function test_setMacro_and_getMacro(): void
     {
         $db = new DateBusiness();
@@ -142,7 +131,6 @@ class DateBusinessTest extends TestCase
         $db->setMacro(null);
         $this->assertNull($db->getMacro());
     }
-
     public function test_reset(): void
     {
         $db = new DateBusiness();
@@ -168,7 +156,6 @@ class DateBusinessTest extends TestCase
         $this->assertEmpty($db->getClosingFilters());
         $this->assertNull($db->getMacro());
     }
-
     public function test_fluent_interface_returns_static(): void
     {
         $db = new DateBusiness();

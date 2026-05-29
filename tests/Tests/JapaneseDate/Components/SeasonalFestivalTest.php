@@ -37,23 +37,22 @@ use PHPUnit\Framework\TestCase;
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
  * @since       2026-05-29
+ * @covers \JapaneseDate\Components\SeasonalFestival
+ * @covers \JapaneseDate\Components\SeasonalFestival::factory
+ * @covers \JapaneseDate\Components\SeasonalFestival::getSolarFestivalKey
+ * @covers \JapaneseDate\Components\SeasonalFestival::viewSolarFestivalName
+ * @covers \JapaneseDate\Components\SeasonalFestival::viewSolarFestivalAlias
+ * @covers \JapaneseDate\Components\SeasonalFestival::getLunarFestivalKey
+ * @covers \JapaneseDate\Components\SeasonalFestival::viewLunarFestivalName
+ * @covers \JapaneseDate\Components\SeasonalFestival::viewLunarFestivalAlias
+ * @covers \JapaneseDate\Components\SeasonalFestival::viewName
+ * @covers \JapaneseDate\Components\SeasonalFestival::viewAlias
  */
-#[CoversClass(\JapaneseDate\Components\SeasonalFestival::class)]
-#[CoversMethod(\JapaneseDate\Components\SeasonalFestival::class, 'factory')]
-#[CoversMethod(\JapaneseDate\Components\SeasonalFestival::class, 'getSolarFestivalKey')]
-#[CoversMethod(\JapaneseDate\Components\SeasonalFestival::class, 'viewSolarFestivalName')]
-#[CoversMethod(\JapaneseDate\Components\SeasonalFestival::class, 'viewSolarFestivalAlias')]
-#[CoversMethod(\JapaneseDate\Components\SeasonalFestival::class, 'getLunarFestivalKey')]
-#[CoversMethod(\JapaneseDate\Components\SeasonalFestival::class, 'viewLunarFestivalName')]
-#[CoversMethod(\JapaneseDate\Components\SeasonalFestival::class, 'viewLunarFestivalAlias')]
-#[CoversMethod(\JapaneseDate\Components\SeasonalFestival::class, 'viewName')]
-#[CoversMethod(\JapaneseDate\Components\SeasonalFestival::class, 'viewAlias')]
 class SeasonalFestivalTest extends TestCase
 {
     // =========================================================================
     // ファクトリー・定数テスト
     // =========================================================================
-
     /**
      * factory() がシングルトンを返すことを確認する。
      */
@@ -64,7 +63,6 @@ class SeasonalFestivalTest extends TestCase
         $this->assertSame($a, $b);
         $this->assertInstanceOf(SeasonalFestival::class, $a);
     }
-
     /**
      * FESTIVAL_NAMES 定数がすべての式名を含むことを確認する。
      */
@@ -78,7 +76,6 @@ class SeasonalFestivalTest extends TestCase
         $this->assertSame('七夕の節句', $names[4]);
         $this->assertSame('重陽の節句', $names[5]);
     }
-
     /**
      * FESTIVAL_ALIASES 定数がすべての別名（通称）を含むことを確認する。
      */
@@ -92,24 +89,21 @@ class SeasonalFestivalTest extends TestCase
         $this->assertSame('笹の節句', $aliases[4]);
         $this->assertSame('菊の節句', $aliases[5]);
     }
-
     // =========================================================================
     // viewName / viewAlias ユーティリティテスト
     // =========================================================================
-
     /**
      * viewName がキーから正しい式名を返すことを確認する。
      *
      * @param int    $key      五節句定数
      * @param string $expected 期待する式名
+     * @dataProvider viewNameProvider
      */
-    #[DataProvider('viewNameProvider')]
     public function test_viewName(int $key, string $expected): void
     {
         $festival = SeasonalFestival::factory();
         $this->assertSame($expected, $festival->viewName($key));
     }
-
     public static function viewNameProvider(): array
     {
         return [
@@ -122,20 +116,18 @@ class SeasonalFestivalTest extends TestCase
             '存在しないキー' => [999, ''],
         ];
     }
-
     /**
      * viewAlias がキーから正しい別名（通称）を返すことを確認する。
      *
      * @param int    $key      五節句定数
      * @param string $expected 期待する別名
+     * @dataProvider viewAliasProvider
      */
-    #[DataProvider('viewAliasProvider')]
     public function test_viewAlias(int $key, string $expected): void
     {
         $festival = SeasonalFestival::factory();
         $this->assertSame($expected, $festival->viewAlias($key));
     }
-
     public static function viewAliasProvider(): array
     {
         return [
@@ -148,24 +140,21 @@ class SeasonalFestivalTest extends TestCase
             '存在しないキー' => [999, ''],
         ];
     }
-
     // =========================================================================
     // 西暦（新暦）五節句テスト
     // =========================================================================
-
     /**
      * 西暦固定日の五節句が正しく判定されることを確認する。
      *
      * @param string $date     テスト日付（Y-m-d 形式）
      * @param int    $expected 期待する五節句定数
+     * @dataProvider solarFestivalProvider
      */
-    #[DataProvider('solarFestivalProvider')]
     public function test_getSolarFestivalKey(string $date, int $expected): void
     {
         $festival = SeasonalFestival::factory();
         $this->assertSame($expected, $festival->getSolarFestivalKey(DateTime::parse($date)));
     }
-
     public static function solarFestivalProvider(): array
     {
         return [
@@ -178,7 +167,6 @@ class SeasonalFestivalTest extends TestCase
             '12月31日（なし）' => ['2026-12-31', DateTime::SEASONAL_FESTIVAL_NONE],
         ];
     }
-
     /**
      * 西暦の五節句の式名が正しく返されることを確認する。
      */
@@ -192,7 +180,6 @@ class SeasonalFestivalTest extends TestCase
         $this->assertSame('重陽の節句', $festival->viewSolarFestivalName(DateTime::parse('2026-09-09')));
         $this->assertSame('', $festival->viewSolarFestivalName(DateTime::parse('2026-06-01')));
     }
-
     /**
      * 西暦の五節句の別名（通称）が正しく返されることを確認する。
      */
@@ -206,11 +193,9 @@ class SeasonalFestivalTest extends TestCase
         $this->assertSame('菊の節句', $festival->viewSolarFestivalAlias(DateTime::parse('2026-09-09')));
         $this->assertSame('', $festival->viewSolarFestivalAlias(DateTime::parse('2026-06-01')));
     }
-
     // =========================================================================
     // 旧暦五節句テスト
     // =========================================================================
-
     /**
      * 旧暦の五節句が正しく判定されることを確認する。
      *
@@ -223,15 +208,14 @@ class SeasonalFestivalTest extends TestCase
      *
      * @param string $date     テスト日付（Y-m-d 形式）
      * @param int    $expected 期待する五節句定数
+     * @dataProvider lunarFestivalProvider
      */
-    #[DataProvider('lunarFestivalProvider')]
     public function test_getLunarFestivalKey(string $date, int $expected): void
     {
         $festival = SeasonalFestival::factory();
         $result = $festival->getLunarFestivalKey(DateTime::parse($date));
         $this->assertSame($expected, $result);
     }
-
     public static function lunarFestivalProvider(): array
     {
         return [
@@ -243,7 +227,6 @@ class SeasonalFestivalTest extends TestCase
             '節句でない旧暦日'               => ['2026-06-01', DateTime::SEASONAL_FESTIVAL_NONE],
         ];
     }
-
     /**
      * 旧暦の五節句の式名が正しく返されることを確認する。
      */
@@ -257,7 +240,6 @@ class SeasonalFestivalTest extends TestCase
         // 節句でない日
         $this->assertSame('', $festival->viewLunarFestivalName(DateTime::parse('2026-06-01')));
     }
-
     /**
      * 旧暦の五節句の別名（通称）が正しく返されることを確認する。
      */
@@ -271,11 +253,9 @@ class SeasonalFestivalTest extends TestCase
         // 節句でない日
         $this->assertSame('', $festival->viewLunarFestivalAlias(DateTime::parse('2026-06-01')));
     }
-
     // =========================================================================
     // 西暦と旧暦の日付差異テスト
     // =========================================================================
-
     /**
      * 西暦5月5日は端午の節句だが、旧暦では端午の節句でないことを確認する。
      *
@@ -293,11 +273,9 @@ class SeasonalFestivalTest extends TestCase
         $lunarKey = $festival->getLunarFestivalKey($date);
         $this->assertNotSame(DateTime::SEASONAL_FESTIVAL_TANGO, $lunarKey);
     }
-
     // =========================================================================
     // DateTimeImmutable 統合テスト
     // =========================================================================
-
     /**
      * DateTimeImmutable でも五節句が正しく判定されることを確認する。
      */
@@ -310,11 +288,9 @@ class SeasonalFestivalTest extends TestCase
         $this->assertSame('上巳の節句', $festival->viewSolarFestivalName($date));
         $this->assertSame('桃の節句', $festival->viewSolarFestivalAlias($date));
     }
-
     // =========================================================================
     // DateTime プロパティ統合テスト
     // =========================================================================
-
     /**
      * DateTime の西暦五節句プロパティが正しく動作することを確認する。
      */
@@ -331,7 +307,6 @@ class SeasonalFestivalTest extends TestCase
         $this->assertSame('端午の節句', $date->solar_seasonal_festival_name);
         $this->assertSame('菖蒲の節句', $date->solar_seasonal_festival_alias);
     }
-
     /**
      * DateTime の旧暦五節句プロパティが正しく動作することを確認する。
      *
@@ -349,7 +324,6 @@ class SeasonalFestivalTest extends TestCase
         $this->assertSame('端午の節句', $date->lunar_seasonal_festival_name);
         $this->assertSame('菖蒲の節句', $date->lunar_seasonal_festival_alias);
     }
-
     /**
      * DateTimeImmutable のプロパティが正しく動作することを確認する。
      */
@@ -360,7 +334,6 @@ class SeasonalFestivalTest extends TestCase
         $this->assertSame('重陽の節句', $date->solarSeasonalFestivalName);
         $this->assertSame('菊の節句', $date->solarSeasonalFestivalAlias);
     }
-
     /**
      * 節句でない日は SEASONAL_FESTIVAL_NONE（0）と空文字列を返すことを確認する。
      */
@@ -374,7 +347,6 @@ class SeasonalFestivalTest extends TestCase
         $this->assertSame('', $date->lunarSeasonalFestivalName);
         $this->assertSame('', $date->lunarSeasonalFestivalAlias);
     }
-
     /**
      * 五節句定数が DateTime クラスに正しく定義されていることを確認する。
      */

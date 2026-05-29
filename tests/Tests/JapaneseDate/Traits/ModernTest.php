@@ -39,34 +39,33 @@ use Tests\JapaneseDate\InvokeTrait;
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
  * @since       1.0.0 リリースから利用可能
+ * @covers \JapaneseDate\Traits\Modern
+ * @covers \JapaneseDate\DateTime
+ * @covers \JapaneseDate\Components\LunarCalendar
+ * @covers \JapaneseDate\Components\SexagenaryCycle
+ * @covers \JapaneseDate\Traits\Lunar
+ * @covers \JapaneseDate\Traits\Modern::viewWeekday
+ * @covers \JapaneseDate\Traits\Getter::__get
+ * @covers \JapaneseDate\Traits\Modern::viewMonth
+ * @covers \JapaneseDate\Traits\Modern::viewHoliday
+ * @covers \JapaneseDate\Traits\Modern::getHoliday
+ * @covers \JapaneseDate\Traits\Modern::getHeavenlyStem
+ * @covers \JapaneseDate\Traits\Modern::viewHeavenlyStem
+ * @covers \JapaneseDate\Traits\Modern::getMiscSeasonalNode
+ * @covers \JapaneseDate\Traits\Modern::viewMiscSeasonalNode
+ * @covers \JapaneseDate\Traits\Modern::getSolarSeasonalFestival
+ * @covers \JapaneseDate\Traits\Modern::viewSolarSeasonalFestivalName
+ * @covers \JapaneseDate\Traits\Modern::viewSolarSeasonalFestivalAlias
+ * @covers \JapaneseDate\Traits\Modern::getLunarSeasonalFestival
+ * @covers \JapaneseDate\Traits\Modern::viewLunarSeasonalFestivalName
+ * @covers \JapaneseDate\Traits\Modern::viewLunarSeasonalFestivalAlias
+ * @covers \JapaneseDate\Traits\Lunar::getSolarTerm
+ * @covers \JapaneseDate\Traits\Lunar::getSolarTermKey
+ * @covers \JapaneseDate\Traits\Lunar::isSolarTerm
  */
-#[CoversTrait(\JapaneseDate\Traits\Modern::class)]
-#[CoversClass(\JapaneseDate\DateTime::class)]
-#[CoversClass(\JapaneseDate\Components\LunarCalendar::class)]
-#[CoversClass(SexagenaryCycle::class)]
-#[CoversTrait(\JapaneseDate\Traits\Lunar::class)]
-#[CoversMethod(\JapaneseDate\Traits\Modern::class, 'viewWeekday')]
-#[CoversMethod(\JapaneseDate\Traits\Getter::class, '__get')]
-#[CoversMethod(\JapaneseDate\Traits\Modern::class, 'viewMonth')]
-#[CoversMethod(\JapaneseDate\Traits\Modern::class, 'viewHoliday')]
-#[CoversMethod(\JapaneseDate\Traits\Modern::class, 'getHoliday')]
-#[CoversMethod(\JapaneseDate\Traits\Modern::class, 'getHeavenlyStem')]
-#[CoversMethod(\JapaneseDate\Traits\Modern::class, 'viewHeavenlyStem')]
-#[CoversMethod(\JapaneseDate\Traits\Modern::class, 'getMiscSeasonalNode')]
-#[CoversMethod(\JapaneseDate\Traits\Modern::class, 'viewMiscSeasonalNode')]
-#[CoversMethod(\JapaneseDate\Traits\Modern::class, 'getSolarSeasonalFestival')]
-#[CoversMethod(\JapaneseDate\Traits\Modern::class, 'viewSolarSeasonalFestivalName')]
-#[CoversMethod(\JapaneseDate\Traits\Modern::class, 'viewSolarSeasonalFestivalAlias')]
-#[CoversMethod(\JapaneseDate\Traits\Modern::class, 'getLunarSeasonalFestival')]
-#[CoversMethod(\JapaneseDate\Traits\Modern::class, 'viewLunarSeasonalFestivalName')]
-#[CoversMethod(\JapaneseDate\Traits\Modern::class, 'viewLunarSeasonalFestivalAlias')]
-#[CoversMethod(\JapaneseDate\Traits\Lunar::class, 'getSolarTerm')]
-#[CoversMethod(\JapaneseDate\Traits\Lunar::class, 'getSolarTermKey')]
-#[CoversMethod(\JapaneseDate\Traits\Lunar::class, 'isSolarTerm')]
 class ModernTest extends TestCase
 {
     use InvokeTrait;
-
     /**
      * DateTime で曜日名を取得できることを確認する。
      */
@@ -87,7 +86,6 @@ class ModernTest extends TestCase
         $DateTime = new DateTime('2018-01-07');
         $this->assertEquals('日', $DateTime->weekday_text);
     }
-
     /**
      * DateTime で和風月名を取得できることを確認する。
      */
@@ -96,7 +94,6 @@ class ModernTest extends TestCase
         $DateTime = new DateTime('2018-01-01');
         $this->assertEquals('睦月', $DateTime->month_text);
     }
-
     /**
      * DateTime で主要な祝日名と祝日コードを取得できることを確認する。
      */
@@ -187,7 +184,6 @@ class ModernTest extends TestCase
         $this->assertEquals('振替休日', $DateTime->holiday_text);
         $this->assertEquals(DateTime::COMPENSATING_HOLIDAY, $DateTime->holiday);
     }
-
     /**
      * DateTime で祝日かどうかを判定できることを確認する。
      */
@@ -201,7 +197,6 @@ class ModernTest extends TestCase
         $this->assertFalse($DateTime->is_holiday);
         $this->assertFalse($DateTime->isHoliday);
     }
-
     /**
      * DateTime で二十四節気の有無と名称を取得できることを確認する。
      */
@@ -226,7 +221,6 @@ class ModernTest extends TestCase
         $this->assertSame('春分', $DateTime->solar_term_text);
         $this->assertTrue($DateTime->is_solar_term);
     }
-
     /**
      * DateTime で元号名、元号コード、元号年を取得できることを確認する。
      */
@@ -277,7 +271,6 @@ class ModernTest extends TestCase
         $this->assertEquals('1004', $DateTime->era_name);
         $this->assertEquals(1, $DateTime->era_year);
     }
-
     /**
      * DateTime で干支名と干支コードを取得できることを確認する。
      */
@@ -289,10 +282,7 @@ class ModernTest extends TestCase
         $DateTime = DateTime::factory('2019-05-21');
         $this->assertEquals(0, $DateTime->oriental_zodiac);
     }
-    
     // DateTimeImmutable でも同じ現代暦情報を取得できることを確認する。
-
-
     /**
      * DateTimeImmutable で曜日名を取得できることを確認する。
      */
@@ -313,7 +303,6 @@ class ModernTest extends TestCase
         $DateTime = new DateTimeImmutable('2018-01-07');
         $this->assertEquals('日', $DateTime->weekday_text);
     }
-
     /**
      * DateTimeImmutable で和風月名を取得できることを確認する。
      */
@@ -322,7 +311,6 @@ class ModernTest extends TestCase
         $DateTime = new DateTimeImmutable('2018-01-01');
         $this->assertEquals('睦月', $DateTime->month_text);
     }
-
     /**
      * DateTimeImmutable で主要な祝日名と祝日コードを取得できることを確認する。
      */
@@ -413,7 +401,6 @@ class ModernTest extends TestCase
         $this->assertEquals('振替休日', $DateTime->holiday_text);
         $this->assertEquals(DateTime::COMPENSATING_HOLIDAY, $DateTime->holiday);
     }
-
     /**
      * DateTimeImmutable で祝日かどうかを判定できることを確認する。
      */
@@ -427,7 +414,6 @@ class ModernTest extends TestCase
         $this->assertFalse($DateTime->is_holiday);
         $this->assertFalse($DateTime->isHoliday);
     }
-
     /**
      * DateTimeImmutable で二十四節気の有無と名称を取得できることを確認する。
      */
@@ -452,7 +438,6 @@ class ModernTest extends TestCase
         $this->assertSame('春分', $DateTime->solar_term_text);
         $this->assertTrue($DateTime->is_solar_term);
     }
-
     /**
      * DateTimeImmutable で元号名、元号コード、元号年を取得できることを確認する。
      */
@@ -503,7 +488,6 @@ class ModernTest extends TestCase
         $this->assertEquals('1004', $DateTime->era_name);
         $this->assertEquals(1, $DateTime->era_year);
     }
-
     /**
      * DateTimeImmutable で干支名と干支コードを取得できることを確認する。
      */
@@ -515,7 +499,6 @@ class ModernTest extends TestCase
         $DateTime = DateTime::factory('2019-05-21');
         $this->assertEquals(0, $DateTime->oriental_zodiac);
     }
-
     /**
      * DateTime で十干名と十干コードを取得できることを確認する。
      *
@@ -548,7 +531,6 @@ class ModernTest extends TestCase
             $this->assertSame($stems[$i], $DateTime->heavenly_stem_text, (1984 + $i) . '年の十干が正しくない');
         }
     }
-
     /**
      * DateTimeImmutable で十干名と十干コードを取得できることを確認する。
      */
@@ -561,7 +543,6 @@ class ModernTest extends TestCase
         $this->assertSame(1, $DateTime->heavenlyStem);
         $this->assertSame('乙', $DateTime->heavenlyStemText);
     }
-
     /**
      * DateTime::HEAVENLY_STEM_* 定数が正しいことを確認する。
      */
@@ -578,7 +559,6 @@ class ModernTest extends TestCase
         $this->assertSame(8, DateTime::HEAVENLY_STEM_MIZUNOE);
         $this->assertSame(9, DateTime::HEAVENLY_STEM_MIZUNOTO);
     }
-
     /**
      * getSolarSeasonalFestival が端午の節句（5月5日）に SEASONAL_FESTIVAL_TANGO を返すことを確認する。
      */
@@ -587,7 +567,6 @@ class ModernTest extends TestCase
         $date = new DateTime('2026-05-05');
         $this->assertSame(DateTime::SEASONAL_FESTIVAL_TANGO, $date->solarSeasonalFestival);
     }
-
     /**
      * viewSolarSeasonalFestivalName が端午の節句の式名を返すことを確認する。
      */
@@ -596,7 +575,6 @@ class ModernTest extends TestCase
         $date = new DateTime('2026-05-05');
         $this->assertSame('端午の節句', $date->solarSeasonalFestivalName);
     }
-
     /**
      * viewSolarSeasonalFestivalAlias が端午の節句の別名を返すことを確認する。
      */
@@ -605,7 +583,6 @@ class ModernTest extends TestCase
         $date = new DateTime('2026-05-05');
         $this->assertSame('菖蒲の節句', $date->solarSeasonalFestivalAlias);
     }
-
     /**
      * getLunarSeasonalFestival が旧暦5月5日（端午）に SEASONAL_FESTIVAL_TANGO を返すことを確認する。
      *
@@ -617,7 +594,6 @@ class ModernTest extends TestCase
         $date = new DateTime('2026-06-19');
         $this->assertSame(DateTime::SEASONAL_FESTIVAL_TANGO, $date->lunarSeasonalFestival);
     }
-
     /**
      * viewLunarSeasonalFestivalName が旧暦端午の節句の式名を返すことを確認する。
      */
@@ -626,7 +602,6 @@ class ModernTest extends TestCase
         $date = new DateTime('2026-06-19');
         $this->assertSame('端午の節句', $date->lunarSeasonalFestivalName);
     }
-
     /**
      * viewLunarSeasonalFestivalAlias が旧暦端午の節句の別名を返すことを確認する。
      */
@@ -635,7 +610,6 @@ class ModernTest extends TestCase
         $date = new DateTime('2026-06-19');
         $this->assertSame('菖蒲の節句', $date->lunarSeasonalFestivalAlias);
     }
-
     /**
      * 五節句でない日はすべてのプロパティが 0 または空文字列を返すことを確認する。
      */
@@ -649,7 +623,6 @@ class ModernTest extends TestCase
         $this->assertSame('', $date->lunarSeasonalFestivalName);
         $this->assertSame('', $date->lunarSeasonalFestivalAlias);
     }
-
     /**
      * getMiscSeasonalNode が節分の日に MISC_SEASONAL_NODE_SETSUBUN を返すことを確認する。
      */
@@ -658,7 +631,6 @@ class ModernTest extends TestCase
         $date = new DateTime('2026-02-03');
         $this->assertSame(DateTime::MISC_SEASONAL_NODE_SETSUBUN, $date->miscSeasonalNode);
     }
-
     /**
      * viewMiscSeasonalNode が節分の日本語名を返すことを確認する。
      */
@@ -667,7 +639,6 @@ class ModernTest extends TestCase
         $date = new DateTime('2026-02-03');
         $this->assertSame('節分', $date->miscSeasonalNodeText);
     }
-
     /**
      * getMiscSeasonalNode が雑節でない日に MISC_SEASONAL_NODE_NONE を返すことを確認する。
      */
@@ -677,7 +648,6 @@ class ModernTest extends TestCase
         $this->assertSame(DateTime::MISC_SEASONAL_NODE_NONE, $date->miscSeasonalNode);
         $this->assertSame('', $date->miscSeasonalNodeText);
     }
-
     /**
      * DateTime::ORIENTAL_ZODIAC_* 定数が正しいことを確認する。
      */

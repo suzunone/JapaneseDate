@@ -33,35 +33,35 @@ use PHPUnit\Framework\TestCase;
  * @package     JapaneseDate
  * @subpackage  Components\SexagenaryCycle
  * @since       2026-05-29
+ * @covers \JapaneseDate\Components\SexagenaryCycle
+ * @covers \JapaneseDate\Components\SexagenaryCycle::factory
+ * @covers \JapaneseDate\Components\SexagenaryCycle::getOrientalZodiacKey
+ * @covers \JapaneseDate\Components\SexagenaryCycle::viewOrientalZodiac
+ * @covers \JapaneseDate\Components\SexagenaryCycle::getHeavenlyStemKey
+ * @covers \JapaneseDate\Components\SexagenaryCycle::viewHeavenlyStem
  */
-#[CoversClass(SexagenaryCycle::class)]
-#[CoversMethod(SexagenaryCycle::class, 'factory')]
-#[CoversMethod(SexagenaryCycle::class, 'getOrientalZodiacKey')]
-#[CoversMethod(SexagenaryCycle::class, 'viewOrientalZodiac')]
-#[CoversMethod(SexagenaryCycle::class, 'getHeavenlyStemKey')]
-#[CoversMethod(SexagenaryCycle::class, 'viewHeavenlyStem')]
 class SexagenaryCycleTest extends TestCase
 {
     // ==================== factory ====================
-
-    #[RunInSeparateProcess]
-    #[PreserveGlobalState(false)]
+    /**
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
+     */
     public function test_factory_returnsSameInstance(): void
     {
         $instance1 = SexagenaryCycle::factory();
         $instance2 = SexagenaryCycle::factory();
         $this->assertSame($instance1, $instance2, 'factory() はシングルトンを返す必要があります');
     }
-
-    #[RunInSeparateProcess]
-    #[PreserveGlobalState(false)]
+    /**
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
+     */
     public function test_factory_returnsSexagenaryCycleInstance(): void
     {
         $this->assertInstanceOf(SexagenaryCycle::class, SexagenaryCycle::factory());
     }
-
     // ==================== getOrientalZodiacKey ====================
-
     public static function orientalZodiacProvider(): array
     {
         return [
@@ -81,31 +81,29 @@ class SexagenaryCycleTest extends TestCase
             '2030年(戌)'  => [2030, 11, '戌'],
         ];
     }
-
-    #[DataProvider('orientalZodiacProvider')]
+    /**
+     * @dataProvider orientalZodiacProvider
+     */
     public function test_getOrientalZodiacKey(int $year, int $expectedKey, string $expectedText): void
     {
         $cycle = new SexagenaryCycle();
         $this->assertSame($expectedKey, $cycle->getOrientalZodiacKey($year));
     }
-
     // ==================== viewOrientalZodiac ====================
-
-    #[DataProvider('orientalZodiacProvider')]
+    /**
+     * @dataProvider orientalZodiacProvider
+     */
     public function test_viewOrientalZodiac_validKey(int $year, int $key, string $expectedText): void
     {
         $cycle = new SexagenaryCycle();
         $this->assertSame($expectedText, $cycle->viewOrientalZodiac($key));
     }
-
     public function test_viewOrientalZodiac_invalidKey_returnsEmpty(): void
     {
         $cycle = new SexagenaryCycle();
         $this->assertSame('', $cycle->viewOrientalZodiac(99));
     }
-
     // ==================== getHeavenlyStemKey ====================
-
     public static function heavenlyStemProvider(): array
     {
         return [
@@ -125,23 +123,23 @@ class SexagenaryCycleTest extends TestCase
             '2025年(乙)'  => [2025, 1,  '乙'],
         ];
     }
-
-    #[DataProvider('heavenlyStemProvider')]
+    /**
+     * @dataProvider heavenlyStemProvider
+     */
     public function test_getHeavenlyStemKey(int $year, int $expectedKey, string $expectedText): void
     {
         $cycle = new SexagenaryCycle();
         $this->assertSame($expectedKey, $cycle->getHeavenlyStemKey($year));
     }
-
     // ==================== viewHeavenlyStem ====================
-
-    #[DataProvider('heavenlyStemProvider')]
+    /**
+     * @dataProvider heavenlyStemProvider
+     */
     public function test_viewHeavenlyStem_validKey(int $year, int $key, string $expectedText): void
     {
         $cycle = new SexagenaryCycle();
         $this->assertSame($expectedText, $cycle->viewHeavenlyStem($key));
     }
-
     public function test_viewHeavenlyStem_invalidKey_returnsEmpty(): void
     {
         $cycle = new SexagenaryCycle();

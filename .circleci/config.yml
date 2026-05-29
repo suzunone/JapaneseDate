@@ -47,6 +47,20 @@ commands:
             vendor/bin/phpunit tests
 
 jobs:
+  test80:
+    executor:
+      name: php-executor
+      php-version: "8.0"
+    working_directory: ~/repo80
+    steps:
+      - run-tests
+  test81:
+    executor:
+      name: php-executor
+      php-version: "8.1"
+    working_directory: ~/repo81
+    steps:
+      - run-tests
   test82:
     executor:
       name: php-executor
@@ -81,6 +95,12 @@ jobs:
 workflows:
   tests:
     jobs:
+      - test80:
+          context:
+            - dockerhub
+      - test81:
+          context:
+            - dockerhub
       - test82:
           context:
             - dockerhub
