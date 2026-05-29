@@ -34,7 +34,7 @@ namespace JapaneseDate;
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
  * @see         https://carbon.nesbot.com/docs/
- * @since        1.0.0
+ * @since        2026-05-28
  */
 interface DateTimeInterface
 {

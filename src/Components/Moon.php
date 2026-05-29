@@ -11,7 +11,7 @@
  * @license     BSD-2
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
- * @since        1.0.0
+ * @since        2023-05-07
  */
 
 namespace JapaneseDate\Components;
@@ -29,7 +29,7 @@ use DateTimeInterface;
  * @version     GIT: $Id$
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
- * @since        6.3.0
+ * @since        2023-05-07
  */
 class Moon
 {
