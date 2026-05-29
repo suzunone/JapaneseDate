@@ -10,6 +10,14 @@ Trait Getter
 
 | Modifier | Type | Name | Description |
 |---|---|---|---|
+| public _(read-only)_ | int | `$solar_seasonal_festival` | 西暦の月日から五節句IDを取得する（スネークケース）。五節句定数（0〜5）を返す。節句でない場合は 0。 |
+| public _(read-only)_ | string | `$solar_seasonal_festival_name` | 西暦の月日から五節句の式名を取得する（スネークケース）。式名または空文字列。 |
+| public _(read-only)_ | string | `$solar_seasonal_festival_alias` | 西暦の月日から五節句の別名を取得する（スネークケース）。別名または空文字列。 |
+| public _(read-only)_ | int | `$lunar_seasonal_festival` | 旧暦の月日から五節句IDを取得する（スネークケース）。五節句定数（0〜5）を返す。節句でない場合は 0。 |
+| public _(read-only)_ | string | `$lunar_seasonal_festival_name` | 旧暦の月日から五節句の式名を取得する（スネークケース）。式名または空文字列。 |
+| public _(read-only)_ | string | `$lunar_seasonal_festival_alias` | 旧暦の月日から五節句の別名を取得する（スネークケース）。別名または空文字列。 |
+| public _(read-only)_ | int | `$misc_seasonal_node` | 雑節を取得する（スネークケース）。雑節定数（0〜9）を返す。雑節でない場合は 0。 |
+| public _(read-only)_ | string | `$misc_seasonal_node_text` | 雑節の日本語名を取得する（スネークケース）。雑節名または空文字列。 |
 | public _(read-only)_ | int\|bool | `$solar_term` | 24節気を取得する。値は、 1 から 24 までの整数、または 24節気でない場合は false になります。 |
 | public _(read-only)_ | string | `$solar_term_text` | 24節気の名前を取得する。値は、 24節気の名前を表す文字列、または 24節気でない場合は空文字列になります。 |
 | public _(read-only)_ | bool | `$is_solar_term` | その日が24節気の一つであるかどうかを示すブール値。値は、 24節気である場合は true、そうでない場合は false になります。 |
@@ -18,6 +26,8 @@ Trait Getter
 | public _(read-only)_ | int | `$era_year` | その日が属する元号の年を整数で取得する。値は、 元号の年を表す整数、または 元号でない場合は 0 になります。 |
 | public _(read-only)_ | string | `$oriental_zodiac_text` | その日が属する十二支の名前を取得する。値は、 十二支の名前を表す文字列、または 十二支でない場合は空文字列になります。 |
 | public _(read-only)_ | int | `$oriental_zodiac` | その日が属する十二支を整数で取得する。値は、 十二支を表す整数、または 十二支でない場合は 0 になります。 |
+| public _(read-only)_ | string | `$heavenly_stem_text` | その日が属する十干の名前を取得する。値は、 十干の名前を表す文字列です。 |
+| public _(read-only)_ | int | `$heavenly_stem` | その日が属する十干を整数で取得する。値は、 十干を表す整数 (0〜9) です。 |
 | public _(read-only)_ | string | `$six_weekday_text` | その日が属する六曜の名前を取得する。値は、 六曜の名前を表す文字列、または 六曜でない場合は空文字列になります。 |
 | public _(read-only)_ | int | `$six_weekday` | その日が属する六曜を整数で取得する。値は、 六曜を表す整数、または 六曜でない場合は 0 になります。 |
 | public _(read-only)_ | int | `$weekday_text` | その日が属する曜日の名前を取得する。値は、 曜日の名前を表す文字列、または 曜日でない場合は空文字列になります。 |
@@ -31,6 +41,9 @@ Trait Getter
 | public _(read-only)_ | int | `$lunar_day` | その日が属する陰暦の日を整数で取得する。値は、 陰暦の日を表す整数、または 陰暦の日でない場合は 0 になります。 |
 | public _(read-only)_ | bool | `$is_leap_month` | その日が閏月であるかどうかを示すブール値。値は、 閏月である場合は true、そうでない場合は false になります。 |
 | public _(read-only)_ | float | `$moon_age` | その日における月齢を取得する。値は、 月齢を表す浮動小数点数、または 不明な場合は false になります。 |
+| public _(read-only)_ | float | `$moon_phase_angle` | その日における月の位相角を取得する。値は 0°(新月)〜359.9° の浮動小数点数です。 |
+| public _(read-only)_ | int | `$moon_phase` | その日における月相を取得する。値は 0(新月)〜7(有明) の整数です。 |
+| public _(read-only)_ | string | `$moon_phase_text` | その日における月相名を日本語で取得する。値は「新月」「三日月」「上弦」「十三夜」「満月」「十六夜」「下弦」「有明」のいずれかです。 |
 | public _(read-only)_ | [DateTime](../../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../../JapaneseDate/DateTimeImmutable.md) | `$syunbun` | その年の春分の日の日時を取得する。値は、 春分の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。 |
 | public _(read-only)_ | [DateTime](../../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../../JapaneseDate/DateTimeImmutable.md) | `$next_syunbun` | 次の春分の日の日時を取得する。値は、 次の春分の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が春分の日の場合は翌年の春分の日が返されます。 |
 | public _(read-only)_ | [DateTime](../../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../../JapaneseDate/DateTimeImmutable.md) | `$before_syunbun` | 前の春分の日の日時を取得する。値は、 前の春分の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が春分の日の場合は前年の春分の日が返されます。 |
@@ -103,6 +116,14 @@ Trait Getter
 | public _(read-only)_ | [DateTime](../../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../../JapaneseDate/DateTimeImmutable.md) | `$keichitsu` | その年の啓蟄の日の日時を取得する。値は、 啓蟄の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。 |
 | public _(read-only)_ | [DateTime](../../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../../JapaneseDate/DateTimeImmutable.md) | `$next_keichitsu` | 次の啓蟄の日の日時を取得する。値は、 次の啓蟄の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が啓蟄の日の場合は翌年の啓蟄の日が返されます。 |
 | public _(read-only)_ | [DateTime](../../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../../JapaneseDate/DateTimeImmutable.md) | `$before_keichitsu` | 前の啓蟄の日の日時を取得する。値は、 前の啓蟄の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が啓蟄の日の場合は前年の啓蟄の日が返されます。 |
+| public _(read-only)_ | int | `$solarSeasonalFestival` | 西暦の月日から五節句IDを取得する。値は {[\JapaneseDate\DateTime::SEASONAL_FESTIVAL_NONE}（0）〜{@see](../../JapaneseDate/DateTime.html) \JapaneseDate\DateTime::SEASONAL_FESTIVAL_CHOYO}（5）のいずれかです。節句でない場合は 0 を返します。 |
+| public _(read-only)_ | string | `$solarSeasonalFestivalName` | 西暦の月日から五節句の式名を取得する。「人日の節句」「上巳の節句」「端午の節句」「七夕の節句」「重陽の節句」のいずれか、または節句でない場合は空文字列を返します。 |
+| public _(read-only)_ | string | `$solarSeasonalFestivalAlias` | 西暦の月日から五節句の別名を取得する。「七草の節句」「桃の節句」「菖蒲の節句」「笹の節句」「菊の節句」のいずれか、または節句でない場合は空文字列を返します。 |
+| public _(read-only)_ | int | `$lunarSeasonalFestival` | 旧暦の月日から五節句IDを取得する。値は {[\JapaneseDate\DateTime::SEASONAL_FESTIVAL_NONE}（0）〜{@see](../../JapaneseDate/DateTime.html) \JapaneseDate\DateTime::SEASONAL_FESTIVAL_CHOYO}（5）のいずれかです。節句でない場合は 0 を返します。 |
+| public _(read-only)_ | string | `$lunarSeasonalFestivalName` | 旧暦の月日から五節句の式名を取得する。「人日の節句」「上巳の節句」「端午の節句」「七夕の節句」「重陽の節句」のいずれか、または節句でない場合は空文字列を返します。 |
+| public _(read-only)_ | string | `$lunarSeasonalFestivalAlias` | 旧暦の月日から五節句の別名を取得する。「七草の節句」「桃の節句」「菖蒲の節句」「笹の節句」「菊の節句」のいずれか、または節句でない場合は空文字列を返します。 |
+| public _(read-only)_ | int | `$miscSeasonalNode` | その日が該当する雑節の定数を取得する。値は {[\JapaneseDate\DateTime::MISC_SEASONAL_NODE_NONE}（0）〜{@see](../../JapaneseDate/DateTime.html) \JapaneseDate\DateTime::MISC_SEASONAL_NODE_NIHYAKUNIJUUNICHI}（9）のいずれかです。雑節でない場合は 0 を返します。 |
+| public _(read-only)_ | string | `$miscSeasonalNodeText` | その日が該当する雑節の日本語名を取得する。「節分」「彼岸」「社日」「八十八夜」「入梅」「半夏生」「土用」「二百十日」「二百二十日」のいずれか、または雑節でない場合は空文字列を返します。 |
 | public _(read-only)_ | int\|bool | `$solarTerm` | 24節気を取得する。値は、 1 から 24 までの整数、または 24節気でない場合は false になります。 |
 | public _(read-only)_ | string | `$solarTermText` | 24節気の名前を取得する。値は、 24節気の名前を表す文字列、または 24節気でない場合は空文字列になります。 |
 | public _(read-only)_ | bool | `$isSolarTerm` | その日が24節気の一つであるかどうかを示すブール値。値は、 24節気である場合は true、そうでない場合は false になります。 |
@@ -111,6 +132,8 @@ Trait Getter
 | public _(read-only)_ | int | `$eraYear` | その日が属する元号の年を整数で取得する。値は、 元号の年を表す整数、または 元号でない場合は 0 になります。 |
 | public _(read-only)_ | string | `$orientalZodiacText` | その日が属する十二支の名前を取得する。値は、 十二支の名前を表す文字列、または 十二支でない場合は空文字列になります。 |
 | public _(read-only)_ | int | `$orientalZodiac` | その日が属する十二支を整数で取得する。値は、 十二支を表す整数、または 十二支でない場合は 0 になります。 |
+| public _(read-only)_ | string | `$heavenlyStemText` | その日が属する十干の名前を取得する。値は、 十干の名前を表す文字列です。 |
+| public _(read-only)_ | int | `$heavenlyStem` | その日が属する十干を整数で取得する。値は、 十干を表す整数 (0〜9) です。 |
 | public _(read-only)_ | string | `$sixWeekdayText` | その日が属する六曜の名前を取得する。値は、 六曜の名前を表す文字列、または 六曜でない場合は空文字列になります。 |
 | public _(read-only)_ | int | `$sixWeekday` | その日が属する六曜を整数で取得する。値は、 六曜を表す整数、または 六曜でない場合は 0 になります。 |
 | public _(read-only)_ | int | `$weekdayText` | その日が属する曜日の名前を取得する。値は、 曜日の名前を表す文字列、または 曜日でない場合は空文字列になります。 |
@@ -123,6 +146,9 @@ Trait Getter
 | public _(read-only)_ | int | `$lunarDay` | その日が属する陰暦の日を整数で取得する。値は、 陰暦の日を表す整数、または 陰暦の日でない場合は 0 になります。 |
 | public _(read-only)_ | bool | `$isLeapMonth` | その日が閏月であるかどうかを示すブール値。値は、 閏月である場合は true、そうでない場合は false になります。 |
 | public _(read-only)_ | float | `$moonAge` | その日における月齢を取得する。値は、 月齢を表す浮動小数点数、または 不明な場合は false になります。 |
+| public _(read-only)_ | float | `$moonPhaseAngle` | その日における月の位相角を取得する。値は 0°(新月)〜359.9° の浮動小数点数です。 |
+| public _(read-only)_ | int | `$moonPhase` | その日における月相を取得する。値は 0(新月)〜7(有明) の整数です。 |
+| public _(read-only)_ | string | `$moonPhaseText` | その日における月相名を日本語で取得する。値は「新月」「三日月」「上弦」「十三夜」「満月」「十六夜」「下弦」「有明」のいずれかです。 |
 | public _(read-only)_ | [DateTime](../../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../../JapaneseDate/DateTimeImmutable.md) | `$nextSyunbun` | 次の春分の日の日時を取得する。値は、 次の春分の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が春分の日の場合は翌年の春分の日が返されます。 |
 | public _(read-only)_ | [DateTime](../../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../../JapaneseDate/DateTimeImmutable.md) | `$beforeSyunbun` | 前の春分の日の日時を取得する。値は、 前の春分の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が春分の日の場合は前年の春分の日が返されます。 |
 | public _(read-only)_ | [DateTime](../../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../../JapaneseDate/DateTimeImmutable.md) | `$nextSeimei` | 次の清明の日の日時を取得する。値は、 次の清明の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が清明の日の場合は翌年の清明の日が返されます。 |

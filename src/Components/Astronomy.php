@@ -138,6 +138,49 @@ class Astronomy
     }
 
     /**
+     * 月の位相角を求める（太陽と月の視黄経差）
+     *
+     * @param int $year グレゴリオ暦による年月日
+     * @param int $month
+     * @param int $day
+     * @param float $hour 時（世界時）
+     * @param float $min 分
+     * @param float $sec 秒
+     * @return float 月の位相角（0°=新月, 90°=上弦, 180°=満月, 270°=下弦）
+     * @throws \JapaneseDate\Exceptions\Exception
+     */
+    public function moonPhaseAngle(int $year, int $month, int $day, float $hour, float $min, float $sec): float
+    {
+        $longitude_moon = $this->longitudeMoon($year, $month, $day, $hour, $min, $sec);
+        $longitude_sun = $this->longitudeSun($year, $month, $day, $hour, $min, $sec);
+
+        return $this->normalizeAngle($longitude_moon - $longitude_sun);
+    }
+
+    /**
+     * 月相を求める（8分類）
+     *
+     * 位相角 (Λ_moon - Λ_sun) を 45° 刻みで 8 分類する。
+     *   0: 新月, 1: 三日月, 2: 上弦, 3: 十三夜,
+     *   4: 満月, 5: 十六夜, 6: 下弦, 7: 有明
+     *
+     * @param int $year グレゴリオ暦による年月日
+     * @param int $month
+     * @param int $day
+     * @param float $hour 時（世界時）
+     * @param float $min 分
+     * @param float $sec 秒
+     * @return int 月相 (0〜7)
+     * @throws \JapaneseDate\Exceptions\Exception
+     */
+    public function moonPhase(int $year, int $month, int $day, float $hour, float $min, float $sec): int
+    {
+        $phase_angle = $this->moonPhaseAngle($year, $month, $day, $hour, $min, $sec);
+
+        return (int) (($phase_angle + 22.5) / 45.0) % 8;
+    }
+
+    /**
      * グレゴリオ暦→ユリウス日 変換
      *
      * @param int $year グレゴリオ暦による年月日

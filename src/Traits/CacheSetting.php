@@ -3,24 +3,11 @@
 /**
  * CacheSetting.php
  *
- * @category    DateTime
- * @package     JapaneseDate
- * @subpackage  Traits
- * @author      Suzunone <suzunone.eleven@gmail.com>
- * @copyright   Suzunone
- * @license     BSD-2
- * @link        https://github.com/suzunone/JapaneseDate
- * @see         https://github.com/suzunone/JapaneseDate
- * @since        1.0.0
- */
-
-namespace JapaneseDate\Traits;
-
-use Closure;
-use JapaneseDate\Components\Cache;
-
-/**
- * Trait CacheSetting
+ * 旧暦計算・祝日計算など CPU コストの高い計算結果を
+ * キャッシュするための設定メソッドをまとめた Trait です。
+ *
+ * キャッシュは静的に保持されるため、同一リクエスト内では
+ * 一度計算した結果が再利用されます。
  *
  * @category    DateTime
  * @package     JapaneseDate
@@ -30,23 +17,74 @@ use JapaneseDate\Components\Cache;
  * @license     BSD-2
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
- * @since        1.0.0
+ * @since       2020-03-11
+ */
+
+namespace JapaneseDate\Traits;
+
+use Closure;
+use JapaneseDate\Components\Cache;
+
+/**
+ * キャッシュ設定メソッドを提供する Trait。
+ *
+ * 旧暦変換・祝日判定・二十四節気の計算は CPU コストが比較的高く、
+ * 高頻度に呼ばれるアプリケーションではパフォーマンス上の課題になることがあります。
+ * このトレイトでは、計算結果をキャッシュする方式（APC・ファイル・独自実装・キャッシュなし）を
+ * アプリケーション側から切り替える API を提供します。
+ *
+ * **キャッシュはプロセス（リクエスト）をまたいで静的に保持されます。**
+ * `setCacheMode()` などは呼び出した以降、同一プロセス内で次に変更されるまで有効です。
+ *
+ * **利用可能なキャッシュモード（{@see \JapaneseDate\CacheMode} 参照）:**
+ *
+ * | モード定数 | 説明 |
+ * |---|---|
+ * | `CacheMode::MODE_AUTO` | APC が利用可能なら APC、そうでなければオブジェクト内静的キャッシュ（デフォルト） |
+ * | `CacheMode::MODE_APC` | APCu を使用してプロセスをまたいだキャッシュを行う |
+ * | `CacheMode::MODE_FILE` | ファイルにキャッシュを保存する（{@see setCacheFilePath()} でディレクトリを指定） |
+ * | `CacheMode::MODE_ORIGINAL` | 独自のキャッシュロジックを使用する（{@see setCacheClosure()} でクロージャを登録） |
+ * | `CacheMode::MODE_NONE` | キャッシュを一切使用しない |
+ *
+ * @category    DateTime
+ * @package     JapaneseDate
+ * @subpackage  Traits
+ * @author      Suzunone <suzunone.eleven@gmail.com>
+ * @copyright   Suzunone
+ * @license     BSD-2
+ * @link        https://github.com/suzunone/JapaneseDate
+ * @see         https://github.com/suzunone/JapaneseDate
+ * @since       2020-03-11
  * @mixin \JapaneseDate\DateTime
  * @mixin \JapaneseDate\DateTimeImmutable
  */
 trait CacheSetting
 {
     /**
-     * キャッシュモードを指定する
+     * 旧暦・祝日計算に使用するキャッシュモードを設定します。
      *
-     * 指定するキャッシュモードは、{@see \JapaneseDate\CacheMode}参照。
+     * キャッシュモードを切り替えることで、計算結果の保存方式を変更できます。
+     * 設定は静的に保持されるため、同一プロセス内では次に `setCacheMode()` が
+     * 呼ばれるまで有効です。
      *
-     * @param int $mode キャッシュモード
-     * @see \JapaneseDate\CacheMode::MODE_AUTO 自動でキャッシュモードを選択
-     * @see \JapaneseDate\CacheMode::MODE_APC APCを使用したキャッシュ
-     * @see \JapaneseDate\CacheMode::MODE_FILE ファイルを使用したキャッシュ
-     * @see \JapaneseDate\CacheMode::MODE_ORIGINAL 独自キャッシュ
-     * @see \JapaneseDate\CacheMode::MODE_NONE キャッシュなし
+     * **使用例:**
+     * ```php
+     * use JapaneseDate\CacheMode;
+     * use JapaneseDate\DateTime;
+     *
+     * // キャッシュを無効化する
+     * DateTime::setCacheMode(CacheMode::MODE_NONE);
+     *
+     * // APC を使用する
+     * DateTime::setCacheMode(CacheMode::MODE_APC);
+     * ```
+     *
+     * @param int $mode キャッシュモードを表す定数
+     * @see \JapaneseDate\CacheMode::MODE_AUTO   自動（デフォルト）: APC が利用可能なら APC、そうでなければ静的キャッシュ
+     * @see \JapaneseDate\CacheMode::MODE_APC    APCu を使用したプロセス間共有キャッシュ
+     * @see \JapaneseDate\CacheMode::MODE_FILE   ファイルシステムを使用したキャッシュ
+     * @see \JapaneseDate\CacheMode::MODE_ORIGINAL 独自キャッシュロジック（{@see setCacheClosure()} と組み合わせて使用）
+     * @see \JapaneseDate\CacheMode::MODE_NONE   キャッシュ無効
      */
     public static function setCacheMode(int $mode): void
     {
@@ -54,11 +92,24 @@ trait CacheSetting
     }
 
     /**
-     * キャッシュファイル保存ディレクトリをセットします
+     * ファイルキャッシュの保存先ディレクトリを設定します。
      *
-     * キャッシュモードがファイル{@see \JapaneseDate\CacheMode::MODE_FILE}の時に使用する、キャッシュファイル保存ディレクトリをセットします。
+     * {@see \JapaneseDate\CacheMode::MODE_FILE} を使用する場合に、
+     * キャッシュファイルの保存先となるディレクトリパスを指定します。
+     * このメソッドを呼ぶ前に `setCacheMode(CacheMode::MODE_FILE)` を
+     * 呼び出してキャッシュモードをファイルに切り替えてください。
      *
-     * @param string $cache_file_path キャッシュファイルを保存するディレクトリ
+     * **使用例:**
+     * ```php
+     * use JapaneseDate\CacheMode;
+     * use JapaneseDate\DateTime;
+     *
+     * DateTime::setCacheMode(CacheMode::MODE_FILE);
+     * DateTime::setCacheFilePath('/var/cache/japanesedate');
+     * ```
+     *
+     * @param string $cache_file_path キャッシュファイルを保存するディレクトリの絶対パス
+     * @see \JapaneseDate\CacheMode::MODE_FILE ファイルキャッシュモード
      */
     public static function setCacheFilePath(string $cache_file_path): void
     {
@@ -66,20 +117,42 @@ trait CacheSetting
     }
 
     /**
-     * 独自キャッシュロジックのセット
+     * 独自キャッシュロジックを実装したクロージャを登録します。
      *
-     * キャッシュモードが独自キャッシュ{@see \JapaneseDate\CacheMode::MODE_ORIGINAL}の時に使用する、クロージャをセットします。
+     * {@see \JapaneseDate\CacheMode::MODE_ORIGINAL} と組み合わせて使用します。
+     * Redis・Memcached・フレームワーク固有のキャッシュ機構など、
+     * 任意のキャッシュバックエンドを利用できます。
      *
-     * セットされるクロージャは、
+     * **クロージャのシグネチャ:**
      *
-     * mixed ClosureFunction(string $key, Closure $function)
+     * ```php
+     * function (string $key, \Closure $function): mixed
+     * ```
      *
-     * | Parameter | Type | Description |
-     * |-----------|------|-------------|
-     * | `$key` | **string** | キャッシュ単位の一意なキー。このキーにマッチしたキャッシュデータが有る場合は、キャッシュされたデータをreturnしてください。 |
-     * | `$function` | **\Closure** | キャッシュされたデータが取得できない場合に実行するクロージャです。実行すれば、キャッシュするべきデータが返されます。 |
+     * | パラメータ | 型 | 説明 |
+     * |---|---|---|
+     * | `$key` | `string` | キャッシュエントリを一意に識別するキー文字列 |
+     * | `$function` | `\Closure` | キャッシュミス時に呼び出す計算ロジック。実行するとキャッシュすべきデータが返る |
      *
-     * @param Closure $function 独自キャッシュのロジックが含まれたクロージャ
+     * クロージャの実装では、`$key` に対応するキャッシュが存在すればそれを返し、
+     * なければ `$function()` を実行してその結果をキャッシュしてから返してください。
+     *
+     * **使用例（Laravel の Cache ファサードを利用する場合）:**
+     * ```php
+     * use JapaneseDate\CacheMode;
+     * use JapaneseDate\DateTime;
+     * use Illuminate\Support\Facades\Cache;
+     *
+     * DateTime::setCacheMode(CacheMode::MODE_ORIGINAL);
+     * DateTime::setCacheClosure(function (string $key, \Closure $fn) {
+     *     return Cache::remember($key, 3600, $fn);
+     * });
+     * ```
+     *
+     * @param \Closure $function
+     *   `function(string $key, \Closure $function): mixed` シグネチャを持つクロージャ。
+     *   キャッシュヒット時はキャッシュ済みデータを、ミス時は計算実行結果を返す必要があります。
+     * @see \JapaneseDate\CacheMode::MODE_ORIGINAL 独自キャッシュモード
      */
     public static function setCacheClosure(Closure $function): void
     {
@@ -87,9 +160,21 @@ trait CacheSetting
     }
 
     /**
-     * @param string $date_text
-     * @return static
-     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     * 指定した日時文字列から同一タイムゾーンの内部用インスタンスを生成・キャッシュします。
+     *
+     * 元号判定などで特定日時（例: 「1989-01-08 00:00:00」）を繰り返し比較する際に、
+     * 毎回オブジェクトを生成するのを避けるための静的キャッシュ機構です。
+     * キャッシュのキーは「クラス名:タイムゾーン名:日時文字列」の組み合わせで生成されます。
+     *
+     * **使用上の注意:**
+     * - このメソッドは内部実装専用です。外部から直接呼び出さないでください。
+     * - 生成されたインスタンスはリクエストをまたいだ静的変数に保持されます。
+     *   インスタンスを変更すると意図しない影響が生じる可能性があるため、
+     *   読み取り専用（比較目的）にのみ使用してください。
+     *
+     * @param string $date_text 生成する日時を表す文字列（例: `'1989-01-08 00:00:00'`）
+     * @return static 指定した日時・自身と同一タイムゾーンのインスタンス（キャッシュ済みの場合はそのまま返す）
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException 日時文字列の解析に失敗した場合
      */
     protected function innerDateTime(string $date_text): static
     {

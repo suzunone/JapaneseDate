@@ -493,4 +493,65 @@ PHP
         $DateTime2 = DateTime::factory('2034-03-21');
         $this->assertEquals(2, (int) $DateTime2->lunar_day);
     }
+
+    // ==================== moonPhaseAngle ====================
+
+    /**
+     * moonPhaseAngle は [0, 360) の浮動小数点数を返す
+     *
+     * 検証出典: 国立天文台 朔望データ
+     *   2023-01-22 05:53 JST (= 2023-01-21 20:53 UTC) が新月 → 位相角 ≒ 0°
+     *   2023-02-05 18:29 UTC が満月 → 位相角 ≒ 180°
+     */
+    public function test_moonPhaseAngle_newMoon(): void
+    {
+        $lc = LunarCalendar::factory();
+
+        // 新月時刻 (2023-01-21 20:53 UTC) → 位相角は新月区間 (337.5° 〜 22.5°) に入る
+        $result = $lc->moonPhaseAngle(2023, 1, 21, 20.0, 53.0, 0.0);
+        $this->assertIsFloat($result);
+        $this->assertGreaterThanOrEqual(0.0, $result);
+        $this->assertLessThan(360.0, $result);
+        $this->assertTrue(
+            $result < 22.5 || $result >= 337.5,
+            "新月付近の位相角({$result}°)が新月区間外です"
+        );
+    }
+
+    public function test_moonPhaseAngle_fullMoon(): void
+    {
+        $lc = LunarCalendar::factory();
+
+        // 満月時刻 (2023-02-05 18:29 UTC) → 位相角は満月区間 (157.5° 〜 202.5°) に入る
+        $result = $lc->moonPhaseAngle(2023, 2, 5, 18.0, 29.0, 0.0);
+        $this->assertGreaterThan(135.0, $result);
+        $this->assertLessThan(225.0, $result);
+    }
+
+    // ==================== moonPhase ====================
+
+    /**
+     * moonPhase は 0〜7 の整数を返す
+     *
+     * 検証出典: 国立天文台 朔望データ
+     */
+    public function test_moonPhase_newMoon(): void
+    {
+        $lc = LunarCalendar::factory();
+
+        // 新月時刻 → 月相 0 (新月)
+        $result = $lc->moonPhase(2023, 1, 21, 20.0, 53.0, 0.0);
+        $this->assertIsInt($result);
+        $this->assertSame(0, $result, '新月時刻の月相が 0 (新月) でありません');
+    }
+
+    public function test_moonPhase_fullMoon(): void
+    {
+        $lc = LunarCalendar::factory();
+
+        // 満月時刻 → 月相 4 (満月)
+        $result = $lc->moonPhase(2023, 2, 5, 18.0, 29.0, 0.0);
+        $this->assertIsInt($result);
+        $this->assertSame(4, $result, '満月時刻の月相が 4 (満月) でありません');
+    }
 }

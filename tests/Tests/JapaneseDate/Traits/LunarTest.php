@@ -40,6 +40,9 @@ use Tests\JapaneseDate\InvokeTrait;
  */
 #[CoversTrait(\JapaneseDate\Traits\Lunar::class)]
 #[CoversMethod(\JapaneseDate\Traits\Lunar::class, 'getMoonAge')]
+#[CoversMethod(\JapaneseDate\Traits\Lunar::class, 'getMoonPhaseAngle')]
+#[CoversMethod(\JapaneseDate\Traits\Lunar::class, 'getMoonPhase')]
+#[CoversMethod(\JapaneseDate\Traits\Lunar::class, 'viewMoonPhase')]
 #[CoversMethod(\JapaneseDate\Traits\Getter::class, '__get')]
 #[CoversMethod(\JapaneseDate\Traits\Lunar::class, 'isLeapMonth')]
 #[CoversMethod(\JapaneseDate\Traits\Lunar::class, 'getSolarTerm')]
@@ -377,5 +380,85 @@ class LunarTest extends TestCase
         $this->assertSame(0, $DateTime->solar_term);
         $this->assertSame('春分', $DateTime->solar_term_text);
         $this->assertTrue($DateTime->is_solar_term);
+    }
+
+    /**
+     * DateTime で月の位相角を取得できることを確認する。
+     *
+     * 検証出典: 国立天文台 朔望データ
+     *   2023-01-22 05:53 JST (= 2023-01-21 20:53 UTC) が新月 → 位相角 ≒ 0°
+     *   2023-02-05 18:29 UTC が満月 → 位相角 ≒ 180°
+     */
+    public function test_getMoonPhaseAngle(): void
+    {
+        // 新月直後 → 位相角は 0° 付近 (0° 〜 45° の範囲に入る)
+        // 2023-01-22 05:53 JST = UTC 2023-01-21 20:53
+        $DateTime = DateTime::factory('2023-01-21 20:53:00');
+        $angle = $DateTime->moon_phase_angle;
+        $this->assertIsFloat($angle);
+        $this->assertGreaterThanOrEqual(0.0, $angle);
+        $this->assertLessThan(360.0, $angle);
+        // 新月時刻に近いので位相角は 22.5° 未満 (新月区間: 337.5〜22.5°)
+        $this->assertTrue($angle < 22.5 || $angle >= 337.5, "新月付近の位相角({$angle}°)が新月区間外です");
+
+        // camelCase でも同じ値を取得できること
+        $this->assertSame($angle, $DateTime->moonPhaseAngle);
+
+        // 満月付近 → 位相角は 180° 付近 (135° 〜 225°)
+        $DateTime = DateTime::factory('2023-02-05 18:29:00');
+        $angle = $DateTime->moon_phase_angle;
+        $this->assertGreaterThan(135.0, $angle);
+        $this->assertLessThan(225.0, $angle);
+    }
+
+    /**
+     * DateTime で月相 (0=新月〜7=有明) を取得できることを確認する。
+     *
+     * 検証出典: 国立天文台 朔望データ
+     */
+    public function test_getMoonPhase(): void
+    {
+        // 新月時刻 → 月相 0 (新月)
+        // 2023-01-22 05:53 JST = UTC 2023-01-21 20:53
+        $DateTime = DateTime::factory('2023-01-21 20:53:00');
+        $this->assertSame(0, $DateTime->moon_phase);
+        $this->assertSame(0, $DateTime->moonPhase);
+
+        // 満月時刻 → 月相 4 (満月)
+        // 2023-02-05 18:29 UTC
+        $DateTime = DateTime::factory('2023-02-05 18:29:00');
+        $this->assertSame(4, $DateTime->moon_phase);
+        $this->assertSame(4, $DateTime->moonPhase);
+    }
+
+    /**
+     * DateTime で月相の日本語名を取得できることを確認する。
+     */
+    public function test_viewMoonPhase(): void
+    {
+        // 新月時刻 → '新月'
+        $DateTime = DateTime::factory('2023-01-21 20:53:00');
+        $this->assertSame('新月', $DateTime->moon_phase_text);
+        $this->assertSame('新月', $DateTime->moonPhaseText);
+
+        // 満月時刻 → '満月'
+        $DateTime = DateTime::factory('2023-02-05 18:29:00');
+        $this->assertSame('満月', $DateTime->moon_phase_text);
+    }
+
+    /**
+     * DateTimeImmutable で月相を取得できることを確認する。
+     */
+    public function test_getMoonPhase_immutable(): void
+    {
+        // 新月時刻 → 月相 0 (新月)
+        $DateTime = new DateTimeImmutable('2023-01-21 20:53:00');
+        $this->assertSame(0, $DateTime->moon_phase);
+        $this->assertSame('新月', $DateTime->moon_phase_text);
+
+        // 満月時刻 → 月相 4 (満月)
+        $DateTime = new DateTimeImmutable('2023-02-05 18:29:00');
+        $this->assertSame(4, $DateTime->moon_phase);
+        $this->assertSame('満月', $DateTime->moon_phase_text);
     }
 }
