@@ -26,7 +26,7 @@ commands:
       - run:
           name: Composer self-update
           command: |
-            sudo composer self-update
+            sudo composer self-update --2
       - run:
           name: Install dependencies
           command: |
