@@ -4753,7 +4753,7 @@ for each microsecond or every X microseconds if a factor is given.
 | int | `$factor` | `&#039;1&#039;) Return an iterable period from current date to given end (string` |  |
 | [DateTime](https://www.php.net/class.datetime) | `$r Carbon instance` | —  |  |
 
-**Returns:** CarbonPeriod
+**Returns:** [CarbonPeriod](../Carbon/CarbonPeriod.md)
 ---
 
 ### addRealMicroseconds
@@ -4840,7 +4840,7 @@ for each microsecond or every X microseconds if a factor is given.
 | int | `$factor` | `&#039;1&#039;) Return an iterable period from current date to given end (string` |  |
 | [DateTime](https://www.php.net/class.datetime) | `$r Carbon instance` | —  |  |
 
-**Returns:** CarbonPeriod
+**Returns:** [CarbonPeriod](../Carbon/CarbonPeriod.md)
 ---
 
 ### addRealMillis
@@ -4927,7 +4927,7 @@ for each millisecond or every X milliseconds if a factor is given.
 | int | `$factor` | `&#039;1&#039;) Return an iterable period from current date to given end (string` |  |
 | [DateTime](https://www.php.net/class.datetime) | `$r Carbon instance` | —  |  |
 
-**Returns:** CarbonPeriod
+**Returns:** [CarbonPeriod](../Carbon/CarbonPeriod.md)
 ---
 
 ### addRealMilliseconds
@@ -5014,7 +5014,7 @@ for each millisecond or every X milliseconds if a factor is given.
 | int | `$factor` | `&#039;1&#039;) Return an iterable period from current date to given end (string` |  |
 | [DateTime](https://www.php.net/class.datetime) | `$r Carbon instance` | —  |  |
 
-**Returns:** CarbonPeriod
+**Returns:** [CarbonPeriod](../Carbon/CarbonPeriod.md)
 ---
 
 ### addRealSeconds
@@ -5101,7 +5101,7 @@ for each second or every X seconds if a factor is given.
 | int | `$factor` | `&#039;1&#039;) Return an iterable period from current date to given end (string` |  |
 | [DateTime](https://www.php.net/class.datetime) | `$r Carbon instance` | —  |  |
 
-**Returns:** CarbonPeriod
+**Returns:** [CarbonPeriod](../Carbon/CarbonPeriod.md)
 ---
 
 ### addRealMinutes
@@ -5188,7 +5188,7 @@ for each minute or every X minutes if a factor is given.
 | int | `$factor` | `&#039;1&#039;) Return an iterable period from current date to given end (string` |  |
 | [DateTime](https://www.php.net/class.datetime) | `$r Carbon instance` | —  |  |
 
-**Returns:** CarbonPeriod
+**Returns:** [CarbonPeriod](../Carbon/CarbonPeriod.md)
 ---
 
 ### addRealHours
@@ -5275,7 +5275,7 @@ for each hour or every X hours if a factor is given.
 | int | `$factor` | `&#039;1&#039;) Return an iterable period from current date to given end (string` |  |
 | [DateTime](https://www.php.net/class.datetime) | `$r Carbon instance` | —  |  |
 
-**Returns:** CarbonPeriod
+**Returns:** [CarbonPeriod](../Carbon/CarbonPeriod.md)
 ---
 
 ### addRealDays
@@ -5362,7 +5362,7 @@ for each day or every X days if a factor is given.
 | int | `$factor` | `&#039;1&#039;) Return an iterable period from current date to given end (string` |  |
 | [DateTime](https://www.php.net/class.datetime) | `$r Carbon instance` | —  |  |
 
-**Returns:** CarbonPeriod
+**Returns:** [CarbonPeriod](../Carbon/CarbonPeriod.md)
 ---
 
 ### addRealWeeks
@@ -5449,7 +5449,7 @@ for each week or every X weeks if a factor is given.
 | int | `$factor` | `&#039;1&#039;) Return an iterable period from current date to given end (string` |  |
 | [DateTime](https://www.php.net/class.datetime) | `$r Carbon instance` | —  |  |
 
-**Returns:** CarbonPeriod
+**Returns:** [CarbonPeriod](../Carbon/CarbonPeriod.md)
 ---
 
 ### addRealMonths
@@ -5536,7 +5536,7 @@ for each month or every X months if a factor is given.
 | int | `$factor` | `&#039;1&#039;) Return an iterable period from current date to given end (string` |  |
 | [DateTime](https://www.php.net/class.datetime) | `$r Carbon instance` | —  |  |
 
-**Returns:** CarbonPeriod
+**Returns:** [CarbonPeriod](../Carbon/CarbonPeriod.md)
 ---
 
 ### addRealQuarters
@@ -5623,7 +5623,7 @@ for each quarter or every X quarters if a factor is given.
 | int | `$factor` | `&#039;1&#039;) Return an iterable period from current date to given end (string` |  |
 | [DateTime](https://www.php.net/class.datetime) | `$r Carbon instance` | —  |  |
 
-**Returns:** CarbonPeriod
+**Returns:** [CarbonPeriod](../Carbon/CarbonPeriod.md)
 ---
 
 ### addRealYears
@@ -5710,7 +5710,7 @@ for each year or every X years if a factor is given.
 | int | `$factor` | `&#039;1&#039;) Return an iterable period from current date to given end (string` |  |
 | [DateTime](https://www.php.net/class.datetime) | `$r Carbon instance` | —  |  |
 
-**Returns:** CarbonPeriod
+**Returns:** [CarbonPeriod](../Carbon/CarbonPeriod.md)
 ---
 
 ### addRealDecades
@@ -5797,7 +5797,7 @@ for each decade or every X decades if a factor is given.
 | int | `$factor` | `&#039;1&#039;) Return an iterable period from current date to given end (string` |  |
 | [DateTime](https://www.php.net/class.datetime) | `$r Carbon instance` | —  |  |
 
-**Returns:** CarbonPeriod
+**Returns:** [CarbonPeriod](../Carbon/CarbonPeriod.md)
 ---
 
 ### addRealCenturies
@@ -5884,7 +5884,7 @@ for each century or every X centuries if a factor is given.
 | int | `$factor` | `&#039;1&#039;) Return an iterable period from current date to given end (string` |  |
 | [DateTime](https://www.php.net/class.datetime) | `$r Carbon instance` | —  |  |
 
-**Returns:** CarbonPeriod
+**Returns:** [CarbonPeriod](../Carbon/CarbonPeriod.md)
 ---
 
 ### addRealMillennia
@@ -5971,7 +5971,7 @@ for each millennium or every X millennia if a factor is given.
 | int | `$factor` | `&#039;1&#039;) Return an iterable period from current date to given end (string` |  |
 | [DateTime](https://www.php.net/class.datetime) | `$r Carbon instance` | —  |  |
 
-**Returns:** CarbonPeriod
+**Returns:** [CarbonPeriod](../Carbon/CarbonPeriod.md)
 ---
 
 ### roundYear

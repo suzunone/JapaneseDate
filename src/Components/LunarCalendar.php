@@ -307,6 +307,40 @@ class LunarCalendar
     }
 
     /**
+     * 月の位相角を求める（太陽と月の視黄経差、0°〜360°）
+     *
+     * @param int $year グレゴリオ暦による年月日
+     * @param int $month
+     * @param int $day
+     * @param float $hour 時分秒（世界時）
+     * @param float $min
+     * @param float $sec
+     * @return float 月の位相角（0°=新月, 90°=上弦, 180°=満月, 270°=下弦）
+     * @throws \JapaneseDate\Exceptions\Exception
+     */
+    public function moonPhaseAngle(int $year, int $month, int $day, float $hour, float $min, float $sec): float
+    {
+        return $this->astronomy()->moonPhaseAngle($year, $month, $day, $hour, $min, $sec);
+    }
+
+    /**
+     * 月相を求める（8分類: 0=新月〜7=有明）
+     *
+     * @param int $year グレゴリオ暦による年月日
+     * @param int $month
+     * @param int $day
+     * @param float $hour 時分秒（世界時）
+     * @param float $min
+     * @param float $sec
+     * @return int 月相 (0〜7)
+     * @throws \JapaneseDate\Exceptions\Exception
+     */
+    public function moonPhase(int $year, int $month, int $day, float $hour, float $min, float $sec): int
+    {
+        return $this->astronomy()->moonPhase($year, $month, $day, $hour, $min, $sec);
+    }
+
+    /**
      * その日が二十四節気かどうか
      *
      * @param int $year , $month, $day  グレゴリオ暦による年月日

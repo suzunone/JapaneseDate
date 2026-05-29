@@ -38,55 +38,52 @@ use Tests\JapaneseDate\InvokeTrait;
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
  * @since       1.0.0 リリースから利用可能
+ * @covers \JapaneseDate\Components\Cache
  */
-#[CoversClass(\JapaneseDate\Components\Cache::class)]
 class CacheTest extends TestCase
 {
     use InvokeTrait;
-
     /**
      * キャッシュモードを指定した値へ変更できることを確認する。
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
      */
-    #[RunInSeparateProcess] #[PreserveGlobalState(false)]
     public function test_setMode(): void
     {
         $this->assertEquals(
             Cache::MODE_AUTO,
             $this->invokeGetProperty(Cache::class, 'mode')
         );
-
         Cache::setMode(Cache::MODE_APC);
         $this->assertEquals(
             Cache::MODE_APC,
             $this->invokeGetProperty(Cache::class, 'mode')
         );
     }
-
     /**
      * 独自キャッシュ用クロージャを設定すると ORIGINAL モードへ切り替わることを確認する。
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
      */
-    #[RunInSeparateProcess] #[PreserveGlobalState(false)]
     public function test_setCacheClosure(): void
     {
         $closure = static function () {
         };
-
         Cache::setCacheClosure($closure);
         $this->assertEquals(
             Cache::MODE_ORIGINAL,
             $this->invokeGetProperty(Cache::class, 'mode')
         );
-
         $this->assertSame(
             $closure,
             $this->invokeGetProperty(Cache::class, 'cache_closure')
         );
     }
-
     /**
      * ファイルキャッシュ用の保存先を設定すると FILE モードへ切り替わることを確認する。
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
      */
-    #[RunInSeparateProcess] #[PreserveGlobalState(false)]
     public function test_setCacheFilePath(): void
     {
         $file = __DIR__ . '/example_text.txt';
@@ -95,17 +92,16 @@ class CacheTest extends TestCase
             Cache::MODE_FILE,
             $this->invokeGetProperty(Cache::class, 'mode')
         );
-
         $this->assertSame(
             $file,
             $this->invokeGetProperty(Cache::class, 'cache_file_path')
         );
     }
-
     /**
      * NONE モードではキャッシュせず、呼び出しごとにコールバックを実行することを確認する。
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
      */
-    #[RunInSeparateProcess] #[PreserveGlobalState(false)]
     public function test_forever_mode_none(): void
     {
         Cache::setMode(Cache::MODE_NONE);
@@ -114,17 +110,15 @@ class CacheTest extends TestCase
             $callCount++;
             return 'value';
         };
-
         Cache::forever('key', $fn);
         Cache::forever('key', $fn);
-
         $this->assertSame(2, $callCount);
     }
-
     /**
      * 標準のメモリキャッシュで、同じキーの2回目以降は保存済みの値を返すことを確認する。
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
      */
-    #[RunInSeparateProcess] #[PreserveGlobalState(false)]
     public function test_forever_cache_hit(): void
     {
         $callCount = 0;
@@ -132,69 +126,61 @@ class CacheTest extends TestCase
             $callCount++;
             return 'cached';
         };
-
         $r1 = Cache::forever('hit_key', $fn);
         $r2 = Cache::forever('hit_key', $fn);
-
         $this->assertSame('cached', $r1);
         $this->assertSame('cached', $r2);
         $this->assertSame(1, $callCount);
     }
-
     /**
      * ORIGINAL モードでは設定済みの独自キャッシュ用クロージャを使うことを確認する。
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
      */
-    #[RunInSeparateProcess] #[PreserveGlobalState(false)]
     public function test_forever_mode_original(): void
     {
         Cache::setCacheClosure(function (string $key, $fn) {
             return 'original_' . $key;
         });
-
         $result = Cache::forever('my_key', function () {
             return 'ignored';
         });
-
         $this->assertSame('original_my_key', $result);
     }
-
     /**
      * AUTO モードでも独自キャッシュ用クロージャがある場合はそれを優先することを確認する。
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
      */
-    #[RunInSeparateProcess] #[PreserveGlobalState(false)]
     public function test_forever_mode_auto_with_closure(): void
     {
         Cache::setCacheClosure(function (string $key, $fn) {
             return 'auto_closure_' . $key;
         });
         Cache::setMode(Cache::MODE_AUTO);
-
         $result = Cache::forever('auto_key', function () {
             return 'ignored';
         });
-
         $this->assertSame('auto_closure_auto_key', $result);
     }
-
     /**
      * APCu を利用できない環境の APC モードでは、コールバックの値をそのまま返すことを確認する。
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
      */
-    #[RunInSeparateProcess] #[PreserveGlobalState(false)]
     public function test_forever_mode_apc_without_apcu(): void
     {
         Cache::setMode(Cache::MODE_APC);
-
         $result = Cache::forever('apc_key', function () {
             return 'apc_value';
         });
-
         $this->assertSame('apc_value', $result);
     }
-
     /**
      * ファイルキャッシュに値がない場合、コールバックの結果を保存して返すことを確認する。
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
      */
-    #[RunInSeparateProcess] #[PreserveGlobalState(false)]
     public function test_forever_mode_file_cache_miss(): void
     {
         $dir = sys_get_temp_dir() . '/jpdate_test_' . uniqid();
@@ -213,11 +199,11 @@ class CacheTest extends TestCase
             rmdir($dir);
         }
     }
-
     /**
      * ファイルキャッシュに値がある場合、保存済みの値を返してコールバックを実行しないことを確認する。
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
      */
-    #[RunInSeparateProcess] #[PreserveGlobalState(false)]
     public function test_forever_mode_file_cache_hit(): void
     {
         $dir = sys_get_temp_dir() . '/jpdate_test_' . uniqid();
@@ -240,11 +226,11 @@ class CacheTest extends TestCase
             rmdir($dir);
         }
     }
-
     /**
      * AUTO モードでファイルキャッシュの保存先がある場合、ファイルキャッシュを利用することを確認する。
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
      */
-    #[RunInSeparateProcess] #[PreserveGlobalState(false)]
     public function test_forever_mode_auto_with_file_path(): void
     {
         $dir = sys_get_temp_dir() . '/jpdate_test_' . uniqid();
@@ -263,11 +249,11 @@ class CacheTest extends TestCase
             rmdir($dir);
         }
     }
-
     /**
      * AUTO モードで利用できるキャッシュ先がない場合、コールバックの値を返すことを確認する。
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
      */
-    #[RunInSeparateProcess] #[PreserveGlobalState(false)]
     public function test_forever_mode_auto_fallback(): void
     {
         $callCount = 0;
@@ -275,7 +261,6 @@ class CacheTest extends TestCase
             $callCount++;
             return 'fallback_value';
         });
-
         $this->assertSame('fallback_value', $result);
         $this->assertSame(1, $callCount);
     }

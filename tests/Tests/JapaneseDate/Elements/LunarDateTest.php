@@ -33,8 +33,8 @@ use PHPUnit\Framework\TestCase;
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
  * @since       Class available since Release 1.0.0
+ * @covers \JapaneseDate\Elements\LunarDate
  */
-#[CoversClass(\JapaneseDate\Elements\LunarDate::class)]
 class LunarDateTest extends TestCase
 {
     public function test__construct(): void
@@ -44,7 +44,6 @@ class LunarDateTest extends TestCase
         $LunarDate = $LunarCalendar->getLunarDate(DateTime::factory('2020-03-01'));
         $this->assertInstanceOf(LunarDate::class, $LunarDate);
     }
-
     public function test__construct_error(): void
     {
         $this->expectException(ErrorException::class);
@@ -52,7 +51,6 @@ class LunarDateTest extends TestCase
         // DAY_KEY (index 3) を含まない配列で例外が発生することを確認
         new LunarDate([LunarDate::YEAR_KEY => 2020, LunarDate::IS_LEAP_MONTH_FLAG_KEY => false, LunarDate::MONTH_KEY => 3], false);
     }
-
     public function test__get(): void
     {
         // マジックメソッド __get() で旧暦の各プロパティを取得できることを確認する
@@ -70,7 +68,6 @@ class LunarDateTest extends TestCase
         $LunarDate = $LunarCalendar->getLunarDate(DateTime::factory('2020-03-20'));
         $this->assertEquals(0, $LunarDate->solar_term);
     }
-
     public function test__get_error(): void
     {
         $this->expectException(\JapaneseDate\Exceptions\ErrorException::class);
@@ -81,7 +78,6 @@ class LunarDateTest extends TestCase
         $LunarDate = $LunarCalendar->getLunarDate(DateTime::factory('2020-03-01'));
         $LunarDate->aaaaaaaaaaaa;
     }
-
     public function test__isset(): void
     {
         // __isset() が定義済みプロパティと未定義プロパティを判別できることを確認する
@@ -90,7 +86,6 @@ class LunarDateTest extends TestCase
         $this->assertTrue(isset($LunarDate->solar_term));
         $this->assertFalse(isset($LunarDate->solar_termaaa));
     }
-
     public function test__set(): void
     {
         $this->expectException(\JapaneseDate\Exceptions\ErrorException::class);
