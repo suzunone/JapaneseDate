@@ -14,41 +14,42 @@ use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Tests\JapaneseDate\Components\Traits\SolarTermDataProviderTrait;
 
-#[CoversClass(SolarTerm::class)]
-#[CoversMethod(SolarTerm::class, '__construct')]
-#[CoversMethod(SolarTerm::class, 'getSolarTerm')]
-#[CoversMethod(SolarTerm::class, 'getSolarTerms')]
-#[CoversMethod(SolarTerm::class, 'syunbun')]
-#[CoversMethod(SolarTerm::class, 'seimei')]
-#[CoversMethod(SolarTerm::class, 'kokuu')]
-#[CoversMethod(SolarTerm::class, 'rikka')]
-#[CoversMethod(SolarTerm::class, 'syouman')]
-#[CoversMethod(SolarTerm::class, 'bousyu')]
-#[CoversMethod(SolarTerm::class, 'geshi')]
-#[CoversMethod(SolarTerm::class, 'syousyo')]
-#[CoversMethod(SolarTerm::class, 'taisyo')]
-#[CoversMethod(SolarTerm::class, 'rissyuu')]
-#[CoversMethod(SolarTerm::class, 'syosyo')]
-#[CoversMethod(SolarTerm::class, 'hakuro')]
-#[CoversMethod(SolarTerm::class, 'syuubun')]
-#[CoversMethod(SolarTerm::class, 'kanro')]
-#[CoversMethod(SolarTerm::class, 'soukou')]
-#[CoversMethod(SolarTerm::class, 'rittou')]
-#[CoversMethod(SolarTerm::class, 'syousetsu')]
-#[CoversMethod(SolarTerm::class, 'taisetsu')]
-#[CoversMethod(SolarTerm::class, 'touji')]
-#[CoversMethod(SolarTerm::class, 'syoukan')]
-#[CoversMethod(SolarTerm::class, 'daikan')]
-#[CoversMethod(SolarTerm::class, 'rissyun')]
-#[CoversMethod(SolarTerm::class, 'usui')]
-#[CoversMethod(SolarTerm::class, 'keichitsu')]
-#[CoversMethod(SolarTerm::class, 'findSolarTerm')]
-#[CoversMethod(SolarTerm::class, 'dayBoundaryHour')]
-#[CoversMethod(SolarTerm::class, 'longitudeSunAt')]
+/**
+ * @covers \JapaneseDate\Components\SolarTerm
+ * @covers \JapaneseDate\Components\SolarTerm::__construct
+ * @covers \JapaneseDate\Components\SolarTerm::getSolarTerm
+ * @covers \JapaneseDate\Components\SolarTerm::getSolarTerms
+ * @covers \JapaneseDate\Components\SolarTerm::syunbun
+ * @covers \JapaneseDate\Components\SolarTerm::seimei
+ * @covers \JapaneseDate\Components\SolarTerm::kokuu
+ * @covers \JapaneseDate\Components\SolarTerm::rikka
+ * @covers \JapaneseDate\Components\SolarTerm::syouman
+ * @covers \JapaneseDate\Components\SolarTerm::bousyu
+ * @covers \JapaneseDate\Components\SolarTerm::geshi
+ * @covers \JapaneseDate\Components\SolarTerm::syousyo
+ * @covers \JapaneseDate\Components\SolarTerm::taisyo
+ * @covers \JapaneseDate\Components\SolarTerm::rissyuu
+ * @covers \JapaneseDate\Components\SolarTerm::syosyo
+ * @covers \JapaneseDate\Components\SolarTerm::hakuro
+ * @covers \JapaneseDate\Components\SolarTerm::syuubun
+ * @covers \JapaneseDate\Components\SolarTerm::kanro
+ * @covers \JapaneseDate\Components\SolarTerm::soukou
+ * @covers \JapaneseDate\Components\SolarTerm::rittou
+ * @covers \JapaneseDate\Components\SolarTerm::syousetsu
+ * @covers \JapaneseDate\Components\SolarTerm::taisetsu
+ * @covers \JapaneseDate\Components\SolarTerm::touji
+ * @covers \JapaneseDate\Components\SolarTerm::syoukan
+ * @covers \JapaneseDate\Components\SolarTerm::daikan
+ * @covers \JapaneseDate\Components\SolarTerm::rissyun
+ * @covers \JapaneseDate\Components\SolarTerm::usui
+ * @covers \JapaneseDate\Components\SolarTerm::keichitsu
+ * @covers \JapaneseDate\Components\SolarTerm::findSolarTerm
+ * @covers \JapaneseDate\Components\SolarTerm::dayBoundaryHour
+ * @covers \JapaneseDate\Components\SolarTerm::longitudeSunAt
+ */
 class SolarTermTest extends TestCase
 {
     use SolarTermDataProviderTrait;
-
     /**
      * SolarTerm のメソッド名と二十四節気コードの対応表。
      */
@@ -78,7 +79,6 @@ class SolarTermTest extends TestCase
         'usui'      => DateTime::SOLAR_TERM_USUI,
         'keichitsu' => DateTime::SOLAR_TERM_KEICHITSU,
     ];
-
     /**
      * 国立天文台暦要項の「二十四節気および雑節」で確認した日付を返す。
      */
@@ -163,10 +163,9 @@ class SolarTermTest extends TestCase
                 DateTime::SOLAR_TERM_SYOUSETSU => [11, 22],
                 DateTime::SOLAR_TERM_TAISETSU  => [12, 7],
                 DateTime::SOLAR_TERM_TOUJI     => [12, 22],
-            ])
+            ]),
         );
     }
-
     /**
      * 年ごとの二十四節気一覧を検証するため、暦要項のデータを年単位にまとめる。
      */
@@ -187,7 +186,6 @@ class SolarTermTest extends TestCase
 
         return $cases;
     }
-
     /**
      * 各二十四節気メソッドを暦要項の期待値で検証するためのケースを返す。
      */
@@ -202,69 +200,45 @@ class SolarTermTest extends TestCase
 
         return $cases;
     }
-
     /**
      * 二十四節気コードから取得した日付が暦要項の期待値と一致することを確認する。
      *
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
-     * @param int $year
-     * @param int $solarTerm
-     * @param int $month
-     * @param int $day
+     * @dataProvider naoRekiYokoSolarTermDataProvider
      */
-    #[DataProvider('naoRekiYokoSolarTermDataProvider')]
-    public function test_getSolarTermMatchesNaoRekiYoko($year, $solarTerm, $month, $day): void
+    public function test_getSolarTermMatchesNaoRekiYoko(int $year, int $solarTerm, int $month, int $day): void
     {
         $solarTermDate = (new SolarTerm())->getSolarTerm($year, $solarTerm);
-
         self::assertSolarTermDate($year, $solarTerm, $month, $day, $solarTermDate);
     }
-
     /**
      * 各二十四節気メソッドが暦要項の期待値と一致することを確認する。
      *
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
-     * @param string $method
-     * @param int $year
-     * @param int $solarTerm
-     * @param int $month
-     * @param int $day
+     * @dataProvider solarTermMethodDataProvider
      */
-    #[DataProvider('solarTermMethodDataProvider')]
-    public function test_eachSolarTermMethodMatchesNaoRekiYoko2000(
-        $method,
-        $year,
-        $solarTerm,
-        $month,
-        $day
-    ): void {
+    public function test_eachSolarTermMethodMatchesNaoRekiYoko2000(string $method, int $year, int $solarTerm, int $month, int $day): void
+    {
         $solarTermDate = (new SolarTerm())->{$method}($year);
-
         self::assertSolarTermDate($year, $solarTerm, $month, $day, $solarTermDate);
     }
-
     /**
      * 年単位で取得した二十四節気一覧が暦要項の期待値と一致することを確認する。
      *
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
-     * @param int $year
-     * @param mixed[] $expected
+     * @dataProvider naoRekiYokoYearDataProvider
      */
-    #[DataProvider('naoRekiYokoYearDataProvider')]
-    public function test_getSolarTermsMatchesNaoRekiYoko($year, $expected): void
+    public function test_getSolarTermsMatchesNaoRekiYoko(int $year, array $expected): void
     {
         $solarTerms = (new SolarTerm())->getSolarTerms($year);
-
         $this->assertSame(array_keys($expected), array_keys($solarTerms));
-
         foreach ($expected as $solarTerm => [$month, $day]) {
             self::assertSolarTermDate($year, $solarTerm, $month, $day, $solarTerms[$solarTerm]);
         }
     }
-
     /**
      * findSolarTerm() が二十四節気を検出し、旧来範囲では6時境界を使うことを確認する。
      *
@@ -274,22 +248,11 @@ class SolarTermTest extends TestCase
     {
         $astronomy = new class extends Astronomy {
             /** @var int[] */
-            public $hours = [];
+            public array $hours = [];
 
-            /**
-             * @var int
-             */
-            private $calls = 0;
+            private int $calls = 0;
 
-            /**
-             * @param int $year
-             * @param int $month
-             * @param float $day
-             * @param float $hour
-             * @param float $min
-             * @param float $sec
-             */
-            public function longitudeSun($year, $month, $day, $hour, $min, $sec): float
+            public function longitudeSun(int $year, int $month, float $day, float $hour, float $min, float $sec): float
             {
                 $this->hours[] = (int) $hour;
 
@@ -302,7 +265,6 @@ class SolarTermTest extends TestCase
         $this->assertSame(DateTime::SOLAR_TERM_SEIMEI, $solarTerm);
         $this->assertSame([6, 6], $astronomy->hours);
     }
-
     /**
      * 太陽黄経の範囲が変化しない場合、二十四節気を検出しないことを確認する。
      *
@@ -311,15 +273,7 @@ class SolarTermTest extends TestCase
     public function test_findSolarTermReturnsFalseWhenLongitudeRangeDoesNotChange(): void
     {
         $astronomy = new class extends Astronomy {
-            /**
-             * @param int $year
-             * @param int $month
-             * @param float $day
-             * @param float $hour
-             * @param float $min
-             * @param float $sec
-             */
-            public function longitudeSun($year, $month, $day, $hour, $min, $sec): float
+            public function longitudeSun(int $year, int $month, float $day, float $hour, float $min, float $sec): float
             {
                 return 10.0;
             }
@@ -327,7 +281,6 @@ class SolarTermTest extends TestCase
 
         $this->assertFalse((new SolarTerm($astronomy))->findSolarTerm(2000, 3, 21));
     }
-
     /**
      * 次の太陽黄経が二十四節気表の範囲外になる場合、検出しないことを確認する。
      *
@@ -336,20 +289,9 @@ class SolarTermTest extends TestCase
     public function test_findSolarTermReturnsFalseWhenNextLongitudeIsOutsideSolarTermTable(): void
     {
         $astronomy = new class extends Astronomy {
-            /**
-             * @var int
-             */
-            private $calls = 0;
+            private int $calls = 0;
 
-            /**
-             * @param int $year
-             * @param int $month
-             * @param float $day
-             * @param float $hour
-             * @param float $min
-             * @param float $sec
-             */
-            public function longitudeSun($year, $month, $day, $hour, $min, $sec): float
+            public function longitudeSun(int $year, int $month, float $day, float $hour, float $min, float $sec): float
             {
                 return $this->calls++ === 0 ? 350.0 : 360.0;
             }
@@ -357,7 +299,6 @@ class SolarTermTest extends TestCase
 
         $this->assertFalse((new SolarTerm($astronomy))->findSolarTerm(2000, 3, 21));
     }
-
     /**
      * 旧来範囲外では0時境界を使って二十四節気を検出することを確認する。
      *
@@ -367,22 +308,11 @@ class SolarTermTest extends TestCase
     {
         $astronomy = new class extends Astronomy {
             /** @var int[] */
-            public $hours = [];
+            public array $hours = [];
 
-            /**
-             * @var int
-             */
-            private $calls = 0;
+            private int $calls = 0;
 
-            /**
-             * @param int $year
-             * @param int $month
-             * @param float $day
-             * @param float $hour
-             * @param float $min
-             * @param float $sec
-             */
-            public function longitudeSun($year, $month, $day, $hour, $min, $sec): float
+            public function longitudeSun(int $year, int $month, float $day, float $hour, float $min, float $sec): float
             {
                 $this->hours[] = (int) $hour;
 
@@ -395,22 +325,13 @@ class SolarTermTest extends TestCase
         $this->assertSame(DateTime::SOLAR_TERM_SEIMEI, $solarTerm);
         $this->assertSame([0, 0], $astronomy->hours);
     }
-
     /**
      * 天文計算で該当日が見つからない場合に例外が発生することを確認する。
      */
     public function test_getSolarTermThrowsWhenAstronomicalCalculationFindsNoMatchingDay(): void
     {
         $astronomy = new class extends Astronomy {
-            /**
-             * @param int $year
-             * @param int $month
-             * @param float $day
-             * @param float $hour
-             * @param float $min
-             * @param float $sec
-             */
-            public function longitudeSun($year, $month, $day, $hour, $min, $sec): float
+            public function longitudeSun(int $year, int $month, float $day, float $hour, float $min, float $sec): float
             {
                 return 10.0;
             }
@@ -420,7 +341,6 @@ class SolarTermTest extends TestCase
 
         (new SolarTerm($astronomy))->getSolarTerm(2000, DateTime::SOLAR_TERM_SYUNBUN);
     }
-
     /**
      * 未定義の二十四節気コードを指定した場合に例外が発生することを確認する。
      */
@@ -430,7 +350,6 @@ class SolarTermTest extends TestCase
 
         (new SolarTerm())->getSolarTerm(2000, 999);
     }
-
     /**
      * SolarTermDate の各プロパティが期待値と一致することを確認する。
      */
@@ -446,7 +365,6 @@ class SolarTermTest extends TestCase
         self::assertSame($month, $solarTermDate->month);
         self::assertSame($day, $solarTermDate->day);
     }
-
     /**
      * 指定年の二十四節気データをデータプロバイダ用のケース配列に変換する。
      */
