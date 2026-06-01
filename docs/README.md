@@ -132,7 +132,7 @@ echo JapaneseDateTime::parse('first day of December 2018')->addWeeks(2);    // 2
 
 ``` .php
 
-echo JapaneseDateTime::parse(time());    // 2026-05-29 17:02:06
+echo JapaneseDateTime::parse(time());    // 2026-06-01 08:16:15
 echo JapaneseDateTime::parse(new DateTime('now'));    // PHP Fatal error:  Uncaught TypeError: DateTime::__construct() expects parameter 1 to be string, object given
 ```
 
@@ -143,19 +143,36 @@ echo JapaneseDateTime::parse(new DateTime('now'));    // PHP Fatal error:  Uncau
 そういった場合は、`JapaneseDate\DateTime::factory()`を使用します。
 
 ``` .php
-echo JapaneseDateTime::factory(time());    // 2026-05-29 17:02:06
+echo JapaneseDateTime::factory(time());    // 2026-06-01 08:16:15
 
-echo JapaneseDateTime::factory(new DateTime('now'));    // 2026-05-30 02:02:06
+echo JapaneseDateTime::factory(new DateTime('now'));    // 2026-06-01 17:16:15
 
 // もちろんこういったコードも動作します
 echo JapaneseDateTime::factory('first day of December 2018')->addWeeks(2);    // 2018-12-15 00:00:00
 
-// 一見数字文字列であっても、JapaneseDateTime::parse でパースできる場合は、同様の結果を返すことに注意してください。
-echo JapaneseDateTime::parse('100');    // Throw Carbon\Exceptions\InvalidFormatException Could not parse '100': Throwing native DateTime class construct exception.
+// 和暦・JIS元号形式の文字列も直接渡せます（Asia/Tokyo 基準）
+
+// 元号漢字表記（明治・大正・昭和・平成・令和）
+echo JapaneseDateTime::factory('令和7年5月1日');    // 2025-05-01 00:00:00
+echo JapaneseDateTime::factory('令和7年5月1日 12時34分56秒');    // 2025-05-01 12:34:56
+echo JapaneseDateTime::factory('昭和64年1月7日');    // 1989-01-07 00:00:00
+// 西暦日本語表記
+echo JapaneseDateTime::factory('2026年5月1日 12時34分');    // 2026-05-01 12:34:00
+// JIS元号アルファベット表記（M=明治 / T=大正 / S=昭和 / H=平成 / R=令和）
+echo JapaneseDateTime::factory('R7-05-01');    // 2025-05-01 00:00:00
+echo JapaneseDateTime::factory('H1/01/08');    // 1989-01-08 00:00:00
+
+// 数字のみの文字列の扱いに注意してください。
+// 8桁（YYYYMMDD）は strtotime() でパースします。
+echo JapaneseDateTime::factory('20180404');    // 2018-04-04 00:00:00
+// 9〜11桁はUNIXタイムスタンプとして int にキャストして処理します（strtotime() は対応しないため）。
+// 変換はデフォルトタイムゾーンで行われます。
 echo JapaneseDateTime::factory('100');    // 1970-01-01 09:01:40
+// 12桁以上の数字文字列はそのまま Carbon のコンストラクタに委譲します（YmdHis 形式など）。
 echo JapaneseDateTime::parse('20180404050505');    // 2018-04-04 05:05:05
 echo JapaneseDateTime::factory('20180404050505');    // 2018-04-04 05:05:05
-// 上記の結果が意図したものでない場合は、必ずint型で渡してください
+// タイムスタンプを int 型で渡す場合は必ず int にキャストしてください。
+// 大きな数値をそのまま int リテラルで書くと精度が失われます。
 echo JapaneseDateTime::factory(20180404050505);    // 2061-07-19 07:48:25
 
 ```
@@ -171,13 +188,13 @@ echo JapaneseDateTime::factory(20180404050505);    // 2061-07-19 07:48:25
 
 ``` .php
 $now = JapaneseDateTime::now();
-echo $now;                               // 2026-05-30 02:02:06
+echo $now;                               // 2026-06-01 17:16:15
 $today = JapaneseDateTime::today();
-echo $today;                             // 2026-05-30 00:00:00
+echo $today;                             // 2026-06-01 00:00:00
 $tomorrow = JapaneseDateTime::tomorrow('Europe/London');
-echo $tomorrow;                          // 2026-05-30 00:00:00
+echo $tomorrow;                          // 2026-06-02 00:00:00
 $yesterday = JapaneseDateTime::yesterday();
-echo $yesterday;                         // 2026-05-29 00:00:00
+echo $yesterday;                         // 2026-05-31 00:00:00
 ```
 
 Getter
@@ -373,6 +390,69 @@ var_export($dt->miscSeasonalNode);                            // 2
 var_export($dt->miscSeasonalNodeText);                        // '彼岸'
 var_export(JapaneseDateTime::parse('2026-02-03')->miscSeasonalNode);     // 1
 var_export(JapaneseDateTime::parse('2026-02-03')->miscSeasonalNodeText); // '節分'
+
+// 七十二候
+
+// 候番号（1〜72）
+var_export($kouDate->seventyTwoKou);                          // 1
+// 現代七十二候名称
+var_export($kouDate->seventyTwoKouText);                      // '東風凍を解く'
+// 読み
+var_export($kouDate->seventyTwoKouReading);                   // 'はるかぜ こおりをとく'
+// 候種別（初候 / 次候 / 末候）
+var_export($kouDate->seventyTwoKouType);                      // '初候'
+2025-02-04 [立春初候]: 候1 東風凍を解く (初候) / はるかぜ こおりをとく
+2025-06-21 [夏至初候]: 候28 乃東枯る (初候) / なつかれくさ かるる
+2025-09-23 [秋分初候]: 候46 雷乃ち声を収む (初候) / かみなりすなわち こえをおさむ
+2025-12-22 [冬至初候]: 候64 乃東生ず (初候) / なつかれくさ しょうず
+2026-01-06 [小寒初候]: 候67 芹乃ち栄う (初候) / せりすなわち さかう
+2026-01-20 [大寒初候]: 候70 款冬華く (初候) / ふきの はなさく
+
+// 次の七十二候へ移動（nextSeventyTwoKou）
+// 2025-02-04（立春初候） → 次候の開始日へ
+$nextKou = JapaneseDateTime::parse('2025-02-04')->nextSeventyTwoKou();    // 2025-02-09 候2 うぐいす鳴く
+// 前の七十二候へ移動（previousSeventyTwoKou）
+// 2025-02-04（立春初候） → 前の大寒末候の開始日へ
+$prevKou = JapaneseDateTime::parse('2025-02-04')->previousSeventyTwoKou(); // 2025-01-30 候72 鶏始めてとやにつく
+// 立春初候: 1
+// 立春次候: 2
+// 立春末候: 3
+// 冬至初候: 64
+// 大寒末候: 72
+
+
+// 歴史的元号（大化以降・JIS規格外）
+
+// historicalEras は Era[] を返す（大化以前など元号がない場合は空配列）
+var_export($ancientDate->historicalEras);                     // [
+  Era{ name=大化, kana=タイカ, court=Main }
+]
+
+// スネークケース（historical_eras）でも同様に取得できる
+var_export($ancientDate->historical_eras);                    // [
+  Era{ name=大化, kana=タイカ, court=Main }
+]
+
+// 南北朝時代（1360年）では北朝・南朝の両方の Era が返る
+var_export(JapaneseDateTime::parse('1360-06-01T00:00:00+09:00')->historicalEras); // [
+  Era{ name=正平, kana=ショウヘイ, court=South }
+  Era{ name=延文, kana=エンブン, court=North }
+]
+
+// 大化以前（600年）では空配列が返る
+var_export(JapaneseDateTime::parse('600-01-01T00:00:00+09:00')->historicalEras); // array (
+)
+// Era バリューオブジェクトのプロパティ
+// name        : 元号名（漢字）
+// kana        : 元号読み（カタカナ）
+// court       : 朝廷区分（'Main' / 'North' / 'South'）
+// startDate   : 元号開始日（DateTime または DateTimeImmutable）
+// endDate     : 元号終了日（DateTime または DateTimeImmutable）
+var_export($eraObj->name);          // '大化'
+var_export($eraObj->kana);          // 'タイカ'
+var_export($eraObj->court);         // 'Main'
+echo $eraObj->startDate->format('Y-m-d');  // 0645-07-29
+echo $eraObj->endDate->format('Y-m-d');    // 0650-03-22
 
 // 旧暦：月
 var_export($dt->lunarMonth);                                  // 2

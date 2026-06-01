@@ -34,7 +34,7 @@ use PHPUnit\Framework\TestCase;
  * @see         https://github.com/suzunone/JapaneseDate
  * @since       Class available since Release 1.0.0
  */
-#[CoversClass(\JapaneseDate\Elements\LunarDate::class)]
+#[CoversClass(LunarDate::class)]
 class LunarDateTest extends TestCase
 {
     public function test__construct(): void
@@ -73,7 +73,7 @@ class LunarDateTest extends TestCase
 
     public function test__get_error(): void
     {
-        $this->expectException(\JapaneseDate\Exceptions\ErrorException::class);
+        $this->expectException(ErrorException::class);
         $this->expectException(ErrorException::class);
 
         // 存在しないプロパティを参照した場合に例外が発生することを確認する
@@ -93,7 +93,7 @@ class LunarDateTest extends TestCase
 
     public function test__set(): void
     {
-        $this->expectException(\JapaneseDate\Exceptions\ErrorException::class);
+        $this->expectException(ErrorException::class);
         $this->expectException(ErrorException::class);
 
         // LunarDate は読み取り専用のため、プロパティ変更時に例外が発生することを確認する

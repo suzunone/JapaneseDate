@@ -39,6 +39,57 @@ class AstronomyTest extends TestCase
 
     // ==================== factory ====================
 
+    public static function normalizeAngleProvider(): array
+    {
+        return [
+            'zero' => [0.0, 0.0],
+            '360 wraps to 0' => [360.0, 0.0],
+            '720 wraps to 0' => [720.0, 0.0],
+            '180 unchanged' => [180.0, 180.0],
+            '45 unchanged' => [45.0, 45.0],
+            '-90 → 270' => [-90.0, 270.0],
+            '450 → 90' => [450.0, 90.0],
+            '-1 → 359' => [-1.0, 359.0],
+            '359.9 unchanged' => [359.9, 359.9],
+        ];
+    }
+
+    public static function moonAgeProvider(): array
+    {
+        return [
+            // 朔 (新月): 月齢 ≈ 0
+            // 出典: 国立天文台 暦計算室 2023年1月朔 05:53 JST
+            '2023朔 05:53 JST' => [2023, 1, 22, 5, 53, 0, 0],
+            // 望 (満月): 月齢 ≈ 15
+            // 出典: 国立天文台 暦計算室 2023年2月望 03:29 JST
+            '2023望 03:29 JST' => [2023, 2, 6, 3, 29, 0, 15],
+            // 朔前日: 月齢 ≈ 29
+            // 出典: 国立天文台 暦計算室 2020年12月朔 10:17 JST (朔前日)
+            '2020朔前日' => [2020, 12, 14, 0, 0, 0, 29],
+            // 朔当日: 月齢 ≈ 0
+            // 出典: 国立天文台 暦計算室 2020年12月朔 10:17 JST
+            '2020朔' => [2020, 12, 15, 1, 17, 0, 0],
+            // 朔翌日: 月齢 ≈ 1
+            '2020朔翌日' => [2020, 12, 16, 1, 17, 0, 1],
+            // 2026-03-19 朔: 月黄経負値バグ修正後に正常動作することを確認
+            // 出典: 国立天文台 暦計算室 2026年3月朔 19:23 JST
+            '2026朔' => [2026, 3, 19, 10, 23, 0, 0],
+            // 2026-03-19 朔前(0:00 JST): 前周期の29.x のまま
+            '2026朔直前 00:00 JST' => [2026, 3, 19, 0, 0, 0, 29],
+            // 出典: 国立天文台 暦要項 2022年「朔弦望」 2022年3月朔 02:35 JST
+            '2022 3月朔' => [2022, 3, 3, 0, 0, 0, 0],
+            // 出典: 国立天文台 暦要項 2022年「朔弦望」 2022年7月朔 02:55 JST
+            '2022 7月朔' => [2022, 7, 29, 0, 0, 0, 0],
+            // 出典: 国立天文台 暦要項 2015年「朔弦望」 2015年11月朔 02:47 JST
+            '2015 11月朔' => [2015, 11, 12, 0, 0, 0, 0],
+            // 春分直後の月齢。2017年暦要項の朔 3/28 11:57、上弦 4/4 03:39、朔 4/26 21:16 JST から丸め月齢4。
+            // この日は計算途中で春分付近補正、ΔΛ > 40°補正、$res > 30 補正を通る。
+            '2017 春分付近の月齢4' => [2017, 4, 2, 0, 0, 0, 4],
+        ];
+    }
+
+    // ==================== normalizeAngle ====================
+
     #[RunInSeparateProcess]
     #[PreserveGlobalState(false)]
     public function test_factory_returnsSameInstance(): void
@@ -55,22 +106,7 @@ class AstronomyTest extends TestCase
         $this->assertInstanceOf(Astronomy::class, Astronomy::factory());
     }
 
-    // ==================== normalizeAngle ====================
-
-    public static function normalizeAngleProvider(): array
-    {
-        return [
-            'zero'           => [0.0,   0.0],
-            '360 wraps to 0' => [360.0, 0.0],
-            '720 wraps to 0' => [720.0, 0.0],
-            '180 unchanged'  => [180.0, 180.0],
-            '45 unchanged'   => [45.0,  45.0],
-            '-90 → 270'      => [-90.0, 270.0],
-            '450 → 90'       => [450.0, 90.0],
-            '-1 → 359'       => [-1.0,  359.0],
-            '359.9 unchanged'=> [359.9, 359.9],
-        ];
-    }
+    // ==================== gregorian2JD ====================
 
     #[DataProvider('normalizeAngleProvider')]
     public function test_normalizeAngle(float $input, float $expected): void
@@ -79,8 +115,6 @@ class AstronomyTest extends TestCase
         $result = $this->invokeExecuteMethod($ast, 'normalizeAngle', [$input]);
         $this->assertEqualsWithDelta($expected, $result, 1e-9);
     }
-
-    // ==================== gregorian2JD ====================
 
     /**
      * 2018-03-01 00:00:00 UTC → JD 2458179.0
@@ -114,6 +148,8 @@ class AstronomyTest extends TestCase
         $this->assertSame(2451545.0, $result);
     }
 
+    // ==================== jD2Gregorian ====================
+
     /**
      * 時・分・秒の加算が正しく行われることを確認
      * 2018-03-01 06:30:30 UTC → 2458179 + 6/24 + 30/1440 + 30/86400
@@ -126,8 +162,6 @@ class AstronomyTest extends TestCase
         $this->assertEqualsWithDelta($expected, $result, 1e-9);
     }
 
-    // ==================== jD2Gregorian ====================
-
     /**
      * JD 2458179.0 → 2018-03-01 00:00:00
      */
@@ -137,8 +171,8 @@ class AstronomyTest extends TestCase
         $result = $ast->jD2Gregorian(2458179.0);
 
         $this->assertSame(2018, $result[0]);
-        $this->assertSame(3,    $result[1]);
-        $this->assertSame(1,    $result[2]);
+        $this->assertSame(3, $result[1]);
+        $this->assertSame(1, $result[2]);
         $this->assertEqualsWithDelta(0.0, $result[3], 1e-9); // hour
         $this->assertEqualsWithDelta(0.0, $result[4], 1e-9); // min
         $this->assertEqualsWithDelta(0.0, $result[5], 1e-9); // sec
@@ -153,12 +187,14 @@ class AstronomyTest extends TestCase
         $result = $ast->jD2Gregorian(2458179.5);
 
         $this->assertSame(2018, $result[0]);
-        $this->assertSame(3,    $result[1]);
-        $this->assertSame(1,    $result[2]);
+        $this->assertSame(3, $result[1]);
+        $this->assertSame(1, $result[2]);
         $this->assertEqualsWithDelta(12.0, $result[3], 1e-9);
-        $this->assertEqualsWithDelta(0.0,  $result[4], 1e-9);
-        $this->assertEqualsWithDelta(0.0,  $result[5], 1e-9);
+        $this->assertEqualsWithDelta(0.0, $result[4], 1e-9);
+        $this->assertEqualsWithDelta(0.0, $result[5], 1e-9);
     }
+
+    // ==================== gregorian2JY ====================
 
     /**
      * gregorian2JD と jD2Gregorian のラウンドトリップ整合性
@@ -170,14 +206,12 @@ class AstronomyTest extends TestCase
         [$year, $month, $day, $hour, $min, $sec] = $ast->jD2Gregorian($jd);
 
         $this->assertSame(2023, $year);
-        $this->assertSame(11,   $month);
-        $this->assertSame(15,   $day);
-        $this->assertEqualsWithDelta(8.0,  $hour, 1e-9);
-        $this->assertEqualsWithDelta(45.0, $min,  1e-9);
-        $this->assertEqualsWithDelta(30.0, $sec,  1e-9);
+        $this->assertSame(11, $month);
+        $this->assertSame(15, $day);
+        $this->assertEqualsWithDelta(8.0, $hour, 1e-9);
+        $this->assertEqualsWithDelta(45.0, $min, 1e-9);
+        $this->assertEqualsWithDelta(30.0, $sec, 1e-9);
     }
-
-    // ==================== gregorian2JY ====================
 
     /**
      * 基準点: 2000-01-02 03:00:00 UTC → JY = 0.0
@@ -203,6 +237,8 @@ class AstronomyTest extends TestCase
         $this->assertEqualsWithDelta(1.0, $result, 1e-10);
     }
 
+    // ==================== jy2LongitudeSun ====================
+
     /**
      * 結果は常に単調増加 (同じ日の前後で大小関係が成立)
      */
@@ -210,11 +246,9 @@ class AstronomyTest extends TestCase
     {
         $ast = new Astronomy();
         $earlier = $ast->gregorian2JY(2020, 6, 1, 0, 0, 0);
-        $later   = $ast->gregorian2JY(2020, 6, 2, 0, 0, 0);
+        $later = $ast->gregorian2JY(2020, 6, 2, 0, 0, 0);
         $this->assertGreaterThan($earlier, $later);
     }
-
-    // ==================== jy2LongitudeSun ====================
 
     /**
      * 結果は常に [0, 360) に正規化されている
@@ -252,6 +286,8 @@ class AstronomyTest extends TestCase
         $this->assertLessThan(115.0, $result);
     }
 
+    // ==================== longitudeSun ====================
+
     /**
      * 複数の JY 値でも常に [0, 360) に収まる
      */
@@ -264,8 +300,6 @@ class AstronomyTest extends TestCase
             $this->assertLessThan(360.0, $result, "JY={$jy} で黄経が360以上になった");
         }
     }
-
-    // ==================== longitudeSun ====================
 
     /**
      * 夏至 2000: 2000-06-21 08:48 JST = 2000-06-20 23:48 UTC
@@ -321,6 +355,8 @@ class AstronomyTest extends TestCase
         $this->assertTrue($near0, "春分の太陽黄経({$result}°)が0°付近にない (358° < θ < 2°)");
     }
 
+    // ==================== jY2LongitudeMoon ====================
+
     /**
      * 結果は常に [0, 360) に正規化されている
      */
@@ -339,8 +375,6 @@ class AstronomyTest extends TestCase
         }
     }
 
-    // ==================== jY2LongitudeMoon ====================
-
     /**
      * 結果は常に [0, 360) に正規化されている
      */
@@ -353,6 +387,8 @@ class AstronomyTest extends TestCase
             $this->assertLessThan(360.0, $result, "JY={$jy} で月黄経が360以上になった");
         }
     }
+
+    // ==================== longitudeMoon ====================
 
     /**
      * 月黄経は太陽黄経より速く変化する (1日で約13°)
@@ -372,8 +408,6 @@ class AstronomyTest extends TestCase
         $this->assertLessThan(16.0, $diff, '月黄経の日変化が大きすぎる');
     }
 
-    // ==================== longitudeMoon ====================
-
     /**
      * 朔 (新月): 2023-01-22 05:53 JST
      * 月黄経 ≈ 太陽黄経 (± 15° 以内)
@@ -384,13 +418,15 @@ class AstronomyTest extends TestCase
         $ast = new Astronomy();
         // JST 05:53 → UTC 前日 20:53 を UTCとして渡す (moonAge と同じ座標系)
         $moonLon = $ast->longitudeMoon(2023, 1, 22, 5, 53, 0);
-        $sunLon  = $ast->longitudeSun(2023, 1, 22, 5, 53, 0);
+        $sunLon = $ast->longitudeSun(2023, 1, 22, 5, 53, 0);
 
         $diff = abs($moonLon - $sunLon);
         if ($diff > 180.0) {
             $diff = 360.0 - $diff;
         }
-        $this->assertLessThan(15.0, $diff,
+        $this->assertLessThan(
+            15.0,
+            $diff,
             "新月時の月黄経({$moonLon}°)と太陽黄経({$sunLon}°)の差が15°を超えた"
         );
     }
@@ -404,17 +440,21 @@ class AstronomyTest extends TestCase
     {
         $ast = new Astronomy();
         $moonLon = $ast->longitudeMoon(2023, 2, 6, 3, 29, 0);
-        $sunLon  = $ast->longitudeSun(2023, 2, 6, 3, 29, 0);
+        $sunLon = $ast->longitudeSun(2023, 2, 6, 3, 29, 0);
 
         $diff = abs($moonLon - $sunLon);
         if ($diff > 180.0) {
             $diff = 360.0 - $diff;
         }
         // 望なので差は 180° 付近
-        $this->assertGreaterThan(165.0, $diff,
+        $this->assertGreaterThan(
+            165.0,
+            $diff,
             "満月時の月と太陽の黄経差({$diff}°)が165°未満"
         );
     }
+
+    // ==================== moonAge ====================
 
     /**
      * 結果は常に [0, 360) に正規化されている
@@ -434,53 +474,30 @@ class AstronomyTest extends TestCase
         }
     }
 
-    // ==================== moonAge ====================
-
-    public static function moonAgeProvider(): array
-    {
-        return [
-            // 朔 (新月): 月齢 ≈ 0
-            // 出典: 国立天文台 暦計算室 2023年1月朔 05:53 JST
-            '2023朔 05:53 JST'        => [2023, 1, 22, 5, 53, 0, 0],
-            // 望 (満月): 月齢 ≈ 15
-            // 出典: 国立天文台 暦計算室 2023年2月望 03:29 JST
-            '2023望 03:29 JST'        => [2023, 2, 6, 3, 29, 0, 15],
-            // 朔前日: 月齢 ≈ 29
-            // 出典: 国立天文台 暦計算室 2020年12月朔 10:17 JST (朔前日)
-            '2020朔前日'              => [2020, 12, 14, 0, 0, 0, 29],
-            // 朔当日: 月齢 ≈ 0
-            // 出典: 国立天文台 暦計算室 2020年12月朔 10:17 JST
-            '2020朔'                  => [2020, 12, 15, 1, 17, 0, 0],
-            // 朔翌日: 月齢 ≈ 1
-            '2020朔翌日'              => [2020, 12, 16, 1, 17, 0, 1],
-            // 2026-03-19 朔: 月黄経負値バグ修正後に正常動作することを確認
-            // 出典: 国立天文台 暦計算室 2026年3月朔 19:23 JST
-            '2026朔'                  => [2026, 3, 19, 10, 23, 0, 0],
-            // 2026-03-19 朔前(0:00 JST): 前周期の29.x のまま
-            '2026朔直前 00:00 JST'    => [2026, 3, 19, 0, 0, 0, 29],
-            // 出典: 国立天文台 暦要項 2022年「朔弦望」 2022年3月朔 02:35 JST
-            '2022 3月朔'               => [2022, 3, 3, 0, 0, 0, 0],
-            // 出典: 国立天文台 暦要項 2022年「朔弦望」 2022年7月朔 02:55 JST
-            '2022 7月朔'               => [2022, 7, 29, 0, 0, 0, 0],
-            // 出典: 国立天文台 暦要項 2015年「朔弦望」 2015年11月朔 02:47 JST
-            '2015 11月朔'              => [2015, 11, 12, 0, 0, 0, 0],
-            // 春分直後の月齢。2017年暦要項の朔 3/28 11:57、上弦 4/4 03:39、朔 4/26 21:16 JST から丸め月齢4。
-            // この日は計算途中で春分付近補正、ΔΛ > 40°補正、$res > 30 補正を通る。
-            '2017 春分付近の月齢4'      => [2017, 4, 2, 0, 0, 0, 4],
-        ];
-    }
-
     #[DataProvider('moonAgeProvider')]
     public function test_moonAge(
-        int $year, int $month, int $day,
-        float $hour, float $min, float $sec,
+        int $year,
+        int $month,
+        int $day,
+        float $hour,
+        float $min,
+        float $sec,
         int $expectedRounded
     ): void {
         $ast = new Astronomy();
         $result = $ast->moonAge($year, $month, $day, $hour, $min, $sec);
-        $this->assertEquals($expectedRounded, round($result),
-            sprintf('%d-%02d-%02d %02d:%02d の月齢(%.4f)の丸め値が %d と一致しない',
-                $year, $month, $day, $hour, $min, $result, $expectedRounded
+        $this->assertEquals(
+            $expectedRounded,
+            round($result),
+            sprintf(
+                '%d-%02d-%02d %02d:%02d の月齢(%.4f)の丸め値が %d と一致しない',
+                $year,
+                $month,
+                $day,
+                $hour,
+                $min,
+                $result,
+                $expectedRounded
             )
         );
     }

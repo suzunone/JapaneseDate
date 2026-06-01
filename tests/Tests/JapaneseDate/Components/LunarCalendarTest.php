@@ -18,7 +18,6 @@
 namespace Tests\JapaneseDate\Components;
 
 use Carbon\Carbon;
-use DateTimeZone;
 use JapaneseDate\Components\Config;
 use JapaneseDate\Components\LunarCalendar;
 use JapaneseDate\DateTime;
@@ -42,84 +41,10 @@ use Tests\JapaneseDate\InvokeTrait;
  * @see         https://github.com/suzunone/JapaneseDate
  * @since       1.0.0 リリースから利用可能
  */
-#[CoversClass(\JapaneseDate\Components\LunarCalendar::class)]
+#[CoversClass(LunarCalendar::class)]
 class LunarCalendarTest extends TestCase
 {
     use InvokeTrait;
-
-    /**
-     * factory が同一インスタンスを返すことを確認する
-     *
-     * @return void
-     */
-    #[RunInSeparateProcess] #[PreserveGlobalState(false)]
-    public function test_factory(): void
-    {
-        $LunarCalendar1 = LunarCalendar::factory();
-        $LunarCalendar2 = LunarCalendar::factory();
-
-        $this->assertSame($LunarCalendar1, $LunarCalendar2);
-    }
-
-    /**
-     * 指定日の旧暦配列が年境界を含めて正しく取得できることを確認する
-     *
-     * @return void
-     */
-    #[RunInSeparateProcess] #[PreserveGlobalState(false)]
-    public function test_getLunarCalendarArray(): void
-    {
-        $LunarCalendar = LunarCalendar::factory();
-
-        // 2016年
-        $res = $this->invokeExecuteMethod(
-            $LunarCalendar,
-            'getLunarCalendarArray',
-            [2016, 2, 8]
-        );
-        $this->assertSame([
-            2016,
-            false,
-            1.0,
-            1.0, ], $res);
-
-        // 2018年年の変わり目
-        $res = $this->invokeExecuteMethod(
-            $LunarCalendar,
-            'getLunarCalendarArray',
-            [2018, 2, 14]
-        );
-
-        $this->assertSame([
-            2017,
-            false,
-            12.0,
-            29.0, ], $res);
-
-        $res = $this->invokeExecuteMethod(
-            $LunarCalendar,
-            'getLunarCalendarArray',
-            [2018, 2, 15]
-        );
-
-        $this->assertSame([
-            2017,
-            false,
-            12.0,
-            30.0, ], $res);
-
-        $res = $this->invokeExecuteMethod(
-            $LunarCalendar,
-            'getLunarCalendarArray',
-            [2018, 2, 16]
-        );
-
-        $this->assertSame([
-            2018,
-            false,
-            1.0,
-            1.0, ], $res);
-    }
 
     /**
      * 朔日として検出されるべき日付を返す
@@ -339,10 +264,111 @@ class LunarCalendarTest extends TestCase
     }
 
     /**
+     * 月齢計算の検証用データを返す
+     *
+     * @return array
+     */
+    public static function moonAgeDataProvider(): array
+    {
+        return [
+            '2023朔' => [2023, 1, 22, 5, 53, 0, 0],
+            '2023望' => [2023, 2, 6, 3, 29, 0, 15],
+            '2020朔_直前' => [2020, 12, 14, 0, 0, 0, 29],
+            '2020朔' => [2020, 12, 15, 1, 17, 0, 0],
+            '2020朔_直後' => [2020, 12, 16, 1, 17, 0, 1],
+            '2019朔_直前' => [2019, 11, 26, 0, 0, 0, 29],
+            '2019朔' => [2019, 11, 27, 0, 6, 0, 0],
+            // 月黄経負値バグ修正後: 朔は0付近になること
+            '2026朔' => [2026, 3, 19, 10, 23, 0, 0],
+            // 朔前(0:00 JST)は前周期の29.x のままであること
+            '2026朔_直前' => [2026, 3, 19, 0, 0, 0, 29],
+            // 2034-03-20 19:15 JST が国立天文台の朔
+            '2034朔' => [2034, 3, 20, 19, 15, 0, 0],
+        ];
+    }
+
+    /**
+     * factory が同一インスタンスを返すことを確認する
+     *
+     * @return void
+     */
+    #[RunInSeparateProcess]
+    #[PreserveGlobalState(false)]
+    public function test_factory(): void
+    {
+        $LunarCalendar1 = LunarCalendar::factory();
+        $LunarCalendar2 = LunarCalendar::factory();
+
+        $this->assertSame($LunarCalendar1, $LunarCalendar2);
+    }
+
+    /**
+     * 指定日の旧暦配列が年境界を含めて正しく取得できることを確認する
+     *
+     * @return void
+     * @throws \ReflectionException
+     */
+    #[RunInSeparateProcess]
+    #[PreserveGlobalState(false)]
+    public function test_getLunarCalendarArray(): void
+    {
+        $LunarCalendar = LunarCalendar::factory();
+
+        // 2016年
+        $res = $this->invokeExecuteMethod(
+            $LunarCalendar,
+            'getLunarCalendarArray',
+            [2016, 2, 8]
+        );
+        $this->assertSame([
+            2016,
+            false,
+            1.0,
+            1.0, ], $res);
+
+        // 2018年年の変わり目
+        $res = $this->invokeExecuteMethod(
+            $LunarCalendar,
+            'getLunarCalendarArray',
+            [2018, 2, 14]
+        );
+
+        $this->assertSame([
+            2017,
+            false,
+            12.0,
+            29.0, ], $res);
+
+        $res = $this->invokeExecuteMethod(
+            $LunarCalendar,
+            'getLunarCalendarArray',
+            [2018, 2, 15]
+        );
+
+        $this->assertSame([
+            2017,
+            false,
+            12.0,
+            30.0, ], $res);
+
+        $res = $this->invokeExecuteMethod(
+            $LunarCalendar,
+            'getLunarCalendarArray',
+            [2018, 2, 16]
+        );
+
+        $this->assertSame([
+            2018,
+            false,
+            1.0,
+            1.0, ], $res);
+    }
+
+    /**
      * makeLunarCalendar が各年の朔日を旧暦カレンダーに含めることを確認する
      *
      * @param string $date
-     * @param array  $calendar
+     * @param array $calendar
      * @return void
      * @throws \ReflectionException
      */
@@ -368,32 +394,15 @@ class LunarCalendarTest extends TestCase
     }
 
     /**
-     * 月齢計算の検証用データを返す
-     *
-     * @return array
-     */
-    public static function moonAgeDataProvider(): array
-    {
-        return [
-            '2023朔'        => [2023, 1, 22, 5, 53, 0, 0],
-            '2023望'        => [2023, 2, 6, 3, 29, 0, 15],
-            '2020朔_直前'   => [2020, 12, 14, 0, 0, 0, 29],
-            '2020朔'        => [2020, 12, 15, 1, 17, 0, 0],
-            '2020朔_直後'   => [2020, 12, 16, 1, 17, 0, 1],
-            '2019朔_直前'   => [2019, 11, 26, 0, 0, 0, 29],
-            '2019朔'        => [2019, 11, 27, 0, 6, 0, 0],
-            // 月黄経負値バグ修正後: 朔は0付近になること
-            '2026朔'        => [2026, 3, 19, 10, 23, 0, 0],
-            // 朔前(0:00 JST)は前周期の29.x のままであること
-            '2026朔_直前'   => [2026, 3, 19, 0, 0, 0, 29],
-            // 2034-03-20 19:15 JST が国立天文台の朔
-            '2034朔'        => [2034, 3, 20, 19, 15, 0, 0],
-        ];
-    }
-
-    /**
      * 指定日時の月齢を丸めた値で確認する
      *
+     * @param $year
+     * @param $month
+     * @param $day
+     * @param $hour
+     * @param $minute
+     * @param $second
+     * @param $moon_age
      * @return void
      * @throws \JapaneseDate\Exceptions\Exception
      */
@@ -411,14 +420,17 @@ class LunarCalendarTest extends TestCase
      * @return void
      * @throws \ReflectionException
      */
-    #[RunInSeparateProcess] #[PreserveGlobalState(false)]
+    #[RunInSeparateProcess]
+    #[PreserveGlobalState(false)]
     public function test_makeLunarCalendar_returnsConfigData(): void
     {
         $tmpDir = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'jdate_lc_test_' . uniqid('', true);
         mkdir($tmpDir, 0777, true);
 
         $year = 2099;
-        file_put_contents($tmpDir . DIRECTORY_SEPARATOR . $year . '.php', <<<'PHP'
+        file_put_contents(
+            $tmpDir . DIRECTORY_SEPARATOR . $year . '.php',
+            <<<'PHP'
 <?php
 return [
     'lunarCalendar' => [
@@ -459,7 +471,8 @@ PHP
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JsonException
      */
-    #[RunInSeparateProcess] #[PreserveGlobalState(false)]
+    #[RunInSeparateProcess]
+    #[PreserveGlobalState(false)]
     public function test_getLunarDate(): void
     {
         $LunarCalendar = LunarCalendar::factory();
@@ -477,11 +490,10 @@ PHP
      * 2034年の朔日補正が旧暦日に反映されることを確認する
      *
      * @return void
-     * @throws \JapaneseDate\Exceptions\ErrorException
-     * @throws \JapaneseDate\Exceptions\Exception
-     * @throws \JsonException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
-    #[RunInSeparateProcess] #[PreserveGlobalState(false)]
+    #[RunInSeparateProcess]
+    #[PreserveGlobalState(false)]
     public function test_lunarDate_2034(): void
     {
         // 2034-03-20 19:15 JST が朔 → 旧暦 2/1 であること

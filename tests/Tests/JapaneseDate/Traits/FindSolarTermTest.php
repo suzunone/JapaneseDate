@@ -2,7 +2,7 @@
 
 /** @noinspection PhpUnhandledExceptionInspection */
 
-namespace Test\JapaneseDate\Traits;
+namespace Tests\JapaneseDate\Traits;
 
 use DateTimeZone;
 use JapaneseDate\Components\SimpleSolarTerm;
@@ -23,6 +23,37 @@ use Tests\JapaneseDate\InvokeTrait;
 class FindSolarTermTest extends TestCase
 {
     use InvokeTrait;
+
+    /**
+     * 次の二十四節気を探す境界日付の期待値を返す。
+     */
+    public static function nextSolarTermBoundaryDataProvider(): array
+    {
+        $data = [];
+        foreach (self::solarTermDataProvider() as $label => [$methodSuffix, $solarTermMethod]) {
+            $term2018 = self::simpleSolarTerm($solarTermMethod, 2018);
+            $term2019 = self::simpleSolarTerm($solarTermMethod, 2019);
+            $termDate = self::toNativeDateTime($term2018);
+
+            $data[$label . ' day before returns current year'] = [
+                $methodSuffix,
+                $termDate->modify('-1 day')->format('Y-m-d 12:34:56'),
+                self::expectedDate($term2018),
+            ];
+            $data[$label . ' day returns next year'] = [
+                $methodSuffix,
+                $termDate->format('Y-m-d 12:34:56'),
+                self::expectedDate($term2019),
+            ];
+            $data[$label . ' day after returns next year'] = [
+                $methodSuffix,
+                $termDate->modify('+1 day')->format('Y-m-d 12:34:56'),
+                self::expectedDate($term2019),
+            ];
+        }
+
+        return $data;
+    }
 
     /**
      * 二十四節気ごとのメソッド接尾辞と SimpleSolarTerm メソッド名を返す。
@@ -58,34 +89,27 @@ class FindSolarTermTest extends TestCase
     }
 
     /**
-     * 次の二十四節気を探す境界日付の期待値を返す。
+     * SimpleSolarTerm から指定年の二十四節気日付を取得する。
      */
-    public static function nextSolarTermBoundaryDataProvider(): array
+    private static function simpleSolarTerm(string $method, int $year): SolarTermDate
     {
-        $data = [];
-        foreach (self::solarTermDataProvider() as $label => [$methodSuffix, $solarTermMethod]) {
-            $term2018 = self::simpleSolarTerm($solarTermMethod, 2018);
-            $term2019 = self::simpleSolarTerm($solarTermMethod, 2019);
-            $termDate = self::toNativeDateTime($term2018);
+        return (new SimpleSolarTerm())->{$method}($year);
+    }
 
-            $data[$label . ' day before returns current year'] = [
-                $methodSuffix,
-                $termDate->modify('-1 day')->format('Y-m-d 12:34:56'),
-                self::expectedDate($term2018),
-            ];
-            $data[$label . ' day returns next year'] = [
-                $methodSuffix,
-                $termDate->format('Y-m-d 12:34:56'),
-                self::expectedDate($term2019),
-            ];
-            $data[$label . ' day after returns next year'] = [
-                $methodSuffix,
-                $termDate->modify('+1 day')->format('Y-m-d 12:34:56'),
-                self::expectedDate($term2019),
-            ];
-        }
+    /**
+     * 二十四節気日付を PHP 標準の DateTimeImmutable に変換する。
+     */
+    private static function toNativeDateTime(SolarTermDate $term): \DateTimeImmutable
+    {
+        return new \DateTimeImmutable(sprintf('%04d-%02d-%02d', $term->year, $term->month, $term->day));
+    }
 
-        return $data;
+    /**
+     * 二十四節気日付を比較用の日時文字列へ変換する。
+     */
+    private static function expectedDate(SolarTermDate $term, string $time = '12:34:56'): string
+    {
+        return sprintf('%04d-%02d-%02d %s', $term->year, $term->month, $term->day, $time);
     }
 
     /**
@@ -245,6 +269,14 @@ class FindSolarTermTest extends TestCase
     }
 
     /**
+     * 天文計算版の SolarTerm から指定年の二十四節気日付を取得する。
+     */
+    private static function astronomicalSolarTerm(string $method, int $year): SolarTermDate
+    {
+        return (new SolarTerm())->{$method}($year);
+    }
+
+    /**
      * 簡易テーブルの範囲外では天文計算にフォールバックして次の二十四節気日を取得することを確認する。
      */
     #[DataProvider('solarTermDataProvider')]
@@ -274,37 +306,5 @@ class FindSolarTermTest extends TestCase
         $result = $this->invokeExecuteMethod($dateTime, 'getBefore' . $methodSuffix, []);
 
         $this->assertSame(self::expectedDate($term, '01:02:03'), $result->format('Y-m-d H:i:s'));
-    }
-
-    /**
-     * SimpleSolarTerm から指定年の二十四節気日付を取得する。
-     */
-    private static function simpleSolarTerm(string $method, int $year): SolarTermDate
-    {
-        return (new SimpleSolarTerm())->{$method}($year);
-    }
-
-    /**
-     * 天文計算版の SolarTerm から指定年の二十四節気日付を取得する。
-     */
-    private static function astronomicalSolarTerm(string $method, int $year): SolarTermDate
-    {
-        return (new SolarTerm())->{$method}($year);
-    }
-
-    /**
-     * 二十四節気日付を PHP 標準の DateTimeImmutable に変換する。
-     */
-    private static function toNativeDateTime(SolarTermDate $term): \DateTimeImmutable
-    {
-        return new \DateTimeImmutable(sprintf('%04d-%02d-%02d', $term->year, $term->month, $term->day));
-    }
-
-    /**
-     * 二十四節気日付を比較用の日時文字列へ変換する。
-     */
-    private static function expectedDate(SolarTermDate $term, string $time = '12:34:56'): string
-    {
-        return sprintf('%04d-%02d-%02d %s', $term->year, $term->month, $term->day, $time);
     }
 }

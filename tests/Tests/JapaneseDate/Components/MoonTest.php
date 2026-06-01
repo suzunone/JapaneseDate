@@ -32,7 +32,7 @@ use Tests\JapaneseDate\InvokeTrait;
  * 精度: 新月・四分月は ±3 分以内 (USNO データと照合済み)
  * 天文データ出典: 国立天文台 / USNO
  */
-#[CoversClass(\JapaneseDate\Components\Moon::class)]
+#[CoversClass(Moon::class)]
 class MoonTest extends TestCase
 {
     use InvokeTrait;
@@ -93,7 +93,7 @@ class MoonTest extends TestCase
         // Unix タイムスタンプをユリウス日に変換し、再び戻しても元の値と一致することを確認する
         $timestamp = 1674259200;
         $julian = $this->invokeExecuteMethod($moon, 'uts2Julian', [$timestamp]);
-        $result  = $this->invokeExecuteMethod($moon, 'julian2Uts', [$julian]);
+        $result = $this->invokeExecuteMethod($moon, 'julian2Uts', [$julian]);
         $this->assertEqualsWithDelta((float) $timestamp, $result, 0.001);
     }
 
@@ -171,7 +171,10 @@ class MoonTest extends TestCase
         // 期待値 = 1674334380 + 32340 = 1674366720
         $expected = 1674366720;
         $result = $this->invokeExecuteMethod($moon, 'truePhase', [1522.0, 0.0]);
-        $this->assertEqualsWithDelta($expected, $result, 300,
+        $this->assertEqualsWithDelta(
+            $expected,
+            $result,
+            300,
             '2023-01-21 新月の計算誤差が ±5 分を超えています (USNO 基準)'
         );
     }
@@ -184,7 +187,10 @@ class MoonTest extends TestCase
         // 期待値 = 1671790620 + 32340 = 1671822960
         $expected = 1671822960;
         $result = $this->invokeExecuteMethod($moon, 'truePhase', [1521.0, 0.0]);
-        $this->assertEqualsWithDelta($expected, $result, 300,
+        $this->assertEqualsWithDelta(
+            $expected,
+            $result,
+            300,
             '2022-12-23 新月の計算誤差が ±5 分を超えています (USNO 基準)'
         );
     }
@@ -197,7 +203,10 @@ class MoonTest extends TestCase
         // 期待値 = 1674919140 + 32340 = 1674951480
         $expected = 1674951480;
         $result = $this->invokeExecuteMethod($moon, 'truePhase', [1522.0, 0.25]);
-        $this->assertEqualsWithDelta($expected, $result, 300,
+        $this->assertEqualsWithDelta(
+            $expected,
+            $result,
+            300,
             '2023-01-28 上弦の計算誤差が ±5 分を超えています (USNO 基準)'
         );
     }
@@ -210,7 +219,10 @@ class MoonTest extends TestCase
         // 期待値 = 1675621740 + 32340 = 1675654080
         $expected = 1675654080;
         $result = $this->invokeExecuteMethod($moon, 'truePhase', [1522.0, 0.5]);
-        $this->assertEqualsWithDelta($expected, $result, 300,
+        $this->assertEqualsWithDelta(
+            $expected,
+            $result,
+            300,
             '2023-02-05 満月の計算誤差が ±5 分を超えています (USNO 基準)'
         );
     }
@@ -223,7 +235,10 @@ class MoonTest extends TestCase
         // 期待値 = 1676304060 + 32340 = 1676336400
         $expected = 1676336400;
         $result = $this->invokeExecuteMethod($moon, 'truePhase', [1522.0, 0.75]);
-        $this->assertEqualsWithDelta($expected, $result, 300,
+        $this->assertEqualsWithDelta(
+            $expected,
+            $result,
+            300,
             '2023-02-13 下弦の計算誤差が ±5 分を超えています (USNO 基準)'
         );
     }
@@ -301,7 +316,10 @@ class MoonTest extends TestCase
         // 新月 2023-01-21 20:53 UTC (k2=1522)
         // 期待値 = 1674334380 + 32340 = 1674366720
         $result = $moon->moonPhase(new DateTime('2023-01-15 00:00:00', new DateTimeZone('UTC')), 0.0, false);
-        $this->assertEqualsWithDelta(1674366720, $result->getTimestamp(), 300,
+        $this->assertEqualsWithDelta(
+            1674366720,
+            $result->getTimestamp(),
+            300,
             '2023-01-21 新月の moonPhase 誤差が ±5 分を超えています (USNO 基準)'
         );
     }
@@ -312,7 +330,10 @@ class MoonTest extends TestCase
         // 上弦 2023-01-28 15:19 UTC (k2=1522, phase=0.25)
         // 期待値 = 1674919140 + 32340 = 1674951480
         $result = $moon->moonPhase(new DateTime('2023-01-15 00:00:00', new DateTimeZone('UTC')), 0.25, false);
-        $this->assertEqualsWithDelta(1674951480, $result->getTimestamp(), 300,
+        $this->assertEqualsWithDelta(
+            1674951480,
+            $result->getTimestamp(),
+            300,
             '2023-01-28 上弦の moonPhase 誤差が ±5 分を超えています (USNO 基準)'
         );
     }
@@ -323,7 +344,10 @@ class MoonTest extends TestCase
         // 満月 2023-02-05 18:29 UTC (k2=1522, phase=0.5)
         // 期待値 = 1675621740 + 32340 = 1675654080
         $result = $moon->moonPhase(new DateTime('2023-01-15 00:00:00', new DateTimeZone('UTC')), 0.5, false);
-        $this->assertEqualsWithDelta(1675654080, $result->getTimestamp(), 300,
+        $this->assertEqualsWithDelta(
+            1675654080,
+            $result->getTimestamp(),
+            300,
             '2023-02-05 満月の moonPhase 誤差が ±5 分を超えています (USNO 基準)'
         );
     }
@@ -334,7 +358,10 @@ class MoonTest extends TestCase
         // 下弦 2023-02-13 16:01 UTC (k2=1522, phase=0.75)
         // 期待値 = 1676304060 + 32340 = 1676336400
         $result = $moon->moonPhase(new DateTime('2023-01-15 00:00:00', new DateTimeZone('UTC')), 0.75, false);
-        $this->assertEqualsWithDelta(1676336400, $result->getTimestamp(), 300,
+        $this->assertEqualsWithDelta(
+            1676336400,
+            $result->getTimestamp(),
+            300,
             '2023-02-13 下弦の moonPhase 誤差が ±5 分を超えています (USNO 基準)'
         );
     }
@@ -345,7 +372,10 @@ class MoonTest extends TestCase
         // 新月 2022-12-23 10:17 UTC (k1=1521, is_next=true)
         // 期待値 = 1671790620 + 32340 = 1671822960
         $result = $moon->moonPhase(new DateTime('2023-01-15 00:00:00', new DateTimeZone('UTC')), 0.0, true);
-        $this->assertEqualsWithDelta(1671822960, $result->getTimestamp(), 300,
+        $this->assertEqualsWithDelta(
+            1671822960,
+            $result->getTimestamp(),
+            300,
             '2022-12-23 新月 (is_next=true) の moonPhase 誤差が ±5 分を超えています (USNO 基準)'
         );
     }
@@ -357,7 +387,10 @@ class MoonTest extends TestCase
         // 新月 2023-01-21 20:53 UTC, 期待値 = 1674366720
         $date = new DateTime('2023-01-21 20:53:00', new DateTimeZone('UTC'));
         $result = $moon->moonPhase($date, 0.0);
-        $this->assertEqualsWithDelta(1674366720, $result->getTimestamp(), 300,
+        $this->assertEqualsWithDelta(
+            1674366720,
+            $result->getTimestamp(),
+            300,
             '2023-01-21 新月当日の moonPhase 誤差が ±5 分を超えています (USNO 基準)'
         );
     }

@@ -17,12 +17,11 @@
  * @since       2018/04/28 11:45 リリースから利用可能
  */
 
-namespace Test\JapaneseDate\Traits;
+namespace Tests\JapaneseDate\Traits;
 
-use JapaneseDate\Components\SexagenaryCycle;
 use JapaneseDate\DateTime;
 use JapaneseDate\DateTimeImmutable;
-use PHPUnit\Framework\Attributes\CoversClass;
+use JapaneseDate\Traits\Modern;
 use PHPUnit\Framework\Attributes\CoversMethod;
 use PHPUnit\Framework\Attributes\CoversTrait;
 use PHPUnit\Framework\TestCase;
@@ -40,29 +39,21 @@ use Tests\JapaneseDate\InvokeTrait;
  * @see         https://github.com/suzunone/JapaneseDate
  * @since       1.0.0 リリースから利用可能
  */
-#[CoversTrait(\JapaneseDate\Traits\Modern::class)]
-#[CoversClass(\JapaneseDate\DateTime::class)]
-#[CoversClass(\JapaneseDate\Components\LunarCalendar::class)]
-#[CoversClass(SexagenaryCycle::class)]
-#[CoversTrait(\JapaneseDate\Traits\Lunar::class)]
-#[CoversMethod(\JapaneseDate\Traits\Modern::class, 'viewWeekday')]
-#[CoversMethod(\JapaneseDate\Traits\Getter::class, '__get')]
-#[CoversMethod(\JapaneseDate\Traits\Modern::class, 'viewMonth')]
-#[CoversMethod(\JapaneseDate\Traits\Modern::class, 'viewHoliday')]
-#[CoversMethod(\JapaneseDate\Traits\Modern::class, 'getHoliday')]
-#[CoversMethod(\JapaneseDate\Traits\Modern::class, 'getHeavenlyStem')]
-#[CoversMethod(\JapaneseDate\Traits\Modern::class, 'viewHeavenlyStem')]
-#[CoversMethod(\JapaneseDate\Traits\Modern::class, 'getMiscSeasonalNode')]
-#[CoversMethod(\JapaneseDate\Traits\Modern::class, 'viewMiscSeasonalNode')]
-#[CoversMethod(\JapaneseDate\Traits\Modern::class, 'getSolarSeasonalFestival')]
-#[CoversMethod(\JapaneseDate\Traits\Modern::class, 'viewSolarSeasonalFestivalName')]
-#[CoversMethod(\JapaneseDate\Traits\Modern::class, 'viewSolarSeasonalFestivalAlias')]
-#[CoversMethod(\JapaneseDate\Traits\Modern::class, 'getLunarSeasonalFestival')]
-#[CoversMethod(\JapaneseDate\Traits\Modern::class, 'viewLunarSeasonalFestivalName')]
-#[CoversMethod(\JapaneseDate\Traits\Modern::class, 'viewLunarSeasonalFestivalAlias')]
-#[CoversMethod(\JapaneseDate\Traits\Lunar::class, 'getSolarTerm')]
-#[CoversMethod(\JapaneseDate\Traits\Lunar::class, 'getSolarTermKey')]
-#[CoversMethod(\JapaneseDate\Traits\Lunar::class, 'isSolarTerm')]
+#[CoversTrait(Modern::class)]
+#[CoversMethod(Modern::class, 'viewWeekday')]
+#[CoversMethod(Modern::class, 'viewMonth')]
+#[CoversMethod(Modern::class, 'viewHoliday')]
+#[CoversMethod(Modern::class, 'getHoliday')]
+#[CoversMethod(Modern::class, 'getHeavenlyStem')]
+#[CoversMethod(Modern::class, 'viewHeavenlyStem')]
+#[CoversMethod(Modern::class, 'getMiscSeasonalNode')]
+#[CoversMethod(Modern::class, 'viewMiscSeasonalNode')]
+#[CoversMethod(Modern::class, 'getSolarSeasonalFestival')]
+#[CoversMethod(Modern::class, 'viewSolarSeasonalFestivalName')]
+#[CoversMethod(Modern::class, 'viewSolarSeasonalFestivalAlias')]
+#[CoversMethod(Modern::class, 'getLunarSeasonalFestival')]
+#[CoversMethod(Modern::class, 'viewLunarSeasonalFestivalName')]
+#[CoversMethod(Modern::class, 'viewLunarSeasonalFestivalAlias')]
 class ModernTest extends TestCase
 {
     use InvokeTrait;
@@ -289,9 +280,8 @@ class ModernTest extends TestCase
         $DateTime = DateTime::factory('2019-05-21');
         $this->assertEquals(0, $DateTime->oriental_zodiac);
     }
-    
-    // DateTimeImmutable でも同じ現代暦情報を取得できることを確認する。
 
+    // DateTimeImmutable でも同じ現代暦情報を取得できることを確認する。
 
     /**
      * DateTimeImmutable で曜日名を取得できることを確認する。

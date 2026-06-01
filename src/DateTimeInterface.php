@@ -38,5 +38,4 @@ namespace JapaneseDate;
  */
 interface DateTimeInterface
 {
-
 }

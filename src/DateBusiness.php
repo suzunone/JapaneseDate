@@ -140,7 +140,7 @@ class DateBusiness
      *
      * @var callable|null
      */
-    protected $macro = null;
+    protected $macro;
 
     /**
      * 休業曜日を一括設定します。
@@ -160,6 +160,8 @@ class DateBusiness
     {
         $this->closingWeekdays = [];
         foreach ($weekdays as $wd) {
+            /** @noinspection PhpCastIsUnnecessaryInspection */
+            /** @noinspection UnnecessaryCastingInspection */
             $this->closingWeekdays[(int) $wd] = true;
         }
 
@@ -223,7 +225,7 @@ class DateBusiness
      */
     public function addOpenNthWeekday(int $weekday, int $nth): static
     {
-        $this->openNthWeekdays["{$weekday}_{$nth}"] = true;
+        $this->openNthWeekdays[$weekday . '_' . $nth] = true;
 
         return $this;
     }
@@ -237,7 +239,7 @@ class DateBusiness
      */
     public function removeOpenNthWeekday(int $weekday, int $nth): static
     {
-        unset($this->openNthWeekdays["{$weekday}_{$nth}"]);
+        unset($this->openNthWeekdays[$weekday . '_' . $nth]);
 
         return $this;
     }
@@ -259,7 +261,7 @@ class DateBusiness
      */
     public function addClosingNthWeekday(int $weekday, int $nth, ?string $label = null): static
     {
-        $this->closingNthWeekdays["{$weekday}_{$nth}"] = $label;
+        $this->closingNthWeekdays[$weekday . '_' . $nth] = $label;
 
         return $this;
     }
@@ -273,7 +275,7 @@ class DateBusiness
      */
     public function removeClosingNthWeekday(int $weekday, int $nth): static
     {
-        unset($this->closingNthWeekdays["{$weekday}_{$nth}"]);
+        unset($this->closingNthWeekdays[$weekday . '_' . $nth]);
 
         return $this;
     }
@@ -288,8 +290,9 @@ class DateBusiness
      * $config->addOpenDate('2026-12-30'); // 2026年12月30日は特別営業
      * ```
      *
-     * @param  string|\DateTimeInterface $date 営業日として指定する日付
+     * @param string|\DateTimeInterface $date 営業日として指定する日付
      * @return static メソッドチェーン用に自身を返します
+     * @throws \Exception
      */
     public function addOpenDate(string|DateTimeInterface $date): static
     {
@@ -302,8 +305,9 @@ class DateBusiness
     /**
      * 特定日の営業指定を削除します。
      *
-     * @param  string|\DateTimeInterface $date 削除する日付
+     * @param string|\DateTimeInterface $date 削除する日付
      * @return static メソッドチェーン用に自身を返します
+     * @throws \Exception
      */
     public function removeOpenDate(string|DateTimeInterface $date): static
     {
@@ -324,9 +328,10 @@ class DateBusiness
      * $config->addClosingDate('2026-12-31', '年末休業');
      * ```
      *
-     * @param  string|\DateTimeInterface $date  休業日として指定する日付
-     * @param  string|null               $label 休業理由のラベル（例: '夏期休暇'）
+     * @param string|\DateTimeInterface $date 休業日として指定する日付
+     * @param string|null $label 休業理由のラベル（例: '夏期休暇'）
      * @return static メソッドチェーン用に自身を返します
+     * @throws \Exception
      */
     public function addClosingDate(string|DateTimeInterface $date, ?string $label = null): static
     {
@@ -339,8 +344,9 @@ class DateBusiness
     /**
      * 特定日の休業指定を削除します。
      *
-     * @param  string|\DateTimeInterface $date 削除する日付
+     * @param string|\DateTimeInterface $date 削除する日付
      * @return static メソッドチェーン用に自身を返します
+     * @throws \Exception
      */
     public function removeClosingDate(string|DateTimeInterface $date): static
     {
@@ -537,8 +543,9 @@ class DateBusiness
     /**
      * DateTimeInterface または日付文字列をキー文字列（"Ymd"）に変換します。
      *
-     * @param  string|\DateTimeInterface $date
+     * @param string|\DateTimeInterface $date
      * @return string
+     * @throws \Exception
      */
     protected function toDateKey(string|DateTimeInterface $date): string
     {
