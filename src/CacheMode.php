@@ -42,7 +42,7 @@ namespace JapaneseDate;
 class CacheMode
 {
     /**
-     * Cacheなし
+     * Cache なし
      *
      * @var int
      */
@@ -56,7 +56,7 @@ class CacheMode
     public const MODE_AUTO = 1;
 
     /**
-     * APCにキャッシュする
+     * APC にキャッシュする
      *
      * @var int
      */

@@ -17,19 +17,20 @@
  * @since       2018/04/28 11:45 リリースから利用可能
  */
 
-namespace Test\JapaneseDate;
+namespace Tests\JapaneseDate;
 
 use Faker\Generator as FakerGenerator;
 use Faker\Provider\DateTime as FakerDateTime;
 use JapaneseDate\DateTimeImmutable;
 use JapaneseDate\Exceptions\NativeDateTimeException;
+use JapaneseDate\Traits\Component;
+use JapaneseDate\Traits\DateTimeImport;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\CoversMethod;
 use PHPUnit\Framework\Attributes\CoversTrait;
 use PHPUnit\Framework\Attributes\PreserveGlobalState;
 use PHPUnit\Framework\Attributes\RunInSeparateProcess;
 use PHPUnit\Framework\TestCase;
-use Tests\JapaneseDate\InvokeTrait;
 
 /**
  * DateTimeImmutable クラスのテスト
@@ -97,6 +98,7 @@ class DateTimeImmutableTest extends TestCase
      * テスト用の現在日時が生成系メソッドに反映されることを確認する
      *
      * @return void
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      * @runInSeparateProcess
      * @preserveGlobalState disabled
      */
@@ -120,6 +122,7 @@ class DateTimeImmutableTest extends TestCase
      * コンストラクタが日時オブジェクト由来の文字列と日時文字列を解釈できることを確認する
      *
      * @return void
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     public function test_construct(): void
     {
@@ -141,6 +144,7 @@ class DateTimeImmutableTest extends TestCase
      * factory が複数形式の入力から日時を生成できることを確認する
      *
      * @return void
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      * @runInSeparateProcess
      * @preserveGlobalState disabled
      */
@@ -171,6 +175,7 @@ class DateTimeImmutableTest extends TestCase
      * ユリウス日から算出したグレゴリオ暦情報を取得できることを確認する
      *
      * @return void
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     public function test_getCalendar(): void
     {
@@ -194,7 +199,6 @@ class DateTimeImmutableTest extends TestCase
      * addDay が元のインスタンスを変更せず新しい日時を返すことを確認する
      *
      * @return void
-     * @throws NativeDateTimeException
      */
     public function testCreate_Success(): void
     {
@@ -213,6 +217,25 @@ class DateTimeImmutableTest extends TestCase
     {
         $this->expectException(NativeDateTimeException::class);
         $this->expectException(NativeDateTimeException::class);
-        $dateTime = new DateTimeImmutable('あああああ');
+        new DateTimeImmutable('あああああ');
+    }
+    /**
+     * マイクロタイムスタンプテスト
+     * @return void
+     */
+    public function test_micro_time(): void
+    {
+        $date = new DateTimeImmutable('2024-06-01 12:34:56.789000');
+        $this->assertEquals('2024-06-01 12:34:56.789000', $date->format('Y-m-d H:i:s.u'));
+    }
+    /**
+     * マイクロタイムスタンプテスト
+     * @return void
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     */
+    public function test_factory_micro_time(): void
+    {
+        $date = DateTimeImmutable::factory('2024-06-01 12:34:56.789000');
+        $this->assertEquals('2024-06-01 12:34:56.789000', $date->format('Y-m-d H:i:s.u'));
     }
 }

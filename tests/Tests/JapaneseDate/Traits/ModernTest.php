@@ -17,12 +17,11 @@
  * @since       2018/04/28 11:45 リリースから利用可能
  */
 
-namespace Test\JapaneseDate\Traits;
+namespace Tests\JapaneseDate\Traits;
 
-use JapaneseDate\Components\SexagenaryCycle;
 use JapaneseDate\DateTime;
 use JapaneseDate\DateTimeImmutable;
-use PHPUnit\Framework\Attributes\CoversClass;
+use JapaneseDate\Traits\Modern;
 use PHPUnit\Framework\Attributes\CoversMethod;
 use PHPUnit\Framework\Attributes\CoversTrait;
 use PHPUnit\Framework\TestCase;
@@ -40,12 +39,7 @@ use Tests\JapaneseDate\InvokeTrait;
  * @see         https://github.com/suzunone/JapaneseDate
  * @since       1.0.0 リリースから利用可能
  * @covers \JapaneseDate\Traits\Modern
- * @covers \JapaneseDate\DateTime
- * @covers \JapaneseDate\Components\LunarCalendar
- * @covers \JapaneseDate\Components\SexagenaryCycle
- * @covers \JapaneseDate\Traits\Lunar
  * @covers \JapaneseDate\Traits\Modern::viewWeekday
- * @covers \JapaneseDate\Traits\Getter::__get
  * @covers \JapaneseDate\Traits\Modern::viewMonth
  * @covers \JapaneseDate\Traits\Modern::viewHoliday
  * @covers \JapaneseDate\Traits\Modern::getHoliday
@@ -59,9 +53,6 @@ use Tests\JapaneseDate\InvokeTrait;
  * @covers \JapaneseDate\Traits\Modern::getLunarSeasonalFestival
  * @covers \JapaneseDate\Traits\Modern::viewLunarSeasonalFestivalName
  * @covers \JapaneseDate\Traits\Modern::viewLunarSeasonalFestivalAlias
- * @covers \JapaneseDate\Traits\Lunar::getSolarTerm
- * @covers \JapaneseDate\Traits\Lunar::getSolarTermKey
- * @covers \JapaneseDate\Traits\Lunar::isSolarTerm
  */
 class ModernTest extends TestCase
 {

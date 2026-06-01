@@ -69,7 +69,6 @@ foreach ($period as $date) {
 
 ## Traits
 
-- [DateBusinessCommon](../JapaneseDate/Traits/DateBusinessCommon.md)
 - IntervalRounding
 - Mixin
 - Options
@@ -79,6 +78,8 @@ foreach ($period as $date) {
 
 | Modifier | Name | Description |
 |---|---|---|
+| protected | `ERA_START_DATES` | 元号の開始日（西暦）のマッピング。 |
+| protected | `ERA_END_DATES` | 元号の終了日（次の元号の前日）のマッピング。 |
 | public | `RECURRENCES_FILTER` | Built-in filter for limit by recurrences. |
 | public | `END_DATE_FILTER` | Built-in filter for limit to an end. |
 | public | `END_ITERATION` | Special value which can be returned by filters to end iteration. Also a filter. |
@@ -88,8 +89,6 @@ foreach ($period as $date) {
 | public | `NEXT_MAX_ATTEMPTS` | Number of maximum attempts before giving up on finding next valid date. |
 | public | `END_MAX_ATTEMPTS` | Number of maximum attempts before giving up on finding end date. |
 | protected | `DEFAULT_DATE_CLASS` | Default date class of iteration items. |
-| protected | `ERA_START_DATES` | 元号の開始日（西暦）のマッピング。 |
-| protected | `ERA_END_DATES` | 元号の終了日（次の元号の前日）のマッピング。 |
 
 ## Properties
 
@@ -107,6 +106,34 @@ foreach ($period as $date) {
 
 | Return | Method | Description |
 |---|---|---|
+| DateBusinessCommon | [setBusinessConfig()](#setbusinessconfig) | インスタンスに個別の営業日設定を適用します。 |
+| DateBusiness\|null | [getBusinessConfig()](#getbusinessconfig) | インスタンスが保持している個別の営業日設定を取得します。 |
+| DateBusinessCommon | [setClosingDay()](#setclosingday) | 特定の日付を休業日として指定します。 |
+| DateBusinessCommon | [setOpenDay()](#setopenday) | 特定の日付を営業日として指定します。 |
+| DateBusinessCommon | [setClosingWeekdays()](#setclosingweekdays) | 休業曜日を一括設定します。 |
+| DateBusinessCommon | [setBypassHoliday()](#setbypassholiday) | 祝日を休業日として扱うかどうかを設定します。 |
+| DateBusinessCommon | [setOpenNthWeekday()](#setopennthweekday) | 第XX曜日を営業日として指定します。 |
+| DateBusinessCommon | [setClosingNthWeekday()](#setclosingnthweekday) | 第XX曜日を休業日として指定します。 |
+| DateBusinessCommon | [addOpenFilter()](#addopenfilter) | 営業指定フィルタを追加します。 |
+| DateBusinessCommon | [addClosingFilter()](#addclosingfilter) | 休業指定フィルタを追加します。 |
+| DateBusinessCommon | [setBusinessMacro()](#setbusinessmacro) | 判定ロジックを完全に上書きするマクロを設定します。 |
+| bool | [checkIsBusinessDay()](#checkisbusinessday) | 指定した日付（または自身が保持する日付）が営業日かどうかを判定します。 |
+| string\|null | [checkGetBusinessDayLabel()](#checkgetbusinessdaylabel) | 指定した日付（または自身が保持する日付）の休業ラベルを取得します。 |
+| DatePeriod | [onlyHolidays()](#onlyholidays) | 期間内の日本の祝日・休日（振替休日・国民の休日を含む）のみを 抽出するフィルタを追加します。 |
+| DatePeriod | [withoutHolidays()](#withoutholidays) | 期間内の日本の祝日・休日（振替休日・国民の休日を含む）を除外する フィルタを追加します。 |
+| DatePeriod | [withoutWeekends()](#withoutweekends) | 期間内の土曜・日曜を除外するフィルタを追加します。 |
+| DatePeriod | [onlyWeekdays()](#onlyweekdays) | 期間内の土曜・日曜・祝日・休日をすべて除外し、 純粋な平日（月〜金かつ非祝日）のみを抽出するフィルタを追加します。 |
+| DatePeriod | [onlyGotobi()](#onlygotobi) | 期間内の五十日（ごとおび）かつ銀行営業日の日付のみを抽出するフィルタを追加します。 |
+| DatePeriod | [onlySixWeekday()](#onlysixweekday) | 期間内の指定した六曜の日のみを抽出するフィルタを追加します。 |
+| DatePeriod | [withoutSixWeekday()](#withoutsixweekday) | 期間内の指定した六曜の日を除外するフィルタを追加します。 |
+| DatePeriod | [onlyDoyo()](#onlydoyo) | 期間内の土用（各季節の前の約18日間）に含まれる日付のみを抽出するフィルタを追加します。 |
+| DatePeriod | [onlyHigan()](#onlyhigan) | 期間内の彼岸（春分・秋分を中日とした各7日間）に含まれる日付のみを抽出するフィルタを追加します。 |
+| DatePeriod | [eachSolarTerm()](#eachsolarterm) | 開始日から終了日までを二十四節気の切り替わりをステップとする {DatePeriod} を生成して返します。 |
+| DatePeriod | [eachLunarMonth()](#eachlunarmonth) | 開始日から指定した月数分の旧暦月（朔日〜晦日）を 1 ステップとする {DatePeriod} を生成して返します。 |
+| array | [splitByEra()](#splitbyera) | 期間（DatePeriod）を元号の切り替わりタイミングで複数のサブ期間に分割します。 |
+| DatePeriod | [eachJapaneseFiscalYear()](#eachjapanesefiscalyear) | 和暦年度（4月1日〜翌3月31日）を 1 ステップとする {DatePeriod} を生成します。 |
+| DatePeriod | [onlyBusinessDays()](#onlybusinessdays) | 期間内の営業日のみを含む新しい DatePeriod を返します。 |
+| DatePeriod | [withoutBusinessDays()](#withoutbusinessdays) | 期間内から営業日を除いた（休業日のみの）新しい DatePeriod を返します。 |
 | CarbonPeriod\|null | [CarbonPeriod::make](../Carbon/CarbonPeriod.md#make) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Make a CarbonPeriod instance from given variable if possible. |
 | CarbonPeriod | [CarbonPeriod::instance](../Carbon/CarbonPeriod.md#instance) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Create a new instance from a DatePeriod or CarbonPeriod object. |
 | CarbonPeriod | [CarbonPeriod::create](../Carbon/CarbonPeriod.md#create) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Create a new instance. |
@@ -136,8 +163,8 @@ foreach ($period as $date) {
 | bool | [CarbonPeriod::isEndExcluded](../Carbon/CarbonPeriod.md#isendexcluded) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Returns true if the end date should be excluded. |
 | bool | [CarbonPeriod::isStartIncluded](../Carbon/CarbonPeriod.md#isstartincluded) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Returns true if the start date should be included. |
 | bool | [CarbonPeriod::isEndIncluded](../Carbon/CarbonPeriod.md#isendincluded) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Returns true if the end date should be included. |
-| CarbonInterface | [CarbonPeriod::getIncludedStartDate](../Carbon/CarbonPeriod.md#getincludedstartdate) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Return the start if it's included by option, else return the start + 1 period interval. |
-| CarbonInterface | [CarbonPeriod::getIncludedEndDate](../Carbon/CarbonPeriod.md#getincludedenddate) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Return the end if it's included by option, else return the end - 1 period interval. |
+| CarbonInterface | [CarbonPeriod::getIncludedStartDate](../Carbon/CarbonPeriod.md#getincludedstartdate) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Return the start if it&#039;s included by option, else return the start + 1 period interval. |
+| CarbonInterface | [CarbonPeriod::getIncludedEndDate](../Carbon/CarbonPeriod.md#getincludedenddate) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Return the end if it&#039;s included by option, else return the end - 1 period interval. |
 | CarbonPeriod | [CarbonPeriod::addFilter](../Carbon/CarbonPeriod.md#addfilter) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Add a filter to the stack. |
 | CarbonPeriod | [CarbonPeriod::prependFilter](../Carbon/CarbonPeriod.md#prependfilter) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Prepend a filter to the stack. |
 | CarbonPeriod | [CarbonPeriod::removeFilter](../Carbon/CarbonPeriod.md#removefilter) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Remove a filter by instance or name. |
@@ -164,11 +191,10 @@ foreach ($period as $date) {
 | int | [CarbonPeriod::count](../Carbon/CarbonPeriod.md#count) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Count dates in the date period. |
 | CarbonInterface\|null | [CarbonPeriod::first](../Carbon/CarbonPeriod.md#first) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Return the first date in the date period. |
 | CarbonInterface\|null | [CarbonPeriod::last](../Carbon/CarbonPeriod.md#last) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Return the last date in the date period. |
-| CarbonPeriod | [CarbonPeriod::setTimezone](../Carbon/CarbonPeriod.md#settimezone) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Set the instance's timezone from a string or object and apply it to start/end. |
-| CarbonPeriod | [CarbonPeriod::shiftTimezone](../Carbon/CarbonPeriod.md#shifttimezone) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Set the instance's timezone from a string or object and add/subtract the offset difference to start/end. |
+| CarbonPeriod | [CarbonPeriod::setTimezone](../Carbon/CarbonPeriod.md#settimezone) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Set the instance&#039;s timezone from a string or object and apply it to start/end. |
+| CarbonPeriod | [CarbonPeriod::shiftTimezone](../Carbon/CarbonPeriod.md#shifttimezone) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Set the instance&#039;s timezone from a string or object and add/subtract the offset difference to start/end. |
 | CarbonInterface | [CarbonPeriod::calculateEnd](../Carbon/CarbonPeriod.md#calculateend) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Returns the end is set, else calculated from start an recurrences. |
-| bool | [CarbonPeriod::overlaps](../Carbon/CarbonPeriod.md#overlaps) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Returns true if the current period overlaps the given one (if 1 parameter passed)
-or the period between 2 dates (if 2 parameters passed). |
+| bool | [CarbonPeriod::overlaps](../Carbon/CarbonPeriod.md#overlaps) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Returns true if the current period overlaps the given one (if 1 parameter passed) or the period between 2 dates (if 2 parameters passed). |
 |  | [CarbonPeriod::forEach](../Carbon/CarbonPeriod.md#foreach) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Execute a given function on each date of the period. |
 | Generator | [CarbonPeriod::map](../Carbon/CarbonPeriod.md#map) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Execute a given function on each date of the period and yield the result of this function. |
 | bool | [CarbonPeriod::eq](../Carbon/CarbonPeriod.md#eq) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Determines if the instance is equal to another. |
@@ -318,43 +344,320 @@ or the period between 2 dates (if 2 parameters passed). |
 | $this | [CarbonPeriod::floorMicroseconds](../Carbon/CarbonPeriod.md#floormicroseconds) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Truncate the current instance microsecond with given precision. |
 | $this | [CarbonPeriod::ceilMicrosecond](../Carbon/CarbonPeriod.md#ceilmicrosecond) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Ceil the current instance microsecond with given precision. |
 | $this | [CarbonPeriod::ceilMicroseconds](../Carbon/CarbonPeriod.md#ceilmicroseconds) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Ceil the current instance microsecond with given precision. |
-| DateBusinessCommon | [DateBusinessCommon::setBusinessConfig](../JapaneseDate/Traits/DateBusinessCommon.md#setbusinessconfig) _(from [DateBusinessCommon](../JapaneseDate/Traits/DateBusinessCommon.md))_ | インスタンスに個別の営業日設定を適用します。 |
-| DateBusiness\|null | [DateBusinessCommon::getBusinessConfig](../JapaneseDate/Traits/DateBusinessCommon.md#getbusinessconfig) _(from [DateBusinessCommon](../JapaneseDate/Traits/DateBusinessCommon.md))_ | インスタンスが保持している個別の営業日設定を取得します。 |
-| DateBusinessCommon | [DateBusinessCommon::setClosingDay](../JapaneseDate/Traits/DateBusinessCommon.md#setclosingday) _(from [DateBusinessCommon](../JapaneseDate/Traits/DateBusinessCommon.md))_ | 特定の日付を休業日として指定します。 |
-| DateBusinessCommon | [DateBusinessCommon::setOpenDay](../JapaneseDate/Traits/DateBusinessCommon.md#setopenday) _(from [DateBusinessCommon](../JapaneseDate/Traits/DateBusinessCommon.md))_ | 特定の日付を営業日として指定します。 |
-| DateBusinessCommon | [DateBusinessCommon::setClosingWeekdays](../JapaneseDate/Traits/DateBusinessCommon.md#setclosingweekdays) _(from [DateBusinessCommon](../JapaneseDate/Traits/DateBusinessCommon.md))_ | 休業曜日を一括設定します。 |
-| DateBusinessCommon | [DateBusinessCommon::setBypassHoliday](../JapaneseDate/Traits/DateBusinessCommon.md#setbypassholiday) _(from [DateBusinessCommon](../JapaneseDate/Traits/DateBusinessCommon.md))_ | 祝日を休業日として扱うかどうかを設定します。 |
-| DateBusinessCommon | [DateBusinessCommon::setOpenNthWeekday](../JapaneseDate/Traits/DateBusinessCommon.md#setopennthweekday) _(from [DateBusinessCommon](../JapaneseDate/Traits/DateBusinessCommon.md))_ | 第XX曜日を営業日として指定します。 |
-| DateBusinessCommon | [DateBusinessCommon::setClosingNthWeekday](../JapaneseDate/Traits/DateBusinessCommon.md#setclosingnthweekday) _(from [DateBusinessCommon](../JapaneseDate/Traits/DateBusinessCommon.md))_ | 第XX曜日を休業日として指定します。 |
-| DateBusinessCommon | [DateBusinessCommon::addOpenFilter](../JapaneseDate/Traits/DateBusinessCommon.md#addopenfilter) _(from [DateBusinessCommon](../JapaneseDate/Traits/DateBusinessCommon.md))_ | 営業指定フィルタを追加します。 |
-| DateBusinessCommon | [DateBusinessCommon::addClosingFilter](../JapaneseDate/Traits/DateBusinessCommon.md#addclosingfilter) _(from [DateBusinessCommon](../JapaneseDate/Traits/DateBusinessCommon.md))_ | 休業指定フィルタを追加します。 |
-| DateBusinessCommon | [DateBusinessCommon::setBusinessMacro](../JapaneseDate/Traits/DateBusinessCommon.md#setbusinessmacro) _(from [DateBusinessCommon](../JapaneseDate/Traits/DateBusinessCommon.md))_ | 判定ロジックを完全に上書きするマクロを設定します。 |
-| bool | [DateBusinessCommon::checkIsBusinessDay](../JapaneseDate/Traits/DateBusinessCommon.md#checkisbusinessday) _(from [DateBusinessCommon](../JapaneseDate/Traits/DateBusinessCommon.md))_ | 指定した日付（または自身が保持する日付）が営業日かどうかを判定します。 |
-| string\|null | [DateBusinessCommon::checkGetBusinessDayLabel](../JapaneseDate/Traits/DateBusinessCommon.md#checkgetbusinessdaylabel) _(from [DateBusinessCommon](../JapaneseDate/Traits/DateBusinessCommon.md))_ | 指定した日付（または自身が保持する日付）の休業ラベルを取得します。 |
-| DatePeriod | [onlyHolidays()](#onlyholidays) | 期間内の日本の祝日・休日（振替休日・国民の休日を含む）のみを
-抽出するフィルタを追加します。 |
-| DatePeriod | [withoutHolidays()](#withoutholidays) | 期間内の日本の祝日・休日（振替休日・国民の休日を含む）を除外する
-フィルタを追加します。 |
-| DatePeriod | [withoutWeekends()](#withoutweekends) | 期間内の土曜・日曜を除外するフィルタを追加します。 |
-| DatePeriod | [onlyWeekdays()](#onlyweekdays) | 期間内の土曜・日曜・祝日・休日をすべて除外し、
-純粋な平日（月〜金かつ非祝日）のみを抽出するフィルタを追加します。 |
-| DatePeriod | [onlyGotobi()](#onlygotobi) | 期間内の五十日（ごとおび）かつ銀行営業日の日付のみを抽出するフィルタを追加します。 |
-| DatePeriod | [onlySixWeekday()](#onlysixweekday) | 期間内の指定した六曜の日のみを抽出するフィルタを追加します。 |
-| DatePeriod | [withoutSixWeekday()](#withoutsixweekday) | 期間内の指定した六曜の日を除外するフィルタを追加します。 |
-| DatePeriod | [onlyDoyo()](#onlydoyo) | 期間内の土用（各季節の前の約18日間）に含まれる日付のみを抽出するフィルタを追加します。 |
-| DatePeriod | [onlyHigan()](#onlyhigan) | 期間内の彼岸（春分・秋分を中日とした各7日間）に含まれる日付のみを抽出するフィルタを追加します。 |
-| DatePeriod | [eachSolarTerm()](#eachsolarterm) | 開始日から終了日までを二十四節気の切り替わりをステップとする
-{DatePeriod} を生成して返します。 |
-| DatePeriod | [eachLunarMonth()](#eachlunarmonth) | 開始日から指定した月数分の旧暦月（朔日〜晦日）を 1 ステップとする
-{DatePeriod} を生成して返します。 |
-| array | [splitByEra()](#splitbyera) | 期間（DatePeriod）を元号の切り替わりタイミングで複数のサブ期間に分割します。 |
-| DatePeriod | [eachJapaneseFiscalYear()](#eachjapanesefiscalyear) | 和暦年度（4月1日〜翌3月31日）を 1 ステップとする {DatePeriod} を生成します。 |
-| DatePeriod | [onlyBusinessDays()](#onlybusinessdays) | 期間内の営業日のみを含む新しい DatePeriod を返します。 |
-| DatePeriod | [withoutBusinessDays()](#withoutbusinessdays) | 期間内から営業日を除いた（休業日のみの）新しい DatePeriod を返します。 |
 
 ---
 
 ## Method Details
+
+### setBusinessConfig
+
+```php
+public DateBusinessCommon setBusinessConfig($config)
+```
+
+インスタンスに個別の営業日設定を適用します。
+
+設定後、このインスタンスのすべての営業日判定にこの設定が使用されます。
+`null` を渡すとインスタンス個別設定を解除し、グローバル/デフォルト設定に戻ります。
+
+**使用例:**
+```php
+$dt->setBusinessConfig(
+    (new DateBusiness())->setClosingWeekdays([0, 6])->setBypassHoliday(true)
+);
+```
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| [DateBusiness](../JapaneseDate/DateBusiness.md)\|null | `$config` | —  | インスタンスに適用する設定オブジェクト、または null（解除） |
+
+**Returns:** DateBusinessCommon — メソッドチェーン用に自身を返します
+---
+
+### getBusinessConfig
+
+```php
+public DateBusiness\|null getBusinessConfig()
+```
+
+インスタンスが保持している個別の営業日設定を取得します。
+
+個別設定を持っていない場合は `null` を返します。
+判定に実際に使用される設定（グローバル/デフォルト含む解決済み設定）は
+BusinessCalendar::resolveConfig() で取得できます。
+
+**Returns:** [DateBusiness](../JapaneseDate/DateBusiness.md)\|null — インスタンス個別設定、または null
+---
+
+### setClosingDay
+
+```php
+public DateBusinessCommon setClosingDay($date, $label = null)
+```
+
+特定の日付を休業日として指定します。
+
+インスタンスに個別設定がない場合は自動的に現在の有効設定を複製して設定します。
+
+**使用例:**
+```php
+$dt->setClosingDay('2026-08-15', '夏期休暇');
+```
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| string\|[DateTimeInterface](https://www.php.net/class.datetimeinterface) | `$date` | —  | 休業日として指定する日付 |
+| string\|null | `$label` | `null` | 休業理由のラベル（例: '夏期休暇'） |
+
+**Returns:** DateBusinessCommon — メソッドチェーン用に自身を返します
+**Throws:**
+
+- [Exception](https://www.php.net/class.exception)
+---
+
+### setOpenDay
+
+```php
+public DateBusinessCommon setOpenDay($date)
+```
+
+特定の日付を営業日として指定します。
+
+インスタンスに個別設定がない場合は自動的に現在の有効設定を複製して設定します。
+
+**使用例:**
+```php
+$dt->setOpenDay('2026-12-30'); // 特別営業日
+```
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| string\|[DateTimeInterface](https://www.php.net/class.datetimeinterface) | `$date` | —  | 営業日として指定する日付 |
+
+**Returns:** DateBusinessCommon — メソッドチェーン用に自身を返します
+**Throws:**
+
+- [Exception](https://www.php.net/class.exception)
+---
+
+### setClosingWeekdays
+
+```php
+public DateBusinessCommon setClosingWeekdays($weekdays)
+```
+
+休業曜日を一括設定します。
+
+インスタンスに個別設定がない場合は自動的に現在の有効設定を複製して設定します。
+
+**使用例:**
+```php
+$dt->setClosingWeekdays([0, 6]); // 日・土を休業に
+```
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| array | `$weekdays` | —  | 休業曜日の配列（例: [0, 6] で日・土） |
+
+**Returns:** DateBusinessCommon — メソッドチェーン用に自身を返します
+---
+
+### setBypassHoliday
+
+```php
+public DateBusinessCommon setBypassHoliday($bypass)
+```
+
+祝日を休業日として扱うかどうかを設定します。
+
+インスタンスに個別設定がない場合は自動的に現在の有効設定を複製して設定します。
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| bool | `$bypass` | —  | true の場合、祝日を休業日とする |
+
+**Returns:** DateBusinessCommon — メソッドチェーン用に自身を返します
+---
+
+### setOpenNthWeekday
+
+```php
+public DateBusinessCommon setOpenNthWeekday($weekday, $nth)
+```
+
+第XX曜日を営業日として指定します。
+
+インスタンスに個別設定がない場合は自動的に現在の有効設定を複製して設定します。
+
+**使用例:**
+```php
+$dt->setOpenNthWeekday(6, 2); // 第2土曜日は営業
+```
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| int | `$weekday` | —  | 曜日（0=日曜〜6=土曜） |
+| int | `$nth` | —  | 第何曜日か（1〜5） |
+
+**Returns:** DateBusinessCommon — メソッドチェーン用に自身を返します
+---
+
+### setClosingNthWeekday
+
+```php
+public DateBusinessCommon setClosingNthWeekday($weekday, $nth, $label = null)
+```
+
+第XX曜日を休業日として指定します。
+
+インスタンスに個別設定がない場合は自動的に現在の有効設定を複製して設定します。
+
+**使用例:**
+```php
+$dt->setClosingNthWeekday(3, 3, '定休日'); // 第3水曜日は休業
+```
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| int | `$weekday` | —  | 曜日（0=日曜〜6=土曜） |
+| int | `$nth` | —  | 第何曜日か（1〜5） |
+| string\|null | `$label` | `null` | 休業ラベル |
+
+**Returns:** DateBusinessCommon — メソッドチェーン用に自身を返します
+---
+
+### addOpenFilter
+
+```php
+public DateBusinessCommon addOpenFilter($filter)
+```
+
+営業指定フィルタを追加します。
+
+フィルタが `true` を返した場合にその日を営業日として扱います。
+インスタンスに個別設定がない場合は自動的に現在の有効設定を複製して設定します。
+
+**使用例:**
+```php
+$dt->addOpenFilter(fn(\DateTimeInterface $d) => $d->format('d') === '10');
+```
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| callable | `$filter` | —  | `fn(\DateTimeInterface $date): bool` 形式のコールバック |
+
+**Returns:** DateBusinessCommon — メソッドチェーン用に自身を返します
+---
+
+### addClosingFilter
+
+```php
+public DateBusinessCommon addClosingFilter($filter, $label = null)
+```
+
+休業指定フィルタを追加します。
+
+フィルタが `true` を返した場合にその日を休業日として扱います。
+インスタンスに個別設定がない場合は自動的に現在の有効設定を複製して設定します。
+
+**使用例:**
+```php
+$dt->addClosingFilter(
+    fn(\DateTimeInterface $d) => $d->format('md') === '1231',
+    '大晦日休業'
+);
+```
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| callable | `$filter` | —  | `fn(\DateTimeInterface $date): bool` 形式のコールバック |
+| string\|null | `$label` | `null` | 休業理由のラベル |
+
+**Returns:** DateBusinessCommon — メソッドチェーン用に自身を返します
+---
+
+### setBusinessMacro
+
+```php
+public DateBusinessCommon setBusinessMacro($macro)
+```
+
+判定ロジックを完全に上書きするマクロを設定します。
+
+マクロは他のすべての設定より優先されます。
+`null` を渡すとマクロを解除します。
+インスタンスに個別設定がない場合は自動的に現在の有効設定を複製して設定します。
+
+**使用例:**
+```php
+$dt->setBusinessMacro(fn(\DateTimeInterface $d) => in_array((int)$d->format('N'), [1,2,3,4]));
+```
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| callable\|null | `$macro` | —  | `fn(\DateTimeInterface $date): bool` 形式のコールバック、または null |
+
+**Returns:** DateBusinessCommon — メソッドチェーン用に自身を返します
+---
+
+### checkIsBusinessDay
+
+```php
+public bool checkIsBusinessDay($date = null)
+```
+
+指定した日付（または自身が保持する日付）が営業日かどうかを判定します。
+
+このメソッドはTraitを適用したクラスが `DateTimeInterface` を実装している場合に
+自身の日付を使って判定します。`$date` を省略した場合は自身を対象とします。
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| [DateTimeInterface](https://www.php.net/class.datetimeinterface)\|null | `$date` | `null` | 判定する日付（省略時は自身） |
+
+**Returns:** bool — 営業日であれば true
+---
+
+### checkGetBusinessDayLabel
+
+```php
+public string\|null checkGetBusinessDayLabel($date = null)
+```
+
+指定した日付（または自身が保持する日付）の休業ラベルを取得します。
+
+営業日の場合は `null` を返します。
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| [DateTimeInterface](https://www.php.net/class.datetimeinterface)\|null | `$date` | `null` | 判定する日付（省略時は自身） |
+
+**Returns:** string\|null — 休業ラベル、または null
+---
 
 ### onlyHolidays
 

@@ -12,26 +12,15 @@ use JapaneseDate\Components\BusinessCalendar;
 use JapaneseDate\DateBusiness;
 use JapaneseDate\DateInterval;
 use JapaneseDate\DateTime;
-use PHPUnit\Framework\Attributes\CoversClass;
+use JapaneseDate\Traits\DateBusinessCommon;
 use PHPUnit\Framework\Attributes\CoversTrait;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \JapaneseDate\DateInterval
- * @covers \JapaneseDate\Components\BusinessCalendar
- * @covers \JapaneseDate\DateBusiness
  * @covers \JapaneseDate\Traits\DateBusinessCommon
  */
 class DateBusinessCommonDateIntervalTest extends TestCase
 {
-    protected function setUp(): void
-    {
-        BusinessCalendar::resetAll();
-    }
-    protected function tearDown(): void
-    {
-        BusinessCalendar::resetAll();
-    }
     public function test_addBusinessDaysTo_basic(): void
     {
         $interval = new DateInterval('P1D');
@@ -168,5 +157,13 @@ class DateBusinessCommonDateIntervalTest extends TestCase
 
         $interval->setBusinessConfig(null);
         $this->assertNull($interval->getBusinessConfig());
+    }
+    protected function setUp(): void
+    {
+        BusinessCalendar::resetAll();
+    }
+    protected function tearDown(): void
+    {
+        BusinessCalendar::resetAll();
     }
 }

@@ -53,7 +53,6 @@ $interval = DateInterval::untilNextSolarTerm(DateTime::now());
 
 ## Traits
 
-- [DateBusinessCommon](../JapaneseDate/Traits/DateBusinessCommon.md)
 - IntervalRounding
 - IntervalStep
 - MagicParameter
@@ -65,6 +64,11 @@ $interval = DateInterval::untilNextSolarTerm(DateTime::now());
 
 | Modifier | Name | Description |
 |---|---|---|
+| public | `SYNODIC_MONTH_DAYS` | 朔望月の平均日数（新月から次の新月までの平均日数）。 |
+| public | `SOLAR_TERM_AVG_DAYS` | 二十四節気1周期の平均日数（太陽黄経15度分）。 |
+| protected | `ERA_START_DATES` | 元号の開始日（西暦）。 |
+| protected | `ERA_END_DATES` | 元号の終了日（次の元号の前日）。 |
+| protected | `SOLAR_TERM_METHODS` | 二十四節気のメソッド名と定数のマッピング。 |
 | public | `PERIOD_PREFIX` | Interval spec period designators |
 | public | `PERIOD_YEARS` |  |
 | public | `PERIOD_MONTHS` |  |
@@ -73,11 +77,6 @@ $interval = DateInterval::untilNextSolarTerm(DateTime::now());
 | public | `PERIOD_HOURS` |  |
 | public | `PERIOD_MINUTES` |  |
 | public | `PERIOD_SECONDS` |  |
-| public | `SYNODIC_MONTH_DAYS` | 朔望月の平均日数（新月から次の新月までの平均日数）。 |
-| public | `SOLAR_TERM_AVG_DAYS` | 二十四節気1周期の平均日数（太陽黄経15度分）。 |
-| protected | `ERA_START_DATES` | 元号の開始日（西暦）。 |
-| protected | `ERA_END_DATES` | 元号の終了日（次の元号の前日）。 |
-| protected | `SOLAR_TERM_METHODS` | 二十四節気のメソッド名と定数のマッピング。 |
 
 ## Properties
 
@@ -111,15 +110,41 @@ $interval = DateInterval::untilNextSolarTerm(DateTime::now());
 
 | Return | Method | Description |
 |---|---|---|
-| CarbonInterval | [CarbonInterval::setTimezone](../Carbon/CarbonInterval.md#settimezone) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Set the instance's timezone from a string or object. |
+| DateBusinessCommon | [setBusinessConfig()](#setbusinessconfig) | インスタンスに個別の営業日設定を適用します。 |
+| DateBusiness\|null | [getBusinessConfig()](#getbusinessconfig) | インスタンスが保持している個別の営業日設定を取得します。 |
+| DateBusinessCommon | [setClosingDay()](#setclosingday) | 特定の日付を休業日として指定します。 |
+| DateBusinessCommon | [setOpenDay()](#setopenday) | 特定の日付を営業日として指定します。 |
+| DateBusinessCommon | [setClosingWeekdays()](#setclosingweekdays) | 休業曜日を一括設定します。 |
+| DateBusinessCommon | [setBypassHoliday()](#setbypassholiday) | 祝日を休業日として扱うかどうかを設定します。 |
+| DateBusinessCommon | [setOpenNthWeekday()](#setopennthweekday) | 第XX曜日を営業日として指定します。 |
+| DateBusinessCommon | [setClosingNthWeekday()](#setclosingnthweekday) | 第XX曜日を休業日として指定します。 |
+| DateBusinessCommon | [addOpenFilter()](#addopenfilter) | 営業指定フィルタを追加します。 |
+| DateBusinessCommon | [addClosingFilter()](#addclosingfilter) | 休業指定フィルタを追加します。 |
+| DateBusinessCommon | [setBusinessMacro()](#setbusinessmacro) | 判定ロジックを完全に上書きするマクロを設定します。 |
+| bool | [checkIsBusinessDay()](#checkisbusinessday) | 指定した日付（または自身が保持する日付）が営業日かどうかを判定します。 |
+| string\|null | [checkGetBusinessDayLabel()](#checkgetbusinessdaylabel) | 指定した日付（または自身が保持する日付）の休業ラベルを取得します。 |
+| DateTime | [addBusinessDaysToDate()](#addbusinessdaystodate) | 基準日から N 営業日後の {DateTime} オブジェクトを返します。 |
+| DateTime | [subBusinessDaysToDate()](#subbusinessdaystodate) | 基準日から N 営業日前の {DateTime} オブジェクトを返します。 |
+| bool | [isBusinessDay()](#isbusinessday) | 指定した日時が営業日かどうかを判定します。 |
+| DateInterval | [untilNextHoliday()](#untilnextholiday) | 基準日時から次の日本の祝日・休日（振替休日・国民の休日を含む）までの 残り期間を {DateInterval} として返します。 |
+| DateInterval | [untilNextSixWeek()](#untilnextsixweek) | 基準日時から指定した六曜が次に到来するまでの残り期間を {DateInterval} として返します。 |
+| DateInterval | [eraSpan()](#eraspan) | 指定した元号が継続した期間（開始日から終了日まで）を {DateInterval} として返します。 |
+| DateInterval | [untilNextSolarTerm()](#untilnextsolarterm) | 基準日時から次に到来する二十四節気（または指定した節気）までの 残り期間を {DateInterval} として返します。 |
+| DateTime | [addSolarTermsToDate()](#addsolartermstodate) | 基準日から N 節気後の {DateTime} を返します。 |
+| DateTime | [subSolarTermsToDate()](#subsolartermstodate) | 基準日から N 節気前の {DateTime} を返します。 |
+| float | [toSolarTermCount()](#tosolartermcount) | このインターバルの総日数を二十四節気の周期数（約15日を1単位）に換算して返します。 |
+| float | [toLunarMonthCount()](#tolunarmonthcount) | このインターバルの総日数を朔望月（新月から次の新月まで、約29.5日）の 数に換算して返します。 |
+| DateInterval | [untilNextNewMoon()](#untilnextnewmoon) | 基準日時から次の新月（月相: MOON_PHASE_SHINGETSU）までの 残り期間を {DateInterval} として返します。 |
+| DateTime | [addBusinessDaysTo()](#addbusinessdaysto) | 基準日から指定した営業日数後の日付を算出します。 |
+| DateTime | [subBusinessDaysFrom()](#subbusinessdaysfrom) | 基準日から指定した営業日数前の日付を算出します。 |
+| int | [countBusinessDaysBetween()](#countbusinessdaysbetween) | 2つの日付間の営業日数を計算します。 |
+| CarbonInterval | [CarbonInterval::setTimezone](../Carbon/CarbonInterval.md#settimezone) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Set the instance&#039;s timezone from a string or object. |
 | CarbonInterval | [CarbonInterval::shiftTimezone](../Carbon/CarbonInterval.md#shifttimezone) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ |  |
 | array | [CarbonInterval::getCascadeFactors](../Carbon/CarbonInterval.md#getcascadefactors) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Mapping of units and factors for cascading. |
-|  | [CarbonInterval::setCascadeFactors](../Carbon/CarbonInterval.md#setcascadefactors) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Set default cascading factors for ->cascade() method. |
-| void | [CarbonInterval::enableFloatSetters](../Carbon/CarbonInterval.md#enablefloatsetters) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | This option allow you to opt-in for the Carbon 3 behavior where float
-values will no longer be cast to integer (so truncated). |
+|  | [CarbonInterval::setCascadeFactors](../Carbon/CarbonInterval.md#setcascadefactors) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Set default cascading factors for -&gt;cascade() method. |
+| void | [CarbonInterval::enableFloatSetters](../Carbon/CarbonInterval.md#enablefloatsetters) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | This option allow you to opt-in for the Carbon 3 behavior where float values will no longer be cast to integer (so truncated). |
 | int\|float\|null | [CarbonInterval::getFactor](../Carbon/CarbonInterval.md#getfactor) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Returns the factor for a given source-to-target couple. |
-| int\|float\|null | [CarbonInterval::getFactorWithDefault](../Carbon/CarbonInterval.md#getfactorwithdefault) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Returns the factor for a given source-to-target couple if set,
-else try to find the appropriate constant as the factor, such as Carbon::DAYS_PER_WEEK. |
+| int\|float\|null | [CarbonInterval::getFactorWithDefault](../Carbon/CarbonInterval.md#getfactorwithdefault) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Returns the factor for a given source-to-target couple if set, else try to find the appropriate constant as the factor, such as Carbon::DAYS_PER_WEEK. |
 | int\|float | [CarbonInterval::getDaysPerWeek](../Carbon/CarbonInterval.md#getdaysperweek) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Returns current config for days per week. |
 | int\|float | [CarbonInterval::getHoursPerDay](../Carbon/CarbonInterval.md#gethoursperday) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Returns current config for hours per day. |
 | int\|float | [CarbonInterval::getMinutesPerHour](../Carbon/CarbonInterval.md#getminutesperhour) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Returns current config for minutes per hour. |
@@ -133,9 +158,7 @@ else try to find the appropriate constant as the factor, such as Carbon::DAYS_PE
 | CarbonInterval | [CarbonInterval::fromString](../Carbon/CarbonInterval.md#fromstring) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Creates a CarbonInterval from string. |
 | CarbonInterval | [CarbonInterval::parseFromLocale](../Carbon/CarbonInterval.md#parsefromlocale) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Creates a CarbonInterval from string using a different locale. |
 | DateInterval | [CarbonInterval::cast](../Carbon/CarbonInterval.md#cast) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Cast the current instance into the given class. |
-| CarbonInterval | [CarbonInterval::instance](../Carbon/CarbonInterval.md#instance) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Create a CarbonInterval instance from a DateInterval one.  Can not instance
-DateInterval objects created from DateTime::diff() as you can't externally
-set the $days field. |
+| CarbonInterval | [CarbonInterval::instance](../Carbon/CarbonInterval.md#instance) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Create a CarbonInterval instance from a DateInterval one.  Can not instance DateInterval objects created from DateTime::diff() as you can&#039;t externally set the $days field. |
 | CarbonInterval\|null | [CarbonInterval::make](../Carbon/CarbonInterval.md#make) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Make a CarbonInterval instance from given variable if possible. |
 | CarbonInterval | [CarbonInterval::createFromDateString](../Carbon/CarbonInterval.md#createfromdatestring) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Sets up a DateInterval from the relative parts of the string. |
 | int\|float\|string | [CarbonInterval::get](../Carbon/CarbonInterval.md#get) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Get a part of the CarbonInterval object. |
@@ -147,8 +170,7 @@ set the $days field. |
 | bool | [CarbonInterval::hasMacro](../Carbon/CarbonInterval.md#hasmacro) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Check if macro is registered. |
 | int[] | [CarbonInterval::toArray](../Carbon/CarbonInterval.md#toarray) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Returns interval values as an array where key are the unit names and values the counts. |
 | int[] | [CarbonInterval::getNonZeroValues](../Carbon/CarbonInterval.md#getnonzerovalues) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Returns interval non-zero values as an array where key are the unit names and values the counts. |
-| int[] | [CarbonInterval::getValuesSequence](../Carbon/CarbonInterval.md#getvaluessequence) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Returns interval values as an array where key are the unit names and values the counts
-from the biggest non-zero one the the smallest non-zero one. |
+| int[] | [CarbonInterval::getValuesSequence](../Carbon/CarbonInterval.md#getvaluessequence) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Returns interval values as an array where key are the unit names and values the counts from the biggest non-zero one the the smallest non-zero one. |
 | string | [CarbonInterval::forHumans](../Carbon/CarbonInterval.md#forhumans) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Get the current interval in a human readable format in the current locale. |
 | DateInterval | [CarbonInterval::toDateInterval](../Carbon/CarbonInterval.md#todateinterval) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Return native DateInterval PHP object matching the current instance. |
 | CarbonPeriod | [CarbonInterval::toPeriod](../Carbon/CarbonInterval.md#toperiod) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Convert the interval to a CarbonPeriod. |
@@ -158,12 +180,8 @@ from the biggest non-zero one the the smallest non-zero one. |
 | $this | [CarbonInterval::subtract](../Carbon/CarbonInterval.md#subtract) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Subtract the passed interval to the current instance. |
 | CarbonInterval | [CarbonInterval::plus](../Carbon/CarbonInterval.md#plus) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Add given parameters to the current interval. |
 | CarbonInterval | [CarbonInterval::minus](../Carbon/CarbonInterval.md#minus) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Add given parameters to the current interval. |
-| $this | [CarbonInterval::times](../Carbon/CarbonInterval.md#times) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Multiply current instance given number of times. times() is naive, it multiplies each unit
-(so day can be greater than 31, hour can be greater than 23, etc.) and the result is rounded
-separately for each unit. |
-| $this | [CarbonInterval::shares](../Carbon/CarbonInterval.md#shares) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Divide current instance by a given divider. shares() is naive, it divides each unit separately
-and the result is rounded for each unit. So 5 hours and 20 minutes shared by 3 becomes 2 hours
-and 7 minutes. |
+| $this | [CarbonInterval::times](../Carbon/CarbonInterval.md#times) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Multiply current instance given number of times. times() is naive, it multiplies each unit (so day can be greater than 31, hour can be greater than 23, etc.) and the result is rounded separately for each unit. |
+| $this | [CarbonInterval::shares](../Carbon/CarbonInterval.md#shares) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Divide current instance by a given divider. shares() is naive, it divides each unit separately and the result is rounded for each unit. So 5 hours and 20 minutes shared by 3 becomes 2 hours and 7 minutes. |
 | $this | [CarbonInterval::multiply](../Carbon/CarbonInterval.md#multiply) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Multiply and cascade current instance by a given factor. |
 | $this | [CarbonInterval::divide](../Carbon/CarbonInterval.md#divide) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Divide and cascade current instance by a given divider. |
 | string | [CarbonInterval::getDateIntervalSpec](../Carbon/CarbonInterval.md#getdateintervalspec) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Get the interval_spec string of a date interval. |
@@ -313,43 +331,320 @@ and 7 minutes. |
 | $this | [CarbonInterval::floorMicroseconds](../Carbon/CarbonInterval.md#floormicroseconds) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Truncate the current instance microsecond with given precision. |
 | $this | [CarbonInterval::ceilMicrosecond](../Carbon/CarbonInterval.md#ceilmicrosecond) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Ceil the current instance microsecond with given precision. |
 | $this | [CarbonInterval::ceilMicroseconds](../Carbon/CarbonInterval.md#ceilmicroseconds) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Ceil the current instance microsecond with given precision. |
-| DateBusinessCommon | [DateBusinessCommon::setBusinessConfig](../JapaneseDate/Traits/DateBusinessCommon.md#setbusinessconfig) _(from [DateBusinessCommon](../JapaneseDate/Traits/DateBusinessCommon.md))_ | インスタンスに個別の営業日設定を適用します。 |
-| DateBusiness\|null | [DateBusinessCommon::getBusinessConfig](../JapaneseDate/Traits/DateBusinessCommon.md#getbusinessconfig) _(from [DateBusinessCommon](../JapaneseDate/Traits/DateBusinessCommon.md))_ | インスタンスが保持している個別の営業日設定を取得します。 |
-| DateBusinessCommon | [DateBusinessCommon::setClosingDay](../JapaneseDate/Traits/DateBusinessCommon.md#setclosingday) _(from [DateBusinessCommon](../JapaneseDate/Traits/DateBusinessCommon.md))_ | 特定の日付を休業日として指定します。 |
-| DateBusinessCommon | [DateBusinessCommon::setOpenDay](../JapaneseDate/Traits/DateBusinessCommon.md#setopenday) _(from [DateBusinessCommon](../JapaneseDate/Traits/DateBusinessCommon.md))_ | 特定の日付を営業日として指定します。 |
-| DateBusinessCommon | [DateBusinessCommon::setClosingWeekdays](../JapaneseDate/Traits/DateBusinessCommon.md#setclosingweekdays) _(from [DateBusinessCommon](../JapaneseDate/Traits/DateBusinessCommon.md))_ | 休業曜日を一括設定します。 |
-| DateBusinessCommon | [DateBusinessCommon::setBypassHoliday](../JapaneseDate/Traits/DateBusinessCommon.md#setbypassholiday) _(from [DateBusinessCommon](../JapaneseDate/Traits/DateBusinessCommon.md))_ | 祝日を休業日として扱うかどうかを設定します。 |
-| DateBusinessCommon | [DateBusinessCommon::setOpenNthWeekday](../JapaneseDate/Traits/DateBusinessCommon.md#setopennthweekday) _(from [DateBusinessCommon](../JapaneseDate/Traits/DateBusinessCommon.md))_ | 第XX曜日を営業日として指定します。 |
-| DateBusinessCommon | [DateBusinessCommon::setClosingNthWeekday](../JapaneseDate/Traits/DateBusinessCommon.md#setclosingnthweekday) _(from [DateBusinessCommon](../JapaneseDate/Traits/DateBusinessCommon.md))_ | 第XX曜日を休業日として指定します。 |
-| DateBusinessCommon | [DateBusinessCommon::addOpenFilter](../JapaneseDate/Traits/DateBusinessCommon.md#addopenfilter) _(from [DateBusinessCommon](../JapaneseDate/Traits/DateBusinessCommon.md))_ | 営業指定フィルタを追加します。 |
-| DateBusinessCommon | [DateBusinessCommon::addClosingFilter](../JapaneseDate/Traits/DateBusinessCommon.md#addclosingfilter) _(from [DateBusinessCommon](../JapaneseDate/Traits/DateBusinessCommon.md))_ | 休業指定フィルタを追加します。 |
-| DateBusinessCommon | [DateBusinessCommon::setBusinessMacro](../JapaneseDate/Traits/DateBusinessCommon.md#setbusinessmacro) _(from [DateBusinessCommon](../JapaneseDate/Traits/DateBusinessCommon.md))_ | 判定ロジックを完全に上書きするマクロを設定します。 |
-| bool | [DateBusinessCommon::checkIsBusinessDay](../JapaneseDate/Traits/DateBusinessCommon.md#checkisbusinessday) _(from [DateBusinessCommon](../JapaneseDate/Traits/DateBusinessCommon.md))_ | 指定した日付（または自身が保持する日付）が営業日かどうかを判定します。 |
-| string\|null | [DateBusinessCommon::checkGetBusinessDayLabel](../JapaneseDate/Traits/DateBusinessCommon.md#checkgetbusinessdaylabel) _(from [DateBusinessCommon](../JapaneseDate/Traits/DateBusinessCommon.md))_ | 指定した日付（または自身が保持する日付）の休業ラベルを取得します。 |
-| DateTime | [addBusinessDaysToDate()](#addbusinessdaystodate) | 基準日から N 営業日後の {DateTime} オブジェクトを返します。 |
-| DateTime | [subBusinessDaysToDate()](#subbusinessdaystodate) | 基準日から N 営業日前の {DateTime} オブジェクトを返します。 |
-| bool | [isBusinessDay()](#isbusinessday) | 指定した日時が営業日かどうかを判定します。 |
-| DateInterval | [untilNextHoliday()](#untilnextholiday) | 基準日時から次の日本の祝日・休日（振替休日・国民の休日を含む）までの
-残り期間を {DateInterval} として返します。 |
-| DateInterval | [untilNextSixWeek()](#untilnextsixweek) | 基準日時から指定した六曜が次に到来するまでの残り期間を
-{DateInterval} として返します。 |
-| DateInterval | [eraSpan()](#eraspan) | 指定した元号が継続した期間（開始日から終了日まで）を {DateInterval} として返します。 |
-| DateInterval | [untilNextSolarTerm()](#untilnextsolarterm) | 基準日時から次に到来する二十四節気（または指定した節気）までの
-残り期間を {DateInterval} として返します。 |
-| DateTime | [addSolarTermsToDate()](#addsolartermstodate) | 基準日から N 節気後の {DateTime} を返します。 |
-| DateTime | [subSolarTermsToDate()](#subsolartermstodate) | 基準日から N 節気前の {DateTime} を返します。 |
-| float | [toSolarTermCount()](#tosolartermcount) | このインターバルの総日数を二十四節気の周期数（約15日を1単位）に換算して返します。 |
-| float | [toLunarMonthCount()](#tolunarmonthcount) | このインターバルの総日数を朔望月（新月から次の新月まで、約29.5日）の
-数に換算して返します。 |
-| DateInterval | [untilNextNewMoon()](#untilnextnewmoon) | 基準日時から次の新月（月相: MOON_PHASE_SHINGETSU）までの
-残り期間を {DateInterval} として返します。 |
-| DateTime | [addBusinessDaysTo()](#addbusinessdaysto) | 基準日から指定した営業日数後の日付を算出します。 |
-| DateTime | [subBusinessDaysFrom()](#subbusinessdaysfrom) | 基準日から指定した営業日数前の日付を算出します。 |
-| int | [countBusinessDaysBetween()](#countbusinessdaysbetween) | 2つの日付間の営業日数を計算します。 |
 
 ---
 
 ## Method Details
+
+### setBusinessConfig
+
+```php
+public DateBusinessCommon setBusinessConfig($config)
+```
+
+インスタンスに個別の営業日設定を適用します。
+
+設定後、このインスタンスのすべての営業日判定にこの設定が使用されます。
+`null` を渡すとインスタンス個別設定を解除し、グローバル/デフォルト設定に戻ります。
+
+**使用例:**
+```php
+$dt->setBusinessConfig(
+    (new DateBusiness())->setClosingWeekdays([0, 6])->setBypassHoliday(true)
+);
+```
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| [DateBusiness](../JapaneseDate/DateBusiness.md)\|null | `$config` | —  | インスタンスに適用する設定オブジェクト、または null（解除） |
+
+**Returns:** DateBusinessCommon — メソッドチェーン用に自身を返します
+---
+
+### getBusinessConfig
+
+```php
+public DateBusiness\|null getBusinessConfig()
+```
+
+インスタンスが保持している個別の営業日設定を取得します。
+
+個別設定を持っていない場合は `null` を返します。
+判定に実際に使用される設定（グローバル/デフォルト含む解決済み設定）は
+BusinessCalendar::resolveConfig() で取得できます。
+
+**Returns:** [DateBusiness](../JapaneseDate/DateBusiness.md)\|null — インスタンス個別設定、または null
+---
+
+### setClosingDay
+
+```php
+public DateBusinessCommon setClosingDay($date, $label = null)
+```
+
+特定の日付を休業日として指定します。
+
+インスタンスに個別設定がない場合は自動的に現在の有効設定を複製して設定します。
+
+**使用例:**
+```php
+$dt->setClosingDay('2026-08-15', '夏期休暇');
+```
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| string\|[DateTimeInterface](https://www.php.net/class.datetimeinterface) | `$date` | —  | 休業日として指定する日付 |
+| string\|null | `$label` | `null` | 休業理由のラベル（例: '夏期休暇'） |
+
+**Returns:** DateBusinessCommon — メソッドチェーン用に自身を返します
+**Throws:**
+
+- [Exception](https://www.php.net/class.exception)
+---
+
+### setOpenDay
+
+```php
+public DateBusinessCommon setOpenDay($date)
+```
+
+特定の日付を営業日として指定します。
+
+インスタンスに個別設定がない場合は自動的に現在の有効設定を複製して設定します。
+
+**使用例:**
+```php
+$dt->setOpenDay('2026-12-30'); // 特別営業日
+```
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| string\|[DateTimeInterface](https://www.php.net/class.datetimeinterface) | `$date` | —  | 営業日として指定する日付 |
+
+**Returns:** DateBusinessCommon — メソッドチェーン用に自身を返します
+**Throws:**
+
+- [Exception](https://www.php.net/class.exception)
+---
+
+### setClosingWeekdays
+
+```php
+public DateBusinessCommon setClosingWeekdays($weekdays)
+```
+
+休業曜日を一括設定します。
+
+インスタンスに個別設定がない場合は自動的に現在の有効設定を複製して設定します。
+
+**使用例:**
+```php
+$dt->setClosingWeekdays([0, 6]); // 日・土を休業に
+```
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| array | `$weekdays` | —  | 休業曜日の配列（例: [0, 6] で日・土） |
+
+**Returns:** DateBusinessCommon — メソッドチェーン用に自身を返します
+---
+
+### setBypassHoliday
+
+```php
+public DateBusinessCommon setBypassHoliday($bypass)
+```
+
+祝日を休業日として扱うかどうかを設定します。
+
+インスタンスに個別設定がない場合は自動的に現在の有効設定を複製して設定します。
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| bool | `$bypass` | —  | true の場合、祝日を休業日とする |
+
+**Returns:** DateBusinessCommon — メソッドチェーン用に自身を返します
+---
+
+### setOpenNthWeekday
+
+```php
+public DateBusinessCommon setOpenNthWeekday($weekday, $nth)
+```
+
+第XX曜日を営業日として指定します。
+
+インスタンスに個別設定がない場合は自動的に現在の有効設定を複製して設定します。
+
+**使用例:**
+```php
+$dt->setOpenNthWeekday(6, 2); // 第2土曜日は営業
+```
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| int | `$weekday` | —  | 曜日（0=日曜〜6=土曜） |
+| int | `$nth` | —  | 第何曜日か（1〜5） |
+
+**Returns:** DateBusinessCommon — メソッドチェーン用に自身を返します
+---
+
+### setClosingNthWeekday
+
+```php
+public DateBusinessCommon setClosingNthWeekday($weekday, $nth, $label = null)
+```
+
+第XX曜日を休業日として指定します。
+
+インスタンスに個別設定がない場合は自動的に現在の有効設定を複製して設定します。
+
+**使用例:**
+```php
+$dt->setClosingNthWeekday(3, 3, '定休日'); // 第3水曜日は休業
+```
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| int | `$weekday` | —  | 曜日（0=日曜〜6=土曜） |
+| int | `$nth` | —  | 第何曜日か（1〜5） |
+| string\|null | `$label` | `null` | 休業ラベル |
+
+**Returns:** DateBusinessCommon — メソッドチェーン用に自身を返します
+---
+
+### addOpenFilter
+
+```php
+public DateBusinessCommon addOpenFilter($filter)
+```
+
+営業指定フィルタを追加します。
+
+フィルタが `true` を返した場合にその日を営業日として扱います。
+インスタンスに個別設定がない場合は自動的に現在の有効設定を複製して設定します。
+
+**使用例:**
+```php
+$dt->addOpenFilter(fn(\DateTimeInterface $d) => $d->format('d') === '10');
+```
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| callable | `$filter` | —  | `fn(\DateTimeInterface $date): bool` 形式のコールバック |
+
+**Returns:** DateBusinessCommon — メソッドチェーン用に自身を返します
+---
+
+### addClosingFilter
+
+```php
+public DateBusinessCommon addClosingFilter($filter, $label = null)
+```
+
+休業指定フィルタを追加します。
+
+フィルタが `true` を返した場合にその日を休業日として扱います。
+インスタンスに個別設定がない場合は自動的に現在の有効設定を複製して設定します。
+
+**使用例:**
+```php
+$dt->addClosingFilter(
+    fn(\DateTimeInterface $d) => $d->format('md') === '1231',
+    '大晦日休業'
+);
+```
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| callable | `$filter` | —  | `fn(\DateTimeInterface $date): bool` 形式のコールバック |
+| string\|null | `$label` | `null` | 休業理由のラベル |
+
+**Returns:** DateBusinessCommon — メソッドチェーン用に自身を返します
+---
+
+### setBusinessMacro
+
+```php
+public DateBusinessCommon setBusinessMacro($macro)
+```
+
+判定ロジックを完全に上書きするマクロを設定します。
+
+マクロは他のすべての設定より優先されます。
+`null` を渡すとマクロを解除します。
+インスタンスに個別設定がない場合は自動的に現在の有効設定を複製して設定します。
+
+**使用例:**
+```php
+$dt->setBusinessMacro(fn(\DateTimeInterface $d) => in_array((int)$d->format('N'), [1,2,3,4]));
+```
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| callable\|null | `$macro` | —  | `fn(\DateTimeInterface $date): bool` 形式のコールバック、または null |
+
+**Returns:** DateBusinessCommon — メソッドチェーン用に自身を返します
+---
+
+### checkIsBusinessDay
+
+```php
+public bool checkIsBusinessDay($date = null)
+```
+
+指定した日付（または自身が保持する日付）が営業日かどうかを判定します。
+
+このメソッドはTraitを適用したクラスが `DateTimeInterface` を実装している場合に
+自身の日付を使って判定します。`$date` を省略した場合は自身を対象とします。
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| [DateTimeInterface](https://www.php.net/class.datetimeinterface)\|null | `$date` | `null` | 判定する日付（省略時は自身） |
+
+**Returns:** bool — 営業日であれば true
+---
+
+### checkGetBusinessDayLabel
+
+```php
+public string\|null checkGetBusinessDayLabel($date = null)
+```
+
+指定した日付（または自身が保持する日付）の休業ラベルを取得します。
+
+営業日の場合は `null` を返します。
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| [DateTimeInterface](https://www.php.net/class.datetimeinterface)\|null | `$date` | `null` | 判定する日付（省略時は自身） |
+
+**Returns:** string\|null — 休業ラベル、または null
+---
 
 ### addBusinessDaysToDate
 
@@ -771,5 +1066,8 @@ public int countBusinessDaysBetween($start, $end, $config = null)
 | [DateBusiness](../JapaneseDate/DateBusiness.md)\|null | `$config` | `null` | 判定に使用する設定（省略時はインスタンス設定） |
 
 **Returns:** int — 営業日数（start以上end以下の営業日の数）
+**Throws:**
+
+- [NativeDateTimeException](../JapaneseDate/Exceptions/NativeDateTimeException.md)
 ---
 

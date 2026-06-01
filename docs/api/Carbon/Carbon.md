@@ -498,9 +498,7 @@ A simple API extension for DateTime.
 | string | [shortRelativeToOtherDiffForHumans()](#shortrelativetootherdiffforhumans) |  |
 | string | [longRelativeToOtherDiffForHumans()](#longrelativetootherdiffforhumans) |  |
 | static|false | [createFromFormat()](#createfromformat) | Parse a string into a new Carbon object according to the specified format. |
-| static | [__set_state()](#__set_state) | https://php.net/manual/en/datetime.set-state.php
-
-</autodoc> |
+| static | [__set_state()](#__set_state) | https://php.net/manual/en/datetime.set-state.php |
 
 ---
 

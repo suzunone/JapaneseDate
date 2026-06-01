@@ -36,7 +36,7 @@ $close_tag = '?>';
 ?>
 はじめに
 =====================================
-__JapaneseDate\DateTime__ クラスは、[Carbon](https://carbon.nesbot.com/docs/)継承しており、
+__JapaneseDate\DateTime__ クラスは、[Carbon](https://carbon.nesbot.com/)継承しており、
 CarbonはPHP [DateTime](http://php.net/manual/ja/class.datetime.php)クラスを継承しています。
 
 ```DateTime.php
@@ -66,7 +66,7 @@ class Carbon extends \DateTime
 このドキュメントから漏れている機能であっても……です。
 
 そのため、__JapaneseDate\DateTime__ のすべての機能を使用するには、
-[Carbonのドキュメント](https://carbon.nesbot.com/docs/)と、
+[Carbonのドキュメント](https://carbon.nesbot.com/)と、
 [DateTimeのドキュメント](http://php.net/manual/ja/class.datetime.php)
 も参照してください。
 
@@ -256,19 +256,49 @@ echo JapaneseDateTime::factory('first day of December 2018')->addWeeks(2);
 ?>
 
 
-// 一見数字文字列であっても、JapaneseDateTime::parse でパースできる場合は、同様の結果を返すことに注意してください。
-echo JapaneseDateTime::parse('100');    // <?php
-try {
-    echo JapaneseDateTime::parse('100');
-} catch (Exception $exception) {
-    echo 'Throw ',get_class($exception), ' '.$exception->getMessage();
-}
+// 和暦・JIS元号形式の文字列も直接渡せます（Asia/Tokyo 基準）
+
+// 元号漢字表記（明治・大正・昭和・平成・令和）
+echo JapaneseDateTime::factory('令和7年5月1日');    // <?php
+echo JapaneseDateTime::factory('令和7年5月1日');
 ?>
 
+echo JapaneseDateTime::factory('令和7年5月1日 12時34分56秒');    // <?php
+echo JapaneseDateTime::factory('令和7年5月1日 12時34分56秒');
+?>
+
+echo JapaneseDateTime::factory('昭和64年1月7日');    // <?php
+echo JapaneseDateTime::factory('昭和64年1月7日');
+?>
+
+// 西暦日本語表記
+echo JapaneseDateTime::factory('2026年5月1日 12時34分');    // <?php
+echo JapaneseDateTime::factory('2026年5月1日 12時34分');
+?>
+
+// JIS元号アルファベット表記（M=明治 / T=大正 / S=昭和 / H=平成 / R=令和）
+echo JapaneseDateTime::factory('R7-05-01');    // <?php
+echo JapaneseDateTime::factory('R7-05-01');
+?>
+
+echo JapaneseDateTime::factory('H1/01/08');    // <?php
+echo JapaneseDateTime::factory('H1/01/08');
+?>
+
+
+// 数字のみの文字列の扱いに注意してください。
+// 8桁（YYYYMMDD）は strtotime() でパースします。
+echo JapaneseDateTime::factory('20180404');    // <?php
+echo JapaneseDateTime::factory('20180404');
+?>
+
+// 9〜11桁はUNIXタイムスタンプとして int にキャストして処理します（strtotime() は対応しないため）。
+// 変換はデフォルトタイムゾーンで行われます。
 echo JapaneseDateTime::factory('100');    // <?php
 echo JapaneseDateTime::factory('100');
 ?>
 
+// 12桁以上の数字文字列はそのまま Carbon のコンストラクタに委譲します（YmdHis 形式など）。
 echo JapaneseDateTime::parse('20180404050505');    // <?php
 echo JapaneseDateTime::parse('20180404050505');
 ?>
@@ -277,7 +307,8 @@ echo JapaneseDateTime::factory('20180404050505');    // <?php
 echo JapaneseDateTime::factory('20180404050505');
 ?>
 
-// 上記の結果が意図したものでない場合は、必ずint型で渡してください
+// タイムスタンプを int 型で渡す場合は必ず int にキャストしてください。
+// 大きな数値をそのまま int リテラルで書くと精度が失われます。
 echo JapaneseDateTime::factory(20180404050505);    // <?php
 echo JapaneseDateTime::factory(20180404050505);
 ?>
@@ -286,10 +317,10 @@ echo JapaneseDateTime::factory(20180404050505);
 ```
 
 
-その他、[Carbon](https://carbon.nesbot.com/docs/#api-instantiation)で使用することができる、
+その他、[Carbon](https://carbon.nesbot.com/#api-instantiation)で使用することができる、
 インスタンス化メソッドは全て使用できます。
 
-[Carbon ドキュメント](https://carbon.nesbot.com/docs/#api-instantiation)内の、`Carbon::`はすべて、`JapaneseDate\DateTime::`に置き換えてください。
+[Carbon ドキュメント](https://carbon.nesbot.com/#api-instantiation)内の、`Carbon::`はすべて、`JapaneseDate\DateTime::`に置き換えてください。
 
 以下に、`today()`、`tomorrow()`、`yesterday()`の例を示します。
 
@@ -403,11 +434,11 @@ var_export(JapaneseDateTime::parse('2018-04-01 12:23:45.6789')->solarTermText);
 
 <?php
 foreach ([
-             JapaneseDateTime::ERA_MEIJI  => '明治',
+             JapaneseDateTime::ERA_MEIJI => '明治',
              JapaneseDateTime::ERA_TAISHO => '大正',
-             JapaneseDateTime::ERA_SHOWA  => '昭和',
+             JapaneseDateTime::ERA_SHOWA => '昭和',
              JapaneseDateTime::ERA_HEISEI => '平成',
-             JapaneseDateTime::ERA_REIWA  => '令和',
+             JapaneseDateTime::ERA_REIWA => '令和',
          ] as $key => $item) {
     echo "// {$key} => $item\n";
 }
@@ -426,7 +457,7 @@ var_export($dt->eraYear);
 ?>
 
 
-// 干支
+// 十二支（干支）
 
 <?php
 foreach (JapaneseDate\Components\JapaneseDate::ORIENTAL_ZODIAC as $key => $item) {
@@ -439,6 +470,29 @@ var_export($dt->orientalZodiac);
 
 var_export($dt->orientalZodiacText);                         // <?php
 var_export($dt->orientalZodiacText);
+?>
+
+
+// 十干
+
+<?php
+foreach (JapaneseDate\Components\SexagenaryCycle::HEAVENLY_STEMS as $key => $item) {
+    echo "// {$key} => $item\n";
+}
+?>
+var_export($dt->heavenlyStem);                               // <?php
+var_export($dt->heavenlyStem);
+?>
+
+var_export($dt->heavenlyStemText);                           // <?php
+var_export($dt->heavenlyStemText);
+?>
+
+
+// 六十干支（十干 + 十二支の組み合わせ）
+// 十干テキスト + 十二支テキスト で表現します
+var_export($dt->heavenlyStemText . $dt->orientalZodiacText); // <?php
+var_export($dt->heavenlyStemText . $dt->orientalZodiacText);
 ?>
 
 
@@ -472,31 +526,31 @@ var_export($dt->monthText);
 
 <?php
 foreach ([
-             JapaneseDateTime::NO_HOLIDAY                      => '非祝日(holidayTextでは空文字列が返ります)',
-             JapaneseDateTime::NEW_YEAR_S_DAY                  => '元旦',
-             JapaneseDateTime::COMING_OF_AGE_DAY               => '成人の日',
-             JapaneseDateTime::NATIONAL_FOUNDATION_DAY         => '建国記念の日',
-             JapaneseDateTime::THE_SHOWA_EMPEROR_DIED          => '昭和天皇の大喪の礼',
-             JapaneseDateTime::VERNAL_EQUINOX_DAY              => '春分の日',
-             JapaneseDateTime::DAY_OF_SHOWA                    => '昭和の日',
-             JapaneseDateTime::GREENERY_DAY                    => 'みどりの日',
-             JapaneseDateTime::THE_EMPEROR_S_BIRTHDAY          => '天皇誕生日',
-             JapaneseDateTime::CROWN_PRINCE_HIROHITO_WEDDING   => '皇太子明仁親王の結婚の儀',
-             JapaneseDateTime::CONSTITUTION_DAY                => '憲法記念日',
-             JapaneseDateTime::NATIONAL_HOLIDAY                => '国民の休日',
-             JapaneseDateTime::CHILDREN_S_DAY                  => 'こどもの日',
-             JapaneseDateTime::COMPENSATING_HOLIDAY            => '振替休日',
-             JapaneseDateTime::CROWN_PRINCE_NARUHITO_WEDDING   => '皇太子徳仁親王の結婚の儀',
-             JapaneseDateTime::MARINE_DAY                      => '海の日',
-             JapaneseDateTime::AUTUMNAL_EQUINOX_DAY            => '秋分の日',
+             JapaneseDateTime::NO_HOLIDAY => '非祝日(holidayTextでは空文字列が返ります)',
+             JapaneseDateTime::NEW_YEAR_S_DAY => '元旦',
+             JapaneseDateTime::COMING_OF_AGE_DAY => '成人の日',
+             JapaneseDateTime::NATIONAL_FOUNDATION_DAY => '建国記念の日',
+             JapaneseDateTime::THE_SHOWA_EMPEROR_DIED => '昭和天皇の大喪の礼',
+             JapaneseDateTime::VERNAL_EQUINOX_DAY => '春分の日',
+             JapaneseDateTime::DAY_OF_SHOWA => '昭和の日',
+             JapaneseDateTime::GREENERY_DAY => 'みどりの日',
+             JapaneseDateTime::THE_EMPEROR_S_BIRTHDAY => '天皇誕生日',
+             JapaneseDateTime::CROWN_PRINCE_HIROHITO_WEDDING => '皇太子明仁親王の結婚の儀',
+             JapaneseDateTime::CONSTITUTION_DAY => '憲法記念日',
+             JapaneseDateTime::NATIONAL_HOLIDAY => '国民の休日',
+             JapaneseDateTime::CHILDREN_S_DAY => 'こどもの日',
+             JapaneseDateTime::COMPENSATING_HOLIDAY => '振替休日',
+             JapaneseDateTime::CROWN_PRINCE_NARUHITO_WEDDING => '皇太子徳仁親王の結婚の儀',
+             JapaneseDateTime::MARINE_DAY => '海の日',
+             JapaneseDateTime::AUTUMNAL_EQUINOX_DAY => '秋分の日',
              JapaneseDateTime::RESPECT_FOR_SENIOR_CITIZENS_DAY => '敬老の日',
-             JapaneseDateTime::LEGACY_SPORTS_DAY               => '体育の日',
-             JapaneseDateTime::SPORTS_DAY                      => 'スポーツの日',
-             JapaneseDateTime::CULTURE_DAY                     => '文化の日',
-             JapaneseDateTime::LABOR_THANKSGIVING_DAY          => '勤労感謝の日',
-             JapaneseDateTime::REGNAL_DAY                      => '即位礼正殿の儀',
-             JapaneseDateTime::MOUNTAIN_DAY                    => '山の日',
-             JapaneseDateTime::EMPERORS_THRONE_DAY             => '天皇の即位の日',
+             JapaneseDateTime::LEGACY_SPORTS_DAY => '体育の日',
+             JapaneseDateTime::SPORTS_DAY => 'スポーツの日',
+             JapaneseDateTime::CULTURE_DAY => '文化の日',
+             JapaneseDateTime::LABOR_THANKSGIVING_DAY => '勤労感謝の日',
+             JapaneseDateTime::REGNAL_DAY => '即位礼正殿の儀',
+             JapaneseDateTime::MOUNTAIN_DAY => '山の日',
+             JapaneseDateTime::EMPERORS_THRONE_DAY => '天皇の即位の日',
          ] as $key => $item) {
     echo "// {$key} => $item\n";
 }
@@ -516,6 +570,247 @@ var_export(JapaneseDateTime::parse('2018-04-01 12:23:45.6789')->holiday);
 
 var_export(JapaneseDateTime::parse('2018-04-01 12:23:45.6789')->holidayText);                              // <?php
 var_export(JapaneseDateTime::parse('2018-04-01 12:23:45.6789')->holidayText);
+?>
+
+
+// 五節句（西暦）
+
+<?php
+foreach ([
+             JapaneseDateTime::SEASONAL_FESTIVAL_NONE => '非節句（空文字列が返ります）',
+             JapaneseDateTime::SEASONAL_FESTIVAL_JINJITSU => '人日の節句（七草の節句）',
+             JapaneseDateTime::SEASONAL_FESTIVAL_JOSHI => '上巳の節句（桃の節句）',
+             JapaneseDateTime::SEASONAL_FESTIVAL_TANGO => '端午の節句（菖蒲の節句）',
+             JapaneseDateTime::SEASONAL_FESTIVAL_TANABATA => '七夕の節句（笹の節句）',
+             JapaneseDateTime::SEASONAL_FESTIVAL_CHOYO => '重陽の節句（菊の節句）',
+         ] as $key => $item) {
+    echo "// {$key} => $item\n";
+}
+?>
+var_export($dt->solarSeasonalFestival);                       // <?php
+var_export($dt->solarSeasonalFestival);
+?>
+
+var_export($dt->solarSeasonalFestivalName);                   // <?php
+var_export($dt->solarSeasonalFestivalName);
+?>
+
+var_export($dt->solarSeasonalFestivalAlias);                  // <?php
+var_export($dt->solarSeasonalFestivalAlias);
+?>
+
+var_export(JapaneseDateTime::parse('2026-07-07')->solarSeasonalFestival);     // <?php
+var_export(JapaneseDateTime::parse('2026-07-07')->solarSeasonalFestival);
+?>
+
+var_export(JapaneseDateTime::parse('2026-07-07')->solarSeasonalFestivalName); // <?php
+var_export(JapaneseDateTime::parse('2026-07-07')->solarSeasonalFestivalName);
+?>
+
+var_export(JapaneseDateTime::parse('2026-07-07')->solarSeasonalFestivalAlias); // <?php
+var_export(JapaneseDateTime::parse('2026-07-07')->solarSeasonalFestivalAlias);
+?>
+
+
+// 五節句（旧暦）
+var_export($dt->lunarSeasonalFestival);                       // <?php
+var_export($dt->lunarSeasonalFestival);
+?>
+
+var_export($dt->lunarSeasonalFestivalName);                   // <?php
+var_export($dt->lunarSeasonalFestivalName);
+?>
+
+var_export($dt->lunarSeasonalFestivalAlias);                  // <?php
+var_export($dt->lunarSeasonalFestivalAlias);
+?>
+
+
+// 雑節
+
+<?php
+foreach ([
+             JapaneseDateTime::MISC_SEASONAL_NODE_NONE => '非雑節（空文字列が返ります）',
+             JapaneseDateTime::MISC_SEASONAL_NODE_SETSUBUN => '節分',
+             JapaneseDateTime::MISC_SEASONAL_NODE_HIGAN => '彼岸',
+             JapaneseDateTime::MISC_SEASONAL_NODE_SHANICHI => '社日',
+             JapaneseDateTime::MISC_SEASONAL_NODE_HACHIJUHACHIYA => '八十八夜',
+             JapaneseDateTime::MISC_SEASONAL_NODE_NYUBAI => '入梅',
+             JapaneseDateTime::MISC_SEASONAL_NODE_HANGESHO => '半夏生',
+             JapaneseDateTime::MISC_SEASONAL_NODE_DOYO => '土用',
+             JapaneseDateTime::MISC_SEASONAL_NODE_NIHYAKUTOKA => '二百十日',
+             JapaneseDateTime::MISC_SEASONAL_NODE_NIHYAKUNIJUUNICHI => '二百二十日',
+         ] as $key => $item) {
+    echo "// {$key} => $item\n";
+}
+?>
+var_export($dt->miscSeasonalNode);                            // <?php
+var_export($dt->miscSeasonalNode);
+?>
+
+var_export($dt->miscSeasonalNodeText);                        // <?php
+var_export($dt->miscSeasonalNodeText);
+?>
+
+var_export(JapaneseDateTime::parse('2026-02-03')->miscSeasonalNode);     // <?php
+var_export(JapaneseDateTime::parse('2026-02-03')->miscSeasonalNode);
+?>
+
+var_export(JapaneseDateTime::parse('2026-02-03')->miscSeasonalNodeText); // <?php
+var_export(JapaneseDateTime::parse('2026-02-03')->miscSeasonalNodeText);
+?>
+
+
+// 七十二候
+
+<?php
+// 2025-02-04（立春）を例に七十二候の各プロパティを出力
+$kouDate = JapaneseDateTime::parse('2025-02-04');
+?>
+// 候番号（1〜72）
+var_export($kouDate->seventyTwoKou);                          // <?php
+var_export($kouDate->seventyTwoKou);
+?>
+
+// 現代七十二候名称
+var_export($kouDate->seventyTwoKouText);                      // <?php
+var_export($kouDate->seventyTwoKouText);
+?>
+
+// 読み
+var_export($kouDate->seventyTwoKouReading);                   // <?php
+var_export($kouDate->seventyTwoKouReading);
+?>
+
+// 候種別（初候 / 次候 / 末候）
+var_export($kouDate->seventyTwoKouType);                      // <?php
+var_export($kouDate->seventyTwoKouType);
+?>
+
+<?php
+// 2025年の七十二候を節気ごとに表示（立春〜大寒末候の代表日）
+$sampleDates = [
+    '2025-02-04' => '立春初候',
+    '2025-06-21' => '夏至初候',
+    '2025-09-23' => '秋分初候',
+    '2025-12-22' => '冬至初候',
+    '2026-01-06' => '小寒初候',
+    '2026-01-20' => '大寒初候',
+];
+foreach ($sampleDates as $dateStr => $label) {
+    $d = JapaneseDateTime::parse($dateStr);
+    echo sprintf(
+        "%s [%s]: 候%d %s (%s) / %s\n",
+        $dateStr,
+        $label,
+        $d->seventyTwoKou,
+        $d->seventyTwoKouText,
+        $d->seventyTwoKouType,
+        $d->seventyTwoKouReading
+    );
+}
+?>
+
+// 次の七十二候へ移動（nextSeventyTwoKou）
+// 2025-02-04（立春初候） → 次候の開始日へ
+$nextKou = JapaneseDateTime::parse('2025-02-04')->nextSeventyTwoKou();    // <?php
+$nextKou = (clone JapaneseDateTime::parse('2025-02-04'))->nextSeventyTwoKou();
+echo $nextKou->format('Y-m-d') . ' 候' . $nextKou->seventyTwoKou . ' ' . $nextKou->seventyTwoKouText;
+?>
+
+// 前の七十二候へ移動（previousSeventyTwoKou）
+// 2025-02-04（立春初候） → 前の大寒末候の開始日へ
+$prevKou = JapaneseDateTime::parse('2025-02-04')->previousSeventyTwoKou(); // <?php
+$prevKou = (clone JapaneseDateTime::parse('2025-02-04'))->previousSeventyTwoKou();
+echo $prevKou->format('Y-m-d') . ' 候' . $prevKou->seventyTwoKou . ' ' . $prevKou->seventyTwoKouText;
+?>
+
+<?php
+// 七十二候定数の一覧
+$kouConstants = [
+    JapaneseDateTime::SEVENTY_TWO_KOU_RISSHUN_SHOKOU => '立春初候',
+    JapaneseDateTime::SEVENTY_TWO_KOU_RISSHUN_JIKOU => '立春次候',
+    JapaneseDateTime::SEVENTY_TWO_KOU_RISSHUN_MAKKOU => '立春末候',
+    JapaneseDateTime::SEVENTY_TWO_KOU_TOUJI_SHOKOU => '冬至初候',
+    JapaneseDateTime::SEVENTY_TWO_KOU_DAIKAN_MAKKOU => '大寒末候',
+];
+foreach ($kouConstants as $constVal => $constLabel) {
+    echo "// {$constLabel}: {$constVal}\n";
+}
+?>
+
+
+// 歴史的元号（大化以降・JIS規格外）
+
+<?php
+// 大化（645年）の例
+$ancientDate = JapaneseDateTime::parse('645-08-01T00:00:00+09:00');
+?>
+// historicalEras は Era[] を返す（大化以前など元号がない場合は空配列）
+var_export($ancientDate->historicalEras);                     // <?php
+$ancientDate = JapaneseDateTime::parse('645-08-01T00:00:00+09:00');
+$eras = $ancientDate->historicalEras;
+echo "[\n";
+foreach ($eras as $era) {
+    echo sprintf("  Era{ name=%s, kana=%s, court=%s }\n", $era->name, $era->kana, $era->court);
+}
+echo "]\n";
+?>
+
+// スネークケース（historical_eras）でも同様に取得できる
+var_export($ancientDate->historical_eras);                    // <?php
+$ancientDate2 = JapaneseDateTime::parse('645-08-01T00:00:00+09:00');
+$eras2 = $ancientDate2->historical_eras;
+echo "[\n";
+foreach ($eras2 as $era) {
+    echo sprintf("  Era{ name=%s, kana=%s, court=%s }\n", $era->name, $era->kana, $era->court);
+}
+echo "]\n";
+?>
+
+// 南北朝時代（1360年）では北朝・南朝の両方の Era が返る
+var_export(JapaneseDateTime::parse('1360-06-01T00:00:00+09:00')->historicalEras); // <?php
+$nanbokuDate = JapaneseDateTime::parse('1360-06-01T00:00:00+09:00');
+$nanbokuEras = $nanbokuDate->historicalEras;
+echo "[\n";
+foreach ($nanbokuEras as $era) {
+    echo sprintf("  Era{ name=%s, kana=%s, court=%s }\n", $era->name, $era->kana, $era->court);
+}
+echo "]\n";
+?>
+
+// 大化以前（600年）では空配列が返る
+var_export(JapaneseDateTime::parse('600-01-01T00:00:00+09:00')->historicalEras); // <?php
+var_export(JapaneseDateTime::parse('600-01-01T00:00:00+09:00')->historicalEras);
+?>
+
+// Era バリューオブジェクトのプロパティ
+// name        : 元号名（漢字）
+// kana        : 元号読み（カタカナ）
+// court       : 朝廷区分（'Main' / 'North' / 'South'）
+// startDate   : 元号開始日（DateTime または DateTimeImmutable）
+// endDate     : 元号終了日（DateTime または DateTimeImmutable）
+<?php
+$eraObj = JapaneseDateTime::parse('645-08-01T00:00:00+09:00')->historicalEras[0];
+?>
+var_export($eraObj->name);          // <?php
+var_export($eraObj->name);
+?>
+
+var_export($eraObj->kana);          // <?php
+var_export($eraObj->kana);
+?>
+
+var_export($eraObj->court);         // <?php
+var_export($eraObj->court);
+?>
+
+echo $eraObj->startDate->format('Y-m-d');  // <?php
+echo $eraObj->startDate->format('Y-m-d');
+?>
+
+echo $eraObj->endDate->format('Y-m-d');    // <?php
+echo $eraObj->endDate->format('Y-m-d');
 ?>
 
 
@@ -667,6 +962,151 @@ echo JapaneseDateTime::now()->tzName;
 ```
 
 
+五節句
+=================================================
+
+五節句とは、年間の5つの節句（人日・上巳・端午・七夕・重陽）のことです。
+
+`solarSeasonalFestival` / `solarSeasonalFestivalName` / `solarSeasonalFestivalAlias` は西暦の月日から判定し、
+`lunarSeasonalFestival` / `lunarSeasonalFestivalName` / `lunarSeasonalFestivalAlias` は旧暦の月日から判定します。
+
+| 定数 | 値 | 式名 | 別名 | 月日（西暦） |
+|---|---|---|---|---|
+| `SEASONAL_FESTIVAL_NONE` | 0 | （空文字列） | （空文字列） | — |
+| `SEASONAL_FESTIVAL_JINJITSU` | 1 | 人日の節句 | 七草の節句 | 1月7日 |
+| `SEASONAL_FESTIVAL_JOSHI` | 2 | 上巳の節句 | 桃の節句 | 3月3日 |
+| `SEASONAL_FESTIVAL_TANGO` | 3 | 端午の節句 | 菖蒲の節句 | 5月5日 |
+| `SEASONAL_FESTIVAL_TANABATA` | 4 | 七夕の節句 | 笹の節句 | 7月7日 |
+| `SEASONAL_FESTIVAL_CHOYO` | 5 | 重陽の節句 | 菊の節句 | 9月9日 |
+
+``` .php
+$dt = JapaneseDateTime::parse('2026-07-07');
+
+var_export($dt->solarSeasonalFestival);      // <?php
+var_export(JapaneseDateTime::parse('2026-07-07')->solarSeasonalFestival);
+?>
+
+var_export($dt->solarSeasonalFestivalName);  // <?php
+var_export(JapaneseDateTime::parse('2026-07-07')->solarSeasonalFestivalName);
+?>
+
+var_export($dt->solarSeasonalFestivalAlias); // <?php
+var_export(JapaneseDateTime::parse('2026-07-07')->solarSeasonalFestivalAlias);
+?>
+
+```
+
+
+十二支・十干・六十干支
+=================================================
+
+**十二支**（じゅうにし）は「子・丑・寅・卯・辰・巳・午・未・申・酉・戌・亥」の12年サイクルです。
+
+**十干**（じっかん）は「甲・乙・丙・丁・戊・己・庚・辛・壬・癸」の10年サイクルです。
+
+**六十干支**（ろくじっかんし）は十干と十二支の最小公倍数である60年周期の組み合わせで、
+`heavenlyStemText` と `orientalZodiacText` を連結することで表現できます（例：「甲子」「丙午」）。
+
+| 定数（十二支） | 値 | 表記 |
+|---|---|---|
+| `ORIENTAL_ZODIAC_I` | 0 | 亥 |
+| `ORIENTAL_ZODIAC_NE` | 1 | 子 |
+| `ORIENTAL_ZODIAC_USHI` | 2 | 丑 |
+| `ORIENTAL_ZODIAC_TORA` | 3 | 寅 |
+| `ORIENTAL_ZODIAC_U` | 4 | 卯 |
+| `ORIENTAL_ZODIAC_TATSU` | 5 | 辰 |
+| `ORIENTAL_ZODIAC_MI` | 6 | 巳 |
+| `ORIENTAL_ZODIAC_UMA` | 7 | 午 |
+| `ORIENTAL_ZODIAC_HITSUJI` | 8 | 未 |
+| `ORIENTAL_ZODIAC_SARU` | 9 | 申 |
+| `ORIENTAL_ZODIAC_TORI` | 10 | 酉 |
+| `ORIENTAL_ZODIAC_INU` | 11 | 戌 |
+
+| 定数（十干） | 値 | 表記 |
+|---|---|---|
+| `HEAVENLY_STEM_KINOE` | 0 | 甲（きのえ） |
+| `HEAVENLY_STEM_KINOTO` | 1 | 乙（きのと） |
+| `HEAVENLY_STEM_HINOE` | 2 | 丙（ひのえ） |
+| `HEAVENLY_STEM_HINOTO` | 3 | 丁（ひのと） |
+| `HEAVENLY_STEM_TSUCHINOE` | 4 | 戊（つちのえ） |
+| `HEAVENLY_STEM_TSUCHINOTO` | 5 | 己（つちのと） |
+| `HEAVENLY_STEM_KANOE` | 6 | 庚（かのえ） |
+| `HEAVENLY_STEM_KANOTO` | 7 | 辛（かのと） |
+| `HEAVENLY_STEM_MIZUNOE` | 8 | 壬（みずのえ） |
+| `HEAVENLY_STEM_MIZUNOTO` | 9 | 癸（みずのと） |
+
+``` .php
+$dt = JapaneseDateTime::parse('2026-05-29');
+
+// 十二支
+var_export($dt->orientalZodiac);     // <?php
+var_export(JapaneseDateTime::parse('2026-05-29')->orientalZodiac);
+?>
+
+var_export($dt->orientalZodiacText); // <?php
+var_export(JapaneseDateTime::parse('2026-05-29')->orientalZodiacText);
+?>
+
+
+// 十干
+var_export($dt->heavenlyStem);       // <?php
+var_export(JapaneseDateTime::parse('2026-05-29')->heavenlyStem);
+?>
+
+var_export($dt->heavenlyStemText);   // <?php
+var_export(JapaneseDateTime::parse('2026-05-29')->heavenlyStemText);
+?>
+
+
+// 六十干支（十干 + 十二支）
+var_export($dt->heavenlyStemText . $dt->orientalZodiacText); // <?php
+var_export(JapaneseDateTime::parse('2026-05-29')->heavenlyStemText . JapaneseDateTime::parse('2026-05-29')->orientalZodiacText);
+?>
+
+```
+
+
+雑節
+=================================================
+
+雑節（ざっせつ）とは、節分・彼岸・社日・八十八夜・入梅・半夏生・土用・二百十日・二百二十日などの
+季節の節目を指します。
+
+| 定数 | 値 | 名称 |
+|---|---|---|
+| `MISC_SEASONAL_NODE_NONE` | 0 | （非雑節、空文字列が返ります） |
+| `MISC_SEASONAL_NODE_SETSUBUN` | 1 | 節分 |
+| `MISC_SEASONAL_NODE_HIGAN` | 2 | 彼岸 |
+| `MISC_SEASONAL_NODE_SHANICHI` | 3 | 社日 |
+| `MISC_SEASONAL_NODE_HACHIJUHACHIYA` | 4 | 八十八夜 |
+| `MISC_SEASONAL_NODE_NYUBAI` | 5 | 入梅 |
+| `MISC_SEASONAL_NODE_HANGESHO` | 6 | 半夏生 |
+| `MISC_SEASONAL_NODE_DOYO` | 7 | 土用 |
+| `MISC_SEASONAL_NODE_NIHYAKUTOKA` | 8 | 二百十日 |
+| `MISC_SEASONAL_NODE_NIHYAKUNIJUUNICHI` | 9 | 二百二十日 |
+
+``` .php
+$dt = JapaneseDateTime::parse('2026-02-03');
+
+var_export($dt->miscSeasonalNode);     // <?php
+var_export(JapaneseDateTime::parse('2026-02-03')->miscSeasonalNode);
+?>
+
+var_export($dt->miscSeasonalNodeText); // <?php
+var_export(JapaneseDateTime::parse('2026-02-03')->miscSeasonalNodeText);
+?>
+
+var_export(JapaneseDateTime::parse('2026-05-02')->miscSeasonalNode);     // <?php
+var_export(JapaneseDateTime::parse('2026-05-02')->miscSeasonalNode);
+?>
+
+var_export(JapaneseDateTime::parse('2026-05-02')->miscSeasonalNodeText); // <?php
+var_export(JapaneseDateTime::parse('2026-05-02')->miscSeasonalNodeText);
+?>
+
+```
+
+
 二十四節気の検索メソッド
 =================================================
 
@@ -723,10 +1163,135 @@ echo $dt->nextSixWeek(JapaneseDateTime::SIX_WEEKDAY_TAIAN);
 ```
 
 
+DateTime 営業日機能
+=================================================
+
+`JapaneseDate\DateTime` には、インスタンスに対して直接営業日を操作するメソッドが用意されています。
+
+デフォルト設定では土日・祝日が休業日として扱われます。
+
+``` .php
+use JapaneseDate\DateTime as JapaneseDateTime;
+
+$dt = JapaneseDateTime::parse('2026-05-29'); // 金曜日
+
+// 営業日かどうかを判定する
+var_export($dt->isBusinessDay());             // <?php
+var_export(JapaneseDateTime::parse('2026-05-29')->isBusinessDay());
+?>
+
+
+var_export(JapaneseDateTime::parse('2026-05-30')->isBusinessDay());   // 土曜日 // <?php
+var_export(JapaneseDateTime::parse('2026-05-30')->isBusinessDay());
+?>
+
+
+// 休業日のラベルを取得する（setClosingDay で設定したラベルを返す。土日・祝日は null）
+$dt2 = JapaneseDateTime::parse('2026-05-29');
+$dt2->setClosingDay('2026-05-29', '創立記念日');
+var_export($dt2->getBusinessDayLabel());    // <?php
+$dt2 = JapaneseDateTime::parse('2026-05-29');
+$dt2->setClosingDay('2026-05-29', '創立記念日');
+var_export($dt2->getBusinessDayLabel());
+?>
+
+
+// 次の営業日を取得する
+echo $dt->nextBusinessDay()->format('Y-m-d'); // <?php
+echo JapaneseDateTime::parse('2026-05-29')->nextBusinessDay()->format('Y-m-d');
+?>
+
+
+// 前の営業日を取得する
+echo $dt->previousBusinessDay()->format('Y-m-d'); // <?php
+echo JapaneseDateTime::parse('2026-05-29')->previousBusinessDay()->format('Y-m-d');
+?>
+
+
+// 休業日の場合は翌営業日にシフト、営業日ならそのまま返す
+echo JapaneseDateTime::parse('2026-05-30')->shiftToClosestBusinessDayAfter()->format('Y-m-d'); // <?php
+echo JapaneseDateTime::parse('2026-05-30')->shiftToClosestBusinessDayAfter()->format('Y-m-d');
+?>
+
+
+// 休業日の場合は前営業日にシフト、営業日ならそのまま返す
+echo JapaneseDateTime::parse('2026-05-30')->shiftToClosestBusinessDayBefore()->format('Y-m-d'); // <?php
+echo JapaneseDateTime::parse('2026-05-30')->shiftToClosestBusinessDayBefore()->format('Y-m-d');
+?>
+
+
+// N 営業日後の日付を取得する
+echo $dt->addBusinessDays(3)->format('Y-m-d'); // <?php
+echo JapaneseDateTime::parse('2026-05-29')->addBusinessDays(3)->format('Y-m-d');
+?>
+
+
+// N 営業日前の日付を取得する
+echo $dt->subBusinessDays(3)->format('Y-m-d'); // <?php
+echo JapaneseDateTime::parse('2026-05-29')->subBusinessDays(3)->format('Y-m-d');
+?>
+
+```
+
+インスタンスごとに営業日設定をカスタマイズすることもできます。
+
+``` .php
+use JapaneseDate\DateTime as JapaneseDateTime;
+
+$dt = JapaneseDateTime::parse('2026-05-29');
+
+// 土日のみ休業日とし、祝日は営業日として扱う
+$dt->setClosingWeekdays([JapaneseDateTime::SATURDAY, JapaneseDateTime::SUNDAY]);
+$dt->setBypassHoliday(false);
+
+// 特定日を休業日（任意ラベル付き）として登録する
+$dt->setClosingDay('2026-06-01', '創立記念日');
+
+// 特定日を営業日として強制登録する（祝日・休業曜日でも営業日とする）
+$dt->setOpenDay('2026-05-04');
+
+// 第N曜日を休業日として登録する（例：第1土曜）
+$dt->setClosingNthWeekday(JapaneseDateTime::SATURDAY, 1, '第1土曜休業');
+
+// 独自フィルタで営業日判定をカスタマイズする
+$dt->addClosingFilter(function (\DateTimeInterface $date): bool {
+    // 例：毎月末日を休業日にする
+    return (int)$date->format('d') === (int)$date->format('t');
+}, '月末休業');
+
+var_export($dt->checkIsBusinessDay());  // 現在のインスタンスの日付で営業日判定
+var_export($dt->checkIsBusinessDay(JapaneseDateTime::parse('2026-06-01')));  // 任意の日付で判定
+
+```
+
+`DateTime` クラスで使用できる主な営業日メソッド:
+
+| メソッド | 説明 |
+|---|---|
+| `isBusinessDay()` | この日が営業日かどうかを返す |
+| `getBusinessDayLabel()` | 休業日の場合はそのラベルを返す（営業日は null） |
+| `nextBusinessDay()` | 次の営業日を返す |
+| `previousBusinessDay()` | 前の営業日を返す |
+| `shiftToClosestBusinessDayAfter()` | 休業日なら翌営業日、営業日ならそのまま返す |
+| `shiftToClosestBusinessDayBefore()` | 休業日なら前営業日、営業日ならそのまま返す |
+| `addBusinessDays(int $n)` | N 営業日後の日付を返す |
+| `subBusinessDays(int $n)` | N 営業日前の日付を返す |
+| `setClosingWeekdays(array $weekdays)` | 休業曜日を配列で設定 |
+| `setBypassHoliday(bool $bypass)` | 祝日を休業日として扱うか設定 |
+| `setClosingDay($date, ?string $label)` | 特定日を休業日として登録 |
+| `setOpenDay($date)` | 特定日を強制的に営業日として登録 |
+| `setClosingNthWeekday(int $weekday, int $nth, ?string $label)` | 第N曜日を休業日として登録 |
+| `setOpenNthWeekday(int $weekday, int $nth)` | 第N曜日を強制的に営業日として登録 |
+| `addClosingFilter(callable $filter, ?string $label)` | 独自の休業日フィルタを追加 |
+| `addOpenFilter(callable $filter)` | 独自の営業日強制フィルタを追加 |
+| `checkIsBusinessDay(?DateTimeInterface $date)` | 任意の日付で営業日判定（省略時は自身の日付） |
+| `checkGetBusinessDayLabel(?DateTimeInterface $date)` | 任意の日付で休業ラベル取得 |
+
+
 DateTimeImmutable
 =================================================
 
-`JapaneseDate\DateTimeImmutable` クラスは、[CarbonImmutable](https://carbon.nesbot.com/docs/)を継承した
+`JapaneseDate\DateTimeImmutable` クラスは、[CarbonImmutable](https://carbon.nesbot.com/)を継承した
 イミュータブルな日本暦対応オブジェクトです。
 
 ```DateTimeImmutable.php
@@ -779,6 +1344,8 @@ Calendar
 =================================================
 
 `JapaneseDate\Calendar` クラスは、一定期間内の日付配列や営業日配列を取得するためのユーティリティクラスです。
+`JapaneseDate\DatePeriod`でもほぼ同じことができます。
+類似クラスがあるのはCalendarクラスがDatePeriodが誕生するより前から存在しているためで、DatePeriodクラスの方が新しいクラスになります。
 
 ``` .php
 use JapaneseDate\Calendar as JapaneseDateCalendar;
@@ -892,7 +1459,7 @@ JapaneseDateTime::setCacheMode(CacheMode::MODE_NONE);
 DateInterval
 =================================================
 
-`JapaneseDate\DateInterval` クラスは、[CarbonInterval](https://carbon.nesbot.com/docs/)を継承した
+`JapaneseDate\DateInterval` クラスは、[CarbonInterval](https://carbon.nesbot.com/)を継承した
 日本暦に対応した期間（インターバル）クラスです。
 
 ```DateInterval.php
@@ -918,6 +1485,7 @@ $result = DateInterval::addBusinessDaysToDate($from, 3);
 echo $result->format('Y-m-d');  // <?php
 use JapaneseDate\DateInterval;
 use JapaneseDate\DatePeriod;
+
 echo DateInterval::addBusinessDaysToDate(JapaneseDateTime::parse('2026-05-01'), 3)->format('Y-m-d');
 ?>
 
@@ -1002,7 +1570,7 @@ echo $iv6->days . '日後が次の新月';
 DatePeriod
 =================================================
 
-`JapaneseDate\DatePeriod` クラスは、[CarbonPeriod](https://carbon.nesbot.com/docs/)を継承した
+`JapaneseDate\DatePeriod` クラスは、[CarbonPeriod](https://carbon.nesbot.com/)を継承した
 日本暦に対応した期間イテレータクラスです。
 
 ```DatePeriod.php

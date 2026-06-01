@@ -18,6 +18,8 @@ namespace Tests\JapaneseDate;
 use PHPUnit\Framework\Attributes\CodeCoverageIgnore;
 use ReflectionClass;
 
+use const PHP_VERSION_ID;
+
 /**
  * Class InvokeTrait
  *
@@ -48,7 +50,8 @@ trait InvokeTrait
 
         $reflection = new ReflectionClass($instance);
         $method = $reflection->getMethod($method_name);
-        if (\PHP_VERSION_ID < 80100) {
+        if (PHP_VERSION_ID < 80100) {
+            /** @noinspection PhpExpressionResultUnusedInspection */
             $method->setAccessible(true);
         }
 
@@ -69,7 +72,8 @@ trait InvokeTrait
 
         $reflection = new ReflectionClass($instance);
         $property = $reflection->getProperty($property_name);
-        if (\PHP_VERSION_ID < 80100) {
+        if (PHP_VERSION_ID < 80100) {
+            /** @noinspection PhpExpressionResultUnusedInspection */
             $property->setAccessible(true);
         }
 
@@ -90,7 +94,8 @@ trait InvokeTrait
 
         $reflection = new ReflectionClass($instance);
         $property = $reflection->getProperty($property_name);
-        if (\PHP_VERSION_ID < 80100) {
+        if (PHP_VERSION_ID < 80100) {
+            /** @noinspection PhpExpressionResultUnusedInspection */
             $property->setAccessible(true);
         }
 
