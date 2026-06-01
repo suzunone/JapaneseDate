@@ -53,6 +53,56 @@ class SeasonalFestivalTest extends TestCase
     // =========================================================================
     // ファクトリー・定数テスト
     // =========================================================================
+    public static function viewNameProvider(): array
+    {
+        return [
+            '節句なし' => [0, ''],
+            '人日の節句' => [1, '人日の節句'],
+            '上巳の節句' => [2, '上巳の節句'],
+            '端午の節句' => [3, '端午の節句'],
+            '七夕の節句' => [4, '七夕の節句'],
+            '重陽の節句' => [5, '重陽の節句'],
+            '存在しないキー' => [999, ''],
+        ];
+    }
+    public static function viewAliasProvider(): array
+    {
+        return [
+            '節句なし' => [0, ''],
+            '七草の節句' => [1, '七草の節句'],
+            '桃の節句' => [2, '桃の節句'],
+            '菖蒲の節句' => [3, '菖蒲の節句'],
+            '笹の節句' => [4, '笹の節句'],
+            '菊の節句' => [5, '菊の節句'],
+            '存在しないキー' => [999, ''],
+        ];
+    }
+    public static function solarFestivalProvider(): array
+    {
+        return [
+            '1月7日（人日）' => ['2026-01-07', DateTime::SEASONAL_FESTIVAL_JINJITSU],
+            '3月3日（上巳）' => ['2026-03-03', DateTime::SEASONAL_FESTIVAL_JOSHI],
+            '5月5日（端午）' => ['2026-05-05', DateTime::SEASONAL_FESTIVAL_TANGO],
+            '7月7日（七夕）' => ['2026-07-07', DateTime::SEASONAL_FESTIVAL_TANABATA],
+            '9月9日（重陽）' => ['2026-09-09', DateTime::SEASONAL_FESTIVAL_CHOYO],
+            '節句でない日' => ['2026-06-01', DateTime::SEASONAL_FESTIVAL_NONE],
+            '12月31日（なし）' => ['2026-12-31', DateTime::SEASONAL_FESTIVAL_NONE],
+        ];
+    }
+    // =========================================================================
+    // viewName / viewAlias ユーティリティテスト
+    // =========================================================================
+    public static function lunarFestivalProvider(): array
+    {
+        return [
+            '旧暦1月7日=2026-02-23（人日）' => ['2026-02-23', DateTime::SEASONAL_FESTIVAL_JINJITSU],
+            '旧暦3月3日=2026-04-19（上巳）' => ['2026-04-19', DateTime::SEASONAL_FESTIVAL_JOSHI],
+            '旧暦5月5日=2026-06-19（端午）' => ['2026-06-19', DateTime::SEASONAL_FESTIVAL_TANGO],
+            '旧暦7月7日=2026-08-19（七夕）' => ['2026-08-19', DateTime::SEASONAL_FESTIVAL_TANABATA],
+            '旧暦9月9日=2026-10-19（重陽）' => ['2026-10-19', DateTime::SEASONAL_FESTIVAL_CHOYO],
+            '節句でない旧暦日' => ['2026-06-01', DateTime::SEASONAL_FESTIVAL_NONE],
+        ];
+    }
     /**
      * factory() がシングルトンを返すことを確認する。
      */
@@ -90,12 +140,12 @@ class SeasonalFestivalTest extends TestCase
         $this->assertSame('菊の節句', $aliases[5]);
     }
     // =========================================================================
-    // viewName / viewAlias ユーティリティテスト
+    // 西暦（新暦）五節句テスト
     // =========================================================================
     /**
      * viewName がキーから正しい式名を返すことを確認する。
      *
-     * @param int    $key      五節句定数
+     * @param int $key 五節句定数
      * @param string $expected 期待する式名
      * @dataProvider viewNameProvider
      */
@@ -104,22 +154,10 @@ class SeasonalFestivalTest extends TestCase
         $festival = SeasonalFestival::factory();
         $this->assertSame($expected, $festival->viewName($key));
     }
-    public static function viewNameProvider(): array
-    {
-        return [
-            '節句なし'   => [0, ''],
-            '人日の節句' => [1, '人日の節句'],
-            '上巳の節句' => [2, '上巳の節句'],
-            '端午の節句' => [3, '端午の節句'],
-            '七夕の節句' => [4, '七夕の節句'],
-            '重陽の節句' => [5, '重陽の節句'],
-            '存在しないキー' => [999, ''],
-        ];
-    }
     /**
      * viewAlias がキーから正しい別名（通称）を返すことを確認する。
      *
-     * @param int    $key      五節句定数
+     * @param int $key 五節句定数
      * @param string $expected 期待する別名
      * @dataProvider viewAliasProvider
      */
@@ -128,44 +166,17 @@ class SeasonalFestivalTest extends TestCase
         $festival = SeasonalFestival::factory();
         $this->assertSame($expected, $festival->viewAlias($key));
     }
-    public static function viewAliasProvider(): array
-    {
-        return [
-            '節句なし'   => [0, ''],
-            '七草の節句' => [1, '七草の節句'],
-            '桃の節句'   => [2, '桃の節句'],
-            '菖蒲の節句' => [3, '菖蒲の節句'],
-            '笹の節句'   => [4, '笹の節句'],
-            '菊の節句'   => [5, '菊の節句'],
-            '存在しないキー' => [999, ''],
-        ];
-    }
-    // =========================================================================
-    // 西暦（新暦）五節句テスト
-    // =========================================================================
     /**
      * 西暦固定日の五節句が正しく判定されることを確認する。
      *
-     * @param string $date     テスト日付（Y-m-d 形式）
-     * @param int    $expected 期待する五節句定数
+     * @param string $date テスト日付（Y-m-d 形式）
+     * @param int $expected 期待する五節句定数
      * @dataProvider solarFestivalProvider
      */
     public function test_getSolarFestivalKey(string $date, int $expected): void
     {
         $festival = SeasonalFestival::factory();
         $this->assertSame($expected, $festival->getSolarFestivalKey(DateTime::parse($date)));
-    }
-    public static function solarFestivalProvider(): array
-    {
-        return [
-            '1月7日（人日）'   => ['2026-01-07', DateTime::SEASONAL_FESTIVAL_JINJITSU],
-            '3月3日（上巳）'   => ['2026-03-03', DateTime::SEASONAL_FESTIVAL_JOSHI],
-            '5月5日（端午）'   => ['2026-05-05', DateTime::SEASONAL_FESTIVAL_TANGO],
-            '7月7日（七夕）'   => ['2026-07-07', DateTime::SEASONAL_FESTIVAL_TANABATA],
-            '9月9日（重陽）'   => ['2026-09-09', DateTime::SEASONAL_FESTIVAL_CHOYO],
-            '節句でない日'     => ['2026-06-01', DateTime::SEASONAL_FESTIVAL_NONE],
-            '12月31日（なし）' => ['2026-12-31', DateTime::SEASONAL_FESTIVAL_NONE],
-        ];
     }
     /**
      * 西暦の五節句の式名が正しく返されることを確認する。
@@ -180,6 +191,9 @@ class SeasonalFestivalTest extends TestCase
         $this->assertSame('重陽の節句', $festival->viewSolarFestivalName(DateTime::parse('2026-09-09')));
         $this->assertSame('', $festival->viewSolarFestivalName(DateTime::parse('2026-06-01')));
     }
+    // =========================================================================
+    // 旧暦五節句テスト
+    // =========================================================================
     /**
      * 西暦の五節句の別名（通称）が正しく返されることを確認する。
      */
@@ -193,9 +207,6 @@ class SeasonalFestivalTest extends TestCase
         $this->assertSame('菊の節句', $festival->viewSolarFestivalAlias(DateTime::parse('2026-09-09')));
         $this->assertSame('', $festival->viewSolarFestivalAlias(DateTime::parse('2026-06-01')));
     }
-    // =========================================================================
-    // 旧暦五節句テスト
-    // =========================================================================
     /**
      * 旧暦の五節句が正しく判定されることを確認する。
      *
@@ -206,8 +217,8 @@ class SeasonalFestivalTest extends TestCase
      * - 七夕（旧暦7月7日）= 2026-08-19
      * - 重陽（旧暦9月9日）= 2026-10-19
      *
-     * @param string $date     テスト日付（Y-m-d 形式）
-     * @param int    $expected 期待する五節句定数
+     * @param string $date テスト日付（Y-m-d 形式）
+     * @param int $expected 期待する五節句定数
      * @dataProvider lunarFestivalProvider
      */
     public function test_getLunarFestivalKey(string $date, int $expected): void
@@ -215,17 +226,6 @@ class SeasonalFestivalTest extends TestCase
         $festival = SeasonalFestival::factory();
         $result = $festival->getLunarFestivalKey(DateTime::parse($date));
         $this->assertSame($expected, $result);
-    }
-    public static function lunarFestivalProvider(): array
-    {
-        return [
-            '旧暦1月7日=2026-02-23（人日）' => ['2026-02-23', DateTime::SEASONAL_FESTIVAL_JINJITSU],
-            '旧暦3月3日=2026-04-19（上巳）' => ['2026-04-19', DateTime::SEASONAL_FESTIVAL_JOSHI],
-            '旧暦5月5日=2026-06-19（端午）' => ['2026-06-19', DateTime::SEASONAL_FESTIVAL_TANGO],
-            '旧暦7月7日=2026-08-19（七夕）' => ['2026-08-19', DateTime::SEASONAL_FESTIVAL_TANABATA],
-            '旧暦9月9日=2026-10-19（重陽）' => ['2026-10-19', DateTime::SEASONAL_FESTIVAL_CHOYO],
-            '節句でない旧暦日'               => ['2026-06-01', DateTime::SEASONAL_FESTIVAL_NONE],
-        ];
     }
     /**
      * 旧暦の五節句の式名が正しく返されることを確認する。

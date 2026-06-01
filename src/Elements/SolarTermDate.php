@@ -23,10 +23,10 @@ class SolarTermDate
         'is_sekki' => false,
         'is_chuki' => false,
 
-        'year'            => 0,
-        'solar_term'      => -1,
-        'month'           => 0,
-        'day'             => 0,
+        'year' => 0,
+        'solar_term' => -1,
+        'month' => 0,
+        'day' => 0,
         'solar_longitude' => 0.0,
     ];
 
@@ -67,8 +67,8 @@ class SolarTermDate
     {
         return $this->attribute[$key] ?? match ($key) {
             'solarTermText' => JapaneseDate::SOLAR_TERM[$this->solar_term],
-            'dateTime'      => DateTime::create($this->year, $this->month, $this->day),
-            default         => null,
+            'dateTime' => DateTime::create($this->year, $this->month, $this->day),
+            default => null,
         };
     }
 
@@ -90,7 +90,7 @@ class SolarTermDate
     {
         return match ($key) {
             'solarTermText', 'dateTime' => true,
-            default                     => isset($this->attribute[$key]),
+            default => isset($this->attribute[$key]),
         };
     }
 }

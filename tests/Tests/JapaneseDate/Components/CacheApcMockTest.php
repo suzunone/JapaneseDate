@@ -1,6 +1,7 @@
 <?php
 
 /** @noinspection PhpDocMissingThrowsInspection */
+
 /** @noinspection PhpUnhandledExceptionInspection */
 
 namespace Tests\JapaneseDate\Components;
@@ -31,6 +32,7 @@ class CacheApcMockTest extends TestCase
         $callCount = 0;
         $result = Cache::forever('apcu_miss_key', function () use (&$callCount) {
             $callCount++;
+
             return 'computed_value';
         });
         $this->assertSame('computed_value', $result);
@@ -50,6 +52,7 @@ class CacheApcMockTest extends TestCase
         $callCount = 0;
         $result = Cache::forever('apcu_hit_key', function () use (&$callCount) {
             $callCount++;
+
             return 'new_value';
         });
         $this->assertSame('cached_apcu_value', $result);

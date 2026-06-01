@@ -72,8 +72,8 @@ Substitution of DatePeriod with some modifications and many more features.
 | bool | [isEndExcluded()](#isendexcluded) | Returns true if the end date should be excluded. |
 | bool | [isStartIncluded()](#isstartincluded) | Returns true if the start date should be included. |
 | bool | [isEndIncluded()](#isendincluded) | Returns true if the end date should be included. |
-| CarbonInterface | [getIncludedStartDate()](#getincludedstartdate) | Return the start if it's included by option, else return the start + 1 period interval. |
-| CarbonInterface | [getIncludedEndDate()](#getincludedenddate) | Return the end if it's included by option, else return the end - 1 period interval. |
+| CarbonInterface | [getIncludedStartDate()](#getincludedstartdate) | Return the start if it&#039;s included by option, else return the start + 1 period interval. |
+| CarbonInterface | [getIncludedEndDate()](#getincludedenddate) | Return the end if it&#039;s included by option, else return the end - 1 period interval. |
 | CarbonPeriod | [addFilter()](#addfilter) | Add a filter to the stack. |
 | CarbonPeriod | [prependFilter()](#prependfilter) | Prepend a filter to the stack. |
 | CarbonPeriod | [removeFilter()](#removefilter) | Remove a filter by instance or name. |
@@ -100,11 +100,10 @@ Substitution of DatePeriod with some modifications and many more features.
 | int | [count()](#count) | Count dates in the date period. |
 | CarbonInterface\|null | [first()](#first) | Return the first date in the date period. |
 | CarbonInterface\|null | [last()](#last) | Return the last date in the date period. |
-| CarbonPeriod | [setTimezone()](#settimezone) | Set the instance's timezone from a string or object and apply it to start/end. |
-| CarbonPeriod | [shiftTimezone()](#shifttimezone) | Set the instance's timezone from a string or object and add/subtract the offset difference to start/end. |
+| CarbonPeriod | [setTimezone()](#settimezone) | Set the instance&#039;s timezone from a string or object and apply it to start/end. |
+| CarbonPeriod | [shiftTimezone()](#shifttimezone) | Set the instance&#039;s timezone from a string or object and add/subtract the offset difference to start/end. |
 | CarbonInterface | [calculateEnd()](#calculateend) | Returns the end is set, else calculated from start an recurrences. |
-| bool | [overlaps()](#overlaps) | Returns true if the current period overlaps the given one (if 1 parameter passed)
-or the period between 2 dates (if 2 parameters passed). |
+| bool | [overlaps()](#overlaps) | Returns true if the current period overlaps the given one (if 1 parameter passed) or the period between 2 dates (if 2 parameters passed). |
 |  | [forEach()](#foreach) | Execute a given function on each date of the period. |
 | Generator | [map()](#map) | Execute a given function on each date of the period and yield the result of this function. |
 | bool | [eq()](#eq) | Determines if the instance is equal to another. |

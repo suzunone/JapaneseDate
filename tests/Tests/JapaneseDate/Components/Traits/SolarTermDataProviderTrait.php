@@ -9,7 +9,6 @@ use JapaneseDate\DateTime;
  */
 trait SolarTermDataProviderTrait
 {
-
     /**
      * 2000年の二十四節気コードと日付の期待値を返す。
      */

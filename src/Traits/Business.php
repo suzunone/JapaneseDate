@@ -3,6 +3,7 @@
 namespace JapaneseDate\Traits;
 
 use JapaneseDate\Components\BusinessCalendar;
+
 trait Business
 {
     /**

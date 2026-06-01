@@ -1,5 +1,7 @@
 <?php
 
+/** @noinspection GrazieInspection */
+
 /**
  * DatePeriod.php
  *
@@ -25,7 +27,6 @@ use JapaneseDate\Components\BusinessCalendar;
 use JapaneseDate\Components\MiscSeasonalNode;
 use JapaneseDate\Components\Moon;
 use JapaneseDate\Components\SimpleSolarTerm;
-use JapaneseDate\DateBusiness;
 use JapaneseDate\Components\SolarTerm;
 use JapaneseDate\Traits\DateBusinessCommon;
 use Throwable;
@@ -116,11 +117,11 @@ class DatePeriod extends CarbonPeriod
      * @var array<int, string>
      */
     protected const ERA_START_DATES = [
-        DateTime::ERA_MEIJI  => '1868-01-25',
+        DateTime::ERA_MEIJI => '1868-01-25',
         DateTime::ERA_TAISHO => '1912-07-30',
-        DateTime::ERA_SHOWA  => '1926-12-25',
+        DateTime::ERA_SHOWA => '1926-12-25',
         DateTime::ERA_HEISEI => '1989-01-08',
-        DateTime::ERA_REIWA  => '2019-05-01',
+        DateTime::ERA_REIWA => '2019-05-01',
     ];
 
     /**
@@ -131,11 +132,11 @@ class DatePeriod extends CarbonPeriod
      * @var array<int, string|null>
      */
     protected const ERA_END_DATES = [
-        DateTime::ERA_MEIJI  => '1912-07-29',
+        DateTime::ERA_MEIJI => '1912-07-29',
         DateTime::ERA_TAISHO => '1926-12-24',
-        DateTime::ERA_SHOWA  => '1989-01-07',
+        DateTime::ERA_SHOWA => '1989-01-07',
         DateTime::ERA_HEISEI => '2019-04-30',
-        DateTime::ERA_REIWA  => null,
+        DateTime::ERA_REIWA => null,
     ];
 
     // =========================================================================
@@ -289,6 +290,7 @@ class DatePeriod extends CarbonPeriod
                 while ($candidate->dayOfWeek === 0 || $candidate->dayOfWeek === 6 || $candidate->is_holiday) {
                     $candidate = $candidate->subDay();
                 }
+
                 // 代替日がこの日と同じ月の場合のみ有効とする
                 return $candidate->format('Y-m-d') === $jd->format('Y-m-d');
             }
@@ -792,7 +794,7 @@ class DatePeriod extends CarbonPeriod
     {
         $effectiveConfig = $config ?? $this->businessConfig;
 
-        return $this->filter(static function ($date) use ($effectiveConfig): bool {
+        return self::filter(static function ($date) use ($effectiveConfig): bool {
             $dt = $date instanceof DateTime ? $date : DateTime::factory($date->format('Y-m-d'), $date->getTimezone());
 
             return BusinessCalendar::isBusinessDay($dt, $effectiveConfig);
@@ -811,7 +813,7 @@ class DatePeriod extends CarbonPeriod
     {
         $effectiveConfig = $config ?? $this->businessConfig;
 
-        return $this->filter(static function ($date) use ($effectiveConfig): bool {
+        return self::filter(static function ($date) use ($effectiveConfig): bool {
             $dt = $date instanceof DateTime ? $date : DateTime::factory($date->format('Y-m-d'), $date->getTimezone());
 
             return !BusinessCalendar::isBusinessDay($dt, $effectiveConfig);

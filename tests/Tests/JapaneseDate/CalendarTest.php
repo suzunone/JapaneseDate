@@ -20,6 +20,8 @@
 
 namespace Tests\JapaneseDate;
 
+use DateTimeImmutable;
+use Exception;
 use Faker\Factory as FakerFactory;
 use Faker\Generator as FakerGenerator;
 use Faker\Provider\DateTime as FakerDateTime;
@@ -31,6 +33,7 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\CoversMethod;
 use PHPUnit\Framework\Attributes\Depends;
 use PHPUnit\Framework\TestCase;
+use ReturnTypeWillChange;
 
 /**
  * Calendar クラスのテスト
@@ -47,6 +50,9 @@ use PHPUnit\Framework\TestCase;
  * @covers \JapaneseDate\Calendar::getWorkingDay
  * @covers \JapaneseDate\Calendar::getCompareFormat
  * @covers \JapaneseDate\Calendar::isWorkingDay
+ * @covers \JapaneseDate\Calendar::isBusinessDayByConfig
+ * @covers \JapaneseDate\Calendar::getBusinessDaysBySpan
+ * @covers \JapaneseDate\Calendar::getBusinessDaysByLimit
  */
 class CalendarTest extends TestCase
 {
@@ -428,6 +434,73 @@ class CalendarTest extends TestCase
         $Calendar->resetBypassWeekDay();
         $this->assertCount(0, $this->invokeGetProperty($Calendar, 'bypass_week_day_arr'));
     }
+    // -----------------------------------------------------------------------
+    // isBusinessDayByConfig
+    // -----------------------------------------------------------------------
+    /**
+     * isBusinessDayByConfig() が $date=null のとき start_time_stamp で判定することを確認する。
+     */
+    public function test_isBusinessDayByConfig_uses_start_when_date_is_null(): void
+    {
+        $calendar = new Calendar('2026-05-25'); // 月曜
+        $this->assertTrue($calendar->isBusinessDayByConfig());
+    }
+    /**
+     * isBusinessDayByConfig() に明示的な日付を渡したとき、その日付で判定することを確認する。
+     */
+    public function test_isBusinessDayByConfig_with_explicit_date(): void
+    {
+        $calendar = new Calendar('2026-05-25'); // 月曜
+        $saturday = new DateTimeImmutable('2026-05-30'); // 土曜
+
+        $this->assertFalse($calendar->isBusinessDayByConfig($saturday));
+    }
+    // -----------------------------------------------------------------------
+    // getBusinessDaysBySpan
+    // -----------------------------------------------------------------------
+    /**
+     * getBusinessDaysBySpan() が指定期間内の営業日を返すことを確認する。
+     */
+    public function test_getBusinessDaysBySpan_returns_business_days(): void
+    {
+        $calendar = new Calendar('2026-05-25'); // 月曜
+        $days = $calendar->getBusinessDaysBySpan('2026-05-31');
+
+        // 2026-05-25(月)〜31(日) のうち営業日は月〜金の5日
+        $this->assertCount(5, $days);
+        $this->assertContainsOnlyInstancesOf(DateTime::class, $days);
+        $this->assertSame('2026-05-25', $days[0]->format('Y-m-d'));
+        $this->assertSame('2026-05-29', $days[4]->format('Y-m-d'));
+    }
+    // -----------------------------------------------------------------------
+    // getBusinessDaysByLimit
+    // -----------------------------------------------------------------------
+    /**
+     * getBusinessDaysByLimit() が指定件数の営業日を返すことを確認する。
+     */
+    public function test_getBusinessDaysByLimit_returns_specified_count(): void
+    {
+        $calendar = new Calendar('2026-05-25'); // 月曜
+        $days = $calendar->getBusinessDaysByLimit(3);
+
+        $this->assertCount(3, $days);
+        $this->assertContainsOnlyInstancesOf(DateTime::class, $days);
+        $this->assertSame('2026-05-25', $days[0]->format('Y-m-d'));
+        $this->assertSame('2026-05-26', $days[1]->format('Y-m-d'));
+        $this->assertSame('2026-05-27', $days[2]->format('Y-m-d'));
+    }
+    /**
+     * getBusinessDaysByLimit() が DateTime::add() 失敗時に NativeDateTimeException を投げることを確認する。
+     */
+    public function test_getBusinessDaysByLimit_wraps_native_exception(): void
+    {
+        $this->expectException(NativeDateTimeException::class);
+
+        $calendar = new Calendar('2026-05-25');
+        $this->invokeSetProperty($calendar, 'start_time_stamp', new ThrowingDateTime('2026-05-25'));
+        // 1件目を取得しようとした直後に add() が例外を投げる
+        $calendar->getBusinessDaysByLimit(2);
+    }
 }
 
 /**
@@ -435,10 +508,10 @@ class CalendarTest extends TestCase
  */
 class ThrowingDateTime extends DateTime
 {
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function add($unit, $value = 1, $overflow = null)
     {
         // Calendar 側で NativeDateTimeException に変換される例外を発生させる
-        throw new \Exception('DateTime add failed.');
+        throw new Exception('DateTime add failed.');
     }
 }

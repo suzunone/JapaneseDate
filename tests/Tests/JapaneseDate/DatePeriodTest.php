@@ -19,6 +19,8 @@
 
 namespace Tests\JapaneseDate;
 
+use Carbon\CarbonPeriod;
+use JapaneseDate\DateBusiness;
 use JapaneseDate\DatePeriod;
 use JapaneseDate\DateTime;
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -55,6 +57,8 @@ use PHPUnit\Framework\TestCase;
  * @covers \JapaneseDate\DatePeriod::createFromDatesArray
  * @covers \JapaneseDate\DatePeriod::isInDoyo
  * @covers \JapaneseDate\DatePeriod::isInHigan
+ * @covers \JapaneseDate\DatePeriod::onlyBusinessDays
+ * @covers \JapaneseDate\DatePeriod::withoutBusinessDays
  */
 class DatePeriodTest extends TestCase
 {
@@ -67,7 +71,7 @@ class DatePeriodTest extends TestCase
     public function test_extendsCarbonPeriod(): void
     {
         $period = DatePeriod::create('2026-05-01', '1 day', '2026-05-31');
-        $this->assertInstanceOf(\Carbon\CarbonPeriod::class, $period);
+        $this->assertInstanceOf(CarbonPeriod::class, $period);
         $this->assertInstanceOf(DatePeriod::class, $period);
     }
     // =========================================================================
@@ -331,7 +335,7 @@ class DatePeriodTest extends TestCase
 
         $dates = iterator_to_array($period);
         // 土用は約18日間
-        $this->assertEquals(18, count($dates));
+        $this->assertCount(18, $dates);
     }
     /**
      * onlyDoyo: SimpleSolarTerm が対応しない年でも SolarTerm 経由で土用を判定できる。
@@ -372,7 +376,7 @@ class DatePeriodTest extends TestCase
 
         $dates = iterator_to_array($period);
         // 春彼岸は7日間
-        $this->assertEquals(7, count($dates));
+        $this->assertCount(7, $dates);
     }
     /**
      * onlyHigan: SimpleSolarTerm が対応しない年でも SolarTerm 経由で彼岸を判定できる。
@@ -529,7 +533,7 @@ class DatePeriodTest extends TestCase
         $period = DatePeriod::eachLunarMonth(DateTime::parse('2026-01-01'), 3);
         $dates = array_values(iterator_to_array($period));
 
-        for ($i = 1; $i < count($dates); $i++) {
+        for ($i = 1, $iMax = count($dates); $i < $iMax; $i++) {
             $diff = $dates[$i - 1]->diff($dates[$i]);
             $this->assertGreaterThanOrEqual(28, $diff->days);
             $this->assertLessThanOrEqual(31, $diff->days);
@@ -678,5 +682,66 @@ class DatePeriodTest extends TestCase
             $this->assertFalse($jd->is_holiday);
             $this->assertNotEquals(DateTime::SIX_WEEKDAY_BUTSUMETSU, $jd->six_weekday);
         }
+    }
+    // =========================================================================
+    // onlyBusinessDays / withoutBusinessDays
+    // =========================================================================
+    /**
+     * onlyBusinessDays() が週末を除いた営業日のみを返すことを確認する。
+     */
+    public function test_onlyBusinessDays_excludes_weekends(): void
+    {
+        // 2026-05-25(月) 〜 2026-05-31(日) の7日間
+        $period = DatePeriod::create('2026-05-25', '1 day', '2026-05-31')
+            ->onlyBusinessDays();
+
+        $dates = iterator_to_array($period);
+        $this->assertCount(5, $dates); // 月〜金の5日
+
+        foreach ($dates as $d) {
+            $dow = (int) $d->format('N'); // 1=月, 7=日
+            $this->assertNotContains($dow, [6, 7], $d->format('Y-m-d') . ' は週末であるべきでない');
+        }
+    }
+    /**
+     * onlyBusinessDays() に $config を渡したとき、その設定で営業日を判定することを確認する。
+     */
+    public function test_onlyBusinessDays_with_explicit_config(): void
+    {
+        $config = (new DateBusiness())->setClosingWeekdays([0, 6]);
+        $period = DatePeriod::create('2026-05-25', '1 day', '2026-05-31')
+            ->onlyBusinessDays($config);
+
+        $dates = iterator_to_array($period);
+        $this->assertCount(5, $dates); // 月〜金の5日
+    }
+    /**
+     * withoutBusinessDays() が営業日を除いた休業日のみを返すことを確認する。
+     */
+    public function test_withoutBusinessDays_returns_non_business_days(): void
+    {
+        // 2026-05-25(月) 〜 2026-05-31(日) の7日間
+        $period = DatePeriod::create('2026-05-25', '1 day', '2026-05-31')
+            ->withoutBusinessDays();
+
+        $dates = iterator_to_array($period);
+        $this->assertCount(2, $dates); // 土・日の2日
+
+        foreach ($dates as $d) {
+            $dow = (int) $d->format('N');
+            $this->assertContains($dow, [6, 7], $d->format('Y-m-d') . ' は週末であるべき');
+        }
+    }
+    /**
+     * withoutBusinessDays() に $config を渡したとき、その設定で判定することを確認する。
+     */
+    public function test_withoutBusinessDays_with_explicit_config(): void
+    {
+        $config = (new DateBusiness())->setClosingWeekdays([0, 6]);
+        $period = DatePeriod::create('2026-05-25', '1 day', '2026-05-31')
+            ->withoutBusinessDays($config);
+
+        $dates = iterator_to_array($period);
+        $this->assertCount(2, $dates); // 土・日の2日
     }
 }

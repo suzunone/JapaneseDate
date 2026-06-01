@@ -108,6 +108,7 @@ class CacheTest extends TestCase
         $callCount = 0;
         $fn = function () use (&$callCount) {
             $callCount++;
+
             return 'value';
         };
         Cache::forever('key', $fn);
@@ -124,6 +125,7 @@ class CacheTest extends TestCase
         $callCount = 0;
         $fn = function () use (&$callCount) {
             $callCount++;
+
             return 'cached';
         };
         $r1 = Cache::forever('hit_key', $fn);
@@ -183,7 +185,7 @@ class CacheTest extends TestCase
      */
     public function test_forever_mode_file_cache_miss(): void
     {
-        $dir = sys_get_temp_dir() . '/jpdate_test_' . uniqid();
+        $dir = sys_get_temp_dir() . '/jpdate_test_' . uniqid('', true);
         mkdir($dir, 0755, true);
         try {
             Cache::setCacheFilePath($dir);
@@ -206,7 +208,7 @@ class CacheTest extends TestCase
      */
     public function test_forever_mode_file_cache_hit(): void
     {
-        $dir = sys_get_temp_dir() . '/jpdate_test_' . uniqid();
+        $dir = sys_get_temp_dir() . '/jpdate_test_' . uniqid('', true);
         mkdir($dir, 0755, true);
         try {
             $cacheFile = $dir . DIRECTORY_SEPARATOR . sha1('file_hit_key');
@@ -216,6 +218,7 @@ class CacheTest extends TestCase
             $callCount = 0;
             $result = Cache::forever('file_hit_key', function () use (&$callCount) {
                 $callCount++;
+
                 return 'should_not_be_returned';
             });
 
@@ -233,7 +236,7 @@ class CacheTest extends TestCase
      */
     public function test_forever_mode_auto_with_file_path(): void
     {
-        $dir = sys_get_temp_dir() . '/jpdate_test_' . uniqid();
+        $dir = sys_get_temp_dir() . '/jpdate_test_' . uniqid('', true);
         mkdir($dir, 0755, true);
         try {
             Cache::setCacheFilePath($dir);
@@ -259,6 +262,7 @@ class CacheTest extends TestCase
         $callCount = 0;
         $result = Cache::forever('fallback_key', function () use (&$callCount) {
             $callCount++;
+
             return 'fallback_value';
         });
         $this->assertSame('fallback_value', $result);

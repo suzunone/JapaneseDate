@@ -21,13 +21,6 @@
 namespace JapaneseDate;
 
 use Carbon\Carbon;
-use Exception;
-use JapaneseDate\Components\JapaneseDate;
-use JapaneseDate\Components\LunarCalendar;
-use JapaneseDate\Components\MiscSeasonalNode;
-use JapaneseDate\Components\SeasonalFestival;
-use JapaneseDate\Components\SexagenaryCycle;
-use JapaneseDate\Exceptions\NativeDateTimeException;
 use JapaneseDate\Traits\DateTimeImport;
 
 /**
@@ -95,11 +88,13 @@ use JapaneseDate\Traits\DateTimeImport;
  * @see         https://github.com/suzunone/JapaneseDate
  * @see         https://carbon.nesbot.com/docs/
  * @since       1.0.0
+ * @noinspection PhpUnused
  */
 class DateTime extends Carbon implements DateTimeInterface
 {
     use DateTimeImport;
 
+    //<editor-fold desc="定数定義">
     /**
      * 祝日定数: 非祝日（祝日でない通常の日）。
      *
@@ -107,6 +102,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * `holidayText` は空文字列 `''` を返します。
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const NO_HOLIDAY = 0;
 
@@ -114,6 +110,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 祝日定数:元旦
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const NEW_YEAR_S_DAY = 1;
 
@@ -121,6 +118,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 祝日定数:成人の日
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const COMING_OF_AGE_DAY = 2;
 
@@ -128,6 +126,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 祝日定数:建国記念の日
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const NATIONAL_FOUNDATION_DAY = 3;
 
@@ -135,6 +134,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 祝日定数:昭和天皇の大喪の礼
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const THE_SHOWA_EMPEROR_DIED = 4;
 
@@ -142,6 +142,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 祝日定数:春分の日
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const VERNAL_EQUINOX_DAY = 5;
 
@@ -149,6 +150,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 祝日定数:昭和の日
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const DAY_OF_SHOWA = 6;
 
@@ -156,6 +158,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 祝日定数:みどりの日
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const GREENERY_DAY = 7;
 
@@ -163,6 +166,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 祝日定数:天皇誕生日
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const THE_EMPEROR_S_BIRTHDAY = 8;
 
@@ -170,6 +174,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 祝日定数:皇太子明仁親王の結婚の儀
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const CROWN_PRINCE_HIROHITO_WEDDING = 9;
 
@@ -177,6 +182,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 祝日定数:憲法記念日
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const CONSTITUTION_DAY = 10;
 
@@ -184,6 +190,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 祝日定数:国民の休日
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const NATIONAL_HOLIDAY = 11;
 
@@ -191,6 +198,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 祝日定数:こどもの日
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const CHILDREN_S_DAY = 12;
 
@@ -198,6 +206,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 祝日定数:振替休日
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const COMPENSATING_HOLIDAY = 13;
 
@@ -205,6 +214,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 祝日定数:皇太子徳仁親王の結婚の儀
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const CROWN_PRINCE_NARUHITO_WEDDING = 14;
 
@@ -212,6 +222,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 祝日定数:海の日
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const MARINE_DAY = 15;
 
@@ -219,6 +230,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 祝日定数:秋分の日
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const AUTUMNAL_EQUINOX_DAY = 16;
 
@@ -226,6 +238,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 祝日定数:敬老の日
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const RESPECT_FOR_SENIOR_CITIZENS_DAY = 17;
 
@@ -233,6 +246,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 祝日定数:体育の日
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const LEGACY_SPORTS_DAY = 18;
 
@@ -240,6 +254,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 祝日定数:文化の日
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const CULTURE_DAY = 19;
 
@@ -247,6 +262,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 祝日定数:勤労感謝の日
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const LABOR_THANKSGIVING_DAY = 20;
 
@@ -254,6 +270,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 祝日定数:即位礼正殿の儀
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const REGNAL_DAY = 21;
 
@@ -261,6 +278,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 祝日定数:山の日
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const MOUNTAIN_DAY = 22;
 
@@ -268,6 +286,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 祝日定数:天皇の即位の日
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const EMPERORS_THRONE_DAY = 23;
 
@@ -275,6 +294,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 祝日定数:スポーツの日
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const SPORTS_DAY = 24;
 
@@ -282,6 +302,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 祝日法制定年
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const HOLIDAY_START_YEAR = 1948;
 
@@ -291,6 +312,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 特別祝日
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const SECOND_TIME_TOKYO_OLYMPIC_YEAR = 2020;
 
@@ -300,6 +322,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 特別祝日
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const SECOND_TIME_TOKYO_OLYMPIC_RESCHEDULE_YEAR = 2021;
 
@@ -307,6 +330,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 特定月定数:春分の日
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const VERNAL_EQUINOX_DAY_MONTH = 3;
 
@@ -314,6 +338,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 特定月定数:秋分の日
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const AUTUMNAL_EQUINOX_DAY_MONTH = 9;
 
@@ -321,6 +346,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 曜日定数:日
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const SUNDAY = 0;
 
@@ -328,6 +354,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 曜日定数:月
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const MONDAY = 1;
 
@@ -335,6 +362,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 曜日定数:火
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const TUESDAY = 2;
 
@@ -342,6 +370,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 曜日定数:水
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const WEDNESDAY = 3;
 
@@ -349,6 +378,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 曜日定数:木
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const THURSDAY = 4;
 
@@ -356,6 +386,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 曜日定数:金
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const FRIDAY = 5;
 
@@ -363,6 +394,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 曜日定数:土
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const SATURDAY = 6;
 
@@ -370,6 +402,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 六曜定数:大安
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const SIX_WEEKDAY_TAIAN = 0;
 
@@ -377,6 +410,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 六曜定数:赤口
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const SIX_WEEKDAY_SYAKKOU = 1;
 
@@ -384,6 +418,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 六曜定数:先勝
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const SIX_WEEKDAY_SENSYOU = 2;
 
@@ -391,6 +426,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 六曜定数:友引
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const SIX_WEEKDAY_TOMOBIKI = 3;
 
@@ -398,6 +434,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 六曜定数:先負
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const SIX_WEEKDAY_SENBU = 4;
 
@@ -405,6 +442,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 六曜定数:仏滅
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const SIX_WEEKDAY_BUTSUMETSU = 5;
 
@@ -412,6 +450,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 月相定数:新月
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const MOON_PHASE_SHINGETSU = 0;
 
@@ -419,6 +458,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 月相定数:三日月
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const MOON_PHASE_MIKAZUKI = 1;
 
@@ -426,6 +466,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 月相定数:上弦
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const MOON_PHASE_JOUGEN = 2;
 
@@ -433,6 +474,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 月相定数:十三夜
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const MOON_PHASE_JUUSANYA = 3;
 
@@ -440,6 +482,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 月相定数:満月
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const MOON_PHASE_MANGETSU = 4;
 
@@ -447,6 +490,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 月相定数:十六夜
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const MOON_PHASE_IZAYOI = 5;
 
@@ -454,6 +498,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 月相定数:下弦
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const MOON_PHASE_KAGEN = 6;
 
@@ -461,6 +506,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 月相定数:有明
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const MOON_PHASE_ARIAKE = 7;
 
@@ -471,6 +517,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * `eraNameText` は `'明治'` を返します。
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const ERA_MEIJI = 1000;
 
@@ -481,6 +528,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * `eraNameText` は `'大正'` を返します。
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const ERA_TAISHO = 1001;
 
@@ -491,6 +539,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * `eraNameText` は `'昭和'` を返します。
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const ERA_SHOWA = 1002;
 
@@ -501,16 +550,18 @@ class DateTime extends Carbon implements DateTimeInterface
      * `eraNameText` は `'平成'` を返します。
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const ERA_HEISEI = 1003;
 
     /**
-     * 元号定数: 令和（旧称 ERA_HEISEI_NEXT）の非推奨エイリアス。
+     * 元号定数: 令和（旧称 ERA_REIWA）の非推奨エイリアス。
      *
      * {@see ERA_REIWA} と同じ値です。新規コードでは {@see ERA_REIWA} を使用してください。
      *
      * @var int
      * @deprecated {@see ERA_REIWA} を使用してください。
+     * @noinspection PhpUnused
      */
     public const ERA_HEISEI_NEXT = 1004;
 
@@ -521,6 +572,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * `eraNameText` は `'令和'` を返します。
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const ERA_REIWA = 1004;
 
@@ -528,6 +580,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 24節気定数:春分
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const SOLAR_TERM_SYUNBUN = 0;
 
@@ -535,6 +588,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 24節気定数:清明
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const SOLAR_TERM_SEIMEI = 1;
 
@@ -542,6 +596,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 24節気定数:穀雨
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const SOLAR_TERM_KOKUU = 2;
 
@@ -549,6 +604,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 24節気定数:立夏
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const SOLAR_TERM_RIKKA = 3;
 
@@ -556,6 +612,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 24節気定数:小満
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const SOLAR_TERM_SYOUMAN = 4;
 
@@ -563,6 +620,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 24節気定数:芒種
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const SOLAR_TERM_BOUSYU = 5;
 
@@ -570,6 +628,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 24節気定数:夏至
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const SOLAR_TERM_GESHI = 6;
 
@@ -577,6 +636,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 24節気定数:小暑
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const SOLAR_TERM_SYOUSYO = 7;
 
@@ -584,6 +644,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 24節気定数:大暑
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const SOLAR_TERM_TAISYO = 8;
 
@@ -591,6 +652,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 24節気定数:立秋
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const SOLAR_TERM_RISSYUU = 9;
 
@@ -598,6 +660,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 24節気定数:処暑
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const SOLAR_TERM_SYOSYO = 10;
 
@@ -605,6 +668,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 24節気定数:白露
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const SOLAR_TERM_HAKURO = 11;
 
@@ -612,6 +676,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 24節気定数:秋分
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const SOLAR_TERM_SYUUBUN = 12;
 
@@ -619,6 +684,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 24節気定数:寒露
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const SOLAR_TERM_KANRO = 13;
 
@@ -626,6 +692,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 24節気定数:霜降
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const SOLAR_TERM_SOUKOU = 14;
 
@@ -633,6 +700,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 24節気定数:立冬
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const SOLAR_TERM_RITTOU = 15;
 
@@ -640,6 +708,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 24節気定数:小雪
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const SOLAR_TERM_SYOUSETSU = 16;
 
@@ -647,6 +716,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 24節気定数:大雪
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const SOLAR_TERM_TAISETSU = 17;
 
@@ -654,6 +724,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 24節気定数:冬至
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const SOLAR_TERM_TOUJI = 18;
 
@@ -661,6 +732,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 24節気定数:小寒
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const SOLAR_TERM_SYOUKAN = 19;
 
@@ -668,6 +740,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 24節気定数:大寒
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const SOLAR_TERM_DAIKAN = 20;
 
@@ -675,6 +748,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 24節気定数:立春
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const SOLAR_TERM_RISSYUN = 21;
 
@@ -682,6 +756,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 24節気定数:雨水
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const SOLAR_TERM_USUI = 22;
 
@@ -689,6 +764,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 24節気定数:啓蟄
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const SOLAR_TERM_KEICHITSU = 23;
 
@@ -696,6 +772,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 十二支定数:亥
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const ORIENTAL_ZODIAC_I = 0;
 
@@ -703,6 +780,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 十二支定数:子
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const ORIENTAL_ZODIAC_NE = 1;
 
@@ -710,6 +788,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 十二支定数:丑
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const ORIENTAL_ZODIAC_USHI = 2;
 
@@ -717,6 +796,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 十二支定数:寅
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const ORIENTAL_ZODIAC_TORA = 3;
 
@@ -724,6 +804,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 十二支定数:卯
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const ORIENTAL_ZODIAC_U = 4;
 
@@ -731,6 +812,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 十二支定数:辰
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const ORIENTAL_ZODIAC_TATSU = 5;
 
@@ -738,6 +820,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 十二支定数:巳
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const ORIENTAL_ZODIAC_MI = 6;
 
@@ -745,6 +828,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 十二支定数:午
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const ORIENTAL_ZODIAC_UMA = 7;
 
@@ -752,6 +836,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 十二支定数:未
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const ORIENTAL_ZODIAC_HITSUJI = 8;
 
@@ -759,6 +844,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 十二支定数:申
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const ORIENTAL_ZODIAC_SARU = 9;
 
@@ -766,6 +852,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 十二支定数:酉
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const ORIENTAL_ZODIAC_TORI = 10;
 
@@ -773,6 +860,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 十二支定数:戌
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const ORIENTAL_ZODIAC_INU = 11;
 
@@ -780,6 +868,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 十干定数:甲 (きのえ)
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const HEAVENLY_STEM_KINOE = 0;
 
@@ -787,6 +876,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 十干定数:乙 (きのと)
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const HEAVENLY_STEM_KINOTO = 1;
 
@@ -794,6 +884,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 十干定数:丙 (ひのえ)
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const HEAVENLY_STEM_HINOE = 2;
 
@@ -801,6 +892,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 十干定数:丁 (ひのと)
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const HEAVENLY_STEM_HINOTO = 3;
 
@@ -808,6 +900,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 十干定数:戊 (つちのえ)
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const HEAVENLY_STEM_TSUCHINOE = 4;
 
@@ -815,6 +908,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 十干定数:己 (つちのと)
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const HEAVENLY_STEM_TSUCHINOTO = 5;
 
@@ -822,6 +916,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 十干定数:庚 (かのえ)
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const HEAVENLY_STEM_KANOE = 6;
 
@@ -829,6 +924,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 十干定数:辛 (かのと)
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const HEAVENLY_STEM_KANOTO = 7;
 
@@ -836,6 +932,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 十干定数:壬 (みずのえ)
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const HEAVENLY_STEM_MIZUNOE = 8;
 
@@ -843,6 +940,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 十干定数:癸 (みずのと)
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const HEAVENLY_STEM_MIZUNOTO = 9;
 
@@ -853,6 +951,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * `miscSeasonalNodeText` は空文字列 `''` を返します。
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const MISC_SEASONAL_NODE_NONE = 0;
 
@@ -863,6 +962,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 豆まきや恵方巻きの風習で知られています。
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const MISC_SEASONAL_NODE_SETSUBUN = 1;
 
@@ -873,6 +973,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 先祖の墓参りをする仏教行事として広く知られています。
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const MISC_SEASONAL_NODE_HIGAN = 2;
 
@@ -883,6 +984,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 同距離の場合は前の日（春分・秋分より前の戊の日）が優先されます。
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const MISC_SEASONAL_NODE_SHANICHI = 3;
 
@@ -893,6 +995,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 5月1〜2日頃にあたります。茶摘みの目安として知られています。
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const MISC_SEASONAL_NODE_HACHIJUHACHIYA = 4;
 
@@ -903,6 +1006,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 芒種（黄経75°）の数日後にあたり、6月10〜11日頃です。
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const MISC_SEASONAL_NODE_NYUBAI = 5;
 
@@ -913,6 +1017,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 7月1〜2日頃で、農作業の区切りとされています。
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const MISC_SEASONAL_NODE_HANGESHO = 6;
 
@@ -923,6 +1028,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 「土用の丑の日」はうなぎを食べる夏の土用（立秋前）が特に有名です。
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const MISC_SEASONAL_NODE_DOYO = 7;
 
@@ -933,6 +1039,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 9月1日頃にあたります。台風の多い時期として農家が警戒する日です。
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const MISC_SEASONAL_NODE_NIHYAKUTOKA = 8;
 
@@ -943,6 +1050,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 9月11日頃にあたります。二百十日に続く台風警戒日です。
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const MISC_SEASONAL_NODE_NIHYAKUNIJUUNICHI = 9;
 
@@ -954,6 +1062,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * 対応する名称プロパティは空文字列 `''` を返します。
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const SEASONAL_FESTIVAL_NONE = 0;
 
@@ -966,6 +1075,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * - 旧暦: 旧暦1月7日（毎年異なるグレゴリオ暦日）
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const SEASONAL_FESTIVAL_JINJITSU = 1;
 
@@ -978,6 +1088,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * - 旧暦: 旧暦3月3日（毎年異なるグレゴリオ暦日）
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const SEASONAL_FESTIVAL_JOSHI = 2;
 
@@ -990,6 +1101,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * - 旧暦: 旧暦5月5日（毎年異なるグレゴリオ暦日）
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const SEASONAL_FESTIVAL_TANGO = 3;
 
@@ -1002,6 +1114,7 @@ class DateTime extends Carbon implements DateTimeInterface
      * - 旧暦: 旧暦7月7日（毎年異なるグレゴリオ暦日）
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const SEASONAL_FESTIVAL_TANABATA = 4;
 
@@ -1015,58 +1128,685 @@ class DateTime extends Carbon implements DateTimeInterface
      * - 旧暦: 旧暦9月9日（毎年異なるグレゴリオ暦日）
      *
      * @var int
+     * @noinspection PhpUnused
      */
     public const SEASONAL_FESTIVAL_CHOYO = 5;
 
-    /**
-     * DateTime コンストラクタ。
-     *
-     * 引数の型に柔軟に対応した日時オブジェクトを生成します。
-     * Unix タイムスタンプ・既存の DateTimeInterface オブジェクト・日時文字列・null（現在日時）を
-     * 渡すことができます。
-     *
-     * **型別動作:**
-     *
-     * | 型 | 動作 |
-     * |---|---|
-     * | `int` / `float` | Unix タイムスタンプとして解釈 |
-     * | `DateTimeInterface` | 書式文字列でコピーを生成 |
-     * | 日時文字列 | Carbon のコンストラクタに委譲（相対・絶対両方に対応） |
-     * | `null` | 現在日時を使用 |
-     *
-     * 文字列の書式については
-     * {@link http://php.net/manual/ja/datetime.formats.php サポートする日付と時刻の書式}
-     * を参照してください。
-     *
-     * **使用例:**
-     * ```php
-     * $now = new DateTime();                        // 現在日時
-     * $specific = new DateTime('2026-05-03');        // 特定日付
-     * $tz = new DateTime('now', new \DateTimeZone('Asia/Tokyo'));
-     * ```
-     *
-     * `new DateTime()` よりも {@see factory()} を使用すると、
-     * Unix タイムスタンプや DateTimeInterface オブジェクトも直接渡せて便利です。
-     *
-     * @param int|float|string|\DateTimeInterface|null $date_time
-     *   生成する日時。日時文字列・Unix タイムスタンプ・DateTimeInterface・null のいずれかを渡せます。
-     * @param \DateTimeZone|null $time_zone
-     *   タイムゾーン。省略時は PHP のデフォルトタイムゾーンを使用します。
-     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
-     *   日時文字列の解析に失敗した場合にスローされます。
-     */
-    public function __construct($date_time = null, $time_zone = null)
-    {
-        try {
-            parent::__construct($date_time, $time_zone);
-        } catch (Exception $exception) {
-            throw new NativeDateTimeException('Throwing native DateTime class construct exception.', $exception->getCode(), $exception);
-        }
+    // =========================================================================
+    // 七十二候定数 (SEVENTY_TWO_KOU_*)
+    // =========================================================================
 
-        $this->JapaneseDate = JapaneseDate::factory();
-        $this->LunarCalendar = LunarCalendar::factory();
-        $this->SexagenaryCycle = SexagenaryCycle::factory();
-        $this->MiscSeasonalNode = MiscSeasonalNode::factory();
-        $this->SeasonalFestival = SeasonalFestival::factory();
-    }
+    /**
+     * 七十二候定数: 立春・初候（1候）
+     * 名称: 東風凍を解く / 読み: はるかぜ こおりをとく
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_RISSHUN_SHOKOU = 1;
+
+    /**
+     * 七十二候定数: 立春・次候（2候）
+     * 名称: うぐいす鳴く / 読み: うぐいす なく
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_RISSHUN_JIKOU = 2;
+
+    /**
+     * 七十二候定数: 立春・末候（3候）
+     * 名称: 魚氷を上る / 読み: うお こおりをいずる
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_RISSHUN_MAKKOU = 3;
+
+    /**
+     * 七十二候定数: 雨水・初候（4候）
+     * 名称: 土脉潤い起こる / 読み: つちのしょう うるおいおこる
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_USUI_SHOKOU = 4;
+
+    /**
+     * 七十二候定数: 雨水・次候（5候）
+     * 名称: 霞始めてたなびく / 読み: かすみはじめてたなびく
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_USUI_JIKOU = 5;
+
+    /**
+     * 七十二候定数: 雨水・末候（6候）
+     * 名称: 草木萌え動る / 読み: そうもく めばえいずる
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_USUI_MAKKOU = 6;
+
+    /**
+     * 七十二候定数: 啓蟄・初候（7候）
+     * 名称: すごもりの虫戸を開く / 読み: すごもりむし とをひらく
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_KEICHITSU_SHOKOU = 7;
+
+    /**
+     * 七十二候定数: 啓蟄・次候（8候）
+     * 名称: 桃始めてさく / 読み: もも はじめてさく
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_KEICHITSU_JIKOU = 8;
+
+    /**
+     * 七十二候定数: 啓蟄・末候（9候）
+     * 名称: 菜虫蝶となる / 読み: なむし ちょうとなる
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_KEICHITSU_MAKKOU = 9;
+
+    /**
+     * 七十二候定数: 春分・初候（10候）
+     * 名称: 雀始めて巣くう / 読み: すずめ はじめてすくう
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_SYUNBUN_SHOKOU = 10;
+
+    /**
+     * 七十二候定数: 春分・次候（11候）
+     * 名称: 桜始めて開く / 読み: さくら はじめてひらく
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_SYUNBUN_JIKOU = 11;
+
+    /**
+     * 七十二候定数: 春分・末候（12候）
+     * 名称: 雷乃ち声を発す / 読み: かみなりすなわち こえをはっす
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_SYUNBUN_MAKKOU = 12;
+
+    /**
+     * 七十二候定数: 清明・初候（13候）
+     * 名称: 玄鳥至る / 読み: つばめ いたる
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_SEIMEI_SHOKOU = 13;
+
+    /**
+     * 七十二候定数: 清明・次候（14候）
+     * 名称: 鴻雁かえる / 読み: こうがん かえる
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_SEIMEI_JIKOU = 14;
+
+    /**
+     * 七十二候定数: 清明・末候（15候）
+     * 名称: 虹始めてあらわる / 読み: にじ はじめてあらわる
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_SEIMEI_MAKKOU = 15;
+
+    /**
+     * 七十二候定数: 穀雨・初候（16候）
+     * 名称: 葭始めて生ず / 読み: あし はじめてしょうず
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_KOKUU_SHOKOU = 16;
+
+    /**
+     * 七十二候定数: 穀雨・次候（17候）
+     * 名称: 霜止で苗出ずる / 読み: しもやんで なえいずる
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_KOKUU_JIKOU = 17;
+
+    /**
+     * 七十二候定数: 穀雨・末候（18候）
+     * 名称: 牡丹はなさく / 読み: ぼたん はなさく
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_KOKUU_MAKKOU = 18;
+
+    /**
+     * 七十二候定数: 立夏・初候（19候）
+     * 名称: 蛙始めて鳴く / 読み: かわず はじめてなく
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_RIKKA_SHOKOU = 19;
+
+    /**
+     * 七十二候定数: 立夏・次候（20候）
+     * 名称: みみず出ずる / 読み: みみず いずる
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_RIKKA_JIKOU = 20;
+
+    /**
+     * 七十二候定数: 立夏・末候（21候）
+     * 名称: 竹のこ生ず / 読み: たけのこ しょうず
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_RIKKA_MAKKOU = 21;
+
+    /**
+     * 七十二候定数: 小満・初候（22候）
+     * 名称: 蚕起きて桑を食む / 読み: かいこおきて くわをはむ
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_SYOUMAN_SHOKOU = 22;
+
+    /**
+     * 七十二候定数: 小満・次候（23候）
+     * 名称: 紅花栄う / 読み: べにばな さかう
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_SYOUMAN_JIKOU = 23;
+
+    /**
+     * 七十二候定数: 小満・末候（24候）
+     * 名称: 麦秋至る / 読み: むぎのとき いたる
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_SYOUMAN_MAKKOU = 24;
+
+    /**
+     * 七十二候定数: 芒種・初候（25候）
+     * 名称: 蟷螂生ず / 読み: かまきり しょうず
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_BOUSYU_SHOKOU = 25;
+
+    /**
+     * 七十二候定数: 芒種・次候（26候）
+     * 名称: 腐れたる草蛍となる / 読み: くされたるくさ ほたるとなる
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_BOUSYU_JIKOU = 26;
+
+    /**
+     * 七十二候定数: 芒種・末候（27候）
+     * 名称: 梅のみ黄ばむ / 読み: うめのみ きばむ
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_BOUSYU_MAKKOU = 27;
+
+    /**
+     * 七十二候定数: 夏至・初候（28候）
+     * 名称: 乃東枯る / 読み: なつかれくさ かるる
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_GESHI_SHOKOU = 28;
+
+    /**
+     * 七十二候定数: 夏至・次候（29候）
+     * 名称: 菖蒲はなさく / 読み: あやめ はなさく
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_GESHI_JIKOU = 29;
+
+    /**
+     * 七十二候定数: 夏至・末候（30候）
+     * 名称: 半夏生ず / 読み: はんげ しょうず
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_GESHI_MAKKOU = 30;
+
+    /**
+     * 七十二候定数: 小暑・初候（31候）
+     * 名称: 温風至る / 読み: あつかぜ いたる
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_SYOUSYO_SHOKOU = 31;
+
+    /**
+     * 七十二候定数: 小暑・次候（32候）
+     * 名称: 蓮始めて開く / 読み: はす はじめてひらく
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_SYOUSYO_JIKOU = 32;
+
+    /**
+     * 七十二候定数: 小暑・末候（33候）
+     * 名称: 鷹乃ちわざをならう / 読み: たかすなわち わざをならう
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_SYOUSYO_MAKKOU = 33;
+
+    /**
+     * 七十二候定数: 大暑・初候（34候）
+     * 名称: 桐始めて花を結ぶ / 読み: きりはじめて はなをむすぶ
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_TAISYO_SHOKOU = 34;
+
+    /**
+     * 七十二候定数: 大暑・次候（35候）
+     * 名称: 土潤いてむし暑し / 読み: つちうるおいて むしあつし
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_TAISYO_JIKOU = 35;
+
+    /**
+     * 七十二候定数: 大暑・末候（36候）
+     * 名称: 大雨時々に降る / 読み: たいう ときどきにふる
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_TAISYO_MAKKOU = 36;
+
+    /**
+     * 七十二候定数: 立秋・初候（37候）
+     * 名称: 涼風至る / 読み: すずかぜ いたる
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_RISSYUU_SHOKOU = 37;
+
+    /**
+     * 七十二候定数: 立秋・次候（38候）
+     * 名称: 寒蝉鳴く / 読み: ひぐらし なく
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_RISSYUU_JIKOU = 38;
+
+    /**
+     * 七十二候定数: 立秋・末候（39候）
+     * 名称: 深き霧まとう / 読み: ふかききり まとう
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_RISSYUU_MAKKOU = 39;
+
+    /**
+     * 七十二候定数: 処暑・初候（40候）
+     * 名称: 綿のはなしべ開く / 読み: わたの はなしべひらく
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_SYOSYO_SHOKOU = 40;
+
+    /**
+     * 七十二候定数: 処暑・次候（41候）
+     * 名称: 天地始めてさむし / 読み: てんち はじめてさむし
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_SYOSYO_JIKOU = 41;
+
+    /**
+     * 七十二候定数: 処暑・末候（42候）
+     * 名称: 禾乃ちみのる / 読み: こくもの すなわちみのる
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_SYOSYO_MAKKOU = 42;
+
+    /**
+     * 七十二候定数: 白露・初候（43候）
+     * 名称: 草露白し / 読み: くさつゆ しろし
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_HAKURO_SHOKOU = 43;
+
+    /**
+     * 七十二候定数: 白露・次候（44候）
+     * 名称: 鶺鴒鳴く / 読み: せきれい なく
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_HAKURO_JIKOU = 44;
+
+    /**
+     * 七十二候定数: 白露・末候（45候）
+     * 名称: 玄鳥去る / 読み: つばめ さる
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_HAKURO_MAKKOU = 45;
+
+    /**
+     * 七十二候定数: 秋分・初候（46候）
+     * 名称: 雷乃ち声を収む / 読み: かみなりすなわち こえをおさむ
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_SYUUBUN_SHOKOU = 46;
+
+    /**
+     * 七十二候定数: 秋分・次候（47候）
+     * 名称: 虫かくれて戸をふさぐ / 読み: むしかくれて とをふさぐ
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_SYUUBUN_JIKOU = 47;
+
+    /**
+     * 七十二候定数: 秋分・末候（48候）
+     * 名称: 水始めて涸る / 読み: みず はじめてかるる
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_SYUUBUN_MAKKOU = 48;
+
+    /**
+     * 七十二候定数: 寒露・初候（49候）
+     * 名称: 鴻雁来る / 読み: こうがん きたる
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_KANRO_SHOKOU = 49;
+
+    /**
+     * 七十二候定数: 寒露・次候（50候）
+     * 名称: 菊花開く / 読み: きくのはな ひらく
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_KANRO_JIKOU = 50;
+
+    /**
+     * 七十二候定数: 寒露・末候（51候）
+     * 名称: 蟋蟀戸にあり / 読み: きりぎりす とにあり
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_KANRO_MAKKOU = 51;
+
+    /**
+     * 七十二候定数: 霜降・初候（52候）
+     * 名称: 霜始めて降る / 読み: しも はじめてふる
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_SOUKOU_SHOKOU = 52;
+
+    /**
+     * 七十二候定数: 霜降・次候（53候）
+     * 名称: 小雨ときどきふる / 読み: こさめ ときどきふる
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_SOUKOU_JIKOU = 53;
+
+    /**
+     * 七十二候定数: 霜降・末候（54候）
+     * 名称: 楓蔦黄ばむ / 読み: もみじつた きばむ
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_SOUKOU_MAKKOU = 54;
+
+    /**
+     * 七十二候定数: 立冬・初候（55候）
+     * 名称: 山茶始めて開く / 読み: つばき はじめてひらく
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_RITTOU_SHOKOU = 55;
+
+    /**
+     * 七十二候定数: 立冬・次候（56候）
+     * 名称: 地始めて凍る / 読み: ち はじめてこおる
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_RITTOU_JIKOU = 56;
+
+    /**
+     * 七十二候定数: 立冬・末候（57候）
+     * 名称: 金盞香 / 読み: きんせんか さく
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_RITTOU_MAKKOU = 57;
+
+    /**
+     * 七十二候定数: 小雪・初候（58候）
+     * 名称: 虹かくれて見えず / 読み: にじ かくれてみえず
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_SYOUSETSU_SHOKOU = 58;
+
+    /**
+     * 七十二候定数: 小雪・次候（59候）
+     * 名称: 朔風葉を払う / 読み: きたかぜ このはをはらう
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_SYOUSETSU_JIKOU = 59;
+
+    /**
+     * 七十二候定数: 小雪・末候（60候）
+     * 名称: 橘始めて黄ばむ / 読み: たちばな はじめてきばむ
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_SYOUSETSU_MAKKOU = 60;
+
+    /**
+     * 七十二候定数: 大雪・初候（61候）
+     * 名称: 閉塞冬となる / 読み: そらさむく ふゆとなる
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_TAISETSU_SHOKOU = 61;
+
+    /**
+     * 七十二候定数: 大雪・次候（62候）
+     * 名称: 熊穴にこもる / 読み: くま あなにこもる
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_TAISETSU_JIKOU = 62;
+
+    /**
+     * 七十二候定数: 大雪・末候（63候）
+     * 名称: さけの魚群がる / 読み: さけのうお むらがる
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_TAISETSU_MAKKOU = 63;
+
+    /**
+     * 七十二候定数: 冬至・初候（64候）
+     * 名称: 乃東生ず / 読み: なつかれくさ しょうず
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_TOUJI_SHOKOU = 64;
+
+    /**
+     * 七十二候定数: 冬至・次候（65候）
+     * 名称: さわしかの角おつる / 読み: さわしかのつの おつる
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_TOUJI_JIKOU = 65;
+
+    /**
+     * 七十二候定数: 冬至・末候（66候）
+     * 名称: 雪下りて麦のびる / 読み: ゆきくだりて むぎのびる
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_TOUJI_MAKKOU = 66;
+
+    /**
+     * 七十二候定数: 小寒・初候（67候）
+     * 名称: 芹乃ち栄う / 読み: せりすなわち さかう
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_SYOUKAN_SHOKOU = 67;
+
+    /**
+     * 七十二候定数: 小寒・次候（68候）
+     * 名称: 泉水温をふくむ / 読み: しみず あたたかをふくむ
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_SYOUKAN_JIKOU = 68;
+
+    /**
+     * 七十二候定数: 小寒・末候（69候）
+     * 名称: 雉始めてなく / 読み: きじ はじめてなく
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_SYOUKAN_MAKKOU = 69;
+
+    /**
+     * 七十二候定数: 大寒・初候（70候）
+     * 名称: 款冬華く / 読み: ふきの はなさく
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_DAIKAN_SHOKOU = 70;
+
+    /**
+     * 七十二候定数: 大寒・次候（71候）
+     * 名称: 水沢氷つめる / 読み: さわみず こおりつめる
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_DAIKAN_JIKOU = 71;
+
+    /**
+     * 七十二候定数: 大寒・末候（72候）
+     * 名称: 鶏始めてとやにつく / 読み: にわとり はじめてとやにつく
+     *
+     * @var int
+     * @noinspection PhpUnused
+     */
+    public const SEVENTY_TWO_KOU_DAIKAN_MAKKOU = 72;
+
+    /**
+     * 南北朝時代： 北朝
+     *
+     * @var string
+     * @noinspection PhpUnused
+     */
+    public const COURT_NORTH = 'North';
+
+    /**
+     * 南北朝時代： 南朝
+     *
+     * @var string
+     * @noinspection PhpUnused
+     */
+    public const COURT_SOUTH = 'South';
+
+    /**
+     * 南北朝時代以外及び南北朝時代の両朝を指す場合
+     *
+     * @var string
+     * @noinspection PhpUnused
+     */
+    public const COURT_MAIN = 'Main';
+
+    //</editor-fold>
 }
