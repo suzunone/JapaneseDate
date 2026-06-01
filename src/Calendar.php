@@ -369,12 +369,12 @@ class Calendar
      * `true` を設定すると、国民の祝日・休日が {@link getWorkingDay()} などの
      * 結果から除外されます。
      *
-     * @param  bool $val `true` で祝日を除外、`false` で祝日を営業日として扱う
+     * @param  bool $bypass `true` で祝日を除外、`false` で祝日を営業日として扱う
      * @return $this メソッドチェーン用に自身を返します
      */
-    public function setBypassHoliday(bool $val): self
+    public function setBypassHoliday(bool $bypass): self
     {
-        $this->is_bypass_holiday = $val;
+        $this->is_bypass_holiday = $bypass;
 
         return $this;
     }
@@ -486,7 +486,7 @@ class Calendar
      * @param  \DateTimeInterface|null $date 判定する日付（省略時はコンストラクタで指定した開始日）
      * @return bool 営業日であれば true
      */
-    public function isBusinessDayByConfig(?\DateTimeInterface $date = null): bool
+    public function isBusinessDayByConfig(?DateTimeInterface $date = null): bool
     {
         $target = $date ?? $this->start_time_stamp;
 
@@ -512,7 +512,7 @@ class Calendar
      * @return \JapaneseDate\DateTime[]
      * @throws \JapaneseDate\Exceptions\Exception
      */
-    public function getBusinessDaysBySpan(int|float|string|\DateTimeInterface $jdt_end): array
+    public function getBusinessDaysBySpan(int|float|string|DateTimeInterface $jdt_end): array
     {
         $jdt_end_datetime = $this->createDateTime($jdt_end);
         $japaneseDateTime = clone $this->start_time_stamp;

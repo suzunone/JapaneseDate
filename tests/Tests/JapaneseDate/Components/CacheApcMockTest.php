@@ -1,6 +1,7 @@
 <?php
 
 /** @noinspection PhpDocMissingThrowsInspection */
+
 /** @noinspection PhpUnhandledExceptionInspection */
 
 namespace Tests\JapaneseDate\Components;
@@ -15,13 +16,14 @@ use PHPUnit\Framework\TestCase;
  * グローバル関数のモックを使って Cache::apcForever() の APCu 分岐を検証する。
  * グローバル関数テーブルへの影響を避けるため、各テストは別プロセスで実行する。
  */
-#[CoversClass(\JapaneseDate\Components\Cache::class)]
+#[CoversClass(Cache::class)]
 class CacheApcMockTest extends TestCase
 {
     /**
      * APCu キャッシュに値がない場合、コールバックの結果を保存して返すことを確認する。
      */
-    #[RunInSeparateProcess] #[PreserveGlobalState(false)]
+    #[RunInSeparateProcess]
+    #[PreserveGlobalState(false)]
     public function test_apc_forever_cache_miss(): void
     {
         require_once __DIR__ . '/global_apcu_mock.php';
@@ -31,6 +33,7 @@ class CacheApcMockTest extends TestCase
         $callCount = 0;
         $result = Cache::forever('apcu_miss_key', function () use (&$callCount) {
             $callCount++;
+
             return 'computed_value';
         });
 
@@ -42,7 +45,8 @@ class CacheApcMockTest extends TestCase
     /**
      * APCu キャッシュに値がある場合、保存済みの値を返してコールバックを実行しないことを確認する。
      */
-    #[RunInSeparateProcess] #[PreserveGlobalState(false)]
+    #[RunInSeparateProcess]
+    #[PreserveGlobalState(false)]
     public function test_apc_forever_cache_hit(): void
     {
         require_once __DIR__ . '/global_apcu_mock.php';
@@ -52,6 +56,7 @@ class CacheApcMockTest extends TestCase
         $callCount = 0;
         $result = Cache::forever('apcu_hit_key', function () use (&$callCount) {
             $callCount++;
+
             return 'new_value';
         });
 

@@ -46,13 +46,55 @@ class ProcessLimiter
      */
     private static function processLimit(): int
     {
-        $limit = getenv('JAPANESE_DATE_TEST_PROCESS_LIMIT');
+        foreach (self::processLimitEnvNames() as $name) {
+            $limit = self::processLimitFromEnv($name);
 
-        // 未指定または不正な値の場合は 1 プロセスに制限する
-        if ($limit === false || $limit === '') {
-            return 1;
+            if ($limit !== null) {
+                return $limit;
+            }
         }
 
+        return 1;
+    }
+
+    /**
+     * 実行中の coverage/debugger に応じたプロセス数制限の環境変数名を返す。
+     *
+     * @return list<string>
+     */
+    private static function processLimitEnvNames(): array
+    {
+        $names = [];
+
+        if (PHP_SAPI === 'phpdbg') {
+            $names[] = 'JAPANESE_DATE_TEST_PROCESS_LIMIT_PHPDBG';
+        }
+
+        if (extension_loaded('xdebug')) {
+            $names[] = 'JAPANESE_DATE_TEST_PROCESS_LIMIT_XDEBUG';
+        }
+
+        if (extension_loaded('pcov')) {
+            $names[] = 'JAPANESE_DATE_TEST_PROCESS_LIMIT_PCOV';
+        }
+
+        $names[] = 'JAPANESE_DATE_TEST_PROCESS_LIMIT';
+
+        return $names;
+    }
+
+    /**
+     * 環境変数に指定されたプロセス数制限を取得する。
+     */
+    private static function processLimitFromEnv(string $name): ?int
+    {
+        $limit = getenv($name);
+
+        if ($limit === false || $limit === '') {
+            return null;
+        }
+
+        // 不正な値の場合は安全側に倒して 1 プロセスに制限する
         if (!is_numeric($limit)) {
             return 1;
         }

@@ -8,6 +8,9 @@
 
 namespace Tests\JapaneseDate\Components;
 
+use DateTimeImmutable;
+use DateTimeInterface;
+use DateTimeZone;
 use JapaneseDate\Components\BusinessCalendar;
 use JapaneseDate\DateBusiness;
 use JapaneseDate\DateTime;
@@ -18,16 +21,6 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(DateBusiness::class)]
 class BusinessCalendarTest extends TestCase
 {
-    protected function setUp(): void
-    {
-        BusinessCalendar::resetAll();
-    }
-
-    protected function tearDown(): void
-    {
-        BusinessCalendar::resetAll();
-    }
-
     public function test_default_config_is_weekends_and_holidays(): void
     {
         $config = BusinessCalendar::getDefaultConfig();
@@ -97,8 +90,6 @@ class BusinessCalendarTest extends TestCase
         $this->assertSame(BusinessCalendar::getDefaultConfig(), $resolved);
     }
 
-    // --- isBusinessDay のテスト ---
-
     public function test_weekday_is_business_day(): void
     {
         // 2026-05-25 は月曜日
@@ -112,6 +103,8 @@ class BusinessCalendarTest extends TestCase
         $dt = DateTime::factory('2026-05-30');
         $this->assertFalse(BusinessCalendar::isBusinessDay($dt));
     }
+
+    // --- isBusinessDay のテスト ---
 
     public function test_sunday_is_not_business_day(): void
     {
@@ -135,7 +128,6 @@ class BusinessCalendarTest extends TestCase
         $this->assertTrue(BusinessCalendar::isBusinessDay($dt, $config));
     }
 
-    // 優先度3: 第XX曜日 営業指定が曜日設定を上書き
     public function test_open_nth_weekday_overrides_closing_weekday(): void
     {
         // 2026-06-13 は第2土曜（2026-06-06が第1土曜）
@@ -150,7 +142,6 @@ class BusinessCalendarTest extends TestCase
         $this->assertFalse(BusinessCalendar::isBusinessDay($dt2, $config));
     }
 
-    // 優先度4: 第XX曜日 休業指定が営業指定を上書き
     public function test_closing_nth_weekday_overrides_open_nth_weekday(): void
     {
         // 第2土曜を営業指定 AND 第2土曜を休業指定 → 休業が勝つ
@@ -163,7 +154,8 @@ class BusinessCalendarTest extends TestCase
         $this->assertFalse(BusinessCalendar::isBusinessDay($dt, $config));
     }
 
-    // 優先度5: 特定日 営業指定が休業設定を上書き
+    // 優先度3: 第XX曜日 営業指定が曜日設定を上書き
+
     public function test_open_date_overrides_weekday_closing(): void
     {
         $config = (new DateBusiness())
@@ -174,7 +166,8 @@ class BusinessCalendarTest extends TestCase
         $this->assertTrue(BusinessCalendar::isBusinessDay($dt, $config));
     }
 
-    // 優先度6: 特定日 休業指定が営業指定を上書き
+    // 優先度4: 第XX曜日 休業指定が営業指定を上書き
+
     public function test_closing_date_overrides_open_date(): void
     {
         $config = (new DateBusiness())
@@ -186,53 +179,58 @@ class BusinessCalendarTest extends TestCase
         $this->assertFalse(BusinessCalendar::isBusinessDay($dt, $config));
     }
 
-    // 優先度7: 営業指定フィルタが休業日指定を上書き
+    // 優先度5: 特定日 営業指定が休業設定を上書き
+
     public function test_open_filter_overrides_closing_date(): void
     {
         $config = (new DateBusiness())
             ->setClosingWeekdays([0, 6])
             ->addClosingDate('2026-05-25', '臨時休業')
-            ->addOpenFilter(fn(\DateTimeInterface $d) => $d->format('Ymd') === '20260525');
+            ->addOpenFilter(fn (DateTimeInterface $d) => $d->format('Ymd') === '20260525');
 
         $dt = DateTime::factory('2026-05-25');
         $this->assertTrue(BusinessCalendar::isBusinessDay($dt, $config));
     }
 
-    // 優先度8: 休業指定フィルタが営業フィルタを上書き
+    // 優先度6: 特定日 休業指定が営業指定を上書き
+
     public function test_closing_filter_overrides_open_filter(): void
     {
         $config = (new DateBusiness())
             ->setClosingWeekdays([0, 6])
-            ->addOpenFilter(fn(\DateTimeInterface $d) => $d->format('Ymd') === '20260525')
-            ->addClosingFilter(fn(\DateTimeInterface $d) => $d->format('Ymd') === '20260525', '最高優先休業');
+            ->addOpenFilter(fn (DateTimeInterface $d) => $d->format('Ymd') === '20260525')
+            ->addClosingFilter(fn (DateTimeInterface $d) => $d->format('Ymd') === '20260525', '最高優先休業');
 
         $dt = DateTime::factory('2026-05-25');
         $this->assertFalse(BusinessCalendar::isBusinessDay($dt, $config));
     }
 
-    // 優先度9: マクロが最高優先度
+    // 優先度7: 営業指定フィルタが休業日指定を上書き
+
     public function test_macro_overrides_all(): void
     {
         // マクロが true を返せば、他のどの設定があっても営業日
         $config = (new DateBusiness())
             ->setClosingWeekdays([0, 6])
             ->addClosingDate('2026-05-30')
-            ->setMacro(fn(\DateTimeInterface $d) => true); // 常に営業
+            ->setMacro(fn (DateTimeInterface $d) => true); // 常に営業
 
         $saturday = DateTime::factory('2026-05-30'); // 土曜
         $this->assertTrue(BusinessCalendar::isBusinessDay($saturday, $config));
     }
 
+    // 優先度8: 休業指定フィルタが営業フィルタを上書き
+
     public function test_macro_false_overrides_all(): void
     {
         $config = (new DateBusiness())
-            ->setMacro(fn(\DateTimeInterface $d) => false); // 常に休業
+            ->setMacro(fn (DateTimeInterface $d) => false); // 常に休業
 
         $monday = DateTime::factory('2026-05-25');
         $this->assertFalse(BusinessCalendar::isBusinessDay($monday, $config));
     }
 
-    // --- getClosingLabel のテスト ---
+    // 優先度9: マクロが最高優先度
 
     public function test_getClosingLabel_returns_null_on_business_day(): void
     {
@@ -246,6 +244,8 @@ class BusinessCalendarTest extends TestCase
         $dt = DateTime::factory('2026-05-30'); // 土曜
         $this->assertNull(BusinessCalendar::getClosingLabel($dt));
     }
+
+    // --- getClosingLabel のテスト ---
 
     public function test_getClosingLabel_from_closing_date(): void
     {
@@ -272,7 +272,7 @@ class BusinessCalendarTest extends TestCase
     {
         $config = (new DateBusiness())
             ->setClosingWeekdays([0, 6])
-            ->addClosingFilter(fn(\DateTimeInterface $d) => $d->format('Ymd') === '20260814', '夏期休暇フィルタ');
+            ->addClosingFilter(fn (DateTimeInterface $d) => $d->format('Ymd') === '20260814', '夏期休暇フィルタ');
 
         $dt = DateTime::factory('2026-08-14'); // 金曜
         $this->assertSame('夏期休暇フィルタ', BusinessCalendar::getClosingLabel($dt, $config));
@@ -281,7 +281,7 @@ class BusinessCalendarTest extends TestCase
     public function test_getClosingLabel_macro_returns_null(): void
     {
         $config = (new DateBusiness())
-            ->setMacro(fn(\DateTimeInterface $d) => false);
+            ->setMacro(fn (DateTimeInterface $d) => false);
 
         $dt = DateTime::factory('2026-05-25');
         $this->assertNull(BusinessCalendar::getClosingLabel($dt, $config));
@@ -365,15 +365,25 @@ class BusinessCalendarTest extends TestCase
         // bypassHoliday=false → 祝日チェックブロックに入らない ← 未カバーブランチ
         $this->assertSame('臨時休業', BusinessCalendar::getClosingLabel($dt, $config));
     }
+
+    protected function setUp(): void
+    {
+        BusinessCalendar::resetAll();
+    }
+
+    protected function tearDown(): void
+    {
+        BusinessCalendar::resetAll();
+    }
 }
 
 /**
  * getTimezone() が false を返すテスト用 DateTimeInterface 実装。
  * DateTime::factory() に渡すと TypeError が発生し、catch ブランチをカバーする。
  */
-class FalseTimezoneDate extends \DateTimeImmutable
+class FalseTimezoneDate extends DateTimeImmutable
 {
-    public function getTimezone(): \DateTimeZone|false
+    public function getTimezone(): DateTimeZone|false
     {
         return false;
     }

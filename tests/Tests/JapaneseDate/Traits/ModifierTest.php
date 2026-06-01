@@ -17,10 +17,11 @@
  * @since       2018/04/28 11:45 リリースから利用可能
  */
 
-namespace Test\JapaneseDate\Traits;
+namespace Tests\JapaneseDate\Traits;
 
 use JapaneseDate\DateTime;
 use JapaneseDate\DateTimeImmutable;
+use JapaneseDate\Traits\Modifier;
 use PHPUnit\Framework\Attributes\CoversMethod;
 use PHPUnit\Framework\Attributes\CoversTrait;
 use PHPUnit\Framework\Attributes\DataProvider;
@@ -38,46 +39,11 @@ use PHPUnit\Framework\TestCase;
  * @see         https://github.com/suzunone/JapaneseDate
  * @since       1.0.0 リリースから利用可能
  */
-#[CoversTrait(\JapaneseDate\Traits\Modifier::class)]
-#[CoversMethod(\JapaneseDate\Traits\Modifier::class, 'nextHoliday')]
-#[CoversMethod(\JapaneseDate\Traits\Modifier::class, 'nextSixWeek')]
+#[CoversTrait(Modifier::class)]
+#[CoversMethod(Modifier::class, 'nextHoliday')]
+#[CoversMethod(Modifier::class, 'nextSixWeek')]
 class ModifierTest extends TestCase
 {
-    /**
-     * DateTime では次の祝日へ自身を変更して返すことを確認する。
-     *
-     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
-     */
-    public function test_nextHoliday(): void
-    {
-        $dateTime = new DateTime('2020-03-01');
-        $res = $dateTime->nextHoliday();
-
-        $this->assertInstanceOf(DateTime::class, $dateTime);
-
-        $this->assertEquals('春分の日', $res->holiday_text);
-        $this->assertEquals('春分の日', $dateTime->holiday_text);
-        $this->assertSame($res, $dateTime);
-    }
-
-
-    /**
-     * DateTimeImmutable では次の祝日を新しいインスタンスとして返すことを確認する。
-     *
-     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
-     */
-    public function test_nextHoliday_immutable(): void
-    {
-        $dateTimeImmutable = new DateTimeImmutable('2020-03-01');
-        $res = $dateTimeImmutable->nextHoliday();
-
-        $this->assertInstanceOf(DateTimeImmutable::class, $dateTimeImmutable);
-
-        $this->assertEquals('春分の日', $res->holiday_text);
-        $this->assertEquals('', $dateTimeImmutable->holiday_text);
-        $this->assertNotSame($res, $dateTimeImmutable);
-    }
-
     /**
      * nextSixWeek() の対象六曜ごとの期待日を返す。
      */
@@ -105,6 +71,38 @@ class ModifierTest extends TestCase
                 '2020-03-05',
             ],
         ];
+    }
+
+    /**
+     * DateTime では次の祝日へ自身を変更して返すことを確認する。
+     *
+     */
+    public function test_nextHoliday(): void
+    {
+        $dateTime = new DateTime('2020-03-01');
+        $res = $dateTime->nextHoliday();
+
+        $this->assertInstanceOf(DateTime::class, $dateTime);
+
+        $this->assertEquals('春分の日', $res->holiday_text);
+        $this->assertEquals('春分の日', $dateTime->holiday_text);
+        $this->assertSame($res, $dateTime);
+    }
+
+    /**
+     * DateTimeImmutable では次の祝日を新しいインスタンスとして返すことを確認する。
+     *
+     */
+    public function test_nextHoliday_immutable(): void
+    {
+        $dateTimeImmutable = new DateTimeImmutable('2020-03-01');
+        $res = $dateTimeImmutable->nextHoliday();
+
+        $this->assertInstanceOf(DateTimeImmutable::class, $dateTimeImmutable);
+
+        $this->assertEquals('春分の日', $res->holiday_text);
+        $this->assertEquals('', $dateTimeImmutable->holiday_text);
+        $this->assertNotSame($res, $dateTimeImmutable);
     }
 
     /**

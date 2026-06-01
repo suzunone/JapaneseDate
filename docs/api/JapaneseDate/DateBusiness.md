@@ -258,6 +258,9 @@ $config->addOpenDate('2026-12-30'); // 2026年12月30日は特別営業
 | string\|[DateTimeInterface](https://www.php.net/class.datetimeinterface) | `$date` | —  | 営業日として指定する日付 |
 
 **Returns:** [DateBusiness](../JapaneseDate/DateBusiness.md) — メソッドチェーン用に自身を返します
+**Throws:**
+
+- [Exception](https://www.php.net/class.exception)
 ---
 
 ### removeOpenDate
@@ -275,6 +278,9 @@ public DateBusiness removeOpenDate($date)
 | string\|[DateTimeInterface](https://www.php.net/class.datetimeinterface) | `$date` | —  | 削除する日付 |
 
 **Returns:** [DateBusiness](../JapaneseDate/DateBusiness.md) — メソッドチェーン用に自身を返します
+**Throws:**
+
+- [Exception](https://www.php.net/class.exception)
 ---
 
 ### addClosingDate
@@ -302,6 +308,9 @@ $config->addClosingDate('2026-12-31', '年末休業');
 | string\|null | `$label` | `null` | 休業理由のラベル（例: '夏期休暇'） |
 
 **Returns:** [DateBusiness](../JapaneseDate/DateBusiness.md) — メソッドチェーン用に自身を返します
+**Throws:**
+
+- [Exception](https://www.php.net/class.exception)
 ---
 
 ### removeClosingDate
@@ -319,6 +328,9 @@ public DateBusiness removeClosingDate($date)
 | string\|[DateTimeInterface](https://www.php.net/class.datetimeinterface) | `$date` | —  | 削除する日付 |
 
 **Returns:** [DateBusiness](../JapaneseDate/DateBusiness.md) — メソッドチェーン用に自身を返します
+**Throws:**
+
+- [Exception](https://www.php.net/class.exception)
 ---
 
 ### addOpenFilter

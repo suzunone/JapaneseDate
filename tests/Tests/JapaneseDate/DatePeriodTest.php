@@ -19,6 +19,8 @@
 
 namespace Tests\JapaneseDate;
 
+use Carbon\CarbonPeriod;
+use JapaneseDate\DateBusiness;
 use JapaneseDate\DatePeriod;
 use JapaneseDate\DateTime;
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -36,26 +38,28 @@ use PHPUnit\Framework\TestCase;
  * @see         https://github.com/suzunone/JapaneseDate
  * @since       2026-05-29
  */
-#[CoversClass(\JapaneseDate\DatePeriod::class)]
-#[CoversMethod(\JapaneseDate\DatePeriod::class, 'onlyHolidays')]
-#[CoversMethod(\JapaneseDate\DatePeriod::class, 'withoutHolidays')]
-#[CoversMethod(\JapaneseDate\DatePeriod::class, 'withoutWeekends')]
-#[CoversMethod(\JapaneseDate\DatePeriod::class, 'onlyWeekdays')]
-#[CoversMethod(\JapaneseDate\DatePeriod::class, 'onlyGotobi')]
-#[CoversMethod(\JapaneseDate\DatePeriod::class, 'onlySixWeekday')]
-#[CoversMethod(\JapaneseDate\DatePeriod::class, 'withoutSixWeekday')]
-#[CoversMethod(\JapaneseDate\DatePeriod::class, 'onlyDoyo')]
-#[CoversMethod(\JapaneseDate\DatePeriod::class, 'onlyHigan')]
-#[CoversMethod(\JapaneseDate\DatePeriod::class, 'eachSolarTerm')]
-#[CoversMethod(\JapaneseDate\DatePeriod::class, 'eachLunarMonth')]
-#[CoversMethod(\JapaneseDate\DatePeriod::class, 'splitByEra')]
-#[CoversMethod(\JapaneseDate\DatePeriod::class, 'eachJapaneseFiscalYear')]
-#[CoversMethod(\JapaneseDate\DatePeriod::class, 'collectSolarTermDates')]
-#[CoversMethod(\JapaneseDate\DatePeriod::class, 'collectLunarNewMoonDates')]
-#[CoversMethod(\JapaneseDate\DatePeriod::class, 'resolveSolarTerms')]
-#[CoversMethod(\JapaneseDate\DatePeriod::class, 'createFromDatesArray')]
-#[CoversMethod(\JapaneseDate\DatePeriod::class, 'isInDoyo')]
-#[CoversMethod(\JapaneseDate\DatePeriod::class, 'isInHigan')]
+#[CoversClass(DatePeriod::class)]
+#[CoversMethod(DatePeriod::class, 'onlyHolidays')]
+#[CoversMethod(DatePeriod::class, 'withoutHolidays')]
+#[CoversMethod(DatePeriod::class, 'withoutWeekends')]
+#[CoversMethod(DatePeriod::class, 'onlyWeekdays')]
+#[CoversMethod(DatePeriod::class, 'onlyGotobi')]
+#[CoversMethod(DatePeriod::class, 'onlySixWeekday')]
+#[CoversMethod(DatePeriod::class, 'withoutSixWeekday')]
+#[CoversMethod(DatePeriod::class, 'onlyDoyo')]
+#[CoversMethod(DatePeriod::class, 'onlyHigan')]
+#[CoversMethod(DatePeriod::class, 'eachSolarTerm')]
+#[CoversMethod(DatePeriod::class, 'eachLunarMonth')]
+#[CoversMethod(DatePeriod::class, 'splitByEra')]
+#[CoversMethod(DatePeriod::class, 'eachJapaneseFiscalYear')]
+#[CoversMethod(DatePeriod::class, 'collectSolarTermDates')]
+#[CoversMethod(DatePeriod::class, 'collectLunarNewMoonDates')]
+#[CoversMethod(DatePeriod::class, 'resolveSolarTerms')]
+#[CoversMethod(DatePeriod::class, 'createFromDatesArray')]
+#[CoversMethod(DatePeriod::class, 'isInDoyo')]
+#[CoversMethod(DatePeriod::class, 'isInHigan')]
+#[CoversMethod(DatePeriod::class, 'onlyBusinessDays')]
+#[CoversMethod(DatePeriod::class, 'withoutBusinessDays')]
 class DatePeriodTest extends TestCase
 {
     // =========================================================================
@@ -68,7 +72,7 @@ class DatePeriodTest extends TestCase
     public function test_extendsCarbonPeriod(): void
     {
         $period = DatePeriod::create('2026-05-01', '1 day', '2026-05-31');
-        $this->assertInstanceOf(\Carbon\CarbonPeriod::class, $period);
+        $this->assertInstanceOf(CarbonPeriod::class, $period);
         $this->assertInstanceOf(DatePeriod::class, $period);
     }
 
@@ -350,7 +354,7 @@ class DatePeriodTest extends TestCase
 
         $dates = iterator_to_array($period);
         // 土用は約18日間
-        $this->assertEquals(18, count($dates));
+        $this->assertCount(18, $dates);
     }
 
     /**
@@ -394,7 +398,7 @@ class DatePeriodTest extends TestCase
 
         $dates = iterator_to_array($period);
         // 春彼岸は7日間
-        $this->assertEquals(7, count($dates));
+        $this->assertCount(7, $dates);
     }
 
     /**
@@ -564,7 +568,7 @@ class DatePeriodTest extends TestCase
         $period = DatePeriod::eachLunarMonth(DateTime::parse('2026-01-01'), 3);
         $dates = array_values(iterator_to_array($period));
 
-        for ($i = 1; $i < count($dates); $i++) {
+        for ($i = 1, $iMax = count($dates); $i < $iMax; $i++) {
             $diff = $dates[$i - 1]->diff($dates[$i]);
             $this->assertGreaterThanOrEqual(28, $diff->days);
             $this->assertLessThanOrEqual(31, $diff->days);
@@ -725,5 +729,71 @@ class DatePeriodTest extends TestCase
             $this->assertFalse($jd->is_holiday);
             $this->assertNotEquals(DateTime::SIX_WEEKDAY_BUTSUMETSU, $jd->six_weekday);
         }
+    }
+
+    // =========================================================================
+    // onlyBusinessDays / withoutBusinessDays
+    // =========================================================================
+
+    /**
+     * onlyBusinessDays() が週末を除いた営業日のみを返すことを確認する。
+     */
+    public function test_onlyBusinessDays_excludes_weekends(): void
+    {
+        // 2026-05-25(月) 〜 2026-05-31(日) の7日間
+        $period = DatePeriod::create('2026-05-25', '1 day', '2026-05-31')
+            ->onlyBusinessDays();
+
+        $dates = iterator_to_array($period);
+        $this->assertCount(5, $dates); // 月〜金の5日
+
+        foreach ($dates as $d) {
+            $dow = (int) $d->format('N'); // 1=月, 7=日
+            $this->assertNotContains($dow, [6, 7], $d->format('Y-m-d') . ' は週末であるべきでない');
+        }
+    }
+
+    /**
+     * onlyBusinessDays() に $config を渡したとき、その設定で営業日を判定することを確認する。
+     */
+    public function test_onlyBusinessDays_with_explicit_config(): void
+    {
+        $config = (new DateBusiness())->setClosingWeekdays([0, 6]);
+        $period = DatePeriod::create('2026-05-25', '1 day', '2026-05-31')
+            ->onlyBusinessDays($config);
+
+        $dates = iterator_to_array($period);
+        $this->assertCount(5, $dates); // 月〜金の5日
+    }
+
+    /**
+     * withoutBusinessDays() が営業日を除いた休業日のみを返すことを確認する。
+     */
+    public function test_withoutBusinessDays_returns_non_business_days(): void
+    {
+        // 2026-05-25(月) 〜 2026-05-31(日) の7日間
+        $period = DatePeriod::create('2026-05-25', '1 day', '2026-05-31')
+            ->withoutBusinessDays();
+
+        $dates = iterator_to_array($period);
+        $this->assertCount(2, $dates); // 土・日の2日
+
+        foreach ($dates as $d) {
+            $dow = (int) $d->format('N');
+            $this->assertContains($dow, [6, 7], $d->format('Y-m-d') . ' は週末であるべき');
+        }
+    }
+
+    /**
+     * withoutBusinessDays() に $config を渡したとき、その設定で判定することを確認する。
+     */
+    public function test_withoutBusinessDays_with_explicit_config(): void
+    {
+        $config = (new DateBusiness())->setClosingWeekdays([0, 6]);
+        $period = DatePeriod::create('2026-05-25', '1 day', '2026-05-31')
+            ->withoutBusinessDays($config);
+
+        $dates = iterator_to_array($period);
+        $this->assertCount(2, $dates); // 土・日の2日
     }
 }

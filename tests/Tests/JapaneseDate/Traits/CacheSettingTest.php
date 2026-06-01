@@ -1,14 +1,18 @@
 <?php
 
 /** @noinspection PhpDocMissingThrowsInspection */
+
 /** @noinspection PhpUnhandledExceptionInspection */
 
 namespace Tests\JapaneseDate\Traits;
 
 use Closure;
+use DateTimeZone;
 use JapaneseDate\Components\Cache;
 use JapaneseDate\DateTime;
-use PHPUnit\Framework\Attributes\CoversClass;
+use JapaneseDate\Traits\CacheSetting;
+use PHPUnit\Framework\Attributes\CoversMethod;
+use PHPUnit\Framework\Attributes\CoversTrait;
 use PHPUnit\Framework\Attributes\PreserveGlobalState;
 use PHPUnit\Framework\Attributes\RunInSeparateProcess;
 use PHPUnit\Framework\TestCase;
@@ -17,7 +21,11 @@ use Tests\JapaneseDate\InvokeTrait;
 /**
  * CacheSetting Trait 経由で Cache コンポーネントの設定を変更できることを検証する。
  */
-#[CoversClass(\JapaneseDate\Traits\CacheSetting::class)]
+#[CoversTrait(CacheSetting::class)]
+#[CoversMethod(CacheSetting::class, 'setCacheMode')]
+#[CoversMethod(CacheSetting::class, 'setCacheFilePath')]
+#[CoversMethod(CacheSetting::class, 'setCacheClosure')]
+#[CoversMethod(CacheSetting::class, 'innerDateTime')]
 class CacheSettingTest extends TestCase
 {
     use InvokeTrait;
@@ -25,7 +33,8 @@ class CacheSettingTest extends TestCase
     /**
      * DateTime 経由でキャッシュモードを変更できることを確認する。
      */
-    #[RunInSeparateProcess] #[PreserveGlobalState(false)]
+    #[RunInSeparateProcess]
+    #[PreserveGlobalState(false)]
     public function test_setCacheMode(): void
     {
         DateTime::setCacheMode(Cache::MODE_NONE);
@@ -39,7 +48,8 @@ class CacheSettingTest extends TestCase
     /**
      * DateTime 経由でファイルキャッシュの保存先を設定できることを確認する。
      */
-    #[RunInSeparateProcess] #[PreserveGlobalState(false)]
+    #[RunInSeparateProcess]
+    #[PreserveGlobalState(false)]
     public function test_setCacheFilePath(): void
     {
         $path = '/tmp/test_cache_setting';
@@ -58,7 +68,8 @@ class CacheSettingTest extends TestCase
     /**
      * DateTime 経由で独自キャッシュ用クロージャを設定できることを確認する。
      */
-    #[RunInSeparateProcess] #[PreserveGlobalState(false)]
+    #[RunInSeparateProcess]
+    #[PreserveGlobalState(false)]
     public function test_setCacheClosure(): void
     {
         $closure = static function (string $key, Closure $fn): mixed {
@@ -81,7 +92,7 @@ class CacheSettingTest extends TestCase
      */
     public function test_innerDateTime(): void
     {
-        $dt = new DateTime('2023-01-15', new \DateTimeZone('Asia/Tokyo'));
+        $dt = new DateTime('2023-01-15', new DateTimeZone('Asia/Tokyo'));
 
         $result1 = $this->invokeExecuteMethod($dt, 'innerDateTime', ['2023-06-01']);
         $result2 = $this->invokeExecuteMethod($dt, 'innerDateTime', ['2023-06-01']);

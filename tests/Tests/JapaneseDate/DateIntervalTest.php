@@ -19,6 +19,9 @@
 
 namespace Tests\JapaneseDate;
 
+use Carbon\CarbonInterval;
+use InvalidArgumentException;
+use JapaneseDate\DateBusiness;
 use JapaneseDate\DateInterval;
 use JapaneseDate\DateTime;
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -36,22 +39,25 @@ use PHPUnit\Framework\TestCase;
  * @see         https://github.com/suzunone/JapaneseDate
  * @since       2026-05-29
  */
-#[CoversClass(\JapaneseDate\DateInterval::class)]
-#[CoversMethod(\JapaneseDate\DateInterval::class, 'addBusinessDaysToDate')]
-#[CoversMethod(\JapaneseDate\DateInterval::class, 'subBusinessDaysToDate')]
-#[CoversMethod(\JapaneseDate\DateInterval::class, 'isBusinessDay')]
-#[CoversMethod(\JapaneseDate\DateInterval::class, 'untilNextHoliday')]
-#[CoversMethod(\JapaneseDate\DateInterval::class, 'untilNextSixWeek')]
-#[CoversMethod(\JapaneseDate\DateInterval::class, 'eraSpan')]
-#[CoversMethod(\JapaneseDate\DateInterval::class, 'untilNextSolarTerm')]
-#[CoversMethod(\JapaneseDate\DateInterval::class, 'addSolarTermsToDate')]
-#[CoversMethod(\JapaneseDate\DateInterval::class, 'subSolarTermsToDate')]
-#[CoversMethod(\JapaneseDate\DateInterval::class, 'toSolarTermCount')]
-#[CoversMethod(\JapaneseDate\DateInterval::class, 'toLunarMonthCount')]
-#[CoversMethod(\JapaneseDate\DateInterval::class, 'untilNextNewMoon')]
-#[CoversMethod(\JapaneseDate\DateInterval::class, 'findNextSolarTermDate')]
-#[CoversMethod(\JapaneseDate\DateInterval::class, 'findPrevSolarTermDate')]
-#[CoversMethod(\JapaneseDate\DateInterval::class, 'resolveSolarTerm')]
+#[CoversClass(DateInterval::class)]
+#[CoversMethod(DateInterval::class, 'addBusinessDaysToDate')]
+#[CoversMethod(DateInterval::class, 'subBusinessDaysToDate')]
+#[CoversMethod(DateInterval::class, 'isBusinessDay')]
+#[CoversMethod(DateInterval::class, 'untilNextHoliday')]
+#[CoversMethod(DateInterval::class, 'untilNextSixWeek')]
+#[CoversMethod(DateInterval::class, 'eraSpan')]
+#[CoversMethod(DateInterval::class, 'untilNextSolarTerm')]
+#[CoversMethod(DateInterval::class, 'addSolarTermsToDate')]
+#[CoversMethod(DateInterval::class, 'subSolarTermsToDate')]
+#[CoversMethod(DateInterval::class, 'toSolarTermCount')]
+#[CoversMethod(DateInterval::class, 'toLunarMonthCount')]
+#[CoversMethod(DateInterval::class, 'untilNextNewMoon')]
+#[CoversMethod(DateInterval::class, 'findNextSolarTermDate')]
+#[CoversMethod(DateInterval::class, 'findPrevSolarTermDate')]
+#[CoversMethod(DateInterval::class, 'addBusinessDaysTo')]
+#[CoversMethod(DateInterval::class, 'subBusinessDaysFrom')]
+#[CoversMethod(DateInterval::class, 'countBusinessDaysBetween')]
+#[CoversMethod(DateInterval::class, 'resolveSolarTerm')]
 class DateIntervalTest extends TestCase
 {
     // =========================================================================
@@ -64,7 +70,7 @@ class DateIntervalTest extends TestCase
     public function test_extendsCaronInterval(): void
     {
         $interval = new DateInterval('P1D');
-        $this->assertInstanceOf(\Carbon\CarbonInterval::class, $interval);
+        $this->assertInstanceOf(CarbonInterval::class, $interval);
     }
 
     /**
@@ -321,7 +327,7 @@ class DateIntervalTest extends TestCase
      */
     public function test_eraSpan_invalidKey(): void
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         DateInterval::eraSpan(9999);
     }
 
@@ -472,5 +478,99 @@ class DateIntervalTest extends TestCase
         $from = DateTime::parse('2026-05-01');
         DateInterval::untilNextNewMoon($from);
         $this->assertEquals('2026-05-01', $from->format('Y-m-d'));
+    }
+
+    // -----------------------------------------------------------------------
+    // addBusinessDaysTo
+    // -----------------------------------------------------------------------
+
+    /**
+     * addBusinessDaysTo() が N 営業日後の日付を返すことを確認する。
+     */
+    public function test_addBusinessDaysTo_basic(): void
+    {
+        $interval = new DateInterval('P1D');
+        $base = DateTime::factory('2026-05-29'); // 金曜
+        $result = $interval->addBusinessDaysTo($base, 3);
+
+        // 金の翌日から3営業日: 月・火・水 = 2026-06-03
+        $this->assertSame('2026-06-03', $result->format('Y-m-d'));
+    }
+
+    /**
+     * addBusinessDaysTo() が $config を明示的に渡したときに使用することを確認する。
+     */
+    public function test_addBusinessDaysTo_with_explicit_config(): void
+    {
+        $interval = new DateInterval('P1D');
+        $base = DateTime::factory('2026-05-25'); // 月曜
+        $config = new DateBusiness();
+        $result = $interval->addBusinessDaysTo($base, 1, $config);
+
+        $this->assertSame('2026-05-26', $result->format('Y-m-d'));
+    }
+
+    // -----------------------------------------------------------------------
+    // subBusinessDaysFrom
+    // -----------------------------------------------------------------------
+
+    /**
+     * subBusinessDaysFrom() が N 営業日前の日付を返すことを確認する。
+     */
+    public function test_subBusinessDaysFrom_basic(): void
+    {
+        $interval = new DateInterval('P1D');
+        $base = DateTime::factory('2026-06-01'); // 月曜
+        $result = $interval->subBusinessDaysFrom($base, 3);
+
+        // 月曜から3営業日前: 水・火・月 = 2026-05-27
+        $this->assertSame('2026-05-27', $result->format('Y-m-d'));
+    }
+
+    /**
+     * subBusinessDaysFrom() が $config を明示的に渡したときに使用することを確認する。
+     */
+    public function test_subBusinessDaysFrom_with_explicit_config(): void
+    {
+        $interval = new DateInterval('P1D');
+        $base = DateTime::factory('2026-05-27'); // 水曜
+        $config = new DateBusiness();
+        $result = $interval->subBusinessDaysFrom($base, 1, $config);
+
+        $this->assertSame('2026-05-26', $result->format('Y-m-d'));
+    }
+
+    // -----------------------------------------------------------------------
+    // countBusinessDaysBetween
+    // -----------------------------------------------------------------------
+
+    /**
+     * countBusinessDaysBetween() が期間内の営業日数を返すことを確認する。
+     */
+    public function test_countBusinessDaysBetween_basic(): void
+    {
+        $interval = new DateInterval('P1D');
+        $start = DateTime::factory('2026-05-25'); // 月曜
+        $end = DateTime::factory('2026-05-31'); // 日曜
+
+        $count = $interval->countBusinessDaysBetween($start, $end);
+
+        // 月〜金の5日が営業日
+        $this->assertSame(5, $count);
+    }
+
+    /**
+     * countBusinessDaysBetween() が $config を明示的に渡したときに使用することを確認する。
+     */
+    public function test_countBusinessDaysBetween_with_explicit_config(): void
+    {
+        $interval = new DateInterval('P1D');
+        $start = DateTime::factory('2026-05-25');
+        $end = DateTime::factory('2026-05-25');
+        $config = new DateBusiness();
+
+        $count = $interval->countBusinessDaysBetween($start, $end, $config);
+
+        $this->assertSame(1, $count);
     }
 }

@@ -116,9 +116,10 @@ trait DateBusinessCommon
      * $dt->setClosingDay('2026-08-15', '夏期休暇');
      * ```
      *
-     * @param  string|\DateTimeInterface $date  休業日として指定する日付
-     * @param  string|null               $label 休業理由のラベル（例: '夏期休暇'）
+     * @param string|\DateTimeInterface $date 休業日として指定する日付
+     * @param string|null $label 休業理由のラベル（例: '夏期休暇'）
      * @return static メソッドチェーン用に自身を返します
+     * @throws \Exception
      */
     public function setClosingDay(string|DateTimeInterface $date, ?string $label = null): static
     {
@@ -137,8 +138,9 @@ trait DateBusinessCommon
      * $dt->setOpenDay('2026-12-30'); // 特別営業日
      * ```
      *
-     * @param  string|\DateTimeInterface $date 営業日として指定する日付
+     * @param string|\DateTimeInterface $date 営業日として指定する日付
      * @return static メソッドチェーン用に自身を返します
+     * @throws \Exception
      */
     public function setOpenDay(string|DateTimeInterface $date): static
     {
