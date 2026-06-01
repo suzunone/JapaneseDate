@@ -17,20 +17,21 @@
  * @since       2018/04/28 11:45 リリースから利用可能
  */
 
-namespace Test\JapaneseDate;
+namespace Tests\JapaneseDate;
 
 use Carbon\Carbon;
 use Faker\Generator as FakerGenerator;
 use Faker\Provider\DateTime as FakerDateTime;
 use JapaneseDate\DateTime;
 use JapaneseDate\Exceptions\NativeDateTimeException;
+use JapaneseDate\Traits\Component;
+use JapaneseDate\Traits\DateTimeImport;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\CoversMethod;
 use PHPUnit\Framework\Attributes\CoversTrait;
 use PHPUnit\Framework\Attributes\PreserveGlobalState;
 use PHPUnit\Framework\Attributes\RunInSeparateProcess;
 use PHPUnit\Framework\TestCase;
-use Tests\JapaneseDate\InvokeTrait;
 
 /**
  * DateTime クラスのテスト
@@ -100,6 +101,7 @@ class DateTimeTest extends TestCase
      * テスト用の現在日時が DateTime と Carbon の生成系メソッドに反映されることを確認する
      *
      * @return void
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      * @runInSeparateProcess
      * @preserveGlobalState disabled
      */
@@ -128,6 +130,7 @@ class DateTimeTest extends TestCase
      * コンストラクタが日時オブジェクト由来の文字列と日時文字列を解釈できることを確認する
      *
      * @return void
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     public function test_construct(): void
     {
@@ -149,6 +152,7 @@ class DateTimeTest extends TestCase
      * factory が複数形式の入力から日時を生成できることを確認する
      *
      * @return void
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      * @runInSeparateProcess
      * @preserveGlobalState disabled
      */
@@ -179,6 +183,7 @@ class DateTimeTest extends TestCase
      * ユリウス日から算出したグレゴリオ暦情報を取得できることを確認する
      *
      * @return void
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     public function test_getCalendar(): void
     {
@@ -205,8 +210,27 @@ class DateTimeTest extends TestCase
      */
     public function test_create_Error(): void
     {
-        $this->expectException(\JapaneseDate\Exceptions\NativeDateTimeException::class);
         $this->expectException(NativeDateTimeException::class);
-        $dateTime = new DateTime('あああああ');
+        $this->expectException(NativeDateTimeException::class);
+        new DateTime('あああああ');
+    }
+    /**
+     * マイクロタイムスタンプテスト
+     * @return void
+     */
+    public function test_micro_time(): void
+    {
+        $date = new DateTime('2024-06-01 12:34:56.789000');
+        $this->assertEquals('2024-06-01 12:34:56.789000', $date->format('Y-m-d H:i:s.u'));
+    }
+    /**
+     * マイクロタイムスタンプテスト
+     * @return void
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     */
+    public function test_factory_micro_time(): void
+    {
+        $date = DateTime::factory('2024-06-01 12:34:56.789000');
+        $this->assertEquals('2024-06-01 12:34:56.789000', $date->format('Y-m-d H:i:s.u'));
     }
 }

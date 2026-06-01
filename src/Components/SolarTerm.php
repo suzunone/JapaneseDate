@@ -4,6 +4,7 @@ namespace JapaneseDate\Components;
 
 use DateTimeImmutable;
 use DateTimeZone;
+use JapaneseDate\Components\Traits\GetSolarTerm;
 use JapaneseDate\DateTime;
 use JapaneseDate\Elements\SolarTermDate;
 use JapaneseDate\Exceptions\Exception;
@@ -15,6 +16,8 @@ class SolarTerm
      * @var \JapaneseDate\Components\Astronomy|null
      */
     private $astronomy;
+    use GetSolarTerm;
+
     private const SOLAR_TERM_MONTH = [
         3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12, 1, 1, 2, 2, 3,
     ];
@@ -39,63 +42,26 @@ class SolarTerm
 
     /**
      * @param int $year
-     * @param int $solarTerm
+     * @param int $solar_term
      * @return \JapaneseDate\Elements\SolarTermDate
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    public function getSolarTerm($year, $solarTerm): SolarTermDate
+    public function getSolarTerm($year, $solar_term): SolarTermDate
     {
-        if (!array_key_exists($solarTerm, JapaneseDate::SOLAR_TERM)) {
-            throw new Exception('undefined Solar Term:' . $solarTerm);
+        if (!array_key_exists($solar_term, JapaneseDate::SOLAR_TERM)) {
+            throw new Exception('undefined Solar Term:' . $solar_term);
         }
 
-        $month = self::SOLAR_TERM_MONTH[$solarTerm];
+        $month = self::SOLAR_TERM_MONTH[$solar_term];
         $cal_days_in_month = cal_days_in_month(CAL_GREGORIAN, $month, $year);
         for ($day = 1; $day <= $cal_days_in_month; $day++) {
-            if ($this->findSolarTerm($year, $month, $day) === $solarTerm) {
-                return new SolarTermDate($year, $solarTerm, $day);
+            if ($this->findSolarTerm($year, $month, $day) === $solar_term) {
+                return new SolarTermDate($year, $solar_term, $day);
             }
         }
 
         throw new SolarTermException('Solar term was not found by astronomical calculation.');
-    }
-
-    /**
-     * 二十四節気配列を返す
-     * @param int $year
-     * @return SolarTermDate[]
-     * @throws \JapaneseDate\Exceptions\Exception
-     * @throws \JapaneseDate\Exceptions\SolarTermException
-     */
-    public function getSolarTerms($year): array
-    {
-        return [
-            DateTime::SOLAR_TERM_SYUNBUN   => $this->syunbun($year),
-            DateTime::SOLAR_TERM_SEIMEI    => $this->seimei($year),
-            DateTime::SOLAR_TERM_KOKUU     => $this->kokuu($year),
-            DateTime::SOLAR_TERM_RIKKA     => $this->rikka($year),
-            DateTime::SOLAR_TERM_SYOUMAN   => $this->syouman($year),
-            DateTime::SOLAR_TERM_BOUSYU    => $this->bousyu($year),
-            DateTime::SOLAR_TERM_GESHI     => $this->geshi($year),
-            DateTime::SOLAR_TERM_SYOUSYO   => $this->syousyo($year),
-            DateTime::SOLAR_TERM_TAISYO    => $this->taisyo($year),
-            DateTime::SOLAR_TERM_RISSYUU   => $this->rissyuu($year),
-            DateTime::SOLAR_TERM_SYOSYO    => $this->syosyo($year),
-            DateTime::SOLAR_TERM_HAKURO    => $this->hakuro($year),
-            DateTime::SOLAR_TERM_SYUUBUN   => $this->syuubun($year),
-            DateTime::SOLAR_TERM_KANRO     => $this->kanro($year),
-            DateTime::SOLAR_TERM_SOUKOU    => $this->soukou($year),
-            DateTime::SOLAR_TERM_RITTOU    => $this->rittou($year),
-            DateTime::SOLAR_TERM_SYOUSETSU => $this->syousetsu($year),
-            DateTime::SOLAR_TERM_TAISETSU  => $this->taisetsu($year),
-            DateTime::SOLAR_TERM_TOUJI     => $this->touji($year),
-            DateTime::SOLAR_TERM_SYOUKAN   => $this->syoukan($year),
-            DateTime::SOLAR_TERM_DAIKAN    => $this->daikan($year),
-            DateTime::SOLAR_TERM_RISSYUN   => $this->rissyun($year),
-            DateTime::SOLAR_TERM_USUI      => $this->usui($year),
-            DateTime::SOLAR_TERM_KEICHITSU => $this->keichitsu($year),
-        ];
     }
 
     /**

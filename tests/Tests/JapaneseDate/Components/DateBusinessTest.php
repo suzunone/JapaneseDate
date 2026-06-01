@@ -8,6 +8,8 @@
 
 namespace Tests\JapaneseDate\Components;
 
+use DateTime;
+use DateTimeInterface;
 use JapaneseDate\DateBusiness;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
@@ -70,7 +72,7 @@ class DateBusinessTest extends TestCase
     public function test_addOpenDate_with_DateTimeInterface(): void
     {
         $db = new DateBusiness();
-        $dt = new \DateTime('2026-12-30');
+        $dt = new DateTime('2026-12-30');
         $db->addOpenDate($dt);
         $this->assertArrayHasKey('20261230', $db->getOpenDates());
     }
@@ -86,7 +88,7 @@ class DateBusinessTest extends TestCase
     public function test_addClosingDate_with_DateTimeInterface(): void
     {
         $db = new DateBusiness();
-        $dt = new \DateTime('2026-08-15');
+        $dt = new DateTime('2026-08-15');
         $db->addClosingDate($dt, '夏期休暇');
         $this->assertArrayHasKey('20260815', $db->getClosingDates());
     }
@@ -99,7 +101,7 @@ class DateBusinessTest extends TestCase
     public function test_addOpenFilter_and_getOpenFilters(): void
     {
         $db = new DateBusiness();
-        $filter = function (\DateTimeInterface $d) {
+        $filter = function (DateTimeInterface $d) {
             return $d->format('d') === '10';
         };
         $db->addOpenFilter($filter);
@@ -109,7 +111,7 @@ class DateBusinessTest extends TestCase
     public function test_addClosingFilter_and_getClosingFilters(): void
     {
         $db = new DateBusiness();
-        $filter = function (\DateTimeInterface $d) {
+        $filter = function (DateTimeInterface $d) {
             return $d->format('md') === '1231';
         };
         $db->addClosingFilter($filter, '大晦日');
@@ -121,7 +123,7 @@ class DateBusinessTest extends TestCase
     public function test_addClosingFilter_null_label(): void
     {
         $db = new DateBusiness();
-        $filter = function (\DateTimeInterface $d) {
+        $filter = function (DateTimeInterface $d) {
             return false;
         };
         $db->addClosingFilter($filter);
@@ -131,7 +133,7 @@ class DateBusinessTest extends TestCase
     {
         $db = new DateBusiness();
         $this->assertNull($db->getMacro());
-        $macro = function (\DateTimeInterface $d) {
+        $macro = function (DateTimeInterface $d) {
             return true;
         };
         $db->setMacro($macro);

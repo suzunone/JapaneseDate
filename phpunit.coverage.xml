@@ -26,6 +26,9 @@
   <php>
     <env name="APP_ENV" value="testing"/>
     <env name="JAPANESE_DATE_TEST_PROCESS_LIMIT" value="20"/>
+    <env name="JAPANESE_DATE_TEST_PROCESS_LIMIT_PCOV" value="20"/>
+    <env name="JAPANESE_DATE_TEST_PROCESS_LIMIT_XDEBUG" value="1"/>
+    <env name="JAPANESE_DATE_TEST_PROCESS_LIMIT_PHPDBG" value="1"/>
     <ini name="memory_limit" value="2G"/>
   </php>
 

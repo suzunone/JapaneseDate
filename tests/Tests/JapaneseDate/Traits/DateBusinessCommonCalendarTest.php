@@ -8,32 +8,25 @@
 
 namespace Tests\JapaneseDate\Traits;
 
+use DateTimeInterface;
+use Exception;
 use JapaneseDate\Calendar;
 use JapaneseDate\Components\BusinessCalendar;
 use JapaneseDate\DateBusiness;
 use JapaneseDate\DateTime;
 use JapaneseDate\Exceptions\NativeDateTimeException;
-use PHPUnit\Framework\Attributes\CoversClass;
+use JapaneseDate\Traits\DateBusinessCommon;
 use PHPUnit\Framework\Attributes\CoversTrait;
 use PHPUnit\Framework\TestCase;
+use ReturnTypeWillChange;
+use Tests\JapaneseDate\InvokeTrait;
 
 /**
- * @covers \JapaneseDate\Calendar
- * @covers \JapaneseDate\Components\BusinessCalendar
- * @covers \JapaneseDate\DateBusiness
  * @covers \JapaneseDate\Traits\DateBusinessCommon
  */
 class DateBusinessCommonCalendarTest extends TestCase
 {
-    use SetPropertyTrait;
-    protected function setUp(): void
-    {
-        BusinessCalendar::resetAll();
-    }
-    protected function tearDown(): void
-    {
-        BusinessCalendar::resetAll();
-    }
+    use InvokeTrait;
     public function test_isBusinessDayByConfig_weekday(): void
     {
         $calendar = new Calendar('2026-05-25'); // 月曜
@@ -174,12 +167,11 @@ class DateBusinessCommonCalendarTest extends TestCase
         $calendar = new Calendar('2026-05-25');
         // add() が必ず例外を投げる DateTime を注入する
         $throwing = new ThrowingDateTimeForBusinessLimit('2026-05-25');
-        $this->setProperty($calendar, 'start_time_stamp', $throwing);
+        $this->invokeSetProperty($calendar, 'start_time_stamp', $throwing);
 
         $this->expectException(NativeDateTimeException::class);
         $calendar->getBusinessDaysByLimit(1);
     }
-    // --- DateBusinessCommon ショートカット（Calendar 固有ルート） ---
     public function test_setClosingWeekdays_on_calendar(): void
     {
         // 月曜（1）を休業にして判定
@@ -196,6 +188,7 @@ class DateBusinessCommonCalendarTest extends TestCase
         $calendar->setBusinessConfig($config);
         $this->assertTrue($calendar->isBusinessDayByConfig());
     }
+    // --- DateBusinessCommon ショートカット（Calendar 固有ルート） ---
     public function test_setOpenNthWeekday_on_calendar(): void
     {
         // 2026-06-13 = 第2土曜 → 営業指定で営業日になる
@@ -214,7 +207,7 @@ class DateBusinessCommonCalendarTest extends TestCase
     {
         // 土曜でもフィルタで営業日にする
         $calendar = new Calendar('2026-05-30'); // 土曜
-        $calendar->addOpenFilter(function (\DateTimeInterface $d) {
+        $calendar->addOpenFilter(function (DateTimeInterface $d) {
             return $d->format('Ymd') === '20260530';
         });
         $this->assertTrue($calendar->isBusinessDayByConfig());
@@ -223,7 +216,7 @@ class DateBusinessCommonCalendarTest extends TestCase
     {
         // 月曜でもフィルタで休業日にする
         $calendar = new Calendar('2026-05-25'); // 月曜
-        $calendar->addClosingFilter(function (\DateTimeInterface $d) {
+        $calendar->addClosingFilter(function (DateTimeInterface $d) {
             return $d->format('Ymd') === '20260525';
         }, '特別休業');
         $this->assertFalse($calendar->isBusinessDayByConfig());
@@ -232,7 +225,7 @@ class DateBusinessCommonCalendarTest extends TestCase
     {
         // マクロで常に営業日
         $calendar = new Calendar('2026-05-30'); // 土曜
-        $calendar->setBusinessMacro(function (\DateTimeInterface $d) {
+        $calendar->setBusinessMacro(function (DateTimeInterface $d) {
             return true;
         });
         $this->assertTrue($calendar->isBusinessDayByConfig());
@@ -255,8 +248,6 @@ class DateBusinessCommonCalendarTest extends TestCase
         $this->assertSame('夏期休暇', $calendar->checkGetBusinessDayLabel($target));
         $this->assertNull($calendar->checkGetBusinessDayLabel(DateTime::factory('2026-05-25')));
     }
-    // --- checkIsBusinessDay / checkGetBusinessDayLabel の null target ブランチ ---
-    // Calendar は DateTimeInterface を実装していないため、引数なしで呼ぶと $target === null になる
     public function test_checkIsBusinessDay_null_target_returns_false(): void
     {
         $calendar = new Calendar('2026-05-25');
@@ -269,7 +260,8 @@ class DateBusinessCommonCalendarTest extends TestCase
         // 引数なし + Calendar は DateTimeInterface でない → $target === null → null
         $this->assertNull($calendar->checkGetBusinessDayLabel());
     }
-    // --- Calendar 定数 ---
+    // --- checkIsBusinessDay / checkGetBusinessDayLabel の null target ブランチ ---
+    // Calendar は DateTimeInterface を実装していないため、引数なしで呼ぶと $target === null になる
     public function test_weekday_constants(): void
     {
         $this->assertSame(0, Calendar::SUNDAY);
@@ -279,6 +271,15 @@ class DateBusinessCommonCalendarTest extends TestCase
         $this->assertSame(4, Calendar::THURSDAY);
         $this->assertSame(5, Calendar::FRIDAY);
         $this->assertSame(6, Calendar::SATURDAY);
+    }
+    protected function setUp(): void
+    {
+        BusinessCalendar::resetAll();
+    }
+    // --- Calendar 定数 ---
+    protected function tearDown(): void
+    {
+        BusinessCalendar::resetAll();
     }
 }
 
@@ -290,27 +291,9 @@ class ThrowingDateTimeForBusinessLimit extends DateTime
     /**
      * @return static
      */
-    #[\ReturnTypeWillChange]
+    #[ReturnTypeWillChange]
     public function add($unit, $value = 1, $overflow = null)
     {
-        throw new \Exception('DateTime add failed.');
+        throw new Exception('DateTime add failed.');
     }
 }
-
-/**
- * テスト用プロパティ設定ヘルパー（ReflectionProperty 経由）。
- */
-trait SetPropertyTrait
-{
-    /**
-     * @param mixed $value
-     * @param object $object
-     */
-    private function setProperty($object, string $property, $value): void
-    {
-        $ref = new \ReflectionProperty($object, $property);
-        $ref->setAccessible(true);
-        $ref->setValue($object, $value);
-    }
-}
-

@@ -172,6 +172,16 @@ use JapaneseDate\DateTimeImmutable;
  * @property-read float $moonPhaseAngle その日における月の位相角を取得する。値は 0°(新月)〜359.9° の浮動小数点数です。
  * @property-read int $moonPhase その日における月相を取得する。値は 0(新月)〜7(有明) の整数です。
  * @property-read string $moonPhaseText その日における月相名を日本語で取得する。値は「新月」「三日月」「上弦」「十三夜」「満月」「十六夜」「下弦」「有明」のいずれかです。
+ * @property-read int $seventy_two_kou その日が属する七十二候の番号を取得する（スネークケース）。値は 1（立春初候）〜 72（大寒末候）の整数。
+ * @property-read int $seventyTwoKou その日が属する七十二候の番号を取得する。値は 1（立春初候）〜 72（大寒末候）の整数。
+ * @property-read string $seventy_two_kou_text その日が属する七十二候の現代名称を取得する（スネークケース）。例: "東風凍を解く"、"乃東生ず"。
+ * @property-read string $seventyTwoKouText その日が属する七十二候の現代名称を取得する。例: "東風凍を解く"、"乃東生ず"。
+ * @property-read string $seventy_two_kou_reading その日が属する七十二候の読みを取得する（スネークケース）。例: "はるかぜ こおりをとく"。
+ * @property-read string $seventyTwoKouReading その日が属する七十二候の読みを取得する。例: "はるかぜ こおりをとく"。
+ * @property-read string $seventy_two_kou_type その日が属する七十二候の候種別を取得する（スネークケース）。値は "初候"、"次候"、"末候" のいずれか。
+ * @property-read string $seventyTwoKouType その日が属する七十二候の候種別を取得する。値は "初候"、"次候"、"末候" のいずれか。
+ * @property-read \JapaneseDate\Values\Era[] $historical_eras 大化以降の歴史的元号を取得する（スネークケース）。該当する {@see \JapaneseDate\Values\Era} の配列。南北朝時代は北朝・南朝の両方を含む。元号が存在しない場合は空配列。
+ * @property-read \JapaneseDate\Values\Era[] $historicalEras 大化以降の歴史的元号を取得する。該当する {@see \JapaneseDate\Values\Era} の配列。南北朝時代は北朝・南朝の両方を含む。元号が存在しない場合は空配列。
  * @property-read DateTime|DateTimeImmutable $nextSyunbun 次の春分の日の日時を取得する。値は、 次の春分の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が春分の日の場合は翌年の春分の日が返されます。
  * @property-read DateTime|DateTimeImmutable $beforeSyunbun 前の春分の日の日時を取得する。値は、 前の春分の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が春分の日の場合は前年の春分の日が返されます。
  * @property-read DateTime|DateTimeImmutable $nextSeimei 次の清明の日の日時を取得する。値は、 次の清明の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が清明の日の場合は翌年の清明の日が返されます。
@@ -544,6 +554,21 @@ trait Getter
             case 'moon_phase_text':
             case 'moonPhaseText':
                 return $this->viewMoonPhase();
+            case 'seventy_two_kou':
+            case 'seventyTwoKou':
+                return $this->getSeventyTwoKou();
+            case 'seventy_two_kou_text':
+            case 'seventyTwoKouText':
+                return $this->getSeventyTwoKouText();
+            case 'seventy_two_kou_reading':
+            case 'seventyTwoKouReading':
+                return $this->getSeventyTwoKouReading();
+            case 'seventy_two_kou_type':
+            case 'seventyTwoKouType':
+                return $this->getSeventyTwoKouType();
+            case 'historical_eras':
+            case 'historicalEras':
+                return $this->historicalEras();
             default:
                 return parent::__get($name);
         }

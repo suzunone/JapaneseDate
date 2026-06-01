@@ -18,7 +18,7 @@
  * @since       2018/04/28 14:20 リリースから利用可能
  */
 
-namespace Test\JapaneseDate\Components;
+namespace Tests\JapaneseDate\Components;
 
 use Faker\Generator as FakerGenerator;
 use Faker\Provider\DateTime as FakerDateTime;
@@ -79,18 +79,6 @@ class JapaneseDateTest extends TestCase
 {
     use InvokeTrait;
     /**
-     * 生成時に LunarCalendar コンポーネントが用意されることを確認する。
-     */
-    public function test_construct(): void
-    {
-        $JapaneseDate = new JapaneseDate();
-
-        $this->assertInstanceOf(
-            LunarCalendar::class,
-            $this->invokeGetProperty($JapaneseDate, 'LunarCalendar')
-        );
-    }
-    /**
      * JapaneseDate と DateTime のテスト用インスタンスを返すデータプロバイダ。
      *
      * @access      public
@@ -102,6 +90,60 @@ class JapaneseDateTest extends TestCase
         $JapaneseDateTime = new DateTime();
 
         return [[$JapaneseDate, $JapaneseDateTime]];
+    }
+    /**
+     * 春分の日の計算結果を検証するための年別データを返す。
+     *
+     * @return array
+     */
+    public static function vernalEquinoxDayDataProvider(): array
+    {
+        return [
+            '1599' => [1599, '0321'],
+            '1600' => [1600, '0320'],
+            '1979' => [1979, '0321'],
+            '1980' => [1980, '0320'],
+            '2000' => [2000, '0320'],
+            '2099' => [2099, '0320'],
+            '2100' => [2100, '0320'],
+            '2150' => [2150, '0321'],
+            '2151' => [2151, '0321'],
+            '2399' => [2399, '0321'],
+            '2400' => [2400, '0320'],
+        ];
+    }
+    /**
+     * 秋分の日の計算結果を検証するための年別データを返す。
+     *
+     * @return array
+     */
+    public static function autumnEquinoxDayDataProvider(): array
+    {
+        return [
+            '1599' => [1599, '0924'],
+            '1600' => [1600, '0923'],
+            '1979' => [1979, '0924'],
+            '1980' => [1980, '0923'],
+            '2000' => [2000, '0923'],
+            '2099' => [2099, '0923'],
+            '2100' => [2100, '0923'],
+            '2150' => [2150, '0923'],
+            '2151' => [2151, '0923'],
+            '2399' => [2399, '0923'],
+            '2400' => [2400, '0923'],
+        ];
+    }
+    /**
+     * 生成時に LunarCalendar コンポーネントが用意されることを確認する。
+     */
+    public function test_construct(): void
+    {
+        $JapaneseDate = new JapaneseDate();
+
+        $this->assertInstanceOf(
+            LunarCalendar::class,
+            $this->invokeGetProperty($JapaneseDate, 'LunarCalendar')
+        );
     }
     /**
      * 2019年の即位礼正殿の儀が祝日として設定されることを確認する。
@@ -273,31 +315,17 @@ class JapaneseDateTest extends TestCase
         );
     }
     /**
-     * 春分の日の計算結果を検証するための年別データを返す。
-     *
-     * @return array
-     */
-    public static function vernalEquinoxDayDataProvider(): array
-    {
-        return [
-            '1599' => [1599, '0321'],
-            '1600' => [1600, '0320'],
-            '1979' => [1979, '0321'],
-            '1980' => [1980, '0320'],
-            '2000' => [2000, '0320'],
-            '2099' => [2099, '0320'],
-            '2100' => [2100, '0320'],
-            '2150' => [2150, '0321'],
-            '2151' => [2151, '0321'],
-            '2399' => [2399, '0321'],
-            '2400' => [2400, '0320'],
-        ];
-    }
-    /**
      * 春分の日が期待する月日になることを確認する。
      *
      * @access              public
+     * @param $year
+     * @param $expected
      * @return      void
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     * @throws \JapaneseDate\Exceptions\SolarTermException
+     * @throws \JsonException
      * @dataProvider vernalEquinoxDayDataProvider
      */
     public function test_getVernalEquinoxDay($year, $expected): void
@@ -342,31 +370,17 @@ class JapaneseDateTest extends TestCase
         );
     }
     /**
-     * 秋分の日の計算結果を検証するための年別データを返す。
-     *
-     * @return array
-     */
-    public static function autumnEquinoxDayDataProvider(): array
-    {
-        return [
-            '1599' => [1599, '0924'],
-            '1600' => [1600, '0923'],
-            '1979' => [1979, '0924'],
-            '1980' => [1980, '0923'],
-            '2000' => [2000, '0923'],
-            '2099' => [2099, '0923'],
-            '2100' => [2100, '0923'],
-            '2150' => [2150, '0923'],
-            '2151' => [2151, '0923'],
-            '2399' => [2399, '0923'],
-            '2400' => [2400, '0923'],
-        ];
-    }
-    /**
      * 秋分の日が期待する月日になることを確認する。
      *
      * @access              public
+     * @param $year
+     * @param $expected
      * @return      void
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     * @throws \JapaneseDate\Exceptions\SolarTermException
+     * @throws \JsonException
      * @dataProvider autumnEquinoxDayDataProvider
      */
     public function test_getAutumnEquinoxDay($year, $expected): void
@@ -1987,14 +2001,14 @@ class JapaneseDateTest extends TestCase
     {
         $JapaneseDate = new JapaneseDate();
 
-        $this->assertSame('新月',   $JapaneseDate->viewMoonPhase(0));
+        $this->assertSame('新月', $JapaneseDate->viewMoonPhase(0));
         $this->assertSame('三日月', $JapaneseDate->viewMoonPhase(1));
-        $this->assertSame('上弦',   $JapaneseDate->viewMoonPhase(2));
+        $this->assertSame('上弦', $JapaneseDate->viewMoonPhase(2));
         $this->assertSame('十三夜', $JapaneseDate->viewMoonPhase(3));
-        $this->assertSame('満月',   $JapaneseDate->viewMoonPhase(4));
+        $this->assertSame('満月', $JapaneseDate->viewMoonPhase(4));
         $this->assertSame('十六夜', $JapaneseDate->viewMoonPhase(5));
-        $this->assertSame('下弦',   $JapaneseDate->viewMoonPhase(6));
-        $this->assertSame('有明',   $JapaneseDate->viewMoonPhase(7));
+        $this->assertSame('下弦', $JapaneseDate->viewMoonPhase(6));
+        $this->assertSame('有明', $JapaneseDate->viewMoonPhase(7));
         // 範囲外のキー → 空文字
         $this->assertSame('', $JapaneseDate->viewMoonPhase(99));
     }

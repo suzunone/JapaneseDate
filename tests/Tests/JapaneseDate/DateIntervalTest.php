@@ -19,6 +19,9 @@
 
 namespace Tests\JapaneseDate;
 
+use Carbon\CarbonInterval;
+use InvalidArgumentException;
+use JapaneseDate\DateBusiness;
 use JapaneseDate\DateInterval;
 use JapaneseDate\DateTime;
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -50,6 +53,9 @@ use PHPUnit\Framework\TestCase;
  * @covers \JapaneseDate\DateInterval::untilNextNewMoon
  * @covers \JapaneseDate\DateInterval::findNextSolarTermDate
  * @covers \JapaneseDate\DateInterval::findPrevSolarTermDate
+ * @covers \JapaneseDate\DateInterval::addBusinessDaysTo
+ * @covers \JapaneseDate\DateInterval::subBusinessDaysFrom
+ * @covers \JapaneseDate\DateInterval::countBusinessDaysBetween
  * @covers \JapaneseDate\DateInterval::resolveSolarTerm
  */
 class DateIntervalTest extends TestCase
@@ -63,7 +69,7 @@ class DateIntervalTest extends TestCase
     public function test_extendsCaronInterval(): void
     {
         $interval = new DateInterval('P1D');
-        $this->assertInstanceOf(\Carbon\CarbonInterval::class, $interval);
+        $this->assertInstanceOf(CarbonInterval::class, $interval);
     }
     /**
      * SYNODIC_MONTH_DAYS 定数が正しい値であることを確認する。
@@ -295,7 +301,7 @@ class DateIntervalTest extends TestCase
      */
     public function test_eraSpan_invalidKey(): void
     {
-        $this->expectException(\InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         DateInterval::eraSpan(9999);
     }
     // =========================================================================
@@ -433,5 +439,90 @@ class DateIntervalTest extends TestCase
         $from = DateTime::parse('2026-05-01');
         DateInterval::untilNextNewMoon($from);
         $this->assertEquals('2026-05-01', $from->format('Y-m-d'));
+    }
+    // -----------------------------------------------------------------------
+    // addBusinessDaysTo
+    // -----------------------------------------------------------------------
+    /**
+     * addBusinessDaysTo() が N 営業日後の日付を返すことを確認する。
+     */
+    public function test_addBusinessDaysTo_basic(): void
+    {
+        $interval = new DateInterval('P1D');
+        $base = DateTime::factory('2026-05-29'); // 金曜
+        $result = $interval->addBusinessDaysTo($base, 3);
+
+        // 金の翌日から3営業日: 月・火・水 = 2026-06-03
+        $this->assertSame('2026-06-03', $result->format('Y-m-d'));
+    }
+    /**
+     * addBusinessDaysTo() が $config を明示的に渡したときに使用することを確認する。
+     */
+    public function test_addBusinessDaysTo_with_explicit_config(): void
+    {
+        $interval = new DateInterval('P1D');
+        $base = DateTime::factory('2026-05-25'); // 月曜
+        $config = new DateBusiness();
+        $result = $interval->addBusinessDaysTo($base, 1, $config);
+
+        $this->assertSame('2026-05-26', $result->format('Y-m-d'));
+    }
+    // -----------------------------------------------------------------------
+    // subBusinessDaysFrom
+    // -----------------------------------------------------------------------
+    /**
+     * subBusinessDaysFrom() が N 営業日前の日付を返すことを確認する。
+     */
+    public function test_subBusinessDaysFrom_basic(): void
+    {
+        $interval = new DateInterval('P1D');
+        $base = DateTime::factory('2026-06-01'); // 月曜
+        $result = $interval->subBusinessDaysFrom($base, 3);
+
+        // 月曜から3営業日前: 水・火・月 = 2026-05-27
+        $this->assertSame('2026-05-27', $result->format('Y-m-d'));
+    }
+    /**
+     * subBusinessDaysFrom() が $config を明示的に渡したときに使用することを確認する。
+     */
+    public function test_subBusinessDaysFrom_with_explicit_config(): void
+    {
+        $interval = new DateInterval('P1D');
+        $base = DateTime::factory('2026-05-27'); // 水曜
+        $config = new DateBusiness();
+        $result = $interval->subBusinessDaysFrom($base, 1, $config);
+
+        $this->assertSame('2026-05-26', $result->format('Y-m-d'));
+    }
+    // -----------------------------------------------------------------------
+    // countBusinessDaysBetween
+    // -----------------------------------------------------------------------
+    /**
+     * countBusinessDaysBetween() が期間内の営業日数を返すことを確認する。
+     */
+    public function test_countBusinessDaysBetween_basic(): void
+    {
+        $interval = new DateInterval('P1D');
+        $start = DateTime::factory('2026-05-25'); // 月曜
+        $end = DateTime::factory('2026-05-31'); // 日曜
+
+        $count = $interval->countBusinessDaysBetween($start, $end);
+
+        // 月〜金の5日が営業日
+        $this->assertSame(5, $count);
+    }
+    /**
+     * countBusinessDaysBetween() が $config を明示的に渡したときに使用することを確認する。
+     */
+    public function test_countBusinessDaysBetween_with_explicit_config(): void
+    {
+        $interval = new DateInterval('P1D');
+        $start = DateTime::factory('2026-05-25');
+        $end = DateTime::factory('2026-05-25');
+        $config = new DateBusiness();
+
+        $count = $interval->countBusinessDaysBetween($start, $end, $config);
+
+        $this->assertSame(1, $count);
     }
 }

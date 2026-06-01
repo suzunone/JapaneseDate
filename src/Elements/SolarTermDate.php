@@ -26,10 +26,10 @@ class SolarTermDate
         'is_sekki' => false,
         'is_chuki' => false,
 
-        'year'            => 0,
-        'solar_term'      => -1,
-        'month'           => 0,
-        'day'             => 0,
+        'year' => 0,
+        'solar_term' => -1,
+        'month' => 0,
+        'day' => 0,
         'solar_longitude' => 0.0,
     ];
 

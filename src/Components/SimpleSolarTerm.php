@@ -2,6 +2,7 @@
 
 namespace JapaneseDate\Components;
 
+use JapaneseDate\Components\Traits\GetSolarTerm;
 use JapaneseDate\DateTime;
 use JapaneseDate\Elements\SolarTermDate;
 use JapaneseDate\Exceptions\Exception;
@@ -9,6 +10,8 @@ use JapaneseDate\Exceptions\SolarTermException;
 
 class SimpleSolarTerm
 {
+    use GetSolarTerm;
+
     /**
      * @param int $year
      * @param int $solar_term
@@ -70,42 +73,6 @@ class SimpleSolarTerm
         }
 
         throw new Exception('undefined Solar Term:' . $solar_term);
-    }
-
-    /**
-     * 二十四節気配列を返す
-     * @param int $year
-     * @return SolarTermDate[]
-     * @throws \JapaneseDate\Exceptions\SolarTermException
-     */
-    public function getSolarTerms($year): array
-    {
-        return [
-            DateTime::SOLAR_TERM_SYUNBUN   => $this->syunbun($year),
-            DateTime::SOLAR_TERM_SEIMEI    => $this->seimei($year),
-            DateTime::SOLAR_TERM_KOKUU     => $this->kokuu($year),
-            DateTime::SOLAR_TERM_RIKKA     => $this->rikka($year),
-            DateTime::SOLAR_TERM_SYOUMAN   => $this->syouman($year),
-            DateTime::SOLAR_TERM_BOUSYU    => $this->bousyu($year),
-            DateTime::SOLAR_TERM_GESHI     => $this->geshi($year),
-            DateTime::SOLAR_TERM_SYOUSYO   => $this->syousyo($year),
-            DateTime::SOLAR_TERM_TAISYO    => $this->taisyo($year),
-            DateTime::SOLAR_TERM_RISSYUU   => $this->rissyuu($year),
-            DateTime::SOLAR_TERM_SYOSYO    => $this->syosyo($year),
-            DateTime::SOLAR_TERM_HAKURO    => $this->hakuro($year),
-            DateTime::SOLAR_TERM_SYUUBUN   => $this->syuubun($year),
-            DateTime::SOLAR_TERM_KANRO     => $this->kanro($year),
-            DateTime::SOLAR_TERM_SOUKOU    => $this->soukou($year),
-            DateTime::SOLAR_TERM_RITTOU    => $this->rittou($year),
-            DateTime::SOLAR_TERM_SYOUSETSU => $this->syousetsu($year),
-            DateTime::SOLAR_TERM_TAISETSU  => $this->taisetsu($year),
-            DateTime::SOLAR_TERM_TOUJI     => $this->touji($year),
-            DateTime::SOLAR_TERM_SYOUKAN   => $this->syoukan($year),
-            DateTime::SOLAR_TERM_DAIKAN    => $this->daikan($year),
-            DateTime::SOLAR_TERM_RISSYUN   => $this->rissyun($year),
-            DateTime::SOLAR_TERM_USUI      => $this->usui($year),
-            DateTime::SOLAR_TERM_KEICHITSU => $this->keichitsu($year),
-        ];
     }
 
     /**

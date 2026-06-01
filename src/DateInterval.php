@@ -26,7 +26,6 @@ use JapaneseDate\Components\BusinessCalendar;
 use JapaneseDate\Components\Moon;
 use JapaneseDate\Components\SimpleSolarTerm;
 use JapaneseDate\Components\SolarTerm;
-use JapaneseDate\DateBusiness;
 use JapaneseDate\Elements\SolarTermDate;
 use JapaneseDate\Traits\DateBusinessCommon;
 use Throwable;
@@ -116,11 +115,11 @@ class DateInterval extends CarbonInterval
      * @var array<int, string>
      */
     protected const ERA_START_DATES = [
-        DateTime::ERA_MEIJI  => '1868-01-25',
+        DateTime::ERA_MEIJI => '1868-01-25',
         DateTime::ERA_TAISHO => '1912-07-30',
-        DateTime::ERA_SHOWA  => '1926-12-25',
+        DateTime::ERA_SHOWA => '1926-12-25',
         DateTime::ERA_HEISEI => '1989-01-08',
-        DateTime::ERA_REIWA  => '2019-05-01',
+        DateTime::ERA_REIWA => '2019-05-01',
     ];
 
     /**
@@ -131,11 +130,11 @@ class DateInterval extends CarbonInterval
      * @var array<int, string|null>
      */
     protected const ERA_END_DATES = [
-        DateTime::ERA_MEIJI  => '1912-07-29',
+        DateTime::ERA_MEIJI => '1912-07-29',
         DateTime::ERA_TAISHO => '1926-12-24',
-        DateTime::ERA_SHOWA  => '1989-01-07',
+        DateTime::ERA_SHOWA => '1989-01-07',
         DateTime::ERA_HEISEI => '2019-04-30',
-        DateTime::ERA_REIWA  => null,
+        DateTime::ERA_REIWA => null,
     ];
 
     /**
@@ -147,29 +146,29 @@ class DateInterval extends CarbonInterval
      * @var array<string, int>
      */
     protected const SOLAR_TERM_METHODS = [
-        'syunbun'   => DateTime::SOLAR_TERM_SYUNBUN,
-        'seimei'    => DateTime::SOLAR_TERM_SEIMEI,
-        'kokuu'     => DateTime::SOLAR_TERM_KOKUU,
-        'rikka'     => DateTime::SOLAR_TERM_RIKKA,
-        'syouman'   => DateTime::SOLAR_TERM_SYOUMAN,
-        'bousyu'    => DateTime::SOLAR_TERM_BOUSYU,
-        'geshi'     => DateTime::SOLAR_TERM_GESHI,
-        'syousyo'   => DateTime::SOLAR_TERM_SYOUSYO,
-        'taisyo'    => DateTime::SOLAR_TERM_TAISYO,
-        'rissyuu'   => DateTime::SOLAR_TERM_RISSYUU,
-        'syosyo'    => DateTime::SOLAR_TERM_SYOSYO,
-        'hakuro'    => DateTime::SOLAR_TERM_HAKURO,
-        'syuubun'   => DateTime::SOLAR_TERM_SYUUBUN,
-        'kanro'     => DateTime::SOLAR_TERM_KANRO,
-        'soukou'    => DateTime::SOLAR_TERM_SOUKOU,
-        'rittou'    => DateTime::SOLAR_TERM_RITTOU,
+        'syunbun' => DateTime::SOLAR_TERM_SYUNBUN,
+        'seimei' => DateTime::SOLAR_TERM_SEIMEI,
+        'kokuu' => DateTime::SOLAR_TERM_KOKUU,
+        'rikka' => DateTime::SOLAR_TERM_RIKKA,
+        'syouman' => DateTime::SOLAR_TERM_SYOUMAN,
+        'bousyu' => DateTime::SOLAR_TERM_BOUSYU,
+        'geshi' => DateTime::SOLAR_TERM_GESHI,
+        'syousyo' => DateTime::SOLAR_TERM_SYOUSYO,
+        'taisyo' => DateTime::SOLAR_TERM_TAISYO,
+        'rissyuu' => DateTime::SOLAR_TERM_RISSYUU,
+        'syosyo' => DateTime::SOLAR_TERM_SYOSYO,
+        'hakuro' => DateTime::SOLAR_TERM_HAKURO,
+        'syuubun' => DateTime::SOLAR_TERM_SYUUBUN,
+        'kanro' => DateTime::SOLAR_TERM_KANRO,
+        'soukou' => DateTime::SOLAR_TERM_SOUKOU,
+        'rittou' => DateTime::SOLAR_TERM_RITTOU,
         'syousetsu' => DateTime::SOLAR_TERM_SYOUSETSU,
-        'taisetsu'  => DateTime::SOLAR_TERM_TAISETSU,
-        'touji'     => DateTime::SOLAR_TERM_TOUJI,
-        'syoukan'   => DateTime::SOLAR_TERM_SYOUKAN,
-        'daikan'    => DateTime::SOLAR_TERM_DAIKAN,
-        'rissyun'   => DateTime::SOLAR_TERM_RISSYUN,
-        'usui'      => DateTime::SOLAR_TERM_USUI,
+        'taisetsu' => DateTime::SOLAR_TERM_TAISETSU,
+        'touji' => DateTime::SOLAR_TERM_TOUJI,
+        'syoukan' => DateTime::SOLAR_TERM_SYOUKAN,
+        'daikan' => DateTime::SOLAR_TERM_DAIKAN,
+        'rissyun' => DateTime::SOLAR_TERM_RISSYUN,
+        'usui' => DateTime::SOLAR_TERM_USUI,
         'keichitsu' => DateTime::SOLAR_TERM_KEICHITSU,
     ];
 
@@ -291,7 +290,7 @@ class DateInterval extends CarbonInterval
         $nextHoliday = $base->copy()->nextHoliday()->startOfDay();
         $diff = $base->diff($nextHoliday);
 
-        return static::days($diff->days);
+        return static::instance(CarbonInterval::days($diff->days));
     }
 
     // =========================================================================
@@ -336,7 +335,7 @@ class DateInterval extends CarbonInterval
         $target = $base->copy()->addDays($daysToAdd)->startOfDay();
         $diff = $base->diff($target);
 
-        return static::days($diff->days);
+        return static::instance(CarbonInterval::days($diff->days));
     }
 
     // =========================================================================
@@ -416,7 +415,7 @@ class DateInterval extends CarbonInterval
         $target = static::findNextSolarTermDate($from, $termMethod);
         $diff = $from->diff($target->startOfDay());
 
-        return static::days($diff->days);
+        return static::instance(CarbonInterval::days($diff->days));
     }
 
     /**
@@ -720,10 +719,11 @@ class DateInterval extends CarbonInterval
     /**
      * 2つの日付間の営業日数を計算します。
      *
-     * @param  \DateTimeInterface $start  開始日
-     * @param  \DateTimeInterface $end    終了日
-     * @param  DateBusiness|null $config 判定に使用する設定（省略時はインスタンス設定）
+     * @param \DateTimeInterface $start 開始日
+     * @param \DateTimeInterface $end 終了日
+     * @param DateBusiness|null $config 判定に使用する設定（省略時はインスタンス設定）
      * @return int 営業日数（start以上end以下の営業日の数）
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     public function countBusinessDaysBetween($start, $end, $config = null): int
     {

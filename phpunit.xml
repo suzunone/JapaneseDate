@@ -6,10 +6,7 @@
          processIsolation="false"
          stopOnError="false"
          stopOnFailure="false"
-         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/11.0/phpunit.xsd"
-         cacheDirectory=".phpunit.cache"
-         backupStaticProperties="false"
-         requireCoverageMetadata="true"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.6/phpunit.xsd"
 >
   <testsuites>
     <testsuite name="Suzunome\JapaneseDate">
@@ -17,15 +14,18 @@
     </testsuite>
   </testsuites>
 
-  <source>
+  <coverage>
     <include>
       <directory suffix=".php">src</directory>
     </include>
-  </source>
+  </coverage>
 
   <php>
     <env name="APP_ENV" value="testing"/>
     <env name="JAPANESE_DATE_TEST_PROCESS_LIMIT" value="20"/>
+    <env name="JAPANESE_DATE_TEST_PROCESS_LIMIT_PCOV" value="20"/>
+    <env name="JAPANESE_DATE_TEST_PROCESS_LIMIT_XDEBUG" value="1"/>
+    <env name="JAPANESE_DATE_TEST_PROCESS_LIMIT_PHPDBG" value="1"/>
     <ini name="memory_limit" value="2G"/>
   </php>
 

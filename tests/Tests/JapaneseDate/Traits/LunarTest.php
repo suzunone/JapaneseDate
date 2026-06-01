@@ -17,10 +17,12 @@
  * @since       2018/04/28 11:45 リリースから利用可能
  */
 
-namespace Test\JapaneseDate\Traits;
+namespace Tests\JapaneseDate\Traits;
 
 use JapaneseDate\DateTime;
 use JapaneseDate\DateTimeImmutable;
+use JapaneseDate\Traits\Getter;
+use JapaneseDate\Traits\Lunar;
 use PHPUnit\Framework\Attributes\CoversMethod;
 use PHPUnit\Framework\Attributes\CoversTrait;
 use PHPUnit\Framework\TestCase;

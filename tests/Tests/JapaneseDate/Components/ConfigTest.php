@@ -31,46 +31,6 @@ class ConfigTest extends TestCase
      */
     private $tmpDir;
     /**
-     * テスト用の暦データファイルを一時ディレクトリに作成する。
-     */
-    protected function setUp(): void
-    {
-        $this->tmpDir = sys_get_temp_dir() . '/japanese_date_config_test_' . uniqid('', true);
-        mkdir($this->tmpDir, 0777, true);
-
-        // 旧暦データと二十四節気データを含む年別設定ファイルを用意する。
-        file_put_contents($this->tmpDir . '/2026.php', <<<'PHP'
-<?php
-return [
-    'lunarCalendar' => [
-        [
-            'year'              => 2026,
-            'month'             => 1,
-            'day'               => 19,
-            'lunar_year'        => 2025,
-            'lunar_month'       => 12,
-            'lunar_month_leap'  => false,
-        ],
-    ],
-    'solarTerm' => [
-        ['month' => 1, 'day' => 5, 'solar_term' => 21],
-    ],
-];
-PHP
-        );
-
-        Config::setLCPath([$this->tmpDir]);
-    }
-    /**
-     * テスト用の暦データファイルと設定パスを後片付けする。
-     */
-    protected function tearDown(): void
-    {
-        @unlink($this->tmpDir . '/2026.php');
-        @rmdir($this->tmpDir);
-        Config::setLCPath([]);
-    }
-    /**
      * 指定年の旧暦データを取得し、ユリウス通日が補完されることを確認する。
      * @runInSeparateProcess
      * @preserveGlobalState disabled
@@ -137,5 +97,47 @@ PHP
         Config::addLCPath($this->tmpDir);
         $result = Config::getLC(2026);
         $this->assertNotEmpty($result);
+    }
+    /**
+     * テスト用の暦データファイルを一時ディレクトリに作成する。
+     */
+    protected function setUp(): void
+    {
+        $this->tmpDir = sys_get_temp_dir() . '/japanese_date_config_test_' . uniqid('', true);
+        mkdir($this->tmpDir, 0777, true);
+
+        // 旧暦データと二十四節気データを含む年別設定ファイルを用意する。
+        file_put_contents(
+            $this->tmpDir . '/2026.php',
+            <<<'PHP'
+<?php
+return [
+    'lunarCalendar' => [
+        [
+            'year'              => 2026,
+            'month'             => 1,
+            'day'               => 19,
+            'lunar_year'        => 2025,
+            'lunar_month'       => 12,
+            'lunar_month_leap'  => false,
+        ],
+    ],
+    'solarTerm' => [
+        ['month' => 1, 'day' => 5, 'solar_term' => 21],
+    ],
+];
+PHP
+        );
+
+        Config::setLCPath([$this->tmpDir]);
+    }
+    /**
+     * テスト用の暦データファイルと設定パスを後片付けする。
+     */
+    protected function tearDown(): void
+    {
+        @unlink($this->tmpDir . '/2026.php');
+        @rmdir($this->tmpDir);
+        Config::setLCPath([]);
     }
 }

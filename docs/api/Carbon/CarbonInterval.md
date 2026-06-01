@@ -63,15 +63,13 @@ Weeks are calculated based on the total days of the current instance.
 
 | Return | Method | Description |
 |---|---|---|
-| CarbonInterval | [setTimezone()](#settimezone) | Set the instance's timezone from a string or object. |
+| CarbonInterval | [setTimezone()](#settimezone) | Set the instance&#039;s timezone from a string or object. |
 | CarbonInterval | [shiftTimezone()](#shifttimezone) |  |
 | array | [getCascadeFactors()](#getcascadefactors) | Mapping of units and factors for cascading. |
-|  | [setCascadeFactors()](#setcascadefactors) | Set default cascading factors for ->cascade() method. |
-| void | [enableFloatSetters()](#enablefloatsetters) | This option allow you to opt-in for the Carbon 3 behavior where float
-values will no longer be cast to integer (so truncated). |
+|  | [setCascadeFactors()](#setcascadefactors) | Set default cascading factors for -&gt;cascade() method. |
+| void | [enableFloatSetters()](#enablefloatsetters) | This option allow you to opt-in for the Carbon 3 behavior where float values will no longer be cast to integer (so truncated). |
 | int\|float\|null | [getFactor()](#getfactor) | Returns the factor for a given source-to-target couple. |
-| int\|float\|null | [getFactorWithDefault()](#getfactorwithdefault) | Returns the factor for a given source-to-target couple if set,
-else try to find the appropriate constant as the factor, such as Carbon::DAYS_PER_WEEK. |
+| int\|float\|null | [getFactorWithDefault()](#getfactorwithdefault) | Returns the factor for a given source-to-target couple if set, else try to find the appropriate constant as the factor, such as Carbon::DAYS_PER_WEEK. |
 | int\|float | [getDaysPerWeek()](#getdaysperweek) | Returns current config for days per week. |
 | int\|float | [getHoursPerDay()](#gethoursperday) | Returns current config for hours per day. |
 | int\|float | [getMinutesPerHour()](#getminutesperhour) | Returns current config for minutes per hour. |
@@ -85,9 +83,7 @@ else try to find the appropriate constant as the factor, such as Carbon::DAYS_PE
 | CarbonInterval | [fromString()](#fromstring) | Creates a CarbonInterval from string. |
 | CarbonInterval | [parseFromLocale()](#parsefromlocale) | Creates a CarbonInterval from string using a different locale. |
 | DateInterval | [cast()](#cast) | Cast the current instance into the given class. |
-| CarbonInterval | [instance()](#instance) | Create a CarbonInterval instance from a DateInterval one.  Can not instance
-DateInterval objects created from DateTime::diff() as you can't externally
-set the $days field. |
+| CarbonInterval | [instance()](#instance) | Create a CarbonInterval instance from a DateInterval one.  Can not instance DateInterval objects created from DateTime::diff() as you can&#039;t externally set the $days field. |
 | CarbonInterval\|null | [make()](#make) | Make a CarbonInterval instance from given variable if possible. |
 | CarbonInterval | [createFromDateString()](#createfromdatestring) | Sets up a DateInterval from the relative parts of the string. |
 | int\|float\|string | [get()](#get) | Get a part of the CarbonInterval object. |
@@ -99,8 +95,7 @@ set the $days field. |
 | bool | [hasMacro()](#hasmacro) | Check if macro is registered. |
 | int[] | [toArray()](#toarray) | Returns interval values as an array where key are the unit names and values the counts. |
 | int[] | [getNonZeroValues()](#getnonzerovalues) | Returns interval non-zero values as an array where key are the unit names and values the counts. |
-| int[] | [getValuesSequence()](#getvaluessequence) | Returns interval values as an array where key are the unit names and values the counts
-from the biggest non-zero one the the smallest non-zero one. |
+| int[] | [getValuesSequence()](#getvaluessequence) | Returns interval values as an array where key are the unit names and values the counts from the biggest non-zero one the the smallest non-zero one. |
 | string | [forHumans()](#forhumans) | Get the current interval in a human readable format in the current locale. |
 | DateInterval | [toDateInterval()](#todateinterval) | Return native DateInterval PHP object matching the current instance. |
 | CarbonPeriod | [toPeriod()](#toperiod) | Convert the interval to a CarbonPeriod. |
@@ -110,12 +105,8 @@ from the biggest non-zero one the the smallest non-zero one. |
 | $this | [subtract()](#subtract) | Subtract the passed interval to the current instance. |
 | CarbonInterval | [plus()](#plus) | Add given parameters to the current interval. |
 | CarbonInterval | [minus()](#minus) | Add given parameters to the current interval. |
-| $this | [times()](#times) | Multiply current instance given number of times. times() is naive, it multiplies each unit
-(so day can be greater than 31, hour can be greater than 23, etc.) and the result is rounded
-separately for each unit. |
-| $this | [shares()](#shares) | Divide current instance by a given divider. shares() is naive, it divides each unit separately
-and the result is rounded for each unit. So 5 hours and 20 minutes shared by 3 becomes 2 hours
-and 7 minutes. |
+| $this | [times()](#times) | Multiply current instance given number of times. times() is naive, it multiplies each unit (so day can be greater than 31, hour can be greater than 23, etc.) and the result is rounded separately for each unit. |
+| $this | [shares()](#shares) | Divide current instance by a given divider. shares() is naive, it divides each unit separately and the result is rounded for each unit. So 5 hours and 20 minutes shared by 3 becomes 2 hours and 7 minutes. |
 | $this | [multiply()](#multiply) | Multiply and cascade current instance by a given factor. |
 | $this | [divide()](#divide) | Divide and cascade current instance by a given divider. |
 | string | [getDateIntervalSpec()](#getdateintervalspec) | Get the interval_spec string of a date interval. |

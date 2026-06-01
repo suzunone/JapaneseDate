@@ -54,7 +54,6 @@ class LunarCalendar
      */
     protected $lunar_calendar;
 
-
     /**
      * @var \JapaneseDate\Components\Astronomy
      */
@@ -133,10 +132,10 @@ class LunarCalendar
             if ($julian_date >= $lunar['jd'] && $julian_date < $lunar_calendar[$index + 1]['jd']) {
                 $lunar_day = $julian_date - $lunar['jd'] + 1.0;
                 $items = [
-                    LunarDate::YEAR_KEY               => $lunar['lunar_year'],
+                    LunarDate::YEAR_KEY => $lunar['lunar_year'],
                     LunarDate::IS_LEAP_MONTH_FLAG_KEY => $lunar['lunar_month_leap'],
-                    LunarDate::MONTH_KEY              => $lunar['lunar_month'],
-                    LunarDate::DAY_KEY                => $lunar_day,
+                    LunarDate::MONTH_KEY => $lunar['lunar_month'],
+                    LunarDate::DAY_KEY => $lunar_day,
                 ];
 
                 break;
