@@ -11,8 +11,8 @@
 {% endif %}
 ## Classes
 
-| Class | Description |
-|---|---|
+| Namespace | Class | Description |
+|---|---|---|
 {% for class in classes %}
-| {{ class_link_md(class, root_path) }} | {{ class.shortdesc|desc(class) }} |
+| {{ namespace_link_md(class.namespace, root_path) }} | {{ class_link_md(class, root_path) }} | {{ class.shortdesc|desc(class) }} |
 {% endfor %}

@@ -89,7 +89,7 @@ class Cache extends CacheMode
 
         if (static::$mode === static::MODE_APC ||
             (static::$mode === static::MODE_AUTO && function_exists('apcu_add'))) {
-            // APCモード
+            // APC モード
             return $cache[$cache_name] = static::apcForever($cache_name, $function);
         }
 

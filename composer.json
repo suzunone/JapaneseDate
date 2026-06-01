@@ -28,6 +28,12 @@
       "JapaneseDate\\": "src"
     }
   },
+  "scripts": {
+    "cs-fix": "vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php",
+    "doc": "sh doc.sh",
+    "test": "phpunit",
+    "rector": "vendor/bin/rector"
+  },
   "autoload-dev": {
     "psr-4": {
       "Tests\\JapaneseDate\\": "tests/Tests/JapaneseDate"

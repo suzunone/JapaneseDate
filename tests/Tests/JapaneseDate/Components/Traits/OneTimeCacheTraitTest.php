@@ -1,6 +1,7 @@
 <?php
 
 /** @noinspection PhpDocMissingThrowsInspection */
+
 /** @noinspection PhpUnhandledExceptionInspection */
 
 namespace Tests\JapaneseDate\Components\Traits;
@@ -16,16 +17,6 @@ use Tests\JapaneseDate\InvokeTrait;
 class OneTimeCacheTraitTest extends TestCase
 {
     use InvokeTrait;
-    /**
-     * OneTimeCacheTrait を組み込んだ無名クラスのインスタンスを作成する。
-     * @return object
-     */
-    private function makeInstance()
-    {
-        return new class {
-            use OneTimeCacheTrait;
-        };
-    }
     /**
      * キャッシュに値がない場合、クロージャを実行して結果を返すことを確認する。
      */
@@ -45,6 +36,16 @@ class OneTimeCacheTraitTest extends TestCase
 
         $this->assertSame('cached_value', $result);
         $this->assertSame(1, $callCount);
+    }
+    /**
+     * OneTimeCacheTrait を組み込んだ無名クラスのインスタンスを作成する。
+     * @return object
+     */
+    private function makeInstance()
+    {
+        return new class () {
+            use OneTimeCacheTrait;
+        };
     }
     /**
      * キャッシュに値がある場合、クロージャを再実行せず保存済みの値を返すことを確認する。

@@ -8,32 +8,20 @@
 
 namespace Tests\JapaneseDate\Traits;
 
+use DateTimeInterface;
 use JapaneseDate\Components\BusinessCalendar;
 use JapaneseDate\DateBusiness;
 use JapaneseDate\DateTime;
 use JapaneseDate\DateTimeImmutable;
-use PHPUnit\Framework\Attributes\CoversClass;
+use JapaneseDate\Traits\DateBusinessCommon;
 use PHPUnit\Framework\Attributes\CoversTrait;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \JapaneseDate\DateTime
- * @covers \JapaneseDate\DateTimeImmutable
- * @covers \JapaneseDate\Components\BusinessCalendar
- * @covers \JapaneseDate\DateBusiness
  * @covers \JapaneseDate\Traits\DateBusinessCommon
  */
 class DateBusinessCommonDateTimeTest extends TestCase
 {
-    protected function setUp(): void
-    {
-        BusinessCalendar::resetAll();
-    }
-    protected function tearDown(): void
-    {
-        BusinessCalendar::resetAll();
-    }
-    // --- DateTime::isBusinessDay ---
     public function test_DateTime_isBusinessDay_weekday(): void
     {
         $dt = DateTime::factory('2026-05-25'); // 月曜
@@ -44,6 +32,7 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $dt = DateTime::factory('2026-05-30'); // 土曜
         $this->assertFalse($dt->isBusinessDay());
     }
+    // --- DateTime::isBusinessDay ---
     public function test_DateTime_isBusinessDay_holiday(): void
     {
         $dt = DateTime::factory('2026-01-01'); // 元旦
@@ -56,7 +45,6 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $dt->setBusinessConfig($config);
         $this->assertTrue($dt->isBusinessDay()); // 祝日設定オフ → 営業日
     }
-    // --- DateTime::getBusinessDayLabel ---
     public function test_DateTime_getBusinessDayLabel_on_business_day(): void
     {
         $dt = DateTime::factory('2026-05-25');
@@ -68,7 +56,7 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $dt->setClosingDay('2026-08-14', '夏期休暇');
         $this->assertSame('夏期休暇', $dt->getBusinessDayLabel());
     }
-    // --- DateTime::nextBusinessDay ---
+    // --- DateTime::getBusinessDayLabel ---
     public function test_DateTime_nextBusinessDay_from_friday(): void
     {
         $dt = DateTime::factory('2026-05-29'); // 金曜
@@ -81,6 +69,7 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $next = $dt->nextBusinessDay();
         $this->assertSame('2026-05-26', $next->format('Y-m-d'));
     }
+    // --- DateTime::nextBusinessDay ---
     public function test_DateTime_nextBusinessDay_is_clone(): void
     {
         $dt = DateTime::factory('2026-05-29');
@@ -88,7 +77,6 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $this->assertNotSame($dt, $next);
         $this->assertSame('2026-05-29', $dt->format('Y-m-d')); // 元のインスタンスは変わらない
     }
-    // --- DateTime::previousBusinessDay ---
     public function test_DateTime_previousBusinessDay_from_monday(): void
     {
         $dt = DateTime::factory('2026-06-01'); // 月曜
@@ -101,7 +89,7 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $prev = $dt->previousBusinessDay();
         $this->assertSame('2026-05-26', $prev->format('Y-m-d'));
     }
-    // --- DateTime::shiftToClosestBusinessDayAfter ---
+    // --- DateTime::previousBusinessDay ---
     public function test_DateTime_shiftToClosestBusinessDayAfter_on_business_day(): void
     {
         $dt = DateTime::factory('2026-05-25'); // 月曜（営業日）
@@ -114,7 +102,7 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $shifted = $dt->shiftToClosestBusinessDayAfter();
         $this->assertSame('2026-06-01', $shifted->format('Y-m-d')); // 月曜
     }
-    // --- DateTime::shiftToClosestBusinessDayBefore ---
+    // --- DateTime::shiftToClosestBusinessDayAfter ---
     public function test_DateTime_shiftToClosestBusinessDayBefore_on_business_day(): void
     {
         $dt = DateTime::factory('2026-05-25'); // 月曜（営業日）
@@ -127,7 +115,7 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $shifted = $dt->shiftToClosestBusinessDayBefore();
         $this->assertSame('2026-05-29', $shifted->format('Y-m-d')); // 金曜
     }
-    // --- DateTime::addBusinessDays ---
+    // --- DateTime::shiftToClosestBusinessDayBefore ---
     public function test_DateTime_addBusinessDays(): void
     {
         $dt = DateTime::factory('2026-05-29'); // 金曜
@@ -140,14 +128,13 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $result = $dt->addBusinessDays(0);
         $this->assertSame('2026-05-29', $result->format('Y-m-d'));
     }
-    // --- DateTime::subBusinessDays ---
+    // --- DateTime::addBusinessDays ---
     public function test_DateTime_subBusinessDays(): void
     {
         $dt = DateTime::factory('2026-06-03'); // 水曜
         $result = $dt->subBusinessDays(3);
         $this->assertSame('2026-05-29', $result->format('Y-m-d')); // 金・木・水→金曜
     }
-    // --- BusinessCalendar Trait ショートカット ---
     public function test_setClosingDay_creates_instance_config(): void
     {
         $dt = DateTime::factory('2026-08-14'); // 金曜
@@ -155,12 +142,14 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $dt->setClosingDay('2026-08-14', '夏期休暇');
         $this->assertFalse($dt->isBusinessDay());
     }
+    // --- DateTime::subBusinessDays ---
     public function test_setOpenDay(): void
     {
         $dt = DateTime::factory('2026-05-30'); // 土曜
         $dt->setOpenDay('2026-05-30');
         $this->assertTrue($dt->isBusinessDay());
     }
+    // --- BusinessCalendar Trait ショートカット ---
     public function test_setClosingWeekdays_on_trait(): void
     {
         $dt = DateTime::factory('2026-05-26'); // 火曜
@@ -191,7 +180,7 @@ class DateBusinessCommonDateTimeTest extends TestCase
     public function test_addOpenFilter_on_trait(): void
     {
         $dt = DateTime::factory('2026-05-30'); // 土曜
-        $dt->addOpenFilter(function (\DateTimeInterface $d) {
+        $dt->addOpenFilter(function (DateTimeInterface $d) {
             return $d->format('Ymd') === '20260530';
         });
         $this->assertTrue($dt->isBusinessDay());
@@ -199,7 +188,7 @@ class DateBusinessCommonDateTimeTest extends TestCase
     public function test_addClosingFilter_on_trait(): void
     {
         $dt = DateTime::factory('2026-05-25'); // 月曜
-        $dt->addClosingFilter(function (\DateTimeInterface $d) {
+        $dt->addClosingFilter(function (DateTimeInterface $d) {
             return $d->format('Ymd') === '20260525';
         }, '特別休業');
         $this->assertFalse($dt->isBusinessDay());
@@ -208,7 +197,7 @@ class DateBusinessCommonDateTimeTest extends TestCase
     public function test_setBusinessMacro_on_trait(): void
     {
         $dt = DateTime::factory('2026-05-30'); // 土曜
-        $dt->setBusinessMacro(function (\DateTimeInterface $d) {
+        $dt->setBusinessMacro(function (DateTimeInterface $d) {
             return true;
         });
         $this->assertTrue($dt->isBusinessDay());
@@ -216,7 +205,7 @@ class DateBusinessCommonDateTimeTest extends TestCase
     public function test_setBusinessMacro_null_removes_macro(): void
     {
         $dt = DateTime::factory('2026-05-30'); // 土曜
-        $dt->setBusinessMacro(function (\DateTimeInterface $d) {
+        $dt->setBusinessMacro(function (DateTimeInterface $d) {
             return true;
         });
         $dt->setBusinessMacro(null);
@@ -242,7 +231,6 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $dt->setBusinessConfig(null);
         $this->assertNull($dt->getBusinessConfig());
     }
-    // --- DateTimeImmutable のテスト ---
     public function test_DateTimeImmutable_isBusinessDay_weekday(): void
     {
         $dt = DateTimeImmutable::parse('2026-05-25');
@@ -253,6 +241,7 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $dt = DateTimeImmutable::parse('2026-05-30');
         $this->assertFalse($dt->isBusinessDay());
     }
+    // --- DateTimeImmutable のテスト ---
     public function test_DateTimeImmutable_getBusinessDayLabel_on_business_day(): void
     {
         $dt = DateTimeImmutable::parse('2026-05-25');
@@ -329,7 +318,6 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $dt2 = $dt->setBusinessConfig($config);
         $this->assertSame('夏期休暇', $dt2->getBusinessDayLabel());
     }
-    // --- グローバル設定との連携 ---
     public function test_global_config_affects_all_instances(): void
     {
         $config = (new DateBusiness())
@@ -356,7 +344,7 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $dt->setBusinessConfig($instanceConfig);
         $this->assertTrue($dt->isBusinessDay()); // インスタンス設定では閉店日でない
     }
-    // --- checkIsBusinessDay / checkGetBusinessDayLabel (Trait共通メソッド) ---
+    // --- グローバル設定との連携 ---
     public function test_checkIsBusinessDay_with_date(): void
     {
         $dt = DateTime::factory('2026-05-25');
@@ -368,6 +356,7 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $dt = DateTime::factory('2026-05-25'); // 月曜
         $this->assertTrue($dt->checkIsBusinessDay());
     }
+    // --- checkIsBusinessDay / checkGetBusinessDayLabel (Trait共通メソッド) ---
     public function test_checkGetBusinessDayLabel_with_date(): void
     {
         $dt = DateTime::factory('2026-05-25');
@@ -382,5 +371,13 @@ class DateBusinessCommonDateTimeTest extends TestCase
     {
         $dt = DateTime::factory('2026-05-30'); // 土曜
         $this->assertNull($dt->checkGetBusinessDayLabel());
+    }
+    protected function setUp(): void
+    {
+        BusinessCalendar::resetAll();
+    }
+    protected function tearDown(): void
+    {
+        BusinessCalendar::resetAll();
     }
 }

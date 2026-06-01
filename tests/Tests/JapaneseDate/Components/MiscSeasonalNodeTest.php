@@ -21,10 +21,11 @@ namespace Tests\JapaneseDate\Components;
 
 use JapaneseDate\Components\MiscSeasonalNode;
 use JapaneseDate\DateTime;
+use JapaneseDate\DateTimeImmutable;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\CoversMethod;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
+use Tests\JapaneseDate\InvokeTrait;
 
 /**
  * MiscSeasonalNode コンポーネントのテスト
@@ -40,27 +41,42 @@ use PHPUnit\Framework\TestCase;
  */
 class MiscSeasonalNodeTest extends TestCase
 {
+    use InvokeTrait;
     // =========================================================================
     // ファクトリー・基本テスト
     // =========================================================================
+    public static function viewMiscSeasonalNodeProvider(): array
+    {
+        return [
+            '雑節なし' => [0, ''],
+            '節分' => [1, '節分'],
+            '彼岸' => [2, '彼岸'],
+            '社日' => [3, '社日'],
+            '八十八夜' => [4, '八十八夜'],
+            '入梅' => [5, '入梅'],
+            '半夏生' => [6, '半夏生'],
+            '土用' => [7, '土用'],
+            '二百十日' => [8, '二百十日'],
+            '二百二十日' => [9, '二百二十日'],
+            '存在しないキー' => [999, ''],
+        ];
+    }
     /**
      * factory() がシングルトンを返すことを確認する。
      *
-     * リフレクションで静的インスタンスをリセットし、初期化コードパスも確実にカバーする。
+     * factory() はメソッド内 static 変数でシングルトンを管理しているため
+     * 外部からリセットできない。2回呼び出して同一インスタンスが返ることを確認する。
      */
     public function test_factory_returnsSameInstance(): void
     {
-        // リフレクションで static $instance をリセットして初期化パスをカバーする
-        $ref = new \ReflectionClass(MiscSeasonalNode::class);
-        $method = $ref->getMethod('factory');
-        $staticVars = $method->getStaticVariables();
-        // PHP では静的変数のリセットに直接アクセスできないため、
-        // factory() の最初の呼び出しが新しいインスタンスを生成することを確認する
         $a = MiscSeasonalNode::factory();
         $b = MiscSeasonalNode::factory();
         $this->assertSame($a, $b);
         $this->assertInstanceOf(MiscSeasonalNode::class, $a);
     }
+    // =========================================================================
+    // viewMiscSeasonalNode
+    // =========================================================================
     /**
      * MISC_SEASONAL_NODE_NAMES 定数がすべての雑節名を含むことを確認する。
      */
@@ -78,13 +94,10 @@ class MiscSeasonalNodeTest extends TestCase
         $this->assertSame('二百十日', $names[8]);
         $this->assertSame('二百二十日', $names[9]);
     }
-    // =========================================================================
-    // viewMiscSeasonalNode
-    // =========================================================================
     /**
      * viewMiscSeasonalNode が正しい日本語名を返すことを確認する。
      *
-     * @param int    $key      雑節定数
+     * @param int $key 雑節定数
      * @param string $expected 期待する日本語名
      * @dataProvider viewMiscSeasonalNodeProvider
      */
@@ -92,22 +105,6 @@ class MiscSeasonalNodeTest extends TestCase
     {
         $node = MiscSeasonalNode::factory();
         $this->assertSame($expected, $node->viewMiscSeasonalNode($key));
-    }
-    public static function viewMiscSeasonalNodeProvider(): array
-    {
-        return [
-            '雑節なし'    => [0, ''],
-            '節分'        => [1, '節分'],
-            '彼岸'        => [2, '彼岸'],
-            '社日'        => [3, '社日'],
-            '八十八夜'    => [4, '八十八夜'],
-            '入梅'        => [5, '入梅'],
-            '半夏生'      => [6, '半夏生'],
-            '土用'        => [7, '土用'],
-            '二百十日'    => [8, '二百十日'],
-            '二百二十日'  => [9, '二百二十日'],
-            '存在しないキー' => [999, ''],
-        ];
     }
     // =========================================================================
     // 節分テスト
@@ -216,6 +213,7 @@ class MiscSeasonalNodeTest extends TestCase
                 // 春分（3月20日）との距離が最小であることを確認
                 $dist = abs($d - 20);
                 $this->assertLessThanOrEqual(5, $dist, "社日は春分から5日以内: 3月{$d}日");
+
                 break;
             }
         }
@@ -236,6 +234,7 @@ class MiscSeasonalNodeTest extends TestCase
                 $found = true;
                 $dist = abs($d - 23);
                 $this->assertLessThanOrEqual(5, $dist, "社日は秋分から5日以内: 9月{$d}日");
+
                 break;
             }
         }
@@ -262,6 +261,7 @@ class MiscSeasonalNodeTest extends TestCase
             $key = $node->getMiscSeasonalNodeKey($date);
             if ($key === DateTime::MISC_SEASONAL_NODE_SHANICHI) {
                 $found = true;
+
                 break;
             }
         }
@@ -319,6 +319,7 @@ class MiscSeasonalNodeTest extends TestCase
             $date = DateTime::parse("2026-06-{$d}");
             if ($node->isNyubai($date)) {
                 $found = true;
+
                 break;
             }
         }
@@ -343,6 +344,7 @@ class MiscSeasonalNodeTest extends TestCase
             $date = DateTime::parse("2026-06-{$d}");
             if ($node->getMiscSeasonalNodeKey($date) === DateTime::MISC_SEASONAL_NODE_NYUBAI) {
                 $found = true;
+
                 break;
             }
         }
@@ -364,6 +366,7 @@ class MiscSeasonalNodeTest extends TestCase
             $date = DateTime::parse("2026-07-{$d}");
             if ($node->isHangesho($date)) {
                 $found = true;
+
                 break;
             }
         }
@@ -388,6 +391,7 @@ class MiscSeasonalNodeTest extends TestCase
             $date = DateTime::parse("2026-07-{$d}");
             if ($node->getMiscSeasonalNodeKey($date) === DateTime::MISC_SEASONAL_NODE_HANGESHO) {
                 $found = true;
+
                 break;
             }
         }
@@ -557,8 +561,8 @@ class MiscSeasonalNodeTest extends TestCase
      */
     public function test_datetimeImmutable_miscSeasonalNodeProperty(): void
     {
-        $date = \JapaneseDate\DateTimeImmutable::parse('2026-02-03');
-        $this->assertSame(\JapaneseDate\DateTimeImmutable::MISC_SEASONAL_NODE_SETSUBUN, $date->miscSeasonalNode);
+        $date = DateTimeImmutable::parse('2026-02-03');
+        $this->assertSame(DateTimeImmutable::MISC_SEASONAL_NODE_SETSUBUN, $date->miscSeasonalNode);
         $this->assertSame('節分', $date->miscSeasonalNodeText);
     }
     /**

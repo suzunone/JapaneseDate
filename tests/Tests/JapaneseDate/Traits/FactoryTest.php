@@ -17,13 +17,17 @@
  * @since       1.0.0 リリースから利用可能
  */
 
-namespace Test\JapaneseDate\Traits;
+namespace Tests\JapaneseDate\Traits;
 
+use Carbon\Carbon;
 use DateTimeImmutable as NativeDateTimeImmutable;
 use DateTimeZone;
 use JapaneseDate\DateTime;
 use JapaneseDate\DateTimeImmutable;
-use PHPUnit\Framework\Attributes\CoversClass;
+use JapaneseDate\Exceptions\NativeDateTimeException;
+use JapaneseDate\Traits\Factory;
+use PHPUnit\Framework\Attributes\CoversMethod;
+use PHPUnit\Framework\Attributes\CoversTrait;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Tests\JapaneseDate\InvokeTrait;
@@ -40,395 +44,435 @@ use Tests\JapaneseDate\InvokeTrait;
  * @see         https://github.com/suzunone/JapaneseDate
  * @since       1.0.0 リリースから利用可能
  * @covers \JapaneseDate\Traits\Factory
+ * @covers \JapaneseDate\Traits\Factory::factory
  */
 class FactoryTest extends TestCase
 {
     use InvokeTrait;
     // -----------------------------------------------------------------------
-    // DateTime::factory() のテスト
+    // DataProvider
     // -----------------------------------------------------------------------
     /**
-     * null から DateTime を生成できることを確認する。
+     * DateTime / DateTimeImmutable の両クラスを供給するプロバイダ。
      */
-    public function test_factory_null_returns_DateTime(): void
+    public static function targetClassProvider(): array
     {
-        $result = DateTime::factory();
-        $this->assertInstanceOf(DateTime::class, $result);
+        return [
+            'DateTime' => [DateTime::class],
+            'DateTimeImmutable' => [DateTimeImmutable::class],
+        ];
     }
     /**
-     * null とタイムゾーンから DateTime を生成できることを確認する。
+     * float タイムスタンプとその期待マイクロ秒値を供給するプロバイダ。
      */
-    public function test_factory_null_with_timezone_returns_DateTime(): void
+    public static function floatUnixTimestampProvider(): array
     {
-        $tz = new DateTimeZone('Asia/Tokyo');
-        $result = DateTime::factory(null, $tz);
-        $this->assertInstanceOf(DateTime::class, $result);
-        $this->assertSame('Asia/Tokyo', $result->getTimezone()->getName());
+        return [
+            'float型小数点以下あり' => [1710936896.750123, 750123],
+            '文字列型小数点以下あり' => ['1710936896.750123', 750123],
+            'float型小数点以下なし' => [1710936896.0000, 0],
+            '文字列型小数点以下なし' => ['1710936896.0000', 0],
+        ];
     }
     /**
-     * 日時文字列から DateTime を生成できることを確認する。
+     * factory の基本入力パターンを供給するプロバイダ。
      */
-    public function test_factory_string_returns_correct_date_for_DateTime(): void
+    public static function factoryInputProvider(): array
     {
-        $result = DateTime::factory('2024-03-20 12:34:56');
-        $this->assertInstanceOf(DateTime::class, $result);
-        $this->assertSame('2024-03-20 12:34:56', $result->format('Y-m-d H:i:s'));
+        $intTimestamp = mktime(12, 34, 56, 3, 20, 2024);
+        $intTimestampWithTimezone = mktime(12, 0, 0, 6, 15, 2023);
+        $digitStringTimestamp = mktime(0, 0, 0, 1, 1, 2024);
+        $digitStringWithTimezone = mktime(0, 0, 0, 7, 7, 2023);
+        $parseableDigitString = '20240615';
+        $rows = [
+            'null' => [null, null, null, null, null, null],
+            'null / timezone' => [null, new DateTimeZone('Asia/Tokyo'), null, 'Asia/Tokyo', null, null],
+            '日時文字列' => ['2024-03-20 12:34:56', null, '2024-03-20 12:34:56', null, null, null],
+            '日時文字列 / timezone' => [
+                '2024-03-20 12:34:56',
+                new DateTimeZone('Asia/Tokyo'),
+                '2024-03-20 12:34:56',
+                'Asia/Tokyo',
+                null,
+                null,
+            ],
+            '整数 UNIX タイムスタンプ' => [$intTimestamp, null, null, null, $intTimestamp, null],
+            '整数 UNIX タイムスタンプ / timezone' => [
+                $intTimestampWithTimezone,
+                new DateTimeZone('Asia/Tokyo'),
+                null,
+                'Asia/Tokyo',
+                $intTimestampWithTimezone,
+                null,
+            ],
+            '数字文字列 UNIX タイムスタンプ' => [
+                (string) $digitStringTimestamp,
+                null,
+                null,
+                null,
+                $digitStringTimestamp,
+                null,
+            ],
+            '数字文字列 UNIX タイムスタンプ / timezone' => [
+                (string) $digitStringWithTimezone,
+                new DateTimeZone('Asia/Tokyo'),
+                date('Y-m-d H:i:s', $digitStringWithTimezone),
+                'Asia/Tokyo',
+                null,
+                null,
+            ],
+            'strtotime 可能な数字文字列' => [
+                $parseableDigitString,
+                null,
+                date('Y-m-d H:i:s', strtotime($parseableDigitString)),
+                null,
+                null,
+                null,
+            ],
+        ];
+
+        foreach (self::floatUnixTimestampProvider() as $label => [$timestamp, $expectedMicro]) {
+            $rows["float UNIX タイムスタンプ / {$label}"] = [
+                $timestamp,
+                null,
+                null,
+                null,
+                (int) $timestamp,
+                $expectedMicro,
+            ];
+            $rows["float UNIX タイムスタンプ / timezone / {$label}"] = [
+                $timestamp,
+                new DateTimeZone('America/New_York'),
+                null,
+                'America/New_York',
+                (int) $timestamp,
+                $expectedMicro,
+            ];
+        }
+
+        return self::withTargetClasses($rows);
     }
     /**
-     * 日時文字列とタイムゾーンから DateTime を生成できることを確認する。
+     * DateTimeInterface 入力のパターンを供給するプロバイダ。
      */
-    public function test_factory_string_with_timezone_for_DateTime(): void
+    public static function dateTimeInterfaceInputProvider(): array
     {
-        $tz = new DateTimeZone('Asia/Tokyo');
-        $result = DateTime::factory('2024-03-20 12:34:56', $tz);
-        $this->assertInstanceOf(DateTime::class, $result);
-        $this->assertSame('2024-03-20 12:34:56', $result->format('Y-m-d H:i:s'));
-        $this->assertSame('Asia/Tokyo', $result->getTimezone()->getName());
+        $rows = [
+            'native DateTimeImmutable' => [
+                static function (string $class): NativeDateTimeImmutable {
+                    return new NativeDateTimeImmutable(
+                        '2024-05-15 10:20:30.123456',
+                        new DateTimeZone('UTC')
+                    );
+                },
+                null,
+                '2024-05-15 10:20:30',
+                'UTC',
+                123456,
+            ],
+            'native DateTimeImmutable / timezone inherited' => [
+                static function (string $class): NativeDateTimeImmutable {
+                    return new NativeDateTimeImmutable(
+                        '2024-05-15 10:20:30.654321',
+                        new DateTimeZone('Asia/Tokyo')
+                    );
+                },
+                null,
+                '2024-05-15 10:20:30',
+                'Asia/Tokyo',
+                654321,
+            ],
+            'native DateTimeImmutable / timezone override' => [
+                static function (string $class): NativeDateTimeImmutable {
+                    return new NativeDateTimeImmutable(
+                        '2024-05-15 10:20:30',
+                        new DateTimeZone('UTC')
+                    );
+                },
+                new DateTimeZone('Asia/Tokyo'),
+                '2024-05-15 10:20:30',
+                'Asia/Tokyo',
+                0,
+            ],
+            'same JapaneseDate class object' => [
+                static function (string $class) {
+                    return new $class('2024-08-01 08:00:00', new DateTimeZone('Asia/Tokyo'));
+                },
+                null,
+                '2024-08-01 08:00:00',
+                'Asia/Tokyo',
+                0,
+            ],
+        ];
+
+        return self::withTargetClasses($rows);
     }
     /**
-     * 整数の UNIX タイムスタンプから DateTime を生成できることを確認する。
+     * DateTime と DateTimeImmutable の相互入力パターンを供給するプロバイダ。
      */
-    public function test_factory_int_unix_timestamp_for_DateTime(): void
+    public static function crossClassInputProvider(): array
     {
-        $timestamp = mktime(12, 34, 56, 3, 20, 2024);
-        $result = DateTime::factory($timestamp);
-        $this->assertInstanceOf(DateTime::class, $result);
-        $this->assertSame($timestamp, $result->getTimestamp());
+        return [
+            'DateTimeImmutable から DateTime' => [
+                DateTime::class,
+                new DateTimeImmutable('2024-11-03 09:00:00', new DateTimeZone('Asia/Tokyo')),
+            ],
+            'DateTime から DateTimeImmutable' => [
+                DateTimeImmutable::class,
+                new DateTime('2024-11-03 09:00:00', new DateTimeZone('Asia/Tokyo')),
+            ],
+        ];
     }
     /**
-     * 整数の UNIX タイムスタンプとタイムゾーンから DateTime を生成できることを確認する。
+     * 和暦・JIS元号形式の文字列入力パターンを供給するプロバイダ。
      */
-    public function test_factory_int_with_timezone_for_DateTime(): void
+    public static function japaneseDateStringProvider(): array
     {
-        $timestamp = mktime(12, 0, 0, 6, 15, 2023);
-        $tz = new DateTimeZone('Asia/Tokyo');
-        $result = DateTime::factory($timestamp, $tz);
-        $this->assertInstanceOf(DateTime::class, $result);
-        $this->assertSame($timestamp, $result->getTimestamp());
-        $this->assertSame('Asia/Tokyo', $result->getTimezone()->getName());
+        return self::withTargetClasses([
+            '元号漢字表記（令和）' => ['令和7年5月1日', null, '2025-05-01 00:00:00', 'Asia/Tokyo'],
+            '元号漢字表記（令和） / timezone' => [
+                '令和7年5月1日',
+                new DateTimeZone('UTC'),
+                '2025-04-30 15:00:00',
+                'UTC',
+            ],
+            '元号漢字表記（昭和） / 時刻付き' => [
+                '昭和64年1月7日 12時34分56秒',
+                null,
+                '1989-01-07 12:34:56',
+                'Asia/Tokyo',
+            ],
+            '西暦日本語表記' => ['2026年5月1日 12時34分', null, '2026-05-01 12:34:00', 'Asia/Tokyo'],
+            'JIS元号アルファベット（令和）' => ['R7-05-01', null, '2025-05-01 00:00:00', 'Asia/Tokyo'],
+            'JIS元号アルファベット（平成）' => ['H1/01/08', null, '1989-01-08 00:00:00', 'Asia/Tokyo'],
+        ]);
     }
     /**
-     * float の UNIX タイムスタンプから DateTime を生成できることを確認する。
+     * 境界値と特殊な入力のパターンを供給するプロバイダ。
      */
-    public function test_factory_float_unix_timestamp_for_DateTime(): void
+    public static function boundaryInputProvider(): array
     {
-        $timestamp = 1710936896.75;
-        $result = DateTime::factory($timestamp);
-        $this->assertInstanceOf(DateTime::class, $result);
-        $this->assertSame((int) $timestamp, $result->getTimestamp());
-    }
-    /**
-     * float の UNIX タイムスタンプとタイムゾーンから DateTime を生成できることを確認する。
-     */
-    public function test_factory_float_with_timezone_for_DateTime(): void
-    {
-        $timestamp = 1710936896.5;
-        $tz = new DateTimeZone('America/New_York');
-        $result = DateTime::factory($timestamp, $tz);
-        $this->assertInstanceOf(DateTime::class, $result);
-        $this->assertSame((int) $timestamp, $result->getTimestamp());
-        $this->assertSame('America/New_York', $result->getTimezone()->getName());
-    }
-    /**
-     * 数字文字列を UNIX タイムスタンプとして扱って DateTime を生成できることを確認する。
-     */
-    public function test_factory_digit_string_treated_as_timestamp_for_DateTime(): void
-    {
-        $timestamp = mktime(0, 0, 0, 1, 1, 2024);
-        $result = DateTime::factory((string) $timestamp);
-        $this->assertInstanceOf(DateTime::class, $result);
-        $this->assertSame($timestamp, $result->getTimestamp());
-    }
-    /**
-     * 数字文字列とタイムゾーンから DateTime を生成できることを確認する。
-     */
-    public function test_factory_digit_string_with_timezone_for_DateTime(): void
-    {
-        // 数字文字列はデフォルトタイムゾーンで date() 変換後、指定タイムゾーンで解釈される
-        $timestamp = mktime(0, 0, 0, 7, 7, 2023);
-        $tz = new DateTimeZone('Asia/Tokyo');
-        $result = DateTime::factory((string) $timestamp, $tz);
-        $this->assertInstanceOf(DateTime::class, $result);
-        $this->assertSame(date('Y-m-d H:i:s', $timestamp), $result->format('Y-m-d H:i:s'));
-        $this->assertSame('Asia/Tokyo', $result->getTimezone()->getName());
-    }
-    /**
-     * DateTimeInterface から DateTime を生成できることを確認する。
-     */
-    public function test_factory_DateTimeInterface_for_DateTime(): void
-    {
-        $native = new NativeDateTimeImmutable('2024-05-15 10:20:30', new DateTimeZone('UTC'));
-        $result = DateTime::factory($native);
-        $this->assertInstanceOf(DateTime::class, $result);
-        $this->assertSame('2024-05-15 10:20:30', $result->format('Y-m-d H:i:s'));
-        $this->assertSame('UTC', $result->getTimezone()->getName());
-    }
-    /**
-     * タイムゾーン指定がない場合、DateTimeInterface のタイムゾーンを引き継ぐことを確認する。
-     */
-    public function test_factory_DateTimeInterface_inherits_timezone_when_no_tz_given_for_DateTime(): void
-    {
-        $tz = new DateTimeZone('Asia/Tokyo');
-        $native = new NativeDateTimeImmutable('2024-05-15 10:20:30', $tz);
-        $result = DateTime::factory($native);
-        $this->assertInstanceOf(DateTime::class, $result);
-        $this->assertSame('Asia/Tokyo', $result->getTimezone()->getName());
-        $this->assertSame('2024-05-15 10:20:30', $result->format('Y-m-d H:i:s'));
-    }
-    /**
-     * DateTimeInterface のタイムゾーンを指定タイムゾーンで上書きできることを確認する。
-     */
-    public function test_factory_DateTimeInterface_with_timezone_override_for_DateTime(): void
-    {
-        $sourceTz = new DateTimeZone('UTC');
-        $native = new NativeDateTimeImmutable('2024-05-15 10:20:30', $sourceTz);
-        $targetTz = new DateTimeZone('Asia/Tokyo');
-        $result = DateTime::factory($native, $targetTz);
-        $this->assertInstanceOf(DateTime::class, $result);
-        $this->assertSame('Asia/Tokyo', $result->getTimezone()->getName());
-    }
-    /**
-     * JapaneseDate の DateTime オブジェクトから DateTime を生成できることを確認する。
-     */
-    public function test_factory_JapaneseDate_DateTime_object_for_DateTime(): void
-    {
-        $source = new DateTime('2024-08-01 08:00:00', new DateTimeZone('Asia/Tokyo'));
-        $result = DateTime::factory($source);
-        $this->assertInstanceOf(DateTime::class, $result);
-        $this->assertSame('2024-08-01 08:00:00', $result->format('Y-m-d H:i:s'));
-        $this->assertSame('Asia/Tokyo', $result->getTimezone()->getName());
-    }
-    // -----------------------------------------------------------------------
-    // DateTimeImmutable::factory() のテスト
-    // -----------------------------------------------------------------------
-    /**
-     * null から DateTimeImmutable を生成できることを確認する。
-     */
-    public function test_factory_null_returns_DateTimeImmutable(): void
-    {
-        $result = DateTimeImmutable::factory();
-        $this->assertInstanceOf(DateTimeImmutable::class, $result);
-    }
-    /**
-     * null とタイムゾーンから DateTimeImmutable を生成できることを確認する。
-     */
-    public function test_factory_null_with_timezone_returns_DateTimeImmutable(): void
-    {
-        $tz = new DateTimeZone('Asia/Tokyo');
-        $result = DateTimeImmutable::factory(null, $tz);
-        $this->assertInstanceOf(DateTimeImmutable::class, $result);
-        $this->assertSame('Asia/Tokyo', $result->getTimezone()->getName());
-    }
-    /**
-     * 日時文字列から DateTimeImmutable を生成できることを確認する。
-     */
-    public function test_factory_string_returns_correct_date_for_DateTimeImmutable(): void
-    {
-        $result = DateTimeImmutable::factory('2024-03-20 12:34:56');
-        $this->assertInstanceOf(DateTimeImmutable::class, $result);
-        $this->assertSame('2024-03-20 12:34:56', $result->format('Y-m-d H:i:s'));
-    }
-    /**
-     * 日時文字列とタイムゾーンから DateTimeImmutable を生成できることを確認する。
-     */
-    public function test_factory_string_with_timezone_for_DateTimeImmutable(): void
-    {
-        $tz = new DateTimeZone('Asia/Tokyo');
-        $result = DateTimeImmutable::factory('2024-03-20 12:34:56', $tz);
-        $this->assertInstanceOf(DateTimeImmutable::class, $result);
-        $this->assertSame('2024-03-20 12:34:56', $result->format('Y-m-d H:i:s'));
-        $this->assertSame('Asia/Tokyo', $result->getTimezone()->getName());
-    }
-    /**
-     * 整数の UNIX タイムスタンプから DateTimeImmutable を生成できることを確認する。
-     */
-    public function test_factory_int_unix_timestamp_for_DateTimeImmutable(): void
-    {
-        $timestamp = mktime(12, 34, 56, 3, 20, 2024);
-        $result = DateTimeImmutable::factory($timestamp);
-        $this->assertInstanceOf(DateTimeImmutable::class, $result);
-        $this->assertSame($timestamp, $result->getTimestamp());
-    }
-    /**
-     * 整数の UNIX タイムスタンプとタイムゾーンから DateTimeImmutable を生成できることを確認する。
-     */
-    public function test_factory_int_with_timezone_for_DateTimeImmutable(): void
-    {
-        $timestamp = mktime(12, 0, 0, 6, 15, 2023);
-        $tz = new DateTimeZone('Asia/Tokyo');
-        $result = DateTimeImmutable::factory($timestamp, $tz);
-        $this->assertInstanceOf(DateTimeImmutable::class, $result);
-        $this->assertSame($timestamp, $result->getTimestamp());
-        $this->assertSame('Asia/Tokyo', $result->getTimezone()->getName());
-    }
-    /**
-     * float の UNIX タイムスタンプから DateTimeImmutable を生成できることを確認する。
-     */
-    public function test_factory_float_unix_timestamp_for_DateTimeImmutable(): void
-    {
-        $timestamp = 1710936896.75;
-        $result = DateTimeImmutable::factory($timestamp);
-        $this->assertInstanceOf(DateTimeImmutable::class, $result);
-        $this->assertSame((int) $timestamp, $result->getTimestamp());
-    }
-    /**
-     * float の UNIX タイムスタンプとタイムゾーンから DateTimeImmutable を生成できることを確認する。
-     */
-    public function test_factory_float_with_timezone_for_DateTimeImmutable(): void
-    {
-        $timestamp = 1710936896.5;
-        $tz = new DateTimeZone('America/New_York');
-        $result = DateTimeImmutable::factory($timestamp, $tz);
-        $this->assertInstanceOf(DateTimeImmutable::class, $result);
-        $this->assertSame((int) $timestamp, $result->getTimestamp());
-        $this->assertSame('America/New_York', $result->getTimezone()->getName());
-    }
-    /**
-     * 数字文字列を UNIX タイムスタンプとして扱って DateTimeImmutable を生成できることを確認する。
-     */
-    public function test_factory_digit_string_treated_as_timestamp_for_DateTimeImmutable(): void
-    {
-        $timestamp = mktime(0, 0, 0, 1, 1, 2024);
-        $result = DateTimeImmutable::factory((string) $timestamp);
-        $this->assertInstanceOf(DateTimeImmutable::class, $result);
-        $this->assertSame($timestamp, $result->getTimestamp());
-    }
-    /**
-     * 数字文字列とタイムゾーンから DateTimeImmutable を生成できることを確認する。
-     */
-    public function test_factory_digit_string_with_timezone_for_DateTimeImmutable(): void
-    {
-        // 数字文字列はデフォルトタイムゾーンで date() 変換後、指定タイムゾーンで解釈される
-        $timestamp = mktime(0, 0, 0, 7, 7, 2023);
-        $tz = new DateTimeZone('Asia/Tokyo');
-        $result = DateTimeImmutable::factory((string) $timestamp, $tz);
-        $this->assertInstanceOf(DateTimeImmutable::class, $result);
-        $this->assertSame(date('Y-m-d H:i:s', $timestamp), $result->format('Y-m-d H:i:s'));
-        $this->assertSame('Asia/Tokyo', $result->getTimezone()->getName());
-    }
-    /**
-     * DateTimeInterface から DateTimeImmutable を生成できることを確認する。
-     */
-    public function test_factory_DateTimeInterface_for_DateTimeImmutable(): void
-    {
-        $native = new NativeDateTimeImmutable('2024-05-15 10:20:30', new DateTimeZone('UTC'));
-        $result = DateTimeImmutable::factory($native);
-        $this->assertInstanceOf(DateTimeImmutable::class, $result);
-        $this->assertSame('2024-05-15 10:20:30', $result->format('Y-m-d H:i:s'));
-        $this->assertSame('UTC', $result->getTimezone()->getName());
-    }
-    /**
-     * タイムゾーン指定がない場合、DateTimeInterface のタイムゾーンを引き継ぐことを確認する。
-     */
-    public function test_factory_DateTimeInterface_inherits_timezone_when_no_tz_given_for_DateTimeImmutable(): void
-    {
-        $tz = new DateTimeZone('Asia/Tokyo');
-        $native = new NativeDateTimeImmutable('2024-05-15 10:20:30', $tz);
-        $result = DateTimeImmutable::factory($native);
-        $this->assertInstanceOf(DateTimeImmutable::class, $result);
-        $this->assertSame('Asia/Tokyo', $result->getTimezone()->getName());
-        $this->assertSame('2024-05-15 10:20:30', $result->format('Y-m-d H:i:s'));
-    }
-    /**
-     * DateTimeInterface のタイムゾーンを指定タイムゾーンで上書きできることを確認する。
-     */
-    public function test_factory_DateTimeInterface_with_timezone_override_for_DateTimeImmutable(): void
-    {
-        $sourceTz = new DateTimeZone('UTC');
-        $native = new NativeDateTimeImmutable('2024-05-15 10:20:30', $sourceTz);
-        $targetTz = new DateTimeZone('Asia/Tokyo');
-        $result = DateTimeImmutable::factory($native, $targetTz);
-        $this->assertInstanceOf(DateTimeImmutable::class, $result);
-        $this->assertSame('Asia/Tokyo', $result->getTimezone()->getName());
-    }
-    /**
-     * JapaneseDate の DateTimeImmutable オブジェクトから DateTimeImmutable を生成できることを確認する。
-     */
-    public function test_factory_JapaneseDate_DateTimeImmutable_object_for_DateTimeImmutable(): void
-    {
-        $source = new DateTimeImmutable('2024-08-01 08:00:00', new DateTimeZone('Asia/Tokyo'));
-        $result = DateTimeImmutable::factory($source);
-        $this->assertInstanceOf(DateTimeImmutable::class, $result);
-        $this->assertSame('2024-08-01 08:00:00', $result->format('Y-m-d H:i:s'));
-        $this->assertSame('Asia/Tokyo', $result->getTimezone()->getName());
-    }
-    // -----------------------------------------------------------------------
-    // DateTime と DateTimeImmutable を相互に入力した場合のテスト
-    // -----------------------------------------------------------------------
-    /**
-     * DateTimeImmutable 入力から DateTime を生成できることを確認する。
-     */
-    public function test_factory_DateTime_from_DateTimeImmutable_input(): void
-    {
-        $source = new DateTimeImmutable('2024-11-03 09:00:00', new DateTimeZone('Asia/Tokyo'));
-        $result = DateTime::factory($source);
-        $this->assertInstanceOf(DateTime::class, $result);
-        $this->assertSame('2024-11-03 09:00:00', $result->format('Y-m-d H:i:s'));
-    }
-    /**
-     * DateTime 入力から DateTimeImmutable を生成できることを確認する。
-     */
-    public function test_factory_DateTimeImmutable_from_DateTime_input(): void
-    {
-        $source = new DateTime('2024-11-03 09:00:00', new DateTimeZone('Asia/Tokyo'));
-        $result = DateTimeImmutable::factory($source);
-        $this->assertInstanceOf(DateTimeImmutable::class, $result);
-        $this->assertSame('2024-11-03 09:00:00', $result->format('Y-m-d H:i:s'));
-    }
-    // -----------------------------------------------------------------------
-    // 境界値と特殊な入力のテスト
-    // -----------------------------------------------------------------------
-    /**
-     * "20240101" のような YYYYMMDD 形式の数字文字列は ctype_digit() = true かつ
-     * strtotime() が int を返す。これにより Factory 内の `$date_time = $check_time;`
-     * ブランチ（strtotime 成功パス）がカバーされる。
-     */
-    public function test_factory_digit_string_parseable_by_strtotime_for_DateTime(): void
-    {
-        $digitStr = '20240615';
-        $result = DateTime::factory($digitStr);
-        $this->assertInstanceOf(DateTime::class, $result);
-        $this->assertSame(date('Y-m-d H:i:s', strtotime($digitStr)), $result->format('Y-m-d H:i:s'));
-    }
-    /**
-     * DateTimeImmutable でも、strtotime() で解釈できる数字文字列を日付として扱うことを確認する。
-     */
-    public function test_factory_digit_string_parseable_by_strtotime_for_DateTimeImmutable(): void
-    {
-        $digitStr = '20240615';
-        $result = DateTimeImmutable::factory($digitStr);
-        $this->assertInstanceOf(DateTimeImmutable::class, $result);
-        $this->assertSame(date('Y-m-d H:i:s', strtotime($digitStr)), $result->format('Y-m-d H:i:s'));
-    }
-    /**
-     * float の小数部分が UNIX タイムスタンプとして切り捨てられることを確認する。
-     */
-    public function test_factory_float_fractional_part_is_truncated(): void
-    {
-        // float の小数部分は UNIX タイムスタンプとして (int) にキャストされる。
         $base = mktime(0, 0, 0, 6, 1, 2024);
-        $result = DateTime::factory((float) $base + 0.999);
-        $this->assertInstanceOf(DateTime::class, $result);
-        $this->assertSame($base, $result->getTimestamp());
+        $negativeTimestamp = mktime(0, 0, 0, 1, 1, 1960);
+
+        return [
+            'float の小数部分' => [(float) $base + 0.999000, $base, 999000],
+            'UNIX タイムスタンプ 0' => [0, 0, null],
+            '負の UNIX タイムスタンプ' => [$negativeTimestamp, $negativeTimestamp, null],
+        ];
     }
     /**
-     * UNIX タイムスタンプ 0 を指定できることを確認する。
+     * 対象クラスとテストデータを組み合わせる。
      */
-    public function test_factory_zero_int_timestamp(): void
+    private static function withTargetClasses(array $rows): array
     {
-        $result = DateTime::factory(0);
-        $this->assertInstanceOf(DateTime::class, $result);
-        $this->assertSame(0, $result->getTimestamp());
+        $combined = [];
+        foreach (self::targetClassProvider() as $className => [$class]) {
+            foreach ($rows as $label => $row) {
+                $combined["{$className} / {$label}"] = array_merge([$class], $row);
+            }
+        }
+
+        return $combined;
     }
     /**
-     * 1970年以前の負の UNIX タイムスタンプを指定できることを確認する。
+     * 基本入力から各クラスのインスタンスを生成できることを確認する。
+     *
+     * @param class-string $class
+     * @param mixed $input
+     * @dataProvider factoryInputProvider
+     * @param \DateTimeZone|null $timezone
+     * @param string|null $expectedDateTime
+     * @param string|null $expectedTimezone
+     * @param int|null $expectedTimestamp
+     * @param int|null $expectedMicrosecond
      */
-    public function test_factory_negative_int_timestamp(): void
+    public function test_factory_creates_expected_result($class, $input, $timezone, $expectedDateTime, $expectedTimezone, $expectedTimestamp, $expectedMicrosecond): void
     {
-        // 1970年以前の UNIX タイムスタンプ。
-        $timestamp = mktime(0, 0, 0, 1, 1, 1960);
-        $result = DateTime::factory($timestamp);
+        $result = $input === null && $timezone === null
+            ? $class::factory()
+            : $class::factory($input, $timezone);
+        $this->assertInstanceOf($class, $result);
+        if ($expectedDateTime !== null) {
+            $this->assertSame($expectedDateTime, $result->format('Y-m-d H:i:s'));
+        }
+        if ($expectedTimezone !== null) {
+            $this->assertSame($expectedTimezone, $result->getTimezone()->getName());
+        }
+        if ($expectedTimestamp !== null) {
+            $this->assertSame($expectedTimestamp, $result->getTimestamp());
+        }
+        if ($expectedMicrosecond !== null) {
+            $this->assertSame($expectedMicrosecond, $result->microsecond);
+        }
+    }
+    /**
+     * DateTimeInterface から各クラスのインスタンスを生成できることを確認する。
+     *
+     * @param class-string $class
+     * @param callable $sourceFactory
+     * @dataProvider dateTimeInterfaceInputProvider
+     * @param \DateTimeZone|null $timezone
+     * @param string $expectedDateTime
+     * @param string $expectedTimezone
+     * @param int $expectedMicrosecond
+     */
+    public function test_factory_DateTimeInterface($class, $sourceFactory, $timezone, $expectedDateTime, $expectedTimezone, $expectedMicrosecond): void
+    {
+        $result = $class::factory($sourceFactory($class), $timezone);
+        $this->assertInstanceOf($class, $result);
+        $this->assertSame($expectedDateTime, $result->format('Y-m-d H:i:s'));
+        $this->assertSame($expectedTimezone, $result->getTimezone()->getName());
+        $this->assertSame($expectedMicrosecond, $result->microsecond);
+    }
+    /**
+     * DateTime と DateTimeImmutable を相互に入力して生成できることを確認する。
+     *
+     * @param class-string $class
+     * @dataProvider crossClassInputProvider
+     * @param object $source
+     */
+    public function test_factory_accepts_other_JapaneseDate_class($class, $source): void
+    {
+        $result = $class::factory($source);
+        $this->assertInstanceOf($class, $result);
+        $this->assertSame('2024-11-03 09:00:00', $result->format('Y-m-d H:i:s'));
+    }
+    /**
+     * 和暦・JIS元号形式の文字列から各クラスのインスタンスを生成できることを確認する。
+     *
+     * @param class-string $class
+     * @dataProvider japaneseDateStringProvider
+     * @param string $input
+     * @param \DateTimeZone|null $timezone
+     * @param string $expectedDateTime
+     * @param string $expectedTimezone
+     */
+    public function test_factory_japanese_date_string($class, $input, $timezone, $expectedDateTime, $expectedTimezone): void
+    {
+        $result = $class::factory($input, $timezone);
+        $this->assertInstanceOf($class, $result);
+        $this->assertSame($expectedDateTime, $result->format('Y-m-d H:i:s'));
+        $this->assertSame($expectedTimezone, $result->getTimezone()->getName());
+    }
+    /**
+     * parseJisDate が null を返す不正な和暦文字列は new static() にフォールバックすることを確認する。
+     *
+     * @param class-string $class
+     * @dataProvider targetClassProvider
+     */
+    public function test_factory_invalid_japanese_string_falls_through_to_new_static($class): void
+    {
+        $this->expectException(NativeDateTimeException::class);
+        $class::factory('令和7年2月30日');
+    }
+    /**
+     * 境界値と特殊な入力を生成できることを確認する。
+     * @dataProvider boundaryInputProvider
+     * @param mixed $input
+     * @param int $expectedTimestamp
+     * @param int|null $expectedMicrosecond
+     */
+    public function test_factory_boundary_inputs($input, $expectedTimestamp, $expectedMicrosecond): void
+    {
+        $result = DateTime::factory($input);
         $this->assertInstanceOf(DateTime::class, $result);
-        $this->assertSame($timestamp, $result->getTimestamp());
+        $this->assertSame($expectedTimestamp, $result->getTimestamp());
+        if ($expectedMicrosecond !== null) {
+            $this->assertSame($expectedMicrosecond, $result->microsecond);
+        }
+    }
+    // -----------------------------------------------------------------------
+    // parseJisDate のテスト
+    // -----------------------------------------------------------------------
+    /**
+     * JIS日時のパーステスト（ISO形式で比較）
+     * @dataProvider jisDateProvider
+     * @param string $input
+     * @param string|null $expectedIso
+     */
+    public function testParseJisDateWithMicrotime($input, $expectedIso): void
+    {
+        $resultTimestamp = $this->invokeExecuteMethod(DateTime::class, 'parseJisDate', [$input]);
+        if ($expectedIso === null) {
+            $this->assertNull($resultTimestamp);
+
+            return;
+        }
+        $this->assertNotNull($resultTimestamp, 'パース結果が null になりました。');
+        $date = Carbon::createFromTimestamp($resultTimestamp, new DateTimeZone('Asia/Tokyo'));
+        $actualIso = $date->format('Y-m-d\TH:i:s.uP');
+        $this->assertSame($expectedIso, $actualIso);
+    }
+    /**
+     * テストデータを供給するデータプロバイダ（期待値をISO形式で定義）
+     */
+    public static function jisDateProvider(): array
+    {
+        return [
+            // --- 西暦パターン ---
+            '西暦標準形式' => [
+                '2026-05-31 22:35:45',
+                '2026-05-31T22:35:45.000000+09:00'
+            ],
+            '西暦標準形式（マイクロ秒付き）' => [
+                '2026-05-31 22:35:45.123456',
+                '2026-05-31T22:35:45.123456+09:00'
+            ],
+            '西暦日本語表記（秒なし）' => [
+                '2026年05月31日 22時35分',
+                '2026-05-31T22:35:00.000000+09:00'
+            ],
+            '西暦日本語表記（年月日のみ）' => [
+                '2026年5月31日',
+                '2026-05-31T00:00:00.000000+09:00'
+            ],
+
+            // --- 和暦（漢字）パターン ---
+            '和暦日本語表記（フル）' => [
+                '令和8年5月31日 22時35分45秒',
+                '2026-05-31T22:35:45.000000+09:00'
+            ],
+            '和暦日本語表記（ミリ秒付き）' => [
+                '令和8年5月31日 22時35分45秒.999',
+                '2026-05-31T22:35:45.999000+09:00'
+            ],
+            '和暦日本語表記（年月日のみ）' => [
+                '令和8年05月31日',
+                '2026-05-31T00:00:00.000000+09:00'
+            ],
+            '平成の過去日付' => [
+                '平成28年10月25日',
+                '2016-10-25T00:00:00.000000+09:00'
+            ],
+
+            // --- 和暦（JIS記号）パターン ---
+            'JIS元号アルファベット（ハイフン区切り）' => [
+                'R08-05-31',
+                '2026-05-31T00:00:00.000000+09:00'
+            ],
+            'JIS元号アルファベット（スラッシュ区切り）' => [
+                'R08/05/31',
+                '2026-05-31T00:00:00.000000+09:00'
+            ],
+            'JIS元号アルファベット（小文字）' => [
+                'r08-05-31',
+                '2026-05-31T00:00:00.000000+09:00'
+            ],
+            'JIS元号アルファベット（過去・平成）' => [
+                'H28/10/25',
+                '2016-10-25T00:00:00.000000+09:00'
+            ],
+
+            // --- エラー判定パターン ---
+            'パース不可能な不正文字列' => [
+                'invalid-date-string',
+                null
+            ],
+            '存在しない日付' => [
+                '令和8年02月30日',
+                null
+            ],
+        ];
     }
 }

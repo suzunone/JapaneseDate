@@ -1,14 +1,18 @@
 <?php
 
 /** @noinspection PhpDocMissingThrowsInspection */
+
 /** @noinspection PhpUnhandledExceptionInspection */
 
 namespace Tests\JapaneseDate\Traits;
 
 use Closure;
+use DateTimeZone;
 use JapaneseDate\Components\Cache;
 use JapaneseDate\DateTime;
-use PHPUnit\Framework\Attributes\CoversClass;
+use JapaneseDate\Traits\CacheSetting;
+use PHPUnit\Framework\Attributes\CoversMethod;
+use PHPUnit\Framework\Attributes\CoversTrait;
 use PHPUnit\Framework\Attributes\PreserveGlobalState;
 use PHPUnit\Framework\Attributes\RunInSeparateProcess;
 use PHPUnit\Framework\TestCase;
@@ -17,6 +21,10 @@ use Tests\JapaneseDate\InvokeTrait;
 /**
  * CacheSetting Trait 経由で Cache コンポーネントの設定を変更できることを検証する。
  * @covers \JapaneseDate\Traits\CacheSetting
+ * @covers \JapaneseDate\Traits\CacheSetting::setCacheMode
+ * @covers \JapaneseDate\Traits\CacheSetting::setCacheFilePath
+ * @covers \JapaneseDate\Traits\CacheSetting::setCacheClosure
+ * @covers \JapaneseDate\Traits\CacheSetting::innerDateTime
  */
 class CacheSettingTest extends TestCase
 {
@@ -77,7 +85,7 @@ class CacheSettingTest extends TestCase
      */
     public function test_innerDateTime(): void
     {
-        $dt = new DateTime('2023-01-15', new \DateTimeZone('Asia/Tokyo'));
+        $dt = new DateTime('2023-01-15', new DateTimeZone('Asia/Tokyo'));
 
         $result1 = $this->invokeExecuteMethod($dt, 'innerDateTime', ['2023-06-01']);
         $result2 = $this->invokeExecuteMethod($dt, 'innerDateTime', ['2023-06-01']);

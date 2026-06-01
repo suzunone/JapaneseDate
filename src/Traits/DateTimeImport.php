@@ -47,9 +47,13 @@ trait DateTimeImport
 
     use FindSolarTerm;
 
+    use SeventyTwoKou;
+
     use Getter;
 
     use DateBusinessCommon;
 
     use Business;
+
+    use Ancient;
 }

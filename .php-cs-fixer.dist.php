@@ -1,7 +1,8 @@
 <?php
 
 $finder = PhpCsFixer\Finder::create()
-    ->in(__DIR__)
+    ->in(__DIR__.'/src')
+    ->in(__DIR__.'/tests')
     ->exclude('vendor');
 
 $rules = [
@@ -38,9 +39,6 @@ $rules = [
 
     'binary_operator_spaces' => [
         'default' => 'single_space',
-        'operators' => [
-            '=>' => 'align',
-        ],
     ],
 
     'no_leading_namespace_whitespace' => true,

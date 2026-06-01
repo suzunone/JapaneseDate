@@ -19,6 +19,7 @@ namespace JapaneseDate\Components;
 use DateTimeInterface;
 use DateTimeZone;
 use JapaneseDate\DateTime;
+use JapaneseDate\DateTimeImmutable;
 use JapaneseDate\Exceptions\ErrorException;
 
 /**
@@ -126,39 +127,39 @@ class JapaneseDate
         $this->SexagenaryCycle = SexagenaryCycle::factory();
 
         $this->era_name = [
-            DateTime::ERA_MEIJI  => '明治',
+            DateTime::ERA_MEIJI => '明治',
             DateTime::ERA_TAISHO => '大正',
-            DateTime::ERA_SHOWA  => '昭和',
+            DateTime::ERA_SHOWA => '昭和',
             DateTime::ERA_HEISEI => '平成',
-            DateTime::ERA_REIWA  => '令和',
+            DateTime::ERA_REIWA => '令和',
         ];
 
         $this->holiday_name = [
-            DateTime::NO_HOLIDAY                      => '',
-            DateTime::NEW_YEAR_S_DAY                  => '元旦',
-            DateTime::COMING_OF_AGE_DAY               => '成人の日',
-            DateTime::NATIONAL_FOUNDATION_DAY         => '建国記念の日',
-            DateTime::THE_SHOWA_EMPEROR_DIED          => '昭和天皇の大喪の礼',
-            DateTime::VERNAL_EQUINOX_DAY              => '春分の日',
-            DateTime::DAY_OF_SHOWA                    => '昭和の日',
-            DateTime::GREENERY_DAY                    => 'みどりの日',
-            DateTime::THE_EMPEROR_S_BIRTHDAY          => '天皇誕生日',
-            DateTime::CROWN_PRINCE_HIROHITO_WEDDING   => '皇太子明仁親王の結婚の儀',
-            DateTime::CONSTITUTION_DAY                => '憲法記念日',
-            DateTime::NATIONAL_HOLIDAY                => '国民の休日',
-            DateTime::CHILDREN_S_DAY                  => 'こどもの日',
-            DateTime::COMPENSATING_HOLIDAY            => '振替休日',
-            DateTime::CROWN_PRINCE_NARUHITO_WEDDING   => '皇太子徳仁親王の結婚の儀',
-            DateTime::MARINE_DAY                      => '海の日',
-            DateTime::AUTUMNAL_EQUINOX_DAY            => '秋分の日',
+            DateTime::NO_HOLIDAY => '',
+            DateTime::NEW_YEAR_S_DAY => '元旦',
+            DateTime::COMING_OF_AGE_DAY => '成人の日',
+            DateTime::NATIONAL_FOUNDATION_DAY => '建国記念の日',
+            DateTime::THE_SHOWA_EMPEROR_DIED => '昭和天皇の大喪の礼',
+            DateTime::VERNAL_EQUINOX_DAY => '春分の日',
+            DateTime::DAY_OF_SHOWA => '昭和の日',
+            DateTime::GREENERY_DAY => 'みどりの日',
+            DateTime::THE_EMPEROR_S_BIRTHDAY => '天皇誕生日',
+            DateTime::CROWN_PRINCE_HIROHITO_WEDDING => '皇太子明仁親王の結婚の儀',
+            DateTime::CONSTITUTION_DAY => '憲法記念日',
+            DateTime::NATIONAL_HOLIDAY => '国民の休日',
+            DateTime::CHILDREN_S_DAY => 'こどもの日',
+            DateTime::COMPENSATING_HOLIDAY => '振替休日',
+            DateTime::CROWN_PRINCE_NARUHITO_WEDDING => '皇太子徳仁親王の結婚の儀',
+            DateTime::MARINE_DAY => '海の日',
+            DateTime::AUTUMNAL_EQUINOX_DAY => '秋分の日',
             DateTime::RESPECT_FOR_SENIOR_CITIZENS_DAY => '敬老の日',
-            DateTime::LEGACY_SPORTS_DAY               => '体育の日',
-            DateTime::SPORTS_DAY                      => 'スポーツの日',
-            DateTime::CULTURE_DAY                     => '文化の日',
-            DateTime::LABOR_THANKSGIVING_DAY          => '勤労感謝の日',
-            DateTime::REGNAL_DAY                      => '即位礼正殿の儀',
-            DateTime::MOUNTAIN_DAY                    => '山の日',
-            DateTime::EMPERORS_THRONE_DAY             => '天皇の即位の日',
+            DateTime::LEGACY_SPORTS_DAY => '体育の日',
+            DateTime::SPORTS_DAY => 'スポーツの日',
+            DateTime::CULTURE_DAY => '文化の日',
+            DateTime::LABOR_THANKSGIVING_DAY => '勤労感謝の日',
+            DateTime::REGNAL_DAY => '即位礼正殿の儀',
+            DateTime::MOUNTAIN_DAY => '山の日',
+            DateTime::EMPERORS_THRONE_DAY => '天皇の即位の日',
         ];
     }
 
@@ -235,7 +236,6 @@ class JapaneseDate
      */
     protected function getJanuaryHoliday($year, $timezone): array
     {
-        $year = (int) $year;
         if ($year <= DateTime::HOLIDAY_START_YEAR) {
             return [];
         }
@@ -375,7 +375,6 @@ class JapaneseDate
      */
     protected function getMarchHoliday($year, $timezone): array
     {
-        $year = (int) $year;
         if ($year <= DateTime::HOLIDAY_START_YEAR) {
             return [];
         }
@@ -647,7 +646,6 @@ class JapaneseDate
      */
     protected function getSeptemberHoliday($year, $timezone): array
     {
-        $year = (int) $year;
         if ($year < DateTime::HOLIDAY_START_YEAR) {
             return [];
         }
@@ -820,7 +818,6 @@ class JapaneseDate
      */
     protected function getDecemberHoliday($year, $timezone): array
     {
-        $year = (int) $year;
         if ($year < DateTime::HOLIDAY_START_YEAR) {
             return [];
         }

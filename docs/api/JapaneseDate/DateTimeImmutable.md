@@ -73,17 +73,6 @@ echo $nextHoliday->format('Y-m-d') . ' ' . $nextHoliday->holidayText;
 
 ## Traits
 
-- [DateTimeImport](../JapaneseDate/Traits/DateTimeImport.md)
-- [Component](../JapaneseDate/Traits/Component.md)
-- [Factory](../JapaneseDate/Traits/Factory.md)
-- [CacheSetting](../JapaneseDate/Traits/CacheSetting.md)
-- [Lunar](../JapaneseDate/Traits/Lunar.md)
-- [Modern](../JapaneseDate/Traits/Modern.md)
-- [Modifier](../JapaneseDate/Traits/Modifier.md)
-- [FindSolarTerm](../JapaneseDate/Traits/FindSolarTerm.md)
-- [Getter](../JapaneseDate/Traits/Getter.md)
-- [DateBusinessCommon](../JapaneseDate/Traits/DateBusinessCommon.md)
-- [Business](../JapaneseDate/Traits/Business.md)
 - Date
 
 ## Constants
@@ -145,7 +134,7 @@ echo $nextHoliday->format('Y-m-d') . ' ' . $nextHoliday->holidayText;
 | public | `ERA_TAISHO` | 元号定数: 大正（1912年7月30日〜1926年12月24日）。 |
 | public | `ERA_SHOWA` | 元号定数: 昭和（1926年12月25日〜1989年1月7日）。 |
 | public | `ERA_HEISEI` | 元号定数: 平成（1989年1月8日〜2019年4月30日）。 |
-| public _(deprecated)_ | `ERA_HEISEI_NEXT` | 元号定数: 令和（旧称 ERA_HEISEI_NEXT）の非推奨エイリアス。 |
+| public _(deprecated)_ | `ERA_HEISEI_NEXT` | 元号定数: 令和（旧称 ERA_REIWA）の非推奨エイリアス。 |
 | public | `ERA_REIWA` | 元号定数: 令和（2019年5月1日〜）。 |
 | public | `SOLAR_TERM_SYUNBUN` | 24節気定数:春分 |
 | public | `SOLAR_TERM_SEIMEI` | 24節気定数:清明 |
@@ -209,6 +198,153 @@ echo $nextHoliday->format('Y-m-d') . ' ' . $nextHoliday->holidayText;
 | public | `SEASONAL_FESTIVAL_TANGO` | 五節句定数: 端午の節句（5月5日 / 旧暦5月5日）。 |
 | public | `SEASONAL_FESTIVAL_TANABATA` | 五節句定数: 七夕の節句（7月7日 / 旧暦7月7日）。 |
 | public | `SEASONAL_FESTIVAL_CHOYO` | 五節句定数: 重陽の節句（9月9日 / 旧暦9月9日）。 |
+| public | `SEVENTY_TWO_KOU_RISSHUN_SHOKOU` | 七十二候定数: 立春・初候（1候）
+名称: 東風凍を解く / 読み: はるかぜ こおりをとく |
+| public | `SEVENTY_TWO_KOU_RISSHUN_JIKOU` | 七十二候定数: 立春・次候（2候）
+名称: うぐいす鳴く / 読み: うぐいす なく |
+| public | `SEVENTY_TWO_KOU_RISSHUN_MAKKOU` | 七十二候定数: 立春・末候（3候）
+名称: 魚氷を上る / 読み: うお こおりをいずる |
+| public | `SEVENTY_TWO_KOU_USUI_SHOKOU` | 七十二候定数: 雨水・初候（4候）
+名称: 土脉潤い起こる / 読み: つちのしょう うるおいおこる |
+| public | `SEVENTY_TWO_KOU_USUI_JIKOU` | 七十二候定数: 雨水・次候（5候）
+名称: 霞始めてたなびく / 読み: かすみはじめてたなびく |
+| public | `SEVENTY_TWO_KOU_USUI_MAKKOU` | 七十二候定数: 雨水・末候（6候）
+名称: 草木萌え動る / 読み: そうもく めばえいずる |
+| public | `SEVENTY_TWO_KOU_KEICHITSU_SHOKOU` | 七十二候定数: 啓蟄・初候（7候）
+名称: すごもりの虫戸を開く / 読み: すごもりむし とをひらく |
+| public | `SEVENTY_TWO_KOU_KEICHITSU_JIKOU` | 七十二候定数: 啓蟄・次候（8候）
+名称: 桃始めてさく / 読み: もも はじめてさく |
+| public | `SEVENTY_TWO_KOU_KEICHITSU_MAKKOU` | 七十二候定数: 啓蟄・末候（9候）
+名称: 菜虫蝶となる / 読み: なむし ちょうとなる |
+| public | `SEVENTY_TWO_KOU_SYUNBUN_SHOKOU` | 七十二候定数: 春分・初候（10候）
+名称: 雀始めて巣くう / 読み: すずめ はじめてすくう |
+| public | `SEVENTY_TWO_KOU_SYUNBUN_JIKOU` | 七十二候定数: 春分・次候（11候）
+名称: 桜始めて開く / 読み: さくら はじめてひらく |
+| public | `SEVENTY_TWO_KOU_SYUNBUN_MAKKOU` | 七十二候定数: 春分・末候（12候）
+名称: 雷乃ち声を発す / 読み: かみなりすなわち こえをはっす |
+| public | `SEVENTY_TWO_KOU_SEIMEI_SHOKOU` | 七十二候定数: 清明・初候（13候）
+名称: 玄鳥至る / 読み: つばめ いたる |
+| public | `SEVENTY_TWO_KOU_SEIMEI_JIKOU` | 七十二候定数: 清明・次候（14候）
+名称: 鴻雁かえる / 読み: こうがん かえる |
+| public | `SEVENTY_TWO_KOU_SEIMEI_MAKKOU` | 七十二候定数: 清明・末候（15候）
+名称: 虹始めてあらわる / 読み: にじ はじめてあらわる |
+| public | `SEVENTY_TWO_KOU_KOKUU_SHOKOU` | 七十二候定数: 穀雨・初候（16候）
+名称: 葭始めて生ず / 読み: あし はじめてしょうず |
+| public | `SEVENTY_TWO_KOU_KOKUU_JIKOU` | 七十二候定数: 穀雨・次候（17候）
+名称: 霜止で苗出ずる / 読み: しもやんで なえいずる |
+| public | `SEVENTY_TWO_KOU_KOKUU_MAKKOU` | 七十二候定数: 穀雨・末候（18候）
+名称: 牡丹はなさく / 読み: ぼたん はなさく |
+| public | `SEVENTY_TWO_KOU_RIKKA_SHOKOU` | 七十二候定数: 立夏・初候（19候）
+名称: 蛙始めて鳴く / 読み: かわず はじめてなく |
+| public | `SEVENTY_TWO_KOU_RIKKA_JIKOU` | 七十二候定数: 立夏・次候（20候）
+名称: みみず出ずる / 読み: みみず いずる |
+| public | `SEVENTY_TWO_KOU_RIKKA_MAKKOU` | 七十二候定数: 立夏・末候（21候）
+名称: 竹のこ生ず / 読み: たけのこ しょうず |
+| public | `SEVENTY_TWO_KOU_SYOUMAN_SHOKOU` | 七十二候定数: 小満・初候（22候）
+名称: 蚕起きて桑を食む / 読み: かいこおきて くわをはむ |
+| public | `SEVENTY_TWO_KOU_SYOUMAN_JIKOU` | 七十二候定数: 小満・次候（23候）
+名称: 紅花栄う / 読み: べにばな さかう |
+| public | `SEVENTY_TWO_KOU_SYOUMAN_MAKKOU` | 七十二候定数: 小満・末候（24候）
+名称: 麦秋至る / 読み: むぎのとき いたる |
+| public | `SEVENTY_TWO_KOU_BOUSYU_SHOKOU` | 七十二候定数: 芒種・初候（25候）
+名称: 蟷螂生ず / 読み: かまきり しょうず |
+| public | `SEVENTY_TWO_KOU_BOUSYU_JIKOU` | 七十二候定数: 芒種・次候（26候）
+名称: 腐れたる草蛍となる / 読み: くされたるくさ ほたるとなる |
+| public | `SEVENTY_TWO_KOU_BOUSYU_MAKKOU` | 七十二候定数: 芒種・末候（27候）
+名称: 梅のみ黄ばむ / 読み: うめのみ きばむ |
+| public | `SEVENTY_TWO_KOU_GESHI_SHOKOU` | 七十二候定数: 夏至・初候（28候）
+名称: 乃東枯る / 読み: なつかれくさ かるる |
+| public | `SEVENTY_TWO_KOU_GESHI_JIKOU` | 七十二候定数: 夏至・次候（29候）
+名称: 菖蒲はなさく / 読み: あやめ はなさく |
+| public | `SEVENTY_TWO_KOU_GESHI_MAKKOU` | 七十二候定数: 夏至・末候（30候）
+名称: 半夏生ず / 読み: はんげ しょうず |
+| public | `SEVENTY_TWO_KOU_SYOUSYO_SHOKOU` | 七十二候定数: 小暑・初候（31候）
+名称: 温風至る / 読み: あつかぜ いたる |
+| public | `SEVENTY_TWO_KOU_SYOUSYO_JIKOU` | 七十二候定数: 小暑・次候（32候）
+名称: 蓮始めて開く / 読み: はす はじめてひらく |
+| public | `SEVENTY_TWO_KOU_SYOUSYO_MAKKOU` | 七十二候定数: 小暑・末候（33候）
+名称: 鷹乃ちわざをならう / 読み: たかすなわち わざをならう |
+| public | `SEVENTY_TWO_KOU_TAISYO_SHOKOU` | 七十二候定数: 大暑・初候（34候）
+名称: 桐始めて花を結ぶ / 読み: きりはじめて はなをむすぶ |
+| public | `SEVENTY_TWO_KOU_TAISYO_JIKOU` | 七十二候定数: 大暑・次候（35候）
+名称: 土潤いてむし暑し / 読み: つちうるおいて むしあつし |
+| public | `SEVENTY_TWO_KOU_TAISYO_MAKKOU` | 七十二候定数: 大暑・末候（36候）
+名称: 大雨時々に降る / 読み: たいう ときどきにふる |
+| public | `SEVENTY_TWO_KOU_RISSYUU_SHOKOU` | 七十二候定数: 立秋・初候（37候）
+名称: 涼風至る / 読み: すずかぜ いたる |
+| public | `SEVENTY_TWO_KOU_RISSYUU_JIKOU` | 七十二候定数: 立秋・次候（38候）
+名称: 寒蝉鳴く / 読み: ひぐらし なく |
+| public | `SEVENTY_TWO_KOU_RISSYUU_MAKKOU` | 七十二候定数: 立秋・末候（39候）
+名称: 深き霧まとう / 読み: ふかききり まとう |
+| public | `SEVENTY_TWO_KOU_SYOSYO_SHOKOU` | 七十二候定数: 処暑・初候（40候）
+名称: 綿のはなしべ開く / 読み: わたの はなしべひらく |
+| public | `SEVENTY_TWO_KOU_SYOSYO_JIKOU` | 七十二候定数: 処暑・次候（41候）
+名称: 天地始めてさむし / 読み: てんち はじめてさむし |
+| public | `SEVENTY_TWO_KOU_SYOSYO_MAKKOU` | 七十二候定数: 処暑・末候（42候）
+名称: 禾乃ちみのる / 読み: こくもの すなわちみのる |
+| public | `SEVENTY_TWO_KOU_HAKURO_SHOKOU` | 七十二候定数: 白露・初候（43候）
+名称: 草露白し / 読み: くさつゆ しろし |
+| public | `SEVENTY_TWO_KOU_HAKURO_JIKOU` | 七十二候定数: 白露・次候（44候）
+名称: 鶺鴒鳴く / 読み: せきれい なく |
+| public | `SEVENTY_TWO_KOU_HAKURO_MAKKOU` | 七十二候定数: 白露・末候（45候）
+名称: 玄鳥去る / 読み: つばめ さる |
+| public | `SEVENTY_TWO_KOU_SYUUBUN_SHOKOU` | 七十二候定数: 秋分・初候（46候）
+名称: 雷乃ち声を収む / 読み: かみなりすなわち こえをおさむ |
+| public | `SEVENTY_TWO_KOU_SYUUBUN_JIKOU` | 七十二候定数: 秋分・次候（47候）
+名称: 虫かくれて戸をふさぐ / 読み: むしかくれて とをふさぐ |
+| public | `SEVENTY_TWO_KOU_SYUUBUN_MAKKOU` | 七十二候定数: 秋分・末候（48候）
+名称: 水始めて涸る / 読み: みず はじめてかるる |
+| public | `SEVENTY_TWO_KOU_KANRO_SHOKOU` | 七十二候定数: 寒露・初候（49候）
+名称: 鴻雁来る / 読み: こうがん きたる |
+| public | `SEVENTY_TWO_KOU_KANRO_JIKOU` | 七十二候定数: 寒露・次候（50候）
+名称: 菊花開く / 読み: きくのはな ひらく |
+| public | `SEVENTY_TWO_KOU_KANRO_MAKKOU` | 七十二候定数: 寒露・末候（51候）
+名称: 蟋蟀戸にあり / 読み: きりぎりす とにあり |
+| public | `SEVENTY_TWO_KOU_SOUKOU_SHOKOU` | 七十二候定数: 霜降・初候（52候）
+名称: 霜始めて降る / 読み: しも はじめてふる |
+| public | `SEVENTY_TWO_KOU_SOUKOU_JIKOU` | 七十二候定数: 霜降・次候（53候）
+名称: 小雨ときどきふる / 読み: こさめ ときどきふる |
+| public | `SEVENTY_TWO_KOU_SOUKOU_MAKKOU` | 七十二候定数: 霜降・末候（54候）
+名称: 楓蔦黄ばむ / 読み: もみじつた きばむ |
+| public | `SEVENTY_TWO_KOU_RITTOU_SHOKOU` | 七十二候定数: 立冬・初候（55候）
+名称: 山茶始めて開く / 読み: つばき はじめてひらく |
+| public | `SEVENTY_TWO_KOU_RITTOU_JIKOU` | 七十二候定数: 立冬・次候（56候）
+名称: 地始めて凍る / 読み: ち はじめてこおる |
+| public | `SEVENTY_TWO_KOU_RITTOU_MAKKOU` | 七十二候定数: 立冬・末候（57候）
+名称: 金盞香 / 読み: きんせんか さく |
+| public | `SEVENTY_TWO_KOU_SYOUSETSU_SHOKOU` | 七十二候定数: 小雪・初候（58候）
+名称: 虹かくれて見えず / 読み: にじ かくれてみえず |
+| public | `SEVENTY_TWO_KOU_SYOUSETSU_JIKOU` | 七十二候定数: 小雪・次候（59候）
+名称: 朔風葉を払う / 読み: きたかぜ このはをはらう |
+| public | `SEVENTY_TWO_KOU_SYOUSETSU_MAKKOU` | 七十二候定数: 小雪・末候（60候）
+名称: 橘始めて黄ばむ / 読み: たちばな はじめてきばむ |
+| public | `SEVENTY_TWO_KOU_TAISETSU_SHOKOU` | 七十二候定数: 大雪・初候（61候）
+名称: 閉塞冬となる / 読み: そらさむく ふゆとなる |
+| public | `SEVENTY_TWO_KOU_TAISETSU_JIKOU` | 七十二候定数: 大雪・次候（62候）
+名称: 熊穴にこもる / 読み: くま あなにこもる |
+| public | `SEVENTY_TWO_KOU_TAISETSU_MAKKOU` | 七十二候定数: 大雪・末候（63候）
+名称: さけの魚群がる / 読み: さけのうお むらがる |
+| public | `SEVENTY_TWO_KOU_TOUJI_SHOKOU` | 七十二候定数: 冬至・初候（64候）
+名称: 乃東生ず / 読み: なつかれくさ しょうず |
+| public | `SEVENTY_TWO_KOU_TOUJI_JIKOU` | 七十二候定数: 冬至・次候（65候）
+名称: さわしかの角おつる / 読み: さわしかのつの おつる |
+| public | `SEVENTY_TWO_KOU_TOUJI_MAKKOU` | 七十二候定数: 冬至・末候（66候）
+名称: 雪下りて麦のびる / 読み: ゆきくだりて むぎのびる |
+| public | `SEVENTY_TWO_KOU_SYOUKAN_SHOKOU` | 七十二候定数: 小寒・初候（67候）
+名称: 芹乃ち栄う / 読み: せりすなわち さかう |
+| public | `SEVENTY_TWO_KOU_SYOUKAN_JIKOU` | 七十二候定数: 小寒・次候（68候）
+名称: 泉水温をふくむ / 読み: しみず あたたかをふくむ |
+| public | `SEVENTY_TWO_KOU_SYOUKAN_MAKKOU` | 七十二候定数: 小寒・末候（69候）
+名称: 雉始めてなく / 読み: きじ はじめてなく |
+| public | `SEVENTY_TWO_KOU_DAIKAN_SHOKOU` | 七十二候定数: 大寒・初候（70候）
+名称: 款冬華く / 読み: ふきの はなさく |
+| public | `SEVENTY_TWO_KOU_DAIKAN_JIKOU` | 七十二候定数: 大寒・次候（71候）
+名称: 水沢氷つめる / 読み: さわみず こおりつめる |
+| public | `SEVENTY_TWO_KOU_DAIKAN_MAKKOU` | 七十二候定数: 大寒・末候（72候）
+名称: 鶏始めてとやにつく / 読み: にわとり はじめてとやにつく |
+| public | `COURT_NORTH` | 南北朝時代： 北朝 |
+| public | `COURT_SOUTH` | 南北朝時代： 南朝 |
+| public | `COURT_MAIN` | 南北朝時代以外及び南北朝時代の両朝を指す場合 |
 
 ## Properties
 
@@ -275,198 +411,42 @@ echo $nextHoliday->format('Y-m-d') . ' ' . $nextHoliday->holidayText;
 | public _(read-only)_ | string | `$timezoneName` _(from [CarbonImmutable](../Carbon/CarbonImmutable.md))_ | the current timezone name |
 | public _(read-only)_ | string | `$tzName` _(from [CarbonImmutable](../Carbon/CarbonImmutable.md))_ | alias of $timezoneName |
 | public _(read-only)_ | string | `$locale` _(from [CarbonImmutable](../Carbon/CarbonImmutable.md))_ | locale of the current instance |
-| public _(read-only)_ | int | `$solar_seasonal_festival` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 西暦の月日から五節句IDを取得する（スネークケース）。五節句定数（0〜5）を返す。節句でない場合は 0。 |
-| public _(read-only)_ | string | `$solar_seasonal_festival_name` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 西暦の月日から五節句の式名を取得する（スネークケース）。式名または空文字列。 |
-| public _(read-only)_ | string | `$solar_seasonal_festival_alias` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 西暦の月日から五節句の別名を取得する（スネークケース）。別名または空文字列。 |
-| public _(read-only)_ | int | `$lunar_seasonal_festival` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 旧暦の月日から五節句IDを取得する（スネークケース）。五節句定数（0〜5）を返す。節句でない場合は 0。 |
-| public _(read-only)_ | string | `$lunar_seasonal_festival_name` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 旧暦の月日から五節句の式名を取得する（スネークケース）。式名または空文字列。 |
-| public _(read-only)_ | string | `$lunar_seasonal_festival_alias` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 旧暦の月日から五節句の別名を取得する（スネークケース）。別名または空文字列。 |
-| public _(read-only)_ | int | `$misc_seasonal_node` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 雑節を取得する（スネークケース）。雑節定数（0〜9）を返す。雑節でない場合は 0。 |
-| public _(read-only)_ | string | `$misc_seasonal_node_text` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 雑節の日本語名を取得する（スネークケース）。雑節名または空文字列。 |
-| public _(read-only)_ | int\|bool | `$solar_term` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 24節気を取得する。値は、 1 から 24 までの整数、または 24節気でない場合は false になります。 |
-| public _(read-only)_ | string | `$solar_term_text` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 24節気の名前を取得する。値は、 24節気の名前を表す文字列、または 24節気でない場合は空文字列になります。 |
-| public _(read-only)_ | bool | `$is_solar_term` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が24節気の一つであるかどうかを示すブール値。値は、 24節気である場合は true、そうでない場合は false になります。 |
-| public _(read-only)_ | string | `$era_name_text` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が属する元号の名前を取得する。値は、 元号の名前を表す文字列、または 元号でない場合は空文字列になります。 |
-| public _(read-only)_ | int | `$era_name` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が属する元号を整数で取得する。値は、 元号を表す整数、または 元号でない場合は 0 になります。 |
-| public _(read-only)_ | int | `$era_year` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が属する元号の年を整数で取得する。値は、 元号の年を表す整数、または 元号でない場合は 0 になります。 |
-| public _(read-only)_ | string | `$oriental_zodiac_text` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が属する十二支の名前を取得する。値は、 十二支の名前を表す文字列、または 十二支でない場合は空文字列になります。 |
-| public _(read-only)_ | int | `$oriental_zodiac` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が属する十二支を整数で取得する。値は、 十二支を表す整数、または 十二支でない場合は 0 になります。 |
-| public _(read-only)_ | string | `$heavenly_stem_text` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が属する十干の名前を取得する。値は、 十干の名前を表す文字列です。 |
-| public _(read-only)_ | int | `$heavenly_stem` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が属する十干を整数で取得する。値は、 十干を表す整数 (0〜9) です。 |
-| public _(read-only)_ | string | `$six_weekday_text` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が属する六曜の名前を取得する。値は、 六曜の名前を表す文字列、または 六曜でない場合は空文字列になります。 |
-| public _(read-only)_ | int | `$six_weekday` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が属する六曜を整数で取得する。値は、 六曜を表す整数、または 六曜でない場合は 0 になります。 |
-| public _(read-only)_ | int | `$weekday_text` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が属する曜日の名前を取得する。値は、 曜日の名前を表す文字列、または 曜日でない場合は空文字列になります。 |
-| public _(read-only)_ | string | `$month_text` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が属する月の名前を取得する。値は、 月の名前を表す文字列、または 月でない場合は空文字列になります。 |
-| public _(read-only)_ | string | `$holiday_text` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が祝日である場合、祝日の名前を取得する。値は、 祝日の名前を表す文字列、または 祝日でない場合は空文字列になります。 |
-| public _(read-only)_ | int | `$holiday` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が祝日である場合、祝日の番号を取得する。値は、 祝日の番号を表す整数、または 祝日でない場合は 0 になります。 |
-| public _(read-only)_ | bool | `$is_holiday` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が祝日であるかどうかを示すブール値。値は、 祝日である場合は true、そうでない場合は false になります。 |
-| public _(read-only)_ | string | `$lunar_month_text` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が属する陰暦の月の名前を取得する。値は、 陰暦の月の名前を表す文字列、または 陰暦の月でない場合は空文字列になります。 |
-| public _(read-only)_ | int | `$lunar_month` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が属する陰暦の月を整数で取得する。値は、 陰暦の月を表す整数、または 陰暦の月でない場合は 0 になります。 |
-| public _(read-only)_ | int | `$lunar_year` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が属する陰暦の年を整数で取得する。値は、 陰暦の年を表す整数、または 陰暦の年でない場合は 0 になります。 |
-| public _(read-only)_ | int | `$lunar_day` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が属する陰暦の日を整数で取得する。値は、 陰暦の日を表す整数、または 陰暦の日でない場合は 0 になります。 |
-| public _(read-only)_ | bool | `$is_leap_month` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が閏月であるかどうかを示すブール値。値は、 閏月である場合は true、そうでない場合は false になります。 |
-| public _(read-only)_ | float | `$moon_age` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日における月齢を取得する。値は、 月齢を表す浮動小数点数、または 不明な場合は false になります。 |
-| public _(read-only)_ | float | `$moon_phase_angle` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日における月の位相角を取得する。値は 0°(新月)〜359.9° の浮動小数点数です。 |
-| public _(read-only)_ | int | `$moon_phase` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日における月相を取得する。値は 0(新月)〜7(有明) の整数です。 |
-| public _(read-only)_ | string | `$moon_phase_text` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日における月相名を日本語で取得する。値は「新月」「三日月」「上弦」「十三夜」「満月」「十六夜」「下弦」「有明」のいずれかです。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$syunbun` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その年の春分の日の日時を取得する。値は、 春分の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$next_syunbun` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の春分の日の日時を取得する。値は、 次の春分の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が春分の日の場合は翌年の春分の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$before_syunbun` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の春分の日の日時を取得する。値は、 前の春分の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が春分の日の場合は前年の春分の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$seimei` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その年の清明の日の日時を取得する。値は、 清明の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$next_seimei` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の清明の日の日時を取得する。値は、 次の清明の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が清明の日の場合は翌年の清明の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$before_seimei` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の清明の日の日時を取得する。値は、 前の清明の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が清明の日の場合は前年の清明の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$kokuu` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その年の穀雨の日の日時を取得する。値は、 穀雨の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$next_kokuu` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の穀雨の日の日時を取得する。値は、 次の穀雨の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が穀雨の日の場合は翌年の穀雨の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$before_kokuu` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の穀雨の日の日時を取得する。値は、 前の穀雨の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が穀雨の日の場合は前年の穀雨の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$rikka` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その年の立夏の日の日時を取得する。値は、 立夏の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$next_rikka` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の立夏の日の日時を取得する。値は、 次の立夏の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が立夏の日の場合は翌年の立夏の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$before_rikka` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の立夏の日の日時を取得する。値は、 前の立夏の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が立夏の日の場合は前年の立夏の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$syouman` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その年の小満の日の日時を取得する。値は、 小満の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$next_syouman` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の小満の日の日時を取得する。値は、 次の小満の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が小満の日の場合は翌年の小満の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$before_syouman` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の小満の日の日時を取得する。値は、 前の小満の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が小満の日の場合は前年の小満の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$bousyu` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その年の芒種の日の日時を取得する。値は、 芒種の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$next_bousyu` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の芒種の日の日時を取得する。値は、 次の芒種の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が芒種の日の場合は翌年の芒種の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$before_bousyu` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の芒種の日の日時を取得する。値は、 前の芒種の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が芒種の日の場合は前年の芒種の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$geshi` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その年の夏至の日の日時を取得する。値は、 夏至の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$next_geshi` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の夏至の日の日時を取得する。値は、 次の夏至の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が夏至の日の場合は翌年の夏至の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$before_geshi` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の夏至の日の日時を取得する。値は、 前の夏至の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が夏至の日の場合は前年の夏至の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$syousyo` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その年の小暑の日の日時を取得する。値は、 小暑の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$next_syousyo` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の小暑の日の日時を取得する。値は、 次の小暑の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が小暑の日の場合は翌年の小暑の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$before_syousyo` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の小暑の日の日時を取得する。値は、 前の小暑の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が小暑の日の場合は前年の小暑の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$taisyo` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その年の大暑の日の日時を取得する。値は、 大暑の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$next_taisyo` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の大暑の日の日時を取得する。値は、 次の大暑の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が大暑の日の場合は翌年の大暑の日が返されます。o |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$before_taisyo` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の大暑の日の日時を取得する。値は、 前の大暑の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が大暑の日の場合は前年の大暑の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$rissyuu` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その年の立秋の日の日時を取得する。値は、 立秋の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$next_rissyuu` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の立秋の日の日時を取得する。値は、 次の立秋の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が立秋の日の場合は翌年の立秋の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$before_rissyuu` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の立秋の日の日時を取得する。値は、 前の立秋の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が立秋の日の場合は前年の立秋の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$syosyo` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その年の処暑の日の日時を取得する。値は、 処暑の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$next_syosyo` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の処暑の日の日時を取得する。値は、 次の処暑の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が処暑の日の場合は翌年の処暑の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$before_syosyo` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の処暑の日の日時を取得する。値は、 前の処暑の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が処暑の日の場合は前年の処暑の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$hakuro` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その年の白露の日の日時を取得する。値は、 白露の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$next_hakuro` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の白露の日の日時を取得する。値は、 次の白露の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が白露の日の場合は翌年の白露の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$before_hakuro` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の白露の日の日時を取得する。値は、 前の白露の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が白露の日の場合は前年の白露の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$syuubun` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その年の秋分の日の日時を取得する。値は、 秋分の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$next_syuubun` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の秋分の日の日時を取得する。値は、 次の秋分の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が秋分の日の場合は翌年の秋分の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$before_syuubun` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の秋分の日の日時を取得する。値は、 前の秋分の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が秋分の日の場合は前年の秋分の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$kanro` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その年の寒露の日の日時を取得する。値は、 寒露の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$next_kanro` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の寒露の日の日時を取得する。値は、 次の寒露の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が寒露の日の場合は翌年の寒露の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$before_kanro` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の寒露の日の日時を取得する。値は、 前の寒露の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が寒露の日の場合は前年の寒露の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$soukou` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その年の霜降の日の日時を取得する。値は、 霜降の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$next_soukou` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の霜降の日の日時を取得する。値は、 次の霜降の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が霜降の日の場合は翌年の霜降の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$before_soukou` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の霜降の日の日時を取得する。値は、 前の霜降の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が霜降の日の場合は前年の霜降の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$rittou` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その年の立冬の日の日時を取得する。値は、 立冬の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$next_rittou` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の立冬の日の日時を取得する。値は、 次の立冬の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が立冬の日の場合は翌年の立冬の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$before_rittou` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の立冬の日の日時を取得する。値は、 前の立冬の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が立冬の日の場合は前年の立冬の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$syousetsu` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その年の小雪の日の日時を取得する。値は、 小雪の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$next_syousetsu` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の小雪の日の日時を取得する。値は、 次の小雪の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が小雪の日の場合は翌年の小雪の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$before_syousetsu` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の小雪の日の日時を取得する。値は、 前の小雪の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が小雪の日の場合は前年の小雪の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$taisetsu` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その年の大雪の日の日時を取得する。値は、 大雪の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$next_taisetsu` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の大雪の日の日時を取得する。値は、 次の大雪の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が大雪の日の場合は翌年の大雪の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$before_taisetsu` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の大雪の日の日時を取得する。値は、 前の大雪の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が大雪の日の場合は前年の大雪の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$touji` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その年の冬至の日の日時を取得する。値は、 冬至の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$next_touji` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の冬至の日の日時を取得する。値は、 次の冬至の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が冬至の日の場合は翌年の冬至の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$before_touji` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の冬至の日の日時を取得する。値は、 前の冬至の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が冬至の日の場合は前年の冬至の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$syoukan` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その年の小寒の日の日時を取得する。値は、 小寒の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$next_syoukan` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の小寒の日の日時を取得する。値は、 次の小寒の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が小寒の日の場合は翌年の小寒の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$before_syoukan` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の小寒の日の日時を取得する。値は、 前の小寒の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が小寒の日の場合は前年の小寒の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$daikan` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その年の大寒の日の日時を取得する。値は、 大寒の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。_syoukan |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$next_daikan` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の大寒の日の日時を取得する。値は、 次の大寒の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が大寒の日の場合は翌年の大寒の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$before_daikan` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の大寒の日の日時を取得する。値は、 前の大寒の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が大寒の日の場合は前年の大寒の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$rissyun` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その年の立春の日の日時を取得する。値は、 立春の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$next_rissyun` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の立春の日の日時を取得する。値は、 次の立春の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が立春の日の場合は翌年の立春の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$before_rissyun` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の立春の日の日時を取得する。値は、 前の立春の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が立春の日の場合は前年の立春の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$usui` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その年の雨水の日の日時を取得する。値は、 雨水の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$next_usui` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の雨水の日の日時を取得する。値は、 次の雨水の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が雨水の日の場合は翌年の雨水の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$before_usui` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の雨水の日の日時を取得する。値は、 前の雨水の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が雨水の日の場合は前年の雨水の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$keichitsu` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その年の啓蟄の日の日時を取得する。値は、 啓蟄の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$next_keichitsu` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の啓蟄の日の日時を取得する。値は、 次の啓蟄の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が啓蟄の日の場合は翌年の啓蟄の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$before_keichitsu` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の啓蟄の日の日時を取得する。値は、 前の啓蟄の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が啓蟄の日の場合は前年の啓蟄の日が返されます。 |
-| public _(read-only)_ | int | `$solarSeasonalFestival` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 西暦の月日から五節句IDを取得する。値は {[\JapaneseDate\DateTime::SEASONAL_FESTIVAL_NONE}（0）〜{@see](../JapaneseDate/DateTime.html) \JapaneseDate\DateTime::SEASONAL_FESTIVAL_CHOYO}（5）のいずれかです。節句でない場合は 0 を返します。 |
-| public _(read-only)_ | string | `$solarSeasonalFestivalName` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 西暦の月日から五節句の式名を取得する。「人日の節句」「上巳の節句」「端午の節句」「七夕の節句」「重陽の節句」のいずれか、または節句でない場合は空文字列を返します。 |
-| public _(read-only)_ | string | `$solarSeasonalFestivalAlias` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 西暦の月日から五節句の別名を取得する。「七草の節句」「桃の節句」「菖蒲の節句」「笹の節句」「菊の節句」のいずれか、または節句でない場合は空文字列を返します。 |
-| public _(read-only)_ | int | `$lunarSeasonalFestival` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 旧暦の月日から五節句IDを取得する。値は {[\JapaneseDate\DateTime::SEASONAL_FESTIVAL_NONE}（0）〜{@see](../JapaneseDate/DateTime.html) \JapaneseDate\DateTime::SEASONAL_FESTIVAL_CHOYO}（5）のいずれかです。節句でない場合は 0 を返します。 |
-| public _(read-only)_ | string | `$lunarSeasonalFestivalName` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 旧暦の月日から五節句の式名を取得する。「人日の節句」「上巳の節句」「端午の節句」「七夕の節句」「重陽の節句」のいずれか、または節句でない場合は空文字列を返します。 |
-| public _(read-only)_ | string | `$lunarSeasonalFestivalAlias` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 旧暦の月日から五節句の別名を取得する。「七草の節句」「桃の節句」「菖蒲の節句」「笹の節句」「菊の節句」のいずれか、または節句でない場合は空文字列を返します。 |
-| public _(read-only)_ | int | `$miscSeasonalNode` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が該当する雑節の定数を取得する。値は {[\JapaneseDate\DateTime::MISC_SEASONAL_NODE_NONE}（0）〜{@see](../JapaneseDate/DateTime.html) \JapaneseDate\DateTime::MISC_SEASONAL_NODE_NIHYAKUNIJUUNICHI}（9）のいずれかです。雑節でない場合は 0 を返します。 |
-| public _(read-only)_ | string | `$miscSeasonalNodeText` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が該当する雑節の日本語名を取得する。「節分」「彼岸」「社日」「八十八夜」「入梅」「半夏生」「土用」「二百十日」「二百二十日」のいずれか、または雑節でない場合は空文字列を返します。 |
-| public _(read-only)_ | int\|bool | `$solarTerm` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 24節気を取得する。値は、 1 から 24 までの整数、または 24節気でない場合は false になります。 |
-| public _(read-only)_ | string | `$solarTermText` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 24節気の名前を取得する。値は、 24節気の名前を表す文字列、または 24節気でない場合は空文字列になります。 |
-| public _(read-only)_ | bool | `$isSolarTerm` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が24節気の一つであるかどうかを示すブール値。値は、 24節気である場合は true、そうでない場合は false になります。 |
-| public _(read-only)_ | string | `$eraNameText` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が属する元号の名前を取得する。値は、 元号の名前を表す文字列、または 元号でない場合は空文字列になります。 |
-| public _(read-only)_ | int | `$eraName` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が属する元号を整数で取得する。値は、 元号を表す整数、または 元号でない場合は 0 になります。 |
-| public _(read-only)_ | int | `$eraYear` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が属する元号の年を整数で取得する。値は、 元号の年を表す整数、または 元号でない場合は 0 になります。 |
-| public _(read-only)_ | string | `$orientalZodiacText` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が属する十二支の名前を取得する。値は、 十二支の名前を表す文字列、または 十二支でない場合は空文字列になります。 |
-| public _(read-only)_ | int | `$orientalZodiac` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が属する十二支を整数で取得する。値は、 十二支を表す整数、または 十二支でない場合は 0 になります。 |
-| public _(read-only)_ | string | `$heavenlyStemText` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が属する十干の名前を取得する。値は、 十干の名前を表す文字列です。 |
-| public _(read-only)_ | int | `$heavenlyStem` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が属する十干を整数で取得する。値は、 十干を表す整数 (0〜9) です。 |
-| public _(read-only)_ | string | `$sixWeekdayText` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が属する六曜の名前を取得する。値は、 六曜の名前を表す文字列、または 六曜でない場合は空文字列になります。 |
-| public _(read-only)_ | int | `$sixWeekday` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が属する六曜を整数で取得する。値は、 六曜を表す整数、または 六曜でない場合は 0 になります。 |
-| public _(read-only)_ | int | `$weekdayText` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が属する曜日の名前を取得する。値は、 曜日の名前を表す文字列、または 曜日でない場合は空文字列になります。 |
-| public _(read-only)_ | string | `$monthText` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が属する月の名前を取得する。値は、 月の名前を表す文字列、または 月でない場合は空文字列になります。 |
-| public _(read-only)_ | string | `$holidayText` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が祝日である場合、祝日の名前を取得する。値は、 祝日の名前を表す文字列、または 祝日でない場合は空文字列になります。 |
-| public _(read-only)_ | bool | `$isHoliday` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が祝日であるかどうかを示すブール値。値は、 祝日である場合は true、そうでない場合は false になります。 |
-| public _(read-only)_ | string | `$lunarMonthText` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が属する陰暦の月の名前を取得する。値は、 陰暦の月の名前を表す文字列、または 陰暦の月でない場合は空文字列になります。 |
-| public _(read-only)_ | int | `$lunarMonth` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が属する陰暦の月を整数で取得する。値は、 陰暦の月を表す整数、または 陰暦の月でない場合は 0 になります。 |
-| public _(read-only)_ | int | `$lunarYear` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が属する陰暦の年を整数で取得する。値は、 陰暦の年を表す整数、または 陰暦の年でない場合は 0 になります。 |
-| public _(read-only)_ | int | `$lunarDay` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が属する陰暦の日を整数で取得する。値は、 陰暦の日を表す整数、または 陰暦の日でない場合は 0 になります。 |
-| public _(read-only)_ | bool | `$isLeapMonth` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日が閏月であるかどうかを示すブール値。値は、 閏月である場合は true、そうでない場合は false になります。 |
-| public _(read-only)_ | float | `$moonAge` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日における月齢を取得する。値は、 月齢を表す浮動小数点数、または 不明な場合は false になります。 |
-| public _(read-only)_ | float | `$moonPhaseAngle` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日における月の位相角を取得する。値は 0°(新月)〜359.9° の浮動小数点数です。 |
-| public _(read-only)_ | int | `$moonPhase` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日における月相を取得する。値は 0(新月)〜7(有明) の整数です。 |
-| public _(read-only)_ | string | `$moonPhaseText` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | その日における月相名を日本語で取得する。値は「新月」「三日月」「上弦」「十三夜」「満月」「十六夜」「下弦」「有明」のいずれかです。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$nextSyunbun` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の春分の日の日時を取得する。値は、 次の春分の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が春分の日の場合は翌年の春分の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$beforeSyunbun` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の春分の日の日時を取得する。値は、 前の春分の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が春分の日の場合は前年の春分の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$nextSeimei` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の清明の日の日時を取得する。値は、 次の清明の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が清明の日の場合は翌年の清明の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$beforeSeimei` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の清明の日の日時を取得する。値は、 前の清明の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が清明の日の場合は前年の清明の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$nextKokuu` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の穀雨の日の日時を取得する。値は、 次の穀雨の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が穀雨の日の場合は翌年の穀雨の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$beforeKokuu` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の穀雨の日の日時を取得する。値は、 前の穀雨の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が穀雨の日の場合は前年の穀雨の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$nextRikka` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の立夏の日の日時を取得する。値は、 次の立夏の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が立夏の日の場合は翌年の立夏の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$beforeRikka` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の立夏の日の日時を取得する。値は、 前の立夏の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が立夏の日の場合は前年の立夏の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$nextSyouman` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の小満の日の日時を取得する。値は、 次の小満の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が小満の日の場合は翌年の小満の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$beforeSyouman` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の小満の日の日時を取得する。値は、 前の小満の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が小満の日の場合は前年の小満の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$nextBousyu` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の芒種の日の日時を取得する。値は、 次の芒種の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が芒種の日の場合は翌年の芒種の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$beforeBousyu` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の芒種の日の日時を取得する。値は、 前の芒種の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が芒種の日の場合は前年の芒種の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$nextGeshi` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の夏至の日の日時を取得する。値は、 次の夏至の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が夏至の日の場合は翌年の夏至の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$beforeGeshi` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の夏至の日の日時を取得する。値は、 前の夏至の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が夏至の日の場合は前年の夏至の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$nextSyousyo` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の小暑の日の日時を取得する。値は、 次の小暑の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が小暑の日の場合は翌年の小暑の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$beforeSyousyo` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の小暑の日の日時を取得する。値は、 前の小暑の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が小暑の日の場合は前年の小暑の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$nextTaisyo` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の大暑の日の日時を取得する。値は、 次の大暑の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が大暑の日の場合は翌年の大暑の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$beforeTaisyo` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の大暑の日の日時を取得する。値は、 前の大暑の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が大暑の日の場合は前年の大暑の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$nextRissyuu` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の立秋の日の日時を取得する。値は、 次の立秋の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が立秋の日の場合は翌年の立秋の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$beforeRissyuu` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の立秋の日の日時を取得する。値は、 前の立秋の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が立秋の日の場合は前年の立秋の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$nextSyosyo` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の処暑の日の日時を取得する。値は、 次の処暑の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が処暑の日の場合は翌年の処暑の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$beforeSyosyo` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の処暑の日の日時を取得する。値は、 前の処暑の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が処暑の日の場合は前年の処暑の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$nextHakuro` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の白露の日の日時を取得する。値は、 次の白露の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が白露の日の場合は翌年の白露の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$beforeHakuro` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の白露の日の日時を取得する。値は、 前の白露の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が白露の日の場合は前年の白露の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$nextSyuubun` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の秋分の日の日時を取得する。値は、 次の秋分の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が秋分の日の場合は翌年の秋分の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$beforeSyuubun` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の秋分の日の日時を取得する。値は、 前の秋分の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が秋分の日の場合は前年の秋分の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$nextKanro` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の寒露の日の日時を取得する。値は、 次の寒露の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が寒露の日の場合は翌年の寒露の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$beforeKanro` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の寒露の日の日時を取得する。値は、 前の寒露の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が寒露の日の場合は前年の寒露の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$nextSoukou` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の霜降の日の日時を取得する。値は、 次の霜降の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が霜降の日の場合は翌年の霜降の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$beforeSoukou` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の霜降の日の日時を取得する。値は、 前の霜降の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が霜降の日の場合は前年の霜降の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$nextRittou` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の立冬の日の日時を取得する。値は、 次の立冬の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が立冬の日の場合は翌年の立冬の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$beforeRittou` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の立冬の日の日時を取得する。値は、 前の立冬の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が立冬の日の場合は前年の立冬の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$nextSyousetsu` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の小雪の日の日時を取得する。値は、 次の小雪の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が小雪の日の場合は翌年の小雪の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$beforeSyousetsu` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の小雪の日の日時を取得する。値は、 前の小雪の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が小雪の日の場合は前年の小雪の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$nextTaisetsu` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の大雪の日の日時を取得する。値は、 次の大雪の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が大雪の日の場合は翌年の大雪の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$beforeTaisetsu` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の大雪の日の日時を取得する。値は、 前の大雪の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が大雪の日の場合は前年の大雪の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$nextTouji` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の冬至の日の日時を取得する。値は、 次の冬至の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が冬至の日の場合は翌年の冬至の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$beforeTouji` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の冬至の日の日時を取得する。値は、 前の冬至の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が冬至の日の場合は前年の冬至の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$nextSyoukan` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の小寒の日の日時を取得する。値は、 次の小寒の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が小寒の日の場合は翌年の小寒の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$beforeSyoukan` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の小寒の日の日時を取得する。値は、 前の小寒の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が小寒の日の場合は前年の小寒の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$nextDaikan` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の大寒の日の日時を取得する。値は、 次の大寒の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が大寒の日の場合は翌年の大寒の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$beforeDaikan` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の大寒の日の日時を取得する。値は、 前の大寒の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が大寒の日の場合は前年の大寒の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$nextRissyun` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の立春の日の日時を取得する。値は、 次の立春の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が立春の日の場合は翌年の立春の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$beforeRissyun` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の立春の日の日時を取得する。値は、 前の立春の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が立春の日の場合は前年の立春の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$nextUsui` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の雨水の日の日時を取得する。値は、 次の雨水の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が雨水の日の場合は翌年の雨水の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$beforeUsui` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の雨水の日の日時を取得する。値は、 前の雨水の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が雨水の日の場合は前年の雨水の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$nextKeichitsu` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 次の啓蟄の日の日時を取得する。値は、 次の啓蟄の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が啓蟄の日の場合は翌年の啓蟄の日が返されます。 |
-| public _(read-only)_ | [DateTime](../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../JapaneseDate/DateTimeImmutable.md) | `$beforeKeichitsu` _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | 前の啓蟄の日の日時を取得する。値は、 前の啓蟄の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が啓蟄の日の場合は前年の啓蟄の日が返されます。 |
 
 ## Methods
 
 | Return | Method | Description |
 |---|---|---|
+| Factory | [factory()](#factory) | 多様な型の引数から {\JapaneseDate\DateTime} / {\JapaneseDate\DateTimeImmutable} インスタンスを生成するユニバーサルファクトリメソッドです。 |
+| void | [setCacheMode()](#setcachemode) | 旧暦・祝日計算に使用するキャッシュモードを設定します。 |
+| void | [setCacheFilePath()](#setcachefilepath) | ファイルキャッシュの保存先ディレクトリを設定します。 |
+| void | [setCacheClosure()](#setcacheclosure) | 独自キャッシュロジックを実装したクロージャを登録します。 |
+| Modifier | [nextHoliday()](#nextholiday) | 次の祝日にする |
+| Modifier | [nextSixWeek()](#nextsixweek) | 指定された次の六曜にする |
+| SeventyTwoKou | [nextSeventyTwoKou()](#nextseventytwokou) | 次の七十二候が始まる日へ移動したインスタンスを返します。 |
+| SeventyTwoKou | [previousSeventyTwoKou()](#previousseventytwokou) | 前の七十二候が始まる日へ移動したインスタンスを返します。 |
+| array | [getCalendar()](#getcalendar) | サポートされるカレンダーに変換する |
+| DateBusinessCommon | [setBusinessConfig()](#setbusinessconfig) | インスタンスに個別の営業日設定を適用します。 |
+| DateBusiness\|null | [getBusinessConfig()](#getbusinessconfig) | インスタンスが保持している個別の営業日設定を取得します。 |
+| DateBusinessCommon | [setClosingDay()](#setclosingday) | 特定の日付を休業日として指定します。 |
+| DateBusinessCommon | [setOpenDay()](#setopenday) | 特定の日付を営業日として指定します。 |
+| DateBusinessCommon | [setClosingWeekdays()](#setclosingweekdays) | 休業曜日を一括設定します。 |
+| DateBusinessCommon | [setBypassHoliday()](#setbypassholiday) | 祝日を休業日として扱うかどうかを設定します。 |
+| DateBusinessCommon | [setOpenNthWeekday()](#setopennthweekday) | 第XX曜日を営業日として指定します。 |
+| DateBusinessCommon | [setClosingNthWeekday()](#setclosingnthweekday) | 第XX曜日を休業日として指定します。 |
+| DateBusinessCommon | [addOpenFilter()](#addopenfilter) | 営業指定フィルタを追加します。 |
+| DateBusinessCommon | [addClosingFilter()](#addclosingfilter) | 休業指定フィルタを追加します。 |
+| DateBusinessCommon | [setBusinessMacro()](#setbusinessmacro) | 判定ロジックを完全に上書きするマクロを設定します。 |
+| bool | [checkIsBusinessDay()](#checkisbusinessday) | 指定した日付（または自身が保持する日付）が営業日かどうかを判定します。 |
+| string\|null | [checkGetBusinessDayLabel()](#checkgetbusinessdaylabel) | 指定した日付（または自身が保持する日付）の休業ラベルを取得します。 |
+| bool | [isBusinessDay()](#isbusinessday) | このインスタンスの日付が営業日かどうかを判定します。 |
+| string\|null | [getBusinessDayLabel()](#getbusinessdaylabel) | このインスタンスの日付が休業日の場合、そのラベルを返します。 |
+| Business | [nextBusinessDay()](#nextbusinessday) | 次の営業日を取得します。 |
+| Business | [previousBusinessDay()](#previousbusinessday) | 前の営業日を取得します。 |
+| Business | [shiftToClosestBusinessDayAfter()](#shifttoclosestbusinessdayafter) | この日が休業日の場合、翌営業日にシフトしたインスタンスを返します。 |
+| Business | [shiftToClosestBusinessDayBefore()](#shifttoclosestbusinessdaybefore) | この日が休業日の場合、前営業日にシフトしたインスタンスを返します。 |
+| Business | [addBusinessDays()](#addbusinessdays) | 指定した営業日数後の日付を返します。 |
+| Business | [subBusinessDays()](#subbusinessdays) | 指定した営業日数前の日付を返します。 |
+| array | [historicalEras()](#historicaleras) | 自身の日付に対応する歴史的元号を返す。 |
 | CarbonImmutable | [CarbonImmutable::startOfTime](../Carbon/CarbonImmutable.md#startoftime) _(from [CarbonImmutable](../Carbon/CarbonImmutable.md))_ | Create a very old date representing start of time. |
 | CarbonImmutable | [CarbonImmutable::endOfTime](../Carbon/CarbonImmutable.md#endoftime) _(from [CarbonImmutable](../Carbon/CarbonImmutable.md))_ | Create a very far date representing end of time. |
 | bool | [CarbonImmutable::isUtc](../Carbon/CarbonImmutable.md#isutc) _(from [CarbonImmutable](../Carbon/CarbonImmutable.md))_ |  |
@@ -886,40 +866,742 @@ echo $nextHoliday->format('Y-m-d') . ' ' . $nextHoliday->holidayText;
 | string | [CarbonImmutable::shortRelativeToOtherDiffForHumans](../Carbon/CarbonImmutable.md#shortrelativetootherdiffforhumans) _(from [CarbonImmutable](../Carbon/CarbonImmutable.md))_ |  |
 | string | [CarbonImmutable::longRelativeToOtherDiffForHumans](../Carbon/CarbonImmutable.md#longrelativetootherdiffforhumans) _(from [CarbonImmutable](../Carbon/CarbonImmutable.md))_ |  |
 | static|false | [CarbonImmutable::createFromFormat](../Carbon/CarbonImmutable.md#createfromformat) _(from [CarbonImmutable](../Carbon/CarbonImmutable.md))_ | Parse a string into a new CarbonImmutable object according to the specified format. |
-| static | [CarbonImmutable::__set_state](../Carbon/CarbonImmutable.md#__set_state) _(from [CarbonImmutable](../Carbon/CarbonImmutable.md))_ | https://php.net/manual/en/datetime.set-state.php
-
-</autodoc> |
-| Factory | [Factory::factory](../JapaneseDate/Traits/Factory.md#factory) _(from [Factory](../JapaneseDate/Traits/Factory.md))_ | 多様な型の引数から {\JapaneseDate\DateTime} / {\JapaneseDate\DateTimeImmutable}
-インスタンスを生成するユニバーサルファクトリメソッドです。 |
-| void | [CacheSetting::setCacheMode](../JapaneseDate/Traits/CacheSetting.md#setcachemode) _(from [CacheSetting](../JapaneseDate/Traits/CacheSetting.md))_ | 旧暦・祝日計算に使用するキャッシュモードを設定します。 |
-| void | [CacheSetting::setCacheFilePath](../JapaneseDate/Traits/CacheSetting.md#setcachefilepath) _(from [CacheSetting](../JapaneseDate/Traits/CacheSetting.md))_ | ファイルキャッシュの保存先ディレクトリを設定します。 |
-| void | [CacheSetting::setCacheClosure](../JapaneseDate/Traits/CacheSetting.md#setcacheclosure) _(from [CacheSetting](../JapaneseDate/Traits/CacheSetting.md))_ | 独自キャッシュロジックを実装したクロージャを登録します。 |
-| Modifier | [Modifier::nextHoliday](../JapaneseDate/Traits/Modifier.md#nextholiday) _(from [Modifier](../JapaneseDate/Traits/Modifier.md))_ | 次の祝日にする |
-| Modifier | [Modifier::nextSixWeek](../JapaneseDate/Traits/Modifier.md#nextsixweek) _(from [Modifier](../JapaneseDate/Traits/Modifier.md))_ | 指定された次の六曜にする |
-| array | [Getter::getCalendar](../JapaneseDate/Traits/Getter.md#getcalendar) _(from [Getter](../JapaneseDate/Traits/Getter.md))_ | サポートされるカレンダーに変換する |
-| DateBusinessCommon | [DateBusinessCommon::setBusinessConfig](../JapaneseDate/Traits/DateBusinessCommon.md#setbusinessconfig) _(from [DateBusinessCommon](../JapaneseDate/Traits/DateBusinessCommon.md))_ | インスタンスに個別の営業日設定を適用します。 |
-| DateBusiness\|null | [DateBusinessCommon::getBusinessConfig](../JapaneseDate/Traits/DateBusinessCommon.md#getbusinessconfig) _(from [DateBusinessCommon](../JapaneseDate/Traits/DateBusinessCommon.md))_ | インスタンスが保持している個別の営業日設定を取得します。 |
-| DateBusinessCommon | [DateBusinessCommon::setClosingDay](../JapaneseDate/Traits/DateBusinessCommon.md#setclosingday) _(from [DateBusinessCommon](../JapaneseDate/Traits/DateBusinessCommon.md))_ | 特定の日付を休業日として指定します。 |
-| DateBusinessCommon | [DateBusinessCommon::setOpenDay](../JapaneseDate/Traits/DateBusinessCommon.md#setopenday) _(from [DateBusinessCommon](../JapaneseDate/Traits/DateBusinessCommon.md))_ | 特定の日付を営業日として指定します。 |
-| DateBusinessCommon | [DateBusinessCommon::setClosingWeekdays](../JapaneseDate/Traits/DateBusinessCommon.md#setclosingweekdays) _(from [DateBusinessCommon](../JapaneseDate/Traits/DateBusinessCommon.md))_ | 休業曜日を一括設定します。 |
-| DateBusinessCommon | [DateBusinessCommon::setBypassHoliday](../JapaneseDate/Traits/DateBusinessCommon.md#setbypassholiday) _(from [DateBusinessCommon](../JapaneseDate/Traits/DateBusinessCommon.md))_ | 祝日を休業日として扱うかどうかを設定します。 |
-| DateBusinessCommon | [DateBusinessCommon::setOpenNthWeekday](../JapaneseDate/Traits/DateBusinessCommon.md#setopennthweekday) _(from [DateBusinessCommon](../JapaneseDate/Traits/DateBusinessCommon.md))_ | 第XX曜日を営業日として指定します。 |
-| DateBusinessCommon | [DateBusinessCommon::setClosingNthWeekday](../JapaneseDate/Traits/DateBusinessCommon.md#setclosingnthweekday) _(from [DateBusinessCommon](../JapaneseDate/Traits/DateBusinessCommon.md))_ | 第XX曜日を休業日として指定します。 |
-| DateBusinessCommon | [DateBusinessCommon::addOpenFilter](../JapaneseDate/Traits/DateBusinessCommon.md#addopenfilter) _(from [DateBusinessCommon](../JapaneseDate/Traits/DateBusinessCommon.md))_ | 営業指定フィルタを追加します。 |
-| DateBusinessCommon | [DateBusinessCommon::addClosingFilter](../JapaneseDate/Traits/DateBusinessCommon.md#addclosingfilter) _(from [DateBusinessCommon](../JapaneseDate/Traits/DateBusinessCommon.md))_ | 休業指定フィルタを追加します。 |
-| DateBusinessCommon | [DateBusinessCommon::setBusinessMacro](../JapaneseDate/Traits/DateBusinessCommon.md#setbusinessmacro) _(from [DateBusinessCommon](../JapaneseDate/Traits/DateBusinessCommon.md))_ | 判定ロジックを完全に上書きするマクロを設定します。 |
-| bool | [DateBusinessCommon::checkIsBusinessDay](../JapaneseDate/Traits/DateBusinessCommon.md#checkisbusinessday) _(from [DateBusinessCommon](../JapaneseDate/Traits/DateBusinessCommon.md))_ | 指定した日付（または自身が保持する日付）が営業日かどうかを判定します。 |
-| string\|null | [DateBusinessCommon::checkGetBusinessDayLabel](../JapaneseDate/Traits/DateBusinessCommon.md#checkgetbusinessdaylabel) _(from [DateBusinessCommon](../JapaneseDate/Traits/DateBusinessCommon.md))_ | 指定した日付（または自身が保持する日付）の休業ラベルを取得します。 |
-| bool | [Business::isBusinessDay](../JapaneseDate/Traits/Business.md#isbusinessday) _(from [Business](../JapaneseDate/Traits/Business.md))_ | このインスタンスの日付が営業日かどうかを判定します。 |
-| string\|null | [Business::getBusinessDayLabel](../JapaneseDate/Traits/Business.md#getbusinessdaylabel) _(from [Business](../JapaneseDate/Traits/Business.md))_ | このインスタンスの日付が休業日の場合、そのラベルを返します。 |
-| Business | [Business::nextBusinessDay](../JapaneseDate/Traits/Business.md#nextbusinessday) _(from [Business](../JapaneseDate/Traits/Business.md))_ | 次の営業日を取得します。 |
-| Business | [Business::previousBusinessDay](../JapaneseDate/Traits/Business.md#previousbusinessday) _(from [Business](../JapaneseDate/Traits/Business.md))_ | 前の営業日を取得します。 |
-| Business | [Business::shiftToClosestBusinessDayAfter](../JapaneseDate/Traits/Business.md#shifttoclosestbusinessdayafter) _(from [Business](../JapaneseDate/Traits/Business.md))_ | この日が休業日の場合、翌営業日にシフトしたインスタンスを返します。 |
-| Business | [Business::shiftToClosestBusinessDayBefore](../JapaneseDate/Traits/Business.md#shifttoclosestbusinessdaybefore) _(from [Business](../JapaneseDate/Traits/Business.md))_ | この日が休業日の場合、前営業日にシフトしたインスタンスを返します。 |
-| Business | [Business::addBusinessDays](../JapaneseDate/Traits/Business.md#addbusinessdays) _(from [Business](../JapaneseDate/Traits/Business.md))_ | 指定した営業日数後の日付を返します。 |
-| Business | [Business::subBusinessDays](../JapaneseDate/Traits/Business.md#subbusinessdays) _(from [Business](../JapaneseDate/Traits/Business.md))_ | 指定した営業日数前の日付を返します。 |
+| static | [CarbonImmutable::__set_state](../Carbon/CarbonImmutable.md#__set_state) _(from [CarbonImmutable](../Carbon/CarbonImmutable.md))_ | https://php.net/manual/en/datetime.set-state.php |
 
 ---
 
 ## Method Details
+
+### factory
+
+```php
+static public Factory factory($date_time = null, $time_zone = null)
+```
+
+多様な型の引数から {\JapaneseDate\DateTime} / {\JapaneseDate\DateTimeImmutable}
+インスタンスを生成するユニバーサルファクトリメソッドです。
+
+Carbon の `parse()` や `new DateTime()` は第一引数に文字列しか受け付けませんが、
+このメソッドは以下のすべての型を安全に受け付けます。
+
+**引数の型別動作:**
+
+| 型                               | 動作                                                                                    |
+|----------------------------------|-----------------------------------------------------------------------------------------|
+| `int`                            | Unix タイムスタンプとして `@timestamp` 形式でインスタンス化。`$time_zone` 指定時はその後変換する |
+| `float`                          | マイクロ秒付き Unix タイムスタンプとして処理。`$time_zone` 指定時はその後変換する              |
+| 小数点付き数字文字列             | `float` と同様に処理（例: `'1710936896.75'`）                                             |
+| `DateTimeInterface`              | `Y-m-d H:i:s.u` 形式でコピーを生成（マイクロ秒保持）。`$time_zone` 省略時は元 TZ を引き継ぐ  |
+| 8桁の数字文字列（`YYYYMMDD`）    | `strtotime()` でパースし日付文字列に変換してインスタンス化                                   |
+| その他の数字のみの文字列         | `(int)` キャストして Unix タイムスタンプとして日付文字列に変換しインスタンス化                  |
+| 和暦・JIS元号形式の文字列        | `JisEra::parseJisDate()` で変換。`$time_zone` 省略時は Asia/Tokyo を使用                   |
+| 西暦標準形式の文字列（`YYYY-MM-DD` 等） | `JisEra::parseJisDate()` で変換。`$time_zone` 省略時は Asia/Tokyo を使用            |
+| その他の文字列                   | Carbon のコンストラクタに委譲（相対・絶対表現に対応）                                        |
+| `null`                           | 現在日時を使用                                                                            |
+
+**使用例:**
+
+```php
+// Unix タイムスタンプ（int）から生成する
+$dt = DateTime::factory(1609459200);
+
+// Unix タイムスタンプ（float、マイクロ秒付き）から生成する
+$dt = DateTime::factory(1710936896.750123);
+
+// 既存の DateTimeInterface オブジェクトから生成する
+$dt = DateTime::factory(new \DateTime('2026-05-01'));
+
+// 西暦標準形式（ハイフン・スラッシュ区切り、時刻省略可）
+$dt = DateTime::factory('2026-05-01 12:34:56');
+$dt = DateTime::factory('2026/05/01 12:34');   // 秒省略
+$dt = DateTime::factory('2026-05-01');          // 時刻省略
+
+// 西暦日本語表記（時刻省略可）
+$dt = DateTime::factory('2026年5月1日');
+$dt = DateTime::factory('2026年5月1日 12時34分');
+$dt = DateTime::factory('2026年5月1日 12時34分56秒');
+
+// 元号漢字表記（明治・大正・昭和・平成・令和、時刻省略可）
+$dt = DateTime::factory('令和7年5月1日');
+$dt = DateTime::factory('昭和64年1月7日 12時34分56秒');
+
+// JIS元号アルファベット表記（M/T/S/H/R、ハイフン・スラッシュ区切り）
+$dt = DateTime::factory('R7-05-01');   // 令和
+$dt = DateTime::factory('H1/01/08');   // 平成
+$dt = DateTime::factory('S64-01-07');  // 昭和
+
+// マイクロ秒付き（すべての文字列形式で末尾に `.NNNNNN` を付加可能）
+$dt = DateTime::factory('2026-05-01 12:34:56.123456');
+$dt = DateTime::factory('令和7年5月1日 12時34分56秒.500000');
+
+// タイムゾーンを指定して生成する
+$dt = DateTime::factory('2026-05-01 12:34:56', new \DateTimeZone('Asia/Tokyo'));
+```
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| int\|float\|string\|[DateTimeInterface](https://www.php.net/class.datetimeinterface)\|null | `$date_time` | `null` | 
+生成元となる日時値。Unix タイムスタンプ（int/float）、
+{\DateTimeInterface} の実装オブジェクト、
+日時文字列（西暦・和暦・相対表現に対応）、または null（現在日時）を渡せます。 |
+| [DateTimeZone](https://www.php.net/class.datetimezone)\|null | `$time_zone` | `null` | 
+使用するタイムゾーン。省略した場合の挙動は引数の型によって異なります（型別動作の表を参照）。 |
+
+**Returns:** Factory — 指定した日時を表す新しいインスタンス
+**Throws:**
+
+- [NativeDateTimeException](../JapaneseDate/Exceptions/NativeDateTimeException.md)
+---
+
+### setCacheMode
+
+```php
+static public void setCacheMode($mode)
+```
+
+旧暦・祝日計算に使用するキャッシュモードを設定します。
+
+キャッシュモードを切り替えることで、計算結果の保存方式を変更できます。
+設定は静的に保持されるため、同一プロセス内では次に `setCacheMode()` が
+呼ばれるまで有効です。
+
+**使用例:**
+```php
+use JapaneseDate\CacheMode;
+use JapaneseDate\DateTime;
+
+// キャッシュを無効化する
+DateTime::setCacheMode(CacheMode::MODE_NONE);
+
+// APC を使用する
+DateTime::setCacheMode(CacheMode::MODE_APC);
+```
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| int | `$mode` | —  | キャッシュモードを表す定数 |
+
+**Returns:** void
+**See also:**
+
+- CacheMode::MODE_AUTO — 自動（デフォルト）: APC が利用可能なら APC、そうでなければ静的キャッシュ
+- CacheMode::MODE_APC — APCu を使用したプロセス間共有キャッシュ
+- CacheMode::MODE_FILE — ファイルシステムを使用したキャッシュ
+- CacheMode::MODE_ORIGINAL — 独自キャッシュロジック（{@see setCacheClosure()} と組み合わせて使用）
+- CacheMode::MODE_NONE — キャッシュ無効
+---
+
+### setCacheFilePath
+
+```php
+static public void setCacheFilePath($cache_file_path)
+```
+
+ファイルキャッシュの保存先ディレクトリを設定します。
+
+{[\JapaneseDate\CacheMode::MODE_FILE}](../JapaneseDate/CacheMode.html) を使用する場合に、
+キャッシュファイルの保存先となるディレクトリパスを指定します。
+このメソッドを呼ぶ前に `setCacheMode(CacheMode::MODE_FILE)` を
+呼び出してキャッシュモードをファイルに切り替えてください。
+
+**使用例:**
+```php
+use JapaneseDate\CacheMode;
+use JapaneseDate\DateTime;
+
+DateTime::setCacheMode(CacheMode::MODE_FILE);
+DateTime::setCacheFilePath('/var/cache/japanesedate');
+```
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| string | `$cache_file_path` | —  | キャッシュファイルを保存するディレクトリの絶対パス |
+
+**Returns:** void
+**See also:**
+
+- CacheMode::MODE_FILE — ファイルキャッシュモード
+---
+
+### setCacheClosure
+
+```php
+static public void setCacheClosure($function)
+```
+
+独自キャッシュロジックを実装したクロージャを登録します。
+
+{[\JapaneseDate\CacheMode::MODE_ORIGINAL}](../JapaneseDate/CacheMode.html) と組み合わせて使用します。
+Redis・Memcached・フレームワーク固有のキャッシュ機構など、
+任意のキャッシュバックエンドを利用できます。
+
+**クロージャのシグネチャ:**
+
+```php
+function (string $key, \Closure $function): mixed
+```
+
+| パラメータ | 型 | 説明 |
+|---|---|---|
+| `$key` | `string` | キャッシュエントリを一意に識別するキー文字列 |
+| `$function` | `\Closure` | キャッシュミス時に呼び出す計算ロジック。実行するとキャッシュすべきデータが返る |
+
+クロージャの実装では、`$key` に対応するキャッシュが存在すればそれを返し、
+なければ `$function()` を実行してその結果をキャッシュしてから返してください。
+
+**使用例（Laravel の Cache ファサードを利用する場合）:**
+```php
+use JapaneseDate\CacheMode;
+use JapaneseDate\DateTime;
+use Illuminate\Support\Facades\Cache;
+
+DateTime::setCacheMode(CacheMode::MODE_ORIGINAL);
+DateTime::setCacheClosure(function (string $key, \Closure $fn) {
+    return Cache::remember($key, 3600, $fn);
+});
+```
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| [Closure](https://www.php.net/class.closure) | `$function` | —  | 
+`function(string $key, \Closure $function): mixed` シグネチャを持つクロージャ。
+キャッシュヒット時はキャッシュ済みデータを、ミス時は計算実行結果を返す必要があります。 |
+
+**Returns:** void
+**See also:**
+
+- CacheMode::MODE_ORIGINAL — 独自キャッシュモード
+---
+
+### nextHoliday
+
+```php
+public Modifier nextHoliday()
+```
+
+次の祝日にする
+
+**Returns:** Modifier
+---
+
+### nextSixWeek
+
+```php
+public Modifier nextSixWeek($week_day)
+```
+
+指定された次の六曜にする
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| int | `$week_day` | —  |  |
+
+**Returns:** Modifier
+---
+
+### nextSeventyTwoKou
+
+```php
+public SeventyTwoKou nextSeventyTwoKou()
+```
+
+次の七十二候が始まる日へ移動したインスタンスを返します。
+
+現在の候の次候（または次節気の初候）の開始日を基準とした新しいインスタンスを返します。
+時刻はそのままに日付だけが変わります。
+
+**Returns:** SeventyTwoKou — 次の七十二候の開始日へ移動した新しいインスタンス
+**Throws:**
+
+- [Exception](../JapaneseDate/Exceptions/Exception.md)
+- [SolarTermException](../JapaneseDate/Exceptions/SolarTermException.md)
+---
+
+### previousSeventyTwoKou
+
+```php
+public SeventyTwoKou previousSeventyTwoKou()
+```
+
+前の七十二候が始まる日へ移動したインスタンスを返します。
+
+現在の候の直前の候の開始日を基準とした新しいインスタンスを返します。
+時刻はそのままに日付だけが変わります。
+
+**Returns:** SeventyTwoKou — 前の七十二候の開始日へ移動した新しいインスタンス
+**Throws:**
+
+- [Exception](../JapaneseDate/Exceptions/Exception.md)
+- [SolarTermException](../JapaneseDate/Exceptions/SolarTermException.md)
+---
+
+### getCalendar
+
+```php
+public array getCalendar($calendar = CAL_GREGORIAN)
+```
+
+サポートされるカレンダーに変換する
+
+サポートされる $calendar の値は、 CAL_GREGORIAN、 CAL_JULIAN、 CAL_JEWISH および CAL_FRENCH です。
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| int | `$calendar` | `CAL_GREGORIAN` | サポートされるカレンダー |
+
+**Returns:** array — カレンダーの情報を含む配列を返します。この配列には、 年、月、日、週、曜日名、月名、"月/日/年" 形式の文字列 などが含まれます。
+---
+
+### setBusinessConfig
+
+```php
+public DateBusinessCommon setBusinessConfig($config)
+```
+
+インスタンスに個別の営業日設定を適用します。
+
+設定後、このインスタンスのすべての営業日判定にこの設定が使用されます。
+`null` を渡すとインスタンス個別設定を解除し、グローバル/デフォルト設定に戻ります。
+
+**使用例:**
+```php
+$dt->setBusinessConfig(
+    (new DateBusiness())->setClosingWeekdays([0, 6])->setBypassHoliday(true)
+);
+```
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| [DateBusiness](../JapaneseDate/DateBusiness.md)\|null | `$config` | —  | インスタンスに適用する設定オブジェクト、または null（解除） |
+
+**Returns:** DateBusinessCommon — メソッドチェーン用に自身を返します
+---
+
+### getBusinessConfig
+
+```php
+public DateBusiness\|null getBusinessConfig()
+```
+
+インスタンスが保持している個別の営業日設定を取得します。
+
+個別設定を持っていない場合は `null` を返します。
+判定に実際に使用される設定（グローバル/デフォルト含む解決済み設定）は
+BusinessCalendar::resolveConfig() で取得できます。
+
+**Returns:** [DateBusiness](../JapaneseDate/DateBusiness.md)\|null — インスタンス個別設定、または null
+---
+
+### setClosingDay
+
+```php
+public DateBusinessCommon setClosingDay($date, $label = null)
+```
+
+特定の日付を休業日として指定します。
+
+インスタンスに個別設定がない場合は自動的に現在の有効設定を複製して設定します。
+
+**使用例:**
+```php
+$dt->setClosingDay('2026-08-15', '夏期休暇');
+```
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| string\|[DateTimeInterface](https://www.php.net/class.datetimeinterface) | `$date` | —  | 休業日として指定する日付 |
+| string\|null | `$label` | `null` | 休業理由のラベル（例: '夏期休暇'） |
+
+**Returns:** DateBusinessCommon — メソッドチェーン用に自身を返します
+**Throws:**
+
+- [Exception](https://www.php.net/class.exception)
+---
+
+### setOpenDay
+
+```php
+public DateBusinessCommon setOpenDay($date)
+```
+
+特定の日付を営業日として指定します。
+
+インスタンスに個別設定がない場合は自動的に現在の有効設定を複製して設定します。
+
+**使用例:**
+```php
+$dt->setOpenDay('2026-12-30'); // 特別営業日
+```
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| string\|[DateTimeInterface](https://www.php.net/class.datetimeinterface) | `$date` | —  | 営業日として指定する日付 |
+
+**Returns:** DateBusinessCommon — メソッドチェーン用に自身を返します
+**Throws:**
+
+- [Exception](https://www.php.net/class.exception)
+---
+
+### setClosingWeekdays
+
+```php
+public DateBusinessCommon setClosingWeekdays($weekdays)
+```
+
+休業曜日を一括設定します。
+
+インスタンスに個別設定がない場合は自動的に現在の有効設定を複製して設定します。
+
+**使用例:**
+```php
+$dt->setClosingWeekdays([0, 6]); // 日・土を休業に
+```
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| int[] | `$weekdays` | —  | 休業曜日の配列（例: [0, 6] で日・土） |
+
+**Returns:** DateBusinessCommon — メソッドチェーン用に自身を返します
+---
+
+### setBypassHoliday
+
+```php
+public DateBusinessCommon setBypassHoliday($bypass)
+```
+
+祝日を休業日として扱うかどうかを設定します。
+
+インスタンスに個別設定がない場合は自動的に現在の有効設定を複製して設定します。
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| bool | `$bypass` | —  | true の場合、祝日を休業日とする |
+
+**Returns:** DateBusinessCommon — メソッドチェーン用に自身を返します
+---
+
+### setOpenNthWeekday
+
+```php
+public DateBusinessCommon setOpenNthWeekday($weekday, $nth)
+```
+
+第XX曜日を営業日として指定します。
+
+インスタンスに個別設定がない場合は自動的に現在の有効設定を複製して設定します。
+
+**使用例:**
+```php
+$dt->setOpenNthWeekday(6, 2); // 第2土曜日は営業
+```
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| int | `$weekday` | —  | 曜日（0=日曜〜6=土曜） |
+| int | `$nth` | —  | 第何曜日か（1〜5） |
+
+**Returns:** DateBusinessCommon — メソッドチェーン用に自身を返します
+---
+
+### setClosingNthWeekday
+
+```php
+public DateBusinessCommon setClosingNthWeekday($weekday, $nth, $label = null)
+```
+
+第XX曜日を休業日として指定します。
+
+インスタンスに個別設定がない場合は自動的に現在の有効設定を複製して設定します。
+
+**使用例:**
+```php
+$dt->setClosingNthWeekday(3, 3, '定休日'); // 第3水曜日は休業
+```
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| int | `$weekday` | —  | 曜日（0=日曜〜6=土曜） |
+| int | `$nth` | —  | 第何曜日か（1〜5） |
+| string\|null | `$label` | `null` | 休業ラベル |
+
+**Returns:** DateBusinessCommon — メソッドチェーン用に自身を返します
+---
+
+### addOpenFilter
+
+```php
+public DateBusinessCommon addOpenFilter($filter)
+```
+
+営業指定フィルタを追加します。
+
+フィルタが `true` を返した場合にその日を営業日として扱います。
+インスタンスに個別設定がない場合は自動的に現在の有効設定を複製して設定します。
+
+**使用例:**
+```php
+$dt->addOpenFilter(fn(\DateTimeInterface $d) => $d->format('d') === '10');
+```
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| callable | `$filter` | —  | `fn(\DateTimeInterface $date): bool` 形式のコールバック |
+
+**Returns:** DateBusinessCommon — メソッドチェーン用に自身を返します
+---
+
+### addClosingFilter
+
+```php
+public DateBusinessCommon addClosingFilter($filter, $label = null)
+```
+
+休業指定フィルタを追加します。
+
+フィルタが `true` を返した場合にその日を休業日として扱います。
+インスタンスに個別設定がない場合は自動的に現在の有効設定を複製して設定します。
+
+**使用例:**
+```php
+$dt->addClosingFilter(
+    fn(\DateTimeInterface $d) => $d->format('md') === '1231',
+    '大晦日休業'
+);
+```
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| callable | `$filter` | —  | `fn(\DateTimeInterface $date): bool` 形式のコールバック |
+| string\|null | `$label` | `null` | 休業理由のラベル |
+
+**Returns:** DateBusinessCommon — メソッドチェーン用に自身を返します
+---
+
+### setBusinessMacro
+
+```php
+public DateBusinessCommon setBusinessMacro($macro)
+```
+
+判定ロジックを完全に上書きするマクロを設定します。
+
+マクロは他のすべての設定より優先されます。
+`null` を渡すとマクロを解除します。
+インスタンスに個別設定がない場合は自動的に現在の有効設定を複製して設定します。
+
+**使用例:**
+```php
+$dt->setBusinessMacro(fn(\DateTimeInterface $d) => in_array((int)$d->format('N'), [1,2,3,4]));
+```
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| callable\|null | `$macro` | —  | `fn(\DateTimeInterface $date): bool` 形式のコールバック、または null |
+
+**Returns:** DateBusinessCommon — メソッドチェーン用に自身を返します
+---
+
+### checkIsBusinessDay
+
+```php
+public bool checkIsBusinessDay($date = null)
+```
+
+指定した日付（または自身が保持する日付）が営業日かどうかを判定します。
+
+このメソッドはTraitを適用したクラスが `DateTimeInterface` を実装している場合に
+自身の日付を使って判定します。`$date` を省略した場合は自身を対象とします。
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| [DateTimeInterface](https://www.php.net/class.datetimeinterface)\|null | `$date` | `null` | 判定する日付（省略時は自身） |
+
+**Returns:** bool — 営業日であれば true
+---
+
+### checkGetBusinessDayLabel
+
+```php
+public string\|null checkGetBusinessDayLabel($date = null)
+```
+
+指定した日付（または自身が保持する日付）の休業ラベルを取得します。
+
+営業日の場合は `null` を返します。
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| [DateTimeInterface](https://www.php.net/class.datetimeinterface)\|null | `$date` | `null` | 判定する日付（省略時は自身） |
+
+**Returns:** string\|null — 休業ラベル、または null
+---
+
+### isBusinessDay
+
+```php
+public bool isBusinessDay()
+```
+
+このインスタンスの日付が営業日かどうかを判定します。
+
+適用されているカレンダー設定（インスタンス個別 > グローバル > デフォルト）に基づいて判定します。
+
+**Returns:** bool — 営業日であれば true、休業日であれば false
+---
+
+### getBusinessDayLabel
+
+```php
+public string\|null getBusinessDayLabel()
+```
+
+このインスタンスの日付が休業日の場合、そのラベルを返します。
+
+営業日の場合は null を返します。
+
+**Returns:** string\|null — 休業ラベル、または null
+---
+
+### nextBusinessDay
+
+```php
+public Business nextBusinessDay()
+```
+
+次の営業日を取得します。
+
+翌日から順に走査し、最初に見つかった営業日を返します。
+
+**Returns:** Business — 次の営業日を表すインスタンス
+---
+
+### previousBusinessDay
+
+```php
+public Business previousBusinessDay()
+```
+
+前の営業日を取得します。
+
+前日から順に走査し、最初に見つかった営業日を返します。
+
+**Returns:** Business — 前の営業日を表すインスタンス
+---
+
+### shiftToClosestBusinessDayAfter
+
+```php
+public Business shiftToClosestBusinessDayAfter()
+```
+
+この日が休業日の場合、翌営業日にシフトしたインスタンスを返します。
+
+営業日の場合はそのまま自身を返します。
+
+**Returns:** Business — この日または翌以降の直近営業日を表すインスタンス
+---
+
+### shiftToClosestBusinessDayBefore
+
+```php
+public Business shiftToClosestBusinessDayBefore()
+```
+
+この日が休業日の場合、前営業日にシフトしたインスタンスを返します。
+
+営業日の場合はそのまま自身を返します。
+
+**Returns:** Business — この日または前以前の直近営業日を表すインスタンス
+---
+
+### addBusinessDays
+
+```php
+public Business addBusinessDays($days)
+```
+
+指定した営業日数後の日付を返します。
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| int | `$days` | —  | 加算する営業日数（正の整数） |
+
+**Returns:** Business — N営業日後を表すインスタンス
+---
+
+### subBusinessDays
+
+```php
+public Business subBusinessDays($days)
+```
+
+指定した営業日数前の日付を返します。
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| int | `$days` | —  | 減算する営業日数（正の整数） |
+
+**Returns:** Business — N営業日前を表すインスタンス
+---
+
+### historicalEras
+
+```php
+public array historicalEras()
+```
+
+自身の日付に対応する歴史的元号を返す。
+
+{\JapaneseDate\Components\HistoricalEra} を呼び出し、
+大化以降に制定されたすべての元号（南北朝の並存元号を含む）を
+{\JapaneseDate\Values\Era} バリューオブジェクトの配列として返します。
+大化以前など元号が存在しない日付の場合は空配列を返します。
+
+**Returns:** array — 該当する元号バリューオブジェクトの配列
+**Throws:**
+
+- [NativeDateTimeException](../JapaneseDate/Exceptions/NativeDateTimeException.md)
+---
 

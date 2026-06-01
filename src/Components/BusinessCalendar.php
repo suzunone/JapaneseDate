@@ -21,6 +21,7 @@ namespace JapaneseDate\Components;
 use DateTimeInterface;
 use JapaneseDate\DateBusiness;
 use JapaneseDate\DateTime;
+use Throwable;
 
 /**
  * 営業日カレンダーのグローバル設定管理と日付判定を担うシングルトン的マネージャークラス。
@@ -99,7 +100,7 @@ class BusinessCalendar
      * );
      * ```
      *
-     * @param  DateBusiness|null $config 設定オブジェクト、または null（リセット）
+     * @param DateBusiness|null $config 設定オブジェクト、または null（リセット）
      * @return void
      */
     public static function setGlobalConfig($config): void
@@ -130,7 +131,7 @@ class BusinessCalendar
      *
      * `null` を渡すと出荷時の設定（土日休み・祝日休み）にリセットされます。
      *
-     * @param  DateBusiness|null $config デフォルト設定オブジェクト、または null（リセット）
+     * @param DateBusiness|null $config デフォルト設定オブジェクト、または null（リセット）
      * @return void
      */
     public static function setDefaultConfig($config): void
@@ -147,7 +148,7 @@ class BusinessCalendar
      */
     public static function resetAll(): void
     {
-        static::$globalConfig  = null;
+        static::$globalConfig = null;
         static::$defaultConfig = null;
     }
 
@@ -156,7 +157,7 @@ class BusinessCalendar
      *
      * インスタンス個別設定 → グローバル設定 → デフォルト設定 の順で解決します。
      *
-     * @param  DateBusiness|null $instanceConfig インスタンスが保持する個別設定（保持しない場合 null）
+     * @param DateBusiness|null $instanceConfig インスタンスが保持する個別設定（保持しない場合 null）
      * @return DateBusiness 判定に使用する有効な設定オブジェクト
      */
     public static function resolveConfig($instanceConfig): DateBusiness
@@ -183,8 +184,8 @@ class BusinessCalendar
      * 8. 休業指定フィルタ
      * 9. マクロ（最高優先度）
      *
-     * @param  DateTimeInterface $date          判定する日付
-     * @param  DateBusiness|null $instanceConfig インスタンス個別設定（なければ null）
+     * @param DateTimeInterface $date 判定する日付
+     * @param DateBusiness|null $instanceConfig インスタンス個別設定（なければ null）
      * @return bool 営業日であれば true、休業日であれば false
      */
     public static function isBusinessDay($date, $instanceConfig = null): bool
@@ -215,7 +216,7 @@ class BusinessCalendar
 
         // 優先度3: 第XX曜日 営業指定
         $nth = static::getNthWeekday($date);
-        $nthKey = "{$weekday}_{$nth}";
+        $nthKey = $weekday . '_' . $nth;
         if (isset($config->getOpenNthWeekdays()[$nthKey])) {
             $result = true;
         }
@@ -240,6 +241,7 @@ class BusinessCalendar
         foreach ($config->getOpenFilters() as $filter) {
             if ($filter($date)) {
                 $result = true;
+
                 break;
             }
         }
@@ -248,6 +250,7 @@ class BusinessCalendar
         foreach ($config->getClosingFilters() as $entry) {
             if ($entry['filter']($date)) {
                 $result = false;
+
                 break;
             }
         }
@@ -262,8 +265,8 @@ class BusinessCalendar
      * 複数の条件が一致する場合は最高優先度の条件のラベルを返します。
      * ラベルが設定されていない場合も `null` を返します（祝日の場合は祝日名は別途取得）。
      *
-     * @param  DateTimeInterface $date          判定する日付
-     * @param  DateBusiness|null $instanceConfig インスタンス個別設定（なければ null）
+     * @param DateTimeInterface $date 判定する日付
+     * @param DateBusiness|null $instanceConfig インスタンス個別設定（なければ null）
      * @return string|null 休業ラベル、または null
      */
     public static function getClosingLabel($date, $instanceConfig = null): ?string
@@ -283,21 +286,14 @@ class BusinessCalendar
         $weekday = (int) $date->format('w');
 
         // 優先度1: 曜日
-        if (isset($config->getClosingWeekdays()[$weekday])) {
-            $label = null; // 曜日設定自体にラベルなし
-        }
+        // ラベルなしのため処理なし
 
         // 優先度2: 祝日
-        if ($config->isBypassHoliday()) {
-            $holiday = static::getHoliday($date);
-            if ($holiday !== DateTime::NO_HOLIDAY) {
-                $label = null; // 祝日名は DateTime::holidayText で取得するため null
-            }
-        }
+        // ラベルなしのため処理なし
 
         // 優先度4: 第XX曜日 休業指定
         $nth = static::getNthWeekday($date);
-        $nthKey = "{$weekday}_{$nth}";
+        $nthKey = $weekday . '_' . $nth;
         if (array_key_exists($nthKey, $config->getClosingNthWeekdays())) {
             $label = $config->getClosingNthWeekdays()[$nthKey];
         }
@@ -312,6 +308,7 @@ class BusinessCalendar
         foreach ($config->getClosingFilters() as $entry) {
             if ($entry['filter']($date)) {
                 $label = $entry['label'];
+
                 break;
             }
         }
@@ -324,7 +321,7 @@ class BusinessCalendar
      *
      * JapaneseDate\DateTime でない場合は NO_HOLIDAY を返します。
      *
-     * @param  DateTimeInterface $date
+     * @param DateTimeInterface $date
      * @return int
      */
     protected static function getHoliday($date): int
@@ -335,10 +332,8 @@ class BusinessCalendar
 
         // DateTime 以外は DateTime に変換して判定
         try {
-            $dt = DateTime::factory($date->format('Y-m-d'), $date->getTimezone());
-
-            return $dt->holiday;
-        } catch (\Throwable $exception) {
+            return DateTime::factory($date->format('Y-m-d'), $date->getTimezone())->holiday;
+        } catch (Throwable $exception) {
             return DateTime::NO_HOLIDAY;
         }
     }
@@ -348,7 +343,7 @@ class BusinessCalendar
      *
      * 例: 月の7日〜13日の間であれば第2週、よって 2 を返します。
      *
-     * @param  DateTimeInterface $date
+     * @param DateTimeInterface $date
      * @return int 第何曜日か（1〜5）
      */
     protected static function getNthWeekday($date): int

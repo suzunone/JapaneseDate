@@ -369,12 +369,12 @@ class Calendar
      * `true` を設定すると、国民の祝日・休日が {@link getWorkingDay()} などの
      * 結果から除外されます。
      *
-     * @param  bool $val `true` で祝日を除外、`false` で祝日を営業日として扱う
+     * @param  bool $bypass `true` で祝日を除外、`false` で祝日を営業日として扱う
      * @return $this メソッドチェーン用に自身を返します
      */
-    public function setBypassHoliday($val): self
+    public function setBypassHoliday($bypass): self
     {
-        $this->is_bypass_holiday = $val;
+        $this->is_bypass_holiday = $bypass;
 
         return $this;
     }

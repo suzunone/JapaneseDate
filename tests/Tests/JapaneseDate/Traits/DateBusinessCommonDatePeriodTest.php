@@ -11,26 +11,15 @@ namespace Tests\JapaneseDate\Traits;
 use JapaneseDate\Components\BusinessCalendar;
 use JapaneseDate\DateBusiness;
 use JapaneseDate\DatePeriod;
-use PHPUnit\Framework\Attributes\CoversClass;
+use JapaneseDate\Traits\DateBusinessCommon;
 use PHPUnit\Framework\Attributes\CoversTrait;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \JapaneseDate\DatePeriod
- * @covers \JapaneseDate\Components\BusinessCalendar
- * @covers \JapaneseDate\DateBusiness
  * @covers \JapaneseDate\Traits\DateBusinessCommon
  */
 class DateBusinessCommonDatePeriodTest extends TestCase
 {
-    protected function setUp(): void
-    {
-        BusinessCalendar::resetAll();
-    }
-    protected function tearDown(): void
-    {
-        BusinessCalendar::resetAll();
-    }
     public function test_onlyBusinessDays_excludes_weekends(): void
     {
         // 2026-05-25(月) 〜 2026-05-31(日)
@@ -188,5 +177,13 @@ class DateBusinessCommonDatePeriodTest extends TestCase
 
         $this->assertContains('2026-05-27', $dates);
         $this->assertCount(1, $dates);
+    }
+    protected function setUp(): void
+    {
+        BusinessCalendar::resetAll();
+    }
+    protected function tearDown(): void
+    {
+        BusinessCalendar::resetAll();
     }
 }

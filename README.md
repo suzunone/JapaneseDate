@@ -3,19 +3,23 @@
 Introduction
 -----------------------------------------
 
-日本の祝日、六曜、干支、和暦、日本語での曜日表記など、日本での日付処理をまとめた物です。
-It is a package that summarizes the date processing in Japan such as Japanese national holidays, rokuyo, the Oriental zodiac, the Japanese calendar, and the day of the week in Japan.
+日本の祝日、六曜、干支、月相、雑節、節句、和暦、日本語での曜日表記など、日本での日付処理をまとめた物です。
+It is a package that summarizes the date processing in Japan such as Japanese national holidays, rokuyo, the Oriental zodiac, moon phases, seasonal divisions (zassetsu), seasonal festivals (sekku), the Japanese calendar, and the day of the week in Japanese.
 
 
-主に以下の3つの機能を提供しています。
-There are three main features:.
+主に以下のクラスを提供しています。
+The following main classes are provided:
 
- - PHPの有名な日付処理ライブラリCarbonをextendし、日本の祝日や、旧暦を扱えるようにした`JapaneseDate\DateTime`
-    - Carbon, PHP's famous date processing library, has been extended to handle Japanese holidays and the lunar calendar `JapaneseDate \DateTime`
- - `JapaneseDate\DateTime`のImmutableオブジェクトである、`JapaneseDate\DateTimeImmutable`
-    -`JapaneseDate \DateTimeImmutable`, which is an Immutable object of `JapaneseDate \DateTimeImmutable`
- - 日付の配列を扱う、`JapaneseDate\Calendar`
-    - works with date arrays, `JapaneseDate \Calendar`
+ - PHPの有名な日付処理ライブラリCarbonをextendし、日本の祝日や旧暦を扱えるようにした [`JapaneseDate\DateTime`](docs/api/JapaneseDate/DateTime.md)
+    - Carbon (PHP's famous date processing library) has been extended to handle Japanese holidays and the lunar calendar: [`JapaneseDate\DateTime`](docs/api/JapaneseDate/DateTime.md)
+ - `JapaneseDate\DateTime` のImmutableオブジェクトである [`JapaneseDate\DateTimeImmutable`](docs/api/JapaneseDate/DateTimeImmutable.md)
+    - [`JapaneseDate\DateTimeImmutable`](docs/api/JapaneseDate/DateTimeImmutable.md), which is an Immutable object of `JapaneseDate\DateTime`
+ - 日付の配列を扱う [`JapaneseDate\Calendar`](docs/api/JapaneseDate/Calendar.md)
+    - Works with date arrays: [`JapaneseDate\Calendar`](docs/api/JapaneseDate/Calendar.md)
+ - CarbonPeriodを継承し、祝日・六曜・雑節・二十四節気・旧暦などで期間をフィルタリング・イテレートできる [`JapaneseDate\DatePeriod`](docs/api/JapaneseDate/DatePeriod.md)
+    - Extends CarbonPeriod with Japanese-specific period filtering and iteration (holidays, rokuyo, seasonal nodes, solar terms, lunar months): [`JapaneseDate\DatePeriod`](docs/api/JapaneseDate/DatePeriod.md)
+ - CarbonIntervalを継承し、営業日計算・次の祝日/六曜/節気までの残り期間・元号継続期間などを扱う [`JapaneseDate\DateInterval`](docs/api/JapaneseDate/DateInterval.md)
+    - Extends CarbonInterval with Japanese-specific interval operations (business day arithmetic, countdown to next holiday/rokuyo/solar term, era span): [`JapaneseDate\DateInterval`](docs/api/JapaneseDate/DateInterval.md)
 
 
 Proviso
@@ -24,8 +28,17 @@ Proviso
 この日付ライブラリは、かつて、[php.five-foxes.com](http://php.five-foxes.com) や、
 [ENVIのサブパッケージ](https://github.com/EnviFramework/JapaneseDate) として公開していたものを、GitHubに移行したものです。
 
-This date library was formerly known as [php.five-foxes.com] (http://php.five-foxes.com)
-[ENVI Subpackages] (formerly known as https://github.com/EnviFramework/JapaneseDate) has been migrated to GitHub.
+This date library was formerly published at [php.five-foxes.com](http://php.five-foxes.com) and as an
+[ENVI subpackage](https://github.com/EnviFramework/JapaneseDate), and has since been migrated to GitHub.
+
+
+Requirements
+-----------------------------------------
+
+ - PHP >= 8.1
+ - [nesbot/carbon](https://carbon.nesbot.com/) ^3.0
+ - ext-calendar
+ - ext-json
 
 
 How to use
