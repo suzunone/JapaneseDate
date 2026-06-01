@@ -17,10 +17,12 @@
  * @since       2018/04/28 11:45 リリースから利用可能
  */
 
-namespace Test\JapaneseDate\Traits;
+namespace Tests\JapaneseDate\Traits;
 
 use JapaneseDate\DateTime;
 use JapaneseDate\DateTimeImmutable;
+use JapaneseDate\Traits\Getter;
+use JapaneseDate\Traits\Lunar;
 use PHPUnit\Framework\Attributes\CoversMethod;
 use PHPUnit\Framework\Attributes\CoversTrait;
 use PHPUnit\Framework\TestCase;
@@ -38,16 +40,16 @@ use Tests\JapaneseDate\InvokeTrait;
  * @see         https://github.com/suzunone/JapaneseDate
  * @since       1.0.0 リリースから利用可能
  */
-#[CoversTrait(\JapaneseDate\Traits\Lunar::class)]
-#[CoversMethod(\JapaneseDate\Traits\Lunar::class, 'getMoonAge')]
-#[CoversMethod(\JapaneseDate\Traits\Lunar::class, 'getMoonPhaseAngle')]
-#[CoversMethod(\JapaneseDate\Traits\Lunar::class, 'getMoonPhase')]
-#[CoversMethod(\JapaneseDate\Traits\Lunar::class, 'viewMoonPhase')]
-#[CoversMethod(\JapaneseDate\Traits\Getter::class, '__get')]
-#[CoversMethod(\JapaneseDate\Traits\Lunar::class, 'isLeapMonth')]
-#[CoversMethod(\JapaneseDate\Traits\Lunar::class, 'getSolarTerm')]
-#[CoversMethod(\JapaneseDate\Traits\Lunar::class, 'getSolarTermKey')]
-#[CoversMethod(\JapaneseDate\Traits\Lunar::class, 'isSolarTerm')]
+#[CoversTrait(Lunar::class)]
+#[CoversMethod(Lunar::class, 'getMoonAge')]
+#[CoversMethod(Lunar::class, 'getMoonPhaseAngle')]
+#[CoversMethod(Lunar::class, 'getMoonPhase')]
+#[CoversMethod(Lunar::class, 'viewMoonPhase')]
+#[CoversMethod(Getter::class, '__get')]
+#[CoversMethod(Lunar::class, 'isLeapMonth')]
+#[CoversMethod(Lunar::class, 'getSolarTerm')]
+#[CoversMethod(Lunar::class, 'getSolarTermKey')]
+#[CoversMethod(Lunar::class, 'isSolarTerm')]
 class LunarTest extends TestCase
 {
     use InvokeTrait;

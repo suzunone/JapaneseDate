@@ -230,4 +230,7 @@ doctum/
 docs/api/DOCTUM_VERSION
 docs/api/PROJECT_VERSION
 docs/api/renderer.index
-.claude
+
+.claude/*
+!.claude/rules/
+

@@ -17,11 +17,12 @@
  * @since       1.0.0 リリースから利用可能
  */
 
-namespace Test\JapaneseDate\Traits;
+namespace Tests\JapaneseDate\Traits;
 
 use JapaneseDate\Components\SimpleSolarTerm;
 use JapaneseDate\DateTime;
 use JapaneseDate\Elements\SolarTermDate;
+use JapaneseDate\Traits\Getter;
 use PHPUnit\Framework\Attributes\CoversMethod;
 use PHPUnit\Framework\Attributes\CoversTrait;
 use PHPUnit\Framework\Attributes\DataProvider;
@@ -40,9 +41,9 @@ use Tests\JapaneseDate\InvokeTrait;
  * @see         https://github.com/suzunone/JapaneseDate
  * @since       1.0.0 リリースから利用可能
  */
-#[CoversTrait(\JapaneseDate\Traits\Getter::class)]
-#[CoversMethod(\JapaneseDate\Traits\Getter::class, 'getCalendar')]
-#[CoversMethod(\JapaneseDate\Traits\Getter::class, '__get')]
+#[CoversTrait(Getter::class)]
+#[CoversMethod(Getter::class, 'getCalendar')]
+#[CoversMethod(Getter::class, '__get')]
 class GetterTest extends TestCase
 {
     use InvokeTrait;
@@ -92,6 +93,22 @@ class GetterTest extends TestCase
         }
 
         return $data;
+    }
+
+    /**
+     * SimpleSolarTerm から指定年の二十四節気日付を取得する。
+     */
+    private static function simpleSolarTerm(string $method, int $year): SolarTermDate
+    {
+        return (new SimpleSolarTerm())->{$method}($year);
+    }
+
+    /**
+     * 二十四節気日付を比較用の日時文字列へ変換する。
+     */
+    private static function expectedDate(SolarTermDate $term): string
+    {
+        return sprintf('%04d-%02d-%02d 12:34:56', $term->year, $term->month, $term->day);
     }
 
     /**
@@ -354,7 +371,6 @@ class GetterTest extends TestCase
     {
         $DateTime = new DateTime('2018-01-01');
         $this->assertSame(13.47782236803323, $DateTime->moonAge);
-
     }
 
     /**
@@ -442,18 +458,117 @@ class GetterTest extends TestCase
     }
 
     /**
-     * SimpleSolarTerm から指定年の二十四節気日付を取得する。
+     * seventyTwoKou プロパティが __get 経由で正しい候番号を返すことを確認する。
      */
-    private static function simpleSolarTerm(string $method, int $year): SolarTermDate
+    public function test_get_seventyTwoKou(): void
     {
-        return (new SimpleSolarTerm())->{$method}($year);
+        $DateTime = new DateTime('2025-02-04');
+        $this->assertSame(DateTime::SEVENTY_TWO_KOU_RISSHUN_SHOKOU, $DateTime->seventyTwoKou);
     }
 
     /**
-     * 二十四節気日付を比較用の日時文字列へ変換する。
+     * seventyTwoKouText プロパティが __get 経由で正しい名称を返すことを確認する。
      */
-    private static function expectedDate(SolarTermDate $term): string
+    public function test_get_seventyTwoKouText(): void
     {
-        return sprintf('%04d-%02d-%02d 12:34:56', $term->year, $term->month, $term->day);
+        $DateTime = new DateTime('2025-02-04');
+        $this->assertSame('東風凍を解く', $DateTime->seventyTwoKouText);
+    }
+
+    /**
+     * seventyTwoKouReading プロパティが __get 経由で正しい読みを返すことを確認する。
+     */
+    public function test_get_seventyTwoKouReading(): void
+    {
+        $DateTime = new DateTime('2025-02-04');
+        $this->assertSame('はるかぜ こおりをとく', $DateTime->seventyTwoKouReading);
+    }
+
+    /**
+     * seventyTwoKouType プロパティが __get 経由で正しい候種別を返すことを確認する。
+     */
+    public function test_get_seventyTwoKouType(): void
+    {
+        $DateTime = new DateTime('2025-02-04');
+        $this->assertSame('初候', $DateTime->seventyTwoKouType);
+    }
+
+    /**
+     * seventy_two_kou（スネークケース）プロパティが __get 経由で seventyTwoKou と同値を返すことを確認する。
+     */
+    public function test_get_seventy_two_kou_snake_case(): void
+    {
+        $DateTime = new DateTime('2025-02-04');
+        $this->assertSame($DateTime->seventyTwoKou, $DateTime->seventy_two_kou);
+    }
+
+    /**
+     * seventy_two_kou_text（スネークケース）プロパティが __get 経由で seventyTwoKouText と同値を返すことを確認する。
+     */
+    public function test_get_seventy_two_kou_text_snake_case(): void
+    {
+        $DateTime = new DateTime('2025-02-04');
+        $this->assertSame($DateTime->seventyTwoKouText, $DateTime->seventy_two_kou_text);
+    }
+
+    /**
+     * seventy_two_kou_reading（スネークケース）プロパティが __get 経由で seventyTwoKouReading と同値を返すことを確認する。
+     */
+    public function test_get_seventy_two_kou_reading_snake_case(): void
+    {
+        $DateTime = new DateTime('2025-02-04');
+        $this->assertSame($DateTime->seventyTwoKouReading, $DateTime->seventy_two_kou_reading);
+    }
+
+    /**
+     * seventy_two_kou_type（スネークケース）プロパティが __get 経由で seventyTwoKouType と同値を返すことを確認する。
+     */
+    public function test_get_seventy_two_kou_type_snake_case(): void
+    {
+        $DateTime = new DateTime('2025-02-04');
+        $this->assertSame($DateTime->seventyTwoKouType, $DateTime->seventy_two_kou_type);
+    }
+
+    /**
+     * historicalEras（キャメルケース）プロパティが __get 経由で Era[] を返すことを確認する。
+     */
+    public function test_get_historicalEras(): void
+    {
+        $DateTime = new DateTime('645-08-01T00:00:00+09:00');
+        $this->assertIsArray($DateTime->historicalEras);
+        $this->assertNotEmpty($DateTime->historicalEras);
+        $this->assertSame('大化', $DateTime->historicalEras[0]->name);
+    }
+
+    /**
+     * historical_eras（スネークケース）プロパティが __get 経由で historicalEras と同値を返すことを確認する。
+     */
+    public function test_get_historical_eras_snake_case(): void
+    {
+        $DateTime = new DateTime('645-08-01T00:00:00+09:00');
+        $this->assertSame(
+            array_map(fn ($e) => $e->name, $DateTime->historicalEras),
+            array_map(fn ($e) => $e->name, $DateTime->historical_eras)
+        );
+    }
+
+    /**
+     * heavenlyStemText プロパティが __get 経由で正しい十干名を返すことを確認する。
+     */
+    public function test_get_heavenlyStemText(): void
+    {
+        $DateTime = new DateTime('2018-01-01');
+        $this->assertSame($DateTime->heavenly_stem_text, $DateTime->heavenlyStemText);
+        $this->assertNotEmpty($DateTime->heavenlyStemText);
+    }
+
+    /**
+     * heavenlyStem プロパティが __get 経由で正しい十干コードを返すことを確認する。
+     */
+    public function test_get_heavenlyStem(): void
+    {
+        $DateTime = new DateTime('2018-01-01');
+        $this->assertSame($DateTime->heavenly_stem, $DateTime->heavenlyStem);
+        $this->assertIsInt($DateTime->heavenlyStem);
     }
 }

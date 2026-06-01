@@ -828,9 +828,7 @@ A simple API extension for DateTime.
 | int|static | [yearOfMillennium()](#yearofmillennium) | Return the value of the year starting from the beginning of the current millennium when called with no parameters, change the current year when called with an integer value |
 | int | [yearsInCentury()](#yearsincentury) | Return the number of years contained in the current century |
 | int | [yearsInDecade()](#yearsindecade) | Return the number of years contained in the current decade |
-| int | [yearsInMillennium()](#yearsinmillennium) | Return the number of years contained in the current millennium
-
-</autodoc> |
+| int | [yearsInMillennium()](#yearsinmillennium) | Return the number of years contained in the current millennium |
 
 ---
 

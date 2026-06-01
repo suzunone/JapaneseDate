@@ -382,9 +382,7 @@ trait Modern
      */
     protected function viewEraName(): string
     {
-        $key = $this->getEraName();
-
-        return $this->JapaneseDate->viewEraName($key);
+        return $this->jisEra->getEraNameString($this->getEraName());
     }
 
     /**
@@ -408,36 +406,10 @@ trait Modern
      * - {@see \JapaneseDate\DateTime::ERA_REIWA}  = 1004（令和）
      *
      * @return int 元号定数（{@see \JapaneseDate\DateTime::ERA_MEIJI} ～ {@see \JapaneseDate\DateTime::ERA_REIWA}）
-     * @throws \JapaneseDate\Exceptions\Exception
      */
     protected function getEraName(): int
     {
-        $TaishoStart = $this->innerDateTime('1912-07-30 00:00:00');
-        $ShowaStart = $this->innerDateTime('1926-12-25 00:00:00');
-        $HeiseiStart = $this->innerDateTime('1989-01-08 00:00:00');
-        $ReiwaStart = $this->innerDateTime('2019-05-01 00:00:00');
-
-        if ($TaishoStart > $this) {
-            // 明治
-            return self::ERA_MEIJI;
-        }
-
-        if ($ShowaStart > $this) {
-            // 大正
-            return self::ERA_TAISHO;
-        }
-
-        if ($HeiseiStart > $this) {
-            // 昭和
-            return self::ERA_SHOWA;
-        }
-        if ($ReiwaStart > $this) {
-            // 平成
-            return self::ERA_HEISEI;
-        }
-
-        // 令和
-        return self::ERA_REIWA;
+        return $this->jisEra->getEraKey($this);
     }
 
     /**
@@ -463,15 +435,8 @@ trait Modern
      */
     protected function getEraYear(?int $era_key = null): int
     {
-        $era_calc = [self::ERA_MEIJI => 1868,
-            self::ERA_TAISHO         => 1912,
-            self::ERA_SHOWA          => 1926,
-            self::ERA_HEISEI         => 1989,
-            self::ERA_REIWA          => 2019,
-        ];
-
         $era_key = $era_key ?? $this->getEraName();
 
-        return $this->year - $era_calc[$era_key] + 1;
+        return $this->jisEra->getEraYear($this->year, $era_key);
     }
 }
