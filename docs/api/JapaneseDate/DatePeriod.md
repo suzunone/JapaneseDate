@@ -927,8 +927,8 @@ foreach ($period as $date) {
 **Returns:** [DatePeriod](../JapaneseDate/DatePeriod.md) — 節気区切りの {\JapaneseDate\DatePeriod}
 **Throws:**
 
-- [SolarTermException](../JapaneseDate/Exceptions/SolarTermException.md)
-- [Exception](../JapaneseDate/Exceptions/Exception.md)
+- DateInvalidTimeZoneException
+- [NativeDateTimeException](../JapaneseDate/Exceptions/NativeDateTimeException.md)
 ---
 
 ### eachLunarMonth
@@ -965,7 +965,9 @@ foreach ($period as $date) {
 **Returns:** [DatePeriod](../JapaneseDate/DatePeriod.md) — 旧暦月朔日区切りの {\JapaneseDate\DatePeriod}
 **Throws:**
 
+- DateInvalidTimeZoneException
 - [Exception](../JapaneseDate/Exceptions/Exception.md)
+- [NativeDateTimeException](../JapaneseDate/Exceptions/NativeDateTimeException.md)
 ---
 
 ### splitByEra
@@ -998,7 +1000,8 @@ foreach ($split as $eraKey => $subPeriod) {
 **Returns:** array — 元号定数をキーとした {\JapaneseDate\DatePeriod} の配列
 **Throws:**
 
-- [Exception](../JapaneseDate/Exceptions/Exception.md)
+- DateInvalidTimeZoneException
+- [NativeDateTimeException](../JapaneseDate/Exceptions/NativeDateTimeException.md)
 ---
 
 ### eachJapaneseFiscalYear

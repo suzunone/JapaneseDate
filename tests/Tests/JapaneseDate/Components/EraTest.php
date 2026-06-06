@@ -18,6 +18,7 @@
 
 namespace Tests\JapaneseDate\Components;
 
+use DateTimeZone;
 use JapaneseDate\Components\JisEra;
 use JapaneseDate\DateTime;
 use JapaneseDate\DateTimeImmutable;
@@ -187,7 +188,7 @@ class EraTest extends TestCase
         $dt = \DateTimeImmutable::createFromFormat(
             '!Y-m-d H:i:s',
             sprintf('%04d-%02d-%02d %02d:%02d:%02d', $year, $month, $day, $hour, $minute, $second),
-            new \DateTimeZone('Asia/Tokyo')
+            new DateTimeZone('Asia/Tokyo')
         );
 
         return (float) $dt->getTimestamp();

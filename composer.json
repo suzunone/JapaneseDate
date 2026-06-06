@@ -17,12 +17,16 @@
     "symfony/polyfill-mbstring": ">=1.20",
     "symfony/polyfill-ctype": ">=1.20"
   },
+  "suggest": {
+    "ext-bcmath": "ELP200アルゴリズムを使用する場合に必要"
+  },
   "require-dev": {
     "phpunit/phpunit": "^7.5.20 || ^8.5.26 || ^9.5.20",
     "mockery/mockery": "*",
     "fzaninotto/faker": "*",
     "friendsofphp/php-cs-fixer": "^3.75",
-    "rector/rector": "^2.4"
+    "rector/rector": "^2.4",
+    "brianium/paratest": "^6.0"
   },
   "autoload": {
     "psr-4": {
@@ -32,7 +36,11 @@
   "scripts": {
     "cs-fix": "vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php",
     "doc": "sh doc.sh",
-    "test": "phpunit",
+    "test": [
+      "Composer\\Config::disableProcessTimeout",
+      "paratest --configuration phpunit.xml --processes=20 --functional"
+    ],
+    "test:serial": "phpunit",
     "rector": "vendor/bin/rector"
   },
   "autoload-dev": {

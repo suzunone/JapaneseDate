@@ -56,4 +56,6 @@ trait DateTimeImport
     use Business;
 
     use Ancient;
+
+    use Algorithm;
 }

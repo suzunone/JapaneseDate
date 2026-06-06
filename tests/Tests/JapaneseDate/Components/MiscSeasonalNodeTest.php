@@ -1,6 +1,5 @@
 <?php
 
-/** @noinspection PhpDocMissingThrowsInspection */
 /** @noinspection PhpUnhandledExceptionInspection */
 
 /**
@@ -19,6 +18,7 @@
 
 namespace Tests\JapaneseDate\Components;
 
+use JapaneseDate\Components\Astronomy;
 use JapaneseDate\Components\MiscSeasonalNode;
 use JapaneseDate\DateTime;
 use JapaneseDate\DateTimeImmutable;
@@ -48,24 +48,21 @@ class MiscSeasonalNodeTest extends TestCase
     public static function viewMiscSeasonalNodeProvider(): array
     {
         return [
-            '雑節なし' => [0, ''],
-            '節分' => [1, '節分'],
-            '彼岸' => [2, '彼岸'],
-            '社日' => [3, '社日'],
-            '八十八夜' => [4, '八十八夜'],
-            '入梅' => [5, '入梅'],
-            '半夏生' => [6, '半夏生'],
-            '土用' => [7, '土用'],
-            '二百十日' => [8, '二百十日'],
-            '二百二十日' => [9, '二百二十日'],
+            '雑節なし'       => [0, ''],
+            '節分'           => [1, '節分'],
+            '彼岸'           => [2, '彼岸'],
+            '社日'           => [3, '社日'],
+            '八十八夜'       => [4, '八十八夜'],
+            '入梅'           => [5, '入梅'],
+            '半夏生'         => [6, '半夏生'],
+            '土用'           => [7, '土用'],
+            '二百十日'       => [8, '二百十日'],
+            '二百二十日'     => [9, '二百二十日'],
             '存在しないキー' => [999, ''],
         ];
     }
     /**
      * factory() がシングルトンを返すことを確認する。
-     *
-     * factory() はメソッド内 static 変数でシングルトンを管理しているため
-     * 外部からリセットできない。2回呼び出して同一インスタンスが返ることを確認する。
      */
     public function test_factory_returnsSameInstance(): void
     {
@@ -77,9 +74,6 @@ class MiscSeasonalNodeTest extends TestCase
     // =========================================================================
     // viewMiscSeasonalNode
     // =========================================================================
-    /**
-     * MISC_SEASONAL_NODE_NAMES 定数がすべての雑節名を含むことを確認する。
-     */
     public function test_miscSeasonalNodeNamesConstant(): void
     {
         $names = MiscSeasonalNode::MISC_SEASONAL_NODE_NAMES;
@@ -95,10 +89,6 @@ class MiscSeasonalNodeTest extends TestCase
         $this->assertSame('二百二十日', $names[9]);
     }
     /**
-     * viewMiscSeasonalNode が正しい日本語名を返すことを確認する。
-     *
-     * @param int $key 雑節定数
-     * @param string $expected 期待する日本語名
      * @dataProvider viewMiscSeasonalNodeProvider
      */
     public function test_viewMiscSeasonalNode(int $key, string $expected): void
@@ -107,123 +97,140 @@ class MiscSeasonalNodeTest extends TestCase
         $this->assertSame($expected, $node->viewMiscSeasonalNode($key));
     }
     // =========================================================================
-    // 節分テスト
+    // 節分テスト (2021-2026) - 出典: 国立天文台 https://eco.mtk.nao.ac.jp/cgi-bin/koyomi/cande/phenomena_s.cgi
     // =========================================================================
     /**
-     * 節分（立春の前日）が正しく判定されることを確認する。
-     *
-     * 2026年の立春は2月4日なので、節分は2月3日。
+     * @return array<string, array{int, int, int}>
      */
-    public function test_isSetsubun_2026(): void
+    public static function setsubunProvider(): array
     {
-        $node = MiscSeasonalNode::factory();
-        $date = DateTime::parse('2026-02-03');
-        $this->assertTrue($node->isSetsubun($date));
+        // 節分 = 立春の前日
+        // 2021: 立春2/3 → 節分2/2  (124年ぶりの2月2日)
+        // 2022-2024: 立春2/4 → 節分2/3
+        // 2025: 立春2/3 → 節分2/2
+        // 2026: 立春2/4 → 節分2/3
+        return [
+            '2021年節分' => [2021, 2, 2],
+            '2022年節分' => [2022, 2, 3],
+            '2023年節分' => [2023, 2, 3],
+            '2024年節分' => [2024, 2, 3],
+            '2025年節分' => [2025, 2, 2],
+            '2026年節分' => [2026, 2, 3],
+        ];
     }
     /**
-     * 節分以外の日が false を返すことを確認する。
+     * @param int $year
+     * @param int $month
+     * @param int $day
+     * @dataProvider setsubunProvider
      */
+    public function test_isSetsubun(int $year, int $month, int $day): void
+    {
+        $node = MiscSeasonalNode::factory();
+        $date = DateTime::parse(sprintf('%04d-%02d-%02d', $year, $month, $day));
+        $this->assertTrue($node->isSetsubun($date), "{$year}年{$month}月{$day}日は節分");
+    }
+    /**
+     * @dataProvider setsubunProvider
+     */
+    public function test_getMiscSeasonalNodeKey_setsubun(int $year, int $month, int $day): void
+    {
+        $node = MiscSeasonalNode::factory();
+        $date = DateTime::parse(sprintf('%04d-%02d-%02d', $year, $month, $day));
+        $this->assertSame(DateTime::MISC_SEASONAL_NODE_SETSUBUN, $node->getMiscSeasonalNodeKey($date));
+    }
     public function test_isSetsubun_nonSetsubun(): void
     {
         $node = MiscSeasonalNode::factory();
-        $this->assertFalse($node->isSetsubun(DateTime::parse('2026-02-04'))); // 立春当日
-        $this->assertFalse($node->isSetsubun(DateTime::parse('2026-02-02'))); // 節分の前日
-        $this->assertFalse($node->isSetsubun(DateTime::parse('2026-06-01'))); // 全く異なる日
-    }
-    /**
-     * getMiscSeasonalNodeKey で節分が MISC_SEASONAL_NODE_SETSUBUN を返すことを確認する。
-     */
-    public function test_getMiscSeasonalNodeKey_setsubun(): void
-    {
-        $node = MiscSeasonalNode::factory();
-        $date = DateTime::parse('2026-02-03');
-        $this->assertSame(DateTime::MISC_SEASONAL_NODE_SETSUBUN, $node->getMiscSeasonalNodeKey($date));
+        $this->assertFalse($node->isSetsubun(DateTime::parse('2026-02-04')));
+        $this->assertFalse($node->isSetsubun(DateTime::parse('2026-02-02')));
+        $this->assertFalse($node->isSetsubun(DateTime::parse('2026-06-01')));
     }
     // =========================================================================
-    // 彼岸テスト
+    // 彼岸 春中日テスト (2021-2026)
     // =========================================================================
     /**
-     * 春彼岸の中日（春分）が彼岸と判定されることを確認する。
-     *
-     * 2026年の春分は3月20日頃。
+     * @return array<string, array{int, int, int}>
      */
-    public function test_isHigan_springCenter(): void
+    public static function higanSpringCenterProvider(): array
     {
-        $node = MiscSeasonalNode::factory();
-        // 2026年春分 = 3月20日（彼岸の中日）
-        $this->assertTrue($node->isHigan(DateTime::parse('2026-03-20')));
+        // 春彼岸中日 = 春分の日
+        return [
+            '2021年春彼岸中日' => [2021, 3, 20],
+            '2022年春彼岸中日' => [2022, 3, 21],
+            '2023年春彼岸中日' => [2023, 3, 21],
+            '2024年春彼岸中日' => [2024, 3, 20],
+            '2025年春彼岸中日' => [2025, 3, 20],
+            '2026年春彼岸中日' => [2026, 3, 20],
+        ];
     }
     /**
-     * 春彼岸の入り（春分の3日前）が彼岸と判定されることを確認する。
+     * @return array<string, array{int, int, int}>
      */
-    public function test_isHigan_springStart(): void
+    public static function higanAutumnCenterProvider(): array
     {
-        $node = MiscSeasonalNode::factory();
-        // 春分前3日も彼岸期間
-        $this->assertTrue($node->isHigan(DateTime::parse('2026-03-17')));
+        // 秋彼岸中日 = 秋分の日
+        return [
+            '2021年秋彼岸中日' => [2021, 9, 23],
+            '2022年秋彼岸中日' => [2022, 9, 23],
+            '2023年秋彼岸中日' => [2023, 9, 23],
+            '2024年秋彼岸中日' => [2024, 9, 22],
+            '2025年秋彼岸中日' => [2025, 9, 23],
+            '2026年秋彼岸中日' => [2026, 9, 23],
+        ];
     }
     /**
-     * 秋彼岸の中日（秋分）が彼岸と判定されることを確認する。
-     *
-     * 2026年の秋分は9月23日頃。
+     * @dataProvider higanSpringCenterProvider
      */
-    public function test_isHigan_autumnCenter(): void
+    public function test_isHigan_springCenter(int $year, int $month, int $day): void
     {
         $node = MiscSeasonalNode::factory();
-        $this->assertTrue($node->isHigan(DateTime::parse('2026-09-23')));
+        $date = DateTime::parse(sprintf('%04d-%02d-%02d', $year, $month, $day));
+        $this->assertTrue($node->isHigan($date), "{$year}年{$month}月{$day}日は春彼岸中日");
     }
     /**
-     * 彼岸期間外の日が false を返すことを確認する。
+     * @dataProvider higanAutumnCenterProvider
      */
+    public function test_isHigan_autumnCenter(int $year, int $month, int $day): void
+    {
+        $node = MiscSeasonalNode::factory();
+        $date = DateTime::parse(sprintf('%04d-%02d-%02d', $year, $month, $day));
+        $this->assertTrue($node->isHigan($date), "{$year}年{$month}月{$day}日は秋彼岸中日");
+    }
     public function test_isHigan_outside(): void
     {
         $node = MiscSeasonalNode::factory();
         $this->assertFalse($node->isHigan(DateTime::parse('2026-04-01')));
         $this->assertFalse($node->isHigan(DateTime::parse('2026-06-01')));
     }
-    /**
-     * getMiscSeasonalNodeKey で彼岸が MISC_SEASONAL_NODE_HIGAN を返すことを確認する。
-     */
+    public function test_isHigan_springStart(): void
+    {
+        $node = MiscSeasonalNode::factory();
+        // 2026年春分(3/20)の3日前も彼岸
+        $this->assertTrue($node->isHigan(DateTime::parse('2026-03-17')));
+    }
     public function test_getMiscSeasonalNodeKey_higan(): void
     {
         $node = MiscSeasonalNode::factory();
-        // 春分の3日前は彼岸（節分でも社日でもない日を選ぶ）
         $this->assertSame(DateTime::MISC_SEASONAL_NODE_HIGAN, $node->getMiscSeasonalNodeKey(DateTime::parse('2026-03-17')));
     }
     // =========================================================================
     // 社日テスト
     // =========================================================================
-    /**
-     * 春社日が正しく判定されることを確認する。
-     *
-     * 春分 2026-03-20（甲の日）の最も近い戊の日:
-     * cal_to_jd で JD%10==4 が戊の日。
-     * 3月24日（春分+4日）が戊の日となる場合。
-     */
     public function test_isShanichi_spring(): void
     {
         $node = MiscSeasonalNode::factory();
-        // 春分 2026-03-20 から最も近い戊の日を確認する
-        // 実際の社日は cal_to_jd(CAL_GREGORIAN, 3, 24, 2026) % 10 == 4 の場合 3月24日
         $found = false;
         for ($d = 14; $d <= 27; $d++) {
             $date = DateTime::parse("2026-03-{$d}");
             if ($node->isShanichi($date)) {
                 $found = true;
-                // 春分（3月20日）との距離が最小であることを確認
-                $dist = abs($d - 20);
-                $this->assertLessThanOrEqual(5, $dist, "社日は春分から5日以内: 3月{$d}日");
-
+                $this->assertLessThanOrEqual(5, abs($d - 20), "社日は春分から5日以内: 3月{$d}日");
                 break;
             }
         }
         $this->assertTrue($found, '2026年の春社日が3月14日〜27日の範囲で見つかること');
     }
-    /**
-     * 秋社日が正しく判定されることを確認する。
-     *
-     * 秋分 2026-09-23 の最も近い戊の日。
-     */
     public function test_isShanichi_autumn(): void
     {
         $node = MiscSeasonalNode::factory();
@@ -232,361 +239,372 @@ class MiscSeasonalNodeTest extends TestCase
             $date = DateTime::parse("2026-09-{$d}");
             if ($node->isShanichi($date)) {
                 $found = true;
-                $dist = abs($d - 23);
-                $this->assertLessThanOrEqual(5, $dist, "社日は秋分から5日以内: 9月{$d}日");
-
+                $this->assertLessThanOrEqual(5, abs($d - 23), "社日は秋分から5日以内: 9月{$d}日");
                 break;
             }
         }
         $this->assertTrue($found, '2026年の秋社日が9月18日〜28日の範囲で見つかること');
     }
-    /**
-     * 戊の日でない日が社日にならないことを確認する。
-     */
     public function test_isShanichi_nonTsuchinoe(): void
     {
         $node = MiscSeasonalNode::factory();
-        // 春分 2026-03-20 (JD%10=0=甲) は戊の日ではないので社日ではない
         $this->assertFalse($node->isShanichi(DateTime::parse('2026-03-20')));
     }
-    /**
-     * getMiscSeasonalNodeKey で社日が MISC_SEASONAL_NODE_SHANICHI を返すことを確認する。
-     */
     public function test_getMiscSeasonalNodeKey_shanichi(): void
     {
         $node = MiscSeasonalNode::factory();
         $found = false;
         for ($d = 14; $d <= 27; $d++) {
             $date = DateTime::parse("2026-03-{$d}");
-            $key = $node->getMiscSeasonalNodeKey($date);
-            if ($key === DateTime::MISC_SEASONAL_NODE_SHANICHI) {
+            if ($node->getMiscSeasonalNodeKey($date) === DateTime::MISC_SEASONAL_NODE_SHANICHI) {
                 $found = true;
-
                 break;
             }
         }
-        $this->assertTrue($found, '2026年3月の社日が getMiscSeasonalNodeKey で検出されること');
+        $this->assertTrue($found, '2026年3月の春社日が getMiscSeasonalNodeKey で検出されること');
     }
     // =========================================================================
-    // 八十八夜テスト
+    // 八十八夜テスト (2021-2026)
     // =========================================================================
     /**
-     * 八十八夜が正しく判定されることを確認する。
-     *
-     * 立春 2026-02-04 + 87日 = 2026-05-02 頃が八十八夜。
+     * @return array<string, array{int, int, int}>
      */
-    public function test_isHachijuhachiya_2026(): void
+    public static function hachijuhachiyaProvider(): array
+    {
+        // 八十八夜 = 立春から数えて88日目（立春+87日）
+        // 2021: 立春2/3 → 5/1
+        // 2022: 立春2/4 → 5/2
+        // 2023: 立春2/4 → 5/2
+        // 2024: 立春2/4 → 5/1
+        // 2025: 立春2/3 → 5/1
+        // 2026: 立春2/4 → 5/2
+        return [
+            '2021年八十八夜' => [2021, 5, 1],
+            '2022年八十八夜' => [2022, 5, 2],
+            '2023年八十八夜' => [2023, 5, 2],
+            '2024年八十八夜' => [2024, 5, 1],
+            '2025年八十八夜' => [2025, 5, 1],
+            '2026年八十八夜' => [2026, 5, 2],
+        ];
+    }
+    /**
+     * @dataProvider hachijuhachiyaProvider
+     */
+    public function test_isHachijuhachiya(int $year, int $month, int $day): void
     {
         $node = MiscSeasonalNode::factory();
-        // 立春(2026-02-04) + 87日
-        $risshun = DateTime::parse('2026-02-04');
-        $target = $risshun->copy()->addDays(87)->format('Y-m-d');
-
-        $this->assertTrue($node->isHachijuhachiya(DateTime::parse($target)));
+        $date = DateTime::parse(sprintf('%04d-%02d-%02d', $year, $month, $day));
+        $this->assertTrue($node->isHachijuhachiya($date), "{$year}年{$month}月{$day}日は八十八夜");
     }
     /**
-     * 八十八夜の前後の日が false を返すことを確認する。
+     * @dataProvider hachijuhachiyaProvider
      */
+    public function test_getMiscSeasonalNodeKey_hachijuhachiya(int $year, int $month, int $day): void
+    {
+        $node = MiscSeasonalNode::factory();
+        $date = DateTime::parse(sprintf('%04d-%02d-%02d', $year, $month, $day));
+        $this->assertSame(DateTime::MISC_SEASONAL_NODE_HACHIJUHACHIYA, $node->getMiscSeasonalNodeKey($date));
+    }
     public function test_isHachijuhachiya_adjacent(): void
     {
         $node = MiscSeasonalNode::factory();
         $this->assertFalse($node->isHachijuhachiya(DateTime::parse('2026-05-01')));
         $this->assertFalse($node->isHachijuhachiya(DateTime::parse('2026-05-03')));
     }
-    /**
-     * getMiscSeasonalNodeKey で八十八夜が MISC_SEASONAL_NODE_HACHIJUHACHIYA を返すことを確認する。
-     */
-    public function test_getMiscSeasonalNodeKey_hachijuhachiya(): void
-    {
-        $node = MiscSeasonalNode::factory();
-        $risshun = DateTime::parse('2026-02-04');
-        $target = DateTime::parse($risshun->copy()->addDays(87)->format('Y-m-d'));
-        $this->assertSame(DateTime::MISC_SEASONAL_NODE_HACHIJUHACHIYA, $node->getMiscSeasonalNodeKey($target));
-    }
     // =========================================================================
-    // 入梅テスト
+    // 入梅テスト (2021-2026)
     // =========================================================================
     /**
-     * 入梅（太陽黄経80°）が6月上旬に検出されることを確認する。
-     *
-     * 入梅は通常6月10〜12日頃。
+     * @return array<string, array{int, int, int}>
      */
-    public function test_isNyubai_2026(): void
+    public static function nyubaiProvider(): array
     {
-        $node = MiscSeasonalNode::factory();
-        $found = false;
-        for ($d = 8; $d <= 14; $d++) {
-            $date = DateTime::parse("2026-06-{$d}");
-            if ($node->isNyubai($date)) {
-                $found = true;
-
-                break;
-            }
-        }
-        $this->assertTrue($found, '2026年の入梅が6月8日〜14日の範囲で検出されること');
+        // 入梅 = 太陽黄経80° (通常6月10〜12日頃)
+        return [
+            '2021年入梅' => [2021, 6, 11],
+            '2022年入梅' => [2022, 6, 11],
+            '2023年入梅' => [2023, 6, 11],
+            '2024年入梅' => [2024, 6, 10],
+            '2025年入梅' => [2025, 6, 11],
+            '2026年入梅' => [2026, 6, 11],
+        ];
     }
     /**
-     * 入梅でない日（真夏）が false を返すことを確認する。
+     * @dataProvider nyubaiProvider
      */
+    public function test_isNyubai(int $year, int $month, int $day): void
+    {
+        $node = MiscSeasonalNode::factory();
+        $date = DateTime::parse(sprintf('%04d-%02d-%02d', $year, $month, $day));
+        $this->assertTrue($node->isNyubai($date), "{$year}年{$month}月{$day}日は入梅");
+    }
+    /**
+     * @dataProvider nyubaiProvider
+     */
+    public function test_getMiscSeasonalNodeKey_nyubai(int $year, int $month, int $day): void
+    {
+        $node = MiscSeasonalNode::factory();
+        $date = DateTime::parse(sprintf('%04d-%02d-%02d', $year, $month, $day));
+        $this->assertSame(DateTime::MISC_SEASONAL_NODE_NYUBAI, $node->getMiscSeasonalNodeKey($date));
+    }
     public function test_isNyubai_nonNyubai(): void
     {
         $node = MiscSeasonalNode::factory();
         $this->assertFalse($node->isNyubai(DateTime::parse('2026-08-01')));
     }
-    /**
-     * getMiscSeasonalNodeKey で入梅が MISC_SEASONAL_NODE_NYUBAI を返すことを確認する。
-     */
-    public function test_getMiscSeasonalNodeKey_nyubai(): void
-    {
-        $node = MiscSeasonalNode::factory();
-        $found = false;
-        for ($d = 8; $d <= 14; $d++) {
-            $date = DateTime::parse("2026-06-{$d}");
-            if ($node->getMiscSeasonalNodeKey($date) === DateTime::MISC_SEASONAL_NODE_NYUBAI) {
-                $found = true;
-
-                break;
-            }
-        }
-        $this->assertTrue($found, '2026年の入梅が getMiscSeasonalNodeKey で検出されること');
-    }
     // =========================================================================
-    // 半夏生テスト
+    // 半夏生テスト (2021-2026)
     // =========================================================================
     /**
-     * 半夏生（太陽黄経100°）が7月初旬に検出されることを確認する。
-     *
-     * 半夏生は通常7月1〜3日頃。
+     * @return array<string, array{int, int, int}>
      */
-    public function test_isHangesho_2026(): void
+    public static function hangeshoProvider(): array
     {
-        $node = MiscSeasonalNode::factory();
-        $found = false;
-        for ($d = 1; $d <= 5; $d++) {
-            $date = DateTime::parse("2026-07-{$d}");
-            if ($node->isHangesho($date)) {
-                $found = true;
-
-                break;
-            }
-        }
-        $this->assertTrue($found, '2026年の半夏生が7月1日〜5日の範囲で検出されること');
+        // 半夏生 = 太陽黄経100° (通常7月1〜3日頃)
+        return [
+            '2021年半夏生' => [2021, 7, 2],
+            '2022年半夏生' => [2022, 7, 2],
+            '2023年半夏生' => [2023, 7, 2],
+            '2024年半夏生' => [2024, 7, 1],
+            '2025年半夏生' => [2025, 7, 1],
+            '2026年半夏生' => [2026, 7, 2],
+        ];
     }
     /**
-     * 半夏生でない日が false を返すことを確認する。
+     * @dataProvider hangeshoProvider
      */
+    public function test_isHangesho(int $year, int $month, int $day): void
+    {
+        $node = MiscSeasonalNode::factory();
+        $date = DateTime::parse(sprintf('%04d-%02d-%02d', $year, $month, $day));
+        $this->assertTrue($node->isHangesho($date), "{$year}年{$month}月{$day}日は半夏生");
+    }
+    /**
+     * @dataProvider hangeshoProvider
+     */
+    public function test_getMiscSeasonalNodeKey_hangesho(int $year, int $month, int $day): void
+    {
+        $node = MiscSeasonalNode::factory();
+        $date = DateTime::parse(sprintf('%04d-%02d-%02d', $year, $month, $day));
+        $this->assertSame(DateTime::MISC_SEASONAL_NODE_HANGESHO, $node->getMiscSeasonalNodeKey($date));
+    }
     public function test_isHangesho_nonHangesho(): void
     {
         $node = MiscSeasonalNode::factory();
         $this->assertFalse($node->isHangesho(DateTime::parse('2026-08-01')));
     }
-    /**
-     * getMiscSeasonalNodeKey で半夏生が MISC_SEASONAL_NODE_HANGESHO を返すことを確認する。
-     */
-    public function test_getMiscSeasonalNodeKey_hangesho(): void
-    {
-        $node = MiscSeasonalNode::factory();
-        $found = false;
-        for ($d = 1; $d <= 5; $d++) {
-            $date = DateTime::parse("2026-07-{$d}");
-            if ($node->getMiscSeasonalNodeKey($date) === DateTime::MISC_SEASONAL_NODE_HANGESHO) {
-                $found = true;
-
-                break;
-            }
-        }
-        $this->assertTrue($found, '2026年の半夏生が getMiscSeasonalNodeKey で検出されること');
-    }
     // =========================================================================
-    // 土用テスト
+    // 土用（夏）テスト (2021-2026)
     // =========================================================================
     /**
-     * 夏の土用期間内の日が土用と判定されることを確認する。
-     *
-     * 2026年の立秋は8月7日頃。土用は7月20日頃〜8月6日。
+     * @return array<string, array{int, int, int}>
      */
-    public function test_isDoyo_summerDoyo(): void
+    public static function doyoSummerProvider(): array
     {
-        $node = MiscSeasonalNode::factory();
-        // 7月下旬は夏の土用期間内
-        $this->assertTrue($node->isDoyo(DateTime::parse('2026-07-25')));
+        // 夏土用入り = 太陽黄経117°に達する日
+        // 出典: 国立天文台 https://eco.mtk.nao.ac.jp/cgi-bin/koyomi/cande/phenomena_s.cgi
+        return [
+            '2021年夏土用入り' => [2021, 7, 19],
+            '2022年夏土用入り' => [2022, 7, 20],
+            '2023年夏土用入り' => [2023, 7, 20],
+            '2024年夏土用入り' => [2024, 7, 19],
+            '2025年夏土用入り' => [2025, 7, 19],
+            '2026年夏土用入り' => [2026, 7, 20],
+        ];
     }
     /**
-     * 土用期間外の日が false を返すことを確認する。
+     * @dataProvider doyoSummerProvider
      */
+    public function test_isDoyo_summerStart(int $year, int $month, int $day): void
+    {
+        $node = MiscSeasonalNode::factory();
+        $date = DateTime::parse(sprintf('%04d-%02d-%02d', $year, $month, $day));
+        $this->assertTrue($node->isDoyo($date), "{$year}年{$month}月{$day}日は夏土用");
+    }
+    /**
+     * @dataProvider doyoSummerProvider
+     */
+    public function test_getMiscSeasonalNodeKey_doyo(int $year, int $month, int $day): void
+    {
+        $node = MiscSeasonalNode::factory();
+        $date = DateTime::parse(sprintf('%04d-%02d-%02d', $year, $month, $day));
+        $this->assertSame(DateTime::MISC_SEASONAL_NODE_DOYO, $node->getMiscSeasonalNodeKey($date));
+    }
     public function test_isDoyo_outside(): void
     {
         $node = MiscSeasonalNode::factory();
-        // 8月10日は立秋（8月7日）の後なので土用期間外
         $this->assertFalse($node->isDoyo(DateTime::parse('2026-08-10')));
-        // 9月1日も土用期間外
         $this->assertFalse($node->isDoyo(DateTime::parse('2026-09-01')));
     }
-    /**
-     * 春の土用期間内の日が土用と判定されることを確認する。
-     *
-     * 立春の18日前（1月中旬〜下旬）が冬土用。
-     */
     public function test_isDoyo_winterDoyo(): void
     {
         $node = MiscSeasonalNode::factory();
-        // 2026年立春=2月4日の18日前=1月17日が冬土用入り
+        // 2026年立春=2/4の18日前=1/17が冬土用入り
         $this->assertTrue($node->isDoyo(DateTime::parse('2026-01-20')));
     }
-    /**
-     * getMiscSeasonalNodeKey で土用が MISC_SEASONAL_NODE_DOYO を返すことを確認する。
-     */
-    public function test_getMiscSeasonalNodeKey_doyo(): void
-    {
-        $node = MiscSeasonalNode::factory();
-        $this->assertSame(DateTime::MISC_SEASONAL_NODE_DOYO, $node->getMiscSeasonalNodeKey(DateTime::parse('2026-07-25')));
-    }
     // =========================================================================
-    // 二百十日テスト
+    // 二百十日テスト (2021-2026)
     // =========================================================================
     /**
-     * 二百十日（立春から210日目）が正しく判定されることを確認する。
-     *
-     * 立春 2026-02-04 + 209日 = 2026-09-01 頃が二百十日。
+     * @return array<string, array{int, int, int}>
      */
-    public function test_isNihyakutoka_2026(): void
+    public static function nihyakutokaProvider(): array
     {
-        $node = MiscSeasonalNode::factory();
-        $risshun = DateTime::parse('2026-02-04');
-        $target = $risshun->copy()->addDays(209)->format('Y-m-d');
-
-        $this->assertTrue($node->isNihyakutoka(DateTime::parse($target)));
+        // 二百十日 = 立春から数えて210日目（立春+209日）
+        // 2021: 立春2/3 → 8/31
+        // 2022: 立春2/4 → 9/1
+        // 2023: 立春2/4 → 9/1
+        // 2024: 立春2/4 → 8/31
+        // 2025: 立春2/3 → 8/31
+        // 2026: 立春2/4 → 9/1
+        return [
+            '2021年二百十日' => [2021, 8, 31],
+            '2022年二百十日' => [2022, 9, 1],
+            '2023年二百十日' => [2023, 9, 1],
+            '2024年二百十日' => [2024, 8, 31],
+            '2025年二百十日' => [2025, 8, 31],
+            '2026年二百十日' => [2026, 9, 1],
+        ];
     }
     /**
-     * 二百十日以外の日が false を返すことを確認する。
+     * @dataProvider nihyakutokaProvider
      */
+    public function test_isNihyakutoka(int $year, int $month, int $day): void
+    {
+        $node = MiscSeasonalNode::factory();
+        $date = DateTime::parse(sprintf('%04d-%02d-%02d', $year, $month, $day));
+        $this->assertTrue($node->isNihyakutoka($date), "{$year}年{$month}月{$day}日は二百十日");
+    }
+    /**
+     * @dataProvider nihyakutokaProvider
+     */
+    public function test_getMiscSeasonalNodeKey_nihyakutoka(int $year, int $month, int $day): void
+    {
+        $node = MiscSeasonalNode::factory();
+        $date = DateTime::parse(sprintf('%04d-%02d-%02d', $year, $month, $day));
+        $this->assertSame(DateTime::MISC_SEASONAL_NODE_NIHYAKUTOKA, $node->getMiscSeasonalNodeKey($date));
+    }
     public function test_isNihyakutoka_adjacent(): void
     {
         $node = MiscSeasonalNode::factory();
         $this->assertFalse($node->isNihyakutoka(DateTime::parse('2026-08-31')));
         $this->assertFalse($node->isNihyakutoka(DateTime::parse('2026-09-02')));
     }
-    /**
-     * getMiscSeasonalNodeKey で二百十日が MISC_SEASONAL_NODE_NIHYAKUTOKA を返すことを確認する。
-     */
-    public function test_getMiscSeasonalNodeKey_nihyakutoka(): void
-    {
-        $node = MiscSeasonalNode::factory();
-        $risshun = DateTime::parse('2026-02-04');
-        $target = DateTime::parse($risshun->copy()->addDays(209)->format('Y-m-d'));
-        $this->assertSame(DateTime::MISC_SEASONAL_NODE_NIHYAKUTOKA, $node->getMiscSeasonalNodeKey($target));
-    }
     // =========================================================================
-    // 二百二十日テスト
+    // 二百二十日テスト (2021-2026)
     // =========================================================================
     /**
-     * 二百二十日（立春から220日目）が正しく判定されることを確認する。
-     *
-     * 立春 2026-02-04 + 219日 = 2026-09-11 頃が二百二十日。
+     * @return array<string, array{int, int, int}>
      */
-    public function test_isNihyakunijuunichi_2026(): void
+    public static function nihyakunijuunichiProvider(): array
     {
-        $node = MiscSeasonalNode::factory();
-        $risshun = DateTime::parse('2026-02-04');
-        $target = $risshun->copy()->addDays(219)->format('Y-m-d');
-
-        $this->assertTrue($node->isNihyakunijuunichi(DateTime::parse($target)));
+        // 二百二十日 = 立春から数えて220日目（立春+219日）
+        // 2021: 立春2/3 → 9/10
+        // 2022: 立春2/4 → 9/11
+        // 2023: 立春2/4 → 9/11
+        // 2024: 立春2/4 → 9/10
+        // 2025: 立春2/3 → 9/10
+        // 2026: 立春2/4 → 9/11
+        return [
+            '2021年二百二十日' => [2021, 9, 10],
+            '2022年二百二十日' => [2022, 9, 11],
+            '2023年二百二十日' => [2023, 9, 11],
+            '2024年二百二十日' => [2024, 9, 10],
+            '2025年二百二十日' => [2025, 9, 10],
+            '2026年二百二十日' => [2026, 9, 11],
+        ];
     }
     /**
-     * 二百二十日以外の日が false を返すことを確認する。
+     * @dataProvider nihyakunijuunichiProvider
      */
+    public function test_isNihyakunijuunichi(int $year, int $month, int $day): void
+    {
+        $node = MiscSeasonalNode::factory();
+        $date = DateTime::parse(sprintf('%04d-%02d-%02d', $year, $month, $day));
+        $this->assertTrue($node->isNihyakunijuunichi($date), "{$year}年{$month}月{$day}日は二百二十日");
+    }
+    /**
+     * @dataProvider nihyakunijuunichiProvider
+     */
+    public function test_getMiscSeasonalNodeKey_nihyakunijuunichi(int $year, int $month, int $day): void
+    {
+        $node = MiscSeasonalNode::factory();
+        $date = DateTime::parse(sprintf('%04d-%02d-%02d', $year, $month, $day));
+        $this->assertSame(DateTime::MISC_SEASONAL_NODE_NIHYAKUNIJUUNICHI, $node->getMiscSeasonalNodeKey($date));
+    }
     public function test_isNihyakunijuunichi_adjacent(): void
     {
         $node = MiscSeasonalNode::factory();
         $this->assertFalse($node->isNihyakunijuunichi(DateTime::parse('2026-09-10')));
         $this->assertFalse($node->isNihyakunijuunichi(DateTime::parse('2026-09-12')));
     }
-    /**
-     * getMiscSeasonalNodeKey で二百二十日が MISC_SEASONAL_NODE_NIHYAKUNIJUUNICHI を返すことを確認する。
-     */
-    public function test_getMiscSeasonalNodeKey_nihyakunijuunichi(): void
-    {
-        $node = MiscSeasonalNode::factory();
-        $risshun = DateTime::parse('2026-02-04');
-        $target = DateTime::parse($risshun->copy()->addDays(219)->format('Y-m-d'));
-        $this->assertSame(DateTime::MISC_SEASONAL_NODE_NIHYAKUNIJUUNICHI, $node->getMiscSeasonalNodeKey($target));
-    }
     // =========================================================================
     // 雑節なし（NONE）テスト
     // =========================================================================
-    /**
-     * いずれの雑節にも該当しない日が MISC_SEASONAL_NODE_NONE を返すことを確認する。
-     */
     public function test_getMiscSeasonalNodeKey_none(): void
     {
         $node = MiscSeasonalNode::factory();
-        // 2026-04-15 は概ねいずれの雑節にも該当しない（春彼岸・社日の後、八十八夜前）
         $key = $node->getMiscSeasonalNodeKey(DateTime::parse('2026-04-15'));
         $this->assertSame(DateTime::MISC_SEASONAL_NODE_NONE, $key);
     }
     // =========================================================================
     // resolveSingleSolarTerm フォールバックテスト
     // =========================================================================
-    /**
-     * SimpleSolarTerm が対応しない年でも SolarTerm 経由で正しく節気データを取得できることを確認する。
-     *
-     * 1500年は SimpleSolarTerm の対応範囲外のため SolarTerm にフォールバックする。
-     */
     public function test_resolveSingleSolarTerm_fallbackYear(): void
     {
         $node = MiscSeasonalNode::factory();
-        // 1500年の土用判定（例外が出ないこと）
         $result = $node->isDoyo(DateTime::parse('1500-07-15'));
         $this->assertIsBool($result);
+    }
+    public function test_resolveSingleSolarTerm_uses_SolarTerm_when_vsop87_enabled(): void
+    {
+        try {
+            Astronomy::useSolarAlgorithm(Astronomy::SOLAR_VSOP87);
+
+            $termDate = $this->invokeExecuteMethod(
+                MiscSeasonalNode::factory(),
+                'resolveSingleSolarTerm',
+                ['rissyun', 2025]
+            );
+
+            $this->assertSame(2025, $termDate->year);
+            $this->assertSame(DateTime::SOLAR_TERM_RISSYUN, $termDate->solar_term);
+            $this->assertSame(2, $termDate->month);
+            $this->assertSame(3, $termDate->day);
+        } finally {
+            Astronomy::useSolarAlgorithm(Astronomy::SOLAR_LEGACY);
+            Astronomy::useMoonAlgorithm(Astronomy::MOON_LEGACY);
+        }
     }
     // =========================================================================
     // DateTime / DateTimeImmutable プロパティ統合テスト
     // =========================================================================
-    /**
-     * DateTime の miscSeasonalNode プロパティが正しく動作することを確認する。
-     */
     public function test_datetime_miscSeasonalNodeProperty(): void
     {
-        // 節分 2026-02-03
         $date = DateTime::parse('2026-02-03');
         $this->assertSame(DateTime::MISC_SEASONAL_NODE_SETSUBUN, $date->miscSeasonalNode);
         $this->assertSame('節分', $date->miscSeasonalNodeText);
-
-        // スネークケースでもアクセス可能
         $this->assertSame(DateTime::MISC_SEASONAL_NODE_SETSUBUN, $date->misc_seasonal_node);
         $this->assertSame('節分', $date->misc_seasonal_node_text);
     }
-    /**
-     * DateTimeImmutable の miscSeasonalNode プロパティが正しく動作することを確認する。
-     */
     public function test_datetimeImmutable_miscSeasonalNodeProperty(): void
     {
         $date = DateTimeImmutable::parse('2026-02-03');
         $this->assertSame(DateTimeImmutable::MISC_SEASONAL_NODE_SETSUBUN, $date->miscSeasonalNode);
         $this->assertSame('節分', $date->miscSeasonalNodeText);
     }
-    /**
-     * 土用日の DateTime プロパティが MISC_SEASONAL_NODE_DOYO を返すことを確認する。
-     */
     public function test_datetime_doyoProperty(): void
     {
         $date = DateTime::parse('2026-07-25');
         $this->assertSame(DateTime::MISC_SEASONAL_NODE_DOYO, $date->miscSeasonalNode);
         $this->assertSame('土用', $date->miscSeasonalNodeText);
     }
-    /**
-     * 彼岸日の DateTime プロパティが MISC_SEASONAL_NODE_HIGAN を返すことを確認する。
-     */
     public function test_datetime_higanProperty(): void
     {
-        // 2026年秋分(9月23日) = 彼岸の中日（土用でないことを確認済み）
         $date = DateTime::parse('2026-09-23');
         $this->assertSame(DateTime::MISC_SEASONAL_NODE_HIGAN, $date->miscSeasonalNode);
         $this->assertSame('彼岸', $date->miscSeasonalNodeText);
     }
-    /**
-     * 雑節なしの日の DateTime プロパティが MISC_SEASONAL_NODE_NONE を返すことを確認する。
-     */
     public function test_datetime_noneProperty(): void
     {
         $date = DateTime::parse('2026-04-15');

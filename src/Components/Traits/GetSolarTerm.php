@@ -6,6 +6,17 @@ use JapaneseDate\DateTime;
 use JapaneseDate\Elements\SolarTermDate;
 
 /**
+ * 二十四節気一覧をまとめて取得するための共通トレイト。
+ *
+ * {@see \JapaneseDate\Components\SolarTerm} と
+ * {@see \JapaneseDate\Components\SimpleSolarTerm} の両方で利用され、
+ * 各節気メソッド（`syunbun()`、`seimei()` など）を順に呼び出して、
+ * 指定年の二十四節気を定数キー付き配列として返します。
+ *
+ * **戻り値の構造:**
+ * キーは {@see \JapaneseDate\DateTime::SOLAR_TERM_*} 定数、
+ * 値は対応する {@see \JapaneseDate\Elements\SolarTermDate} オブジェクトです。
+ *
  * @mixin \JapaneseDate\Components\SolarTerm
  * @mixin \JapaneseDate\Components\SimpleSolarTerm
  */

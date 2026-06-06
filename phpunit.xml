@@ -6,22 +6,19 @@
          processIsolation="false"
          stopOnError="false"
          stopOnFailure="false"
-         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/11.0/phpunit.xsd"
-         cacheDirectory=".phpunit.cache"
-         backupStaticProperties="false"
-         requireCoverageMetadata="true"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.5/phpunit.xsd"
 >
   <testsuites>
-    <testsuite name="Suzunome\JapaneseDate">
+    <testsuite name="Suzunone\JapaneseDate">
       <directory suffix="Test.php">tests</directory>
     </testsuite>
   </testsuites>
 
-  <source>
+  <coverage processUncoveredFiles="true">
     <include>
       <directory suffix=".php">src</directory>
     </include>
-  </source>
+  </coverage>
 
   <php>
     <env name="APP_ENV" value="testing"/>

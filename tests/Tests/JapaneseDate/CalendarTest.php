@@ -509,7 +509,7 @@ class CalendarTest extends TestCase
 class ThrowingDateTime extends DateTime
 {
     #[ReturnTypeWillChange]
-    public function add($unit, $value = 1, $overflow = null)
+    public function add($unit, $value = 1, $overflow = null): static
     {
         // Calendar 側で NativeDateTimeException に変換される例外を発生させる
         throw new Exception('DateTime add failed.');

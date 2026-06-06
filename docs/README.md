@@ -132,7 +132,7 @@ echo JapaneseDateTime::parse('first day of December 2018')->addWeeks(2);    // 2
 
 ``` .php
 
-echo JapaneseDateTime::parse(time());    // 2026-06-01 10:05:19
+echo JapaneseDateTime::parse(time());    // 2026-06-06 07:07:17
 echo JapaneseDateTime::parse(new DateTime('now'));    // PHP Fatal error:  Uncaught TypeError: DateTime::__construct() expects parameter 1 to be string, object given
 ```
 
@@ -143,9 +143,9 @@ echo JapaneseDateTime::parse(new DateTime('now'));    // PHP Fatal error:  Uncau
 そういった場合は、`JapaneseDate\DateTime::factory()`を使用します。
 
 ``` .php
-echo JapaneseDateTime::factory(time());    // 2026-06-01 10:05:19
+echo JapaneseDateTime::factory(time());    // 2026-06-06 07:07:17
 
-echo JapaneseDateTime::factory(new DateTime('now'));    // 2026-06-01 19:05:19
+echo JapaneseDateTime::factory(new DateTime('now'));    // 2026-06-06 16:07:17
 
 // もちろんこういったコードも動作します
 echo JapaneseDateTime::factory('first day of December 2018')->addWeeks(2);    // 2018-12-15 00:00:00
@@ -173,7 +173,7 @@ echo JapaneseDateTime::parse('20180404050505');    // 2018-04-04 05:05:05
 echo JapaneseDateTime::factory('20180404050505');    // 2018-04-04 05:05:05
 // タイムスタンプを int 型で渡す場合は必ず int にキャストしてください。
 // 大きな数値をそのまま int リテラルで書くと精度が失われます。
-echo JapaneseDateTime::factory(20180404050505);    // 641461-07-19 07:48:25
+echo JapaneseDateTime::factory(20180404050505);    // 2061-07-19 07:48:25
 
 ```
 
@@ -188,13 +188,13 @@ echo JapaneseDateTime::factory(20180404050505);    // 641461-07-19 07:48:25
 
 ``` .php
 $now = JapaneseDateTime::now();
-echo $now;                               // 2026-06-01 19:05:19
+echo $now;                               // 2026-06-06 16:07:17
 $today = JapaneseDateTime::today();
-echo $today;                             // 2026-06-01 00:00:00
+echo $today;                             // 2026-06-06 00:00:00
 $tomorrow = JapaneseDateTime::tomorrow('Europe/London');
-echo $tomorrow;                          // 2026-06-02 00:00:00
+echo $tomorrow;                          // 2026-06-07 00:00:00
 $yesterday = JapaneseDateTime::yesterday();
-echo $yesterday;                         // 2026-05-31 00:00:00
+echo $yesterday;                         // 2026-06-05 00:00:00
 ```
 
 Getter
@@ -410,10 +410,10 @@ var_export($kouDate->seventyTwoKouType);                      // '初候'
 
 // 次の七十二候へ移動（nextSeventyTwoKou）
 // 2025-02-04（立春初候） → 次候の開始日へ
-$nextKou = JapaneseDateTime::parse('2025-02-04')->nextSeventyTwoKou();    // 2025-02-09 候2 うぐいす鳴く
+$nextKou = JapaneseDateTime::parse('2025-02-04')->nextSeventyTwoKou();    // 2025-02-08 候2 うぐいす鳴く
 // 前の七十二候へ移動（previousSeventyTwoKou）
 // 2025-02-04（立春初候） → 前の大寒末候の開始日へ
-$prevKou = JapaneseDateTime::parse('2025-02-04')->previousSeventyTwoKou(); // 2025-01-30 候72 鶏始めてとやにつく
+$prevKou = JapaneseDateTime::parse('2025-02-04')->previousSeventyTwoKou(); // 2025-01-29 候72 鶏始めてとやにつく
 // 立春初候: 1
 // 立春次候: 2
 // 立春末候: 3
@@ -487,10 +487,10 @@ var_export($dt->quarter);                                      // 1
 
 // UTCからの秒の差をintで返します（+/-符号を含む）
 var_export(JapaneseDateTime::createFromTimestampUTC(0)->offset);         // 0
-var_export(JapaneseDateTime::createFromTimestamp(0)->offset);            // 32400
+var_export(JapaneseDateTime::createFromTimestamp(0)->offset);            // 0
 
 // UTCからの時差の整数を返します（+/-符号を含む）
-var_export(JapaneseDateTime::createFromTimestamp(0)->offsetHours);       // 9
+var_export(JapaneseDateTime::createFromTimestamp(0)->offsetHours);       // 0
 
 // 夏時間が有効かどうかを返します
 var_export(JapaneseDateTime::createFromDate(2012, 1, 1)->dst);           // false
@@ -887,8 +887,8 @@ JapaneseDateTime::setCacheMode(CacheMode::MODE_NONE);
 静的に処理されるため、同一Request内では、次にsetCacheModeするまでは同一のキャッシュモードが使用されることに注意してください。
 
 キャッシュモードの切り替えは、`JapaneseDateTime::setCacheMode`での切り替え以外に、
-[JapaneseDateTime::setCacheFilePath](https://github.com/suzunone/JapaneseDate/blob/v7.X/docs/api/JapaneseDate/DateTime.md)を使用してキャッシュファイルのパスを指定したり、
-[JapaneseDateTime::setCacheClosure](https://github.com/suzunone/JapaneseDate/blob/v7.X/docs/api/JapaneseDate/DateTime.md)をして、独自のキャッシュロジックを登録することでも切り替えることができます。
+[JapaneseDateTime::setCacheFilePath](https://github.com/suzunone/JapaneseDate/blob/master/docs/api/JapaneseDate/DateTime.md)を使用してキャッシュファイルのパスを指定したり、
+[JapaneseDateTime::setCacheClosure](https://github.com/suzunone/JapaneseDate/blob/master/docs/api/JapaneseDate/DateTime.md)をして、独自のキャッシュロジックを登録することでも切り替えることができます。
 
 
 DateInterval
@@ -947,7 +947,7 @@ echo round($interval->toLunarMonthCount(), 1) . '朔望月';  // 2朔望月
 
 // 次の新月までの残り日数を取得する
 $interval = DateInterval::untilNextNewMoon(JapaneseDateTime::parse('2026-05-01'));
-echo $interval->days . '日後が次の新月';  // 日後が次の新月
+echo $interval->days . '日後が次の新月';  // 16日後が次の新月
 ```
 
 `DateInterval` クラスで使用できる主なメソッド:

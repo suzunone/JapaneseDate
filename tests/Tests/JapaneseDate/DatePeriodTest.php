@@ -1,6 +1,5 @@
 <?php
 
-/** @noinspection PhpDocMissingThrowsInspection */
 /** @noinspection PhpUnhandledExceptionInspection */
 
 /**
@@ -20,6 +19,7 @@
 namespace Tests\JapaneseDate;
 
 use Carbon\CarbonPeriod;
+use JapaneseDate\Components\Astronomy;
 use JapaneseDate\DateBusiness;
 use JapaneseDate\DatePeriod;
 use JapaneseDate\DateTime;
@@ -170,7 +170,7 @@ class DatePeriodTest extends TestCase
     public function test_onlyGotobi_none(): void
     {
         $period = DatePeriod::create('2026-05-01', '1 day', '2026-05-31')
-            ->onlyGotobi('none');
+            ->onlyGotobi();
 
         $dates = iterator_to_array($period);
         foreach ($dates as $d) {
@@ -457,6 +457,25 @@ class DatePeriodTest extends TestCase
         // 1500年1月〜3月の節気が含まれること（節気のない可能性もあるが例外は出ない）
         $this->assertInstanceOf(DatePeriod::class, $period);
         $this->assertIsArray($dates);
+    }
+    public function test_eachSolarTerm_usesVsop87AlgorithmWhenSelected(): void
+    {
+        try {
+            Astronomy::useSolarAlgorithm(Astronomy::SOLAR_VSOP87);
+
+            $period = DatePeriod::eachSolarTerm(
+                DateTime::parse('2026-03-01'),
+                DateTime::parse('2026-03-31')
+            );
+
+            $dates = iterator_to_array($period);
+            $formattedDates = array_map(fn ($d) => $d->format('Y-m-d'), $dates);
+
+            $this->assertContains('2026-03-20', $formattedDates);
+        } finally {
+            Astronomy::useSolarAlgorithm(Astronomy::SOLAR_LEGACY);
+            Astronomy::useMoonAlgorithm(Astronomy::MOON_LEGACY);
+        }
     }
     /**
      * eachSolarTerm: 返されるイテレータが DatePeriod のインスタンスである。

@@ -140,7 +140,7 @@ class SeventyTwoKouTraitTest extends TestCase
         $dt = new DateTime('2025-02-04');
         $next = (clone $dt)->nextSeventyTwoKou();
 
-        $this->assertSame('2025-02-09', $next->format('Y-m-d'));
+        $this->assertSame('2025-02-08', $next->format('Y-m-d'));
         $this->assertSame(2, $this->invokeExecuteMethod($next, 'getSeventyTwoKou', []));
     }
     /**
@@ -186,7 +186,7 @@ class SeventyTwoKouTraitTest extends TestCase
         $dt = new DateTime('2025-02-09');
         $prev = (clone $dt)->previousSeventyTwoKou();
 
-        $this->assertSame('2025-02-04', $prev->format('Y-m-d'));
+        $this->assertSame('2025-02-03', $prev->format('Y-m-d'));
         $this->assertSame(1, $this->invokeExecuteMethod($prev, 'getSeventyTwoKou', []));
     }
     /**

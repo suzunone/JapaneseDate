@@ -1,7 +1,5 @@
 <?php
 
-/** @noinspection PhpUnhandledExceptionInspection */
-
 /**
  * Modifier Trait の日付移動処理を検証するテスト。
  *

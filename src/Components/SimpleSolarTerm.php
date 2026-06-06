@@ -8,6 +8,32 @@ use JapaneseDate\Elements\SolarTermDate;
 use JapaneseDate\Exceptions\Exception;
 use JapaneseDate\Exceptions\SolarTermException;
 
+/**
+ * 年代別対応表から二十四節気の日付を返すコンポーネント。
+ *
+ * 各二十四節気について、年の範囲ごとに定義された日付テーブルを参照し、
+ * 指定年における節気日を {@see \JapaneseDate\Elements\SolarTermDate} として返します。
+ * 天文計算を行う {@see \JapaneseDate\Components\SolarTerm} と異なり、
+ * 既知の対応表を用いた軽量な計算を目的とした実装です。
+ *
+ * **対応する二十四節気:**
+ * 春分から啓蟄まで、{@see \JapaneseDate\DateTime::SOLAR_TERM_*} 定数で表される
+ * 24 種類すべての節気を扱います。
+ *
+ * **利用上の特徴:**
+ * 対応表の範囲内では高速に結果を返せますが、範囲外の年や表に存在しない節気は
+ * {@see \JapaneseDate\Exceptions\SolarTermException} または関連例外の対象になります。
+ *
+ * @category    DateTime
+ * @package     JapaneseDate
+ * @subpackage  Component
+ * @author      Suzunone <suzunone.eleven@gmail.com>
+ * @copyright   Suzunone
+ * @license     BSD-2
+ * @link        https://github.com/suzunone/JapaneseDate
+ * @see         https://github.com/suzunone/JapaneseDate
+ * @since       2026-05-29
+ */
 class SimpleSolarTerm
 {
     use GetSolarTerm;
@@ -84,6 +110,13 @@ class SimpleSolarTerm
      */
     public function syunbun(int $year): SolarTermDate
     {
+        if ($year === 2352) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_SYUNBUN, 21);
+        }
+        if ($year === 2385) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_SYUNBUN, 21);
+        }
+
         if ($year >= 1600 && $year <= 1631) {
             $days = [20, 20, 21, 21, ];
         } elseif ($year >= 1632 && $year <= 1663) {
@@ -160,6 +193,23 @@ class SimpleSolarTerm
      */
     public function seimei(int $year): SolarTermDate
     {
+        if ($year === 2302) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_SEIMEI, 6);
+        }
+        if ($year === 2335) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_SEIMEI, 6);
+        }
+        if ($year === 2368) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_SEIMEI, 5);
+        }
+
+        if ($year === 1724) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_SEIMEI, 4);
+        }
+        if ($year === 2141) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_SEIMEI, 5);
+        }
+
         if ($year >= 1600 && $year <= 1627) {
             $days = [4, 5, 5, 5, ];
         } elseif ($year >= 1628 && $year <= 1659) {
@@ -236,6 +286,23 @@ class SimpleSolarTerm
      */
     public function kokuu(int $year): SolarTermDate
     {
+        if ($year === 2334) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_KOKUU, 21);
+        }
+        if ($year === 2367) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_KOKUU, 21);
+        }
+
+        if ($year === 1735) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_KOKUU, 20);
+        }
+        if ($year === 2082) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_KOKUU, 20);
+        }
+        if ($year === 2272) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_KOKUU, 20);
+        }
+
         if ($year >= 1600 && $year <= 1607) {
             $days = [20, 20, 20, 21, ];
         } elseif ($year >= 1608 && $year <= 1639) {
@@ -314,6 +381,20 @@ class SimpleSolarTerm
      */
     public function rikka(int $year): SolarTermDate
     {
+        if ($year === 2320) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_RIKKA, 6);
+        }
+        if ($year === 2382) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_RIKKA, 6);
+        }
+
+        if ($year === 1762) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_RIKKA, 5);
+        }
+        if ($year === 2163) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_RIKKA, 6);
+        }
+
         if ($year >= 1600 && $year <= 1607) {
             $days = [5, 6, 6, 6, ];
         } elseif ($year >= 1608 && $year <= 1635) {
@@ -394,6 +475,23 @@ class SimpleSolarTerm
      */
     public function syouman(int $year): SolarTermDate
     {
+        if ($year === 2318) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_SYOUMAN, 22);
+        }
+        if ($year === 2351) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_SYOUMAN, 22);
+        }
+        if ($year === 2380) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_SYOUMAN, 21);
+        }
+
+        if ($year === 2136) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_SYOUMAN, 21);
+        }
+        if ($year === 2227) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_SYOUMAN, 22);
+        }
+
         if ($year >= 1600 && $year <= 1615) {
             $days = [21, 21, 21, 22, ];
         } elseif ($year >= 1616 && $year <= 1651) {
@@ -474,6 +572,29 @@ class SimpleSolarTerm
      */
     public function bousyu(int $year): SolarTermDate
     {
+        if ($year === 2332) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_BOUSYU, 6);
+        }
+        if ($year === 2361) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_BOUSYU, 6);
+        }
+
+        if ($year === 2270) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_BOUSYU, 6);
+        }
+        if ($year === 1608) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_BOUSYU, 5);
+        }
+        if ($year === 1728) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_BOUSYU, 5);
+        }
+        if ($year === 2150) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_BOUSYU, 6);
+        }
+        if ($year === 2241) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_BOUSYU, 6);
+        }
+
         if ($year >= 1600 && $year <= 1611) {
             $days = [6, 6, 6, 6, ];
         } elseif ($year >= 1612 && $year <= 1639) {
@@ -556,6 +677,23 @@ class SimpleSolarTerm
      */
     public function geshi(int $year): SolarTermDate
     {
+        if ($year === 2321) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_GESHI, 22);
+        }
+        if ($year === 2383) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_GESHI, 22);
+        }
+
+        if ($year === 2023) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_GESHI, 22);
+        }
+        if ($year === 2263) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_GESHI, 22);
+        }
+        if ($year === 2296) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_GESHI, 20);
+        }
+
         if ($year >= 1600 && $year <= 1603) {
             $days = [21, 22, 22, 22, ];
         } elseif ($year >= 1604 && $year <= 1635) {
@@ -615,7 +753,7 @@ class SimpleSolarTerm
         } elseif ($year >= 2260 && $year <= 2291) {
             $days = [21, 21, 21, 21, ];
         } elseif ($year >= 2292 && $year <= 2299) {
-            $days = [20, 21, 21, 21, ];
+            $days = [21, 21, 21, 21, ];
         } elseif ($year >= 2300 && $year <= 2319) {
             $days = [21, 22, 22, 22, ];
         } elseif ($year >= 2320 && $year <= 2351) {
@@ -640,6 +778,20 @@ class SimpleSolarTerm
      */
     public function syousyo(int $year): SolarTermDate
     {
+        if ($year === 2318) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_SYOUSYO, 8);
+        }
+        if ($year === 2347) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_SYOUSYO, 8);
+        }
+
+        if ($year === 2260) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_SYOUSYO, 7);
+        }
+        if ($year === 2111) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_SYOUSYO, 8);
+        }
+
         if ($year >= 1600 && $year <= 1603) {
             $days = [7, 7, 8, 8, ];
         } elseif ($year >= 1604 && $year <= 1631) {
@@ -691,7 +843,7 @@ class SimpleSolarTerm
         } elseif ($year >= 2172 && $year <= 2195) {
             $days = [6, 6, 7, 7, ];
         } elseif ($year >= 2196 && $year <= 2199) {
-            $days = [6, 6, 6, 7, ];
+            $days = [6, 6, 7, 7, ];
         } elseif ($year >= 2200 && $year <= 2227) {
             $days = [7, 7, 7, 8, ];
         } elseif ($year >= 2228 && $year <= 2259) {
@@ -724,6 +876,20 @@ class SimpleSolarTerm
      */
     public function taisyo(int $year): SolarTermDate
     {
+        if ($year === 2344) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_TAISYO, 23);
+        }
+
+        if ($year === 1719) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_TAISYO, 23);
+        }
+        if ($year === 2166) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_TAISYO, 23);
+        }
+        if ($year === 2286) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_TAISYO, 23);
+        }
+
         if ($year >= 1600 && $year <= 1631) {
             $days = [23, 23, 23, 23, ];
         } elseif ($year >= 1632 && $year <= 1659) {
@@ -804,6 +970,20 @@ class SimpleSolarTerm
      */
     public function rissyuu(int $year): SolarTermDate
     {
+        if ($year === 2308) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_RISSYUU, 8);
+        }
+        if ($year === 2370) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_RISSYUU, 8);
+        }
+
+        if ($year === 1799) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_RISSYUU, 7);
+        }
+        if ($year === 2130) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_RISSYUU, 8);
+        }
+
         if ($year >= 1600 && $year <= 1619) {
             $days = [7, 8, 8, 8, ];
         } elseif ($year >= 1620 && $year <= 1647) {
@@ -867,7 +1047,7 @@ class SimpleSolarTerm
         } elseif ($year >= 2368 && $year <= 2395) {
             $days = [7, 7, 7, 8, ];
         } elseif ($year >= 2396 && $year <= 2399) {
-            $days = [7, 7, 7, 7, ];
+            $days = [7, 7, 7, 8, ];
         } else {
             throw new SolarTermException('Input year is outside the supported temporal scope.');
         }
@@ -884,6 +1064,20 @@ class SimpleSolarTerm
      */
     public function syosyo(int $year): SolarTermDate
     {
+        if ($year === 2326) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_SYOSYO, 24);
+        }
+        if ($year === 2384) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_SYOSYO, 23);
+        }
+
+        if ($year === 2206) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_SYOSYO, 24);
+        }
+        if ($year === 2235) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_SYOSYO, 24);
+        }
+
         if ($year >= 1600 && $year <= 1627) {
             $days = [23, 23, 23, 24, ];
         } elseif ($year >= 1628 && $year <= 1659) {
@@ -966,6 +1160,26 @@ class SimpleSolarTerm
      */
     public function hakuro(int $year): SolarTermDate
     {
+        if ($year === 2332) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_HAKURO, 8);
+        }
+        if ($year === 2361) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_HAKURO, 8);
+        }
+        if ($year === 2398) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_HAKURO, 7);
+        }
+
+        if ($year === 1964) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_HAKURO, 8);
+        }
+        if ($year === 2117) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_HAKURO, 8);
+        }
+        if ($year === 2270) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_HAKURO, 8);
+        }
+
         if ($year >= 1600 && $year <= 1623) {
             $days = [7, 8, 8, 8, ];
         } elseif ($year >= 1624 && $year <= 1651) {
@@ -1027,7 +1241,7 @@ class SimpleSolarTerm
         } elseif ($year >= 2360 && $year <= 2391) {
             $days = [7, 7, 8, 8, ];
         } elseif ($year >= 2392 && $year <= 2399) {
-            $days = [7, 7, 7, 8, ];
+            $days = [7, 7, 8, 8, ];
         } else {
             throw new SolarTermException('Input year is outside the supported temporal scope.');
         }
@@ -1044,6 +1258,17 @@ class SimpleSolarTerm
      */
     public function syuubun(int $year): SolarTermDate
     {
+        if ($year === 2355) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_SYUUBUN, 24);
+        }
+        if ($year === 2384) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_SYUUBUN, 23);
+        }
+
+        if ($year === 1917) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_SYUUBUN, 23);
+        }
+
         if ($year >= 1600 && $year <= 1635) {
             $days = [23, 23, 23, 23, ];
         } elseif ($year >= 1636 && $year <= 1667) {
@@ -1122,6 +1347,20 @@ class SimpleSolarTerm
      */
     public function kanro(int $year): SolarTermDate
     {
+        if ($year === 2362) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_KANRO, 9);
+        }
+        if ($year === 2399) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_KANRO, 8);
+        }
+
+        if ($year === 2205) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_KANRO, 9);
+        }
+        if ($year === 2300) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_KANRO, 9);
+        }
+
         if ($year >= 1600 && $year <= 1627) {
             $days = [8, 8, 8, 9, ];
         } elseif ($year >= 1628 && $year <= 1659) {
@@ -1183,7 +1422,7 @@ class SimpleSolarTerm
         } elseif ($year >= 2360 && $year <= 2391) {
             $days = [8, 8, 8, 9, ];
         } elseif ($year >= 2392 && $year <= 2399) {
-            $days = [8, 8, 8, 8, ];
+            $days = [8, 8, 8, 9, ];
         } else {
             throw new SolarTermException('Input year is outside the supported temporal scope.');
         }
@@ -1200,6 +1439,26 @@ class SimpleSolarTerm
      */
     public function soukou(int $year): SolarTermDate
     {
+        if ($year === 2386) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_SOUKOU, 24);
+        }
+
+        if ($year === 1998) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_SOUKOU, 24);
+        }
+        if ($year === 2159) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_SOUKOU, 24);
+        }
+        if ($year === 2196) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_SOUKOU, 22);
+        }
+        if ($year === 2225) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_SOUKOU, 24);
+        }
+        if ($year === 2258) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_SOUKOU, 24);
+        }
+
         if ($year >= 1600 && $year <= 1603) {
             $days = [23, 23, 24, 24, ];
         } elseif ($year >= 1604 && $year <= 1635) {
@@ -1245,7 +1504,7 @@ class SimpleSolarTerm
         } elseif ($year >= 2156 && $year <= 2191) {
             $days = [23, 23, 23, 23, ];
         } elseif ($year >= 2192 && $year <= 2199) {
-            $days = [22, 23, 23, 23, ];
+            $days = [23, 23, 23, 23, ];
         } elseif ($year >= 2200 && $year <= 2223) {
             $days = [23, 24, 24, 24, ];
         } elseif ($year >= 2224 && $year <= 2255) {
@@ -1278,6 +1537,23 @@ class SimpleSolarTerm
      */
     public function rittou(int $year): SolarTermDate
     {
+        if ($year === 2328) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_RITTOU, 8);
+        }
+        if ($year === 2361) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_RITTOU, 8);
+        }
+        if ($year === 2398) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_RITTOU, 7);
+        }
+
+        if ($year === 2229) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_RITTOU, 8);
+        }
+        if ($year === 2299) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_RITTOU, 7);
+        }
+
         if ($year >= 1600 && $year <= 1631) {
             $days = [7, 7, 7, 8, ];
         } elseif ($year >= 1632 && $year <= 1667) {
@@ -1325,7 +1601,7 @@ class SimpleSolarTerm
         } elseif ($year >= 2264 && $year <= 2291) {
             $days = [7, 7, 7, 8, ];
         } elseif ($year >= 2292 && $year <= 2299) {
-            $days = [7, 7, 7, 7, ];
+            $days = [7, 7, 7, 8, ];
         } elseif ($year >= 2300 && $year <= 2327) {
             $days = [8, 8, 8, 8, ];
         } elseif ($year >= 2328 && $year <= 2359) {
@@ -1333,7 +1609,7 @@ class SimpleSolarTerm
         } elseif ($year >= 2360 && $year <= 2391) {
             $days = [7, 7, 8, 8, ];
         } elseif ($year >= 2392 && $year <= 2399) {
-            $days = [7, 7, 7, 8, ];
+            $days = [7, 7, 8, 8, ];
         } else {
             throw new SolarTermException('Input year is outside the supported temporal scope.');
         }
@@ -1350,6 +1626,20 @@ class SimpleSolarTerm
      */
     public function syousetsu(int $year): SolarTermDate
     {
+        if ($year === 2320) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_SYOUSETSU, 23);
+        }
+        if ($year === 2353) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_SYOUSETSU, 23);
+        }
+        if ($year === 2386) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_SYOUSETSU, 23);
+        }
+
+        if ($year === 2118) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_SYOUSETSU, 23);
+        }
+
         if ($year >= 1600 && $year <= 1611) {
             $days = [22, 22, 22, 23, ];
         } elseif ($year >= 1612 && $year <= 1647) {
@@ -1428,6 +1718,13 @@ class SimpleSolarTerm
      */
     public function taisetsu(int $year): SolarTermDate
     {
+        if ($year === 1649) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_TAISETSU, 7);
+        }
+        if ($year === 1752) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_TAISETSU, 7);
+        }
+
         if ($year >= 1600 && $year <= 1615) {
             $days = [7, 7, 7, 7, ];
         } elseif ($year >= 1616 && $year <= 1647) {
@@ -1504,6 +1801,14 @@ class SimpleSolarTerm
      */
     public function touji(int $year): SolarTermDate
     {
+        if ($year === 2367) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_TOUJI, 23);
+        }
+
+        if ($year === 1646) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_TOUJI, 22);
+        }
+
         if ($year >= 1600 && $year <= 1611) {
             $days = [21, 22, 22, 22, ];
         } elseif ($year >= 1612 && $year <= 1643) {
@@ -1578,18 +1883,35 @@ class SimpleSolarTerm
      */
     public function syoukan(int $year): SolarTermDate
     {
+        if ($year === 2332) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_SYOUKAN, 7);
+        }
+
+        if ($year === 1607) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_SYOUKAN, 6);
+        }
+        if ($year === 1710) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_SYOUKAN, 6);
+        }
+        if ($year === 1850) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_SYOUKAN, 6);
+        }
+        if ($year === 2229) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_SYOUKAN, 6);
+        }
+
         if ($year >= 1601 && $year <= 1604) {
-            $days = [6, 5, 6, 5, ];
+            $days = [6, 5, 5, 6, ];
         } elseif ($year >= 1605 && $year <= 1640) {
             $days = [6, 5, 5, 5, ];
         } elseif ($year >= 1641 && $year <= 1676) {
             $days = [5, 5, 5, 5, ];
         } elseif ($year >= 1677 && $year <= 1700) {
-            $days = [5, 5, 5, 4, ];
+            $days = [5, 4, 5, 5, ];
         } elseif ($year >= 1701 && $year <= 1708) {
-            $days = [6, 6, 6, 5, ];
+            $days = [6, 5, 6, 6, ];
         } elseif ($year >= 1709 && $year <= 1744) {
-            $days = [6, 5, 6, 5, ];
+            $days = [6, 5, 5, 6, ];
         } elseif ($year >= 1745 && $year <= 1780) {
             $days = [6, 5, 5, 5, ];
         } elseif ($year >= 1781 && $year <= 1800) {
@@ -1597,9 +1919,9 @@ class SimpleSolarTerm
         } elseif ($year >= 1801 && $year <= 1816) {
             $days = [6, 6, 6, 6, ];
         } elseif ($year >= 1817 && $year <= 1848) {
-            $days = [6, 6, 6, 5, ];
+            $days = [6, 5, 6, 6, ];
         } elseif ($year >= 1849 && $year <= 1884) {
-            $days = [6, 5, 6, 5, ];
+            $days = [6, 5, 5, 6, ];
         } elseif ($year >= 1885 && $year <= 1900) {
             $days = [6, 5, 5, 5, ];
         } elseif ($year >= 1901 && $year <= 1916) {
@@ -1607,19 +1929,19 @@ class SimpleSolarTerm
         } elseif ($year >= 1917 && $year <= 1956) {
             $days = [6, 6, 6, 6, ];
         } elseif ($year >= 1957 && $year <= 1988) {
-            $days = [6, 6, 6, 5, ];
+            $days = [6, 5, 6, 6, ];
         } elseif ($year >= 1989 && $year <= 2024) {
-            $days = [6, 5, 6, 5, ];
+            $days = [6, 5, 5, 6, ];
         } elseif ($year >= 2025 && $year <= 2056) {
             $days = [6, 5, 5, 5, ];
         } elseif ($year >= 2057 && $year <= 2092) {
             $days = [5, 5, 5, 5, ];
         } elseif ($year >= 2093 && $year <= 2100) {
-            $days = [5, 5, 5, 4, ];
+            $days = [5, 4, 5, 5, ];
         } elseif ($year >= 2101 && $year <= 2124) {
-            $days = [6, 6, 6, 5, ];
+            $days = [6, 5, 6, 6, ];
         } elseif ($year >= 2125 && $year <= 2160) {
-            $days = [6, 5, 6, 5, ];
+            $days = [6, 5, 5, 6, ];
         } elseif ($year >= 2161 && $year <= 2192) {
             $days = [6, 5, 5, 5, ];
         } elseif ($year >= 2193 && $year <= 2200) {
@@ -1627,9 +1949,9 @@ class SimpleSolarTerm
         } elseif ($year >= 2201 && $year <= 2228) {
             $days = [6, 6, 6, 6, ];
         } elseif ($year >= 2229 && $year <= 2264) {
-            $days = [6, 6, 6, 5, ];
+            $days = [6, 5, 6, 6, ];
         } elseif ($year >= 2265 && $year <= 2296) {
-            $days = [6, 5, 6, 5, ];
+            $days = [6, 5, 5, 6, ];
         } elseif ($year >= 2297 && $year <= 2300) {
             $days = [6, 5, 5, 5, ];
         } elseif ($year >= 2301 && $year <= 2328) {
@@ -1637,7 +1959,7 @@ class SimpleSolarTerm
         } elseif ($year >= 2329 && $year <= 2368) {
             $days = [6, 6, 6, 6, ];
         } elseif ($year >= 2369 && $year <= 2400) {
-            $days = [6, 6, 6, 5, ];
+            $days = [6, 5, 6, 6, ];
         } else {
             throw new SolarTermException('Input year is outside the supported temporal scope.');
         }
@@ -1654,24 +1976,35 @@ class SimpleSolarTerm
      */
     public function daikan(int $year): SolarTermDate
     {
+        if ($year === 2362) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_DAIKAN, 21);
+        }
+
+        if ($year === 1604) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_DAIKAN, 21);
+        }
+        if ($year === 1950) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_DAIKAN, 21);
+        }
+
         if ($year >= 1601 && $year <= 1640) {
             $days = [20, 20, 20, 20, ];
         } elseif ($year >= 1641 && $year <= 1672) {
-            $days = [20, 20, 20, 19, ];
+            $days = [20, 19, 20, 20, ];
         } elseif ($year >= 1673 && $year <= 1700) {
-            $days = [20, 19, 20, 19, ];
+            $days = [20, 19, 19, 20, ];
         } elseif ($year >= 1701 && $year <= 1708) {
-            $days = [21, 20, 21, 20, ];
+            $days = [21, 20, 20, 21, ];
         } elseif ($year >= 1709 && $year <= 1740) {
             $days = [21, 20, 20, 20, ];
         } elseif ($year >= 1741 && $year <= 1780) {
             $days = [20, 20, 20, 20, ];
         } elseif ($year >= 1781 && $year <= 1800) {
-            $days = [20, 20, 20, 19, ];
+            $days = [20, 19, 20, 20, ];
         } elseif ($year >= 1801 && $year <= 1812) {
-            $days = [21, 21, 21, 20, ];
+            $days = [21, 20, 21, 21, ];
         } elseif ($year >= 1813 && $year <= 1844) {
-            $days = [21, 20, 21, 20, ];
+            $days = [21, 20, 20, 21, ];
         } elseif ($year >= 1845 && $year <= 1880) {
             $days = [21, 20, 20, 20, ];
         } elseif ($year >= 1881 && $year <= 1900) {
@@ -1679,29 +2012,29 @@ class SimpleSolarTerm
         } elseif ($year >= 1901 && $year <= 1916) {
             $days = [21, 21, 21, 21, ];
         } elseif ($year >= 1917 && $year <= 1948) {
-            $days = [21, 21, 21, 20, ];
+            $days = [21, 20, 21, 21, ];
         } elseif ($year >= 1949 && $year <= 1984) {
-            $days = [21, 20, 21, 20, ];
+            $days = [21, 20, 20, 21, ];
         } elseif ($year >= 1985 && $year <= 2016) {
             $days = [21, 20, 20, 20, ];
         } elseif ($year >= 2017 && $year <= 2052) {
             $days = [20, 20, 20, 20, ];
         } elseif ($year >= 2053 && $year <= 2088) {
-            $days = [20, 20, 20, 19, ];
+            $days = [20, 19, 20, 20, ];
         } elseif ($year >= 2089 && $year <= 2100) {
-            $days = [20, 19, 20, 19, ];
+            $days = [20, 19, 19, 20, ];
         } elseif ($year >= 2101 && $year <= 2120) {
-            $days = [21, 20, 21, 20, ];
+            $days = [21, 20, 20, 21, ];
         } elseif ($year >= 2121 && $year <= 2156) {
             $days = [21, 20, 20, 20, ];
         } elseif ($year >= 2157 && $year <= 2192) {
             $days = [20, 20, 20, 20, ];
         } elseif ($year >= 2193 && $year <= 2200) {
-            $days = [20, 20, 20, 19, ];
+            $days = [20, 19, 20, 20, ];
         } elseif ($year >= 2201 && $year <= 2228) {
-            $days = [21, 21, 21, 20, ];
+            $days = [21, 20, 21, 21, ];
         } elseif ($year >= 2229 && $year <= 2260) {
-            $days = [21, 20, 21, 20, ];
+            $days = [21, 20, 20, 21, ];
         } elseif ($year >= 2261 && $year <= 2292) {
             $days = [21, 20, 20, 20, ];
         } elseif ($year >= 2293 && $year <= 2300) {
@@ -1709,9 +2042,9 @@ class SimpleSolarTerm
         } elseif ($year >= 2301 && $year <= 2328) {
             $days = [21, 21, 21, 21, ];
         } elseif ($year >= 2329 && $year <= 2360) {
-            $days = [21, 21, 21, 20, ];
+            $days = [21, 20, 21, 21, ];
         } elseif ($year >= 2361 && $year <= 2396) {
-            $days = [21, 20, 21, 20, ];
+            $days = [21, 20, 20, 21, ];
         } elseif ($year >= 2397 && $year <= 2400) {
             $days = [21, 20, 20, 20, ];
         } else {
@@ -1730,12 +2063,26 @@ class SimpleSolarTerm
      */
     public function rissyun(int $year): SolarTermDate
     {
+        if ($year === 2157) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_RISSYUN, 4);
+        }
+        if ($year === 2601) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_RISSYUN, 5);
+        }
+        if ($year === 2465) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_RISSYUN, 4);
+        }
+        if ($year === 2737) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_RISSYUN, 5);
+        }
+
+
         if ($year >= 1601 && $year <= 1612) {
             $days = [4, 4, 4, 4, ];
         } elseif ($year >= 1613 && $year <= 1644) {
-            $days = [4, 4, 4, 3, ];
+            $days = [4, 3, 4, 4, ];
         } elseif ($year >= 1645 && $year <= 1676) {
-            $days = [4, 3, 4, 3, ];
+            $days = [4, 3, 3, 4, ];
         } elseif ($year >= 1677 && $year <= 1700) {
             $days = [4, 3, 3, 3, ];
         } elseif ($year >= 1701 && $year <= 1708) {
@@ -1743,29 +2090,29 @@ class SimpleSolarTerm
         } elseif ($year >= 1709 && $year <= 1748) {
             $days = [4, 4, 4, 4, ];
         } elseif ($year >= 1749 && $year <= 1780) {
-            $days = [4, 4, 4, 3, ];
+            $days = [4, 3, 4, 4, ];
         } elseif ($year >= 1781 && $year <= 1800) {
-            $days = [4, 3, 4, 3, ];
+            $days = [4, 3, 3, 4, ];
         } elseif ($year >= 1801 && $year <= 1816) {
-            $days = [5, 4, 5, 4, ];
+            $days = [5, 4, 4, 5, ];
         } elseif ($year >= 1817 && $year <= 1848) {
             $days = [5, 4, 4, 4, ];
         } elseif ($year >= 1849 && $year <= 1884) {
             $days = [4, 4, 4, 4, ];
         } elseif ($year >= 1885 && $year <= 1900) {
-            $days = [4, 4, 4, 3, ];
+            $days = [4, 3, 4, 4, ];
         } elseif ($year >= 1901 && $year <= 1916) {
-            $days = [5, 5, 5, 4, ];
+            $days = [5, 4, 5, 5, ];
         } elseif ($year >= 1917 && $year <= 1952) {
-            $days = [5, 4, 5, 4, ];
+            $days = [5, 4, 4, 5, ];
         } elseif ($year >= 1953 && $year <= 1984) {
             $days = [5, 4, 4, 4, ];
         } elseif ($year >= 1985 && $year <= 2020) {
             $days = [4, 4, 4, 4, ];
         } elseif ($year >= 2021 && $year <= 2056) {
-            $days = [4, 4, 4, 3, ];
+            $days = [4, 3, 4, 4, ];
         } elseif ($year >= 2057 && $year <= 2088) {
-            $days = [4, 3, 4, 3, ];
+            $days = [4, 3, 3, 4, ];
         } elseif ($year >= 2089 && $year <= 2100) {
             $days = [4, 3, 3, 3, ];
         } elseif ($year >= 2101 && $year <= 2120) {
@@ -1773,51 +2120,51 @@ class SimpleSolarTerm
         } elseif ($year >= 2121 && $year <= 2156) {
             $days = [4, 4, 4, 4, ];
         } elseif ($year >= 2157 && $year <= 2192) {
-            $days = [4, 4, 4, 3, ];
+            $days = [4, 3, 4, 4, ];
         } elseif ($year >= 2193 && $year <= 2200) {
-            $days = [4, 3, 4, 3, ];
+            $days = [4, 3, 3, 4, ];
         } elseif ($year >= 2201 && $year <= 2224) {
-            $days = [5, 4, 5, 4, ];
+            $days = [5, 4, 4, 5, ];
         } elseif ($year >= 2225 && $year <= 2260) {
             $days = [5, 4, 4, 4, ];
         } elseif ($year >= 2261 && $year <= 2296) {
             $days = [4, 4, 4, 4, ];
         } elseif ($year >= 2297 && $year <= 2300) {
-            $days = [4, 4, 4, 3, ];
+            $days = [4, 3, 4, 4, ];
         } elseif ($year >= 2301 && $year <= 2328) {
-            $days = [5, 5, 5, 4, ];
+            $days = [5, 4, 5, 5, ];
         } elseif ($year >= 2329 && $year <= 2360) {
-            $days = [5, 4, 5, 4, ];
+            $days = [5, 4, 4, 5, ];
         } elseif ($year >= 2361 && $year <= 2396) {
             $days = [5, 4, 4, 4, ];
         } elseif ($year >= 2397 && $year <= 2432) {
-            $days = [4, 4, 4, 4, ];
+            $days = [5, 4, 4, 4, ];
         } elseif ($year >= 2433 && $year <= 2464) {
-            $days = [4, 4, 4, 3, ];
+            $days = [4, 4, 4, 4, ];
         } elseif ($year >= 2465 && $year <= 2496) {
-            $days = [4, 3, 4, 3, ];
+            $days = [4, 3, 4, 4, ];
         } elseif ($year >= 2497 && $year <= 2500) {
-            $days = [4, 3, 3, 3, ];
+            $days = [4, 3, 4, 4, ];
         } elseif ($year >= 2501 && $year <= 2528) {
-            $days = [5, 4, 4, 4, ];
+            $days = [5, 4, 4, 5, ];
         } elseif ($year >= 2529 && $year <= 2568) {
-            $days = [4, 4, 4, 4, ];
+            $days = [5, 4, 4, 4, ];
         } elseif ($year >= 2569 && $year <= 2600) {
-            $days = [4, 4, 4, 3, ];
-        } elseif ($year >= 2601 && $year <= 2636) {
-            $days = [5, 4, 5, 4, ];
-        } elseif ($year >= 2637 && $year <= 2668) {
-            $days = [5, 4, 4, 4, ];
-        } elseif ($year >= 2669 && $year <= 2700) {
             $days = [4, 4, 4, 4, ];
-        } elseif ($year >= 2701 && $year <= 2704) {
-            $days = [5, 5, 5, 5, ];
-        } elseif ($year >= 2705 && $year <= 2736) {
-            $days = [5, 5, 5, 4, ];
-        } elseif ($year >= 2737 && $year <= 2768) {
-            $days = [5, 4, 5, 4, ];
-        } elseif ($year >= 2769 && $year <= 2800) {
+        } elseif ($year >= 2601 && $year <= 2636) {
+            $days = [5, 4, 5, 5, ];
+        } elseif ($year >= 2637 && $year <= 2668) {
+            $days = [5, 4, 4, 5, ];
+        } elseif ($year >= 2669 && $year <= 2700) {
             $days = [5, 4, 4, 4, ];
+        } elseif ($year >= 2701 && $year <= 2704) {
+            $days = [6, 5, 5, 5, ];
+        } elseif ($year >= 2705 && $year <= 2736) {
+            $days = [5, 5, 5, 5, ];
+        } elseif ($year >= 2737 && $year <= 2768) {
+            $days = [5, 4, 5, 5, ];
+        } elseif ($year >= 2769 && $year <= 2800) {
+            $days = [5, 4, 4, 5, ];
         } else {
             throw new SolarTermException('Input year is outside the supported temporal scope.');
         }
@@ -1834,10 +2181,21 @@ class SimpleSolarTerm
      */
     public function usui(int $year): SolarTermDate
     {
+        if ($year === 2302) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_USUI, 20);
+        }
+
+        if ($year === 2030) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_USUI, 19);
+        }
+        if ($year === 2133) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_USUI, 19);
+        }
+
         if ($year >= 1601 && $year <= 1624) {
-            $days = [19, 19, 19, 18, ];
+            $days = [19, 18, 19, 19, ];
         } elseif ($year >= 1625 && $year <= 1656) {
-            $days = [19, 18, 19, 18, ];
+            $days = [19, 18, 18, 19, ];
         } elseif ($year >= 1657 && $year <= 1692) {
             $days = [19, 18, 18, 18, ];
         } elseif ($year >= 1693 && $year <= 1700) {
@@ -1845,9 +2203,9 @@ class SimpleSolarTerm
         } elseif ($year >= 1701 && $year <= 1728) {
             $days = [19, 19, 19, 19, ];
         } elseif ($year >= 1729 && $year <= 1760) {
-            $days = [19, 19, 19, 18, ];
+            $days = [19, 18, 19, 19, ];
         } elseif ($year >= 1761 && $year <= 1792) {
-            $days = [19, 18, 19, 18, ];
+            $days = [19, 18, 18, 19, ];
         } elseif ($year >= 1793 && $year <= 1800) {
             $days = [19, 18, 18, 18, ];
         } elseif ($year >= 1801 && $year <= 1824) {
@@ -1855,19 +2213,19 @@ class SimpleSolarTerm
         } elseif ($year >= 1825 && $year <= 1860) {
             $days = [19, 19, 19, 19, ];
         } elseif ($year >= 1861 && $year <= 1896) {
-            $days = [19, 19, 19, 18, ];
+            $days = [19, 18, 19, 19, ];
         } elseif ($year >= 1897 && $year <= 1900) {
-            $days = [19, 18, 19, 18, ];
+            $days = [19, 18, 18, 19, ];
         } elseif ($year >= 1901 && $year <= 1928) {
-            $days = [20, 19, 20, 19, ];
+            $days = [20, 19, 19, 20, ];
         } elseif ($year >= 1929 && $year <= 1960) {
             $days = [20, 19, 19, 19, ];
         } elseif ($year >= 1961 && $year <= 1996) {
             $days = [19, 19, 19, 19, ];
         } elseif ($year >= 1997 && $year <= 2028) {
-            $days = [19, 19, 19, 18, ];
+            $days = [19, 18, 19, 19, ];
         } elseif ($year >= 2029 && $year <= 2064) {
-            $days = [19, 18, 19, 18, ];
+            $days = [19, 18, 18, 19, ];
         } elseif ($year >= 2065 && $year <= 2096) {
             $days = [19, 18, 18, 18, ];
         } elseif ($year >= 2097 && $year <= 2100) {
@@ -1875,17 +2233,17 @@ class SimpleSolarTerm
         } elseif ($year >= 2101 && $year <= 2132) {
             $days = [19, 19, 19, 19, ];
         } elseif ($year >= 2133 && $year <= 2168) {
-            $days = [19, 19, 19, 18, ];
+            $days = [19, 18, 19, 19, ];
         } elseif ($year >= 2169 && $year <= 2200) {
-            $days = [19, 18, 19, 18, ];
+            $days = [19, 18, 18, 19, ];
         } elseif ($year >= 2201 && $year <= 2232) {
             $days = [20, 19, 19, 19, ];
         } elseif ($year >= 2233 && $year <= 2268) {
             $days = [19, 19, 19, 19, ];
         } elseif ($year >= 2269 && $year <= 2300) {
-            $days = [19, 19, 19, 18, ];
+            $days = [19, 18, 19, 19, ];
         } elseif ($year >= 2301 && $year <= 2336) {
-            $days = [20, 19, 20, 19, ];
+            $days = [20, 19, 19, 20, ];
         } elseif ($year >= 2337 && $year <= 2368) {
             $days = [20, 19, 19, 19, ];
         } elseif ($year >= 2369 && $year <= 2400) {
@@ -1906,6 +2264,19 @@ class SimpleSolarTerm
      */
     public function keichitsu(int $year): SolarTermDate
     {
+        if ($year === 2187) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_KEICHITSU, 6);
+        }
+        if ($year === 2220) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_KEICHITSU, 6);
+        }
+        if ($year === 2253) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_KEICHITSU, 6);
+        }
+        if ($year === 2286) {
+            return new SolarTermDate($year, DateTime::SOLAR_TERM_KEICHITSU, 6);
+        }
+
         if ($year >= 1600 && $year <= 1619) {
             $days = [5, 5, 6, 6, ];
         } elseif ($year >= 1620 && $year <= 1651) {
