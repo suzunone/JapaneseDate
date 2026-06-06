@@ -66,21 +66,10 @@ class Era
      * @param string $end 元号の終了日を表す日付文字列。
      * @param \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable $currentDate 作成元の日付オブジェクト。
      *
+     * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
-    public function __construct(/**
-     * @readonly
-     */
-    public string $name, /**
-     * @readonly
-     */
-    public string $kana, /**
-     * @readonly
-     */
-    public string $court, string $start, string $end, /**
-     * @readonly
-     */
-    protected DateTime|DateTimeImmutable $currentDate)
+    public function __construct(public readonly string $name, public readonly string $kana, public readonly string $court, string $start, string $end, protected readonly DateTime|DateTimeImmutable $currentDate)
     {
         if ($currentDate instanceof DateTimeImmutable) {
             $this->startDate = DateTimeImmutable::factory($start);

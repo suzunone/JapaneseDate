@@ -15,9 +15,7 @@ use JapaneseDate\Traits\DateBusinessCommon;
 use PHPUnit\Framework\Attributes\CoversTrait;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \JapaneseDate\Traits\DateBusinessCommon
- */
+#[CoversTrait(DateBusinessCommon::class)]
 class DateBusinessCommonDatePeriodTest extends TestCase
 {
     public function test_onlyBusinessDays_excludes_weekends(): void
@@ -40,6 +38,7 @@ class DateBusinessCommonDatePeriodTest extends TestCase
         $this->assertNotContains('2026-05-31', $dates); // 日
         $this->assertCount(5, $dates);
     }
+
     public function test_onlyBusinessDays_excludes_holidays(): void
     {
         // 2026-01-01(木 元旦) 〜 2026-01-05(月)
@@ -57,6 +56,7 @@ class DateBusinessCommonDatePeriodTest extends TestCase
         $this->assertNotContains('2026-01-04', $dates); // 日
         $this->assertContains('2026-01-05', $dates);    // 月
     }
+
     public function test_onlyBusinessDays_with_config(): void
     {
         $config = (new DateBusiness())
@@ -78,6 +78,7 @@ class DateBusinessCommonDatePeriodTest extends TestCase
         $this->assertContains('2026-05-29', $dates);
         $this->assertCount(4, $dates);
     }
+
     public function test_onlyBusinessDays_with_instance_config(): void
     {
         $config = (new DateBusiness())
@@ -96,6 +97,7 @@ class DateBusinessCommonDatePeriodTest extends TestCase
         $this->assertNotContains('2026-05-27', $dates);
         $this->assertCount(4, $dates);
     }
+
     public function test_withoutBusinessDays_returns_holidays_and_weekends(): void
     {
         // 2026-05-25(月) 〜 2026-05-31(日)
@@ -116,6 +118,7 @@ class DateBusinessCommonDatePeriodTest extends TestCase
         $this->assertContains('2026-05-31', $dates); // 日
         $this->assertCount(2, $dates);
     }
+
     public function test_withoutBusinessDays_with_config(): void
     {
         $config = (new DateBusiness())
@@ -135,6 +138,7 @@ class DateBusinessCommonDatePeriodTest extends TestCase
         $this->assertContains('2026-05-31', $dates); // 日
         $this->assertCount(3, $dates);
     }
+
     public function test_BusinessCalendar_trait_on_DatePeriod(): void
     {
         $period = DatePeriod::create('2026-05-25', '1 day', '2026-05-31');
@@ -147,6 +151,7 @@ class DateBusinessCommonDatePeriodTest extends TestCase
         $period->setBusinessConfig(null);
         $this->assertNull($period->getBusinessConfig());
     }
+
     public function test_onlyBusinessDays_empty_period(): void
     {
         // 開始と終了が同じ日（土曜）
@@ -160,6 +165,7 @@ class DateBusinessCommonDatePeriodTest extends TestCase
 
         $this->assertCount(0, $dates);
     }
+
     public function test_withoutBusinessDays_with_instance_config(): void
     {
         $config = (new DateBusiness())
@@ -178,10 +184,12 @@ class DateBusinessCommonDatePeriodTest extends TestCase
         $this->assertContains('2026-05-27', $dates);
         $this->assertCount(1, $dates);
     }
+
     protected function setUp(): void
     {
         BusinessCalendar::resetAll();
     }
+
     protected function tearDown(): void
     {
         BusinessCalendar::resetAll();

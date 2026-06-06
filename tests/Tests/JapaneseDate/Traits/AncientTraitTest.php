@@ -40,12 +40,13 @@ use Tests\JapaneseDate\InvokeTrait;
  * @author      Suzunone<suzunone.eleven@gmail.com>
  * @link        https://github.com/suzunone/JapaneseDate
  * @since       8.4.0
- * @covers \JapaneseDate\Traits\Ancient
- * @covers \JapaneseDate\Traits\Ancient::historicalEras
  */
+#[CoversTrait(Ancient::class)]
+#[CoversMethod(Ancient::class, 'historicalEras')]
 class AncientTraitTest extends TestCase
 {
     use InvokeTrait;
+
     /**
      * DateTime::historicalEras() で通常時代の Era[] が返ること。
      */
@@ -59,9 +60,11 @@ class AncientTraitTest extends TestCase
         $this->assertContainsOnlyInstancesOf(Era::class, $result);
         $this->assertSame('大化', $result[0]->name);
     }
+
     // =========================================================================
     // メソッド呼び出しテスト
     // =========================================================================
+
     /**
      * DateTimeImmutable::historicalEras() で通常時代の Era[] が返ること。
      */
@@ -75,6 +78,7 @@ class AncientTraitTest extends TestCase
         $this->assertContainsOnlyInstancesOf(Era::class, $result);
         $this->assertSame('大化', $result[0]->name);
     }
+
     /**
      * 大化以前の日付で historicalEras() が空配列を返すこと。
      */
@@ -85,6 +89,7 @@ class AncientTraitTest extends TestCase
 
         $this->assertSame([], $result);
     }
+
     /**
      * 南北朝時代の日付で historicalEras() が北朝・南朝を含む複数 Era を返すこと。
      */
@@ -98,6 +103,7 @@ class AncientTraitTest extends TestCase
         $this->assertContains(DateTime::COURT_NORTH, $courts);
         $this->assertContains(DateTime::COURT_SOUTH, $courts);
     }
+
     /**
      * DateTimeImmutable で南北朝時代の日付を指定すると複数 Era が返ること。
      */
@@ -111,6 +117,7 @@ class AncientTraitTest extends TestCase
         $this->assertContains(DateTime::COURT_NORTH, $courts);
         $this->assertContains(DateTime::COURT_SOUTH, $courts);
     }
+
     /**
      * $date->historicalEras プロパティ経由で Era[] が返ること（DateTime）。
      */
@@ -124,9 +131,11 @@ class AncientTraitTest extends TestCase
         $this->assertContainsOnlyInstancesOf(Era::class, $result);
         $this->assertSame('大化', $result[0]->name);
     }
+
     // =========================================================================
     // マジックプロパティ経由アクセスのテスト
     // =========================================================================
+
     /**
      * $date->historicalEras プロパティ経由で Era[] が返ること（DateTimeImmutable）。
      */
@@ -140,6 +149,7 @@ class AncientTraitTest extends TestCase
         $this->assertContainsOnlyInstancesOf(Era::class, $result);
         $this->assertSame('大化', $result[0]->name);
     }
+
     /**
      * 大化以前の日付でプロパティ経由アクセスすると空配列が返ること。
      */
@@ -150,6 +160,7 @@ class AncientTraitTest extends TestCase
 
         $this->assertSame([], $result);
     }
+
     /**
      * 南北朝時代にプロパティ経由で北朝・南朝の両方が返ること。
      */
@@ -163,6 +174,7 @@ class AncientTraitTest extends TestCase
         $this->assertContains(DateTime::COURT_NORTH, $courts);
         $this->assertContains(DateTime::COURT_SOUTH, $courts);
     }
+
     /**
      * $date->historical_eras（スネークケース）で Era[] が返ること。
      */
@@ -176,9 +188,11 @@ class AncientTraitTest extends TestCase
         $this->assertContainsOnlyInstancesOf(Era::class, $result);
         $this->assertSame('大化', $result[0]->name);
     }
+
     // =========================================================================
     // スネークケース プロパティ経由アクセスのテスト
     // =========================================================================
+
     /**
      * $date->historical_eras（スネークケース）で大化以前は空配列が返ること。
      */
@@ -189,6 +203,7 @@ class AncientTraitTest extends TestCase
 
         $this->assertSame([], $result);
     }
+
     protected function tearDown(): void
     {
         HistoricalEraMap::clearCache();

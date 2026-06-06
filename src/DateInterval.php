@@ -22,6 +22,7 @@ namespace JapaneseDate;
 
 use Carbon\CarbonInterval;
 use InvalidArgumentException;
+use JapaneseDate\Components\Astronomy;
 use JapaneseDate\Components\BusinessCalendar;
 use JapaneseDate\Components\Moon;
 use JapaneseDate\Components\SimpleSolarTerm;
@@ -191,10 +192,11 @@ class DateInterval extends CarbonInterval
      * echo $result->format('Y-m-d');
      * ```
      *
-     * @param \JapaneseDate\DateTime $from  起算日
-     * @param int                    $n     加算する営業日数（1 以上の整数）
+     * @param \JapaneseDate\DateTime $from 起算日
+     * @param int $n 加算する営業日数（1 以上の整数）
      * @return \JapaneseDate\DateTime N 営業日後の日付
-     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     public static function addBusinessDaysToDate(DateTime $from, int $n): DateTime
     {
@@ -225,10 +227,11 @@ class DateInterval extends CarbonInterval
      * echo $result->format('Y-m-d');
      * ```
      *
-     * @param \JapaneseDate\DateTime $from  起算日
-     * @param int                    $n     減算する営業日数（1 以上の整数）
+     * @param \JapaneseDate\DateTime $from 起算日
+     * @param int $n 減算する営業日数（1 以上の整数）
      * @return \JapaneseDate\DateTime N 営業日前の日付
-     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     public static function subBusinessDaysToDate(DateTime $from, int $n): DateTime
     {
@@ -280,9 +283,10 @@ class DateInterval extends CarbonInterval
      * echo $interval->h . '時間後';
      * ```
      *
-     * @param \JapaneseDate\DateTime $from  カウントダウン基準日時
+     * @param \JapaneseDate\DateTime $from カウントダウン基準日時
      * @return static 次の祝日（当日 00:00:00）までの {@see DateInterval}
-     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     public static function untilNextHoliday(DateTime $from): static
     {
@@ -313,10 +317,11 @@ class DateInterval extends CarbonInterval
      * $interval = DateInterval::untilNextSixWeek(DateTime::now(), DateTime::SIX_WEEKDAY_BUTSUMETSU);
      * ```
      *
-     * @param \JapaneseDate\DateTime $from         カウントダウン基準日時
-     * @param int                    $sixWeekday   目的の六曜（{@see DateTime::SIX_WEEKDAY_TAIAN} など）
+     * @param \JapaneseDate\DateTime $from カウントダウン基準日時
+     * @param int $sixWeekday 目的の六曜（{@see DateTime::SIX_WEEKDAY_TAIAN} など）
      * @return static 指定六曜の翌到来日（当日 00:00:00）までの {@see DateInterval}
-     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     public static function untilNextSixWeek(DateTime $from, int $sixWeekday): static
     {
@@ -404,11 +409,11 @@ class DateInterval extends CarbonInterval
      * $interval = DateInterval::untilNextSolarTerm(DateTime::now(), 'geshi');
      * ```
      *
-     * @param \JapaneseDate\DateTime $from       カウントダウン基準日時
-     * @param string|null            $termMethod 節気メソッド名（省略時は最も近い節気を自動検索）
+     * @param \JapaneseDate\DateTime $from カウントダウン基準日時
+     * @param string|null $termMethod 節気メソッド名（省略時は最も近い節気を自動検索）
      * @return static 次の節気日（当日 00:00:00）までの {@see DateInterval}
-     * @throws \JapaneseDate\Exceptions\Exception
-     * @throws \JapaneseDate\Exceptions\SolarTermException
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     public static function untilNextSolarTerm(DateTime $from, ?string $termMethod = null): static
     {
@@ -432,11 +437,11 @@ class DateInterval extends CarbonInterval
      * echo $result->format('Y-m-d');
      * ```
      *
-     * @param \JapaneseDate\DateTime $from  起算日
-     * @param int                    $n     進める節気の数（1 以上の整数）
+     * @param \JapaneseDate\DateTime $from 起算日
+     * @param int $n 進める節気の数（1 以上の整数）
      * @return \JapaneseDate\DateTime N 節気後の日付
-     * @throws \JapaneseDate\Exceptions\Exception
-     * @throws \JapaneseDate\Exceptions\SolarTermException
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     public static function addSolarTermsToDate(DateTime $from, int $n): DateTime
     {
@@ -462,11 +467,11 @@ class DateInterval extends CarbonInterval
      * echo $result->format('Y-m-d');
      * ```
      *
-     * @param \JapaneseDate\DateTime $from  起算日
-     * @param int                    $n     遡る節気の数（1 以上の整数）
+     * @param \JapaneseDate\DateTime $from 起算日
+     * @param int $n 遡る節気の数（1 以上の整数）
      * @return \JapaneseDate\DateTime N 節気前の日付
-     * @throws \JapaneseDate\Exceptions\Exception
-     * @throws \JapaneseDate\Exceptions\SolarTermException
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     public static function subSolarTermsToDate(DateTime $from, int $n): DateTime
     {
@@ -542,14 +547,16 @@ class DateInterval extends CarbonInterval
      * echo $interval->days . '日後が次の新月です';
      * ```
      *
-     * @param \JapaneseDate\DateTime $from  カウントダウン基準日時
+     * @param \JapaneseDate\DateTime $from カウントダウン基準日時
      * @return static 次の新月日（当日 00:00:00）までの {@see DateInterval}
+     * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     public static function untilNextNewMoon(DateTime $from): static
     {
         $moon = new Moon();
-        $nextNewMoon = $moon->moonPhase(DateTime::factory($from), 0.0);
+        $nextNewMoon = $moon->moonPhase(DateTime::factory($from), 0.0)->setTimezone('Asia/Tokyo');
         $target = DateTime::factory($nextNewMoon)->startOfDay();
         $diff = $from->diff($target);
 
@@ -569,6 +576,7 @@ class DateInterval extends CarbonInterval
      * @param \JapaneseDate\DateTime $from 起算日
      * @param string|null $termMethod 節気メソッド名（省略時は全節気から検索）
      * @return \JapaneseDate\DateTime 次の節気日
+     * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     protected static function findNextSolarTermDate(DateTime $from, ?string $termMethod = null): DateTime
@@ -613,6 +621,7 @@ class DateInterval extends CarbonInterval
      * @param \JapaneseDate\DateTime $from 起算日
      * @param string|null $termMethod 節気メソッド名（省略時は全節気から検索）
      * @return \JapaneseDate\DateTime 直前の節気日
+     * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     protected static function findPrevSolarTermDate(DateTime $from, ?string $termMethod = null): DateTime
@@ -661,6 +670,10 @@ class DateInterval extends CarbonInterval
      */
     protected static function resolveSolarTerm(string $method, int $year): SolarTermDate
     {
+        if (Astronomy::solarAlgorithm() === Astronomy::SOLAR_VSOP87) {
+            return (new SolarTerm())->{$method}($year);
+        }
+
         try {
             return (new SimpleSolarTerm())->{$method}($year);
         } catch (Throwable) {
@@ -723,6 +736,7 @@ class DateInterval extends CarbonInterval
      * @param \DateTimeInterface $end 終了日
      * @param DateBusiness|null $config 判定に使用する設定（省略時はインスタンス設定）
      * @return int 営業日数（start以上end以下の営業日の数）
+     * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     public function countBusinessDaysBetween(\DateTimeInterface $start, \DateTimeInterface $end, ?DateBusiness $config = null): int

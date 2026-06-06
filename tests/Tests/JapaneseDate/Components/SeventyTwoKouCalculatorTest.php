@@ -18,6 +18,7 @@
 
 namespace Tests\JapaneseDate\Components;
 
+use JapaneseDate\Components\Astronomy;
 use JapaneseDate\Components\SeventyTwoKouCalculator;
 use JapaneseDate\DateTime;
 use JapaneseDate\DateTimeImmutable;
@@ -39,14 +40,16 @@ use Tests\JapaneseDate\InvokeTrait;
  * @author      Suzunone<suzunone.eleven@gmail.com>
  * @link        https://github.com/suzunone/JapaneseDate
  * @since       8.4.0
- * @covers \JapaneseDate\Components\SeventyTwoKouCalculator
  */
+#[CoversClass(SeventyTwoKouCalculator::class)]
 class SeventyTwoKouCalculatorTest extends TestCase
 {
     use InvokeTrait;
+
     // =========================================================================
     // ヘルパー
     // =========================================================================
+
     /**
      * @return array<string, array{0: string, 1: int}>
      */
@@ -63,9 +66,11 @@ class SeventyTwoKouCalculatorTest extends TestCase
             '大寒末候' => ['2026-01-30', 72],
         ];
     }
+
     // =========================================================================
     // factory() — シングルトン分岐のテスト
     // =========================================================================
+
     /**
      * @return array<string, array{0: int, 1: string, 2: string, 3: string}>
      */
@@ -80,6 +85,7 @@ class SeventyTwoKouCalculatorTest extends TestCase
             'kou=72' => [72, '鶏始めてとやにつく', 'にわとり はじめてとやにつく', '末候'],
         ];
     }
+
     /**
      * factory() を初回呼び出すと新しいインスタンスが生成されることを確認する。
      * （static::$instance === null の分岐）
@@ -94,9 +100,11 @@ class SeventyTwoKouCalculatorTest extends TestCase
 
         $this->resetSingleton();
     }
+
     // =========================================================================
     // getKouNumber() — public
     // =========================================================================
+
     /**
      * static::$instance を null にリセットして factory() の初期化パスを通れるようにする。
      * InvokeTrait の invokeSetProperty を使用してクラス名を渡す。
@@ -108,6 +116,7 @@ class SeventyTwoKouCalculatorTest extends TestCase
     {
         $this->invokeSetProperty(SeventyTwoKouCalculator::class, 'instance', null);
     }
+
     /**
      * factory() を2回呼び出すと同一インスタンスが返ることを確認する。
      * （static::$instance !== null の分岐）
@@ -123,56 +132,68 @@ class SeventyTwoKouCalculatorTest extends TestCase
 
         $this->resetSingleton();
     }
+
     /**
      * getKouNumber() が DateTime に対して正しい候番号を返すことを確認する。
-     * @dataProvider provideKouNumbers
      */
+    #[DataProvider('provideKouNumbers')]
     public function test_getKouNumber_with_DateTime(string $dateStr, int $expectedKou): void
     {
         $calc = SeventyTwoKouCalculator::factory();
         $dt = new DateTime($dateStr);
+
         $this->assertSame($expectedKou, $calc->getKouNumber($dt));
     }
+
     // =========================================================================
     // getKouText() / getKouReading() / getKouType() — public
     // =========================================================================
+
     /**
      * getKouNumber() が DateTimeImmutable に対しても正しい候番号を返すことを確認する。
-     * @dataProvider provideKouNumbers
      */
+    #[DataProvider('provideKouNumbers')]
     public function test_getKouNumber_with_DateTimeImmutable(string $dateStr, int $expectedKou): void
     {
         $calc = SeventyTwoKouCalculator::factory();
         $dt = new DateTimeImmutable($dateStr);
+
         $this->assertSame($expectedKou, $calc->getKouNumber($dt));
     }
+
     /**
      * getKouText() が正しい名称を返すことを確認する。
-     * @dataProvider provideKouAttributes
      */
+    #[DataProvider('provideKouAttributes')]
     public function test_getKouText(int $kouNumber, string $expectedText, string $_, string $__): void
     {
         $calc = SeventyTwoKouCalculator::factory();
+
         $this->assertSame($expectedText, $calc->getKouText($kouNumber));
     }
+
     /**
      * getKouReading() が正しい読みを返すことを確認する。
-     * @dataProvider provideKouAttributes
      */
+    #[DataProvider('provideKouAttributes')]
     public function test_getKouReading(int $kouNumber, string $_, string $expectedReading, string $__): void
     {
         $calc = SeventyTwoKouCalculator::factory();
+
         $this->assertSame($expectedReading, $calc->getKouReading($kouNumber));
     }
+
     /**
      * getKouType() が正しい候種別を返すことを確認する。
-     * @dataProvider provideKouAttributes
      */
+    #[DataProvider('provideKouAttributes')]
     public function test_getKouType(int $kouNumber, string $_, string $__, string $expectedType): void
     {
         $calc = SeventyTwoKouCalculator::factory();
+
         $this->assertSame($expectedType, $calc->getKouType($kouNumber));
     }
+
     /**
      * getKouText() / getKouReading() に無効な候番号（0 や 73）を渡すと空文字列が返ることを確認する。
      */
@@ -185,9 +206,11 @@ class SeventyTwoKouCalculatorTest extends TestCase
         $this->assertSame('', $calc->getKouReading(0));
         $this->assertSame('', $calc->getKouReading(73));
     }
+
     // =========================================================================
     // getNextKouStartTimestamp() — public: kouType < 2 と kouType == 2 の両分岐
     // =========================================================================
+
     /**
      * 初候（kouType=0）から次候開始タイムスタンプを取得できることを確認する。
      */
@@ -199,8 +222,9 @@ class SeventyTwoKouCalculatorTest extends TestCase
         $ts = $calc->getNextKouStartTimestamp($dt);
         $date = date('Y-m-d', $ts);
 
-        $this->assertSame('2025-02-09', $date, '次候開始日は2月9日');
+        $this->assertSame('2025-02-08', $date, '次候開始日は2月8日');
     }
+
     /**
      * 次候（kouType=1）から末候開始タイムスタンプを取得できることを確認する。
      */
@@ -214,6 +238,7 @@ class SeventyTwoKouCalculatorTest extends TestCase
 
         $this->assertSame(3, $kou, '末候に移動する');
     }
+
     /**
      * 末候（kouType=2）から次節気の初候開始タイムスタンプを取得できることを確認する。
      */
@@ -227,9 +252,11 @@ class SeventyTwoKouCalculatorTest extends TestCase
 
         $this->assertSame(4, $kou, '次節気（雨水）の初候へ移動する');
     }
+
     // =========================================================================
     // getPreviousKouStartTimestamp() — public: kouType > 0 と kouType == 0 の両分岐
     // =========================================================================
+
     /**
      * 次候（kouType=1）から初候開始タイムスタンプを取得できることを確認する。
      */
@@ -241,8 +268,9 @@ class SeventyTwoKouCalculatorTest extends TestCase
         $ts = $calc->getPreviousKouStartTimestamp($dt);
         $date = date('Y-m-d', $ts);
 
-        $this->assertSame('2025-02-04', $date, '前候（初候）開始日は2月4日');
+        $this->assertSame('2025-02-03', $date, '前候（初候）開始日は2月3日');
     }
+
     /**
      * 初候（kouType=0）から前節気の末候開始タイムスタンプを取得できることを確認する。
      */
@@ -256,9 +284,11 @@ class SeventyTwoKouCalculatorTest extends TestCase
 
         $this->assertSame(72, $kou, '前節気（大寒）の末候へ移動する');
     }
+
     // =========================================================================
     // findKouIndexAndType() — public: 3つの分岐（初候・次候・末候）
     // =========================================================================
+
     /**
      * 節気開始日（初候）の findKouIndexAndType が kouType=0 を返すことを確認する。
      */
@@ -272,6 +302,7 @@ class SeventyTwoKouCalculatorTest extends TestCase
         $this->assertSame(0, $kouIndex, '立春は kouIndex=0');
         $this->assertSame(0, $kouType, '節気初日は初候');
     }
+
     /**
      * 次候期間内の日付で findKouIndexAndType が kouType=1 を返すことを確認する。
      */
@@ -284,6 +315,7 @@ class SeventyTwoKouCalculatorTest extends TestCase
 
         $this->assertSame(1, $kouType, '次候期間内は kouType=1');
     }
+
     /**
      * 末候期間内の日付で findKouIndexAndType が kouType=2 を返すことを確認する。
      */
@@ -296,9 +328,11 @@ class SeventyTwoKouCalculatorTest extends TestCase
 
         $this->assertSame(2, $kouType, '末候期間内は kouType=2');
     }
+
     // =========================================================================
     // private メソッドのテスト（InvokeTrait 使用）
     // =========================================================================
+
     /**
      * normalizeDayTs() が指定年月日を 0:00:00 の Unix タイムスタンプに変換することを確認する。
      */
@@ -310,6 +344,7 @@ class SeventyTwoKouCalculatorTest extends TestCase
         $this->assertSame('2025-02-04', date('Y-m-d', $ts));
         $this->assertSame('00:00:00', date('H:i:s', $ts));
     }
+
     /**
      * calcKouBoundaries() が日単位の境界タイムスタンプを正しく計算することを確認する。
      * 15日間の期間の場合: 初候=day0, 次候=day5, 末候=day10。
@@ -326,6 +361,7 @@ class SeventyTwoKouCalculatorTest extends TestCase
         $this->assertSame('2025-02-09', date('Y-m-d', $b1), '次候は5日後');
         $this->assertSame('2025-02-14', date('Y-m-d', $b2), '末候は10日後');
     }
+
     /**
      * collectSortedTerms() が72エントリ×3年分(216)のタイムスタンプ昇順リストを返すことを確認する。
      */
@@ -347,6 +383,7 @@ class SeventyTwoKouCalculatorTest extends TestCase
             $prev = $term['ts'];
         }
     }
+
     /**
      * getSolarTermTimestamp() が同じ引数で2回目以降はキャッシュを返すことを確認する。
      */
@@ -358,8 +395,9 @@ class SeventyTwoKouCalculatorTest extends TestCase
         $ts2 = $this->invokeExecuteMethod($calc, 'getSolarTermTimestamp', [DateTime::SOLAR_TERM_RISSYUN, 2025]);
 
         $this->assertSame($ts1, $ts2, '2回目はキャッシュから返る');
-        $this->assertSame('2025-02-04', date('Y-m-d', $ts1), '立春2025は2月4日');
+        $this->assertSame('2025-02-03', date('Y-m-d', $ts1), '立春2025は2月3日');
     }
+
     /**
      * fetchSolarTermDate() が SimpleSolarTerm で正常に節気日付を取得できることを確認する。
      * （SimpleSolarTerm 成功パス）
@@ -372,8 +410,9 @@ class SeventyTwoKouCalculatorTest extends TestCase
 
         $this->assertSame(2025, $stDate->year);
         $this->assertSame(2, $stDate->month);
-        $this->assertSame(4, $stDate->day);
+        $this->assertSame(3, $stDate->day);
     }
+
     /**
      * fetchSolarTermDate() が SimpleSolarTerm 対象外の年（1500年）で
      * SolarTerm（天文計算）へフォールバックすることを確認する。
@@ -390,6 +429,31 @@ class SeventyTwoKouCalculatorTest extends TestCase
         $this->assertSame(2, $stDate->month, '月が正しい');
         $this->assertGreaterThanOrEqual(1, $stDate->day, '日が正の値');
     }
+
+    /**
+     * VSOP87 モードでは SimpleSolarTerm を使わず SolarTerm 経由で節気日付を取得することを確認する。
+     */
+    public function test_fetchSolarTermDate_uses_SolarTerm_when_vsop87_enabled(): void
+    {
+        try {
+            Astronomy::useSolarAlgorithm(Astronomy::SOLAR_VSOP87);
+
+            $stDate = $this->invokeExecuteMethod(
+                SeventyTwoKouCalculator::factory(),
+                'fetchSolarTermDate',
+                [DateTime::SOLAR_TERM_RISSYUN, 2025]
+            );
+
+            $this->assertSame(2025, $stDate->year);
+            $this->assertSame(DateTime::SOLAR_TERM_RISSYUN, $stDate->solar_term);
+            $this->assertSame(2, $stDate->month);
+            $this->assertSame(3, $stDate->day);
+        } finally {
+            Astronomy::useSolarAlgorithm(Astronomy::SOLAR_LEGACY);
+            Astronomy::useMoonAlgorithm(Astronomy::MOON_LEGACY);
+        }
+    }
+
     /**
      * findPreviousSolarTermInfo() が前の節気の情報を正しく返すことを確認する。
      * 立春（kouIndex=0）の前は大寒（kouIndex=23）。
