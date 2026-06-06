@@ -82,7 +82,7 @@ class DateTimeTest extends TestCase
      */
     public function test_create(): void
     {
-        $date1 = DateTime::create(2018, 1, 1, 0, 0, 0);
+        $date1 = DateTime::create(2018);
 
         $this->assertInstanceOf(DateTime::class, $date1);
     }

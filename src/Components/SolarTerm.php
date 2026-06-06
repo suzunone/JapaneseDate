@@ -10,11 +10,36 @@ use JapaneseDate\Elements\SolarTermDate;
 use JapaneseDate\Exceptions\Exception;
 use JapaneseDate\Exceptions\SolarTermException;
 
+/**
+ * 太陽黄経から二十四節気の日付を探索する天文計算版コンポーネント。
+ *
+ * 指定年・指定節気について、対象となる月の日付を順に調べ、
+ * 太陽黄経が該当する節気境界に達する日を {@see \JapaneseDate\Elements\SolarTermDate}
+ * として返します。実際の黄経計算は {@see \JapaneseDate\Components\Astronomy} に委譲します。
+ *
+ * **計算の流れ:**
+ * - 節気定数から候補月を決定
+ * - 候補月の日付を走査して {@see findSolarTerm()} で節気を判定
+ * - 最初に一致した日付を二十四節気日として返却
+ *
+ * 対応表ではなく天文計算に基づくため、将来の拡張やアルゴリズム切り替えに対応しやすい一方、
+ * 計算結果は選択中の天文計算アルゴリズム（legacy / VSOP87）に依存します。
+ *
+ * @category    DateTime
+ * @package     JapaneseDate
+ * @subpackage  Component
+ * @author      Suzunone <suzunone.eleven@gmail.com>
+ * @copyright   Suzunone
+ * @license     BSD-2
+ * @link        https://github.com/suzunone/JapaneseDate
+ * @see         https://github.com/suzunone/JapaneseDate
+ * @since       2026-05-29
+ */
 class SolarTerm
 {
     use GetSolarTerm;
 
-    private const SOLAR_TERM_MONTH = [
+    protected const SOLAR_TERM_MONTH = [
         3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12, 1, 1, 2, 2, 3,
     ];
 
@@ -22,13 +47,13 @@ class SolarTerm
      * The legacy solar longitude formula runs about six hours late against NAOJ 2000
      * Reki Yoko values within the old table's practical range.
      */
-    private const DAY_BOUNDARY_HOUR = 6;
+    protected const DAY_BOUNDARY_HOUR = 6;
 
-    private const LEGACY_TABLE_START_YEAR = 1600;
+    protected const LEGACY_TABLE_START_YEAR = 1600;
 
-    private const LEGACY_TABLE_END_YEAR = 2399;
+    protected const LEGACY_TABLE_END_YEAR = 2399;
 
-    public function __construct(private readonly ?Astronomy $astronomy = null)
+    public function __construct(protected readonly ?Astronomy $astronomy = null)
     {
     }
 
@@ -300,8 +325,12 @@ class SolarTerm
         return ($tmp_1 !== $tmp_2 && array_key_exists($tmp_2, JapaneseDate::SOLAR_TERM)) ? $tmp_2 : false;
     }
 
-    private function dayBoundaryHour(int $year): int
+    protected function dayBoundaryHour(int $year): int
     {
+        if (Astronomy::solarAlgorithm() === Astronomy::SOLAR_VSOP87) {
+            return 0;
+        }
+
         if ($year >= self::LEGACY_TABLE_START_YEAR && $year <= self::LEGACY_TABLE_END_YEAR) {
             return self::DAY_BOUNDARY_HOUR;
         }
@@ -310,9 +339,13 @@ class SolarTerm
     }
 
     /**
-     * @throws \JapaneseDate\Exceptions\Exception
+     * @param \JapaneseDate\Components\Astronomy $astronomy
+     * @param \DateTimeImmutable $dateTime
+     * @return float
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
-    private function longitudeSunAt(Astronomy $astronomy, DateTimeImmutable $dateTime): float
+    protected function longitudeSunAt(Astronomy $astronomy, DateTimeImmutable $dateTime): float
     {
         return $astronomy->longitudeSun(
             (int) $dateTime->format('Y'),

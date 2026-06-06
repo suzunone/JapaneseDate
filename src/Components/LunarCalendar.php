@@ -32,7 +32,20 @@ use JapaneseDate\Elements\LunarDate;
 use JapaneseDate\Exceptions\ErrorException;
 
 /**
- * Class LunarCalendar
+ * グレゴリオ暦の日付から旧暦日付と二十四節気情報を算出するコンポーネント。
+ *
+ * 朔（新月）と中気の情報をもとに、指定日が属する旧暦年・月・日・閏月を求めます。
+ * 年別の事前計算データが存在する場合は {@see \JapaneseDate\Components\Config} から取得し、
+ * 不足する場合は天文計算コンポーネントを利用して必要な暦データを組み立てます。
+ *
+ * **算出する主な情報:**
+ * - 旧暦年、旧暦月、旧暦日
+ * - 平月または閏月の判定
+ * - 対象日に該当する二十四節気
+ *
+ * 天文計算は現在選択されている {@see \JapaneseDate\Components\Astronomy} のアルゴリズムに
+ * 依存します。`legacy` と `vsop87` の切り替えに合わせて、ファクトリーも
+ * アルゴリズム別のインスタンスを返します。
  *
  * @category    DateTime
  * @package     JapaneseDate
@@ -71,13 +84,14 @@ class LunarCalendar
      */
     public static function factory(): self
     {
-        static $instance;
+        static $instances = [];
 
-        if (!$instance) {
-            $instance = new static();
+        $algorithm = Astronomy::solarAlgorithm() . ':' . Astronomy::moonAlgorithm();
+        if (!isset($instances[$algorithm])) {
+            $instances[$algorithm] = new static(Astronomy::factory());
         }
 
-        return $instance;
+        return $instances[$algorithm];
     }
 
     /**
@@ -86,6 +100,7 @@ class LunarCalendar
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JsonException
+     * @throws \DateInvalidTimeZoneException
      */
     public function getLunarDate(DateTime|DateTimeImmutable $DateTime): LunarDate
     {
@@ -110,8 +125,10 @@ class LunarCalendar
      * @param int $month 月
      * @param int $day 日
      * @return    array [旧暦年, 平月／閏月 flag .... 平月:0 閏月:1, 旧暦月, 旧暦日]
+     * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     protected function getLunarCalendarArray(int $year, int $month, int $day): array
     {
@@ -145,8 +162,10 @@ class LunarCalendar
     /**
      * @param int $year
      * @return array
+     * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     protected function getLunarCalendar(int $year): array
     {
@@ -155,7 +174,7 @@ class LunarCalendar
         }
 
         $this->lunar_calendar[$year] = Cache::forever(
-            __METHOD__ . ':' . $year,
+            __METHOD__ . ':' . $this->astronomy()->algorithmName() . ':' . $year,
             function () use ($year) {
                 return $this->makeLunarCalendar($year);
             }
@@ -169,8 +188,10 @@ class LunarCalendar
      *
      * @param int $year 西暦年
      * @return array 朔のテーブル
+     * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     protected function makeLunarCalendar(int $year): array
     {
@@ -193,24 +214,34 @@ class LunarCalendar
         $moon = new Moon();
         $end_timestamp = $EndDate->timestamp;
         while ($end_timestamp > $Date->timestamp) {
-            $age1 = $this->moonAge($Date->year, $Date->month, $Date->day, 0, 0, 0);
-            $age2 = $this->moonAge($Date->year, $Date->month, $Date->day, 23, 59, 59);
+            if (Astronomy::moonAlgorithm() === Astronomy::MOON_ELP2000) {
+                $Date = $moon->moonPhase($Date, 0.0)->setTimezone('Asia/Tokyo');
+                if ($Date->timestamp >= $end_timestamp) {
+                    break;
+                }
 
-            if ($age2 > $age1) {
-                $Date = $Date->addDay();
-
-                continue;
-            }
-
-            // 月齢がギリギリの場合、新月時間でキャリブレーションする
-            if ($Date->year >= 1900 && $age1 > 20 && $age2 < 0.17) {
-                $Date = $moon->moonPhase($Date->subDays(2), 0.0);
                 $age1 = $this->moonAge($Date->year, $Date->month, $Date->day, 0, 0, 0);
                 $age2 = $this->moonAge($Date->year, $Date->month, $Date->day, 23, 59, 59);
-            } elseif ($Date->year < 1900 && $age1 > 20 && $age2 < 0.1) {
-                $Date = $Date->addDay();
+            } else {
                 $age1 = $this->moonAge($Date->year, $Date->month, $Date->day, 0, 0, 0);
                 $age2 = $this->moonAge($Date->year, $Date->month, $Date->day, 23, 59, 59);
+
+                if ($age2 > $age1) {
+                    $Date = $Date->addDay();
+
+                    continue;
+                }
+
+                // 月齢がギリギリの場合、新月時間でキャリブレーションする
+                if ($Date->year >= 1900 && $age1 > 20 && $age2 < 0.17) {
+                    $Date = $moon->moonPhase($Date->subDays(2), 0.0);
+                    $age1 = $this->moonAge($Date->year, $Date->month, $Date->day, 0, 0, 0);
+                    $age2 = $this->moonAge($Date->year, $Date->month, $Date->day, 23, 59, 59);
+                } elseif ($Date->year < 1900 && $age1 > 20 && $age2 < 0.1) {
+                    $Date = $Date->addDay();
+                    $age1 = $this->moonAge($Date->year, $Date->month, $Date->day, 0, 0, 0);
+                    $age2 = $this->moonAge($Date->year, $Date->month, $Date->day, 23, 59, 59);
+                }
             }
 
             $lunar_calendar[$counter]['year'] = $Date->year;
@@ -287,7 +318,6 @@ class LunarCalendar
 
         return $lunar_calendar;
     }
-
     /**
      * 月齢を求める（視黄経）
      *
@@ -298,7 +328,8 @@ class LunarCalendar
      * @param float $min
      * @param float $sec
      * @return    float 月齢（視黄経）
-     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     public function moonAge(int $year, int $month, int $day, float $hour, float $min, float $sec): float
     {
@@ -315,6 +346,7 @@ class LunarCalendar
      * @param float $min
      * @param float $sec
      * @return float 月の位相角（0°=新月, 90°=上弦, 180°=満月, 270°=下弦）
+     * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\Exception
      */
     public function moonPhaseAngle(int $year, int $month, int $day, float $hour, float $min, float $sec): float
@@ -323,7 +355,9 @@ class LunarCalendar
     }
 
     /**
-     * 月相を求める（8分類: 0=新月〜7=有明）
+     * 月相を求める。
+     *
+     * 主要な月相点から外れている場合は null を返します。
      *
      * @param int $year グレゴリオ暦による年月日
      * @param int $month
@@ -331,12 +365,44 @@ class LunarCalendar
      * @param float $hour 時分秒（世界時）
      * @param float $min
      * @param float $sec
-     * @return int 月相 (0〜7)
+     * @return int|null 月相 (0〜7)、主要な月相点以外は null
+     * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\Exception
      */
-    public function moonPhase(int $year, int $month, int $day, float $hour, float $min, float $sec): int
+    public function moonPhase(int $year, int $month, int $day, float $hour, float $min, float $sec): ?int
     {
-        return $this->astronomy()->moonPhase($year, $month, $day, $hour, $min, $sec);
+        $phase = $this->astronomy()->moonPhase($year, $month, $day, $hour, $min, $sec);
+        $date = Carbon::create($year, $month, $day, (int) $hour, (int) $min, (int) $sec, 'Asia/Tokyo');
+        if (!$date instanceof Carbon) {
+            // @codeCoverageIgnoreStart
+            return null;
+            // @codeCoverageIgnoreEnd
+        }
+
+        $phase_time = $phase / 8.0;
+        $solar_algorithm = Astronomy::solarAlgorithm();
+        $moon_algorithm = Astronomy::moonAlgorithm();
+
+        try {
+            Astronomy::useSolarAlgorithm(Astronomy::SOLAR_VSOP87);
+            Astronomy::useMoonAlgorithm(Astronomy::MOON_ELP2000);
+
+            $moon = new Moon();
+            $next = $moon->moonPhase($date, $phase_time);
+            $previous = $moon->moonPhase($date, $phase_time, true);
+        } finally {
+            Astronomy::useSolarAlgorithm($solar_algorithm);
+            Astronomy::useMoonAlgorithm($moon_algorithm);
+        }
+
+        $nearest_phase = abs($next->timestamp - $date->timestamp) < abs($previous->timestamp - $date->timestamp)
+            ? $next
+            : $previous;
+        if ($nearest_phase->copy()->setTimezone('Asia/Tokyo')->format('Y-m-d') !== $date->format('Y-m-d')) {
+            return null;
+        }
+
+        return $phase;
     }
 
     /**
