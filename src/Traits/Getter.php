@@ -65,7 +65,7 @@ use JapaneseDate\DateTimeImmutable;
  * @property-read bool $is_leap_month その日が閏月であるかどうかを示すブール値。値は、 閏月である場合は true、そうでない場合は false になります。
  * @property-read float $moon_age その日における月齢を取得する。値は、 月齢を表す浮動小数点数、または 不明な場合は false になります。
  * @property-read float $moon_phase_angle その日における月の位相角を取得する。値は 0°(新月)〜359.9° の浮動小数点数です。
- * @property-read int $moon_phase その日における月相を取得する。値は 0(新月)〜7(有明) の整数です。
+ * @property-read int|null $moon_phase その日における月相を取得する。値は 0(新月)〜7(有明) の整数、または主要な月相点以外の場合は null です。
  * @property-read string $moon_phase_text その日における月相名を日本語で取得する。値は「新月」「三日月」「上弦」「十三夜」「満月」「十六夜」「下弦」「有明」のいずれかです。
  * @property-read DateTime|DateTimeImmutable $syunbun その年の春分の日の日時を取得する。値は、 春分の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。
  * @property-read DateTime|DateTimeImmutable $next_syunbun 次の春分の日の日時を取得する。値は、 次の春分の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が春分の日の場合は翌年の春分の日が返されます。
@@ -170,7 +170,7 @@ use JapaneseDate\DateTimeImmutable;
  * @property-read bool $isLeapMonth その日が閏月であるかどうかを示すブール値。値は、 閏月である場合は true、そうでない場合は false になります。
  * @property-read float $moonAge その日における月齢を取得する。値は、 月齢を表す浮動小数点数、または 不明な場合は false になります。
  * @property-read float $moonPhaseAngle その日における月の位相角を取得する。値は 0°(新月)〜359.9° の浮動小数点数です。
- * @property-read int $moonPhase その日における月相を取得する。値は 0(新月)〜7(有明) の整数です。
+ * @property-read int|null $moonPhase その日における月相を取得する。値は 0(新月)〜7(有明) の整数、または主要な月相点以外の場合は null です。
  * @property-read string $moonPhaseText その日における月相名を日本語で取得する。値は「新月」「三日月」「上弦」「十三夜」「満月」「十六夜」「下弦」「有明」のいずれかです。
  * @property-read int $seventy_two_kou その日が属する七十二候の番号を取得する（スネークケース）。値は 1（立春初候）〜 72（大寒末候）の整数。
  * @property-read int $seventyTwoKou その日が属する七十二候の番号を取得する。値は 1（立春初候）〜 72（大寒末候）の整数。
@@ -252,11 +252,13 @@ trait Getter
      *
      * @link https://carbon.nesbot.com/docs/#api-getters
      * @param string $name
-     * @return mixed
+     * @return \DateTimeZone|int|string
+     * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      * @throws \JsonException
-     * @noinspection PhpMultipleClassDeclarationsInspection
      */
     public function __get($name)
     {
@@ -575,4 +577,53 @@ trait Getter
         // @codeCoverageIgnoreStart
     }
     // @codeCoverageIgnoreEnd
+
+    /**
+     * @inheritDoc
+     * @return array
+     */
+    public function toArray(): array
+    {
+        $moon_phase_angle = $this->moon_phase_angle;
+        $moon_phase = $this->moon_phase;
+        $moon_phase_text = $this->moon_phase_text;
+        $moon_age = $this->moon_age;
+
+        return array_merge(parent::toArray(), [
+            'solar_seasonal_festival' => $this->solar_seasonal_festival,
+            'solar_seasonal_festival_name' => $this->solar_seasonal_festival_name,
+            'solar_seasonal_festival_alias' => $this->solar_seasonal_festival_alias,
+            'lunar_seasonal_festival' => $this->lunar_seasonal_festival,
+            'lunar_seasonal_festival_name' => $this->lunar_seasonal_festival_name,
+            'lunar_seasonal_festival_alias' => $this->lunar_seasonal_festival_alias,
+            'misc_seasonal_node' => $this->misc_seasonal_node,
+            'misc_seasonal_node_text' => $this->misc_seasonal_node_text,
+            'solar_term' => $this->solar_term,
+            'solar_term_text' => $this->solar_term_text,
+            'is_solar_term' => $this->is_solar_term,
+            'era_name_text' => $this->era_name_text,
+            'era_name' => $this->era_name,
+            'era_year' => $this->era_year,
+            'oriental_zodiac_text' => $this->oriental_zodiac_text,
+            'oriental_zodiac' => $this->oriental_zodiac,
+            'heavenly_stem_text' => $this->heavenly_stem_text,
+            'heavenly_stem' => $this->heavenly_stem,
+            'six_weekday_text' => $this->six_weekday_text,
+            'six_weekday' => $this->six_weekday,
+            'weekday_text' => $this->weekday_text,
+            'month_text' => $this->month_text,
+            'holiday_text' => $this->holiday_text,
+            'holiday' => $this->holiday,
+            'is_holiday' => $this->is_holiday,
+            'lunar_month_text' => $this->lunar_month_text,
+            'lunar_month' => $this->lunar_month,
+            'lunar_year' => $this->lunar_year,
+            'lunar_day' => $this->lunar_day,
+            'is_leap_month' => $this->is_leap_month,
+            'moon_age' => $moon_age,
+            'moon_phase_angle' => $moon_phase_angle,
+            'moon_phase' => $moon_phase,
+            'moon_phase_text' => $moon_phase_text,
+        ]);
+    }
 }

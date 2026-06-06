@@ -24,6 +24,7 @@
 
 namespace JapaneseDate\Traits;
 
+use DateTimeImmutable;
 use DateTimeInterface;
 use DateTimeZone;
 use Exception;
@@ -122,6 +123,35 @@ trait Factory
     }
 
     /**
+     * フォーマット指定文字列から日時インスタンスを生成します。
+     *
+     * Carbon の `createFromFormat()` はコンストラクタを経由しないため、
+     * JapaneseDate 固有のコンポーネントが未初期化のまま返されることがあります。
+     * このオーバーライドにより、返却されたインスタンスのコンポーネントを確実に初期化します。
+     *
+     * @param string                            $format   日時フォーマット文字列
+     * @param string                            $time     パース対象の日時文字列
+     * @param \DateTimeZone|string|int|null     $timezone タイムゾーン（省略可）
+     * @return static|null
+     */
+    public static function createFromFormat($format, $time, $timezone = null): ?self
+    {
+        $instance = parent::createFromFormat($format, $time, $timezone);
+
+        if ($instance !== null && !isset($instance->SeasonalFestival)) {
+            $instance->jisEra = JisEra::factory();
+            $instance->JapaneseDate = JapaneseDate::factory();
+            $instance->LunarCalendar = LunarCalendar::factory();
+            $instance->SexagenaryCycle = SexagenaryCycle::factory();
+            $instance->MiscSeasonalNode = MiscSeasonalNode::factory();
+            $instance->SeasonalFestival = SeasonalFestival::factory();
+            $instance->SeventyTwoKouCalculator = SeventyTwoKouCalculator::factory();
+        }
+
+        return $instance;
+    }
+
+    /**
      * 多様な型の引数から {@see \JapaneseDate\DateTime} / {@see \JapaneseDate\DateTimeImmutable}
      * インスタンスを生成するユニバーサルファクトリメソッドです。
      *
@@ -189,8 +219,8 @@ trait Factory
      * @param \DateTimeZone|null $time_zone
      *   使用するタイムゾーン。省略した場合の挙動は引数の型によって異なります（型別動作の表を参照）。
      * @return static 指定した日時を表す新しいインスタンス
-     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
-     *   日時文字列の解析に失敗した場合にスローされます。
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException 日時文字列の解析に失敗した場合にスローされます。
      */
     public static function factory($date_time = null, $time_zone = null)
     {
@@ -248,12 +278,14 @@ trait Factory
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      * @throws \Exception
      * @throws \DateInvalidTimeZoneException
+     * @param float $timestamp
+     * @param \DateTimeZone|null $tz
      * @return static
      */
-    private static function newFromTimestamp(float $timestamp, ?DateTimeZone $tz)
+    protected static function newFromTimestamp($timestamp, $tz)
     {
         $displayTz = $tz ?? new DateTimeZone(date_default_timezone_get());
-        $native = (new \DateTimeImmutable('@' . (int) $timestamp))->setTimezone($displayTz);
+        $native = (new DateTimeImmutable('@' . (int) $timestamp))->setTimezone($displayTz);
         $micro = max(0, (int) round(($timestamp - (int) $timestamp) * 1000000));
 
         return new static($native->format('Y-m-d H:i:s') . sprintf('.%06d', $micro), $displayTz);

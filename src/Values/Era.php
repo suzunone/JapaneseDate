@@ -82,6 +82,7 @@ class Era
      * @param string $end 元号の終了日を表す日付文字列。
      * @param \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable $currentDate 作成元の日付オブジェクト。
      *
+     * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     public function __construct(string $name, string $kana, string $court, string $start, string $end, $currentDate)

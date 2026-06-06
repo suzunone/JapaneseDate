@@ -1,7 +1,9 @@
 <?php
 
 /**
- * OneTimeCashTrait.php
+ * OneTimeCacheTrait.php
+ *
+ * オブジェクト寿命内で同一キーの計算結果を再利用するトレイト。
  *
  * @category    DateTime
  * @package     JapaneseDate
@@ -19,7 +21,16 @@ namespace JapaneseDate\Components\Traits;
 use Closure;
 
 /**
- * Class OneTimeCacheTrait
+ * インスタンス内で同一キーの計算結果を一度だけ保持する簡易キャッシュトレイト。
+ *
+ * 天文計算や暦計算のように、1 回の処理中で同じ入力が何度も評価される箇所に組み込まれます。
+ * {@see oneTimeCache()} にキーとクロージャを渡すと、初回のみクロージャを実行し、
+ * 以降は同じキーに保存された値を返します。
+ *
+ * **利用目的:**
+ * - メソッド単位の重複計算を避ける
+ * - 外部ストレージを使わず、オブジェクト寿命内だけ結果を保持する
+ * - キャッシュ対象を呼び出し側のキー設計で柔軟に制御する
  *
  * @category    DateTime
  * @package     JapaneseDate

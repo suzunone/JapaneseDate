@@ -56,7 +56,7 @@ class SeventyTwoKouCalculator
      *
      * @var int[]
      */
-    private const KOU_SOLAR_TERM_ORDER = [
+    protected const KOU_SOLAR_TERM_ORDER = [
         DateTime::SOLAR_TERM_RISSYUN,    // 0:  立春  → 候 1〜3
         DateTime::SOLAR_TERM_USUI,       // 1:  雨水  → 候 4〜6
         DateTime::SOLAR_TERM_KEICHITSU,  // 2:  啓蟄  → 候 7〜9
@@ -90,7 +90,7 @@ class SeventyTwoKouCalculator
      *
      * @var array<int, array{0: string, 1: string}>
      */
-    private const KOU_DATA = [
+    protected const KOU_DATA = [
         1 => ['東風凍を解く',       'はるかぜ こおりをとく'],
         2 => ['うぐいす鳴く',       'うぐいす なく'],
         3 => ['魚氷を上る',         'うお こおりをいずる'],
@@ -170,7 +170,7 @@ class SeventyTwoKouCalculator
      *
      * @var string[]
      */
-    private const KOU_TYPE_TEXT = ['初候', '次候', '末候'];
+    protected const KOU_TYPE_TEXT = ['初候', '次候', '末候'];
 
     /**
      * SimpleSolarTerm / SolarTerm で取得した節気日付のキャッシュ。
@@ -178,14 +178,14 @@ class SeventyTwoKouCalculator
      *
      * @var array<string, int>
      */
-    private $solarTermCache = [];
+    protected $solarTermCache = [];
 
     /**
      * SeventyTwoKouCalculator のシングルトンインスタンス。
      *
      * @var self|null
      */
-    private static $instance;
+    protected static $instance;
 
     /**
      * シングルトンファクトリメソッド。
@@ -360,7 +360,7 @@ class SeventyTwoKouCalculator
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    private function findPreviousSolarTermInfo($date, int $kouIndex): array
+    protected function findPreviousSolarTermInfo($date, $kouIndex): array
     {
         $terms = $this->collectSortedTerms($date->year);
 
@@ -391,7 +391,7 @@ class SeventyTwoKouCalculator
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    private function collectSortedTerms(int $year): array
+    protected function collectSortedTerms($year): array
     {
         $terms = [];
         foreach ([$year - 1, $year, $year + 1] as $y) {
@@ -418,7 +418,7 @@ class SeventyTwoKouCalculator
      * @param int $endTs   次節気開始日（0時0分0秒）の Unix タイムスタンプ
      * @return array{0: int, 1: int, 2: int} [初候start, 次候start, 末候start]
      */
-    private function calcKouBoundaries(int $startTs, int $endTs): array
+    protected function calcKouBoundaries($startTs, $endTs): array
     {
         $totalDays = intdiv($endTs - $startTs, 86400);
 
@@ -439,7 +439,7 @@ class SeventyTwoKouCalculator
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    private function getSolarTermTimestamp(int $solarTermConst, int $year): int
+    protected function getSolarTermTimestamp($solarTermConst, $year): int
     {
         $cacheKey = $year . '_' . $solarTermConst;
         if (isset($this->solarTermCache[$cacheKey])) {
@@ -463,8 +463,12 @@ class SeventyTwoKouCalculator
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    private function fetchSolarTermDate(int $solarTermConst, int $year): SolarTermDate
+    protected function fetchSolarTermDate($solarTermConst, $year): SolarTermDate
     {
+        if (Astronomy::solarAlgorithm() === Astronomy::SOLAR_VSOP87) {
+            return (new SolarTerm())->getSolarTerm($year, $solarTermConst);
+        }
+
         try {
             $calc = new SimpleSolarTerm();
 
@@ -484,7 +488,7 @@ class SeventyTwoKouCalculator
      * @param int $day   日
      * @return int Unix タイムスタンプ
      */
-    private function normalizeDayTs(int $year, int $month, int $day): int
+    protected function normalizeDayTs($year, $month, $day): int
     {
         return mktime(0, 0, 0, $month, $day, $year);
     }

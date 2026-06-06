@@ -1,6 +1,5 @@
 <?php
 
-/** @noinspection PhpDeprecationInspection */
 /** @noinspection PhpUnhandledExceptionInspection */
 /**
  * イミュータブルな日時クラスのテスト
@@ -76,7 +75,7 @@ class DateTimeImmutableTest extends TestCase
      */
     public function test_create(): void
     {
-        $date1 = DateTimeImmutable::create(2018, 1, 1, 0, 0, 0);
+        $date1 = DateTimeImmutable::create(2018);
 
         $this->assertInstanceOf(DateTimeImmutable::class, $date1);
     }

@@ -2,7 +2,9 @@
 
 namespace Tests\JapaneseDate\Components;
 
+use Cassandra\Date;
 use JapaneseDate\Components\SimpleSolarTerm;
+use JapaneseDate\Components\SolarTerm;
 use JapaneseDate\DateTime;
 use JapaneseDate\Elements\SolarTermDate;
 use JapaneseDate\Exceptions\Exception;
@@ -48,6 +50,10 @@ class SimpleSolarTermTest extends TestCase
         'usui' => DateTime::SOLAR_TERM_USUI,
         'keichitsu' => DateTime::SOLAR_TERM_KEICHITSU,
     ];
+    public function setUp(): void
+    {
+        DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_VSOP87);
+    }
     /**
      * 年ごとの二十四節気一覧を検証するため、暦要項のデータを年単位にまとめる。
      */
@@ -181,7 +187,7 @@ class SimpleSolarTermTest extends TestCase
 
         $cases = [];
         preg_match_all(
-            '/public function ([a-z]+)\(\$year\): SolarTermDate\s*\{/m',
+            '/public function ([a-z]+)\(int \$year\): SolarTermDate\s*\{/m',
             $source,
             $methodMatches,
             PREG_OFFSET_CAPTURE
@@ -205,18 +211,20 @@ class SimpleSolarTermTest extends TestCase
                 throw new LogicException($method . ' table ranges were not found.');
             }
 
+            $solarTerm = new SolarTerm();
             foreach ($rangeMatches as $rangeMatch) {
                 $year = (int) $rangeMatch[1];
-                $days = array_map(
-                    'intval',
-                    preg_split('/\D+/', trim($rangeMatch[3], " \t\n\r\0\x0B,"))
-                );
+
+                // 期待値は SolarTerm（天文計算）を正とする。
+                // SimpleSolarTerm には年単位の例外オーバーライドがあり、
+                // $days テーブルの値と異なる場合があるため。
+                $expectedDay = $solarTerm->{$method}($year)->day;
 
                 $cases[$method . ' ' . $rangeMatch[1] . '-' . $rangeMatch[2]] = [
                     $method,
                     $year,
                     self::SOLAR_TERM_METHODS[$method],
-                    $days[$year % 4],
+                    $expectedDay,
                 ];
             }
         }
@@ -285,7 +293,7 @@ class SimpleSolarTermTest extends TestCase
         $this->assertInstanceOf(SolarTermDate::class, $solarTermDate);
         $this->assertSame($year, $solarTermDate->year);
         $this->assertSame($solarTerm, $solarTermDate->solar_term);
-        $this->assertSame($day, $solarTermDate->day);
+        $this->assertSame($day, $solarTermDate->day, $year);
     }
     /**
      * サポート範囲外の年を指定した場合に例外が発生することを確認する。

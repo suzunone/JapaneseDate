@@ -42,9 +42,8 @@ trait Lunar
      * 月齢を求める
      *
      * @return float
-     * @throws \JapaneseDate\Exceptions\ErrorException
-     * @throws \JapaneseDate\Exceptions\Exception
-     * @throws \JsonException
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     protected function getMoonAge(): float
     {
@@ -62,6 +61,7 @@ trait Lunar
      * 月の位相角を求める（0°=新月、90°=上弦、180°=満月、270°=下弦）
      *
      * @return float
+     * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\Exception
      */
     protected function getMoonPhaseAngle(): float
@@ -79,10 +79,11 @@ trait Lunar
     /**
      * 月相を求める（0=新月〜7=有明）
      *
-     * @return int
+     * @return int|null
+     * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\Exception
      */
-    protected function getMoonPhase(): int
+    protected function getMoonPhase(): ?int
     {
         return $this->LunarCalendar->moonPhase(
             $this->year,
@@ -98,6 +99,7 @@ trait Lunar
      * 月相の日本語名を返す
      *
      * @return string
+     * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\Exception
      */
     protected function viewMoonPhase(): string
@@ -109,6 +111,7 @@ trait Lunar
      * 旧暦データ取得
      *
      * @return \JapaneseDate\Elements\LunarDate
+     * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JsonException
@@ -124,6 +127,7 @@ trait Lunar
      * 日本語フォーマットされた六曜名を返す
      *
      * @return      string
+     * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JsonException
@@ -139,6 +143,7 @@ trait Lunar
      * 六曜を数値化して返します
      *
      * @return      int
+     * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JsonException
@@ -154,6 +159,7 @@ trait Lunar
      * 旧暦（日）
      *
      * @return      int
+     * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JsonException
@@ -167,6 +173,7 @@ trait Lunar
      * 旧暦（月）
      *
      * @return      int
+     * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JsonException
@@ -180,6 +187,7 @@ trait Lunar
      * 旧暦(月)
      *
      * @return      string
+     * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JsonException
@@ -195,6 +203,7 @@ trait Lunar
      * 閏月かどうか
      *
      * @return      bool
+     * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JsonException
@@ -208,6 +217,7 @@ trait Lunar
      * 24節気を取得する
      *
      * @return string
+     * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JsonException
@@ -227,6 +237,7 @@ trait Lunar
      * 24節気を取得する
      *
      * @return bool|int
+     * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JsonException
@@ -240,6 +251,7 @@ trait Lunar
      * ２４節気かどうか
      *
      * @return      boolean
+     * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JsonException
@@ -255,6 +267,7 @@ trait Lunar
      * 旧暦（年）
      *
      * @return      int
+     * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JsonException

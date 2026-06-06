@@ -1,7 +1,9 @@
 <?php
 
 /**
- * Class Cache
+ * Cache.php
+ *
+ * 暦計算結果を複数の方式で保存するキャッシュコンポーネント。
  *
  * @category    DateTime
  * @package     JapaneseDate
@@ -21,9 +23,21 @@ use Closure;
 use JapaneseDate\CacheMode;
 
 /**
- * Class Cache
+ * 暦計算結果をメモリ・APCu・ファイル・独自処理でキャッシュするコンポーネント。
  *
- * キャッシュをコントロールする
+ * 旧暦や二十四節気など、同じ入力に対して繰り返し実行されやすい重い計算を
+ * {@see forever()} 経由で保存し、次回以降の計算負荷を抑えます。
+ * キャッシュ方式は {@see \JapaneseDate\CacheMode} の定数で切り替えられます。
+ *
+ * **対応するキャッシュ方式:**
+ * - `MODE_NONE` — キャッシュせず毎回クロージャを実行
+ * - `MODE_AUTO` — 独自クロージャ、APCu、ファイルの順に利用可能な方式を選択
+ * - `MODE_ORIGINAL` — ユーザーが設定したクロージャへ委譲
+ * - `MODE_APC` — APCu を利用
+ * - `MODE_FILE` — 指定ディレクトリにシリアライズして保存
+ *
+ * ファイルキャッシュを利用する場合は {@see setCacheFilePath()} で保存先を設定します。
+ * 独自のキャッシュストアに接続したい場合は {@see setCacheClosure()} を使用します。
  *
  * @category    DateTime
  * @package     JapaneseDate

@@ -1,7 +1,5 @@
 <?php
 
-/** @noinspection PhpDocMissingThrowsInspection */
-
 /** @noinspection PhpUnhandledExceptionInspection */
 
 namespace Tests\JapaneseDate\Components\Traits;

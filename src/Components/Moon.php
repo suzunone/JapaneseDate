@@ -1,7 +1,19 @@
 <?php
 
 /**
- * 月の位相計算
+ * 月齢・月相を求めるための月位相計算コンポーネント。
+ *
+ * 朔望月の平均値と補正式を使い、指定された日時に対する月の位相を計算します。
+ * 旧暦計算や表示用の月相名を求める処理から利用され、日付に対応する
+ * 新月・上弦・満月・下弦などの概略的な状態を導きます。
+ *
+ * **計算の概要:**
+ * - 平均朔望月から基準となる新月時刻を推定
+ * - 太陽・月の平均近点角などを用いて真の位相時刻へ補正
+ * - 指定日の月齢や月相インデックスを算出
+ *
+ * このクラスの計算は暦表示に必要な実用精度を目的としており、
+ * 高精度な観測用途の天文暦そのものを提供するものではありません。
  *
  * @category    DateTime
  * @package     JapaneseDate
@@ -20,7 +32,19 @@ use Carbon\Carbon;
 use DateTimeInterface;
 
 /**
- * Class Moon
+ * 月齢と月相インデックスを算出する月計算コンポーネント。
+ *
+ * 指定された日付・日時をユリウス日へ変換し、平均朔望月と位相補正式から
+ * その時点の月齢を求めます。結果は日本語日付表示で使う月相名
+ * （新月、三日月、上弦、満月など）を選択するための基礎値になります。
+ *
+ * **主な処理:**
+ * - 基準年から朔望月番号を推定
+ * - 新月・上弦・満月・下弦の真の位相時刻を補正計算
+ * - 指定日時と直近の新月との差から月齢を算出
+ *
+ * 日常的な暦表示に必要な実用的な月相計算を目的としており、
+ * 観測用の精密な月位置計算とは用途が異なります。
  *
  * @category    DateTime
  * @package     JapaneseDate
@@ -148,9 +172,18 @@ class Moon
      * @param float $phase 探す位相
      * @param bool $is_next
      * @return \Carbon\Carbon
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\Exception
      */
     public function moonPhase($date, $phase, $is_next = false): Carbon
     {
+        if (
+            Astronomy::moonAlgorithm() === Astronomy::MOON_ELP2000
+            || !in_array($phase, [0.0, 0.25, 0.5, 0.75], true)
+        ) {
+            return $this->moonPhaseByAstronomy($date, $phase, $is_next);
+        }
+
         $timestamp = $date->getTimestamp();
         $julian = $this->uts2Julian($timestamp);
 
@@ -170,7 +203,6 @@ class Moon
             $k2 = $k1 + 1;
             $nt2 = $this->meanphase($adate, $k2);
 
-            // If nt2 is close to sdate, then mean phase isn't good enough, we have to be more accurate
             if (abs($nt2 - $julian) < 0.75) {
                 $nt2 = $this->truephase($k2, 0.0);
             }
@@ -184,6 +216,143 @@ class Moon
         }
 
         return new Carbon($this->truePhase($is_next ? $k1 : $k2, $phase));
+    }
+
+    /**
+     * 現在選択されている Astronomy の月黄経アルゴリズムで位相時刻を探索する。
+     *
+     * @param DateTimeInterface $date
+     * @param float $phase 探す位相（0.0=新月, 0.25=上弦, 0.5=満月, 0.75=下弦）
+     * @param bool $is_next true の場合は基準日時以前、false の場合は以後を探す
+     * @return \Carbon\Carbon
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\Exception
+     */
+    protected function moonPhaseByAstronomy($date, $phase, $is_next): Carbon
+    {
+        $targetAngle = $this->normalizeAngle($phase * 360.0);
+        $direction = $is_next ? -1 : 1;
+        $step = 21600;
+        $start = $date->getTimestamp();
+        $previousTimestamp = $start;
+        $previousDelta = $this->phaseDeltaAt($previousTimestamp, $targetAngle);
+
+        for ($i = 1; $i <= 160; $i++) {
+            $currentTimestamp = $start + $direction * $step * $i;
+            $currentDelta = $this->phaseDeltaAt($currentTimestamp, $targetAngle);
+
+            if ($previousDelta === 0.0) {
+                return Carbon::createFromTimestampUTC($previousTimestamp);
+            }
+
+            if ($previousDelta * $currentDelta <= 0.0) {
+                // 前進探索では neg→pos（昇順）、後退探索では pos→neg（降順）のみを正しい交差とみなす。
+                // 逆符号の交差は 180° 反対側（満月時等）の偽検出なのでスキップする。
+                $isAscending = $previousDelta < $currentDelta;
+                if ($direction === 1 ? $isAscending : !$isAscending) {
+                    return Carbon::createFromTimestampUTC(
+                        $this->bisectPhaseTimestamp($previousTimestamp, $currentTimestamp, $targetAngle)
+                    );
+                }
+            }
+
+            $previousTimestamp = $currentTimestamp;
+            $previousDelta = $currentDelta;
+        }
+
+        return $this->moonPhaseWithLegacyAlgorithm($date, $phase, $is_next);
+    }
+
+    /**
+     * 探索に失敗した場合に従来の朔望計算で位相時刻を返す。
+     *
+     * @param DateTimeInterface $date
+     * @param float $phase
+     * @param bool $is_next
+     * @return \Carbon\Carbon
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\Exception
+     */
+    protected function moonPhaseWithLegacyAlgorithm($date, $phase, $is_next): Carbon
+    {
+        $algorithm = Astronomy::moonAlgorithm();
+
+        try {
+            Astronomy::useMoonAlgorithm(Astronomy::MOON_LEGACY);
+
+            return $this->moonPhase($date, $phase, $is_next);
+        } finally {
+            Astronomy::useMoonAlgorithm($algorithm);
+        }
+    }
+
+    /**
+     * 位相角の目標値との差を -180°〜180° に正規化して返す。
+     *
+     * @param int $timestamp
+     * @param float $targetAngle
+     * @return float
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\Exception
+     */
+    protected function phaseDeltaAt($timestamp, $targetAngle): float
+    {
+        $jst = $timestamp + 32400; // UTC → JST（moonPhaseAngle は JST 入力を期待）
+        $year = (int) gmdate('Y', $jst);
+        $month = (int) gmdate('n', $jst);
+        $day = (int) gmdate('j', $jst);
+        $hour = (int) gmdate('G', $jst);
+        $min = (int) gmdate('i', $jst);
+        $sec = (int) gmdate('s', $jst);
+        $angle = Astronomy::factory()->moonPhaseAngle($year, $month, $day, $hour, $min, $sec);
+
+        return $this->normalizeAngle($angle - $targetAngle + 180.0) - 180.0;
+    }
+
+    /**
+     * 位相角の符号反転区間を二分探索して位相時刻を求める。
+     *
+     * @param int $timestamp1
+     * @param int $timestamp2
+     * @param float $targetAngle
+     * @return int
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\Exception
+     */
+    protected function bisectPhaseTimestamp($timestamp1, $timestamp2, $targetAngle): int
+    {
+        $left = min($timestamp1, $timestamp2);
+        $right = max($timestamp1, $timestamp2);
+        $leftDelta = $this->phaseDeltaAt($left, $targetAngle);
+
+        while ($right - $left > 1) {
+            $middle = intdiv($left + $right, 2);
+            $middleDelta = $this->phaseDeltaAt($middle, $targetAngle);
+
+            if ($leftDelta * $middleDelta <= 0.0) {
+                $right = $middle;
+
+                continue;
+            }
+
+            $left = $middle;
+            $leftDelta = $middleDelta;
+        }
+
+        return $right;
+    }
+
+    /**
+     * 角度を 0°〜360° に正規化する。
+     *
+     * @param float $angle
+     * @return float
+     */
+    protected function normalizeAngle($angle): float
+    {
+        $angle = fmod($angle, 360.0);
+
+        return $angle < 0.0 ? $angle + 360.0 : $angle;
     }
 
     /**

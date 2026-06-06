@@ -1,7 +1,7 @@
 <?php
 
 /**
- * BusinessCalendarManager.php
+ * BusinessCalendar.php
  *
  * 営業日カレンダーのグローバル設定を管理し、日付の営業日判定を行うマネージャークラス。
  *
@@ -43,7 +43,7 @@ use Throwable;
  *
  * **使用例:**
  * ```php
- * use JapaneseDate\Components\BusinessCalendarManager;
+ * use JapaneseDate\Components\BusinessCalendar;
  * use JapaneseDate\DateBusiness;
  *
  * // グローバル設定を変更する（土日・祝日に加え、8月15日を夏期休暇に）
@@ -52,11 +52,18 @@ use Throwable;
  *     ->setBypassHoliday(true)
  *     ->addClosingDate('2026-08-15', '夏期休暇');
  *
- * BusinessCalendarManager::setGlobalConfig($config);
+ * BusinessCalendar::setGlobalConfig($config);
  * ```
  *
- * @package JapaneseDate\Components
- * @since   2026-05-29
+ * @category    DateTime
+ * @package     JapaneseDate
+ * @subpackage  Components
+ * @author      Suzunone <suzunone.eleven@gmail.com>
+ * @copyright   Suzunone
+ * @license     BSD-2
+ * @link        https://github.com/suzunone/JapaneseDate
+ * @see         https://github.com/suzunone/JapaneseDate
+ * @since       2026-05-29
  */
 class BusinessCalendar
 {
@@ -95,7 +102,7 @@ class BusinessCalendar
      *
      * **使用例:**
      * ```php
-     * BusinessCalendarManager::setGlobalConfig(
+     * BusinessCalendar::setGlobalConfig(
      *     (new DateBusiness())->setClosingWeekdays([0, 6])->setBypassHoliday(true)
      * );
      * ```

@@ -99,8 +99,9 @@ class JapaneseDateTest extends TestCase
     public static function vernalEquinoxDayDataProvider(): array
     {
         return [
-            '1599' => [1599, '0321'],
-            '1600' => [1600, '0320'],
+            '1500 fallback to SolarTerm' => [1500, '0321'],
+            '1599 fallback to SolarTerm' => [1599, '0321'],
+            '1600 SimpleSolarTerm start' => [1600, '0320'],
             '1979' => [1979, '0321'],
             '1980' => [1980, '0320'],
             '2000' => [2000, '0320'],
@@ -108,8 +109,9 @@ class JapaneseDateTest extends TestCase
             '2100' => [2100, '0320'],
             '2150' => [2150, '0321'],
             '2151' => [2151, '0321'],
-            '2399' => [2399, '0321'],
-            '2400' => [2400, '0320'],
+            '2399 SimpleSolarTerm end' => [2399, '0321'],
+            '2400 fallback to SolarTerm' => [2400, '0320'],
+            '2500 fallback to SolarTerm' => [2500, '0321'],
         ];
     }
     /**
@@ -120,8 +122,9 @@ class JapaneseDateTest extends TestCase
     public static function autumnEquinoxDayDataProvider(): array
     {
         return [
-            '1599' => [1599, '0924'],
-            '1600' => [1600, '0923'],
+            '1500 fallback to SolarTerm' => [1500, '0924'],
+            '1599 fallback to SolarTerm' => [1599, '0924'],
+            '1600 SimpleSolarTerm start' => [1600, '0923'],
             '1979' => [1979, '0924'],
             '1980' => [1980, '0923'],
             '2000' => [2000, '0923'],
@@ -129,8 +132,9 @@ class JapaneseDateTest extends TestCase
             '2100' => [2100, '0923'],
             '2150' => [2150, '0923'],
             '2151' => [2151, '0923'],
-            '2399' => [2399, '0923'],
-            '2400' => [2400, '0923'],
+            '2399 SimpleSolarTerm end' => [2399, '0923'],
+            '2400 fallback to SolarTerm' => [2400, '0923'],
+            '2500 fallback to SolarTerm' => [2500, '0923'],
         ];
     }
     /**
@@ -430,54 +434,54 @@ class JapaneseDateTest extends TestCase
     public function test_getDayByWeekly(): void
     {
         $JapaneseDate = new JapaneseDate();
-        $res = $JapaneseDate->getDayByWeekly(2016, 6, DateTime::SUNDAY, 1, $timezone = null);
+        $res = $JapaneseDate->getDayByWeekly(2016, 6, DateTime::SUNDAY, 1, null);
         $this->assertEquals(5, $res);
-        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::SUNDAY, 1, $timezone = null);
+        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::SUNDAY, 1, null);
         $this->assertEquals(1, $res);
 
-        $res = $JapaneseDate->getDayByWeekly(2016, 6, DateTime::SUNDAY, 2, $timezone = null);
+        $res = $JapaneseDate->getDayByWeekly(2016, 6, DateTime::SUNDAY, 2, null);
         $this->assertEquals(5 + 7, $res);
-        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::SUNDAY, 2, $timezone = null);
+        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::SUNDAY, 2, null);
         $this->assertEquals(1 + 7, $res);
 
-        $res = $JapaneseDate->getDayByWeekly(2016, 6, DateTime::MONDAY, 1, $timezone = null);
+        $res = $JapaneseDate->getDayByWeekly(2016, 6, DateTime::MONDAY, 1, null);
         $this->assertEquals(6, $res);
-        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::MONDAY, 1, $timezone = null);
+        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::MONDAY, 1, null);
         $this->assertEquals(2, $res);
 
-        $res = $JapaneseDate->getDayByWeekly(2016, 6, DateTime::MONDAY, 2, $timezone = null);
+        $res = $JapaneseDate->getDayByWeekly(2016, 6, DateTime::MONDAY, 2, null);
         $this->assertEquals(6 + 7, $res);
-        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::MONDAY, 2, $timezone = null);
+        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::MONDAY, 2, null);
         $this->assertEquals(2 + 7, $res);
 
-        $res = $JapaneseDate->getDayByWeekly(2016, 6, DateTime::TUESDAY, 1, $timezone = null);
+        $res = $JapaneseDate->getDayByWeekly(2016, 6, DateTime::TUESDAY, 1, null);
         $this->assertEquals(7, $res);
-        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::TUESDAY, 1, $timezone = null);
+        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::TUESDAY, 1, null);
         $this->assertEquals(3, $res);
 
-        $res = $JapaneseDate->getDayByWeekly(2016, 6, DateTime::TUESDAY, 2, $timezone = null);
+        $res = $JapaneseDate->getDayByWeekly(2016, 6, DateTime::TUESDAY, 2, null);
         $this->assertEquals(7 + 7, $res);
-        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::TUESDAY, 2, $timezone = null);
+        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::TUESDAY, 2, null);
         $this->assertEquals(3 + 7, $res);
 
-        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::WEDNESDAY, 1, $timezone = null);
+        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::WEDNESDAY, 1, null);
         $this->assertEquals(4, $res);
-        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::WEDNESDAY, 2, $timezone = null);
+        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::WEDNESDAY, 2, null);
         $this->assertEquals(4 + 7, $res);
 
-        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::THURSDAY, 1, $timezone = null);
+        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::THURSDAY, 1, null);
         $this->assertEquals(5, $res);
-        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::THURSDAY, 2, $timezone = null);
+        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::THURSDAY, 2, null);
         $this->assertEquals(5 + 7, $res);
 
-        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::FRIDAY, 1, $timezone = null);
+        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::FRIDAY, 1, null);
         $this->assertEquals(6, $res);
-        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::FRIDAY, 2, $timezone = null);
+        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::FRIDAY, 2, null);
         $this->assertEquals(6 + 7, $res);
 
-        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::SATURDAY, 1, $timezone = null);
+        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::SATURDAY, 1, null);
         $this->assertEquals(7, $res);
-        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::SATURDAY, 2, $timezone = null);
+        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::SATURDAY, 2, null);
         $this->assertEquals(7 + 7, $res);
     }
     /**
@@ -2009,6 +2013,8 @@ class JapaneseDateTest extends TestCase
         $this->assertSame('十六夜', $JapaneseDate->viewMoonPhase(5));
         $this->assertSame('下弦', $JapaneseDate->viewMoonPhase(6));
         $this->assertSame('有明', $JapaneseDate->viewMoonPhase(7));
+        // 月相なし → 空文字
+        $this->assertSame('', $JapaneseDate->viewMoonPhase(null));
         // 範囲外のキー → 空文字
         $this->assertSame('', $JapaneseDate->viewMoonPhase(99));
     }

@@ -19,9 +19,20 @@
 namespace JapaneseDate\Components;
 
 /**
- * Class Config
+ * 旧暦・二十四節気の年別マッピングデータを読み込む設定コンポーネント。
  *
- * 旧暦マッピングデータクラス
+ * このクラスは外部から登録されたデータディレクトリを探索し、指定年に対応する
+ * PHP 配列形式の暦データを取得します。主に旧暦計算で使用する朔日テーブルと、
+ * 二十四節気の対応表データを読み込むために利用されます。
+ *
+ * **管理するデータ:**
+ * - `KEY_LUNAR_CALENDAR` — 旧暦月・日・閏月情報を含む年別データ
+ * - `KEY_SOLAR_TERM` — 二十四節気の日付を含む年別データ
+ *
+ * **探索方法:**
+ * {@see setLCPath()} または {@see addLCPath()} で登録されたパスを順に確認し、
+ * 最初に見つかった `{year}.php` の内容を採用します。複数のデータソースを
+ * 優先順位付きで差し替えたい場合は、先頭に追加される {@see addLCPath()} を使用します。
  *
  * @category   JapaneseDate
  * @package    JapaneseDate\Components

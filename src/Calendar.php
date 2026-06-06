@@ -193,9 +193,10 @@ class Calendar
      * {@link http://php.net/manual/ja/datetime.formats.php サポートする日付と時刻の書式}
      * を参考にしてください。
      *
-     * @param  int|float|string|\DateTimeInterface $time     基準となる日付オブジェクト、Unix タイムスタンプ、または日付文字列（省略時は現在日時）
-     * @param  \DateTimeZone|null                  $timezone タイムゾーン（省略時は PHP のデフォルトタイムゾーン）
-     * @throws \JapaneseDate\Exceptions\Exception 日時文字列の解析に失敗した場合
+     * @param int|float|string|\DateTimeInterface $time 基準となる日付オブジェクト、Unix タイムスタンプ、または日付文字列（省略時は現在日時）
+     * @param \DateTimeZone|null $timezone タイムゾーン（省略時は PHP のデフォルトタイムゾーン）
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     public function __construct($time = 'now', ?\DateTimeZone $timezone = null)
     {
@@ -206,10 +207,11 @@ class Calendar
     /**
      * 指定した日付/時刻から {@link \JapaneseDate\DateTime} インスタンスを生成します（内部ヘルパー）。
      *
-     * @param  int|float|string|\DateTimeInterface $date_time 日付/時刻
-     * @param  \DateTimeZone|null                  $time_zone タイムゾーン
+     * @param int|float|string|\DateTimeInterface $date_time 日付/時刻
+     * @param \DateTimeZone|null $time_zone タイムゾーン
      * @return \JapaneseDate\DateTime
-     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     protected function createDateTime($date_time, $time_zone = null): DateTimeInterface
     {
@@ -249,7 +251,8 @@ class Calendar
      * ```
      *
      * @return \JapaneseDate\DateTime[] 月内の全日付の配列
-     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     public function getDatesOfMonth(): array
     {
@@ -308,9 +311,10 @@ class Calendar
      * $calendar->addBypassDay('2026-05-01')->addBypassDay('2026-08-15');
      * ```
      *
-     * @param  int|float|string|\DateTimeInterface $time スキップする日付
+     * @param int|float|string|\DateTimeInterface $time スキップする日付
      * @return $this メソッドチェーン用に自身を返します
-     * @throws \JapaneseDate\Exceptions\Exception 日時文字列の解析に失敗した場合
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     public function addBypassDay($time): self
     {
@@ -337,9 +341,10 @@ class Calendar
      *
      * 登録されていない日付を指定した場合は何もしません。
      *
-     * @param  int|float|string|\DateTimeInterface $time 削除する日付
+     * @param int|float|string|\DateTimeInterface $time 削除する日付
      * @return $this メソッドチェーン用に自身を返します
-     * @throws \JapaneseDate\Exceptions\Exception 日時文字列の解析に失敗した場合
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     public function removeBypassDay($time): self
     {
@@ -389,9 +394,10 @@ class Calendar
      * {@link http://php.net/manual/ja/datetime.formats.php サポートする日付と時刻の書式}
      * を参考にしてください。
      *
-     * @param  int|float|string|\DateTimeInterface $jdt_end 取得終了日
+     * @param int|float|string|\DateTimeInterface $jdt_end 取得終了日
      * @return \JapaneseDate\DateTime[]
-     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     public function getWorkingDayBySpan($jdt_end): array
     {
@@ -510,9 +516,10 @@ class Calendar
      * $days = $calendar->getBusinessDaysBySpan('2026-08-31');
      * ```
      *
-     * @param  int|float|string|\DateTimeInterface $jdt_end 取得終了日
+     * @param int|float|string|\DateTimeInterface $jdt_end 取得終了日
      * @return \JapaneseDate\DateTime[]
-     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     public function getBusinessDaysBySpan($jdt_end): array
     {

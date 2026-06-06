@@ -5,4 +5,3 @@
 @import ".claude/rules/testing.md"
 @import ".claude/rules/development.md"
 @import ".claude/rules/structure.md"
-@import ".claude/rules/v7-to-v6-merge.md"
