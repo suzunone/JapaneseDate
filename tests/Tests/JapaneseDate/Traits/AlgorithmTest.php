@@ -13,12 +13,12 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Algorithm Trait 経由で天文計算アルゴリズムを変更できることを検証する。
- * @covers \JapaneseDate\Traits\Algorithm
- * @covers \JapaneseDate\Traits\Algorithm::useSolarAlgorithm
- * @covers \JapaneseDate\Traits\Algorithm::solarAlgorithm
- * @covers \JapaneseDate\Traits\Algorithm::useMoonAlgorithm
- * @covers \JapaneseDate\Traits\Algorithm::moonAlgorithm
  */
+#[CoversTrait(Algorithm::class)]
+#[CoversMethod(Algorithm::class, 'useSolarAlgorithm')]
+#[CoversMethod(Algorithm::class, 'solarAlgorithm')]
+#[CoversMethod(Algorithm::class, 'useMoonAlgorithm')]
+#[CoversMethod(Algorithm::class, 'moonAlgorithm')]
 class AlgorithmTest extends TestCase
 {
     /**
@@ -33,12 +33,13 @@ class AlgorithmTest extends TestCase
             'DateTimeImmutable' => [DateTimeImmutable::class],
         ];
     }
+
     /**
      * DateTime 系クラス経由で太陽アルゴリズムを変更できることを確認する。
      *
      * @param class-string $class
-     * @dataProvider dateTimeClassProvider
      */
+    #[DataProvider('dateTimeClassProvider')]
     public function test_useSolarAlgorithmAlias(string $class): void
     {
         try {
@@ -51,12 +52,13 @@ class AlgorithmTest extends TestCase
             Astronomy::useMoonAlgorithm(Astronomy::MOON_LEGACY);
         }
     }
+
     /**
      * DateTime 系クラス経由で月アルゴリズムを変更できることを確認する。
      *
      * @param class-string $class
-     * @dataProvider dateTimeClassProvider
      */
+    #[DataProvider('dateTimeClassProvider')]
     public function test_useMoonAlgorithmAlias(string $class): void
     {
         try {

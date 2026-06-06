@@ -13,21 +13,24 @@ use PHPUnit\Framework\TestCase;
  * Only dataProvider and testDateTime methods are allowed to be added.
  * - Exclude this test by default due to its heavy load.
  * - Use paratest whenever executing this test.
- * @coversNothing
- * @large
  */
+#[CoversNothing]
+#[Large]
 class DateTimeFixtureTest extends TestCase
 {
     private string $originalTimezone;
+
     protected function setUp(): void
     {
         $this->originalTimezone = date_default_timezone_get();
         date_default_timezone_set('Asia/Tokyo');
     }
+
     protected function tearDown(): void
     {
         date_default_timezone_set($this->originalTimezone);
     }
+
     public static function dataProvider()
     {
         $files = glob(dirname(__DIR__, 2) . '/fixtures/*.php');
@@ -39,9 +42,8 @@ class DateTimeFixtureTest extends TestCase
             }
         }
     }
-    /**
-     * @dataProvider dataProvider
-     */
+
+    #[DataProvider('dataProvider')]
     public function testDateTime($date_text, $expected)
     {
         try {
