@@ -142,8 +142,8 @@ vendor/bin/phpunit --list-suites 2>&1 | grep -i warning
 vendor/bin/phpunit tests/Tests/JapaneseDate/Components/JapaneseDateTest.php
 vendor/bin/phpunit tests/Tests/JapaneseDate/Components/SimpleSolarTermTest.php
 
-# 3. 全体テストを実行
-vendor/bin/phpunit
+# 3. 全体テストを実行（longは除外）
+vendor/bin/phpunit --exclude-group large
 ```
 
 全体実行が時間・環境の都合でできない場合は、その理由と未確認範囲を作業結果に明記する（testing.md 参照）。

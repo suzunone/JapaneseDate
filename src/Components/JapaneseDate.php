@@ -353,6 +353,7 @@ class JapaneseDate
      */
     protected function getFebruaryHoliday($year, $timezone): array
     {
+        $year = (int) $year;
         if ($year <= DateTime::HOLIDAY_START_YEAR) {
             return [];
         }
@@ -461,6 +462,7 @@ class JapaneseDate
      */
     protected function getAprilHoliday($year, $timezone): array
     {
+        $year = (int) $year;
         if ($year <= DateTime::HOLIDAY_START_YEAR) {
             return [];
         }
@@ -498,6 +500,7 @@ class JapaneseDate
      */
     protected function getMayHoliday($year, $timezone): array
     {
+        $year = (int) $year;
         if ($year <= DateTime::HOLIDAY_START_YEAR) {
             return [];
         }
@@ -548,6 +551,7 @@ class JapaneseDate
      */
     protected function getJuneHoliday($year): array
     {
+        $year = (int) $year;
         if ($year <= DateTime::HOLIDAY_START_YEAR) {
             return [];
         }
@@ -573,6 +577,7 @@ class JapaneseDate
      */
     protected function getJulyHoliday($year, $timezone): array
     {
+        $year = (int) $year;
         if ($year <= DateTime::HOLIDAY_START_YEAR) {
             return [];
         }
@@ -613,6 +618,7 @@ class JapaneseDate
      */
     protected function getAugustHoliday($year, $timezone): array
     {
+        $year = (int) $year;
         if ($year < DateTime::HOLIDAY_START_YEAR) {
             return [];
         }
@@ -719,6 +725,7 @@ class JapaneseDate
      */
     protected function getOctoberHoliday($year, $timezone): array
     {
+        $year = (int) $year;
         if ($year < DateTime::HOLIDAY_START_YEAR) {
             return [];
         }
@@ -772,6 +779,7 @@ class JapaneseDate
      */
     protected function getNovemberHoliday($year, $timezone): array
     {
+        $year = (int) $year;
         if ($year < DateTime::HOLIDAY_START_YEAR) {
             return [];
         }

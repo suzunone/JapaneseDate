@@ -187,7 +187,7 @@ class SimpleSolarTermTest extends TestCase
 
         $cases = [];
         preg_match_all(
-            '/public function ([a-z]+)\(int \$year\): SolarTermDate\s*\{/m',
+            '/public function ([a-z]+)\(\$year\): SolarTermDate\s*\{/m',
             $source,
             $methodMatches,
             PREG_OFFSET_CAPTURE
