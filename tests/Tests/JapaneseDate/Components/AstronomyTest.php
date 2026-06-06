@@ -1,6 +1,5 @@
 <?php
 
-/** @noinspection PhpDocMissingThrowsInspection */
 /** @noinspection PhpUnhandledExceptionInspection */
 
 /**
@@ -16,7 +15,9 @@
 
 namespace Tests\JapaneseDate\Components;
 
+use InvalidArgumentException;
 use JapaneseDate\Components\Astronomy;
+use JapaneseDate\Components\Vsop87Astronomy;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\PreserveGlobalState;
@@ -104,6 +105,118 @@ class AstronomyTest extends TestCase
     public function test_factory_returnsAstronomyInstance(): void
     {
         $this->assertInstanceOf(Astronomy::class, Astronomy::factory());
+    }
+
+    public function test_factory_switchesSolarAndMoonAlgorithms(): void
+    {
+        try {
+            Astronomy::useSolarAlgorithm(Astronomy::SOLAR_LEGACY);
+            Astronomy::useMoonAlgorithm(Astronomy::MOON_LEGACY);
+            $this->assertSame(Astronomy::SOLAR_LEGACY, Astronomy::solarAlgorithm());
+            $this->assertSame(Astronomy::MOON_LEGACY, Astronomy::moonAlgorithm());
+            $this->assertSame(Astronomy::SOLAR_LEGACY . ':' . Astronomy::MOON_LEGACY, Astronomy::factory()->algorithmName());
+
+            Astronomy::useSolarAlgorithm(Astronomy::SOLAR_VSOP87);
+            $this->assertSame(Astronomy::SOLAR_VSOP87, Astronomy::solarAlgorithm());
+            $this->assertInstanceOf(Vsop87Astronomy::class, Astronomy::factory());
+            $this->assertSame(Astronomy::SOLAR_VSOP87 . ':' . Astronomy::MOON_LEGACY, Astronomy::factory()->algorithmName());
+
+            Astronomy::useMoonAlgorithm(Astronomy::MOON_ELP2000);
+            $this->assertSame(Astronomy::MOON_ELP2000, Astronomy::moonAlgorithm());
+            $this->assertInstanceOf(Vsop87Astronomy::class, Astronomy::factory());
+            $this->assertSame(Astronomy::SOLAR_VSOP87 . ':' . Astronomy::MOON_ELP2000, Astronomy::factory()->algorithmName());
+        } finally {
+            Astronomy::useSolarAlgorithm(Astronomy::SOLAR_LEGACY);
+            Astronomy::useMoonAlgorithm(Astronomy::MOON_LEGACY);
+        }
+    }
+
+    public function test_useSolarAlgorithmRejectsUnsupportedAlgorithm(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Unsupported solar algorithm: unknown');
+
+        try {
+            Astronomy::useSolarAlgorithm('unknown');
+        } finally {
+            Astronomy::useSolarAlgorithm(Astronomy::SOLAR_LEGACY);
+            Astronomy::useMoonAlgorithm(Astronomy::MOON_LEGACY);
+        }
+    }
+
+    public function test_useMoonAlgorithmRejectsUnsupportedAlgorithm(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('Unsupported moon algorithm: unknown');
+
+        try {
+            Astronomy::useMoonAlgorithm('unknown');
+        } finally {
+            Astronomy::useSolarAlgorithm(Astronomy::SOLAR_LEGACY);
+            Astronomy::useMoonAlgorithm(Astronomy::MOON_LEGACY);
+        }
+    }
+
+    public function test_longitudeMoonSeparatesCacheByMoonAlgorithm(): void
+    {
+        $astronomy = new Astronomy();
+
+        try {
+            Astronomy::useMoonAlgorithm(Astronomy::MOON_LEGACY);
+            $legacy = $astronomy->longitudeMoon(2024, 4, 8, 18, 21, 0);
+
+            Astronomy::useMoonAlgorithm(Astronomy::MOON_ELP2000);
+            $elp2000 = $astronomy->longitudeMoon(2024, 4, 8, 18, 21, 0);
+
+            $this->assertNotEqualsWithDelta($legacy, $elp2000, 0.001);
+        } finally {
+            Astronomy::useSolarAlgorithm(Astronomy::SOLAR_LEGACY);
+            Astronomy::useMoonAlgorithm(Astronomy::MOON_LEGACY);
+        }
+    }
+
+    public function test_longitudeMoonUsesElp2000WhenMoonAlgorithmSelected(): void
+    {
+        $astronomy = new class extends Astronomy {
+            public bool $elp2000Called = false;
+
+            protected function elp2000LongitudeMoon(int $year, int $month, int $day, float $hour, float $min, float $sec): float
+            {
+                $this->elp2000Called = true;
+
+                return 123.456;
+            }
+        };
+
+        try {
+            Astronomy::useMoonAlgorithm(Astronomy::MOON_LEGACY);
+            $legacy = $astronomy->longitudeMoon(2024, 4, 8, 18, 21, 0);
+            $this->assertFalse($astronomy->elp2000Called);
+            $this->assertNotSame(123.456, $legacy);
+
+            Astronomy::useMoonAlgorithm(Astronomy::MOON_ELP2000);
+            $elp2000 = $astronomy->longitudeMoon(2024, 4, 8, 18, 21, 0);
+            $this->assertTrue($astronomy->elp2000Called);
+            $this->assertSame(123.456, $elp2000);
+        } finally {
+            Astronomy::useSolarAlgorithm(Astronomy::SOLAR_LEGACY);
+            Astronomy::useMoonAlgorithm(Astronomy::MOON_LEGACY);
+        }
+    }
+
+    public function test_approximateDeltaTSecondsUsesFutureFormulaFrom2050(): void
+    {
+        $astronomy = new Astronomy();
+
+        $year = 2100;
+        $month = 6;
+        $y = $year + ($month - 0.5) / 12.0;
+        $u = ($y - 1820.0) / 100.0;
+        $expected = -20.0 + 32.0 * $u * $u - 0.5628 * (2150.0 - $y);
+
+        $result = $this->invokeExecuteMethod($astronomy, 'approximateDeltaTSeconds', [$year, $month]);
+
+        $this->assertEqualsWithDelta($expected, $result, 1e-12);
     }
 
     // ==================== gregorian2JD ====================

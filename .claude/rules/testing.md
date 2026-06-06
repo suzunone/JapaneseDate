@@ -90,9 +90,24 @@ $this->invokeSetProperty(FooCalculator::class, 'instance', null);
 - あるテストが別のクラス・コンポーネントのカバレッジを「副作用として」補完することを禁止する
 - static プロパティをリセットした場合は、テスト終了後に必ず元の状態（`null`）に戻す
 
+### テスト実行コマンド
+- テストの実行には **`paratest`** を使用する（`vendor/bin/paratest`）
+- 単一ファイル・単一テストを実行する場合も `paratest` を使用すること
+- 全体テストを実行する場合は、原則として **`large` グループのテストを除外**して実行する
+
+```bash
+# 全体テスト（large を除外）
+vendor/bin/paratest --exclude-group large
+
+# 特定ファイルのみ
+vendor/bin/paratest tests/Tests/JapaneseDate/Traits/FooTraitTest.php
+```
+
+- `large` グループのテストが必要な場合は、その理由を明示した上でユーザーに確認を取るか、別途明示的に実行する
+
 ### 実装後の確認
 - 新規・修正したテストファイルは単体で実行し、対象テストが期待通り通ることを確認する
-- 既存機能に影響する Trait、Getter、DateTime、DateTimeImmutable、Map を変更した場合は、関連テストだけでなく `vendor/bin/phpunit` の全体実行も行う
+- 既存機能に影響する Trait、Getter、DateTime、DateTimeImmutable、Map を変更した場合は、関連テストだけでなく全体テスト（`vendor/bin/paratest --exclude-group large`）も行う
 - 全体実行が時間・環境の都合でできない場合は、その理由と未確認範囲を作業結果に明記する
 
 ---

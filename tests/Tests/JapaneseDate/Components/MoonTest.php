@@ -1,6 +1,5 @@
 <?php
 
-/** @noinspection PhpDocMissingThrowsInspection */
 /** @noinspection PhpUnhandledExceptionInspection */
 
 /**
@@ -18,9 +17,12 @@ namespace Tests\JapaneseDate\Components;
 
 use Carbon\Carbon;
 use DateTime;
+use DateTimeInterface;
 use DateTimeZone;
+use JapaneseDate\Components\Astronomy;
 use JapaneseDate\Components\Moon;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Tests\JapaneseDate\InvokeTrait;
 
@@ -300,6 +302,127 @@ class MoonTest extends TestCase
         $this->assertInstanceOf(Carbon::class, $result);
     }
 
+    public function test_moonPhaseDoesNotUseLegacyTruePhaseWhenMoonElp2000Selected(): void
+    {
+        $moon = new class extends Moon {
+            public bool $legacyTruePhaseCalled = false;
+
+            protected function truePhase(float $k, float $phase): ?float
+            {
+                $this->legacyTruePhaseCalled = true;
+
+                return parent::truePhase($k, $phase);
+            }
+        };
+
+        try {
+            Astronomy::useMoonAlgorithm(Astronomy::MOON_ELP2000);
+            $moon->moonPhase(new DateTime('2023-01-15 00:00:00', new DateTimeZone('UTC')), 0.0);
+
+            $this->assertFalse($moon->legacyTruePhaseCalled);
+        } finally {
+            Astronomy::useMoonAlgorithm(Astronomy::MOON_LEGACY);
+        }
+    }
+
+    public function test_moonPhaseWithLegacyAlgorithmRestoresSelectedMoonAlgorithm(): void
+    {
+        $moon = new Moon();
+
+        try {
+            Astronomy::useMoonAlgorithm(Astronomy::MOON_ELP2000);
+
+            $result = $this->invokeExecuteMethod(
+                $moon,
+                'moonPhaseWithLegacyAlgorithm',
+                [new DateTime('2023-01-15 00:00:00', new DateTimeZone('UTC')), 0.0, false]
+            );
+
+            $this->assertInstanceOf(Carbon::class, $result);
+            $this->assertSame(Astronomy::MOON_ELP2000, Astronomy::moonAlgorithm());
+        } finally {
+            Astronomy::useMoonAlgorithm(Astronomy::MOON_LEGACY);
+        }
+    }
+
+    public function test_moonPhaseByAstronomyReturnsPreviousTimestampWhenDeltaIsZero(): void
+    {
+        $moon = new class extends Moon {
+            protected function phaseDeltaAt(int $timestamp, float $targetAngle): float
+            {
+                return 0.0;
+            }
+        };
+
+        $date = new DateTime('2023-01-15 00:00:00', new DateTimeZone('UTC'));
+        $result = $this->invokeExecuteMethod($moon, 'moonPhaseByAstronomy', [$date, 0.0, false]);
+
+        $this->assertInstanceOf(Carbon::class, $result);
+        $this->assertSame($date->getTimestamp(), $result->getTimestamp());
+    }
+
+    public function test_moonPhaseByAstronomyFallsBackWhenNoCrossingIsFound(): void
+    {
+        $moon = new class extends Moon {
+            public bool $fallbackCalled = false;
+
+            protected function phaseDeltaAt(int $timestamp, float $targetAngle): float
+            {
+                return 1.0;
+            }
+
+            protected function moonPhaseWithLegacyAlgorithm(DateTimeInterface $date, float $phase, bool $is_next): Carbon
+            {
+                $this->fallbackCalled = true;
+
+                return Carbon::createFromTimestampUTC($date->getTimestamp());
+            }
+        };
+
+        $date = new DateTime('2023-01-15 00:00:00', new DateTimeZone('UTC'));
+        $result = $this->invokeExecuteMethod($moon, 'moonPhaseByAstronomy', [$date, 0.0, false]);
+
+        $this->assertInstanceOf(Carbon::class, $result);
+        $this->assertTrue($moon->fallbackCalled);
+        $this->assertSame($date->getTimestamp(), $result->getTimestamp());
+    }
+
+    #[DataProvider('elp2000NewMoonProvider')]
+    public function test_moonPhaseByElp2000MatchesNaojNewMoonTime(
+        string $searchDate,
+        string $expectedNewMoon,
+        int $deltaSeconds
+    ): void {
+        try {
+            Astronomy::useSolarAlgorithm(Astronomy::SOLAR_VSOP87);
+            Astronomy::useMoonAlgorithm(Astronomy::MOON_ELP2000);
+
+            $result = (new Moon())->moonPhase(new DateTime($searchDate, new DateTimeZone('UTC')), 0.0);
+
+            $this->assertEqualsWithDelta(
+                (new DateTime($expectedNewMoon, new DateTimeZone('Asia/Tokyo')))->getTimestamp(),
+                $result->getTimestamp(),
+                $deltaSeconds
+            );
+        } finally {
+            Astronomy::useSolarAlgorithm(Astronomy::SOLAR_LEGACY);
+            Astronomy::useMoonAlgorithm(Astronomy::MOON_LEGACY);
+        }
+    }
+
+    public static function elp2000NewMoonProvider(): array
+    {
+        return [
+            // 国立天文台 平成27年(2015)暦要項 朔弦望（中央標準時）
+            // https://eco.mtk.nao.ac.jp/koyomi/yoko/pdf/yoko2015.pdf
+            '2015 April new moon' => ['2015-04-16 00:00:00', '2015-04-19 03:57:00', 300],
+            '2015 August new moon near midnight' => ['2015-08-01 00:00:00', '2015-08-14 23:53:00', 300],
+            '2015 November new moon' => ['2015-11-09 00:00:00', '2015-11-12 02:47:00', 300],
+            // 国立天文台 暦要項 2023年 朔弦望（中央標準時）
+            '2023 January new moon' => ['2023-01-20 00:00:00', '2023-01-22 05:53:00', 300],
+        ];
+    }
+
     // ==================== moonPhase 実データ精度テスト ====================
     //
     // moonPhase() は truePhase() を呼ぶため、同じオフセット仕様が適用される
@@ -315,7 +438,7 @@ class MoonTest extends TestCase
         $moon = new Moon();
         // 新月 2023-01-21 20:53 UTC (k2=1522)
         // 期待値 = 1674334380 + 32340 = 1674366720
-        $result = $moon->moonPhase(new DateTime('2023-01-15 00:00:00', new DateTimeZone('UTC')), 0.0, false);
+        $result = $moon->moonPhase(new DateTime('2023-01-15 00:00:00', new DateTimeZone('UTC')), 0.0);
         $this->assertEqualsWithDelta(
             1674366720,
             $result->getTimestamp(),
@@ -329,7 +452,7 @@ class MoonTest extends TestCase
         $moon = new Moon();
         // 上弦 2023-01-28 15:19 UTC (k2=1522, phase=0.25)
         // 期待値 = 1674919140 + 32340 = 1674951480
-        $result = $moon->moonPhase(new DateTime('2023-01-15 00:00:00', new DateTimeZone('UTC')), 0.25, false);
+        $result = $moon->moonPhase(new DateTime('2023-01-15 00:00:00', new DateTimeZone('UTC')), 0.25);
         $this->assertEqualsWithDelta(
             1674951480,
             $result->getTimestamp(),
@@ -343,7 +466,7 @@ class MoonTest extends TestCase
         $moon = new Moon();
         // 満月 2023-02-05 18:29 UTC (k2=1522, phase=0.5)
         // 期待値 = 1675621740 + 32340 = 1675654080
-        $result = $moon->moonPhase(new DateTime('2023-01-15 00:00:00', new DateTimeZone('UTC')), 0.5, false);
+        $result = $moon->moonPhase(new DateTime('2023-01-15 00:00:00', new DateTimeZone('UTC')), 0.5);
         $this->assertEqualsWithDelta(
             1675654080,
             $result->getTimestamp(),
@@ -357,7 +480,7 @@ class MoonTest extends TestCase
         $moon = new Moon();
         // 下弦 2023-02-13 16:01 UTC (k2=1522, phase=0.75)
         // 期待値 = 1676304060 + 32340 = 1676336400
-        $result = $moon->moonPhase(new DateTime('2023-01-15 00:00:00', new DateTimeZone('UTC')), 0.75, false);
+        $result = $moon->moonPhase(new DateTime('2023-01-15 00:00:00', new DateTimeZone('UTC')), 0.75);
         $this->assertEqualsWithDelta(
             1676336400,
             $result->getTimestamp(),

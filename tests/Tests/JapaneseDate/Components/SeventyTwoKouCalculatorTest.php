@@ -18,6 +18,7 @@
 
 namespace Tests\JapaneseDate\Components;
 
+use JapaneseDate\Components\Astronomy;
 use JapaneseDate\Components\SeventyTwoKouCalculator;
 use JapaneseDate\DateTime;
 use JapaneseDate\DateTimeImmutable;
@@ -221,7 +222,7 @@ class SeventyTwoKouCalculatorTest extends TestCase
         $ts = $calc->getNextKouStartTimestamp($dt);
         $date = date('Y-m-d', $ts);
 
-        $this->assertSame('2025-02-09', $date, '次候開始日は2月9日');
+        $this->assertSame('2025-02-08', $date, '次候開始日は2月8日');
     }
 
     /**
@@ -267,7 +268,7 @@ class SeventyTwoKouCalculatorTest extends TestCase
         $ts = $calc->getPreviousKouStartTimestamp($dt);
         $date = date('Y-m-d', $ts);
 
-        $this->assertSame('2025-02-04', $date, '前候（初候）開始日は2月4日');
+        $this->assertSame('2025-02-03', $date, '前候（初候）開始日は2月3日');
     }
 
     /**
@@ -394,7 +395,7 @@ class SeventyTwoKouCalculatorTest extends TestCase
         $ts2 = $this->invokeExecuteMethod($calc, 'getSolarTermTimestamp', [DateTime::SOLAR_TERM_RISSYUN, 2025]);
 
         $this->assertSame($ts1, $ts2, '2回目はキャッシュから返る');
-        $this->assertSame('2025-02-04', date('Y-m-d', $ts1), '立春2025は2月4日');
+        $this->assertSame('2025-02-03', date('Y-m-d', $ts1), '立春2025は2月3日');
     }
 
     /**
@@ -409,7 +410,7 @@ class SeventyTwoKouCalculatorTest extends TestCase
 
         $this->assertSame(2025, $stDate->year);
         $this->assertSame(2, $stDate->month);
-        $this->assertSame(4, $stDate->day);
+        $this->assertSame(3, $stDate->day);
     }
 
     /**
@@ -427,6 +428,30 @@ class SeventyTwoKouCalculatorTest extends TestCase
         $this->assertSame(1500, $stDate->year, 'SolarTerm フォールバックで1500年の立春が取得できる');
         $this->assertSame(2, $stDate->month, '月が正しい');
         $this->assertGreaterThanOrEqual(1, $stDate->day, '日が正の値');
+    }
+
+    /**
+     * VSOP87 モードでは SimpleSolarTerm を使わず SolarTerm 経由で節気日付を取得することを確認する。
+     */
+    public function test_fetchSolarTermDate_uses_SolarTerm_when_vsop87_enabled(): void
+    {
+        try {
+            Astronomy::useSolarAlgorithm(Astronomy::SOLAR_VSOP87);
+
+            $stDate = $this->invokeExecuteMethod(
+                SeventyTwoKouCalculator::factory(),
+                'fetchSolarTermDate',
+                [DateTime::SOLAR_TERM_RISSYUN, 2025]
+            );
+
+            $this->assertSame(2025, $stDate->year);
+            $this->assertSame(DateTime::SOLAR_TERM_RISSYUN, $stDate->solar_term);
+            $this->assertSame(2, $stDate->month);
+            $this->assertSame(3, $stDate->day);
+        } finally {
+            Astronomy::useSolarAlgorithm(Astronomy::SOLAR_LEGACY);
+            Astronomy::useMoonAlgorithm(Astronomy::MOON_LEGACY);
+        }
     }
 
     /**

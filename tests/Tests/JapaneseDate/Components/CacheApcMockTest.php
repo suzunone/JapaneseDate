@@ -1,9 +1,5 @@
 <?php
 
-/** @noinspection PhpDocMissingThrowsInspection */
-
-/** @noinspection PhpUnhandledExceptionInspection */
-
 namespace Tests\JapaneseDate\Components;
 
 use JapaneseDate\Components\Cache;

@@ -23,6 +23,7 @@
 namespace JapaneseDate;
 
 use Carbon\CarbonPeriod;
+use JapaneseDate\Components\Astronomy;
 use JapaneseDate\Components\BusinessCalendar;
 use JapaneseDate\Components\MiscSeasonalNode;
 use JapaneseDate\Components\Moon;
@@ -452,11 +453,11 @@ class DatePeriod extends CarbonPeriod
      * }
      * ```
      *
-     * @param \JapaneseDate\DateTime $start  イテレート開始の基準日
-     * @param \JapaneseDate\DateTime $end    イテレート終了日（この日を含む）
+     * @param \JapaneseDate\DateTime $start イテレート開始の基準日
+     * @param \JapaneseDate\DateTime $end イテレート終了日（この日を含む）
      * @return static 節気区切りの {@see DatePeriod}
-     * @throws \JapaneseDate\Exceptions\SolarTermException
-     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     public static function eachSolarTerm(DateTime $start, DateTime $end): static
     {
@@ -487,10 +488,12 @@ class DatePeriod extends CarbonPeriod
      * }
      * ```
      *
-     * @param \JapaneseDate\DateTime $start   イテレート開始日（この日を含む旧暦月の朔日から開始）
-     * @param int                    $months  イテレートする旧暦月数
+     * @param \JapaneseDate\DateTime $start イテレート開始日（この日を含む旧暦月の朔日から開始）
+     * @param int $months イテレートする旧暦月数
      * @return static 旧暦月朔日区切りの {@see DatePeriod}
+     * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     public static function eachLunarMonth(DateTime $start, int $months): static
     {
@@ -529,7 +532,8 @@ class DatePeriod extends CarbonPeriod
      * ```
      *
      * @return array<int, static> 元号定数をキーとした {@see DatePeriod} の配列
-     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     public function splitByEra(): array
     {
@@ -609,11 +613,11 @@ class DatePeriod extends CarbonPeriod
      *
      * 対象期間を年単位で走査し、各節気の日付が期間内に含まれるかを判定します。
      *
-     * @param \JapaneseDate\DateTime $start  検索開始日
-     * @param \JapaneseDate\DateTime $end    検索終了日
+     * @param \JapaneseDate\DateTime $start 検索開始日
+     * @param \JapaneseDate\DateTime $end 検索終了日
      * @return \JapaneseDate\DateTime[] 節気日の配列（昇順）
-     * @throws \JapaneseDate\Exceptions\SolarTermException
-     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     protected static function collectSolarTermDates(DateTime $start, DateTime $end): array
     {
@@ -657,10 +661,12 @@ class DatePeriod extends CarbonPeriod
      *
      * Moon コンポーネントを使用して天文学的な新月の瞬間を計算します。
      *
-     * @param \JapaneseDate\DateTime $start   検索開始日
-     * @param int                    $months  収集する月数
+     * @param \JapaneseDate\DateTime $start 検索開始日
+     * @param int $months 収集する月数
      * @return \JapaneseDate\DateTime[] 新月日の配列
+     * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     protected static function collectLunarNewMoonDates(DateTime $start, int $months): array
     {
@@ -670,13 +676,13 @@ class DatePeriod extends CarbonPeriod
 
         // 開始日以降の最初の新月を求める（is_next=false で次の新月を取得）
         $searchBase = DateTime::factory($start)->subDays(2);
-        $newMoon = $moon->moonPhase($searchBase, 0.0);
+        $newMoon = $moon->moonPhase($searchBase, 0.0)->setTimezone('Asia/Tokyo');
         $current = DateTime::factory($newMoon)->startOfDay();
 
         // 開始日より前の新月だった場合はさらに次の新月へ進む
         if ($current->timestamp < $startTs) {
             $searchFrom = DateTime::factory($newMoon)->addDays(28);
-            $newMoon = $moon->moonPhase($searchFrom, 0.0);
+            $newMoon = $moon->moonPhase($searchFrom, 0.0)->setTimezone('Asia/Tokyo');
             $current = DateTime::factory($newMoon)->startOfDay();
         }
 
@@ -684,7 +690,7 @@ class DatePeriod extends CarbonPeriod
             $dates[] = DateTime::factory($current);
             // 次の新月を求める（約28日後から検索、is_next=false で次の新月を取得）
             $searchFrom = DateTime::factory($current)->addDays(28);
-            $newMoon = $moon->moonPhase($searchFrom, 0.0);
+            $newMoon = $moon->moonPhase($searchFrom, 0.0)->setTimezone('Asia/Tokyo');
             $current = DateTime::factory($newMoon)->startOfDay();
         }
 
@@ -704,6 +710,10 @@ class DatePeriod extends CarbonPeriod
      */
     protected static function resolveSolarTerms(int $year): array
     {
+        if (Astronomy::solarAlgorithm() === Astronomy::SOLAR_VSOP87) {
+            return (new SolarTerm())->getSolarTerms($year);
+        }
+
         try {
             return (new SimpleSolarTerm())->getSolarTerms($year);
         } catch (Throwable) {

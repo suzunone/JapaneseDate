@@ -2,13 +2,52 @@
 
 namespace JapaneseDate\Components;
 
+use DateTimeImmutable;
 use DateTimeZone;
+use InvalidArgumentException;
 use JapaneseDate\Components\Traits\OneTimeCacheTrait;
 use JapaneseDate\DateTime;
 
+
+/**
+ * 暦計算で使用する太陽黄経・月齢・ユリウス日変換を提供する天文計算コンポーネント。
+ *
+ * 旧暦、二十四節気、月齢などの計算に必要な天文値を求めます。
+ * 既定では太陽・月とも従来実装（`legacy`）を使用し、必要に応じて
+ * 太陽計算を {@see \JapaneseDate\Components\Vsop87Astronomy}、月計算を
+ * {@see \JapaneseDate\Components\ELP2000} へ切り替えられます。
+ *
+ * **提供する主な計算:**
+ * - グレゴリオ暦とユリウス日の相互変換
+ * - 太陽の視黄経および二十四節気境界の判定
+ * - 月齢計算に必要な太陽・月の黄経差
+ * - 計算結果の一時キャッシュ
+ *
+ * アルゴリズムの切り替えは {@see useSolarAlgorithm()} / {@see useMoonAlgorithm()} で行います。
+ * {@see factory()} は現在の太陽アルゴリズムに対応したインスタンスを返し、
+ * 月アルゴリズムは {@see longitudeMoon()} で切り替えます。
+ *
+ * @category    DateTime
+ * @package     JapaneseDate
+ * @subpackage  Component
+ * @author      Suzunone <suzunone.eleven@gmail.com>
+ * @copyright   Suzunone
+ * @license     BSD-2
+ * @link        https://github.com/suzunone/JapaneseDate
+ * @see         https://github.com/suzunone/JapaneseDate
+ * @since       2026-06-04
+ */
 class Astronomy
 {
     use OneTimeCacheTrait;
+
+    public const SOLAR_LEGACY = 'legacy';
+
+    public const SOLAR_VSOP87 = 'vsop87';
+
+    public const MOON_LEGACY = 'legacy';
+
+    public const MOON_ELP2000 = 'elp2000';
 
     public const DAY_TO_HOUR_FLOAT = 24.0;
 
@@ -38,17 +77,118 @@ class Astronomy
     public const BASE_TIME = 946814400;
 
     /**
+     * @var string 太陽アルゴリズム
+     */
+    protected static string $solarAlgorithm = self::SOLAR_LEGACY;
+
+    /**
+     * @var string 月アルゴリズム
+     */
+    protected static string $moonAlgorithm = self::MOON_LEGACY;
+
+    /**
+     * @var array<string, self>
+     */
+    protected static array $instances = [];
+
+    /**
      * @return static
      */
     public static function factory(): self
     {
-        static $instance;
+        $algorithm = self::instanceKey();
 
-        if (!$instance) {
-            $instance = new static();
+        if (!isset(self::$instances[$algorithm])) {
+            self::$instances[$algorithm] = self::createAlgorithm(self::$solarAlgorithm);
         }
 
-        return $instance;
+        return self::$instances[$algorithm];
+    }
+
+    /**
+     * 太陽黄経計算で使用するアルゴリズムを設定する。
+     *
+     * @param string $algorithm 太陽アルゴリズム
+     * @return void
+     * @throws \InvalidArgumentException 未対応の太陽アルゴリズムが指定された場合
+     */
+    public static function useSolarAlgorithm(string $algorithm): void
+    {
+        if (!in_array($algorithm, [self::SOLAR_LEGACY, self::SOLAR_VSOP87], true)) {
+            throw new InvalidArgumentException('Unsupported solar algorithm: ' . $algorithm);
+        }
+
+        self::$solarAlgorithm = $algorithm;
+    }
+
+    /**
+     * 現在の太陽黄経計算アルゴリズムを返す。
+     *
+     * @return string 太陽アルゴリズム
+     */
+    public static function solarAlgorithm(): string
+    {
+        return self::$solarAlgorithm;
+    }
+
+    /**
+     * 月黄経計算で使用するアルゴリズムを設定する。
+     *
+     * @param string $algorithm 月アルゴリズム
+     * @return void
+     * @throws \InvalidArgumentException 未対応の月アルゴリズムが指定された場合
+     */
+    public static function useMoonAlgorithm(string $algorithm): void
+    {
+        if (!in_array($algorithm, [self::MOON_LEGACY, self::MOON_ELP2000], true)) {
+            throw new InvalidArgumentException('Unsupported moon algorithm: ' . $algorithm);
+        }
+
+        self::$moonAlgorithm = $algorithm;
+    }
+
+    /**
+     * 現在の月黄経計算アルゴリズムを返す。
+     *
+     * @return string 月アルゴリズム
+     */
+    public static function moonAlgorithm(): string
+    {
+        return self::$moonAlgorithm;
+    }
+
+    /**
+     * 現在の太陽・月アルゴリズムの組み合わせ名を返す。
+     *
+     * @return string アルゴリズム組み合わせ名
+     */
+    public function algorithmName(): string
+    {
+        return self::instanceKey();
+    }
+
+    /**
+     * 太陽アルゴリズムに対応する天文計算コンポーネントを生成する。
+     *
+     * @param string $algorithm 太陽アルゴリズム
+     * @return self 天文計算コンポーネント
+     */
+    protected static function createAlgorithm(string $algorithm): self
+    {
+        return match ($algorithm) {
+            self::SOLAR_VSOP87 => new Vsop87Astronomy(),
+            default => new self(),
+        };
+    }
+
+    /**
+     * 現在の太陽・月アルゴリズムの組み合わせからインスタンスキーを生成する。
+     *
+     * @return string インスタンスキー
+     */
+    protected static function instanceKey(): string
+    {
+        return self::$solarAlgorithm . ':' . self::$moonAlgorithm;
     }
 
     /**
@@ -61,7 +201,8 @@ class Astronomy
      * @param float $min
      * @param float $sec
      * @return    float 月齢（視黄経）
-     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     public function moonAge(int $year, int $month, int $day, float $hour, float $min, float $sec): float
     {
@@ -85,7 +226,7 @@ class Astronomy
             // ΔΛ ＝Λ moon－Λ sun
             $delta_rm = $longitude_moon - $longitude_sun;
 
-            if ($counter === 1 && $delta_rm < 0) {
+            if ($counter === 1 && $delta_rm < 0 && self::$moonAlgorithm !== self::MOON_ELP2000) {
                 // ループ1回目 で $delta_rm < 0 の場合には引き込み範囲に入るよう補正
                 $delta_rm = $this->normalizeAngle($delta_rm);
             } elseif ($longitude_sun >= 0 && $longitude_sun <= 20 && $longitude_moon >= 300) {
@@ -130,6 +271,9 @@ class Astronomy
 
         // 時刻引数を合成
         $res = $julian_date_0 - ($tm2 + $tm1);
+        if ($res < 0 && self::$moonAlgorithm === self::MOON_ELP2000) {
+            $res += 29.530589;
+        }
         if ($res > 30) {
             $res -= 30;
         }
@@ -147,7 +291,7 @@ class Astronomy
      * @param float $min 分
      * @param float $sec 秒
      * @return float 月の位相角（0°=新月, 90°=上弦, 180°=満月, 270°=下弦）
-     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\Exception|\DateInvalidTimeZoneException
      */
     public function moonPhaseAngle(int $year, int $month, int $day, float $hour, float $min, float $sec): float
     {
@@ -171,6 +315,7 @@ class Astronomy
      * @param float $min 分
      * @param float $sec 秒
      * @return int 月相 (0〜7)
+     * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\Exception
      */
     public function moonPhase(int $year, int $month, int $day, float $hour, float $min, float $sec): int
@@ -227,7 +372,8 @@ class Astronomy
      * @param float $min
      * @param float $sec
      * @return    float 太陽の黄経（視黄経）
-     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     public function longitudeSun(int $year, int $month, float $day, float $hour, float $min, float $sec): float
     {
@@ -250,7 +396,8 @@ class Astronomy
      * @param float $min
      * @param float $sec
      * @return float
-     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     public function gregorian2JY(int $year, int $month, int $day, float $hour, float $min, float $sec): float
     {
@@ -321,17 +468,79 @@ class Astronomy
      * @param float $min 分
      * @param float $sec 秒
      * @return    float 月の黄経（視黄経）
-     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     * @throws \Exception
      */
     public function longitudeMoon(int $year, int $month, int $day, float $hour, float $min, float $sec): float
     {
-        $key = __METHOD__ . '-' . $year . '-' . $month . '-' . $day . '-' . $hour . '-' . $min . '-' . $sec;
+        $key = __METHOD__ . '-' . self::$moonAlgorithm . '-' . $year . '-' . $month . '-' . $day . '-' . $hour . '-' . $min . '-' . $sec;
 
         return $this->oneTimeCache($key, function () use ($year, $month, $day, $hour, $min, $sec) {
+            if (self::$moonAlgorithm === self::MOON_ELP2000) {
+                return $this->elp2000LongitudeMoon($year, $month, $day, $hour, $min, $sec);
+            }
+
             $julian_year = $this->gregorian2JY($year, $month, $day, $hour, $min, $sec);
 
             return $this->jY2LongitudeMoon($julian_year);
         });
+    }
+
+    /**
+     * ELP2000-82B を使用して月の平均黄道面黄経を返します。
+     *
+     * 入力は従来実装と同じく日本標準時のグレゴリオ暦年月日時分秒です。
+     * 内部で UT ユリウス日へ変換し、ΔT による TT 近似補正を加えた上で
+     * ELP2000 の TDB 入力として扱います。
+     * TDB と TT の周期差はミリ秒程度なので、暦用途では無視します。
+     *
+     * @param int $year グレゴリオ暦の年
+     * @param int $month 月
+     * @param int $day 日
+     * @param float $hour 時（日本標準時）
+     * @param float $min 分
+     * @param float $sec 秒
+     * @return float 月の黄経（度、0〜360）
+     * @throws \Exception
+     */
+    protected function elp2000LongitudeMoon(int $year, int $month, int $day, float $hour, float $min, float $sec): float
+    {
+        $utc = new DateTimeImmutable(
+            sprintf('%04d-%02d-%02d %02d:%02d:%02d', $year, $month, $day, (int) $hour, (int) $min, (int) $sec),
+            new DateTimeZone('UTC')
+        );
+
+        $timestamp = (int) $utc->format('U');
+        $utJd = $timestamp / self::DAY_TO_SECOND_FLOAT
+            + 2440587.5
+            + (($sec - (int) $sec) / self::DAY_TO_SECOND_FLOAT)
+            - self::JD_TIME_ZONE_ADJUSTMENT;
+        $tdbJd = $utJd + $this->approximateDeltaTSeconds($year, $month) / self::DAY_TO_SECOND_FLOAT;
+
+        return (float) (new ELP2000())->preciseLongitude(sprintf('%.10F', $tdbJd));
+    }
+
+    /**
+     * NASA/Espenak-Meeus の多項式で ΔT = TT - UT を近似します。
+     *
+     * @param int $year グレゴリオ暦の年
+     * @param int $month 月
+     * @return float ΔT 秒
+     */
+    protected function approximateDeltaTSeconds(int $year, int $month): float
+    {
+        $y = $year + ($month - 0.5) / 12.0;
+
+        if ($y < 2050.0) {
+            $t = $y - 2000.0;
+
+            return 62.92 + 0.32217 * $t + 0.005589 * $t * $t;
+        }
+
+        $u = ($y - 1820.0) / 100.0;
+
+        return -20.0 + 32.0 * $u * $u - 0.5628 * (2150.0 - $y);
     }
 
     /**
@@ -420,7 +629,7 @@ class Astronomy
         );
     }
 
-    private function sumPeriodicTerms(array $terms, float $julian_year): float
+    protected function sumPeriodicTerms(array $terms, float $julian_year): float
     {
         $result = 0.0;
         foreach ($terms as [$amplitude, $phase, $speed]) {
