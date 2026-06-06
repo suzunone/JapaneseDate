@@ -6,13 +6,13 @@
          processIsolation="false"
          stopOnError="false"
          stopOnFailure="false"
-         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/11.0/phpunit.xsd"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/11.5/phpunit.xsd"
          cacheDirectory=".phpunit.cache"
          backupStaticProperties="false"
          requireCoverageMetadata="true"
 >
   <testsuites>
-    <testsuite name="Suzunome\JapaneseDate">
+    <testsuite name="Suzunone\JapaneseDate">
       <directory suffix="Test.php">tests</directory>
     </testsuite>
   </testsuites>

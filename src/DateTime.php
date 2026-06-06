@@ -21,6 +21,7 @@
 namespace JapaneseDate;
 
 use Carbon\Carbon;
+use JapaneseDate\Components\Astronomy;
 use JapaneseDate\Traits\DateTimeImport;
 
 /**
@@ -1808,5 +1809,29 @@ class DateTime extends Carbon implements DateTimeInterface
      */
     public const COURT_MAIN = 'Main';
 
-    //</editor-fold>
+    /**
+     * 従来の太陽位置計算アルゴリズムを使用する場合の定数値。
+     * @var string
+     */
+    public const SOLAR_ALGORITHM_LEGACY = Astronomy::SOLAR_LEGACY;
+
+    /**
+     * VSOP87太陽位置計算アルゴリズムを使用する場合の定数値。
+     * @var string
+     */
+    public const SOLAR_ALGORITHM_VSOP87 = Astronomy::SOLAR_VSOP87;
+
+    /**
+     * 従来の月位置計算アルゴリズムを使用する場合の定数値。
+     * @var string
+     */
+    public const MOON_ALGORITHM_LEGACY = Astronomy::MOON_LEGACY;
+
+    /**
+     * ELP2000月位置計算アルゴリズムを使用する場合の定数値。
+     * @var string
+     */
+    public const MOON_ALGORITHM_ELP2000 = Astronomy::MOON_ELP2000;
+
+
 }

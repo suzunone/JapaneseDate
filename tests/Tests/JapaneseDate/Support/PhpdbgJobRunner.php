@@ -15,7 +15,7 @@ use const PHP_SAPI;
 /**
  * phpdbg で PHPUnit の process isolation を実行するための JobRunner。
  */
-readonly class PhpdbgJobRunner extends JobRunner
+class PhpdbgJobRunner extends JobRunner
 {
     /**
      * @throws PhpProcessException

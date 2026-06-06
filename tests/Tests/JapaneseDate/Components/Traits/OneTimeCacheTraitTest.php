@@ -1,7 +1,5 @@
 <?php
 
-/** @noinspection PhpDocMissingThrowsInspection */
-
 /** @noinspection PhpUnhandledExceptionInspection */
 
 namespace Tests\JapaneseDate\Components\Traits;
@@ -88,7 +86,7 @@ class OneTimeCacheTraitTest extends TestCase
     {
         $instance = $this->makeInstance();
         $callCount = 0;
-        $closure = function () use (&$callCount): null {
+        $closure = function () use (&$callCount) {
             $callCount++;
 
             return null;

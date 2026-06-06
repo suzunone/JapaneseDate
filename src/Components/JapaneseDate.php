@@ -18,12 +18,27 @@ namespace JapaneseDate\Components;
 
 use DateTimeInterface;
 use DateTimeZone;
+use Exception;
 use JapaneseDate\DateTime;
 use JapaneseDate\DateTimeImmutable;
 use JapaneseDate\Exceptions\ErrorException;
 
 /**
- * 日本語/和暦日付クラス
+ * 日本語表記・和暦表記・暦注データの生成を担う中核コンポーネント。
+ *
+ * {@see \JapaneseDate\DateTime} および {@see \JapaneseDate\DateTimeImmutable} から利用され、
+ * 曜日、月名、六曜、月相、干支、二十四節気、祝日、元号などの日本語表示に必要な
+ * 計算・変換ロジックを集約します。
+ *
+ * **主な責務:**
+ * - 旧暦データをもとにした六曜・月名・旧暦日付の表示
+ * - 西暦日付からの祝日名、曜日名、干支、月相の取得
+ * - 近代元号と和暦年の判定・表示
+ * - 二十四節気や関連する暦注を扱うための補助処理
+ *
+ * 旧暦計算は {@see \JapaneseDate\Components\LunarCalendar}、
+ * 干支計算は {@see \JapaneseDate\Components\SexagenaryCycle} に委譲し、
+ * このクラスは利用者向けの表示値を組み立てる入口として機能します。
  *
  * @category    DateTime
  * @package     JapaneseDate
@@ -95,24 +110,24 @@ class JapaneseDate
      *
      * @var \JapaneseDate\Components\LunarCalendar
      */
-    private LunarCalendar $LunarCalendar;
+    protected LunarCalendar $LunarCalendar;
 
     /**
      * 干支計算クラスオブジェクト
      *
      * @var \JapaneseDate\Components\SexagenaryCycle
      */
-    private SexagenaryCycle $SexagenaryCycle;
+    protected SexagenaryCycle $SexagenaryCycle;
 
     /**
      * @var array
      */
-    private array $holiday_name;
+    protected array $holiday_name;
 
     /**
      * @var array
      */
-    private array $era_name;
+    protected array $era_name;
 
     /**
      * コンストラクタ
@@ -172,12 +187,14 @@ class JapaneseDate
      */
     public static function factory(): self
     {
-        static $instance;
-        if (!$instance) {
-            $instance = new static();
+        static $instances = [];
+
+        $algorithm = Astronomy::solarAlgorithm() . ':' . Astronomy::moonAlgorithm();
+        if (!isset($instances[$algorithm])) {
+            $instances[$algorithm] = new static();
         }
 
-        return $instance;
+        return $instances[$algorithm];
     }
 
     /**
@@ -186,6 +203,7 @@ class JapaneseDate
      * @access      public
      * @param \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable $dateTime |\JapaneseDate\Traits\Modern $DateTime DateTime
      * @return      array
+     * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
@@ -218,8 +236,9 @@ class JapaneseDate
      * @param int $year 年
      * @param           $timezone
      * @return      array
+     * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\ErrorException
-     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     protected function getJanuaryHoliday(int $year, $timezone): array
     {
@@ -251,10 +270,11 @@ class JapaneseDate
     /**
      * 曜日を数値化して返します
      *
-     * @param int|float|string|DateTimeInterface|null  $time
+     * @param int|float|string|DateTimeInterface|null $time
      * @param DateTimeZone|null $time_zone
      * @return int
-     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     protected function getWeekday(int|float|string|DateTimeInterface|null $time = null, DateTimeZone|null $time_zone = null): int
     {
@@ -269,10 +289,11 @@ class JapaneseDate
      * @param int $month 月
      * @param int $weekly 曜日
      * @param int $weeks 何週目か
-     * @param \DateTimeZone|null  $timezone
+     * @param \DateTimeZone|null $timezone
      * @return      int
+     * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\ErrorException
-     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     public function getDayByWeekly(int $year, int $month, int $weekly, int $weeks = 1, DateTimeZone|null $timezone = null): int
     {
@@ -299,7 +320,8 @@ class JapaneseDate
      * @param int $year 年
      * @param DateTimeZone $timezone
      * @return      array
-     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     protected function getFebruaryHoliday(int $year, DateTimeZone $timezone): array
     {
@@ -338,6 +360,7 @@ class JapaneseDate
      * @param int $year 年
      * @param DateTimeZone $timezone
      * @return      array
+     * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
@@ -375,30 +398,11 @@ class JapaneseDate
      */
     public function getVernalEquinoxDay(int $year): int
     {
-        if ($year < 1600) {
-            goto syunbun_lunar;
-        } elseif ($year <= 1979) {
+        try {
             $day = (new SimpleSolarTerm())->syunbun($year)->day;
-        } elseif ($year <= 2099) {
-            $day = floor(20.8431 + (0.242194 * ($year - 1980)) - floor(($year - 1980) / 4));
-        } elseif ($year <= 2150) {
-            $day = floor(21.851 + (0.242194 * ($year - 1980)) - floor(($year - 1980) / 4));
-        } elseif ($year <= 2399) {
-            $day = (new SimpleSolarTerm())->syunbun($year)->day;
-        } else {
-            syunbun_lunar:
-            $DateTime = new DateTime($year . '-03-15');
-            while ($DateTime->month === 3) {
-                $DateTime->addDay();
-                $Element = $this->LunarCalendar->getLunarDate($DateTime);
-                if ($Element->solar_term === self::VERNAL_EQUINOX) {
-                    break;
-                }
-            }
-
-            $day = $DateTime->day;
+        } catch (Exception) {
+            $day = (new SolarTerm())->syunbun($year)->day;
         }
-
         return mktime(0, 0, 0, DateTime::VERNAL_EQUINOX_DAY_MONTH, $day, $year);
     }
 
@@ -406,10 +410,11 @@ class JapaneseDate
      * 日を数値化して返します
      *
      * @access      protected
-     * @param int|float|string|DateTimeInterface|null  $time
+     * @param int|float|string|DateTimeInterface|null $time
      * @param DateTimeZone|null $time_zone
      * @return      int
-     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     protected function getDay(int|float|string|DateTimeInterface|null $time = null, DateTimeZone|null $time_zone = null): int
     {
@@ -423,7 +428,8 @@ class JapaneseDate
      * @param int $year 年
      * @param DateTimeZone $timezone
      * @return      array
-     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     protected function getAprilHoliday(int $year, DateTimeZone $timezone): array
     {
@@ -459,7 +465,8 @@ class JapaneseDate
      * @param int $year 年
      * @param DateTimeZone $timezone
      * @return      array
-     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     protected function getMayHoliday(int $year, DateTimeZone $timezone): array
     {
@@ -531,8 +538,10 @@ class JapaneseDate
      * @param int $year 年
      * @param DateTimeZone $timezone
      * @return      array
+     * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     protected function getJulyHoliday(int $year, DateTimeZone $timezone): array
     {
@@ -571,7 +580,8 @@ class JapaneseDate
      * @param int $year 年
      * @param DateTimeZone $timezone
      * @return      array
-     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     protected function getAugustHoliday(int $year, DateTimeZone $timezone): array
     {
@@ -604,6 +614,7 @@ class JapaneseDate
      * @param int $year 年
      * @param DateTimeZone $timezone
      * @return      array
+     * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
@@ -657,28 +668,10 @@ class JapaneseDate
      */
     public function getAutumnEquinoxDay(int $year): int
     {
-        if ($year < 1600) {
-            goto syuubun_lunar;
-        } elseif ($year <= 1979) {
+        try {
             $day = (new SimpleSolarTerm())->syuubun($year)->day;
-        } elseif ($year <= 2099) {
-            $day = floor(23.2488 + (0.242194 * ($year - 1980)) - floor(($year - 1980) / 4));
-        } elseif ($year <= 2150) {
-            $day = floor(24.2488 + (0.242194 * ($year - 1980)) - floor(($year - 1980) / 4));
-        } elseif ($year <= 2399) {
-            $day = (new SimpleSolarTerm())->syuubun($year)->day;
-        } else {
-            syuubun_lunar:
-            $DateTime = new DateTime($year . '-09-15');
-            while ($DateTime->month === 9) {
-                $DateTime->addDay();
-                $Element = $this->LunarCalendar->getLunarDate($DateTime);
-                if ($Element->solar_term === self::AUTUMNAL_EQUINOX) {
-                    break;
-                }
-            }
-
-            $day = $DateTime->day;
+        } catch (Exception) {
+            $day = (new SolarTerm())->syuubun($year)->day;
         }
 
         return mktime(0, 0, 0, DateTime::AUTUMNAL_EQUINOX_DAY_MONTH, $day, $year);
@@ -691,8 +684,10 @@ class JapaneseDate
      * @param int $year 年
      * @param DateTimeZone $timezone
      * @return      array
+     * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     protected function getOctoberHoliday(int $year, DateTimeZone $timezone): array
     {
@@ -744,7 +739,8 @@ class JapaneseDate
      * @param int $year 年
      * @param DateTimeZone $timezone
      * @return      array
-     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     protected function getNovemberHoliday(int $year, DateTimeZone $timezone): array
     {
@@ -778,7 +774,8 @@ class JapaneseDate
      * @param int $year 年
      * @param DateTimeZone $timezone
      * @return      array
-     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     protected function getDecemberHoliday(int $year, DateTimeZone $timezone): array
     {
@@ -853,10 +850,10 @@ class JapaneseDate
      * 日本語フォーマットされた月相名を返す
      *
      * @access      public
-     * @param int $key 月相キー (0〜7)
+     * @param int|null $key 月相キー (0〜7)
      * @return      string
      */
-    public function viewMoonPhase(int $key): string
+    public function viewMoonPhase(?int $key): string
     {
         return self::MOON_PHASE[$key] ?? '';
     }
