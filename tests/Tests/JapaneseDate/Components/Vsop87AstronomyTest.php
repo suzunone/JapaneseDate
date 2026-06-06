@@ -64,7 +64,8 @@ class Vsop87AstronomyTest extends TestCase
         int $year,
         int $month,
         int $day,
-        float $hour
+        float $hour,
+        float $expectedLongitude
     ): void {
         $longitude = (new Vsop87Astronomy())->longitudeSun($year, $month, $day, $hour, 0.0, 0.0);
 

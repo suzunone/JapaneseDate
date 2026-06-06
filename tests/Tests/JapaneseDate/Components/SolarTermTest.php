@@ -5,20 +5,23 @@ namespace Tests\JapaneseDate\Components;
 use JapaneseDate\Components\Astronomy;
 use JapaneseDate\Components\Cache;
 use JapaneseDate\Components\SolarTerm;
+use JapaneseDate\Components\Traits\GetSolarTerm;
 use JapaneseDate\DateTime;
 use JapaneseDate\Elements\SolarTermDate;
 use JapaneseDate\Exceptions\Exception;
 use JapaneseDate\Exceptions\SolarTermException;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\CoversMethod;
+use PHPUnit\Framework\Attributes\CoversTrait;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Tests\JapaneseDate\Components\Traits\SolarTermDataProviderTrait;
 
 #[CoversClass(SolarTerm::class)]
+#[CoversTrait(GetSolarTerm::class)]
 #[CoversMethod(SolarTerm::class, '__construct')]
 #[CoversMethod(SolarTerm::class, 'getSolarTerm')]
-#[CoversMethod(SolarTerm::class, 'getSolarTerms')]
+#[CoversMethod(GetSolarTerm::class, 'getSolarTerms')]
 #[CoversMethod(SolarTerm::class, 'syunbun')]
 #[CoversMethod(SolarTerm::class, 'seimei')]
 #[CoversMethod(SolarTerm::class, 'kokuu')]
