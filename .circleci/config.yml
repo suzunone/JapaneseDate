@@ -45,9 +45,6 @@ commands:
             sudo pecl channel-update pecl.php.net
             # PHPのバージョンが7.2の場合は2.9.8を、それ以外は最新を入れる
             if [ "<< parameters.php-version >>" = "7.2" ]; then
-              sudo apt-get update
-              sudo apt-get install -y php7.2-bcmath
-              php -r 'exit(function_exists("bcdiv") ? 0 : 1);'
               sudo pecl install xdebug-2.9.8
             else
               sudo pecl install xdebug
