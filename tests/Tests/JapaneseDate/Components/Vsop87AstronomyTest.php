@@ -8,7 +8,9 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
-#[CoversClass(Vsop87Astronomy::class)]
+/**
+ * @covers \JapaneseDate\Components\Vsop87Astronomy
+ */
 class Vsop87AstronomyTest extends TestCase
 {
     /**
@@ -32,7 +34,6 @@ class Vsop87AstronomyTest extends TestCase
             '2024 winter solstice season' => [2024, 12, 21, 9.0, 269.6036200],
         ];
     }
-
     public function test_algorithmNameReturnsVsop87(): void
     {
         try {
@@ -45,30 +46,20 @@ class Vsop87AstronomyTest extends TestCase
             Astronomy::useMoonAlgorithm(Astronomy::MOON_LEGACY);
         }
     }
-
-    #[DataProvider('jplHorizonsApparentSolarLongitudeProvider')]
-    public function test_longitudeSunMatchesJplHorizonsApparentSolarLongitude(
-        int $year,
-        int $month,
-        int $day,
-        float $hour,
-        float $expectedLongitude
-    ): void {
+    /**
+     * @dataProvider jplHorizonsApparentSolarLongitudeProvider
+     */
+    public function test_longitudeSunMatchesJplHorizonsApparentSolarLongitude(int $year, int $month, int $day, float $hour, float $expectedLongitude): void
+    {
         $actualLongitude = (new Vsop87Astronomy())->longitudeSun($year, $month, $day, $hour, 0.0, 0.0);
-
         $this->assertEqualsWithDelta($expectedLongitude, $actualLongitude, 0.002);
     }
-
-    #[DataProvider('jplHorizonsApparentSolarLongitudeProvider')]
-    public function test_longitudeSunAlwaysReturnsNormalizedAngle(
-        int $year,
-        int $month,
-        int $day,
-        float $hour,
-        float $expectedLongitude
-    ): void {
+    /**
+     * @dataProvider jplHorizonsApparentSolarLongitudeProvider
+     */
+    public function test_longitudeSunAlwaysReturnsNormalizedAngle(int $year, int $month, int $day, float $hour, float $expectedLongitude): void
+    {
         $longitude = (new Vsop87Astronomy())->longitudeSun($year, $month, $day, $hour, 0.0, 0.0);
-
         $this->assertGreaterThanOrEqual(0.0, $longitude);
         $this->assertLessThan(360.0, $longitude);
     }

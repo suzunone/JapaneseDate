@@ -33,14 +33,12 @@ use Tests\JapaneseDate\InvokeTrait;
  *
  * 精度: 新月・四分月は ±3 分以内 (USNO データと照合済み)
  * 天文データ出典: 国立天文台 / USNO
+ * @covers \JapaneseDate\Components\Moon
  */
-#[CoversClass(Moon::class)]
 class MoonTest extends TestCase
 {
     use InvokeTrait;
-
     // ==================== uts2Julian / julian2Uts 変換精度テスト ====================
-
     public function test_uts2Julian_unix_epoch(): void
     {
         $moon = new Moon();
@@ -48,7 +46,6 @@ class MoonTest extends TestCase
         $result = $this->invokeExecuteMethod($moon, 'uts2Julian', [0]);
         $this->assertSame(2440587.5, $result);
     }
-
     public function test_uts2Julian_j2000(): void
     {
         $moon = new Moon();
@@ -56,7 +53,6 @@ class MoonTest extends TestCase
         $result = $this->invokeExecuteMethod($moon, 'uts2Julian', [946728000]);
         $this->assertSame(2451545.0, $result);
     }
-
     public function test_uts2Julian_known_date(): void
     {
         $moon = new Moon();
@@ -64,7 +60,6 @@ class MoonTest extends TestCase
         $result = $this->invokeExecuteMethod($moon, 'uts2Julian', [1674259200]);
         $this->assertSame(2459965.5, $result);
     }
-
     public function test_julian2Uts_unix_epoch(): void
     {
         $moon = new Moon();
@@ -72,7 +67,6 @@ class MoonTest extends TestCase
         $result = $this->invokeExecuteMethod($moon, 'julian2Uts', [2440587.5]);
         $this->assertSame(0.0, $result);
     }
-
     public function test_julian2Uts_j2000(): void
     {
         $moon = new Moon();
@@ -80,7 +74,6 @@ class MoonTest extends TestCase
         $result = $this->invokeExecuteMethod($moon, 'julian2Uts', [2451545.0]);
         $this->assertSame(946728000.0, $result);
     }
-
     public function test_julian2Uts_known_date(): void
     {
         $moon = new Moon();
@@ -88,7 +81,6 @@ class MoonTest extends TestCase
         $result = $this->invokeExecuteMethod($moon, 'julian2Uts', [2459965.5]);
         $this->assertSame(1674259200.0, $result);
     }
-
     public function test_julian2Uts_roundtrip(): void
     {
         $moon = new Moon();
@@ -98,9 +90,7 @@ class MoonTest extends TestCase
         $result = $this->invokeExecuteMethod($moon, 'julian2Uts', [$julian]);
         $this->assertEqualsWithDelta((float) $timestamp, $result, 0.001);
     }
-
     // ==================== meanPhase ====================
-
     public function test_meanPhase_returnsFloat(): void
     {
         $moon = new Moon();
@@ -109,9 +99,7 @@ class MoonTest extends TestCase
         $this->assertIsFloat($result);
         $this->assertGreaterThan(2415020.0, $result);
     }
-
     // ==================== truePhase 分岐テスト ====================
-
     // phase < 0.01 → 新月補正
     public function test_truePhase_newMoon_returnsFloat(): void
     {
@@ -120,7 +108,6 @@ class MoonTest extends TestCase
         $result = $this->invokeExecuteMethod($moon, 'truePhase', [1236.85, 0.0]);
         $this->assertIsFloat($result);
     }
-
     // abs(phase - 0.5) < 0.01 → 満月補正
     public function test_truePhase_fullMoon_returnsFloat(): void
     {
@@ -129,7 +116,6 @@ class MoonTest extends TestCase
         $result = $this->invokeExecuteMethod($moon, 'truePhase', [1236.85, 0.5]);
         $this->assertIsFloat($result);
     }
-
     // abs(phase - 0.25) < 0.01, phase < 0.5 → 上弦補正
     public function test_truePhase_firstQuarter_returnsFloat(): void
     {
@@ -138,7 +124,6 @@ class MoonTest extends TestCase
         $result = $this->invokeExecuteMethod($moon, 'truePhase', [1236.85, 0.25]);
         $this->assertIsFloat($result);
     }
-
     // abs(phase - 0.75) < 0.01, phase >= 0.5 → 下弦補正
     public function test_truePhase_lastQuarter_returnsFloat(): void
     {
@@ -147,7 +132,6 @@ class MoonTest extends TestCase
         $result = $this->invokeExecuteMethod($moon, 'truePhase', [1236.85, 0.75]);
         $this->assertIsFloat($result);
     }
-
     // いずれにも該当しない場合 → null
     public function test_truePhase_invalidPhase_returnsNull(): void
     {
@@ -156,7 +140,6 @@ class MoonTest extends TestCase
         $result = $this->invokeExecuteMethod($moon, 'truePhase', [1236.85, 0.3]);
         $this->assertNull($result);
     }
-
     // ==================== truePhase 実データ精度テスト ====================
     //
     // truePhase(k, phase) の戻り値 ≈ 実際の天文イベントの UTC タイムスタンプ + 32340 秒
@@ -164,7 +147,6 @@ class MoonTest extends TestCase
     //
     // k=1522 = 2023年1月の朔望月インデックス (2023-01-21 新月)
     // k=1521 = 2022年12月の朔望月インデックス (2022-12-23 新月)
-
     public function test_truePhase_newMoon_jan2023(): void
     {
         $moon = new Moon();
@@ -180,7 +162,6 @@ class MoonTest extends TestCase
             '2023-01-21 新月の計算誤差が ±5 分を超えています (USNO 基準)'
         );
     }
-
     public function test_truePhase_newMoon_dec2022(): void
     {
         $moon = new Moon();
@@ -196,7 +177,6 @@ class MoonTest extends TestCase
             '2022-12-23 新月の計算誤差が ±5 分を超えています (USNO 基準)'
         );
     }
-
     public function test_truePhase_firstQuarter_jan2023(): void
     {
         $moon = new Moon();
@@ -212,7 +192,6 @@ class MoonTest extends TestCase
             '2023-01-28 上弦の計算誤差が ±5 分を超えています (USNO 基準)'
         );
     }
-
     public function test_truePhase_fullMoon_feb2023(): void
     {
         $moon = new Moon();
@@ -228,7 +207,6 @@ class MoonTest extends TestCase
             '2023-02-05 満月の計算誤差が ±5 分を超えています (USNO 基準)'
         );
     }
-
     public function test_truePhase_lastQuarter_feb2023(): void
     {
         $moon = new Moon();
@@ -244,9 +222,7 @@ class MoonTest extends TestCase
             '2023-02-13 下弦の計算誤差が ±5 分を超えています (USNO 基準)'
         );
     }
-
     // ==================== moonPhase 分岐テスト ====================
-
     // is_next=false → k2 (次の朔望月の新月基準)
     public function test_moonPhase_newMoon_isNextFalse(): void
     {
@@ -255,7 +231,6 @@ class MoonTest extends TestCase
         $result = $moon->moonPhase(new DateTime('2023-01-15 00:00:00', new DateTimeZone('UTC')), 0.0);
         $this->assertInstanceOf(Carbon::class, $result);
     }
-
     // is_next=false, phase=0.5 → 満月
     public function test_moonPhase_fullMoon(): void
     {
@@ -264,7 +239,6 @@ class MoonTest extends TestCase
         $result = $moon->moonPhase(new DateTime('2023-01-15 00:00:00', new DateTimeZone('UTC')), 0.5);
         $this->assertInstanceOf(Carbon::class, $result);
     }
-
     // is_next=false, phase=0.25 → 上弦 (phase < 0.5 の分岐)
     public function test_moonPhase_firstQuarter(): void
     {
@@ -273,7 +247,6 @@ class MoonTest extends TestCase
         $result = $moon->moonPhase(new DateTime('2023-01-15 00:00:00', new DateTimeZone('UTC')), 0.25);
         $this->assertInstanceOf(Carbon::class, $result);
     }
-
     // is_next=false, phase=0.75 → 下弦 (phase >= 0.5 の分岐)
     public function test_moonPhase_lastQuarter(): void
     {
@@ -282,7 +255,6 @@ class MoonTest extends TestCase
         $result = $moon->moonPhase(new DateTime('2023-01-15 00:00:00', new DateTimeZone('UTC')), 0.75);
         $this->assertInstanceOf(Carbon::class, $result);
     }
-
     // is_next=true → k1 (前の朔望月の新月基準)
     public function test_moonPhase_isNextTrue(): void
     {
@@ -291,7 +263,6 @@ class MoonTest extends TestCase
         $result = $moon->moonPhase(new DateTime('2023-01-15 00:00:00', new DateTimeZone('UTC')), 0.0, true);
         $this->assertInstanceOf(Carbon::class, $result);
     }
-
     // abs($nt2 - $julian) < 0.75 の分岐 (新月当日に近い日時でトリガー)
     public function test_moonPhase_nearNewMoon_triggersClosenessCheck(): void
     {
@@ -301,7 +272,6 @@ class MoonTest extends TestCase
         $result = $moon->moonPhase($date, 0.0);
         $this->assertInstanceOf(Carbon::class, $result);
     }
-
     public function test_moonPhaseDoesNotUseLegacyTruePhaseWhenMoonElp2000Selected(): void
     {
         $moon = new class extends Moon {
@@ -324,7 +294,6 @@ class MoonTest extends TestCase
             Astronomy::useMoonAlgorithm(Astronomy::MOON_LEGACY);
         }
     }
-
     public function test_moonPhaseWithLegacyAlgorithmRestoresSelectedMoonAlgorithm(): void
     {
         $moon = new Moon();
@@ -344,7 +313,6 @@ class MoonTest extends TestCase
             Astronomy::useMoonAlgorithm(Astronomy::MOON_LEGACY);
         }
     }
-
     public function test_moonPhaseByAstronomyReturnsPreviousTimestampWhenDeltaIsZero(): void
     {
         $moon = new class extends Moon {
@@ -360,7 +328,6 @@ class MoonTest extends TestCase
         $this->assertInstanceOf(Carbon::class, $result);
         $this->assertSame($date->getTimestamp(), $result->getTimestamp());
     }
-
     public function test_moonPhaseByAstronomyFallsBackWhenNoCrossingIsFound(): void
     {
         $moon = new class extends Moon {
@@ -386,13 +353,11 @@ class MoonTest extends TestCase
         $this->assertTrue($moon->fallbackCalled);
         $this->assertSame($date->getTimestamp(), $result->getTimestamp());
     }
-
-    #[DataProvider('elp2000NewMoonProvider')]
-    public function test_moonPhaseByElp2000MatchesNaojNewMoonTime(
-        string $searchDate,
-        string $expectedNewMoon,
-        int $deltaSeconds
-    ): void {
+    /**
+     * @dataProvider elp2000NewMoonProvider
+     */
+    public function test_moonPhaseByElp2000MatchesNaojNewMoonTime(string $searchDate, string $expectedNewMoon, int $deltaSeconds): void
+    {
         try {
             Astronomy::useSolarAlgorithm(Astronomy::SOLAR_VSOP87);
             Astronomy::useMoonAlgorithm(Astronomy::MOON_ELP2000);
@@ -409,7 +374,6 @@ class MoonTest extends TestCase
             Astronomy::useMoonAlgorithm(Astronomy::MOON_LEGACY);
         }
     }
-
     public static function elp2000NewMoonProvider(): array
     {
         return [
@@ -422,7 +386,6 @@ class MoonTest extends TestCase
             '2023 January new moon' => ['2023-01-20 00:00:00', '2023-01-22 05:53:00', 300],
         ];
     }
-
     // ==================== moonPhase 実データ精度テスト ====================
     //
     // moonPhase() は truePhase() を呼ぶため、同じオフセット仕様が適用される
@@ -432,7 +395,6 @@ class MoonTest extends TestCase
     //   ループ終了時 k1=1521 (2022-12-23 新月), k2=1522 (2023-01-21 新月)
     //   is_next=false → truePhase(k2=1522, phase)
     //   is_next=true  → truePhase(k1=1521, phase)
-
     public function test_moonPhase_newMoon_jan2023_accuracy(): void
     {
         $moon = new Moon();
@@ -446,7 +408,6 @@ class MoonTest extends TestCase
             '2023-01-21 新月の moonPhase 誤差が ±5 分を超えています (USNO 基準)'
         );
     }
-
     public function test_moonPhase_firstQuarter_jan2023_accuracy(): void
     {
         $moon = new Moon();
@@ -460,7 +421,6 @@ class MoonTest extends TestCase
             '2023-01-28 上弦の moonPhase 誤差が ±5 分を超えています (USNO 基準)'
         );
     }
-
     public function test_moonPhase_fullMoon_feb2023_accuracy(): void
     {
         $moon = new Moon();
@@ -474,7 +434,6 @@ class MoonTest extends TestCase
             '2023-02-05 満月の moonPhase 誤差が ±5 分を超えています (USNO 基準)'
         );
     }
-
     public function test_moonPhase_lastQuarter_feb2023_accuracy(): void
     {
         $moon = new Moon();
@@ -488,7 +447,6 @@ class MoonTest extends TestCase
             '2023-02-13 下弦の moonPhase 誤差が ±5 分を超えています (USNO 基準)'
         );
     }
-
     public function test_moonPhase_previousNewMoon_dec2022_accuracy(): void
     {
         $moon = new Moon();
@@ -502,7 +460,6 @@ class MoonTest extends TestCase
             '2022-12-23 新月 (is_next=true) の moonPhase 誤差が ±5 分を超えています (USNO 基準)'
         );
     }
-
     public function test_moonPhase_nearNewMoon_jan2023_accuracy(): void
     {
         $moon = new Moon();
