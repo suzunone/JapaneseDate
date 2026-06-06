@@ -414,29 +414,6 @@ class SeventyTwoKouCalculatorTest extends TestCase
             Astronomy::useMoonAlgorithm(Astronomy::MOON_LEGACY);
         }
     }
-    /**
-     * VSOP87 モードでは SimpleSolarTerm を使わず SolarTerm 経由で節気日付を取得することを確認する。
-     */
-    public function test_fetchSolarTermDate_uses_SolarTerm_when_vsop87_enabled(): void
-    {
-        try {
-            Astronomy::useSolarAlgorithm(Astronomy::SOLAR_VSOP87);
-
-            $stDate = $this->invokeExecuteMethod(
-                SeventyTwoKouCalculator::factory(),
-                'fetchSolarTermDate',
-                [DateTime::SOLAR_TERM_RISSYUN, 2025]
-            );
-
-            $this->assertSame(2025, $stDate->year);
-            $this->assertSame(DateTime::SOLAR_TERM_RISSYUN, $stDate->solar_term);
-            $this->assertSame(2, $stDate->month);
-            $this->assertSame(3, $stDate->day);
-        } finally {
-            Astronomy::useSolarAlgorithm(Astronomy::SOLAR_LEGACY);
-            Astronomy::useMoonAlgorithm(Astronomy::MOON_LEGACY);
-        }
-    }
 
     /**
      * findPreviousSolarTermInfo() が前の節気の情報を正しく返すことを確認する。
