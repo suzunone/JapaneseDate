@@ -65,8 +65,9 @@ class Vsop87AstronomyTest extends TestCase
      * @param int $month
      * @param int $day
      * @param float $hour
+     * @param float $expectedLongitude
      */
-    public function test_longitudeSunAlwaysReturnsNormalizedAngle($year, $month, $day, $hour): void
+    public function test_longitudeSunAlwaysReturnsNormalizedAngle($year, $month, $day, $hour, $expectedLongitude): void
     {
         $longitude = (new Vsop87Astronomy())->longitudeSun($year, $month, $day, $hour, 0.0, 0.0);
         $this->assertGreaterThanOrEqual(0.0, $longitude);

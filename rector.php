@@ -35,4 +35,5 @@ return RectorConfig::configure()
     ->withSkip([
         AnnotationToAttributeRector::class,
         __DIR__ . '/src/Components/ELP2000.php',
+        __DIR__ . '/tests/fixtures/',
     ]);

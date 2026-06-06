@@ -6,7 +6,7 @@
          processIsolation="false"
          stopOnError="false"
          stopOnFailure="false"
-         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.6/phpunit.xsd"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.5/phpunit.xsd"
 >
   <testsuites>
     <testsuite name="Suzunone\JapaneseDate">
@@ -14,7 +14,7 @@
     </testsuite>
   </testsuites>
 
-  <coverage>
+  <coverage processUncoveredFiles="true">
     <include>
       <directory suffix=".php">src</directory>
     </include>

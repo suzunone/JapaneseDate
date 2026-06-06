@@ -430,6 +430,7 @@ class SeventyTwoKouCalculatorTest extends TestCase
             Astronomy::useMoonAlgorithm(Astronomy::MOON_LEGACY);
         }
     }
+
     /**
      * findPreviousSolarTermInfo() が前の節気の情報を正しく返すことを確認する。
      * 立春（kouIndex=0）の前は大寒（kouIndex=23）。
