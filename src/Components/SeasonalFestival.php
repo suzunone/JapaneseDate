@@ -92,7 +92,7 @@ class SeasonalFestival
      *
      * @var array<int, array{month: int, day: int, key: int}>
      */
-    private const SOLAR_FESTIVALS = [
+    protected const SOLAR_FESTIVALS = [
         ['month' => 1, 'day' => 7, 'key' => DateTime::SEASONAL_FESTIVAL_JINJITSU],
         ['month' => 3, 'day' => 3, 'key' => DateTime::SEASONAL_FESTIVAL_JOSHI],
         ['month' => 5, 'day' => 5, 'key' => DateTime::SEASONAL_FESTIVAL_TANGO],
@@ -105,7 +105,7 @@ class SeasonalFestival
      *
      * @var array<int, array{month: int, day: int, key: int}>
      */
-    private const LUNAR_FESTIVALS = [
+    protected const LUNAR_FESTIVALS = [
         ['month' => 1, 'day' => 7, 'key' => DateTime::SEASONAL_FESTIVAL_JINJITSU],
         ['month' => 3, 'day' => 3, 'key' => DateTime::SEASONAL_FESTIVAL_JOSHI],
         ['month' => 5, 'day' => 5, 'key' => DateTime::SEASONAL_FESTIVAL_TANGO],

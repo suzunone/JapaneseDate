@@ -5,6 +5,7 @@
 namespace Tests\JapaneseDate\Traits;
 
 use DateTimeZone;
+use JapaneseDate\Components\Astronomy;
 use JapaneseDate\Components\SimpleSolarTerm;
 use JapaneseDate\Components\SolarTerm;
 use JapaneseDate\DateTime;
@@ -266,6 +267,23 @@ class FindSolarTermTest extends TestCase
         $result = $this->invokeExecuteMethod($dateTime, 'get' . $methodSuffix, []);
 
         $this->assertSame(self::expectedDate($term, '01:02:03'), $result->format('Y-m-d H:i:s'));
+    }
+
+    public function test_getSolarTermUsesVsop87AlgorithmWhenSelected(): void
+    {
+        try {
+            Astronomy::useSolarAlgorithm(Astronomy::SOLAR_VSOP87);
+
+            $dateTime = new DateTime('2026-03-01 01:02:03', new DateTimeZone('Asia/Tokyo'));
+            $term = self::astronomicalSolarTerm('syunbun', 2026);
+
+            $result = $this->invokeExecuteMethod($dateTime, 'getSyunbun', []);
+
+            $this->assertSame(self::expectedDate($term, '01:02:03'), $result->format('Y-m-d H:i:s'));
+        } finally {
+            Astronomy::useSolarAlgorithm(Astronomy::SOLAR_LEGACY);
+            Astronomy::useMoonAlgorithm(Astronomy::MOON_LEGACY);
+        }
     }
 
     /**

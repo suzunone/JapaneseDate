@@ -301,37 +301,34 @@ class MiscSeasonalNode
     /**
      * 指定した日付が土用期間内かどうかを判定します。
      *
-     * 土用は立春・立夏・立秋・立冬のそれぞれ18日前から節気前日までの期間で、
+     * 土用は各四立（立春・立夏・立秋・立冬）の18°手前から四立直前までの期間です。
      * 1年間に4回あります。「土用の丑の日」は夏の土用（立秋前）が有名です。
+     *
+     * 判定方法: 翌日 06:00 UTC 時点の太陽黄経が各土用範囲内にあるかを確認します。
+     * - 冬土用: 297° ≤ lon < 315°（立春）
+     * - 春土用:  27° ≤ lon <  45°（立夏）
+     * - 夏土用: 117° ≤ lon < 135°（立秋）
+     * - 秋土用: 207° ≤ lon < 225°（立冬）
      *
      * @param \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable $date 判定対象の日付
      * @return bool 土用期間内であれば true
      */
     public function isDoyo(DateTime|DateTimeImmutable $date): bool
     {
-        $doyoTerms = ['rissyun', 'rikka', 'rissyuu', 'rittou'];
-        $dateTs = $date->startOfDay()->timestamp;
+        try {
+            $astronomy = Astronomy::factory();
+            $tomorrow = $this->addOneDay($date->year, $date->month, $date->day);
+            $lon = $astronomy->longitudeSun($tomorrow[0], $tomorrow[1], $tomorrow[2], 6, 0, 0);
 
-        foreach ([$date->year, $date->year + 1] as $year) {
-            foreach ($doyoTerms as $term) {
-                try {
-                    $termDate = $this->resolveSingleSolarTerm($term, $year);
-                    $termTs = $this->solarTermToDateTime($termDate)->startOfDay()->timestamp;
-                    $doyoStart = $termTs - 18 * 86400;
-                    $doyoEnd = $termTs - 86400;
-
-                    if ($dateTs >= $doyoStart && $dateTs <= $doyoEnd) {
-                        return true;
-                    }
-                    // @codeCoverageIgnoreStart
-                } catch (Throwable) {
-                    continue;
-                }
-                // @codeCoverageIgnoreEnd
-            }
+            return ($lon >= 297.0 && $lon < 315.0)
+                || ($lon >= 27.0  && $lon < 45.0)
+                || ($lon >= 117.0 && $lon < 135.0)
+                || ($lon >= 207.0 && $lon < 225.0);
+            // @codeCoverageIgnoreStart
+        } catch (Throwable) {
+            return false;
         }
-
-        return false;
+        // @codeCoverageIgnoreEnd
     }
 
     /**
@@ -390,7 +387,7 @@ class MiscSeasonalNode
      * @param float                  $targetLon 目標の太陽黄経（度）
      * @return bool 指定黄経に達する日であれば true
      */
-    private function isSolarLongitudeDay(DateTime $date, float $targetLon): bool
+    protected function isSolarLongitudeDay(DateTime $date, float $targetLon): bool
     {
         try {
             $astronomy = Astronomy::factory();
@@ -417,6 +414,10 @@ class MiscSeasonalNode
      */
     protected function resolveSingleSolarTerm(string $method, int $year): SolarTermDate
     {
+        if (Astronomy::solarAlgorithm() === Astronomy::SOLAR_VSOP87) {
+            return (new SolarTerm())->{$method}($year);
+        }
+
         try {
             return (new SimpleSolarTerm())->{$method}($year);
         } catch (Throwable) {
@@ -430,7 +431,7 @@ class MiscSeasonalNode
      * @param \JapaneseDate\Elements\SolarTermDate $termDate 節気データ
      * @return \JapaneseDate\DateTime 節気日の DateTime
      */
-    private function solarTermToDateTime(SolarTermDate $termDate): DateTime
+    protected function solarTermToDateTime(SolarTermDate $termDate): DateTime
     {
         return DateTime::create($termDate->year, $termDate->month, $termDate->day);
     }
@@ -444,7 +445,7 @@ class MiscSeasonalNode
      * @return \DateTimeImmutable 節気日の DateTimeImmutable
      * @throws \Exception
      */
-    private function solarTermToNativeDate(SolarTermDate $termDate): NativeDateTimeImmutable
+    protected function solarTermToNativeDate(SolarTermDate $termDate): NativeDateTimeImmutable
     {
         return new NativeDateTimeImmutable(
             sprintf('%04d-%02d-%02d', $termDate->year, $termDate->month, $termDate->day),
@@ -460,7 +461,7 @@ class MiscSeasonalNode
      * @param int $day   日
      * @return array{0: int, 1: int, 2: int} [年, 月, 日]
      */
-    private function addOneDay(int $year, int $month, int $day): array
+    protected function addOneDay(int $year, int $month, int $day): array
     {
         $jd = cal_to_jd(CAL_GREGORIAN, $month, $day, $year);
         $cal = cal_from_jd($jd + 1, CAL_GREGORIAN);

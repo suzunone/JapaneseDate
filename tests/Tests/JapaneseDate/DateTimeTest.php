@@ -27,7 +27,6 @@ use JapaneseDate\Exceptions\NativeDateTimeException;
 use JapaneseDate\Traits\Component;
 use JapaneseDate\Traits\DateTimeImport;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\CoversMethod;
 use PHPUnit\Framework\Attributes\CoversTrait;
 use PHPUnit\Framework\Attributes\PreserveGlobalState;
 use PHPUnit\Framework\Attributes\RunInSeparateProcess;
@@ -48,11 +47,6 @@ use PHPUnit\Framework\TestCase;
 #[CoversTrait(Component::class)]
 #[CoversTrait(DateTimeImport::class)]
 #[CoversClass(DateTime::class)]
-#[CoversMethod(DateTime::class, 'setLocale')]
-#[CoversMethod(DateTime::class, 'create')]
-#[CoversMethod(DateTime::class, '__construct')]
-#[CoversMethod(DateTime::class, 'factory')]
-#[CoversMethod(DateTime::class, 'getCalendar')]
 class DateTimeTest extends TestCase
 {
     use InvokeTrait;
@@ -82,7 +76,7 @@ class DateTimeTest extends TestCase
      */
     public function test_create(): void
     {
-        $date1 = DateTime::create(2018, 1, 1, 0, 0, 0);
+        $date1 = DateTime::create(2018);
 
         $this->assertInstanceOf(DateTime::class, $date1);
     }

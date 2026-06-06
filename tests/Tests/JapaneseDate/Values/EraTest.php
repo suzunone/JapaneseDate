@@ -195,7 +195,7 @@ class EraTest extends TestCase
         );
 
         $this->expectException(ErrorException::class);
-        /** @noinspection PhpReadonlyPropertyWrittenOutsideDeclarationScopeInspection */
+        /** @noinspection Annotator */
         $era->startDate = new DateTime('2025-01-01');
     }
 

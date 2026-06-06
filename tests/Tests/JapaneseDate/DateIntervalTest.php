@@ -1,6 +1,5 @@
 <?php
 
-/** @noinspection PhpDocMissingThrowsInspection */
 /** @noinspection PhpUnhandledExceptionInspection */
 
 /**
@@ -21,6 +20,7 @@ namespace Tests\JapaneseDate;
 
 use Carbon\CarbonInterval;
 use InvalidArgumentException;
+use JapaneseDate\Components\Astronomy;
 use JapaneseDate\DateBusiness;
 use JapaneseDate\DateInterval;
 use JapaneseDate\DateTime;
@@ -347,6 +347,22 @@ class DateIntervalTest extends TestCase
         $interval = DateInterval::untilNextSolarTerm($from);
         $this->assertInstanceOf(DateInterval::class, $interval);
         $this->assertGreaterThanOrEqual(0, $interval->d);
+    }
+
+    public function test_resolveSolarTerm_usesVsop87AlgorithmWhenSelected(): void
+    {
+        try {
+            Astronomy::useSolarAlgorithm(Astronomy::SOLAR_VSOP87);
+
+            $from = DateTime::parse('2026-03-01');
+            $interval = DateInterval::untilNextSolarTerm($from, 'syunbun');
+
+            $this->assertInstanceOf(DateInterval::class, $interval);
+            $this->assertGreaterThan(0, $interval->d);
+        } finally {
+            Astronomy::useSolarAlgorithm(Astronomy::SOLAR_LEGACY);
+            Astronomy::useMoonAlgorithm(Astronomy::MOON_LEGACY);
+        }
     }
 
     /**

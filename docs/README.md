@@ -132,7 +132,7 @@ echo JapaneseDateTime::parse('first day of December 2018')->addWeeks(2);    // 2
 
 ``` .php
 
-echo JapaneseDateTime::parse(time());    // 2026-06-01 08:16:15
+echo JapaneseDateTime::parse(time());    // 2026-06-06 07:07:17
 echo JapaneseDateTime::parse(new DateTime('now'));    // PHP Fatal error:  Uncaught TypeError: DateTime::__construct() expects parameter 1 to be string, object given
 ```
 
@@ -143,9 +143,9 @@ echo JapaneseDateTime::parse(new DateTime('now'));    // PHP Fatal error:  Uncau
 そういった場合は、`JapaneseDate\DateTime::factory()`を使用します。
 
 ``` .php
-echo JapaneseDateTime::factory(time());    // 2026-06-01 08:16:15
+echo JapaneseDateTime::factory(time());    // 2026-06-06 07:07:17
 
-echo JapaneseDateTime::factory(new DateTime('now'));    // 2026-06-01 17:16:15
+echo JapaneseDateTime::factory(new DateTime('now'));    // 2026-06-06 16:07:17
 
 // もちろんこういったコードも動作します
 echo JapaneseDateTime::factory('first day of December 2018')->addWeeks(2);    // 2018-12-15 00:00:00
@@ -188,13 +188,13 @@ echo JapaneseDateTime::factory(20180404050505);    // 2061-07-19 07:48:25
 
 ``` .php
 $now = JapaneseDateTime::now();
-echo $now;                               // 2026-06-01 17:16:15
+echo $now;                               // 2026-06-06 16:07:17
 $today = JapaneseDateTime::today();
-echo $today;                             // 2026-06-01 00:00:00
+echo $today;                             // 2026-06-06 00:00:00
 $tomorrow = JapaneseDateTime::tomorrow('Europe/London');
-echo $tomorrow;                          // 2026-06-02 00:00:00
+echo $tomorrow;                          // 2026-06-07 00:00:00
 $yesterday = JapaneseDateTime::yesterday();
-echo $yesterday;                         // 2026-05-31 00:00:00
+echo $yesterday;                         // 2026-06-05 00:00:00
 ```
 
 Getter
@@ -410,10 +410,10 @@ var_export($kouDate->seventyTwoKouType);                      // '初候'
 
 // 次の七十二候へ移動（nextSeventyTwoKou）
 // 2025-02-04（立春初候） → 次候の開始日へ
-$nextKou = JapaneseDateTime::parse('2025-02-04')->nextSeventyTwoKou();    // 2025-02-09 候2 うぐいす鳴く
+$nextKou = JapaneseDateTime::parse('2025-02-04')->nextSeventyTwoKou();    // 2025-02-08 候2 うぐいす鳴く
 // 前の七十二候へ移動（previousSeventyTwoKou）
 // 2025-02-04（立春初候） → 前の大寒末候の開始日へ
-$prevKou = JapaneseDateTime::parse('2025-02-04')->previousSeventyTwoKou(); // 2025-01-30 候72 鶏始めてとやにつく
+$prevKou = JapaneseDateTime::parse('2025-02-04')->previousSeventyTwoKou(); // 2025-01-29 候72 鶏始めてとやにつく
 // 立春初候: 1
 // 立春次候: 2
 // 立春末候: 3

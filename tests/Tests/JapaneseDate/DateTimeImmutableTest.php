@@ -1,6 +1,5 @@
 <?php
 
-/** @noinspection PhpDeprecationInspection */
 /** @noinspection PhpUnhandledExceptionInspection */
 /**
  * イミュータブルな日時クラスのテスト
@@ -26,7 +25,6 @@ use JapaneseDate\Exceptions\NativeDateTimeException;
 use JapaneseDate\Traits\Component;
 use JapaneseDate\Traits\DateTimeImport;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\CoversMethod;
 use PHPUnit\Framework\Attributes\CoversTrait;
 use PHPUnit\Framework\Attributes\PreserveGlobalState;
 use PHPUnit\Framework\Attributes\RunInSeparateProcess;
@@ -47,11 +45,6 @@ use PHPUnit\Framework\TestCase;
 #[CoversTrait(Component::class)]
 #[CoversTrait(DateTimeImport::class)]
 #[CoversClass(DateTimeImmutable::class)]
-#[CoversMethod(DateTimeImmutable::class, 'setLocale')]
-#[CoversMethod(DateTimeImmutable::class, 'create')]
-#[CoversMethod(DateTimeImmutable::class, '__construct')]
-#[CoversMethod(DateTimeImmutable::class, 'factory')]
-#[CoversMethod(DateTimeImmutable::class, 'getCalendar')]
 class DateTimeImmutableTest extends TestCase
 {
     use InvokeTrait;
@@ -79,7 +72,7 @@ class DateTimeImmutableTest extends TestCase
      */
     public function test_create(): void
     {
-        $date1 = DateTimeImmutable::create(2018, 1, 1, 0, 0, 0);
+        $date1 = DateTimeImmutable::create(2018);
 
         $this->assertInstanceOf(DateTimeImmutable::class, $date1);
     }

@@ -690,7 +690,8 @@ echo $result->format('Y-m-d');
 **Returns:** [DateTime](../JapaneseDate/DateTime.md) — N 営業日後の日付
 **Throws:**
 
-- [Exception](../JapaneseDate/Exceptions/Exception.md)
+- DateInvalidTimeZoneException
+- [NativeDateTimeException](../JapaneseDate/Exceptions/NativeDateTimeException.md)
 ---
 
 ### subBusinessDaysToDate
@@ -723,7 +724,8 @@ echo $result->format('Y-m-d');
 **Returns:** [DateTime](../JapaneseDate/DateTime.md) — N 営業日前の日付
 **Throws:**
 
-- [Exception](../JapaneseDate/Exceptions/Exception.md)
+- DateInvalidTimeZoneException
+- [NativeDateTimeException](../JapaneseDate/Exceptions/NativeDateTimeException.md)
 ---
 
 ### isBusinessDay
@@ -774,7 +776,8 @@ echo $interval->h . '時間後';
 **Returns:** [DateInterval](../JapaneseDate/DateInterval.md) — 次の祝日（当日 00:00:00）までの {\JapaneseDate\DateInterval}
 **Throws:**
 
-- [Exception](../JapaneseDate/Exceptions/Exception.md)
+- DateInvalidTimeZoneException
+- [NativeDateTimeException](../JapaneseDate/Exceptions/NativeDateTimeException.md)
 ---
 
 ### untilNextSixWeek
@@ -808,7 +811,8 @@ $interval = DateInterval::untilNextSixWeek(DateTime::now(), DateTime::SIX_WEEKDA
 **Returns:** [DateInterval](../JapaneseDate/DateInterval.md) — 指定六曜の翌到来日（当日 00:00:00）までの {\JapaneseDate\DateInterval}
 **Throws:**
 
-- [Exception](../JapaneseDate/Exceptions/Exception.md)
+- DateInvalidTimeZoneException
+- [NativeDateTimeException](../JapaneseDate/Exceptions/NativeDateTimeException.md)
 ---
 
 ### eraSpan
@@ -878,8 +882,8 @@ $interval = DateInterval::untilNextSolarTerm(DateTime::now(), 'geshi');
 **Returns:** [DateInterval](../JapaneseDate/DateInterval.md) — 次の節気日（当日 00:00:00）までの {\JapaneseDate\DateInterval}
 **Throws:**
 
-- [Exception](../JapaneseDate/Exceptions/Exception.md)
-- [SolarTermException](../JapaneseDate/Exceptions/SolarTermException.md)
+- DateInvalidTimeZoneException
+- [NativeDateTimeException](../JapaneseDate/Exceptions/NativeDateTimeException.md)
 ---
 
 ### addSolarTermsToDate
@@ -911,8 +915,8 @@ echo $result->format('Y-m-d');
 **Returns:** [DateTime](../JapaneseDate/DateTime.md) — N 節気後の日付
 **Throws:**
 
-- [Exception](../JapaneseDate/Exceptions/Exception.md)
-- [SolarTermException](../JapaneseDate/Exceptions/SolarTermException.md)
+- DateInvalidTimeZoneException
+- [NativeDateTimeException](../JapaneseDate/Exceptions/NativeDateTimeException.md)
 ---
 
 ### subSolarTermsToDate
@@ -944,8 +948,8 @@ echo $result->format('Y-m-d');
 **Returns:** [DateTime](../JapaneseDate/DateTime.md) — N 節気前の日付
 **Throws:**
 
-- [Exception](../JapaneseDate/Exceptions/Exception.md)
-- [SolarTermException](../JapaneseDate/Exceptions/SolarTermException.md)
+- DateInvalidTimeZoneException
+- [NativeDateTimeException](../JapaneseDate/Exceptions/NativeDateTimeException.md)
 ---
 
 ### toSolarTermCount
@@ -1020,7 +1024,9 @@ echo $interval->days . '日後が次の新月です';
 **Returns:** [DateInterval](../JapaneseDate/DateInterval.md) — 次の新月日（当日 00:00:00）までの {\JapaneseDate\DateInterval}
 **Throws:**
 
+- DateInvalidTimeZoneException
 - [Exception](../JapaneseDate/Exceptions/Exception.md)
+- [NativeDateTimeException](../JapaneseDate/Exceptions/NativeDateTimeException.md)
 ---
 
 ### addBusinessDaysTo
@@ -1082,6 +1088,7 @@ public int countBusinessDaysBetween($start, $end, $config = null)
 **Returns:** int — 営業日数（start以上end以下の営業日の数）
 **Throws:**
 
+- DateInvalidTimeZoneException
 - [NativeDateTimeException](../JapaneseDate/Exceptions/NativeDateTimeException.md)
 ---
 

@@ -332,6 +332,10 @@ echo $nextHoliday->format('Y-m-d') . ' ' . $nextHoliday->holidayText;
 | public | `COURT_NORTH` | 南北朝時代： 北朝 |
 | public | `COURT_SOUTH` | 南北朝時代： 南朝 |
 | public | `COURT_MAIN` | 南北朝時代以外及び南北朝時代の両朝を指す場合 |
+| public | `SOLAR_ALGORITHM_LEGACY` | 従来の太陽位置計算アルゴリズムを使用する場合の定数値。 |
+| public | `SOLAR_ALGORITHM_VSOP87` | VSOP87太陽位置計算アルゴリズムを使用する場合の定数値。 |
+| public | `MOON_ALGORITHM_LEGACY` | 従来の月位置計算アルゴリズムを使用する場合の定数値。 |
+| public | `MOON_ALGORITHM_ELP2000` | ELP2000月位置計算アルゴリズムを使用する場合の定数値。 |
 
 ## Properties
 
@@ -556,6 +560,7 @@ echo $nextHoliday->format('Y-m-d') . ' ' . $nextHoliday->holidayText;
 
 | Return | Method | Description |
 |---|---|---|
+| Factory\|null | [createFromFormat()](#createfromformat) | フォーマット指定文字列から日時インスタンスを生成します。 |
 | Factory | [factory()](#factory) | 多様な型の引数から {\JapaneseDate\DateTime} / {\JapaneseDate\DateTimeImmutable} インスタンスを生成するユニバーサルファクトリメソッドです。 |
 | void | [setCacheMode()](#setcachemode) | 旧暦・祝日計算に使用するキャッシュモードを設定します。 |
 | void | [setCacheFilePath()](#setcachefilepath) | ファイルキャッシュの保存先ディレクトリを設定します。 |
@@ -565,6 +570,7 @@ echo $nextHoliday->format('Y-m-d') . ' ' . $nextHoliday->holidayText;
 | SeventyTwoKou | [nextSeventyTwoKou()](#nextseventytwokou) | 次の七十二候が始まる日へ移動したインスタンスを返します。 |
 | SeventyTwoKou | [previousSeventyTwoKou()](#previousseventytwokou) | 前の七十二候が始まる日へ移動したインスタンスを返します。 |
 | array | [getCalendar()](#getcalendar) | サポートされるカレンダーに変換する |
+| array | [toArray()](#toarray) |  |
 | DateBusinessCommon | [setBusinessConfig()](#setbusinessconfig) | インスタンスに個別の営業日設定を適用します。 |
 | DateBusiness\|null | [getBusinessConfig()](#getbusinessconfig) | インスタンスが保持している個別の営業日設定を取得します。 |
 | DateBusinessCommon | [setClosingDay()](#setclosingday) | 特定の日付を休業日として指定します。 |
@@ -587,6 +593,10 @@ echo $nextHoliday->format('Y-m-d') . ' ' . $nextHoliday->holidayText;
 | Business | [addBusinessDays()](#addbusinessdays) | 指定した営業日数後の日付を返します。 |
 | Business | [subBusinessDays()](#subbusinessdays) | 指定した営業日数前の日付を返します。 |
 | array | [historicalEras()](#historicaleras) | 自身の日付に対応する歴史的元号を返す。 |
+| void | [useSolarAlgorithm()](#usesolaralgorithm) | 太陽黄経計算で使用するアルゴリズムを設定する。 |
+| string | [solarAlgorithm()](#solaralgorithm) | 現在の太陽黄経計算アルゴリズムを返す。 |
+| void | [useMoonAlgorithm()](#usemoonalgorithm) | 月黄経計算で使用するアルゴリズムを設定する。 |
+| string | [moonAlgorithm()](#moonalgorithm) | 現在の月黄経計算アルゴリズムを返す。 |
 | bool | [Carbon::isMutable](../Carbon/Carbon.md#ismutable) _(from [Carbon](../Carbon/Carbon.md))_ | Returns true if the current class/instance is mutable. |
 | bool | [Carbon::isUtc](../Carbon/Carbon.md#isutc) _(from [Carbon](../Carbon/Carbon.md))_ |  |
 | bool | [Carbon::isLocal](../Carbon/Carbon.md#islocal) _(from [Carbon](../Carbon/Carbon.md))_ | Check if the current instance has non-UTC timezone. |
@@ -1186,6 +1196,29 @@ echo $nextHoliday->format('Y-m-d') . ' ' . $nextHoliday->holidayText;
 
 ## Method Details
 
+### createFromFormat
+
+```php
+static public Factory\|null createFromFormat($format, $time, $timezone = null)
+```
+
+フォーマット指定文字列から日時インスタンスを生成します。
+
+Carbon の `createFromFormat()` はコンストラクタを経由しないため、
+JapaneseDate 固有のコンポーネントが未初期化のまま返されることがあります。
+このオーバーライドにより、返却されたインスタンスのコンポーネントを確実に初期化します。
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| string | `$format` | —  | 日時フォーマット文字列 |
+| string | `$time` | —  | パース対象の日時文字列 |
+| [DateTimeZone](https://www.php.net/class.datetimezone)\|string\|int\|null | `$timezone` | `null` | タイムゾーン（省略可） |
+
+**Returns:** Factory\|null
+---
+
 ### factory
 
 ```php
@@ -1266,6 +1299,7 @@ $dt = DateTime::factory('2026-05-01 12:34:56', new \DateTimeZone('Asia/Tokyo'));
 **Returns:** Factory — 指定した日時を表す新しいインスタンス
 **Throws:**
 
+- DateInvalidTimeZoneException
 - [NativeDateTimeException](../JapaneseDate/Exceptions/NativeDateTimeException.md)
 ---
 
@@ -1476,6 +1510,15 @@ public array getCalendar($calendar = CAL_GREGORIAN)
 | int | `$calendar` | `CAL_GREGORIAN` | サポートされるカレンダー |
 
 **Returns:** array — カレンダーの情報を含む配列を返します。この配列には、 年、月、日、週、曜日名、月名、"月/日/年" 形式の文字列 などが含まれます。
+---
+
+### toArray
+
+```php
+public array toArray()
+```
+
+**Returns:** array
 ---
 
 ### setBusinessConfig
@@ -1917,5 +1960,67 @@ public array historicalEras()
 **Throws:**
 
 - [NativeDateTimeException](../JapaneseDate/Exceptions/NativeDateTimeException.md)
+---
+
+### useSolarAlgorithm
+
+```php
+static public void useSolarAlgorithm($algorithm)
+```
+
+太陽黄経計算で使用するアルゴリズムを設定する。
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| string | `$algorithm` | —  | 太陽アルゴリズム |
+
+**Returns:** void
+**Throws:**
+
+- [InvalidArgumentException](https://www.php.net/class.invalidargumentexception)
+---
+
+### solarAlgorithm
+
+```php
+static public string solarAlgorithm()
+```
+
+現在の太陽黄経計算アルゴリズムを返す。
+
+**Returns:** string — 太陽アルゴリズム
+---
+
+### useMoonAlgorithm
+
+```php
+static public void useMoonAlgorithm($algorithm)
+```
+
+月黄経計算で使用するアルゴリズムを設定する。
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| string | `$algorithm` | —  | 月アルゴリズム |
+
+**Returns:** void
+**Throws:**
+
+- [InvalidArgumentException](https://www.php.net/class.invalidargumentexception)
+---
+
+### moonAlgorithm
+
+```php
+static public string moonAlgorithm()
+```
+
+現在の月黄経計算アルゴリズムを返す。
+
+**Returns:** string — 月アルゴリズム
 ---
 

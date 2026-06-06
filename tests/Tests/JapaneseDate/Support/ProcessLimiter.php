@@ -70,12 +70,12 @@ class ProcessLimiter
             $names[] = 'JAPANESE_DATE_TEST_PROCESS_LIMIT_PHPDBG';
         }
 
-        if (extension_loaded('xdebug')) {
-            $names[] = 'JAPANESE_DATE_TEST_PROCESS_LIMIT_XDEBUG';
-        }
-
         if (extension_loaded('pcov')) {
             $names[] = 'JAPANESE_DATE_TEST_PROCESS_LIMIT_PCOV';
+        }
+        
+        if (extension_loaded('xdebug')) {
+            $names[] = 'JAPANESE_DATE_TEST_PROCESS_LIMIT_XDEBUG';
         }
 
         $names[] = 'JAPANESE_DATE_TEST_PROCESS_LIMIT';
