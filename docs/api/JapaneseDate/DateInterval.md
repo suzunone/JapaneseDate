@@ -53,7 +53,6 @@ $interval = DateInterval::untilNextSolarTerm(DateTime::now());
 
 ## Traits
 
-- LocalFactory
 - IntervalRounding
 - IntervalStep
 - MagicParameter
@@ -70,9 +69,6 @@ $interval = DateInterval::untilNextSolarTerm(DateTime::now());
 | protected | `ERA_START_DATES` | 元号の開始日（西暦）。 |
 | protected | `ERA_END_DATES` | 元号の終了日（次の元号の前日）。 |
 | protected | `SOLAR_TERM_METHODS` | 二十四節気のメソッド名と定数のマッピング。 |
-| public | `NO_LIMIT` | Unlimited parts for forHumans() method. |
-| public | `POSITIVE` |  |
-| public | `NEGATIVE` |  |
 | public | `PERIOD_PREFIX` | Interval spec period designators |
 | public | `PERIOD_YEARS` |  |
 | public | `PERIOD_MONTHS` |  |
@@ -81,34 +77,33 @@ $interval = DateInterval::untilNextSolarTerm(DateTime::now());
 | public | `PERIOD_HOURS` |  |
 | public | `PERIOD_MINUTES` |  |
 | public | `PERIOD_SECONDS` |  |
-| public | `SPECIAL_TRANSLATIONS` |  |
 
 ## Properties
 
 | Modifier | Type | Name | Description |
 |---|---|---|---|
-| public | int | `$years` _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Year component of the current interval. (For P2Y6M, the value will be 2) |
-| public | int | `$months` _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Month component of the current interval. (For P1Y6M10D, the value will be 6) |
-| public | int | `$weeks` _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Week component of the current interval calculated from the days. (For P1Y6M17D, the value will be 2) |
-| public | int | `$dayz` _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Day component of the current interval (weeks * 7 + days). (For P6M17DT20H, the value will be 17) |
-| public | int | `$hours` _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Hour component of the current interval. (For P7DT20H5M, the value will be 20) |
-| public | int | `$minutes` _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Minute component of the current interval. (For PT20H5M30S, the value will be 5) |
-| public | int | `$seconds` _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Second component of the current interval. (CarbonInterval::minutes(2)->seconds(34)->microseconds(567_890)->seconds = 34) |
-| public | int | `$milliseconds` _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Milliseconds component of the current interval. (CarbonInterval::seconds(34)->microseconds(567_890)->milliseconds = 567) |
-| public | int | `$microseconds` _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Microseconds component of the current interval. (CarbonInterval::seconds(34)->microseconds(567_890)->microseconds = 567_890) |
+| public | int | `$years` _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Total years of the current interval. |
+| public | int | `$months` _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Total months of the current interval. |
+| public | int | `$weeks` _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Total weeks of the current interval calculated from the days. |
+| public | int | `$dayz` _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Total days of the current interval (weeks * 7 + days). |
+| public | int | `$hours` _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Total hours of the current interval. |
+| public | int | `$minutes` _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Total minutes of the current interval. |
+| public | int | `$seconds` _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Total seconds of the current interval. |
+| public | int | `$microseconds` _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Total microseconds of the current interval. |
+| public | int | `$milliseconds` _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Total milliseconds of the current interval. |
 | public | int | `$microExcludeMilli` _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Remaining microseconds without the milliseconds. |
 | public | int | `$dayzExcludeWeeks` _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Total days remaining in the final week of the current instance (days % 7). |
 | public | int | `$daysExcludeWeeks` _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | alias of dayzExcludeWeeks |
-| public _(read-only)_ | float | `$totalYears` _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Number of years equivalent to the interval. (For P1Y6M, the value will be 1.5) |
-| public _(read-only)_ | float | `$totalMonths` _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Number of months equivalent to the interval. (For P1Y6M10D, the value will be ~12.357) |
-| public _(read-only)_ | float | `$totalWeeks` _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Number of weeks equivalent to the interval. (For P6M17DT20H, the value will be ~26.548) |
-| public _(read-only)_ | float | `$totalDays` _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Number of days equivalent to the interval. (For P17DT20H, the value will be ~17.833) |
+| public _(read-only)_ | float | `$totalYears` _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Number of years equivalent to the interval. |
+| public _(read-only)_ | float | `$totalMonths` _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Number of months equivalent to the interval. |
+| public _(read-only)_ | float | `$totalWeeks` _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Number of weeks equivalent to the interval. |
+| public _(read-only)_ | float | `$totalDays` _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Number of days equivalent to the interval. |
 | public _(read-only)_ | float | `$totalDayz` _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Alias for totalDays. |
-| public _(read-only)_ | float | `$totalHours` _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Number of hours equivalent to the interval. (For P1DT20H5M, the value will be ~44.083) |
-| public _(read-only)_ | float | `$totalMinutes` _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Number of minutes equivalent to the interval. (For PT20H5M30S, the value will be 1205.5) |
-| public _(read-only)_ | float | `$totalSeconds` _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Number of seconds equivalent to the interval. (CarbonInterval::minutes(2)->seconds(34)->microseconds(567_890)->totalSeconds = 154.567_890) |
-| public _(read-only)_ | float | `$totalMilliseconds` _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Number of milliseconds equivalent to the interval. (CarbonInterval::seconds(34)->microseconds(567_890)->totalMilliseconds = 34567.890) |
-| public _(read-only)_ | float | `$totalMicroseconds` _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Number of microseconds equivalent to the interval. (CarbonInterval::seconds(34)->microseconds(567_890)->totalMicroseconds = 34567890) |
+| public _(read-only)_ | float | `$totalHours` _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Number of hours equivalent to the interval. |
+| public _(read-only)_ | float | `$totalMinutes` _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Number of minutes equivalent to the interval. |
+| public _(read-only)_ | float | `$totalSeconds` _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Number of seconds equivalent to the interval. |
+| public _(read-only)_ | float | `$totalMilliseconds` _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Number of milliseconds equivalent to the interval. |
+| public _(read-only)_ | float | `$totalMicroseconds` _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Number of microseconds equivalent to the interval. |
 | public _(read-only)_ | string | `$locale` _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | locale of the current instance |
 
 ## Methods
@@ -144,7 +139,7 @@ $interval = DateInterval::untilNextSolarTerm(DateTime::now());
 | DateTime | [subBusinessDaysFrom()](#subbusinessdaysfrom) | 基準日から指定した営業日数前の日付を算出します。 |
 | int | [countBusinessDaysBetween()](#countbusinessdaysbetween) | 2つの日付間の営業日数を計算します。 |
 | CarbonInterval | [CarbonInterval::setTimezone](../Carbon/CarbonInterval.md#settimezone) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Set the instance&#039;s timezone from a string or object. |
-| CarbonInterval | [CarbonInterval::shiftTimezone](../Carbon/CarbonInterval.md#shifttimezone) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Set the instance&#039;s timezone from a string or object and add/subtract the offset difference. |
+| CarbonInterval | [CarbonInterval::shiftTimezone](../Carbon/CarbonInterval.md#shifttimezone) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ |  |
 | array | [CarbonInterval::getCascadeFactors](../Carbon/CarbonInterval.md#getcascadefactors) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Mapping of units and factors for cascading. |
 |  | [CarbonInterval::setCascadeFactors](../Carbon/CarbonInterval.md#setcascadefactors) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Set default cascading factors for -&gt;cascade() method. |
 | void | [CarbonInterval::enableFloatSetters](../Carbon/CarbonInterval.md#enablefloatsetters) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | This option allow you to opt-in for the Carbon 3 behavior where float values will no longer be cast to integer (so truncated). |
@@ -158,51 +153,42 @@ $interval = DateInterval::untilNextSolarTerm(DateTime::now());
 | int\|float | [CarbonInterval::getMicrosecondsPerMillisecond](../Carbon/CarbonInterval.md#getmicrosecondspermillisecond) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Returns current config for microseconds per second. |
 | CarbonInterval | [CarbonInterval::create](../Carbon/CarbonInterval.md#create) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Create a new CarbonInterval instance from specific values. |
 | CarbonInterval | [CarbonInterval::createFromFormat](../Carbon/CarbonInterval.md#createfromformat) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Parse a string into a new CarbonInterval object according to the specified format. |
-| array\|int\|string\|DateInterval\|mixed\|null | [CarbonInterval::original](../Carbon/CarbonInterval.md#original) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Return the original source used to create the current interval. |
-| CarbonInterface\|null | [CarbonInterval::start](../Carbon/CarbonInterval.md#start) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Return the start date if interval was created from a difference between 2 dates. |
-| CarbonInterface\|null | [CarbonInterval::end](../Carbon/CarbonInterval.md#end) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Return the end date if interval was created from a difference between 2 dates. |
-| CarbonInterval | [CarbonInterval::optimize](../Carbon/CarbonInterval.md#optimize) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Get rid of the original input, start date and end date that may be kept in memory. |
 | CarbonInterval | [CarbonInterval::copy](../Carbon/CarbonInterval.md#copy) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Get a copy of the instance. |
 | CarbonInterval | [CarbonInterval::clone](../Carbon/CarbonInterval.md#clone) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Get a copy of the instance. |
 | CarbonInterval | [CarbonInterval::fromString](../Carbon/CarbonInterval.md#fromstring) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Creates a CarbonInterval from string. |
 | CarbonInterval | [CarbonInterval::parseFromLocale](../Carbon/CarbonInterval.md#parsefromlocale) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Creates a CarbonInterval from string using a different locale. |
-| CarbonInterval | [CarbonInterval::diff](../Carbon/CarbonInterval.md#diff) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Create an interval from the difference between 2 dates. |
-| CarbonInterval | [CarbonInterval::abs](../Carbon/CarbonInterval.md#abs) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Invert the interval if it&#039;s inverted. |
-| CarbonInterval | [CarbonInterval::absolute](../Carbon/CarbonInterval.md#absolute) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ |  |
-| mixed | [CarbonInterval::cast](../Carbon/CarbonInterval.md#cast) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Cast the current instance into the given class. |
+| DateInterval | [CarbonInterval::cast](../Carbon/CarbonInterval.md#cast) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Cast the current instance into the given class. |
 | CarbonInterval | [CarbonInterval::instance](../Carbon/CarbonInterval.md#instance) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Create a CarbonInterval instance from a DateInterval one.  Can not instance DateInterval objects created from DateTime::diff() as you can&#039;t externally set the $days field. |
 | CarbonInterval\|null | [CarbonInterval::make](../Carbon/CarbonInterval.md#make) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Make a CarbonInterval instance from given variable if possible. |
 | CarbonInterval | [CarbonInterval::createFromDateString](../Carbon/CarbonInterval.md#createfromdatestring) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Sets up a DateInterval from the relative parts of the string. |
-| int\|float\|string\|null | [CarbonInterval::get](../Carbon/CarbonInterval.md#get) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Get a part of the CarbonInterval object. |
-| CarbonInterval | [CarbonInterval::set](../Carbon/CarbonInterval.md#set) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Set a part of the CarbonInterval object. |
+| int\|float\|string | [CarbonInterval::get](../Carbon/CarbonInterval.md#get) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Get a part of the CarbonInterval object. |
+| $this | [CarbonInterval::set](../Carbon/CarbonInterval.md#set) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Set a part of the CarbonInterval object. |
 | CarbonInterval | [CarbonInterval::weeksAndDays](../Carbon/CarbonInterval.md#weeksanddays) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Allow setting of weeks and days to be cumulative. |
 | bool | [CarbonInterval::isEmpty](../Carbon/CarbonInterval.md#isempty) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Returns true if the interval is empty for each unit. |
 | void | [CarbonInterval::macro](../Carbon/CarbonInterval.md#macro) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Register a custom macro. |
 | void | [CarbonInterval::mixin](../Carbon/CarbonInterval.md#mixin) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Register macros from a mixin object. |
 | bool | [CarbonInterval::hasMacro](../Carbon/CarbonInterval.md#hasmacro) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Check if macro is registered. |
-| array | [CarbonInterval::toArray](../Carbon/CarbonInterval.md#toarray) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Returns interval values as an array where key are the unit names and values the counts. |
-| array | [CarbonInterval::getNonZeroValues](../Carbon/CarbonInterval.md#getnonzerovalues) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Returns interval non-zero values as an array where key are the unit names and values the counts. |
-| array | [CarbonInterval::getValuesSequence](../Carbon/CarbonInterval.md#getvaluessequence) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Returns interval values as an array where key are the unit names and values the counts from the biggest non-zero one the the smallest non-zero one. |
+| int[] | [CarbonInterval::toArray](../Carbon/CarbonInterval.md#toarray) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Returns interval values as an array where key are the unit names and values the counts. |
+| int[] | [CarbonInterval::getNonZeroValues](../Carbon/CarbonInterval.md#getnonzerovalues) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Returns interval non-zero values as an array where key are the unit names and values the counts. |
+| int[] | [CarbonInterval::getValuesSequence](../Carbon/CarbonInterval.md#getvaluessequence) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Returns interval values as an array where key are the unit names and values the counts from the biggest non-zero one the the smallest non-zero one. |
 | string | [CarbonInterval::forHumans](../Carbon/CarbonInterval.md#forhumans) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Get the current interval in a human readable format in the current locale. |
-| string | [CarbonInterval::format](../Carbon/CarbonInterval.md#format) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ |  |
 | DateInterval | [CarbonInterval::toDateInterval](../Carbon/CarbonInterval.md#todateinterval) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Return native DateInterval PHP object matching the current instance. |
 | CarbonPeriod | [CarbonInterval::toPeriod](../Carbon/CarbonInterval.md#toperiod) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Convert the interval to a CarbonPeriod. |
-| CarbonPeriod | [CarbonInterval::stepBy](../Carbon/CarbonInterval.md#stepby) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Decompose the current interval into |
-| CarbonInterval | [CarbonInterval::invert](../Carbon/CarbonInterval.md#invert) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Invert the interval. |
-| CarbonInterval | [CarbonInterval::add](../Carbon/CarbonInterval.md#add) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Add the passed interval to the current instance. |
-| CarbonInterval | [CarbonInterval::sub](../Carbon/CarbonInterval.md#sub) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Subtract the passed interval to the current instance. |
-| CarbonInterval | [CarbonInterval::subtract](../Carbon/CarbonInterval.md#subtract) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Subtract the passed interval to the current instance. |
+| $this | [CarbonInterval::invert](../Carbon/CarbonInterval.md#invert) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Invert the interval. |
+| $this | [CarbonInterval::add](../Carbon/CarbonInterval.md#add) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Add the passed interval to the current instance. |
+| $this | [CarbonInterval::sub](../Carbon/CarbonInterval.md#sub) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Subtract the passed interval to the current instance. |
+| $this | [CarbonInterval::subtract](../Carbon/CarbonInterval.md#subtract) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Subtract the passed interval to the current instance. |
 | CarbonInterval | [CarbonInterval::plus](../Carbon/CarbonInterval.md#plus) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Add given parameters to the current interval. |
 | CarbonInterval | [CarbonInterval::minus](../Carbon/CarbonInterval.md#minus) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Add given parameters to the current interval. |
-| CarbonInterval | [CarbonInterval::times](../Carbon/CarbonInterval.md#times) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Multiply current instance given number of times. times() is naive, it multiplies each unit (so day can be greater than 31, hour can be greater than 23, etc.) and the result is rounded separately for each unit. |
-| CarbonInterval | [CarbonInterval::shares](../Carbon/CarbonInterval.md#shares) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Divide current instance by a given divider. shares() is naive, it divides each unit separately and the result is rounded for each unit. So 5 hours and 20 minutes shared by 3 becomes 2 hours and 7 minutes. |
-| CarbonInterval | [CarbonInterval::multiply](../Carbon/CarbonInterval.md#multiply) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Multiply and cascade current instance by a given factor. |
-| CarbonInterval | [CarbonInterval::divide](../Carbon/CarbonInterval.md#divide) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Divide and cascade current instance by a given divider. |
+| $this | [CarbonInterval::times](../Carbon/CarbonInterval.md#times) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Multiply current instance given number of times. times() is naive, it multiplies each unit (so day can be greater than 31, hour can be greater than 23, etc.) and the result is rounded separately for each unit. |
+| $this | [CarbonInterval::shares](../Carbon/CarbonInterval.md#shares) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Divide current instance by a given divider. shares() is naive, it divides each unit separately and the result is rounded for each unit. So 5 hours and 20 minutes shared by 3 becomes 2 hours and 7 minutes. |
+| $this | [CarbonInterval::multiply](../Carbon/CarbonInterval.md#multiply) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Multiply and cascade current instance by a given factor. |
+| $this | [CarbonInterval::divide](../Carbon/CarbonInterval.md#divide) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Divide and cascade current instance by a given divider. |
 | string | [CarbonInterval::getDateIntervalSpec](../Carbon/CarbonInterval.md#getdateintervalspec) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Get the interval_spec string of a date interval. |
 | string | [CarbonInterval::spec](../Carbon/CarbonInterval.md#spec) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Get the interval_spec string. |
 | int | [CarbonInterval::compareDateIntervals](../Carbon/CarbonInterval.md#comparedateintervals) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Comparing 2 date intervals. |
 | int | [CarbonInterval::compare](../Carbon/CarbonInterval.md#compare) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Comparing with passed interval. |
-| CarbonInterval | [CarbonInterval::cascade](../Carbon/CarbonInterval.md#cascade) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Convert overflowed values into bigger units. |
+| $this | [CarbonInterval::cascade](../Carbon/CarbonInterval.md#cascade) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Convert overflowed values into bigger units. |
 | bool | [CarbonInterval::hasNegativeValues](../Carbon/CarbonInterval.md#hasnegativevalues) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ |  |
 | bool | [CarbonInterval::hasPositiveValues](../Carbon/CarbonInterval.md#haspositivevalues) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ |  |
 | float | [CarbonInterval::total](../Carbon/CarbonInterval.md#total) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Get amount of given unit equivalent to the interval. |
@@ -222,12 +208,12 @@ $interval = DateInterval::untilNextSolarTerm(DateTime::now());
 | bool | [CarbonInterval::betweenIncluded](../Carbon/CarbonInterval.md#betweenincluded) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Determines if the instance is between two others, bounds excluded. |
 | bool | [CarbonInterval::betweenExcluded](../Carbon/CarbonInterval.md#betweenexcluded) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Determines if the instance is between two others, bounds excluded. |
 | bool | [CarbonInterval::isBetween](../Carbon/CarbonInterval.md#isbetween) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Determines if the instance is between two others |
-| CarbonInterval | [CarbonInterval::roundUnit](../Carbon/CarbonInterval.md#roundunit) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Round the current instance at the given unit with given precision if specified and the given function. |
-| CarbonInterval | [CarbonInterval::floorUnit](../Carbon/CarbonInterval.md#floorunit) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Truncate the current instance at the given unit with given precision if specified. |
-| CarbonInterval | [CarbonInterval::ceilUnit](../Carbon/CarbonInterval.md#ceilunit) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Ceil the current instance at the given unit with given precision if specified. |
-| CarbonInterval | [CarbonInterval::round](../Carbon/CarbonInterval.md#round) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Round the current instance second with given precision if specified. |
-| CarbonInterval | [CarbonInterval::floor](../Carbon/CarbonInterval.md#floor) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Round the current instance second with given precision if specified. |
-| CarbonInterval | [CarbonInterval::ceil](../Carbon/CarbonInterval.md#ceil) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Ceil the current instance second with given precision if specified. |
+| $this | [CarbonInterval::roundUnit](../Carbon/CarbonInterval.md#roundunit) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Round the current instance at the given unit with given precision if specified and the given function. |
+| $this | [CarbonInterval::floorUnit](../Carbon/CarbonInterval.md#floorunit) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Truncate the current instance at the given unit with given precision if specified. |
+| $this | [CarbonInterval::ceilUnit](../Carbon/CarbonInterval.md#ceilunit) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Ceil the current instance at the given unit with given precision if specified. |
+| $this | [CarbonInterval::round](../Carbon/CarbonInterval.md#round) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Round the current instance second with given precision if specified. |
+| $this | [CarbonInterval::floor](../Carbon/CarbonInterval.md#floor) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Round the current instance second with given precision if specified. |
+| $this | [CarbonInterval::ceil](../Carbon/CarbonInterval.md#ceil) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Ceil the current instance second with given precision if specified. |
 | CarbonInterval | [CarbonInterval::years](../Carbon/CarbonInterval.md#years) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Create instance specifying a number of years or modify the number of years if called on an instance. |
 | CarbonInterval | [CarbonInterval::year](../Carbon/CarbonInterval.md#year) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ |  |
 | CarbonInterval | [CarbonInterval::months](../Carbon/CarbonInterval.md#months) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Create instance specifying a number of months or modify the number of months if called on an instance. |
@@ -690,7 +676,8 @@ echo $result->format('Y-m-d');
 **Returns:** [DateTime](../JapaneseDate/DateTime.md) — N 営業日後の日付
 **Throws:**
 
-- [Exception](../JapaneseDate/Exceptions/Exception.md)
+- DateInvalidTimeZoneException
+- [NativeDateTimeException](../JapaneseDate/Exceptions/NativeDateTimeException.md)
 ---
 
 ### subBusinessDaysToDate
@@ -723,7 +710,8 @@ echo $result->format('Y-m-d');
 **Returns:** [DateTime](../JapaneseDate/DateTime.md) — N 営業日前の日付
 **Throws:**
 
-- [Exception](../JapaneseDate/Exceptions/Exception.md)
+- DateInvalidTimeZoneException
+- [NativeDateTimeException](../JapaneseDate/Exceptions/NativeDateTimeException.md)
 ---
 
 ### isBusinessDay
@@ -774,7 +762,8 @@ echo $interval->h . '時間後';
 **Returns:** [DateInterval](../JapaneseDate/DateInterval.md) — 次の祝日（当日 00:00:00）までの {\JapaneseDate\DateInterval}
 **Throws:**
 
-- [Exception](../JapaneseDate/Exceptions/Exception.md)
+- DateInvalidTimeZoneException
+- [NativeDateTimeException](../JapaneseDate/Exceptions/NativeDateTimeException.md)
 ---
 
 ### untilNextSixWeek
@@ -808,7 +797,8 @@ $interval = DateInterval::untilNextSixWeek(DateTime::now(), DateTime::SIX_WEEKDA
 **Returns:** [DateInterval](../JapaneseDate/DateInterval.md) — 指定六曜の翌到来日（当日 00:00:00）までの {\JapaneseDate\DateInterval}
 **Throws:**
 
-- [Exception](../JapaneseDate/Exceptions/Exception.md)
+- DateInvalidTimeZoneException
+- [NativeDateTimeException](../JapaneseDate/Exceptions/NativeDateTimeException.md)
 ---
 
 ### eraSpan
@@ -878,8 +868,8 @@ $interval = DateInterval::untilNextSolarTerm(DateTime::now(), 'geshi');
 **Returns:** [DateInterval](../JapaneseDate/DateInterval.md) — 次の節気日（当日 00:00:00）までの {\JapaneseDate\DateInterval}
 **Throws:**
 
-- [Exception](../JapaneseDate/Exceptions/Exception.md)
-- [SolarTermException](../JapaneseDate/Exceptions/SolarTermException.md)
+- DateInvalidTimeZoneException
+- [NativeDateTimeException](../JapaneseDate/Exceptions/NativeDateTimeException.md)
 ---
 
 ### addSolarTermsToDate
@@ -911,8 +901,8 @@ echo $result->format('Y-m-d');
 **Returns:** [DateTime](../JapaneseDate/DateTime.md) — N 節気後の日付
 **Throws:**
 
-- [Exception](../JapaneseDate/Exceptions/Exception.md)
-- [SolarTermException](../JapaneseDate/Exceptions/SolarTermException.md)
+- DateInvalidTimeZoneException
+- [NativeDateTimeException](../JapaneseDate/Exceptions/NativeDateTimeException.md)
 ---
 
 ### subSolarTermsToDate
@@ -944,8 +934,8 @@ echo $result->format('Y-m-d');
 **Returns:** [DateTime](../JapaneseDate/DateTime.md) — N 節気前の日付
 **Throws:**
 
-- [Exception](../JapaneseDate/Exceptions/Exception.md)
-- [SolarTermException](../JapaneseDate/Exceptions/SolarTermException.md)
+- DateInvalidTimeZoneException
+- [NativeDateTimeException](../JapaneseDate/Exceptions/NativeDateTimeException.md)
 ---
 
 ### toSolarTermCount
@@ -1020,7 +1010,9 @@ echo $interval->days . '日後が次の新月です';
 **Returns:** [DateInterval](../JapaneseDate/DateInterval.md) — 次の新月日（当日 00:00:00）までの {\JapaneseDate\DateInterval}
 **Throws:**
 
+- DateInvalidTimeZoneException
 - [Exception](../JapaneseDate/Exceptions/Exception.md)
+- [NativeDateTimeException](../JapaneseDate/Exceptions/NativeDateTimeException.md)
 ---
 
 ### addBusinessDaysTo
@@ -1082,6 +1074,7 @@ public int countBusinessDaysBetween($start, $end, $config = null)
 **Returns:** int — 営業日数（start以上end以下の営業日の数）
 **Throws:**
 
+- DateInvalidTimeZoneException
 - [NativeDateTimeException](../JapaneseDate/Exceptions/NativeDateTimeException.md)
 ---
 
