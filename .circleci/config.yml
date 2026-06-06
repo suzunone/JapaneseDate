@@ -31,6 +31,12 @@ commands:
           command: |
             sudo composer self-update --2
       - run:
+          name: Install bcmath
+          command: |
+            if [ "<< parameters.php-version >>" = "7.2" ]; then
+              sudo docker-php-ext-install bcmath
+            fi
+      - run:
           name: Install dependencies
           command: |
             composer install -vvv
