@@ -53,7 +53,10 @@ class SolarTerm
 
     protected const LEGACY_TABLE_END_YEAR = 2399;
 
-    public function __construct(protected readonly ?Astronomy $astronomy = null)
+    public function __construct(/**
+     * @readonly
+     */
+    protected ?Astronomy $astronomy = null)
     {
     }
 

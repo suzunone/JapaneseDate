@@ -9,11 +9,12 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use Tests\JapaneseDate\InvokeTrait;
 
-#[CoversClass(OneTimeCacheTrait::class)]
+/**
+ * @covers \JapaneseDate\Components\Traits\OneTimeCacheTrait
+ */
 class OneTimeCacheTraitTest extends TestCase
 {
     use InvokeTrait;
-
     /**
      * キャッシュに値がない場合、クロージャを実行して結果を返すことを確認する。
      */
@@ -34,7 +35,6 @@ class OneTimeCacheTraitTest extends TestCase
         $this->assertSame('cached_value', $result);
         $this->assertSame(1, $callCount);
     }
-
     /**
      * OneTimeCacheTrait を組み込んだ無名クラスのインスタンスを作成する。
      */
@@ -44,7 +44,6 @@ class OneTimeCacheTraitTest extends TestCase
             use OneTimeCacheTrait;
         };
     }
-
     /**
      * キャッシュに値がある場合、クロージャを再実行せず保存済みの値を返すことを確認する。
      */
@@ -64,7 +63,6 @@ class OneTimeCacheTraitTest extends TestCase
         $this->assertSame('cached_value', $result);
         $this->assertSame(1, $callCount);
     }
-
     /**
      * 異なるキーの値がそれぞれ独立してキャッシュされることを確認する。
      */
@@ -78,7 +76,6 @@ class OneTimeCacheTraitTest extends TestCase
         $this->assertSame('value_a', $result1);
         $this->assertSame('value_b', $result2);
     }
-
     /**
      * null をキャッシュした場合でも、2回目以降に再計算されないことを確認する。
      */
