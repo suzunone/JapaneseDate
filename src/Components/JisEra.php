@@ -51,7 +51,7 @@ class JisEra
      *
      * @var array<int, string>
      */
-    private $eraNames = [
+    protected $eraNames = [
         DateTime::ERA_MEIJI => '明治',
         DateTime::ERA_TAISHO => '大正',
         DateTime::ERA_SHOWA => '昭和',
@@ -65,7 +65,7 @@ class JisEra
      *
      * @var array<int, int>
      */
-    private $eraStartYears = [
+    protected $eraStartYears = [
         DateTime::ERA_MEIJI => 1868,
         DateTime::ERA_TAISHO => 1912,
         DateTime::ERA_SHOWA => 1926,
@@ -81,7 +81,7 @@ class JisEra
      *
      * @var array<string, int>
      */
-    private $eraParseBaseYears = [
+    protected $eraParseBaseYears = [
         '明治' => 1867,
         '大正' => 1911,
         '昭和' => 1925,
@@ -99,14 +99,14 @@ class JisEra
      *
      * @var array<int, int>
      */
-    private $eraStartTimestamps = [];
+    protected $eraStartTimestamps = [];
 
     /**
      * Era のシングルトンインスタンス。
      *
      * @var static|null
      */
-    private static $instance;
+    protected static $instance;
 
     /**
      * Era コンポーネントのファクトリメソッド。

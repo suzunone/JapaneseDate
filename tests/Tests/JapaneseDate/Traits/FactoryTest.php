@@ -45,6 +45,7 @@ use Tests\JapaneseDate\InvokeTrait;
  * @since       1.0.0 リリースから利用可能
  * @covers \JapaneseDate\Traits\Factory
  * @covers \JapaneseDate\Traits\Factory::factory
+ * @covers \JapaneseDate\Traits\Factory::createFromFormat
  */
 class FactoryTest extends TestCase
 {
@@ -381,6 +382,139 @@ class FactoryTest extends TestCase
         if ($expectedMicrosecond !== null) {
             $this->assertSame($expectedMicrosecond, $result->microsecond);
         }
+    }
+    // -----------------------------------------------------------------------
+    // createFromFormat のテスト
+    // -----------------------------------------------------------------------
+    /**
+     * DateTime / DateTimeImmutable を供給するプロバイダ（createFromFormat 用）。
+     */
+    public static function createFromFormatProvider(): array
+    {
+        return [
+            'DateTime / 基本フォーマット' => [
+                DateTime::class,
+                'Y-m-d H:i:s',
+                '2015-01-01 00:00:00',
+                '2015-01-01 00:00:00',
+                null,
+            ],
+            'DateTimeImmutable / 基本フォーマット' => [
+                DateTimeImmutable::class,
+                'Y-m-d H:i:s',
+                '2015-01-01 00:00:00',
+                '2015-01-01 00:00:00',
+                null,
+            ],
+            'DateTime / 日付のみフォーマット' => [
+                DateTime::class,
+                'Y-m-d',
+                '2026-05-03',
+                '2026-05-03',
+                null,
+            ],
+            'DateTime / タイムゾーン指定' => [
+                DateTime::class,
+                'Y-m-d H:i:s',
+                '2025-03-21 09:00:00',
+                '2025-03-21 09:00:00',
+                'Asia/Tokyo',
+            ],
+            'DateTimeImmutable / タイムゾーン指定' => [
+                DateTimeImmutable::class,
+                'Y-m-d H:i:s',
+                '2025-03-21 09:00:00',
+                '2025-03-21 09:00:00',
+                'Asia/Tokyo',
+            ],
+        ];
+    }
+    /**
+     * createFromFormat が正しいクラスのインスタンスを返すことを確認する。
+     *
+     * @param class-string $class
+     * @dataProvider createFromFormatProvider
+     * @param string $format
+     * @param string $time
+     * @param string $expectedDateTime
+     * @param string|null $timezone
+     */
+    public function test_createFromFormat_returns_correct_class($class, $format, $time, $expectedDateTime, $timezone): void
+    {
+        $tz = $timezone !== null ? new DateTimeZone($timezone) : null;
+        $result = $tz !== null
+            ? $class::createFromFormat($format, $time, $tz)
+            : $class::createFromFormat($format, $time);
+        $this->assertInstanceOf($class, $result);
+        // フォーマットに時刻が含まれない場合は日付部分のみ比較
+        $compareFormat = strpos($format, 'H') !== false ? 'Y-m-d H:i:s' : 'Y-m-d';
+        $this->assertSame($expectedDateTime, $result->format($compareFormat));
+        if ($timezone !== null) {
+            $this->assertSame($timezone, $result->getTimezone()->getName());
+        }
+    }
+    /**
+     * createFromFormat で生成したインスタンスの JapaneseDate コンポーネントが初期化済みであることを確認する。
+     *
+     * @param class-string $class
+     * @dataProvider targetClassProvider
+     */
+    public function test_createFromFormat_initializes_components($class): void
+    {
+        $result = $class::createFromFormat('Y-m-d H:i:s', '2015-01-01 00:00:00');
+        $this->assertNotNull($result);
+        // JapaneseDate 固有プロパティが取得できることでコンポーネント初期化を確認
+        $this->assertSame('元旦', $result->holiday_text);
+        $this->assertSame(1, $result->holiday);
+        $this->assertSame(true, $result->is_holiday);
+        $this->assertSame('平成', $result->era_name_text);
+        $this->assertSame(27, $result->era_year);
+    }
+    /**
+     * createFromFormat で生成したインスタンスの toArray() が timezone 以外の全キーを含むことを確認する。
+     * DateTime のみ検証（DateTimeImmutable は MiscSeasonalNode の型制約により別途対応）。
+     */
+    public function test_createFromFormat_toArray_contains_japanese_keys(): void
+    {
+        $class = DateTime::class;
+        $result = $class::createFromFormat('Y-m-d H:i:s', '2026-05-03 00:00:00');
+
+        $this->assertNotNull($result);
+        $arr = $result->toArray();
+
+        $expectedKeys = [
+            'solar_seasonal_festival', 'solar_seasonal_festival_name', 'solar_seasonal_festival_alias',
+            'lunar_seasonal_festival', 'lunar_seasonal_festival_name', 'lunar_seasonal_festival_alias',
+            'misc_seasonal_node', 'misc_seasonal_node_text',
+            'solar_term', 'solar_term_text', 'is_solar_term',
+            'era_name_text', 'era_name', 'era_year',
+            'oriental_zodiac_text', 'oriental_zodiac',
+            'heavenly_stem_text', 'heavenly_stem',
+            'six_weekday_text', 'six_weekday',
+            'weekday_text', 'month_text',
+            'holiday_text', 'holiday', 'is_holiday',
+            'lunar_month_text', 'lunar_month', 'lunar_year', 'lunar_day', 'is_leap_month',
+            'moon_age', 'moon_phase_angle', 'moon_phase', 'moon_phase_text',
+        ];
+
+        foreach ($expectedKeys as $key) {
+            $this->assertArrayHasKey($key, $arr, "toArray() に '{$key}' キーが存在しません。");
+        }
+
+        // 祝日（憲法記念日）の検証
+        $this->assertSame('憲法記念日', $arr['holiday_text']);
+        $this->assertSame(true, $arr['is_holiday']);
+    }
+    /**
+     * createFromFormat に不正な文字列を渡した場合、strict mode により例外がスローされることを確認する。
+     *
+     * @param class-string $class
+     * @dataProvider targetClassProvider
+     */
+    public function test_createFromFormat_throws_on_invalid_input($class): void
+    {
+        $this->expectException(\Carbon\Exceptions\InvalidFormatException::class);
+        $class::createFromFormat('Y-m-d', 'invalid-date');
     }
     // -----------------------------------------------------------------------
     // parseJisDate のテスト

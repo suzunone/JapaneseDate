@@ -27,7 +27,6 @@ use JapaneseDate\Exceptions\NativeDateTimeException;
 use JapaneseDate\Traits\Component;
 use JapaneseDate\Traits\DateTimeImport;
 use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\CoversMethod;
 use PHPUnit\Framework\Attributes\CoversTrait;
 use PHPUnit\Framework\Attributes\PreserveGlobalState;
 use PHPUnit\Framework\Attributes\RunInSeparateProcess;
@@ -47,11 +46,6 @@ use PHPUnit\Framework\TestCase;
  * @covers \JapaneseDate\Traits\Component
  * @covers \JapaneseDate\Traits\DateTimeImport
  * @covers \JapaneseDate\DateTime
- * @covers \JapaneseDate\DateTime::setLocale
- * @covers \JapaneseDate\DateTime::create
- * @covers \JapaneseDate\DateTime::__construct
- * @covers \JapaneseDate\DateTime::factory
- * @covers \JapaneseDate\DateTime::getCalendar
  */
 class DateTimeTest extends TestCase
 {
@@ -79,7 +73,7 @@ class DateTimeTest extends TestCase
      */
     public function test_create(): void
     {
-        $date1 = DateTime::create(2018, 1, 1, 0, 0, 0);
+        $date1 = DateTime::create(2018);
 
         $this->assertInstanceOf(DateTime::class, $date1);
     }

@@ -286,6 +286,7 @@ trait Modern
      * - {@see \JapaneseDate\DateTime::COMPENSATING_HOLIDAY} = 13（振替休日）
      *
      * @return int 祝日・休日種別を表す定数（{@see \JapaneseDate\DateTime::NO_HOLIDAY} ～ 最大値）
+     * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
@@ -310,6 +311,7 @@ trait Modern
      * 日本語名に変換します。
      *
      * @return string 祝日名（例: 「元旦」「憲法記念日」）、または非祝日の場合は空文字列
+     * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
@@ -378,7 +380,6 @@ trait Modern
      * 日本語文字列（「明治」「大正」「昭和」「平成」「令和」）に変換します。
      *
      * @return string 元号名（「明治」「大正」「昭和」「平成」「令和」のいずれか）
-     * @throws \JapaneseDate\Exceptions\Exception
      */
     protected function viewEraName(): string
     {
@@ -431,7 +432,6 @@ trait Modern
      *
      * @param int|null $era_key 元号定数（省略時は {@see getEraName()} で自動判定）
      * @return int 元号年（1始まりの正整数）
-     * @throws \JapaneseDate\Exceptions\Exception
      */
     protected function getEraYear($era_key = null): int
     {

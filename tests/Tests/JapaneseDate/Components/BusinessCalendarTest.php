@@ -356,7 +356,7 @@ class BusinessCalendarTest extends TestCase
 class FalseTimezoneDate extends DateTimeImmutable
 {
     /**
-     * @return \DateTimeZone|false
+     * @return \DateTimeZone|bool
      */
     public function getTimezone()
     {

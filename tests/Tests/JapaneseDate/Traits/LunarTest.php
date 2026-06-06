@@ -25,6 +25,7 @@ use JapaneseDate\Traits\Getter;
 use JapaneseDate\Traits\Lunar;
 use PHPUnit\Framework\Attributes\CoversMethod;
 use PHPUnit\Framework\Attributes\CoversTrait;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Tests\JapaneseDate\InvokeTrait;
 
@@ -142,21 +143,21 @@ class LunarTest extends TestCase
         $this->assertEquals('文月', $DateTime->lunar_month_text);
         $this->assertEquals('1', $DateTime->lunar_day);
 
-        $DateTime->addDays(1);
+        $DateTime->addDays();
 
         $this->assertEquals('2016', $DateTime->lunar_year);
         $this->assertEquals('7', $DateTime->lunar_month);
         $this->assertEquals('文月', $DateTime->lunar_month_text);
         $this->assertEquals('2', $DateTime->lunar_day);
 
-        $DateTime->addDays(1);
+        $DateTime->addDays();
 
         $this->assertEquals('2016', $DateTime->lunar_year);
         $this->assertEquals('7', $DateTime->lunar_month);
         $this->assertEquals('文月', $DateTime->lunar_month_text);
         $this->assertEquals('3', $DateTime->lunar_day);
 
-        $DateTime->addDays(1);
+        $DateTime->addDays();
 
         $this->assertEquals('2016', $DateTime->lunar_year);
         $this->assertEquals('7', $DateTime->lunar_month);
@@ -302,21 +303,21 @@ class LunarTest extends TestCase
         $this->assertEquals('文月', $DateTime->lunar_month_text);
         $this->assertEquals('1', $DateTime->lunar_day);
 
-        $DateTime->addDays(1);
+        $DateTime->addDays();
 
         $this->assertEquals('2016', $DateTime->lunar_year);
         $this->assertEquals('7', $DateTime->lunar_month);
         $this->assertEquals('文月', $DateTime->lunar_month_text);
         $this->assertEquals('2', $DateTime->lunar_day);
 
-        $DateTime->addDays(1);
+        $DateTime->addDays();
 
         $this->assertEquals('2016', $DateTime->lunar_year);
         $this->assertEquals('7', $DateTime->lunar_month);
         $this->assertEquals('文月', $DateTime->lunar_month_text);
         $this->assertEquals('3', $DateTime->lunar_day);
 
-        $DateTime->addDays(1);
+        $DateTime->addDays();
 
         $this->assertEquals('2016', $DateTime->lunar_year);
         $this->assertEquals('7', $DateTime->lunar_month);
@@ -382,8 +383,8 @@ class LunarTest extends TestCase
     public function test_getMoonPhaseAngle(): void
     {
         // 新月直後 → 位相角は 0° 付近 (0° 〜 45° の範囲に入る)
-        // 2023-01-22 05:53 JST = UTC 2023-01-21 20:53
-        $DateTime = DateTime::factory('2023-01-21 20:53:00');
+        // 2023-01-22 05:53 JST
+        $DateTime = DateTime::factory('2023-01-22 05:53:00');
         $angle = $DateTime->moon_phase_angle;
         $this->assertIsFloat($angle);
         $this->assertGreaterThanOrEqual(0.0, $angle);
@@ -407,45 +408,199 @@ class LunarTest extends TestCase
      */
     public function test_getMoonPhase(): void
     {
-        // 新月時刻 → 月相 0 (新月)
-        // 2023-01-22 05:53 JST = UTC 2023-01-21 20:53
-        $DateTime = DateTime::factory('2023-01-21 20:53:00');
-        $this->assertSame(0, $DateTime->moon_phase);
-        $this->assertSame(0, $DateTime->moonPhase);
+        try {
+            DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_LEGACY);
+            DateTime::useMoonAlgorithm(DateTime::MOON_ALGORITHM_LEGACY);
 
-        // 満月時刻 → 月相 4 (満月)
-        // 2023-02-05 18:29 UTC
-        $DateTime = DateTime::factory('2023-02-05 18:29:00');
-        $this->assertSame(4, $DateTime->moon_phase);
-        $this->assertSame(4, $DateTime->moonPhase);
+            // 新月時刻 → 月相 0 (新月)
+            // 2023-01-22 05:53 JST
+            $DateTime = DateTime::factory('2023-01-22 05:53:00');
+            $this->assertSame(0, $DateTime->moon_phase);
+            $this->assertSame(0, $DateTime->moonPhase);
+
+            // 満月時刻 → 月相 4 (満月)
+            // 2023-02-06 03:29 JST
+            $DateTime = DateTime::factory('2023-02-06 03:29:00');
+            $this->assertSame(4, $DateTime->moon_phase);
+            $this->assertSame(4, $DateTime->moonPhase);
+        } finally {
+            DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_LEGACY);
+            DateTime::useMoonAlgorithm(DateTime::MOON_ALGORITHM_LEGACY);
+        }
     }
     /**
      * DateTime で月相の日本語名を取得できることを確認する。
+     * @dataProvider principalMoonPhaseTextProvider
+     * @param string $date
+     * @param int $expectedPhase
+     * @param string $expectedText
      */
-    public function test_viewMoonPhase(): void
+    public function test_viewMoonPhase($date, $expectedPhase, $expectedText): void
     {
-        // 新月時刻 → '新月'
-        $DateTime = DateTime::factory('2023-01-21 20:53:00');
-        $this->assertSame('新月', $DateTime->moon_phase_text);
-        $this->assertSame('新月', $DateTime->moonPhaseText);
+        $DateTime = DateTime::factory($date);
+        $this->assertSame($expectedPhase, $DateTime->moon_phase);
+        $this->assertSame($expectedText, $DateTime->moon_phase_text);
+        $this->assertSame($expectedText, $DateTime->moonPhaseText);
+    }
+    /**
+     * 月相名は主要な月相点の近傍でのみ取得できることを確認する。
+     * @dataProvider moonPhaseTextAlgorithmProvider
+     * @param string $solarAlgorithm
+     * @param string $moonAlgorithm
+     * @param string $date
+     * @param int|null $expectedPhase
+     * @param string $expectedText
+     */
+    public function test_viewMoonPhaseTextOnlyAroundPrincipalPhase($solarAlgorithm, $moonAlgorithm, $date, $expectedPhase, $expectedText): void
+    {
+        try {
+            DateTime::useSolarAlgorithm($solarAlgorithm);
+            DateTime::useMoonAlgorithm($moonAlgorithm);
 
-        // 満月時刻 → '満月'
-        $DateTime = DateTime::factory('2023-02-05 18:29:00');
-        $this->assertSame('満月', $DateTime->moon_phase_text);
+            $DateTime = DateTime::factory($date);
+
+            $this->assertSame($expectedPhase, $DateTime->moon_phase);
+            $this->assertSame($expectedText, $DateTime->moon_phase_text);
+        } finally {
+            DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_LEGACY);
+            DateTime::useMoonAlgorithm(DateTime::MOON_ALGORITHM_LEGACY);
+        }
+    }
+    /**
+     * @return array<string, array{string, string, string, int|null, string}>
+     */
+    public static function moonPhaseTextAlgorithmProvider(): array
+    {
+        return [
+            'legacy principal phase' => [
+                DateTime::SOLAR_ALGORITHM_LEGACY,
+                DateTime::MOON_ALGORITHM_LEGACY,
+                '2023-01-22 05:53:00',
+                DateTime::MOON_PHASE_SHINGETSU,
+                '新月',
+            ],
+            'legacy outside principal phase' => [
+                DateTime::SOLAR_ALGORITHM_LEGACY,
+                DateTime::MOON_ALGORITHM_LEGACY,
+                '2015-01-26 00:00:00',
+                null,
+                '',
+            ],
+            'legacy after principal phase' => [
+                DateTime::SOLAR_ALGORITHM_LEGACY,
+                DateTime::MOON_ALGORITHM_LEGACY,
+                '2015-01-27 00:00:00',
+                DateTime::MOON_PHASE_JOUGEN,
+                '上弦',
+            ],
+            'elp2000 principal phase' => [
+                DateTime::SOLAR_ALGORITHM_VSOP87,
+                DateTime::MOON_ALGORITHM_ELP2000,
+                '2023-01-22 05:53:00',
+                DateTime::MOON_PHASE_SHINGETSU,
+                '新月',
+            ],
+            'elp2000 outside principal phase' => [
+                DateTime::SOLAR_ALGORITHM_VSOP87,
+                DateTime::MOON_ALGORITHM_ELP2000,
+                '2015-01-26 00:00:00',
+                null,
+                '',
+            ],
+            'elp2000 after principal phase' => [
+                DateTime::SOLAR_ALGORITHM_VSOP87,
+                DateTime::MOON_ALGORITHM_ELP2000,
+                '2015-01-28 00:00:00',
+                null,
+                '',
+            ],
+        ];
+    }
+    /**
+     * 月相名がない通常日は配列出力の月相番号が null になることを確認する。
+     * @dataProvider moonPhaseArrayAlgorithmProvider
+     * @param string $solarAlgorithm
+     * @param string $moonAlgorithm
+     * @param string $date
+     * @param int|null $expectedPhase
+     * @param string $expectedText
+     */
+    public function test_toArrayContainsMoonPhaseOnlyAroundPrincipalPhase($solarAlgorithm, $moonAlgorithm, $date, $expectedPhase, $expectedText): void
+    {
+        try {
+            DateTime::useSolarAlgorithm($solarAlgorithm);
+            DateTime::useMoonAlgorithm($moonAlgorithm);
+
+            $array = DateTime::factory($date)->toArray();
+
+            $this->assertArrayHasKey('moon_phase_angle', $array);
+            $this->assertArrayHasKey('moon_phase', $array);
+            $this->assertArrayHasKey('moon_phase_text', $array);
+            $this->assertSame($expectedPhase, $array['moon_phase']);
+            $this->assertSame($expectedText, $array['moon_phase_text']);
+        } finally {
+            DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_LEGACY);
+            DateTime::useMoonAlgorithm(DateTime::MOON_ALGORITHM_LEGACY);
+        }
+    }
+    /**
+     * @return array<string, array{string, string, string, int|null, string}>
+     */
+    public static function moonPhaseArrayAlgorithmProvider(): array
+    {
+        return [
+            'legacy principal phase' => [
+                DateTime::SOLAR_ALGORITHM_LEGACY,
+                DateTime::MOON_ALGORITHM_LEGACY,
+                '2023-01-22 05:53:00',
+                DateTime::MOON_PHASE_SHINGETSU,
+                '新月',
+            ],
+            'legacy outside principal phase' => [
+                DateTime::SOLAR_ALGORITHM_LEGACY,
+                DateTime::MOON_ALGORITHM_LEGACY,
+                '2015-01-26 00:00:00',
+                null,
+                '',
+            ],
+            'elp2000 principal phase' => [
+                DateTime::SOLAR_ALGORITHM_VSOP87,
+                DateTime::MOON_ALGORITHM_ELP2000,
+                '2023-01-22 05:53:00',
+                DateTime::MOON_PHASE_SHINGETSU,
+                '新月',
+            ],
+            'elp2000 outside principal phase' => [
+                DateTime::SOLAR_ALGORITHM_VSOP87,
+                DateTime::MOON_ALGORITHM_ELP2000,
+                '2015-01-26 00:00:00',
+                null,
+                '',
+            ],
+        ];
     }
     /**
      * DateTimeImmutable で月相を取得できることを確認する。
+     * @dataProvider principalMoonPhaseTextProvider
+     * @param string $date
+     * @param int $expectedPhase
+     * @param string $expectedText
      */
-    public function test_getMoonPhase_immutable(): void
+    public function test_getMoonPhase_immutable($date, $expectedPhase, $expectedText): void
     {
-        // 新月時刻 → 月相 0 (新月)
-        $DateTime = new DateTimeImmutable('2023-01-21 20:53:00');
-        $this->assertSame(0, $DateTime->moon_phase);
-        $this->assertSame('新月', $DateTime->moon_phase_text);
-
-        // 満月時刻 → 月相 4 (満月)
-        $DateTime = new DateTimeImmutable('2023-02-05 18:29:00');
-        $this->assertSame(4, $DateTime->moon_phase);
-        $this->assertSame('満月', $DateTime->moon_phase_text);
+        $DateTime = new DateTimeImmutable($date);
+        $this->assertSame($expectedPhase, $DateTime->moon_phase);
+        $this->assertSame($expectedText, $DateTime->moon_phase_text);
+    }
+    /**
+     * @return array<string, array{string, int, string}>
+     */
+    public static function principalMoonPhaseTextProvider(): array
+    {
+        return [
+            // 国立天文台 令和5年(2023)暦要項 朔弦望（中央標準時）
+            '2023 January new moon' => ['2023-01-22 05:53:00', DateTime::MOON_PHASE_SHINGETSU, '新月'],
+            '2023 February full moon' => ['2023-02-06 03:29:00', DateTime::MOON_PHASE_MANGETSU, '満月'],
+        ];
     }
 }

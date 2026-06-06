@@ -2,6 +2,7 @@
 
 namespace JapaneseDate\Traits;
 
+use JapaneseDate\Components\Astronomy;
 use JapaneseDate\Components\SimpleSolarTerm;
 use JapaneseDate\Components\SolarTerm;
 use JapaneseDate\DateTime;
@@ -606,9 +607,10 @@ trait FindSolarTerm
     }
 
     /**
+     * @param string $method
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
      */
-    private function getNextSolarTermDate(string $method)
+    protected function getNextSolarTermDate($method)
     {
         $year = $this->year;
         $st = $this->findSolarTerm($method, $year);
@@ -621,9 +623,10 @@ trait FindSolarTerm
     }
 
     /**
+     * @param string $method
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
      */
-    private function getBeforeSolarTermDate(string $method)
+    protected function getBeforeSolarTermDate($method)
     {
         $year = $this->year;
         $st = $this->findSolarTerm($method, $year);
@@ -636,17 +639,27 @@ trait FindSolarTerm
     }
 
     /**
+     * @param string $method
+     * @param int $year
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
      */
-    private function getSolarTermDate(string $method, int $year)
+    protected function getSolarTermDate($method, $year)
     {
         $st = $this->findSolarTerm($method, $year);
 
         return $this->setDateTime($st->year, $st->month, $st->day, $this->hour, $this->minute, $this->second);
     }
 
-    private function findSolarTerm(string $method, int $year): SolarTermDate
+    /**
+     * @param string $method
+     * @param int $year
+     */
+    protected function findSolarTerm($method, $year): SolarTermDate
     {
+        if (Astronomy::solarAlgorithm() === Astronomy::SOLAR_VSOP87) {
+            return (new SolarTerm())->{$method}($year);
+        }
+
         try {
             $SolarTerm = new SimpleSolarTerm();
 

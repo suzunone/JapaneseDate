@@ -1,13 +1,11 @@
 <?php
 
-/** @noinspection PhpDocMissingThrowsInspection */
-
 /** @noinspection PhpUnhandledExceptionInspection */
 
 namespace Tests\JapaneseDate\Components\Traits;
 
 use JapaneseDate\Components\Traits\OneTimeCacheTrait;
-use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\CoversTrait;
 use PHPUnit\Framework\TestCase;
 use Tests\JapaneseDate\InvokeTrait;
 

@@ -508,6 +508,9 @@ class CalendarTest extends TestCase
  */
 class ThrowingDateTime extends DateTime
 {
+    /**
+     * @return static
+     */
     #[ReturnTypeWillChange]
     public function add($unit, $value = 1, $overflow = null)
     {

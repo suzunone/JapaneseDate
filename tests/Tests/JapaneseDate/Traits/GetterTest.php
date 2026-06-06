@@ -43,6 +43,7 @@ use Tests\JapaneseDate\InvokeTrait;
  * @covers \JapaneseDate\Traits\Getter
  * @covers \JapaneseDate\Traits\Getter::getCalendar
  * @covers \JapaneseDate\Traits\Getter::__get
+ * @covers \JapaneseDate\Traits\Getter::toArray
  */
 class GetterTest extends TestCase
 {
@@ -94,6 +95,55 @@ class GetterTest extends TestCase
         return $data;
     }
     /**
+     * 外部暦データで確認できる toArray の期待値を返す。
+     */
+    public static function toArrayExternalCalendarDataProvider(): array
+    {
+        return [
+            '2019-05-01 天皇の即位の日' => [
+                '2019-05-01',
+                [
+                    'year' => 2019,
+                    'month' => 5,
+                    'day' => 1,
+                    'formatted' => '2019-05-01 00:00:00',
+                    'solar_seasonal_festival' => DateTime::SEASONAL_FESTIVAL_NONE,
+                    'solar_seasonal_festival_name' => '',
+                    'solar_seasonal_festival_alias' => '',
+                    'lunar_seasonal_festival' => DateTime::SEASONAL_FESTIVAL_NONE,
+                    'lunar_seasonal_festival_name' => '',
+                    'lunar_seasonal_festival_alias' => '',
+                    'misc_seasonal_node' => DateTime::MISC_SEASONAL_NODE_DOYO,
+                    'misc_seasonal_node_text' => '土用',
+                    'solar_term' => false,
+                    'solar_term_text' => '',
+                    'is_solar_term' => false,
+                    'era_name_text' => '令和',
+                    'era_name' => DateTime::ERA_REIWA,
+                    'era_year' => 1,
+                    'oriental_zodiac_text' => '亥',
+                    'oriental_zodiac' => 0,
+                    'heavenly_stem_text' => '己',
+                    'heavenly_stem' => 5,
+                    'six_weekday_text' => '大安',
+                    'six_weekday' => 0,
+                    'weekday_text' => '水',
+                    'month_text' => '皐月',
+                    'holiday_text' => '天皇の即位の日',
+                    'holiday' => DateTime::EMPERORS_THRONE_DAY,
+                    'is_holiday' => true,
+                    'lunar_month_text' => '弥生',
+                    'lunar_month' => 3,
+                    'lunar_year' => 2019,
+                    'lunar_day' => 27,
+                    'is_leap_month' => false,
+                    'moon_phase' => DateTime::MOON_PHASE_ARIAKE,
+                    'moon_phase_text' => '有明',
+                ],
+            ],
+        ];
+    }
+    /**
      * SimpleSolarTerm から指定年の二十四節気日付を取得する。
      */
     private static function simpleSolarTerm(string $method, int $year): SolarTermDate
@@ -130,6 +180,24 @@ class GetterTest extends TestCase
         $this->assertArrayHasKey('year', $result);
         $this->assertArrayHasKey('month', $result);
         $this->assertArrayHasKey('day', $result);
+    }
+    /**
+     * toArray が Carbon の基本情報に日本暦情報を追加して返すことを確認する。
+     * @dataProvider toArrayExternalCalendarDataProvider
+     * @param string $date
+     * @param mixed[] $expected
+     */
+    public function test_toArray($date, $expected): void
+    {
+        $DateTime = new DateTime($date);
+        $result = $DateTime->toArray();
+        foreach ($expected as $key => $value) {
+            $this->assertArrayHasKey($key, $result);
+            $this->assertSame($value, $result[$key], $key);
+        }
+        $this->assertArrayHasKey('timezone', $result);
+        $this->assertIsFloat($result['moon_age']);
+        $this->assertIsFloat($result['moon_phase_angle']);
     }
     /**
      * 二十四節気名をスネークケースとキャメルケースのプロパティで取得できることを確認する。

@@ -416,6 +416,7 @@ echo $nextHoliday->format('Y-m-d') . ' ' . $nextHoliday->holidayText;
 
 | Return | Method | Description |
 |---|---|---|
+| Factory\|null | [createFromFormat()](#createfromformat) | フォーマット指定文字列から日時インスタンスを生成します。 |
 | Factory | [factory()](#factory) | 多様な型の引数から {\JapaneseDate\DateTime} / {\JapaneseDate\DateTimeImmutable} インスタンスを生成するユニバーサルファクトリメソッドです。 |
 | void | [setCacheMode()](#setcachemode) | 旧暦・祝日計算に使用するキャッシュモードを設定します。 |
 | void | [setCacheFilePath()](#setcachefilepath) | ファイルキャッシュの保存先ディレクトリを設定します。 |
@@ -425,6 +426,7 @@ echo $nextHoliday->format('Y-m-d') . ' ' . $nextHoliday->holidayText;
 | SeventyTwoKou | [nextSeventyTwoKou()](#nextseventytwokou) | 次の七十二候が始まる日へ移動したインスタンスを返します。 |
 | SeventyTwoKou | [previousSeventyTwoKou()](#previousseventytwokou) | 前の七十二候が始まる日へ移動したインスタンスを返します。 |
 | array | [getCalendar()](#getcalendar) | サポートされるカレンダーに変換する |
+| array | [toArray()](#toarray) |  |
 | DateBusinessCommon | [setBusinessConfig()](#setbusinessconfig) | インスタンスに個別の営業日設定を適用します。 |
 | DateBusiness\|null | [getBusinessConfig()](#getbusinessconfig) | インスタンスが保持している個別の営業日設定を取得します。 |
 | DateBusinessCommon | [setClosingDay()](#setclosingday) | 特定の日付を休業日として指定します。 |
@@ -447,6 +449,10 @@ echo $nextHoliday->format('Y-m-d') . ' ' . $nextHoliday->holidayText;
 | Business | [addBusinessDays()](#addbusinessdays) | 指定した営業日数後の日付を返します。 |
 | Business | [subBusinessDays()](#subbusinessdays) | 指定した営業日数前の日付を返します。 |
 | array | [historicalEras()](#historicaleras) | 自身の日付に対応する歴史的元号を返す。 |
+| void | [useSolarAlgorithm()](#usesolaralgorithm) | 太陽黄経計算で使用するアルゴリズムを設定する。 |
+| string | [solarAlgorithm()](#solaralgorithm) | 現在の太陽黄経計算アルゴリズムを返す。 |
+| void | [useMoonAlgorithm()](#usemoonalgorithm) | 月黄経計算で使用するアルゴリズムを設定する。 |
+| string | [moonAlgorithm()](#moonalgorithm) | 現在の月黄経計算アルゴリズムを返す。 |
 | CarbonImmutable | [CarbonImmutable::startOfTime](../Carbon/CarbonImmutable.md#startoftime) _(from [CarbonImmutable](../Carbon/CarbonImmutable.md))_ | Create a very old date representing start of time. |
 | CarbonImmutable | [CarbonImmutable::endOfTime](../Carbon/CarbonImmutable.md#endoftime) _(from [CarbonImmutable](../Carbon/CarbonImmutable.md))_ | Create a very far date representing end of time. |
 | bool | [CarbonImmutable::isUtc](../Carbon/CarbonImmutable.md#isutc) _(from [CarbonImmutable](../Carbon/CarbonImmutable.md))_ |  |
@@ -865,12 +871,34 @@ echo $nextHoliday->format('Y-m-d') . ' ' . $nextHoliday->holidayText;
 | string | [CarbonImmutable::longRelativeToNowDiffForHumans](../Carbon/CarbonImmutable.md#longrelativetonowdiffforhumans) _(from [CarbonImmutable](../Carbon/CarbonImmutable.md))_ |  |
 | string | [CarbonImmutable::shortRelativeToOtherDiffForHumans](../Carbon/CarbonImmutable.md#shortrelativetootherdiffforhumans) _(from [CarbonImmutable](../Carbon/CarbonImmutable.md))_ |  |
 | string | [CarbonImmutable::longRelativeToOtherDiffForHumans](../Carbon/CarbonImmutable.md#longrelativetootherdiffforhumans) _(from [CarbonImmutable](../Carbon/CarbonImmutable.md))_ |  |
-| static|false | [CarbonImmutable::createFromFormat](../Carbon/CarbonImmutable.md#createfromformat) _(from [CarbonImmutable](../Carbon/CarbonImmutable.md))_ | Parse a string into a new CarbonImmutable object according to the specified format. |
 | static | [CarbonImmutable::__set_state](../Carbon/CarbonImmutable.md#__set_state) _(from [CarbonImmutable](../Carbon/CarbonImmutable.md))_ | https://php.net/manual/en/datetime.set-state.php |
 
 ---
 
 ## Method Details
+
+### createFromFormat
+
+```php
+static public Factory\|null createFromFormat($format, $time, $timezone = null)
+```
+
+フォーマット指定文字列から日時インスタンスを生成します。
+
+Carbon の `createFromFormat()` はコンストラクタを経由しないため、
+JapaneseDate 固有のコンポーネントが未初期化のまま返されることがあります。
+このオーバーライドにより、返却されたインスタンスのコンポーネントを確実に初期化します。
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| string | `$format` | —  | 日時フォーマット文字列 |
+| string | `$time` | —  | パース対象の日時文字列 |
+| [DateTimeZone](https://www.php.net/class.datetimezone)\|string\|int\|null | `$timezone` | `null` | タイムゾーン（省略可） |
+
+**Returns:** Factory\|null
+---
 
 ### factory
 
@@ -952,6 +980,7 @@ $dt = DateTime::factory('2026-05-01 12:34:56', new \DateTimeZone('Asia/Tokyo'));
 **Returns:** Factory — 指定した日時を表す新しいインスタンス
 **Throws:**
 
+- DateInvalidTimeZoneException
 - [NativeDateTimeException](../JapaneseDate/Exceptions/NativeDateTimeException.md)
 ---
 
@@ -1162,6 +1191,15 @@ public array getCalendar($calendar = CAL_GREGORIAN)
 | int | `$calendar` | `CAL_GREGORIAN` | サポートされるカレンダー |
 
 **Returns:** array — カレンダーの情報を含む配列を返します。この配列には、 年、月、日、週、曜日名、月名、"月/日/年" 形式の文字列 などが含まれます。
+---
+
+### toArray
+
+```php
+public array toArray()
+```
+
+**Returns:** array
 ---
 
 ### setBusinessConfig
@@ -1603,5 +1641,67 @@ public array historicalEras()
 **Throws:**
 
 - [NativeDateTimeException](../JapaneseDate/Exceptions/NativeDateTimeException.md)
+---
+
+### useSolarAlgorithm
+
+```php
+static public void useSolarAlgorithm($algorithm)
+```
+
+太陽黄経計算で使用するアルゴリズムを設定する。
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| string | `$algorithm` | —  | 太陽アルゴリズム |
+
+**Returns:** void
+**Throws:**
+
+- [InvalidArgumentException](https://www.php.net/class.invalidargumentexception)
+---
+
+### solarAlgorithm
+
+```php
+static public string solarAlgorithm()
+```
+
+現在の太陽黄経計算アルゴリズムを返す。
+
+**Returns:** string — 太陽アルゴリズム
+---
+
+### useMoonAlgorithm
+
+```php
+static public void useMoonAlgorithm($algorithm)
+```
+
+月黄経計算で使用するアルゴリズムを設定する。
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| string | `$algorithm` | —  | 月アルゴリズム |
+
+**Returns:** void
+**Throws:**
+
+- [InvalidArgumentException](https://www.php.net/class.invalidargumentexception)
+---
+
+### moonAlgorithm
+
+```php
+static public string moonAlgorithm()
+```
+
+現在の月黄経計算アルゴリズムを返す。
+
+**Returns:** string — 月アルゴリズム
 ---
 
