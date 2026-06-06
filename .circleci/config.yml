@@ -34,7 +34,8 @@ commands:
           name: Install bcmath
           command: |
             if [ "<< parameters.php-version >>" = "7.2" ]; then
-              sudo docker-php-ext-install bcmath
+              sudo -E install-php-extensions bcmath
+              php -r 'exit(function_exists("bcdiv") ? 0 : 1);'
             fi
       - run:
           name: Install dependencies
