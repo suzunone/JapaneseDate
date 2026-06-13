@@ -210,7 +210,7 @@ class CalendarTest extends TestCase
 
         // 日付比較用フォーマットが Ymd の整数値になることを確認する
         $this->assertEquals(
-            (int) $test_date_time->format('Ymd'),
+            (int)$test_date_time->format('Ymd'),
             $this->invokeExecuteMethod($Calendar, 'getCompareFormat', [$test_date_time])
         );
     }
@@ -344,7 +344,7 @@ class CalendarTest extends TestCase
         $Calendar->addBypassDay($test_date_time);
         // 1 件目の日付が Ymd の整数キーで登録されることを確認する
         $this->assertArrayHasKey(
-            (int) $test_date_time->format('Ymd'),
+            (int)$test_date_time->format('Ymd'),
             $this->invokeGetProperty($Calendar, 'bypass_day_arr')
         );
         $this->assertCount(1, $this->invokeGetProperty($Calendar, 'bypass_day_arr'));
@@ -352,7 +352,7 @@ class CalendarTest extends TestCase
         $Calendar->addBypassDay($test_date_time2);
         // 2 件目の日付も追加され、登録件数が増えることを確認する
         $this->assertArrayHasKey(
-            (int) $test_date_time2->format('Ymd'),
+            (int)$test_date_time2->format('Ymd'),
             $this->invokeGetProperty($Calendar, 'bypass_day_arr')
         );
         $this->assertCount(2, $this->invokeGetProperty($Calendar, 'bypass_day_arr'));
@@ -400,7 +400,7 @@ class CalendarTest extends TestCase
 
         // 未登録日を削除するための日付
         $test_date_time = $FakerGenerator->dateTime();
-        while (isset($bypass_day_arr[(int) $test_date_time->format('Ymd')])) {
+        while (isset($bypass_day_arr[(int)$test_date_time->format('Ymd')])) {
             $test_date_time = $FakerGenerator->dateTime();
         }
 

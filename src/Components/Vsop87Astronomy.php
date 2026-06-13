@@ -2,12 +2,15 @@
 
 namespace JapaneseDate\Components;
 
+use JapaneseDate\Components\Contracts\SunAlgorithm;
+use JapaneseDate\Components\Traits\OneTimeCacheTrait;
+
 /**
  * VSOP87 による太陽黄経計算クラス。
  *
  * 地球の日心黄経を VSOP87 の周期項から求め、地球から見た太陽の視黄経へ変換します。
  * 二十四節気の判定では太陽黄経の境界通過日が重要になるため、従来式より高精度な
- * 太陽位置計算を利用するための {@see \JapaneseDate\Components\Astronomy} 派生実装です。
+ * 太陽位置計算を利用するための {@see SunAlgorithm} 実装です。
  *
  * **計算の概要:**
  * - 入力日時を天文計算用の連続ユリウス日に変換
@@ -16,7 +19,7 @@ namespace JapaneseDate\Components;
  * - 光行差・章動の簡易補正を適用し、0°〜360° に正規化
  *
  * VSOP87 は惑星運動の理論であり、月の運動を直接扱うものではありません。
- * 月齢や月相の計算は親クラスの従来実装を継承しています。
+ * 月の計算は `Astronomy` に注入された `MoonAlgorithm` 実装が担います。
  *
  * @category    DateTime
  * @package     JapaneseDate
@@ -28,8 +31,10 @@ namespace JapaneseDate\Components;
  * @see         https://github.com/suzunone/JapaneseDate
  * @since       2026-06-04
  */
-class Vsop87Astronomy extends Astronomy
+class Vsop87Astronomy implements SunAlgorithm
 {
+    use OneTimeCacheTrait;
+
     /**
      * J2000.0 のユリウス日。
      *
@@ -38,146 +43,24 @@ class Vsop87Astronomy extends Astronomy
     protected const J2000 = 2451545.0;
 
     /**
-     * 使用中の天文計算アルゴリズム名を返します。
-     *
-     * @return string VSOP87 アルゴリズムを表す識別子
+     * 1日の時間数（float）。
      */
-    public function algorithmName(): string
-    {
-        return parent::algorithmName();
-    }
+    private const DAY_TO_HOUR_FLOAT = 24.0;
 
     /**
-     * 太陽の視黄経を求めます。
-     *
-     * 入力された日時を天文学用のユリウス日に変換し、VSOP87 の地球日心黄経から
-     * 地心視黄経へ変換します。戻り値は 0° 以上 360° 未満に正規化された角度です。
-     *
-     * 同じ日時の計算結果は一時キャッシュし、二十四節気探索などで同一日時を
-     * 繰り返し評価する場合の計算負荷を抑えます。
-     *
-     * @param int $year グレゴリオ暦の年
-     * @param int $month グレゴリオ暦の月
-     * @param float $day グレゴリオ暦の日。小数部を含めることができます
-     * @param float $hour 時
-     * @param float $min 分
-     * @param float $sec 秒
-     * @return float 太陽の視黄経（度）
-     * @throws \JapaneseDate\Exceptions\Exception
+     * 1日の分数（float）。
      */
-    public function longitudeSun(int $year, int $month, float $day, float $hour, float $min, float $sec): float
-    {
-        $key = __METHOD__ . '-' . $year . '-' . $month . '-' . $day . '-' . $hour . '-' . $min . '-' . $sec;
-
-        return $this->oneTimeCache($key, function () use ($year, $month, $day, $hour, $min, $sec) {
-            $julianDate = $this->astronomicalJulianDate($year, $month, $day, $hour, $min, $sec);
-
-            return $this->apparentSolarLongitude($julianDate);
-        });
-    }
+    private const DAY_TO_MINUTE_FLOAT = 1440.0;
 
     /**
-     * 天文計算で使用するユリウス日を求めます。
-     *
-     * PHP 標準の gregoriantojd() は日単位の整数ユリウス日を返すため、時分秒と
-     * 日の小数部を加算して連続値に変換します。さらに親クラスと同じ時刻系の扱いに
-     * 揃えるため、JST と UTC の差に相当する補正を差し引きます。
-     *
-     * @param int $year グレゴリオ暦の年
-     * @param int $month グレゴリオ暦の月
-     * @param float $day グレゴリオ暦の日。小数部を含めることができます
-     * @param float $hour 時
-     * @param float $min 分
-     * @param float $sec 秒
-     * @return float 天文計算用のユリウス日
+     * 1日の秒数（float）。
      */
-    protected function astronomicalJulianDate(int $year, int $month, float $day, float $hour, float $min, float $sec): float
-    {
-        return gregoriantojd($month, (int) floor($day), $year)
-            - 0.5
-            + ($hour / self::DAY_TO_HOUR_FLOAT)
-            + ($min / self::DAY_TO_MINUTE_FLOAT)
-            + ($sec / self::DAY_TO_SECOND_FLOAT)
-            + ($day - floor($day))
-            - self::JD_TIME_ZONE_ADJUSTMENT;
-    }
+    private const DAY_TO_SECOND_FLOAT = 86400.0;
 
     /**
-     * ユリウス日から太陽の視黄経を求めます。
-     *
-     * VSOP87 で得られるのは地球の日心黄経です。地球から見た太陽の黄経は
-     * その反対方向なので 180° を加え、最後に光行差と章動の簡易補正を適用します。
-     *
-     * @param float $julianDate 天文計算用のユリウス日
-     * @return float 太陽の視黄経（度）
+     * JST（UTC+9）補正値（日単位）。9/24 = 0.375。
      */
-    protected function apparentSolarLongitude(float $julianDate): float
-    {
-        $t = ($julianDate - self::J2000) / 365250.0;
-        $earthLongitude = rad2deg($this->earthHeliocentricLongitude($t));
-        $sunLongitude = $this->normalizeAngle($earthLongitude + 180.0);
-
-        $omega = 125.04 - 1934.136 * (($julianDate - self::J2000) / 36525.0);
-
-        return $this->normalizeAngle(
-            $sunLongitude - 0.00569 - 0.00478 * sin(deg2rad($omega))
-        );
-    }
-
-    /**
-     * 地球の日心黄経を VSOP87 の L0〜L5 系列から求めます。
-     *
-     * VSOP87 の黄経は時間引数 t のべき級数として表されます。各系列を評価し、
-     * L0 + L1*t + L2*t^2 ... の形で合成した後、ラジアン角として 0〜2π に正規化します。
-     *
-     * @param float $t J2000.0 からのユリウス千年単位の時間引数
-     * @return float 地球の日心黄経（ラジアン）
-     */
-    protected function earthHeliocentricLongitude(float $t): float
-    {
-        return $this->normalizeRadians(
-            $this->vsopSeries(self::L0, $t)
-            + $this->vsopSeries(self::L1, $t) * $t
-            + $this->vsopSeries(self::L2, $t) * $t * $t
-            + $this->vsopSeries(self::L3, $t) * $t * $t * $t
-            + $this->vsopSeries(self::L4, $t) * $t * $t * $t * $t
-            + $this->vsopSeries(self::L5, $t) * $t * $t * $t * $t * $t
-        );
-    }
-
-    /**
-     * VSOP87 の 1 系列を評価します。
-     *
-     * 各項は A * cos(B + C * t) の形で、係数表には A, B, C の順に格納しています。
-     * 係数 A は VSOP87 の慣例に従い 10^8 倍された値なので、合計後に 100000000 で割ります。
-     *
-     * @param array<int, array{0: float, 1: float, 2: float}> $terms VSOP87 の係数列
-     * @param float $t J2000.0 からのユリウス千年単位の時間引数
-     * @return float 系列の評価値（ラジアン）
-     */
-    protected function vsopSeries(array $terms, float $t): float
-    {
-        $result = 0.0;
-        foreach ($terms as [$a, $b, $c]) {
-            $result += $a * cos($b + $c * $t);
-        }
-
-        return $result / 100000000.0;
-    }
-
-    /**
-     * ラジアン角を 0 以上 2π 未満に正規化します。
-     *
-     * @param float $angle 正規化前の角度（ラジアン）
-     * @return float 正規化後の角度（ラジアン）
-     */
-    protected function normalizeRadians(float $angle): float
-    {
-        $twoPi = 2.0 * M_PI;
-
-        return $angle - $twoPi * floor($angle / $twoPi);
-    }
-
+    private const JD_TIME_ZONE_ADJUSTMENT = 0.375;
     /**
      * 地球日心黄経 L0 系列の VSOP87 係数。
      *
@@ -250,7 +133,6 @@ class Vsop87Astronomy extends Astronomy
         [30.0, 2.74, 1349.87],
         [25.0, 3.16, 4690.48],
     ];
-
     /**
      * 地球日心黄経 L1 系列の VSOP87 係数。
      *
@@ -292,7 +174,6 @@ class Vsop87Astronomy extends Astronomy
         [6.0, 2.65, 9437.76],
         [6.0, 4.67, 4690.48],
     ];
-
     /**
      * 地球日心黄経 L2 系列の VSOP87 係数。
      *
@@ -320,7 +201,6 @@ class Vsop87Astronomy extends Astronomy
         [2.0, 4.38, 5223.69],
         [2.0, 3.75, 0.98],
     ];
-
     /**
      * 地球日心黄経 L3 系列の VSOP87 係数。
      *
@@ -335,7 +215,6 @@ class Vsop87Astronomy extends Astronomy
         [1.0, 5.3, 18849.23],
         [1.0, 5.97, 242.73],
     ];
-
     /**
      * 地球日心黄経 L4 系列の VSOP87 係数。
      *
@@ -346,7 +225,6 @@ class Vsop87Astronomy extends Astronomy
         [8.0, 4.13, 6283.08],
         [1.0, 3.84, 12566.15],
     ];
-
     /**
      * 地球日心黄経 L5 系列の VSOP87 係数。
      *
@@ -355,4 +233,178 @@ class Vsop87Astronomy extends Astronomy
     protected const L5 = [
         [1.0, 3.14, 0.0],
     ];
+
+    /**
+     * このアルゴリズムの太陽計算識別子を返す。
+     *
+     * @return string 常に 'vsop87'
+     */
+    public function sunAlgorithmName(): string
+    {
+        return 'vsop87';
+    }
+
+    /**
+     * 太陽の視黄経を求めます。
+     *
+     * 入力された日時を天文学用のユリウス日に変換し、VSOP87 の地球日心黄経から
+     * 地心視黄経へ変換します。戻り値は 0° 以上 360° 未満に正規化された角度です。
+     *
+     * 同じ日時の計算結果は一時キャッシュし、二十四節気探索などで同一日時を
+     * 繰り返し評価する場合の計算負荷を抑えます。
+     *
+     * @param int $year グレゴリオ暦の年
+     * @param int $month グレゴリオ暦の月
+     * @param float $day グレゴリオ暦の日。小数部を含めることができます
+     * @param float $hour 時
+     * @param float $min 分
+     * @param float $sec 秒
+     * @return float 太陽の視黄経（度）
+     */
+    public function longitudeSun(int $year, int $month, float $day, float $hour, float $min, float $sec): float
+    {
+        $key = __METHOD__ . '-' . $year . '-' . $month . '-' . $day . '-' . $hour . '-' . $min . '-' . $sec;
+
+        return $this->oneTimeCache($key, function () use ($year, $month, $day, $hour, $min, $sec) {
+            $julianDate = $this->astronomicalJulianDate($year, $month, $day, $hour, $min, $sec);
+
+            return $this->apparentSolarLongitude($julianDate);
+        });
+    }
+
+    /**
+     * 天文計算で使用するユリウス日を求めます。
+     *
+     * PHP 標準の gregoriantojd() は日単位の整数ユリウス日を返すため、時分秒と
+     * 日の小数部を加算して連続値に変換します。さらに JST と UTC の差を差し引き、
+     * VSOP87 の時間引数に必要な TT 近似値へ変換するため ΔT を加算します。
+     *
+     * @param int $year グレゴリオ暦の年
+     * @param int $month グレゴリオ暦の月
+     * @param float $day グレゴリオ暦の日。小数部を含めることができます
+     * @param float $hour 時
+     * @param float $min 分
+     * @param float $sec 秒
+     * @return float 天文計算用のユリウス日
+     */
+    protected function astronomicalJulianDate(int $year, int $month, float $day, float $hour, float $min, float $sec): float
+    {
+        return gregoriantojd($month, (int)floor($day), $year)
+            - 0.5
+            + ($hour / self::DAY_TO_HOUR_FLOAT)
+            + ($min / self::DAY_TO_MINUTE_FLOAT)
+            + ($sec / self::DAY_TO_SECOND_FLOAT)
+            + ($day - floor($day))
+            - self::JD_TIME_ZONE_ADJUSTMENT
+            + ($this->approximateDeltaTSeconds($year, $month) / self::DAY_TO_SECOND_FLOAT);
+    }
+
+    /**
+     * NASA/Espenak-Meeus の多項式で ΔT = TT - UT を近似します。
+     *
+     * @param int $year グレゴリオ暦の年
+     * @param int $month グレゴリオ暦の月
+     * @return float ΔT 秒
+     */
+    private function approximateDeltaTSeconds(int $year, int $month): float
+    {
+        $y = $year + ($month - 0.5) / 12.0;
+
+        if ($y < 2050.0) {
+            $t = $y - 2000.0;
+
+            return 62.92 + 0.32217 * $t + 0.005589 * $t * $t;
+        }
+
+        $u = ($y - 1820.0) / 100.0;
+
+        return -20.0 + 32.0 * $u * $u - 0.5628 * (2150.0 - $y);
+    }
+
+    /**
+     * ユリウス日から太陽の視黄経を求めます。
+     *
+     * VSOP87 で得られるのは地球の日心黄経です。地球から見た太陽の黄経は
+     * その反対方向なので 180° を加え、最後に光行差と章動の簡易補正を適用します。
+     *
+     * @param float $julianDate 天文計算用のユリウス日
+     * @return float 太陽の視黄経（度）
+     */
+    protected function apparentSolarLongitude(float $julianDate): float
+    {
+        $t = ($julianDate - self::J2000) / 365250.0;
+        $earthLongitude = rad2deg($this->earthHeliocentricLongitude($t));
+        $sunLongitude = $this->normalizeAngle($earthLongitude + 180.0);
+
+        $omega = 125.04 - 1934.136 * (($julianDate - self::J2000) / 36525.0);
+
+        return $this->normalizeAngle(
+            $sunLongitude - 0.00569 - 0.00478 * sin(deg2rad($omega))
+        );
+    }
+
+    /**
+     * 地球の日心黄経を VSOP87 の L0〜L5 系列から求めます。
+     *
+     * VSOP87 の黄経は時間引数 t のべき級数として表されます。各系列を評価し、
+     * L0 + L1*t + L2*t^2 ... の形で合成した後、ラジアン角として 0〜2π に正規化します。
+     *
+     * @param float $t J2000.0 からのユリウス千年単位の時間引数
+     * @return float 地球の日心黄経（ラジアン）
+     */
+    protected function earthHeliocentricLongitude(float $t): float
+    {
+        return $this->normalizeRadians(
+            $this->vsopSeries(self::L0, $t)
+            + $this->vsopSeries(self::L1, $t) * $t
+            + $this->vsopSeries(self::L2, $t) * $t * $t
+            + $this->vsopSeries(self::L3, $t) * $t * $t * $t
+            + $this->vsopSeries(self::L4, $t) * $t * $t * $t * $t
+            + $this->vsopSeries(self::L5, $t) * $t * $t * $t * $t * $t
+        );
+    }
+
+    /**
+     * ラジアン角を 0 以上 2π 未満に正規化します。
+     *
+     * @param float $angle 正規化前の角度（ラジアン）
+     * @return float 正規化後の角度（ラジアン）
+     */
+    protected function normalizeRadians(float $angle): float
+    {
+        $twoPi = 2.0 * M_PI;
+
+        return $angle - $twoPi * floor($angle / $twoPi);
+    }
+
+    /**
+     * VSOP87 の 1 系列を評価します。
+     *
+     * 各項は A * cos(B + C * t) の形で、係数表には A, B, C の順に格納しています。
+     * 係数 A は VSOP87 の慣例に従い 10^8 倍された値なので、合計後に 100000000 で割ります。
+     *
+     * @param array<int, array{0: float, 1: float, 2: float}> $terms VSOP87 の係数列
+     * @param float $t J2000.0 からのユリウス千年単位の時間引数
+     * @return float 系列の評価値（ラジアン）
+     */
+    protected function vsopSeries(array $terms, float $t): float
+    {
+        $result = 0.0;
+        foreach ($terms as [$a, $b, $c]) {
+            $result += $a * cos($b + $c * $t);
+        }
+
+        return $result / 100000000.0;
+    }
+
+    /**
+     * 角度を 0°〜360° 未満に正規化する。
+     *
+     * @param float $angle 正規化前の角度（度）
+     * @return float 正規化後の角度（0 ≤ angle < 360）
+     */
+    private function normalizeAngle(float $angle): float
+    {
+        return $angle - 360.0 * floor($angle / 360.0);
+    }
 }

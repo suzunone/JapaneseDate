@@ -44,7 +44,7 @@
   </logging>
   <groups>
     <exclude>
-      <group>large</group>
+      <group>long-running</group>
     </exclude>
   </groups>
 </phpunit>

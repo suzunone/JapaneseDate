@@ -1,6 +1,7 @@
 <?php
 
 /** @noinspection PhpUnhandledExceptionInspection */
+
 /**
  * イミュータブルな日時クラスのテスト
  *

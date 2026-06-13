@@ -3,6 +3,7 @@
 $finder = PhpCsFixer\Finder::create()
     ->in(__DIR__.'/src')
     ->in(__DIR__.'/tests')
+    ->notPath('Components/ELP2000.php')
     ->exclude('vendor');
 
 $rules = [

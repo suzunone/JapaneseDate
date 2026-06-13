@@ -17,7 +17,6 @@ namespace Tests\JapaneseDate;
 
 use PHPUnit\Framework\Attributes\CodeCoverageIgnore;
 use ReflectionClass;
-
 use const PHP_VERSION_ID;
 
 /**

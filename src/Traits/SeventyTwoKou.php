@@ -25,7 +25,7 @@ namespace JapaneseDate\Traits;
  *
  * このトレイトは {@see \JapaneseDate\DateTime} および
  * {@see \JapaneseDate\DateTimeImmutable} に mix-in されており、
- * 外部からは {@see \JapaneseDate\Traits\Getter} のマジックゲッター経由で
+ * 外部からは {@see Getter} のマジックゲッター経由で
  * プロパティとして公開されます。
  *
  * **提供する機能**
@@ -48,18 +48,51 @@ namespace JapaneseDate\Traits;
 trait SeventyTwoKou
 {
     /**
-     * その日が属する七十二候の番号（1〜72）を返します。
+     * 次の七十二候が始まる日へ移動したインスタンスを返します。
      *
-     * 立春初候が 1、大寒末候が 72 です。
-     * 計算は各二十四節気の入節日から次節気の入節日までを3等分して行います。
+     * 現在の候の次候（または次節気の初候）の開始日を基準とした新しいインスタンスを返します。
+     * 時刻はそのままに日付だけが変わります。
      *
-     * @return int 七十二候番号（1〜72）
+     * @return static 次の七十二候の開始日へ移動した新しいインスタンス
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getSeventyTwoKou(): int
+    public function nextSeventyTwoKou(): static
     {
-        return $this->SeventyTwoKouCalculator->getKouNumber($this);
+        $nextTs = $this->SeventyTwoKouCalculator->getNextKouStartTimestamp($this);
+
+        return $this->setDateTime(
+            (int)date('Y', $nextTs),
+            (int)date('n', $nextTs),
+            (int)date('j', $nextTs),
+            $this->hour,
+            $this->minute,
+            $this->second
+        );
+    }
+
+    /**
+     * 前の七十二候が始まる日へ移動したインスタンスを返します。
+     *
+     * 現在の候の直前の候の開始日を基準とした新しいインスタンスを返します。
+     * 時刻はそのままに日付だけが変わります。
+     *
+     * @return static 前の七十二候の開始日へ移動した新しいインスタンス
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
+     */
+    public function previousSeventyTwoKou(): static
+    {
+        $prevTs = $this->SeventyTwoKouCalculator->getPreviousKouStartTimestamp($this);
+
+        return $this->setDateTime(
+            (int)date('Y', $prevTs),
+            (int)date('n', $prevTs),
+            (int)date('j', $prevTs),
+            $this->hour,
+            $this->minute,
+            $this->second
+        );
     }
 
     /**
@@ -74,6 +107,21 @@ trait SeventyTwoKou
     protected function getSeventyTwoKouText(): string
     {
         return $this->SeventyTwoKouCalculator->getKouText($this->getSeventyTwoKou());
+    }
+
+    /**
+     * その日が属する七十二候の番号（1〜72）を返します。
+     *
+     * 立春初候が 1、大寒末候が 72 です。
+     * 計算は各二十四節気の入節日から次節気の入節日までを3等分して行います。
+     *
+     * @return int 七十二候番号（1〜72）
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
+     */
+    protected function getSeventyTwoKou(): int
+    {
+        return $this->SeventyTwoKouCalculator->getKouNumber($this);
     }
 
     /**
@@ -102,53 +150,5 @@ trait SeventyTwoKou
     protected function getSeventyTwoKouType(): string
     {
         return $this->SeventyTwoKouCalculator->getKouType($this->getSeventyTwoKou());
-    }
-
-    /**
-     * 次の七十二候が始まる日へ移動したインスタンスを返します。
-     *
-     * 現在の候の次候（または次節気の初候）の開始日を基準とした新しいインスタンスを返します。
-     * 時刻はそのままに日付だけが変わります。
-     *
-     * @return static 次の七十二候の開始日へ移動した新しいインスタンス
-     * @throws \JapaneseDate\Exceptions\Exception
-     * @throws \JapaneseDate\Exceptions\SolarTermException
-     */
-    public function nextSeventyTwoKou(): static
-    {
-        $nextTs = $this->SeventyTwoKouCalculator->getNextKouStartTimestamp($this);
-
-        return $this->setDateTime(
-            (int) date('Y', $nextTs),
-            (int) date('n', $nextTs),
-            (int) date('j', $nextTs),
-            $this->hour,
-            $this->minute,
-            $this->second
-        );
-    }
-
-    /**
-     * 前の七十二候が始まる日へ移動したインスタンスを返します。
-     *
-     * 現在の候の直前の候の開始日を基準とした新しいインスタンスを返します。
-     * 時刻はそのままに日付だけが変わります。
-     *
-     * @return static 前の七十二候の開始日へ移動した新しいインスタンス
-     * @throws \JapaneseDate\Exceptions\Exception
-     * @throws \JapaneseDate\Exceptions\SolarTermException
-     */
-    public function previousSeventyTwoKou(): static
-    {
-        $prevTs = $this->SeventyTwoKouCalculator->getPreviousKouStartTimestamp($this);
-
-        return $this->setDateTime(
-            (int) date('Y', $prevTs),
-            (int) date('n', $prevTs),
-            (int) date('j', $prevTs),
-            $this->hour,
-            $this->minute,
-            $this->second
-        );
     }
 }

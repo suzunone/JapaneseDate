@@ -1,0 +1,145 @@
+<?php
+
+/** @noinspection PhpUnhandledExceptionInspection */
+
+/**
+ * @category    Tests
+ * @package     JapaneseDate
+ * @subpackage  Tests
+ * @author      Suzunone <suzunone.eleven@gmail.com>
+ * @copyright   JapaneseDate
+ * @license     BSD-2
+ * @link        https://github.com/suzunone/JapaneseDate
+ * @see         https://github.com/suzunone/JapaneseDate
+ */
+
+namespace Tests\JapaneseDate\Components;
+
+use JapaneseDate\Components\Astronomy;
+use JapaneseDate\Components\LegacyMoonAge;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\CoversMethod;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\TestCase;
+use Tests\JapaneseDate\InvokeTrait;
+
+/**
+ * LegacyMoonAge クラスのテスト
+ *
+ * Legacy 黄経計算結果を用いた月齢計算の収束処理と、
+ * Legacy アルゴリズム特有の補正分岐（収束計算1回目で ΔΛ が負値の場合の
+ * 引き込み範囲補正）を検証する。
+ *
+ * @category    Tests
+ * @package     JapaneseDate
+ * @subpackage  Components
+ * @author      Suzunone<suzunone.eleven@gmail.com>
+ */
+#[CoversClass(LegacyMoonAge::class)]
+#[CoversMethod(LegacyMoonAge::class, 'moonAge')]
+class LegacyMoonAgeTest extends TestCase
+{
+    use InvokeTrait;
+
+    /**
+     * 月齢の期待値（丸め値）を返すデータセット
+     *
+     * 出典は国立天文台 暦計算室 / 暦要項の朔弦望情報。
+     * それぞれ収束計算中の補正分岐を網羅するように選定している。
+     *
+     * @return array
+     */
+    public static function moonAgeProvider(): array
+    {
+        return [
+            // 朔 (新月): 月齢 ≈ 0 / 収束計算1回目に ΔΛ < 0 となり引き込み範囲補正を通る
+            '2023朔 05:53 JST' => [2023, 1, 22, 5, 53, 0, 0],
+            // 望 (満月): 月齢 ≈ 15
+            '2023望 03:29 JST' => [2023, 2, 6, 3, 29, 0, 15],
+            // 朔前日: 月齢 ≈ 29 / $res > 30 補正を通る
+            '2020朔前日' => [2020, 12, 14, 0, 0, 0, 29],
+            // 朔当日: 月齢 ≈ 0
+            '2020朔' => [2020, 12, 15, 1, 17, 0, 0],
+            // 朔翌日: 月齢 ≈ 1
+            '2020朔翌日' => [2020, 12, 16, 1, 17, 0, 1],
+            // 2026-03-19 朔
+            '2026朔' => [2026, 3, 19, 10, 23, 0, 0],
+            // 2026-03-19 朔前(0:00 JST)
+            '2026朔直前 00:00 JST' => [2026, 3, 19, 0, 0, 0, 29],
+            '2022 3月朔' => [2022, 3, 3, 0, 0, 0, 0],
+            '2022 7月朔' => [2022, 7, 29, 0, 0, 0, 0],
+            '2015 11月朔' => [2015, 11, 12, 0, 0, 0, 0],
+            // 春分付近: 春分付近補正・ΔΛ > 40°補正・$res > 30 補正を通る
+            '2017 春分付近の月齢4' => [2017, 4, 2, 0, 0, 0, 4],
+        ];
+    }
+
+    #[DataProvider('moonAgeProvider')]
+    public function test_moonAge(
+        int   $year,
+        int   $month,
+        int   $day,
+        float $hour,
+        float $min,
+        float $sec,
+        int   $expectedRounded
+    ): void
+    {
+        $moonAge = new LegacyMoonAge(new Astronomy());
+        $result = $moonAge->moonAge($year, $month, $day, $hour, $min, $sec);
+
+        $this->assertEquals(
+            $expectedRounded,
+            round($result),
+            sprintf(
+                '%d-%02d-%02d %02d:%02d の月齢(%.4f)の丸め値が %d と一致しない',
+                $year,
+                $month,
+                $day,
+                $hour,
+                $min,
+                $result,
+                $expectedRounded
+            )
+        );
+    }
+
+    /**
+     * 月齢は常に [0, 30) の範囲の値を返す
+     */
+    public function test_moonAge_alwaysInRange(): void
+    {
+        $moonAge = new LegacyMoonAge(new Astronomy());
+        $dates = [
+            [2023, 1, 1, 0, 0, 0],
+            [2023, 6, 15, 12, 0, 0],
+            [2025, 12, 31, 23, 59, 59],
+        ];
+        foreach ($dates as [$y, $m, $d, $h, $i, $s]) {
+            $result = $moonAge->moonAge($y, $m, $d, $h, $i, $s);
+            $this->assertGreaterThanOrEqual(0.0, $result, "{$y}-{$m}-{$d} で月齢が負になった");
+            $this->assertLessThan(30.0, $result, "{$y}-{$m}-{$d} で月齢が30以上になった");
+        }
+    }
+
+    public function test_jstToJulianDateUsesStandardJulianDate(): void
+    {
+        $moonAge = new LegacyMoonAge(new Astronomy());
+
+        // 2000-01-01 21:00:00 JST = 2000-01-01 12:00:00 UTC = JD 2451545.0
+        $result = $this->invokeExecuteMethod($moonAge, 'jstToJulianDate', [2000, 1, 1, 21, 0, 0]);
+
+        $this->assertEqualsWithDelta(2451545.0, $result, 1e-12);
+    }
+
+    public function test_moonAge_staysWithinFixtureToleranceInApril2017(): void
+    {
+        $moonAge = new LegacyMoonAge(new Astronomy());
+
+        $this->assertEqualsWithDelta(
+            14.132638888889,
+            $moonAge->moonAge(2017, 4, 11, 15, 8, 0),
+            0.47
+        );
+    }
+}

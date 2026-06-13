@@ -3,7 +3,6 @@
 namespace Tests\JapaneseDate\Components;
 
 use JapaneseDate\Components\Astronomy;
-use JapaneseDate\Components\Cache;
 use JapaneseDate\Components\SolarTerm;
 use JapaneseDate\Components\Traits\GetSolarTerm;
 use JapaneseDate\DateTime;
@@ -84,6 +83,265 @@ class SolarTermTest extends TestCase
     ];
 
     /**
+     * 各二十四節気メソッドを暦要項の期待値で検証するためのケースを返す。
+     */
+    public static function solarTermMethodDataProvider(): array
+    {
+        $methods = array_flip(self::SOLAR_TERM_METHODS);
+        $cases = [];
+
+        foreach (self::getSolarTermDataProvider() as $label => [$year, $solarTerm, $month, $day]) {
+            $cases[$label] = [$methods[$solarTerm], $year, $solarTerm, $month, $day];
+        }
+
+        return $cases;
+    }
+
+    /**
+     * 二十四節気コードから取得した日付が暦要項の期待値と一致することを確認する。
+     *
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
+     */
+    #[DataProvider('naoRekiYokoSolarTermDataProvider')]
+    public function test_getSolarTermMatchesNaoRekiYoko(int $year, int $solarTerm, int $month, int $day): void
+    {
+        $solarTermDate = (new SolarTerm())->getSolarTerm($year, $solarTerm);
+
+        self::assertSolarTermDate($year, $solarTerm, $month, $day, $solarTermDate);
+    }
+
+    /**
+     * SolarTermDate の各プロパティが期待値と一致することを確認する。
+     */
+    private static function assertSolarTermDate(
+        int           $year,
+        int           $solarTerm,
+        int           $month,
+        int           $day,
+        SolarTermDate $solarTermDate
+    ): void
+    {
+        self::assertSame($year, $solarTermDate->year);
+        self::assertSame($solarTerm, $solarTermDate->solar_term);
+        self::assertSame($month, $solarTermDate->month);
+        self::assertSame($day, $solarTermDate->day);
+    }
+
+    /**
+     * 各二十四節気メソッドが暦要項の期待値と一致することを確認する。
+     *
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
+     */
+    #[DataProvider('solarTermMethodDataProvider')]
+    public function test_eachSolarTermMethodMatchesNaoRekiYoko2000(
+        string $method,
+        int    $year,
+        int    $solarTerm,
+        int    $month,
+        int    $day
+    ): void
+    {
+        $solarTermDate = (new SolarTerm())->{$method}($year);
+
+        self::assertSolarTermDate($year, $solarTerm, $month, $day, $solarTermDate);
+    }
+
+    /**
+     * 年単位で取得した二十四節気一覧が暦要項の期待値と一致することを確認する。
+     *
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
+     */
+    #[DataProvider('naoRekiYokoYearDataProvider')]
+    public function test_getSolarTermsMatchesNaoRekiYoko(int $year, array $expected): void
+    {
+        $solarTerms = (new SolarTerm())->getSolarTerms($year);
+
+        $this->assertSame(array_keys($expected), array_keys($solarTerms));
+
+        foreach ($expected as $solarTerm => [$month, $day]) {
+            self::assertSolarTermDate($year, $solarTerm, $month, $day, $solarTerms[$solarTerm]);
+        }
+    }
+
+    /**
+     * findSolarTerm() が二十四節気を検出し、旧来範囲では6時境界を使うことを確認する。
+     *
+     * @throws \JapaneseDate\Exceptions\Exception
+     */
+    public function test_findSolarTermReturnsSolarTermAndUsesLegacyBoundary(): void
+    {
+        $prevAlgorithm = Astronomy::solarAlgorithm();
+        Astronomy::useSolarAlgorithm(Astronomy::SOLAR_LEGACY);
+
+        try {
+            $astronomy = new class () extends Astronomy {
+                /** @var int[] */
+                public array $hours = [];
+
+                private int $calls = 0;
+
+                public function longitudeSun(int $year, int $month, float $day, float $hour, float $min, float $sec): float
+                {
+                    $this->hours[] = (int)$hour;
+
+                    return $this->calls++ === 0 ? 0.0 : 15.0;
+                }
+            };
+
+            $solarTerm = (new SolarTerm($astronomy))->findSolarTerm(2000, 3, 20);
+
+            $this->assertSame(DateTime::SOLAR_TERM_SEIMEI, $solarTerm);
+            $this->assertSame([6, 6], $astronomy->hours);
+        } finally {
+            Astronomy::useSolarAlgorithm($prevAlgorithm);
+        }
+    }
+
+    /**
+     * 太陽黄経の範囲が変化しない場合、二十四節気を検出しないことを確認する。
+     *
+     * @throws \JapaneseDate\Exceptions\Exception
+     */
+    public function test_findSolarTermReturnsFalseWhenLongitudeRangeDoesNotChange(): void
+    {
+        $astronomy = new class () extends Astronomy {
+            public function longitudeSun(int $year, int $month, float $day, float $hour, float $min, float $sec): float
+            {
+                return 10.0;
+            }
+        };
+
+        $this->assertFalse((new SolarTerm($astronomy))->findSolarTerm(2000, 3, 21));
+    }
+
+    /**
+     * 次の太陽黄経が二十四節気表の範囲外になる場合、検出しないことを確認する。
+     *
+     * @throws \JapaneseDate\Exceptions\Exception
+     */
+    public function test_findSolarTermReturnsFalseWhenNextLongitudeIsOutsideSolarTermTable(): void
+    {
+        $astronomy = new class () extends Astronomy {
+            private int $calls = 0;
+
+            public function longitudeSun(int $year, int $month, float $day, float $hour, float $min, float $sec): float
+            {
+                return $this->calls++ === 0 ? 350.0 : 360.0;
+            }
+        };
+
+        $this->assertFalse((new SolarTerm($astronomy))->findSolarTerm(2000, 3, 21));
+    }
+
+    /**
+     * 旧来範囲外では0時境界を使って二十四節気を検出することを確認する。
+     *
+     * @throws \JapaneseDate\Exceptions\Exception
+     */
+    public function test_findSolarTermUsesMidnightBoundaryOutsideLegacyTableRange(): void
+    {
+        $astronomy = new class () extends Astronomy {
+            /** @var int[] */
+            public array $hours = [];
+
+            private int $calls = 0;
+
+            public function longitudeSun(int $year, int $month, float $day, float $hour, float $min, float $sec): float
+            {
+                $this->hours[] = (int)$hour;
+
+                return $this->calls++ === 0 ? 0.0 : 15.0;
+            }
+        };
+
+        $solarTerm = (new SolarTerm($astronomy))->findSolarTerm(1599, 3, 20);
+
+        $this->assertSame(DateTime::SOLAR_TERM_SEIMEI, $solarTerm);
+        $this->assertSame([0, 0], $astronomy->hours);
+    }
+
+    public function test_findSolarTermUsesMidnightBoundaryForVsop87(): void
+    {
+        $astronomy = new class () extends Astronomy {
+            /** @var int[] */
+            public array $hours = [];
+
+            private int $calls = 0;
+
+            public function sunAlgorithmName(): string
+            {
+                return Astronomy::SOLAR_VSOP87;
+            }
+
+            public function longitudeSun(int $year, int $month, float $day, float $hour, float $min, float $sec): float
+            {
+                $this->hours[] = (int)$hour;
+
+                return $this->calls++ === 0 ? 0.0 : 15.0;
+            }
+        };
+
+        $solarTerm = (new SolarTerm($astronomy))->findSolarTerm(2000, 3, 20);
+
+        $this->assertSame(DateTime::SOLAR_TERM_SEIMEI, $solarTerm);
+        $this->assertSame([0, 0], $astronomy->hours);
+    }
+
+    /**
+     * 日付境界直前に315度へ到達する2021年の立春を2月3日と判定することを確認する。
+     *
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
+     */
+    public function test_vsop87Rissyun2021FallsOnFebruaryThird(): void
+    {
+        $previousAlgorithm = Astronomy::solarAlgorithm();
+        Astronomy::useSolarAlgorithm(Astronomy::SOLAR_VSOP87);
+
+        try {
+            $rissyun = (new SolarTerm())->rissyun(2021);
+
+            self::assertSolarTermDate(
+                2021,
+                DateTime::SOLAR_TERM_RISSYUN,
+                2,
+                3,
+                $rissyun
+            );
+        } finally {
+            Astronomy::useSolarAlgorithm($previousAlgorithm);
+        }
+    }
+
+    /**
+     * @param $year
+     * @param $expected
+     * @return void
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
+     */
+    #[DataProvider('naoRekiYokoYearDataProvider')]
+    public function test_vsop87SolarTermsMatchNaoRekiYokoData($year, $expected): void
+    {
+        try {
+            Astronomy::useSolarAlgorithm(Astronomy::SOLAR_VSOP87);
+                $actual = [];
+                foreach ((new SolarTerm())->getSolarTerms($year) as $solarTerm => $date) {
+                    $actual[$solarTerm] = [$date->month, $date->day];
+                }
+
+                $this->assertSame($expected, $actual, (string)$year);
+
+        } finally {
+            Astronomy::useSolarAlgorithm(Astronomy::SOLAR_LEGACY);
+            Astronomy::useMoonAlgorithm(Astronomy::MOON_LEGACY);
+        }
+    }
+
+    /**
      * 年ごとの二十四節気一覧を検証するため、暦要項のデータを年単位にまとめる。
      */
     public static function naoRekiYokoYearDataProvider(): array
@@ -98,7 +356,7 @@ class SolarTermTest extends TestCase
 
         foreach ($years as $year => $expected) {
             ksort($expected);
-            $cases[$year] = [(int) $year, $expected];
+            $cases[$year] = [(int)$year, $expected];
         }
 
         return $cases;
@@ -136,6 +394,32 @@ class SolarTermTest extends TestCase
                 DateTime::SOLAR_TERM_SYOUSETSU => [11, 22],
                 DateTime::SOLAR_TERM_TAISETSU => [12, 7],
                 DateTime::SOLAR_TERM_TOUJI => [12, 21],
+            ]),
+            self::solarTermsForYear(2021, [
+                DateTime::SOLAR_TERM_SYOUKAN => [1, 5],
+                DateTime::SOLAR_TERM_DAIKAN => [1, 20],
+                DateTime::SOLAR_TERM_RISSYUN => [2, 3],
+                DateTime::SOLAR_TERM_USUI => [2, 18],
+                DateTime::SOLAR_TERM_KEICHITSU => [3, 5],
+                DateTime::SOLAR_TERM_SYUNBUN => [3, 20],
+                DateTime::SOLAR_TERM_SEIMEI => [4, 4],
+                DateTime::SOLAR_TERM_KOKUU => [4, 20],
+                DateTime::SOLAR_TERM_RIKKA => [5, 5],
+                DateTime::SOLAR_TERM_SYOUMAN => [5, 21],
+                DateTime::SOLAR_TERM_BOUSYU => [6, 5],
+                DateTime::SOLAR_TERM_GESHI => [6, 21],
+                DateTime::SOLAR_TERM_SYOUSYO => [7, 7],
+                DateTime::SOLAR_TERM_TAISYO => [7, 22],
+                DateTime::SOLAR_TERM_RISSYUU => [8, 7],
+                DateTime::SOLAR_TERM_SYOSYO => [8, 23],
+                DateTime::SOLAR_TERM_HAKURO => [9, 7],
+                DateTime::SOLAR_TERM_SYUUBUN => [9, 23],
+                DateTime::SOLAR_TERM_KANRO => [10, 8],
+                DateTime::SOLAR_TERM_SOUKOU => [10, 23],
+                DateTime::SOLAR_TERM_RITTOU => [11, 7],
+                DateTime::SOLAR_TERM_SYOUSETSU => [11, 22],
+                DateTime::SOLAR_TERM_TAISETSU => [12, 7],
+                DateTime::SOLAR_TERM_TOUJI => [12, 22],
             ]),
             self::solarTermsForYear(2024, [
                 DateTime::SOLAR_TERM_SYOUKAN => [1, 6],
@@ -204,238 +488,6 @@ class SolarTermTest extends TestCase
         }
 
         return $cases;
-    }
-
-    /**
-     * 各二十四節気メソッドを暦要項の期待値で検証するためのケースを返す。
-     */
-    public static function solarTermMethodDataProvider(): array
-    {
-        $methods = array_flip(self::SOLAR_TERM_METHODS);
-        $cases = [];
-
-        foreach (self::getSolarTermDataProvider() as $label => [$year, $solarTerm, $month, $day]) {
-            $cases[$label] = [$methods[$solarTerm], $year, $solarTerm, $month, $day];
-        }
-
-        return $cases;
-    }
-
-    /**
-     * 二十四節気コードから取得した日付が暦要項の期待値と一致することを確認する。
-     *
-     * @throws \JapaneseDate\Exceptions\Exception
-     * @throws \JapaneseDate\Exceptions\SolarTermException
-     */
-    #[DataProvider('naoRekiYokoSolarTermDataProvider')]
-    public function test_getSolarTermMatchesNaoRekiYoko(int $year, int $solarTerm, int $month, int $day): void
-    {
-        $solarTermDate = (new SolarTerm())->getSolarTerm($year, $solarTerm);
-
-        self::assertSolarTermDate($year, $solarTerm, $month, $day, $solarTermDate);
-    }
-
-    /**
-     * SolarTermDate の各プロパティが期待値と一致することを確認する。
-     */
-    private static function assertSolarTermDate(
-        int $year,
-        int $solarTerm,
-        int $month,
-        int $day,
-        SolarTermDate $solarTermDate
-    ): void {
-        self::assertSame($year, $solarTermDate->year);
-        self::assertSame($solarTerm, $solarTermDate->solar_term);
-        self::assertSame($month, $solarTermDate->month);
-        self::assertSame($day, $solarTermDate->day);
-    }
-
-    /**
-     * 各二十四節気メソッドが暦要項の期待値と一致することを確認する。
-     *
-     * @throws \JapaneseDate\Exceptions\Exception
-     * @throws \JapaneseDate\Exceptions\SolarTermException
-     */
-    #[DataProvider('solarTermMethodDataProvider')]
-    public function test_eachSolarTermMethodMatchesNaoRekiYoko2000(
-        string $method,
-        int $year,
-        int $solarTerm,
-        int $month,
-        int $day
-    ): void {
-        $solarTermDate = (new SolarTerm())->{$method}($year);
-
-        self::assertSolarTermDate($year, $solarTerm, $month, $day, $solarTermDate);
-    }
-
-    /**
-     * 年単位で取得した二十四節気一覧が暦要項の期待値と一致することを確認する。
-     *
-     * @throws \JapaneseDate\Exceptions\Exception
-     * @throws \JapaneseDate\Exceptions\SolarTermException
-     */
-    #[DataProvider('naoRekiYokoYearDataProvider')]
-    public function test_getSolarTermsMatchesNaoRekiYoko(int $year, array $expected): void
-    {
-        $solarTerms = (new SolarTerm())->getSolarTerms($year);
-
-        $this->assertSame(array_keys($expected), array_keys($solarTerms));
-
-        foreach ($expected as $solarTerm => [$month, $day]) {
-            self::assertSolarTermDate($year, $solarTerm, $month, $day, $solarTerms[$solarTerm]);
-        }
-    }
-
-    /**
-     * findSolarTerm() が二十四節気を検出し、旧来範囲では6時境界を使うことを確認する。
-     *
-     * @throws \JapaneseDate\Exceptions\Exception
-     */
-    public function test_findSolarTermReturnsSolarTermAndUsesLegacyBoundary(): void
-    {
-        $prevAlgorithm = Astronomy::solarAlgorithm();
-        Astronomy::useSolarAlgorithm(Astronomy::SOLAR_LEGACY);
-
-        try {
-            $astronomy = new class () extends Astronomy {
-
-                /** @var int[] */
-                public array $hours = [];
-
-                private int $calls = 0;
-
-                public function longitudeSun(int $year, int $month, float $day, float $hour, float $min, float $sec): float
-                {
-                    $this->hours[] = (int) $hour;
-
-                    return $this->calls++ === 0 ? 0.0 : 15.0;
-                }
-            };
-
-            $solarTerm = (new SolarTerm($astronomy))->findSolarTerm(2000, 3, 20);
-
-            $this->assertSame(DateTime::SOLAR_TERM_SEIMEI, $solarTerm);
-            $this->assertSame([6, 6], $astronomy->hours);
-        } finally {
-            Astronomy::useSolarAlgorithm($prevAlgorithm);
-        }
-    }
-
-    /**
-     * 太陽黄経の範囲が変化しない場合、二十四節気を検出しないことを確認する。
-     *
-     * @throws \JapaneseDate\Exceptions\Exception
-     */
-    public function test_findSolarTermReturnsFalseWhenLongitudeRangeDoesNotChange(): void
-    {
-        $astronomy = new class () extends Astronomy {
-            public function longitudeSun(int $year, int $month, float $day, float $hour, float $min, float $sec): float
-            {
-                return 10.0;
-            }
-        };
-
-        $this->assertFalse((new SolarTerm($astronomy))->findSolarTerm(2000, 3, 21));
-    }
-
-    /**
-     * 次の太陽黄経が二十四節気表の範囲外になる場合、検出しないことを確認する。
-     *
-     * @throws \JapaneseDate\Exceptions\Exception
-     */
-    public function test_findSolarTermReturnsFalseWhenNextLongitudeIsOutsideSolarTermTable(): void
-    {
-        $astronomy = new class () extends Astronomy {
-            private int $calls = 0;
-
-            public function longitudeSun(int $year, int $month, float $day, float $hour, float $min, float $sec): float
-            {
-                return $this->calls++ === 0 ? 350.0 : 360.0;
-            }
-        };
-
-        $this->assertFalse((new SolarTerm($astronomy))->findSolarTerm(2000, 3, 21));
-    }
-
-    /**
-     * 旧来範囲外では0時境界を使って二十四節気を検出することを確認する。
-     *
-     * @throws \JapaneseDate\Exceptions\Exception
-     */
-    public function test_findSolarTermUsesMidnightBoundaryOutsideLegacyTableRange(): void
-    {
-        $astronomy = new class () extends Astronomy {
-            /** @var int[] */
-            public array $hours = [];
-
-            private int $calls = 0;
-
-            public function longitudeSun(int $year, int $month, float $day, float $hour, float $min, float $sec): float
-            {
-                $this->hours[] = (int) $hour;
-
-                return $this->calls++ === 0 ? 0.0 : 15.0;
-            }
-        };
-
-        $solarTerm = (new SolarTerm($astronomy))->findSolarTerm(1599, 3, 20);
-
-        $this->assertSame(DateTime::SOLAR_TERM_SEIMEI, $solarTerm);
-        $this->assertSame([0, 0], $astronomy->hours);
-    }
-
-    public function test_findSolarTermUsesMidnightBoundaryForVsop87(): void
-    {
-        $astronomy = new class () extends Astronomy {
-            /** @var int[] */
-            public array $hours = [];
-
-            private int $calls = 0;
-
-            public function longitudeSun(int $year, int $month, float $day, float $hour, float $min, float $sec): float
-            {
-                $this->hours[] = (int) $hour;
-
-                return $this->calls++ === 0 ? 0.0 : 15.0;
-            }
-        };
-
-        try {
-            Astronomy::useSolarAlgorithm(Astronomy::SOLAR_VSOP87);
-
-            $solarTerm = (new SolarTerm($astronomy))->findSolarTerm(2000, 3, 20);
-        } finally {
-            Astronomy::useSolarAlgorithm(Astronomy::SOLAR_LEGACY);
-            Astronomy::useMoonAlgorithm(Astronomy::MOON_LEGACY);
-        }
-
-        $this->assertSame(DateTime::SOLAR_TERM_SEIMEI, $solarTerm);
-        $this->assertSame([0, 0], $astronomy->hours);
-    }
-
-    public function test_vsop87SolarTermsMatchNaoRekiYokoData(): void
-    {
-        try {
-            Astronomy::useSolarAlgorithm(Astronomy::SOLAR_VSOP87);
-
-            foreach (self::naoRekiYokoYearDataProvider() as [$year, $expected]) {
-                if (!in_array($year, [2020, 2024, 2026], true)) {
-                    continue;
-                }
-
-                $actual = [];
-                foreach ((new SolarTerm())->getSolarTerms($year) as $solarTerm => $date) {
-                    $actual[$solarTerm] = [$date->month, $date->day];
-                }
-
-                $this->assertSame($expected, $actual, (string) $year);
-            }
-        } finally {
-            Astronomy::useSolarAlgorithm(Astronomy::SOLAR_LEGACY);
-            Astronomy::useMoonAlgorithm(Astronomy::MOON_LEGACY);
-        }
     }
 
     /**

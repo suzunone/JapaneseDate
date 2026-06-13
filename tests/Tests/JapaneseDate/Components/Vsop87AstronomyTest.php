@@ -3,14 +3,18 @@
 namespace Tests\JapaneseDate\Components;
 
 use JapaneseDate\Components\Astronomy;
+use JapaneseDate\Components\Contracts\SunAlgorithm;
 use JapaneseDate\Components\Vsop87Astronomy;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
+use Tests\JapaneseDate\InvokeTrait;
 
 #[CoversClass(Vsop87Astronomy::class)]
 class Vsop87AstronomyTest extends TestCase
 {
+    use InvokeTrait;
+
     /**
      * NASA/JPL Horizons observer table, Sun (10) from Earth geocenter (500@399).
      *
@@ -26,6 +30,7 @@ class Vsop87AstronomyTest extends TestCase
     {
         return [
             'J2000 nearby' => [2000, 1, 1, 9.0, 279.8592049],
+            '2021 beginning of spring boundary' => [2021, 2, 3, 23.0 + 59.0 / 60.0, 315.0001306],
             '2024 vernal equinox season' => [2024, 3, 20, 9.0, 359.8713785],
             '2024 summer solstice season' => [2024, 6, 21, 9.0, 90.1251964],
             '2024 autumn equinox season' => [2024, 9, 22, 9.0, 179.4812912],
@@ -35,38 +40,46 @@ class Vsop87AstronomyTest extends TestCase
 
     public function test_algorithmNameReturnsVsop87(): void
     {
-        try {
-            Astronomy::useSolarAlgorithm(Astronomy::SOLAR_VSOP87);
-            Astronomy::useMoonAlgorithm(Astronomy::MOON_LEGACY);
+        $vsop87 = new Vsop87Astronomy();
+        $this->assertSame(Astronomy::SOLAR_VSOP87, $vsop87->sunAlgorithmName());
+        $this->assertInstanceOf(SunAlgorithm::class, $vsop87);
+        $this->assertNotInstanceOf(Astronomy::class, $vsop87);
+    }
 
-            $this->assertSame(Astronomy::SOLAR_VSOP87 . ':' . Astronomy::MOON_LEGACY, (new Vsop87Astronomy())->algorithmName());
-        } finally {
-            Astronomy::useSolarAlgorithm(Astronomy::SOLAR_LEGACY);
-            Astronomy::useMoonAlgorithm(Astronomy::MOON_LEGACY);
-        }
+    public function test_approximateDeltaTSecondsUsesFutureFormulaFrom2050(): void
+    {
+        $deltaT = $this->invokeExecuteMethod(
+            new Vsop87Astronomy(),
+            'approximateDeltaTSeconds',
+            [2050, 1]
+        );
+
+        $this->assertEqualsWithDelta(93.08, $deltaT, 0.01);
     }
 
     #[DataProvider('jplHorizonsApparentSolarLongitudeProvider')]
     public function test_longitudeSunMatchesJplHorizonsApparentSolarLongitude(
-        int $year,
-        int $month,
-        int $day,
+        int   $year,
+        int   $month,
+        int   $day,
         float $hour,
         float $expectedLongitude
-    ): void {
+    ): void
+    {
         $actualLongitude = (new Vsop87Astronomy())->longitudeSun($year, $month, $day, $hour, 0.0, 0.0);
 
-        $this->assertEqualsWithDelta($expectedLongitude, $actualLongitude, 0.002);
+        $this->assertEqualsWithDelta($expectedLongitude, $actualLongitude, 0.0005);
     }
 
     #[DataProvider('jplHorizonsApparentSolarLongitudeProvider')]
     public function test_longitudeSunAlwaysReturnsNormalizedAngle(
-        int $year,
-        int $month,
-        int $day,
+        int   $year,
+        int   $month,
+        int   $day,
         float $hour,
         float $expectedLongitude
-    ): void {
+    ): void
+    {
         $longitude = (new Vsop87Astronomy())->longitudeSun($year, $month, $day, $hour, 0.0, 0.0);
 
         $this->assertGreaterThanOrEqual(0.0, $longitude);

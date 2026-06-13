@@ -53,6 +53,20 @@ trait DateBusinessCommon
     protected ?DateBusiness $businessConfig = null;
 
     /**
+     * インスタンスが保持している個別の営業日設定を取得します。
+     *
+     * 個別設定を持っていない場合は `null` を返します。
+     * 判定に実際に使用される設定（グローバル/デフォルト含む解決済み設定）は
+     * {@link BusinessCalendar::resolveConfig()} で取得できます。
+     *
+     * @return DateBusiness|null インスタンス個別設定、または null
+     */
+    public function getBusinessConfig(): ?DateBusiness
+    {
+        return $this->businessConfig;
+    }
+
+    /**
      * インスタンスに個別の営業日設定を適用します。
      *
      * 設定後、このインスタンスのすべての営業日判定にこの設定が使用されます。
@@ -65,7 +79,7 @@ trait DateBusinessCommon
      * );
      * ```
      *
-     * @param  DateBusiness|null $config インスタンスに適用する設定オブジェクト、または null（解除）
+     * @param DateBusiness|null $config インスタンスに適用する設定オブジェクト、または null（解除）
      * @return static メソッドチェーン用に自身を返します
      */
     public function setBusinessConfig(?DateBusiness $config): static
@@ -76,17 +90,25 @@ trait DateBusinessCommon
     }
 
     /**
-     * インスタンスが保持している個別の営業日設定を取得します。
+     * 特定の日付を休業日として指定します。
      *
-     * 個別設定を持っていない場合は `null` を返します。
-     * 判定に実際に使用される設定（グローバル/デフォルト含む解決済み設定）は
-     * {@link BusinessCalendar::resolveConfig()} で取得できます。
+     * インスタンスに個別設定がない場合は自動的に現在の有効設定を複製して設定します。
      *
-     * @return DateBusiness|null インスタンス個別設定、または null
+     * **使用例:**
+     * ```php
+     * $dt->setClosingDay('2026-08-15', '夏期休暇');
+     * ```
+     *
+     * @param string|DateTimeInterface $date 休業日として指定する日付
+     * @param string|null $label 休業理由のラベル（例: '夏期休暇'）
+     * @return static メソッドチェーン用に自身を返します
+     * @throws \Exception
      */
-    public function getBusinessConfig(): ?DateBusiness
+    public function setClosingDay(string|DateTimeInterface $date, ?string $label = null): static
     {
-        return $this->businessConfig;
+        $this->getOrCreateBusinessConfig()->addClosingDate($date, $label);
+
+        return $this;
     }
 
     /**
@@ -107,28 +129,6 @@ trait DateBusinessCommon
     }
 
     /**
-     * 特定の日付を休業日として指定します。
-     *
-     * インスタンスに個別設定がない場合は自動的に現在の有効設定を複製して設定します。
-     *
-     * **使用例:**
-     * ```php
-     * $dt->setClosingDay('2026-08-15', '夏期休暇');
-     * ```
-     *
-     * @param string|\DateTimeInterface $date 休業日として指定する日付
-     * @param string|null $label 休業理由のラベル（例: '夏期休暇'）
-     * @return static メソッドチェーン用に自身を返します
-     * @throws \Exception
-     */
-    public function setClosingDay(string|DateTimeInterface $date, ?string $label = null): static
-    {
-        $this->getOrCreateBusinessConfig()->addClosingDate($date, $label);
-
-        return $this;
-    }
-
-    /**
      * 特定の日付を営業日として指定します。
      *
      * インスタンスに個別設定がない場合は自動的に現在の有効設定を複製して設定します。
@@ -138,7 +138,7 @@ trait DateBusinessCommon
      * $dt->setOpenDay('2026-12-30'); // 特別営業日
      * ```
      *
-     * @param string|\DateTimeInterface $date 営業日として指定する日付
+     * @param string|DateTimeInterface $date 営業日として指定する日付
      * @return static メソッドチェーン用に自身を返します
      * @throws \Exception
      */
@@ -159,7 +159,7 @@ trait DateBusinessCommon
      * $dt->setClosingWeekdays([0, 6]); // 日・土を休業に
      * ```
      *
-     * @param  array<int> $weekdays 休業曜日の配列（例: [0, 6] で日・土）
+     * @param array<int> $weekdays 休業曜日の配列（例: [0, 6] で日・土）
      * @return static メソッドチェーン用に自身を返します
      */
     public function setClosingWeekdays(array $weekdays): static
@@ -174,7 +174,7 @@ trait DateBusinessCommon
      *
      * インスタンスに個別設定がない場合は自動的に現在の有効設定を複製して設定します。
      *
-     * @param  bool $bypass true の場合、祝日を休業日とする
+     * @param bool $bypass true の場合、祝日を休業日とする
      * @return static メソッドチェーン用に自身を返します
      */
     public function setBypassHoliday(bool $bypass): static
@@ -194,8 +194,8 @@ trait DateBusinessCommon
      * $dt->setOpenNthWeekday(6, 2); // 第2土曜日は営業
      * ```
      *
-     * @param  int $weekday 曜日（0=日曜〜6=土曜）
-     * @param  int $nth     第何曜日か（1〜5）
+     * @param int $weekday 曜日（0=日曜〜6=土曜）
+     * @param int $nth 第何曜日か（1〜5）
      * @return static メソッドチェーン用に自身を返します
      */
     public function setOpenNthWeekday(int $weekday, int $nth): static
@@ -215,9 +215,9 @@ trait DateBusinessCommon
      * $dt->setClosingNthWeekday(3, 3, '定休日'); // 第3水曜日は休業
      * ```
      *
-     * @param  int         $weekday 曜日（0=日曜〜6=土曜）
-     * @param  int         $nth     第何曜日か（1〜5）
-     * @param  string|null $label   休業ラベル
+     * @param int $weekday 曜日（0=日曜〜6=土曜）
+     * @param int $nth 第何曜日か（1〜5）
+     * @param string|null $label 休業ラベル
      * @return static メソッドチェーン用に自身を返します
      */
     public function setClosingNthWeekday(int $weekday, int $nth, ?string $label = null): static
@@ -238,7 +238,7 @@ trait DateBusinessCommon
      * $dt->addOpenFilter(fn(\DateTimeInterface $d) => $d->format('d') === '10');
      * ```
      *
-     * @param  callable $filter `fn(\DateTimeInterface $date): bool` 形式のコールバック
+     * @param callable $filter `fn(\DateTimeInterface $date): bool` 形式のコールバック
      * @return static メソッドチェーン用に自身を返します
      */
     public function addOpenFilter(callable $filter): static
@@ -262,8 +262,8 @@ trait DateBusinessCommon
      * );
      * ```
      *
-     * @param  callable    $filter `fn(\DateTimeInterface $date): bool` 形式のコールバック
-     * @param  string|null $label  休業理由のラベル
+     * @param callable $filter `fn(\DateTimeInterface $date): bool` 形式のコールバック
+     * @param string|null $label 休業理由のラベル
      * @return static メソッドチェーン用に自身を返します
      */
     public function addClosingFilter(callable $filter, ?string $label = null): static
@@ -285,7 +285,7 @@ trait DateBusinessCommon
      * $dt->setBusinessMacro(fn(\DateTimeInterface $d) => in_array((int)$d->format('N'), [1,2,3,4]));
      * ```
      *
-     * @param  callable|null $macro `fn(\DateTimeInterface $date): bool` 形式のコールバック、または null
+     * @param callable|null $macro `fn(\DateTimeInterface $date): bool` 形式のコールバック、または null
      * @return static メソッドチェーン用に自身を返します
      */
     public function setBusinessMacro(?callable $macro): static
@@ -301,7 +301,7 @@ trait DateBusinessCommon
      * このメソッドはTraitを適用したクラスが `DateTimeInterface` を実装している場合に
      * 自身の日付を使って判定します。`$date` を省略した場合は自身を対象とします。
      *
-     * @param  DateTimeInterface|null $date 判定する日付（省略時は自身）
+     * @param DateTimeInterface|null $date 判定する日付（省略時は自身）
      * @return bool 営業日であれば true
      */
     public function checkIsBusinessDay(?DateTimeInterface $date = null): bool
@@ -319,7 +319,7 @@ trait DateBusinessCommon
      *
      * 営業日の場合は `null` を返します。
      *
-     * @param  DateTimeInterface|null $date 判定する日付（省略時は自身）
+     * @param DateTimeInterface|null $date 判定する日付（省略時は自身）
      * @return string|null 休業ラベル、または null
      */
     public function checkGetBusinessDayLabel(?DateTimeInterface $date = null): ?string

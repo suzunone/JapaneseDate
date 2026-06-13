@@ -72,8 +72,8 @@ class OneTimeCacheTraitTest extends TestCase
     {
         $instance = $this->makeInstance();
 
-        $result1 = $this->invokeExecuteMethod($instance, 'oneTimeCache', ['key_a', fn () => 'value_a']);
-        $result2 = $this->invokeExecuteMethod($instance, 'oneTimeCache', ['key_b', fn () => 'value_b']);
+        $result1 = $this->invokeExecuteMethod($instance, 'oneTimeCache', ['key_a', fn() => 'value_a']);
+        $result2 = $this->invokeExecuteMethod($instance, 'oneTimeCache', ['key_b', fn() => 'value_b']);
 
         $this->assertSame('value_a', $result1);
         $this->assertSame('value_b', $result2);

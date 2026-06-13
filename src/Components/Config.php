@@ -96,22 +96,6 @@ class Config
     }
 
     /**
-     * 指定された年の二十四節気データを取得する
-     *
-     * @param int $year
-     * @return array
-     */
-    public static function getST(int $year): array
-    {
-        $config = self::getConfig($year);
-        if (!count($config) || !isset($config[self::KEY_SOLAR_TERM])) {
-            return [];
-        }
-
-        return $config[self::KEY_SOLAR_TERM];
-    }
-
-    /**
      * 指定された年の旧暦マッピングデータを取得する
      *
      * @param int $year
@@ -129,5 +113,21 @@ class Config
         }
 
         return $res;
+    }
+
+    /**
+     * 指定された年の二十四節気データを取得する
+     *
+     * @param int $year
+     * @return array
+     */
+    public static function getST(int $year): array
+    {
+        $config = self::getConfig($year);
+        if (!count($config) || !isset($config[self::KEY_SOLAR_TERM])) {
+            return [];
+        }
+
+        return $config[self::KEY_SOLAR_TERM];
     }
 }

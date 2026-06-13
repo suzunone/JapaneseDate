@@ -2,9 +2,7 @@
 
 namespace Tests\JapaneseDate\Components;
 
-use Cassandra\Date;
 use JapaneseDate\Components\SimpleSolarTerm;
-use JapaneseDate\Components\SolarTerm;
 use JapaneseDate\DateTime;
 use JapaneseDate\Elements\SolarTermDate;
 use JapaneseDate\Exceptions\Exception;
@@ -50,10 +48,6 @@ class SimpleSolarTermTest extends TestCase
         'keichitsu' => DateTime::SOLAR_TERM_KEICHITSU,
     ];
 
-    public function setUp(): void
-    {
-        DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_VSOP87);
-    }
     /**
      * 年ごとの二十四節気一覧を検証するため、暦要項のデータを年単位にまとめる。
      */
@@ -69,7 +63,7 @@ class SimpleSolarTermTest extends TestCase
 
         foreach ($years as $year => $expected) {
             ksort($expected);
-            $cases[$year] = [(int) $year, $expected];
+            $cases[$year] = [(int)$year, $expected];
         }
 
         return $cases;
@@ -178,9 +172,9 @@ class SimpleSolarTermTest extends TestCase
     }
 
     /**
-     * 生成済みテーブルの各期間の開始年を境界値として検証するデータを返す。
+     * 生成済みテーブルの各期間を検証するデータを返す。
      */
-    public static function simpleSolarTermTableBoundaryDataProvider(): array
+    public static function simpleSolarTermTableRangeDataProvider(): array
     {
         // SimpleSolarTerm は生成済みの参照テーブルなので、実測日付の正確性は上のテストで検証する。
         $source = file_get_contents(__DIR__ . '/../../../../src/Components/SimpleSolarTerm.php');
@@ -214,20 +208,65 @@ class SimpleSolarTermTest extends TestCase
                 throw new LogicException($method . ' table ranges were not found.');
             }
 
-            $solarTerm = new SolarTerm();
             foreach ($rangeMatches as $rangeMatch) {
-                $year = (int) $rangeMatch[1];
-
-                // 期待値は SolarTerm（天文計算）を正とする。
-                // SimpleSolarTerm には年単位の例外オーバーライドがあり、
-                // $days テーブルの値と異なる場合があるため。
-                $expectedDay = $solarTerm->{$method}($year)->day;
+                $year = intdiv((int)$rangeMatch[1] + (int)$rangeMatch[2], 2);
+                $days = array_map(
+                    'intval',
+                    preg_split('/\D+/', trim($rangeMatch[3], " \t\n\r\0\x0B,"))
+                );
 
                 $cases[$method . ' ' . $rangeMatch[1] . '-' . $rangeMatch[2]] = [
                     $method,
                     $year,
                     self::SOLAR_TERM_METHODS[$method],
-                    $expectedDay,
+                    $days[$year % 4],
+                ];
+            }
+        }
+
+        return $cases;
+    }
+
+    /**
+     * 生成済みテーブルに定義された年単位の例外オーバーライドを返す。
+     */
+    public static function simpleSolarTermYearOverrideDataProvider(): array
+    {
+        $cases = [];
+        $overrides = [
+            'syunbun' => [DateTime::SOLAR_TERM_SYUNBUN, [2352 => 21, 2385 => 21]],
+            'seimei' => [DateTime::SOLAR_TERM_SEIMEI, [2302 => 6, 2335 => 6, 2368 => 5, 1724 => 4, 2141 => 5]],
+            'kokuu' => [DateTime::SOLAR_TERM_KOKUU, [2334 => 21, 2367 => 21, 1735 => 20, 2082 => 20, 2272 => 20]],
+            'rikka' => [DateTime::SOLAR_TERM_RIKKA, [2320 => 6, 2382 => 6, 1762 => 5, 2163 => 6]],
+            'syouman' => [DateTime::SOLAR_TERM_SYOUMAN, [2318 => 22, 2351 => 22, 2380 => 21, 2136 => 21, 2227 => 22]],
+            'bousyu' => [DateTime::SOLAR_TERM_BOUSYU, [2332 => 6, 2361 => 6, 2270 => 6, 1608 => 5, 1728 => 5, 2150 => 6, 2241 => 6]],
+            'geshi' => [DateTime::SOLAR_TERM_GESHI, [2321 => 22, 2383 => 22, 2263 => 22, 2296 => 20]],
+            'syousyo' => [DateTime::SOLAR_TERM_SYOUSYO, [2318 => 8, 2347 => 8, 2260 => 7, 2111 => 8]],
+            'taisyo' => [DateTime::SOLAR_TERM_TAISYO, [2344 => 23, 1719 => 23, 2166 => 23, 2286 => 23]],
+            'rissyuu' => [DateTime::SOLAR_TERM_RISSYUU, [2308 => 8, 2370 => 8, 1799 => 7, 2130 => 8]],
+            'syosyo' => [DateTime::SOLAR_TERM_SYOSYO, [2326 => 24, 2384 => 23, 2206 => 24, 2235 => 24]],
+            'hakuro' => [DateTime::SOLAR_TERM_HAKURO, [2332 => 8, 2361 => 8, 2398 => 7, 1964 => 8, 2117 => 8, 2270 => 8]],
+            'syuubun' => [DateTime::SOLAR_TERM_SYUUBUN, [2355 => 24, 2384 => 23, 1917 => 23]],
+            'kanro' => [DateTime::SOLAR_TERM_KANRO, [2362 => 9, 2399 => 8, 2205 => 9, 2300 => 9]],
+            'soukou' => [DateTime::SOLAR_TERM_SOUKOU, [2386 => 24, 1998 => 24, 2159 => 24, 2196 => 22, 2225 => 24, 2258 => 24]],
+            'rittou' => [DateTime::SOLAR_TERM_RITTOU, [2328 => 8, 2361 => 8, 2398 => 7, 2229 => 8, 2299 => 7]],
+            'syousetsu' => [DateTime::SOLAR_TERM_SYOUSETSU, [2320 => 23, 2353 => 23, 2386 => 23, 2118 => 23]],
+            'taisetsu' => [DateTime::SOLAR_TERM_TAISETSU, [1649 => 7, 1752 => 7]],
+            'touji' => [DateTime::SOLAR_TERM_TOUJI, [2367 => 23, 1646 => 22]],
+            'syoukan' => [DateTime::SOLAR_TERM_SYOUKAN, [2332 => 7, 1607 => 6, 1710 => 6, 1850 => 6, 2229 => 6]],
+            'daikan' => [DateTime::SOLAR_TERM_DAIKAN, [2362 => 21, 1604 => 21, 1950 => 21]],
+            'rissyun' => [DateTime::SOLAR_TERM_RISSYUN, [2157 => 4, 2601 => 5, 2465 => 4, 2737 => 5]],
+            'usui' => [DateTime::SOLAR_TERM_USUI, [2302 => 20, 2030 => 19, 2133 => 19]],
+            'keichitsu' => [DateTime::SOLAR_TERM_KEICHITSU, [2187 => 6, 2220 => 6, 2253 => 6, 2286 => 6]],
+        ];
+
+        foreach ($overrides as $method => [$solarTerm, $years]) {
+            foreach ($years as $year => $day) {
+                $cases[$method . ' ' . $year] = [
+                    $method,
+                    $year,
+                    $solarTerm,
+                    $day,
                 ];
             }
         }
@@ -295,8 +334,8 @@ class SimpleSolarTermTest extends TestCase
     /**
      * 生成済みテーブルの期間境界で、各メソッドが期待する日付を返すことを確認する。
      */
-    #[DataProvider('simpleSolarTermTableBoundaryDataProvider')]
-    public function test_simpleSolarTermTableBoundaries($method, $year, $solarTerm, $day): void
+    #[DataProvider('simpleSolarTermTableRangeDataProvider')]
+    public function test_simpleSolarTermTableRanges($method, $year, $solarTerm, $day): void
     {
         $solarTermDate = (new SimpleSolarTerm())->{$method}($year);
 
@@ -304,6 +343,20 @@ class SimpleSolarTermTest extends TestCase
         $this->assertSame($year, $solarTermDate->year);
         $this->assertSame($solarTerm, $solarTermDate->solar_term);
         $this->assertSame($day, $solarTermDate->day, $year);
+    }
+
+    /**
+     * 年単位の例外オーバーライドが期待する日付を返すことを確認する。
+     */
+    #[DataProvider('simpleSolarTermYearOverrideDataProvider')]
+    public function test_simpleSolarTermYearOverrides($method, $year, $solarTerm, $day): void
+    {
+        $solarTermDate = (new SimpleSolarTerm())->{$method}($year);
+
+        $this->assertInstanceOf(SolarTermDate::class, $solarTermDate);
+        $this->assertSame($year, $solarTermDate->year);
+        $this->assertSame($solarTerm, $solarTermDate->solar_term);
+        $this->assertSame($day, $solarTermDate->day);
     }
 
     /**

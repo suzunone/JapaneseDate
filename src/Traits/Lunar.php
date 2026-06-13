@@ -51,9 +51,9 @@ trait Lunar
             $this->year,
             $this->month,
             $this->day,
-            (float) $this->hour,
-            (float) $this->minute,
-            (float) $this->second
+            (float)$this->hour,
+            (float)$this->minute,
+            (float)$this->second
         );
     }
 
@@ -70,28 +70,9 @@ trait Lunar
             $this->year,
             $this->month,
             $this->day,
-            (float) $this->hour,
-            (float) $this->minute,
-            (float) $this->second
-        );
-    }
-
-    /**
-     * 月相を求める（0=新月〜7=有明）
-     *
-     * @return int|null
-     * @throws \DateInvalidTimeZoneException
-     * @throws \JapaneseDate\Exceptions\Exception
-     */
-    protected function getMoonPhase(): ?int
-    {
-        return $this->LunarCalendar->moonPhase(
-            $this->year,
-            $this->month,
-            $this->day,
-            (float) $this->hour,
-            (float) $this->minute,
-            (float) $this->second
+            (float)$this->hour,
+            (float)$this->minute,
+            (float)$this->second
         );
     }
 
@@ -100,6 +81,7 @@ trait Lunar
      *
      * @return string
      * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
      */
     protected function viewMoonPhase(): string
@@ -108,19 +90,23 @@ trait Lunar
     }
 
     /**
-     * 旧暦データ取得
+     * 月相を求める（0=新月〜7=有明）
      *
-     * @return \JapaneseDate\Elements\LunarDate
+     * @return int|null
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
-     * @throws \JsonException
      */
-    protected function getLunarCalendar(): LunarDate
+    protected function getMoonPhase(): ?int
     {
-        $mdy = $this->month . '-' . $this->day . '-' . $this->year;
-
-        return $this->lunar_calendar[$mdy] ?? $this->lunar_calendar[$mdy] = $this->LunarCalendar->getLunarDate($this);
+        return $this->LunarCalendar->moonPhase(
+            $this->year,
+            $this->month,
+            $this->day,
+            (float)$this->hour,
+            (float)$this->minute,
+            (float)$this->second
+        );
     }
 
     /**
@@ -128,8 +114,10 @@ trait Lunar
      *
      * @return      string
      * @throws \DateInvalidTimeZoneException
+     * @throws \DateMalformedStringException
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      * @throws \JsonException
      */
     protected function viewSixWeekday(): string
@@ -144,8 +132,10 @@ trait Lunar
      *
      * @return      int
      * @throws \DateInvalidTimeZoneException
+     * @throws \DateMalformedStringException
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      * @throws \JsonException
      */
     protected function getSixWeekday(): int
@@ -156,31 +146,37 @@ trait Lunar
     }
 
     /**
+     * 旧暦データ取得
+     *
+     * @return LunarDate
+     * @throws \DateInvalidTimeZoneException
+     * @throws \DateMalformedStringException
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     * @throws \JsonException
+     */
+    protected function getLunarCalendar(): LunarDate
+    {
+        $mdy = $this->month . '-' . $this->day . '-' . $this->year;
+
+        return $this->lunar_calendar[$mdy] ?? $this->lunar_calendar[$mdy] = $this->LunarCalendar->getLunarDate($this);
+    }
+
+    /**
      * 旧暦（日）
      *
      * @return      int
      * @throws \DateInvalidTimeZoneException
+     * @throws \DateMalformedStringException
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      * @throws \JsonException
      */
     protected function getLunarDay(): int
     {
-        return (int) $this->getLunarCalendar()->day;
-    }
-
-    /**
-     * 旧暦（月）
-     *
-     * @return      int
-     * @throws \DateInvalidTimeZoneException
-     * @throws \JapaneseDate\Exceptions\ErrorException
-     * @throws \JapaneseDate\Exceptions\Exception
-     * @throws \JsonException
-     */
-    protected function getLunarMonth(): int
-    {
-        return (int) $this->getLunarCalendar()->month;
+        return (int)$this->getLunarCalendar()->day;
     }
 
     /**
@@ -188,8 +184,10 @@ trait Lunar
      *
      * @return      string
      * @throws \DateInvalidTimeZoneException
+     * @throws \DateMalformedStringException
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      * @throws \JsonException
      */
     protected function viewLunarMonth(): string
@@ -200,12 +198,30 @@ trait Lunar
     }
 
     /**
+     * 旧暦（月）
+     *
+     * @return      int
+     * @throws \DateInvalidTimeZoneException
+     * @throws \DateMalformedStringException
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     * @throws \JsonException
+     */
+    protected function getLunarMonth(): int
+    {
+        return (int)$this->getLunarCalendar()->month;
+    }
+
+    /**
      * 閏月かどうか
      *
      * @return      bool
      * @throws \DateInvalidTimeZoneException
+     * @throws \DateMalformedStringException
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      * @throws \JsonException
      */
     protected function isLeapMonth(): bool
@@ -218,8 +234,10 @@ trait Lunar
      *
      * @return string
      * @throws \DateInvalidTimeZoneException
+     * @throws \DateMalformedStringException
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      * @throws \JsonException
      */
     protected function getSolarTerm(): string
@@ -238,8 +256,10 @@ trait Lunar
      *
      * @return bool|int
      * @throws \DateInvalidTimeZoneException
+     * @throws \DateMalformedStringException
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      * @throws \JsonException
      */
     protected function getSolarTermKey(): bool|int
@@ -252,8 +272,10 @@ trait Lunar
      *
      * @return      boolean
      * @throws \DateInvalidTimeZoneException
+     * @throws \DateMalformedStringException
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      * @throws \JsonException
      */
     protected function isSolarTerm(): bool
@@ -268,12 +290,14 @@ trait Lunar
      *
      * @return      int
      * @throws \DateInvalidTimeZoneException
+     * @throws \DateMalformedStringException
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      * @throws \JsonException
      */
     protected function getLunarYear(): int
     {
-        return (int) $this->getLunarCalendar()->year;
+        return (int)$this->getLunarCalendar()->year;
     }
 }

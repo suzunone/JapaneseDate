@@ -2,13 +2,12 @@
 
 namespace Tests\JapaneseDate\Support;
 
+use PHPUnit\Event\Facade;
 use PHPUnit\Util\PHP\Job;
 use PHPUnit\Util\PHP\JobRunner;
 use PHPUnit\Util\PHP\PhpProcessException;
 use PHPUnit\Util\PHP\Result;
-use PHPUnit\Event\Facade;
 use SebastianBergmann\Environment\Runtime;
-
 use const PHP_BINARY;
 use const PHP_SAPI;
 
@@ -101,7 +100,7 @@ class PhpdbgJobRunner extends JobRunner
      */
     private function buildCommand(Job $job, string $file): array
     {
-        $runtime     = new Runtime;
+        $runtime = new Runtime();
         $phpSettings = $job->phpSettings();
 
         if ($runtime->hasPCOV()) {

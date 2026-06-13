@@ -1,0 +1,247 @@
+[
+    {
+        "name": "小寒",
+        "type": "winter",
+        "solar_longitude": "285度",
+        "date": "1月06日",
+        "time": "0時39分"
+    },
+    {
+        "name": "大寒",
+        "type": "winter",
+        "solar_longitude": "300度",
+        "date": "1月20日",
+        "time": "18時00分"
+    },
+    {
+        "name": "立春",
+        "type": "spring",
+        "solar_longitude": "315度",
+        "date": "2月04日",
+        "time": "12時14分"
+    },
+    {
+        "name": "雨水",
+        "type": "spring",
+        "solar_longitude": "330度",
+        "date": "2月19日",
+        "time": "8時04分"
+    },
+    {
+        "name": "啓蟄",
+        "type": "spring",
+        "solar_longitude": "345度",
+        "date": "3月06日",
+        "time": "6時10分"
+    },
+    {
+        "name": "春分",
+        "type": "spring",
+        "solar_longitude": "0度",
+        "date": "3月21日",
+        "time": "6時58分"
+    },
+    {
+        "name": "清明",
+        "type": "spring",
+        "solar_longitude": "15度",
+        "date": "4月05日",
+        "time": "10時51分"
+    },
+    {
+        "name": "穀雨",
+        "type": "spring",
+        "solar_longitude": "30度",
+        "date": "4月20日",
+        "time": "17時55分"
+    },
+    {
+        "name": "立夏",
+        "type": "summer",
+        "solar_longitude": "45度",
+        "date": "5月06日",
+        "time": "4時03分"
+    },
+    {
+        "name": "小満",
+        "type": "summer",
+        "solar_longitude": "60度",
+        "date": "5月21日",
+        "time": "16時59分"
+    },
+    {
+        "name": "芒種",
+        "type": "summer",
+        "solar_longitude": "75度",
+        "date": "6月06日",
+        "time": "8時06分"
+    },
+    {
+        "name": "夏至",
+        "type": "summer",
+        "solar_longitude": "90度",
+        "date": "6月22日",
+        "time": "0時54分"
+    },
+    {
+        "name": "小暑",
+        "type": "summer",
+        "solar_longitude": "105度",
+        "date": "7月07日",
+        "time": "18時21分"
+    },
+    {
+        "name": "大暑",
+        "type": "summer",
+        "solar_longitude": "120度",
+        "date": "7月23日",
+        "time": "11時50分"
+    },
+    {
+        "name": "立秋",
+        "type": "fall",
+        "solar_longitude": "135度",
+        "date": "8月08日",
+        "time": "4時13分"
+    },
+    {
+        "name": "処暑",
+        "type": "fall",
+        "solar_longitude": "150度",
+        "date": "8月23日",
+        "time": "19時02分"
+    },
+    {
+        "name": "白露",
+        "type": "fall",
+        "solar_longitude": "165度",
+        "date": "9月08日",
+        "time": "7時17分"
+    },
+    {
+        "name": "秋分",
+        "type": "fall",
+        "solar_longitude": "180度",
+        "date": "9月23日",
+        "time": "16時50分"
+    },
+    {
+        "name": "寒露",
+        "type": "fall",
+        "solar_longitude": "195度",
+        "date": "10月08日",
+        "time": "23時06分"
+    },
+    {
+        "name": "霜降",
+        "type": "fall",
+        "solar_longitude": "210度",
+        "date": "10月24日",
+        "time": "2時20分"
+    },
+    {
+        "name": "立冬",
+        "type": "winter",
+        "solar_longitude": "225度",
+        "date": "11月08日",
+        "time": "2時24分"
+    },
+    {
+        "name": "小雪",
+        "type": "winter",
+        "solar_longitude": "240度",
+        "date": "11月22日",
+        "time": "23時59分"
+    },
+    {
+        "name": "大雪",
+        "type": "winter",
+        "solar_longitude": "255度",
+        "date": "12月07日",
+        "time": "19時18分"
+    },
+    {
+        "name": "冬至",
+        "type": "winter",
+        "solar_longitude": "270度",
+        "date": "12月22日",
+        "time": "13時19分"
+    },
+    {
+        "name": "土用",
+        "type": "zasetu",
+        "solar_longitude": "297度",
+        "date": "1月17日",
+        "time": "19時15分"
+    },
+    {
+        "name": "節分",
+        "type": "zasetu",
+        "solar_longitude": "",
+        "date": "2月03日",
+        "time": ""
+    },
+    {
+        "name": "彼岸",
+        "type": "zasetu",
+        "solar_longitude": "",
+        "date": "3月18日",
+        "time": ""
+    },
+    {
+        "name": "土用",
+        "type": "zasetu",
+        "solar_longitude": "27度",
+        "date": "4月17日",
+        "time": "16時14分"
+    },
+    {
+        "name": "八十八夜",
+        "type": "zasetu",
+        "solar_longitude": "",
+        "date": "5月02日",
+        "time": ""
+    },
+    {
+        "name": "入梅",
+        "type": "zasetu",
+        "solar_longitude": "80度",
+        "date": "6月11日",
+        "time": "13時32分"
+    },
+    {
+        "name": "半夏生",
+        "type": "zasetu",
+        "solar_longitude": "100度",
+        "date": "7月02日",
+        "time": "12時31分"
+    },
+    {
+        "name": "土用",
+        "type": "zasetu",
+        "solar_longitude": "117度",
+        "date": "7月20日",
+        "time": "8時23分"
+    },
+    {
+        "name": "二百十日",
+        "type": "zasetu",
+        "solar_longitude": "",
+        "date": "9月01日",
+        "time": ""
+    },
+    {
+        "name": "彼岸",
+        "type": "zasetu",
+        "solar_longitude": "",
+        "date": "9月20日",
+        "time": ""
+    },
+    {
+        "name": "土用",
+        "type": "zasetu",
+        "solar_longitude": "207度",
+        "date": "10月21日",
+        "time": "1時57分"
+    }
+]

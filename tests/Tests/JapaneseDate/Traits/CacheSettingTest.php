@@ -5,7 +5,6 @@
 namespace Tests\JapaneseDate\Traits;
 
 use Closure;
-use DateTimeZone;
 use JapaneseDate\Components\Cache;
 use JapaneseDate\DateTime;
 use JapaneseDate\Traits\CacheSetting;
@@ -23,7 +22,6 @@ use Tests\JapaneseDate\InvokeTrait;
 #[CoversMethod(CacheSetting::class, 'setCacheMode')]
 #[CoversMethod(CacheSetting::class, 'setCacheFilePath')]
 #[CoversMethod(CacheSetting::class, 'setCacheClosure')]
-#[CoversMethod(CacheSetting::class, 'innerDateTime')]
 class CacheSettingTest extends TestCase
 {
     use InvokeTrait;
@@ -85,18 +83,4 @@ class CacheSettingTest extends TestCase
         );
     }
 
-    /**
-     * 内部用 DateTime インスタンスが同じ入力に対して再利用されることを確認する。
-     */
-    public function test_innerDateTime(): void
-    {
-        $dt = new DateTime('2023-01-15', new DateTimeZone('Asia/Tokyo'));
-
-        $result1 = $this->invokeExecuteMethod($dt, 'innerDateTime', ['2023-06-01']);
-        $result2 = $this->invokeExecuteMethod($dt, 'innerDateTime', ['2023-06-01']);
-
-        $this->assertInstanceOf(DateTime::class, $result1);
-        $this->assertSame('2023-06-01', $result1->format('Y-m-d'));
-        $this->assertSame($result1, $result2);
-    }
 }

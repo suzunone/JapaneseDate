@@ -99,7 +99,7 @@ class AncientTraitTest extends TestCase
         $result = $dt->historicalEras();
 
         $this->assertGreaterThanOrEqual(2, count($result));
-        $courts = array_map(fn (Era $e) => $e->court, $result);
+        $courts = array_map(fn(Era $e) => $e->court, $result);
         $this->assertContains(DateTime::COURT_NORTH, $courts);
         $this->assertContains(DateTime::COURT_SOUTH, $courts);
     }
@@ -113,7 +113,7 @@ class AncientTraitTest extends TestCase
         $result = $dt->historicalEras();
 
         $this->assertGreaterThanOrEqual(2, count($result));
-        $courts = array_map(fn (Era $e) => $e->court, $result);
+        $courts = array_map(fn(Era $e) => $e->court, $result);
         $this->assertContains(DateTime::COURT_NORTH, $courts);
         $this->assertContains(DateTime::COURT_SOUTH, $courts);
     }
@@ -170,7 +170,7 @@ class AncientTraitTest extends TestCase
         $result = $dt->historicalEras;
 
         $this->assertGreaterThanOrEqual(2, count($result));
-        $courts = array_map(fn (Era $e) => $e->court, $result);
+        $courts = array_map(fn(Era $e) => $e->court, $result);
         $this->assertContains(DateTime::COURT_NORTH, $courts);
         $this->assertContains(DateTime::COURT_SOUTH, $courts);
     }

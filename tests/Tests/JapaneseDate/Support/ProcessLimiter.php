@@ -73,7 +73,7 @@ class ProcessLimiter
         if (extension_loaded('pcov')) {
             $names[] = 'JAPANESE_DATE_TEST_PROCESS_LIMIT_PCOV';
         }
-        
+
         if (extension_loaded('xdebug')) {
             $names[] = 'JAPANESE_DATE_TEST_PROCESS_LIMIT_XDEBUG';
         }
@@ -99,7 +99,7 @@ class ProcessLimiter
             return 1;
         }
 
-        return max(0, (int) $limit);
+        return max(0, (int)$limit);
     }
 
     /**

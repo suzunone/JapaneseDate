@@ -145,6 +145,279 @@ class DatePeriod extends CarbonPeriod
     // =========================================================================
 
     /**
+     * 開始日から終了日までを二十四節気の切り替わりをステップとする
+     * {@see DatePeriod} を生成して返します。
+     *
+     * 各ステップは固定の日数ではなく、天文学的計算に基づく正確な節気の切り替わり日
+     * （14日〜16日の可変幅）となります。
+     *
+     * 開始日が節気日でない場合は、直後の最初の節気日から順次イテレートします。
+     *
+     * 【使用例】
+     * ```php
+     * // 2026年の節気区切りでイテレートする（立春→雨水→啓蟄…）
+     * $period = DatePeriod::eachSolarTerm(
+     *     DateTime::parse('2026-01-01'),
+     *     DateTime::parse('2026-12-31')
+     * );
+     *
+     * foreach ($period as $date) {
+     *     echo $date->format('Y-m-d') . ' ' . $date->solarTermText . PHP_EOL;
+     * }
+     * ```
+     *
+     * @param DateTime $start イテレート開始の基準日
+     * @param DateTime $end イテレート終了日（この日を含む）
+     * @return static 節気区切りの {@see DatePeriod}
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     */
+    public static function eachSolarTerm(DateTime $start, DateTime $end): static
+    {
+        $dates = static::collectSolarTermDates($start, $end);
+        if (empty($dates)) {
+            return static::create($start, '1 day', $start->copy()->subDay());
+        }
+
+        return static::createFromDatesArray($dates);
+    }
+
+    /**
+     * 指定期間内に含まれる二十四節気の日付をすべて収集して返します。
+     *
+     * 対象期間を年単位で走査し、各節気の日付が期間内に含まれるかを判定します。
+     *
+     * @param DateTime $start 検索開始日
+     * @param DateTime $end 検索終了日
+     * @return DateTime[] 節気日の配列（昇順）
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     */
+    protected static function collectSolarTermDates(DateTime $start, DateTime $end): array
+    {
+        $dates = [];
+        $startTs = $start->startOfDay()->timestamp;
+        $endTs = $end->endOfDay()->timestamp;
+
+        for ($year = $start->year; $year <= $end->year + 1; $year++) {
+            try {
+                $terms = static::resolveSolarTerms($year);
+                // @codeCoverageIgnoreStart
+            } catch (Throwable) {
+                continue;
+            }
+            // @codeCoverageIgnoreEnd
+
+            foreach ($terms as $termDate) {
+                $candidate = DateTime::createFromFormat(
+                    'Y-m-d',
+                    sprintf('%04d-%02d-%02d', $termDate->year, $termDate->month, $termDate->day)
+                );
+                // @codeCoverageIgnoreStart
+                if ($candidate === false) {
+                    continue;
+                }
+                // @codeCoverageIgnoreEnd
+                $ts = $candidate->startOfDay()->timestamp;
+                if ($ts >= $startTs && $ts <= $endTs) {
+                    $dates[] = DateTime::factory($candidate)->startOfDay();
+                }
+            }
+        }
+
+        usort($dates, static fn($a, $b) => $a->timestamp <=> $b->timestamp);
+
+        return $dates;
+    }
+
+    /**
+     * 指定した年の二十四節気データをすべて取得します。
+     *
+     * まず {@see SimpleSolarTerm} での高速計算を試み、失敗した場合は
+     * {@see SolarTerm} での精密計算にフォールバックします。
+     *
+     * @param int $year 西暦年
+     * @return \JapaneseDate\Elements\SolarTermDate[] 節気データの配列（キーは節気定数）
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
+     */
+    protected static function resolveSolarTerms(int $year): array
+    {
+        if (Astronomy::solarAlgorithm() === Astronomy::SOLAR_VSOP87) {
+            return (new SolarTerm())->getSolarTerms($year);
+        }
+
+        try {
+            return (new SimpleSolarTerm())->getSolarTerms($year);
+        } catch (Throwable) {
+            return (new SolarTerm())->getSolarTerms($year);
+        }
+    }
+
+    /**
+     * 配列形式の日付リストから {@see DatePeriod} を生成します。
+     *
+     * 内部的に各日付を固定ステップとして扱い、
+     * `foreach` でイテレートできる DatePeriod を返します。
+     *
+     * @param DateTime[] $dates 日付の配列
+     * @return static 配列の日付を順次返す {@see DatePeriod}
+     */
+    protected static function createFromDatesArray(array $dates): static
+    {
+        // CarbonPeriod の filters を利用して配列から生成する
+        // @codeCoverageIgnoreStart
+        if (empty($dates)) {
+            return static::create('now', '1 day', 'now')->addFilter(static fn() => false);
+        }
+        // @codeCoverageIgnoreEnd
+
+        $start = reset($dates);
+        $end = end($dates);
+
+        return static::create($start, '1 day', $end)->addFilter(static function ($date) use ($dates): bool {
+            $ts = $date->startOfDay()->timestamp;
+            foreach ($dates as $d) {
+                if ($d->startOfDay()->timestamp === $ts) {
+                    return true;
+                }
+            }
+
+            return false;
+        });
+    }
+
+    // =========================================================================
+    // 五十日（ごとおび）フィルタ
+    // =========================================================================
+
+    /**
+     * 開始日から指定した月数分の旧暦月（朔日〜晦日）を 1 ステップとする
+     * {@see DatePeriod} を生成して返します。
+     *
+     * 各ステップは旧暦の朔日（新月）の日付です。
+     * 旧正月・旧お盆・十五夜などの伝統行事の期間走査に使用します。
+     *
+     * 【使用例】
+     * ```php
+     * // 2026年1月から6ヶ月分の旧暦月の朔日を取得する
+     * $period = DatePeriod::eachLunarMonth(DateTime::parse('2026-01-01'), 6);
+     *
+     * foreach ($period as $date) {
+     *     $jd = DateTime::factory($date);
+     *     echo $date->format('Y-m-d') . ' 旧暦' . $jd->lunarYear . '年'
+     *          . $jd->lunarMonth . '月朔日' . PHP_EOL;
+     * }
+     * ```
+     *
+     * @param DateTime $start イテレート開始日（この日を含む旧暦月の朔日から開始）
+     * @param int $months イテレートする旧暦月数
+     * @return static 旧暦月朔日区切りの {@see DatePeriod}
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     */
+    public static function eachLunarMonth(DateTime $start, int $months): static
+    {
+        $dates = static::collectLunarNewMoonDates($start, $months);
+        if (empty($dates)) {
+            return static::create($start, '1 day', $start->copy()->subDay());
+        }
+
+        return static::createFromDatesArray($dates);
+    }
+
+    // =========================================================================
+    // 六曜フィルタ
+    // =========================================================================
+
+    /**
+     * 指定した開始日から、指定月数分の旧暦朔日（新月）の日付を収集して返します。
+     *
+     * Moon コンポーネントを使用して天文学的な新月の瞬間を計算します。
+     *
+     * @param DateTime $start 検索開始日
+     * @param int $months 収集する月数
+     * @return DateTime[] 新月日の配列
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     */
+    protected static function collectLunarNewMoonDates(DateTime $start, int $months): array
+    {
+        $moon = new Moon();
+        $dates = [];
+        $startTs = $start->startOfDay()->timestamp;
+
+        // 開始日以降の最初の新月を求める（is_next=false で次の新月を取得）
+        $searchBase = DateTime::factory($start)->subDays(2);
+        $newMoon = $moon->moonPhase($searchBase, 0.0)->setTimezone('Asia/Tokyo');
+        $current = DateTime::factory($newMoon)->startOfDay();
+
+        // 開始日より前の新月だった場合はさらに次の新月へ進む
+        if ($current->timestamp < $startTs) {
+            $searchFrom = DateTime::factory($newMoon)->addDays(28);
+            $newMoon = $moon->moonPhase($searchFrom, 0.0)->setTimezone('Asia/Tokyo');
+            $current = DateTime::factory($newMoon)->startOfDay();
+        }
+
+        for ($i = 0; $i < $months; $i++) {
+            $dates[] = DateTime::factory($current);
+            // 次の新月を求める（約28日後から検索、is_next=false で次の新月を取得）
+            $searchFrom = DateTime::factory($current)->addDays(28);
+            $newMoon = $moon->moonPhase($searchFrom, 0.0)->setTimezone('Asia/Tokyo');
+            $current = DateTime::factory($newMoon)->startOfDay();
+        }
+
+        return $dates;
+    }
+
+    /**
+     * 和暦年度（4月1日〜翌3月31日）を 1 ステップとする {@see DatePeriod} を生成します。
+     *
+     * 日本の官公庁・企業で使用される「令和X年度」「平成Y年度」などの
+     * 和暦年度を基準にした年度の開始日（4月1日）を順次返します。
+     *
+     * 【使用例】
+     * ```php
+     * // 令和5年度〜令和8年度（2023〜2026年度）の年度開始日を取得する
+     * $period = DatePeriod::eachJapaneseFiscalYear(2023, 2026);
+     *
+     * foreach ($period as $date) {
+     *     $jd = DateTime::factory($date);
+     *     echo $jd->eraNameText . $jd->eraYear . '年度 ('
+     *         . $date->format('Y/m/d') . '〜' . ($date->year + 1) . '/03/31)' . PHP_EOL;
+     * }
+     * ```
+     *
+     * @param int $startFiscalYear 開始年度の西暦年（その年の4月1日〜翌3月31日）
+     * @param int $endFiscalYear 終了年度の西暦年（この年度を含む）
+     * @return static 和暦年度開始日区切りの {@see DatePeriod}
+     * @throws \JapaneseDate\Exceptions\Exception
+     */
+    public static function eachJapaneseFiscalYear(int $startFiscalYear, int $endFiscalYear): static
+    {
+        $dates = [];
+        for ($year = $startFiscalYear; $year <= $endFiscalYear; $year++) {
+            $dates[] = DateTime::parse(sprintf('%04d-04-01', $year));
+        }
+
+        if (empty($dates)) {
+            $start = DateTime::parse(sprintf('%04d-04-01', $startFiscalYear));
+
+            return static::create($start, '1 day', $start->copy()->subDay());
+        }
+
+        return static::createFromDatesArray($dates);
+    }
+
+    // =========================================================================
+    // 雑節フィルタ
+    // =========================================================================
+
+    /**
      * 期間内の日本の祝日・休日（振替休日・国民の休日を含む）のみを
      * 抽出するフィルタを追加します。
      *
@@ -168,6 +441,31 @@ class DatePeriod extends CarbonPeriod
             return DateTime::factory($date)->is_holiday;
         });
     }
+
+    /**
+     * 期間内の土曜・日曜・祝日・休日をすべて除外し、
+     * 純粋な平日（月〜金かつ非祝日）のみを抽出するフィルタを追加します。
+     *
+     * 「営業日候補」として使用する場合に便利です。
+     *
+     * 【使用例】
+     * ```php
+     * $businessDays = DatePeriod::create('2026-05-01', '1 day', '2026-05-31')
+     *     ->onlyWeekdays();
+     *
+     * echo count(iterator_to_array($businessDays)) . '営業日';
+     * ```
+     *
+     * @return static 土日・祝日を除外するフィルタを追加した {@see DatePeriod}
+     */
+    public function onlyWeekdays(): static
+    {
+        return $this->withoutWeekends()->withoutHolidays();
+    }
+
+    // =========================================================================
+    // 二十四節気区切りのイテレータ
+    // =========================================================================
 
     /**
      * 期間内の日本の祝日・休日（振替休日・国民の休日を含む）を除外する
@@ -215,29 +513,8 @@ class DatePeriod extends CarbonPeriod
         });
     }
 
-    /**
-     * 期間内の土曜・日曜・祝日・休日をすべて除外し、
-     * 純粋な平日（月〜金かつ非祝日）のみを抽出するフィルタを追加します。
-     *
-     * 「営業日候補」として使用する場合に便利です。
-     *
-     * 【使用例】
-     * ```php
-     * $businessDays = DatePeriod::create('2026-05-01', '1 day', '2026-05-31')
-     *     ->onlyWeekdays();
-     *
-     * echo count(iterator_to_array($businessDays)) . '営業日';
-     * ```
-     *
-     * @return static 土日・祝日を除外するフィルタを追加した {@see DatePeriod}
-     */
-    public function onlyWeekdays(): static
-    {
-        return $this->withoutWeekends()->withoutHolidays();
-    }
-
     // =========================================================================
-    // 五十日（ごとおび）フィルタ
+    // 元号関連
     // =========================================================================
 
     /**
@@ -309,10 +586,6 @@ class DatePeriod extends CarbonPeriod
         });
     }
 
-    // =========================================================================
-    // 六曜フィルタ
-    // =========================================================================
-
     /**
      * 期間内の指定した六曜の日のみを抽出するフィルタを追加します。
      *
@@ -341,6 +614,10 @@ class DatePeriod extends CarbonPeriod
         });
     }
 
+    // =========================================================================
+    // 内部ヘルパー
+    // =========================================================================
+
     /**
      * 期間内の指定した六曜の日を除外するフィルタを追加します。
      *
@@ -368,10 +645,6 @@ class DatePeriod extends CarbonPeriod
             return !in_array($jd->six_weekday, $sixWeekdays, true);
         });
     }
-
-    // =========================================================================
-    // 雑節フィルタ
-    // =========================================================================
 
     /**
      * 期間内の土用（各季節の前の約18日間）に含まれる日付のみを抽出するフィルタを追加します。
@@ -404,6 +677,20 @@ class DatePeriod extends CarbonPeriod
     }
 
     /**
+     * 指定した日時が土用期間（立春・立夏・立秋・立冬の各18日前から節気前日まで）に
+     * 含まれるかどうかを判定します。
+     *
+     * 内部では {@see MiscSeasonalNode::isDoyo} に委譲します。
+     *
+     * @param DateTime $date 判定対象の日付
+     * @return bool 土用期間内であれば true
+     */
+    protected static function isInDoyo(DateTime $date): bool
+    {
+        return MiscSeasonalNode::factory()->isDoyo($date);
+    }
+
+    /**
      * 期間内の彼岸（春分・秋分を中日とした各7日間）に含まれる日付のみを抽出するフィルタを追加します。
      *
      * 「彼岸」は春分の日（春彼岸）と秋分の日（秋彼岸）をそれぞれ中日として、
@@ -427,87 +714,19 @@ class DatePeriod extends CarbonPeriod
         });
     }
 
-    // =========================================================================
-    // 二十四節気区切りのイテレータ
-    // =========================================================================
-
     /**
-     * 開始日から終了日までを二十四節気の切り替わりをステップとする
-     * {@see DatePeriod} を生成して返します。
+     * 指定した日時が彼岸期間（春分・秋分を中日とした各前後3日間、計7日間）に
+     * 含まれるかどうかを判定します。
      *
-     * 各ステップは固定の日数ではなく、天文学的計算に基づく正確な節気の切り替わり日
-     * （14日〜16日の可変幅）となります。
+     * 内部では {@see MiscSeasonalNode::isHigan} に委譲します。
      *
-     * 開始日が節気日でない場合は、直後の最初の節気日から順次イテレートします。
-     *
-     * 【使用例】
-     * ```php
-     * // 2026年の節気区切りでイテレートする（立春→雨水→啓蟄…）
-     * $period = DatePeriod::eachSolarTerm(
-     *     DateTime::parse('2026-01-01'),
-     *     DateTime::parse('2026-12-31')
-     * );
-     *
-     * foreach ($period as $date) {
-     *     echo $date->format('Y-m-d') . ' ' . $date->solarTermText . PHP_EOL;
-     * }
-     * ```
-     *
-     * @param \JapaneseDate\DateTime $start イテレート開始の基準日
-     * @param \JapaneseDate\DateTime $end イテレート終了日（この日を含む）
-     * @return static 節気区切りの {@see DatePeriod}
-     * @throws \DateInvalidTimeZoneException
-     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     * @param DateTime $date 判定対象の日付
+     * @return bool 彼岸期間内であれば true
      */
-    public static function eachSolarTerm(DateTime $start, DateTime $end): static
+    protected static function isInHigan(DateTime $date): bool
     {
-        $dates = static::collectSolarTermDates($start, $end);
-        if (empty($dates)) {
-            return static::create($start, '1 day', $start->copy()->subDay());
-        }
-
-        return static::createFromDatesArray($dates);
+        return MiscSeasonalNode::factory()->isHigan($date);
     }
-
-    /**
-     * 開始日から指定した月数分の旧暦月（朔日〜晦日）を 1 ステップとする
-     * {@see DatePeriod} を生成して返します。
-     *
-     * 各ステップは旧暦の朔日（新月）の日付です。
-     * 旧正月・旧お盆・十五夜などの伝統行事の期間走査に使用します。
-     *
-     * 【使用例】
-     * ```php
-     * // 2026年1月から6ヶ月分の旧暦月の朔日を取得する
-     * $period = DatePeriod::eachLunarMonth(DateTime::parse('2026-01-01'), 6);
-     *
-     * foreach ($period as $date) {
-     *     $jd = DateTime::factory($date);
-     *     echo $date->format('Y-m-d') . ' 旧暦' . $jd->lunarYear . '年'
-     *          . $jd->lunarMonth . '月朔日' . PHP_EOL;
-     * }
-     * ```
-     *
-     * @param \JapaneseDate\DateTime $start イテレート開始日（この日を含む旧暦月の朔日から開始）
-     * @param int $months イテレートする旧暦月数
-     * @return static 旧暦月朔日区切りの {@see DatePeriod}
-     * @throws \DateInvalidTimeZoneException
-     * @throws \JapaneseDate\Exceptions\Exception
-     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
-     */
-    public static function eachLunarMonth(DateTime $start, int $months): static
-    {
-        $dates = static::collectLunarNewMoonDates($start, $months);
-        if (empty($dates)) {
-            return static::create($start, '1 day', $start->copy()->subDay());
-        }
-
-        return static::createFromDatesArray($dates);
-    }
-
-    // =========================================================================
-    // 元号関連
-    // =========================================================================
 
     /**
      * 期間（DatePeriod）を元号の切り替わりタイミングで複数のサブ期間に分割します。
@@ -566,223 +785,6 @@ class DatePeriod extends CarbonPeriod
     }
 
     /**
-     * 和暦年度（4月1日〜翌3月31日）を 1 ステップとする {@see DatePeriod} を生成します。
-     *
-     * 日本の官公庁・企業で使用される「令和X年度」「平成Y年度」などの
-     * 和暦年度を基準にした年度の開始日（4月1日）を順次返します。
-     *
-     * 【使用例】
-     * ```php
-     * // 令和5年度〜令和8年度（2023〜2026年度）の年度開始日を取得する
-     * $period = DatePeriod::eachJapaneseFiscalYear(2023, 2026);
-     *
-     * foreach ($period as $date) {
-     *     $jd = DateTime::factory($date);
-     *     echo $jd->eraNameText . $jd->eraYear . '年度 ('
-     *         . $date->format('Y/m/d') . '〜' . ($date->year + 1) . '/03/31)' . PHP_EOL;
-     * }
-     * ```
-     *
-     * @param int $startFiscalYear  開始年度の西暦年（その年の4月1日〜翌3月31日）
-     * @param int $endFiscalYear    終了年度の西暦年（この年度を含む）
-     * @return static 和暦年度開始日区切りの {@see DatePeriod}
-     * @throws \JapaneseDate\Exceptions\Exception
-     */
-    public static function eachJapaneseFiscalYear(int $startFiscalYear, int $endFiscalYear): static
-    {
-        $dates = [];
-        for ($year = $startFiscalYear; $year <= $endFiscalYear; $year++) {
-            $dates[] = DateTime::parse(sprintf('%04d-04-01', $year));
-        }
-
-        if (empty($dates)) {
-            $start = DateTime::parse(sprintf('%04d-04-01', $startFiscalYear));
-
-            return static::create($start, '1 day', $start->copy()->subDay());
-        }
-
-        return static::createFromDatesArray($dates);
-    }
-
-    // =========================================================================
-    // 内部ヘルパー
-    // =========================================================================
-
-    /**
-     * 指定期間内に含まれる二十四節気の日付をすべて収集して返します。
-     *
-     * 対象期間を年単位で走査し、各節気の日付が期間内に含まれるかを判定します。
-     *
-     * @param \JapaneseDate\DateTime $start 検索開始日
-     * @param \JapaneseDate\DateTime $end 検索終了日
-     * @return \JapaneseDate\DateTime[] 節気日の配列（昇順）
-     * @throws \DateInvalidTimeZoneException
-     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
-     */
-    protected static function collectSolarTermDates(DateTime $start, DateTime $end): array
-    {
-        $dates = [];
-        $startTs = $start->startOfDay()->timestamp;
-        $endTs = $end->endOfDay()->timestamp;
-
-        for ($year = $start->year; $year <= $end->year + 1; $year++) {
-            try {
-                $terms = static::resolveSolarTerms($year);
-                // @codeCoverageIgnoreStart
-            } catch (Throwable) {
-                continue;
-            }
-            // @codeCoverageIgnoreEnd
-
-            foreach ($terms as $termDate) {
-                $candidate = DateTime::createFromFormat(
-                    'Y-m-d',
-                    sprintf('%04d-%02d-%02d', $termDate->year, $termDate->month, $termDate->day)
-                );
-                // @codeCoverageIgnoreStart
-                if ($candidate === false) {
-                    continue;
-                }
-                // @codeCoverageIgnoreEnd
-                $ts = $candidate->startOfDay()->timestamp;
-                if ($ts >= $startTs && $ts <= $endTs) {
-                    $dates[] = DateTime::factory($candidate)->startOfDay();
-                }
-            }
-        }
-
-        usort($dates, static fn ($a, $b) => $a->timestamp <=> $b->timestamp);
-
-        return $dates;
-    }
-
-    /**
-     * 指定した開始日から、指定月数分の旧暦朔日（新月）の日付を収集して返します。
-     *
-     * Moon コンポーネントを使用して天文学的な新月の瞬間を計算します。
-     *
-     * @param \JapaneseDate\DateTime $start 検索開始日
-     * @param int $months 収集する月数
-     * @return \JapaneseDate\DateTime[] 新月日の配列
-     * @throws \DateInvalidTimeZoneException
-     * @throws \JapaneseDate\Exceptions\Exception
-     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
-     */
-    protected static function collectLunarNewMoonDates(DateTime $start, int $months): array
-    {
-        $moon = new Moon();
-        $dates = [];
-        $startTs = $start->startOfDay()->timestamp;
-
-        // 開始日以降の最初の新月を求める（is_next=false で次の新月を取得）
-        $searchBase = DateTime::factory($start)->subDays(2);
-        $newMoon = $moon->moonPhase($searchBase, 0.0)->setTimezone('Asia/Tokyo');
-        $current = DateTime::factory($newMoon)->startOfDay();
-
-        // 開始日より前の新月だった場合はさらに次の新月へ進む
-        if ($current->timestamp < $startTs) {
-            $searchFrom = DateTime::factory($newMoon)->addDays(28);
-            $newMoon = $moon->moonPhase($searchFrom, 0.0)->setTimezone('Asia/Tokyo');
-            $current = DateTime::factory($newMoon)->startOfDay();
-        }
-
-        for ($i = 0; $i < $months; $i++) {
-            $dates[] = DateTime::factory($current);
-            // 次の新月を求める（約28日後から検索、is_next=false で次の新月を取得）
-            $searchFrom = DateTime::factory($current)->addDays(28);
-            $newMoon = $moon->moonPhase($searchFrom, 0.0)->setTimezone('Asia/Tokyo');
-            $current = DateTime::factory($newMoon)->startOfDay();
-        }
-
-        return $dates;
-    }
-
-    /**
-     * 指定した年の二十四節気データをすべて取得します。
-     *
-     * まず {@see SimpleSolarTerm} での高速計算を試み、失敗した場合は
-     * {@see SolarTerm} での精密計算にフォールバックします。
-     *
-     * @param int $year 西暦年
-     * @return \JapaneseDate\Elements\SolarTermDate[] 節気データの配列（キーは節気定数）
-     * @throws \JapaneseDate\Exceptions\Exception
-     * @throws \JapaneseDate\Exceptions\SolarTermException
-     */
-    protected static function resolveSolarTerms(int $year): array
-    {
-        if (Astronomy::solarAlgorithm() === Astronomy::SOLAR_VSOP87) {
-            return (new SolarTerm())->getSolarTerms($year);
-        }
-
-        try {
-            return (new SimpleSolarTerm())->getSolarTerms($year);
-        } catch (Throwable) {
-            return (new SolarTerm())->getSolarTerms($year);
-        }
-    }
-
-    /**
-     * 配列形式の日付リストから {@see DatePeriod} を生成します。
-     *
-     * 内部的に各日付を固定ステップとして扱い、
-     * `foreach` でイテレートできる DatePeriod を返します。
-     *
-     * @param \JapaneseDate\DateTime[] $dates 日付の配列
-     * @return static 配列の日付を順次返す {@see DatePeriod}
-     */
-    protected static function createFromDatesArray(array $dates): static
-    {
-        // CarbonPeriod の filters を利用して配列から生成する
-        // @codeCoverageIgnoreStart
-        if (empty($dates)) {
-            return static::create('now', '1 day', 'now')->addFilter(static fn () => false);
-        }
-        // @codeCoverageIgnoreEnd
-
-        $start = reset($dates);
-        $end = end($dates);
-
-        return static::create($start, '1 day', $end)->addFilter(static function ($date) use ($dates): bool {
-            $ts = $date->startOfDay()->timestamp;
-            foreach ($dates as $d) {
-                if ($d->startOfDay()->timestamp === $ts) {
-                    return true;
-                }
-            }
-
-            return false;
-        });
-    }
-
-    /**
-     * 指定した日時が土用期間（立春・立夏・立秋・立冬の各18日前から節気前日まで）に
-     * 含まれるかどうかを判定します。
-     *
-     * 内部では {@see \JapaneseDate\Components\MiscSeasonalNode::isDoyo()} に委譲します。
-     *
-     * @param \JapaneseDate\DateTime $date 判定対象の日付
-     * @return bool 土用期間内であれば true
-     */
-    protected static function isInDoyo(DateTime $date): bool
-    {
-        return MiscSeasonalNode::factory()->isDoyo($date);
-    }
-
-    /**
-     * 指定した日時が彼岸期間（春分・秋分を中日とした各前後3日間、計7日間）に
-     * 含まれるかどうかを判定します。
-     *
-     * 内部では {@see \JapaneseDate\Components\MiscSeasonalNode::isHigan()} に委譲します。
-     *
-     * @param \JapaneseDate\DateTime $date 判定対象の日付
-     * @return bool 彼岸期間内であれば true
-     */
-    protected static function isInHigan(DateTime $date): bool
-    {
-        return MiscSeasonalNode::factory()->isHigan($date);
-    }
-
-    /**
      * 期間内の営業日のみを含む新しい DatePeriod を返します。
      *
      * 営業日の判定にはインスタンス個別設定（またはグローバル/デフォルト設定）を使用します。
@@ -797,7 +799,7 @@ class DatePeriod extends CarbonPeriod
      * }
      * ```
      *
-     * @param  DateBusiness|null $config 判定に使用する設定（省略時はインスタンス/グローバル設定）
+     * @param DateBusiness|null $config 判定に使用する設定（省略時はインスタンス/グローバル設定）
      * @return static 営業日のみに絞り込まれた新しい DatePeriod インスタンス
      */
     public function onlyBusinessDays(?DateBusiness $config = null): static
@@ -816,7 +818,7 @@ class DatePeriod extends CarbonPeriod
      *
      * メソッドチェーンで他のフィルタと組み合わせることができます。
      *
-     * @param  DateBusiness|null $config 判定に使用する設定（省略時はインスタンス/グローバル設定）
+     * @param DateBusiness|null $config 判定に使用する設定（省略時はインスタンス/グローバル設定）
      * @return static 休業日のみに絞り込まれた新しい DatePeriod インスタンス
      */
     public function withoutBusinessDays(?DateBusiness $config = null): static
