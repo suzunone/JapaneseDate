@@ -51,9 +51,9 @@ trait Lunar
             $this->year,
             $this->month,
             $this->day,
-            (float)$this->hour,
-            (float)$this->minute,
-            (float)$this->second
+            (float) $this->hour,
+            (float) $this->minute,
+            (float) $this->second
         );
     }
 
@@ -70,9 +70,9 @@ trait Lunar
             $this->year,
             $this->month,
             $this->day,
-            (float)$this->hour,
-            (float)$this->minute,
-            (float)$this->second
+            (float) $this->hour,
+            (float) $this->minute,
+            (float) $this->second
         );
     }
 
@@ -103,9 +103,9 @@ trait Lunar
             $this->year,
             $this->month,
             $this->day,
-            (float)$this->hour,
-            (float)$this->minute,
-            (float)$this->second
+            (float) $this->hour,
+            (float) $this->minute,
+            (float) $this->second
         );
     }
 
@@ -176,7 +176,7 @@ trait Lunar
      */
     protected function getLunarDay(): int
     {
-        return (int)$this->getLunarCalendar()->day;
+        return (int) $this->getLunarCalendar()->day;
     }
 
     /**
@@ -210,7 +210,7 @@ trait Lunar
      */
     protected function getLunarMonth(): int
     {
-        return (int)$this->getLunarCalendar()->month;
+        return (int) $this->getLunarCalendar()->month;
     }
 
     /**
@@ -298,6 +298,6 @@ trait Lunar
      */
     protected function getLunarYear(): int
     {
-        return (int)$this->getLunarCalendar()->year;
+        return (int) $this->getLunarCalendar()->year;
     }
 }

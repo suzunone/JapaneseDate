@@ -13,6 +13,13 @@ use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Tests\JapaneseDate\Components\Traits\SolarTermDataProviderTrait;
 
+/**
+ *
+ */
+
+/**
+ *
+ */
 #[CoversClass(SimpleSolarTerm::class)]
 class SimpleSolarTermTest extends TestCase
 {
@@ -63,7 +70,7 @@ class SimpleSolarTermTest extends TestCase
 
         foreach ($years as $year => $expected) {
             ksort($expected);
-            $cases[$year] = [(int)$year, $expected];
+            $cases[$year] = [(int) $year, $expected];
         }
 
         return $cases;
@@ -209,7 +216,7 @@ class SimpleSolarTermTest extends TestCase
             }
 
             foreach ($rangeMatches as $rangeMatch) {
-                $year = intdiv((int)$rangeMatch[1] + (int)$rangeMatch[2], 2);
+                $year = intdiv((int) $rangeMatch[1] + (int) $rangeMatch[2], 2);
                 $days = array_map(
                     'intval',
                     preg_split('/\D+/', trim($rangeMatch[3], " \t\n\r\0\x0B,"))
@@ -314,6 +321,8 @@ class SimpleSolarTermTest extends TestCase
 
     /**
      * 年単位で取得した二十四節気一覧が暦要項の期待値と一致することを確認する。
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     #[DataProvider('naoRekiYokoYearDataProvider')]
     public function test_getSolarTermsMatchesNaoRekiYoko($year, array $expected): void
@@ -372,6 +381,8 @@ class SimpleSolarTermTest extends TestCase
 
     /**
      * 未定義の二十四節気コードを指定した場合に例外が発生することを確認する。
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     public function test_getSolarTermRejectsUndefinedSolarTerm(): void
     {

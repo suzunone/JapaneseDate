@@ -137,10 +137,9 @@ class Astronomy
      * @param MoonAlgorithm|null $moonAlgorithm 月黄経計算実装（null の場合は Legacy）
      */
     public function __construct(
-        ?SunAlgorithm  $sunAlgorithm = null,
+        ?SunAlgorithm $sunAlgorithm = null,
         ?MoonAlgorithm $moonAlgorithm = null,
-    )
-    {
+    ) {
         if ($sunAlgorithm === null && $moonAlgorithm === null) {
             $legacy = new LegacyAstronomy();
             $this->sunAlgorithmImpl = $legacy;
@@ -306,7 +305,7 @@ class Astronomy
     {
         $phase_angle = $this->moonPhaseAngle($year, $month, $day, $hour, $min, $sec);
 
-        return (int)(($phase_angle + 22.5) / 45.0) % 8;
+        return (int) (($phase_angle + 22.5) / 45.0) % 8;
     }
 
     /**
@@ -350,7 +349,7 @@ class Astronomy
     {
         $key = __METHOD__ . '-' . $this->moonAlgorithmName() . '-' . $year . '-' . $month . '-' . $day . '-' . $hour . '-' . $min . '-' . $sec;
 
-        return $this->oneTimeCache($key, fn() => $this->moonAlgorithmImpl->longitudeMoon($year, $month, $day, $hour, $min, $sec));
+        return $this->oneTimeCache($key, fn () => $this->moonAlgorithmImpl->longitudeMoon($year, $month, $day, $hour, $min, $sec));
     }
 
     /**
@@ -371,7 +370,7 @@ class Astronomy
     {
         $key = __METHOD__ . '-' . $this->sunAlgorithmName() . '-' . $year . '-' . $month . '-' . $day . '-' . $hour . '-' . $min . '-' . $sec;
 
-        return $this->oneTimeCache($key, fn() => $this->sunAlgorithmImpl->longitudeSun($year, $month, $day, $hour, $min, $sec));
+        return $this->oneTimeCache($key, fn () => $this->sunAlgorithmImpl->longitudeSun($year, $month, $day, $hour, $min, $sec));
     }
 
     /**
@@ -452,24 +451,7 @@ class Astronomy
      */
     public static function factory(): self
     {
-        $key = self::$solarAlgorithm . ':' . self::$moonAlgorithm;
-
-        if (!isset(self::$instances[$key])) {
-            $sunImpl = match (self::$solarAlgorithm) {
-                self::SOLAR_VSOP87 => new Vsop87Astronomy(),
-                default => null,
-            };
-            // ELP2000が大きすぎて認識されないので
-            $moonImpl = match (self::$moonAlgorithm) {
-                self::MOON_ELP2000      => new ELP2000(),
-                self::MOON_MEEUS47      => new MeeusMoon(applyNasaCCorrection: true),
-                self::MOON_MEEUS47_NO_C => new MeeusMoon(applyNasaCCorrection: false),
-                default                 => null,
-            };
-            self::$instances[$key] = new self($sunImpl, $moonImpl);
-        }
-
-        return self::$instances[$key];
+        return self::buildInstanceByAlgorithms(self::$solarAlgorithm, self::$moonAlgorithm);
     }
 
     /**
@@ -483,18 +465,31 @@ class Astronomy
      */
     public static function factoryForBoundary(): self
     {
-        $key = self::$boundarySolarAlgorithm . ':' . self::$boundaryMoonAlgorithm;
+        return self::buildInstanceByAlgorithms(self::$boundarySolarAlgorithm, self::$boundaryMoonAlgorithm);
+    }
+
+    /**
+     * 指定したアルゴリズムの組み合わせでインスタンスを生成してキャッシュに格納し返す。
+     *
+     * @param string $solarAlgorithm 太陽黄経計算アルゴリズム識別子
+     * @param string $moonAlgorithm 月黄経計算アルゴリズム識別子
+     * @return static
+     */
+    protected static function buildInstanceByAlgorithms(string $solarAlgorithm, string $moonAlgorithm): self
+    {
+        $key = $solarAlgorithm . ':' . $moonAlgorithm;
 
         if (!isset(self::$instances[$key])) {
-            $sunImpl = match (self::$boundarySolarAlgorithm) {
+            $sunImpl = match ($solarAlgorithm) {
                 self::SOLAR_VSOP87 => new Vsop87Astronomy(),
-                default            => null,
+                default => null,
             };
-            $moonImpl = match (self::$boundaryMoonAlgorithm) {
-                self::MOON_ELP2000      => new ELP2000(),
-                self::MOON_MEEUS47      => new MeeusMoon(applyNasaCCorrection: true),
+            // ELP2000が大きすぎて認識されないので
+            $moonImpl = match ($moonAlgorithm) {
+                self::MOON_ELP2000 => new ELP2000(),
+                self::MOON_MEEUS47 => new MeeusMoon(applyNasaCCorrection: true),
                 self::MOON_MEEUS47_NO_C => new MeeusMoon(applyNasaCCorrection: false),
-                default                 => null,
+                default => null,
             };
             self::$instances[$key] = new self($sunImpl, $moonImpl);
         }

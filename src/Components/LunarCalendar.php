@@ -97,10 +97,10 @@ class LunarCalendar
     protected static function defaultMoonAgeAlgorithmFor(Astronomy $astronomy): MoonAgeAlgorithm
     {
         return match ($astronomy->moonAlgorithmName()) {
-            Astronomy::MOON_ELP2000      => new Elp2000MoonAge($astronomy),
+            Astronomy::MOON_ELP2000 => new Elp2000MoonAge($astronomy),
             Astronomy::MOON_MEEUS47,
             Astronomy::MOON_MEEUS47_NO_C => new MeeusMoonAge($astronomy),
-            default                      => new LegacyMoonAge($astronomy),
+            default => new LegacyMoonAge($astronomy),
         };
     }
 
@@ -405,7 +405,7 @@ class LunarCalendar
     public function moonPhase(int $year, int $month, int $day, float $hour, float $min, float $sec): ?int
     {
         $phase = $this->astronomy()->moonPhase($year, $month, $day, $hour, $min, $sec);
-        $date = Carbon::create($year, $month, $day, (int)$hour, (int)$min, (int)$sec, 'Asia/Tokyo');
+        $date = Carbon::create($year, $month, $day, (int) $hour, (int) $min, (int) $sec, 'Asia/Tokyo');
         if (!$date instanceof Carbon) {
             // @codeCoverageIgnoreStart
             return null;
@@ -492,9 +492,9 @@ class LunarCalendar
                 new DateTimeZone('Asia/Tokyo')
             ))->modify('-1 day');
             $boundaryYesterday = (new SolarTerm($boundaryAstronomy))->findSolarTerm(
-                (int)$yesterday->format('Y'),
-                (int)$yesterday->format('m'),
-                (int)$yesterday->format('d')
+                (int) $yesterday->format('Y'),
+                (int) $yesterday->format('m'),
+                (int) $yesterday->format('d')
             );
             if ($boundaryYesterday === $normalResult) {
                 return false;

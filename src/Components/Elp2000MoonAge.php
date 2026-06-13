@@ -5,6 +5,7 @@ namespace JapaneseDate\Components;
 use DateTimeImmutable;
 use DateTimeZone;
 use JapaneseDate\Components\Contracts\MoonAgeAlgorithm;
+use JapaneseDate\Components\Traits\MoonAgeConvergenceTrait;
 
 /**
  * ELP2000-82B 高精度月黄経計算に基づく月齢計算実装。
@@ -30,6 +31,8 @@ use JapaneseDate\Components\Contracts\MoonAgeAlgorithm;
  */
 class Elp2000MoonAge implements MoonAgeAlgorithm
 {
+    use MoonAgeConvergenceTrait;
+
     /**
      * 朔望月（新月から新月までの平均日数）。
      */
@@ -81,12 +84,12 @@ class Elp2000MoonAge implements MoonAgeAlgorithm
     public function moonAge(int $year, int $month, int $day, float $hour, float $min, float $sec): float
     {
         $jst = new DateTimeImmutable(
-            sprintf('%04d-%02d-%02d %02d:%02d:%02d', $year, $month, $day, (int)$hour, (int)$min, (int)$sec),
+            sprintf('%04d-%02d-%02d %02d:%02d:%02d', $year, $month, $day, (int) $hour, (int) $min, (int) $sec),
             new DateTimeZone('Asia/Tokyo')
         );
-        $julian_date_0 = (int)$jst->format('U') / Astronomy::DAY_TO_SECOND_FLOAT
+        $julian_date_0 = (int) $jst->format('U') / Astronomy::DAY_TO_SECOND_FLOAT
             + 2440587.5
-            + (($sec - (int)$sec) / Astronomy::DAY_TO_SECOND_FLOAT);
+            + (($sec - (int) $sec) / Astronomy::DAY_TO_SECOND_FLOAT);
 
         // 既知の新月を基準に、対象日時に最も近い新月のおおよその時刻を推定し、
         // そこから収束計算を始めることで ELP2000 の評価回数（反復回数）を抑える。
@@ -107,17 +110,17 @@ class Elp2000MoonAge implements MoonAgeAlgorithm
 
         while (($delta_t1 + abs($delta_t2)) > Astronomy::DAYS_PER_SEC) {
             $julian_date = $tm1 + $tm2;
-            $timestamp = (int)floor(($julian_date - 2440587.5) * Astronomy::DAY_TO_SECOND_FLOAT);
+            $timestamp = (int) floor(($julian_date - 2440587.5) * Astronomy::DAY_TO_SECOND_FLOAT);
             $fractionalSecond = ($julian_date - 2440587.5) * Astronomy::DAY_TO_SECOND_FLOAT - $timestamp;
             $jst = (new DateTimeImmutable("@$timestamp"))->setTimezone(new DateTimeZone('Asia/Tokyo'));
-            $year = (int)$jst->format('Y');
-            $month = (int)$jst->format('n');
-            $day = (int)$jst->format('j');
+            $year = (int) $jst->format('Y');
+            $month = (int) $jst->format('n');
+            $day = (int) $jst->format('j');
             /** @noinspection CallableParameterUseCaseInTypeContextInspection */
-            $hour = (int)$jst->format('G');
+            $hour = (int) $jst->format('G');
             /** @noinspection CallableParameterUseCaseInTypeContextInspection */
-            $min = (int)$jst->format('i');
-            $sec = (int)$jst->format('s') + $fractionalSecond;
+            $min = (int) $jst->format('i');
+            $sec = (int) $jst->format('s') + $fractionalSecond;
             $longitude_sun = $this->astronomy->longitudeSun($year, $month, $day, $hour, $min, $sec);
             $longitude_moon = $this->astronomy->longitudeMoon($year, $month, $day, $hour, $min, $sec);
 
@@ -134,30 +137,16 @@ class Elp2000MoonAge implements MoonAgeAlgorithm
                 $delta_rm = $this->astronomy->normalizeAngle($delta_rm);
             }
 
-            // 時刻引数の補正値 Δt
-            $delta_t2 = $delta_rm * self::SYNODIC_MONTH / 360.0;
-            $delta_t1 = floor($delta_t2);
-            $delta_t2 -= $delta_t1;
-
-            // 時刻引数の補正
-            $tm1 -= $delta_t1;
-            $tm2 -= $delta_t2;
-            if ($tm2 < 0) {
-                $tm2++;
-                $tm1--;
-            }
-
+            [$tm1, $tm2, $delta_t1, $delta_t2, $shouldBreak] = $this->applyConvergenceStep(
+                $delta_rm,
+                self::SYNODIC_MONTH,
+                $tm1,
+                $tm2,
+                $julian_date_0,
+                $counter
+            );
             // @codeCoverageIgnoreStart
-            if ($counter === 15 && abs($delta_t1 + $delta_t2) > Astronomy::DAYS_PER_SEC) {
-                // ループ回数が15回になったら、初期値を-26
-                $tm1 = floor($julian_date_0 - 26);
-                $tm2 = 0;
-            } elseif ($counter > 30 && abs($delta_t1 + $delta_t2) > Astronomy::DAYS_PER_SEC) {
-                // 初期値を補正したにも関わらず振動を続ける場合は、
-                // 初期値を答えとして返して強制的にループを抜け出して異常終了
-                $tm1 = $julian_date_0;
-                $tm2 = 0;
-
+            if ($shouldBreak) {
                 break;
             }
             // @codeCoverageIgnoreEnd

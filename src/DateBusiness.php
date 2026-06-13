@@ -431,7 +431,7 @@ class DateBusiness
         foreach ($weekdays as $wd) {
             /** @noinspection PhpCastIsUnnecessaryInspection */
             /** @noinspection UnnecessaryCastingInspection */
-            $this->closingWeekdays[(int)$wd] = true;
+            $this->closingWeekdays[(int) $wd] = true;
         }
 
         return $this;

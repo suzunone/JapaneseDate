@@ -33,15 +33,15 @@ if ($argc < 2) {
     exit(1);
 }
 
-$year = (int)$argv[1];
+$year = (int) $argv[1];
 $urlMap = require __DIR__ . '/fixtures.php';
 
-if (!isset($urlMap[(string)$year])) {
+if (!isset($urlMap[(string) $year])) {
     fwrite(STDERR, "No URL defined for year {$year} in fixtures.php\n");
     exit(1);
 }
 
-[$svsPageUrl, $svsJsonUrl] = $urlMap[(string)$year];
+[$svsPageUrl, $svsJsonUrl] = $urlMap[(string) $year];
 $fixtureDirectory = realpath(__DIR__ . '/../fixtures');
 if ($fixtureDirectory === false) {
     fwrite(STDERR, "Fixture directory not found\n");
@@ -72,7 +72,7 @@ function fetchNasaJson(string $url): array
 
     $response = curl_exec($curl);
     $curlError = curl_error($curl);
-    $httpStatus = (int)curl_getinfo($curl, CURLINFO_RESPONSE_CODE);
+    $httpStatus = (int) curl_getinfo($curl, CURLINFO_RESPONSE_CODE);
 
     if ($response === false) {
         return [null, "cURL error: {$curlError}"];
@@ -101,7 +101,12 @@ if ($jsonContent === null) {
     echo "Saved: {$jsonFile}\n";
 }
 
-$entries = json_decode($jsonContent, true);
+try {
+    $entries = json_decode($jsonContent, true, 512, JSON_THROW_ON_ERROR);
+} catch (JsonException) {
+    fwrite(STDERR, "Failed to parse JSON\n");
+    exit(1);
+}
 if (!is_array($entries)) {
     fwrite(STDERR, "Failed to parse JSON\n");
     exit(1);
@@ -116,7 +121,7 @@ function naojDateToYmd(int $year, string $monthDay): ?string
         return null;
     }
 
-    return sprintf('%04d-%02d-%02d', $year, (int)$matches[1], (int)$matches[2]);
+    return sprintf('%04d-%02d-%02d', $year, (int) $matches[1], (int) $matches[2]);
 }
 
 /**
@@ -128,7 +133,7 @@ function naojTimeToHourMinute(string $hourMinute): array
         return [0, 0];
     }
 
-    return [(int)$matches[1], (int)$matches[2]];
+    return [(int) $matches[1], (int) $matches[2]];
 }
 
 /**
@@ -140,7 +145,11 @@ function loadNaojJson(string $path): array
         return [];
     }
 
-    $decoded = json_decode((string)file_get_contents($path), true);
+    try {
+        $decoded = json_decode((string) file_get_contents($path), true, 512, JSON_THROW_ON_ERROR);
+    } catch (JsonException) {
+        return [];
+    }
 
     return is_array($decoded) ? $decoded : [];
 }
@@ -151,7 +160,10 @@ function loadNaojJson(string $path): array
  * - 国民の休日: 祝日に挟まれた日曜日でない平日
  * - 振替休日: 祝日が日曜日の場合、それ以降で祝日でない最初の日
  *
+ * @param int $year
+ * @param array $holidayEntries
  * @return array<string, int> [Y-m-d => holiday定数]
+ * @throws \Exception
  */
 function buildHolidayMap(int $year, array $holidayEntries): array
 {
@@ -180,8 +192,8 @@ function buildHolidayMap(int $year, array $holidayEntries): array
 
     $base = [];
     foreach ($holidayEntries as $entry) {
-        $ymd = naojDateToYmd($year, (string)($entry['date'] ?? ''));
-        $name = (string)($entry['name'] ?? '');
+        $ymd = naojDateToYmd($year, (string) ($entry['date'] ?? ''));
+        $name = (string) ($entry['name'] ?? '');
         if ($ymd === null || !isset($holidayNameToCode[$name])) {
             continue;
         }
@@ -202,7 +214,7 @@ function buildHolidayMap(int $year, array $holidayEntries): array
         return [];
     }
 
-    $weekdayOf = static fn (string $ymd): int => (int)(new DateTimeImmutable($ymd))->format('w');
+    $weekdayOf = static fn (string $ymd): int => (int) (new DateTimeImmutable($ymd))->format('w');
     $addDays = static fn (string $ymd, int $days): string => (new DateTimeImmutable($ymd))->modify("{$days} day")->format('Y-m-d');
 
     // 国民の休日: 前日・翌日がともに祝日で、自身は祝日でも日曜日でもない平日
@@ -290,14 +302,15 @@ function buildSolarTermAndMiscSeasonalNodeMaps(int $year, array $seasonEntries):
     $miscSeasonalNodeMap = [];
 
     foreach ($seasonEntries as $entry) {
-        $ymd = naojDateToYmd($year, (string)($entry['date'] ?? ''));
-        $name = (string)($entry['name'] ?? '');
+        $ymd = naojDateToYmd($year, (string) ($entry['date'] ?? ''));
+        $name = (string) ($entry['name'] ?? '');
         if ($ymd === null) {
             continue;
         }
 
-        if (isset($solarTermNameToCode[$name]) && (string)($entry['type'] ?? '') !== 'zasetu') {
+        if (isset($solarTermNameToCode[$name]) && (string) ($entry['type'] ?? '') !== 'zasetu') {
             $solarTermMap[$ymd] = [$solarTermNameToCode[$name], $name];
+
             continue;
         }
 
@@ -325,13 +338,13 @@ function buildMoonPhaseEvents(int $year, array $moonEntries): array
 
     $events = [];
     foreach ($moonEntries as $entry) {
-        $name = (string)($entry['phase'] ?? '');
-        $ymd = naojDateToYmd($year, (string)($entry['date'] ?? ''));
+        $name = (string) ($entry['phase'] ?? '');
+        $ymd = naojDateToYmd($year, (string) ($entry['date'] ?? ''));
         if ($ymd === null || !isset($phaseNameToCodeAndText[$name])) {
             continue;
         }
 
-        [$hour, $minute] = naojTimeToHourMinute((string)($entry['time'] ?? ''));
+        [$hour, $minute] = naojTimeToHourMinute((string) ($entry['time'] ?? ''));
         [$phase, $text] = $phaseNameToCodeAndText[$name];
 
         $events[] = [
@@ -360,7 +373,7 @@ function interpolateNasaMoonAge(
     foreach ($entries as $entry) {
         $current = DateTimeImmutable::createFromFormat(
             'd M Y H:i \U\T',
-            (string)($entry['time'] ?? ''),
+            (string) ($entry['time'] ?? ''),
             $utcTimezone
         );
         if (!$current instanceof DateTimeImmutable || !isset($entry['age'])) {
@@ -368,7 +381,7 @@ function interpolateNasaMoonAge(
         }
 
         $currentTimestamp = $current->getTimestamp();
-        $currentAge = (float)$entry['age'];
+        $currentAge = (float) $entry['age'];
         $targetTimestamp = $target->getTimestamp();
 
         if ($currentTimestamp === $targetTimestamp) {
@@ -407,6 +420,10 @@ function interpolateNasaMoonAge(
  * @param array{datetime: string, phase: int, text: string} $event
  * @param list<array{datetime: string, phase: int, text: string}> $moonPhaseEvents
  * @param list<array<string, mixed>> $nasaEntries
+ * @param \DateTimeZone $jstTimezone
+ * @param \DateTimeZone $utcTimezone
+ * @return float|null
+ * @throws \Exception
  */
 function moonAgeForPhaseEvent(
     array $event,
@@ -486,7 +503,12 @@ $holidayTextByCode = [
     DateTime::EMPERORS_THRONE_DAY => '天皇の即位の日',
 ];
 
-$holidayMap = buildHolidayMap($year, loadNaojJson("{$fixtureDirectory}/holiday_{$year}.json"));
+try {
+    $holidayMap = buildHolidayMap($year, loadNaojJson("{$fixtureDirectory}/holiday_{$year}.json"));
+} catch (Exception $e) {
+    fwrite(STDERR, "Error building holiday map: {$e->getMessage()}\n");
+    exit(1);
+}
 [$solarTermMap, $miscSeasonalNodeMap] = buildSolarTermAndMiscSeasonalNodeMaps(
     $year,
     loadNaojJson("{$fixtureDirectory}/season_{$year}.json")
@@ -504,12 +526,12 @@ DateTime::useMoonAlgorithm(DateTime::MOON_ALGORITHM_LEGACY);
 foreach ($entries as $index => $entry) {
     $utc = DateTimeImmutable::createFromFormat(
         'd M Y H:i \U\T',
-        (string)($entry['time'] ?? ''),
+        (string) ($entry['time'] ?? ''),
         $utcTimezone
     );
     if (
         !$utc instanceof DateTimeImmutable
-        || (int)$utc->format('Y') !== $year
+        || (int) $utc->format('Y') !== $year
         || $utc->format('H:i') !== '00:00'
     ) {
         continue;
@@ -519,7 +541,7 @@ foreach ($entries as $index => $entry) {
     $date = DateTime::createFromFormat('Y-m-d H:i:s', $dateText);
     $ymd = $date->format('Y-m-d');
     $expected = dateTimeToArray($date);
-    $expected['moon_age'] = (float)$entry['age'];
+    $expected['moon_age'] = (float) $entry['age'];
 
     if (isset($holidayMap[$ymd])) {
         $expected['holiday'] = $holidayMap[$ymd];
@@ -551,8 +573,8 @@ foreach ($entries as $index => $entry) {
     ];
     if (
         isset($expected['solar_term'])
-        && in_array($expected['solar_term'], $startOfSeasonCodes, true)
         && ($expected['misc_seasonal_node'] ?? 0) === DateTime::MISC_SEASONAL_NODE_DOYO
+        && in_array($expected['solar_term'], $startOfSeasonCodes, true)
     ) {
         $expected['misc_seasonal_node'] = DateTime::MISC_SEASONAL_NODE_NONE;
         $expected['misc_seasonal_node_text'] = '';
@@ -569,13 +591,19 @@ foreach ($moonPhaseEvents as $event) {
     $expected = dateTimeToArray($date);
     $expected['moon_phase'] = $event['phase'];
     $expected['moon_phase_text'] = $event['text'];
-    $externalMoonAge = moonAgeForPhaseEvent(
-        $event,
-        $moonPhaseEvents,
-        $entries,
-        $jstTimezone,
-        $utcTimezone
-    );
+
+    try {
+        $externalMoonAge = moonAgeForPhaseEvent(
+            $event,
+            $moonPhaseEvents,
+            $entries,
+            $jstTimezone,
+            $utcTimezone
+        );
+    } catch (Exception $e) {
+        fwrite(STDERR, "Error computing moon age: {$e->getMessage()}\n");
+        exit(1);
+    }
     if ($externalMoonAge !== null) {
         $expected['moon_age'] = $externalMoonAge;
     }
@@ -590,8 +618,8 @@ foreach ($moonPhaseEvents as $event) {
     ];
     if (
         isset($expected['solar_term'])
-        && in_array($expected['solar_term'], $startOfSeasonCodes, true)
         && ($expected['misc_seasonal_node'] ?? 0) === DateTime::MISC_SEASONAL_NODE_DOYO
+        && in_array($expected['solar_term'], $startOfSeasonCodes, true)
     ) {
         $expected['misc_seasonal_node'] = DateTime::MISC_SEASONAL_NODE_NONE;
         $expected['misc_seasonal_node_text'] = '';
@@ -614,9 +642,9 @@ $content = <<<PHP
 // Source data:
 // {$svsPageUrl}
 // {$svsJsonUrl}
-// {$urlMap[(string)$year][2]}
-// {$urlMap[(string)$year][3]}
-// {$urlMap[(string)$year][4]}
+// {$urlMap[(string) $year][2]}
+// {$urlMap[(string) $year][3]}
+// {$urlMap[(string) $year][4]}
 
 return {$export};
 PHP;

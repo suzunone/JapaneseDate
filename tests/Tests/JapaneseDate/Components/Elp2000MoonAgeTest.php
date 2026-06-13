@@ -68,23 +68,34 @@ class Elp2000MoonAgeTest extends TestCase
         ];
     }
 
+    /**
+     * @param int $year
+     * @param int $month
+     * @param int $day
+     * @param float $hour
+     * @param float $min
+     * @param float $sec
+     * @param int $expectedRounded
+     * @return void
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     */
     #[DataProvider('moonAgeProvider')]
     public function test_moonAge(
-        int   $year,
-        int   $month,
-        int   $day,
+        int $year,
+        int $month,
+        int $day,
         float $hour,
         float $min,
         float $sec,
-        int   $expectedRounded
-    ): void
-    {
+        int $expectedRounded
+    ): void {
         $moonAge = new Elp2000MoonAge($this->makeElp2000Astronomy());
         $result = $moonAge->moonAge($year, $month, $day, $hour, $min, $sec);
 
         $this->assertEquals(
             $expectedRounded,
-            (int)round($result) % 30,
+            (int) round($result) % 30,
             sprintf(
                 '%d-%02d-%02d %02d:%02d の月齢(%.4f)の丸め値が %d と一致しない',
                 $year,
@@ -124,8 +135,8 @@ class Elp2000MoonAgeTest extends TestCase
         ];
         foreach ($dates as [$y, $m, $d, $h, $i, $s]) {
             $result = $moonAge->moonAge($y, $m, $d, $h, $i, $s);
-            $this->assertGreaterThanOrEqual(0.0, $result, "{$y}-{$m}-{$d} で月齢が負になった");
-            $this->assertLessThan(30.0, $result, "{$y}-{$m}-{$d} で月齢が30以上になった");
+            $this->assertGreaterThanOrEqual(0.0, $result, "$y-$m-$d で月齢が負になった");
+            $this->assertLessThan(30.0, $result, "$y-$m-$d で月齢が30以上になった");
         }
     }
 
@@ -185,10 +196,23 @@ class Elp2000MoonAgeTest extends TestCase
 
             private int $moonIndex = 0;
 
+            /**
+             * @param array $sequence
+             */
             public function __construct(private readonly array $sequence)
             {
+                parent::__construct();
             }
 
+            /**
+             * @param int $year
+             * @param int $month
+             * @param float $day
+             * @param float $hour
+             * @param float $min
+             * @param float $sec
+             * @return float
+             */
             public function longitudeSun(int $year, int $month, float $day, float $hour, float $min, float $sec): float
             {
                 $value = $this->sequence[min($this->sunIndex, count($this->sequence) - 1)][0];
@@ -197,6 +221,15 @@ class Elp2000MoonAgeTest extends TestCase
                 return $value;
             }
 
+            /**
+             * @param int $year
+             * @param int $month
+             * @param int $day
+             * @param float $hour
+             * @param float $min
+             * @param float $sec
+             * @return float
+             */
             public function longitudeMoon(int $year, int $month, int $day, float $hour, float $min, float $sec): float
             {
                 $value = $this->sequence[min($this->moonIndex, count($this->sequence) - 1)][1];

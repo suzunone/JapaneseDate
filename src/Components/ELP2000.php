@@ -6,6 +6,7 @@ use DateTimeImmutable;
 use DateTimeZone;
 use InvalidArgumentException;
 use JapaneseDate\Components\Contracts\MoonAlgorithm;
+use JapaneseDate\Components\Traits\DeltaTTrait;
 use JapaneseDate\Components\Traits\ELP2000Sub;
 
 /**
@@ -29,6 +30,7 @@ use JapaneseDate\Components\Traits\ELP2000Sub;
  */
 class ELP2000 implements MoonAlgorithm
 {
+    use DeltaTTrait;
     use ELP2000Sub;
 
     protected const BC_J2000 = '2451545.0';
@@ -125,28 +127,6 @@ class ELP2000 implements MoonAlgorithm
         $tdbJd = $utJd + $this->approximateDeltaTSeconds($year, $month) / 86400.0;
 
         return (float)$this->preciseLongitude(sprintf('%.10F', $tdbJd));
-    }
-
-    /**
-     * NASA/Espenak-Meeus の多項式で ΔT = TT - UT を近似します。
-     *
-     * @param int $year グレゴリオ暦の年
-     * @param int $month グレゴリオ暦の月
-     * @return float ΔT 秒
-     */
-    private function approximateDeltaTSeconds(int $year, int $month): float
-    {
-        $y = $year + ($month - 0.5) / 12.0;
-
-        if ($y < 2050.0) {
-            $t = $y - 2000.0;
-
-            return 62.92 + 0.32217 * $t + 0.005589 * $t * $t;
-        }
-
-        $u = ($y - 1820.0) / 100.0;
-
-        return -20.0 + 32.0 * $u * $u - 0.5628 * (2150.0 - $y);
     }
 
     /**

@@ -158,5 +158,4 @@ trait CacheSetting
     {
         Cache::setCacheClosure($function);
     }
-
 }

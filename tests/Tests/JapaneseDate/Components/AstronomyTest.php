@@ -40,6 +40,9 @@ class AstronomyTest extends TestCase
 {
     use InvokeTrait;
 
+    /**
+     * @return array[]
+     */
     public static function normalizeAngleProvider(): array
     {
         return [
@@ -55,6 +58,9 @@ class AstronomyTest extends TestCase
         ];
     }
 
+    /**
+     * @return array[]
+     */
     public static function boundaryMoonAlgorithmProvider(): array
     {
         return [
@@ -66,6 +72,9 @@ class AstronomyTest extends TestCase
 
     // ==================== factory ====================
 
+    /**
+     * @return void
+     */
     #[RunInSeparateProcess]
     #[PreserveGlobalState(false)]
     public function test_factory_returnsSameInstance(): void
@@ -77,13 +86,21 @@ class AstronomyTest extends TestCase
 
     // ==================== normalizeAngle ====================
 
+    /**
+     * @return void
+     */
     #[RunInSeparateProcess]
     #[PreserveGlobalState(false)]
     public function test_factory_returnsAstronomyInstance(): void
     {
+        /** @noinspection UnnecessaryAssertionInspection — factory() の実行時型を明示的に確認する */
         $this->assertInstanceOf(Astronomy::class, Astronomy::factory());
     }
 
+    /**
+     * @return void
+     * @throws \ReflectionException
+     */
     public function test_factory_switchesSolarAndMoonAlgorithms(): void
     {
         Astronomy::useSolarAlgorithm(Astronomy::SOLAR_LEGACY);
@@ -91,24 +108,24 @@ class AstronomyTest extends TestCase
         $this->assertSame(Astronomy::SOLAR_LEGACY, Astronomy::solarAlgorithm());
         $this->assertSame(Astronomy::MOON_LEGACY, Astronomy::moonAlgorithm());
         $legacyInstance = Astronomy::factory();
-        $this->assertInstanceOf(Astronomy::class, $legacyInstance);
         $this->assertSame(Astronomy::SOLAR_LEGACY . ':' . Astronomy::MOON_LEGACY, $legacyInstance->algorithmName());
 
         $this->invokeSetProperty(Astronomy::class, 'instances', []);
         Astronomy::useSolarAlgorithm(Astronomy::SOLAR_VSOP87);
         $vsop87Instance = Astronomy::factory();
         $this->assertSame(Astronomy::SOLAR_VSOP87, Astronomy::solarAlgorithm());
-        $this->assertInstanceOf(Astronomy::class, $vsop87Instance);
         $this->assertSame(Astronomy::SOLAR_VSOP87 . ':' . Astronomy::MOON_LEGACY, $vsop87Instance->algorithmName());
 
         $this->invokeSetProperty(Astronomy::class, 'instances', []);
         Astronomy::useMoonAlgorithm(Astronomy::MOON_ELP2000);
         $vsopElpInstance = Astronomy::factory();
         $this->assertSame(Astronomy::MOON_ELP2000, Astronomy::moonAlgorithm());
-        $this->assertInstanceOf(Astronomy::class, $vsopElpInstance);
         $this->assertSame(Astronomy::SOLAR_VSOP87 . ':' . Astronomy::MOON_ELP2000, $vsopElpInstance->algorithmName());
     }
 
+    /**
+     * @return void
+     */
     public function test_useSolarAlgorithmRejectsUnsupportedAlgorithm(): void
     {
         $this->expectException(InvalidArgumentException::class);
@@ -122,6 +139,9 @@ class AstronomyTest extends TestCase
         }
     }
 
+    /**
+     * @return void
+     */
     public function test_useMoonAlgorithmRejectsUnsupportedAlgorithm(): void
     {
         $this->expectException(InvalidArgumentException::class);
@@ -135,6 +155,11 @@ class AstronomyTest extends TestCase
         }
     }
 
+    /**
+     * @return void
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     */
     public function test_longitudeMoonSeparatesCacheByMoonAlgorithm(): void
     {
         $legacyAstronomy = new Astronomy(null, new LegacyAstronomy());
@@ -146,11 +171,26 @@ class AstronomyTest extends TestCase
         $this->assertNotEqualsWithDelta($legacy, $elp2000, 0.001);
     }
 
+    /**
+     * @return void
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     */
     public function test_longitudeMoonUsesElp2000WhenMoonAlgorithmSelected(): void
     {
         $stub = new class () implements MoonAlgorithm {
             public bool $called = false;
 
+            /**
+             * @noinspection PhpUnused — MoonAlgorithm インターフェース実装メソッド
+             * @param int $year
+             * @param int $month
+             * @param int $day
+             * @param float $hour
+             * @param float $min
+             * @param float $sec
+             * @return float
+             */
             public function longitudeMoon(int $year, int $month, int $day, float $hour, float $min, float $sec): float
             {
                 $this->called = true;
@@ -158,6 +198,10 @@ class AstronomyTest extends TestCase
                 return 123.456;
             }
 
+            /**
+             * @noinspection PhpUnused — MoonAlgorithm インターフェース実装メソッド
+             * @return string
+             */
             public function moonAlgorithmName(): string
             {
                 return Astronomy::MOON_ELP2000;
@@ -172,10 +216,17 @@ class AstronomyTest extends TestCase
         $this->assertNotSame(123.456, $legacy);
 
         $result = $stubAstronomy->longitudeMoon(2024, 4, 8, 18, 21, 0);
+        /** @noinspection PhpConditionAlreadyCheckedInspection — longitudeMoon() 呼び出し後に状態が変化するため */
         $this->assertTrue($stub->called);
         $this->assertSame(123.456, $result);
     }
 
+    /**
+     * @param float $input
+     * @param float $expected
+     * @return void
+     * @throws \ReflectionException
+     */
     #[DataProvider('normalizeAngleProvider')]
     public function test_normalizeAngle(float $input, float $expected): void
     {
@@ -387,8 +438,8 @@ class AstronomyTest extends TestCase
         ];
         foreach ($dates as [$y, $m, $d, $h, $i, $s]) {
             $result = $ast->longitudeSun($y, $m, $d, $h, $i, $s);
-            $this->assertGreaterThanOrEqual(0.0, $result, "{$y}-{$m}-{$d} で黄経が負になった");
-            $this->assertLessThan(360.0, $result, "{$y}-{$m}-{$d} で黄経が360以上になった");
+            $this->assertGreaterThanOrEqual(0.0, $result, "$y-$m-$d で黄経が負になった");
+            $this->assertLessThan(360.0, $result, "$y-$m-$d で黄経が360以上になった");
         }
     }
 
@@ -453,8 +504,8 @@ class AstronomyTest extends TestCase
         ];
         foreach ($dates as [$y, $m, $d, $h, $i, $s]) {
             $result = $ast->longitudeMoon($y, $m, $d, $h, $i, $s);
-            $this->assertGreaterThanOrEqual(0.0, $result, "{$y}-{$m}-{$d} で月黄経が負になった");
-            $this->assertLessThan(360.0, $result, "{$y}-{$m}-{$d} で月黄経が360以上になった");
+            $this->assertGreaterThanOrEqual(0.0, $result, "$y-$m-$d で月黄経が負になった");
+            $this->assertLessThan(360.0, $result, "$y-$m-$d で月黄経が360以上になった");
         }
     }
 
@@ -476,8 +527,8 @@ class AstronomyTest extends TestCase
         foreach ($dates as [$y, $m, $d, $h, $i, $s]) {
             $result = $ast->moonPhaseAngle($y, $m, $d, $h, $i, $s);
             $this->assertIsFloat($result);
-            $this->assertGreaterThanOrEqual(0.0, $result, "{$y}-{$m}-{$d} で位相角が負になった");
-            $this->assertLessThan(360.0, $result, "{$y}-{$m}-{$d} で位相角が360以上になった");
+            $this->assertGreaterThanOrEqual(0.0, $result, "$y-$m-$d で位相角が負になった");
+            $this->assertLessThan(360.0, $result, "$y-$m-$d で位相角が360以上になった");
         }
     }
 
@@ -529,8 +580,8 @@ class AstronomyTest extends TestCase
         foreach ($dates as [$y, $m, $d, $h, $i, $s]) {
             $result = $ast->moonPhase($y, $m, $d, $h, $i, $s);
             $this->assertIsInt($result);
-            $this->assertGreaterThanOrEqual(0, $result, "{$y}-{$m}-{$d} で月相が負になった");
-            $this->assertLessThanOrEqual(7, $result, "{$y}-{$m}-{$d} で月相が7を超えた");
+            $this->assertGreaterThanOrEqual(0, $result, "$y-$m-$d で月相が負になった");
+            $this->assertLessThanOrEqual(7, $result, "$y-$m-$d で月相が7を超えた");
         }
     }
 
@@ -564,6 +615,9 @@ class AstronomyTest extends TestCase
 
     // ==================== meeus47 追加テスト ====================
 
+    /**
+     * @return void
+     */
     public function test_useMoonAlgorithm_accepts_meeus47(): void
     {
         try {
@@ -574,6 +628,9 @@ class AstronomyTest extends TestCase
         }
     }
 
+    /**
+     * @return void
+     */
     public function test_useMoonAlgorithm_accepts_meeus47_no_c(): void
     {
         try {
@@ -584,11 +641,15 @@ class AstronomyTest extends TestCase
         }
     }
 
+    /**
+     * @return void
+     * @throws \ReflectionException
+     */
     public function test_factory_meeus47_returns_MeeusMoon_instance(): void
     {
         try {
             Astronomy::useMoonAlgorithm(Astronomy::MOON_MEEUS47);
-            $ast  = Astronomy::factory();
+            $ast = Astronomy::factory();
             $impl = $this->invokeGetProperty($ast, 'moonAlgorithmImpl');
             $this->assertInstanceOf(MeeusMoon::class, $impl);
             $this->assertSame('meeus47', $impl->moonAlgorithmName());
@@ -597,11 +658,15 @@ class AstronomyTest extends TestCase
         }
     }
 
+    /**
+     * @return void
+     * @throws \ReflectionException
+     */
     public function test_factory_meeus47_no_c_returns_MeeusMoon_no_c_instance(): void
     {
         try {
             Astronomy::useMoonAlgorithm(Astronomy::MOON_MEEUS47_NO_C);
-            $ast  = Astronomy::factory();
+            $ast = Astronomy::factory();
             $impl = $this->invokeGetProperty($ast, 'moonAlgorithmImpl');
             $this->assertInstanceOf(MeeusMoon::class, $impl);
             $this->assertSame('meeus47_no_c', $impl->moonAlgorithmName());
@@ -610,6 +675,9 @@ class AstronomyTest extends TestCase
         }
     }
 
+    /**
+     * @return void
+     */
     public function test_four_moon_algorithms_produce_different_instances(): void
     {
         $algorithms = [
@@ -641,17 +709,26 @@ class AstronomyTest extends TestCase
 
     // ==================== useBoundarySolarAlgorithm / boundarySolarAlgorithm ====================
 
+    /**
+     * @return void
+     */
     public function test_boundarySolarAlgorithm_defaultIsVSOP87(): void
     {
         $this->assertSame(Astronomy::SOLAR_VSOP87, Astronomy::boundarySolarAlgorithm());
     }
 
+    /**
+     * @return void
+     */
     public function test_useBoundarySolarAlgorithm_changesValue(): void
     {
         Astronomy::useBoundarySolarAlgorithm(Astronomy::SOLAR_LEGACY);
         $this->assertSame(Astronomy::SOLAR_LEGACY, Astronomy::boundarySolarAlgorithm());
     }
 
+    /**
+     * @return void
+     */
     public function test_useBoundarySolarAlgorithm_rejectsUnsupported(): void
     {
         $this->expectException(InvalidArgumentException::class);
@@ -661,17 +738,26 @@ class AstronomyTest extends TestCase
 
     // ==================== useBoundaryMoonAlgorithm / boundaryMoonAlgorithm ====================
 
+    /**
+     * @return void
+     */
     public function test_boundaryMoonAlgorithm_defaultIsELP2000(): void
     {
         $this->assertSame(Astronomy::MOON_ELP2000, Astronomy::boundaryMoonAlgorithm());
     }
 
+    /**
+     * @return void
+     */
     public function test_useBoundaryMoonAlgorithm_changesValue(): void
     {
         Astronomy::useBoundaryMoonAlgorithm(Astronomy::MOON_LEGACY);
         $this->assertSame(Astronomy::MOON_LEGACY, Astronomy::boundaryMoonAlgorithm());
     }
 
+    /**
+     * @return void
+     */
     public function test_useBoundaryMoonAlgorithm_rejectsUnsupported(): void
     {
         $this->expectException(InvalidArgumentException::class);
@@ -681,17 +767,27 @@ class AstronomyTest extends TestCase
 
     // ==================== factoryForBoundary ====================
 
+    /**
+     * @return void
+     */
     public function test_factoryForBoundary_returnsAstronomyInstance(): void
     {
+        /** @noinspection UnnecessaryAssertionInspection — factoryForBoundary() の実行時型を明示的に確認する */
         $this->assertInstanceOf(Astronomy::class, Astronomy::factoryForBoundary());
     }
 
+    /**
+     * @return void
+     */
     public function test_factoryForBoundary_defaultAlgorithmIsVsop87Elp2000(): void
     {
         $instance = Astronomy::factoryForBoundary();
         $this->assertSame(Astronomy::SOLAR_VSOP87 . ':' . Astronomy::MOON_ELP2000, $instance->algorithmName());
     }
 
+    /**
+     * @return void
+     */
     public function test_factoryForBoundary_respectsBoundarySolarAlgorithm(): void
     {
         Astronomy::useBoundarySolarAlgorithm(Astronomy::SOLAR_LEGACY);
@@ -699,12 +795,17 @@ class AstronomyTest extends TestCase
         $this->assertSame(Astronomy::SOLAR_LEGACY . ':' . Astronomy::MOON_ELP2000, $instance->algorithmName());
     }
 
+    /**
+     * @param string $algorithm
+     * @param string $expectedClass
+     * @return void
+     * @throws \ReflectionException
+     */
     #[DataProvider('boundaryMoonAlgorithmProvider')]
     public function test_factoryForBoundary_respectsBoundaryMoonAlgorithm(
         string $algorithm,
         string $expectedClass
-    ): void
-    {
+    ): void {
         Astronomy::useBoundaryMoonAlgorithm($algorithm);
 
         $instance = Astronomy::factoryForBoundary();
@@ -714,6 +815,9 @@ class AstronomyTest extends TestCase
         $this->assertSame($algorithm, $instance->moonAlgorithmName());
     }
 
+    /**
+     * @return void
+     */
     public function test_factoryForBoundary_sharedCacheWithFactory(): void
     {
         // 通常アルゴリズムを境界と同じ vsop87:elp2000 に設定すると同一インスタンスが返る
@@ -724,6 +828,9 @@ class AstronomyTest extends TestCase
         $this->assertSame($fromFactory, $fromBoundary);
     }
 
+    /**
+     * @return void
+     */
     public function test_factoryForBoundary_independentFromNormalAlgorithm(): void
     {
         // 通常=Legacy, 境界=VSOP87/ELP2000(デフォルト) のとき別インスタンスになる
@@ -734,6 +841,10 @@ class AstronomyTest extends TestCase
         $this->assertSame(Astronomy::SOLAR_VSOP87 . ':' . Astronomy::MOON_ELP2000, $boundary->algorithmName());
     }
 
+    /**
+     * @return void
+     * @throws \ReflectionException
+     */
     protected function tearDown(): void
     {
         $this->invokeSetProperty(Astronomy::class, 'instances', []);

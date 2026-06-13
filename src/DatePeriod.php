@@ -225,7 +225,7 @@ class DatePeriod extends CarbonPeriod
             }
         }
 
-        usort($dates, static fn($a, $b) => $a->timestamp <=> $b->timestamp);
+        usort($dates, static fn ($a, $b) => $a->timestamp <=> $b->timestamp);
 
         return $dates;
     }
@@ -268,7 +268,7 @@ class DatePeriod extends CarbonPeriod
         // CarbonPeriod の filters を利用して配列から生成する
         // @codeCoverageIgnoreStart
         if (empty($dates)) {
-            return static::create('now', '1 day', 'now')->addFilter(static fn() => false);
+            return static::create('now', '1 day', 'now')->addFilter(static fn () => false);
         }
         // @codeCoverageIgnoreEnd
 

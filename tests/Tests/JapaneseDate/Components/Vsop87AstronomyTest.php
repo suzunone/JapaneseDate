@@ -10,6 +10,13 @@ use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Tests\JapaneseDate\InvokeTrait;
 
+/**
+ *
+ */
+
+/**
+ *
+ */
 #[CoversClass(Vsop87Astronomy::class)]
 class Vsop87AstronomyTest extends TestCase
 {
@@ -38,14 +45,22 @@ class Vsop87AstronomyTest extends TestCase
         ];
     }
 
+    /**
+     * @return void
+     */
     public function test_algorithmNameReturnsVsop87(): void
     {
         $vsop87 = new Vsop87Astronomy();
         $this->assertSame(Astronomy::SOLAR_VSOP87, $vsop87->sunAlgorithmName());
+        /** @noinspection PhpConditionAlreadyCheckedInspection — SunAlgorithmインターフェース実装の明示的な実行時確認 */
         $this->assertInstanceOf(SunAlgorithm::class, $vsop87);
         $this->assertNotInstanceOf(Astronomy::class, $vsop87);
     }
 
+    /**
+     * @return void
+     * @throws \ReflectionException
+     */
     public function test_approximateDeltaTSecondsUsesFutureFormulaFrom2050(): void
     {
         $deltaT = $this->invokeExecuteMethod(
@@ -57,29 +72,41 @@ class Vsop87AstronomyTest extends TestCase
         $this->assertEqualsWithDelta(93.08, $deltaT, 0.01);
     }
 
+    /**
+     * @param int $year
+     * @param int $month
+     * @param int $day
+     * @param float $hour
+     * @param float $expectedLongitude
+     * @return void
+     */
     #[DataProvider('jplHorizonsApparentSolarLongitudeProvider')]
     public function test_longitudeSunMatchesJplHorizonsApparentSolarLongitude(
-        int   $year,
-        int   $month,
-        int   $day,
+        int $year,
+        int $month,
+        int $day,
         float $hour,
         float $expectedLongitude
-    ): void
-    {
+    ): void {
         $actualLongitude = (new Vsop87Astronomy())->longitudeSun($year, $month, $day, $hour, 0.0, 0.0);
 
         $this->assertEqualsWithDelta($expectedLongitude, $actualLongitude, 0.0005);
     }
 
+    /**
+     * @param int $year
+     * @param int $month
+     * @param float $hour
+     * @param int $day
+     * @return void
+     */
     #[DataProvider('jplHorizonsApparentSolarLongitudeProvider')]
     public function test_longitudeSunAlwaysReturnsNormalizedAngle(
-        int   $year,
-        int   $month,
-        int   $day,
-        float $hour,
-        float $expectedLongitude
-    ): void
-    {
+        int $year,
+        int $month,
+        int $day,
+        float $hour
+    ): void {
         $longitude = (new Vsop87Astronomy())->longitudeSun($year, $month, $day, $hour, 0.0, 0.0);
 
         $this->assertGreaterThanOrEqual(0.0, $longitude);

@@ -210,7 +210,7 @@ trait Factory
         }
 
         if (is_string($date_time) && preg_match('/^[+-]?\d+\.\d+$/', $date_time) === 1) {
-            return static::newFromTimestamp((float)$date_time, $time_zone);
+            return static::newFromTimestamp((float) $date_time, $time_zone);
         }
 
         if ($date_time instanceof DateTimeInterface) {
@@ -227,13 +227,13 @@ trait Factory
         }
 
         if (is_string($date_time) && ctype_digit($date_time) && strlen($date_time) <= 11) {
-            return new static(date('Y-m-d H:i:s', (int)$date_time), $time_zone);
+            return new static(date('Y-m-d H:i:s', (int) $date_time), $time_zone);
         }
 
         if (is_string($date_time) && preg_match('/[年月日時分秒]|^[MTSHR]\d/u', $date_time) === 1) {
             $check_time = static::parseJisDate($date_time, $time_zone);
             if (is_numeric($check_time)) {
-                return static::newFromTimestamp((float)$check_time, $time_zone ?? new DateTimeZone('Asia/Tokyo'));
+                return static::newFromTimestamp((float) $check_time, $time_zone ?? new DateTimeZone('Asia/Tokyo'));
             }
         }
 
@@ -253,8 +253,8 @@ trait Factory
     protected static function newFromTimestamp(float $timestamp, ?DateTimeZone $tz): static
     {
         $displayTz = $tz ?? new DateTimeZone(date_default_timezone_get());
-        $native = (new DateTimeImmutable('@' . (int)$timestamp))->setTimezone($displayTz);
-        $micro = max(0, (int)round(($timestamp - (int)$timestamp) * 1_000_000));
+        $native = (new DateTimeImmutable('@' . (int) $timestamp))->setTimezone($displayTz);
+        $micro = max(0, (int) round(($timestamp - (int) $timestamp) * 1_000_000));
 
         return new static($native->format('Y-m-d H:i:s') . sprintf('.%06d', $micro), $displayTz);
     }

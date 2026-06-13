@@ -81,7 +81,7 @@ class JapaneseDate
      * 干支配列
      * @var array
      */
-    public const ORIENTAL_ZODIAC = ['亥', '子', '丑', '寅', '卯', '辰', '巳', '午', '未', '申', '酉', '戌',];
+    public const ORIENTAL_ZODIAC = ['亥', '子', '丑', '寅', '卯', '辰', '巳', '午', '未', '申', '酉', '戌', ];
 
     /**
      * 二十四節気配列
@@ -288,13 +288,13 @@ class JapaneseDate
     public function getDayByWeekly(int $year, int $month, int $weekly, int $weeks = 1, DateTimeZone|null $timezone = null): int
     {
         $map = match ($weekly) {
-            DateTime::SUNDAY => [7, 1, 2, 3, 4, 5, 6,],
-            DateTime::MONDAY => [6, 7, 1, 2, 3, 4, 5,],
-            DateTime::TUESDAY => [5, 6, 7, 1, 2, 3, 4,],
-            DateTime::WEDNESDAY => [4, 5, 6, 7, 1, 2, 3,],
-            DateTime::THURSDAY => [3, 4, 5, 6, 7, 1, 2,],
-            DateTime::FRIDAY => [2, 3, 4, 5, 6, 7, 1,],
-            DateTime::SATURDAY => [1, 2, 3, 4, 5, 6, 7,],
+            DateTime::SUNDAY => [7, 1, 2, 3, 4, 5, 6, ],
+            DateTime::MONDAY => [6, 7, 1, 2, 3, 4, 5, ],
+            DateTime::TUESDAY => [5, 6, 7, 1, 2, 3, 4, ],
+            DateTime::WEDNESDAY => [4, 5, 6, 7, 1, 2, 3, ],
+            DateTime::THURSDAY => [3, 4, 5, 6, 7, 1, 2, ],
+            DateTime::FRIDAY => [2, 3, 4, 5, 6, 7, 1, ],
+            DateTime::SATURDAY => [1, 2, 3, 4, 5, 6, 7, ],
             default => throw new ErrorException('undefined weekly ' . $weekly),
         };
 
@@ -841,6 +841,7 @@ class JapaneseDate
         if ($key === null) {
             return '';
         }
+
         return self::MOON_PHASE[$key] ?? '';
     }
 

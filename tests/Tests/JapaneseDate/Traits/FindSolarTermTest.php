@@ -167,8 +167,7 @@ class FindSolarTermTest extends TestCase
     public function test_getSolarTermReturnsSameYearSolarTermForDateTimeImmutable(
         string $methodSuffix,
         string $solarTermMethod
-    ): void
-    {
+    ): void {
         $dateTime = new DateTimeImmutable('2024-08-01 07:08:09', new DateTimeZone('Asia/Tokyo'));
         $term = self::simpleSolarTerm($solarTermMethod, 2024);
 
@@ -188,8 +187,7 @@ class FindSolarTermTest extends TestCase
         string $methodSuffix,
         string $input,
         string $expected
-    ): void
-    {
+    ): void {
         $dateTime = new DateTime($input, new DateTimeZone('Asia/Tokyo'));
 
         $result = $this->invokeExecuteMethod($dateTime, 'getNext' . $methodSuffix, []);
@@ -207,8 +205,7 @@ class FindSolarTermTest extends TestCase
         string $methodSuffix,
         string $input,
         string $expected
-    ): void
-    {
+    ): void {
         $dateTime = new DateTimeImmutable($input, new DateTimeZone('Asia/Tokyo'));
 
         $result = $this->invokeExecuteMethod($dateTime, 'getNext' . $methodSuffix, []);
@@ -227,8 +224,7 @@ class FindSolarTermTest extends TestCase
         string $methodSuffix,
         string $input,
         string $expected
-    ): void
-    {
+    ): void {
         $dateTime = new DateTime($input, new DateTimeZone('Asia/Tokyo'));
 
         $result = $this->invokeExecuteMethod($dateTime, 'getBefore' . $methodSuffix, []);
@@ -246,8 +242,7 @@ class FindSolarTermTest extends TestCase
         string $methodSuffix,
         string $input,
         string $expected
-    ): void
-    {
+    ): void {
         $dateTime = new DateTimeImmutable($input, new DateTimeZone('Asia/Tokyo'));
 
         $result = $this->invokeExecuteMethod($dateTime, 'getBefore' . $methodSuffix, []);
@@ -265,8 +260,7 @@ class FindSolarTermTest extends TestCase
     public function test_getSolarTermFallsBackToAstronomicalCalculationOutsideSimpleTable(
         string $methodSuffix,
         string $solarTermMethod
-    ): void
-    {
+    ): void {
         $dateTime = new DateTime('1599-01-01 01:02:03', new DateTimeZone('Asia/Tokyo'));
         $term = self::astronomicalSolarTerm($solarTermMethod, 1599);
 
@@ -283,6 +277,11 @@ class FindSolarTermTest extends TestCase
         return (new SolarTerm())->{$method}($year);
     }
 
+    /**
+     * @return void
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     * @throws \ReflectionException
+     */
     public function test_getSolarTermUsesVsop87AlgorithmWhenSelected(): void
     {
         try {
@@ -307,8 +306,7 @@ class FindSolarTermTest extends TestCase
     public function test_getNextSolarTermFallsBackToAstronomicalCalculationOutsideSimpleTable(
         string $methodSuffix,
         string $solarTermMethod
-    ): void
-    {
+    ): void {
         $dateTime = new DateTime('1599-01-01 01:02:03', new DateTimeZone('Asia/Tokyo'));
         $term = self::astronomicalSolarTerm($solarTermMethod, 1599);
 
@@ -324,8 +322,7 @@ class FindSolarTermTest extends TestCase
     public function test_getBeforeSolarTermFallsBackToAstronomicalCalculationOutsideSimpleTable(
         string $methodSuffix,
         string $solarTermMethod
-    ): void
-    {
+    ): void {
         $dateTime = new DateTime('1600-01-01 01:02:03', new DateTimeZone('Asia/Tokyo'));
         $term = self::astronomicalSolarTerm($solarTermMethod, 1599);
 

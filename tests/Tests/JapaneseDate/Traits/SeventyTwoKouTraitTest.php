@@ -1,6 +1,7 @@
 <?php
 
 /** @noinspection PhpUnhandledExceptionInspection */
+/** @noinspection PhpUnusedParameterInspection */
 
 /**
  * SeventyTwoKou Trait のユニットテスト。
@@ -80,12 +81,11 @@ class SeventyTwoKouTraitTest extends TestCase
     #[DataProvider('provideKouData')]
     public function test_getSeventyTwoKou_via_DateTime(
         string $dateStr,
-        int    $expectedKou,
+        int $expectedKou,
         string $_,
         string $__,
         string $___
-    ): void
-    {
+    ): void {
         $dt = new DateTime($dateStr);
         $kou = $this->invokeExecuteMethod($dt, 'getSeventyTwoKou', []);
 
@@ -98,12 +98,11 @@ class SeventyTwoKouTraitTest extends TestCase
     #[DataProvider('provideKouData')]
     public function test_getSeventyTwoKou_via_DateTimeImmutable(
         string $dateStr,
-        int    $expectedKou,
+        int $expectedKou,
         string $_,
         string $__,
         string $___
-    ): void
-    {
+    ): void {
         $dt = new DateTimeImmutable($dateStr);
         $kou = $this->invokeExecuteMethod($dt, 'getSeventyTwoKou', []);
 
@@ -120,12 +119,11 @@ class SeventyTwoKouTraitTest extends TestCase
     #[DataProvider('provideKouData')]
     public function test_getSeventyTwoKouText(
         string $dateStr,
-        int    $_,
+        int $_,
         string $expectedText,
         string $__,
         string $___
-    ): void
-    {
+    ): void {
         $dt = new DateTime($dateStr);
         $text = $this->invokeExecuteMethod($dt, 'getSeventyTwoKouText', []);
 
@@ -142,12 +140,11 @@ class SeventyTwoKouTraitTest extends TestCase
     #[DataProvider('provideKouData')]
     public function test_getSeventyTwoKouReading(
         string $dateStr,
-        int    $_,
+        int $_,
         string $__,
         string $expectedReading,
         string $___
-    ): void
-    {
+    ): void {
         $dt = new DateTime($dateStr);
         $reading = $this->invokeExecuteMethod($dt, 'getSeventyTwoKouReading', []);
 
@@ -164,12 +161,11 @@ class SeventyTwoKouTraitTest extends TestCase
     #[DataProvider('provideKouData')]
     public function test_getSeventyTwoKouType(
         string $dateStr,
-        int    $_,
+        int $_,
         string $__,
         string $___,
         string $expectedType
-    ): void
-    {
+    ): void {
         $dt = new DateTime($dateStr);
         $type = $this->invokeExecuteMethod($dt, 'getSeventyTwoKouType', []);
 

@@ -16,9 +16,21 @@ use JapaneseDate\Traits\DateBusinessCommon;
 use PHPUnit\Framework\Attributes\CoversTrait;
 use PHPUnit\Framework\TestCase;
 
+/**
+ *
+ */
+
+/**
+ *
+ */
 #[CoversTrait(DateBusinessCommon::class)]
 class DateBusinessCommonDateIntervalTest extends TestCase
 {
+    /**
+     * @return void
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     */
     public function test_addBusinessDaysTo_basic(): void
     {
         $interval = new DateInterval('P1D');
@@ -28,6 +40,11 @@ class DateBusinessCommonDateIntervalTest extends TestCase
         $this->assertSame('2026-06-03', $result->format('Y-m-d'));
     }
 
+    /**
+     * @return void
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     */
     public function test_addBusinessDaysTo_with_config(): void
     {
         $config = (new DateBusiness())
@@ -41,6 +58,11 @@ class DateBusinessCommonDateIntervalTest extends TestCase
         $this->assertSame('2026-06-04', $result->format('Y-m-d'));
     }
 
+    /**
+     * @return void
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     */
     public function test_addBusinessDaysTo_zero(): void
     {
         $interval = new DateInterval('P1D');
@@ -49,6 +71,11 @@ class DateBusinessCommonDateIntervalTest extends TestCase
         $this->assertSame('2026-05-29', $result->format('Y-m-d'));
     }
 
+    /**
+     * @return void
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     */
     public function test_addBusinessDaysTo_uses_instance_config(): void
     {
         $config = (new DateBusiness())
@@ -62,6 +89,11 @@ class DateBusinessCommonDateIntervalTest extends TestCase
         $this->assertSame('2026-06-04', $result->format('Y-m-d'));
     }
 
+    /**
+     * @return void
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     */
     public function test_subBusinessDaysFrom_basic(): void
     {
         $interval = new DateInterval('P1D');
@@ -71,6 +103,11 @@ class DateBusinessCommonDateIntervalTest extends TestCase
         $this->assertSame('2026-05-29', $result->format('Y-m-d'));
     }
 
+    /**
+     * @return void
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     */
     public function test_subBusinessDaysFrom_with_config(): void
     {
         $config = (new DateBusiness())
@@ -84,6 +121,11 @@ class DateBusinessCommonDateIntervalTest extends TestCase
         $this->assertSame('2026-05-29', $result->format('Y-m-d'));
     }
 
+    /**
+     * @return void
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     */
     public function test_subBusinessDaysFrom_zero(): void
     {
         $interval = new DateInterval('P1D');
@@ -92,6 +134,11 @@ class DateBusinessCommonDateIntervalTest extends TestCase
         $this->assertSame('2026-06-03', $result->format('Y-m-d'));
     }
 
+    /**
+     * @return void
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     */
     public function test_countBusinessDaysBetween_basic(): void
     {
         $interval = new DateInterval('P1D');
@@ -103,6 +150,11 @@ class DateBusinessCommonDateIntervalTest extends TestCase
         $this->assertSame(5, $count);
     }
 
+    /**
+     * @return void
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     */
     public function test_countBusinessDaysBetween_with_weekend(): void
     {
         $interval = new DateInterval('P1D');
@@ -114,6 +166,11 @@ class DateBusinessCommonDateIntervalTest extends TestCase
         $this->assertSame(6, $count);
     }
 
+    /**
+     * @return void
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     */
     public function test_countBusinessDaysBetween_with_holiday(): void
     {
         $interval = new DateInterval('P1D');
@@ -126,6 +183,11 @@ class DateBusinessCommonDateIntervalTest extends TestCase
         $this->assertSame(2, $count);
     }
 
+    /**
+     * @return void
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     */
     public function test_countBusinessDaysBetween_same_day_business(): void
     {
         $interval = new DateInterval('P1D');
@@ -134,6 +196,11 @@ class DateBusinessCommonDateIntervalTest extends TestCase
         $this->assertSame(1, $count);
     }
 
+    /**
+     * @return void
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     */
     public function test_countBusinessDaysBetween_same_day_holiday(): void
     {
         $interval = new DateInterval('P1D');
@@ -142,6 +209,11 @@ class DateBusinessCommonDateIntervalTest extends TestCase
         $this->assertSame(0, $count);
     }
 
+    /**
+     * @return void
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     */
     public function test_countBusinessDaysBetween_with_config(): void
     {
         $config = (new DateBusiness())
@@ -157,6 +229,9 @@ class DateBusinessCommonDateIntervalTest extends TestCase
         $this->assertSame(4, $count);
     }
 
+    /**
+     * @return void
+     */
     public function test_BusinessCalendar_trait_on_DateInterval(): void
     {
         $interval = new DateInterval('P1D');
@@ -170,11 +245,17 @@ class DateBusinessCommonDateIntervalTest extends TestCase
         $this->assertNull($interval->getBusinessConfig());
     }
 
+    /**
+     * @return void
+     */
     protected function setUp(): void
     {
         BusinessCalendar::resetAll();
     }
 
+    /**
+     * @return void
+     */
     protected function tearDown(): void
     {
         BusinessCalendar::resetAll();

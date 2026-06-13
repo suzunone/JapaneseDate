@@ -10,6 +10,13 @@ use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
 
+/**
+ *
+ */
+
+/**
+ *
+ */
 #[CoversClass(SolarTermDate::class)]
 class SolarTermDateTest extends TestCase
 {
@@ -172,6 +179,7 @@ class SolarTermDateTest extends TestCase
     public function test_get_solar_term_text(): void
     {
         $obj = new SolarTermDate(2024, 0, 20);
+        // noinspection PhpUndefinedFieldInspection
         $this->assertSame(JapaneseDate::SOLAR_TERM[0], $obj->solarTermText);
     }
 
@@ -183,11 +191,12 @@ class SolarTermDateTest extends TestCase
     public function test_get_date_time(): void
     {
         $obj = new SolarTermDate(2024, 0, 20);
+        // noinspection PhpUndefinedFieldInspection
         $dt = $obj->dateTime;
         $this->assertInstanceOf(DateTime::class, $dt);
-        $this->assertSame(2024, (int)$dt->format('Y'));
-        $this->assertSame(3, (int)$dt->format('n'));
-        $this->assertSame(20, (int)$dt->format('j'));
+        $this->assertSame(2024, (int) $dt->format('Y'));
+        $this->assertSame(3, (int) $dt->format('n'));
+        $this->assertSame(20, (int) $dt->format('j'));
     }
 
     /**
@@ -198,6 +207,7 @@ class SolarTermDateTest extends TestCase
     public function test_get_unknown_key_returns_null(): void
     {
         $obj = new SolarTermDate(2024, 0, 20);
+        // noinspection PhpUndefinedFieldInspection
         $this->assertNull($obj->nonExistentKey);
     }
 

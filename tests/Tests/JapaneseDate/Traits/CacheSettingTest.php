@@ -5,6 +5,7 @@
 namespace Tests\JapaneseDate\Traits;
 
 use Closure;
+use JapaneseDate\CacheMode;
 use JapaneseDate\Components\Cache;
 use JapaneseDate\DateTime;
 use JapaneseDate\Traits\CacheSetting;
@@ -33,10 +34,10 @@ class CacheSettingTest extends TestCase
     #[PreserveGlobalState(false)]
     public function test_setCacheMode(): void
     {
-        DateTime::setCacheMode(Cache::MODE_NONE);
+        DateTime::setCacheMode(CacheMode::MODE_NONE);
 
         $this->assertSame(
-            Cache::MODE_NONE,
+            CacheMode::MODE_NONE,
             $this->invokeGetProperty(Cache::class, 'mode')
         );
     }
@@ -52,7 +53,7 @@ class CacheSettingTest extends TestCase
         DateTime::setCacheFilePath($path);
 
         $this->assertSame(
-            Cache::MODE_FILE,
+            CacheMode::MODE_FILE,
             $this->invokeGetProperty(Cache::class, 'mode')
         );
         $this->assertSame(
@@ -74,7 +75,7 @@ class CacheSettingTest extends TestCase
         DateTime::setCacheClosure($closure);
 
         $this->assertSame(
-            Cache::MODE_ORIGINAL,
+            CacheMode::MODE_ORIGINAL,
             $this->invokeGetProperty(Cache::class, 'mode')
         );
         $this->assertSame(
@@ -82,5 +83,4 @@ class CacheSettingTest extends TestCase
             $this->invokeGetProperty(Cache::class, 'cache_closure')
         );
     }
-
 }

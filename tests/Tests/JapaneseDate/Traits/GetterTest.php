@@ -630,8 +630,8 @@ class GetterTest extends TestCase
     {
         $DateTime = new DateTime('645-08-01T00:00:00+09:00');
         $this->assertSame(
-            array_map(fn($e) => $e->name, $DateTime->historicalEras),
-            array_map(fn($e) => $e->name, $DateTime->historical_eras)
+            array_map(static fn ($e) => $e->name, $DateTime->historicalEras),
+            array_map(static fn ($e) => $e->name, $DateTime->historical_eras)
         );
     }
 

@@ -291,7 +291,7 @@ class MeeusMoon implements MoonAlgorithm
 
         $term1 = 365.25 * ($y + 4716);
         $term2 = 30.6001 * ($m + 1);
-        $jd = (float)(self::safeFloorToInt($term1) + self::safeFloorToInt($term2) + $day + $b) - 1524.5;
+        $jd = (float) (self::safeFloorToInt($term1) + self::safeFloorToInt($term2) + $day + $b) - 1524.5;
 
         /** @noinspection NotOptimalIfConditionsInspection */
         if (!is_finite($jd) || ($jd + 1.0 / 86400.0) <= $jd) {
@@ -406,8 +406,8 @@ class MeeusMoon implements MoonAlgorithm
 
         return [
             'apparentLongitude' => $apparentLongitude,
-            'latitude'          => $geom['lat'],
-            'distanceKm'        => $geom['dist'],
+            'latitude' => $geom['lat'],
+            'distanceKm' => $geom['dist'],
         ];
     }
 
@@ -427,7 +427,7 @@ class MeeusMoon implements MoonAlgorithm
             throw new InvalidArgumentException('Value out of safely representable int range');
         }
 
-        return (int)floor($v);
+        return (int) floor($v);
     }
 
     /**
@@ -472,13 +472,13 @@ class MeeusMoon implements MoonAlgorithm
 
         // 式 47.1〜47.5
         $lprime = 218.3164477 + 481267.88123421 * $t - 0.0015786 * $t2 + $t3 / 538841.0 - $t4 / 65194000.0;
-        $d      = 297.8501921 + 445267.1114034  * $t - 0.0018819 * $t2 + $t3 / 545868.0 - $t4 / 113065000.0;
-        $m      = 357.5291092 + 35999.0502909   * $t - 0.0001536 * $t2 + $t3 / 24490000.0;
-        $mp     = 134.9633964 + 477198.8675055  * $t + 0.0087414 * $t2 + $t3 / 69699.0   - $t4 / 14712000.0;
-        $f      = 93.2720950  + 483202.0175233  * $t - 0.0036539 * $t2 - $t3 / 3526000.0 + $t4 / 863310000.0;
+        $d = 297.8501921 + 445267.1114034 * $t - 0.0018819 * $t2 + $t3 / 545868.0 - $t4 / 113065000.0;
+        $m = 357.5291092 + 35999.0502909 * $t - 0.0001536 * $t2 + $t3 / 24490000.0;
+        $mp = 134.9633964 + 477198.8675055 * $t + 0.0087414 * $t2 + $t3 / 69699.0 - $t4 / 14712000.0;
+        $f = 93.2720950 + 483202.0175233 * $t - 0.0036539 * $t2 - $t3 / 3526000.0 + $t4 / 863310000.0;
 
         $a1 = 119.75 + 131.849 * $t;
-        $a2 = 53.09  + 479264.290 * $t;
+        $a2 = 53.09 + 479264.290 * $t;
         $a3 = 313.45 + 481266.484 * $t;
 
         // 式 47.6
@@ -486,14 +486,14 @@ class MeeusMoon implements MoonAlgorithm
 
         return [
             'lprime' => $this->normalizeAngle360($lprime),
-            'd'      => $this->normalizeAngle360($d),
-            'm'      => $this->normalizeAngle360($m),
-            'mp'     => $this->normalizeAngle360($mp),
-            'f'      => $this->normalizeAngle360($f),
-            'a1'     => $this->normalizeAngle360($a1),
-            'a2'     => $this->normalizeAngle360($a2),
-            'a3'     => $this->normalizeAngle360($a3),
-            'e'      => $e,
+            'd' => $this->normalizeAngle360($d),
+            'm' => $this->normalizeAngle360($m),
+            'mp' => $this->normalizeAngle360($mp),
+            'f' => $this->normalizeAngle360($f),
+            'a1' => $this->normalizeAngle360($a1),
+            'a2' => $this->normalizeAngle360($a2),
+            'a3' => $this->normalizeAngle360($a3),
+            'e' => $e,
         ];
     }
 
@@ -505,13 +505,16 @@ class MeeusMoon implements MoonAlgorithm
      */
     private function sumPeriodicTerms(array $angles): array
     {
+        $calcArg = static fn (float $dCoeff, float $mCoeff, float $mpCoeff, float $fCoeff): float =>
+            deg2rad($dCoeff * $angles['d'] + $mCoeff * $angles['m'] + $mpCoeff * $angles['mp'] + $fCoeff * $angles['f']);
+
         $sigmaL = 0.0;
         $sigmaR = 0.0;
         $sigmaB = 0.0;
 
         foreach (self::TABLE_47A as $row) {
             [$dCoeff, $mCoeff, $mpCoeff, $fCoeff, $lCoeff, $rCoeff] = $row;
-            $arg    = deg2rad($dCoeff * $angles['d'] + $mCoeff * $angles['m'] + $mpCoeff * $angles['mp'] + $fCoeff * $angles['f']);
+            $arg = $calcArg($dCoeff, $mCoeff, $mpCoeff, $fCoeff);
             $factor = $this->eccentricityFactor($angles['e'], $mCoeff);
             $sigmaL += $lCoeff * $factor * sin($arg);
             $sigmaR += $rCoeff * $factor * cos($arg);
@@ -519,7 +522,7 @@ class MeeusMoon implements MoonAlgorithm
 
         foreach (self::TABLE_47B as $row) {
             [$dCoeff, $mCoeff, $mpCoeff, $fCoeff, $bCoeff] = $row;
-            $arg    = deg2rad($dCoeff * $angles['d'] + $mCoeff * $angles['m'] + $mpCoeff * $angles['mp'] + $fCoeff * $angles['f']);
+            $arg = $calcArg($dCoeff, $mCoeff, $mpCoeff, $fCoeff);
             $factor = $this->eccentricityFactor($angles['e'], $mCoeff);
             $sigmaB += $bCoeff * $factor * sin($arg);
         }
@@ -528,8 +531,8 @@ class MeeusMoon implements MoonAlgorithm
         $a1Rad = deg2rad($angles['a1']);
         $a2Rad = deg2rad($angles['a2']);
         $a3Rad = deg2rad($angles['a3']);
-        $lRad  = deg2rad($angles['lprime']);
-        $fRad  = deg2rad($angles['f']);
+        $lRad = deg2rad($angles['lprime']);
+        $fRad = deg2rad($angles['f']);
         $mpRad = deg2rad($angles['mp']);
 
         $sigmaL += 3958.0 * sin($a1Rad) + 1962.0 * sin($lRad - $fRad) + 318.0 * sin($a2Rad);
@@ -552,15 +555,15 @@ class MeeusMoon implements MoonAlgorithm
     private function computeGeometricPosition(float $t): array
     {
         $angles = $this->computeAngles($t);
-        $sums   = $this->sumPeriodicTerms($angles);
+        $sums = $this->sumPeriodicTerms($angles);
 
         $longitude = $angles['lprime'] + $sums['sigmaL'] / 1_000_000.0;
-        $latitude  = $sums['sigmaB'] / 1_000_000.0;
-        $distance  = 385000.56 + $sums['sigmaR'] / 1000.0;
+        $latitude = $sums['sigmaB'] / 1_000_000.0;
+        $distance = 385000.56 + $sums['sigmaR'] / 1000.0;
 
         return [
-            'lon'  => $this->normalizeAngle360($longitude),
-            'lat'  => $latitude,
+            'lon' => $this->normalizeAngle360($longitude),
+            'lat' => $latitude,
             'dist' => $distance,
         ];
     }
@@ -632,7 +635,7 @@ class MeeusMoon implements MoonAlgorithm
             $u = $y / 100.0;
 
             return 10583.6
-                - 1014.41  * $u
+                - 1014.41 * $u
                 + 33.78311 * $u ** 2
                 - 5.952053 * $u ** 3
                 - 0.1798452 * $u ** 4
@@ -644,7 +647,7 @@ class MeeusMoon implements MoonAlgorithm
             $u = ($y - 1000.0) / 100.0;
 
             return 1574.2
-                - 556.01  * $u
+                - 556.01 * $u
                 + 71.23472 * $u ** 2
                 + 0.319781 * $u ** 3
                 - 0.8503463 * $u ** 4

@@ -512,6 +512,8 @@ class LunarTest extends TestCase
         try {
             DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_LEGACY);
             DateTime::useMoonAlgorithm(DateTime::MOON_ALGORITHM_LEGACY);
+            DateTime::useBoundarySolarAlgorithm(DateTime::SOLAR_ALGORITHM_LEGACY);
+            DateTime::useBoundaryMoonAlgorithm(DateTime::MOON_ALGORITHM_LEGACY);
 
             // 新月時刻 → 月相 0 (新月)
             // 2023-01-22 05:53 JST
@@ -527,6 +529,8 @@ class LunarTest extends TestCase
         } finally {
             DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_LEGACY);
             DateTime::useMoonAlgorithm(DateTime::MOON_ALGORITHM_LEGACY);
+            DateTime::useBoundarySolarAlgorithm(DateTime::SOLAR_ALGORITHM_LEGACY);
+            DateTime::useBoundaryMoonAlgorithm(DateTime::MOON_ALGORITHM_LEGACY);
         }
     }
 
@@ -551,10 +555,9 @@ class LunarTest extends TestCase
         string $solarAlgorithm,
         string $moonAlgorithm,
         string $date,
-        ?int   $expectedPhase,
+        ?int $expectedPhase,
         string $expectedText
-    ): void
-    {
+    ): void {
         try {
             DateTime::useSolarAlgorithm($solarAlgorithm);
             DateTime::useMoonAlgorithm($moonAlgorithm);
@@ -577,13 +580,15 @@ class LunarTest extends TestCase
         string $solarAlgorithm,
         string $moonAlgorithm,
         string $date,
-        ?int   $expectedPhase,
+        ?int $expectedPhase,
         string $expectedText
-    ): void
-    {
+    ): void {
         try {
             DateTime::useSolarAlgorithm($solarAlgorithm);
             DateTime::useMoonAlgorithm($moonAlgorithm);
+            DateTime::useBoundarySolarAlgorithm($solarAlgorithm);
+            DateTime::useBoundaryMoonAlgorithm($moonAlgorithm);
+
 
             $array = DateTime::factory($date)->toArray();
 
@@ -595,6 +600,8 @@ class LunarTest extends TestCase
         } finally {
             DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_LEGACY);
             DateTime::useMoonAlgorithm(DateTime::MOON_ALGORITHM_LEGACY);
+            DateTime::useBoundarySolarAlgorithm(DateTime::SOLAR_ALGORITHM_VSOP87);
+            DateTime::useBoundaryMoonAlgorithm(DateTime::MOON_ALGORITHM_MEEUS47);
         }
     }
 

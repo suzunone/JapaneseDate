@@ -91,10 +91,10 @@ class LunarDate
     public function __get($name): bool|string|int
     {
         return match ($name) {
-            'year' => (int)$this->lunar[self::YEAR_KEY],
-            'month' => (int)$this->lunar[self::MONTH_KEY],
-            'day' => (int)$this->lunar[self::DAY_KEY],
-            'is_leap_month' => (bool)$this->lunar[self::IS_LEAP_MONTH_FLAG_KEY],
+            'year' => (int) $this->lunar[self::YEAR_KEY],
+            'month' => (int) $this->lunar[self::MONTH_KEY],
+            'day' => (int) $this->lunar[self::DAY_KEY],
+            'is_leap_month' => (bool) $this->lunar[self::IS_LEAP_MONTH_FLAG_KEY],
             'solar_term' => $this->lunar[self::SOLAR_TERM_KEY],
             default => throw new ErrorException('undefined property:' . $name),
         };

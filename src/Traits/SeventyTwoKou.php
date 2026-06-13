@@ -62,9 +62,9 @@ trait SeventyTwoKou
         $nextTs = $this->SeventyTwoKouCalculator->getNextKouStartTimestamp($this);
 
         return $this->setDateTime(
-            (int)date('Y', $nextTs),
-            (int)date('n', $nextTs),
-            (int)date('j', $nextTs),
+            (int) date('Y', $nextTs),
+            (int) date('n', $nextTs),
+            (int) date('j', $nextTs),
             $this->hour,
             $this->minute,
             $this->second
@@ -86,9 +86,9 @@ trait SeventyTwoKou
         $prevTs = $this->SeventyTwoKouCalculator->getPreviousKouStartTimestamp($this);
 
         return $this->setDateTime(
-            (int)date('Y', $prevTs),
-            (int)date('n', $prevTs),
-            (int)date('j', $prevTs),
+            (int) date('Y', $prevTs),
+            (int) date('n', $prevTs),
+            (int) date('j', $prevTs),
             $this->hour,
             $this->minute,
             $this->second

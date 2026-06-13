@@ -1,7 +1,5 @@
 <?php
 
-/** @noinspection PhpUnhandledExceptionInspection */
-
 /**
  * イミュータブルな日時クラスのテスト
  *
@@ -97,6 +95,7 @@ class DateTimeImmutableTest extends TestCase
      * テスト用の現在日時が生成系メソッドに反映されることを確認する
      *
      * @return void
+     * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     #[RunInSeparateProcess]
@@ -151,6 +150,7 @@ class DateTimeImmutableTest extends TestCase
      * factory が複数形式の入力から日時を生成できることを確認する
      *
      * @return void
+     * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     #[RunInSeparateProcess]
@@ -187,6 +187,7 @@ class DateTimeImmutableTest extends TestCase
      * ユリウス日から算出したグレゴリオ暦情報を取得できることを確認する
      *
      * @return void
+     * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     public function test_getCalendar(): void
@@ -247,6 +248,7 @@ class DateTimeImmutableTest extends TestCase
     /**
      * マイクロタイムスタンプテスト
      * @return void
+     * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     public function test_factory_micro_time(): void

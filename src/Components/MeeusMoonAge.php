@@ -134,9 +134,9 @@ class MeeusMoonAge implements MoonAgeAlgorithm
             [$utcYear, $utcMonth, $utcDay] = MeeusMoon::jdToGregorianYmd($tm);
             $dayFrac = ($tm + 0.5) - floor($tm + 0.5);
             $hourFloat = $dayFrac * 24.0;
-            $hourInt = (int)$hourFloat;
+            $hourInt = (int) $hourFloat;
             $minFloat = ($hourFloat - $hourInt) * 60.0;
-            $minInt = (int)$minFloat;
+            $minInt = (int) $minFloat;
             $secFloat = ($minFloat - $minInt) * 60.0;
 
             // UTC → JST（+9時間）
@@ -151,8 +151,8 @@ class MeeusMoonAge implements MoonAgeAlgorithm
                 [$jstYear, $jstMonth, $jstDay] = MeeusMoon::jdToGregorianYmd($nextJd);
             }
 
-            $lonSun  = $this->astronomy->longitudeSun($jstYear, $jstMonth, $jstDay, (float)$jstHour, (float)$minInt, $secFloat);
-            $lonMoon = $this->astronomy->longitudeMoon($jstYear, $jstMonth, $jstDay, (float)$jstHour, (float)$minInt, $secFloat);
+            $lonSun = $this->astronomy->longitudeSun($jstYear, $jstMonth, $jstDay, (float) $jstHour, (float) $minInt, $secFloat);
+            $lonMoon = $this->astronomy->longitudeMoon($jstYear, $jstMonth, $jstDay, (float) $jstHour, (float) $minInt, $secFloat);
 
             // 符号付き最短角差 [-180°, 180°)
             $deltaRm = $lonMoon - $lonSun;

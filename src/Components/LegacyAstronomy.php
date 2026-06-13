@@ -103,7 +103,7 @@ class LegacyAstronomy implements SunAlgorithm, MoonAlgorithm
      */
     private function computeJulianYear(int $year, int $month, float $day, float $hour, float $min, float $sec): float
     {
-        $dayInteger = (int)floor($day);
+        $dayInteger = (int) floor($day);
         $jstMidnight = new DateTimeImmutable(
             sprintf('%04d-%02d-%02d 00:00:00', $year, $month, $dayInteger),
             new DateTimeZone('Asia/Tokyo')
@@ -112,7 +112,7 @@ class LegacyAstronomy implements SunAlgorithm, MoonAlgorithm
             + $hour * 3600.0
             + $min * 60.0
             + $sec;
-        $timestamp = (float)$jstMidnight->format('U') + $elapsedSeconds;
+        $timestamp = (float) $jstMidnight->format('U') + $elapsedSeconds;
 
         return ($timestamp - self::J2000_UNIX_TIMESTAMP) / self::JULIAN_YEAR_SECONDS;
     }

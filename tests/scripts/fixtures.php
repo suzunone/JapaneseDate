@@ -126,7 +126,7 @@ return [
     ],
     '2011' => [
         'https://svs.gsfc.nasa.gov/3810/', // Moon Phase and Libration
-        'https://svs.gsfc.nasa.gov/vis/a000000/a003800/a003810/mooninfo_2011.json', // Moon Phase and Libration json
+        'https://svs.gsfc.nasa.gov/vis/a000000/a003800/a003810/mooninfo_2011.json', // Moon Phase and Libration JSON
         'https://eco.mtk.nao.ac.jp/koyomi/yoko/2011/rekiyou111.html', // 国民の祝日
         'https://eco.mtk.nao.ac.jp/koyomi/yoko/2011/rekiyou112.html', // 二十四節気および雑節
         'https://eco.mtk.nao.ac.jp/koyomi/yoko/2011/rekiyou113.html', // 朔弦望

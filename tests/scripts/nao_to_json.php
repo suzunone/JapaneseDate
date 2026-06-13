@@ -1,10 +1,11 @@
 #!/usr/bin/env php
 <?php
+
 /**
  * 国立天文台のデータを元にテストデータを生成する
  */
 // 保存先ディレクトリの定数指定（末尾のスラッシュの有無は自動で吸収します）
-define('SAVE_DIR', __DIR__ . '/../fixtures/');
+const SAVE_DIR = __DIR__ . '/../fixtures/';
 
 /**
  * URLからHTMLを取得し、定数 SAVE_DIR で指定されたディレクトリにキャッシュする関数
@@ -12,15 +13,14 @@ define('SAVE_DIR', __DIR__ . '/../fixtures/');
  * @param string $url ターゲットURL
  * @return string|false HTML文字列（失敗時はfalse）
  */
-function fetchHtmlWithCache($url) {
+function fetchHtmlWithCache(string $url): string|false
+{
     // 1. 保存先ディレクトリのパスを整形・作成
     $base_dir = rtrim(SAVE_DIR, '/\\');
-    if (!is_dir($base_dir)) {
-        // ディレクトリが存在しない場合は、パーミッション0755で再帰的に作成
-        if (!mkdir($base_dir, 0755, true)) {
-            echo "Error: キャッシュディレクトリの作成に失敗しました ($base_dir)\n";
-            return false;
-        }
+    if (!is_dir($base_dir) && !mkdir($base_dir, 0755, true) && !is_dir($base_dir)) {
+        echo "Error: キャッシュディレクトリの作成に失敗しました ($base_dir)\n";
+
+        return false;
     }
 
     // 2. URLからファイル名を抽出（例: rekiyou271.html）
@@ -43,8 +43,9 @@ function fetchHtmlWithCache($url) {
 
     // cURLエラー（通信エラー、タイムアウトなど）のチェック
     if (curl_errno($ch)) {
-        echo "cURL Error: " . curl_error($ch) . " (URL: $url)\n";
+        echo 'cURL Error: ' . curl_error($ch) . " (URL: $url)\n";
         curl_close($ch);
+
         return fallbackToLocal($filepath);
     }
 
@@ -56,6 +57,7 @@ function fetchHtmlWithCache($url) {
 
     if ($http_code < 200 || $http_code >= 300) {
         echo "HTTP Error: Status code $http_code (URL: $url)\n";
+
         return fallbackToLocal($filepath);
     }
 
@@ -69,21 +71,32 @@ function fetchHtmlWithCache($url) {
 
 /**
  * ローカルファイルのフォールバック処理
- * * @param string $filepath フルパス
+ *
+ * @param string $filepath フルパス
+ * @return string|false ファイル内容（ファイルが存在しない場合はfalse）
  */
-function fallbackToLocal($filepath) {
+function fallbackToLocal(string $filepath): string|false
+{
     if (file_exists($filepath)) {
         echo "Notice: 読み込み失敗のため、ローカルキャッシュ ($filepath) からデータを復元します。\n";
+
         return file_get_contents($filepath);
     }
     echo "Error: ローカルキャッシュ ($filepath) も存在しません。\n";
+
     return false;
 }
 
-function holiday($url) {
+/**
+ * @param string $url
+ * @return string|false
+ * @throws \JsonException
+ */
+function holiday(string $url): string|false
+{
     $contents = fetchHtmlWithCache($url);
     if ($contents === false) {
-        return json_encode([]);
+        return json_encode([], JSON_THROW_ON_ERROR);
     }
 
     // 1. まず通常のUTF-8に変換する
@@ -124,13 +137,23 @@ function holiday($url) {
     }
 
     // JSON形式に変換して出力（またはreturn）
-    return json_encode($holidays, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+    try {
+        return json_encode($holidays, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR);
+    } catch (JsonException) {
+        return false;
+    }
 }
 
-function season($url) {
+/**
+ * @param string $url
+ * @return string|false
+ * @throws \JsonException
+ */
+function season(string $url): string|false
+{
     $contents = fetchHtmlWithCache($url);
     if ($contents === false) {
-        return json_encode([]);
+        return json_encode([], JSON_THROW_ON_ERROR);
     }
 
     // PHP 8.2+ 対応の文字化け対策（UTF-8変換 + メタタグ挿入）
@@ -180,13 +203,23 @@ function season($url) {
         ];
     }
 
-    return json_encode($seasons, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+    try {
+        return json_encode($seasons, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR);
+    } catch (JsonException) {
+        return false;
+    }
 }
 
-function moon($url) {
+/**
+ * @param string $url
+ * @return string|false
+ * @throws \JsonException
+ */
+function moon(string $url): string|false
+{
     $contents = fetchHtmlWithCache($url);
     if ($contents === false) {
-        return json_encode([]);
+        return json_encode([], JSON_THROW_ON_ERROR);
     }
 
     // PHP 8.2+ 対応の文字化け対策（UTF-8変換 + メタタグ挿入）
@@ -214,17 +247,21 @@ function moon($url) {
 
         // 各項目のテキストを抽出・トリミング（画像を除いたテキストのみが取得できます）
         $phase = trim($tds->item(0)->nodeValue); // 月相（朔、上弦、望、下弦）
-        $date  = trim($tds->item(1)->nodeValue); // 月日
-        $time  = trim($tds->item(2)->nodeValue); // 時刻
+        $date = trim($tds->item(1)->nodeValue); // 月日
+        $time = trim($tds->item(2)->nodeValue); // 時刻
 
         $moons[] = [
             'phase' => $phase,
-            'date'  => $date,
-            'time'  => $time
+            'date' => $date,
+            'time' => $time
         ];
     }
 
-    return json_encode($moons, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+    try {
+        return json_encode($moons, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR);
+    } catch (JsonException) {
+        return false;
+    }
 }
 
 
@@ -235,7 +272,4 @@ foreach (include 'fixtures.php' as $year => $urls) {
     file_put_contents(SAVE_DIR.'holiday_'.$year.'.json', holiday($holiday_url));
     file_put_contents(SAVE_DIR.'season_'.$year.'.json', season($season_url));
     file_put_contents(SAVE_DIR.'moon_'.$year.'.json', moon($moon_url));
-
 }
-
-

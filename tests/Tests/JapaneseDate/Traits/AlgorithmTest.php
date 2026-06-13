@@ -28,6 +28,7 @@ use Tests\JapaneseDate\InvokeTrait;
 class AlgorithmTest extends TestCase
 {
     use InvokeTrait;
+
     /**
      * DateTime 系クラスの一覧を返す。
      *
@@ -83,6 +84,7 @@ class AlgorithmTest extends TestCase
      * MOON_ALGORITHM_MEEUS47 定数経由で meeus47 を選択できることを確認する。
      *
      * @param class-string $class
+     * @throws \ReflectionException
      */
     #[DataProvider('dateTimeClassProvider')]
     public function test_useMoonAlgorithmAlias_meeus47(string $class): void
@@ -102,6 +104,7 @@ class AlgorithmTest extends TestCase
      * MOON_ALGORITHM_MEEUS47_NO_C 定数経由で meeus47_no_c を選択できることを確認する。
      *
      * @param class-string $class
+     * @throws \ReflectionException
      */
     #[DataProvider('dateTimeClassProvider')]
     public function test_useMoonAlgorithmAlias_meeus47_no_c(string $class): void

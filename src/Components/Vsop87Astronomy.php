@@ -3,6 +3,7 @@
 namespace JapaneseDate\Components;
 
 use JapaneseDate\Components\Contracts\SunAlgorithm;
+use JapaneseDate\Components\Traits\DeltaTTrait;
 use JapaneseDate\Components\Traits\OneTimeCacheTrait;
 
 /**
@@ -33,6 +34,8 @@ use JapaneseDate\Components\Traits\OneTimeCacheTrait;
  */
 class Vsop87Astronomy implements SunAlgorithm
 {
+    use DeltaTTrait;
+
     use OneTimeCacheTrait;
 
     /**
@@ -61,6 +64,7 @@ class Vsop87Astronomy implements SunAlgorithm
      * JST（UTC+9）補正値（日単位）。9/24 = 0.375。
      */
     private const JD_TIME_ZONE_ADJUSTMENT = 0.375;
+
     /**
      * 地球日心黄経 L0 系列の VSOP87 係数。
      *
@@ -133,6 +137,7 @@ class Vsop87Astronomy implements SunAlgorithm
         [30.0, 2.74, 1349.87],
         [25.0, 3.16, 4690.48],
     ];
+
     /**
      * 地球日心黄経 L1 系列の VSOP87 係数。
      *
@@ -174,6 +179,7 @@ class Vsop87Astronomy implements SunAlgorithm
         [6.0, 2.65, 9437.76],
         [6.0, 4.67, 4690.48],
     ];
+
     /**
      * 地球日心黄経 L2 系列の VSOP87 係数。
      *
@@ -201,6 +207,7 @@ class Vsop87Astronomy implements SunAlgorithm
         [2.0, 4.38, 5223.69],
         [2.0, 3.75, 0.98],
     ];
+
     /**
      * 地球日心黄経 L3 系列の VSOP87 係数。
      *
@@ -215,6 +222,7 @@ class Vsop87Astronomy implements SunAlgorithm
         [1.0, 5.3, 18849.23],
         [1.0, 5.97, 242.73],
     ];
+
     /**
      * 地球日心黄経 L4 系列の VSOP87 係数。
      *
@@ -225,6 +233,7 @@ class Vsop87Astronomy implements SunAlgorithm
         [8.0, 4.13, 6283.08],
         [1.0, 3.84, 12566.15],
     ];
+
     /**
      * 地球日心黄経 L5 系列の VSOP87 係数。
      *
@@ -289,7 +298,7 @@ class Vsop87Astronomy implements SunAlgorithm
      */
     protected function astronomicalJulianDate(int $year, int $month, float $day, float $hour, float $min, float $sec): float
     {
-        return gregoriantojd($month, (int)floor($day), $year)
+        return gregoriantojd($month, (int) floor($day), $year)
             - 0.5
             + ($hour / self::DAY_TO_HOUR_FLOAT)
             + ($min / self::DAY_TO_MINUTE_FLOAT)
@@ -297,28 +306,6 @@ class Vsop87Astronomy implements SunAlgorithm
             + ($day - floor($day))
             - self::JD_TIME_ZONE_ADJUSTMENT
             + ($this->approximateDeltaTSeconds($year, $month) / self::DAY_TO_SECOND_FLOAT);
-    }
-
-    /**
-     * NASA/Espenak-Meeus の多項式で ΔT = TT - UT を近似します。
-     *
-     * @param int $year グレゴリオ暦の年
-     * @param int $month グレゴリオ暦の月
-     * @return float ΔT 秒
-     */
-    private function approximateDeltaTSeconds(int $year, int $month): float
-    {
-        $y = $year + ($month - 0.5) / 12.0;
-
-        if ($y < 2050.0) {
-            $t = $y - 2000.0;
-
-            return 62.92 + 0.32217 * $t + 0.005589 * $t * $t;
-        }
-
-        $u = ($y - 1820.0) / 100.0;
-
-        return -20.0 + 32.0 * $u * $u - 0.5628 * (2150.0 - $y);
     }
 
     /**

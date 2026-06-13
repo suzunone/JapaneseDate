@@ -180,12 +180,12 @@ class MiscSeasonalNode
     private function callSolarTermMethod(SolarTerm|SimpleSolarTerm $obj, string $term, int $year): SolarTermDate
     {
         return match ($term) {
-            'rissyun'  => $obj->rissyun($year),
-            'syunbun'  => $obj->syunbun($year),
-            'syuubun'  => $obj->syuubun($year),
-            'rikka'    => $obj->rikka($year),
-            'rissyuu'  => $obj->rissyuu($year),
-            'rittou'   => $obj->rittou($year),
+            'rissyun' => $obj->rissyun($year),
+            'syunbun' => $obj->syunbun($year),
+            'syuubun' => $obj->syuubun($year),
+            'rikka' => $obj->rikka($year),
+            'rissyuu' => $obj->rissyuu($year),
+            'rittou' => $obj->rittou($year),
         };
     }
 
@@ -456,7 +456,7 @@ class MiscSeasonalNode
             $nextDay = $this->addOneDay($date->year, $date->month, $date->day);
             $lon2 = $astronomy->longitudeSun($nextDay[0], $nextDay[1], $nextDay[2], 0, 0, 0);
 
-            $inDoyoBand = static fn(float $lon): bool => ($lon >= 297.0 && $lon < 315.0)
+            $inDoyoBand = static fn (float $lon): bool => ($lon >= 297.0 && $lon < 315.0)
                 || ($lon >= 27.0 && $lon < 45.0)
                 || ($lon >= 117.0 && $lon < 135.0)
                 || ($lon >= 207.0 && $lon < 225.0);

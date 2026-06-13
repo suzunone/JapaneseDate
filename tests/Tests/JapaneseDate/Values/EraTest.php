@@ -92,7 +92,7 @@ class EraTest extends TestCase
     /**
      * DateTimeImmutable を渡したとき、startDate / endDate が DateTimeImmutable インスタンスであること。
      */
-    public function test_construct_creates_datetimeimmutable_dates_when_immutable_passed(): void
+    public function test_construct_creates_DateTimeImmutable_dates_when_immutable_passed(): void
     {
         $current = new DateTimeImmutable('645-08-01T00:00:00+09:00');
         $era = new Era(

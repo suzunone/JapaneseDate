@@ -148,7 +148,7 @@ class EraTest extends TestCase
             new DateTimeZone('Asia/Tokyo')
         );
 
-        return (float)$dt->getTimestamp();
+        return (float) $dt->getTimestamp();
     }
 
     /**
@@ -234,12 +234,20 @@ class EraTest extends TestCase
         $this->assertSame($expected, $era->parseJisDate($input));
     }
 
+    /**
+     * @return void
+     * @throws \ReflectionException
+     */
     protected function setUp(): void
     {
         // シングルトンをリセットしてテスト間の干渉を防ぐ
         $this->invokeSetProperty(JisEra::class, 'instance', null);
     }
 
+    /**
+     * @return void
+     * @throws \ReflectionException
+     */
     protected function tearDown(): void
     {
         $this->invokeSetProperty(JisEra::class, 'instance', null);

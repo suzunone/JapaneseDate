@@ -10,7 +10,6 @@ use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\Large;
 use PHPUnit\Framework\TestCase;
 
-
 /**
  * No methods should be added except dataProvider and testDateTime.
  * Only dataProvider and testDateTime methods are allowed to be added.
@@ -91,7 +90,7 @@ class DateTimeFixtureTest extends TestCase
                 $this->assertLessThanOrEqual(
                     self::MOON_AGE_DELTA_DAYS,
                     $moonAgeDelta,
-                    "{$solarAlgorithm}/{$moonAlgorithm}(boundary:{$boundarySolarAlgorithm}/{$boundaryMoonAlgorithm}) moon age: {$date_text}"
+                    "$solarAlgorithm/$moonAlgorithm(boundary:$boundarySolarAlgorithm/$boundaryMoonAlgorithm) moon age: $date_text"
                 );
 
                 $phaseAngleDelta = abs($actual['moon_phase_angle'] - $expectedPhaseAngle);
@@ -99,7 +98,7 @@ class DateTimeFixtureTest extends TestCase
                 $this->assertLessThanOrEqual(
                     self::MOON_PHASE_ANGLE_DELTA_DEGREES,
                     $phaseAngleDelta,
-                    "{$solarAlgorithm}/{$moonAlgorithm}(boundary:{$boundarySolarAlgorithm}/{$boundaryMoonAlgorithm}) moon phase angle: {$date_text}"
+                    "$solarAlgorithm/$moonAlgorithm(boundary:$boundarySolarAlgorithm/$boundaryMoonAlgorithm) moon phase angle: $date_text"
                 );
 
                 $expectedPhase = $expectedComparable['moon_phase'];

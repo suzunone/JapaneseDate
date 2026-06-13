@@ -115,8 +115,8 @@ class SolarTerm
         $longitude_sun_1 = $this->longitudeSunAt($astronomy, $start);
         $longitude_sun_2 = $this->longitudeSunAt($astronomy, $end);
 
-        $tmp_1 = (int)floor($longitude_sun_1 / 15);
-        $tmp_2 = (int)floor($longitude_sun_2 / 15);
+        $tmp_1 = (int) floor($longitude_sun_1 / 15);
+        $tmp_2 = (int) floor($longitude_sun_2 / 15);
 
         return ($tmp_1 !== $tmp_2 && array_key_exists($tmp_2, JapaneseDate::SOLAR_TERM)) ? $tmp_2 : false;
     }
@@ -148,12 +148,12 @@ class SolarTerm
     protected function longitudeSunAt(Astronomy $astronomy, DateTimeImmutable $dateTime): float
     {
         return $astronomy->longitudeSun(
-            (int)$dateTime->format('Y'),
-            (int)$dateTime->format('m'),
-            (int)$dateTime->format('d'),
-            (int)$dateTime->format('H'),
-            (int)$dateTime->format('i'),
-            (int)$dateTime->format('s')
+            (int) $dateTime->format('Y'),
+            (int) $dateTime->format('m'),
+            (int) $dateTime->format('d'),
+            (int) $dateTime->format('H'),
+            (int) $dateTime->format('i'),
+            (int) $dateTime->format('s')
         );
     }
 

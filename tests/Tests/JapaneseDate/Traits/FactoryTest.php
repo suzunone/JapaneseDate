@@ -88,7 +88,7 @@ class FactoryTest extends TestCase
                 null,
             ],
             '数字文字列 UNIX タイムスタンプ' => [
-                (string)$digitStringTimestamp,
+                (string) $digitStringTimestamp,
                 null,
                 null,
                 null,
@@ -96,7 +96,7 @@ class FactoryTest extends TestCase
                 null,
             ],
             '数字文字列 UNIX タイムスタンプ / timezone' => [
-                (string)$digitStringWithTimezone,
+                (string) $digitStringWithTimezone,
                 new DateTimeZone('Asia/Tokyo'),
                 date('Y-m-d H:i:s', $digitStringWithTimezone),
                 'Asia/Tokyo',
@@ -114,20 +114,20 @@ class FactoryTest extends TestCase
         ];
 
         foreach (self::floatUnixTimestampProvider() as $label => [$timestamp, $expectedMicro]) {
-            $rows["float UNIX タイムスタンプ / {$label}"] = [
+            $rows["float UNIX タイムスタンプ / $label"] = [
                 $timestamp,
                 null,
                 null,
                 null,
-                (int)$timestamp,
+                (int) $timestamp,
                 $expectedMicro,
             ];
-            $rows["float UNIX タイムスタンプ / timezone / {$label}"] = [
+            $rows["float UNIX タイムスタンプ / timezone / $label"] = [
                 $timestamp,
                 new DateTimeZone('America/New_York'),
                 null,
                 'America/New_York',
-                (int)$timestamp,
+                (int) $timestamp,
                 $expectedMicro,
             ];
         }
@@ -156,7 +156,7 @@ class FactoryTest extends TestCase
         $combined = [];
         foreach (self::targetClassProvider() as $className => [$class]) {
             foreach ($rows as $label => $row) {
-                $combined["{$className} / {$label}"] = array_merge([$class], $row);
+                $combined["$className / $label"] = array_merge([$class], $row);
             }
         }
 
@@ -181,7 +181,7 @@ class FactoryTest extends TestCase
     {
         $rows = [
             'native DateTimeImmutable' => [
-                static fn(string $class): NativeDateTimeImmutable => new NativeDateTimeImmutable(
+                static fn (string $class): NativeDateTimeImmutable => new NativeDateTimeImmutable(
                     '2024-05-15 10:20:30.123456',
                     new DateTimeZone('UTC')
                 ),
@@ -191,7 +191,7 @@ class FactoryTest extends TestCase
                 123456,
             ],
             'native DateTimeImmutable / timezone inherited' => [
-                static fn(string $class): NativeDateTimeImmutable => new NativeDateTimeImmutable(
+                static fn (string $class): NativeDateTimeImmutable => new NativeDateTimeImmutable(
                     '2024-05-15 10:20:30.654321',
                     new DateTimeZone('Asia/Tokyo')
                 ),
@@ -201,7 +201,7 @@ class FactoryTest extends TestCase
                 654321,
             ],
             'native DateTimeImmutable / timezone override' => [
-                static fn(string $class): NativeDateTimeImmutable => new NativeDateTimeImmutable(
+                static fn (string $class): NativeDateTimeImmutable => new NativeDateTimeImmutable(
                     '2024-05-15 10:20:30',
                     new DateTimeZone('UTC')
                 ),
@@ -211,7 +211,7 @@ class FactoryTest extends TestCase
                 0,
             ],
             'same JapaneseDate class object' => [
-                static fn(string $class): object => new $class('2024-08-01 08:00:00', new DateTimeZone('Asia/Tokyo')),
+                static fn (string $class): object => new $class('2024-08-01 08:00:00', new DateTimeZone('Asia/Tokyo')),
                 null,
                 '2024-08-01 08:00:00',
                 'Asia/Tokyo',
@@ -273,7 +273,7 @@ class FactoryTest extends TestCase
         $negativeTimestamp = mktime(0, 0, 0, 1, 1, 1960);
 
         return [
-            'float の小数部分' => [(float)$base + 0.999000, $base, 999000],
+            'float の小数部分' => [(float) $base + 0.999000, $base, 999000],
             'UNIX タイムスタンプ 0' => [0, 0, null],
             '負の UNIX タイムスタンプ' => [$negativeTimestamp, $negativeTimestamp, null],
         ];
@@ -400,18 +400,22 @@ class FactoryTest extends TestCase
      *
      * @param class-string $class
      * @param mixed $input
+     * @param \DateTimeZone|null $timezone
+     * @param string|null $expectedDateTime
+     * @param string|null $expectedTimezone
+     * @param int|null $expectedTimestamp
+     * @param int|null $expectedMicrosecond
      */
     #[DataProvider('factoryInputProvider')]
     public function test_factory_creates_expected_result(
-        string        $class,
-        mixed         $input,
+        string $class,
+        mixed $input,
         ?DateTimeZone $timezone,
-        ?string       $expectedDateTime,
-        ?string       $expectedTimezone,
-        ?int          $expectedTimestamp,
-        ?int          $expectedMicrosecond
-    ): void
-    {
+        ?string $expectedDateTime,
+        ?string $expectedTimezone,
+        ?int $expectedTimestamp,
+        ?int $expectedMicrosecond
+    ): void {
         $result = $input === null && $timezone === null
             ? $class::factory()
             : $class::factory($input, $timezone);
@@ -436,17 +440,20 @@ class FactoryTest extends TestCase
      *
      * @param class-string $class
      * @param callable $sourceFactory
+     * @param \DateTimeZone|null $timezone
+     * @param string $expectedDateTime
+     * @param string $expectedTimezone
+     * @param int $expectedMicrosecond
      */
     #[DataProvider('dateTimeInterfaceInputProvider')]
     public function test_factory_DateTimeInterface(
-        string        $class,
-        callable      $sourceFactory,
+        string $class,
+        callable $sourceFactory,
         ?DateTimeZone $timezone,
-        string        $expectedDateTime,
-        string        $expectedTimezone,
-        int           $expectedMicrosecond
-    ): void
-    {
+        string $expectedDateTime,
+        string $expectedTimezone,
+        int $expectedMicrosecond
+    ): void {
         $result = $class::factory($sourceFactory($class), $timezone);
         $this->assertInstanceOf($class, $result);
         $this->assertSame($expectedDateTime, $result->format('Y-m-d H:i:s'));
@@ -474,13 +481,12 @@ class FactoryTest extends TestCase
      */
     #[DataProvider('japaneseDateStringProvider')]
     public function test_factory_japanese_date_string(
-        string        $class,
-        string        $input,
+        string $class,
+        string $input,
         ?DateTimeZone $timezone,
-        string        $expectedDateTime,
-        string        $expectedTimezone
-    ): void
-    {
+        string $expectedDateTime,
+        string $expectedTimezone
+    ): void {
         $result = $class::factory($input, $timezone);
         $this->assertInstanceOf($class, $result);
         $this->assertSame($expectedDateTime, $result->format('Y-m-d H:i:s'));
@@ -492,7 +498,7 @@ class FactoryTest extends TestCase
     // -----------------------------------------------------------------------
 
     /**
-     * parseJisDate が null を返す不正な和暦文字列は new static() にフォールバックすることを確認する。
+     * {@link \JapaneseDate\Traits\Factory::parseJisDate} が null を返す不正な和暦文字列は new static() にフォールバックすることを確認する。
      *
      * @param class-string $class
      */
@@ -521,16 +527,20 @@ class FactoryTest extends TestCase
      * createFromFormat が正しいクラスのインスタンスを返すことを確認する。
      *
      * @param class-string $class
+     * @param string $format
+     * @param string $time
+     * @param string $expectedDateTime
+     * @param string|null $timezone
+     * @throws \DateInvalidTimeZoneException
      */
     #[DataProvider('createFromFormatProvider')]
     public function test_createFromFormat_returns_correct_class(
-        string  $class,
-        string  $format,
-        string  $time,
-        string  $expectedDateTime,
+        string $class,
+        string $format,
+        string $time,
+        string $expectedDateTime,
         ?string $timezone
-    ): void
-    {
+    ): void {
         $tz = $timezone !== null ? new DateTimeZone($timezone) : null;
         $result = $tz !== null
             ? $class::createFromFormat($format, $time, $tz)
@@ -559,7 +569,7 @@ class FactoryTest extends TestCase
         // JapaneseDate 固有プロパティが取得できることでコンポーネント初期化を確認
         $this->assertSame('元旦', $result->holiday_text);
         $this->assertSame(1, $result->holiday);
-        $this->assertSame(true, $result->is_holiday);
+        $this->assertTrue($result->is_holiday);
         $this->assertSame('平成', $result->era_name_text);
         $this->assertSame(27, $result->era_year);
     }
@@ -592,16 +602,16 @@ class FactoryTest extends TestCase
         ];
 
         foreach ($expectedKeys as $key) {
-            $this->assertArrayHasKey($key, $arr, "toArray() に '{$key}' キーが存在しません。");
+            $this->assertArrayHasKey($key, $arr, "toArray() に '$key' キーが存在しません。");
         }
 
         // 祝日（憲法記念日）の検証
         $this->assertSame('憲法記念日', $arr['holiday_text']);
-        $this->assertSame(true, $arr['is_holiday']);
+        $this->assertTrue($arr['is_holiday']);
     }
 
     // -----------------------------------------------------------------------
-    // parseJisDate のテスト
+    // {@link \JapaneseDate\Traits\Factory::parseJisDate}  のテスト
     // -----------------------------------------------------------------------
 
     /**

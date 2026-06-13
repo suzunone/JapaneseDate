@@ -153,7 +153,7 @@ class BusinessCalendar
         }
 
         $label = null;
-        $weekday = (int)$date->format('w');
+        $weekday = (int) $date->format('w');
 
         // 優先度1: 曜日
         // ラベルなしのため処理なし
@@ -214,13 +214,13 @@ class BusinessCalendar
         // 優先度9: マクロ（最高優先度）
         $macro = $config->getMacro();
         if ($macro !== null) {
-            return (bool)$macro($date);
+            return (bool) $macro($date);
         }
 
         $result = true;
 
         // 優先度1: 曜日設定
-        $weekday = (int)$date->format('w');
+        $weekday = (int) $date->format('w');
         if (isset($config->getClosingWeekdays()[$weekday])) {
             $result = false;
         }
@@ -355,6 +355,6 @@ class BusinessCalendar
      */
     protected static function getNthWeekday(DateTimeInterface $date): int
     {
-        return (int)ceil((int)$date->format('j') / 7);
+        return (int) ceil((int) $date->format('j') / 7);
     }
 }

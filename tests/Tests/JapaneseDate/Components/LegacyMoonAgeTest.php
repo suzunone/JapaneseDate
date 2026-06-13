@@ -74,17 +74,28 @@ class LegacyMoonAgeTest extends TestCase
         ];
     }
 
+    /**
+     * @param int $year
+     * @param int $month
+     * @param int $day
+     * @param float $hour
+     * @param float $min
+     * @param float $sec
+     * @param int $expectedRounded
+     * @return void
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     */
     #[DataProvider('moonAgeProvider')]
     public function test_moonAge(
-        int   $year,
-        int   $month,
-        int   $day,
+        int $year,
+        int $month,
+        int $day,
         float $hour,
         float $min,
         float $sec,
-        int   $expectedRounded
-    ): void
-    {
+        int $expectedRounded
+    ): void {
         $moonAge = new LegacyMoonAge(new Astronomy());
         $result = $moonAge->moonAge($year, $month, $day, $hour, $min, $sec);
 
@@ -117,11 +128,15 @@ class LegacyMoonAgeTest extends TestCase
         ];
         foreach ($dates as [$y, $m, $d, $h, $i, $s]) {
             $result = $moonAge->moonAge($y, $m, $d, $h, $i, $s);
-            $this->assertGreaterThanOrEqual(0.0, $result, "{$y}-{$m}-{$d} で月齢が負になった");
-            $this->assertLessThan(30.0, $result, "{$y}-{$m}-{$d} で月齢が30以上になった");
+            $this->assertGreaterThanOrEqual(0.0, $result, "$y-$m-$d で月齢が負になった");
+            $this->assertLessThan(30.0, $result, "$y-$m-$d で月齢が30以上になった");
         }
     }
 
+    /**
+     * @return void
+     * @throws \ReflectionException
+     */
     public function test_jstToJulianDateUsesStandardJulianDate(): void
     {
         $moonAge = new LegacyMoonAge(new Astronomy());
@@ -132,6 +147,11 @@ class LegacyMoonAgeTest extends TestCase
         $this->assertEqualsWithDelta(2451545.0, $result, 1e-12);
     }
 
+    /**
+     * @return void
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     */
     public function test_moonAge_staysWithinFixtureToleranceInApril2017(): void
     {
         $moonAge = new LegacyMoonAge(new Astronomy());

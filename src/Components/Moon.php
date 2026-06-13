@@ -221,12 +221,12 @@ class Moon
     protected function phaseDeltaAt(int $timestamp, float $targetAngle): float
     {
         $jst = $timestamp + 32400; // UTC → JST（moonPhaseAngle は JST 入力を期待）
-        $year = (int)gmdate('Y', $jst);
-        $month = (int)gmdate('n', $jst);
-        $day = (int)gmdate('j', $jst);
-        $hour = (int)gmdate('G', $jst);
-        $min = (int)gmdate('i', $jst);
-        $sec = (int)gmdate('s', $jst);
+        $year = (int) gmdate('Y', $jst);
+        $month = (int) gmdate('n', $jst);
+        $day = (int) gmdate('j', $jst);
+        $hour = (int) gmdate('G', $jst);
+        $min = (int) gmdate('i', $jst);
+        $sec = (int) gmdate('s', $jst);
         $angle = $this->astronomy->moonPhaseAngle($year, $month, $day, $hour, $min, $sec);
 
         return $this->normalizeAngle($angle - $targetAngle + 180.0) - 180.0;
@@ -294,8 +294,8 @@ class Moon
         $adate = $julian - $check_span;
         $atimestamp = $timestamp - 86400 * $check_span;
 
-        $yy = (int)gmdate('Y', $atimestamp);
-        $mm = (int)gmdate('n', $atimestamp);
+        $yy = (int) gmdate('Y', $atimestamp);
+        $mm = (int) gmdate('n', $atimestamp);
 
         $k1 = floor(($yy + (($mm - 1) * (1 / 12)) - 1900) * 12.3685);
 
@@ -348,7 +348,7 @@ class Moon
         $lowerTime = $this->moonPhaseByLegacy($date, $lowerPhase, $is_next);
         $upperTime = $this->moonPhaseByLegacy($lowerTime, $upperPhase, false);
 
-        $midTimestamp = (int)round(($lowerTime->getTimestamp() + $upperTime->getTimestamp()) / 2);
+        $midTimestamp = (int) round(($lowerTime->getTimestamp() + $upperTime->getTimestamp()) / 2);
 
         return Carbon::createFromTimestampUTC($midTimestamp);
     }

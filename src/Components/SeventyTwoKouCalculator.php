@@ -171,12 +171,14 @@ class SeventyTwoKouCalculator
      * @var string[]
      */
     protected const KOU_TYPE_TEXT = ['初候', '次候', '末候'];
+
     /**
      * SeventyTwoKouCalculator のシングルトンインスタンス。
      *
      * @var self|null
      */
     protected static ?self $instance = null;
+
     /**
      * SimpleSolarTerm / SolarTerm で取得した節気日付のキャッシュ。
      * キー: "{year}_{solarTermConst}"、値: Unix タイムスタンプ（0時0分0秒）。
@@ -290,7 +292,7 @@ class SeventyTwoKouCalculator
             }
         }
 
-        usort($terms, static fn(array $a, array $b): int => $a['ts'] <=> $b['ts']);
+        usort($terms, static fn (array $a, array $b): int => $a['ts'] <=> $b['ts']);
 
         return array_values($terms);
     }

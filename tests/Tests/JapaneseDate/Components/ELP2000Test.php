@@ -8,6 +8,7 @@ use DateTimeZone;
 use InvalidArgumentException;
 use JapaneseDate\Components\Astronomy;
 use JapaneseDate\Components\ELP2000;
+/** @noinspection PhpUndefinedClassInspection */
 use JapaneseDate\Components\Traits\ELP2000Sub;
 use JapaneseDate\Components\Vsop87Astronomy;
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -27,6 +28,7 @@ use Tests\JapaneseDate\InvokeTrait;
  * ELP2000.php がスケルトンの間は未実装例外を Incomplete として扱い、
  * 実装後に同じテストが実データ検証として動くようにしている。
  */
+/** @noinspection PhpUndefinedClassInspection */
 #[CoversClass(ELP2000::class)]
 #[CoversTrait(ELP2000Sub::class)]
 class ELP2000Test extends TestCase
@@ -51,6 +53,9 @@ class ELP2000Test extends TestCase
         ];
     }
 
+    /**
+     * @return array[]
+     */
     public static function scaleProvider(): array
     {
         return [
@@ -60,6 +65,9 @@ class ELP2000Test extends TestCase
         ];
     }
 
+    /**
+     * @return \int[][]
+     */
     public static function invalidScaleProvider(): array
     {
         return [
@@ -68,6 +76,9 @@ class ELP2000Test extends TestCase
         ];
     }
 
+    /**
+     * @return array[]
+     */
     public static function invalidJulianDateProvider(): array
     {
         return [
@@ -121,19 +132,26 @@ class ELP2000Test extends TestCase
         ];
     }
 
+    /**
+     * @param string $julianDate
+     * @param float $expectedX
+     * @param float $expectedY
+     * @param float $expectedZ
+     * @param float $delta
+     * @return void
+     */
     #[DataProvider('positionProvider')]
     public function test_getPosition_matchesOriginalJavaScriptReferenceExample(
         string $julianDate,
-        float  $expectedX,
-        float  $expectedY,
-        float  $expectedZ,
-        float  $delta
-    ): void
-    {
+        float $expectedX,
+        float $expectedY,
+        float $expectedZ,
+        float $delta
+    ): void {
         $elp = new ELP2000(30);
 
         $position = $this->callOrMarkIncomplete(
-            static fn() => $elp->getPosition($julianDate)
+            static fn () => $elp->getPosition($julianDate)
         );
 
         $this->assertCount(3, $position);
@@ -142,6 +160,10 @@ class ELP2000Test extends TestCase
         $this->assertEqualsWithDelta($expectedZ, $position[2], $delta);
     }
 
+    /**
+     * @param callable $callback
+     * @return mixed
+     */
     private function callOrMarkIncomplete(callable $callback): mixed
     {
         try {
@@ -151,19 +173,26 @@ class ELP2000Test extends TestCase
         }
     }
 
+    /**
+     * @param string $julianDate
+     * @param float $expectedX
+     * @param float $expectedY
+     * @param float $expectedZ
+     * @param float $delta
+     * @return void
+     */
     #[DataProvider('positionProvider')]
     public function test_getPrecisePosition_matchesOriginalJavaScriptReferenceExample(
         string $julianDate,
-        float  $expectedX,
-        float  $expectedY,
-        float  $expectedZ,
-        float  $delta
-    ): void
-    {
+        float $expectedX,
+        float $expectedY,
+        float $expectedZ,
+        float $delta
+    ): void {
         $elp = new ELP2000(30);
 
         $position = $this->callOrMarkIncomplete(
-            static fn() => $elp->getPrecisePosition($julianDate)
+            static fn () => $elp->getPrecisePosition($julianDate)
         );
 
         $this->assertCount(3, $position);
@@ -172,11 +201,16 @@ class ELP2000Test extends TestCase
             $this->assertIsNumeric($component);
         }
 
-        $this->assertEqualsWithDelta($expectedX, (float)$position[0], $delta);
-        $this->assertEqualsWithDelta($expectedY, (float)$position[1], $delta);
-        $this->assertEqualsWithDelta($expectedZ, (float)$position[2], $delta);
+        $this->assertEqualsWithDelta($expectedX, (float) $position[0], $delta);
+        $this->assertEqualsWithDelta($expectedY, (float) $position[1], $delta);
+        $this->assertEqualsWithDelta($expectedZ, (float) $position[2], $delta);
     }
 
+    /**
+     * @param int $initialScale
+     * @param int $nextScale
+     * @return void
+     */
     #[DataProvider('scaleProvider')]
     public function test_scale_canBeConfiguredForBcmathCalculations(int $initialScale, int $nextScale): void
     {
@@ -187,6 +221,10 @@ class ELP2000Test extends TestCase
         $this->assertSame($nextScale, $elp->scale());
     }
 
+    /**
+     * @param int $scale
+     * @return void
+     */
     #[DataProvider('invalidScaleProvider')]
     public function test_scaleRejectsNegativeValue(int $scale): void
     {
@@ -196,6 +234,9 @@ class ELP2000Test extends TestCase
         new ELP2000($scale);
     }
 
+    /**
+     * @return void
+     */
     public function test_setScaleRejectsNegativeValue(): void
     {
         $this->expectException(InvalidArgumentException::class);
@@ -204,16 +245,29 @@ class ELP2000Test extends TestCase
         (new ELP2000())->setScale(-1);
     }
 
+    /**
+     * @return void
+     */
     public function test_moonAlgorithmNameReturnsElp2000(): void
     {
         $this->assertSame(Astronomy::MOON_ELP2000, (new ELP2000())->moonAlgorithmName());
     }
 
+    /**
+     * @return void
+     * @throws \ReflectionException
+     * @throws \Exception
+     * @throws \Exception
+     */
     public function test_longitudeMoonConvertsJstToTdbJulianDateWithFractionalSeconds(): void
     {
         $elp = new class () extends ELP2000 {
             public int|float|string|null $julianDate = null;
 
+            /**
+             * @param int|float|string $julianDate
+             * @return string
+             */
             public function preciseLongitude(int|float|string $julianDate): string
             {
                 $this->julianDate = $julianDate;
@@ -244,9 +298,13 @@ class ELP2000Test extends TestCase
 
         $this->assertSame(123.456, $longitude);
         $this->assertIsString($elp->julianDate);
-        $this->assertEqualsWithDelta($expectedJulianDate, (float)$elp->julianDate, 1e-10);
+        $this->assertEqualsWithDelta($expectedJulianDate, (float) $elp->julianDate, 1e-10);
     }
 
+    /**
+     * @return void
+     * @throws \ReflectionException
+     */
     public function test_approximateDeltaTSecondsUsesFutureFormulaFrom2050(): void
     {
         $elp = new ELP2000();
@@ -261,6 +319,9 @@ class ELP2000Test extends TestCase
         $this->assertEqualsWithDelta($expected, $result, 1e-12);
     }
 
+    /**
+     * @return void
+     */
     public function test_publicLongitudeLatitudeAndDistanceApisReturnFloatsAndNumericStrings(): void
     {
         $elp = new ELP2000(30);
@@ -283,21 +344,32 @@ class ELP2000Test extends TestCase
         $this->assertIsNumeric($preciseDistance);
     }
 
+    /**
+     * @return void
+     */
     public function test_preciseLongitudeNormalizesNegativeLongitude(): void
     {
         $elp = new class () extends ELP2000 {
+            /**
+             * @noinspection PhpUnused — preciseLongitude() 内部から委譲呼び出しされる
+             * @param string $t
+             * @return float
+             */
             protected function computeLongitudeSeries(string $t): float
             {
                 return -1000000000.0;
             }
         };
 
-        $longitude = (float)$elp->preciseLongitude('2451545.0');
+        $longitude = (float) $elp->preciseLongitude('2451545.0');
 
         $this->assertGreaterThanOrEqual(0.0, $longitude);
         $this->assertLessThan(360.0, $longitude);
     }
 
+    /**
+     * @return void
+     */
     public function test_scientificNotationJulianDateInputIsAccepted(): void
     {
         $elp = new ELP2000(30);
@@ -310,6 +382,10 @@ class ELP2000Test extends TestCase
         $this->assertEqualsWithDelta($normal[2], $scientific[2], 0.001);
     }
 
+    /**
+     * @return void
+     * @throws \ReflectionException
+     */
     public function test_decimalConvertsIntegerToNumericString(): void
     {
         $result = $this->invokeExecuteMethod(new ELP2000(), 'decimal', [2451545]);
@@ -317,6 +393,10 @@ class ELP2000Test extends TestCase
         $this->assertSame('2451545', $result);
     }
 
+    /**
+     * @param string $julianDate
+     * @return void
+     */
     #[DataProvider('invalidJulianDateProvider')]
     public function test_invalidJulianDateInputIsRejected(string $julianDate): void
     {
@@ -326,6 +406,9 @@ class ELP2000Test extends TestCase
         (new ELP2000())->preciseLongitude($julianDate);
     }
 
+    /**
+     * @return void
+     */
     public function test_infiniteFloatJulianDateInputIsRejected(): void
     {
         $this->expectException(InvalidArgumentException::class);
@@ -340,24 +423,24 @@ class ELP2000Test extends TestCase
      * 比較用の太陽黄経は legacy 式の系統誤差を避けるため VSOP87 を使う。
      * ただし VSOP87 実装は見かけ黄経で、ELP2000 の平均黄道面黄経とは完全には一致しないため、
      * ここでは接続テストとして許容誤差を広めに取る。
+     * @throws \Exception
      */
     #[DataProvider('newMoonProvider')]
     public function test_preciseLongitude_isNearSolarLongitudeAtUsnoNewMoon(
         string $utcDateTime,
         string $jstDateTime,
-        float  $allowedDegrees
-    ): void
-    {
+        float $allowedDegrees
+    ): void {
         $elp = new ELP2000(40);
         $moonLongitude = $this->callOrMarkIncomplete(
-            static fn() => $elp->preciseLongitude(self::utcToJulianDate($utcDateTime))
+            static fn () => $elp->preciseLongitude(self::utcToJulianDate($utcDateTime))
         );
 
         $this->assertIsString($moonLongitude);
         $this->assertIsNumeric($moonLongitude);
 
         $utc = new DateTimeImmutable($utcDateTime, new DateTimeZone('UTC'));
-        $phaseAngle = self::angularDistance((float)$moonLongitude, $this->solarLongitudeAt($utc));
+        $phaseAngle = self::angularDistance((float) $moonLongitude, $this->solarLongitudeAt($utc));
 
         $this->assertLessThanOrEqual(
             $allowedDegrees,
@@ -371,18 +454,32 @@ class ELP2000Test extends TestCase
         );
     }
 
+    /**
+     * @param string $utcDateTime
+     * @return string
+     * @throws \Exception
+     */
     private static function utcToJulianDate(string $utcDateTime): string
     {
         return self::dateTimeToJulianDate(new DateTimeImmutable($utcDateTime, new DateTimeZone('UTC')));
     }
 
+    /**
+     * @param \DateTimeImmutable $utc
+     * @return string
+     */
     private static function dateTimeToJulianDate(DateTimeImmutable $utc): string
     {
-        $timestamp = (int)$utc->format('U');
+        $timestamp = (int) $utc->format('U');
 
         return sprintf('%.10F', $timestamp / 86400 + 2440587.5);
     }
 
+    /**
+     * @param float $left
+     * @param float $right
+     * @return float
+     */
     private static function angularDistance(float $left, float $right): float
     {
         $angle = abs(self::normalizeDegrees($left - $right));
@@ -390,6 +487,10 @@ class ELP2000Test extends TestCase
         return min($angle, 360.0 - $angle);
     }
 
+    /**
+     * @param float $angle
+     * @return float
+     */
     private static function normalizeDegrees(float $angle): float
     {
         $normalized = fmod($angle, 360.0);
@@ -397,18 +498,22 @@ class ELP2000Test extends TestCase
         return $normalized < 0 ? $normalized + 360.0 : $normalized;
     }
 
+    /**
+     * @param \DateTimeImmutable $utc
+     * @return float
+     */
     private function solarLongitudeAt(DateTimeImmutable $utc): float
     {
         $astronomy = new Vsop87Astronomy();
         $jst = $utc->modify('+9 hours');
 
         return $astronomy->longitudeSun(
-            (int)$jst->format('Y'),
-            (int)$jst->format('n'),
-            (int)$jst->format('j'),
-            (float)$jst->format('G'),
-            (float)$jst->format('i'),
-            (float)$jst->format('s')
+            (int) $jst->format('Y'),
+            (int) $jst->format('n'),
+            (int) $jst->format('j'),
+            (float) $jst->format('G'),
+            (float) $jst->format('i'),
+            (float) $jst->format('s')
         );
     }
 
@@ -416,14 +521,14 @@ class ELP2000Test extends TestCase
      * 朔の直前・直後で、月太陽黄経差が 360° 側から 0° 側へ跨ぐことを確認する。
      *
      * 日付変更付近の朔では、JST の暦日判定や旧暦月初判定で境界バグが出やすい。
+     * @throws \Exception
      */
     #[DataProvider('newMoonBoundaryProvider')]
     public function test_preciseLongitude_crossesNewMoonBoundaryAroundUsnoNewMoon(
         string $utcDateTime,
         string $jstDateTime,
-        int    $minutes
-    ): void
-    {
+        int $minutes
+    ): void {
         $elp = new ELP2000(40);
 
         $event = new DateTimeImmutable($utcDateTime, new DateTimeZone('UTC'));
@@ -445,12 +550,17 @@ class ELP2000Test extends TestCase
         );
     }
 
+    /**
+     * @param \JapaneseDate\Components\ELP2000 $elp
+     * @param \DateTimeImmutable $utc
+     * @return float
+     */
     private function phaseAngleAt(ELP2000 $elp, DateTimeImmutable $utc): float
     {
         $moonLongitude = $this->callOrMarkIncomplete(
-            static fn() => $elp->preciseLongitude(self::dateTimeToJulianDate($utc))
+            static fn () => $elp->preciseLongitude(self::dateTimeToJulianDate($utc))
         );
 
-        return self::normalizeDegrees((float)$moonLongitude - $this->solarLongitudeAt($utc));
+        return self::normalizeDegrees((float) $moonLongitude - $this->solarLongitudeAt($utc));
     }
 }

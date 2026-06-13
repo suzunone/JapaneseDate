@@ -333,7 +333,7 @@ class Calendar
      */
     protected function getCompareFormat(DateTimeInterface $dateTime): int
     {
-        return (int)$dateTime->format('Ymd');
+        return (int) $dateTime->format('Ymd');
     }
 
     /**
@@ -427,7 +427,7 @@ class Calendar
         return match (true) {
             array_key_exists($dateTime->dayOfWeek, $this->bypass_week_day_arr),
             isset($this->bypass_day_arr[$this->getCompareFormat($dateTime)]),
-                $this->is_bypass_holiday && $dateTime->holiday !== DateTime::NO_HOLIDAY => false,
+            $this->is_bypass_holiday && $dateTime->holiday !== DateTime::NO_HOLIDAY => false,
             default => true,
         };
     }

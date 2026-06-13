@@ -2,6 +2,7 @@
 
 namespace Tests\JapaneseDate\Components;
 
+use JapaneseDate\CacheMode;
 use JapaneseDate\Components\Cache;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\PreserveGlobalState;
@@ -24,7 +25,7 @@ class CacheApcMockTest extends TestCase
     {
         require_once __DIR__ . '/global_apcu_mock.php';
         $GLOBALS['_test_apcu_store'] = [];
-        Cache::setMode(Cache::MODE_APC);
+        Cache::setMode(CacheMode::MODE_APC);
 
         $callCount = 0;
         $result = Cache::forever('apcu_miss_key', function () use (&$callCount) {
@@ -47,7 +48,7 @@ class CacheApcMockTest extends TestCase
     {
         require_once __DIR__ . '/global_apcu_mock.php';
         $GLOBALS['_test_apcu_store'] = ['apcu_hit_key' => 'cached_apcu_value'];
-        Cache::setMode(Cache::MODE_APC);
+        Cache::setMode(CacheMode::MODE_APC);
 
         $callCount = 0;
         $result = Cache::forever('apcu_hit_key', function () use (&$callCount) {

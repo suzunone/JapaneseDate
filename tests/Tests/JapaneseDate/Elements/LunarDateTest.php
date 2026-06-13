@@ -37,6 +37,15 @@ use PHPUnit\Framework\TestCase;
 #[CoversClass(LunarDate::class)]
 class LunarDateTest extends TestCase
 {
+    /**
+     * @return void
+     * @throws \DateInvalidTimeZoneException
+     * @throws \DateMalformedStringException
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     * @throws \JsonException
+     */
     public function test__construct(): void
     {
         // LunarCalendar 経由で取得した旧暦日が LunarDate インスタンスになることを確認する
@@ -45,6 +54,11 @@ class LunarDateTest extends TestCase
         $this->assertInstanceOf(LunarDate::class, $LunarDate);
     }
 
+    /**
+     * @return void
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JsonException
+     */
     public function test__construct_error(): void
     {
         $this->expectException(ErrorException::class);
@@ -53,6 +67,15 @@ class LunarDateTest extends TestCase
         new LunarDate([LunarDate::YEAR_KEY => 2020, LunarDate::IS_LEAP_MONTH_FLAG_KEY => false, LunarDate::MONTH_KEY => 3], false);
     }
 
+    /**
+     * @return void
+     * @throws \DateInvalidTimeZoneException
+     * @throws \DateMalformedStringException
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     * @throws \JsonException
+     */
     public function test__get(): void
     {
         // マジックメソッド __get() で旧暦の各プロパティを取得できることを確認する
@@ -71,6 +94,15 @@ class LunarDateTest extends TestCase
         $this->assertEquals(0, $LunarDate->solar_term);
     }
 
+    /**
+     * @return void
+     * @throws \DateInvalidTimeZoneException
+     * @throws \DateMalformedStringException
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     * @throws \JsonException
+     */
     public function test__get_error(): void
     {
         $this->expectException(ErrorException::class);
@@ -79,9 +111,19 @@ class LunarDateTest extends TestCase
         // 存在しないプロパティを参照した場合に例外が発生することを確認する
         $LunarCalendar = new LunarCalendar();
         $LunarDate = $LunarCalendar->getLunarDate(DateTime::factory('2020-03-01'));
+        // noinspection PhpUndefinedFieldInspection
         $LunarDate->aaaaaaaaaaaa;
     }
 
+    /**
+     * @return void
+     * @throws \DateInvalidTimeZoneException
+     * @throws \DateMalformedStringException
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     * @throws \JsonException
+     */
     public function test__isset(): void
     {
         // __isset() が定義済みプロパティと未定義プロパティを判別できることを確認する
@@ -91,6 +133,15 @@ class LunarDateTest extends TestCase
         $this->assertFalse(isset($LunarDate->solar_termaaa));
     }
 
+    /**
+     * @return void
+     * @throws \DateInvalidTimeZoneException
+     * @throws \DateMalformedStringException
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     * @throws \JsonException
+     */
     public function test__set(): void
     {
         $this->expectException(ErrorException::class);

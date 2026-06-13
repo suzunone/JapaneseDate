@@ -5,6 +5,7 @@ namespace JapaneseDate\Components;
 use DateTimeImmutable;
 use DateTimeZone;
 use JapaneseDate\Components\Contracts\MoonAgeAlgorithm;
+use JapaneseDate\Components\Traits\MoonAgeConvergenceTrait;
 
 /**
  * 従来の近似式（Legacy 太陽・月黄経計算）に基づく月齢計算実装。
@@ -30,6 +31,13 @@ use JapaneseDate\Components\Contracts\MoonAgeAlgorithm;
  */
 class LegacyMoonAge implements MoonAgeAlgorithm
 {
+    use MoonAgeConvergenceTrait;
+
+    /**
+     * 朔望月（新月から新月までの平均日数）。
+     */
+    protected const SYNODIC_MONTH = 29.530589;
+
     /**
      * Unix エポック（1970-01-01 00:00:00 UTC）のユリウス日。
      */
@@ -112,30 +120,16 @@ class LegacyMoonAge implements MoonAgeAlgorithm
                 $delta_rm = $this->astronomy->normalizeAngle($delta_rm);
             }
 
-            // 時刻引数の補正値 Δt
-            $delta_t2 = $delta_rm * 29.530589 / 360.0;
-            $delta_t1 = floor($delta_t2);
-            $delta_t2 -= $delta_t1;
-
-            // 時刻引数の補正
-            $tm1 -= $delta_t1;
-            $tm2 -= $delta_t2;
-            if ($tm2 < 0) {
-                $tm2++;
-                $tm1--;
-            }
-
+            [$tm1, $tm2, $delta_t1, $delta_t2, $shouldBreak] = $this->applyConvergenceStep(
+                $delta_rm,
+                self::SYNODIC_MONTH,
+                $tm1,
+                $tm2,
+                $julian_date_0,
+                $counter
+            );
             // @codeCoverageIgnoreStart
-            if ($counter === 15 && abs($delta_t1 + $delta_t2) > Astronomy::DAYS_PER_SEC) {
-                // ループ回数が15回になったら、初期値を-26
-                $tm1 = floor($julian_date_0 - 26);
-                $tm2 = 0;
-            } elseif ($counter > 30 && abs($delta_t1 + $delta_t2) > Astronomy::DAYS_PER_SEC) {
-                // 初期値を補正したにも関わらず振動を続ける場合は、
-                // 初期値を答えとして返して強制的にループを抜け出して異常終了
-                $tm1 = $julian_date_0;
-                $tm2 = 0;
-
+            if ($shouldBreak) {
                 break;
             }
             // @codeCoverageIgnoreEnd
@@ -169,12 +163,11 @@ class LegacyMoonAge implements MoonAgeAlgorithm
             sprintf('%04d-%02d-%02d 00:00:00', $year, $month, $day),
             new DateTimeZone('Asia/Tokyo')
         );
-        $timestamp = (float)$jstMidnight->format('U')
+        $timestamp = (float) $jstMidnight->format('U')
             + $hour * 3600.0
             + $min * 60.0
             + $sec;
 
         return self::UNIX_EPOCH_JD + $timestamp / Astronomy::DAY_TO_SECOND_FLOAT;
     }
-
 }
