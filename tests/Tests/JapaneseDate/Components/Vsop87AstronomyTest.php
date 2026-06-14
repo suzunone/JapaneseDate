@@ -96,8 +96,9 @@ class Vsop87AstronomyTest extends TestCase
     /**
      * @param int $year
      * @param int $month
-     * @param float $hour
      * @param int $day
+     * @param float $hour
+     * @param float $expectedLongitude
      * @return void
      */
     #[DataProvider('jplHorizonsApparentSolarLongitudeProvider')]
@@ -105,7 +106,8 @@ class Vsop87AstronomyTest extends TestCase
         int $year,
         int $month,
         int $day,
-        float $hour
+        float $hour,
+        float $expectedLongitude
     ): void {
         $longitude = (new Vsop87Astronomy())->longitudeSun($year, $month, $day, $hour, 0.0, 0.0);
 
