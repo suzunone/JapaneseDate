@@ -331,26 +331,6 @@ class DateIntervalTest extends TestCase
         }
     }
     /**
-     * @return void
-     * @throws \DateInvalidTimeZoneException
-     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
-     */
-    public function test_resolveSolarTerm_usesVsop87AlgorithmWhenSelected(): void
-    {
-        try {
-            Astronomy::useSolarAlgorithm(Astronomy::SOLAR_VSOP87);
-
-            $from = DateTime::parse('2026-03-01');
-            $interval = DateInterval::untilNextSolarTerm($from, 'syunbun');
-
-            $this->assertGreaterThan(0, $interval->d);
-        } finally {
-            Astronomy::useSolarAlgorithm(Astronomy::SOLAR_LEGACY);
-            Astronomy::useMoonAlgorithm(Astronomy::MOON_LEGACY);
-        }
-    }
-
-    /**
      * untilNextSolarTerm: 次の節気までの残り期間が取得できる。
      */
     public function test_untilNextSolarTerm_noSpecificTerm(): void

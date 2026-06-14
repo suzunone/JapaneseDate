@@ -35,16 +35,14 @@ use Tests\JapaneseDate\InvokeTrait;
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
  * @since       2026-05-29
+ * @covers \JapaneseDate\Components\MiscSeasonalNode
  */
-#[CoversClass(MiscSeasonalNode::class)]
 class MiscSeasonalNodeTest extends TestCase
 {
     use InvokeTrait;
-
     // =========================================================================
     // ファクトリー・基本テスト
     // =========================================================================
-
     /**
      * @return array[]
      */
@@ -64,7 +62,6 @@ class MiscSeasonalNodeTest extends TestCase
             '存在しないキー' => [999, ''],
         ];
     }
-
     /**
      * @return array<string, array{int, int, int}>
      */
@@ -84,11 +81,9 @@ class MiscSeasonalNodeTest extends TestCase
             '2026年節分' => [2026, 2, 3],
         ];
     }
-
     // =========================================================================
     // viewMiscSeasonalNode
     // =========================================================================
-
     /**
      * @return array<string, array{int, int, int}>
      */
@@ -104,7 +99,6 @@ class MiscSeasonalNodeTest extends TestCase
             '2026年春彼岸中日' => [2026, 3, 20],
         ];
     }
-
     /**
      * @return array<string, array{int, int, int}>
      */
@@ -120,11 +114,9 @@ class MiscSeasonalNodeTest extends TestCase
             '2026年秋彼岸中日' => [2026, 9, 23],
         ];
     }
-
     // =========================================================================
     // 節分テスト (2021-2026) - 出典: 国立天文台 https://eco.mtk.nao.ac.jp/cgi-bin/koyomi/cande/phenomena_s.cgi
     // =========================================================================
-
     /**
      * @return array<string, array{int, int, int}>
      */
@@ -146,7 +138,6 @@ class MiscSeasonalNodeTest extends TestCase
             '2026年八十八夜' => [2026, 5, 2],
         ];
     }
-
     /**
      * @return array<string, array{int, int, int}>
      */
@@ -162,7 +153,6 @@ class MiscSeasonalNodeTest extends TestCase
             '2026年入梅' => [2026, 6, 11],
         ];
     }
-
     /**
      * @return array<string, array{int, int, int}>
      */
@@ -178,7 +168,6 @@ class MiscSeasonalNodeTest extends TestCase
             '2026年半夏生' => [2026, 7, 2],
         ];
     }
-
     /**
      * @return array<string, array{int, int, int}>
      */
@@ -195,11 +184,9 @@ class MiscSeasonalNodeTest extends TestCase
             '2026年夏土用入り' => [2026, 7, 20],
         ];
     }
-
     // =========================================================================
     // 彼岸 春中日テスト (2021-2026)
     // =========================================================================
-
     /**
      * @return array<string, array{int, int, int}>
      */
@@ -221,7 +208,6 @@ class MiscSeasonalNodeTest extends TestCase
             '2026年二百十日' => [2026, 9, 1],
         ];
     }
-
     /**
      * @return array<string, array{int, int, int}>
      */
@@ -243,7 +229,6 @@ class MiscSeasonalNodeTest extends TestCase
             '2026年二百二十日' => [2026, 9, 11],
         ];
     }
-
     /**
      * factory() がシングルトンを返すことを確認する。
      */
@@ -254,7 +239,6 @@ class MiscSeasonalNodeTest extends TestCase
         $this->assertSame($a, $b);
         $this->assertInstanceOf(MiscSeasonalNode::class, $a);
     }
-
     /**
      * @return void
      */
@@ -272,25 +256,23 @@ class MiscSeasonalNodeTest extends TestCase
         $this->assertSame('二百十日', $names[8]);
         $this->assertSame('二百二十日', $names[9]);
     }
-
     /**
      * @param int $key
      * @param string $expected
      * @return void
+     * @dataProvider viewMiscSeasonalNodeProvider
      */
-    #[DataProvider('viewMiscSeasonalNodeProvider')]
     public function test_viewMiscSeasonalNode(int $key, string $expected): void
     {
         $node = MiscSeasonalNode::factory();
         $this->assertSame($expected, $node->viewMiscSeasonalNode($key));
     }
-
     /**
      * @param int $year
      * @param int $month
      * @param int $day
+     * @dataProvider setsubunProvider
      */
-    #[DataProvider('setsubunProvider')]
     public function test_isSetsubun(int $year, int $month, int $day): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_VSOP87);
@@ -299,14 +281,13 @@ class MiscSeasonalNodeTest extends TestCase
         $date = DateTime::parse(sprintf('%04d-%02d-%02d', $year, $month, $day));
         $this->assertTrue($node->isSetsubun($date), "{$year}年{$month}月{$day}日は節分");
     }
-
     /**
      * @param int $year
      * @param int $month
      * @param int $day
      * @return void
+     * @dataProvider setsubunProvider
      */
-    #[DataProvider('setsubunProvider')]
     public function test_getMiscSeasonalNodeKey_setsubun(int $year, int $month, int $day): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_VSOP87);
@@ -315,13 +296,12 @@ class MiscSeasonalNodeTest extends TestCase
         $date = DateTime::parse(sprintf('%04d-%02d-%02d', $year, $month, $day));
         $this->assertSame(DateTime::MISC_SEASONAL_NODE_SETSUBUN, $node->getMiscSeasonalNodeKey($date));
     }
-
     /**
      * @param int $year
      * @param int $month
      * @param int $day
+     * @dataProvider setsubunProvider
      */
-    #[DataProvider('setsubunProvider')]
     public function test_isSetsubun_legacy(int $year, int $month, int $day): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_LEGACY);
@@ -330,14 +310,13 @@ class MiscSeasonalNodeTest extends TestCase
         $date = DateTime::parse(sprintf('%04d-%02d-%02d', $year, $month, $day));
         $this->assertTrue($node->isSetsubun($date), "{$year}年{$month}月{$day}日は節分");
     }
-
     /**
      * @param int $year
      * @param int $month
      * @param int $day
      * @return void
+     * @dataProvider setsubunProvider
      */
-    #[DataProvider('setsubunProvider')]
     public function test_getMiscSeasonalNodeKey_setsubun_legacy(int $year, int $month, int $day): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_LEGACY);
@@ -346,11 +325,9 @@ class MiscSeasonalNodeTest extends TestCase
         $date = DateTime::parse(sprintf('%04d-%02d-%02d', $year, $month, $day));
         $this->assertSame(DateTime::MISC_SEASONAL_NODE_SETSUBUN, $node->getMiscSeasonalNodeKey($date));
     }
-
     // =========================================================================
     // 社日テスト
     // =========================================================================
-
     /**
      * @return void
      */
@@ -361,14 +338,13 @@ class MiscSeasonalNodeTest extends TestCase
         $this->assertFalse($node->isSetsubun(DateTime::parse('2026-02-02')));
         $this->assertFalse($node->isSetsubun(DateTime::parse('2026-06-01')));
     }
-
     /**
      * @param int $year
      * @param int $month
      * @param int $day
      * @return void
+     * @dataProvider higanSpringCenterProvider
      */
-    #[DataProvider('higanSpringCenterProvider')]
     public function test_isHigan_springCenter(int $year, int $month, int $day): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_VSOP87);
@@ -377,14 +353,13 @@ class MiscSeasonalNodeTest extends TestCase
         $date = DateTime::parse(sprintf('%04d-%02d-%02d', $year, $month, $day));
         $this->assertTrue($node->isHigan($date), "{$year}年{$month}月{$day}日は春彼岸中日");
     }
-
     /**
      * @param int $year
      * @param int $month
      * @param int $day
      * @return void
+     * @dataProvider higanSpringCenterProvider
      */
-    #[DataProvider('higanSpringCenterProvider')]
     public function test_isHigan_springCenter_legacy(int $year, int $month, int $day): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_LEGACY);
@@ -393,14 +368,13 @@ class MiscSeasonalNodeTest extends TestCase
         $date = DateTime::parse(sprintf('%04d-%02d-%02d', $year, $month, $day));
         $this->assertTrue($node->isHigan($date), "{$year}年{$month}月{$day}日は春彼岸中日");
     }
-
     /**
      * @param int $year
      * @param int $month
      * @param int $day
      * @return void
+     * @dataProvider higanAutumnCenterProvider
      */
-    #[DataProvider('higanAutumnCenterProvider')]
     public function test_isHigan_autumnCenter(int $year, int $month, int $day): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_VSOP87);
@@ -409,14 +383,13 @@ class MiscSeasonalNodeTest extends TestCase
         $date = DateTime::parse(sprintf('%04d-%02d-%02d', $year, $month, $day));
         $this->assertTrue($node->isHigan($date), "{$year}年{$month}月{$day}日は秋彼岸中日");
     }
-
     /**
      * @param int $year
      * @param int $month
      * @param int $day
      * @return void
+     * @dataProvider higanAutumnCenterProvider
      */
-    #[DataProvider('higanAutumnCenterProvider')]
     public function test_isHigan_autumnCenter_legacy(int $year, int $month, int $day): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_LEGACY);
@@ -425,7 +398,6 @@ class MiscSeasonalNodeTest extends TestCase
         $date = DateTime::parse(sprintf('%04d-%02d-%02d', $year, $month, $day));
         $this->assertTrue($node->isHigan($date), "{$year}年{$month}月{$day}日は秋彼岸中日");
     }
-
     /**
      * @return void
      */
@@ -435,11 +407,9 @@ class MiscSeasonalNodeTest extends TestCase
         $this->assertFalse($node->isHigan(DateTime::parse('2026-04-01')));
         $this->assertFalse($node->isHigan(DateTime::parse('2026-06-01')));
     }
-
     // =========================================================================
     // 八十八夜テスト (2021-2026)
     // =========================================================================
-
     /**
      * @return void
      */
@@ -449,7 +419,6 @@ class MiscSeasonalNodeTest extends TestCase
         // 2026年春分(3/20)の3日前も彼岸
         $this->assertTrue($node->isHigan(DateTime::parse('2026-03-17')));
     }
-
     /**
      * @return void
      */
@@ -458,7 +427,6 @@ class MiscSeasonalNodeTest extends TestCase
         $node = MiscSeasonalNode::factory();
         $this->assertSame(DateTime::MISC_SEASONAL_NODE_HIGAN, $node->getMiscSeasonalNodeKey(DateTime::parse('2026-03-17')));
     }
-
     /**
      * @return void
      */
@@ -477,7 +445,6 @@ class MiscSeasonalNodeTest extends TestCase
         }
         $this->assertTrue($found, '2026年の春社日が3月14日〜27日の範囲で見つかること');
     }
-
     /**
      * @return void
      */
@@ -496,11 +463,9 @@ class MiscSeasonalNodeTest extends TestCase
         }
         $this->assertTrue($found, '2026年の秋社日が9月18日〜28日の範囲で見つかること');
     }
-
     // =========================================================================
     // 入梅テスト (2021-2026)
     // =========================================================================
-
     /**
      * @return void
      */
@@ -509,7 +474,6 @@ class MiscSeasonalNodeTest extends TestCase
         $node = MiscSeasonalNode::factory();
         $this->assertFalse($node->isShanichi(DateTime::parse('2026-03-20')));
     }
-
     /**
      * @return void
      */
@@ -527,14 +491,13 @@ class MiscSeasonalNodeTest extends TestCase
         }
         $this->assertTrue($found, '2026年3月の春社日が getMiscSeasonalNodeKey で検出されること');
     }
-
     /**
      * @param int $year
      * @param int $month
      * @param int $day
      * @return void
+     * @dataProvider hachijuhachiyaProvider
      */
-    #[DataProvider('hachijuhachiyaProvider')]
     public function test_isHachijuhachiya(int $year, int $month, int $day): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_VSOP87);
@@ -543,14 +506,13 @@ class MiscSeasonalNodeTest extends TestCase
         $date = DateTime::parse(sprintf('%04d-%02d-%02d', $year, $month, $day));
         $this->assertTrue($node->isHachijuhachiya($date), "{$year}年{$month}月{$day}日は八十八夜");
     }
-
     /**
      * @param int $year
      * @param int $month
      * @param int $day
      * @return void
+     * @dataProvider hachijuhachiyaProvider
      */
-    #[DataProvider('hachijuhachiyaProvider')]
     public function test_isHachijuhachiya_legacy(int $year, int $month, int $day): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_LEGACY);
@@ -559,14 +521,13 @@ class MiscSeasonalNodeTest extends TestCase
         $date = DateTime::parse(sprintf('%04d-%02d-%02d', $year, $month, $day));
         $this->assertTrue($node->isHachijuhachiya($date), "{$year}年{$month}月{$day}日は八十八夜");
     }
-
     /**
      * @param int $year
      * @param int $month
      * @param int $day
      * @return void
+     * @dataProvider hachijuhachiyaProvider
      */
-    #[DataProvider('hachijuhachiyaProvider')]
     public function test_getMiscSeasonalNodeKey_hachijuhachiya(int $year, int $month, int $day): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_VSOP87);
@@ -575,14 +536,13 @@ class MiscSeasonalNodeTest extends TestCase
         $date = DateTime::parse(sprintf('%04d-%02d-%02d', $year, $month, $day));
         $this->assertSame(DateTime::MISC_SEASONAL_NODE_HACHIJUHACHIYA, $node->getMiscSeasonalNodeKey($date));
     }
-
     /**
      * @param int $year
      * @param int $month
      * @param int $day
      * @return void
+     * @dataProvider hachijuhachiyaProvider
      */
-    #[DataProvider('hachijuhachiyaProvider')]
     public function test_getMiscSeasonalNodeKey_hachijuhachiya_legacy(int $year, int $month, int $day): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_LEGACY);
@@ -591,11 +551,9 @@ class MiscSeasonalNodeTest extends TestCase
         $date = DateTime::parse(sprintf('%04d-%02d-%02d', $year, $month, $day));
         $this->assertSame(DateTime::MISC_SEASONAL_NODE_HACHIJUHACHIYA, $node->getMiscSeasonalNodeKey($date));
     }
-
     // =========================================================================
     // 半夏生テスト (2021-2026)
     // =========================================================================
-
     /**
      * @return void
      */
@@ -605,14 +563,13 @@ class MiscSeasonalNodeTest extends TestCase
         $this->assertFalse($node->isHachijuhachiya(DateTime::parse('2026-05-01')));
         $this->assertFalse($node->isHachijuhachiya(DateTime::parse('2026-05-03')));
     }
-
     /**
      * @param int $year
      * @param int $month
      * @param int $day
      * @return void
+     * @dataProvider nyubaiProvider
      */
-    #[DataProvider('nyubaiProvider')]
     public function test_isNyubai(int $year, int $month, int $day): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_VSOP87);
@@ -621,14 +578,13 @@ class MiscSeasonalNodeTest extends TestCase
         $date = DateTime::parse(sprintf('%04d-%02d-%02d', $year, $month, $day));
         $this->assertTrue($node->isNyubai($date), "{$year}年{$month}月{$day}日は入梅");
     }
-
     /**
      * @param int $year
      * @param int $month
      * @param int $day
      * @return void
+     * @dataProvider nyubaiProvider
      */
-    #[DataProvider('nyubaiProvider')]
     public function test_isNyubai_legacy(int $year, int $month, int $day): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_LEGACY);
@@ -637,14 +593,13 @@ class MiscSeasonalNodeTest extends TestCase
         $date = DateTime::parse(sprintf('%04d-%02d-%02d', $year, $month, $day));
         $this->assertTrue($node->isNyubai($date), "{$year}年{$month}月{$day}日は入梅");
     }
-
     /**
      * @param int $year
      * @param int $month
      * @param int $day
      * @return void
+     * @dataProvider nyubaiProvider
      */
-    #[DataProvider('nyubaiProvider')]
     public function test_getMiscSeasonalNodeKey_nyubai(int $year, int $month, int $day): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_VSOP87);
@@ -653,14 +608,13 @@ class MiscSeasonalNodeTest extends TestCase
         $date = DateTime::parse(sprintf('%04d-%02d-%02d', $year, $month, $day));
         $this->assertSame(DateTime::MISC_SEASONAL_NODE_NYUBAI, $node->getMiscSeasonalNodeKey($date));
     }
-
     /**
      * @param int $year
      * @param int $month
      * @param int $day
      * @return void
+     * @dataProvider nyubaiProvider
      */
-    #[DataProvider('nyubaiProvider')]
     public function test_getMiscSeasonalNodeKey_nyubai_legacy(int $year, int $month, int $day): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_LEGACY);
@@ -669,7 +623,6 @@ class MiscSeasonalNodeTest extends TestCase
         $date = DateTime::parse(sprintf('%04d-%02d-%02d', $year, $month, $day));
         $this->assertSame(DateTime::MISC_SEASONAL_NODE_NYUBAI, $node->getMiscSeasonalNodeKey($date));
     }
-
     /**
      * @return void
      */
@@ -678,18 +631,16 @@ class MiscSeasonalNodeTest extends TestCase
         $node = MiscSeasonalNode::factory();
         $this->assertFalse($node->isNyubai(DateTime::parse('2026-08-01')));
     }
-
     // =========================================================================
     // 土用（夏）テスト (2021-2026)
     // =========================================================================
-
     /**
      * @param int $year
      * @param int $month
      * @param int $day
      * @return void
+     * @dataProvider hangeshoProvider
      */
-    #[DataProvider('hangeshoProvider')]
     public function test_isHangesho(int $year, int $month, int $day): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_VSOP87);
@@ -698,14 +649,13 @@ class MiscSeasonalNodeTest extends TestCase
         $date = DateTime::parse(sprintf('%04d-%02d-%02d', $year, $month, $day));
         $this->assertTrue($node->isHangesho($date), "{$year}年{$month}月{$day}日は半夏生");
     }
-
     /**
      * @param int $year
      * @param int $month
      * @param int $day
      * @return void
+     * @dataProvider hangeshoProvider
      */
-    #[DataProvider('hangeshoProvider')]
     public function test_isHangesho_legacy(int $year, int $month, int $day): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_LEGACY);
@@ -714,14 +664,13 @@ class MiscSeasonalNodeTest extends TestCase
         $date = DateTime::parse(sprintf('%04d-%02d-%02d', $year, $month, $day));
         $this->assertTrue($node->isHangesho($date), "{$year}年{$month}月{$day}日は半夏生");
     }
-
     /**
      * @param int $year
      * @param int $month
      * @param int $day
      * @return void
+     * @dataProvider hangeshoProvider
      */
-    #[DataProvider('hangeshoProvider')]
     public function test_getMiscSeasonalNodeKey_hangesho(int $year, int $month, int $day): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_VSOP87);
@@ -730,14 +679,13 @@ class MiscSeasonalNodeTest extends TestCase
         $date = DateTime::parse(sprintf('%04d-%02d-%02d', $year, $month, $day));
         $this->assertSame(DateTime::MISC_SEASONAL_NODE_HANGESHO, $node->getMiscSeasonalNodeKey($date));
     }
-
     /**
      * @param int $year
      * @param int $month
      * @param int $day
      * @return void
+     * @dataProvider hangeshoProvider
      */
-    #[DataProvider('hangeshoProvider')]
     public function test_getMiscSeasonalNodeKey_hangesho_legacy(int $year, int $month, int $day): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_LEGACY);
@@ -746,7 +694,6 @@ class MiscSeasonalNodeTest extends TestCase
         $date = DateTime::parse(sprintf('%04d-%02d-%02d', $year, $month, $day));
         $this->assertSame(DateTime::MISC_SEASONAL_NODE_HANGESHO, $node->getMiscSeasonalNodeKey($date));
     }
-
     /**
      * @return void
      */
@@ -755,14 +702,13 @@ class MiscSeasonalNodeTest extends TestCase
         $node = MiscSeasonalNode::factory();
         $this->assertFalse($node->isHangesho(DateTime::parse('2026-08-01')));
     }
-
     /**
      * @param int $year
      * @param int $month
      * @param int $day
      * @return void
+     * @dataProvider doyoSummerProvider
      */
-    #[DataProvider('doyoSummerProvider')]
     public function test_isDoyo_summerStart(int $year, int $month, int $day): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_VSOP87);
@@ -771,14 +717,13 @@ class MiscSeasonalNodeTest extends TestCase
         $date = DateTime::parse(sprintf('%04d-%02d-%02d', $year, $month, $day));
         $this->assertTrue($node->isDoyo($date), "{$year}年{$month}月{$day}日は夏土用");
     }
-
     /**
      * @param int $year
      * @param int $month
      * @param int $day
      * @return void
+     * @dataProvider doyoSummerProvider
      */
-    #[DataProvider('doyoSummerProvider')]
     public function test_isDoyo_summerStart_legacy(int $year, int $month, int $day): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_LEGACY);
@@ -787,14 +732,13 @@ class MiscSeasonalNodeTest extends TestCase
         $date = DateTime::parse(sprintf('%04d-%02d-%02d', $year, $month, $day));
         $this->assertTrue($node->isDoyo($date), "{$year}年{$month}月{$day}日は夏土用");
     }
-
     /**
      * @param int $year
      * @param int $month
      * @param int $day
      * @return void
+     * @dataProvider doyoSummerProvider
      */
-    #[DataProvider('doyoSummerProvider')]
     public function test_getMiscSeasonalNodeKey_doyo(int $year, int $month, int $day): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_VSOP87);
@@ -803,14 +747,13 @@ class MiscSeasonalNodeTest extends TestCase
         $date = DateTime::parse(sprintf('%04d-%02d-%02d', $year, $month, $day));
         $this->assertSame(DateTime::MISC_SEASONAL_NODE_DOYO, $node->getMiscSeasonalNodeKey($date));
     }
-
     /**
      * @param int $year
      * @param int $month
      * @param int $day
      * @return void
+     * @dataProvider doyoSummerProvider
      */
-    #[DataProvider('doyoSummerProvider')]
     public function test_getMiscSeasonalNodeKey_doyo_legacy(int $year, int $month, int $day): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_LEGACY);
@@ -819,11 +762,9 @@ class MiscSeasonalNodeTest extends TestCase
         $date = DateTime::parse(sprintf('%04d-%02d-%02d', $year, $month, $day));
         $this->assertSame(DateTime::MISC_SEASONAL_NODE_DOYO, $node->getMiscSeasonalNodeKey($date));
     }
-
     // =========================================================================
     // 二百十日テスト (2021-2026)
     // =========================================================================
-
     /**
      * @return void
      */
@@ -833,7 +774,6 @@ class MiscSeasonalNodeTest extends TestCase
         $this->assertFalse($node->isDoyo(DateTime::parse('2026-08-10')));
         $this->assertFalse($node->isDoyo(DateTime::parse('2026-09-01')));
     }
-
     /**
      * @return void
      */
@@ -843,7 +783,6 @@ class MiscSeasonalNodeTest extends TestCase
         // 2026年立春=2/4の18日前=1/17が冬土用入り
         $this->assertTrue($node->isDoyo(DateTime::parse('2026-01-20')));
     }
-
     /**
      * @return void
      */
@@ -856,7 +795,6 @@ class MiscSeasonalNodeTest extends TestCase
         $this->assertTrue($node->isDoyo(DateTime::parse('2021-02-02')), '立春前日は土用');
         $this->assertFalse($node->isDoyo(DateTime::parse('2021-02-04')), '立春翌日は土用明け後');
     }
-
     /**
      * @return void
      */
@@ -872,14 +810,13 @@ class MiscSeasonalNodeTest extends TestCase
         );
         $this->assertFalse($node->isSetsubun(DateTime::parse('2021-02-03')), '立春当日は節分ではない');
     }
-
     /**
      * @param int $year
      * @param int $month
      * @param int $day
      * @return void
+     * @dataProvider nihyakutokaProvider
      */
-    #[DataProvider('nihyakutokaProvider')]
     public function test_isNihyakutoka(int $year, int $month, int $day): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_VSOP87);
@@ -888,14 +825,13 @@ class MiscSeasonalNodeTest extends TestCase
         $date = DateTime::parse(sprintf('%04d-%02d-%02d', $year, $month, $day));
         $this->assertTrue($node->isNihyakutoka($date), "{$year}年{$month}月{$day}日は二百十日");
     }
-
     /**
      * @param int $year
      * @param int $month
      * @param int $day
      * @return void
+     * @dataProvider nihyakutokaProvider
      */
-    #[DataProvider('nihyakutokaProvider')]
     public function test_isNihyakutoka_legacy(int $year, int $month, int $day): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_LEGACY);
@@ -904,14 +840,13 @@ class MiscSeasonalNodeTest extends TestCase
         $date = DateTime::parse(sprintf('%04d-%02d-%02d', $year, $month, $day));
         $this->assertTrue($node->isNihyakutoka($date), "{$year}年{$month}月{$day}日は二百十日");
     }
-
     /**
      * @param int $year
      * @param int $month
      * @param int $day
      * @return void
+     * @dataProvider nihyakutokaProvider
      */
-    #[DataProvider('nihyakutokaProvider')]
     public function test_getMiscSeasonalNodeKey_nihyakutoka(int $year, int $month, int $day): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_VSOP87);
@@ -920,14 +855,13 @@ class MiscSeasonalNodeTest extends TestCase
         $date = DateTime::parse(sprintf('%04d-%02d-%02d', $year, $month, $day));
         $this->assertSame(DateTime::MISC_SEASONAL_NODE_NIHYAKUTOKA, $node->getMiscSeasonalNodeKey($date));
     }
-
     /**
      * @param int $year
      * @param int $month
      * @param int $day
      * @return void
+     * @dataProvider nihyakutokaProvider
      */
-    #[DataProvider('nihyakutokaProvider')]
     public function test_getMiscSeasonalNodeKey_nihyakutoka_legacy(int $year, int $month, int $day): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_LEGACY);
@@ -936,11 +870,9 @@ class MiscSeasonalNodeTest extends TestCase
         $date = DateTime::parse(sprintf('%04d-%02d-%02d', $year, $month, $day));
         $this->assertSame(DateTime::MISC_SEASONAL_NODE_NIHYAKUTOKA, $node->getMiscSeasonalNodeKey($date));
     }
-
     // =========================================================================
     // 二百二十日テスト (2021-2026)
     // =========================================================================
-
     /**
      * @return void
      */
@@ -950,14 +882,13 @@ class MiscSeasonalNodeTest extends TestCase
         $this->assertFalse($node->isNihyakutoka(DateTime::parse('2026-08-31')));
         $this->assertFalse($node->isNihyakutoka(DateTime::parse('2026-09-02')));
     }
-
     /**
      * @param int $year
      * @param int $month
      * @param int $day
      * @return void
+     * @dataProvider nihyakunijuunichiProvider
      */
-    #[DataProvider('nihyakunijuunichiProvider')]
     public function test_isNihyakunijuunichi(int $year, int $month, int $day): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_VSOP87);
@@ -966,14 +897,13 @@ class MiscSeasonalNodeTest extends TestCase
         $date = DateTime::parse(sprintf('%04d-%02d-%02d', $year, $month, $day));
         $this->assertTrue($node->isNihyakunijuunichi($date), "{$year}年{$month}月{$day}日は二百二十日");
     }
-
     /**
      * @param int $year
      * @param int $month
      * @param int $day
      * @return void
+     * @dataProvider nihyakunijuunichiProvider
      */
-    #[DataProvider('nihyakunijuunichiProvider')]
     public function test_isNihyakunijuunichi_legacy(int $year, int $month, int $day): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_LEGACY);
@@ -982,14 +912,13 @@ class MiscSeasonalNodeTest extends TestCase
         $date = DateTime::parse(sprintf('%04d-%02d-%02d', $year, $month, $day));
         $this->assertTrue($node->isNihyakunijuunichi($date), "{$year}年{$month}月{$day}日は二百二十日");
     }
-
     /**
      * @param int $year
      * @param int $month
      * @param int $day
      * @return void
+     * @dataProvider nihyakunijuunichiProvider
      */
-    #[DataProvider('nihyakunijuunichiProvider')]
     public function test_getMiscSeasonalNodeKey_nihyakunijuunichi(int $year, int $month, int $day): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_VSOP87);
@@ -998,14 +927,13 @@ class MiscSeasonalNodeTest extends TestCase
         $date = DateTime::parse(sprintf('%04d-%02d-%02d', $year, $month, $day));
         $this->assertSame(DateTime::MISC_SEASONAL_NODE_NIHYAKUNIJUUNICHI, $node->getMiscSeasonalNodeKey($date));
     }
-
     /**
      * @param int $year
      * @param int $month
      * @param int $day
      * @return void
+     * @dataProvider nihyakunijuunichiProvider
      */
-    #[DataProvider('nihyakunijuunichiProvider')]
     public function test_getMiscSeasonalNodeKey_nihyakunijuunichi_legacy(int $year, int $month, int $day): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_LEGACY);
@@ -1014,7 +942,6 @@ class MiscSeasonalNodeTest extends TestCase
         $date = DateTime::parse(sprintf('%04d-%02d-%02d', $year, $month, $day));
         $this->assertSame(DateTime::MISC_SEASONAL_NODE_NIHYAKUNIJUUNICHI, $node->getMiscSeasonalNodeKey($date));
     }
-
     /**
      * @return void
      */
@@ -1024,11 +951,9 @@ class MiscSeasonalNodeTest extends TestCase
         $this->assertFalse($node->isNihyakunijuunichi(DateTime::parse('2026-09-10')));
         $this->assertFalse($node->isNihyakunijuunichi(DateTime::parse('2026-09-12')));
     }
-
     // =========================================================================
     // 雑節なし（NONE）テスト
     // =========================================================================
-
     /**
      * @return void
      */
@@ -1038,11 +963,9 @@ class MiscSeasonalNodeTest extends TestCase
         $key = $node->getMiscSeasonalNodeKey(DateTime::parse('2026-04-15'));
         $this->assertSame(DateTime::MISC_SEASONAL_NODE_NONE, $key);
     }
-
     // =========================================================================
     // resolveSingleSolarTerm フォールバックテスト
     // =========================================================================
-
     /**
      * @return void
      */
@@ -1052,7 +975,6 @@ class MiscSeasonalNodeTest extends TestCase
         $result = $node->isDoyo(DateTime::parse('1500-07-15'));
         $this->assertIsBool($result);
     }
-
     /**
      * @return void
      * @throws \ReflectionException
@@ -1068,7 +990,6 @@ class MiscSeasonalNodeTest extends TestCase
         $this->assertSame(1500, $termDate->year);
         $this->assertSame(DateTime::SOLAR_TERM_RISSYUN, $termDate->solar_term);
     }
-
     /**
      * @return void
      * @throws \ReflectionException
@@ -1093,11 +1014,9 @@ class MiscSeasonalNodeTest extends TestCase
             Astronomy::useMoonAlgorithm(Astronomy::MOON_LEGACY);
         }
     }
-
     // =========================================================================
     // DateTime / DateTimeImmutable プロパティ統合テスト
     // =========================================================================
-
     /**
      * @return void
      */
@@ -1109,7 +1028,6 @@ class MiscSeasonalNodeTest extends TestCase
         $this->assertSame(DateTime::MISC_SEASONAL_NODE_SETSUBUN, $date->misc_seasonal_node);
         $this->assertSame('節分', $date->misc_seasonal_node_text);
     }
-
     /**
      * @return void
      */
@@ -1119,7 +1037,6 @@ class MiscSeasonalNodeTest extends TestCase
         $this->assertSame(DateTimeImmutable::MISC_SEASONAL_NODE_SETSUBUN, $date->miscSeasonalNode);
         $this->assertSame('節分', $date->miscSeasonalNodeText);
     }
-
     /**
      * @return void
      */
@@ -1129,7 +1046,6 @@ class MiscSeasonalNodeTest extends TestCase
         $this->assertSame(DateTime::MISC_SEASONAL_NODE_DOYO, $date->miscSeasonalNode);
         $this->assertSame('土用', $date->miscSeasonalNodeText);
     }
-
     /**
      * @return void
      */
@@ -1139,7 +1055,6 @@ class MiscSeasonalNodeTest extends TestCase
         $this->assertSame(DateTime::MISC_SEASONAL_NODE_HIGAN, $date->miscSeasonalNode);
         $this->assertSame('彼岸', $date->miscSeasonalNodeText);
     }
-
     /**
      * @return void
      */
@@ -1149,7 +1064,6 @@ class MiscSeasonalNodeTest extends TestCase
         $this->assertSame(DateTime::MISC_SEASONAL_NODE_NONE, $date->miscSeasonalNode);
         $this->assertSame('', $date->miscSeasonalNodeText);
     }
-
     /**
      * @return void
      */

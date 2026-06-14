@@ -13,7 +13,7 @@ const SAVE_DIR = __DIR__ . '/../fixtures/';
  * @param string $url ターゲットURL
  * @return string|false HTML文字列（失敗時はfalse）
  */
-function fetchHtmlWithCache(string $url): string|false
+function fetchHtmlWithCache(string $url): string|bool
 {
     // 1. 保存先ディレクトリのパスを整形・作成
     $base_dir = rtrim(SAVE_DIR, '/\\');
@@ -75,7 +75,7 @@ function fetchHtmlWithCache(string $url): string|false
  * @param string $filepath フルパス
  * @return string|false ファイル内容（ファイルが存在しない場合はfalse）
  */
-function fallbackToLocal(string $filepath): string|false
+function fallbackToLocal(string $filepath): string|bool
 {
     if (file_exists($filepath)) {
         echo "Notice: 読み込み失敗のため、ローカルキャッシュ ($filepath) からデータを復元します。\n";
@@ -92,7 +92,7 @@ function fallbackToLocal(string $filepath): string|false
  * @return string|false
  * @throws \JsonException
  */
-function holiday(string $url): string|false
+function holiday(string $url): string|bool
 {
     $contents = fetchHtmlWithCache($url);
     if ($contents === false) {
@@ -149,7 +149,7 @@ function holiday(string $url): string|false
  * @return string|false
  * @throws \JsonException
  */
-function season(string $url): string|false
+function season(string $url): string|bool
 {
     $contents = fetchHtmlWithCache($url);
     if ($contents === false) {
@@ -215,7 +215,7 @@ function season(string $url): string|false
  * @return string|false
  * @throws \JsonException
  */
-function moon(string $url): string|false
+function moon(string $url): string|bool
 {
     $contents = fetchHtmlWithCache($url);
     if ($contents === false) {

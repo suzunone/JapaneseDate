@@ -30,17 +30,16 @@ use PHPUnit\Framework\TestCase;
  * @package     JapaneseDate
  * @subpackage  Components\SexagenaryCycle
  * @since       2026-05-29
+ * @covers \JapaneseDate\Components\SexagenaryCycle
+ * @covers \JapaneseDate\Components\SexagenaryCycle::factory
+ * @covers \JapaneseDate\Components\SexagenaryCycle::getOrientalZodiacKey
+ * @covers \JapaneseDate\Components\SexagenaryCycle::viewOrientalZodiac
+ * @covers \JapaneseDate\Components\SexagenaryCycle::getHeavenlyStemKey
+ * @covers \JapaneseDate\Components\SexagenaryCycle::viewHeavenlyStem
  */
-#[CoversClass(SexagenaryCycle::class)]
-#[CoversMethod(SexagenaryCycle::class, 'factory')]
-#[CoversMethod(SexagenaryCycle::class, 'getOrientalZodiacKey')]
-#[CoversMethod(SexagenaryCycle::class, 'viewOrientalZodiac')]
-#[CoversMethod(SexagenaryCycle::class, 'getHeavenlyStemKey')]
-#[CoversMethod(SexagenaryCycle::class, 'viewHeavenlyStem')]
 class SexagenaryCycleTest extends TestCase
 {
     // ==================== factory ====================
-
     /**
      * @return array[]
      */
@@ -63,7 +62,6 @@ class SexagenaryCycleTest extends TestCase
             '2030年(戌)' => [2030, 11, '戌'],
         ];
     }
-
     /**
      * @return array[]
      */
@@ -86,63 +84,55 @@ class SexagenaryCycleTest extends TestCase
             '2025年(乙)' => [2025, 1, '乙'],
         ];
     }
-
     // ==================== getOrientalZodiacKey ====================
-
     /**
      * @return void
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
      */
-    #[RunInSeparateProcess]
-    #[PreserveGlobalState(false)]
     public function test_factory_returnsSameInstance(): void
     {
         $instance1 = SexagenaryCycle::factory();
         $instance2 = SexagenaryCycle::factory();
         $this->assertSame($instance1, $instance2, 'factory() はシングルトンを返す必要があります');
     }
-
     /**
      * @return void
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
      */
-    #[RunInSeparateProcess]
-    #[PreserveGlobalState(false)]
     public function test_factory_returnsSexagenaryCycleInstance(): void
     {
         $this->assertInstanceOf(SexagenaryCycle::class, SexagenaryCycle::factory());
     }
-
     // ==================== viewOrientalZodiac ====================
-
     /**
      * @noinspection PhpUnusedParameterInspection
      * @param int $year
      * @param int $expectedKey
      * @param string $expectedText
      * @return void
+     * @dataProvider orientalZodiacProvider
      */
-    #[DataProvider('orientalZodiacProvider')]
     public function test_getOrientalZodiacKey(int $year, int $expectedKey, string $expectedText): void
     {
         $cycle = new SexagenaryCycle();
         $this->assertSame($expectedKey, $cycle->getOrientalZodiacKey($year));
     }
-
     /**
      * @noinspection PhpUnusedParameterInspection
      * @param int $year
      * @param int $key
      * @param string $expectedText
      * @return void
+     * @dataProvider orientalZodiacProvider
      */
-    #[DataProvider('orientalZodiacProvider')]
     public function test_viewOrientalZodiac_validKey(int $year, int $key, string $expectedText): void
     {
         $cycle = new SexagenaryCycle();
         $this->assertSame($expectedText, $cycle->viewOrientalZodiac($key));
     }
-
     // ==================== getHeavenlyStemKey ====================
-
     /**
      * @return void
      */
@@ -151,37 +141,33 @@ class SexagenaryCycleTest extends TestCase
         $cycle = new SexagenaryCycle();
         $this->assertSame('', $cycle->viewOrientalZodiac(99));
     }
-
     /**
      * @noinspection PhpUnusedParameterInspection
      * @param int $year
      * @param int $expectedKey
      * @param string $expectedText
      * @return void
+     * @dataProvider heavenlyStemProvider
      */
-    #[DataProvider('heavenlyStemProvider')]
     public function test_getHeavenlyStemKey(int $year, int $expectedKey, string $expectedText): void
     {
         $cycle = new SexagenaryCycle();
         $this->assertSame($expectedKey, $cycle->getHeavenlyStemKey($year));
     }
-
     // ==================== viewHeavenlyStem ====================
-
     /**
      * @noinspection PhpUnusedParameterInspection
      * @param int $year
      * @param int $key
      * @param string $expectedText
      * @return void
+     * @dataProvider heavenlyStemProvider
      */
-    #[DataProvider('heavenlyStemProvider')]
     public function test_viewHeavenlyStem_validKey(int $year, int $key, string $expectedText): void
     {
         $cycle = new SexagenaryCycle();
         $this->assertSame($expectedText, $cycle->viewHeavenlyStem($key));
     }
-
     /**
      * @return void
      */

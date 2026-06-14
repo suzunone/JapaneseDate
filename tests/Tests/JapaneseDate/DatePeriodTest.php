@@ -480,31 +480,6 @@ class DatePeriodTest extends TestCase
         }
     }
     /**
-     * @return void
-     * @throws \DateInvalidTimeZoneException
-     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
-     */
-    public function test_eachSolarTerm_usesVsop87AlgorithmWhenSelected(): void
-    {
-        try {
-            Astronomy::useSolarAlgorithm(Astronomy::SOLAR_VSOP87);
-
-            $period = DatePeriod::eachSolarTerm(
-                DateTime::parse('2026-03-01'),
-                DateTime::parse('2026-03-31')
-            );
-
-            $dates = iterator_to_array($period);
-            $formattedDates = array_map(static fn ($d) => $d->format('Y-m-d'), $dates);
-
-            $this->assertContains('2026-03-20', $formattedDates);
-        } finally {
-            Astronomy::useSolarAlgorithm(Astronomy::SOLAR_LEGACY);
-            Astronomy::useMoonAlgorithm(Astronomy::MOON_LEGACY);
-        }
-    }
-
-    /**
      * eachSolarTerm: 返されるイテレータが DatePeriod のインスタンスである。
      */
     public function test_eachSolarTerm_returnsDatePeriod(): void

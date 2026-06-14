@@ -28,14 +28,12 @@ use Tests\JapaneseDate\InvokeTrait;
  * SunAlgorithm / MoonAlgorithm インターフェイス実装と
  * 周期項近似式による黄経計算の正しさを検証する。
  * C0 カバレッジ 100% を本ファイルのみで達成する。
+ * @covers \JapaneseDate\Components\LegacyAstronomy
  */
-#[CoversClass(LegacyAstronomy::class)]
 class LegacyAstronomyTest extends TestCase
 {
     use InvokeTrait;
-
     // ==================== インターフェイス実装の確認 ====================
-
     /**
      * @return array[]
      */
@@ -54,7 +52,6 @@ class LegacyAstronomyTest extends TestCase
             '2023 winter solstice JY' => [23.971, 270.0, 2.0],
         ];
     }
-
     /**
      * @return array[]
      */
@@ -68,9 +65,7 @@ class LegacyAstronomyTest extends TestCase
             'JY=-5' => [-5.0],
         ];
     }
-
     // ==================== アルゴリズム識別子 ====================
-
     /**
      * @return array[]
      */
@@ -87,7 +82,6 @@ class LegacyAstronomyTest extends TestCase
             '2023 winter solstice' => [2023, 12, 22, 3, 27, 0, 270.0, 2.0],
         ];
     }
-
     /**
      * @return array[]
      */
@@ -99,9 +93,7 @@ class LegacyAstronomyTest extends TestCase
             '2023 full moon' => [2023, 2, 6, 3, 29, 0],
         ];
     }
-
     // ==================== jy2LongitudeSun ====================
-
     /**
      * @return void
      */
@@ -109,7 +101,6 @@ class LegacyAstronomyTest extends TestCase
     {
         $this->assertInstanceOf(SunAlgorithm::class, new LegacyAstronomy());
     }
-
     /**
      * @return void
      */
@@ -117,9 +108,7 @@ class LegacyAstronomyTest extends TestCase
     {
         $this->assertInstanceOf(MoonAlgorithm::class, new LegacyAstronomy());
     }
-
     // ==================== jY2LongitudeMoon ====================
-
     /**
      * @return void
      */
@@ -127,7 +116,6 @@ class LegacyAstronomyTest extends TestCase
     {
         $this->assertSame(Astronomy::SOLAR_LEGACY, (new LegacyAstronomy())->sunAlgorithmName());
     }
-
     /**
      * @return void
      */
@@ -135,46 +123,38 @@ class LegacyAstronomyTest extends TestCase
     {
         $this->assertSame(Astronomy::MOON_LEGACY, (new LegacyAstronomy())->moonAlgorithmName());
     }
-
     // ==================== longitudeSun ====================
-
     /**
      * @param float $julianYear
      * @param float $expectedDeg
      * @param float $delta
      * @return void
+     * @dataProvider jy2LongitudeSunProvider
      */
-    #[DataProvider('jy2LongitudeSunProvider')]
     public function test_jy2LongitudeSun(float $julianYear, float $expectedDeg, float $delta): void
     {
         $legacy = new LegacyAstronomy();
         $result = $legacy->jy2LongitudeSun($julianYear);
-
         $this->assertGreaterThanOrEqual(0.0, $result);
         $this->assertLessThan(360.0, $result);
-
         // 黄経は0-360の範囲で期待値と比較（360付近のラップアラウンドを考慮）
         $diff = abs($result - $expectedDeg);
         $diff = min($diff, 360.0 - $diff);
         $this->assertLessThanOrEqual($delta, $diff, "Expected ~{$expectedDeg}°, got {$result}°");
     }
-
     /**
      * @param float $julianYear
      * @return void
+     * @dataProvider jY2LongitudeMoonProvider
      */
-    #[DataProvider('jY2LongitudeMoonProvider')]
     public function test_jY2LongitudeMoonReturnsNormalizedAngle(float $julianYear): void
     {
         $legacy = new LegacyAstronomy();
         $result = $legacy->jY2LongitudeMoon($julianYear);
-
         $this->assertGreaterThanOrEqual(0.0, $result);
         $this->assertLessThan(360.0, $result);
     }
-
     // ==================== longitudeMoon ====================
-
     /**
      * @param int $year
      * @param int $month
@@ -186,29 +166,18 @@ class LegacyAstronomyTest extends TestCase
      * @param float $delta
      * @return void
      * @throws \Exception
+     * @dataProvider longitudeSunProvider
      */
-    #[DataProvider('longitudeSunProvider')]
-    public function test_longitudeSun(
-        int $year,
-        int $month,
-        int $day,
-        float $hour,
-        float $min,
-        float $sec,
-        float $expectedDeg,
-        float $delta,
-    ): void {
+    public function test_longitudeSun(int $year, int $month, int $day, float $hour, float $min, float $sec, float $expectedDeg, float $delta): void
+    {
         $legacy = new LegacyAstronomy();
         $result = $legacy->longitudeSun($year, $month, $day, $hour, $min, $sec);
-
         $this->assertGreaterThanOrEqual(0.0, $result);
         $this->assertLessThan(360.0, $result);
-
         $diff = abs($result - $expectedDeg);
         $diff = min($diff, 360.0 - $diff);
         $this->assertLessThanOrEqual($delta, $diff, "Expected ~{$expectedDeg}°, got {$result}°");
     }
-
     /**
      * @param int $year
      * @param int $month
@@ -218,25 +187,16 @@ class LegacyAstronomyTest extends TestCase
      * @param float $sec
      * @return void
      * @throws \Exception
+     * @dataProvider longitudeMoonProvider
      */
-    #[DataProvider('longitudeMoonProvider')]
-    public function test_longitudeMoonReturnsNormalizedAngle(
-        int $year,
-        int $month,
-        int $day,
-        float $hour,
-        float $min,
-        float $sec,
-    ): void {
+    public function test_longitudeMoonReturnsNormalizedAngle(int $year, int $month, int $day, float $hour, float $min, float $sec): void
+    {
         $legacy = new LegacyAstronomy();
         $result = $legacy->longitudeMoon($year, $month, $day, $hour, $min, $sec);
-
         $this->assertGreaterThanOrEqual(0.0, $result);
         $this->assertLessThan(360.0, $result);
     }
-
     // ==================== computeJulianYear（private） ====================
-
     /**
      * @return void
      * @throws \ReflectionException
@@ -250,7 +210,6 @@ class LegacyAstronomyTest extends TestCase
 
         $this->assertEqualsWithDelta(0.0, $legacyJY, 1e-12);
     }
-
     /**
      * @return void
      * @throws \ReflectionException
@@ -266,7 +225,6 @@ class LegacyAstronomyTest extends TestCase
         // 30秒分の差があることを確認
         $this->assertGreaterThan($jy1, $jy2);
     }
-
     /**
      * @return void
      * @throws \ReflectionException
@@ -280,9 +238,7 @@ class LegacyAstronomyTest extends TestCase
 
         $this->assertEqualsWithDelta($fromHours, $fromDayFraction, 1e-12);
     }
-
     // ==================== normalizeAngle（private） ====================
-
     /**
      * @return void
      * @throws \ReflectionException
@@ -294,7 +250,6 @@ class LegacyAstronomyTest extends TestCase
 
         $this->assertEqualsWithDelta(0.0, $result, 1e-9);
     }
-
     /**
      * @return void
      * @throws \ReflectionException
@@ -306,7 +261,6 @@ class LegacyAstronomyTest extends TestCase
 
         $this->assertEqualsWithDelta(270.0, $result, 1e-9);
     }
-
     /**
      * @return void
      * @throws \ReflectionException
@@ -318,9 +272,7 @@ class LegacyAstronomyTest extends TestCase
 
         $this->assertEqualsWithDelta(0.0, $result, 1e-9);
     }
-
     // ==================== sumPeriodicTerms（private） ====================
-
     /**
      * @return void
      * @throws \ReflectionException
@@ -332,7 +284,6 @@ class LegacyAstronomyTest extends TestCase
 
         $this->assertEqualsWithDelta(0.0, $result, 1e-15);
     }
-
     /**
      * @return void
      * @throws \ReflectionException
@@ -345,7 +296,6 @@ class LegacyAstronomyTest extends TestCase
 
         $this->assertEqualsWithDelta(0.0, $result, 1e-15);
     }
-
     /**
      * @return void
      * @throws \ReflectionException

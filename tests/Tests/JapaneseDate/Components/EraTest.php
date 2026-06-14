@@ -42,12 +42,11 @@ use Tests\JapaneseDate\InvokeTrait;
  * @author      Suzunone<suzunone.eleven@gmail.com>
  * @link        https://github.com/suzunone/JapaneseDate
  * @since       8.4.0
+ * @covers \JapaneseDate\Components\JisEra
  */
-#[CoversClass(JisEra::class)]
 class EraTest extends TestCase
 {
     use InvokeTrait;
-
     /**
      * getEraKey のテストデータ。
      *
@@ -67,7 +66,6 @@ class EraTest extends TestCase
             '令和（2026-01-01 JST）' => ['2026-01-01T00:00:00+09:00', DateTime::ERA_REIWA],
         ];
     }
-
     /**
      * getEraYear のテストデータ。
      *
@@ -88,11 +86,9 @@ class EraTest extends TestCase
             '令和8年（2026年）' => [2026, DateTime::ERA_REIWA, 8],
         ];
     }
-
     // =========================================================================
     // factory()
     // =========================================================================
-
     /**
      * getEraNameString のテストデータ。
      *
@@ -108,11 +104,9 @@ class EraTest extends TestCase
             '令和' => [DateTime::ERA_REIWA, '令和'],
         ];
     }
-
     // =========================================================================
     // getEraKey()
     // =========================================================================
-
     /**
      * parseJisDate のテストデータ。
      *
@@ -136,7 +130,6 @@ class EraTest extends TestCase
             'パース不可能な文字列' => ['不正な文字列！！', null],
         ];
     }
-
     /**
      * JST タイムゾーンで指定日時の Unix タイムスタンプを返すヘルパー。
      */
@@ -150,7 +143,6 @@ class EraTest extends TestCase
 
         return (float) $dt->getTimestamp();
     }
-
     /**
      * factory() は同一インスタンスを返すこと。
      */
@@ -160,57 +152,50 @@ class EraTest extends TestCase
         $b = JisEra::factory();
         $this->assertSame($a, $b);
     }
-
     // =========================================================================
     // getEraYear()
     // =========================================================================
-
     /**
      * DateTime インスタンスで getEraKey() が正しい元号定数を返すこと。
+     * @dataProvider eraKeyProvider
      */
-    #[DataProvider('eraKeyProvider')]
     public function test_getEraKey_with_DateTime(string $dateStr, int $expectedEra): void
     {
         $dt = new DateTime($dateStr);
         $era = new JisEra();
         $this->assertSame($expectedEra, $era->getEraKey($dt));
     }
-
     /**
      * DateTimeImmutable インスタンスでも getEraKey() が正しい元号定数を返すこと。
+     * @dataProvider eraKeyProvider
      */
-    #[DataProvider('eraKeyProvider')]
     public function test_getEraKey_with_DateTimeImmutable(string $dateStr, int $expectedEra): void
     {
         $dt = new DateTimeImmutable($dateStr);
         $era = new JisEra();
         $this->assertSame($expectedEra, $era->getEraKey($dt));
     }
-
     // =========================================================================
     // getEraNameString()
     // =========================================================================
-
     /**
      * getEraYear() が正しい元号年を返すこと。
+     * @dataProvider eraYearProvider
      */
-    #[DataProvider('eraYearProvider')]
     public function test_getEraYear(int $gregorianYear, int $eraKey, int $expectedYear): void
     {
         $era = new JisEra();
         $this->assertSame($expectedYear, $era->getEraYear($gregorianYear, $eraKey));
     }
-
     /**
      * getEraNameString() が正しい元号名を返すこと。
+     * @dataProvider eraNameProvider
      */
-    #[DataProvider('eraNameProvider')]
     public function test_getEraNameString(int $eraKey, string $expectedName): void
     {
         $era = new JisEra();
         $this->assertSame($expectedName, $era->getEraNameString($eraKey));
     }
-
     /**
      * 未知の元号キーを渡すと空文字列を返すこと。
      */
@@ -219,21 +204,18 @@ class EraTest extends TestCase
         $era = new JisEra();
         $this->assertSame('', $era->getEraNameString(9999));
     }
-
     // =========================================================================
     // parseJisDate()
     // =========================================================================
-
     /**
      * parseJisDate() が各書式を正しく Unix タイムスタンプへ変換すること。
+     * @dataProvider parseJisDateProvider
      */
-    #[DataProvider('parseJisDateProvider')]
     public function test_parseJisDate(string $input, int|float|null $expected): void
     {
         $era = new JisEra();
         $this->assertSame($expected, $era->parseJisDate($input));
     }
-
     /**
      * @return void
      * @throws \ReflectionException
@@ -243,7 +225,6 @@ class EraTest extends TestCase
         // シングルトンをリセットしてテスト間の干渉を防ぐ
         $this->invokeSetProperty(JisEra::class, 'instance', null);
     }
-
     /**
      * @return void
      * @throws \ReflectionException

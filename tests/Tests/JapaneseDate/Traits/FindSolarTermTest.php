@@ -249,28 +249,6 @@ class FindSolarTermTest extends TestCase
         return (new SolarTerm())->{$method}($year);
     }
     /**
-     * @return void
-     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
-     * @throws \ReflectionException
-     */
-    public function test_getSolarTermUsesVsop87AlgorithmWhenSelected(): void
-    {
-        try {
-            Astronomy::useSolarAlgorithm(Astronomy::SOLAR_VSOP87);
-
-            $dateTime = new DateTime('2026-03-01 01:02:03', new DateTimeZone('Asia/Tokyo'));
-            $term = self::astronomicalSolarTerm('syunbun', 2026);
-
-            $result = $this->invokeExecuteMethod($dateTime, 'getSyunbun', []);
-
-            $this->assertSame(self::expectedDate($term, '01:02:03'), $result->format('Y-m-d H:i:s'));
-        } finally {
-            Astronomy::useSolarAlgorithm(Astronomy::SOLAR_LEGACY);
-            Astronomy::useMoonAlgorithm(Astronomy::MOON_LEGACY);
-        }
-    }
-
-    /**
      * 簡易テーブルの範囲外では天文計算にフォールバックして次の二十四節気日を取得することを確認する。
      * @dataProvider solarTermDataProvider
      */

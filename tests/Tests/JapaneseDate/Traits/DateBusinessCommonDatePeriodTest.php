@@ -16,11 +16,10 @@ use PHPUnit\Framework\TestCase;
 /**
  *
  */
-
 /**
  *
+ * @covers \JapaneseDate\Traits\DateBusinessCommon
  */
-#[CoversTrait(DateBusinessCommon::class)]
 class DateBusinessCommonDatePeriodTest extends TestCase
 {
     /**
@@ -46,7 +45,6 @@ class DateBusinessCommonDatePeriodTest extends TestCase
         $this->assertNotContains('2026-05-31', $dates); // 日
         $this->assertCount(5, $dates);
     }
-
     /**
      * @return void
      */
@@ -67,7 +65,6 @@ class DateBusinessCommonDatePeriodTest extends TestCase
         $this->assertNotContains('2026-01-04', $dates); // 日
         $this->assertContains('2026-01-05', $dates);    // 月
     }
-
     /**
      * @return void
      * @throws \Exception
@@ -93,7 +90,6 @@ class DateBusinessCommonDatePeriodTest extends TestCase
         $this->assertContains('2026-05-29', $dates);
         $this->assertCount(4, $dates);
     }
-
     /**
      * @return void
      * @throws \Exception
@@ -116,7 +112,6 @@ class DateBusinessCommonDatePeriodTest extends TestCase
         $this->assertNotContains('2026-05-27', $dates);
         $this->assertCount(4, $dates);
     }
-
     /**
      * @return void
      */
@@ -140,7 +135,6 @@ class DateBusinessCommonDatePeriodTest extends TestCase
         $this->assertContains('2026-05-31', $dates); // 日
         $this->assertCount(2, $dates);
     }
-
     /**
      * @return void
      * @throws \Exception
@@ -164,7 +158,6 @@ class DateBusinessCommonDatePeriodTest extends TestCase
         $this->assertContains('2026-05-31', $dates); // 日
         $this->assertCount(3, $dates);
     }
-
     /**
      * @return void
      */
@@ -180,7 +173,6 @@ class DateBusinessCommonDatePeriodTest extends TestCase
         $period->setBusinessConfig(null);
         $this->assertNull($period->getBusinessConfig());
     }
-
     /**
      * @return void
      */
@@ -197,7 +189,6 @@ class DateBusinessCommonDatePeriodTest extends TestCase
 
         $this->assertCount(0, $dates);
     }
-
     /**
      * @return void
      * @throws \Exception
@@ -220,7 +211,6 @@ class DateBusinessCommonDatePeriodTest extends TestCase
         $this->assertContains('2026-05-27', $dates);
         $this->assertCount(1, $dates);
     }
-
     /**
      * @return void
      */
@@ -228,7 +218,6 @@ class DateBusinessCommonDatePeriodTest extends TestCase
     {
         BusinessCalendar::resetAll();
     }
-
     /**
      * @return void
      */

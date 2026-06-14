@@ -22,15 +22,13 @@ use Tests\JapaneseDate\InvokeTrait;
 /**
  *
  */
-
 /**
  *
+ * @covers \JapaneseDate\Traits\DateBusinessCommon
  */
-#[CoversTrait(DateBusinessCommon::class)]
 class DateBusinessCommonCalendarTest extends TestCase
 {
     use InvokeTrait;
-
     /**
      * @return void
      */
@@ -39,7 +37,6 @@ class DateBusinessCommonCalendarTest extends TestCase
         $calendar = new Calendar('2026-05-25'); // 月曜
         $this->assertTrue($calendar->isBusinessDayByConfig());
     }
-
     /**
      * @return void
      */
@@ -48,7 +45,6 @@ class DateBusinessCommonCalendarTest extends TestCase
         $calendar = new Calendar('2026-05-30'); // 土曜
         $this->assertFalse($calendar->isBusinessDayByConfig());
     }
-
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -60,7 +56,6 @@ class DateBusinessCommonCalendarTest extends TestCase
         $saturday = DateTime::factory('2026-05-30');
         $this->assertFalse($calendar->isBusinessDayByConfig($saturday));
     }
-
     /**
      * @return void
      * @throws \Exception
@@ -74,7 +69,6 @@ class DateBusinessCommonCalendarTest extends TestCase
         $calendar->setBusinessConfig($config);
         $this->assertFalse($calendar->isBusinessDayByConfig());
     }
-
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -95,7 +89,6 @@ class DateBusinessCommonCalendarTest extends TestCase
         $this->assertNotContains('2026-05-31', $dates); // 日
         $this->assertCount(5, $dates);
     }
-
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -112,7 +105,6 @@ class DateBusinessCommonCalendarTest extends TestCase
         $result = $calendar->getBusinessDaysBySpan('2026-05-29');
         $this->assertCount(4, $result);
     }
-
     /**
      * @return void
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
@@ -126,7 +118,6 @@ class DateBusinessCommonCalendarTest extends TestCase
         $this->assertSame('2026-05-25', $result[0]->format('Y-m-d'));
         $this->assertSame('2026-05-29', $result[4]->format('Y-m-d'));
     }
-
     /**
      * @return void
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
@@ -140,7 +131,6 @@ class DateBusinessCommonCalendarTest extends TestCase
         $this->assertSame('2026-05-29', $dates[0]); // 金曜
         $this->assertSame('2026-06-01', $dates[1]); // 月曜（土日スキップ）
     }
-
     /**
      * @return void
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
@@ -160,7 +150,6 @@ class DateBusinessCommonCalendarTest extends TestCase
         $this->assertContains('2026-05-28', $dates);
         $this->assertContains('2026-05-29', $dates);
     }
-
     /**
      * @return void
      */
@@ -176,7 +165,6 @@ class DateBusinessCommonCalendarTest extends TestCase
         $calendar->setBusinessConfig(null);
         $this->assertNull($calendar->getBusinessConfig());
     }
-
     /**
      * @return void
      * @throws \Exception
@@ -187,7 +175,6 @@ class DateBusinessCommonCalendarTest extends TestCase
         $calendar->setClosingDay('2026-08-14', '夏期休暇');
         $this->assertFalse($calendar->isBusinessDayByConfig());
     }
-
     /**
      * @return void
      * @throws \Exception
@@ -198,7 +185,6 @@ class DateBusinessCommonCalendarTest extends TestCase
         $calendar->setOpenDay('2026-05-30');
         $this->assertTrue($calendar->isBusinessDayByConfig());
     }
-
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -217,7 +203,6 @@ class DateBusinessCommonCalendarTest extends TestCase
         $this->assertNotContains('2026-05-27', $dates);
         $this->assertCount(4, $dates);
     }
-
     /**
      * @return void
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
@@ -228,7 +213,6 @@ class DateBusinessCommonCalendarTest extends TestCase
         $result = $calendar->getBusinessDaysByLimit(0);
         $this->assertCount(0, $result);
     }
-
     /**
      * @return void
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
@@ -244,7 +228,6 @@ class DateBusinessCommonCalendarTest extends TestCase
         $this->expectException(NativeDateTimeException::class);
         $calendar->getBusinessDaysByLimit(1);
     }
-
     /**
      * @return void
      */
@@ -255,7 +238,6 @@ class DateBusinessCommonCalendarTest extends TestCase
         $calendar->setClosingWeekdays([1]);
         $this->assertFalse($calendar->isBusinessDayByConfig());
     }
-
     /**
      * @return void
      */
@@ -268,9 +250,7 @@ class DateBusinessCommonCalendarTest extends TestCase
         $calendar->setBusinessConfig($config);
         $this->assertTrue($calendar->isBusinessDayByConfig());
     }
-
     // --- DateBusinessCommon ショートカット（Calendar 固有ルート） ---
-
     /**
      * @return void
      */
@@ -281,7 +261,6 @@ class DateBusinessCommonCalendarTest extends TestCase
         $calendar->setOpenNthWeekday(6, 2);
         $this->assertTrue($calendar->isBusinessDayByConfig());
     }
-
     /**
      * @return void
      */
@@ -292,7 +271,6 @@ class DateBusinessCommonCalendarTest extends TestCase
         $calendar->setClosingNthWeekday(3, 3, '第3水曜定休');
         $this->assertFalse($calendar->isBusinessDayByConfig());
     }
-
     /**
      * @return void
      */
@@ -303,7 +281,6 @@ class DateBusinessCommonCalendarTest extends TestCase
         $calendar->addOpenFilter(fn (DateTimeInterface $d) => $d->format('Ymd') === '20260530');
         $this->assertTrue($calendar->isBusinessDayByConfig());
     }
-
     /**
      * @return void
      */
@@ -314,7 +291,6 @@ class DateBusinessCommonCalendarTest extends TestCase
         $calendar->addClosingFilter(fn (DateTimeInterface $d) => $d->format('Ymd') === '20260525', '特別休業');
         $this->assertFalse($calendar->isBusinessDayByConfig());
     }
-
     /**
      * @return void
      */
@@ -325,7 +301,6 @@ class DateBusinessCommonCalendarTest extends TestCase
         $calendar->setBusinessMacro(fn (DateTimeInterface $d) => true);
         $this->assertTrue($calendar->isBusinessDayByConfig());
     }
-
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -338,7 +313,6 @@ class DateBusinessCommonCalendarTest extends TestCase
         $this->assertFalse($calendar->checkIsBusinessDay($saturday));
         $this->assertTrue($calendar->checkIsBusinessDay(DateTime::factory('2026-05-25')));
     }
-
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -355,7 +329,6 @@ class DateBusinessCommonCalendarTest extends TestCase
         $this->assertSame('夏期休暇', $calendar->checkGetBusinessDayLabel($target));
         $this->assertNull($calendar->checkGetBusinessDayLabel(DateTime::factory('2026-05-25')));
     }
-
     /**
      * @return void
      */
@@ -365,7 +338,6 @@ class DateBusinessCommonCalendarTest extends TestCase
         // 引数なし + Calendar は DateTimeInterface でない → $target === null → false
         $this->assertFalse($calendar->checkIsBusinessDay());
     }
-
     /**
      * @return void
      */
@@ -375,10 +347,8 @@ class DateBusinessCommonCalendarTest extends TestCase
         // 引数なし + Calendar は DateTimeInterface でない → $target === null → null
         $this->assertNull($calendar->checkGetBusinessDayLabel());
     }
-
     // --- checkIsBusinessDay / checkGetBusinessDayLabel の null target ブランチ ---
     // Calendar は DateTimeInterface を実装していないため、引数なしで呼ぶと $target === null になる
-
     /**
      * @return void
      */
@@ -392,7 +362,6 @@ class DateBusinessCommonCalendarTest extends TestCase
         $this->assertSame(5, Calendar::FRIDAY);
         $this->assertSame(6, Calendar::SATURDAY);
     }
-
     /**
      * @return void
      */
@@ -400,9 +369,7 @@ class DateBusinessCommonCalendarTest extends TestCase
     {
         BusinessCalendar::resetAll();
     }
-
     // --- Calendar 定数 ---
-
     /**
      * @return void
      */
@@ -426,7 +393,7 @@ class ThrowingDateTimeForBusinessLimit extends DateTime
      * @noinspection PhpUnused
      */
     #[\ReturnTypeWillChange]
-    public function add(mixed $interval, mixed $value = 1, mixed $overflow = null): static
+    public function add($interval, $value = 1, $overflow = null)
     {
         throw new \RuntimeException('DateTime add failed.');
     }

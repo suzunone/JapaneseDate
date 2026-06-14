@@ -20,11 +20,10 @@ use PHPUnit\Framework\TestCase;
 /**
  *
  */
-
 /**
  *
+ * @covers \JapaneseDate\Traits\DateBusinessCommon
  */
-#[CoversTrait(DateBusinessCommon::class)]
 class DateBusinessCommonDateTimeTest extends TestCase
 {
     /**
@@ -37,7 +36,6 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $dt = DateTime::factory('2026-05-25'); // 月曜
         $this->assertTrue($dt->isBusinessDay());
     }
-
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -48,9 +46,7 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $dt = DateTime::factory('2026-05-30'); // 土曜
         $this->assertFalse($dt->isBusinessDay());
     }
-
     // --- DateTime::isBusinessDay ---
-
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -61,7 +57,6 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $dt = DateTime::factory('2026-01-01'); // 元旦
         $this->assertFalse($dt->isBusinessDay());
     }
-
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -74,7 +69,6 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $dt->setBusinessConfig($config);
         $this->assertTrue($dt->isBusinessDay()); // 祝日設定オフ → 営業日
     }
-
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -85,7 +79,6 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $dt = DateTime::factory('2026-05-25');
         $this->assertNull($dt->getBusinessDayLabel());
     }
-
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -97,9 +90,7 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $dt->setClosingDay('2026-08-14', '夏期休暇');
         $this->assertSame('夏期休暇', $dt->getBusinessDayLabel());
     }
-
     // --- DateTime::getBusinessDayLabel ---
-
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -111,7 +102,6 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $next = $dt->nextBusinessDay();
         $this->assertSame('2026-06-01', $next->format('Y-m-d')); // 月曜（土日スキップ）
     }
-
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -123,9 +113,7 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $next = $dt->nextBusinessDay();
         $this->assertSame('2026-05-26', $next->format('Y-m-d'));
     }
-
     // --- DateTime::nextBusinessDay ---
-
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -138,7 +126,6 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $this->assertNotSame($dt, $next);
         $this->assertSame('2026-05-29', $dt->format('Y-m-d')); // 元のインスタンスは変わらない
     }
-
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -150,7 +137,6 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $prev = $dt->previousBusinessDay();
         $this->assertSame('2026-05-29', $prev->format('Y-m-d')); // 金曜（土日スキップ）
     }
-
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -162,9 +148,7 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $prev = $dt->previousBusinessDay();
         $this->assertSame('2026-05-26', $prev->format('Y-m-d'));
     }
-
     // --- DateTime::previousBusinessDay ---
-
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -176,7 +160,6 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $shifted = $dt->shiftToClosestBusinessDayAfter();
         $this->assertSame('2026-05-25', $shifted->format('Y-m-d'));
     }
-
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -188,9 +171,7 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $shifted = $dt->shiftToClosestBusinessDayAfter();
         $this->assertSame('2026-06-01', $shifted->format('Y-m-d')); // 月曜
     }
-
     // --- DateTime::shiftToClosestBusinessDayAfter ---
-
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -202,7 +183,6 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $shifted = $dt->shiftToClosestBusinessDayBefore();
         $this->assertSame('2026-05-25', $shifted->format('Y-m-d'));
     }
-
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -214,9 +194,7 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $shifted = $dt->shiftToClosestBusinessDayBefore();
         $this->assertSame('2026-05-29', $shifted->format('Y-m-d')); // 金曜
     }
-
     // --- DateTime::shiftToClosestBusinessDayBefore ---
-
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -228,7 +206,6 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $result = $dt->addBusinessDays(3);
         $this->assertSame('2026-06-03', $result->format('Y-m-d')); // 月・火・水
     }
-
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -240,9 +217,7 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $result = $dt->addBusinessDays(0);
         $this->assertSame('2026-05-29', $result->format('Y-m-d'));
     }
-
     // --- DateTime::addBusinessDays ---
-
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -254,7 +229,6 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $result = $dt->subBusinessDays(3);
         $this->assertSame('2026-05-29', $result->format('Y-m-d')); // 金・木・水→金曜
     }
-
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -267,9 +241,7 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $dt->setClosingDay('2026-08-14', '夏期休暇');
         $this->assertFalse($dt->isBusinessDay());
     }
-
     // --- DateTime::subBusinessDays ---
-
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -281,9 +253,7 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $dt->setOpenDay('2026-05-30');
         $this->assertTrue($dt->isBusinessDay());
     }
-
     // --- BusinessCalendar Trait ショートカット ---
-
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -295,7 +265,6 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $dt->setClosingWeekdays([2]); // 火曜を休業
         $this->assertFalse($dt->isBusinessDay());
     }
-
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -307,7 +276,6 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $dt->setBypassHoliday(false);
         $this->assertTrue($dt->isBusinessDay());
     }
-
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -320,7 +288,6 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $dt->setOpenNthWeekday(6, 2);
         $this->assertTrue($dt->isBusinessDay());
     }
-
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -334,7 +301,6 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $this->assertFalse($dt->isBusinessDay());
         $this->assertSame('定休日', $dt->getBusinessDayLabel());
     }
-
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -346,7 +312,6 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $dt->addOpenFilter(fn (DateTimeInterface $d) => $d->format('Ymd') === '20260530');
         $this->assertTrue($dt->isBusinessDay());
     }
-
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -359,7 +324,6 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $this->assertFalse($dt->isBusinessDay());
         $this->assertSame('特別休業', $dt->getBusinessDayLabel());
     }
-
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -371,7 +335,6 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $dt->setBusinessMacro(fn (DateTimeInterface $d) => true);
         $this->assertTrue($dt->isBusinessDay());
     }
-
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -384,7 +347,6 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $dt->setBusinessMacro(null);
         $this->assertFalse($dt->isBusinessDay()); // 土曜なので再び休業
     }
-
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -395,7 +357,6 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $dt = DateTime::factory('2026-05-25');
         $this->assertNull($dt->getBusinessConfig());
     }
-
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -408,7 +369,6 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $dt->setBusinessConfig($config);
         $this->assertSame($config, $dt->getBusinessConfig());
     }
-
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -422,7 +382,6 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $dt->setBusinessConfig(null);
         $this->assertNull($dt->getBusinessConfig());
     }
-
     /**
      * @return void
      */
@@ -431,7 +390,6 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $dt = DateTimeImmutable::parse('2026-05-25');
         $this->assertTrue($dt->isBusinessDay());
     }
-
     /**
      * @return void
      */
@@ -440,9 +398,7 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $dt = DateTimeImmutable::parse('2026-05-30');
         $this->assertFalse($dt->isBusinessDay());
     }
-
     // --- DateTimeImmutable のテスト ---
-
     /**
      * @return void
      */
@@ -451,7 +407,6 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $dt = DateTimeImmutable::parse('2026-05-25');
         $this->assertNull($dt->getBusinessDayLabel());
     }
-
     /**
      * @return void
      */
@@ -462,7 +417,6 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $this->assertSame('2026-06-01', $next->format('Y-m-d'));
         $this->assertSame('2026-05-29', $dt->format('Y-m-d')); // immutable: 元は変わらない
     }
-
     /**
      * @return void
      */
@@ -472,7 +426,6 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $prev = $dt->previousBusinessDay();
         $this->assertSame('2026-05-29', $prev->format('Y-m-d'));
     }
-
     /**
      * @return void
      */
@@ -482,7 +435,6 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $shifted = $dt->shiftToClosestBusinessDayAfter();
         $this->assertSame('2026-05-25', $shifted->format('Y-m-d'));
     }
-
     /**
      * @return void
      */
@@ -492,7 +444,6 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $shifted = $dt->shiftToClosestBusinessDayAfter();
         $this->assertSame('2026-06-01', $shifted->format('Y-m-d'));
     }
-
     /**
      * @return void
      */
@@ -502,7 +453,6 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $shifted = $dt->shiftToClosestBusinessDayBefore();
         $this->assertSame('2026-05-25', $shifted->format('Y-m-d'));
     }
-
     /**
      * @return void
      */
@@ -512,7 +462,6 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $shifted = $dt->shiftToClosestBusinessDayBefore();
         $this->assertSame('2026-05-29', $shifted->format('Y-m-d'));
     }
-
     /**
      * @return void
      */
@@ -522,7 +471,6 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $result = $dt->addBusinessDays(3);
         $this->assertSame('2026-06-03', $result->format('Y-m-d'));
     }
-
     /**
      * @return void
      */
@@ -532,7 +480,6 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $result = $dt->subBusinessDays(3);
         $this->assertSame('2026-05-29', $result->format('Y-m-d'));
     }
-
     /**
      * @return void
      * @throws \Exception
@@ -543,7 +490,6 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $dt2 = $dt->setClosingDay('2026-08-14', '夏期休暇');
         $this->assertFalse($dt2->isBusinessDay());
     }
-
     /**
      * @return void
      */
@@ -554,7 +500,6 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $dt2 = $dt->setBusinessConfig($config);
         $this->assertFalse($dt2->isBusinessDay());
     }
-
     /**
      * @return void
      * @throws \Exception
@@ -568,7 +513,6 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $dt2 = $dt->setBusinessConfig($config);
         $this->assertSame('夏期休暇', $dt2->getBusinessDayLabel());
     }
-
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -585,7 +529,6 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $this->assertFalse($dt->isBusinessDay());
         $this->assertSame('グローバル夏休み', $dt->getBusinessDayLabel());
     }
-
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -606,9 +549,7 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $dt->setBusinessConfig($instanceConfig);
         $this->assertTrue($dt->isBusinessDay()); // インスタンス設定では閉店日でない
     }
-
     // --- グローバル設定との連携 ---
-
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -620,7 +561,6 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $target = DateTime::factory('2026-05-30'); // 土曜
         $this->assertFalse($dt->checkIsBusinessDay($target));
     }
-
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -631,9 +571,7 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $dt = DateTime::factory('2026-05-25'); // 月曜
         $this->assertTrue($dt->checkIsBusinessDay());
     }
-
     // --- checkIsBusinessDay / checkGetBusinessDayLabel (Trait共通メソッド) ---
-
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -649,7 +587,6 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $target = DateTime::factory('2026-08-14');
         $this->assertSame('特別休業', $dt->checkGetBusinessDayLabel($target));
     }
-
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -660,7 +597,6 @@ class DateBusinessCommonDateTimeTest extends TestCase
         $dt = DateTime::factory('2026-05-30'); // 土曜
         $this->assertNull($dt->checkGetBusinessDayLabel());
     }
-
     /**
      * @return void
      */
@@ -668,7 +604,6 @@ class DateBusinessCommonDateTimeTest extends TestCase
     {
         BusinessCalendar::resetAll();
     }
-
     /**
      * @return void
      */

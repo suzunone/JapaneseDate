@@ -7,21 +7,12 @@
          stopOnError="false"
          stopOnFailure="false"
          xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.5/phpunit.xsd"
-         cacheDirectory=".phpunit.cache"
-         backupStaticProperties="false"
-         requireCoverageMetadata="true"
 >
   <testsuites>
     <testsuite name="Suzunone\JapaneseDate">
       <directory suffix="Test.php">tests</directory>
     </testsuite>
   </testsuites>
-
-  <source>
-    <include>
-      <directory suffix=".php">src</directory>
-    </include>
-  </source>
 
   <php>
     <env name="APP_ENV" value="testing"/>
@@ -32,13 +23,23 @@
     <ini name="memory_limit" value="2G"/>
   </php>
 
-  <logging>
-    <testdoxText outputFile="php://stdout"/>
-  </logging>
   <coverage processUncoveredFiles="true">
+    <include>
+      <directory suffix=".php">src</directory>
+    </include>
     <report>
-      <html outputDirectory="./covers/suzunone/JapaneseDate"/>
+      <html outputDirectory="./covers/suzunome/JapaneseDate"/>
       <text outputFile="./covers/coverage" showUncoveredFiles="true" showOnlySummary="false"/>
     </report>
   </coverage>
+
+  <logging>
+    <testdoxText outputFile="php://stdout"/>
+  </logging>
+  <groups>
+    <exclude>
+      <group>large</group>
+      <group>long-running</group>
+    </exclude>
+  </groups>
 </phpunit>

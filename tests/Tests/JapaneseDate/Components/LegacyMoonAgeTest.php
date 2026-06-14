@@ -34,13 +34,12 @@ use Tests\JapaneseDate\InvokeTrait;
  * @package     JapaneseDate
  * @subpackage  Components
  * @author      Suzunone<suzunone.eleven@gmail.com>
+ * @covers \JapaneseDate\Components\LegacyMoonAge
+ * @covers \JapaneseDate\Components\LegacyMoonAge::moonAge
  */
-#[CoversClass(LegacyMoonAge::class)]
-#[CoversMethod(LegacyMoonAge::class, 'moonAge')]
 class LegacyMoonAgeTest extends TestCase
 {
     use InvokeTrait;
-
     /**
      * 月齢の期待値（丸め値）を返すデータセット
      *
@@ -73,7 +72,6 @@ class LegacyMoonAgeTest extends TestCase
             '2017 春分付近の月齢4' => [2017, 4, 2, 0, 0, 0, 4],
         ];
     }
-
     /**
      * @param int $year
      * @param int $month
@@ -85,20 +83,12 @@ class LegacyMoonAgeTest extends TestCase
      * @return void
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     * @dataProvider moonAgeProvider
      */
-    #[DataProvider('moonAgeProvider')]
-    public function test_moonAge(
-        int $year,
-        int $month,
-        int $day,
-        float $hour,
-        float $min,
-        float $sec,
-        int $expectedRounded
-    ): void {
+    public function test_moonAge(int $year, int $month, int $day, float $hour, float $min, float $sec, int $expectedRounded): void
+    {
         $moonAge = new LegacyMoonAge(new Astronomy());
         $result = $moonAge->moonAge($year, $month, $day, $hour, $min, $sec);
-
         $this->assertEquals(
             $expectedRounded,
             round($result),
@@ -114,7 +104,6 @@ class LegacyMoonAgeTest extends TestCase
             )
         );
     }
-
     /**
      * 月齢は常に [0, 30) の範囲の値を返す
      */
@@ -132,7 +121,6 @@ class LegacyMoonAgeTest extends TestCase
             $this->assertLessThan(30.0, $result, "$y-$m-$d で月齢が30以上になった");
         }
     }
-
     /**
      * @return void
      * @throws \ReflectionException
@@ -146,7 +134,6 @@ class LegacyMoonAgeTest extends TestCase
 
         $this->assertEqualsWithDelta(2451545.0, $result, 1e-12);
     }
-
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException

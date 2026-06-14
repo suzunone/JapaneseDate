@@ -12,16 +12,14 @@ use Tests\JapaneseDate\InvokeTrait;
 /**
  *
  */
-
 /**
  *
+ * @covers \JapaneseDate\Components\Traits\DeltaTTrait
+ * @covers \JapaneseDate\Components\Traits\DeltaTTrait::approximateDeltaTSeconds
  */
-#[CoversTrait(DeltaTTrait::class)]
-#[CoversMethod(DeltaTTrait::class, 'approximateDeltaTSeconds')]
 class DeltaTTraitTest extends TestCase
 {
     use InvokeTrait;
-
     /**
      * @return array<string, array{0: int, 1: int, 2: float}>
      */
@@ -37,21 +35,19 @@ class DeltaTTraitTest extends TestCase
             '2100年6月（$y >= 2050 分岐）' => [2100, 6, 203.820],
         ];
     }
-
     /**
      * @param int $year
      * @param int $month
      * @param float $expected
      * @return void
      * @throws \ReflectionException
+     * @dataProvider dataProvider_approximateDeltaTSeconds
      */
-    #[DataProvider('dataProvider_approximateDeltaTSeconds')]
     public function test_approximateDeltaTSeconds(int $year, int $month, float $expected): void
     {
         $instance = new class () {
             use DeltaTTrait;
         };
-
         $result = $this->invokeExecuteMethod($instance, 'approximateDeltaTSeconds', [$year, $month]);
         $this->assertEqualsWithDelta($expected, $result, 0.001);
     }
