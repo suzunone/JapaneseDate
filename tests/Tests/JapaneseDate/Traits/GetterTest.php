@@ -19,6 +19,7 @@
 
 namespace Tests\JapaneseDate\Traits;
 
+use JapaneseDate\Components\Astronomy;
 use JapaneseDate\Components\SimpleSolarTerm;
 use JapaneseDate\DateTime;
 use JapaneseDate\Elements\SolarTermDate;
@@ -95,6 +96,20 @@ class GetterTest extends TestCase
         return $data;
     }
     /**
+     * SimpleSolarTerm から指定年の二十四節気日付を取得する。
+     */
+    private static function simpleSolarTerm(string $method, int $year): SolarTermDate
+    {
+        return (new SimpleSolarTerm())->{$method}($year);
+    }
+    /**
+     * 二十四節気日付を比較用の日時文字列へ変換する。
+     */
+    private static function expectedDate(SolarTermDate $term): string
+    {
+        return sprintf('%04d-%02d-%02d 12:34:56', $term->year, $term->month, $term->day);
+    }
+    /**
      * 外部暦データで確認できる toArray の期待値を返す。
      */
     public static function toArrayExternalCalendarDataProvider(): array
@@ -142,20 +157,6 @@ class GetterTest extends TestCase
                 ],
             ],
         ];
-    }
-    /**
-     * SimpleSolarTerm から指定年の二十四節気日付を取得する。
-     */
-    private static function simpleSolarTerm(string $method, int $year): SolarTermDate
-    {
-        return (new SimpleSolarTerm())->{$method}($year);
-    }
-    /**
-     * 二十四節気日付を比較用の日時文字列へ変換する。
-     */
-    private static function expectedDate(SolarTermDate $term): string
-    {
-        return sprintf('%04d-%02d-%02d 12:34:56', $term->year, $term->month, $term->day);
     }
     /**
      * グレゴリオ暦の年月日配列を取得できることを確認する。
@@ -410,8 +411,19 @@ class GetterTest extends TestCase
      */
     public function test_get_moonAge(): void
     {
-        $DateTime = new DateTime('2018-01-01');
-        $this->assertSame(13.47782236803323, $DateTime->moonAge);
+        $previousSolarAlgorithm = Astronomy::solarAlgorithm();
+        $previousMoonAlgorithm = Astronomy::moonAlgorithm();
+
+        try {
+            DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_LEGACY);
+            DateTime::useMoonAlgorithm(DateTime::MOON_ALGORITHM_LEGACY);
+
+            $DateTime = new DateTime('2018-01-01');
+            $this->assertEqualsWithDelta(13.47782236803323, $DateTime->moonAge, 1e-9);
+        } finally {
+            Astronomy::useSolarAlgorithm($previousSolarAlgorithm);
+            Astronomy::useMoonAlgorithm($previousMoonAlgorithm);
+        }
     }
     /**
      * 西暦五節句IDをキャメルケース・スネークケース両方で取得できることを確認する。
@@ -570,10 +582,10 @@ class GetterTest extends TestCase
     {
         $DateTime = new DateTime('645-08-01T00:00:00+09:00');
         $this->assertSame(
-            array_map(function ($e) {
+            array_map(static function ($e) {
                 return $e->name;
             }, $DateTime->historicalEras),
-            array_map(function ($e) {
+            array_map(static function ($e) {
                 return $e->name;
             }, $DateTime->historical_eras)
         );

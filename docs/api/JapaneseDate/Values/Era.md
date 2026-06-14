@@ -19,9 +19,6 @@ class **Era**
 
 | Modifier | Type | Name | Description |
 |---|---|---|---|
-| public | string | `$name` |  |
-| public | string | `$kana` |  |
-| public | string | `$court` |  |
 | public _(read-only)_ | [DateTime](../../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../../JapaneseDate/DateTimeImmutable.md) | `$startDate` | 元号の開始日。 |
 | public _(read-only)_ | [DateTime](../../JapaneseDate/DateTime.md)\|[DateTimeImmutable](../../JapaneseDate/DateTimeImmutable.md) | `$endDate` | 元号の終了日。 |
 

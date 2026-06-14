@@ -5,8 +5,8 @@ namespace JapaneseDate;
 /**
  * 日本の暦機能を提供する日付オブジェクト用の共通インターフェース。
  *
- * 可変（Mutable）オブジェクトである {@see \JapaneseDate\DateTime} と、
- * 不変（Immutable）オブジェクトである {@see \JapaneseDate\DateTimeImmutable} の
+ * 可変（Mutable）オブジェクトである {@see DateTime} と、
+ * 不変（Immutable）オブジェクトである {@see DateTimeImmutable} の
  * 両方に共通する暦判定・取得メソッドの規格を定義します。
  *
  * 【設計の目的】

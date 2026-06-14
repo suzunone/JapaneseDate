@@ -22,6 +22,14 @@ use PHPUnit\Framework\Attributes\RunInSeparateProcess;
 use PHPUnit\Framework\TestCase;
 
 /**
+ * @category    Tests
+ * @package     JapaneseDate
+ * @subpackage  Tests
+ * @author      Suzunone <suzunone.eleven@gmail.com>
+ * @copyright   JapaneseDate
+ * @license     BSD-2
+ * @link        https://github.com/suzunone/JapaneseDate
+ * @see         https://github.com/suzunone/JapaneseDate
  * @covers \JapaneseDate\Components\Config
  */
 class ConfigTest extends TestCase

@@ -20,6 +20,13 @@ use RuntimeException;
 class SolarTermDate
 {
     /**
+     * @var array
+     */
+    protected const SOLAR_TERM_MONTH = [
+        3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12, 1, 1, 2, 2, 3,
+    ];
+
+    /**
      * @var mixed[]
      */
     protected $attribute = [
@@ -31,13 +38,6 @@ class SolarTermDate
         'month' => 0,
         'day' => 0,
         'solar_longitude' => 0.0,
-    ];
-
-    /**
-     * @var array
-     */
-    protected const SOLAR_TERM_MONTH = [
-        3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12, 1, 1, 2, 2, 3,
     ];
 
     /**
@@ -64,7 +64,7 @@ class SolarTermDate
 
     /**
      * @param string $key
-     * @return string|\JapaneseDate\DateTime|null|int|bool|float
+     * @return string|DateTime|null|int|bool|float
      */
     public function __get(string $key)
     {

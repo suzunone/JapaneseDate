@@ -57,7 +57,7 @@ class LunarDate
      *
      * @param array $lunar
      * @param int|bool $solar_term
-     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws ErrorException
      * @throws \JsonException
      */
     public function __construct(array $lunar, $solar_term)
@@ -91,7 +91,7 @@ class LunarDate
     /**
      * @param string $name
      * @return bool|string|int
-     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws ErrorException
      * @noinspection PhpMissingParamTypeInspection
      */
     public function __get($name)
@@ -115,7 +115,7 @@ class LunarDate
     /**
      * @param $name
      * @param $value
-     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws ErrorException
      */
     public function __set($name, $value)
     {

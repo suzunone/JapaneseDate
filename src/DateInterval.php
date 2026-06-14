@@ -176,7 +176,6 @@ class DateInterval extends CarbonInterval
     // =========================================================================
     // 営業日計算
     // =========================================================================
-
     /**
      * 基準日から N 営業日後の {@see DateTime} オブジェクトを返します。
      *
@@ -194,7 +193,7 @@ class DateInterval extends CarbonInterval
      *
      * @param \JapaneseDate\DateTime $from 起算日
      * @param int $n 加算する営業日数（1 以上の整数）
-     * @return \JapaneseDate\DateTime N 営業日後の日付
+     * @return DateTime N 営業日後の日付
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
@@ -204,41 +203,6 @@ class DateInterval extends CarbonInterval
         $count = 0;
         while ($count < $n) {
             $date = $date->addDay();
-            if (static::isBusinessDay($date)) {
-                $count++;
-            }
-        }
-
-        return $date;
-    }
-
-    /**
-     * 基準日から N 営業日前の {@see DateTime} オブジェクトを返します。
-     *
-     * 「営業日」とは、土曜・日曜・日本の国民の祝日・休日（振替休日・国民の休日を含む）を
-     * 除いたすべての日を指します。
-     * 計算はループにより 1 日ずつ遡り、非営業日をスキップします。
-     *
-     * 【使用例】
-     * ```php
-     * // 2026-05-08 から 3 営業日前を取得する
-     * $from = DateTime::parse('2026-05-08');
-     * $result = DateInterval::subBusinessDaysToDate($from, 3);
-     * echo $result->format('Y-m-d');
-     * ```
-     *
-     * @param \JapaneseDate\DateTime $from 起算日
-     * @param int $n 減算する営業日数（1 以上の整数）
-     * @return \JapaneseDate\DateTime N 営業日前の日付
-     * @throws \DateInvalidTimeZoneException
-     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
-     */
-    public static function subBusinessDaysToDate($from, $n): DateTime
-    {
-        $date = DateTime::factory($from);
-        $count = 0;
-        while ($count < $n) {
-            $date = $date->subDay();
             if (static::isBusinessDay($date)) {
                 $count++;
             }
@@ -265,10 +229,44 @@ class DateInterval extends CarbonInterval
         return !$date->is_holiday;
     }
 
+    /**
+     * 基準日から N 営業日前の {@see DateTime} オブジェクトを返します。
+     *
+     * 「営業日」とは、土曜・日曜・日本の国民の祝日・休日（振替休日・国民の休日を含む）を
+     * 除いたすべての日を指します。
+     * 計算はループにより 1 日ずつ遡り、非営業日をスキップします。
+     *
+     * 【使用例】
+     * ```php
+     * // 2026-05-08 から 3 営業日前を取得する
+     * $from = DateTime::parse('2026-05-08');
+     * $result = DateInterval::subBusinessDaysToDate($from, 3);
+     * echo $result->format('Y-m-d');
+     * ```
+     *
+     * @param \JapaneseDate\DateTime $from 起算日
+     * @param int $n 減算する営業日数（1 以上の整数）
+     * @return DateTime N 営業日前の日付
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     */
+    public static function subBusinessDaysToDate($from, $n): DateTime
+    {
+        $date = DateTime::factory($from);
+        $count = 0;
+        while ($count < $n) {
+            $date = $date->subDay();
+            if (static::isBusinessDay($date)) {
+                $count++;
+            }
+        }
+
+        return $date;
+    }
+
     // =========================================================================
     // 次の祝日までの残り期間
     // =========================================================================
-
     /**
      * 基準日時から次の日本の祝日・休日（振替休日・国民の休日を含む）までの
      * 残り期間を {@see DateInterval} として返します。
@@ -300,7 +298,6 @@ class DateInterval extends CarbonInterval
     // =========================================================================
     // 六曜ベースの残り期間
     // =========================================================================
-
     /**
      * 基準日時から指定した六曜が次に到来するまでの残り期間を
      * {@see DateInterval} として返します。
@@ -346,7 +343,6 @@ class DateInterval extends CarbonInterval
     // =========================================================================
     // 元号（和暦）ベースの期間
     // =========================================================================
-
     /**
      * 指定した元号が継続した期間（開始日から終了日まで）を {@see DateInterval} として返します。
      *
@@ -390,7 +386,6 @@ class DateInterval extends CarbonInterval
     // =========================================================================
     // 二十四節気ベースの期間
     // =========================================================================
-
     /**
      * 基準日時から次に到来する二十四節気（または指定した節気）までの
      * 残り期間を {@see DateInterval} として返します。
@@ -424,150 +419,6 @@ class DateInterval extends CarbonInterval
     }
 
     /**
-     * 基準日から N 節気後の {@see DateTime} を返します。
-     *
-     * 単純な「15日 × N」ではなく、天文学的計算に基づく正確な節気の
-     * 切り替わり日を N 個分進めた日付を返します。
-     *
-     * 【使用例】
-     * ```php
-     * // 現在から 3 節気後の日付を取得する
-     * $from = DateTime::now();
-     * $result = DateInterval::addSolarTermsToDate($from, 3);
-     * echo $result->format('Y-m-d');
-     * ```
-     *
-     * @param \JapaneseDate\DateTime $from 起算日
-     * @param int $n 進める節気の数（1 以上の整数）
-     * @return \JapaneseDate\DateTime N 節気後の日付
-     * @throws \DateInvalidTimeZoneException
-     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
-     */
-    public static function addSolarTermsToDate($from, $n): DateTime
-    {
-        $date = DateTime::factory($from);
-        for ($i = 0; $i < $n; $i++) {
-            $date = static::findNextSolarTermDate($date);
-        }
-
-        return $date;
-    }
-
-    /**
-     * 基準日から N 節気前の {@see DateTime} を返します。
-     *
-     * 単純な「15日 × N」ではなく、天文学的計算に基づく正確な節気の
-     * 切り替わり日を N 個分遡った日付を返します。
-     *
-     * 【使用例】
-     * ```php
-     * // 現在から 2 節気前の日付を取得する
-     * $from = DateTime::now();
-     * $result = DateInterval::subSolarTermsToDate($from, 2);
-     * echo $result->format('Y-m-d');
-     * ```
-     *
-     * @param \JapaneseDate\DateTime $from 起算日
-     * @param int $n 遡る節気の数（1 以上の整数）
-     * @return \JapaneseDate\DateTime N 節気前の日付
-     * @throws \DateInvalidTimeZoneException
-     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
-     */
-    public static function subSolarTermsToDate($from, $n): DateTime
-    {
-        $date = DateTime::factory($from);
-        for ($i = 0; $i < $n; $i++) {
-            $date = static::findPrevSolarTermDate($date);
-        }
-
-        return $date;
-    }
-
-    /**
-     * このインターバルの総日数を二十四節気の周期数（約15日を1単位）に換算して返します。
-     *
-     * 「2節気分」のように日本の伝統的な季節の区切り単位でインターバルを
-     * 表現したい場合に使用します。結果は小数点以下を含む浮動小数点数です。
-     *
-     * 【使用例】
-     * ```php
-     * $interval = CarbonInterval::days(30);
-     * $solarTermInterval = DateInterval::instance($interval);
-     * echo round($solarTermInterval->toSolarTermCount(), 1) . '節気分';
-     * // => 約 1.97 節気分
-     * ```
-     *
-     * @return float 節気数（{@see self::SOLAR_TERM_AVG_DAYS} を1単位とした換算値）
-     */
-    public function toSolarTermCount(): float
-    {
-        $totalDays = $this->totalDays;
-
-        return $totalDays / self::SOLAR_TERM_AVG_DAYS;
-    }
-
-    // =========================================================================
-    // 旧暦・月相ベースの期間
-    // =========================================================================
-
-    /**
-     * このインターバルの総日数を朔望月（新月から次の新月まで、約29.5日）の
-     * 数に換算して返します。
-     *
-     * 旧暦の「1ヶ月」を正確に定義するため、平均的な29.530588853日を1単位として
-     * 換算します。結果は小数点以下を含む浮動小数点数です。
-     *
-     * 【使用例】
-     * ```php
-     * $interval = CarbonInterval::days(59);
-     * $lunarInterval = DateInterval::instance($interval);
-     * echo round($lunarInterval->toLunarMonthCount(), 1) . '旧暦月分';
-     * // => 約 2.0 旧暦月分
-     * ```
-     *
-     * @return float 朔望月数（{@see self::SYNODIC_MONTH_DAYS} を1単位とした換算値）
-     */
-    public function toLunarMonthCount(): float
-    {
-        $totalDays = $this->totalDays;
-
-        return $totalDays / self::SYNODIC_MONTH_DAYS;
-    }
-
-    /**
-     * 基準日時から次の新月（月相: MOON_PHASE_SHINGETSU）までの
-     * 残り期間を {@see DateInterval} として返します。
-     *
-     * 天文学的な新月（月の位相角 0°付近）の瞬間を基準に、
-     * 次の新月日（当日 00:00:00）までの差分を返します。
-     *
-     * 【使用例】
-     * ```php
-     * $interval = DateInterval::untilNextNewMoon(DateTime::now());
-     * echo $interval->days . '日後が次の新月です';
-     * ```
-     *
-     * @param \JapaneseDate\DateTime $from カウントダウン基準日時
-     * @return static 次の新月日（当日 00:00:00）までの {@see DateInterval}
-     * @throws \DateInvalidTimeZoneException
-     * @throws \JapaneseDate\Exceptions\Exception
-     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
-     */
-    public static function untilNextNewMoon($from)
-    {
-        $moon = new Moon();
-        $nextNewMoon = $moon->moonPhase(DateTime::factory($from), 0.0)->setTimezone('Asia/Tokyo');
-        $target = DateTime::factory($nextNewMoon)->startOfDay();
-        $diff = $from->diff($target);
-
-        return static::instance($diff);
-    }
-
-    // =========================================================================
-    // 内部ヘルパー
-    // =========================================================================
-
-    /**
      * 基準日の「次」に到来する節気日を返します。
      *
      * 今年・来年の全節気を走査し、基準日の翌日以降で最も近い節気日を返します。
@@ -575,7 +426,7 @@ class DateInterval extends CarbonInterval
      *
      * @param \JapaneseDate\DateTime $from 起算日
      * @param string|null $termMethod 節気メソッド名（省略時は全節気から検索）
-     * @return \JapaneseDate\DateTime 次の節気日
+     * @return DateTime 次の節気日
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
@@ -613,6 +464,93 @@ class DateInterval extends CarbonInterval
     }
 
     /**
+     * 指定した節気メソッド名と年から {@see SolarTermDate} を返します。
+     *
+     * まず {@see SimpleSolarTerm} での高速計算を試みて、失敗した場合は
+     * {@see SolarTerm} での精密計算にフォールバックします。
+     *
+     * @param string $method 節気メソッド名（'syunbun', 'geshi' など）
+     * @param int $year 西暦年
+     * @return SolarTermDate 節気日データ
+     * @throws \JapaneseDate\Exceptions\SolarTermException 計算不可能な年の場合
+     */
+    protected static function resolveSolarTerm($method, $year): SolarTermDate
+    {
+        if (Astronomy::solarAlgorithm() === Astronomy::SOLAR_VSOP87) {
+            return (new SolarTerm())->{$method}($year);
+        }
+
+        try {
+            return (new SimpleSolarTerm())->{$method}($year);
+        } catch (Throwable $exception) {
+            return (new SolarTerm())->{$method}($year);
+        }
+    }
+
+    /**
+     * 基準日から N 節気後の {@see DateTime} を返します。
+     *
+     * 単純な「15日 × N」ではなく、天文学的計算に基づく正確な節気の
+     * 切り替わり日を N 個分進めた日付を返します。
+     *
+     * 【使用例】
+     * ```php
+     * // 現在から 3 節気後の日付を取得する
+     * $from = DateTime::now();
+     * $result = DateInterval::addSolarTermsToDate($from, 3);
+     * echo $result->format('Y-m-d');
+     * ```
+     *
+     * @param \JapaneseDate\DateTime $from 起算日
+     * @param int $n 進める節気の数（1 以上の整数）
+     * @return DateTime N 節気後の日付
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     */
+    public static function addSolarTermsToDate($from, $n): DateTime
+    {
+        $date = DateTime::factory($from);
+        for ($i = 0; $i < $n; $i++) {
+            $date = static::findNextSolarTermDate($date);
+        }
+
+        return $date;
+    }
+
+    // =========================================================================
+    // 旧暦・月相ベースの期間
+    // =========================================================================
+    /**
+     * 基準日から N 節気前の {@see DateTime} を返します。
+     *
+     * 単純な「15日 × N」ではなく、天文学的計算に基づく正確な節気の
+     * 切り替わり日を N 個分遡った日付を返します。
+     *
+     * 【使用例】
+     * ```php
+     * // 現在から 2 節気前の日付を取得する
+     * $from = DateTime::now();
+     * $result = DateInterval::subSolarTermsToDate($from, 2);
+     * echo $result->format('Y-m-d');
+     * ```
+     *
+     * @param \JapaneseDate\DateTime $from 起算日
+     * @param int $n 遡る節気の数（1 以上の整数）
+     * @return DateTime N 節気前の日付
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     */
+    public static function subSolarTermsToDate($from, $n): DateTime
+    {
+        $date = DateTime::factory($from);
+        for ($i = 0; $i < $n; $i++) {
+            $date = static::findPrevSolarTermDate($date);
+        }
+
+        return $date;
+    }
+
+    /**
      * 基準日の「直前」の節気日を返します。
      *
      * 今年・前年の全節気を走査し、基準日の前日以前で最も近い節気日を返します。
@@ -620,7 +558,7 @@ class DateInterval extends CarbonInterval
      *
      * @param \JapaneseDate\DateTime $from 起算日
      * @param string|null $termMethod 節気メソッド名（省略時は全節気から検索）
-     * @return \JapaneseDate\DateTime 直前の節気日
+     * @return DateTime 直前の節気日
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
@@ -657,28 +595,84 @@ class DateInterval extends CarbonInterval
         return $best ?? DateTime::factory($from)->subDays(15);
     }
 
+    // =========================================================================
+    // 内部ヘルパー
+    // =========================================================================
     /**
-     * 指定した節気メソッド名と年から {@see \JapaneseDate\Elements\SolarTermDate} を返します。
+     * 基準日時から次の新月（月相: MOON_PHASE_SHINGETSU）までの
+     * 残り期間を {@see DateInterval} として返します。
      *
-     * まず {@see SimpleSolarTerm} での高速計算を試みて、失敗した場合は
-     * {@see SolarTerm} での精密計算にフォールバックします。
+     * 天文学的な新月（月の位相角 0°付近）の瞬間を基準に、
+     * 次の新月日（当日 00:00:00）までの差分を返します。
      *
-     * @param string $method 節気メソッド名（'syunbun', 'geshi' など）
-     * @param int    $year   西暦年
-     * @return \JapaneseDate\Elements\SolarTermDate 節気日データ
-     * @throws \JapaneseDate\Exceptions\SolarTermException 計算不可能な年の場合
+     * 【使用例】
+     * ```php
+     * $interval = DateInterval::untilNextNewMoon(DateTime::now());
+     * echo $interval->days . '日後が次の新月です';
+     * ```
+     *
+     * @param \JapaneseDate\DateTime $from カウントダウン基準日時
+     * @return static 次の新月日（当日 00:00:00）までの {@see DateInterval}
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
-    protected static function resolveSolarTerm($method, $year): SolarTermDate
+    public static function untilNextNewMoon($from)
     {
-        if (Astronomy::solarAlgorithm() === Astronomy::SOLAR_VSOP87) {
-            return (new SolarTerm())->{$method}($year);
-        }
+        $moon = new Moon();
+        $nextNewMoon = $moon->moonPhase(DateTime::factory($from), 0.0)->setTimezone('Asia/Tokyo');
+        $target = DateTime::factory($nextNewMoon)->startOfDay();
+        $diff = $from->diff($target);
 
-        try {
-            return (new SimpleSolarTerm())->{$method}($year);
-        } catch (Throwable $exception) {
-            return (new SolarTerm())->{$method}($year);
-        }
+        return static::instance($diff);
+    }
+
+    /**
+     * このインターバルの総日数を二十四節気の周期数（約15日を1単位）に換算して返します。
+     *
+     * 「2節気分」のように日本の伝統的な季節の区切り単位でインターバルを
+     * 表現したい場合に使用します。結果は小数点以下を含む浮動小数点数です。
+     *
+     * 【使用例】
+     * ```php
+     * $interval = CarbonInterval::days(30);
+     * $solarTermInterval = DateInterval::instance($interval);
+     * echo round($solarTermInterval->toSolarTermCount(), 1) . '節気分';
+     * // => 約 1.97 節気分
+     * ```
+     *
+     * @return float 節気数（{@see self::SOLAR_TERM_AVG_DAYS} を1単位とした換算値）
+     */
+    public function toSolarTermCount(): float
+    {
+        $totalDays = $this->totalDays;
+
+        return $totalDays / self::SOLAR_TERM_AVG_DAYS;
+    }
+
+    /**
+     * このインターバルの総日数を朔望月（新月から次の新月まで、約29.5日）の
+     * 数に換算して返します。
+     *
+     * 旧暦の「1ヶ月」を正確に定義するため、平均的な29.530588853日を1単位として
+     * 換算します。結果は小数点以下を含む浮動小数点数です。
+     *
+     * 【使用例】
+     * ```php
+     * $interval = CarbonInterval::days(59);
+     * $lunarInterval = DateInterval::instance($interval);
+     * echo round($lunarInterval->toLunarMonthCount(), 1) . '旧暦月分';
+     * // => 約 2.0 旧暦月分
+     * ```
+     *
+     * @return float 朔望月数（{@see self::SYNODIC_MONTH_DAYS} を1単位とした換算値）
+     */
+    public function toLunarMonthCount(): float
+    {
+        $totalDays = $this->totalDays;
+
+        return $totalDays / self::SYNODIC_MONTH_DAYS;
     }
 
     /**
@@ -686,10 +680,10 @@ class DateInterval extends CarbonInterval
      *
      * 営業日の判定にはインスタンス個別設定（またはグローバル/デフォルト設定）を使用します。
      *
-     * @param  \JapaneseDate\DateTime $baseDate    計算の基準となる日付
-     * @param  int                    $businessDays 加算する営業日数
-     * @param  DateBusiness|null      $config       判定に使用する設定（省略時はインスタンス設定）
-     * @return \JapaneseDate\DateTime N営業日後の日付
+     * @param \JapaneseDate\DateTime $baseDate 計算の基準となる日付
+     * @param int $businessDays 加算する営業日数
+     * @param DateBusiness|null $config 判定に使用する設定（省略時はインスタンス設定）
+     * @return DateTime N営業日後の日付
      */
     public function addBusinessDaysTo($baseDate, $businessDays, $config = null): DateTime
     {
@@ -709,10 +703,10 @@ class DateInterval extends CarbonInterval
     /**
      * 基準日から指定した営業日数前の日付を算出します。
      *
-     * @param  \JapaneseDate\DateTime $baseDate    計算の基準となる日付
-     * @param  int                    $businessDays 減算する営業日数
-     * @param  DateBusiness|null      $config       判定に使用する設定（省略時はインスタンス設定）
-     * @return \JapaneseDate\DateTime N営業日前の日付
+     * @param \JapaneseDate\DateTime $baseDate 計算の基準となる日付
+     * @param int $businessDays 減算する営業日数
+     * @param DateBusiness|null $config 判定に使用する設定（省略時はインスタンス設定）
+     * @return DateTime N営業日前の日付
      */
     public function subBusinessDaysFrom($baseDate, $businessDays, $config = null): DateTime
     {

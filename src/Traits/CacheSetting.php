@@ -149,7 +149,7 @@ trait CacheSetting
      * });
      * ```
      *
-     * @param \Closure $function
+     * @param Closure $function
      *   `function(string $key, \Closure $function): mixed` シグネチャを持つクロージャ。
      *   キャッシュヒット時はキャッシュ済みデータを、ミス時は計算実行結果を返す必要があります。
      * @see \JapaneseDate\CacheMode::MODE_ORIGINAL 独自キャッシュモード
@@ -157,30 +157,5 @@ trait CacheSetting
     public static function setCacheClosure($function): void
     {
         Cache::setCacheClosure($function);
-    }
-
-    /**
-     * 指定した日時文字列から同一タイムゾーンの内部用インスタンスを生成・キャッシュします。
-     *
-     * 元号判定などで特定日時（例: 「1989-01-08 00:00:00」）を繰り返し比較する際に、
-     * 毎回オブジェクトを生成するのを避けるための静的キャッシュ機構です。
-     * キャッシュのキーは「クラス名:タイムゾーン名:日時文字列」の組み合わせで生成されます。
-     *
-     * **使用上の注意:**
-     * - このメソッドは内部実装専用です。外部から直接呼び出さないでください。
-     * - 生成されたインスタンスはリクエストをまたいだ静的変数に保持されます。
-     *   インスタンスを変更すると意図しない影響が生じる可能性があるため、
-     *   読み取り専用（比較目的）にのみ使用してください。
-     *
-     * @param string $date_text 生成する日時を表す文字列（例: `'1989-01-08 00:00:00'`）
-     * @return static 指定した日時・自身と同一タイムゾーンのインスタンス（キャッシュ済みの場合はそのまま返す）
-     * @throws \JapaneseDate\Exceptions\NativeDateTimeException 日時文字列の解析に失敗した場合
-     */
-    protected function innerDateTime($date_text)
-    {
-        static $cache;
-        $key = static::class . ':' . $this->getTimezone()->getName() . ':' . $date_text;
-
-        return $cache[$key] ?? ($cache[$key] = new static($date_text, $this->getTimezone()));
     }
 }

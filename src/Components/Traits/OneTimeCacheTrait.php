@@ -51,7 +51,7 @@ trait OneTimeCacheTrait
 
     /**
      * @param string $key
-     * @param \Closure $closure
+     * @param Closure $closure
      * @return mixed
      */
     protected function oneTimeCache($key, $closure)

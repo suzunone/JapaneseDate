@@ -12,17 +12,17 @@ use JapaneseDate\Exceptions\SolarTermException;
  * 年代別対応表から二十四節気の日付を返すコンポーネント。
  *
  * 各二十四節気について、年の範囲ごとに定義された日付テーブルを参照し、
- * 指定年における節気日を {@see \JapaneseDate\Elements\SolarTermDate} として返します。
- * 天文計算を行う {@see \JapaneseDate\Components\SolarTerm} と異なり、
+ * 指定年における節気日を {@see SolarTermDate} として返します。
+ * 天文計算を行う {@see SolarTerm} と異なり、
  * 既知の対応表を用いた軽量な計算を目的とした実装です。
  *
  * **対応する二十四節気:**
- * 春分から啓蟄まで、{@see \JapaneseDate\DateTime::SOLAR_TERM_*} 定数で表される
+ * 春分から啓蟄まで、{@see DateTime::SOLAR_TERM_*} 定数で表される
  * 24 種類すべての節気を扱います。
  *
  * **利用上の特徴:**
  * 対応表の範囲内では高速に結果を返せますが、範囲外の年や表に存在しない節気は
- * {@see \JapaneseDate\Exceptions\SolarTermException} または関連例外の対象になります。
+ * {@see SolarTermException} または関連例外の対象になります。
  *
  * @category    DateTime
  * @package     JapaneseDate
@@ -41,9 +41,9 @@ class SimpleSolarTerm
     /**
      * @param int $year
      * @param int $solar_term
-     * @return \JapaneseDate\Elements\SolarTermDate
-     * @throws \JapaneseDate\Exceptions\Exception
-     * @throws \JapaneseDate\Exceptions\SolarTermException
+     * @return SolarTermDate
+     * @throws Exception
+     * @throws SolarTermException
      */
     public function getSolarTerm($year, $solar_term): SolarTermDate
     {
@@ -105,12 +105,11 @@ class SimpleSolarTerm
      * 春分
      *
      * @param int $year
-     * @return \JapaneseDate\Elements\SolarTermDate
-     * @throws \JapaneseDate\Exceptions\SolarTermException
+     * @return SolarTermDate
+     * @throws SolarTermException
      */
     public function syunbun($year): SolarTermDate
     {
-        $year = (int) $year;
         if ($year === 2352) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_SYUNBUN, 21);
         }
@@ -189,12 +188,11 @@ class SimpleSolarTerm
      * 清明
      *
      * @param int $year
-     * @return \JapaneseDate\Elements\SolarTermDate
-     * @throws \JapaneseDate\Exceptions\SolarTermException
+     * @return SolarTermDate
+     * @throws SolarTermException
      */
     public function seimei($year): SolarTermDate
     {
-        $year = (int) $year;
         if ($year === 2302) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_SEIMEI, 6);
         }
@@ -283,12 +281,11 @@ class SimpleSolarTerm
      * 穀雨
      *
      * @param int $year
-     * @return \JapaneseDate\Elements\SolarTermDate
-     * @throws \JapaneseDate\Exceptions\SolarTermException
+     * @return SolarTermDate
+     * @throws SolarTermException
      */
     public function kokuu($year): SolarTermDate
     {
-        $year = (int) $year;
         if ($year === 2334) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_KOKUU, 21);
         }
@@ -379,12 +376,11 @@ class SimpleSolarTerm
      * 立夏
      *
      * @param int $year
-     * @return \JapaneseDate\Elements\SolarTermDate
-     * @throws \JapaneseDate\Exceptions\SolarTermException
+     * @return SolarTermDate
+     * @throws SolarTermException
      */
     public function rikka($year): SolarTermDate
     {
-        $year = (int) $year;
         if ($year === 2320) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_RIKKA, 6);
         }
@@ -474,12 +470,11 @@ class SimpleSolarTerm
      * 小満
      *
      * @param int $year
-     * @return \JapaneseDate\Elements\SolarTermDate
-     * @throws \JapaneseDate\Exceptions\SolarTermException
+     * @return SolarTermDate
+     * @throws SolarTermException
      */
     public function syouman($year): SolarTermDate
     {
-        $year = (int) $year;
         if ($year === 2318) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_SYOUMAN, 22);
         }
@@ -572,12 +567,11 @@ class SimpleSolarTerm
      * 芒種
      *
      * @param int $year
-     * @return \JapaneseDate\Elements\SolarTermDate
-     * @throws \JapaneseDate\Exceptions\SolarTermException
+     * @return SolarTermDate
+     * @throws SolarTermException
      */
     public function bousyu($year): SolarTermDate
     {
-        $year = (int) $year;
         if ($year === 2332) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_BOUSYU, 6);
         }
@@ -678,12 +672,11 @@ class SimpleSolarTerm
      * 夏至
      *
      * @param int $year
-     * @return \JapaneseDate\Elements\SolarTermDate
-     * @throws \JapaneseDate\Exceptions\SolarTermException
+     * @return SolarTermDate
+     * @throws SolarTermException
      */
     public function geshi($year): SolarTermDate
     {
-        $year = (int) $year;
         if ($year === 2321) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_GESHI, 22);
         }
@@ -691,9 +684,6 @@ class SimpleSolarTerm
             return new SolarTermDate($year, DateTime::SOLAR_TERM_GESHI, 22);
         }
 
-        if ($year === 2023) {
-            return new SolarTermDate($year, DateTime::SOLAR_TERM_GESHI, 22);
-        }
         if ($year === 2263) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_GESHI, 22);
         }
@@ -780,12 +770,11 @@ class SimpleSolarTerm
      * 小暑
      *
      * @param int $year
-     * @return \JapaneseDate\Elements\SolarTermDate
-     * @throws \JapaneseDate\Exceptions\SolarTermException
+     * @return SolarTermDate
+     * @throws SolarTermException
      */
     public function syousyo($year): SolarTermDate
     {
-        $year = (int) $year;
         if ($year === 2318) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_SYOUSYO, 8);
         }
@@ -879,12 +868,11 @@ class SimpleSolarTerm
      * 大暑
      *
      * @param int $year
-     * @return \JapaneseDate\Elements\SolarTermDate
-     * @throws \JapaneseDate\Exceptions\SolarTermException
+     * @return SolarTermDate
+     * @throws SolarTermException
      */
     public function taisyo($year): SolarTermDate
     {
-        $year = (int) $year;
         if ($year === 2344) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_TAISYO, 23);
         }
@@ -974,12 +962,11 @@ class SimpleSolarTerm
      * 立秋
      *
      * @param int $year
-     * @return \JapaneseDate\Elements\SolarTermDate
-     * @throws \JapaneseDate\Exceptions\SolarTermException
+     * @return SolarTermDate
+     * @throws SolarTermException
      */
     public function rissyuu($year): SolarTermDate
     {
-        $year = (int) $year;
         if ($year === 2308) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_RISSYUU, 8);
         }
@@ -1069,12 +1056,11 @@ class SimpleSolarTerm
      * 処暑
      *
      * @param int $year
-     * @return \JapaneseDate\Elements\SolarTermDate
-     * @throws \JapaneseDate\Exceptions\SolarTermException
+     * @return SolarTermDate
+     * @throws SolarTermException
      */
     public function syosyo($year): SolarTermDate
     {
-        $year = (int) $year;
         if ($year === 2326) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_SYOSYO, 24);
         }
@@ -1166,12 +1152,11 @@ class SimpleSolarTerm
      * 白露
      *
      * @param int $year
-     * @return \JapaneseDate\Elements\SolarTermDate
-     * @throws \JapaneseDate\Exceptions\SolarTermException
+     * @return SolarTermDate
+     * @throws SolarTermException
      */
     public function hakuro($year): SolarTermDate
     {
-        $year = (int) $year;
         if ($year === 2332) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_HAKURO, 8);
         }
@@ -1265,12 +1250,11 @@ class SimpleSolarTerm
      * 秋分
      *
      * @param int $year
-     * @return \JapaneseDate\Elements\SolarTermDate
-     * @throws \JapaneseDate\Exceptions\SolarTermException
+     * @return SolarTermDate
+     * @throws SolarTermException
      */
     public function syuubun($year): SolarTermDate
     {
-        $year = (int) $year;
         if ($year === 2355) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_SYUUBUN, 24);
         }
@@ -1355,12 +1339,11 @@ class SimpleSolarTerm
      * 寒露
      *
      * @param int $year
-     * @return \JapaneseDate\Elements\SolarTermDate
-     * @throws \JapaneseDate\Exceptions\SolarTermException
+     * @return SolarTermDate
+     * @throws SolarTermException
      */
     public function kanro($year): SolarTermDate
     {
-        $year = (int) $year;
         if ($year === 2362) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_KANRO, 9);
         }
@@ -1448,12 +1431,11 @@ class SimpleSolarTerm
      * 霜降
      *
      * @param int $year
-     * @return \JapaneseDate\Elements\SolarTermDate
-     * @throws \JapaneseDate\Exceptions\SolarTermException
+     * @return SolarTermDate
+     * @throws SolarTermException
      */
     public function soukou($year): SolarTermDate
     {
-        $year = (int) $year;
         if ($year === 2386) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_SOUKOU, 24);
         }
@@ -1547,12 +1529,11 @@ class SimpleSolarTerm
      * 立冬
      *
      * @param int $year
-     * @return \JapaneseDate\Elements\SolarTermDate
-     * @throws \JapaneseDate\Exceptions\SolarTermException
+     * @return SolarTermDate
+     * @throws SolarTermException
      */
     public function rittou($year): SolarTermDate
     {
-        $year = (int) $year;
         if ($year === 2328) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_RITTOU, 8);
         }
@@ -1637,12 +1618,11 @@ class SimpleSolarTerm
      * 小雪
      *
      * @param int $year
-     * @return \JapaneseDate\Elements\SolarTermDate
-     * @throws \JapaneseDate\Exceptions\SolarTermException
+     * @return SolarTermDate
+     * @throws SolarTermException
      */
     public function syousetsu($year): SolarTermDate
     {
-        $year = (int) $year;
         if ($year === 2320) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_SYOUSETSU, 23);
         }
@@ -1730,12 +1710,11 @@ class SimpleSolarTerm
      * 大雪
      *
      * @param int $year
-     * @return \JapaneseDate\Elements\SolarTermDate
-     * @throws \JapaneseDate\Exceptions\SolarTermException
+     * @return SolarTermDate
+     * @throws SolarTermException
      */
     public function taisetsu($year): SolarTermDate
     {
-        $year = (int) $year;
         if ($year === 1649) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_TAISETSU, 7);
         }
@@ -1814,12 +1793,11 @@ class SimpleSolarTerm
      * 冬至
      *
      * @param int $year
-     * @return \JapaneseDate\Elements\SolarTermDate
-     * @throws \JapaneseDate\Exceptions\SolarTermException
+     * @return SolarTermDate
+     * @throws SolarTermException
      */
     public function touji($year): SolarTermDate
     {
-        $year = (int) $year;
         if ($year === 2367) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_TOUJI, 23);
         }
@@ -1897,12 +1875,11 @@ class SimpleSolarTerm
      * 小寒
      *
      * @param int $year
-     * @return \JapaneseDate\Elements\SolarTermDate
-     * @throws \JapaneseDate\Exceptions\SolarTermException
+     * @return SolarTermDate
+     * @throws SolarTermException
      */
     public function syoukan($year): SolarTermDate
     {
-        $year = (int) $year;
         if ($year === 2332) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_SYOUKAN, 7);
         }
@@ -1991,12 +1968,11 @@ class SimpleSolarTerm
      * 大寒
      *
      * @param int $year
-     * @return \JapaneseDate\Elements\SolarTermDate
-     * @throws \JapaneseDate\Exceptions\SolarTermException
+     * @return SolarTermDate
+     * @throws SolarTermException
      */
     public function daikan($year): SolarTermDate
     {
-        $year = (int) $year;
         if ($year === 2362) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_DAIKAN, 21);
         }
@@ -2079,12 +2055,11 @@ class SimpleSolarTerm
      * 立春
      *
      * @param int $year
-     * @return \JapaneseDate\Elements\SolarTermDate
-     * @throws \JapaneseDate\Exceptions\SolarTermException
+     * @return SolarTermDate
+     * @throws SolarTermException
      */
     public function rissyun($year): SolarTermDate
     {
-        $year = (int) $year;
         if ($year === 2157) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_RISSYUN, 4);
         }
@@ -2198,12 +2173,11 @@ class SimpleSolarTerm
      * 雨水
      *
      * @param int $year
-     * @return \JapaneseDate\Elements\SolarTermDate
-     * @throws \JapaneseDate\Exceptions\SolarTermException
+     * @return SolarTermDate
+     * @throws SolarTermException
      */
     public function usui($year): SolarTermDate
     {
-        $year = (int) $year;
         if ($year === 2302) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_USUI, 20);
         }
@@ -2282,12 +2256,11 @@ class SimpleSolarTerm
      * 啓蟄
      *
      * @param int $year
-     * @return \JapaneseDate\Elements\SolarTermDate
-     * @throws \JapaneseDate\Exceptions\SolarTermException
+     * @return SolarTermDate
+     * @throws SolarTermException
      */
     public function keichitsu($year): SolarTermDate
     {
-        $year = (int) $year;
         if ($year === 2187) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_KEICHITSU, 6);
         }

@@ -2,7 +2,10 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-if (PHP_SAPI === 'phpdbg') {
+if (
+    PHP_SAPI === 'phpdbg'
+    && !(new ReflectionClass(PHPUnit\Util\PHP\JobRunner::class))->isFinal()
+) {
     PHPUnit\Util\PHP\JobRunnerRegistry::set(
         new Tests\JapaneseDate\Support\PhpdbgJobRunner(
             new PHPUnit\Framework\ChildProcessResultProcessor(

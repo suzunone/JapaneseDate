@@ -1,8 +1,5 @@
 <?php
 
-/** @noinspection PhpDocMissingThrowsInspection */
-/** @noinspection PhpUnhandledExceptionInspection */
-
 /**
  * SexagenaryCycle コンポーネントの十二支・十干計算を検証するテスト。
  *
@@ -43,6 +40,9 @@ use PHPUnit\Framework\TestCase;
 class SexagenaryCycleTest extends TestCase
 {
     // ==================== factory ====================
+    /**
+     * @return array[]
+     */
     public static function orientalZodiacProvider(): array
     {
         return [
@@ -62,6 +62,9 @@ class SexagenaryCycleTest extends TestCase
             '2030年(戌)' => [2030, 11, '戌'],
         ];
     }
+    /**
+     * @return array[]
+     */
     public static function heavenlyStemProvider(): array
     {
         return [
@@ -83,6 +86,7 @@ class SexagenaryCycleTest extends TestCase
     }
     // ==================== getOrientalZodiacKey ====================
     /**
+     * @return void
      * @runInSeparateProcess
      * @preserveGlobalState disabled
      */
@@ -93,6 +97,7 @@ class SexagenaryCycleTest extends TestCase
         $this->assertSame($instance1, $instance2, 'factory() はシングルトンを返す必要があります');
     }
     /**
+     * @return void
      * @runInSeparateProcess
      * @preserveGlobalState disabled
      */
@@ -102,10 +107,12 @@ class SexagenaryCycleTest extends TestCase
     }
     // ==================== viewOrientalZodiac ====================
     /**
-     * @dataProvider orientalZodiacProvider
+     * @noinspection PhpUnusedParameterInspection
      * @param int $year
      * @param int $expectedKey
      * @param string $expectedText
+     * @return void
+     * @dataProvider orientalZodiacProvider
      */
     public function test_getOrientalZodiacKey($year, $expectedKey, $expectedText): void
     {
@@ -113,10 +120,12 @@ class SexagenaryCycleTest extends TestCase
         $this->assertSame($expectedKey, $cycle->getOrientalZodiacKey($year));
     }
     /**
-     * @dataProvider orientalZodiacProvider
+     * @noinspection PhpUnusedParameterInspection
      * @param int $year
      * @param int $key
      * @param string $expectedText
+     * @return void
+     * @dataProvider orientalZodiacProvider
      */
     public function test_viewOrientalZodiac_validKey($year, $key, $expectedText): void
     {
@@ -124,16 +133,21 @@ class SexagenaryCycleTest extends TestCase
         $this->assertSame($expectedText, $cycle->viewOrientalZodiac($key));
     }
     // ==================== getHeavenlyStemKey ====================
+    /**
+     * @return void
+     */
     public function test_viewOrientalZodiac_invalidKey_returnsEmpty(): void
     {
         $cycle = new SexagenaryCycle();
         $this->assertSame('', $cycle->viewOrientalZodiac(99));
     }
     /**
-     * @dataProvider heavenlyStemProvider
+     * @noinspection PhpUnusedParameterInspection
      * @param int $year
      * @param int $expectedKey
      * @param string $expectedText
+     * @return void
+     * @dataProvider heavenlyStemProvider
      */
     public function test_getHeavenlyStemKey($year, $expectedKey, $expectedText): void
     {
@@ -142,16 +156,21 @@ class SexagenaryCycleTest extends TestCase
     }
     // ==================== viewHeavenlyStem ====================
     /**
-     * @dataProvider heavenlyStemProvider
+     * @noinspection PhpUnusedParameterInspection
      * @param int $year
      * @param int $key
      * @param string $expectedText
+     * @return void
+     * @dataProvider heavenlyStemProvider
      */
     public function test_viewHeavenlyStem_validKey($year, $key, $expectedText): void
     {
         $cycle = new SexagenaryCycle();
         $this->assertSame($expectedText, $cycle->viewHeavenlyStem($key));
     }
+    /**
+     * @return void
+     */
     public function test_viewHeavenlyStem_invalidKey_returnsEmpty(): void
     {
         $cycle = new SexagenaryCycle();

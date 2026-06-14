@@ -65,7 +65,7 @@ class AncientTraitTest extends TestCase
     /**
      * DateTimeImmutable::historicalEras() で通常時代の Era[] が返ること。
      */
-    public function test_historicalEras_method_returns_era_array_with_datetimeimmutable(): void
+    public function test_historicalEras_method_returns_era_array_with_DateTimeImmutable(): void
     {
         $dt = new DateTimeImmutable('645-08-01T00:00:00+09:00');
         $result = $dt->historicalEras();
@@ -94,7 +94,7 @@ class AncientTraitTest extends TestCase
         $result = $dt->historicalEras();
 
         $this->assertGreaterThanOrEqual(2, count($result));
-        $courts = array_map(function (Era $e) {
+        $courts = array_map(static function (Era $e) {
             return $e->court;
         }, $result);
         $this->assertContains(DateTime::COURT_NORTH, $courts);
@@ -103,13 +103,13 @@ class AncientTraitTest extends TestCase
     /**
      * DateTimeImmutable で南北朝時代の日付を指定すると複数 Era が返ること。
      */
-    public function test_historicalEras_method_nanbokucho_with_datetimeimmutable(): void
+    public function test_historicalEras_method_nanbokucho_with_DateTimeImmutable(): void
     {
         $dt = new DateTimeImmutable('1350-01-01T00:00:00+09:00');
         $result = $dt->historicalEras();
 
         $this->assertGreaterThanOrEqual(2, count($result));
-        $courts = array_map(function (Era $e) {
+        $courts = array_map(static function (Era $e) {
             return $e->court;
         }, $result);
         $this->assertContains(DateTime::COURT_NORTH, $courts);
@@ -134,7 +134,7 @@ class AncientTraitTest extends TestCase
     /**
      * $date->historicalEras プロパティ経由で Era[] が返ること（DateTimeImmutable）。
      */
-    public function test_historicalEras_property_access_with_datetimeimmutable(): void
+    public function test_historicalEras_property_access_with_DateTimeImmutable(): void
     {
         $dt = new DateTimeImmutable('645-08-01T00:00:00+09:00');
         $result = $dt->historicalEras;
@@ -163,7 +163,7 @@ class AncientTraitTest extends TestCase
         $result = $dt->historicalEras;
 
         $this->assertGreaterThanOrEqual(2, count($result));
-        $courts = array_map(function (Era $e) {
+        $courts = array_map(static function (Era $e) {
             return $e->court;
         }, $result);
         $this->assertContains(DateTime::COURT_NORTH, $courts);
@@ -195,6 +195,9 @@ class AncientTraitTest extends TestCase
 
         $this->assertSame([], $result);
     }
+    /**
+     * @return void
+     */
     protected function tearDown(): void
     {
         HistoricalEraMap::clearCache();

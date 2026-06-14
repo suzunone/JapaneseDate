@@ -1,6 +1,7 @@
 <?php
 
 /** @noinspection PhpUnhandledExceptionInspection */
+/** @noinspection PhpUnusedParameterInspection */
 
 /**
  * SeventyTwoKou Trait のユニットテスト。

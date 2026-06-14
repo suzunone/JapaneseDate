@@ -40,20 +40,14 @@ commands:
             - ~/.composer/cache
           key: v1-dependencies-{{ checksum "composer.json" }}
       - run:
-          name: Install PHP extensions
+          name: Install xdebug
           command: |
-            sudo pecl channel-update pecl.php.net
-            # PHPのバージョンが7.2の場合は2.9.8を、それ以外は最新を入れる
-            if [ "<< parameters.php-version >>" = "7.2" ]; then
-              sudo pecl install xdebug-2.9.8
-            else
-              sudo pecl install xdebug
-            fi
+            sudo pecl install xdebug
       - run:
           name: Run tests
           command: |
             export XDEBUG_MODE=coverage
-            vendor/bin/phpunit tests --exclude-group large
+            vendor/bin/phpunit tests --exclude-group long-running
 
 jobs:
   test72:
@@ -139,3 +133,4 @@ workflows:
       - test85:
           context:
             - dockerhub
+

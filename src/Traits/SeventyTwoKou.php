@@ -25,7 +25,7 @@ namespace JapaneseDate\Traits;
  *
  * このトレイトは {@see \JapaneseDate\DateTime} および
  * {@see \JapaneseDate\DateTimeImmutable} に mix-in されており、
- * 外部からは {@see \JapaneseDate\Traits\Getter} のマジックゲッター経由で
+ * 外部からは {@see Getter} のマジックゲッター経由で
  * プロパティとして公開されます。
  *
  * **提供する機能**
@@ -47,63 +47,6 @@ namespace JapaneseDate\Traits;
  */
 trait SeventyTwoKou
 {
-    /**
-     * その日が属する七十二候の番号（1〜72）を返します。
-     *
-     * 立春初候が 1、大寒末候が 72 です。
-     * 計算は各二十四節気の入節日から次節気の入節日までを3等分して行います。
-     *
-     * @return int 七十二候番号（1〜72）
-     * @throws \JapaneseDate\Exceptions\Exception
-     * @throws \JapaneseDate\Exceptions\SolarTermException
-     */
-    protected function getSeventyTwoKou(): int
-    {
-        return $this->SeventyTwoKouCalculator->getKouNumber($this);
-    }
-
-    /**
-     * その日が属する七十二候の現代名称を返します。
-     *
-     * 例: "東風凍を解く"、"乃東生ず" など。
-     *
-     * @return string 七十二候名称
-     * @throws \JapaneseDate\Exceptions\Exception
-     * @throws \JapaneseDate\Exceptions\SolarTermException
-     */
-    protected function getSeventyTwoKouText(): string
-    {
-        return $this->SeventyTwoKouCalculator->getKouText($this->getSeventyTwoKou());
-    }
-
-    /**
-     * その日が属する七十二候の読みを返します。
-     *
-     * 例: "はるかぜ こおりをとく"、"なつかれくさ しょうず" など。
-     *
-     * @return string 七十二候の読み
-     * @throws \JapaneseDate\Exceptions\Exception
-     * @throws \JapaneseDate\Exceptions\SolarTermException
-     */
-    protected function getSeventyTwoKouReading(): string
-    {
-        return $this->SeventyTwoKouCalculator->getKouReading($this->getSeventyTwoKou());
-    }
-
-    /**
-     * その日が属する七十二候の候種別を返します。
-     *
-     * 返り値は "初候"、"次候"、"末候" のいずれかです。
-     *
-     * @return string 候種別（"初候" / "次候" / "末候"）
-     * @throws \JapaneseDate\Exceptions\Exception
-     * @throws \JapaneseDate\Exceptions\SolarTermException
-     */
-    protected function getSeventyTwoKouType(): string
-    {
-        return $this->SeventyTwoKouCalculator->getKouType($this->getSeventyTwoKou());
-    }
-
     /**
      * 次の七十二候が始まる日へ移動したインスタンスを返します。
      *
@@ -150,5 +93,62 @@ trait SeventyTwoKou
             $this->minute,
             $this->second
         );
+    }
+
+    /**
+     * その日が属する七十二候の現代名称を返します。
+     *
+     * 例: "東風凍を解く"、"乃東生ず" など。
+     *
+     * @return string 七十二候名称
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
+     */
+    protected function getSeventyTwoKouText(): string
+    {
+        return $this->SeventyTwoKouCalculator->getKouText($this->getSeventyTwoKou());
+    }
+
+    /**
+     * その日が属する七十二候の番号（1〜72）を返します。
+     *
+     * 立春初候が 1、大寒末候が 72 です。
+     * 計算は各二十四節気の入節日から次節気の入節日までを3等分して行います。
+     *
+     * @return int 七十二候番号（1〜72）
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
+     */
+    protected function getSeventyTwoKou(): int
+    {
+        return $this->SeventyTwoKouCalculator->getKouNumber($this);
+    }
+
+    /**
+     * その日が属する七十二候の読みを返します。
+     *
+     * 例: "はるかぜ こおりをとく"、"なつかれくさ しょうず" など。
+     *
+     * @return string 七十二候の読み
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
+     */
+    protected function getSeventyTwoKouReading(): string
+    {
+        return $this->SeventyTwoKouCalculator->getKouReading($this->getSeventyTwoKou());
+    }
+
+    /**
+     * その日が属する七十二候の候種別を返します。
+     *
+     * 返り値は "初候"、"次候"、"末候" のいずれかです。
+     *
+     * @return string 候種別（"初候" / "次候" / "末候"）
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
+     */
+    protected function getSeventyTwoKouType(): string
+    {
+        return $this->SeventyTwoKouCalculator->getKouType($this->getSeventyTwoKou());
     }
 }

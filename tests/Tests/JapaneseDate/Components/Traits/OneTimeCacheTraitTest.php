@@ -10,6 +10,10 @@ use PHPUnit\Framework\TestCase;
 use Tests\JapaneseDate\InvokeTrait;
 
 /**
+ *
+ */
+/**
+ *
  * @covers \JapaneseDate\Components\Traits\OneTimeCacheTrait
  */
 class OneTimeCacheTraitTest extends TestCase

@@ -5,3 +5,4 @@
 @import ".claude/rules/testing.md"
 @import ".claude/rules/development.md"
 @import ".claude/rules/structure.md"
+@import ".claude/rules/dictionary.md"

@@ -143,35 +143,9 @@ class DateBusiness
     protected $macro;
 
     /**
-     * 休業曜日を一括設定します。
-     *
-     * 0（日曜）〜 6（土曜）の整数配列で指定します。
-     * 既存の設定を上書きします。
-     *
-     * **使用例:**
-     * ```php
-     * $config->setClosingWeekdays([0, 6]); // 日曜・土曜を休業に
-     * ```
-     *
-     * @param  array<int> $weekdays 休業曜日の配列（例: [0, 6] で日・土）
-     * @return static メソッドチェーン用に自身を返します
-     */
-    public function setClosingWeekdays($weekdays)
-    {
-        $this->closingWeekdays = [];
-        foreach ($weekdays as $wd) {
-            /** @noinspection PhpCastIsUnnecessaryInspection */
-            /** @noinspection UnnecessaryCastingInspection */
-            $this->closingWeekdays[(int) $wd] = true;
-        }
-
-        return $this;
-    }
-
-    /**
      * 休業曜日を1件追加します。
      *
-     * @param  int $weekday 曜日（0=日曜〜6=土曜）
+     * @param int $weekday 曜日（0=日曜〜6=土曜）
      * @return static メソッドチェーン用に自身を返します
      */
     public function addClosingWeekday($weekday)
@@ -184,27 +158,12 @@ class DateBusiness
     /**
      * 休業曜日の設定を削除します。
      *
-     * @param  int $weekday 曜日（0=日曜〜6=土曜）
+     * @param int $weekday 曜日（0=日曜〜6=土曜）
      * @return static メソッドチェーン用に自身を返します
      */
     public function removeClosingWeekday($weekday)
     {
         unset($this->closingWeekdays[$weekday]);
-
-        return $this;
-    }
-
-    /**
-     * 祝日を休業日として扱うかどうかを設定します。
-     *
-     * デフォルトは `true`（祝日を休業日とする）です。
-     *
-     * @param  bool $bypass true の場合、祝日を休業日とする
-     * @return static メソッドチェーン用に自身を返します
-     */
-    public function setBypassHoliday($bypass)
-    {
-        $this->bypassHoliday = $bypass;
 
         return $this;
     }
@@ -219,8 +178,8 @@ class DateBusiness
      * $config->addOpenNthWeekday(6, 2); // 第2土曜日は営業
      * ```
      *
-     * @param  int $weekday 曜日（0=日曜〜6=土曜）
-     * @param  int $nth     第何曜日か（1〜5）
+     * @param int $weekday 曜日（0=日曜〜6=土曜）
+     * @param int $nth 第何曜日か（1〜5）
      * @return static メソッドチェーン用に自身を返します
      */
     public function addOpenNthWeekday($weekday, $nth)
@@ -233,8 +192,8 @@ class DateBusiness
     /**
      * 第XX曜日の営業指定を削除します。
      *
-     * @param  int $weekday 曜日（0=日曜〜6=土曜）
-     * @param  int $nth     第何曜日か（1〜5）
+     * @param int $weekday 曜日（0=日曜〜6=土曜）
+     * @param int $nth 第何曜日か（1〜5）
      * @return static メソッドチェーン用に自身を返します
      */
     public function removeOpenNthWeekday($weekday, $nth)
@@ -254,9 +213,9 @@ class DateBusiness
      * $config->addClosingNthWeekday(3, 3, '定休日'); // 第3水曜日は休業
      * ```
      *
-     * @param  int         $weekday 曜日（0=日曜〜6=土曜）
-     * @param  int         $nth     第何曜日か（1〜5）
-     * @param  string|null $label   休業ラベル（例: '定休日'）
+     * @param int $weekday 曜日（0=日曜〜6=土曜）
+     * @param int $nth 第何曜日か（1〜5）
+     * @param string|null $label 休業ラベル（例: '定休日'）
      * @return static メソッドチェーン用に自身を返します
      */
     public function addClosingNthWeekday($weekday, $nth, $label = null)
@@ -269,8 +228,8 @@ class DateBusiness
     /**
      * 第XX曜日の休業指定を削除します。
      *
-     * @param  int $weekday 曜日（0=日曜〜6=土曜）
-     * @param  int $nth     第何曜日か（1〜5）
+     * @param int $weekday 曜日（0=日曜〜6=土曜）
+     * @param int $nth 第何曜日か（1〜5）
      * @return static メソッドチェーン用に自身を返します
      */
     public function removeClosingNthWeekday($weekday, $nth)
@@ -290,7 +249,7 @@ class DateBusiness
      * $config->addOpenDate('2026-12-30'); // 2026年12月30日は特別営業
      * ```
      *
-     * @param string|\DateTimeInterface $date 営業日として指定する日付
+     * @param string|DateTimeInterface $date 営業日として指定する日付
      * @return static メソッドチェーン用に自身を返します
      * @throws \Exception
      */
@@ -303,9 +262,25 @@ class DateBusiness
     }
 
     /**
+     * DateTimeInterface または日付文字列をキー文字列（"Ymd"）に変換します。
+     *
+     * @param string|DateTimeInterface $date
+     * @return string
+     * @throws \Exception
+     */
+    protected function toDateKey($date): string
+    {
+        if ($date instanceof DateTimeInterface) {
+            return $date->format('Ymd');
+        }
+
+        return (new \DateTime($date))->format('Ymd');
+    }
+
+    /**
      * 特定日の営業指定を削除します。
      *
-     * @param string|\DateTimeInterface $date 削除する日付
+     * @param string|DateTimeInterface $date 削除する日付
      * @return static メソッドチェーン用に自身を返します
      * @throws \Exception
      */
@@ -328,7 +303,7 @@ class DateBusiness
      * $config->addClosingDate('2026-12-31', '年末休業');
      * ```
      *
-     * @param string|\DateTimeInterface $date 休業日として指定する日付
+     * @param string|DateTimeInterface $date 休業日として指定する日付
      * @param string|null $label 休業理由のラベル（例: '夏期休暇'）
      * @return static メソッドチェーン用に自身を返します
      * @throws \Exception
@@ -344,7 +319,7 @@ class DateBusiness
     /**
      * 特定日の休業指定を削除します。
      *
-     * @param string|\DateTimeInterface $date 削除する日付
+     * @param string|DateTimeInterface $date 削除する日付
      * @return static メソッドチェーン用に自身を返します
      * @throws \Exception
      */
@@ -368,7 +343,7 @@ class DateBusiness
      * $config->addOpenFilter(fn(\DateTimeInterface $d) => $d->format('d') === '10');
      * ```
      *
-     * @param  callable $filter `fn(\DateTimeInterface $date): bool` 形式のコールバック
+     * @param callable $filter `fn(\DateTimeInterface $date): bool` 形式のコールバック
      * @return static メソッドチェーン用に自身を返します
      */
     public function addOpenFilter($filter)
@@ -395,37 +370,13 @@ class DateBusiness
      * );
      * ```
      *
-     * @param  callable    $filter `fn(\DateTimeInterface $date): bool` 形式のコールバック
-     * @param  string|null $label  休業理由のラベル（例: '月末休業'）
+     * @param callable $filter `fn(\DateTimeInterface $date): bool` 形式のコールバック
+     * @param string|null $label 休業理由のラベル（例: '月末休業'）
      * @return static メソッドチェーン用に自身を返します
      */
     public function addClosingFilter($filter, $label = null)
     {
         $this->closingFilters[] = ['filter' => $filter, 'label' => $label];
-
-        return $this;
-    }
-
-    /**
-     * 判定ロジックを完全に上書きするマクロを設定します（優先度9・最高）。
-     *
-     * マクロは `fn(\DateTimeInterface $date): bool` の形式で、
-     * `true` を返した場合にその日を営業日、`false` を返した場合に休業日と判定します。
-     * 設定されたマクロは他のすべての設定より優先されます。
-     * `null` を渡すとマクロを解除します。
-     *
-     * **使用例:**
-     * ```php
-     * // 月〜木のみ営業という完全カスタムロジック
-     * $config->setMacro(fn(\DateTimeInterface $d) => in_array((int)$d->format('N'), [1,2,3,4]));
-     * ```
-     *
-     * @param  callable|null $macro `fn(\DateTimeInterface $date): bool` 形式のコールバック、または null
-     * @return static メソッドチェーン用に自身を返します
-     */
-    public function setMacro($macro)
-    {
-        $this->macro = $macro;
 
         return $this;
     }
@@ -461,6 +412,32 @@ class DateBusiness
     }
 
     /**
+     * 休業曜日を一括設定します。
+     *
+     * 0（日曜）〜 6（土曜）の整数配列で指定します。
+     * 既存の設定を上書きします。
+     *
+     * **使用例:**
+     * ```php
+     * $config->setClosingWeekdays([0, 6]); // 日曜・土曜を休業に
+     * ```
+     *
+     * @param array<int> $weekdays 休業曜日の配列（例: [0, 6] で日・土）
+     * @return static メソッドチェーン用に自身を返します
+     */
+    public function setClosingWeekdays($weekdays)
+    {
+        $this->closingWeekdays = [];
+        foreach ($weekdays as $wd) {
+            /** @noinspection PhpCastIsUnnecessaryInspection */
+            /** @noinspection UnnecessaryCastingInspection */
+            $this->closingWeekdays[(int) $wd] = true;
+        }
+
+        return $this;
+    }
+
+    /**
      * 祝日を休業日とするかどうかを取得します。
      *
      * @return bool
@@ -468,6 +445,21 @@ class DateBusiness
     public function isBypassHoliday(): bool
     {
         return $this->bypassHoliday;
+    }
+
+    /**
+     * 祝日を休業日として扱うかどうかを設定します。
+     *
+     * デフォルトは `true`（祝日を休業日とする）です。
+     *
+     * @param bool $bypass true の場合、祝日を休業日とする
+     * @return static メソッドチェーン用に自身を返します
+     */
+    public function setBypassHoliday($bypass)
+    {
+        $this->bypassHoliday = $bypass;
+
+        return $this;
     }
 
     /**
@@ -541,18 +533,26 @@ class DateBusiness
     }
 
     /**
-     * DateTimeInterface または日付文字列をキー文字列（"Ymd"）に変換します。
+     * 判定ロジックを完全に上書きするマクロを設定します（優先度9・最高）。
      *
-     * @param string|\DateTimeInterface $date
-     * @return string
-     * @throws \Exception
+     * マクロは `fn(\DateTimeInterface $date): bool` の形式で、
+     * `true` を返した場合にその日を営業日、`false` を返した場合に休業日と判定します。
+     * 設定されたマクロは他のすべての設定より優先されます。
+     * `null` を渡すとマクロを解除します。
+     *
+     * **使用例:**
+     * ```php
+     * // 月〜木のみ営業という完全カスタムロジック
+     * $config->setMacro(fn(\DateTimeInterface $d) => in_array((int)$d->format('N'), [1,2,3,4]));
+     * ```
+     *
+     * @param callable|null $macro `fn(\DateTimeInterface $date): bool` 形式のコールバック、または null
+     * @return static メソッドチェーン用に自身を返します
      */
-    protected function toDateKey($date): string
+    public function setMacro($macro)
     {
-        if ($date instanceof DateTimeInterface) {
-            return $date->format('Ymd');
-        }
+        $this->macro = $macro;
 
-        return (new \DateTime($date))->format('Ymd');
+        return $this;
     }
 }

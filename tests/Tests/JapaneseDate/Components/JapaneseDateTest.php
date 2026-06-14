@@ -434,54 +434,54 @@ class JapaneseDateTest extends TestCase
     public function test_getDayByWeekly(): void
     {
         $JapaneseDate = new JapaneseDate();
-        $res = $JapaneseDate->getDayByWeekly(2016, 6, DateTime::SUNDAY, 1, null);
+        $res = $JapaneseDate->getDayByWeekly(2016, 6, DateTime::SUNDAY);
         $this->assertEquals(5, $res);
-        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::SUNDAY, 1, null);
+        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::SUNDAY);
         $this->assertEquals(1, $res);
 
-        $res = $JapaneseDate->getDayByWeekly(2016, 6, DateTime::SUNDAY, 2, null);
+        $res = $JapaneseDate->getDayByWeekly(2016, 6, DateTime::SUNDAY, 2);
         $this->assertEquals(5 + 7, $res);
-        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::SUNDAY, 2, null);
+        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::SUNDAY, 2);
         $this->assertEquals(1 + 7, $res);
 
-        $res = $JapaneseDate->getDayByWeekly(2016, 6, DateTime::MONDAY, 1, null);
+        $res = $JapaneseDate->getDayByWeekly(2016, 6, DateTime::MONDAY);
         $this->assertEquals(6, $res);
-        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::MONDAY, 1, null);
+        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::MONDAY);
         $this->assertEquals(2, $res);
 
-        $res = $JapaneseDate->getDayByWeekly(2016, 6, DateTime::MONDAY, 2, null);
+        $res = $JapaneseDate->getDayByWeekly(2016, 6, DateTime::MONDAY, 2);
         $this->assertEquals(6 + 7, $res);
-        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::MONDAY, 2, null);
+        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::MONDAY, 2);
         $this->assertEquals(2 + 7, $res);
 
-        $res = $JapaneseDate->getDayByWeekly(2016, 6, DateTime::TUESDAY, 1, null);
+        $res = $JapaneseDate->getDayByWeekly(2016, 6, DateTime::TUESDAY);
         $this->assertEquals(7, $res);
-        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::TUESDAY, 1, null);
+        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::TUESDAY);
         $this->assertEquals(3, $res);
 
-        $res = $JapaneseDate->getDayByWeekly(2016, 6, DateTime::TUESDAY, 2, null);
+        $res = $JapaneseDate->getDayByWeekly(2016, 6, DateTime::TUESDAY, 2);
         $this->assertEquals(7 + 7, $res);
-        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::TUESDAY, 2, null);
+        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::TUESDAY, 2);
         $this->assertEquals(3 + 7, $res);
 
-        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::WEDNESDAY, 1, null);
+        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::WEDNESDAY);
         $this->assertEquals(4, $res);
-        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::WEDNESDAY, 2, null);
+        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::WEDNESDAY, 2);
         $this->assertEquals(4 + 7, $res);
 
-        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::THURSDAY, 1, null);
+        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::THURSDAY);
         $this->assertEquals(5, $res);
-        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::THURSDAY, 2, null);
+        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::THURSDAY, 2);
         $this->assertEquals(5 + 7, $res);
 
-        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::FRIDAY, 1, null);
+        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::FRIDAY);
         $this->assertEquals(6, $res);
-        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::FRIDAY, 2, null);
+        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::FRIDAY, 2);
         $this->assertEquals(6 + 7, $res);
 
-        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::SATURDAY, 1, null);
+        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::SATURDAY);
         $this->assertEquals(7, $res);
-        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::SATURDAY, 2, null);
+        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::SATURDAY, 2);
         $this->assertEquals(7 + 7, $res);
     }
     /**
@@ -1857,6 +1857,7 @@ class JapaneseDateTest extends TestCase
         $FakerGenerator = new FakerGenerator();
         $FakerGenerator->addProvider(FakerDateTime::class);
 
+        // noinspection PhpUndefinedMethodInspection
         $test_date_time = $FakerGenerator->dateTime();
 
         $JapaneseDate = new JapaneseDate();
@@ -1877,6 +1878,7 @@ class JapaneseDateTest extends TestCase
         $FakerGenerator = new FakerGenerator();
         $FakerGenerator->addProvider(FakerDateTime::class);
 
+        // noinspection PhpUndefinedMethodInspection
         $test_date_time = $FakerGenerator->dateTime();
 
         $JapaneseDate = new JapaneseDate();

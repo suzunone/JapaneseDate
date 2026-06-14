@@ -15,7 +15,7 @@
 
 namespace Tests\JapaneseDate;
 
-use PHPUnit\Framework\Attributes\CodeCoverageIgnore;
+use PHPUnit\Framework\Attributes\CoversNothing;
 use ReflectionClass;
 
 use const PHP_VERSION_ID;
@@ -32,7 +32,7 @@ use const PHP_VERSION_ID;
  * @see         https://github.com/suzunone/JapaneseDate
  * @since       Class available since Release 1.0.0
  */
-#[CodeCoverageIgnore]
+#[CoversNothing]
 trait InvokeTrait
 {
     /**
@@ -44,7 +44,7 @@ trait InvokeTrait
      */
     public function invokeExecuteMethod($instance, $method_name, $options)
     {
-        if (gettype($instance) === 'string') {
+        if (is_string($instance)) {
             $instance = new $instance();
         }
 
@@ -66,7 +66,7 @@ trait InvokeTrait
      */
     public function invokeGetProperty($instance, $property_name)
     {
-        if (gettype($instance) === 'string') {
+        if (is_string($instance)) {
             $instance = new $instance();
         }
 
@@ -88,7 +88,7 @@ trait InvokeTrait
      */
     public function invokeSetProperty($instance, $property_name, $data): void
     {
-        if (gettype($instance) === 'string') {
+        if (is_string($instance)) {
             $instance = new $instance();
         }
 

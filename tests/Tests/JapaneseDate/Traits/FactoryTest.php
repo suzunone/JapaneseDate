@@ -20,6 +20,7 @@
 namespace Tests\JapaneseDate\Traits;
 
 use Carbon\Carbon;
+use Carbon\Exceptions\InvalidFormatException;
 use DateTimeImmutable as NativeDateTimeImmutable;
 use DateTimeZone;
 use JapaneseDate\DateTime;
@@ -53,28 +54,6 @@ class FactoryTest extends TestCase
     // -----------------------------------------------------------------------
     // DataProvider
     // -----------------------------------------------------------------------
-    /**
-     * DateTime / DateTimeImmutable の両クラスを供給するプロバイダ。
-     */
-    public static function targetClassProvider(): array
-    {
-        return [
-            'DateTime' => [DateTime::class],
-            'DateTimeImmutable' => [DateTimeImmutable::class],
-        ];
-    }
-    /**
-     * float タイムスタンプとその期待マイクロ秒値を供給するプロバイダ。
-     */
-    public static function floatUnixTimestampProvider(): array
-    {
-        return [
-            'float型小数点以下あり' => [1710936896.750123, 750123],
-            '文字列型小数点以下あり' => ['1710936896.750123', 750123],
-            'float型小数点以下なし' => [1710936896.0000, 0],
-            '文字列型小数点以下なし' => ['1710936896.0000', 0],
-        ];
-    }
     /**
      * factory の基本入力パターンを供給するプロバイダ。
      */
@@ -133,7 +112,7 @@ class FactoryTest extends TestCase
         ];
 
         foreach (self::floatUnixTimestampProvider() as $label => [$timestamp, $expectedMicro]) {
-            $rows["float UNIX タイムスタンプ / {$label}"] = [
+            $rows["float UNIX タイムスタンプ / $label"] = [
                 $timestamp,
                 null,
                 null,
@@ -141,7 +120,7 @@ class FactoryTest extends TestCase
                 (int) $timestamp,
                 $expectedMicro,
             ];
-            $rows["float UNIX タイムスタンプ / timezone / {$label}"] = [
+            $rows["float UNIX タイムスタンプ / timezone / $label"] = [
                 $timestamp,
                 new DateTimeZone('America/New_York'),
                 null,
@@ -152,6 +131,42 @@ class FactoryTest extends TestCase
         }
 
         return self::withTargetClasses($rows);
+    }
+    /**
+     * float タイムスタンプとその期待マイクロ秒値を供給するプロバイダ。
+     */
+    public static function floatUnixTimestampProvider(): array
+    {
+        return [
+            'float型小数点以下あり' => [1710936896.750123, 750123],
+            '文字列型小数点以下あり' => ['1710936896.750123', 750123],
+            'float型小数点以下なし' => [1710936896.0000, 0],
+            '文字列型小数点以下なし' => ['1710936896.0000', 0],
+        ];
+    }
+    /**
+     * 対象クラスとテストデータを組み合わせる。
+     */
+    private static function withTargetClasses(array $rows): array
+    {
+        $combined = [];
+        foreach (self::targetClassProvider() as $className => [$class]) {
+            foreach ($rows as $label => $row) {
+                $combined["$className / $label"] = array_merge([$class], $row);
+            }
+        }
+
+        return $combined;
+    }
+    /**
+     * DateTime / DateTimeImmutable の両クラスを供給するプロバイダ。
+     */
+    public static function targetClassProvider(): array
+    {
+        return [
+            'DateTime' => [DateTime::class],
+            'DateTimeImmutable' => [DateTimeImmutable::class],
+        ];
     }
     /**
      * DateTimeInterface 入力のパターンを供給するプロバイダ。
@@ -263,130 +278,6 @@ class FactoryTest extends TestCase
         ];
     }
     /**
-     * 対象クラスとテストデータを組み合わせる。
-     */
-    private static function withTargetClasses(array $rows): array
-    {
-        $combined = [];
-        foreach (self::targetClassProvider() as $className => [$class]) {
-            foreach ($rows as $label => $row) {
-                $combined["{$className} / {$label}"] = array_merge([$class], $row);
-            }
-        }
-
-        return $combined;
-    }
-    /**
-     * 基本入力から各クラスのインスタンスを生成できることを確認する。
-     *
-     * @param class-string $class
-     * @param mixed $input
-     * @dataProvider factoryInputProvider
-     * @param \DateTimeZone|null $timezone
-     * @param string|null $expectedDateTime
-     * @param string|null $expectedTimezone
-     * @param int|null $expectedTimestamp
-     * @param int|null $expectedMicrosecond
-     */
-    public function test_factory_creates_expected_result($class, $input, $timezone, $expectedDateTime, $expectedTimezone, $expectedTimestamp, $expectedMicrosecond): void
-    {
-        $result = $input === null && $timezone === null
-            ? $class::factory()
-            : $class::factory($input, $timezone);
-        $this->assertInstanceOf($class, $result);
-        if ($expectedDateTime !== null) {
-            $this->assertSame($expectedDateTime, $result->format('Y-m-d H:i:s'));
-        }
-        if ($expectedTimezone !== null) {
-            $this->assertSame($expectedTimezone, $result->getTimezone()->getName());
-        }
-        if ($expectedTimestamp !== null) {
-            $this->assertSame($expectedTimestamp, $result->getTimestamp());
-        }
-        if ($expectedMicrosecond !== null) {
-            $this->assertSame($expectedMicrosecond, $result->microsecond);
-        }
-    }
-    /**
-     * DateTimeInterface から各クラスのインスタンスを生成できることを確認する。
-     *
-     * @param class-string $class
-     * @param callable $sourceFactory
-     * @dataProvider dateTimeInterfaceInputProvider
-     * @param \DateTimeZone|null $timezone
-     * @param string $expectedDateTime
-     * @param string $expectedTimezone
-     * @param int $expectedMicrosecond
-     */
-    public function test_factory_DateTimeInterface($class, $sourceFactory, $timezone, $expectedDateTime, $expectedTimezone, $expectedMicrosecond): void
-    {
-        $result = $class::factory($sourceFactory($class), $timezone);
-        $this->assertInstanceOf($class, $result);
-        $this->assertSame($expectedDateTime, $result->format('Y-m-d H:i:s'));
-        $this->assertSame($expectedTimezone, $result->getTimezone()->getName());
-        $this->assertSame($expectedMicrosecond, $result->microsecond);
-    }
-    /**
-     * DateTime と DateTimeImmutable を相互に入力して生成できることを確認する。
-     *
-     * @param class-string $class
-     * @dataProvider crossClassInputProvider
-     * @param object $source
-     */
-    public function test_factory_accepts_other_JapaneseDate_class($class, $source): void
-    {
-        $result = $class::factory($source);
-        $this->assertInstanceOf($class, $result);
-        $this->assertSame('2024-11-03 09:00:00', $result->format('Y-m-d H:i:s'));
-    }
-    /**
-     * 和暦・JIS元号形式の文字列から各クラスのインスタンスを生成できることを確認する。
-     *
-     * @param class-string $class
-     * @dataProvider japaneseDateStringProvider
-     * @param string $input
-     * @param \DateTimeZone|null $timezone
-     * @param string $expectedDateTime
-     * @param string $expectedTimezone
-     */
-    public function test_factory_japanese_date_string($class, $input, $timezone, $expectedDateTime, $expectedTimezone): void
-    {
-        $result = $class::factory($input, $timezone);
-        $this->assertInstanceOf($class, $result);
-        $this->assertSame($expectedDateTime, $result->format('Y-m-d H:i:s'));
-        $this->assertSame($expectedTimezone, $result->getTimezone()->getName());
-    }
-    /**
-     * parseJisDate が null を返す不正な和暦文字列は new static() にフォールバックすることを確認する。
-     *
-     * @param class-string $class
-     * @dataProvider targetClassProvider
-     */
-    public function test_factory_invalid_japanese_string_falls_through_to_new_static($class): void
-    {
-        $this->expectException(NativeDateTimeException::class);
-        $class::factory('令和7年2月30日');
-    }
-    /**
-     * 境界値と特殊な入力を生成できることを確認する。
-     * @dataProvider boundaryInputProvider
-     * @param mixed $input
-     * @param int $expectedTimestamp
-     * @param int|null $expectedMicrosecond
-     */
-    public function test_factory_boundary_inputs($input, $expectedTimestamp, $expectedMicrosecond): void
-    {
-        $result = DateTime::factory($input);
-        $this->assertInstanceOf(DateTime::class, $result);
-        $this->assertSame($expectedTimestamp, $result->getTimestamp());
-        if ($expectedMicrosecond !== null) {
-            $this->assertSame($expectedMicrosecond, $result->microsecond);
-        }
-    }
-    // -----------------------------------------------------------------------
-    // createFromFormat のテスト
-    // -----------------------------------------------------------------------
-    /**
      * DateTime / DateTimeImmutable を供給するプロバイダ（createFromFormat 用）。
      */
     public static function createFromFormatProvider(): array
@@ -428,115 +319,6 @@ class FactoryTest extends TestCase
                 'Asia/Tokyo',
             ],
         ];
-    }
-    /**
-     * createFromFormat が正しいクラスのインスタンスを返すことを確認する。
-     *
-     * @param class-string $class
-     * @dataProvider createFromFormatProvider
-     * @param string $format
-     * @param string $time
-     * @param string $expectedDateTime
-     * @param string|null $timezone
-     */
-    public function test_createFromFormat_returns_correct_class($class, $format, $time, $expectedDateTime, $timezone): void
-    {
-        $tz = $timezone !== null ? new DateTimeZone($timezone) : null;
-        $result = $tz !== null
-            ? $class::createFromFormat($format, $time, $tz)
-            : $class::createFromFormat($format, $time);
-        $this->assertInstanceOf($class, $result);
-        // フォーマットに時刻が含まれない場合は日付部分のみ比較
-        $compareFormat = strpos($format, 'H') !== false ? 'Y-m-d H:i:s' : 'Y-m-d';
-        $this->assertSame($expectedDateTime, $result->format($compareFormat));
-        if ($timezone !== null) {
-            $this->assertSame($timezone, $result->getTimezone()->getName());
-        }
-    }
-    /**
-     * createFromFormat で生成したインスタンスの JapaneseDate コンポーネントが初期化済みであることを確認する。
-     *
-     * @param class-string $class
-     * @dataProvider targetClassProvider
-     */
-    public function test_createFromFormat_initializes_components($class): void
-    {
-        $result = $class::createFromFormat('Y-m-d H:i:s', '2015-01-01 00:00:00');
-        $this->assertNotNull($result);
-        // JapaneseDate 固有プロパティが取得できることでコンポーネント初期化を確認
-        $this->assertSame('元旦', $result->holiday_text);
-        $this->assertSame(1, $result->holiday);
-        $this->assertSame(true, $result->is_holiday);
-        $this->assertSame('平成', $result->era_name_text);
-        $this->assertSame(27, $result->era_year);
-    }
-    /**
-     * createFromFormat で生成したインスタンスの toArray() が timezone 以外の全キーを含むことを確認する。
-     * DateTime のみ検証（DateTimeImmutable は MiscSeasonalNode の型制約により別途対応）。
-     */
-    public function test_createFromFormat_toArray_contains_japanese_keys(): void
-    {
-        $class = DateTime::class;
-        $result = $class::createFromFormat('Y-m-d H:i:s', '2026-05-03 00:00:00');
-
-        $this->assertNotNull($result);
-        $arr = $result->toArray();
-
-        $expectedKeys = [
-            'solar_seasonal_festival', 'solar_seasonal_festival_name', 'solar_seasonal_festival_alias',
-            'lunar_seasonal_festival', 'lunar_seasonal_festival_name', 'lunar_seasonal_festival_alias',
-            'misc_seasonal_node', 'misc_seasonal_node_text',
-            'solar_term', 'solar_term_text', 'is_solar_term',
-            'era_name_text', 'era_name', 'era_year',
-            'oriental_zodiac_text', 'oriental_zodiac',
-            'heavenly_stem_text', 'heavenly_stem',
-            'six_weekday_text', 'six_weekday',
-            'weekday_text', 'month_text',
-            'holiday_text', 'holiday', 'is_holiday',
-            'lunar_month_text', 'lunar_month', 'lunar_year', 'lunar_day', 'is_leap_month',
-            'moon_age', 'moon_phase_angle', 'moon_phase', 'moon_phase_text',
-        ];
-
-        foreach ($expectedKeys as $key) {
-            $this->assertArrayHasKey($key, $arr, "toArray() に '{$key}' キーが存在しません。");
-        }
-
-        // 祝日（憲法記念日）の検証
-        $this->assertSame('憲法記念日', $arr['holiday_text']);
-        $this->assertSame(true, $arr['is_holiday']);
-    }
-    /**
-     * createFromFormat に不正な文字列を渡した場合、strict mode により例外がスローされることを確認する。
-     *
-     * @param class-string $class
-     * @dataProvider targetClassProvider
-     */
-    public function test_createFromFormat_throws_on_invalid_input($class): void
-    {
-        $this->expectException(\Carbon\Exceptions\InvalidFormatException::class);
-        $class::createFromFormat('Y-m-d', 'invalid-date');
-    }
-    // -----------------------------------------------------------------------
-    // parseJisDate のテスト
-    // -----------------------------------------------------------------------
-    /**
-     * JIS日時のパーステスト（ISO形式で比較）
-     * @dataProvider jisDateProvider
-     * @param string $input
-     * @param string|null $expectedIso
-     */
-    public function testParseJisDateWithMicrotime($input, $expectedIso): void
-    {
-        $resultTimestamp = $this->invokeExecuteMethod(DateTime::class, 'parseJisDate', [$input]);
-        if ($expectedIso === null) {
-            $this->assertNull($resultTimestamp);
-
-            return;
-        }
-        $this->assertNotNull($resultTimestamp, 'パース結果が null になりました。');
-        $date = Carbon::createFromTimestamp($resultTimestamp, new DateTimeZone('Asia/Tokyo'));
-        $actualIso = $date->format('Y-m-d\TH:i:s.uP');
-        $this->assertSame($expectedIso, $actualIso);
     }
     /**
      * テストデータを供給するデータプロバイダ（期待値をISO形式で定義）
@@ -608,5 +390,225 @@ class FactoryTest extends TestCase
                 null
             ],
         ];
+    }
+    /**
+     * 基本入力から各クラスのインスタンスを生成できることを確認する。
+     *
+     * @param class-string $class
+     * @param mixed $input
+     * @param \DateTimeZone|null $timezone
+     * @param string|null $expectedDateTime
+     * @param string|null $expectedTimezone
+     * @param int|null $expectedTimestamp
+     * @param int|null $expectedMicrosecond
+     * @dataProvider factoryInputProvider
+     */
+    public function test_factory_creates_expected_result($class, $input, $timezone, $expectedDateTime, $expectedTimezone, $expectedTimestamp, $expectedMicrosecond): void
+    {
+        $result = $input === null && $timezone === null
+            ? $class::factory()
+            : $class::factory($input, $timezone);
+        $this->assertInstanceOf($class, $result);
+        if ($expectedDateTime !== null) {
+            $this->assertSame($expectedDateTime, $result->format('Y-m-d H:i:s'));
+        }
+        if ($expectedTimezone !== null) {
+            $this->assertSame($expectedTimezone, $result->getTimezone()->getName());
+        }
+        if ($expectedTimestamp !== null) {
+            $this->assertSame($expectedTimestamp, $result->getTimestamp());
+        }
+        if ($expectedMicrosecond !== null) {
+            $this->assertSame($expectedMicrosecond, $result->microsecond);
+        }
+    }
+    /**
+     * DateTimeInterface から各クラスのインスタンスを生成できることを確認する。
+     *
+     * @param class-string $class
+     * @param callable $sourceFactory
+     * @param \DateTimeZone|null $timezone
+     * @param string $expectedDateTime
+     * @param string $expectedTimezone
+     * @param int $expectedMicrosecond
+     * @dataProvider dateTimeInterfaceInputProvider
+     */
+    public function test_factory_DateTimeInterface($class, $sourceFactory, $timezone, $expectedDateTime, $expectedTimezone, $expectedMicrosecond): void
+    {
+        $result = $class::factory($sourceFactory($class), $timezone);
+        $this->assertInstanceOf($class, $result);
+        $this->assertSame($expectedDateTime, $result->format('Y-m-d H:i:s'));
+        $this->assertSame($expectedTimezone, $result->getTimezone()->getName());
+        $this->assertSame($expectedMicrosecond, $result->microsecond);
+    }
+    /**
+     * DateTime と DateTimeImmutable を相互に入力して生成できることを確認する。
+     *
+     * @param class-string $class
+     * @dataProvider crossClassInputProvider
+     * @param object $source
+     */
+    public function test_factory_accepts_other_JapaneseDate_class($class, $source): void
+    {
+        $result = $class::factory($source);
+        $this->assertInstanceOf($class, $result);
+        $this->assertSame('2024-11-03 09:00:00', $result->format('Y-m-d H:i:s'));
+    }
+    /**
+     * 和暦・JIS元号形式の文字列から各クラスのインスタンスを生成できることを確認する。
+     *
+     * @param class-string $class
+     * @dataProvider japaneseDateStringProvider
+     * @param string $input
+     * @param \DateTimeZone|null $timezone
+     * @param string $expectedDateTime
+     * @param string $expectedTimezone
+     */
+    public function test_factory_japanese_date_string($class, $input, $timezone, $expectedDateTime, $expectedTimezone): void
+    {
+        $result = $class::factory($input, $timezone);
+        $this->assertInstanceOf($class, $result);
+        $this->assertSame($expectedDateTime, $result->format('Y-m-d H:i:s'));
+        $this->assertSame($expectedTimezone, $result->getTimezone()->getName());
+    }
+    // -----------------------------------------------------------------------
+    // createFromFormat のテスト
+    // -----------------------------------------------------------------------
+    /**
+     * {@link \JapaneseDate\Traits\Factory::parseJisDate} が null を返す不正な和暦文字列は new static() にフォールバックすることを確認する。
+     *
+     * @param class-string $class
+     * @dataProvider targetClassProvider
+     */
+    public function test_factory_invalid_japanese_string_falls_through_to_new_static($class): void
+    {
+        $this->expectException(NativeDateTimeException::class);
+        $class::factory('令和7年2月30日');
+    }
+    /**
+     * 境界値と特殊な入力を生成できることを確認する。
+     * @dataProvider boundaryInputProvider
+     * @param mixed $input
+     * @param int $expectedTimestamp
+     * @param int|null $expectedMicrosecond
+     */
+    public function test_factory_boundary_inputs($input, $expectedTimestamp, $expectedMicrosecond): void
+    {
+        $result = DateTime::factory($input);
+        $this->assertInstanceOf(DateTime::class, $result);
+        $this->assertSame($expectedTimestamp, $result->getTimestamp());
+        if ($expectedMicrosecond !== null) {
+            $this->assertSame($expectedMicrosecond, $result->microsecond);
+        }
+    }
+    /**
+     * createFromFormat が正しいクラスのインスタンスを返すことを確認する。
+     *
+     * @param class-string $class
+     * @param string $format
+     * @param string $time
+     * @param string $expectedDateTime
+     * @param string|null $timezone
+     * @throws \DateInvalidTimeZoneException
+     * @dataProvider createFromFormatProvider
+     */
+    public function test_createFromFormat_returns_correct_class($class, $format, $time, $expectedDateTime, $timezone): void
+    {
+        $tz = $timezone !== null ? new DateTimeZone($timezone) : null;
+        $result = $tz !== null
+            ? $class::createFromFormat($format, $time, $tz)
+            : $class::createFromFormat($format, $time);
+        $this->assertInstanceOf($class, $result);
+        // フォーマットに時刻が含まれない場合は日付部分のみ比較
+        $compareFormat = strpos($format, 'H') !== false ? 'Y-m-d H:i:s' : 'Y-m-d';
+        $this->assertSame($expectedDateTime, $result->format($compareFormat));
+        if ($timezone !== null) {
+            $this->assertSame($timezone, $result->getTimezone()->getName());
+        }
+    }
+    /**
+     * createFromFormat で生成したインスタンスの JapaneseDate コンポーネントが初期化済みであることを確認する。
+     *
+     * @param class-string $class
+     * @dataProvider targetClassProvider
+     */
+    public function test_createFromFormat_initializes_components($class): void
+    {
+        $result = $class::createFromFormat('Y-m-d H:i:s', '2015-01-01 00:00:00');
+        $this->assertNotNull($result);
+        // JapaneseDate 固有プロパティが取得できることでコンポーネント初期化を確認
+        $this->assertSame('元旦', $result->holiday_text);
+        $this->assertSame(1, $result->holiday);
+        $this->assertTrue($result->is_holiday);
+        $this->assertSame('平成', $result->era_name_text);
+        $this->assertSame(27, $result->era_year);
+    }
+    /**
+     * createFromFormat で生成したインスタンスの toArray() が timezone 以外の全キーを含むことを確認する。
+     * DateTime のみ検証（DateTimeImmutable は MiscSeasonalNode の型制約により別途対応）。
+     */
+    public function test_createFromFormat_toArray_contains_japanese_keys(): void
+    {
+        $class = DateTime::class;
+        $result = $class::createFromFormat('Y-m-d H:i:s', '2026-05-03 00:00:00');
+
+        $this->assertNotNull($result);
+        $arr = $result->toArray();
+
+        $expectedKeys = [
+            'solar_seasonal_festival', 'solar_seasonal_festival_name', 'solar_seasonal_festival_alias',
+            'lunar_seasonal_festival', 'lunar_seasonal_festival_name', 'lunar_seasonal_festival_alias',
+            'misc_seasonal_node', 'misc_seasonal_node_text',
+            'solar_term', 'solar_term_text', 'is_solar_term',
+            'era_name_text', 'era_name', 'era_year',
+            'oriental_zodiac_text', 'oriental_zodiac',
+            'heavenly_stem_text', 'heavenly_stem',
+            'six_weekday_text', 'six_weekday',
+            'weekday_text', 'month_text',
+            'holiday_text', 'holiday', 'is_holiday',
+            'lunar_month_text', 'lunar_month', 'lunar_year', 'lunar_day', 'is_leap_month',
+            'moon_age', 'moon_phase_angle', 'moon_phase', 'moon_phase_text',
+        ];
+
+        foreach ($expectedKeys as $key) {
+            $this->assertArrayHasKey($key, $arr, "toArray() に '$key' キーが存在しません。");
+        }
+
+        // 祝日（憲法記念日）の検証
+        $this->assertSame('憲法記念日', $arr['holiday_text']);
+        $this->assertTrue($arr['is_holiday']);
+    }
+    // -----------------------------------------------------------------------
+    // {@link \JapaneseDate\Traits\Factory::parseJisDate}  のテスト
+    // -----------------------------------------------------------------------
+    /**
+     * createFromFormat に不正な文字列を渡した場合、strict mode により例外がスローされることを確認する。
+     *
+     * @param class-string $class
+     * @dataProvider targetClassProvider
+     */
+    public function test_createFromFormat_throws_on_invalid_input($class): void
+    {
+        $this->expectException(InvalidFormatException::class);
+        $class::createFromFormat('Y-m-d', 'invalid-date');
+    }
+    /**
+     * JIS日時のパーステスト（ISO形式で比較）
+     * @dataProvider jisDateProvider
+     * @param string $input
+     * @param string|null $expectedIso
+     */
+    public function testParseJisDateWithMicrotime($input, $expectedIso): void
+    {
+        $resultTimestamp = $this->invokeExecuteMethod(DateTime::class, 'parseJisDate', [$input]);
+        if ($expectedIso === null) {
+            $this->assertNull($resultTimestamp);
+
+            return;
+        }
+        $this->assertNotNull($resultTimestamp, 'パース結果が null になりました。');
+        $date = Carbon::createFromTimestamp($resultTimestamp, new DateTimeZone('Asia/Tokyo'));
+        $actualIso = $date->format('Y-m-d\TH:i:s.uP');
+        $this->assertSame($expectedIso, $actualIso);
     }
 }

@@ -22,14 +22,14 @@ use Throwable;
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
  * @since        2026-05-28
- * @mixin \JapaneseDate\DateTime
- * @mixin \JapaneseDate\DateTimeImmutable
+ * @mixin DateTime
+ * @mixin DateTimeImmutable
  */
 trait FindSolarTerm
 {
     /**
      * 今年の春分の日を取得する
-     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @return DateTime|DateTimeImmutable
      */
     protected function getSyunbun()
     {
@@ -37,8 +37,42 @@ trait FindSolarTerm
     }
 
     /**
-     * 次の春分の日を取得する
+     * @param string $method
+     * @param int $year
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getSolarTermDate($method, $year)
+    {
+        $st = $this->findSolarTerm($method, $year);
+
+        return $this->setDateTime($st->year, $st->month, $st->day, $this->hour, $this->minute, $this->second);
+    }
+
+    /**
+     * @param string $method
+     * @param int $year
+     * @return \JapaneseDate\Elements\SolarTermDate
+     */
+    protected function findSolarTerm($method, $year): SolarTermDate
+    {
+        if (Astronomy::solarAlgorithm() === Astronomy::SOLAR_VSOP87) {
+            return (new SolarTerm())->{$method}($year);
+        }
+
+        try {
+            $SolarTerm = new SimpleSolarTerm();
+
+            return $SolarTerm->{$method}($year);
+        } catch (Throwable $exception) {
+            $SolarTerm = new SolarTerm();
+
+            return $SolarTerm->{$method}($year);
+        }
+    }
+
+    /**
+     * 次の春分の日を取得する
+     * @return DateTime|DateTimeImmutable
      */
     protected function getNextSyunbun()
     {
@@ -46,12 +80,44 @@ trait FindSolarTerm
     }
 
     /**
-     * 前回の春分の日を取得する
+     * @param string $method
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getNextSolarTermDate($method)
+    {
+        $year = $this->year;
+        $st = $this->findSolarTerm($method, $year);
+
+        if ($this->month > $st->month || ($this->month === $st->month && $this->day >= $st->day)) {
+            ++$year;
+        }
+
+        return $this->getSolarTermDate($method, $year);
+    }
+
+    /**
+     * 前回の春分の日を取得する
+     * @return DateTime|DateTimeImmutable
      */
     protected function getBeforeSyunbun()
     {
         return $this->getBeforeSolarTermDate('syunbun');
+    }
+
+    /**
+     * @param string $method
+     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     */
+    protected function getBeforeSolarTermDate($method)
+    {
+        $year = $this->year;
+        $st = $this->findSolarTerm($method, $year);
+
+        if ($this->month < $st->month || ($this->month === $st->month && $this->day <= $st->day)) {
+            --$year;
+        }
+
+        return $this->getSolarTermDate($method, $year);
     }
 
     /**
@@ -604,70 +670,5 @@ trait FindSolarTerm
     protected function getBeforeKeichitsu()
     {
         return $this->getBeforeSolarTermDate('keichitsu');
-    }
-
-    /**
-     * @param string $method
-     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
-     */
-    protected function getNextSolarTermDate($method)
-    {
-        $year = $this->year;
-        $st = $this->findSolarTerm($method, $year);
-
-        if ($this->month > $st->month || ($this->month === $st->month && $this->day >= $st->day)) {
-            ++$year;
-        }
-
-        return $this->getSolarTermDate($method, $year);
-    }
-
-    /**
-     * @param string $method
-     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
-     */
-    protected function getBeforeSolarTermDate($method)
-    {
-        $year = $this->year;
-        $st = $this->findSolarTerm($method, $year);
-
-        if ($this->month < $st->month || ($this->month === $st->month && $this->day <= $st->day)) {
-            --$year;
-        }
-
-        return $this->getSolarTermDate($method, $year);
-    }
-
-    /**
-     * @param string $method
-     * @param int $year
-     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
-     */
-    protected function getSolarTermDate($method, $year)
-    {
-        $st = $this->findSolarTerm($method, $year);
-
-        return $this->setDateTime($st->year, $st->month, $st->day, $this->hour, $this->minute, $this->second);
-    }
-
-    /**
-     * @param string $method
-     * @param int $year
-     */
-    protected function findSolarTerm($method, $year): SolarTermDate
-    {
-        if (Astronomy::solarAlgorithm() === Astronomy::SOLAR_VSOP87) {
-            return (new SolarTerm())->{$method}($year);
-        }
-
-        try {
-            $SolarTerm = new SimpleSolarTerm();
-
-            return $SolarTerm->{$method}($year);
-        } catch (Throwable $exception) {
-            $SolarTerm = new SolarTerm();
-
-            return $SolarTerm->{$method}($year);
-        }
     }
 }

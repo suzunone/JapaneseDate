@@ -56,7 +56,7 @@ class SeasonalFestival
     /**
      * 五節句の式名（正式名称）の配列。
      *
-     * キーは {@see \JapaneseDate\DateTime::SEASONAL_FESTIVAL_*} 定数に対応します。
+     * キーは {@see DateTime::SEASONAL_FESTIVAL_*} 定数に対応します。
      * 節句でない場合（key=0）は空文字列を返します。
      *
      * @var array<int, string>
@@ -73,7 +73,7 @@ class SeasonalFestival
     /**
      * 五節句の別名（通称）の配列。
      *
-     * キーは {@see \JapaneseDate\DateTime::SEASONAL_FESTIVAL_*} 定数に対応します。
+     * キーは {@see DateTime::SEASONAL_FESTIVAL_*} 定数に対応します。
      * 節句でない場合（key=0）は空文字列を返します。
      *
      * @var array<int, string>
@@ -135,20 +135,35 @@ class SeasonalFestival
     // =========================================================================
 
     /**
+     * 西暦の月日から五節句の式名（正式名称）を返します。
+     *
+     * 内部で {@see getSolarFestivalKey()} を呼び出して定数キーを取得し、
+     * 対応する式名（「人日の節句」「上巳の節句」など）を返します。
+     * 節句でない場合は空文字列（`''`）を返します。
+     *
+     * @param DateTime|DateTimeImmutable $date 判定対象の日付
+     * @return string 五節句の式名、または節句でない場合は空文字列
+     */
+    public function viewSolarFestivalName($date): string
+    {
+        return self::FESTIVAL_NAMES[$this->getSolarFestivalKey($date)] ?? '';
+    }
+
+    /**
      * 西暦の月日から五節句の定数キーを返します。
      *
      * グレゴリオ暦（新暦）の月日を基準に判定します。
      * 現代日本における五節句の一般的な観し方です。
      *
      * 対応する月日:
-     * - 1月7日 → 人日の節句（{@see \JapaneseDate\DateTime::SEASONAL_FESTIVAL_JINJITSU}）
-     * - 3月3日 → 上巳の節句（{@see \JapaneseDate\DateTime::SEASONAL_FESTIVAL_JOSHI}）
-     * - 5月5日 → 端午の節句（{@see \JapaneseDate\DateTime::SEASONAL_FESTIVAL_TANGO}）
-     * - 7月7日 → 七夕の節句（{@see \JapaneseDate\DateTime::SEASONAL_FESTIVAL_TANABATA}）
-     * - 9月9日 → 重陽の節句（{@see \JapaneseDate\DateTime::SEASONAL_FESTIVAL_CHOYO}）
+     * - 1月7日 → 人日の節句（{@see DateTime::SEASONAL_FESTIVAL_JINJITSU}）
+     * - 3月3日 → 上巳の節句（{@see DateTime::SEASONAL_FESTIVAL_JOSHI}）
+     * - 5月5日 → 端午の節句（{@see DateTime::SEASONAL_FESTIVAL_TANGO}）
+     * - 7月7日 → 七夕の節句（{@see DateTime::SEASONAL_FESTIVAL_TANABATA}）
+     * - 9月9日 → 重陽の節句（{@see DateTime::SEASONAL_FESTIVAL_CHOYO}）
      *
-     * @param \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable $date 判定対象の日付
-     * @return int 五節句定数。節句でない場合は {@see \JapaneseDate\DateTime::SEASONAL_FESTIVAL_NONE}（= 0）
+     * @param DateTime|DateTimeImmutable $date 判定対象の日付
+     * @return int 五節句定数。節句でない場合は {@see DateTime::SEASONAL_FESTIVAL_NONE}（= 0）
      */
     public function getSolarFestivalKey($date): int
     {
@@ -162,28 +177,13 @@ class SeasonalFestival
     }
 
     /**
-     * 西暦の月日から五節句の式名（正式名称）を返します。
-     *
-     * 内部で {@see getSolarFestivalKey()} を呼び出して定数キーを取得し、
-     * 対応する式名（「人日の節句」「上巳の節句」など）を返します。
-     * 節句でない場合は空文字列（`''`）を返します。
-     *
-     * @param \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable $date 判定対象の日付
-     * @return string 五節句の式名、または節句でない場合は空文字列
-     */
-    public function viewSolarFestivalName($date): string
-    {
-        return self::FESTIVAL_NAMES[$this->getSolarFestivalKey($date)] ?? '';
-    }
-
-    /**
      * 西暦の月日から五節句の別名（通称）を返します。
      *
      * 内部で {@see getSolarFestivalKey()} を呼び出して定数キーを取得し、
      * 対応する別名（「七草の節句」「桃の節句」など）を返します。
      * 節句でない場合は空文字列（`''`）を返します。
      *
-     * @param \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable $date 判定対象の日付
+     * @param DateTime|DateTimeImmutable $date 判定対象の日付
      * @return string 五節句の別名（通称）、または節句でない場合は空文字列
      */
     public function viewSolarFestivalAlias($date): string
@@ -196,6 +196,21 @@ class SeasonalFestival
     // =========================================================================
 
     /**
+     * 旧暦の月日から五節句の式名（正式名称）を返します。
+     *
+     * 内部で {@see getLunarFestivalKey()} を呼び出して定数キーを取得し、
+     * 対応する式名（「人日の節句」「上巳の節句」など）を返します。
+     * 節句でない場合は空文字列（`''`）を返します。
+     *
+     * @param DateTime|DateTimeImmutable $date 判定対象の日付
+     * @return string 五節句の式名、または節句でない場合は空文字列
+     */
+    public function viewLunarFestivalName($date): string
+    {
+        return self::FESTIVAL_NAMES[$this->getLunarFestivalKey($date)] ?? '';
+    }
+
+    /**
      * 旧暦の月日から五節句の定数キーを返します。
      *
      * 旧暦（太陰太陽暦）の月日を基準に判定します。
@@ -204,14 +219,14 @@ class SeasonalFestival
      * `$date->lunarMonth` および `$date->lunarDay` プロパティを使用して旧暦の月日を取得します。
      *
      * 対応する旧暦月日:
-     * - 旧暦1月7日 → 人日の節句（{@see \JapaneseDate\DateTime::SEASONAL_FESTIVAL_JINJITSU}）
-     * - 旧暦3月3日 → 上巳の節句（{@see \JapaneseDate\DateTime::SEASONAL_FESTIVAL_JOSHI}）
-     * - 旧暦5月5日 → 端午の節句（{@see \JapaneseDate\DateTime::SEASONAL_FESTIVAL_TANGO}）
-     * - 旧暦7月7日 → 七夕の節句（{@see \JapaneseDate\DateTime::SEASONAL_FESTIVAL_TANABATA}）
-     * - 旧暦9月9日 → 重陽の節句（{@see \JapaneseDate\DateTime::SEASONAL_FESTIVAL_CHOYO}）
+     * - 旧暦1月7日 → 人日の節句（{@see DateTime::SEASONAL_FESTIVAL_JINJITSU}）
+     * - 旧暦3月3日 → 上巳の節句（{@see DateTime::SEASONAL_FESTIVAL_JOSHI}）
+     * - 旧暦5月5日 → 端午の節句（{@see DateTime::SEASONAL_FESTIVAL_TANGO}）
+     * - 旧暦7月7日 → 七夕の節句（{@see DateTime::SEASONAL_FESTIVAL_TANABATA}）
+     * - 旧暦9月9日 → 重陽の節句（{@see DateTime::SEASONAL_FESTIVAL_CHOYO}）
      *
-     * @param \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable $date 判定対象の日付
-     * @return int 五節句定数。節句でない場合は {@see \JapaneseDate\DateTime::SEASONAL_FESTIVAL_NONE}（= 0）
+     * @param DateTime|DateTimeImmutable $date 判定対象の日付
+     * @return int 五節句定数。節句でない場合は {@see DateTime::SEASONAL_FESTIVAL_NONE}（= 0）
      */
     public function getLunarFestivalKey($date): int
     {
@@ -228,28 +243,13 @@ class SeasonalFestival
     }
 
     /**
-     * 旧暦の月日から五節句の式名（正式名称）を返します。
-     *
-     * 内部で {@see getLunarFestivalKey()} を呼び出して定数キーを取得し、
-     * 対応する式名（「人日の節句」「上巳の節句」など）を返します。
-     * 節句でない場合は空文字列（`''`）を返します。
-     *
-     * @param \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable $date 判定対象の日付
-     * @return string 五節句の式名、または節句でない場合は空文字列
-     */
-    public function viewLunarFestivalName($date): string
-    {
-        return self::FESTIVAL_NAMES[$this->getLunarFestivalKey($date)] ?? '';
-    }
-
-    /**
      * 旧暦の月日から五節句の別名（通称）を返します。
      *
      * 内部で {@see getLunarFestivalKey()} を呼び出して定数キーを取得し、
      * 対応する別名（「七草の節句」「桃の節句」など）を返します。
      * 節句でない場合は空文字列（`''`）を返します。
      *
-     * @param \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable $date 判定対象の日付
+     * @param DateTime|DateTimeImmutable $date 判定対象の日付
      * @return string 五節句の別名（通称）、または節句でない場合は空文字列
      */
     public function viewLunarFestivalAlias($date): string
@@ -264,7 +264,7 @@ class SeasonalFestival
     /**
      * 五節句定数キーから式名（正式名称）を返します。
      *
-     * @param int $key 五節句定数（{@see \JapaneseDate\DateTime::SEASONAL_FESTIVAL_*}）
+     * @param int $key 五節句定数（{@see DateTime::SEASONAL_FESTIVAL_*}）
      * @return string 式名（例: 「人日の節句」「端午の節句」）、または節句でない場合は空文字列
      */
     public function viewName($key): string
@@ -275,7 +275,7 @@ class SeasonalFestival
     /**
      * 五節句定数キーから別名（通称）を返します。
      *
-     * @param int $key 五節句定数（{@see \JapaneseDate\DateTime::SEASONAL_FESTIVAL_*}）
+     * @param int $key 五節句定数（{@see DateTime::SEASONAL_FESTIVAL_*}）
      * @return string 別名（例: 「七草の節句」「桃の節句」）、または節句でない場合は空文字列
      */
     public function viewAlias($key): string

@@ -20,7 +20,7 @@ namespace JapaneseDate\Components;
  * 十干・十二支・干支（六十干支）の計算と表示を行うコンポーネント。
  *
  * 西暦年から十干と十二支の配列インデックスを算出し、日本語の干支表記を返します。
- * {@see \JapaneseDate\Components\JapaneseDate} などの表示処理から利用され、
+ * {@see JapaneseDate} などの表示処理から利用され、
  * 年単位の暦注としての「甲子」「乙丑」などを組み立てます。
  *
  * **計算対象:**

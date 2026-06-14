@@ -7,7 +7,7 @@
  *
  * 高野英明氏による「旧暦計算サンプルスクリプト」を参考にしています。<br />
  *
- * @link        (http:// www.vector.co.jp/soft/dos/personal/se016093.html)<br />
+         * @link        (http:// www.vector.co.jp/soft/dos/personal/se016093.html)<br />
  * お手数ですが、再配布ご利用の際は、高野英明氏の「旧暦計算サンプルスクリプト」をDLし、
  * 規定に従ってください。<br />
  *
@@ -25,6 +25,8 @@
 namespace JapaneseDate\Components;
 
 use Carbon\Carbon;
+use DateTimeZone;
+use JapaneseDate\Components\Contracts\MoonAgeAlgorithm;
 use JapaneseDate\Components\Traits\OneTimeCacheTrait;
 use JapaneseDate\DateTime;
 use JapaneseDate\DateTimeImmutable;
@@ -35,7 +37,7 @@ use JapaneseDate\Exceptions\ErrorException;
  * グレゴリオ暦の日付から旧暦日付と二十四節気情報を算出するコンポーネント。
  *
  * 朔（新月）と中気の情報をもとに、指定日が属する旧暦年・月・日・閏月を求めます。
- * 年別の事前計算データが存在する場合は {@see \JapaneseDate\Components\Config} から取得し、
+ * 年別の事前計算データが存在する場合は {@see Config} から取得し、
  * 不足する場合は天文計算コンポーネントを利用して必要な暦データを組み立てます。
  *
  * **算出する主な情報:**
@@ -43,7 +45,7 @@ use JapaneseDate\Exceptions\ErrorException;
  * - 平月または閏月の判定
  * - 対象日に該当する二十四節気
  *
- * 天文計算は現在選択されている {@see \JapaneseDate\Components\Astronomy} のアルゴリズムに
+ * 天文計算は現在選択されている {@see Astronomy} のアルゴリズムに
  * 依存します。`legacy` と `vsop87` の切り替えに合わせて、ファクトリーも
  * アルゴリズム別のインスタンスを返します。
  *
@@ -72,14 +74,40 @@ class LunarCalendar
      */
     protected $astronomy;
 
-    public function __construct(?Astronomy $astronomy = null)
+    /**
+     * 月齢計算アルゴリズム（Strategy）。
+     *
+     * @var MoonAgeAlgorithm
+     */
+    protected $moonAgeAlgorithm;
+
+    /**
+     * @param \JapaneseDate\Components\Astronomy|null $astronomy
+     * @param \JapaneseDate\Components\Contracts\MoonAgeAlgorithm|null $moonAgeAlgorithm
+     */
+    public function __construct(?Astronomy $astronomy = null, ?MoonAgeAlgorithm $moonAgeAlgorithm = null)
     {
         $this->astronomy = $astronomy ?? Astronomy::factory();
+        $this->moonAgeAlgorithm = $moonAgeAlgorithm ?? self::defaultMoonAgeAlgorithmFor($this->astronomy);
     }
 
-    protected function astronomy(): Astronomy
+    /**
+     * 注入済み Astronomy の識別子から適切な MoonAgeAlgorithm を選択する。
+     *
+     * @param Astronomy $astronomy
+     * @return MoonAgeAlgorithm
+     */
+    protected static function defaultMoonAgeAlgorithmFor($astronomy): MoonAgeAlgorithm
     {
-        return $this->astronomy;
+        switch ($astronomy->moonAlgorithmName()) {
+            case Astronomy::MOON_ELP2000:
+                return new Elp2000MoonAge($astronomy);
+            case Astronomy::MOON_MEEUS47:
+            case Astronomy::MOON_MEEUS47_NO_C:
+                return new MeeusMoonAge($astronomy);
+            default:
+                return new LegacyMoonAge($astronomy);
+        }
     }
 
     /**
@@ -91,19 +119,21 @@ class LunarCalendar
 
         $algorithm = Astronomy::solarAlgorithm() . ':' . Astronomy::moonAlgorithm();
         if (!isset($instances[$algorithm])) {
-            $instances[$algorithm] = new static(Astronomy::factory());
+            $instances[$algorithm] = new static();
         }
 
         return $instances[$algorithm];
     }
 
     /**
-     * @param \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable $DateTime
-     * @return \JapaneseDate\Elements\LunarDate
+     * @param DateTime|DateTimeImmutable $DateTime
+     * @return LunarDate
+     * @throws \DateInvalidTimeZoneException
+     * @throws \DateMalformedStringException
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      * @throws \JsonException
-     * @throws \DateInvalidTimeZoneException
      */
     public function getLunarDate($DateTime): LunarDate
     {
@@ -129,7 +159,7 @@ class LunarCalendar
      * @param int $day 日
      * @return    array [旧暦年, 平月／閏月 flag .... 平月:0 閏月:1, 旧暦月, 旧暦日]
      * @throws \DateInvalidTimeZoneException
-     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
@@ -166,7 +196,7 @@ class LunarCalendar
      * @param int $year
      * @return array
      * @throws \DateInvalidTimeZoneException
-     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
@@ -187,14 +217,24 @@ class LunarCalendar
     }
 
     /**
+     * @return \JapaneseDate\Components\Astronomy
+     */
+    protected function astronomy(): Astronomy
+    {
+        return $this->astronomy;
+    }
+
+    /**
      * グレゴオリオ暦＝旧暦テーブル 作成
      *
      * @param int $year 西暦年
      * @return array 朔のテーブル
      * @throws \DateInvalidTimeZoneException
-     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     * @throws \Exception
+     * @throws \Exception
      */
     protected function makeLunarCalendar($year): array
     {
@@ -214,13 +254,19 @@ class LunarCalendar
             // @codeCoverageIgnoreEnd
         }
 
-        $moon = new Moon();
+        $moon = new Moon($this->astronomy());
         $end_timestamp = $EndDate->timestamp;
         while ($end_timestamp > $Date->timestamp) {
-            if (Astronomy::moonAlgorithm() === Astronomy::MOON_ELP2000) {
+            if (in_array(
+                $this->astronomy()->moonAlgorithmName(),
+                [Astronomy::MOON_ELP2000, Astronomy::MOON_MEEUS47, Astronomy::MOON_MEEUS47_NO_C],
+                true
+            )) {
                 $Date = $moon->moonPhase($Date, 0.0)->setTimezone('Asia/Tokyo');
                 if ($Date->timestamp >= $end_timestamp) {
+                    // @codeCoverageIgnoreStart
                     break;
+                    // @codeCoverageIgnoreEnd
                 }
 
                 $age1 = $this->moonAge($Date->year, $Date->month, $Date->day, 0, 0, 0);
@@ -236,8 +282,12 @@ class LunarCalendar
                 }
 
                 // 月齢がギリギリの場合、新月時間でキャリブレーションする
+                // 境界アルゴリズム（デフォルト VSOP87/ELP2000）で新月日を再計算する。
                 if ($Date->year >= 1900 && $age1 > 20 && $age2 < 0.17) {
-                    $Date = $moon->moonPhase($Date->subDays(2), 0.0);
+                    $Date = (new Moon(Astronomy::factoryForBoundary()))
+                        ->moonPhase($Date->subDays(2), 0.0)
+                        ->setTimezone('Asia/Tokyo');
+
                     $age1 = $this->moonAge($Date->year, $Date->month, $Date->day, 0, 0, 0);
                     $age2 = $this->moonAge($Date->year, $Date->month, $Date->day, 23, 59, 59);
                 } elseif ($Date->year < 1900 && $age1 > 20 && $age2 < 0.1) {
@@ -272,6 +322,26 @@ class LunarCalendar
             $longitude_sun_2 = $this->astronomy()->longitudeSun($Date->year, $Date->month, $Date->day, 24, 0, 0);
             $tmp_ls_1 = floor($longitude_sun_1 / 15.0);
             $tml_ls_2 = floor($longitude_sun_2 / 15.0);
+
+            // キャリブレーション: 通常と境界のアルゴリズムが異なり、かつ奇数セクター終端付近の場合、
+            // 境界アルゴリズムで中気日を確認する。
+            // 例: legacy近似式は太陽黄経に最大1°程度の誤差を持ち、30°単位の中気境界直前に
+            // 位置するケース（例: 2014年霜降）で検出日が1日遅れることがある。
+            if ($Date->year >= 1900
+                && $tml_ls_2 === $tmp_ls_1
+                && ($tml_ls_2 % 2 !== 0)
+                && fmod($longitude_sun_2, 30.0) >= 29.0
+                && Astronomy::solarAlgorithm() !== Astronomy::boundarySolarAlgorithm()
+            ) {
+                $boundary_astro = Astronomy::factoryForBoundary();
+                $boundary_lon_0 = $boundary_astro->longitudeSun($Date->year, $Date->month, $Date->day, 0, 0, 0);
+                $boundary_lon_24 = $boundary_astro->longitudeSun($Date->year, $Date->month, $Date->day, 24, 0, 0);
+                $boundary_t0 = floor($boundary_lon_0 / 15.0);
+                $boundary_t24 = floor($boundary_lon_24 / 15.0);
+                if ($boundary_t24 !== $boundary_t0 && $boundary_t24 % 2 === 0) {
+                    $tml_ls_2 = $boundary_t24;
+                }
+            }
 
             if ($tml_ls_2 === $tmp_ls_1 || ($tml_ls_2 % 2 !== 0)) {
                 $Date->addDay();
@@ -321,6 +391,54 @@ class LunarCalendar
 
         return $lunar_calendar;
     }
+
+    /**
+     * 月相を求める。
+     *
+     * 主要な月相点から外れている場合は null を返します。
+     *
+     * @param int $year グレゴリオ暦による年月日
+     * @param int $month
+     * @param int $day
+     * @param float $hour 時分秒（世界時）
+     * @param float $min
+     * @param float $sec
+     * @return int|null 月相 (0〜7)、主要な月相点以外は null
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\Exception
+     */
+    public function moonPhase($year, $month, $day, $hour, $min, $sec): ?int
+    {
+        $phase = $this->astronomy()->moonPhase($year, $month, $day, $hour, $min, $sec);
+        $date = Carbon::create($year, $month, $day, (int) $hour, (int) $min, (int) $sec, 'Asia/Tokyo');
+        if (!$date instanceof Carbon) {
+            // @codeCoverageIgnoreStart
+            return null;
+            // @codeCoverageIgnoreEnd
+        }
+
+        $phase_time = $phase / 8.0;
+
+        $injectedMoonName = $this->astronomy()->moonAlgorithmName();
+
+        $moonAstronomy = in_array($injectedMoonName, [Astronomy::MOON_MEEUS47, Astronomy::MOON_MEEUS47_NO_C], true)
+            ? $this->astronomy()          // Meeus 系: 注入済み Astronomy をそのまま使用
+            : Astronomy::factoryForBoundary(); // Legacy/ELP2000 系: 境界アルゴリズムで月相を計算
+        $moon = new Moon($moonAstronomy);
+        $next = $moon->moonPhase($date, $phase_time);
+        $previous = $moon->moonPhase($date, $phase_time, true);
+
+        $nearest_phase = abs($next->timestamp - $date->timestamp) < abs($previous->timestamp - $date->timestamp)
+            ? $next
+            : $previous;
+        if ($nearest_phase->copy()->setTimezone('Asia/Tokyo')->format('Y-m-d') !== $date->format('Y-m-d')) {
+            return null;
+        }
+
+        return $phase;
+    }
+
     /**
      * 月齢を求める（視黄経）
      *
@@ -336,7 +454,60 @@ class LunarCalendar
      */
     public function moonAge($year, $month, $day, $hour, $min, $sec): float
     {
-        return $this->astronomy()->moonAge($year, $month, $day, $hour, $min, $sec);
+        return $this->moonAgeAlgorithm->moonAge($year, $month, $day, $hour, $min, $sec);
+    }
+
+    /**
+     * その日が二十四節気かどうか
+     *
+     * legacy 式は約6時間遅れる場合があり、深夜近傍で発生する節気を翌日と判定しうる。
+     * legacy 使用時は VSOP87 でクロスチェックし、結果が異なる場合は VSOP87 を優先する。
+     *
+     * @param int $year , $month, $day  グレゴリオ暦による年月日
+     * @param int $month
+     * @param int $day
+     * @return    int|bool
+     * @throws \DateMalformedStringException
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \Exception
+     */
+    public function findSolarTerm($year, $month, $day)
+    {
+        $astronomy = $this->astronomy();
+        $boundaryAstronomy = Astronomy::factoryForBoundary();
+
+        // 通常アルゴリズムと境界アルゴリズムが同一なら境界比較は不要
+        if ($astronomy->sunAlgorithmName() === $boundaryAstronomy->sunAlgorithmName()) {
+            return (new SolarTerm($astronomy))->findSolarTerm($year, $month, $day);
+        }
+
+        $boundaryResult = (new SolarTerm($boundaryAstronomy))->findSolarTerm($year, $month, $day);
+
+        // 境界アルゴリズムが当日を節気と判定した場合はそれを優先する
+        if ($boundaryResult !== false) {
+            return $boundaryResult;
+        }
+
+        $normalResult = (new SolarTerm($astronomy))->findSolarTerm($year, $month, $day);
+
+        // 通常アルゴリズムが当日を節気と判定しても、境界アルゴリズムが前日を同じ節気と
+        // 判定していれば通常アルゴリズムの結果は1日遅れなので false を返す
+        if ($normalResult !== false) {
+            $yesterday = (new \DateTimeImmutable(
+                sprintf('%04d-%02d-%02d 00:00:00', $year, $month, $day),
+                new DateTimeZone('Asia/Tokyo')
+            ))->modify('-1 day');
+            $boundaryYesterday = (new SolarTerm($boundaryAstronomy))->findSolarTerm(
+                (int) $yesterday->format('Y'),
+                (int) $yesterday->format('m'),
+                (int) $yesterday->format('d')
+            );
+            if ($boundaryYesterday === $normalResult) {
+                return false;
+            }
+        }
+
+        return $normalResult;
     }
 
     /**
@@ -355,70 +526,5 @@ class LunarCalendar
     public function moonPhaseAngle($year, $month, $day, $hour, $min, $sec): float
     {
         return $this->astronomy()->moonPhaseAngle($year, $month, $day, $hour, $min, $sec);
-    }
-
-    /**
-     * 月相を求める。
-     *
-     * 主要な月相点から外れている場合は null を返します。
-     *
-     * @param int $year グレゴリオ暦による年月日
-     * @param int $month
-     * @param int $day
-     * @param float $hour 時分秒（世界時）
-     * @param float $min
-     * @param float $sec
-     * @return int|null 月相 (0〜7)、主要な月相点以外は null
-     * @throws \DateInvalidTimeZoneException
-     * @throws \JapaneseDate\Exceptions\Exception
-     */
-    public function moonPhase($year, $month, $day, $hour, $min, $sec): ?int
-    {
-        $phase = $this->astronomy()->moonPhase($year, $month, $day, $hour, $min, $sec);
-        $date = Carbon::create($year, $month, $day, (int) $hour, (int) $min, (int) $sec, 'Asia/Tokyo');
-        if (!$date instanceof Carbon) {
-            // @codeCoverageIgnoreStart
-            return null;
-            // @codeCoverageIgnoreEnd
-        }
-
-        $phase_time = $phase / 8.0;
-        $solar_algorithm = Astronomy::solarAlgorithm();
-        $moon_algorithm = Astronomy::moonAlgorithm();
-
-        try {
-            Astronomy::useSolarAlgorithm(Astronomy::SOLAR_VSOP87);
-            Astronomy::useMoonAlgorithm(Astronomy::MOON_ELP2000);
-
-            $moon = new Moon();
-            $next = $moon->moonPhase($date, $phase_time);
-            $previous = $moon->moonPhase($date, $phase_time, true);
-        } finally {
-            Astronomy::useSolarAlgorithm($solar_algorithm);
-            Astronomy::useMoonAlgorithm($moon_algorithm);
-        }
-
-        $nearest_phase = abs($next->timestamp - $date->timestamp) < abs($previous->timestamp - $date->timestamp)
-            ? $next
-            : $previous;
-        if ($nearest_phase->copy()->setTimezone('Asia/Tokyo')->format('Y-m-d') !== $date->format('Y-m-d')) {
-            return null;
-        }
-
-        return $phase;
-    }
-
-    /**
-     * その日が二十四節気かどうか
-     *
-     * @param int $year , $month, $day  グレゴリオ暦による年月日
-     * @param int $month
-     * @param int $day
-     * @return    int|bool
-     * @throws \JapaneseDate\Exceptions\Exception
-     */
-    public function findSolarTerm($year, $month, $day)
-    {
-        return (new SolarTerm($this->astronomy()))->findSolarTerm($year, $month, $day);
     }
 }

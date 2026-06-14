@@ -27,7 +27,7 @@ namespace JapaneseDate\Traits;
  * このトレイトは {@see \JapaneseDate\DateTime} および
  * {@see \JapaneseDate\DateTimeImmutable} に mix-in されており、
  * 外部から直接呼ばれることはありません。
- * 各 `protected` メソッドは {@see \JapaneseDate\Traits\Getter} の
+ * 各 `protected` メソッドは {@see Getter} の
  * マジックゲッター経由でプロパティとして公開されます。
  *
  * **実装している計算カテゴリ**
@@ -52,6 +52,22 @@ namespace JapaneseDate\Traits;
  */
 trait Modern
 {
+    /**
+     * 日付が属する年の十二支（じゅうにし）を日本語テキストで返します。
+     *
+     * 例: 2026年 → 「午」、2024年 → 「辰」
+     *
+     * 内部では {@see getOrientalZodiac()} で整数キーを取得し、
+     * {@see \JapaneseDate\Components\SexagenaryCycle::viewOrientalZodiac()} で
+     * 日本語文字列に変換します。
+     *
+     * @return string 十二支の日本語テキスト（例: 「午」「辰」）
+     */
+    protected function viewOrientalZodiac(): string
+    {
+        return $this->SexagenaryCycle->viewOrientalZodiac($this->getOrientalZodiac());
+    }
+
     /**
      * 日付が属する年の十二支（じゅうにし）を整数キーで返します。
      *
@@ -82,19 +98,19 @@ trait Modern
     }
 
     /**
-     * 日付が属する年の十二支（じゅうにし）を日本語テキストで返します。
+     * 日付が属する年の十干（じっかん）を日本語テキストで返します。
      *
-     * 例: 2026年 → 「午」、2024年 → 「辰」
+     * 例: 2026年 → 「午（うま）」の年は十干が「丙（ひのえ）」
      *
-     * 内部では {@see getOrientalZodiac()} で整数キーを取得し、
-     * {@see \JapaneseDate\Components\SexagenaryCycle::viewOrientalZodiac()} で
+     * 内部では {@see getHeavenlyStem()} で整数キーを取得し、
+     * {@see \JapaneseDate\Components\SexagenaryCycle::viewHeavenlyStem()} で
      * 日本語文字列に変換します。
      *
-     * @return string 十二支の日本語テキスト（例: 「午」「辰」）
+     * @return string 十干の日本語テキスト（例: 「甲」「乙」「丙」）
      */
-    protected function viewOrientalZodiac(): string
+    protected function viewHeavenlyStem(): string
     {
-        return $this->SexagenaryCycle->viewOrientalZodiac($this->getOrientalZodiac());
+        return $this->SexagenaryCycle->viewHeavenlyStem($this->getHeavenlyStem());
     }
 
     /**
@@ -123,22 +139,6 @@ trait Modern
     protected function getHeavenlyStem(): int
     {
         return $this->SexagenaryCycle->getHeavenlyStemKey($this->year);
-    }
-
-    /**
-     * 日付が属する年の十干（じっかん）を日本語テキストで返します。
-     *
-     * 例: 2026年 → 「午（うま）」の年は十干が「丙（ひのえ）」
-     *
-     * 内部では {@see getHeavenlyStem()} で整数キーを取得し、
-     * {@see \JapaneseDate\Components\SexagenaryCycle::viewHeavenlyStem()} で
-     * 日本語文字列に変換します。
-     *
-     * @return string 十干の日本語テキスト（例: 「甲」「乙」「丙」）
-     */
-    protected function viewHeavenlyStem(): string
-    {
-        return $this->SexagenaryCycle->viewHeavenlyStem($this->getHeavenlyStem());
     }
 
     // =========================================================================
@@ -228,6 +228,24 @@ trait Modern
     }
 
     /**
+     * その日が該当する雑節の日本語名を返します。
+     *
+     * 雑節に該当する場合は「節分」「彼岸」「社日」「八十八夜」「入梅」
+     * 「半夏生」「土用」「二百十日」「二百二十日」のいずれかを返します。
+     * いずれの雑節にも該当しない場合は空文字列（`''`）を返します。
+     *
+     * 内部では {@see getMiscSeasonalNode()} で雑節定数を取得し、
+     * {@see \JapaneseDate\Components\MiscSeasonalNode::viewMiscSeasonalNode()} で
+     * 日本語名に変換します。
+     *
+     * @return string 雑節名（例: 「節分」「土用」）、または該当なしの場合は空文字列
+     */
+    protected function viewMiscSeasonalNode(): string
+    {
+        return $this->MiscSeasonalNode->viewMiscSeasonalNode($this->getMiscSeasonalNode());
+    }
+
+    /**
      * その日が該当する雑節の定数キーを返します。
      *
      * 判定する雑節とその優先順位:
@@ -252,21 +270,28 @@ trait Modern
     }
 
     /**
-     * その日が該当する雑節の日本語名を返します。
+     * その日の祝日・休日名を日本語テキストで返します。
      *
-     * 雑節に該当する場合は「節分」「彼岸」「社日」「八十八夜」「入梅」
-     * 「半夏生」「土用」「二百十日」「二百二十日」のいずれかを返します。
-     * いずれの雑節にも該当しない場合は空文字列（`''`）を返します。
+     * 祝日の場合は「元旦」「憲法記念日」「振替休日」などの日本語名を返します。
+     * 祝日でない場合は空文字列（`''`）を返します。
      *
-     * 内部では {@see getMiscSeasonalNode()} で雑節定数を取得し、
-     * {@see \JapaneseDate\Components\MiscSeasonalNode::viewMiscSeasonalNode()} で
+     * 内部では {@see getHoliday()} で祝日定数を取得し、
+     * {@see \JapaneseDate\Components\JapaneseDate::viewHoliday()} で
      * 日本語名に変換します。
      *
-     * @return string 雑節名（例: 「節分」「土用」）、または該当なしの場合は空文字列
+     * @return string 祝日名（例: 「元旦」「憲法記念日」）、または非祝日の場合は空文字列
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     * @throws \JapaneseDate\Exceptions\SolarTermException
+     * @throws \JsonException
      */
-    protected function viewMiscSeasonalNode(): string
+    protected function viewHoliday(): string
     {
-        return $this->MiscSeasonalNode->viewMiscSeasonalNode($this->getMiscSeasonalNode());
+        $key = $this->getHoliday();
+
+        return $this->JapaneseDate->viewHoliday($key);
     }
 
     /**
@@ -298,31 +323,6 @@ trait Modern
         $holiday_list = $this->JapaneseDate->getHolidayList($this);
 
         return $holiday_list[$this->day] ?? self::NO_HOLIDAY;
-    }
-
-    /**
-     * その日の祝日・休日名を日本語テキストで返します。
-     *
-     * 祝日の場合は「元旦」「憲法記念日」「振替休日」などの日本語名を返します。
-     * 祝日でない場合は空文字列（`''`）を返します。
-     *
-     * 内部では {@see getHoliday()} で祝日定数を取得し、
-     * {@see \JapaneseDate\Components\JapaneseDate::viewHoliday()} で
-     * 日本語名に変換します。
-     *
-     * @return string 祝日名（例: 「元旦」「憲法記念日」）、または非祝日の場合は空文字列
-     * @throws \DateInvalidTimeZoneException
-     * @throws \JapaneseDate\Exceptions\ErrorException
-     * @throws \JapaneseDate\Exceptions\Exception
-     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
-     * @throws \JapaneseDate\Exceptions\SolarTermException
-     * @throws \JsonException
-     */
-    protected function viewHoliday(): string
-    {
-        $key = $this->getHoliday();
-
-        return $this->JapaneseDate->viewHoliday($key);
     }
 
     /**
