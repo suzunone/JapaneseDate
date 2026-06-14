@@ -3,7 +3,11 @@
 $finder = PhpCsFixer\Finder::create()
     ->in(__DIR__.'/src')
     ->in(__DIR__.'/tests')
-    ->exclude('vendor');
+    ->notPath('Components/ELP2000.php')
+    ->notPath('Components/Traits/ELP2000Sub.php')
+    ->exclude('vendor')
+    ->exclude('fixtures')
+;
 
 $rules = [
     '@PSR12' => true,

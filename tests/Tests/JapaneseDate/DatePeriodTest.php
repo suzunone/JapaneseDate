@@ -91,7 +91,7 @@ class DatePeriodTest extends TestCase
         $dates = iterator_to_array($period);
         $this->assertCount(4, $dates);
 
-        $formattedDates = array_map(fn ($d) => $d->format('Y-m-d'), $dates);
+        $formattedDates = array_map(static fn ($d) => $d->format('Y-m-d'), $dates);
         $this->assertContains('2026-05-03', $formattedDates);
         $this->assertContains('2026-05-04', $formattedDates);
         $this->assertContains('2026-05-05', $formattedDates);
@@ -121,7 +121,7 @@ class DatePeriodTest extends TestCase
         // 05-03〜06 が祝日なので、10日中6日が残る
         $this->assertCount(6, $dates);
 
-        $formattedDates = array_map(fn ($d) => $d->format('Y-m-d'), $dates);
+        $formattedDates = array_map(static fn ($d) => $d->format('Y-m-d'), $dates);
         $this->assertNotContains('2026-05-03', $formattedDates);
         $this->assertNotContains('2026-05-04', $formattedDates);
         $this->assertNotContains('2026-05-05', $formattedDates);
@@ -139,7 +139,7 @@ class DatePeriodTest extends TestCase
         $dates = iterator_to_array($period);
         // 10日間のうち土日（05-02, 05-03, 05-09, 05-10）の4日を除いた6日
         $this->assertCount(6, $dates);
-        $formattedDates = array_map(fn ($d) => $d->format('Y-m-d'), $dates);
+        $formattedDates = array_map(static fn ($d) => $d->format('Y-m-d'), $dates);
         $this->assertNotContains('2026-05-02', $formattedDates);
         $this->assertNotContains('2026-05-09', $formattedDates);
     }
@@ -175,8 +175,8 @@ class DatePeriodTest extends TestCase
         $dates = iterator_to_array($period);
         foreach ($dates as $d) {
             $day = $d->day;
-            $lastDay = $d->daysInMonth;
-            $isGotobi = in_array($day, [5, 10, 15, 20, 25], true) || $day === $lastDay;
+            $daysInMonth = $d->daysInMonth;
+            $isGotobi = in_array($day, [5, 10, 15, 20, 25], true) || $day === $daysInMonth;
             $this->assertTrue($isGotobi, "{$d->format('Y-m-d')} は五十日ではない");
             $jd = DateTime::factory($d);
             $this->assertFalse($jd->is_holiday, "{$d->format('Y-m-d')} は祝日");
@@ -217,8 +217,8 @@ class DatePeriodTest extends TestCase
         foreach ($dates as $d) {
             $jd = DateTime::factory($d);
             $day = $d->day;
-            $lastDay = $d->daysInMonth;
-            $isGotobi = in_array($day, [5, 10, 15, 20, 25], true) || $day === $lastDay;
+            $daysInMonth = $d->daysInMonth;
+            $isGotobi = in_array($day, [5, 10, 15, 20, 25], true) || $day === $daysInMonth;
             $this->assertTrue($isGotobi);
             $this->assertFalse($jd->is_holiday);
             $this->assertNotContains($d->dayOfWeek, [0, 6]);
@@ -276,14 +276,16 @@ class DatePeriodTest extends TestCase
 
         foreach ($dates as $d) {
             $jd = DateTime::factory($d);
-            $this->assertTrue(
-                in_array($jd->six_weekday, [DateTime::SIX_WEEKDAY_TAIAN, DateTime::SIX_WEEKDAY_TOMOBIKI], true),
+            $this->assertContains(
+                $jd->six_weekday,
+                [DateTime::SIX_WEEKDAY_TAIAN, DateTime::SIX_WEEKDAY_TOMOBIKI],
                 "{$d->format('Y-m-d')} は大安でも友引でもない"
             );
         }
     }
     /**
      * withoutSixWeekday: 仏滅が除外される。
+     * @noinspection SpellCheckingInspection
      */
     public function test_withoutSixWeekday_butsumetsu(): void
     {
@@ -324,7 +326,7 @@ class DatePeriodTest extends TestCase
     // 雑節フィルタテスト
     // =========================================================================
     /**
-     * onlyDoyo: 2026年夏の土用期間（約18日）が抽出される。
+     * onlyDoyo: 2026年夏の土用期間（18日）が抽出される。
      *
      * 夏の土用は立秋（2026-08-07頃）の 18 日前から立秋前日まで。
      */
@@ -334,7 +336,7 @@ class DatePeriodTest extends TestCase
             ->onlyDoyo();
 
         $dates = iterator_to_array($period);
-        // 土用は約18日間
+        // 2026年の夏土用は 2026-07-20〜2026-08-06 の18日間
         $this->assertCount(18, $dates);
     }
     /**
@@ -419,7 +421,7 @@ class DatePeriodTest extends TestCase
         $dates = iterator_to_array($period);
         $this->assertCount(6, $dates);
 
-        $formattedDates = array_map(fn ($d) => $d->format('Y-m-d'), $dates);
+        $formattedDates = array_map(static fn ($d) => $d->format('Y-m-d'), $dates);
         $this->assertContains('2026-01-05', $formattedDates); // 小寒
         $this->assertContains('2026-01-20', $formattedDates); // 大寒
         $this->assertContains('2026-02-04', $formattedDates); // 立春
@@ -477,6 +479,31 @@ class DatePeriodTest extends TestCase
             Astronomy::useMoonAlgorithm(Astronomy::MOON_LEGACY);
         }
     }
+    /**
+     * @return void
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     */
+    public function test_eachSolarTerm_usesVsop87AlgorithmWhenSelected(): void
+    {
+        try {
+            Astronomy::useSolarAlgorithm(Astronomy::SOLAR_VSOP87);
+
+            $period = DatePeriod::eachSolarTerm(
+                DateTime::parse('2026-03-01'),
+                DateTime::parse('2026-03-31')
+            );
+
+            $dates = iterator_to_array($period);
+            $formattedDates = array_map(static fn ($d) => $d->format('Y-m-d'), $dates);
+
+            $this->assertContains('2026-03-20', $formattedDates);
+        } finally {
+            Astronomy::useSolarAlgorithm(Astronomy::SOLAR_LEGACY);
+            Astronomy::useMoonAlgorithm(Astronomy::MOON_LEGACY);
+        }
+    }
+
     /**
      * eachSolarTerm: 返されるイテレータが DatePeriod のインスタンスである。
      */

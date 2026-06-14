@@ -27,7 +27,7 @@ use JapaneseDate\Traits\DateTimeImport;
 /**
  * 日本の暦（国民の祝日・元号・六曜・二十四節気・旧暦）に完全対応した可変（ミュータブル）日時クラス。
  *
- * 日時操作ライブラリ {@link \Carbon\Carbon} を継承しており、Carbon および PHP 標準
+ * 日時操作ライブラリ {@link Carbon} を継承しており、Carbon および PHP 標準
  * {@link \DateTime} が持つすべてのメソッド・プロパティをそのまま利用できます。
  * 加えて、日本のビジネス実務や伝統的な暦の計算に必要な機能を透過的に追加しています。
  *
@@ -61,7 +61,7 @@ use JapaneseDate\Traits\DateTimeImport;
  *    - 十二支: `$date->orientalZodiac` → 定数、`$date->orientalZodiacText` → 「午」など
  *    - 十干: `$date->heavenlyStem` → 定数、`$date->heavenlyStemText` → 「丙」など
  *
- * **イミュータブル版が必要な場合は {@see \JapaneseDate\DateTimeImmutable} を使用してください。**
+ * **イミュータブル版が必要な場合は {@see DateTimeImmutable} を使用してください。**
  *
  * **使用例:**
  * ```php
@@ -1833,5 +1833,15 @@ class DateTime extends Carbon implements DateTimeInterface
      */
     public const MOON_ALGORITHM_ELP2000 = Astronomy::MOON_ELP2000;
 
+    /**
+     * 月計算アルゴリズム識別子: Meeus AA2 Chapter 47（NASA c 補正あり、既定）。
+     * {@see Astronomy::MOON_MEEUS47}
+     */
+    public const MOON_ALGORITHM_MEEUS47 = Astronomy::MOON_MEEUS47;
 
+    /**
+     * 月計算アルゴリズム識別子: Meeus AA2 Chapter 47（NASA c 補正なし）。
+     * {@see Astronomy::MOON_MEEUS47_NO_C}
+     */
+    public const MOON_ALGORITHM_MEEUS47_NO_C = Astronomy::MOON_MEEUS47_NO_C;
 }

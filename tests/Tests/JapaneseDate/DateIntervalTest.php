@@ -68,8 +68,7 @@ class DateIntervalTest extends TestCase
      */
     public function test_extendsCaronInterval(): void
     {
-        $interval = new DateInterval('P1D');
-        $this->assertInstanceOf(CarbonInterval::class, $interval);
+        $this->assertTrue(is_subclass_of(DateInterval::class, CarbonInterval::class));
     }
     /**
      * SYNODIC_MONTH_DAYS 定数が正しい値であることを確認する。
@@ -179,7 +178,6 @@ class DateIntervalTest extends TestCase
         $from = DateTime::parse('2026-05-01');
         $interval = DateInterval::untilNextHoliday($from);
 
-        $this->assertInstanceOf(DateInterval::class, $interval);
         $this->assertEquals(2, $interval->d);
     }
     /**
@@ -203,7 +201,6 @@ class DateIntervalTest extends TestCase
         $from = DateTime::parse('2026-05-01');
         $interval = DateInterval::untilNextSixWeek($from, DateTime::SIX_WEEKDAY_TAIAN);
 
-        $this->assertInstanceOf(DateInterval::class, $interval);
         // 大安は6日サイクルなので 1〜6 日後になる
         $this->assertGreaterThanOrEqual(1, $interval->d);
         $this->assertLessThanOrEqual(6, $interval->d);
@@ -262,7 +259,6 @@ class DateIntervalTest extends TestCase
     public function test_eraSpan_showa(): void
     {
         $interval = DateInterval::eraSpan(DateTime::ERA_SHOWA);
-        $this->assertInstanceOf(DateInterval::class, $interval);
         $this->assertEquals(62, $interval->y);
     }
     /**
@@ -273,11 +269,11 @@ class DateIntervalTest extends TestCase
     public function test_eraSpan_meiji(): void
     {
         $interval = DateInterval::eraSpan(DateTime::ERA_MEIJI);
-        $this->assertInstanceOf(DateInterval::class, $interval);
         $this->assertEquals(44, $interval->y);
     }
     /**
      * eraSpan: 令和に $until を指定した場合、正しく計算される。
+     * @noinspection SpellCheckingInspection
      */
     public function test_eraSpan_reiwa_withUntil(): void
     {
@@ -288,11 +284,11 @@ class DateIntervalTest extends TestCase
     }
     /**
      * eraSpan: 令和に $until を省略した場合、現在日時を終了とする。
+     * @noinspection SpellCheckingInspection
      */
     public function test_eraSpan_reiwa_withoutUntil(): void
     {
         $interval = DateInterval::eraSpan(DateTime::ERA_REIWA);
-        $this->assertInstanceOf(DateInterval::class, $interval);
         // 令和は 2019年開始なので年数は 6 以上
         $this->assertGreaterThanOrEqual(6, $interval->y);
     }
@@ -317,7 +313,6 @@ class DateIntervalTest extends TestCase
         // 1500年を基準とした場合、SimpleSolarTerm が失敗し SolarTerm が使われる
         $from = DateTime::parse('1500-03-01');
         $interval = DateInterval::untilNextSolarTerm($from);
-        $this->assertInstanceOf(DateInterval::class, $interval);
         $this->assertGreaterThanOrEqual(0, $interval->d);
     }
     public function test_resolveSolarTerm_usesVsop87AlgorithmWhenSelected(): void
@@ -336,6 +331,26 @@ class DateIntervalTest extends TestCase
         }
     }
     /**
+     * @return void
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     */
+    public function test_resolveSolarTerm_usesVsop87AlgorithmWhenSelected(): void
+    {
+        try {
+            Astronomy::useSolarAlgorithm(Astronomy::SOLAR_VSOP87);
+
+            $from = DateTime::parse('2026-03-01');
+            $interval = DateInterval::untilNextSolarTerm($from, 'syunbun');
+
+            $this->assertGreaterThan(0, $interval->d);
+        } finally {
+            Astronomy::useSolarAlgorithm(Astronomy::SOLAR_LEGACY);
+            Astronomy::useMoonAlgorithm(Astronomy::MOON_LEGACY);
+        }
+    }
+
+    /**
      * untilNextSolarTerm: 次の節気までの残り期間が取得できる。
      */
     public function test_untilNextSolarTerm_noSpecificTerm(): void
@@ -343,7 +358,6 @@ class DateIntervalTest extends TestCase
         $from = DateTime::parse('2026-05-01');
         $interval = DateInterval::untilNextSolarTerm($from);
 
-        $this->assertInstanceOf(DateInterval::class, $interval);
         // 節気の間隔は 14〜16 日程度なので、次の節気は 30 日以内
         $this->assertLessThanOrEqual(30, $interval->d);
         $this->assertGreaterThanOrEqual(0, $interval->d);
@@ -357,7 +371,6 @@ class DateIntervalTest extends TestCase
         $from = DateTime::parse('2026-05-01');
         $interval = DateInterval::untilNextSolarTerm($from, 'geshi');
 
-        $this->assertInstanceOf(DateInterval::class, $interval);
         $this->assertGreaterThan(0, $interval->d);
         // 夏至は 6 月なので 20〜55 日後
         $this->assertLessThanOrEqual(55, $interval->d);
@@ -441,7 +454,6 @@ class DateIntervalTest extends TestCase
         $from = DateTime::parse('2026-05-01');
         $interval = DateInterval::untilNextNewMoon($from);
 
-        $this->assertInstanceOf(DateInterval::class, $interval);
         // 次の新月は 0〜29.5 日後
         $this->assertGreaterThanOrEqual(0, $interval->d);
         $this->assertLessThanOrEqual(30, $interval->d);

@@ -61,32 +61,13 @@ abstract class Map
     protected array $map = [];
 
     /**
-     * サブクラスのマッピングデータを遅延ロードし、静的キャッシュに格納して返す。
-     *
-     * 初回呼び出し時にのみインスタンスを生成してデータを読み込みます。
-     * 以降は `static::$cache` から取得するため、大量データでも効率的に動作します。
-     *
-     * @return array<int, array<string, string>> マッピングデータの配列
-     */
-    protected static function loadMap(): array
-    {
-        $class = static::class;
-        if (!isset(static::$cache[$class])) {
-            $instance = new static();
-            static::$cache[$class] = $instance->map;
-        }
-
-        return static::$cache[$class];
-    }
-
-    /**
      * 指定された日付が `start`〜`end` の範囲に収まるマッピング要素をすべて返す。
      *
      * - `start` <= $date < `end` の半開区間で判定します。
      * - 南北朝時代のように複数の元号が並存する場合は、複数要素を含む配列を返します。
      * - 該当するデータが存在しない場合は空配列を返します。
      *
-     * @param \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable $date 検索基準日
+     * @param DateTime|DateTimeImmutable $date 検索基準日
      * @return array<int, array<string, string>> 条件に合致したマッピング要素の配列
      * @throws \Exception
      * @throws \Exception
@@ -107,6 +88,25 @@ abstract class Map
         }
 
         return $results;
+    }
+
+    /**
+     * サブクラスのマッピングデータを遅延ロードし、静的キャッシュに格納して返す。
+     *
+     * 初回呼び出し時にのみインスタンスを生成してデータを読み込みます。
+     * 以降は `static::$cache` から取得するため、大量データでも効率的に動作します。
+     *
+     * @return array<int, array<string, string>> マッピングデータの配列
+     */
+    protected static function loadMap(): array
+    {
+        $class = static::class;
+        if (!isset(static::$cache[$class])) {
+            $instance = new static();
+            static::$cache[$class] = $instance->map;
+        }
+
+        return static::$cache[$class];
     }
 
     /**

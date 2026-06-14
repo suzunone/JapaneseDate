@@ -69,6 +69,7 @@ foreach ($period as $date) {
 
 ## Traits
 
+- LocalFactory
 - IntervalRounding
 - Mixin
 - Options
@@ -83,31 +84,18 @@ foreach ($period as $date) {
 | public | `RECURRENCES_FILTER` | Built-in filter for limit by recurrences. |
 | public | `END_DATE_FILTER` | Built-in filter for limit to an end. |
 | public | `END_ITERATION` | Special value which can be returned by filters to end iteration. Also a filter. |
-| public | `EXCLUDE_START_DATE` | Exclude start date from iteration. |
 | public | `EXCLUDE_END_DATE` | Exclude end date from iteration. |
 | public | `IMMUTABLE` | Yield CarbonImmutable instances. |
 | public | `NEXT_MAX_ATTEMPTS` | Number of maximum attempts before giving up on finding next valid date. |
 | public | `END_MAX_ATTEMPTS` | Number of maximum attempts before giving up on finding end date. |
 | protected | `DEFAULT_DATE_CLASS` | Default date class of iteration items. |
 
-## Properties
-
-| Modifier | Type | Name | Description |
-|---|---|---|---|
-| public _(read-only)_ | int\|float | `$recurrences` _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | number of recurrences (if end not set). |
-| public _(read-only)_ | bool | `$include_start_date` _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | rather the start date is included in the iteration. |
-| public _(read-only)_ | bool | `$include_end_date` _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | rather the end date is included in the iteration (if recurrences not set). |
-| public _(read-only)_ | CarbonInterface | `$start` _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Period start date. |
-| public _(read-only)_ | CarbonInterface | `$current` _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Current date from the iteration. |
-| public _(read-only)_ | CarbonInterface | `$end` _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Period end date. |
-| public _(read-only)_ | [CarbonInterval](../Carbon/CarbonInterval.md) | `$interval` _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Underlying date interval instance. Always present, one day by default. |
-
 ## Methods
 
 | Return | Method | Description |
 |---|---|---|
-| DateBusinessCommon | [setBusinessConfig()](#setbusinessconfig) | インスタンスに個別の営業日設定を適用します。 |
 | DateBusiness\|null | [getBusinessConfig()](#getbusinessconfig) | インスタンスが保持している個別の営業日設定を取得します。 |
+| DateBusinessCommon | [setBusinessConfig()](#setbusinessconfig) | インスタンスに個別の営業日設定を適用します。 |
 | DateBusinessCommon | [setClosingDay()](#setclosingday) | 特定の日付を休業日として指定します。 |
 | DateBusinessCommon | [setOpenDay()](#setopenday) | 特定の日付を営業日として指定します。 |
 | DateBusinessCommon | [setClosingWeekdays()](#setclosingweekdays) | 休業曜日を一括設定します。 |
@@ -119,26 +107,28 @@ foreach ($period as $date) {
 | DateBusinessCommon | [setBusinessMacro()](#setbusinessmacro) | 判定ロジックを完全に上書きするマクロを設定します。 |
 | bool | [checkIsBusinessDay()](#checkisbusinessday) | 指定した日付（または自身が保持する日付）が営業日かどうかを判定します。 |
 | string\|null | [checkGetBusinessDayLabel()](#checkgetbusinessdaylabel) | 指定した日付（または自身が保持する日付）の休業ラベルを取得します。 |
+| DatePeriod | [eachSolarTerm()](#eachsolarterm) | 開始日から終了日までを二十四節気の切り替わりをステップとする {DatePeriod} を生成して返します。 |
+| DatePeriod | [eachLunarMonth()](#eachlunarmonth) | 開始日から指定した月数分の旧暦月（朔日〜晦日）を 1 ステップとする {DatePeriod} を生成して返します。 |
+| DatePeriod | [eachJapaneseFiscalYear()](#eachjapanesefiscalyear) | 和暦年度（4月1日〜翌3月31日）を 1 ステップとする {DatePeriod} を生成します。 |
 | DatePeriod | [onlyHolidays()](#onlyholidays) | 期間内の日本の祝日・休日（振替休日・国民の休日を含む）のみを 抽出するフィルタを追加します。 |
+| DatePeriod | [onlyWeekdays()](#onlyweekdays) | 期間内の土曜・日曜・祝日・休日をすべて除外し、 純粋な平日（月〜金かつ非祝日）のみを抽出するフィルタを追加します。 |
 | DatePeriod | [withoutHolidays()](#withoutholidays) | 期間内の日本の祝日・休日（振替休日・国民の休日を含む）を除外する フィルタを追加します。 |
 | DatePeriod | [withoutWeekends()](#withoutweekends) | 期間内の土曜・日曜を除外するフィルタを追加します。 |
-| DatePeriod | [onlyWeekdays()](#onlyweekdays) | 期間内の土曜・日曜・祝日・休日をすべて除外し、 純粋な平日（月〜金かつ非祝日）のみを抽出するフィルタを追加します。 |
 | DatePeriod | [onlyGotobi()](#onlygotobi) | 期間内の五十日（ごとおび）かつ銀行営業日の日付のみを抽出するフィルタを追加します。 |
 | DatePeriod | [onlySixWeekday()](#onlysixweekday) | 期間内の指定した六曜の日のみを抽出するフィルタを追加します。 |
 | DatePeriod | [withoutSixWeekday()](#withoutsixweekday) | 期間内の指定した六曜の日を除外するフィルタを追加します。 |
 | DatePeriod | [onlyDoyo()](#onlydoyo) | 期間内の土用（各季節の前の約18日間）に含まれる日付のみを抽出するフィルタを追加します。 |
 | DatePeriod | [onlyHigan()](#onlyhigan) | 期間内の彼岸（春分・秋分を中日とした各7日間）に含まれる日付のみを抽出するフィルタを追加します。 |
-| DatePeriod | [eachSolarTerm()](#eachsolarterm) | 開始日から終了日までを二十四節気の切り替わりをステップとする {DatePeriod} を生成して返します。 |
-| DatePeriod | [eachLunarMonth()](#eachlunarmonth) | 開始日から指定した月数分の旧暦月（朔日〜晦日）を 1 ステップとする {DatePeriod} を生成して返します。 |
 | array | [splitByEra()](#splitbyera) | 期間（DatePeriod）を元号の切り替わりタイミングで複数のサブ期間に分割します。 |
-| DatePeriod | [eachJapaneseFiscalYear()](#eachjapanesefiscalyear) | 和暦年度（4月1日〜翌3月31日）を 1 ステップとする {DatePeriod} を生成します。 |
 | DatePeriod | [onlyBusinessDays()](#onlybusinessdays) | 期間内の営業日のみを含む新しい DatePeriod を返します。 |
 | DatePeriod | [withoutBusinessDays()](#withoutbusinessdays) | 期間内から営業日を除いた（休業日のみの）新しい DatePeriod を返します。 |
+| Generator | [CarbonPeriod::getIterator](../Carbon/CarbonPeriod.md#getiterator) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ |  |
 | CarbonPeriod\|null | [CarbonPeriod::make](../Carbon/CarbonPeriod.md#make) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Make a CarbonPeriod instance from given variable if possible. |
 | CarbonPeriod | [CarbonPeriod::instance](../Carbon/CarbonPeriod.md#instance) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Create a new instance from a DatePeriod or CarbonPeriod object. |
 | CarbonPeriod | [CarbonPeriod::create](../Carbon/CarbonPeriod.md#create) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Create a new instance. |
 | CarbonPeriod | [CarbonPeriod::createFromArray](../Carbon/CarbonPeriod.md#createfromarray) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Create a new instance from an array of parameters. |
 | CarbonPeriod | [CarbonPeriod::createFromIso](../Carbon/CarbonPeriod.md#createfromiso) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Create CarbonPeriod from ISO 8601 string. |
+| CarbonPeriod | [CarbonPeriod::createFromISO8601String](../Carbon/CarbonPeriod.md#createfromiso8601string) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ |  |
 | void | [CarbonPeriod::macro](../Carbon/CarbonPeriod.md#macro) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Register a custom macro. |
 | void | [CarbonPeriod::mixin](../Carbon/CarbonPeriod.md#mixin) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Register macros from a mixin object. |
 | bool | [CarbonPeriod::hasMacro](../Carbon/CarbonPeriod.md#hasmacro) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Check if macro is registered. |
@@ -148,6 +138,7 @@ foreach ($period as $date) {
 | CarbonPeriod | [CarbonPeriod::setDateClass](../Carbon/CarbonPeriod.md#setdateclass) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Set the iteration item class. |
 | string | [CarbonPeriod::getDateClass](../Carbon/CarbonPeriod.md#getdateclass) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Returns iteration item date class. |
 | CarbonPeriod | [CarbonPeriod::setDateInterval](../Carbon/CarbonPeriod.md#setdateinterval) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Change the period date interval. |
+| CarbonPeriod | [CarbonPeriod::resetDateInterval](../Carbon/CarbonPeriod.md#resetdateinterval) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Reset the date interval to the default value. |
 | CarbonPeriod | [CarbonPeriod::invertDateInterval](../Carbon/CarbonPeriod.md#invertdateinterval) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Invert the period date interval. |
 | CarbonPeriod | [CarbonPeriod::setDates](../Carbon/CarbonPeriod.md#setdates) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Set start and end date. |
 | CarbonPeriod | [CarbonPeriod::setOptions](../Carbon/CarbonPeriod.md#setoptions) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Change the period options. |
@@ -184,31 +175,31 @@ foreach ($period as $date) {
 | string | [CarbonPeriod::toIso8601String](../Carbon/CarbonPeriod.md#toiso8601string) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Format the date period as ISO 8601. |
 | string | [CarbonPeriod::toString](../Carbon/CarbonPeriod.md#tostring) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Convert the date period into a string. |
 | string | [CarbonPeriod::spec](../Carbon/CarbonPeriod.md#spec) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Format the date period as ISO 8601. |
-| DatePeriod | [CarbonPeriod::cast](../Carbon/CarbonPeriod.md#cast) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Cast the current instance into the given class. |
+| object | [CarbonPeriod::cast](../Carbon/CarbonPeriod.md#cast) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Cast the current instance into the given class. |
 | DatePeriod | [CarbonPeriod::toDatePeriod](../Carbon/CarbonPeriod.md#todateperiod) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Return native DatePeriod PHP object matching the current instance. |
 | bool | [CarbonPeriod::isUnfilteredAndEndLess](../Carbon/CarbonPeriod.md#isunfilteredandendless) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Return `true` if the period has no custom filter and is guaranteed to be endless. |
-| CarbonInterface[] | [CarbonPeriod::toArray](../Carbon/CarbonPeriod.md#toarray) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Convert the date period into an array without changing current iteration state. |
+| array | [CarbonPeriod::toArray](../Carbon/CarbonPeriod.md#toarray) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Convert the date period into an array without changing current iteration state. |
 | int | [CarbonPeriod::count](../Carbon/CarbonPeriod.md#count) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Count dates in the date period. |
 | CarbonInterface\|null | [CarbonPeriod::first](../Carbon/CarbonPeriod.md#first) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Return the first date in the date period. |
 | CarbonInterface\|null | [CarbonPeriod::last](../Carbon/CarbonPeriod.md#last) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Return the last date in the date period. |
 | CarbonPeriod | [CarbonPeriod::setTimezone](../Carbon/CarbonPeriod.md#settimezone) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Set the instance&#039;s timezone from a string or object and apply it to start/end. |
 | CarbonPeriod | [CarbonPeriod::shiftTimezone](../Carbon/CarbonPeriod.md#shifttimezone) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Set the instance&#039;s timezone from a string or object and add/subtract the offset difference to start/end. |
-| CarbonInterface | [CarbonPeriod::calculateEnd](../Carbon/CarbonPeriod.md#calculateend) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Returns the end is set, else calculated from start an recurrences. |
+| CarbonInterface | [CarbonPeriod::calculateEnd](../Carbon/CarbonPeriod.md#calculateend) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Returns the end is set, else calculated from start and recurrences. |
 | bool | [CarbonPeriod::overlaps](../Carbon/CarbonPeriod.md#overlaps) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Returns true if the current period overlaps the given one (if 1 parameter passed) or the period between 2 dates (if 2 parameters passed). |
-|  | [CarbonPeriod::forEach](../Carbon/CarbonPeriod.md#foreach) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Execute a given function on each date of the period. |
+| void | [CarbonPeriod::forEach](../Carbon/CarbonPeriod.md#foreach) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Execute a given function on each date of the period. |
 | Generator | [CarbonPeriod::map](../Carbon/CarbonPeriod.md#map) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Execute a given function on each date of the period and yield the result of this function. |
 | bool | [CarbonPeriod::eq](../Carbon/CarbonPeriod.md#eq) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Determines if the instance is equal to another. |
 | bool | [CarbonPeriod::equalTo](../Carbon/CarbonPeriod.md#equalto) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Determines if the instance is equal to another. |
 | bool | [CarbonPeriod::ne](../Carbon/CarbonPeriod.md#ne) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Determines if the instance is not equal to another. |
 | bool | [CarbonPeriod::notEqualTo](../Carbon/CarbonPeriod.md#notequalto) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Determines if the instance is not equal to another. |
-| bool | [CarbonPeriod::startsBefore](../Carbon/CarbonPeriod.md#startsbefore) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Determines if the start date is before an other given date. |
+| bool | [CarbonPeriod::startsBefore](../Carbon/CarbonPeriod.md#startsbefore) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Determines if the start date is before another given date. |
 | bool | [CarbonPeriod::startsBeforeOrAt](../Carbon/CarbonPeriod.md#startsbeforeorat) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Determines if the start date is before or the same as a given date. |
-| bool | [CarbonPeriod::startsAfter](../Carbon/CarbonPeriod.md#startsafter) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Determines if the start date is after an other given date. |
+| bool | [CarbonPeriod::startsAfter](../Carbon/CarbonPeriod.md#startsafter) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Determines if the start date is after another given date. |
 | bool | [CarbonPeriod::startsAfterOrAt](../Carbon/CarbonPeriod.md#startsafterorat) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Determines if the start date is after or the same as a given date. |
 | bool | [CarbonPeriod::startsAt](../Carbon/CarbonPeriod.md#startsat) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Determines if the start date is the same as a given date. |
-| bool | [CarbonPeriod::endsBefore](../Carbon/CarbonPeriod.md#endsbefore) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Determines if the end date is before an other given date. |
+| bool | [CarbonPeriod::endsBefore](../Carbon/CarbonPeriod.md#endsbefore) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Determines if the end date is before another given date. |
 | bool | [CarbonPeriod::endsBeforeOrAt](../Carbon/CarbonPeriod.md#endsbeforeorat) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Determines if the end date is before or the same as a given date. |
-| bool | [CarbonPeriod::endsAfter](../Carbon/CarbonPeriod.md#endsafter) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Determines if the end date is after an other given date. |
+| bool | [CarbonPeriod::endsAfter](../Carbon/CarbonPeriod.md#endsafter) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Determines if the end date is after another given date. |
 | bool | [CarbonPeriod::endsAfterOrAt](../Carbon/CarbonPeriod.md#endsafterorat) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Determines if the end date is after or the same as a given date. |
 | bool | [CarbonPeriod::endsAt](../Carbon/CarbonPeriod.md#endsat) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Determines if the end date is the same as a given date. |
 | bool | [CarbonPeriod::isStarted](../Carbon/CarbonPeriod.md#isstarted) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Return true if start date is now or later. |
@@ -220,28 +211,28 @@ foreach ($period as $date) {
 | CarbonPeriod | [CarbonPeriod::round](../Carbon/CarbonPeriod.md#round) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Round the current instance second with given precision if specified (else period interval is used). |
 | CarbonPeriod | [CarbonPeriod::floor](../Carbon/CarbonPeriod.md#floor) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Round the current instance second with given precision if specified (else period interval is used). |
 | CarbonPeriod | [CarbonPeriod::ceil](../Carbon/CarbonPeriod.md#ceil) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Ceil the current instance second with given precision if specified (else period interval is used). |
-| CarbonInterface[] | [CarbonPeriod::jsonSerialize](../Carbon/CarbonPeriod.md#jsonserialize) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Specify data which should be serialized to JSON. |
+| array | [CarbonPeriod::jsonSerialize](../Carbon/CarbonPeriod.md#jsonserialize) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Specify data which should be serialized to JSON. |
 | bool | [CarbonPeriod::contains](../Carbon/CarbonPeriod.md#contains) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Return true if the given date is between start and end. |
 | bool | [CarbonPeriod::follows](../Carbon/CarbonPeriod.md#follows) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Return true if the current period follows a given other period (with no overlap). |
 | bool | [CarbonPeriod::isFollowedBy](../Carbon/CarbonPeriod.md#isfollowedby) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Return true if the given other period follows the current one (with no overlap). |
 | bool | [CarbonPeriod::isConsecutiveWith](../Carbon/CarbonPeriod.md#isconsecutivewith) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Return true if the given period either follows or is followed by the current one. |
-| static | [CarbonPeriod::start](../Carbon/CarbonPeriod.md#start) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Create instance specifying start date or modify the start date if called on an instance. |
+| CarbonInterface | [CarbonPeriod::start](../Carbon/CarbonPeriod.md#start) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Create instance specifying start date or modify the start date if called on an instance. |
 | static | [CarbonPeriod::since](../Carbon/CarbonPeriod.md#since) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | . |
 | static | [CarbonPeriod::sinceNow](../Carbon/CarbonPeriod.md#sincenow) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Create instance with start date set to now or set the start date to now if called on an instance. |
-| static | [CarbonPeriod::end](../Carbon/CarbonPeriod.md#end) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Create instance specifying end date or modify the end date if called on an instance. |
+| CarbonInterface | [CarbonPeriod::end](../Carbon/CarbonPeriod.md#end) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Create instance specifying end date or modify the end date if called on an instance. |
 | static | [CarbonPeriod::until](../Carbon/CarbonPeriod.md#until) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | . |
 | static | [CarbonPeriod::untilNow](../Carbon/CarbonPeriod.md#untilnow) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Create instance with end date set to now or set the end date to now if called on an instance. |
 | static | [CarbonPeriod::dates](../Carbon/CarbonPeriod.md#dates) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Create instance with start and end dates or modify the start and end dates if called on an instance. |
 | static | [CarbonPeriod::between](../Carbon/CarbonPeriod.md#between) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Create instance with start and end dates or modify the start and end dates if called on an instance. |
 | static | [CarbonPeriod::recurrences](../Carbon/CarbonPeriod.md#recurrences) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Create instance with maximum number of recurrences or modify the number of recurrences if called on an instance. |
 | static | [CarbonPeriod::times](../Carbon/CarbonPeriod.md#times) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | . |
-| static | [CarbonPeriod::options](../Carbon/CarbonPeriod.md#options) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Create instance with options or modify the options if called on an instance. |
+| static|int|null | [CarbonPeriod::options](../Carbon/CarbonPeriod.md#options) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Create instance with options or modify the options if called on an instance. |
 | static | [CarbonPeriod::toggle](../Carbon/CarbonPeriod.md#toggle) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Create instance with options toggled on or off, or toggle options if called on an instance. |
 | static | [CarbonPeriod::filter](../Carbon/CarbonPeriod.md#filter) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Create instance with filter added to the stack or append a filter if called on an instance. |
 | static | [CarbonPeriod::push](../Carbon/CarbonPeriod.md#push) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | . |
 | static | [CarbonPeriod::prepend](../Carbon/CarbonPeriod.md#prepend) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Create instance with filter prepended to the stack or prepend a filter if called on an instance. |
-| static | [CarbonPeriod::filters](../Carbon/CarbonPeriod.md#filters) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Create instance with filters stack or replace the whole filters stack if called on an instance. |
-| static | [CarbonPeriod::interval](../Carbon/CarbonPeriod.md#interval) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Create instance with given date interval or modify the interval if called on an instance. |
+| static|array | [CarbonPeriod::filters](../Carbon/CarbonPeriod.md#filters) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Create instance with filters stack or replace the whole filters stack if called on an instance. |
+| CarbonInterval | [CarbonPeriod::interval](../Carbon/CarbonPeriod.md#interval) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Create instance with given date interval or modify the interval if called on an instance. |
 | static | [CarbonPeriod::each](../Carbon/CarbonPeriod.md#each) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Create instance with given date interval or modify the interval if called on an instance. |
 | static | [CarbonPeriod::every](../Carbon/CarbonPeriod.md#every) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Create instance with given date interval or modify the interval if called on an instance. |
 | static | [CarbonPeriod::step](../Carbon/CarbonPeriod.md#step) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Create instance with given date interval or modify the interval if called on an instance. |
@@ -349,6 +340,21 @@ foreach ($period as $date) {
 
 ## Method Details
 
+### getBusinessConfig
+
+```php
+public DateBusiness\|null getBusinessConfig()
+```
+
+インスタンスが保持している個別の営業日設定を取得します。
+
+個別設定を持っていない場合は `null` を返します。
+判定に実際に使用される設定（グローバル/デフォルト含む解決済み設定）は
+BusinessCalendar::resolveConfig() で取得できます。
+
+**Returns:** [DateBusiness](../JapaneseDate/DateBusiness.md)\|null — インスタンス個別設定、または null
+---
+
 ### setBusinessConfig
 
 ```php
@@ -374,21 +380,6 @@ $dt->setBusinessConfig(
 | [DateBusiness](../JapaneseDate/DateBusiness.md)\|null | `$config` | —  | インスタンスに適用する設定オブジェクト、または null（解除） |
 
 **Returns:** DateBusinessCommon — メソッドチェーン用に自身を返します
----
-
-### getBusinessConfig
-
-```php
-public DateBusiness\|null getBusinessConfig()
-```
-
-インスタンスが保持している個別の営業日設定を取得します。
-
-個別設定を持っていない場合は `null` を返します。
-判定に実際に使用される設定（グローバル/デフォルト含む解決済み設定）は
-BusinessCalendar::resolveConfig() で取得できます。
-
-**Returns:** [DateBusiness](../JapaneseDate/DateBusiness.md)\|null — インスタンス個別設定、または null
 ---
 
 ### setClosingDay
@@ -659,6 +650,123 @@ public string\|null checkGetBusinessDayLabel($date = null)
 **Returns:** string\|null — 休業ラベル、または null
 ---
 
+### eachSolarTerm
+
+```php
+static public DatePeriod eachSolarTerm($start, $end)
+```
+
+開始日から終了日までを二十四節気の切り替わりをステップとする
+{DatePeriod} を生成して返します。
+
+各ステップは固定の日数ではなく、天文学的計算に基づく正確な節気の切り替わり日
+（14日〜16日の可変幅）となります。
+
+開始日が節気日でない場合は、直後の最初の節気日から順次イテレートします。
+
+【使用例】
+```php
+// 2026年の節気区切りでイテレートする（立春→雨水→啓蟄…）
+$period = DatePeriod::eachSolarTerm(
+    DateTime::parse('2026-01-01'),
+    DateTime::parse('2026-12-31')
+);
+
+foreach ($period as $date) {
+    echo $date->format('Y-m-d') . ' ' . $date->solarTermText . PHP_EOL;
+}
+```
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| [DateTime](../JapaneseDate/DateTime.md) | `$start` | —  | イテレート開始の基準日 |
+| [DateTime](../JapaneseDate/DateTime.md) | `$end` | —  | イテレート終了日（この日を含む） |
+
+**Returns:** [DatePeriod](../JapaneseDate/DatePeriod.md) — 節気区切りの {\JapaneseDate\DatePeriod}
+**Throws:**
+
+- DateInvalidTimeZoneException
+- [NativeDateTimeException](../JapaneseDate/Exceptions/NativeDateTimeException.md)
+---
+
+### eachLunarMonth
+
+```php
+static public DatePeriod eachLunarMonth($start, $months)
+```
+
+開始日から指定した月数分の旧暦月（朔日〜晦日）を 1 ステップとする
+{DatePeriod} を生成して返します。
+
+各ステップは旧暦の朔日（新月）の日付です。
+旧正月・旧お盆・十五夜などの伝統行事の期間走査に使用します。
+
+【使用例】
+```php
+// 2026年1月から6ヶ月分の旧暦月の朔日を取得する
+$period = DatePeriod::eachLunarMonth(DateTime::parse('2026-01-01'), 6);
+
+foreach ($period as $date) {
+    $jd = DateTime::factory($date);
+    echo $date->format('Y-m-d') . ' 旧暦' . $jd->lunarYear . '年'
+         . $jd->lunarMonth . '月朔日' . PHP_EOL;
+}
+```
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| [DateTime](../JapaneseDate/DateTime.md) | `$start` | —  | イテレート開始日（この日を含む旧暦月の朔日から開始） |
+| int | `$months` | —  | イテレートする旧暦月数 |
+
+**Returns:** [DatePeriod](../JapaneseDate/DatePeriod.md) — 旧暦月朔日区切りの {\JapaneseDate\DatePeriod}
+**Throws:**
+
+- DateInvalidTimeZoneException
+- [ErrorException](../JapaneseDate/Exceptions/ErrorException.md)
+- [Exception](../JapaneseDate/Exceptions/Exception.md)
+- [NativeDateTimeException](../JapaneseDate/Exceptions/NativeDateTimeException.md)
+---
+
+### eachJapaneseFiscalYear
+
+```php
+static public DatePeriod eachJapaneseFiscalYear($startFiscalYear, $endFiscalYear)
+```
+
+和暦年度（4月1日〜翌3月31日）を 1 ステップとする {DatePeriod} を生成します。
+
+日本の官公庁・企業で使用される「令和X年度」「平成Y年度」などの
+和暦年度を基準にした年度の開始日（4月1日）を順次返します。
+
+【使用例】
+```php
+// 令和5年度〜令和8年度（2023〜2026年度）の年度開始日を取得する
+$period = DatePeriod::eachJapaneseFiscalYear(2023, 2026);
+
+foreach ($period as $date) {
+    $jd = DateTime::factory($date);
+    echo $jd->eraNameText . $jd->eraYear . '年度 ('
+        . $date->format('Y/m/d') . '〜' . ($date->year + 1) . '/03/31)' . PHP_EOL;
+}
+```
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| int | `$startFiscalYear` | —  | 開始年度の西暦年（その年の4月1日〜翌3月31日） |
+| int | `$endFiscalYear` | —  | 終了年度の西暦年（この年度を含む） |
+
+**Returns:** [DatePeriod](../JapaneseDate/DatePeriod.md) — 和暦年度開始日区切りの {\JapaneseDate\DatePeriod}
+**Throws:**
+
+- [Exception](../JapaneseDate/Exceptions/Exception.md)
+---
+
 ### onlyHolidays
 
 ```php
@@ -681,6 +789,28 @@ foreach ($holidays as $date) {
 ```
 
 **Returns:** [DatePeriod](../JapaneseDate/DatePeriod.md) — 祝日のみを抽出するフィルタを追加した {\JapaneseDate\DatePeriod}
+---
+
+### onlyWeekdays
+
+```php
+public DatePeriod onlyWeekdays()
+```
+
+期間内の土曜・日曜・祝日・休日をすべて除外し、
+純粋な平日（月〜金かつ非祝日）のみを抽出するフィルタを追加します。
+
+「営業日候補」として使用する場合に便利です。
+
+【使用例】
+```php
+$businessDays = DatePeriod::create('2026-05-01', '1 day', '2026-05-31')
+    ->onlyWeekdays();
+
+echo count(iterator_to_array($businessDays)) . '営業日';
+```
+
+**Returns:** [DatePeriod](../JapaneseDate/DatePeriod.md) — 土日・祝日を除外するフィルタを追加した {\JapaneseDate\DatePeriod}
 ---
 
 ### withoutHolidays
@@ -723,28 +853,6 @@ $weekdayPeriod = DatePeriod::create('2026-05-01', '1 day', '2026-05-31')
 ```
 
 **Returns:** [DatePeriod](../JapaneseDate/DatePeriod.md) — 土日を除外するフィルタを追加した {\JapaneseDate\DatePeriod}
----
-
-### onlyWeekdays
-
-```php
-public DatePeriod onlyWeekdays()
-```
-
-期間内の土曜・日曜・祝日・休日をすべて除外し、
-純粋な平日（月〜金かつ非祝日）のみを抽出するフィルタを追加します。
-
-「営業日候補」として使用する場合に便利です。
-
-【使用例】
-```php
-$businessDays = DatePeriod::create('2026-05-01', '1 day', '2026-05-31')
-    ->onlyWeekdays();
-
-echo count(iterator_to_array($businessDays)) . '営業日';
-```
-
-**Returns:** [DatePeriod](../JapaneseDate/DatePeriod.md) — 土日・祝日を除外するフィルタを追加した {\JapaneseDate\DatePeriod}
 ---
 
 ### onlyGotobi
@@ -890,86 +998,6 @@ $higanDays = DatePeriod::create('2026-01-01', '1 day', '2026-12-31')
 **Returns:** [DatePeriod](../JapaneseDate/DatePeriod.md) — 彼岸フィルタを追加した {\JapaneseDate\DatePeriod}
 ---
 
-### eachSolarTerm
-
-```php
-static public DatePeriod eachSolarTerm($start, $end)
-```
-
-開始日から終了日までを二十四節気の切り替わりをステップとする
-{DatePeriod} を生成して返します。
-
-各ステップは固定の日数ではなく、天文学的計算に基づく正確な節気の切り替わり日
-（14日〜16日の可変幅）となります。
-
-開始日が節気日でない場合は、直後の最初の節気日から順次イテレートします。
-
-【使用例】
-```php
-// 2026年の節気区切りでイテレートする（立春→雨水→啓蟄…）
-$period = DatePeriod::eachSolarTerm(
-    DateTime::parse('2026-01-01'),
-    DateTime::parse('2026-12-31')
-);
-
-foreach ($period as $date) {
-    echo $date->format('Y-m-d') . ' ' . $date->solarTermText . PHP_EOL;
-}
-```
-
-**Parameters:**
-
-| Type | Name | Default | Description |
-|---|---|---|---|
-| [DateTime](../JapaneseDate/DateTime.md) | `$start` | —  | イテレート開始の基準日 |
-| [DateTime](../JapaneseDate/DateTime.md) | `$end` | —  | イテレート終了日（この日を含む） |
-
-**Returns:** [DatePeriod](../JapaneseDate/DatePeriod.md) — 節気区切りの {\JapaneseDate\DatePeriod}
-**Throws:**
-
-- DateInvalidTimeZoneException
-- [NativeDateTimeException](../JapaneseDate/Exceptions/NativeDateTimeException.md)
----
-
-### eachLunarMonth
-
-```php
-static public DatePeriod eachLunarMonth($start, $months)
-```
-
-開始日から指定した月数分の旧暦月（朔日〜晦日）を 1 ステップとする
-{DatePeriod} を生成して返します。
-
-各ステップは旧暦の朔日（新月）の日付です。
-旧正月・旧お盆・十五夜などの伝統行事の期間走査に使用します。
-
-【使用例】
-```php
-// 2026年1月から6ヶ月分の旧暦月の朔日を取得する
-$period = DatePeriod::eachLunarMonth(DateTime::parse('2026-01-01'), 6);
-
-foreach ($period as $date) {
-    $jd = DateTime::factory($date);
-    echo $date->format('Y-m-d') . ' 旧暦' . $jd->lunarYear . '年'
-         . $jd->lunarMonth . '月朔日' . PHP_EOL;
-}
-```
-
-**Parameters:**
-
-| Type | Name | Default | Description |
-|---|---|---|---|
-| [DateTime](../JapaneseDate/DateTime.md) | `$start` | —  | イテレート開始日（この日を含む旧暦月の朔日から開始） |
-| int | `$months` | —  | イテレートする旧暦月数 |
-
-**Returns:** [DatePeriod](../JapaneseDate/DatePeriod.md) — 旧暦月朔日区切りの {\JapaneseDate\DatePeriod}
-**Throws:**
-
-- DateInvalidTimeZoneException
-- [Exception](../JapaneseDate/Exceptions/Exception.md)
-- [NativeDateTimeException](../JapaneseDate/Exceptions/NativeDateTimeException.md)
----
-
 ### splitByEra
 
 ```php
@@ -1002,42 +1030,6 @@ foreach ($split as $eraKey => $subPeriod) {
 
 - DateInvalidTimeZoneException
 - [NativeDateTimeException](../JapaneseDate/Exceptions/NativeDateTimeException.md)
----
-
-### eachJapaneseFiscalYear
-
-```php
-static public DatePeriod eachJapaneseFiscalYear($startFiscalYear, $endFiscalYear)
-```
-
-和暦年度（4月1日〜翌3月31日）を 1 ステップとする {DatePeriod} を生成します。
-
-日本の官公庁・企業で使用される「令和X年度」「平成Y年度」などの
-和暦年度を基準にした年度の開始日（4月1日）を順次返します。
-
-【使用例】
-```php
-// 令和5年度〜令和8年度（2023〜2026年度）の年度開始日を取得する
-$period = DatePeriod::eachJapaneseFiscalYear(2023, 2026);
-
-foreach ($period as $date) {
-    $jd = DateTime::factory($date);
-    echo $jd->eraNameText . $jd->eraYear . '年度 ('
-        . $date->format('Y/m/d') . '〜' . ($date->year + 1) . '/03/31)' . PHP_EOL;
-}
-```
-
-**Parameters:**
-
-| Type | Name | Default | Description |
-|---|---|---|---|
-| int | `$startFiscalYear` | —  | 開始年度の西暦年（その年の4月1日〜翌3月31日） |
-| int | `$endFiscalYear` | —  | 終了年度の西暦年（この年度を含む） |
-
-**Returns:** [DatePeriod](../JapaneseDate/DatePeriod.md) — 和暦年度開始日区切りの {\JapaneseDate\DatePeriod}
-**Throws:**
-
-- [Exception](../JapaneseDate/Exceptions/Exception.md)
 ---
 
 ### onlyBusinessDays

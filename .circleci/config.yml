@@ -44,7 +44,7 @@ commands:
           name: Run tests
           command: |
             export XDEBUG_MODE=coverage
-            vendor/bin/phpunit tests --exclude-group large
+            vendor/bin/phpunit tests --exclude-group long-running
 
 jobs:
   test80:

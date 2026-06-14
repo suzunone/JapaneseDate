@@ -44,7 +44,10 @@ class NoMagicMethodFilter extends PublicFilter
     {
         if ($class->getNamespace() === 'JapaneseDate\Traits') {
             $property = new ReflectionProperty(ClassReflection::class, 'projectClass');
-            $property->setAccessible(true);
+            if (PHP_VERSION_ID < 80100) {
+                /** @noinspection PhpExpressionResultUnusedInspection */
+                $property->setAccessible(true);
+            }
             $property->setValue($class, false);
         }
 
