@@ -14,7 +14,7 @@ class ProcessLimiter
      *
      * @var resource|null
      */
-    private static $lockHandle = null;
+    private static $lockHandle;
 
     /**
      * PHPUnit の isolated test 実行時だけプロセス数制限を有効にする。
@@ -73,7 +73,7 @@ class ProcessLimiter
         if (extension_loaded('pcov')) {
             $names[] = 'JAPANESE_DATE_TEST_PROCESS_LIMIT_PCOV';
         }
-        
+
         if (extension_loaded('xdebug')) {
             $names[] = 'JAPANESE_DATE_TEST_PROCESS_LIMIT_XDEBUG';
         }
@@ -117,7 +117,7 @@ class ProcessLimiter
         while (true) {
             // slot-0 から順に試し、空いているロックを取得できたプロセスだけ先へ進む
             for ($slot = 0; $slot < $limit; $slot++) {
-                $handle = fopen($lockDir . '/slot-' . $slot . '.lock', 'c');
+                $handle = fopen($lockDir . '/slot-' . $slot . '.lock', 'cb');
 
                 if ($handle === false) {
                     continue;

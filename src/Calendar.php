@@ -32,7 +32,7 @@ use JapaneseDate\Traits\DateBusinessCommon;
 /**
  * 様々な除外条件（設定）に基づいて、特定の期間や月の営業日・日付オブジェクトの配列を生成するクラス。
  *
- * 旧来の bypass 系 API と、{@link \JapaneseDate\DateBusiness} を使った新しい
+ * 旧来の bypass 系 API と、{@link DateBusiness} を使った新しい
  * 営業日カレンダー設定の両方をサポートしています。
  *
  * **bypass 系 API（旧来方式）**
@@ -41,10 +41,10 @@ use JapaneseDate\Traits\DateBusinessCommon;
  *   {@link getWorkingDay()} / {@link getWorkingDayBySpan()} で取得します。
  *
  * **DateBusiness カレンダー API（新方式）**
- * - {@link \JapaneseDate\DateBusiness} オブジェクトで曜日・祝日・第XX曜日・特定日・
+ * - {@link DateBusiness} オブジェクトで曜日・祝日・第XX曜日・特定日・
  *   フィルタ・マクロを優先順位付きで柔軟に組み合わせられます。
  * - {@link setBusinessConfig()} でインスタンス個別設定を、
- *   {@link \JapaneseDate\Components\BusinessCalendar::setGlobalConfig()} でグローバル設定を指定します。
+ *   {@link BusinessCalendar::setGlobalConfig} でグローバル設定を指定します。
  * - {@link getBusinessDaysBySpan()} / {@link getBusinessDaysByLimit()} / {@link isBusinessDayByConfig()} で取得・判定します。
  *
  * 【bypass 系 使用例: 土日祝と特定日を除外した5営業日を取得する】
@@ -146,7 +146,7 @@ class Calendar
      *
      * コンストラクタで指定した基準日が格納されます。
      *
-     * @var \JapaneseDate\DateTime|\DateTimeInterface
+     * @var DateTime|DateTimeInterface
      */
     protected DateTime|DateTimeInterface $start_time_stamp;
 
@@ -155,7 +155,7 @@ class Calendar
      *
      * 開始日時から自動的に取得されます。
      *
-     * @var \DateTimeZone|\Carbon\CarbonTimeZone|false
+     * @var DateTimeZone|CarbonTimeZone|false
      */
     protected DateTimeZone|false|CarbonTimeZone $timezone;
 
@@ -171,9 +171,9 @@ class Calendar
     /**
      * スキップする日付の連想配列（bypass 系 API 用）。
      *
-     * キーは `Ymd` 形式の整数、値は {@link \JapaneseDate\DateTime} オブジェクト。
+     * キーは `Ymd` 形式の整数、値は {@link DateTime} オブジェクト。
      *
-     * @var array<int, \JapaneseDate\DateTime>
+     * @var array<int, DateTime>
      */
     protected array $bypass_day_arr = [];
 
@@ -193,10 +193,10 @@ class Calendar
      * {@link http://php.net/manual/ja/datetime.formats.php サポートする日付と時刻の書式}
      * を参考にしてください。
      *
-     * @param int|float|string|\DateTimeInterface $time 基準となる日付オブジェクト、Unix タイムスタンプ、または日付文字列（省略時は現在日時）
-     * @param \DateTimeZone|null $timezone タイムゾーン（省略時は PHP のデフォルトタイムゾーン）
+     * @param int|float|string|DateTimeInterface $time 基準となる日付オブジェクト、Unix タイムスタンプ、または日付文字列（省略時は現在日時）
+     * @param DateTimeZone|null $timezone タイムゾーン（省略時は PHP のデフォルトタイムゾーン）
      * @throws \DateInvalidTimeZoneException
-     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     * @throws NativeDateTimeException
      */
     public function __construct(int|float|string|DateTimeInterface $time = 'now', DateTimeZone|null $timezone = null)
     {
@@ -205,13 +205,13 @@ class Calendar
     }
 
     /**
-     * 指定した日付/時刻から {@link \JapaneseDate\DateTime} インスタンスを生成します（内部ヘルパー）。
+     * 指定した日付/時刻から {@link DateTime} インスタンスを生成します（内部ヘルパー）。
      *
-     * @param int|float|string|\DateTimeInterface $date_time 日付/時刻
-     * @param \DateTimeZone|null $time_zone タイムゾーン
-     * @return \JapaneseDate\DateTime
+     * @param int|float|string|DateTimeInterface $date_time 日付/時刻
+     * @param DateTimeZone|null $time_zone タイムゾーン
+     * @return DateTime
      * @throws \DateInvalidTimeZoneException
-     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     * @throws NativeDateTimeException
      */
     protected function createDateTime(int|float|string|DateTimeInterface $date_time, DateTimeZone|null $time_zone = null): DateTimeInterface
     {
@@ -228,7 +228,7 @@ class Calendar
      * $calendar->addBypassWeekDay(Calendar::SATURDAY)->addBypassWeekDay(Calendar::SUNDAY);
      * ```
      *
-     * @param  int $val スキップする曜日（0=日曜〜6=土曜）
+     * @param int $val スキップする曜日（0=日曜〜6=土曜）
      * @return $this メソッドチェーン用に自身を返します
      */
     public function addBypassWeekDay(int $val): self
@@ -242,7 +242,7 @@ class Calendar
      * 指定月の全日付配列を取得します。
      *
      * コンストラクタで指定した日付が属する月の、1日から月末までの
-     * {@link \JapaneseDate\DateTime} 配列を返します。
+     * {@link DateTime} 配列を返します。
      *
      * **使用例:**
      * ```php
@@ -250,9 +250,9 @@ class Calendar
      * $days = $calendar->getDatesOfMonth(); // 2026年5月1日〜31日
      * ```
      *
-     * @return \JapaneseDate\DateTime[] 月内の全日付の配列
+     * @return DateTime[] 月内の全日付の配列
      * @throws \DateInvalidTimeZoneException
-     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     * @throws NativeDateTimeException
      */
     public function getDatesOfMonth(): array
     {
@@ -275,7 +275,7 @@ class Calendar
      *
      * 登録されていない曜日を指定した場合は何もしません。
      *
-     * @param  int $val 削除する曜日（0=日曜〜6=土曜）
+     * @param int $val 削除する曜日（0=日曜〜6=土曜）
      * @return $this メソッドチェーン用に自身を返します
      */
     public function removeBypassWeekDay(int $val): self
@@ -311,10 +311,10 @@ class Calendar
      * $calendar->addBypassDay('2026-05-01')->addBypassDay('2026-08-15');
      * ```
      *
-     * @param int|float|string|\DateTimeInterface $time スキップする日付
+     * @param int|float|string|DateTimeInterface $time スキップする日付
      * @return $this メソッドチェーン用に自身を返します
      * @throws \DateInvalidTimeZoneException
-     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     * @throws NativeDateTimeException
      */
     public function addBypassDay(int|float|string|DateTimeInterface $time): self
     {
@@ -328,7 +328,7 @@ class Calendar
     /**
      * 日付を比較用の整数値（`Ymd` 形式）に変換します（内部ヘルパー）。
      *
-     * @param  \DateTimeInterface $dateTime
+     * @param DateTimeInterface $dateTime
      * @return int `Ymd` 形式の整数値（例: `20260525`）
      */
     protected function getCompareFormat(DateTimeInterface $dateTime): int
@@ -341,10 +341,10 @@ class Calendar
      *
      * 登録されていない日付を指定した場合は何もしません。
      *
-     * @param int|float|string|\DateTimeInterface $time 削除する日付
+     * @param int|float|string|DateTimeInterface $time 削除する日付
      * @return $this メソッドチェーン用に自身を返します
      * @throws \DateInvalidTimeZoneException
-     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     * @throws NativeDateTimeException
      */
     public function removeBypassDay(int|float|string|DateTimeInterface $time): self
     {
@@ -374,7 +374,7 @@ class Calendar
      * `true` を設定すると、国民の祝日・休日が {@link getWorkingDay()} などの
      * 結果から除外されます。
      *
-     * @param  bool $bypass `true` で祝日を除外、`false` で祝日を営業日として扱う
+     * @param bool $bypass `true` で祝日を除外、`false` で祝日を営業日として扱う
      * @return $this メソッドチェーン用に自身を返します
      */
     public function setBypassHoliday(bool $bypass): self
@@ -394,10 +394,10 @@ class Calendar
      * {@link http://php.net/manual/ja/datetime.formats.php サポートする日付と時刻の書式}
      * を参考にしてください。
      *
-     * @param int|float|string|\DateTimeInterface $jdt_end 取得終了日
-     * @return \JapaneseDate\DateTime[]
+     * @param int|float|string|DateTimeInterface $jdt_end 取得終了日
+     * @return DateTime[]
      * @throws \DateInvalidTimeZoneException
-     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     * @throws NativeDateTimeException
      */
     public function getWorkingDayBySpan(int|float|string|DateTimeInterface $jdt_end): array
     {
@@ -419,7 +419,7 @@ class Calendar
     /**
      * 指定した日付が bypass 系の設定に基づいて営業日かどうかを判定します（bypass 系 API 内部用）。
      *
-     * @param  \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable $dateTime 判定対象の日付
+     * @param DateTime|DateTimeImmutable $dateTime 判定対象の日付
      * @return bool 営業日であれば true
      */
     protected function isWorkingDay(DateTime|DateTimeImmutable $dateTime): bool
@@ -437,9 +437,9 @@ class Calendar
      *
      * {@link getWorkingDayByLimit()} のエイリアスです。
      *
-     * @param  int $lim_day 取得件数
-     * @return \JapaneseDate\DateTime[]
-     * @throws \JapaneseDate\Exceptions\Exception
+     * @param int $lim_day 取得件数
+     * @return DateTime[]
+     * @throws Exceptions\Exception
      */
     public function getWorkingDay(int $lim_day): array
     {
@@ -452,9 +452,9 @@ class Calendar
      * 開始日から順に走査し、bypass 系の設定（曜日・特定日・祝日）を除外しながら
      * `$lim_day` 件分の営業日を返します。
      *
-     * @param  int $lim_day 取得件数
-     * @return \JapaneseDate\DateTime[]
-     * @throws \JapaneseDate\Exceptions\NativeDateTimeException DateInterval の生成に失敗した場合
+     * @param int $lim_day 取得件数
+     * @return DateTime[]
+     * @throws NativeDateTimeException DateInterval の生成に失敗した場合
      */
     public function getWorkingDayByLimit(int $lim_day): array
     {
@@ -477,7 +477,7 @@ class Calendar
     }
 
     /**
-     * 開始日（または指定日付）が営業日かどうかを {@link \JapaneseDate\DateBusiness} 設定で判定します。
+     * 開始日（または指定日付）が営業日かどうかを {@link DateBusiness} 設定で判定します。
      *
      * インスタンス個別設定 → グローバル設定 → デフォルト設定（土日・祝日休み）の順で
      * 有効な設定を解決して判定します。
@@ -489,7 +489,7 @@ class Calendar
      * $calendar->isBusinessDayByConfig();     // true
      * ```
      *
-     * @param  \DateTimeInterface|null $date 判定する日付（省略時はコンストラクタで指定した開始日）
+     * @param DateTimeInterface|null $date 判定する日付（省略時はコンストラクタで指定した開始日）
      * @return bool 営業日であれば true
      */
     public function isBusinessDayByConfig(?DateTimeInterface $date = null): bool
@@ -500,10 +500,10 @@ class Calendar
     }
 
     /**
-     * {@link \JapaneseDate\DateBusiness} 設定を使用して期間内の営業日を取得します。
+     * {@link DateBusiness} 設定を使用して期間内の営業日を取得します。
      *
      * 旧来の {@link getWorkingDayBySpan()} と異なり、インスタンス個別の
-     * {@link \JapaneseDate\DateBusiness} 設定（グローバル/デフォルト含む）を使用して
+     * {@link DateBusiness} 設定（グローバル/デフォルト含む）を使用して
      * 優先順位付きで営業日を判定します。
      *
      * **使用例:**
@@ -514,10 +514,10 @@ class Calendar
      * $days = $calendar->getBusinessDaysBySpan('2026-08-31');
      * ```
      *
-     * @param int|float|string|\DateTimeInterface $jdt_end 取得終了日
-     * @return \JapaneseDate\DateTime[]
+     * @param int|float|string|DateTimeInterface $jdt_end 取得終了日
+     * @return DateTime[]
      * @throws \DateInvalidTimeZoneException
-     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     * @throws NativeDateTimeException
      */
     public function getBusinessDaysBySpan(int|float|string|DateTimeInterface $jdt_end): array
     {
@@ -537,10 +537,10 @@ class Calendar
     }
 
     /**
-     * {@link \JapaneseDate\DateBusiness} 設定を使用して指定件数の営業日を取得します。
+     * {@link DateBusiness} 設定を使用して指定件数の営業日を取得します。
      *
      * 旧来の {@link getWorkingDayByLimit()} と異なり、インスタンス個別の
-     * {@link \JapaneseDate\DateBusiness} 設定（グローバル/デフォルト含む）を使用して
+     * {@link DateBusiness} 設定（グローバル/デフォルト含む）を使用して
      * 優先順位付きで営業日を判定します。
      *
      * **使用例:**
@@ -555,9 +555,9 @@ class Calendar
      * $days = $calendar->getBusinessDaysByLimit(10);
      * ```
      *
-     * @param  int $lim_day 取得件数
-     * @return \JapaneseDate\DateTime[]
-     * @throws \JapaneseDate\Exceptions\NativeDateTimeException DateInterval の生成に失敗した場合
+     * @param int $lim_day 取得件数
+     * @return DateTime[]
+     * @throws NativeDateTimeException DateInterval の生成に失敗した場合
      */
     public function getBusinessDaysByLimit(int $lim_day): array
     {

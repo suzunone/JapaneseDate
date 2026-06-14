@@ -270,11 +270,17 @@ class BusinessTraitTest extends TestCase
     // subBusinessDays
     // =========================================================================
 
+    /**
+     * @return void
+     */
     protected function setUp(): void
     {
         BusinessCalendar::resetAll();
     }
 
+    /**
+     * @return void
+     */
     protected function tearDown(): void
     {
         BusinessCalendar::resetAll();

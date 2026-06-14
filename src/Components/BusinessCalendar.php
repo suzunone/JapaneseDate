@@ -116,37 +116,6 @@ class BusinessCalendar
     }
 
     /**
-     * デフォルト設定を取得します。
-     *
-     * 未設定の場合は「土日休み・祝日休み」の初期設定を生成して返します。
-     *
-     * @return DateBusiness デフォルト設定オブジェクト
-     */
-    public static function getDefaultConfig(): DateBusiness
-    {
-        if (static::$defaultConfig === null) {
-            static::$defaultConfig = (new DateBusiness())
-                ->setClosingWeekdays([0, 6])
-                ->setBypassHoliday(true);
-        }
-
-        return static::$defaultConfig;
-    }
-
-    /**
-     * デフォルト設定を変更します。
-     *
-     * `null` を渡すと出荷時の設定（土日休み・祝日休み）にリセットされます。
-     *
-     * @param DateBusiness|null $config デフォルト設定オブジェクト、または null（リセット）
-     * @return void
-     */
-    public static function setDefaultConfig(?DateBusiness $config): void
-    {
-        static::$defaultConfig = $config;
-    }
-
-    /**
      * グローバル設定とデフォルト設定をすべてリセットします。
      *
      * テストの独立性を保つためにテストの setUp/tearDown で呼ぶことを推奨します。
@@ -160,18 +129,61 @@ class BusinessCalendar
     }
 
     /**
-     * 有効な設定を解決して返します。
+     * 指定した日付が休業日の場合、そのラベルを返します。
      *
-     * インスタンス個別設定 → グローバル設定 → デフォルト設定 の順で解決します。
+     * 営業日の場合は `null` を返します。
+     * 複数の条件が一致する場合は最高優先度の条件のラベルを返します。
+     * ラベルが設定されていない場合も `null` を返します（祝日の場合は祝日名は別途取得）。
      *
-     * @param DateBusiness|null $instanceConfig インスタンスが保持する個別設定（保持しない場合 null）
-     * @return DateBusiness 判定に使用する有効な設定オブジェクト
+     * @param DateTimeInterface $date 判定する日付
+     * @param DateBusiness|null $instanceConfig インスタンス個別設定（なければ null）
+     * @return string|null 休業ラベル、または null
      */
-    public static function resolveConfig(?DateBusiness $instanceConfig): DateBusiness
+    public static function getClosingLabel(DateTimeInterface $date, ?DateBusiness $instanceConfig = null): ?string
     {
-        return $instanceConfig
-            ?? static::$globalConfig
-            ?? static::getDefaultConfig();
+        if (static::isBusinessDay($date, $instanceConfig)) {
+            return null;
+        }
+
+        $config = static::resolveConfig($instanceConfig);
+
+        // マクロの場合はラベルなし
+        if ($config->getMacro() !== null) {
+            return null;
+        }
+
+        $label = null;
+        $weekday = (int) $date->format('w');
+
+        // 優先度1: 曜日
+        // ラベルなしのため処理なし
+
+        // 優先度2: 祝日
+        // ラベルなしのため処理なし
+
+        // 優先度4: 第XX曜日 休業指定
+        $nth = static::getNthWeekday($date);
+        $nthKey = $weekday . '_' . $nth;
+        if (array_key_exists($nthKey, $config->getClosingNthWeekdays())) {
+            $label = $config->getClosingNthWeekdays()[$nthKey];
+        }
+
+        // 優先度6: 特定日 休業指定
+        $dateKey = $date->format('Ymd');
+        if (array_key_exists($dateKey, $config->getClosingDates())) {
+            $label = $config->getClosingDates()[$dateKey];
+        }
+
+        // 優先度8: 休業指定フィルタ
+        foreach ($config->getClosingFilters() as $entry) {
+            if ($entry['filter']($date)) {
+                $label = $entry['label'];
+
+                break;
+            }
+        }
+
+        return $label;
     }
 
     /**
@@ -266,61 +278,49 @@ class BusinessCalendar
     }
 
     /**
-     * 指定した日付が休業日の場合、そのラベルを返します。
+     * 有効な設定を解決して返します。
      *
-     * 営業日の場合は `null` を返します。
-     * 複数の条件が一致する場合は最高優先度の条件のラベルを返します。
-     * ラベルが設定されていない場合も `null` を返します（祝日の場合は祝日名は別途取得）。
+     * インスタンス個別設定 → グローバル設定 → デフォルト設定 の順で解決します。
      *
-     * @param DateTimeInterface $date 判定する日付
-     * @param DateBusiness|null $instanceConfig インスタンス個別設定（なければ null）
-     * @return string|null 休業ラベル、または null
+     * @param DateBusiness|null $instanceConfig インスタンスが保持する個別設定（保持しない場合 null）
+     * @return DateBusiness 判定に使用する有効な設定オブジェクト
      */
-    public static function getClosingLabel(DateTimeInterface $date, ?DateBusiness $instanceConfig = null): ?string
+    public static function resolveConfig(?DateBusiness $instanceConfig): DateBusiness
     {
-        if (static::isBusinessDay($date, $instanceConfig)) {
-            return null;
+        return $instanceConfig
+            ?? static::$globalConfig
+            ?? static::getDefaultConfig();
+    }
+
+    /**
+     * デフォルト設定を取得します。
+     *
+     * 未設定の場合は「土日休み・祝日休み」の初期設定を生成して返します。
+     *
+     * @return DateBusiness デフォルト設定オブジェクト
+     */
+    public static function getDefaultConfig(): DateBusiness
+    {
+        if (static::$defaultConfig === null) {
+            static::$defaultConfig = (new DateBusiness())
+                ->setClosingWeekdays([0, 6])
+                ->setBypassHoliday(true);
         }
 
-        $config = static::resolveConfig($instanceConfig);
+        return static::$defaultConfig;
+    }
 
-        // マクロの場合はラベルなし
-        if ($config->getMacro() !== null) {
-            return null;
-        }
-
-        $label = null;
-        $weekday = (int) $date->format('w');
-
-        // 優先度1: 曜日
-        // ラベルなしのため処理なし
-
-        // 優先度2: 祝日
-        // ラベルなしのため処理なし
-
-        // 優先度4: 第XX曜日 休業指定
-        $nth = static::getNthWeekday($date);
-        $nthKey = $weekday . '_' . $nth;
-        if (array_key_exists($nthKey, $config->getClosingNthWeekdays())) {
-            $label = $config->getClosingNthWeekdays()[$nthKey];
-        }
-
-        // 優先度6: 特定日 休業指定
-        $dateKey = $date->format('Ymd');
-        if (array_key_exists($dateKey, $config->getClosingDates())) {
-            $label = $config->getClosingDates()[$dateKey];
-        }
-
-        // 優先度8: 休業指定フィルタ
-        foreach ($config->getClosingFilters() as $entry) {
-            if ($entry['filter']($date)) {
-                $label = $entry['label'];
-
-                break;
-            }
-        }
-
-        return $label;
+    /**
+     * デフォルト設定を変更します。
+     *
+     * `null` を渡すと出荷時の設定（土日休み・祝日休み）にリセットされます。
+     *
+     * @param DateBusiness|null $config デフォルト設定オブジェクト、または null（リセット）
+     * @return void
+     */
+    public static function setDefaultConfig(?DateBusiness $config): void
+    {
+        static::$defaultConfig = $config;
     }
 
     /**

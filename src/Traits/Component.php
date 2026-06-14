@@ -16,8 +16,8 @@
 
 namespace JapaneseDate\Traits;
 
-use JapaneseDate\Components\JisEra;
 use JapaneseDate\Components\JapaneseDate;
+use JapaneseDate\Components\JisEra;
 use JapaneseDate\Components\LunarCalendar;
 use JapaneseDate\Components\MiscSeasonalNode;
 use JapaneseDate\Components\SeasonalFestival;
@@ -42,37 +42,37 @@ use JapaneseDate\Components\SexagenaryCycle;
 trait Component
 {
     /**
-     * @var \JapaneseDate\Components\JisEra
+     * @var JisEra
      */
     protected JisEra $jisEra;
 
     /**
-     * @var \JapaneseDate\Components\JapaneseDate
+     * @var JapaneseDate
      */
     protected JapaneseDate $JapaneseDate;
 
     /**
-     * @var \JapaneseDate\Components\LunarCalendar
+     * @var LunarCalendar
      */
     protected LunarCalendar $LunarCalendar;
 
     /**
-     * @var \JapaneseDate\Components\SexagenaryCycle
+     * @var SexagenaryCycle
      */
     protected SexagenaryCycle $SexagenaryCycle;
 
     /**
-     * @var \JapaneseDate\Components\MiscSeasonalNode
+     * @var MiscSeasonalNode
      */
     protected MiscSeasonalNode $MiscSeasonalNode;
 
     /**
-     * @var \JapaneseDate\Components\SeasonalFestival
+     * @var SeasonalFestival
      */
     protected SeasonalFestival $SeasonalFestival;
 
     /**
-     * @var \JapaneseDate\Components\SeventyTwoKouCalculator
+     * @var SeventyTwoKouCalculator
      */
     protected SeventyTwoKouCalculator $SeventyTwoKouCalculator;
 

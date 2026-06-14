@@ -74,7 +74,7 @@ class HistoricalEraTest extends TestCase
     /**
      * DateTimeImmutable でも同様に動作すること。
      */
-    public function test_findByDate_works_with_datetimeimmutable(): void
+    public function test_findByDate_works_with_DateTimeImmutable(): void
     {
         $dt = new DateTimeImmutable('645-08-01T00:00:00+09:00');
         $component = new HistoricalEra();
@@ -111,7 +111,7 @@ class HistoricalEraTest extends TestCase
 
         $this->assertGreaterThanOrEqual(2, count($result));
 
-        $courts = array_map(fn (Era $e) => $e->court, $result);
+        $courts = array_map(static fn (Era $e) => $e->court, $result);
         $this->assertContains(DateTime::COURT_NORTH, $courts, '北朝の元号が含まれること');
         $this->assertContains(DateTime::COURT_SOUTH, $courts, '南朝の元号が含まれること');
     }
@@ -141,14 +141,14 @@ class HistoricalEraTest extends TestCase
     /**
      * DateTimeImmutable で南北朝時代を指定しても複数 Era が返ること。
      */
-    public function test_findByDate_nanbokucho_with_datetimeimmutable(): void
+    public function test_findByDate_nanbokucho_with_DateTimeImmutable(): void
     {
         $dt = new DateTimeImmutable('1350-01-01T00:00:00+09:00');
         $component = new HistoricalEra();
         $result = $component->findByDate($dt);
 
         $this->assertGreaterThanOrEqual(2, count($result));
-        $courts = array_map(fn (Era $e) => $e->court, $result);
+        $courts = array_map(static fn (Era $e) => $e->court, $result);
         $this->assertContains(DateTime::COURT_NORTH, $courts);
         $this->assertContains(DateTime::COURT_SOUTH, $courts);
     }
@@ -215,7 +215,7 @@ class HistoricalEraTest extends TestCase
     /**
      * DateTimeImmutable を渡した場合、Era の startDate / endDate も DateTimeImmutable であること。
      */
-    public function test_era_dates_are_datetimeimmutable_when_immutable_passed(): void
+    public function test_era_dates_are_DateTimeImmutable_when_immutable_passed(): void
     {
         // 大宝元号（701-05-03〜704-06-16）の期間内
         $dt = new DateTimeImmutable('702-01-01T00:00:00+09:00');
@@ -227,6 +227,9 @@ class HistoricalEraTest extends TestCase
         $this->assertInstanceOf(DateTimeImmutable::class, $startDate);
     }
 
+    /**
+     * @return void
+     */
     protected function tearDown(): void
     {
         HistoricalEraMap::clearCache();

@@ -9,6 +9,13 @@ use PHPUnit\Framework\Attributes\CoversTrait;
 use PHPUnit\Framework\TestCase;
 use Tests\JapaneseDate\InvokeTrait;
 
+/**
+ *
+ */
+
+/**
+ *
+ */
 #[CoversTrait(OneTimeCacheTrait::class)]
 class OneTimeCacheTraitTest extends TestCase
 {

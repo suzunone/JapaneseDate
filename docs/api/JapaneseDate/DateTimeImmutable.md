@@ -6,7 +6,7 @@ class **DateTimeImmutable** extends [CarbonImmutable](../Carbon/CarbonImmutable.
 
 日本の暦（国民の祝日・元号・六曜・二十四節気・旧暦）に完全対応した不変（イミュータブル）日時クラス。
 
-日時操作ライブラリ [\Carbon\CarbonImmutable](../Carbon/CarbonImmutable.html) を継承しており、CarbonImmutable および PHP 標準
+日時操作ライブラリ CarbonImmutable を継承しており、CarbonImmutable および PHP 標準
 [DateTimeImmutable](https://www.php.net/DateTimeImmutable) が持つすべてのメソッド・プロパティをそのまま利用できます。
 加えて、日本のビジネス実務や伝統的な暦の計算に必要な機能を透過的に追加しています。
 
@@ -345,6 +345,10 @@ echo $nextHoliday->format('Y-m-d') . ' ' . $nextHoliday->holidayText;
 | public | `COURT_NORTH` | 南北朝時代： 北朝 |
 | public | `COURT_SOUTH` | 南北朝時代： 南朝 |
 | public | `COURT_MAIN` | 南北朝時代以外及び南北朝時代の両朝を指す場合 |
+| public | `MOON_ALGORITHM_MEEUS47` | 月計算アルゴリズム識別子: Meeus AA2 Chapter 47（NASA c 補正あり、既定）。
+{Astronomy::MOON_MEEUS47} |
+| public | `MOON_ALGORITHM_MEEUS47_NO_C` | 月計算アルゴリズム識別子: Meeus AA2 Chapter 47（NASA c 補正なし）。
+{Astronomy::MOON_MEEUS47_NO_C} |
 
 ## Properties
 
@@ -569,8 +573,8 @@ echo $nextHoliday->format('Y-m-d') . ' ' . $nextHoliday->holidayText;
 
 | Return | Method | Description |
 |---|---|---|
-| Factory\|null | [createFromFormat()](#createfromformat) | フォーマット指定文字列から日時インスタンスを生成します。 |
 | Factory | [factory()](#factory) | 多様な型の引数から {\JapaneseDate\DateTime} / {\JapaneseDate\DateTimeImmutable} インスタンスを生成するユニバーサルファクトリメソッドです。 |
+| Factory\|null | [createFromFormat()](#createfromformat) | フォーマット指定文字列から日時インスタンスを生成します。 |
 | void | [setCacheMode()](#setcachemode) | 旧暦・祝日計算に使用するキャッシュモードを設定します。 |
 | void | [setCacheFilePath()](#setcachefilepath) | ファイルキャッシュの保存先ディレクトリを設定します。 |
 | void | [setCacheClosure()](#setcacheclosure) | 独自キャッシュロジックを実装したクロージャを登録します。 |
@@ -580,8 +584,8 @@ echo $nextHoliday->format('Y-m-d') . ' ' . $nextHoliday->holidayText;
 | SeventyTwoKou | [previousSeventyTwoKou()](#previousseventytwokou) | 前の七十二候が始まる日へ移動したインスタンスを返します。 |
 | array | [getCalendar()](#getcalendar) | サポートされるカレンダーに変換する |
 | array | [toArray()](#toarray) |  |
-| DateBusinessCommon | [setBusinessConfig()](#setbusinessconfig) | インスタンスに個別の営業日設定を適用します。 |
 | DateBusiness\|null | [getBusinessConfig()](#getbusinessconfig) | インスタンスが保持している個別の営業日設定を取得します。 |
+| DateBusinessCommon | [setBusinessConfig()](#setbusinessconfig) | インスタンスに個別の営業日設定を適用します。 |
 | DateBusinessCommon | [setClosingDay()](#setclosingday) | 特定の日付を休業日として指定します。 |
 | DateBusinessCommon | [setOpenDay()](#setopenday) | 特定の日付を営業日として指定します。 |
 | DateBusinessCommon | [setClosingWeekdays()](#setclosingweekdays) | 休業曜日を一括設定します。 |
@@ -593,12 +597,12 @@ echo $nextHoliday->format('Y-m-d') . ' ' . $nextHoliday->holidayText;
 | DateBusinessCommon | [setBusinessMacro()](#setbusinessmacro) | 判定ロジックを完全に上書きするマクロを設定します。 |
 | bool | [checkIsBusinessDay()](#checkisbusinessday) | 指定した日付（または自身が保持する日付）が営業日かどうかを判定します。 |
 | string\|null | [checkGetBusinessDayLabel()](#checkgetbusinessdaylabel) | 指定した日付（または自身が保持する日付）の休業ラベルを取得します。 |
-| bool | [isBusinessDay()](#isbusinessday) | このインスタンスの日付が営業日かどうかを判定します。 |
 | string\|null | [getBusinessDayLabel()](#getbusinessdaylabel) | このインスタンスの日付が休業日の場合、そのラベルを返します。 |
-| Business | [nextBusinessDay()](#nextbusinessday) | 次の営業日を取得します。 |
-| Business | [previousBusinessDay()](#previousbusinessday) | 前の営業日を取得します。 |
 | Business | [shiftToClosestBusinessDayAfter()](#shifttoclosestbusinessdayafter) | この日が休業日の場合、翌営業日にシフトしたインスタンスを返します。 |
+| bool | [isBusinessDay()](#isbusinessday) | このインスタンスの日付が営業日かどうかを判定します。 |
+| Business | [nextBusinessDay()](#nextbusinessday) | 次の営業日を取得します。 |
 | Business | [shiftToClosestBusinessDayBefore()](#shifttoclosestbusinessdaybefore) | この日が休業日の場合、前営業日にシフトしたインスタンスを返します。 |
+| Business | [previousBusinessDay()](#previousbusinessday) | 前の営業日を取得します。 |
 | Business | [addBusinessDays()](#addbusinessdays) | 指定した営業日数後の日付を返します。 |
 | Business | [subBusinessDays()](#subbusinessdays) | 指定した営業日数前の日付を返します。 |
 | array | [historicalEras()](#historicaleras) | 自身の日付に対応する歴史的元号を返す。 |
@@ -606,6 +610,10 @@ echo $nextHoliday->format('Y-m-d') . ' ' . $nextHoliday->holidayText;
 | string | [solarAlgorithm()](#solaralgorithm) | 現在の太陽黄経計算アルゴリズムを返す。 |
 | void | [useMoonAlgorithm()](#usemoonalgorithm) | 月黄経計算で使用するアルゴリズムを設定する。 |
 | string | [moonAlgorithm()](#moonalgorithm) | 現在の月黄経計算アルゴリズムを返す。 |
+| void | [useBoundarySolarAlgorithm()](#useboundarysolaralgorithm) | 日付境界計算で使用する太陽黄経アルゴリズムを設定する。 |
+| string | [boundarySolarAlgorithm()](#boundarysolaralgorithm) | 現在の日付境界計算用太陽黄経アルゴリズムを返す。 |
+| void | [useBoundaryMoonAlgorithm()](#useboundarymoonalgorithm) | 日付境界計算で使用する月黄経アルゴリズムを設定する。 |
+| string | [boundaryMoonAlgorithm()](#boundarymoonalgorithm) | 現在の日付境界計算用月黄経アルゴリズムを返す。 |
 | CarbonImmutable | [CarbonImmutable::startOfTime](../Carbon/CarbonImmutable.md#startoftime) _(from [CarbonImmutable](../Carbon/CarbonImmutable.md))_ | Create a very old date representing start of time. |
 | CarbonImmutable | [CarbonImmutable::endOfTime](../Carbon/CarbonImmutable.md#endoftime) _(from [CarbonImmutable](../Carbon/CarbonImmutable.md))_ | Create a very far date representing end of time. |
 | bool | [CarbonImmutable::isUtc](../Carbon/CarbonImmutable.md#isutc) _(from [CarbonImmutable](../Carbon/CarbonImmutable.md))_ |  |
@@ -1206,29 +1214,6 @@ echo $nextHoliday->format('Y-m-d') . ' ' . $nextHoliday->holidayText;
 
 ## Method Details
 
-### createFromFormat
-
-```php
-static public Factory\|null createFromFormat($format, $time, $timezone = null)
-```
-
-フォーマット指定文字列から日時インスタンスを生成します。
-
-Carbon の `createFromFormat()` はコンストラクタを経由しないため、
-JapaneseDate 固有のコンポーネントが未初期化のまま返されることがあります。
-このオーバーライドにより、返却されたインスタンスのコンポーネントを確実に初期化します。
-
-**Parameters:**
-
-| Type | Name | Default | Description |
-|---|---|---|---|
-| string | `$format` | —  | 日時フォーマット文字列 |
-| string | `$time` | —  | パース対象の日時文字列 |
-| [DateTimeZone](https://www.php.net/class.datetimezone)\|string\|int\|null | `$timezone` | `null` | タイムゾーン（省略可） |
-
-**Returns:** Factory\|null
----
-
 ### factory
 
 ```php
@@ -1311,6 +1296,29 @@ $dt = DateTime::factory('2026-05-01 12:34:56', new \DateTimeZone('Asia/Tokyo'));
 
 - DateInvalidTimeZoneException
 - [NativeDateTimeException](../JapaneseDate/Exceptions/NativeDateTimeException.md)
+---
+
+### createFromFormat
+
+```php
+static public Factory\|null createFromFormat($format, $time, $timezone = null)
+```
+
+フォーマット指定文字列から日時インスタンスを生成します。
+
+Carbon の `createFromFormat()` はコンストラクタを経由しないため、
+JapaneseDate 固有のコンポーネントが未初期化のまま返されることがあります。
+このオーバーライドにより、返却されたインスタンスのコンポーネントを確実に初期化します。
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| string | `$format` | —  | 日時フォーマット文字列 |
+| string | `$time` | —  | パース対象の日時文字列 |
+| [DateTimeZone](https://www.php.net/class.datetimezone)\|string\|int\|null | `$timezone` | `null` | タイムゾーン（省略可） |
+
+**Returns:** Factory\|null
 ---
 
 ### setCacheMode
@@ -1531,6 +1539,21 @@ public array toArray()
 **Returns:** array
 ---
 
+### getBusinessConfig
+
+```php
+public DateBusiness\|null getBusinessConfig()
+```
+
+インスタンスが保持している個別の営業日設定を取得します。
+
+個別設定を持っていない場合は `null` を返します。
+判定に実際に使用される設定（グローバル/デフォルト含む解決済み設定）は
+BusinessCalendar::resolveConfig() で取得できます。
+
+**Returns:** [DateBusiness](../JapaneseDate/DateBusiness.md)\|null — インスタンス個別設定、または null
+---
+
 ### setBusinessConfig
 
 ```php
@@ -1556,21 +1579,6 @@ $dt->setBusinessConfig(
 | [DateBusiness](../JapaneseDate/DateBusiness.md)\|null | `$config` | —  | インスタンスに適用する設定オブジェクト、または null（解除） |
 
 **Returns:** DateBusinessCommon — メソッドチェーン用に自身を返します
----
-
-### getBusinessConfig
-
-```php
-public DateBusiness\|null getBusinessConfig()
-```
-
-インスタンスが保持している個別の営業日設定を取得します。
-
-個別設定を持っていない場合は `null` を返します。
-判定に実際に使用される設定（グローバル/デフォルト含む解決済み設定）は
-BusinessCalendar::resolveConfig() で取得できます。
-
-**Returns:** [DateBusiness](../JapaneseDate/DateBusiness.md)\|null — インスタンス個別設定、または null
 ---
 
 ### setClosingDay
@@ -1841,19 +1849,6 @@ public string\|null checkGetBusinessDayLabel($date = null)
 **Returns:** string\|null — 休業ラベル、または null
 ---
 
-### isBusinessDay
-
-```php
-public bool isBusinessDay()
-```
-
-このインスタンスの日付が営業日かどうかを判定します。
-
-適用されているカレンダー設定（インスタンス個別 > グローバル > デフォルト）に基づいて判定します。
-
-**Returns:** bool — 営業日であれば true、休業日であれば false
----
-
 ### getBusinessDayLabel
 
 ```php
@@ -1865,32 +1860,6 @@ public string\|null getBusinessDayLabel()
 営業日の場合は null を返します。
 
 **Returns:** string\|null — 休業ラベル、または null
----
-
-### nextBusinessDay
-
-```php
-public Business nextBusinessDay()
-```
-
-次の営業日を取得します。
-
-翌日から順に走査し、最初に見つかった営業日を返します。
-
-**Returns:** Business — 次の営業日を表すインスタンス
----
-
-### previousBusinessDay
-
-```php
-public Business previousBusinessDay()
-```
-
-前の営業日を取得します。
-
-前日から順に走査し、最初に見つかった営業日を返します。
-
-**Returns:** Business — 前の営業日を表すインスタンス
 ---
 
 ### shiftToClosestBusinessDayAfter
@@ -1906,6 +1875,32 @@ public Business shiftToClosestBusinessDayAfter()
 **Returns:** Business — この日または翌以降の直近営業日を表すインスタンス
 ---
 
+### isBusinessDay
+
+```php
+public bool isBusinessDay()
+```
+
+このインスタンスの日付が営業日かどうかを判定します。
+
+適用されているカレンダー設定（インスタンス個別 > グローバル > デフォルト）に基づいて判定します。
+
+**Returns:** bool — 営業日であれば true、休業日であれば false
+---
+
+### nextBusinessDay
+
+```php
+public Business nextBusinessDay()
+```
+
+次の営業日を取得します。
+
+翌日から順に走査し、最初に見つかった営業日を返します。
+
+**Returns:** Business — 次の営業日を表すインスタンス
+---
+
 ### shiftToClosestBusinessDayBefore
 
 ```php
@@ -1917,6 +1912,19 @@ public Business shiftToClosestBusinessDayBefore()
 営業日の場合はそのまま自身を返します。
 
 **Returns:** Business — この日または前以前の直近営業日を表すインスタンス
+---
+
+### previousBusinessDay
+
+```php
+public Business previousBusinessDay()
+```
+
+前の営業日を取得します。
+
+前日から順に走査し、最初に見つかった営業日を返します。
+
+**Returns:** Business — 前の営業日を表すインスタンス
 ---
 
 ### addBusinessDays
@@ -2030,6 +2038,68 @@ static public string moonAlgorithm()
 ```
 
 現在の月黄経計算アルゴリズムを返す。
+
+**Returns:** string — 月アルゴリズム
+---
+
+### useBoundarySolarAlgorithm
+
+```php
+static public void useBoundarySolarAlgorithm($algorithm)
+```
+
+日付境界計算で使用する太陽黄経アルゴリズムを設定する。
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| string | `$algorithm` | —  | 太陽アルゴリズム |
+
+**Returns:** void
+**Throws:**
+
+- [InvalidArgumentException](https://www.php.net/class.invalidargumentexception)
+---
+
+### boundarySolarAlgorithm
+
+```php
+static public string boundarySolarAlgorithm()
+```
+
+現在の日付境界計算用太陽黄経アルゴリズムを返す。
+
+**Returns:** string — 太陽アルゴリズム
+---
+
+### useBoundaryMoonAlgorithm
+
+```php
+static public void useBoundaryMoonAlgorithm($algorithm)
+```
+
+日付境界計算で使用する月黄経アルゴリズムを設定する。
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| string | `$algorithm` | —  | 月アルゴリズム |
+
+**Returns:** void
+**Throws:**
+
+- [InvalidArgumentException](https://www.php.net/class.invalidargumentexception)
+---
+
+### boundaryMoonAlgorithm
+
+```php
+static public string boundaryMoonAlgorithm()
+```
+
+現在の日付境界計算用月黄経アルゴリズムを返す。
 
 **Returns:** string — 月アルゴリズム
 ---

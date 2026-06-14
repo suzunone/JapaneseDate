@@ -19,6 +19,7 @@
 
 namespace Tests\JapaneseDate\Components;
 
+use JapaneseDate\CacheMode;
 use JapaneseDate\Components\Cache;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\PreserveGlobalState;
@@ -51,13 +52,13 @@ class CacheTest extends TestCase
     public function test_setMode(): void
     {
         $this->assertEquals(
-            Cache::MODE_AUTO,
+            CacheMode::MODE_AUTO,
             $this->invokeGetProperty(Cache::class, 'mode')
         );
 
-        Cache::setMode(Cache::MODE_APC);
+        Cache::setMode(CacheMode::MODE_APC);
         $this->assertEquals(
-            Cache::MODE_APC,
+            CacheMode::MODE_APC,
             $this->invokeGetProperty(Cache::class, 'mode')
         );
     }
@@ -74,7 +75,7 @@ class CacheTest extends TestCase
 
         Cache::setCacheClosure($closure);
         $this->assertEquals(
-            Cache::MODE_ORIGINAL,
+            CacheMode::MODE_ORIGINAL,
             $this->invokeGetProperty(Cache::class, 'mode')
         );
 
@@ -94,7 +95,7 @@ class CacheTest extends TestCase
         $file = __DIR__ . '/example_text.txt';
         Cache::setCacheFilePath($file);
         $this->assertEquals(
-            Cache::MODE_FILE,
+            CacheMode::MODE_FILE,
             $this->invokeGetProperty(Cache::class, 'mode')
         );
 
@@ -111,7 +112,7 @@ class CacheTest extends TestCase
     #[PreserveGlobalState(false)]
     public function test_forever_mode_none(): void
     {
-        Cache::setMode(Cache::MODE_NONE);
+        Cache::setMode(CacheMode::MODE_NONE);
         $callCount = 0;
         $fn = function () use (&$callCount) {
             $callCount++;
@@ -154,11 +155,13 @@ class CacheTest extends TestCase
     #[PreserveGlobalState(false)]
     public function test_forever_mode_original(): void
     {
-        Cache::setCacheClosure(function (string $key, $fn) {
+        Cache::setCacheClosure(static function (string $key, $fn) {
+            unset($fn);
+
             return 'original_' . $key;
         });
 
-        $result = Cache::forever('my_key', function () {
+        $result = Cache::forever('my_key', static function () {
             return 'ignored';
         });
 
@@ -172,12 +175,14 @@ class CacheTest extends TestCase
     #[PreserveGlobalState(false)]
     public function test_forever_mode_auto_with_closure(): void
     {
-        Cache::setCacheClosure(function (string $key, $fn) {
+        Cache::setCacheClosure(static function (string $key, $fn) {
+            unset($fn);
+
             return 'auto_closure_' . $key;
         });
-        Cache::setMode(Cache::MODE_AUTO);
+        Cache::setMode(CacheMode::MODE_AUTO);
 
-        $result = Cache::forever('auto_key', function () {
+        $result = Cache::forever('auto_key', static function () {
             return 'ignored';
         });
 
@@ -191,9 +196,9 @@ class CacheTest extends TestCase
     #[PreserveGlobalState(false)]
     public function test_forever_mode_apc_without_apcu(): void
     {
-        Cache::setMode(Cache::MODE_APC);
+        Cache::setMode(CacheMode::MODE_APC);
 
-        $result = Cache::forever('apc_key', function () {
+        $result = Cache::forever('apc_key', static function () {
             return 'apc_value';
         });
 
@@ -213,7 +218,7 @@ class CacheTest extends TestCase
         try {
             Cache::setCacheFilePath($dir);
 
-            $result = Cache::forever('file_key', function () {
+            $result = Cache::forever('file_key', static function () {
                 return ['data' => 'value'];
             });
 
@@ -267,9 +272,9 @@ class CacheTest extends TestCase
 
         try {
             Cache::setCacheFilePath($dir);
-            Cache::setMode(Cache::MODE_AUTO);
+            Cache::setMode(CacheMode::MODE_AUTO);
 
-            $result = Cache::forever('auto_file_key', function () {
+            $result = Cache::forever('auto_file_key', static function () {
                 return 'auto_file_value';
             });
 

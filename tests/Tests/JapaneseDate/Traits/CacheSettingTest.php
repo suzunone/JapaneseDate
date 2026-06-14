@@ -5,7 +5,7 @@
 namespace Tests\JapaneseDate\Traits;
 
 use Closure;
-use DateTimeZone;
+use JapaneseDate\CacheMode;
 use JapaneseDate\Components\Cache;
 use JapaneseDate\DateTime;
 use JapaneseDate\Traits\CacheSetting;
@@ -23,7 +23,6 @@ use Tests\JapaneseDate\InvokeTrait;
 #[CoversMethod(CacheSetting::class, 'setCacheMode')]
 #[CoversMethod(CacheSetting::class, 'setCacheFilePath')]
 #[CoversMethod(CacheSetting::class, 'setCacheClosure')]
-#[CoversMethod(CacheSetting::class, 'innerDateTime')]
 class CacheSettingTest extends TestCase
 {
     use InvokeTrait;
@@ -35,10 +34,10 @@ class CacheSettingTest extends TestCase
     #[PreserveGlobalState(false)]
     public function test_setCacheMode(): void
     {
-        DateTime::setCacheMode(Cache::MODE_NONE);
+        DateTime::setCacheMode(CacheMode::MODE_NONE);
 
         $this->assertSame(
-            Cache::MODE_NONE,
+            CacheMode::MODE_NONE,
             $this->invokeGetProperty(Cache::class, 'mode')
         );
     }
@@ -54,7 +53,7 @@ class CacheSettingTest extends TestCase
         DateTime::setCacheFilePath($path);
 
         $this->assertSame(
-            Cache::MODE_FILE,
+            CacheMode::MODE_FILE,
             $this->invokeGetProperty(Cache::class, 'mode')
         );
         $this->assertSame(
@@ -76,27 +75,12 @@ class CacheSettingTest extends TestCase
         DateTime::setCacheClosure($closure);
 
         $this->assertSame(
-            Cache::MODE_ORIGINAL,
+            CacheMode::MODE_ORIGINAL,
             $this->invokeGetProperty(Cache::class, 'mode')
         );
         $this->assertSame(
             $closure,
             $this->invokeGetProperty(Cache::class, 'cache_closure')
         );
-    }
-
-    /**
-     * 内部用 DateTime インスタンスが同じ入力に対して再利用されることを確認する。
-     */
-    public function test_innerDateTime(): void
-    {
-        $dt = new DateTime('2023-01-15', new DateTimeZone('Asia/Tokyo'));
-
-        $result1 = $this->invokeExecuteMethod($dt, 'innerDateTime', ['2023-06-01']);
-        $result2 = $this->invokeExecuteMethod($dt, 'innerDateTime', ['2023-06-01']);
-
-        $this->assertInstanceOf(DateTime::class, $result1);
-        $this->assertSame('2023-06-01', $result1->format('Y-m-d'));
-        $this->assertSame($result1, $result2);
     }
 }

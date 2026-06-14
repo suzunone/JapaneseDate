@@ -14,8 +14,8 @@ use JapaneseDate\Exceptions\SolarTermException;
  * 太陽黄経から二十四節気の日付を探索する天文計算版コンポーネント。
  *
  * 指定年・指定節気について、対象となる月の日付を順に調べ、
- * 太陽黄経が該当する節気境界に達する日を {@see \JapaneseDate\Elements\SolarTermDate}
- * として返します。実際の黄経計算は {@see \JapaneseDate\Components\Astronomy} に委譲します。
+ * 太陽黄経が該当する節気境界に達する日を {@see SolarTermDate}
+ * として返します。実際の黄経計算は {@see Astronomy} に委譲します。
  *
  * **計算の流れ:**
  * - 節気定数から候補月を決定
@@ -53,16 +53,28 @@ class SolarTerm
 
     protected const LEGACY_TABLE_END_YEAR = 2399;
 
+    /**
+     * @param \JapaneseDate\Components\Astronomy|null $astronomy
+     */
     public function __construct(protected readonly ?Astronomy $astronomy = null)
     {
     }
 
     /**
+     * @throws Exception
+     * @throws SolarTermException
+     */
+    public function syunbun(int $year): SolarTermDate
+    {
+        return $this->getSolarTerm($year, DateTime::SOLAR_TERM_SYUNBUN);
+    }
+
+    /**
      * @param int $year
      * @param int $solar_term
-     * @return \JapaneseDate\Elements\SolarTermDate
-     * @throws \JapaneseDate\Exceptions\Exception
-     * @throws \JapaneseDate\Exceptions\SolarTermException
+     * @return SolarTermDate
+     * @throws Exception
+     * @throws SolarTermException
      */
     public function getSolarTerm(int $year, int $solar_term): SolarTermDate
     {
@@ -82,236 +94,20 @@ class SolarTerm
     }
 
     /**
-     * @throws \JapaneseDate\Exceptions\Exception
-     * @throws \JapaneseDate\Exceptions\SolarTermException
-     */
-    public function syunbun(int $year): SolarTermDate
-    {
-        return $this->getSolarTerm($year, DateTime::SOLAR_TERM_SYUNBUN);
-    }
-
-    /**
-     * @throws \JapaneseDate\Exceptions\Exception
-     * @throws \JapaneseDate\Exceptions\SolarTermException
-     */
-    public function seimei(int $year): SolarTermDate
-    {
-        return $this->getSolarTerm($year, DateTime::SOLAR_TERM_SEIMEI);
-    }
-
-    /**
-     * @throws \JapaneseDate\Exceptions\Exception
-     * @throws \JapaneseDate\Exceptions\SolarTermException
-     */
-    public function kokuu(int $year): SolarTermDate
-    {
-        return $this->getSolarTerm($year, DateTime::SOLAR_TERM_KOKUU);
-    }
-
-    /**
-     * @throws \JapaneseDate\Exceptions\Exception
-     * @throws \JapaneseDate\Exceptions\SolarTermException
-     */
-    public function rikka(int $year): SolarTermDate
-    {
-        return $this->getSolarTerm($year, DateTime::SOLAR_TERM_RIKKA);
-    }
-
-    /**
-     * @throws \JapaneseDate\Exceptions\Exception
-     * @throws \JapaneseDate\Exceptions\SolarTermException
-     */
-    public function syouman(int $year): SolarTermDate
-    {
-        return $this->getSolarTerm($year, DateTime::SOLAR_TERM_SYOUMAN);
-    }
-
-    /**
-     * @throws \JapaneseDate\Exceptions\Exception
-     * @throws \JapaneseDate\Exceptions\SolarTermException
-     */
-    public function bousyu(int $year): SolarTermDate
-    {
-        return $this->getSolarTerm($year, DateTime::SOLAR_TERM_BOUSYU);
-    }
-
-    /**
-     * @throws \JapaneseDate\Exceptions\Exception
-     * @throws \JapaneseDate\Exceptions\SolarTermException
-     */
-    public function geshi(int $year): SolarTermDate
-    {
-        return $this->getSolarTerm($year, DateTime::SOLAR_TERM_GESHI);
-    }
-
-    /**
-     * @throws \JapaneseDate\Exceptions\Exception
-     * @throws \JapaneseDate\Exceptions\SolarTermException
-     */
-    public function syousyo(int $year): SolarTermDate
-    {
-        return $this->getSolarTerm($year, DateTime::SOLAR_TERM_SYOUSYO);
-    }
-
-    /**
-     * @throws \JapaneseDate\Exceptions\Exception
-     * @throws \JapaneseDate\Exceptions\SolarTermException
-     */
-    public function taisyo(int $year): SolarTermDate
-    {
-        return $this->getSolarTerm($year, DateTime::SOLAR_TERM_TAISYO);
-    }
-
-    /**
-     * @throws \JapaneseDate\Exceptions\Exception
-     * @throws \JapaneseDate\Exceptions\SolarTermException
-     */
-    public function rissyuu(int $year): SolarTermDate
-    {
-        return $this->getSolarTerm($year, DateTime::SOLAR_TERM_RISSYUU);
-    }
-
-    /**
-     * @throws \JapaneseDate\Exceptions\Exception
-     * @throws \JapaneseDate\Exceptions\SolarTermException
-     */
-    public function syosyo(int $year): SolarTermDate
-    {
-        return $this->getSolarTerm($year, DateTime::SOLAR_TERM_SYOSYO);
-    }
-
-    /**
-     * @throws \JapaneseDate\Exceptions\Exception
-     * @throws \JapaneseDate\Exceptions\SolarTermException
-     */
-    public function hakuro(int $year): SolarTermDate
-    {
-        return $this->getSolarTerm($year, DateTime::SOLAR_TERM_HAKURO);
-    }
-
-    /**
-     * @throws \JapaneseDate\Exceptions\Exception
-     * @throws \JapaneseDate\Exceptions\SolarTermException
-     */
-    public function syuubun(int $year): SolarTermDate
-    {
-        return $this->getSolarTerm($year, DateTime::SOLAR_TERM_SYUUBUN);
-    }
-
-    /**
-     * @throws \JapaneseDate\Exceptions\Exception
-     * @throws \JapaneseDate\Exceptions\SolarTermException
-     */
-    public function kanro(int $year): SolarTermDate
-    {
-        return $this->getSolarTerm($year, DateTime::SOLAR_TERM_KANRO);
-    }
-
-    /**
-     * @throws \JapaneseDate\Exceptions\Exception
-     * @throws \JapaneseDate\Exceptions\SolarTermException
-     */
-    public function soukou(int $year): SolarTermDate
-    {
-        return $this->getSolarTerm($year, DateTime::SOLAR_TERM_SOUKOU);
-    }
-
-    /**
-     * @throws \JapaneseDate\Exceptions\Exception
-     * @throws \JapaneseDate\Exceptions\SolarTermException
-     */
-    public function rittou(int $year): SolarTermDate
-    {
-        return $this->getSolarTerm($year, DateTime::SOLAR_TERM_RITTOU);
-    }
-
-    /**
-     * @throws \JapaneseDate\Exceptions\Exception
-     * @throws \JapaneseDate\Exceptions\SolarTermException
-     */
-    public function syousetsu(int $year): SolarTermDate
-    {
-        return $this->getSolarTerm($year, DateTime::SOLAR_TERM_SYOUSETSU);
-    }
-
-    /**
-     * @throws \JapaneseDate\Exceptions\Exception
-     * @throws \JapaneseDate\Exceptions\SolarTermException
-     */
-    public function taisetsu(int $year): SolarTermDate
-    {
-        return $this->getSolarTerm($year, DateTime::SOLAR_TERM_TAISETSU);
-    }
-
-    /**
-     * @throws \JapaneseDate\Exceptions\Exception
-     * @throws \JapaneseDate\Exceptions\SolarTermException
-     */
-    public function touji(int $year): SolarTermDate
-    {
-        return $this->getSolarTerm($year, DateTime::SOLAR_TERM_TOUJI);
-    }
-
-    /**
-     * @throws \JapaneseDate\Exceptions\Exception
-     * @throws \JapaneseDate\Exceptions\SolarTermException
-     */
-    public function syoukan(int $year): SolarTermDate
-    {
-        return $this->getSolarTerm($year, DateTime::SOLAR_TERM_SYOUKAN);
-    }
-
-    /**
-     * @throws \JapaneseDate\Exceptions\Exception
-     * @throws \JapaneseDate\Exceptions\SolarTermException
-     */
-    public function daikan(int $year): SolarTermDate
-    {
-        return $this->getSolarTerm($year, DateTime::SOLAR_TERM_DAIKAN);
-    }
-
-    /**
-     * @throws \JapaneseDate\Exceptions\Exception
-     * @throws \JapaneseDate\Exceptions\SolarTermException
-     */
-    public function rissyun(int $year): SolarTermDate
-    {
-        return $this->getSolarTerm($year, DateTime::SOLAR_TERM_RISSYUN);
-    }
-
-    /**
-     * @throws \JapaneseDate\Exceptions\Exception
-     * @throws \JapaneseDate\Exceptions\SolarTermException
-     */
-    public function usui(int $year): SolarTermDate
-    {
-        return $this->getSolarTerm($year, DateTime::SOLAR_TERM_USUI);
-    }
-
-    /**
-     * @throws \JapaneseDate\Exceptions\Exception
-     * @throws \JapaneseDate\Exceptions\SolarTermException
-     */
-    public function keichitsu(int $year): SolarTermDate
-    {
-        return $this->getSolarTerm($year, DateTime::SOLAR_TERM_KEICHITSU);
-    }
-
-    /**
      * その日が二十四節気かどうか
      *
      * @param int $year , $month, $day  グレゴリオ暦による年月日
      * @param int $month
      * @param int $day
      * @return    int|bool
-     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws Exception
      * @throws \Exception
      */
     public function findSolarTerm(int $year, int $month, int $day): bool|int
     {
         $astronomy = $this->astronomy ?? Astronomy::factory();
         $start = new DateTimeImmutable(
-            sprintf('%04d-%02d-%02d %02d:00:00', $year, $month, $day, $this->dayBoundaryHour($year)),
+            sprintf('%04d-%02d-%02d %02d:00:00', $year, $month, $day, $this->dayBoundaryHour($year, $astronomy)),
             new DateTimeZone('Asia/Tokyo')
         );
         $end = $start->modify('+1 day');
@@ -325,9 +121,14 @@ class SolarTerm
         return ($tmp_1 !== $tmp_2 && array_key_exists($tmp_2, JapaneseDate::SOLAR_TERM)) ? $tmp_2 : false;
     }
 
-    protected function dayBoundaryHour(int $year): int
+    /**
+     * @param int $year
+     * @param \JapaneseDate\Components\Astronomy $astronomy
+     * @return int
+     */
+    protected function dayBoundaryHour(int $year, Astronomy $astronomy): int
     {
-        if (Astronomy::solarAlgorithm() === Astronomy::SOLAR_VSOP87) {
+        if ($astronomy->sunAlgorithmName() === Astronomy::SOLAR_VSOP87) {
             return 0;
         }
 
@@ -339,11 +140,10 @@ class SolarTerm
     }
 
     /**
-     * @param \JapaneseDate\Components\Astronomy $astronomy
-     * @param \DateTimeImmutable $dateTime
+     * @param Astronomy $astronomy
+     * @param DateTimeImmutable $dateTime
      * @return float
-     * @throws \DateInvalidTimeZoneException
-     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     * @throws \Exception
      */
     protected function longitudeSunAt(Astronomy $astronomy, DateTimeImmutable $dateTime): float
     {
@@ -355,5 +155,212 @@ class SolarTerm
             (int) $dateTime->format('i'),
             (int) $dateTime->format('s')
         );
+    }
+
+    /**
+     * @throws Exception
+     * @throws SolarTermException
+     */
+    public function seimei(int $year): SolarTermDate
+    {
+        return $this->getSolarTerm($year, DateTime::SOLAR_TERM_SEIMEI);
+    }
+
+    /**
+     * @throws Exception
+     * @throws SolarTermException
+     */
+    public function kokuu(int $year): SolarTermDate
+    {
+        return $this->getSolarTerm($year, DateTime::SOLAR_TERM_KOKUU);
+    }
+
+    /**
+     * @throws Exception
+     * @throws SolarTermException
+     */
+    public function rikka(int $year): SolarTermDate
+    {
+        return $this->getSolarTerm($year, DateTime::SOLAR_TERM_RIKKA);
+    }
+
+    /**
+     * @throws Exception
+     * @throws SolarTermException
+     */
+    public function syouman(int $year): SolarTermDate
+    {
+        return $this->getSolarTerm($year, DateTime::SOLAR_TERM_SYOUMAN);
+    }
+
+    /**
+     * @throws Exception
+     * @throws SolarTermException
+     */
+    public function bousyu(int $year): SolarTermDate
+    {
+        return $this->getSolarTerm($year, DateTime::SOLAR_TERM_BOUSYU);
+    }
+
+    /**
+     * @throws Exception
+     * @throws SolarTermException
+     */
+    public function geshi(int $year): SolarTermDate
+    {
+        return $this->getSolarTerm($year, DateTime::SOLAR_TERM_GESHI);
+    }
+
+    /**
+     * @throws Exception
+     * @throws SolarTermException
+     */
+    public function syousyo(int $year): SolarTermDate
+    {
+        return $this->getSolarTerm($year, DateTime::SOLAR_TERM_SYOUSYO);
+    }
+
+    /**
+     * @throws Exception
+     * @throws SolarTermException
+     */
+    public function taisyo(int $year): SolarTermDate
+    {
+        return $this->getSolarTerm($year, DateTime::SOLAR_TERM_TAISYO);
+    }
+
+    /**
+     * @throws Exception
+     * @throws SolarTermException
+     */
+    public function rissyuu(int $year): SolarTermDate
+    {
+        return $this->getSolarTerm($year, DateTime::SOLAR_TERM_RISSYUU);
+    }
+
+    /**
+     * @throws Exception
+     * @throws SolarTermException
+     */
+    public function syosyo(int $year): SolarTermDate
+    {
+        return $this->getSolarTerm($year, DateTime::SOLAR_TERM_SYOSYO);
+    }
+
+    /**
+     * @throws Exception
+     * @throws SolarTermException
+     */
+    public function hakuro(int $year): SolarTermDate
+    {
+        return $this->getSolarTerm($year, DateTime::SOLAR_TERM_HAKURO);
+    }
+
+    /**
+     * @throws Exception
+     * @throws SolarTermException
+     */
+    public function syuubun(int $year): SolarTermDate
+    {
+        return $this->getSolarTerm($year, DateTime::SOLAR_TERM_SYUUBUN);
+    }
+
+    /**
+     * @throws Exception
+     * @throws SolarTermException
+     */
+    public function kanro(int $year): SolarTermDate
+    {
+        return $this->getSolarTerm($year, DateTime::SOLAR_TERM_KANRO);
+    }
+
+    /**
+     * @throws Exception
+     * @throws SolarTermException
+     */
+    public function soukou(int $year): SolarTermDate
+    {
+        return $this->getSolarTerm($year, DateTime::SOLAR_TERM_SOUKOU);
+    }
+
+    /**
+     * @throws Exception
+     * @throws SolarTermException
+     */
+    public function rittou(int $year): SolarTermDate
+    {
+        return $this->getSolarTerm($year, DateTime::SOLAR_TERM_RITTOU);
+    }
+
+    /**
+     * @throws Exception
+     * @throws SolarTermException
+     */
+    public function syousetsu(int $year): SolarTermDate
+    {
+        return $this->getSolarTerm($year, DateTime::SOLAR_TERM_SYOUSETSU);
+    }
+
+    /**
+     * @throws Exception
+     * @throws SolarTermException
+     */
+    public function taisetsu(int $year): SolarTermDate
+    {
+        return $this->getSolarTerm($year, DateTime::SOLAR_TERM_TAISETSU);
+    }
+
+    /**
+     * @throws Exception
+     * @throws SolarTermException
+     */
+    public function touji(int $year): SolarTermDate
+    {
+        return $this->getSolarTerm($year, DateTime::SOLAR_TERM_TOUJI);
+    }
+
+    /**
+     * @throws Exception
+     * @throws SolarTermException
+     */
+    public function syoukan(int $year): SolarTermDate
+    {
+        return $this->getSolarTerm($year, DateTime::SOLAR_TERM_SYOUKAN);
+    }
+
+    /**
+     * @throws Exception
+     * @throws SolarTermException
+     */
+    public function daikan(int $year): SolarTermDate
+    {
+        return $this->getSolarTerm($year, DateTime::SOLAR_TERM_DAIKAN);
+    }
+
+    /**
+     * @throws Exception
+     * @throws SolarTermException
+     */
+    public function rissyun(int $year): SolarTermDate
+    {
+        return $this->getSolarTerm($year, DateTime::SOLAR_TERM_RISSYUN);
+    }
+
+    /**
+     * @throws Exception
+     * @throws SolarTermException
+     */
+    public function usui(int $year): SolarTermDate
+    {
+        return $this->getSolarTerm($year, DateTime::SOLAR_TERM_USUI);
+    }
+
+    /**
+     * @throws Exception
+     * @throws SolarTermException
+     */
+    public function keichitsu(int $year): SolarTermDate
+    {
+        return $this->getSolarTerm($year, DateTime::SOLAR_TERM_KEICHITSU);
     }
 }

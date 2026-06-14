@@ -9,7 +9,6 @@
 namespace Tests\JapaneseDate\Traits;
 
 use DateTimeInterface;
-use Exception;
 use JapaneseDate\Calendar;
 use JapaneseDate\Components\BusinessCalendar;
 use JapaneseDate\DateBusiness;
@@ -18,26 +17,43 @@ use JapaneseDate\Exceptions\NativeDateTimeException;
 use JapaneseDate\Traits\DateBusinessCommon;
 use PHPUnit\Framework\Attributes\CoversTrait;
 use PHPUnit\Framework\TestCase;
-use ReturnTypeWillChange;
 use Tests\JapaneseDate\InvokeTrait;
 
+/**
+ *
+ */
+
+/**
+ *
+ */
 #[CoversTrait(DateBusinessCommon::class)]
 class DateBusinessCommonCalendarTest extends TestCase
 {
     use InvokeTrait;
 
+    /**
+     * @return void
+     */
     public function test_isBusinessDayByConfig_weekday(): void
     {
         $calendar = new Calendar('2026-05-25'); // 月曜
         $this->assertTrue($calendar->isBusinessDayByConfig());
     }
 
+    /**
+     * @return void
+     */
     public function test_isBusinessDayByConfig_saturday(): void
     {
         $calendar = new Calendar('2026-05-30'); // 土曜
         $this->assertFalse($calendar->isBusinessDayByConfig());
     }
 
+    /**
+     * @return void
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     */
     public function test_isBusinessDayByConfig_with_specific_date(): void
     {
         $calendar = new Calendar('2026-05-25');
@@ -45,6 +61,10 @@ class DateBusinessCommonCalendarTest extends TestCase
         $this->assertFalse($calendar->isBusinessDayByConfig($saturday));
     }
 
+    /**
+     * @return void
+     * @throws \Exception
+     */
     public function test_isBusinessDayByConfig_with_instance_config(): void
     {
         $config = (new DateBusiness())
@@ -55,12 +75,17 @@ class DateBusinessCommonCalendarTest extends TestCase
         $this->assertFalse($calendar->isBusinessDayByConfig());
     }
 
+    /**
+     * @return void
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     */
     public function test_getBusinessDaysBySpan_basic(): void
     {
         $calendar = new Calendar('2026-05-25'); // 月曜
         $result = $calendar->getBusinessDaysBySpan('2026-05-31');
 
-        $dates = array_map(fn ($dt) => $dt->format('Y-m-d'), $result);
+        $dates = array_map(static fn ($dt) => $dt->format('Y-m-d'), $result);
         $this->assertContains('2026-05-25', $dates);
         $this->assertContains('2026-05-26', $dates);
         $this->assertContains('2026-05-27', $dates);
@@ -71,6 +96,11 @@ class DateBusinessCommonCalendarTest extends TestCase
         $this->assertCount(5, $dates);
     }
 
+    /**
+     * @return void
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     */
     public function test_getBusinessDaysBySpan_with_closing_date(): void
     {
         $config = (new DateBusiness())
@@ -83,6 +113,10 @@ class DateBusinessCommonCalendarTest extends TestCase
         $this->assertCount(4, $result);
     }
 
+    /**
+     * @return void
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     */
     public function test_getBusinessDaysByLimit_basic(): void
     {
         $calendar = new Calendar('2026-05-25'); // 月曜
@@ -93,16 +127,24 @@ class DateBusinessCommonCalendarTest extends TestCase
         $this->assertSame('2026-05-29', $result[4]->format('Y-m-d'));
     }
 
+    /**
+     * @return void
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     */
     public function test_getBusinessDaysByLimit_skips_weekends(): void
     {
         $calendar = new Calendar('2026-05-29'); // 金曜
         $result = $calendar->getBusinessDaysByLimit(2);
 
-        $dates = array_map(fn ($dt) => $dt->format('Y-m-d'), $result);
+        $dates = array_map(static fn ($dt) => $dt->format('Y-m-d'), $result);
         $this->assertSame('2026-05-29', $dates[0]); // 金曜
         $this->assertSame('2026-06-01', $dates[1]); // 月曜（土日スキップ）
     }
 
+    /**
+     * @return void
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     */
     public function test_getBusinessDaysByLimit_with_closing_date(): void
     {
         $config = (new DateBusiness())
@@ -112,13 +154,16 @@ class DateBusinessCommonCalendarTest extends TestCase
         $calendar->setBusinessConfig($config);
 
         $result = $calendar->getBusinessDaysByLimit(4);
-        $dates = array_map(fn ($dt) => $dt->format('Y-m-d'), $result);
+        $dates = array_map(static fn ($dt) => $dt->format('Y-m-d'), $result);
 
         $this->assertNotContains('2026-05-27', $dates); // 臨時休業
         $this->assertContains('2026-05-28', $dates);
         $this->assertContains('2026-05-29', $dates);
     }
 
+    /**
+     * @return void
+     */
     public function test_BusinessCalendar_trait_on_Calendar(): void
     {
         $calendar = new Calendar('2026-05-25');
@@ -132,6 +177,10 @@ class DateBusinessCommonCalendarTest extends TestCase
         $this->assertNull($calendar->getBusinessConfig());
     }
 
+    /**
+     * @return void
+     * @throws \Exception
+     */
     public function test_setClosingDay_on_calendar(): void
     {
         $calendar = new Calendar('2026-08-14');
@@ -139,6 +188,10 @@ class DateBusinessCommonCalendarTest extends TestCase
         $this->assertFalse($calendar->isBusinessDayByConfig());
     }
 
+    /**
+     * @return void
+     * @throws \Exception
+     */
     public function test_setOpenDay_on_calendar(): void
     {
         $calendar = new Calendar('2026-05-30'); // 土曜
@@ -146,6 +199,11 @@ class DateBusinessCommonCalendarTest extends TestCase
         $this->assertTrue($calendar->isBusinessDayByConfig());
     }
 
+    /**
+     * @return void
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     */
     public function test_getBusinessDaysBySpan_with_global_config(): void
     {
         $globalConfig = (new DateBusiness())
@@ -155,11 +213,15 @@ class DateBusinessCommonCalendarTest extends TestCase
 
         $calendar = new Calendar('2026-05-25');
         $result = $calendar->getBusinessDaysBySpan('2026-05-29');
-        $dates = array_map(fn ($dt) => $dt->format('Y-m-d'), $result);
+        $dates = array_map(static fn ($dt) => $dt->format('Y-m-d'), $result);
         $this->assertNotContains('2026-05-27', $dates);
         $this->assertCount(4, $dates);
     }
 
+    /**
+     * @return void
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     */
     public function test_getBusinessDaysByLimit_zero(): void
     {
         $calendar = new Calendar('2026-05-25');
@@ -167,6 +229,11 @@ class DateBusinessCommonCalendarTest extends TestCase
         $this->assertCount(0, $result);
     }
 
+    /**
+     * @return void
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     * @throws \ReflectionException
+     */
     public function test_getBusinessDaysByLimit_throws_NativeDateTimeException(): void
     {
         $calendar = new Calendar('2026-05-25');
@@ -178,6 +245,9 @@ class DateBusinessCommonCalendarTest extends TestCase
         $calendar->getBusinessDaysByLimit(1);
     }
 
+    /**
+     * @return void
+     */
     public function test_setClosingWeekdays_on_calendar(): void
     {
         // 月曜（1）を休業にして判定
@@ -186,6 +256,9 @@ class DateBusinessCommonCalendarTest extends TestCase
         $this->assertFalse($calendar->isBusinessDayByConfig());
     }
 
+    /**
+     * @return void
+     */
     public function test_setBypassHoliday_on_calendar_false(): void
     {
         // Calendar::setBypassHoliday はクラスメソッドが Trait より優先されるため bypass API 用。
@@ -198,6 +271,9 @@ class DateBusinessCommonCalendarTest extends TestCase
 
     // --- DateBusinessCommon ショートカット（Calendar 固有ルート） ---
 
+    /**
+     * @return void
+     */
     public function test_setOpenNthWeekday_on_calendar(): void
     {
         // 2026-06-13 = 第2土曜 → 営業指定で営業日になる
@@ -206,6 +282,9 @@ class DateBusinessCommonCalendarTest extends TestCase
         $this->assertTrue($calendar->isBusinessDayByConfig());
     }
 
+    /**
+     * @return void
+     */
     public function test_setClosingNthWeekday_on_calendar(): void
     {
         // 2026-06-17 = 第3水曜 → 休業指定
@@ -214,6 +293,9 @@ class DateBusinessCommonCalendarTest extends TestCase
         $this->assertFalse($calendar->isBusinessDayByConfig());
     }
 
+    /**
+     * @return void
+     */
     public function test_addOpenFilter_on_calendar(): void
     {
         // 土曜でもフィルタで営業日にする
@@ -222,6 +304,9 @@ class DateBusinessCommonCalendarTest extends TestCase
         $this->assertTrue($calendar->isBusinessDayByConfig());
     }
 
+    /**
+     * @return void
+     */
     public function test_addClosingFilter_on_calendar(): void
     {
         // 月曜でもフィルタで休業日にする
@@ -230,6 +315,9 @@ class DateBusinessCommonCalendarTest extends TestCase
         $this->assertFalse($calendar->isBusinessDayByConfig());
     }
 
+    /**
+     * @return void
+     */
     public function test_setBusinessMacro_on_calendar(): void
     {
         // マクロで常に営業日
@@ -238,6 +326,11 @@ class DateBusinessCommonCalendarTest extends TestCase
         $this->assertTrue($calendar->isBusinessDayByConfig());
     }
 
+    /**
+     * @return void
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     */
     public function test_checkIsBusinessDay_on_calendar(): void
     {
         $calendar = new Calendar('2026-05-25');
@@ -246,6 +339,11 @@ class DateBusinessCommonCalendarTest extends TestCase
         $this->assertTrue($calendar->checkIsBusinessDay(DateTime::factory('2026-05-25')));
     }
 
+    /**
+     * @return void
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     */
     public function test_checkGetBusinessDayLabel_on_calendar(): void
     {
         $calendar = new Calendar('2026-05-25');
@@ -258,6 +356,9 @@ class DateBusinessCommonCalendarTest extends TestCase
         $this->assertNull($calendar->checkGetBusinessDayLabel(DateTime::factory('2026-05-25')));
     }
 
+    /**
+     * @return void
+     */
     public function test_checkIsBusinessDay_null_target_returns_false(): void
     {
         $calendar = new Calendar('2026-05-25');
@@ -265,6 +366,9 @@ class DateBusinessCommonCalendarTest extends TestCase
         $this->assertFalse($calendar->checkIsBusinessDay());
     }
 
+    /**
+     * @return void
+     */
     public function test_checkGetBusinessDayLabel_null_target_returns_null(): void
     {
         $calendar = new Calendar('2026-05-25');
@@ -275,6 +379,9 @@ class DateBusinessCommonCalendarTest extends TestCase
     // --- checkIsBusinessDay / checkGetBusinessDayLabel の null target ブランチ ---
     // Calendar は DateTimeInterface を実装していないため、引数なしで呼ぶと $target === null になる
 
+    /**
+     * @return void
+     */
     public function test_weekday_constants(): void
     {
         $this->assertSame(0, Calendar::SUNDAY);
@@ -286,6 +393,9 @@ class DateBusinessCommonCalendarTest extends TestCase
         $this->assertSame(6, Calendar::SATURDAY);
     }
 
+    /**
+     * @return void
+     */
     protected function setUp(): void
     {
         BusinessCalendar::resetAll();
@@ -293,6 +403,9 @@ class DateBusinessCommonCalendarTest extends TestCase
 
     // --- Calendar 定数 ---
 
+    /**
+     * @return void
+     */
     protected function tearDown(): void
     {
         BusinessCalendar::resetAll();
@@ -304,9 +417,17 @@ class DateBusinessCommonCalendarTest extends TestCase
  */
 class ThrowingDateTimeForBusinessLimit extends DateTime
 {
-    #[ReturnTypeWillChange]
-    public function add($unit, $value = 1, $overflow = null): static
+    /**
+     * @param mixed $interval
+     * @param mixed $value
+     * @param mixed $overflow
+     * @return static
+     * @throws \RuntimeException
+     * @noinspection PhpUnused
+     */
+    #[\ReturnTypeWillChange]
+    public function add(mixed $interval, mixed $value = 1, mixed $overflow = null): static
     {
-        throw new Exception('DateTime add failed.');
+        throw new \RuntimeException('DateTime add failed.');
     }
 }
