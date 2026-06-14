@@ -93,22 +93,48 @@ class Elp2000MoonAge implements MoonAgeAlgorithm
 
         // 既知の新月を基準に、対象日時に最も近い新月のおおよその時刻を推定し、
         // そこから収束計算を始めることで ELP2000 の評価回数（反復回数）を抑える。
-        // 収束条件・反復内の補正ロジックは変更しないため、最終的に収束する朔の
-        // 時刻（および月齢）は従来の初期値（対象日時そのもの）から始めた場合と
-        // 変わらない想定です。
         $cycles = round(($julian_date_0 - self::REFERENCE_NEW_MOON_JD) / self::SYNODIC_MONTH);
         $approxNewMoon = self::REFERENCE_NEW_MOON_JD + $cycles * self::SYNODIC_MONTH;
 
-        $tm1 = floor($approxNewMoon);
-        $tm2 = $approxNewMoon - $tm1;
+        // 朔の時刻を収束計算する
+        $newMoonJd = $this->findNewMoonJd($approxNewMoon, $julian_date_0);
 
-        // 朔の時刻を計算
-        // 誤差が±1 sec以内になったら打ち切る
+        // round() により approxNewMoon が次の朔を指した場合、直前の朔へ再収束する
+        if ($newMoonJd > $julian_date_0) {
+            $newMoonJd = $this->findNewMoonJd($newMoonJd - self::SYNODIC_MONTH, $julian_date_0);
+        }
+
+        // 時刻引数を合成
+        $res = $julian_date_0 - $newMoonJd;
+        if ($res < 0) {
+            $res += self::SYNODIC_MONTH;
+        }
+        if ($res > 30) {
+            $res -= 30;
+        }
+
+        return $res;
+    }
+
+    /**
+     * 与えられた近似ユリウス日を起点として朔の時刻を収束計算し、朔のユリウス日を返す。
+     *
+     * @param float $approxJd 収束計算の開始点（おおよその朔のユリウス日）
+     * @param float $julianDate0 計算基準のユリウス日（15回・30回の安全弁リセット基準）
+     * @return float 収束後の朔のユリウス日
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     * @throws \Exception
+     */
+    private function findNewMoonJd(float $approxJd, float $julianDate0): float
+    {
+        $tm1 = floor($approxJd);
+        $tm2 = $approxJd - $tm1;
         $counter = 1;
         $delta_t1 = 0;
         $delta_t2 = 1;
 
-        while (($delta_t1 + abs($delta_t2)) > Astronomy::DAYS_PER_SEC) {
+        while (abs($delta_t1 + $delta_t2) > Astronomy::DAYS_PER_SEC) {
             $julian_date = $tm1 + $tm2;
             $timestamp = (int) floor(($julian_date - 2440587.5) * Astronomy::DAY_TO_SECOND_FLOAT);
             $fractionalSecond = ($julian_date - 2440587.5) * Astronomy::DAY_TO_SECOND_FLOAT - $timestamp;
@@ -142,7 +168,7 @@ class Elp2000MoonAge implements MoonAgeAlgorithm
                 self::SYNODIC_MONTH,
                 $tm1,
                 $tm2,
-                $julian_date_0,
+                $julianDate0,
                 $counter
             );
             // @codeCoverageIgnoreStart
@@ -153,15 +179,6 @@ class Elp2000MoonAge implements MoonAgeAlgorithm
             $counter++;
         }
 
-        // 時刻引数を合成
-        $res = $julian_date_0 - ($tm2 + $tm1);
-        if ($res < 0) {
-            $res += self::SYNODIC_MONTH;
-        }
-        if ($res > 30) {
-            $res -= 30;
-        }
-
-        return $res;
+        return $tm1 + $tm2;
     }
 }

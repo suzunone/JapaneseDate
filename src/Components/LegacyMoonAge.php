@@ -98,7 +98,7 @@ class LegacyMoonAge implements MoonAgeAlgorithm
         $delta_t1 = 0;
         $delta_t2 = 1;
 
-        while (($delta_t1 + abs($delta_t2)) > Astronomy::DAYS_PER_SEC) {
+        while (abs($delta_t1 + $delta_t2) > Astronomy::DAYS_PER_SEC) {
             $julian_date = $tm1 + $tm2;
             [$year, $month, $day, $hour, $min, $sec] = $this->astronomy->jD2Gregorian($julian_date);
             $longitude_sun = $this->astronomy->longitudeSun($year, $month, $day, $hour, $min, $sec);
@@ -139,7 +139,42 @@ class LegacyMoonAge implements MoonAgeAlgorithm
         // 時刻引数を合成
         $res = $julian_date_0 - ($tm2 + $tm1);
         if ($res > 30) {
-            $res -= 30;
+            // 春分特例等で2朔以上前の朔に収束した場合、1朔望月後を起点に直近の朔へ再収束する。
+            // 再収束は近傍から始まるため counter=1 固有補正（δΛ < 0 の正規化）を適用しない。
+            $approx = ($tm1 + $tm2) + self::SYNODIC_MONTH;
+            $tm1 = floor($approx);
+            $tm2 = $approx - $tm1;
+            $counter = 1;
+            $delta_t1 = 0;
+            $delta_t2 = 1;
+            while (abs($delta_t1 + $delta_t2) > Astronomy::DAYS_PER_SEC) {
+                $julian_date = $tm1 + $tm2;
+                [$year, $month, $day, $hour, $min, $sec] = $this->astronomy->jD2Gregorian($julian_date);
+                $longitude_sun = $this->astronomy->longitudeSun($year, $month, $day, $hour, $min, $sec);
+                $longitude_moon = $this->astronomy->longitudeMoon($year, $month, $day, $hour, $min, $sec);
+                $delta_rm = $longitude_moon - $longitude_sun;
+                if ($longitude_sun >= 0 && $longitude_sun <= 20 && $longitude_moon >= 300) {
+                    $delta_rm = $this->astronomy->normalizeAngle($delta_rm);
+                    $delta_rm = 360 - $delta_rm;
+                } elseif (abs($delta_rm) > 40.0) {
+                    $delta_rm = $this->astronomy->normalizeAngle($delta_rm);
+                }
+                [$tm1, $tm2, $delta_t1, $delta_t2, $shouldBreak] = $this->applyConvergenceStep(
+                    $delta_rm,
+                    self::SYNODIC_MONTH,
+                    $tm1,
+                    $tm2,
+                    $julian_date_0,
+                    $counter
+                );
+                // @codeCoverageIgnoreStart
+                if ($shouldBreak) {
+                    break;
+                }
+                // @codeCoverageIgnoreEnd
+                $counter++;
+            }
+            $res = $julian_date_0 - ($tm2 + $tm1);
         }
 
         return $res;
