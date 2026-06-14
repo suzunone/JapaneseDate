@@ -22,14 +22,19 @@ use PHPUnit\Framework\Attributes\RunInSeparateProcess;
 use PHPUnit\Framework\TestCase;
 
 /**
+ * @category    Tests
+ * @package     JapaneseDate
+ * @subpackage  Tests
+ * @author      Suzunone <suzunone.eleven@gmail.com>
+ * @copyright   JapaneseDate
+ * @license     BSD-2
+ * @link        https://github.com/suzunone/JapaneseDate
+ * @see         https://github.com/suzunone/JapaneseDate
  * @covers \JapaneseDate\Components\Config
  */
 class ConfigTest extends TestCase
 {
-    /**
-     * @var string
-     */
-    private $tmpDir;
+    private string $tmpDir;
     /**
      * 指定年の旧暦データを取得し、ユリウス通日が補完されることを確認する。
      * @runInSeparateProcess

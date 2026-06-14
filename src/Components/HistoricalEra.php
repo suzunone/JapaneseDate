@@ -27,8 +27,8 @@ use JapaneseDate\Values\Era;
 /**
  * 歴史的元号データの取得・変換を担うコンポーネント。
  *
- * {@see \JapaneseDate\Maps\HistoricalEraMap::findByDate()} で該当エントリを抽出し、
- * それぞれを {@see \JapaneseDate\Values\Era} バリューオブジェクトへ変換して返します。
+ * {@see HistoricalEraMap::findByDate} で該当エントリを抽出し、
+ * それぞれを {@see Era} バリューオブジェクトへ変換して返します。
  * 南北朝時代のように元号が並存する場合は複数の `Era` を含む配列を返します。
  *
  * @category    DateTime
@@ -49,12 +49,12 @@ class HistoricalEra
      * `court` キーが存在しないエントリ（令和など一部）は `DateTime::COURT_MAIN` を補完します。
      * 該当する元号が存在しない場合は空配列を返します。
      *
-     * @param \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable $date 検索基準日
-     * @return \JapaneseDate\Values\Era[] 該当する元号バリューオブジェクトの配列
+     * @param DateTime|DateTimeImmutable $date 検索基準日
+     * @return Era[] 該当する元号バリューオブジェクトの配列
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      * @throws \Exception
      */
-    public function findByDate($date): array
+    public function findByDate(DateTime|DateTimeImmutable $date): array
     {
         $entries = HistoricalEraMap::findByDate($date);
         $eras = [];

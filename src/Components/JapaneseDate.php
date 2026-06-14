@@ -26,7 +26,7 @@ use JapaneseDate\Exceptions\ErrorException;
 /**
  * 日本語表記・和暦表記・暦注データの生成を担う中核コンポーネント。
  *
- * {@see \JapaneseDate\DateTime} および {@see \JapaneseDate\DateTimeImmutable} から利用され、
+ * {@see DateTime} および {@see DateTimeImmutable} から利用され、
  * 曜日、月名、六曜、月相、干支、二十四節気、祝日、元号などの日本語表示に必要な
  * 計算・変換ロジックを集約します。
  *
@@ -36,8 +36,8 @@ use JapaneseDate\Exceptions\ErrorException;
  * - 近代元号と和暦年の判定・表示
  * - 二十四節気や関連する暦注を扱うための補助処理
  *
- * 旧暦計算は {@see \JapaneseDate\Components\LunarCalendar}、
- * 干支計算は {@see \JapaneseDate\Components\SexagenaryCycle} に委譲し、
+ * 旧暦計算は {@see LunarCalendar}、
+ * 干支計算は {@see SexagenaryCycle} に委譲し、
  * このクラスは利用者向けの表示値を組み立てる入口として機能します。
  *
  * @category    DateTime
@@ -96,38 +96,28 @@ class JapaneseDate
     ];
 
     /**
-     * @var int
-     */
-    public const VERNAL_EQUINOX = 0;
-
-    /**
-     * @var int
-     */
-    public const AUTUMNAL_EQUINOX = 12;
-
-    /**
      * 旧暦クラスオブジェクト
      *
-     * @var \JapaneseDate\Components\LunarCalendar
+     * @var LunarCalendar
      */
-    protected $LunarCalendar;
+    protected LunarCalendar $LunarCalendar;
 
     /**
      * 干支計算クラスオブジェクト
      *
-     * @var \JapaneseDate\Components\SexagenaryCycle
+     * @var SexagenaryCycle
      */
-    protected $SexagenaryCycle;
+    protected SexagenaryCycle $SexagenaryCycle;
 
     /**
      * @var array
      */
-    protected $holiday_name;
+    protected array $holiday_name;
 
     /**
      * @var array
      */
-    protected $era_name;
+    protected array $era_name;
 
     /**
      * コンストラクタ
@@ -183,7 +173,7 @@ class JapaneseDate
      *
      * @access      public
      * @static
-     * @return \JapaneseDate\Components\JapaneseDate
+     * @return JapaneseDate
      */
     public static function factory(): self
     {
@@ -201,45 +191,32 @@ class JapaneseDate
      * 指定月の祝日リストを取得する
      *
      * @access      public
-     * @param \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable $dateTime |\JapaneseDate\Traits\Modern $DateTime DateTime
+     * @param DateTime|DateTimeImmutable $dateTime |\JapaneseDate\Traits\Modern $DateTime DateTime
      * @return      array
      * @throws \DateInvalidTimeZoneException
-     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      * @throws \JapaneseDate\Exceptions\SolarTermException
      * @throws \JsonException
      */
-    public function getHolidayList($dateTime): array
+    public function getHolidayList(DateTime|DateTimeImmutable $dateTime): array
     {
-        switch ($dateTime->month) {
-            case 1:
-                return $this->getJanuaryHoliday($dateTime->year, $dateTime->getTimezone());
-            case 2:
-                return $this->getFebruaryHoliday($dateTime->year, $dateTime->getTimezone());
-            case 3:
-                return $this->getMarchHoliday($dateTime->year, $dateTime->getTimezone());
-            case 4:
-                return $this->getAprilHoliday($dateTime->year, $dateTime->getTimezone());
-            case 5:
-                return $this->getMayHoliday($dateTime->year, $dateTime->getTimezone());
-            case 6:
-                return $this->getJuneHoliday($dateTime->year);
-            case 7:
-                return $this->getJulyHoliday($dateTime->year, $dateTime->getTimezone());
-            case 8:
-                return $this->getAugustHoliday($dateTime->year, $dateTime->getTimezone());
-            case 9:
-                return $this->getSeptemberHoliday($dateTime->year, $dateTime->getTimezone());
-            case 10:
-                return $this->getOctoberHoliday($dateTime->year, $dateTime->getTimezone());
-            case 11:
-                return $this->getNovemberHoliday($dateTime->year, $dateTime->getTimezone());
-            case 12:
-                return $this->getDecemberHoliday($dateTime->year, $dateTime->getTimezone());
-            default:
-                throw new ErrorException('undefined month');
-        }
+        return match ($dateTime->month) {
+            1 => $this->getJanuaryHoliday($dateTime->year, $dateTime->getTimezone()),
+            2 => $this->getFebruaryHoliday($dateTime->year, $dateTime->getTimezone()),
+            3 => $this->getMarchHoliday($dateTime->year, $dateTime->getTimezone()),
+            4 => $this->getAprilHoliday($dateTime->year, $dateTime->getTimezone()),
+            5 => $this->getMayHoliday($dateTime->year, $dateTime->getTimezone()),
+            6 => $this->getJuneHoliday($dateTime->year),
+            7 => $this->getJulyHoliday($dateTime->year, $dateTime->getTimezone()),
+            8 => $this->getAugustHoliday($dateTime->year, $dateTime->getTimezone()),
+            9 => $this->getSeptemberHoliday($dateTime->year, $dateTime->getTimezone()),
+            10 => $this->getOctoberHoliday($dateTime->year, $dateTime->getTimezone()),
+            11 => $this->getNovemberHoliday($dateTime->year, $dateTime->getTimezone()),
+            12 => $this->getDecemberHoliday($dateTime->year, $dateTime->getTimezone()),
+            default => throw new ErrorException('undefined month'),
+        };
     }
 
     /**
@@ -250,10 +227,10 @@ class JapaneseDate
      * @param           $timezone
      * @return      array
      * @throws \DateInvalidTimeZoneException
-     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws ErrorException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
-    protected function getJanuaryHoliday($year, $timezone): array
+    protected function getJanuaryHoliday(int $year, $timezone): array
     {
         if ($year <= DateTime::HOLIDAY_START_YEAR) {
             return [];
@@ -289,7 +266,7 @@ class JapaneseDate
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
-    protected function getWeekday($time = null, $time_zone = null): int
+    protected function getWeekday(int|float|string|DateTimeInterface|null $time = null, DateTimeZone|null $time_zone = null): int
     {
         return DateTime::factory($time, $time_zone)->dayOfWeek;
     }
@@ -302,39 +279,24 @@ class JapaneseDate
      * @param int $month 月
      * @param int $weekly 曜日
      * @param int $weeks 何週目か
-     * @param \DateTimeZone|null $timezone
+     * @param DateTimeZone|null $timezone
      * @return      int
      * @throws \DateInvalidTimeZoneException
-     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws ErrorException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
-    public function getDayByWeekly($year, $month, $weekly, $weeks = 1, $timezone = null): int
+    public function getDayByWeekly(int $year, int $month, int $weekly, int $weeks = 1, DateTimeZone|null $timezone = null): int
     {
-        switch ($weekly) {
-            case DateTime::SUNDAY:
-                $map = [7, 1, 2, 3, 4, 5, 6, ];
-                break;
-            case DateTime::MONDAY:
-                $map = [6, 7, 1, 2, 3, 4, 5, ];
-                break;
-            case DateTime::TUESDAY:
-                $map = [5, 6, 7, 1, 2, 3, 4, ];
-                break;
-            case DateTime::WEDNESDAY:
-                $map = [4, 5, 6, 7, 1, 2, 3, ];
-                break;
-            case DateTime::THURSDAY:
-                $map = [3, 4, 5, 6, 7, 1, 2, ];
-                break;
-            case DateTime::FRIDAY:
-                $map = [2, 3, 4, 5, 6, 7, 1, ];
-                break;
-            case DateTime::SATURDAY:
-                $map = [1, 2, 3, 4, 5, 6, 7, ];
-                break;
-            default:
-                throw new ErrorException('undefined weekly ' . $weekly);
-        }
+        $map = match ($weekly) {
+            DateTime::SUNDAY => [7, 1, 2, 3, 4, 5, 6, ],
+            DateTime::MONDAY => [6, 7, 1, 2, 3, 4, 5, ],
+            DateTime::TUESDAY => [5, 6, 7, 1, 2, 3, 4, ],
+            DateTime::WEDNESDAY => [4, 5, 6, 7, 1, 2, 3, ],
+            DateTime::THURSDAY => [3, 4, 5, 6, 7, 1, 2, ],
+            DateTime::FRIDAY => [2, 3, 4, 5, 6, 7, 1, ],
+            DateTime::SATURDAY => [1, 2, 3, 4, 5, 6, 7, ],
+            default => throw new ErrorException('undefined weekly ' . $weekly),
+        };
 
         $weeks = 7 * $weeks + 1;
 
@@ -351,9 +313,8 @@ class JapaneseDate
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
-    protected function getFebruaryHoliday($year, $timezone): array
+    protected function getFebruaryHoliday(int $year, DateTimeZone $timezone): array
     {
-        $year = (int) $year;
         if ($year <= DateTime::HOLIDAY_START_YEAR) {
             return [];
         }
@@ -390,13 +351,13 @@ class JapaneseDate
      * @param DateTimeZone $timezone
      * @return      array
      * @throws \DateInvalidTimeZoneException
-     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      * @throws \JapaneseDate\Exceptions\SolarTermException
      * @throws \JsonException
      */
-    protected function getMarchHoliday($year, $timezone): array
+    protected function getMarchHoliday(int $year, DateTimeZone $timezone): array
     {
         if ($year <= DateTime::HOLIDAY_START_YEAR) {
             return [];
@@ -419,19 +380,20 @@ class JapaneseDate
      * @access      public
      * @param int $year
      * @return      int タイムスタンプ
-     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      * @throws \JapaneseDate\Exceptions\SolarTermException
      * @throws \JsonException
      */
-    public function getVernalEquinoxDay($year): int
+    public function getVernalEquinoxDay(int $year): int
     {
         try {
             $day = (new SimpleSolarTerm())->syunbun($year)->day;
-        } catch (Exception $exception) {
+        } catch (Exception) {
             $day = (new SolarTerm())->syunbun($year)->day;
         }
+
         return mktime(0, 0, 0, DateTime::VERNAL_EQUINOX_DAY_MONTH, $day, $year);
     }
 
@@ -445,7 +407,7 @@ class JapaneseDate
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
-    protected function getDay($time = null, $time_zone = null): int
+    protected function getDay(int|float|string|DateTimeInterface|null $time = null, DateTimeZone|null $time_zone = null): int
     {
         return DateTime::factory($time, $time_zone)->day;
     }
@@ -460,9 +422,8 @@ class JapaneseDate
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
-    protected function getAprilHoliday($year, $timezone): array
+    protected function getAprilHoliday(int $year, DateTimeZone $timezone): array
     {
-        $year = (int) $year;
         if ($year <= DateTime::HOLIDAY_START_YEAR) {
             return [];
         }
@@ -498,16 +459,14 @@ class JapaneseDate
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
-    protected function getMayHoliday($year, $timezone): array
+    protected function getMayHoliday(int $year, DateTimeZone $timezone): array
     {
-        $year = (int) $year;
         if ($year <= DateTime::HOLIDAY_START_YEAR) {
             return [];
         }
         $res = [];
-        if ($year >= 1947) {
-            $res[3] = DateTime::CONSTITUTION_DAY;
-        }
+        $res[3] = DateTime::CONSTITUTION_DAY;
+
         if ($year >= 2007) {
             $res[4] = DateTime::GREENERY_DAY;
         } elseif ($year >= 1986) {
@@ -517,10 +476,8 @@ class JapaneseDate
             } elseif ($this->getWeekday(mktime(0, 0, 0, 5, 4, $year), $timezone) === DateTime::MONDAY) {
                 $res[4] = DateTime::COMPENSATING_HOLIDAY;
             }
-        } elseif ($year >= 1947) {
-            if ($year >= 1973 && $this->getWeekday(mktime(0, 0, 0, 5, 3, $year), $timezone) === DateTime::SUNDAY) {
-                $res[4] = DateTime::COMPENSATING_HOLIDAY;
-            }
+        } elseif ($year >= 1973 && $this->getWeekday(mktime(0, 0, 0, 5, 3, $year), $timezone) === DateTime::SUNDAY) {
+            $res[4] = DateTime::COMPENSATING_HOLIDAY;
         }
         $res[5] = DateTime::CHILDREN_S_DAY;
         if ($year >= 1973 && $this->getWeekday(mktime(0, 0, 0, 5, 5, $year), $timezone) === DateTime::SUNDAY) {
@@ -549,9 +506,8 @@ class JapaneseDate
      * @param int $year 年
      * @return      array
      */
-    protected function getJuneHoliday($year): array
+    protected function getJuneHoliday(int $year): array
     {
-        $year = (int) $year;
         if ($year <= DateTime::HOLIDAY_START_YEAR) {
             return [];
         }
@@ -571,13 +527,12 @@ class JapaneseDate
      * @param DateTimeZone $timezone
      * @return      array
      * @throws \DateInvalidTimeZoneException
-     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
-    protected function getJulyHoliday($year, $timezone): array
+    protected function getJulyHoliday(int $year, DateTimeZone $timezone): array
     {
-        $year = (int) $year;
         if ($year <= DateTime::HOLIDAY_START_YEAR) {
             return [];
         }
@@ -616,9 +571,8 @@ class JapaneseDate
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
-    protected function getAugustHoliday($year, $timezone): array
+    protected function getAugustHoliday(int $year, DateTimeZone $timezone): array
     {
-        $year = (int) $year;
         if ($year < DateTime::HOLIDAY_START_YEAR) {
             return [];
         }
@@ -649,13 +603,13 @@ class JapaneseDate
      * @param DateTimeZone $timezone
      * @return      array
      * @throws \DateInvalidTimeZoneException
-     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      * @throws \JapaneseDate\Exceptions\SolarTermException
      * @throws \JsonException
      */
-    protected function getSeptemberHoliday($year, $timezone): array
+    protected function getSeptemberHoliday(int $year, DateTimeZone $timezone): array
     {
         if ($year < DateTime::HOLIDAY_START_YEAR) {
             return [];
@@ -694,17 +648,17 @@ class JapaneseDate
      * @access      public
      * @param int $year
      * @return      int タイムスタンプ
-     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      * @throws \JapaneseDate\Exceptions\SolarTermException
      * @throws \JsonException
      */
-    public function getAutumnEquinoxDay($year): int
+    public function getAutumnEquinoxDay(int $year): int
     {
         try {
             $day = (new SimpleSolarTerm())->syuubun($year)->day;
-        } catch (Exception $exception) {
+        } catch (Exception) {
             $day = (new SolarTerm())->syuubun($year)->day;
         }
 
@@ -719,13 +673,12 @@ class JapaneseDate
      * @param DateTimeZone $timezone
      * @return      array
      * @throws \DateInvalidTimeZoneException
-     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
-    protected function getOctoberHoliday($year, $timezone): array
+    protected function getOctoberHoliday(int $year, DateTimeZone $timezone): array
     {
-        $year = (int) $year;
         if ($year < DateTime::HOLIDAY_START_YEAR) {
             return [];
         }
@@ -735,12 +688,7 @@ class JapaneseDate
             $res[22] = DateTime::REGNAL_DAY;
         }
 
-        if ($year === DateTime::SECOND_TIME_TOKYO_OLYMPIC_YEAR) {
-            // 東京オリンピックのため体育の日移動
-            return $res;
-        }
-
-        if ($year === DateTime::SECOND_TIME_TOKYO_OLYMPIC_RESCHEDULE_YEAR) {
+        if ($year === DateTime::SECOND_TIME_TOKYO_OLYMPIC_YEAR || $year === DateTime::SECOND_TIME_TOKYO_OLYMPIC_RESCHEDULE_YEAR) {
             // 東京オリンピックのため体育の日移動
             return $res;
         }
@@ -777,9 +725,8 @@ class JapaneseDate
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
-    protected function getNovemberHoliday($year, $timezone): array
+    protected function getNovemberHoliday(int $year, DateTimeZone $timezone): array
     {
-        $year = (int) $year;
         if ($year < DateTime::HOLIDAY_START_YEAR) {
             return [];
         }
@@ -813,7 +760,7 @@ class JapaneseDate
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
-    protected function getDecemberHoliday($year, $timezone): array
+    protected function getDecemberHoliday(int $year, DateTimeZone $timezone): array
     {
         if ($year < DateTime::HOLIDAY_START_YEAR) {
             return [];
@@ -837,7 +784,7 @@ class JapaneseDate
      * @param int $key 休日キー
      * @return      string
      */
-    public function viewHoliday($key): string
+    public function viewHoliday(int $key): string
     {
         return $this->holiday_name[$key] ?? '';
     }
@@ -849,7 +796,7 @@ class JapaneseDate
      * @param int $key 曜日キー
      * @return      string
      */
-    public function viewWeekday($key): string
+    public function viewWeekday(int $key): string
     {
         if ($key >= count(self::WEEKDAY_NAME)) {
             $key -= count(self::WEEKDAY_NAME);
@@ -865,7 +812,7 @@ class JapaneseDate
      * @param int $key 月キー
      * @return      string
      */
-    public function viewMonth($key): string
+    public function viewMonth(int $key): string
     {
         return self::MONTH_NAME[$key];
     }
@@ -877,7 +824,7 @@ class JapaneseDate
      * @param int $key 六曜キー
      * @return      string
      */
-    public function viewSixWeekday($key): string
+    public function viewSixWeekday(int $key): string
     {
         return self::SIX_WEEKDAY[$key] ?? '';
     }
@@ -889,8 +836,12 @@ class JapaneseDate
      * @param int|null $key 月相キー (0〜7)
      * @return      string
      */
-    public function viewMoonPhase($key): string
+    public function viewMoonPhase(?int $key): string
     {
+        if ($key === null) {
+            return '';
+        }
+
         return self::MOON_PHASE[$key] ?? '';
     }
 
@@ -901,7 +852,7 @@ class JapaneseDate
      * @param int $key 十二支キー
      * @return      string
      */
-    public function viewOrientalZodiac($key): string
+    public function viewOrientalZodiac(int $key): string
     {
         return $this->SexagenaryCycle->viewOrientalZodiac($key);
     }
@@ -913,7 +864,7 @@ class JapaneseDate
      * @param int $key 年号キー
      * @return      string
      */
-    public function viewEraName($key): string
+    public function viewEraName(int $key): string
     {
         return $this->era_name[$key] ?? '';
     }

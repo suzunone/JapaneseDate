@@ -1,73 +1,17 @@
 <?php
-// Source data for principal phases (new moon, first quarter, full moon, last quarter):
-// https://eco.mtk.nao.ac.jp/koyomi/yoko/2015/rekiyouXXX.html
-// Source data for intermediate phases (waxing crescent, waxing gibbous, waning gibbous, waning crescent):
+
+// Source data:
 // https://svs.gsfc.nasa.gov/4236/
 // https://svs.gsfc.nasa.gov/vis/a000000/a004200/a004236/mooninfo_2015.json
+// https://eco.mtk.nao.ac.jp/koyomi/yoko/2015/rekiyou151.html
+// https://eco.mtk.nao.ac.jp/koyomi/yoko/2015/rekiyou152.html
+// https://eco.mtk.nao.ac.jp/koyomi/yoko/2015/rekiyou153.html
 
 return array (
-  '2015-01-01 00:00:00' => 
-  array (
-    0 => '2015-01-01 00:00:00',
-    1 => 
-    array (
-      'year' => 2015,
-      'month' => 1,
-      'day' => 1,
-      'dayOfWeek' => 4,
-      'dayOfYear' => 1,
-      'hour' => 0,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1420038000,
-      'formatted' => '2015-01-01 00:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 27,
-      'oriental_zodiac_text' => '未',
-      'oriental_zodiac' => 8,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '先負',
-      'six_weekday' => 4,
-      'weekday_text' => '木',
-      'month_text' => '睦月',
-      'holiday_text' => '元旦',
-      'holiday' => 1,
-      'is_holiday' => true,
-      'lunar_month_text' => '霜月',
-      'lunar_month' => 11,
-      'lunar_year' => 2014,
-      'lunar_day' => 11,
-      'is_leap_month' => false,
-      'moon_age' => 9.869180317502469,
-      'moon_phase_angle' => 125.8057748607522,
-      'moon_phase' => 3,
-      'moon_phase_text' => '十三夜',
-    ),
-  ),
-  '2015-01-01 09:00:00' => 
+  '2015-01-01 09:00:00' =>
   array (
     0 => '2015-01-01 09:00:00',
-    1 => 
+    1 =>
     array (
       'year' => 2015,
       'month' => 1,
@@ -80,7 +24,7 @@ return array (
       'micro' => 0,
       'timestamp' => 1420070400,
       'formatted' => '2015-01-01 09:00:00',
-      'timezone' => 
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -116,29 +60,29 @@ return array (
       'lunar_year' => 2014,
       'lunar_day' => 11,
       'is_leap_month' => false,
-      'moon_age' => 10.244277806021273,
-      'moon_phase_angle' => 130.38661418502716,
+      'moon_age' => 9.933,
+      'moon_phase_angle' => 127.06647417808313,
       'moon_phase' => 3,
       'moon_phase_text' => '十三夜',
     ),
   ),
-  '2015-01-02 00:00:00' => 
+  '2015-01-02 09:00:00' =>
   array (
-    0 => '2015-01-02 00:00:00',
-    1 => 
+    0 => '2015-01-02 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 1,
       'day' => 2,
       'dayOfWeek' => 5,
       'dayOfYear' => 2,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1420124400,
-      'formatted' => '2015-01-02 00:00:00',
-      'timezone' => 
+      'timestamp' => 1420156800,
+      'formatted' => '2015-01-02 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -174,29 +118,29 @@ return array (
       'lunar_year' => 2014,
       'lunar_day' => 12,
       'is_leap_month' => false,
-      'moon_age' => 10.869799080304801,
-      'moon_phase_angle' => 137.9635187916618,
+      'moon_age' => 10.933,
+      'moon_phase_angle' => 139.20140801724818,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-01-03 00:00:00' => 
+  '2015-01-03 09:00:00' =>
   array (
-    0 => '2015-01-03 00:00:00',
-    1 => 
+    0 => '2015-01-03 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 1,
       'day' => 3,
       'dayOfWeek' => 6,
       'dayOfYear' => 3,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1420210800,
-      'formatted' => '2015-01-03 00:00:00',
-      'timezone' => 
+      'timestamp' => 1420243200,
+      'formatted' => '2015-01-03 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -232,29 +176,29 @@ return array (
       'lunar_year' => 2014,
       'lunar_day' => 13,
       'is_leap_month' => false,
-      'moon_age' => 11.871511953882873,
-      'moon_phase_angle' => 149.9407262192437,
+      'moon_age' => 11.933,
+      'moon_phase_angle' => 151.15606383930077,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-01-04 00:00:00' => 
+  '2015-01-04 09:00:00' =>
   array (
-    0 => '2015-01-04 00:00:00',
-    1 => 
+    0 => '2015-01-04 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 1,
       'day' => 4,
       'dayOfWeek' => 0,
       'dayOfYear' => 4,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1420297200,
-      'formatted' => '2015-01-04 00:00:00',
-      'timezone' => 
+      'timestamp' => 1420329600,
+      'formatted' => '2015-01-04 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -290,29 +234,29 @@ return array (
       'lunar_year' => 2014,
       'lunar_day' => 14,
       'is_leap_month' => false,
-      'moon_age' => 12.87433819565922,
-      'moon_phase_angle' => 161.7404785603642,
+      'moon_age' => 12.933,
+      'moon_phase_angle' => 162.93294068702295,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-01-05 00:00:00' => 
+  '2015-01-05 09:00:00' =>
   array (
-    0 => '2015-01-05 00:00:00',
-    1 => 
+    0 => '2015-01-05 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 1,
       'day' => 5,
       'dayOfWeek' => 1,
       'dayOfYear' => 5,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1420383600,
-      'formatted' => '2015-01-05 00:00:00',
-      'timezone' => 
+      'timestamp' => 1420416000,
+      'formatted' => '2015-01-05 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -348,74 +292,16 @@ return array (
       'lunar_year' => 2014,
       'lunar_day' => 15,
       'is_leap_month' => false,
-      'moon_age' => 13.878368173725903,
-      'moon_phase_angle' => 173.36008464248692,
+      'moon_age' => 13.933,
+      'moon_phase_angle' => 174.52941837215087,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2015-01-05 12:00:00' => 
+  '2015-01-05 13:53:00' =>
   array (
-    0 => '2015-01-05 12:00:00',
-    1 => 
-    array (
-      'year' => 2015,
-      'month' => 1,
-      'day' => 5,
-      'dayOfWeek' => 1,
-      'dayOfYear' => 5,
-      'hour' => 12,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1420426800,
-      'formatted' => '2015-01-05 12:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 27,
-      'oriental_zodiac_text' => '未',
-      'oriental_zodiac' => 8,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '先勝',
-      'six_weekday' => 2,
-      'weekday_text' => '月',
-      'month_text' => '睦月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '霜月',
-      'lunar_month' => 11,
-      'lunar_year' => 2014,
-      'lunar_day' => 15,
-      'is_leap_month' => false,
-      'moon_age' => 14.380845424253494,
-      'moon_phase_angle' => 179.10104548163184,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2015-01-05 13:00:00' => 
-  array (
-    0 => '2015-01-05 13:00:00',
-    1 => 
+    0 => '2015-01-05 13:53:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 1,
@@ -423,12 +309,12 @@ return array (
       'dayOfWeek' => 1,
       'dayOfYear' => 5,
       'hour' => 13,
-      'minute' => 0,
+      'minute' => 53,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1420430400,
-      'formatted' => '2015-01-05 13:00:00',
-      'timezone' => 
+      'timestamp' => 1420433580,
+      'formatted' => '2015-01-05 13:53:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -464,145 +350,29 @@ return array (
       'lunar_year' => 2014,
       'lunar_day' => 15,
       'is_leap_month' => false,
-      'moon_age' => 14.422740852460265,
-      'moon_phase_angle' => 179.57737206558937,
+      'moon_age' => 14.1371,
+      'moon_phase_angle' => 176.8665480013771,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2015-01-05 14:00:00' => 
+  '2015-01-06 09:00:00' =>
   array (
-    0 => '2015-01-05 14:00:00',
-    1 => 
-    array (
-      'year' => 2015,
-      'month' => 1,
-      'day' => 5,
-      'dayOfWeek' => 1,
-      'dayOfYear' => 5,
-      'hour' => 14,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1420434000,
-      'formatted' => '2015-01-05 14:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 27,
-      'oriental_zodiac_text' => '未',
-      'oriental_zodiac' => 8,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '先勝',
-      'six_weekday' => 2,
-      'weekday_text' => '月',
-      'month_text' => '睦月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '霜月',
-      'lunar_month' => 11,
-      'lunar_year' => 2014,
-      'lunar_day' => 15,
-      'is_leap_month' => false,
-      'moon_age' => 14.464631838258356,
-      'moon_phase_angle' => 180.05337744223738,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2015-01-05 15:00:00' => 
-  array (
-    0 => '2015-01-05 15:00:00',
-    1 => 
-    array (
-      'year' => 2015,
-      'month' => 1,
-      'day' => 5,
-      'dayOfWeek' => 1,
-      'dayOfYear' => 5,
-      'hour' => 15,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1420437600,
-      'formatted' => '2015-01-05 15:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 27,
-      'oriental_zodiac_text' => '未',
-      'oriental_zodiac' => 8,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '先勝',
-      'six_weekday' => 2,
-      'weekday_text' => '月',
-      'month_text' => '睦月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '霜月',
-      'lunar_month' => 11,
-      'lunar_year' => 2014,
-      'lunar_day' => 15,
-      'is_leap_month' => false,
-      'moon_age' => 14.50652350205928,
-      'moon_phase_angle' => 180.52906165127882,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2015-01-06 00:00:00' => 
-  array (
-    0 => '2015-01-06 00:00:00',
-    1 => 
+    0 => '2015-01-06 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 1,
       'day' => 6,
       'dayOfWeek' => 2,
       'dayOfYear' => 6,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1420470000,
-      'formatted' => '2015-01-06 00:00:00',
-      'timezone' => 
+      'timestamp' => 1420502400,
+      'formatted' => '2015-01-06 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -638,29 +408,29 @@ return array (
       'lunar_year' => 2014,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 14.883658571634442,
-      'moon_phase_angle' => 184.79578751003834,
+      'moon_age' => 14.933,
+      'moon_phase_angle' => 185.9422395776973,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-01-07 00:00:00' => 
+  '2015-01-07 09:00:00' =>
   array (
-    0 => '2015-01-07 00:00:00',
-    1 => 
+    0 => '2015-01-07 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 1,
       'day' => 7,
       'dayOfWeek' => 3,
       'dayOfYear' => 7,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1420556400,
-      'formatted' => '2015-01-07 00:00:00',
-      'timezone' => 
+      'timestamp' => 1420588800,
+      'formatted' => '2015-01-07 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -696,29 +466,29 @@ return array (
       'lunar_year' => 2014,
       'lunar_day' => 17,
       'is_leap_month' => false,
-      'moon_age' => 15.890282990410924,
-      'moon_phase_angle' => 196.04843913524985,
+      'moon_age' => 15.933,
+      'moon_phase_angle' => 197.17305151228035,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-01-08 00:00:00' => 
+  '2015-01-08 09:00:00' =>
   array (
-    0 => '2015-01-08 00:00:00',
-    1 => 
+    0 => '2015-01-08 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 1,
       'day' => 8,
       'dayOfWeek' => 4,
       'dayOfYear' => 8,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1420642800,
-      'formatted' => '2015-01-08 00:00:00',
-      'timezone' => 
+      'timestamp' => 1420675200,
+      'formatted' => '2015-01-08 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -754,29 +524,29 @@ return array (
       'lunar_year' => 2014,
       'lunar_day' => 18,
       'is_leap_month' => false,
-      'moon_age' => 16.898231441620737,
-      'moon_phase_angle' => 207.12877179106104,
+      'moon_age' => 16.933,
+      'moon_phase_angle' => 208.2337426138205,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-01-09 00:00:00' => 
+  '2015-01-09 09:00:00' =>
   array (
-    0 => '2015-01-09 00:00:00',
-    1 => 
+    0 => '2015-01-09 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 1,
       'day' => 9,
       'dayOfWeek' => 5,
       'dayOfYear' => 9,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1420729200,
-      'formatted' => '2015-01-09 00:00:00',
-      'timezone' => 
+      'timestamp' => 1420761600,
+      'formatted' => '2015-01-09 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -812,29 +582,29 @@ return array (
       'lunar_year' => 2014,
       'lunar_day' => 19,
       'is_leap_month' => false,
-      'moon_age' => 17.907391445711255,
-      'moon_phase_angle' => 218.0612671327309,
+      'moon_age' => 17.933,
+      'moon_phase_angle' => 219.1504149039038,
       'moon_phase' => 5,
       'moon_phase_text' => '十六夜',
     ),
   ),
-  '2015-01-10 00:00:00' => 
+  '2015-01-10 09:00:00' =>
   array (
-    0 => '2015-01-10 00:00:00',
-    1 => 
+    0 => '2015-01-10 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 1,
       'day' => 10,
       'dayOfWeek' => 6,
       'dayOfYear' => 10,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1420815600,
-      'formatted' => '2015-01-10 00:00:00',
-      'timezone' => 
+      'timestamp' => 1420848000,
+      'formatted' => '2015-01-10 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -870,29 +640,29 @@ return array (
       'lunar_year' => 2014,
       'lunar_day' => 20,
       'is_leap_month' => false,
-      'moon_age' => 18.91748058469966,
-      'moon_phase_angle' => 228.88617051250588,
+      'moon_age' => 18.933,
+      'moon_phase_angle' => 229.96534070246304,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-01-11 00:00:00' => 
+  '2015-01-11 09:00:00' =>
   array (
-    0 => '2015-01-11 00:00:00',
-    1 => 
+    0 => '2015-01-11 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 1,
       'day' => 11,
       'dayOfWeek' => 0,
       'dayOfYear' => 11,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1420902000,
-      'formatted' => '2015-01-11 00:00:00',
-      'timezone' => 
+      'timestamp' => 1420934400,
+      'formatted' => '2015-01-11 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -928,29 +698,29 @@ return array (
       'lunar_year' => 2014,
       'lunar_day' => 21,
       'is_leap_month' => false,
-      'moon_age' => 19.928100331220776,
-      'moon_phase_angle' => 239.65968120944726,
+      'moon_age' => 19.933,
+      'moon_phase_angle' => 240.7368751416305,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-01-12 00:00:00' => 
+  '2015-01-12 09:00:00' =>
   array (
-    0 => '2015-01-12 00:00:00',
-    1 => 
+    0 => '2015-01-12 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 1,
       'day' => 12,
       'dayOfWeek' => 1,
       'dayOfYear' => 12,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1420988400,
-      'formatted' => '2015-01-12 00:00:00',
-      'timezone' => 
+      'timestamp' => 1421020800,
+      'formatted' => '2015-01-12 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -986,29 +756,29 @@ return array (
       'lunar_year' => 2014,
       'lunar_day' => 22,
       'is_leap_month' => false,
-      'moon_age' => 20.93294084072113,
-      'moon_phase_angle' => 250.45259255907985,
+      'moon_age' => 20.933,
+      'moon_phase_angle' => 251.53769224394628,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-01-13 00:00:00' => 
+  '2015-01-13 09:00:00' =>
   array (
-    0 => '2015-01-13 00:00:00',
-    1 => 
+    0 => '2015-01-13 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 1,
       'day' => 13,
       'dayOfWeek' => 2,
       'dayOfYear' => 13,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1421074800,
-      'formatted' => '2015-01-13 00:00:00',
-      'timezone' => 
+      'timestamp' => 1421107200,
+      'formatted' => '2015-01-13 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -1044,29 +814,29 @@ return array (
       'lunar_year' => 2014,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 21.93202265771106,
-      'moon_phase_angle' => 261.34761549558243,
+      'moon_age' => 21.933,
+      'moon_phase_angle' => 262.45174676669876,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2015-01-13 20:00:00' => 
+  '2015-01-13 18:46:00' =>
   array (
-    0 => '2015-01-13 20:00:00',
-    1 => 
+    0 => '2015-01-13 18:46:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 1,
       'day' => 13,
       'dayOfWeek' => 2,
       'dayOfYear' => 13,
-      'hour' => 20,
-      'minute' => 0,
+      'hour' => 18,
+      'minute' => 46,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1421146800,
-      'formatted' => '2015-01-13 20:00:00',
-      'timezone' => 
+      'timestamp' => 1421142360,
+      'formatted' => '2015-01-13 18:46:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -1102,29 +872,29 @@ return array (
       'lunar_year' => 2014,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 22.76470987033099,
-      'moon_phase_angle' => 270.5700633470244,
+      'moon_age' => 22.3402,
+      'moon_phase_angle' => 266.9463676361954,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2015-01-14 00:00:00' => 
+  '2015-01-14 09:00:00' =>
   array (
-    0 => '2015-01-14 00:00:00',
-    1 => 
+    0 => '2015-01-14 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 1,
       'day' => 14,
       'dayOfWeek' => 3,
       'dayOfYear' => 14,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1421161200,
-      'formatted' => '2015-01-14 00:00:00',
-      'timezone' => 
+      'timestamp' => 1421193600,
+      'formatted' => '2015-01-14 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -1160,29 +930,29 @@ return array (
       'lunar_year' => 2014,
       'lunar_day' => 24,
       'is_leap_month' => false,
-      'moon_age' => 22.931263125501573,
-      'moon_phase_angle' => 272.4353671579337,
+      'moon_age' => 22.933,
+      'moon_phase_angle' => 273.5700826339171,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-01-15 00:00:00' => 
+  '2015-01-15 09:00:00' =>
   array (
-    0 => '2015-01-15 00:00:00',
-    1 => 
+    0 => '2015-01-15 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 1,
       'day' => 15,
       'dayOfWeek' => 4,
       'dayOfYear' => 15,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1421247600,
-      'formatted' => '2015-01-15 00:00:00',
-      'timezone' => 
+      'timestamp' => 1421280000,
+      'formatted' => '2015-01-15 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -1218,29 +988,29 @@ return array (
       'lunar_year' => 2014,
       'lunar_day' => 25,
       'is_leap_month' => false,
-      'moon_age' => 23.930738685652614,
-      'moon_phase_angle' => 283.80866938257407,
+      'moon_age' => 23.933,
+      'moon_phase_angle' => 284.98511857412257,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-01-16 00:00:00' => 
+  '2015-01-16 09:00:00' =>
   array (
-    0 => '2015-01-16 00:00:00',
-    1 => 
+    0 => '2015-01-16 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 1,
       'day' => 16,
       'dayOfWeek' => 5,
       'dayOfYear' => 16,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1421334000,
-      'formatted' => '2015-01-16 00:00:00',
-      'timezone' => 
+      'timestamp' => 1421366400,
+      'formatted' => '2015-01-16 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -1276,29 +1046,29 @@ return array (
       'lunar_year' => 2014,
       'lunar_day' => 26,
       'is_leap_month' => false,
-      'moon_age' => 24.930518832523376,
-      'moon_phase_angle' => 295.554554861824,
+      'moon_age' => 24.933,
+      'moon_phase_angle' => 296.78257346060093,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-01-17 00:00:00' => 
+  '2015-01-17 09:00:00' =>
   array (
-    0 => '2015-01-17 00:00:00',
-    1 => 
+    0 => '2015-01-17 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 1,
       'day' => 17,
       'dayOfWeek' => 6,
       'dayOfYear' => 17,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1421420400,
-      'formatted' => '2015-01-17 00:00:00',
-      'timezone' => 
+      'timestamp' => 1421452800,
+      'formatted' => '2015-01-17 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -1334,29 +1104,29 @@ return array (
       'lunar_year' => 2014,
       'lunar_day' => 27,
       'is_leap_month' => false,
-      'moon_age' => 25.93065496487543,
-      'moon_phase_angle' => 307.7434750545972,
+      'moon_age' => 25.933,
+      'moon_phase_angle' => 309.0302525661698,
       'moon_phase' => 7,
       'moon_phase_text' => '有明',
     ),
   ),
-  '2015-01-18 00:00:00' => 
+  '2015-01-18 09:00:00' =>
   array (
-    0 => '2015-01-18 00:00:00',
-    1 => 
+    0 => '2015-01-18 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 1,
       'day' => 18,
       'dayOfWeek' => 0,
       'dayOfYear' => 18,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1421506800,
-      'formatted' => '2015-01-18 00:00:00',
-      'timezone' => 
+      'timestamp' => 1421539200,
+      'formatted' => '2015-01-18 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -1392,29 +1162,29 @@ return array (
       'lunar_year' => 2014,
       'lunar_day' => 28,
       'is_leap_month' => false,
-      'moon_age' => 26.683662689434676,
-      'moon_phase_angle' => 320.4159770258522,
+      'moon_age' => 26.933,
+      'moon_phase_angle' => 321.7640970737413,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-01-19 00:00:00' => 
+  '2015-01-19 09:00:00' =>
   array (
-    0 => '2015-01-19 00:00:00',
-    1 => 
+    0 => '2015-01-19 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 1,
       'day' => 19,
       'dayOfWeek' => 1,
       'dayOfYear' => 19,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1421593200,
-      'formatted' => '2015-01-19 00:00:00',
-      'timezone' => 
+      'timestamp' => 1421625600,
+      'formatted' => '2015-01-19 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -1450,29 +1220,29 @@ return array (
       'lunar_year' => 2014,
       'lunar_day' => 29,
       'is_leap_month' => false,
-      'moon_age' => 27.776401305249273,
-      'moon_phase_angle' => 333.56882907510516,
+      'moon_age' => 27.933,
+      'moon_phase_angle' => 334.9742305880955,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-01-20 00:00:00' => 
+  '2015-01-20 09:00:00' =>
   array (
-    0 => '2015-01-20 00:00:00',
-    1 => 
+    0 => '2015-01-20 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 1,
       'day' => 20,
       'dayOfWeek' => 2,
       'dayOfYear' => 20,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1421679600,
-      'formatted' => '2015-01-20 00:00:00',
-      'timezone' => 
+      'timestamp' => 1421712000,
+      'formatted' => '2015-01-20 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -1508,74 +1278,16 @@ return array (
       'lunar_year' => 2014,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 28.900919352336167,
-      'moon_phase_angle' => 347.144922940244,
+      'moon_age' => 28.933,
+      'moon_phase_angle' => 348.5960975284863,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2015-01-20 21:00:00' => 
+  '2015-01-20 22:14:00' =>
   array (
-    0 => '2015-01-20 21:00:00',
-    1 => 
-    array (
-      'year' => 2015,
-      'month' => 1,
-      'day' => 20,
-      'dayOfWeek' => 2,
-      'dayOfYear' => 20,
-      'hour' => 21,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1421755200,
-      'formatted' => '2015-01-20 21:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 7,
-      'misc_seasonal_node_text' => '土用',
-      'solar_term' => 20,
-      'solar_term_text' => '大寒',
-      'is_solar_term' => true,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 27,
-      'oriental_zodiac_text' => '未',
-      'oriental_zodiac' => 8,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '赤口',
-      'six_weekday' => 1,
-      'weekday_text' => '火',
-      'month_text' => '睦月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '師走',
-      'lunar_month' => 12,
-      'lunar_year' => 2014,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.316741269081831,
-      'moon_phase_angle' => 359.28470117862963,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2015-01-20 22:00:00' => 
-  array (
-    0 => '2015-01-20 22:00:00',
-    1 => 
+    0 => '2015-01-20 22:14:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 1,
@@ -1583,12 +1295,12 @@ return array (
       'dayOfWeek' => 2,
       'dayOfYear' => 20,
       'hour' => 22,
-      'minute' => 0,
+      'minute' => 14,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1421758800,
-      'formatted' => '2015-01-20 22:00:00',
-      'timezone' => 
+      'timestamp' => 1421759640,
+      'formatted' => '2015-01-20 22:14:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -1624,87 +1336,29 @@ return array (
       'lunar_year' => 2014,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.35748561611399055,
-      'moon_phase_angle' => 359.86709964054364,
+      'moon_age' => 0.0,
+      'moon_phase_angle' => 356.2422301525446,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2015-01-20 23:00:00' => 
+  '2015-01-21 09:00:00' =>
   array (
-    0 => '2015-01-20 23:00:00',
-    1 => 
-    array (
-      'year' => 2015,
-      'month' => 1,
-      'day' => 20,
-      'dayOfWeek' => 2,
-      'dayOfYear' => 20,
-      'hour' => 23,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1421762400,
-      'formatted' => '2015-01-20 23:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 7,
-      'misc_seasonal_node_text' => '土用',
-      'solar_term' => 20,
-      'solar_term_text' => '大寒',
-      'is_solar_term' => true,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 27,
-      'oriental_zodiac_text' => '未',
-      'oriental_zodiac' => 8,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '赤口',
-      'six_weekday' => 1,
-      'weekday_text' => '火',
-      'month_text' => '睦月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '師走',
-      'lunar_month' => 12,
-      'lunar_year' => 2014,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.39823323814198375,
-      'moon_phase_angle' => 0.44980113778666464,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2015-01-21 00:00:00' => 
-  array (
-    0 => '2015-01-21 00:00:00',
-    1 => 
+    0 => '2015-01-21 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 1,
       'day' => 21,
       'dayOfWeek' => 3,
       'dayOfYear' => 21,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1421766000,
-      'formatted' => '2015-01-21 00:00:00',
-      'timezone' => 
+      'timestamp' => 1421798400,
+      'formatted' => '2015-01-21 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -1740,29 +1394,29 @@ return array (
       'lunar_year' => 2014,
       'lunar_day' => 2,
       'is_leap_month' => false,
-      'moon_age' => 0.4389696861617267,
-      'moon_phase_angle' => 1.0327936069426187,
+      'moon_age' => 0.449,
+      'moon_phase_angle' => 2.51224310216287,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-01-22 00:00:00' => 
+  '2015-01-22 09:00:00' =>
   array (
-    0 => '2015-01-22 00:00:00',
-    1 => 
+    0 => '2015-01-22 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 1,
       'day' => 22,
       'dayOfWeek' => 4,
       'dayOfYear' => 22,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1421852400,
-      'formatted' => '2015-01-22 00:00:00',
-      'timezone' => 
+      'timestamp' => 1421884800,
+      'formatted' => '2015-01-22 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -1798,29 +1452,29 @@ return array (
       'lunar_year' => 2014,
       'lunar_day' => 3,
       'is_leap_month' => false,
-      'moon_age' => 1.4167226091958582,
-      'moon_phase_angle' => 15.079971482749158,
+      'moon_age' => 1.449,
+      'moon_phase_angle' => 16.567479349821156,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-01-23 00:00:00' => 
+  '2015-01-23 09:00:00' =>
   array (
-    0 => '2015-01-23 00:00:00',
-    1 => 
+    0 => '2015-01-23 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 1,
       'day' => 23,
       'dayOfWeek' => 5,
       'dayOfYear' => 23,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1421938800,
-      'formatted' => '2015-01-23 00:00:00',
-      'timezone' => 
+      'timestamp' => 1421971200,
+      'formatted' => '2015-01-23 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -1856,29 +1510,29 @@ return array (
       'lunar_year' => 2014,
       'lunar_day' => 4,
       'is_leap_month' => false,
-      'moon_age' => 2.395683985669166,
-      'moon_phase_angle' => 29.118707671028176,
+      'moon_age' => 2.449,
+      'moon_phase_angle' => 30.594803892892514,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-01-24 00:00:00' => 
+  '2015-01-24 09:00:00' =>
   array (
-    0 => '2015-01-24 00:00:00',
-    1 => 
+    0 => '2015-01-24 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 1,
       'day' => 24,
       'dayOfWeek' => 6,
       'dayOfYear' => 24,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1422025200,
-      'formatted' => '2015-01-24 00:00:00',
-      'timezone' => 
+      'timestamp' => 1422057600,
+      'formatted' => '2015-01-24 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -1914,29 +1568,29 @@ return array (
       'lunar_year' => 2014,
       'lunar_day' => 5,
       'is_leap_month' => false,
-      'moon_age' => 3.3774326513521373,
-      'moon_phase_angle' => 42.99587204064562,
+      'moon_age' => 3.449,
+      'moon_phase_angle' => 44.44430624635078,
       'moon_phase' => 1,
       'moon_phase_text' => '三日月',
     ),
   ),
-  '2015-01-25 00:00:00' => 
+  '2015-01-25 09:00:00' =>
   array (
-    0 => '2015-01-25 00:00:00',
-    1 => 
+    0 => '2015-01-25 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 1,
       'day' => 25,
       'dayOfWeek' => 0,
       'dayOfYear' => 25,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1422111600,
-      'formatted' => '2015-01-25 00:00:00',
-      'timezone' => 
+      'timestamp' => 1422144000,
+      'formatted' => '2015-01-25 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -1972,29 +1626,29 @@ return array (
       'lunar_year' => 2014,
       'lunar_day' => 6,
       'is_leap_month' => false,
-      'moon_age' => 4.362967600580305,
-      'moon_phase_angle' => 56.5963576948659,
+      'moon_age' => 4.449,
+      'moon_phase_angle' => 58.00562387510007,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-01-26 00:00:00' => 
+  '2015-01-26 09:00:00' =>
   array (
-    0 => '2015-01-26 00:00:00',
-    1 => 
+    0 => '2015-01-26 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 1,
       'day' => 26,
       'dayOfWeek' => 1,
       'dayOfYear' => 26,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1422198000,
-      'formatted' => '2015-01-26 00:00:00',
-      'timezone' => 
+      'timestamp' => 1422230400,
+      'formatted' => '2015-01-26 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -2030,29 +1684,29 @@ return array (
       'lunar_year' => 2014,
       'lunar_day' => 7,
       'is_leap_month' => false,
-      'moon_age' => 5.352660108823329,
-      'moon_phase_angle' => 69.85328613874123,
+      'moon_age' => 5.449,
+      'moon_phase_angle' => 71.21752922857752,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-01-27 00:00:00' => 
+  '2015-01-27 09:00:00' =>
   array (
-    0 => '2015-01-27 00:00:00',
-    1 => 
+    0 => '2015-01-27 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 1,
       'day' => 27,
       'dayOfWeek' => 2,
       'dayOfYear' => 27,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1422284400,
-      'formatted' => '2015-01-27 00:00:00',
-      'timezone' => 
+      'timestamp' => 1422316800,
+      'formatted' => '2015-01-27 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -2088,29 +1742,29 @@ return array (
       'lunar_year' => 2014,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 6.346455372869968,
-      'moon_phase_angle' => 82.74516671002385,
+      'moon_age' => 6.449,
+      'moon_phase_angle' => 84.06414161459986,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2015-01-27 14:00:00' => 
+  '2015-01-27 13:48:00' =>
   array (
-    0 => '2015-01-27 14:00:00',
-    1 => 
+    0 => '2015-01-27 13:48:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 1,
       'day' => 27,
       'dayOfWeek' => 2,
       'dayOfYear' => 27,
-      'hour' => 14,
-      'minute' => 0,
+      'hour' => 13,
+      'minute' => 48,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1422334800,
-      'formatted' => '2015-01-27 14:00:00',
-      'timezone' => 
+      'timestamp' => 1422334080,
+      'formatted' => '2015-01-27 13:48:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -2146,29 +1800,29 @@ return array (
       'lunar_year' => 2014,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 6.9279261585325,
-      'moon_phase_angle' => 90.10094987709004,
+      'moon_age' => 6.648611111111111,
+      'moon_phase_angle' => 86.59071709648572,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2015-01-28 00:00:00' => 
+  '2015-01-28 09:00:00' =>
   array (
-    0 => '2015-01-28 00:00:00',
-    1 => 
+    0 => '2015-01-28 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 1,
       'day' => 28,
       'dayOfWeek' => 3,
       'dayOfYear' => 28,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1422370800,
-      'formatted' => '2015-01-28 00:00:00',
-      'timezone' => 
+      'timestamp' => 1422403200,
+      'formatted' => '2015-01-28 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -2204,29 +1858,29 @@ return array (
       'lunar_year' => 2014,
       'lunar_day' => 9,
       'is_leap_month' => false,
-      'moon_age' => 7.343997975345701,
-      'moon_phase_angle' => 95.28486718034867,
+      'moon_age' => 7.449,
+      'moon_phase_angle' => 96.56249117919555,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-01-29 00:00:00' => 
+  '2015-01-29 09:00:00' =>
   array (
-    0 => '2015-01-29 00:00:00',
-    1 => 
+    0 => '2015-01-29 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 1,
       'day' => 29,
       'dayOfWeek' => 4,
       'dayOfYear' => 29,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1422457200,
-      'formatted' => '2015-01-29 00:00:00',
-      'timezone' => 
+      'timestamp' => 1422489600,
+      'formatted' => '2015-01-29 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -2262,29 +1916,29 @@ return array (
       'lunar_year' => 2014,
       'lunar_day' => 10,
       'is_leap_month' => false,
-      'moon_age' => 8.34485087916255,
-      'moon_phase_angle' => 107.50601922505567,
+      'moon_age' => 8.449,
+      'moon_phase_angle' => 108.74796156527643,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-01-30 00:00:00' => 
+  '2015-01-30 09:00:00' =>
   array (
-    0 => '2015-01-30 00:00:00',
-    1 => 
+    0 => '2015-01-30 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 1,
       'day' => 30,
       'dayOfWeek' => 5,
       'dayOfYear' => 30,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1422543600,
-      'formatted' => '2015-01-30 00:00:00',
-      'timezone' => 
+      'timestamp' => 1422576000,
+      'formatted' => '2015-01-30 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -2320,29 +1974,29 @@ return array (
       'lunar_year' => 2014,
       'lunar_day' => 11,
       'is_leap_month' => false,
-      'moon_age' => 9.348553662188351,
-      'moon_phase_angle' => 119.45080157021215,
+      'moon_age' => 9.449,
+      'moon_phase_angle' => 120.66237503558321,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-01-31 00:00:00' => 
+  '2015-01-31 09:00:00' =>
   array (
-    0 => '2015-01-31 00:00:00',
-    1 => 
+    0 => '2015-01-31 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 1,
       'day' => 31,
       'dayOfWeek' => 6,
       'dayOfYear' => 31,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1422630000,
-      'formatted' => '2015-01-31 00:00:00',
-      'timezone' => 
+      'timestamp' => 1422662400,
+      'formatted' => '2015-01-31 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -2378,29 +2032,29 @@ return array (
       'lunar_year' => 2014,
       'lunar_day' => 12,
       'is_leap_month' => false,
-      'moon_age' => 10.35470327315852,
-      'moon_phase_angle' => 131.1609739016592,
+      'moon_age' => 10.449,
+      'moon_phase_angle' => 132.34629424111415,
       'moon_phase' => 3,
       'moon_phase_text' => '十三夜',
     ),
   ),
-  '2015-02-01 00:00:00' => 
+  '2015-02-01 09:00:00' =>
   array (
-    0 => '2015-02-01 00:00:00',
-    1 => 
+    0 => '2015-02-01 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 2,
       'day' => 1,
       'dayOfWeek' => 0,
       'dayOfYear' => 32,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1422716400,
-      'formatted' => '2015-02-01 00:00:00',
-      'timezone' => 
+      'timestamp' => 1422748800,
+      'formatted' => '2015-02-01 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -2436,29 +2090,29 @@ return array (
       'lunar_year' => 2014,
       'lunar_day' => 13,
       'is_leap_month' => false,
-      'moon_age' => 11.362983025144786,
-      'moon_phase_angle' => 142.67260713581072,
+      'moon_age' => 11.449,
+      'moon_phase_angle' => 143.83489292741854,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-02-02 00:00:00' => 
+  '2015-02-02 09:00:00' =>
   array (
-    0 => '2015-02-02 00:00:00',
-    1 => 
+    0 => '2015-02-02 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 2,
       'day' => 2,
       'dayOfWeek' => 1,
       'dayOfYear' => 33,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1422802800,
-      'formatted' => '2015-02-02 00:00:00',
-      'timezone' => 
+      'timestamp' => 1422835200,
+      'formatted' => '2015-02-02 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -2494,29 +2148,29 @@ return array (
       'lunar_year' => 2014,
       'lunar_day' => 14,
       'is_leap_month' => false,
-      'moon_age' => 12.373154277913272,
-      'moon_phase_angle' => 154.01417470109385,
+      'moon_age' => 12.449,
+      'moon_phase_angle' => 155.15636137822045,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-02-03 00:00:00' => 
+  '2015-02-03 09:00:00' =>
   array (
-    0 => '2015-02-03 00:00:00',
-    1 => 
+    0 => '2015-02-03 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 2,
       'day' => 3,
       'dayOfWeek' => 2,
       'dayOfYear' => 34,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1422889200,
-      'formatted' => '2015-02-03 00:00:00',
-      'timezone' => 
+      'timestamp' => 1422921600,
+      'formatted' => '2015-02-03 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -2552,132 +2206,16 @@ return array (
       'lunar_year' => 2014,
       'lunar_day' => 15,
       'is_leap_month' => false,
-      'moon_age' => 13.385076558217406,
-      'moon_phase_angle' => 165.20746049153303,
+      'moon_age' => 13.449,
+      'moon_phase_angle' => 166.3324130155512,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-02-04 00:00:00' => 
+  '2015-02-04 08:09:00' =>
   array (
-    0 => '2015-02-04 00:00:00',
-    1 => 
-    array (
-      'year' => 2015,
-      'month' => 2,
-      'day' => 4,
-      'dayOfWeek' => 3,
-      'dayOfYear' => 35,
-      'hour' => 0,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1422975600,
-      'formatted' => '2015-02-04 00:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => 21,
-      'solar_term_text' => '立春',
-      'is_solar_term' => true,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 27,
-      'oriental_zodiac_text' => '未',
-      'oriental_zodiac' => 8,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '先負',
-      'six_weekday' => 4,
-      'weekday_text' => '水',
-      'month_text' => '如月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '師走',
-      'lunar_month' => 12,
-      'lunar_year' => 2014,
-      'lunar_day' => 16,
-      'is_leap_month' => false,
-      'moon_age' => 14.398569223936647,
-      'moon_phase_angle' => 176.27037041961842,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2015-02-04 07:00:00' => 
-  array (
-    0 => '2015-02-04 07:00:00',
-    1 => 
-    array (
-      'year' => 2015,
-      'month' => 2,
-      'day' => 4,
-      'dayOfWeek' => 3,
-      'dayOfYear' => 35,
-      'hour' => 7,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1423000800,
-      'formatted' => '2015-02-04 07:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => 21,
-      'solar_term_text' => '立春',
-      'is_solar_term' => true,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 27,
-      'oriental_zodiac_text' => '未',
-      'oriental_zodiac' => 8,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '先負',
-      'six_weekday' => 4,
-      'weekday_text' => '水',
-      'month_text' => '如月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '師走',
-      'lunar_month' => 12,
-      'lunar_year' => 2014,
-      'lunar_day' => 16,
-      'is_leap_month' => false,
-      'moon_age' => 14.694436382967979,
-      'moon_phase_angle' => 179.47500566622674,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2015-02-04 08:00:00' => 
-  array (
-    0 => '2015-02-04 08:00:00',
-    1 => 
+    0 => '2015-02-04 08:09:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 2,
@@ -2685,12 +2223,12 @@ return array (
       'dayOfWeek' => 3,
       'dayOfYear' => 35,
       'hour' => 8,
-      'minute' => 0,
+      'minute' => 9,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1423004400,
-      'formatted' => '2015-02-04 08:00:00',
-      'timezone' => 
+      'timestamp' => 1423004940,
+      'formatted' => '2015-02-04 08:09:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -2726,16 +2264,16 @@ return array (
       'lunar_year' => 2014,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 14.736723107751459,
-      'moon_phase_angle' => 179.93205590133525,
+      'moon_age' => 14.413194444444445,
+      'moon_phase_angle' => 176.99150536519568,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2015-02-04 09:00:00' => 
+  '2015-02-04 09:00:00' =>
   array (
     0 => '2015-02-04 09:00:00',
-    1 => 
+    1 =>
     array (
       'year' => 2015,
       'month' => 2,
@@ -2748,7 +2286,7 @@ return array (
       'micro' => 0,
       'timestamp' => 1423008000,
       'formatted' => '2015-02-04 09:00:00',
-      'timezone' => 
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -2784,145 +2322,29 @@ return array (
       'lunar_year' => 2014,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 14.778999058995396,
-      'moon_phase_angle' => 180.3889218266019,
+      'moon_age' => 14.449,
+      'moon_phase_angle' => 177.38081431271473,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2015-02-04 10:00:00' => 
+  '2015-02-05 09:00:00' =>
   array (
-    0 => '2015-02-04 10:00:00',
-    1 => 
-    array (
-      'year' => 2015,
-      'month' => 2,
-      'day' => 4,
-      'dayOfWeek' => 3,
-      'dayOfYear' => 35,
-      'hour' => 10,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1423011600,
-      'formatted' => '2015-02-04 10:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => 21,
-      'solar_term_text' => '立春',
-      'is_solar_term' => true,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 27,
-      'oriental_zodiac_text' => '未',
-      'oriental_zodiac' => 8,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '先負',
-      'six_weekday' => 4,
-      'weekday_text' => '水',
-      'month_text' => '如月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '師走',
-      'lunar_month' => 12,
-      'lunar_year' => 2014,
-      'lunar_day' => 16,
-      'is_leap_month' => false,
-      'moon_age' => 14.821277607232332,
-      'moon_phase_angle' => 180.84560495412234,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2015-02-04 11:00:00' => 
-  array (
-    0 => '2015-02-04 11:00:00',
-    1 => 
-    array (
-      'year' => 2015,
-      'month' => 2,
-      'day' => 4,
-      'dayOfWeek' => 3,
-      'dayOfYear' => 35,
-      'hour' => 11,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1423015200,
-      'formatted' => '2015-02-04 11:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => 21,
-      'solar_term_text' => '立春',
-      'is_solar_term' => true,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 27,
-      'oriental_zodiac_text' => '未',
-      'oriental_zodiac' => 8,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '先負',
-      'six_weekday' => 4,
-      'weekday_text' => '水',
-      'month_text' => '如月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '師走',
-      'lunar_month' => 12,
-      'lunar_year' => 2014,
-      'lunar_day' => 16,
-      'is_leap_month' => false,
-      'moon_age' => 14.863563562743366,
-      'moon_phase_angle' => 181.30210681338775,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2015-02-05 00:00:00' => 
-  array (
-    0 => '2015-02-05 00:00:00',
-    1 => 
+    0 => '2015-02-05 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 2,
       'day' => 5,
       'dayOfWeek' => 4,
       'dayOfYear' => 36,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1423062000,
-      'formatted' => '2015-02-05 00:00:00',
-      'timezone' => 
+      'timestamp' => 1423094400,
+      'formatted' => '2015-02-05 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -2958,29 +2380,29 @@ return array (
       'lunar_year' => 2014,
       'lunar_day' => 17,
       'is_leap_month' => false,
-      'moon_age' => 15.413468359038234,
-      'moon_phase_angle' => 187.22086322410703,
+      'moon_age' => 15.449,
+      'moon_phase_angle' => 188.31945868952184,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-02-06 00:00:00' => 
+  '2015-02-06 09:00:00' =>
   array (
-    0 => '2015-02-06 00:00:00',
-    1 => 
+    0 => '2015-02-06 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 2,
       'day' => 6,
       'dayOfWeek' => 5,
       'dayOfYear' => 37,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1423148400,
-      'formatted' => '2015-02-06 00:00:00',
-      'timezone' => 
+      'timestamp' => 1423180800,
+      'formatted' => '2015-02-06 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -3016,29 +2438,29 @@ return array (
       'lunar_year' => 2014,
       'lunar_day' => 18,
       'is_leap_month' => false,
-      'moon_age' => 16.429504552390426,
-      'moon_phase_angle' => 198.08110776177756,
+      'moon_age' => 16.449,
+      'moon_phase_angle' => 199.1709267713717,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-02-07 00:00:00' => 
+  '2015-02-07 09:00:00' =>
   array (
-    0 => '2015-02-07 00:00:00',
-    1 => 
+    0 => '2015-02-07 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 2,
       'day' => 7,
       'dayOfWeek' => 6,
       'dayOfYear' => 38,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1423234800,
-      'formatted' => '2015-02-07 00:00:00',
-      'timezone' => 
+      'timestamp' => 1423267200,
+      'formatted' => '2015-02-07 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -3074,29 +2496,29 @@ return array (
       'lunar_year' => 2014,
       'lunar_day' => 19,
       'is_leap_month' => false,
-      'moon_age' => 17.44630561117083,
-      'moon_phase_angle' => 208.88114898730888,
+      'moon_age' => 17.449,
+      'moon_phase_angle' => 209.96636190765403,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-02-08 00:00:00' => 
+  '2015-02-08 09:00:00' =>
   array (
-    0 => '2015-02-08 00:00:00',
-    1 => 
+    0 => '2015-02-08 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 2,
       'day' => 8,
       'dayOfWeek' => 0,
       'dayOfYear' => 39,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1423321200,
-      'formatted' => '2015-02-08 00:00:00',
-      'timezone' => 
+      'timestamp' => 1423353600,
+      'formatted' => '2015-02-08 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -3132,29 +2554,29 @@ return array (
       'lunar_year' => 2014,
       'lunar_day' => 20,
       'is_leap_month' => false,
-      'moon_age' => 18.446698105428368,
-      'moon_phase_angle' => 219.66157911032752,
+      'moon_age' => 18.449,
+      'moon_phase_angle' => 220.7479558923809,
       'moon_phase' => 5,
       'moon_phase_text' => '十六夜',
     ),
   ),
-  '2015-02-09 00:00:00' => 
+  '2015-02-09 09:00:00' =>
   array (
-    0 => '2015-02-09 00:00:00',
-    1 => 
+    0 => '2015-02-09 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 2,
       'day' => 9,
       'dayOfWeek' => 1,
       'dayOfYear' => 40,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1423407600,
-      'formatted' => '2015-02-09 00:00:00',
-      'timezone' => 
+      'timestamp' => 1423440000,
+      'formatted' => '2015-02-09 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -3190,29 +2612,29 @@ return array (
       'lunar_year' => 2014,
       'lunar_day' => 21,
       'is_leap_month' => false,
-      'moon_age' => 19.444275739137083,
-      'moon_phase_angle' => 230.47493765814474,
+      'moon_age' => 19.449,
+      'moon_phase_angle' => 231.5699249351379,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-02-10 00:00:00' => 
+  '2015-02-10 09:00:00' =>
   array (
-    0 => '2015-02-10 00:00:00',
-    1 => 
+    0 => '2015-02-10 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 2,
       'day' => 10,
       'dayOfWeek' => 2,
       'dayOfYear' => 41,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1423494000,
-      'formatted' => '2015-02-10 00:00:00',
-      'timezone' => 
+      'timestamp' => 1423526400,
+      'formatted' => '2015-02-10 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -3248,29 +2670,29 @@ return array (
       'lunar_year' => 2014,
       'lunar_day' => 22,
       'is_leap_month' => false,
-      'moon_age' => 20.44207156356424,
-      'moon_phase_angle' => 241.38570396873604,
+      'moon_age' => 20.449,
+      'moon_phase_angle' => 242.4981162595508,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-02-11 00:00:00' => 
+  '2015-02-11 09:00:00' =>
   array (
-    0 => '2015-02-11 00:00:00',
-    1 => 
+    0 => '2015-02-11 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 2,
       'day' => 11,
       'dayOfWeek' => 3,
       'dayOfYear' => 42,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1423580400,
-      'formatted' => '2015-02-11 00:00:00',
-      'timezone' => 
+      'timestamp' => 1423612800,
+      'formatted' => '2015-02-11 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -3306,29 +2728,29 @@ return array (
       'lunar_year' => 2014,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 21.44020658545196,
-      'moon_phase_angle' => 252.46874393326965,
+      'moon_age' => 21.449,
+      'moon_phase_angle' => 253.6082592889949,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-02-12 00:00:00' => 
+  '2015-02-12 09:00:00' =>
   array (
-    0 => '2015-02-12 00:00:00',
-    1 => 
+    0 => '2015-02-12 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 2,
       'day' => 12,
       'dayOfWeek' => 4,
       'dayOfYear' => 43,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1423666800,
-      'formatted' => '2015-02-12 00:00:00',
-      'timezone' => 
+      'timestamp' => 1423699200,
+      'formatted' => '2015-02-12 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -3364,29 +2786,29 @@ return array (
       'lunar_year' => 2014,
       'lunar_day' => 24,
       'is_leap_month' => false,
-      'moon_age' => 22.438874629326165,
-      'moon_phase_angle' => 263.805932409368,
+      'moon_age' => 22.449,
+      'moon_phase_angle' => 264.98254979609624,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2015-02-12 14:00:00' => 
+  '2015-02-12 12:50:00' =>
   array (
-    0 => '2015-02-12 14:00:00',
-    1 => 
+    0 => '2015-02-12 12:50:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 2,
       'day' => 12,
       'dayOfWeek' => 4,
       'dayOfYear' => 43,
-      'hour' => 14,
-      'minute' => 0,
+      'hour' => 12,
+      'minute' => 50,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1423717200,
-      'formatted' => '2015-02-12 14:00:00',
-      'timezone' => 
+      'timestamp' => 1423713000,
+      'formatted' => '2015-02-12 12:50:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -3422,29 +2844,29 @@ return array (
       'lunar_year' => 2014,
       'lunar_day' => 24,
       'is_leap_month' => false,
-      'moon_age' => 23.021717300638556,
-      'moon_phase_angle' => 270.56992093752785,
+      'moon_age' => 22.608333333333334,
+      'moon_phase_angle' => 266.82932868609635,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2015-02-13 00:00:00' => 
+  '2015-02-13 09:00:00' =>
   array (
-    0 => '2015-02-13 00:00:00',
-    1 => 
+    0 => '2015-02-13 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 2,
       'day' => 13,
       'dayOfWeek' => 5,
       'dayOfYear' => 44,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1423753200,
-      'formatted' => '2015-02-13 00:00:00',
-      'timezone' => 
+      'timestamp' => 1423785600,
+      'formatted' => '2015-02-13 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -3480,29 +2902,29 @@ return array (
       'lunar_year' => 2014,
       'lunar_day' => 25,
       'is_leap_month' => false,
-      'moon_age' => 23.438204429112375,
-      'moon_phase_angle' => 275.48046405976294,
+      'moon_age' => 23.449,
+      'moon_phase_angle' => 276.7039039087677,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-02-14 00:00:00' => 
+  '2015-02-14 09:00:00' =>
   array (
-    0 => '2015-02-14 00:00:00',
-    1 => 
+    0 => '2015-02-14 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 2,
       'day' => 14,
       'dayOfWeek' => 6,
       'dayOfYear' => 45,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1423839600,
-      'formatted' => '2015-02-14 00:00:00',
-      'timezone' => 
+      'timestamp' => 1423872000,
+      'formatted' => '2015-02-14 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -3538,29 +2960,29 @@ return array (
       'lunar_year' => 2014,
       'lunar_day' => 26,
       'is_leap_month' => false,
-      'moon_age' => 24.438321348745376,
-      'moon_phase_angle' => 287.56826213848944,
+      'moon_age' => 24.449,
+      'moon_phase_angle' => 288.84704362215393,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-02-15 00:00:00' => 
+  '2015-02-15 09:00:00' =>
   array (
-    0 => '2015-02-15 00:00:00',
-    1 => 
+    0 => '2015-02-15 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 2,
       'day' => 15,
       'dayOfWeek' => 0,
       'dayOfYear' => 46,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1423926000,
-      'formatted' => '2015-02-15 00:00:00',
-      'timezone' => 
+      'timestamp' => 1423958400,
+      'formatted' => '2015-02-15 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -3596,29 +3018,29 @@ return array (
       'lunar_year' => 2014,
       'lunar_day' => 27,
       'is_leap_month' => false,
-      'moon_age' => 25.439329208340496,
-      'moon_phase_angle' => 300.12618464363896,
+      'moon_age' => 25.449,
+      'moon_phase_angle' => 301.46601242050093,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-02-16 00:00:00' => 
+  '2015-02-16 09:00:00' =>
   array (
-    0 => '2015-02-16 00:00:00',
-    1 => 
+    0 => '2015-02-16 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 2,
       'day' => 16,
       'dayOfWeek' => 1,
       'dayOfYear' => 47,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1424012400,
-      'formatted' => '2015-02-16 00:00:00',
-      'timezone' => 
+      'timestamp' => 1424044800,
+      'formatted' => '2015-02-16 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -3654,29 +3076,29 @@ return array (
       'lunar_year' => 2014,
       'lunar_day' => 28,
       'is_leap_month' => false,
-      'moon_age' => 26.441220520529896,
-      'moon_phase_angle' => 313.1777759203852,
+      'moon_age' => 26.449,
+      'moon_phase_angle' => 314.579253765011,
       'moon_phase' => 7,
       'moon_phase_text' => '有明',
     ),
   ),
-  '2015-02-17 00:00:00' => 
+  '2015-02-17 09:00:00' =>
   array (
-    0 => '2015-02-17 00:00:00',
-    1 => 
+    0 => '2015-02-17 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 2,
       'day' => 17,
       'dayOfWeek' => 2,
       'dayOfYear' => 48,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1424098800,
-      'formatted' => '2015-02-17 00:00:00',
-      'timezone' => 
+      'timestamp' => 1424131200,
+      'formatted' => '2015-02-17 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -3712,29 +3134,29 @@ return array (
       'lunar_year' => 2014,
       'lunar_day' => 29,
       'is_leap_month' => false,
-      'moon_age' => 27.223642090479224,
-      'moon_phase_angle' => 326.6993029560525,
+      'moon_age' => 27.449,
+      'moon_phase_angle' => 328.15584391404246,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-02-18 00:00:00' => 
+  '2015-02-18 09:00:00' =>
   array (
-    0 => '2015-02-18 00:00:00',
-    1 => 
+    0 => '2015-02-18 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 2,
       'day' => 18,
       'dayOfWeek' => 3,
       'dayOfYear' => 49,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1424185200,
-      'formatted' => '2015-02-18 00:00:00',
-      'timezone' => 
+      'timestamp' => 1424217600,
+      'formatted' => '2015-02-18 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -3770,74 +3192,16 @@ return array (
       'lunar_year' => 2014,
       'lunar_day' => 30,
       'is_leap_month' => false,
-      'moon_age' => 28.37422174089992,
-      'moon_phase_angle' => 340.6111476041748,
+      'moon_age' => 28.449,
+      'moon_phase_angle' => 342.1085046142482,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-02-19 00:00:00' => 
+  '2015-02-19 08:47:00' =>
   array (
-    0 => '2015-02-19 00:00:00',
-    1 => 
-    array (
-      'year' => 2015,
-      'month' => 2,
-      'day' => 19,
-      'dayOfWeek' => 4,
-      'dayOfYear' => 50,
-      'hour' => 0,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1424271600,
-      'formatted' => '2015-02-19 00:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => 22,
-      'solar_term_text' => '雨水',
-      'is_solar_term' => true,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 27,
-      'oriental_zodiac_text' => '未',
-      'oriental_zodiac' => 8,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '先勝',
-      'six_weekday' => 2,
-      'weekday_text' => '木',
-      'month_text' => '如月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '睦月',
-      'lunar_month' => 1,
-      'lunar_year' => 2015,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.008595725987106562,
-      'moon_phase_angle' => 354.780472869722,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2015-02-19 08:00:00' => 
-  array (
-    0 => '2015-02-19 08:00:00',
-    1 => 
+    0 => '2015-02-19 08:47:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 2,
@@ -3845,12 +3209,12 @@ return array (
       'dayOfWeek' => 4,
       'dayOfYear' => 50,
       'hour' => 8,
-      'minute' => 0,
+      'minute' => 47,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1424300400,
-      'formatted' => '2015-02-19 08:00:00',
-      'timezone' => 
+      'timestamp' => 1424303220,
+      'formatted' => '2015-02-19 08:47:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -3886,16 +3250,16 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.33229814236983657,
-      'moon_phase_angle' => 359.53212078169884,
+      'moon_age' => 0.0,
+      'moon_phase_angle' => 356.16999737253,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2015-02-19 09:00:00' => 
+  '2015-02-19 09:00:00' =>
   array (
     0 => '2015-02-19 09:00:00',
-    1 => 
+    1 =>
     array (
       'year' => 2015,
       'month' => 2,
@@ -3908,7 +3272,7 @@ return array (
       'micro' => 0,
       'timestamp' => 1424304000,
       'formatted' => '2015-02-19 09:00:00',
-      'timezone' => 
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -3944,87 +3308,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.37276450963690877,
-      'moon_phase_angle' => 0.12643817345445996,
+      'moon_age' => 0.009,
+      'moon_phase_angle' => 356.29866985214596,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2015-02-19 10:00:00' => 
+  '2015-02-20 09:00:00' =>
   array (
-    0 => '2015-02-19 10:00:00',
-    1 => 
-    array (
-      'year' => 2015,
-      'month' => 2,
-      'day' => 19,
-      'dayOfWeek' => 4,
-      'dayOfYear' => 50,
-      'hour' => 10,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1424307600,
-      'formatted' => '2015-02-19 10:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => 22,
-      'solar_term_text' => '雨水',
-      'is_solar_term' => true,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 27,
-      'oriental_zodiac_text' => '未',
-      'oriental_zodiac' => 8,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '先勝',
-      'six_weekday' => 2,
-      'weekday_text' => '木',
-      'month_text' => '如月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '睦月',
-      'lunar_month' => 1,
-      'lunar_year' => 2015,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.4132243823260069,
-      'moon_phase_angle' => 0.7207920055599857,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2015-02-20 00:00:00' => 
-  array (
-    0 => '2015-02-20 00:00:00',
-    1 => 
+    0 => '2015-02-20 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 2,
       'day' => 20,
       'dayOfWeek' => 5,
       'dayOfYear' => 51,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1424358000,
-      'formatted' => '2015-02-20 00:00:00',
-      'timezone' => 
+      'timestamp' => 1424390400,
+      'formatted' => '2015-02-20 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -4060,29 +3366,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 2,
       'is_leap_month' => false,
-      'moon_age' => 0.9799851733259857,
-      'moon_phase_angle' => 9.038257140009193,
+      'moon_age' => 1.009,
+      'moon_phase_angle' => 10.555166616647227,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-02-21 00:00:00' => 
+  '2015-02-21 09:00:00' =>
   array (
-    0 => '2015-02-21 00:00:00',
-    1 => 
+    0 => '2015-02-21 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 2,
       'day' => 21,
       'dayOfWeek' => 6,
       'dayOfYear' => 52,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1424444400,
-      'formatted' => '2015-02-21 00:00:00',
-      'timezone' => 
+      'timestamp' => 1424476800,
+      'formatted' => '2015-02-21 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -4118,29 +3424,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 3,
       'is_leap_month' => false,
-      'moon_age' => 1.9535909839905798,
-      'moon_phase_angle' => 23.207367595031087,
+      'moon_age' => 2.009,
+      'moon_phase_angle' => 24.70232085936408,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-02-22 00:00:00' => 
+  '2015-02-22 09:00:00' =>
   array (
-    0 => '2015-02-22 00:00:00',
-    1 => 
+    0 => '2015-02-22 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 2,
       'day' => 22,
       'dayOfWeek' => 0,
       'dayOfYear' => 53,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1424530800,
-      'formatted' => '2015-02-22 00:00:00',
-      'timezone' => 
+      'timestamp' => 1424563200,
+      'formatted' => '2015-02-22 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -4176,29 +3482,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 4,
       'is_leap_month' => false,
-      'moon_age' => 2.931358742993325,
-      'moon_phase_angle' => 37.132324242766344,
+      'moon_age' => 3.009,
+      'moon_phase_angle' => 38.58875220992826,
       'moon_phase' => 1,
       'moon_phase_text' => '三日月',
     ),
   ),
-  '2015-02-23 00:00:00' => 
+  '2015-02-23 09:00:00' =>
   array (
-    0 => '2015-02-23 00:00:00',
-    1 => 
+    0 => '2015-02-23 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 2,
       'day' => 23,
       'dayOfWeek' => 1,
       'dayOfYear' => 54,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1424617200,
-      'formatted' => '2015-02-23 00:00:00',
-      'timezone' => 
+      'timestamp' => 1424649600,
+      'formatted' => '2015-02-23 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -4234,29 +3540,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 5,
       'is_leap_month' => false,
-      'moon_age' => 3.9145577289164066,
-      'moon_phase_angle' => 50.700673383875426,
+      'moon_age' => 4.009,
+      'moon_phase_angle' => 52.10773322190471,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-02-24 00:00:00' => 
+  '2015-02-24 09:00:00' =>
   array (
-    0 => '2015-02-24 00:00:00',
-    1 => 
+    0 => '2015-02-24 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 2,
       'day' => 24,
       'dayOfWeek' => 2,
       'dayOfYear' => 55,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1424703600,
-      'formatted' => '2015-02-24 00:00:00',
-      'timezone' => 
+      'timestamp' => 1424736000,
+      'formatted' => '2015-02-24 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -4292,29 +3598,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 6,
       'is_leap_month' => false,
-      'moon_age' => 4.903682608157396,
-      'moon_phase_angle' => 63.850924746024646,
+      'moon_age' => 5.009,
+      'moon_phase_angle' => 65.20413811276194,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-02-25 00:00:00' => 
+  '2015-02-25 09:00:00' =>
   array (
-    0 => '2015-02-25 00:00:00',
-    1 => 
+    0 => '2015-02-25 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 2,
       'day' => 25,
       'dayOfWeek' => 3,
       'dayOfYear' => 56,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1424790000,
-      'formatted' => '2015-02-25 00:00:00',
-      'timezone' => 
+      'timestamp' => 1424822400,
+      'formatted' => '2015-02-25 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -4350,74 +3656,16 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 7,
       'is_leap_month' => false,
-      'moon_age' => 5.898678954690695,
-      'moon_phase_angle' => 76.56847170809516,
+      'moon_age' => 6.009,
+      'moon_phase_angle' => 77.86907267300398,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-02-26 00:00:00' => 
+  '2015-02-26 02:14:00' =>
   array (
-    0 => '2015-02-26 00:00:00',
-    1 => 
-    array (
-      'year' => 2015,
-      'month' => 2,
-      'day' => 26,
-      'dayOfWeek' => 4,
-      'dayOfYear' => 57,
-      'hour' => 0,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1424876400,
-      'formatted' => '2015-02-26 00:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 27,
-      'oriental_zodiac_text' => '未',
-      'oriental_zodiac' => 8,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '友引',
-      'six_weekday' => 3,
-      'weekday_text' => '木',
-      'month_text' => '如月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '睦月',
-      'lunar_month' => 1,
-      'lunar_year' => 2015,
-      'lunar_day' => 8,
-      'is_leap_month' => false,
-      'moon_age' => 6.899057938251644,
-      'moon_phase_angle' => 88.87454263580219,
-      'moon_phase' => 2,
-      'moon_phase_text' => '上弦',
-    ),
-  ),
-  '2015-02-26 02:00:00' => 
-  array (
-    0 => '2015-02-26 02:00:00',
-    1 => 
+    0 => '2015-02-26 02:14:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 2,
@@ -4425,12 +3673,12 @@ return array (
       'dayOfWeek' => 4,
       'dayOfYear' => 57,
       'hour' => 2,
-      'minute' => 0,
+      'minute' => 14,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1424883600,
-      'formatted' => '2015-02-26 02:00:00',
-      'timezone' => 
+      'timestamp' => 1424884440,
+      'formatted' => '2015-02-26 02:14:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -4466,29 +3714,87 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 6.982642524410039,
-      'moon_phase_angle' => 89.8827486506857,
+      'moon_age' => 6.727083333333334,
+      'moon_phase_angle' => 86.71012002880832,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2015-02-27 00:00:00' => 
+  '2015-02-26 09:00:00' =>
   array (
-    0 => '2015-02-27 00:00:00',
-    1 => 
+    0 => '2015-02-26 09:00:00',
+    1 =>
+    array (
+      'year' => 2015,
+      'month' => 2,
+      'day' => 26,
+      'dayOfWeek' => 4,
+      'dayOfYear' => 57,
+      'hour' => 9,
+      'minute' => 0,
+      'second' => 0,
+      'micro' => 0,
+      'timestamp' => 1424908800,
+      'formatted' => '2015-02-26 09:00:00',
+      'timezone' =>
+      \Carbon\CarbonTimeZone::__set_state(array(
+         'clock' => NULL,
+         'timezone_type' => 3,
+         'timezone' => 'Asia/Tokyo',
+      )),
+      'solar_seasonal_festival' => 0,
+      'solar_seasonal_festival_name' => '',
+      'solar_seasonal_festival_alias' => '',
+      'lunar_seasonal_festival' => 0,
+      'lunar_seasonal_festival_name' => '',
+      'lunar_seasonal_festival_alias' => '',
+      'misc_seasonal_node' => 0,
+      'misc_seasonal_node_text' => '',
+      'solar_term' => false,
+      'solar_term_text' => '',
+      'is_solar_term' => false,
+      'era_name_text' => '平成',
+      'era_name' => 1003,
+      'era_year' => 27,
+      'oriental_zodiac_text' => '未',
+      'oriental_zodiac' => 8,
+      'heavenly_stem_text' => '乙',
+      'heavenly_stem' => 1,
+      'six_weekday_text' => '友引',
+      'six_weekday' => 3,
+      'weekday_text' => '木',
+      'month_text' => '如月',
+      'holiday_text' => '',
+      'holiday' => 0,
+      'is_holiday' => false,
+      'lunar_month_text' => '睦月',
+      'lunar_month' => 1,
+      'lunar_year' => 2015,
+      'lunar_day' => 8,
+      'is_leap_month' => false,
+      'moon_age' => 7.009,
+      'moon_phase_angle' => 90.12758873158384,
+      'moon_phase' => 2,
+      'moon_phase_text' => '上弦',
+    ),
+  ),
+  '2015-02-27 09:00:00' =>
+  array (
+    0 => '2015-02-27 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 2,
       'day' => 27,
       'dayOfWeek' => 5,
       'dayOfYear' => 58,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1424962800,
-      'formatted' => '2015-02-27 00:00:00',
-      'timezone' => 
+      'timestamp' => 1424995200,
+      'formatted' => '2015-02-27 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -4524,29 +3830,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 9,
       'is_leap_month' => false,
-      'moon_age' => 7.904169820249081,
-      'moon_phase_angle' => 100.8132793817677,
+      'moon_age' => 8.009,
+      'moon_phase_angle' => 102.02541671786912,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-02-28 00:00:00' => 
+  '2015-02-28 09:00:00' =>
   array (
-    0 => '2015-02-28 00:00:00',
-    1 => 
+    0 => '2015-02-28 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 2,
       'day' => 28,
       'dayOfWeek' => 6,
       'dayOfYear' => 59,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1425049200,
-      'formatted' => '2015-02-28 00:00:00',
-      'timezone' => 
+      'timestamp' => 1425081600,
+      'formatted' => '2015-02-28 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -4582,29 +3888,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 10,
       'is_leap_month' => false,
-      'moon_age' => 8.91325915651396,
-      'moon_phase_angle' => 112.44023812554997,
+      'moon_age' => 9.009,
+      'moon_phase_angle' => 113.61822071769035,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-03-01 00:00:00' => 
+  '2015-03-01 09:00:00' =>
   array (
-    0 => '2015-03-01 00:00:00',
-    1 => 
+    0 => '2015-03-01 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 3,
       'day' => 1,
       'dayOfWeek' => 0,
       'dayOfYear' => 60,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1425135600,
-      'formatted' => '2015-03-01 00:00:00',
-      'timezone' => 
+      'timestamp' => 1425168000,
+      'formatted' => '2015-03-01 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -4640,29 +3946,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 11,
       'is_leap_month' => false,
-      'moon_age' => 9.925547279417515,
-      'moon_phase_angle' => 123.81372915490431,
+      'moon_age' => 10.009,
+      'moon_phase_angle' => 124.9640124931307,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-03-02 00:00:00' => 
+  '2015-03-02 09:00:00' =>
   array (
-    0 => '2015-03-02 00:00:00',
-    1 => 
+    0 => '2015-03-02 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 3,
       'day' => 2,
       'dayOfWeek' => 1,
       'dayOfYear' => 61,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1425222000,
-      'formatted' => '2015-03-02 00:00:00',
-      'timezone' => 
+      'timestamp' => 1425254400,
+      'formatted' => '2015-03-02 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -4698,29 +4004,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 12,
       'is_leap_month' => false,
-      'moon_age' => 10.940354751423001,
-      'moon_phase_angle' => 134.9891584144181,
+      'moon_age' => 11.009,
+      'moon_phase_angle' => 136.11801453771298,
       'moon_phase' => 3,
       'moon_phase_text' => '十三夜',
     ),
   ),
-  '2015-03-03 00:00:00' => 
+  '2015-03-03 09:00:00' =>
   array (
-    0 => '2015-03-03 00:00:00',
-    1 => 
+    0 => '2015-03-03 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 3,
       'day' => 3,
       'dayOfWeek' => 2,
       'dayOfYear' => 62,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1425308400,
-      'formatted' => '2015-03-03 00:00:00',
-      'timezone' => 
+      'timestamp' => 1425340800,
+      'formatted' => '2015-03-03 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -4756,29 +4062,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 13,
       'is_leap_month' => false,
-      'moon_age' => 11.95704779587686,
-      'moon_phase_angle' => 146.01610348610924,
+      'moon_age' => 12.009,
+      'moon_phase_angle' => 147.1294931558351,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-03-04 00:00:00' => 
+  '2015-03-04 09:00:00' =>
   array (
-    0 => '2015-03-04 00:00:00',
-    1 => 
+    0 => '2015-03-04 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 3,
       'day' => 4,
       'dayOfWeek' => 3,
       'dayOfYear' => 63,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1425394800,
-      'formatted' => '2015-03-04 00:00:00',
-      'timezone' => 
+      'timestamp' => 1425427200,
+      'formatted' => '2015-03-04 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -4814,29 +4120,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 14,
       'is_leap_month' => false,
-      'moon_age' => 12.975079163908958,
-      'moon_phase_angle' => 156.93749262043104,
+      'moon_age' => 13.009,
+      'moon_phase_angle' => 158.04068440723813,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-03-05 00:00:00' => 
+  '2015-03-05 09:00:00' =>
   array (
-    0 => '2015-03-05 00:00:00',
-    1 => 
+    0 => '2015-03-05 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 3,
       'day' => 5,
       'dayOfWeek' => 4,
       'dayOfYear' => 64,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1425481200,
-      'formatted' => '2015-03-05 00:00:00',
-      'timezone' => 
+      'timestamp' => 1425513600,
+      'formatted' => '2015-03-05 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -4872,132 +4178,16 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 15,
       'is_leap_month' => false,
-      'moon_age' => 13.993924508336931,
-      'moon_phase_angle' => 167.79045736765656,
+      'moon_age' => 14.009,
+      'moon_phase_angle' => 168.88783178721462,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-03-06 00:00:00' => 
+  '2015-03-06 03:05:00' =>
   array (
-    0 => '2015-03-06 00:00:00',
-    1 => 
-    array (
-      'year' => 2015,
-      'month' => 3,
-      'day' => 6,
-      'dayOfWeek' => 5,
-      'dayOfYear' => 65,
-      'hour' => 0,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1425567600,
-      'formatted' => '2015-03-06 00:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => 23,
-      'solar_term_text' => '啓蟄',
-      'is_solar_term' => true,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 27,
-      'oriental_zodiac_text' => '未',
-      'oriental_zodiac' => 8,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '仏滅',
-      'six_weekday' => 5,
-      'weekday_text' => '金',
-      'month_text' => '弥生',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '睦月',
-      'lunar_month' => 1,
-      'lunar_year' => 2015,
-      'lunar_day' => 16,
-      'is_leap_month' => false,
-      'moon_age' => 15.008127328474075,
-      'moon_phase_angle' => 178.60832858658966,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2015-03-06 02:00:00' => 
-  array (
-    0 => '2015-03-06 02:00:00',
-    1 => 
-    array (
-      'year' => 2015,
-      'month' => 3,
-      'day' => 6,
-      'dayOfWeek' => 5,
-      'dayOfYear' => 65,
-      'hour' => 2,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1425574800,
-      'formatted' => '2015-03-06 02:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => 23,
-      'solar_term_text' => '啓蟄',
-      'is_solar_term' => true,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 27,
-      'oriental_zodiac_text' => '未',
-      'oriental_zodiac' => 8,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '仏滅',
-      'six_weekday' => 5,
-      'weekday_text' => '金',
-      'month_text' => '弥生',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '睦月',
-      'lunar_month' => 1,
-      'lunar_year' => 2015,
-      'lunar_day' => 16,
-      'is_leap_month' => false,
-      'moon_age' => 15.091194903943688,
-      'moon_phase_angle' => 179.50923832666092,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2015-03-06 03:00:00' => 
-  array (
-    0 => '2015-03-06 03:00:00',
-    1 => 
+    0 => '2015-03-06 03:05:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 3,
@@ -5005,12 +4195,12 @@ return array (
       'dayOfWeek' => 5,
       'dayOfYear' => 65,
       'hour' => 3,
-      'minute' => 0,
+      'minute' => 5,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1425578400,
-      'formatted' => '2015-03-06 03:00:00',
-      'timezone' => 
+      'timestamp' => 1425578700,
+      'formatted' => '2015-03-06 03:05:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -5046,29 +4236,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 15.132717662490904,
-      'moon_phase_angle' => 179.95969112316783,
+      'moon_age' => 14.7625,
+      'moon_phase_angle' => 177.03847028932256,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2015-03-06 04:00:00' => 
+  '2015-03-06 09:00:00' =>
   array (
-    0 => '2015-03-06 04:00:00',
-    1 => 
+    0 => '2015-03-06 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 3,
       'day' => 6,
       'dayOfWeek' => 5,
       'dayOfYear' => 65,
-      'hour' => 4,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1425582000,
-      'formatted' => '2015-03-06 04:00:00',
-      'timezone' => 
+      'timestamp' => 1425600000,
+      'formatted' => '2015-03-06 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -5104,87 +4294,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 15.174245635047555,
-      'moon_phase_angle' => 180.41014567611973,
+      'moon_age' => 15.009,
+      'moon_phase_angle' => 179.70371928211057,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2015-03-06 05:00:00' => 
+  '2015-03-07 09:00:00' =>
   array (
-    0 => '2015-03-06 05:00:00',
-    1 => 
-    array (
-      'year' => 2015,
-      'month' => 3,
-      'day' => 6,
-      'dayOfWeek' => 5,
-      'dayOfYear' => 65,
-      'hour' => 5,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1425585600,
-      'formatted' => '2015-03-06 05:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => 23,
-      'solar_term_text' => '啓蟄',
-      'is_solar_term' => true,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 27,
-      'oriental_zodiac_text' => '未',
-      'oriental_zodiac' => 8,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '仏滅',
-      'six_weekday' => 5,
-      'weekday_text' => '金',
-      'month_text' => '弥生',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '睦月',
-      'lunar_month' => 1,
-      'lunar_year' => 2015,
-      'lunar_day' => 16,
-      'is_leap_month' => false,
-      'moon_age' => 15.21578273549676,
-      'moon_phase_angle' => 180.86060435163913,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2015-03-07 00:00:00' => 
-  array (
-    0 => '2015-03-07 00:00:00',
-    1 => 
+    0 => '2015-03-07 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 3,
       'day' => 7,
       'dayOfWeek' => 6,
       'dayOfYear' => 66,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1425654000,
-      'formatted' => '2015-03-07 00:00:00',
-      'timezone' => 
+      'timestamp' => 1425686400,
+      'formatted' => '2015-03-07 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -5220,29 +4352,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 17,
       'is_leap_month' => false,
-      'moon_age' => 16.004886209964752,
-      'moon_phase_angle' => 189.42329947975995,
+      'moon_age' => 16.009,
+      'moon_phase_angle' => 190.5206725011611,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-03-08 00:00:00' => 
+  '2015-03-08 09:00:00' =>
   array (
-    0 => '2015-03-08 00:00:00',
-    1 => 
+    0 => '2015-03-08 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 3,
       'day' => 8,
       'dayOfWeek' => 0,
       'dayOfYear' => 67,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1425740400,
-      'formatted' => '2015-03-08 00:00:00',
-      'timezone' => 
+      'timestamp' => 1425772800,
+      'formatted' => '2015-03-08 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -5278,29 +4410,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 18,
       'is_leap_month' => false,
-      'moon_age' => 17.00174984987825,
-      'moon_phase_angle' => 200.26928092691253,
+      'moon_age' => 17.009,
+      'moon_phase_angle' => 201.37325889080142,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-03-09 00:00:00' => 
+  '2015-03-09 09:00:00' =>
   array (
-    0 => '2015-03-09 00:00:00',
-    1 => 
+    0 => '2015-03-09 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 3,
       'day' => 9,
       'dayOfWeek' => 1,
       'dayOfYear' => 68,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1425826800,
-      'formatted' => '2015-03-09 00:00:00',
-      'timezone' => 
+      'timestamp' => 1425859200,
+      'formatted' => '2015-03-09 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -5336,29 +4468,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 19,
       'is_leap_month' => false,
-      'moon_age' => 17.99880357319489,
-      'moon_phase_angle' => 211.18449195754286,
+      'moon_age' => 18.009,
+      'moon_phase_angle' => 212.30046966156732,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-03-10 00:00:00' => 
+  '2015-03-10 09:00:00' =>
   array (
-    0 => '2015-03-10 00:00:00',
-    1 => 
+    0 => '2015-03-10 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 3,
       'day' => 10,
       'dayOfWeek' => 2,
       'dayOfYear' => 69,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1425913200,
-      'formatted' => '2015-03-10 00:00:00',
-      'timezone' => 
+      'timestamp' => 1425945600,
+      'formatted' => '2015-03-10 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -5394,29 +4526,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 20,
       'is_leap_month' => false,
-      'moon_age' => 18.99618687806651,
-      'moon_phase_angle' => 222.2133584492016,
+      'moon_age' => 19.009,
+      'moon_phase_angle' => 223.3473752054258,
       'moon_phase' => 5,
       'moon_phase_text' => '十六夜',
     ),
   ),
-  '2015-03-11 00:00:00' => 
+  '2015-03-11 09:00:00' =>
   array (
-    0 => '2015-03-11 00:00:00',
-    1 => 
+    0 => '2015-03-11 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 3,
       'day' => 11,
       'dayOfWeek' => 3,
       'dayOfYear' => 70,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1425999600,
-      'formatted' => '2015-03-11 00:00:00',
-      'timezone' => 
+      'timestamp' => 1426032000,
+      'formatted' => '2015-03-11 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -5452,29 +4584,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 21,
       'is_leap_month' => false,
-      'moon_age' => 19.99402608955279,
-      'moon_phase_angle' => 233.40731801891607,
+      'moon_age' => 20.009,
+      'moon_phase_angle' => 234.56595940256352,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-03-12 00:00:00' => 
+  '2015-03-12 09:00:00' =>
   array (
-    0 => '2015-03-12 00:00:00',
-    1 => 
+    0 => '2015-03-12 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 3,
       'day' => 12,
       'dayOfWeek' => 4,
       'dayOfYear' => 71,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1426086000,
-      'formatted' => '2015-03-12 00:00:00',
-      'timezone' => 
+      'timestamp' => 1426118400,
+      'formatted' => '2015-03-12 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -5510,29 +4642,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 22,
       'is_leap_month' => false,
-      'moon_age' => 20.992430864833295,
-      'moon_phase_angle' => 244.8241270215688,
+      'moon_age' => 21.009,
+      'moon_phase_angle' => 246.01447201151063,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-03-13 00:00:00' => 
+  '2015-03-13 09:00:00' =>
   array (
-    0 => '2015-03-13 00:00:00',
-    1 => 
+    0 => '2015-03-13 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 3,
       'day' => 13,
       'dayOfWeek' => 5,
       'dayOfYear' => 72,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1426172400,
-      'formatted' => '2015-03-13 00:00:00',
-      'timezone' => 
+      'timestamp' => 1426204800,
+      'formatted' => '2015-03-13 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -5568,29 +4700,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 21.99156996747479,
-      'moon_phase_angle' => 256.5252338634856,
+      'moon_age' => 22.009,
+      'moon_phase_angle' => 257.7546046847955,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-03-14 00:00:00' => 
+  '2015-03-14 02:48:00' =>
   array (
-    0 => '2015-03-14 00:00:00',
-    1 => 
+    0 => '2015-03-14 02:48:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 3,
       'day' => 14,
       'dayOfWeek' => 6,
       'dayOfYear' => 73,
-      'hour' => 0,
-      'minute' => 0,
+      'hour' => 2,
+      'minute' => 48,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1426258800,
-      'formatted' => '2015-03-14 00:00:00',
-      'timezone' => 
+      'timestamp' => 1426268880,
+      'formatted' => '2015-03-14 02:48:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -5626,29 +4758,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 24,
       'is_leap_month' => false,
-      'moon_age' => 22.99157429067418,
-      'moon_phase_angle' => 268.5707686510225,
+      'moon_age' => 22.750694444444445,
+      'moon_phase_angle' => 266.68574948669203,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2015-03-14 04:00:00' => 
+  '2015-03-14 09:00:00' =>
   array (
-    0 => '2015-03-14 04:00:00',
-    1 => 
+    0 => '2015-03-14 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 3,
       'day' => 14,
       'dayOfWeek' => 6,
       'dayOfYear' => 73,
-      'hour' => 4,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1426273200,
-      'formatted' => '2015-03-14 04:00:00',
-      'timezone' => 
+      'timestamp' => 1426291200,
+      'formatted' => '2015-03-14 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -5684,29 +4816,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 24,
       'is_leap_month' => false,
-      'moon_age' => 23.158326578792185,
-      'moon_phase_angle' => 270.61565285566553,
+      'moon_age' => 23.009,
+      'moon_phase_angle' => 269.84605867012516,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2015-03-15 00:00:00' => 
+  '2015-03-15 09:00:00' =>
   array (
-    0 => '2015-03-15 00:00:00',
-    1 => 
+    0 => '2015-03-15 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 3,
       'day' => 15,
       'dayOfWeek' => 0,
       'dayOfYear' => 74,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1426345200,
-      'formatted' => '2015-03-15 00:00:00',
-      'timezone' => 
+      'timestamp' => 1426377600,
+      'formatted' => '2015-03-15 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -5742,29 +4874,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 25,
       'is_leap_month' => false,
-      'moon_age' => 23.992525292094797,
-      'moon_phase_angle' => 281.0118289210226,
+      'moon_age' => 24.009,
+      'moon_phase_angle' => 282.33837962808497,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-03-16 00:00:00' => 
+  '2015-03-16 09:00:00' =>
   array (
-    0 => '2015-03-16 00:00:00',
-    1 => 
+    0 => '2015-03-16 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 3,
       'day' => 16,
       'dayOfWeek' => 1,
       'dayOfYear' => 75,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1426431600,
-      'formatted' => '2015-03-16 00:00:00',
-      'timezone' => 
+      'timestamp' => 1426464000,
+      'formatted' => '2015-03-16 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -5800,29 +4932,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 26,
       'is_leap_month' => false,
-      'moon_age' => 24.994507405906916,
-      'moon_phase_angle' => 293.8802172675305,
+      'moon_age' => 25.009,
+      'moon_phase_angle' => 295.2603651860886,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-03-17 00:00:00' => 
+  '2015-03-17 09:00:00' =>
   array (
-    0 => '2015-03-17 00:00:00',
-    1 => 
+    0 => '2015-03-17 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 3,
       'day' => 17,
       'dayOfWeek' => 2,
       'dayOfYear' => 76,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1426518000,
-      'formatted' => '2015-03-17 00:00:00',
-      'timezone' => 
+      'timestamp' => 1426550400,
+      'formatted' => '2015-03-17 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -5858,29 +4990,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 27,
       'is_leap_month' => false,
-      'moon_age' => 25.99748048512265,
-      'moon_phase_angle' => 307.1768066972497,
+      'moon_age' => 26.009,
+      'moon_phase_angle' => 308.60833609792525,
       'moon_phase' => 7,
       'moon_phase_text' => '有明',
     ),
   ),
-  '2015-03-18 00:00:00' => 
+  '2015-03-18 09:00:00' =>
   array (
-    0 => '2015-03-18 00:00:00',
-    1 => 
+    0 => '2015-03-18 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 3,
       'day' => 18,
       'dayOfWeek' => 3,
       'dayOfYear' => 77,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1426604400,
-      'formatted' => '2015-03-18 00:00:00',
-      'timezone' => 
+      'timestamp' => 1426636800,
+      'formatted' => '2015-03-18 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -5916,29 +5048,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 28,
       'is_leap_month' => false,
-      'moon_age' => 26.747875095023154,
-      'moon_phase_angle' => 320.8612206245435,
+      'moon_age' => 27.009,
+      'moon_phase_angle' => 322.3361807812371,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-03-19 00:00:00' => 
+  '2015-03-19 09:00:00' =>
   array (
-    0 => '2015-03-19 00:00:00',
-    1 => 
+    0 => '2015-03-19 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 3,
       'day' => 19,
       'dayOfWeek' => 4,
       'dayOfYear' => 78,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1426690800,
-      'formatted' => '2015-03-19 00:00:00',
-      'timezone' => 
+      'timestamp' => 1426723200,
+      'formatted' => '2015-03-19 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -5974,29 +5106,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 29,
       'is_leap_month' => false,
-      'moon_age' => 27.901813244590848,
-      'moon_phase_angle' => 334.8468698953341,
+      'moon_age' => 28.009,
+      'moon_phase_angle' => 336.35141874607535,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-03-20 00:00:00' => 
+  '2015-03-20 09:00:00' =>
   array (
-    0 => '2015-03-20 00:00:00',
-    1 => 
+    0 => '2015-03-20 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 3,
       'day' => 20,
       'dayOfWeek' => 5,
       'dayOfYear' => 79,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1426777200,
-      'formatted' => '2015-03-20 00:00:00',
-      'timezone' => 
+      'timestamp' => 1426809600,
+      'formatted' => '2015-03-20 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -6032,16 +5164,16 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 29.065318826264082,
-      'moon_phase_angle' => 349.00532173589977,
+      'moon_age' => 29.009,
+      'moon_phase_angle' => 350.5210644414125,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2015-03-20 18:00:00' => 
+  '2015-03-20 18:36:00' =>
   array (
-    0 => '2015-03-20 18:00:00',
-    1 => 
+    0 => '2015-03-20 18:36:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 3,
@@ -6049,12 +5181,12 @@ return array (
       'dayOfWeek' => 5,
       'dayOfYear' => 79,
       'hour' => 18,
-      'minute' => 0,
+      'minute' => 36,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1426842000,
-      'formatted' => '2015-03-20 18:00:00',
-      'timezone' => 
+      'timestamp' => 1426844160,
+      'formatted' => '2015-03-20 18:36:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -6090,145 +5222,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.34086114913225174,
-      'moon_phase_angle' => 359.64460933438875,
+      'moon_age' => 0.0,
+      'moon_phase_angle' => 356.1972699348354,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2015-03-20 19:00:00' => 
+  '2015-03-21 09:00:00' =>
   array (
-    0 => '2015-03-20 19:00:00',
-    1 => 
-    array (
-      'year' => 2015,
-      'month' => 3,
-      'day' => 20,
-      'dayOfWeek' => 5,
-      'dayOfYear' => 79,
-      'hour' => 19,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1426845600,
-      'formatted' => '2015-03-20 19:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 2,
-      'misc_seasonal_node_text' => '彼岸',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 27,
-      'oriental_zodiac_text' => '未',
-      'oriental_zodiac' => 8,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '友引',
-      'six_weekday' => 3,
-      'weekday_text' => '金',
-      'month_text' => '弥生',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '如月',
-      'lunar_month' => 2,
-      'lunar_year' => 2015,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.3814704748801887,
-      'moon_phase_angle' => 0.23459595122358223,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2015-03-20 20:00:00' => 
-  array (
-    0 => '2015-03-20 20:00:00',
-    1 => 
-    array (
-      'year' => 2015,
-      'month' => 3,
-      'day' => 20,
-      'dayOfWeek' => 5,
-      'dayOfYear' => 79,
-      'hour' => 20,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1426849200,
-      'formatted' => '2015-03-20 20:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 2,
-      'misc_seasonal_node_text' => '彼岸',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 27,
-      'oriental_zodiac_text' => '未',
-      'oriental_zodiac' => 8,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '友引',
-      'six_weekday' => 3,
-      'weekday_text' => '金',
-      'month_text' => '弥生',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '如月',
-      'lunar_month' => 2,
-      'lunar_year' => 2015,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.4220687882043421,
-      'moon_phase_angle' => 0.8243907820826735,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2015-03-21 00:00:00' => 
-  array (
-    0 => '2015-03-21 00:00:00',
-    1 => 
+    0 => '2015-03-21 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 3,
       'day' => 21,
       'dayOfWeek' => 6,
       'dayOfYear' => 80,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1426863600,
-      'formatted' => '2015-03-21 00:00:00',
-      'timezone' => 
+      'timestamp' => 1426896000,
+      'formatted' => '2015-03-21 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -6264,29 +5280,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 2,
       'is_leap_month' => false,
-      'moon_age' => 0.5845508966594934,
-      'moon_phase_angle' => 3.1814241910074657,
+      'moon_age' => 0.6,
+      'moon_phase_angle' => 4.688068817635901,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-03-22 00:00:00' => 
+  '2015-03-22 09:00:00' =>
   array (
-    0 => '2015-03-22 00:00:00',
-    1 => 
+    0 => '2015-03-22 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 3,
       'day' => 22,
       'dayOfWeek' => 0,
       'dayOfYear' => 81,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1426950000,
-      'formatted' => '2015-03-22 00:00:00',
-      'timezone' => 
+      'timestamp' => 1426982400,
+      'formatted' => '2015-03-22 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -6322,29 +5338,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 3,
       'is_leap_month' => false,
-      'moon_age' => 1.5611416529864073,
-      'moon_phase_angle' => 17.216166479266647,
+      'moon_age' => 1.6,
+      'moon_phase_angle' => 18.694705528771895,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-03-23 00:00:00' => 
+  '2015-03-23 09:00:00' =>
   array (
-    0 => '2015-03-23 00:00:00',
-    1 => 
+    0 => '2015-03-23 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 3,
       'day' => 23,
       'dayOfWeek' => 1,
       'dayOfYear' => 82,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1427036400,
-      'formatted' => '2015-03-23 00:00:00',
-      'timezone' => 
+      'timestamp' => 1427068800,
+      'formatted' => '2015-03-23 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -6380,29 +5396,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 4,
       'is_leap_month' => false,
-      'moon_age' => 2.541959796566516,
-      'moon_phase_angle' => 30.97054007933913,
+      'moon_age' => 2.6,
+      'moon_phase_angle' => 32.40602011947276,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-03-24 00:00:00' => 
+  '2015-03-24 09:00:00' =>
   array (
-    0 => '2015-03-24 00:00:00',
-    1 => 
+    0 => '2015-03-24 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 3,
       'day' => 24,
       'dayOfWeek' => 2,
       'dayOfYear' => 83,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1427122800,
-      'formatted' => '2015-03-24 00:00:00',
-      'timezone' => 
+      'timestamp' => 1427155200,
+      'formatted' => '2015-03-24 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -6438,29 +5454,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 5,
       'is_leap_month' => false,
-      'moon_age' => 3.528216678649187,
-      'moon_phase_angle' => 44.34333014010615,
+      'moon_age' => 3.6,
+      'moon_phase_angle' => 45.726509853371674,
       'moon_phase' => 1,
       'moon_phase_text' => '三日月',
     ),
   ),
-  '2015-03-25 00:00:00' => 
+  '2015-03-25 09:00:00' =>
   array (
-    0 => '2015-03-25 00:00:00',
-    1 => 
+    0 => '2015-03-25 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 3,
       'day' => 25,
       'dayOfWeek' => 3,
       'dayOfYear' => 84,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1427209200,
-      'formatted' => '2015-03-25 00:00:00',
-      'timezone' => 
+      'timestamp' => 1427241600,
+      'formatted' => '2015-03-25 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -6496,29 +5512,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 6,
       'is_leap_month' => false,
-      'moon_age' => 4.520458847284317,
-      'moon_phase_angle' => 57.27894529203613,
+      'moon_age' => 4.6,
+      'moon_phase_angle' => 58.606524480514295,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-03-26 00:00:00' => 
+  '2015-03-26 09:00:00' =>
   array (
-    0 => '2015-03-26 00:00:00',
-    1 => 
+    0 => '2015-03-26 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 3,
       'day' => 26,
       'dayOfWeek' => 4,
       'dayOfYear' => 85,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1427295600,
-      'formatted' => '2015-03-26 00:00:00',
-      'timezone' => 
+      'timestamp' => 1427328000,
+      'formatted' => '2015-03-26 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -6554,29 +5570,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 7,
       'is_leap_month' => false,
-      'moon_age' => 5.518683002330363,
-      'moon_phase_angle' => 69.76567681909782,
+      'moon_age' => 5.6,
+      'moon_phase_angle' => 71.03927411958203,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-03-27 00:00:00' => 
+  '2015-03-27 09:00:00' =>
   array (
-    0 => '2015-03-27 00:00:00',
-    1 => 
+    0 => '2015-03-27 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 3,
       'day' => 27,
       'dayOfWeek' => 5,
       'dayOfYear' => 86,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1427382000,
-      'formatted' => '2015-03-27 00:00:00',
-      'timezone' => 
+      'timestamp' => 1427414400,
+      'formatted' => '2015-03-27 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -6612,29 +5628,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 6.522405638825148,
-      'moon_phase_angle' => 81.82761435024015,
+      'moon_age' => 6.6,
+      'moon_phase_angle' => 83.05217366588036,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2015-03-27 17:00:00' => 
+  '2015-03-27 16:43:00' =>
   array (
-    0 => '2015-03-27 17:00:00',
-    1 => 
+    0 => '2015-03-27 16:43:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 3,
       'day' => 27,
       'dayOfWeek' => 5,
       'dayOfYear' => 86,
-      'hour' => 17,
-      'minute' => 0,
+      'hour' => 16,
+      'minute' => 43,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1427443200,
-      'formatted' => '2015-03-27 17:00:00',
-      'timezone' => 
+      'timestamp' => 1427442180,
+      'formatted' => '2015-03-27 16:43:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -6670,29 +5686,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 7.236295538023114,
-      'moon_phase_angle' => 90.14069105557616,
+      'moon_age' => 6.9215277777777775,
+      'moon_phase_angle' => 86.8334012071183,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2015-03-28 00:00:00' => 
+  '2015-03-28 09:00:00' =>
   array (
-    0 => '2015-03-28 00:00:00',
-    1 => 
+    0 => '2015-03-28 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 3,
       'day' => 28,
       'dayOfWeek' => 6,
       'dayOfYear' => 87,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1427468400,
-      'formatted' => '2015-03-28 00:00:00',
-      'timezone' => 
+      'timestamp' => 1427500800,
+      'formatted' => '2015-03-28 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -6728,29 +5744,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 9,
       'is_leap_month' => false,
-      'moon_age' => 7.530876210425049,
-      'moon_phase_angle' => 93.51401966370517,
+      'moon_age' => 7.6,
+      'moon_phase_angle' => 94.69644904743173,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-03-29 00:00:00' => 
+  '2015-03-29 09:00:00' =>
   array (
-    0 => '2015-03-29 00:00:00',
-    1 => 
+    0 => '2015-03-29 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 3,
       'day' => 29,
       'dayOfWeek' => 0,
       'dayOfYear' => 88,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1427554800,
-      'formatted' => '2015-03-29 00:00:00',
-      'timezone' => 
+      'timestamp' => 1427587200,
+      'formatted' => '2015-03-29 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -6786,29 +5802,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 10,
       'is_leap_month' => false,
-      'moon_age' => 8.543167835101485,
-      'moon_phase_angle' => 104.88901241669564,
+      'moon_age' => 8.6,
+      'moon_phase_angle' => 106.03740146268507,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-03-30 00:00:00' => 
+  '2015-03-30 09:00:00' =>
   array (
-    0 => '2015-03-30 00:00:00',
-    1 => 
+    0 => '2015-03-30 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 3,
       'day' => 30,
       'dayOfWeek' => 1,
       'dayOfYear' => 89,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1427641200,
-      'formatted' => '2015-03-30 00:00:00',
-      'timezone' => 
+      'timestamp' => 1427673600,
+      'formatted' => '2015-03-30 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -6844,29 +5860,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 11,
       'is_leap_month' => false,
-      'moon_age' => 9.558302705176175,
-      'moon_phase_angle' => 116.0230662829523,
+      'moon_age' => 9.6,
+      'moon_phase_angle' => 117.14619623255851,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-03-31 00:00:00' => 
+  '2015-03-31 09:00:00' =>
   array (
-    0 => '2015-03-31 00:00:00',
-    1 => 
+    0 => '2015-03-31 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 3,
       'day' => 31,
       'dayOfWeek' => 2,
       'dayOfYear' => 90,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1427727600,
-      'formatted' => '2015-03-31 00:00:00',
-      'timezone' => 
+      'timestamp' => 1427760000,
+      'formatted' => '2015-03-31 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -6902,29 +5918,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 12,
       'is_leap_month' => false,
-      'moon_age' => 10.57533414894715,
-      'moon_phase_angle' => 126.9867506972833,
+      'moon_age' => 10.6,
+      'moon_phase_angle' => 128.09345040449293,
       'moon_phase' => 3,
       'moon_phase_text' => '十三夜',
     ),
   ),
-  '2015-04-01 00:00:00' => 
+  '2015-04-01 09:00:00' =>
   array (
-    0 => '2015-04-01 00:00:00',
-    1 => 
+    0 => '2015-04-01 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 4,
       'day' => 1,
       'dayOfWeek' => 3,
       'dayOfYear' => 91,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1427814000,
-      'formatted' => '2015-04-01 00:00:00',
-      'timezone' => 
+      'timestamp' => 1427846400,
+      'formatted' => '2015-04-01 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -6960,29 +5976,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 13,
       'is_leap_month' => false,
-      'moon_age' => 11.593351165764034,
-      'moon_phase_angle' => 137.84657347725496,
+      'moon_age' => 11.6,
+      'moon_phase_angle' => 138.94490061507082,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-04-02 00:00:00' => 
+  '2015-04-02 09:00:00' =>
   array (
-    0 => '2015-04-02 00:00:00',
-    1 => 
+    0 => '2015-04-02 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 4,
       'day' => 2,
       'dayOfWeek' => 4,
       'dayOfYear' => 92,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1427900400,
-      'formatted' => '2015-04-02 00:00:00',
-      'timezone' => 
+      'timestamp' => 1427932800,
+      'formatted' => '2015-04-02 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -7018,29 +6034,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 14,
       'is_leap_month' => false,
-      'moon_age' => 12.598002372309566,
-      'moon_phase_angle' => 148.66253248307456,
+      'moon_age' => 12.6,
+      'moon_phase_angle' => 149.7592589110293,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-04-03 00:00:00' => 
+  '2015-04-03 09:00:00' =>
   array (
-    0 => '2015-04-03 00:00:00',
-    1 => 
+    0 => '2015-04-03 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 4,
       'day' => 3,
       'dayOfWeek' => 5,
       'dayOfYear' => 93,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1427986800,
-      'formatted' => '2015-04-03 00:00:00',
-      'timezone' => 
+      'timestamp' => 1428019200,
+      'formatted' => '2015-04-03 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -7076,29 +6092,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 15,
       'is_leap_month' => false,
-      'moon_age' => 13.59513638773933,
-      'moon_phase_angle' => 159.48710100650473,
+      'moon_age' => 13.6,
+      'moon_phase_angle' => 160.58779976083883,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-04-04 00:00:00' => 
+  '2015-04-04 09:00:00' =>
   array (
-    0 => '2015-04-04 00:00:00',
-    1 => 
+    0 => '2015-04-04 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 4,
       'day' => 4,
       'dayOfWeek' => 6,
       'dayOfYear' => 94,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1428073200,
-      'formatted' => '2015-04-04 00:00:00',
-      'timezone' => 
+      'timestamp' => 1428105600,
+      'formatted' => '2015-04-04 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -7134,74 +6150,16 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 14.59242962161079,
-      'moon_phase_angle' => 170.3652415448511,
+      'moon_age' => 14.6,
+      'moon_phase_angle' => 171.47483673298132,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2015-04-04 20:00:00' => 
+  '2015-04-04 21:06:00' =>
   array (
-    0 => '2015-04-04 20:00:00',
-    1 => 
-    array (
-      'year' => 2015,
-      'month' => 4,
-      'day' => 4,
-      'dayOfWeek' => 6,
-      'dayOfYear' => 94,
-      'hour' => 20,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1428145200,
-      'formatted' => '2015-04-04 20:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 27,
-      'oriental_zodiac_text' => '未',
-      'oriental_zodiac' => 8,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '大安',
-      'six_weekday' => 0,
-      'weekday_text' => '土',
-      'month_text' => '卯月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '如月',
-      'lunar_month' => 2,
-      'lunar_year' => 2015,
-      'lunar_day' => 16,
-      'is_leap_month' => false,
-      'moon_age' => 15.423686093650758,
-      'moon_phase_angle' => 179.49910955636906,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2015-04-04 21:00:00' => 
-  array (
-    0 => '2015-04-04 21:00:00',
-    1 => 
+    0 => '2015-04-04 21:06:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 4,
@@ -7209,12 +6167,12 @@ return array (
       'dayOfWeek' => 6,
       'dayOfYear' => 94,
       'hour' => 21,
-      'minute' => 0,
+      'minute' => 6,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1428148800,
-      'formatted' => '2015-04-04 21:00:00',
-      'timezone' => 
+      'timestamp' => 1428149160,
+      'formatted' => '2015-04-04 21:06:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -7250,87 +6208,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 15.465265517588705,
-      'moon_phase_angle' => 179.9578373867446,
+      'moon_age' => 15.104166666666666,
+      'moon_phase_angle' => 176.99817512460538,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2015-04-04 22:00:00' => 
+  '2015-04-05 09:00:00' =>
   array (
-    0 => '2015-04-04 22:00:00',
-    1 => 
-    array (
-      'year' => 2015,
-      'month' => 4,
-      'day' => 4,
-      'dayOfWeek' => 6,
-      'dayOfYear' => 94,
-      'hour' => 22,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1428152400,
-      'formatted' => '2015-04-04 22:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 27,
-      'oriental_zodiac_text' => '未',
-      'oriental_zodiac' => 8,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '大安',
-      'six_weekday' => 0,
-      'weekday_text' => '土',
-      'month_text' => '卯月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '如月',
-      'lunar_month' => 2,
-      'lunar_year' => 2015,
-      'lunar_day' => 16,
-      'is_leap_month' => false,
-      'moon_age' => 15.506826339289546,
-      'moon_phase_angle' => 180.41677614653727,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2015-04-05 00:00:00' => 
-  array (
-    0 => '2015-04-05 00:00:00',
-    1 => 
+    0 => '2015-04-05 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 4,
       'day' => 5,
       'dayOfWeek' => 0,
       'dayOfYear' => 95,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1428159600,
-      'formatted' => '2015-04-05 00:00:00',
-      'timezone' => 
+      'timestamp' => 1428192000,
+      'formatted' => '2015-04-05 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -7366,29 +6266,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 17,
       'is_leap_month' => false,
-      'moon_age' => 15.589969608001411,
-      'moon_phase_angle' => 181.33529555210305,
+      'moon_age' => 15.6,
+      'moon_phase_angle' => 182.45846667746616,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-04-06 00:00:00' => 
+  '2015-04-06 09:00:00' =>
   array (
-    0 => '2015-04-06 00:00:00',
-    1 => 
+    0 => '2015-04-06 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 4,
       'day' => 6,
       'dayOfWeek' => 1,
       'dayOfYear' => 96,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1428246000,
-      'formatted' => '2015-04-06 00:00:00',
-      'timezone' => 
+      'timestamp' => 1428278400,
+      'formatted' => '2015-04-06 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -7424,29 +6324,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 18,
       'is_leap_month' => false,
-      'moon_age' => 16.587805275339633,
-      'moon_phase_angle' => 192.43048803181384,
+      'moon_age' => 16.6,
+      'moon_phase_angle' => 193.571605177869,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-04-07 00:00:00' => 
+  '2015-04-07 09:00:00' =>
   array (
-    0 => '2015-04-07 00:00:00',
-    1 => 
+    0 => '2015-04-07 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 4,
       'day' => 7,
       'dayOfWeek' => 2,
       'dayOfYear' => 97,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1428332400,
-      'formatted' => '2015-04-07 00:00:00',
-      'timezone' => 
+      'timestamp' => 1428364800,
+      'formatted' => '2015-04-07 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -7482,29 +6382,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 19,
       'is_leap_month' => false,
-      'moon_age' => 17.585991841740906,
-      'moon_phase_angle' => 203.68078364533392,
+      'moon_age' => 17.6,
+      'moon_phase_angle' => 204.8436373517554,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-04-08 00:00:00' => 
+  '2015-04-08 09:00:00' =>
   array (
-    0 => '2015-04-08 00:00:00',
-    1 => 
+    0 => '2015-04-08 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 4,
       'day' => 8,
       'dayOfWeek' => 3,
       'dayOfYear' => 98,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1428418800,
-      'formatted' => '2015-04-08 00:00:00',
-      'timezone' => 
+      'timestamp' => 1428451200,
+      'formatted' => '2015-04-08 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -7540,29 +6440,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 20,
       'is_leap_month' => false,
-      'moon_age' => 18.584596358705312,
-      'moon_phase_angle' => 215.11475062989547,
+      'moon_age' => 18.6,
+      'moon_phase_angle' => 216.30258994416675,
       'moon_phase' => 5,
       'moon_phase_text' => '十六夜',
     ),
   ),
-  '2015-04-09 00:00:00' => 
+  '2015-04-09 09:00:00' =>
   array (
-    0 => '2015-04-09 00:00:00',
-    1 => 
+    0 => '2015-04-09 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 4,
       'day' => 9,
       'dayOfWeek' => 4,
       'dayOfYear' => 99,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1428505200,
-      'formatted' => '2015-04-09 00:00:00',
-      'timezone' => 
+      'timestamp' => 1428537600,
+      'formatted' => '2015-04-09 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -7598,29 +6498,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 21,
       'is_leap_month' => false,
-      'moon_age' => 19.58366557629779,
-      'moon_phase_angle' => 226.76100656742335,
+      'moon_age' => 19.6,
+      'moon_phase_angle' => 227.97700699576367,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-04-10 00:00:00' => 
+  '2015-04-10 09:00:00' =>
   array (
-    0 => '2015-04-10 00:00:00',
-    1 => 
+    0 => '2015-04-10 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 4,
       'day' => 10,
       'dayOfWeek' => 5,
       'dayOfYear' => 100,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1428591600,
-      'formatted' => '2015-04-10 00:00:00',
-      'timezone' => 
+      'timestamp' => 1428624000,
+      'formatted' => '2015-04-10 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -7656,29 +6556,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 22,
       'is_leap_month' => false,
-      'moon_age' => 20.583237185142934,
-      'moon_phase_angle' => 238.6487576400423,
+      'moon_age' => 20.6,
+      'moon_phase_angle' => 239.89645134306352,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-04-11 00:00:00' => 
+  '2015-04-11 09:00:00' =>
   array (
-    0 => '2015-04-11 00:00:00',
-    1 => 
+    0 => '2015-04-11 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 4,
       'day' => 11,
       'dayOfWeek' => 6,
       'dayOfYear' => 101,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1428678000,
-      'formatted' => '2015-04-11 00:00:00',
-      'timezone' => 
+      'timestamp' => 1428710400,
+      'formatted' => '2015-04-11 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -7714,29 +6614,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 21.583393192850053,
-      'moon_phase_angle' => 250.80693388013967,
+      'moon_age' => 21.6,
+      'moon_phase_angle' => 252.09002426312492,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-04-12 00:00:00' => 
+  '2015-04-12 09:00:00' =>
   array (
-    0 => '2015-04-12 00:00:00',
-    1 => 
+    0 => '2015-04-12 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 4,
       'day' => 12,
       'dayOfWeek' => 0,
       'dayOfYear' => 102,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1428764400,
-      'formatted' => '2015-04-12 00:00:00',
-      'timezone' => 
+      'timestamp' => 1428796800,
+      'formatted' => '2015-04-12 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -7772,29 +6672,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 24,
       'is_leap_month' => false,
-      'moon_age' => 22.584168234840035,
-      'moon_phase_angle' => 263.26150458387923,
+      'moon_age' => 22.6,
+      'moon_phase_angle' => 264.5829914157495,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2015-04-12 14:00:00' => 
+  '2015-04-12 12:44:00' =>
   array (
-    0 => '2015-04-12 14:00:00',
-    1 => 
+    0 => '2015-04-12 12:44:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 4,
       'day' => 12,
       'dayOfWeek' => 0,
       'dayOfYear' => 102,
-      'hour' => 14,
-      'minute' => 0,
+      'hour' => 12,
+      'minute' => 44,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1428814800,
-      'formatted' => '2015-04-12 14:00:00',
-      'timezone' => 
+      'timestamp' => 1428810240,
+      'formatted' => '2015-04-12 12:44:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -7830,29 +6730,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 24,
       'is_leap_month' => false,
-      'moon_age' => 23.168258612044156,
-      'moon_phase_angle' => 270.6713290763453,
+      'moon_age' => 22.755555555555556,
+      'moon_phase_angle' => 266.5544870282405,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2015-04-13 00:00:00' => 
+  '2015-04-13 09:00:00' =>
   array (
-    0 => '2015-04-13 00:00:00',
-    1 => 
+    0 => '2015-04-13 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 4,
       'day' => 13,
       'dayOfWeek' => 1,
       'dayOfYear' => 103,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1428850800,
-      'formatted' => '2015-04-13 00:00:00',
-      'timezone' => 
+      'timestamp' => 1428883200,
+      'formatted' => '2015-04-13 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -7888,29 +6788,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 25,
       'is_leap_month' => false,
-      'moon_age' => 23.585604972206056,
-      'moon_phase_angle' => 276.0307805727981,
+      'moon_age' => 23.6,
+      'moon_phase_angle' => 277.39188302661245,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-04-14 00:00:00' => 
+  '2015-04-14 09:00:00' =>
   array (
-    0 => '2015-04-14 00:00:00',
-    1 => 
+    0 => '2015-04-14 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 4,
       'day' => 14,
       'dayOfWeek' => 2,
       'dayOfYear' => 104,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1428937200,
-      'formatted' => '2015-04-14 00:00:00',
-      'timezone' => 
+      'timestamp' => 1428969600,
+      'formatted' => '2015-04-14 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -7946,29 +6846,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 26,
       'is_leap_month' => false,
-      'moon_age' => 24.587693421170115,
-      'moon_phase_angle' => 289.1189393678853,
+      'moon_age' => 24.6,
+      'moon_phase_angle' => 290.51832430594635,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-04-15 00:00:00' => 
+  '2015-04-15 09:00:00' =>
   array (
-    0 => '2015-04-15 00:00:00',
-    1 => 
+    0 => '2015-04-15 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 4,
       'day' => 15,
       'dayOfWeek' => 3,
       'dayOfYear' => 105,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1429023600,
-      'formatted' => '2015-04-15 00:00:00',
-      'timezone' => 
+      'timestamp' => 1429056000,
+      'formatted' => '2015-04-15 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -8004,29 +6904,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 27,
       'is_leap_month' => false,
-      'moon_age' => 25.590404737740755,
-      'moon_phase_angle' => 302.5086837797652,
+      'moon_age' => 25.6,
+      'moon_phase_angle' => 303.94204630459046,
       'moon_phase' => 7,
       'moon_phase_text' => '有明',
     ),
   ),
-  '2015-04-16 00:00:00' => 
+  '2015-04-16 09:00:00' =>
   array (
-    0 => '2015-04-16 00:00:00',
-    1 => 
+    0 => '2015-04-16 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 4,
       'day' => 16,
       'dayOfWeek' => 4,
       'dayOfYear' => 106,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1429110000,
-      'formatted' => '2015-04-16 00:00:00',
-      'timezone' => 
+      'timestamp' => 1429142400,
+      'formatted' => '2015-04-16 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -8062,29 +6962,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 28,
       'is_leap_month' => false,
-      'moon_age' => 26.593627981841564,
-      'moon_phase_angle' => 316.1547821679609,
+      'moon_age' => 26.6,
+      'moon_phase_angle' => 317.61451994181135,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-04-17 00:00:00' => 
+  '2015-04-17 09:00:00' =>
   array (
-    0 => '2015-04-17 00:00:00',
-    1 => 
+    0 => '2015-04-17 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 4,
       'day' => 17,
       'dayOfWeek' => 5,
       'dayOfYear' => 107,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1429196400,
-      'formatted' => '2015-04-17 00:00:00',
-      'timezone' => 
+      'timestamp' => 1429228800,
+      'formatted' => '2015-04-17 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -8120,29 +7020,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 29,
       'is_leap_month' => false,
-      'moon_age' => 27.495563591042846,
-      'moon_phase_angle' => 329.9809307532359,
+      'moon_age' => 27.6,
+      'moon_phase_angle' => 331.4559186013654,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-04-18 00:00:00' => 
+  '2015-04-18 09:00:00' =>
   array (
-    0 => '2015-04-18 00:00:00',
-    1 => 
+    0 => '2015-04-18 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 4,
       'day' => 18,
       'dayOfWeek' => 6,
       'dayOfYear' => 108,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1429282800,
-      'formatted' => '2015-04-18 00:00:00',
-      'timezone' => 
+      'timestamp' => 1429315200,
+      'formatted' => '2015-04-18 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -8178,74 +7078,16 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 30,
       'is_leap_month' => false,
-      'moon_age' => 28.63563998570138,
-      'moon_phase_angle' => 343.88237814833,
+      'moon_age' => 28.6,
+      'moon_phase_angle' => 345.3583380727304,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-04-19 00:00:00' => 
+  '2015-04-19 03:57:00' =>
   array (
-    0 => '2015-04-19 00:00:00',
-    1 => 
-    array (
-      'year' => 2015,
-      'month' => 4,
-      'day' => 19,
-      'dayOfWeek' => 0,
-      'dayOfYear' => 109,
-      'hour' => 0,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1429369200,
-      'formatted' => '2015-04-19 00:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 7,
-      'misc_seasonal_node_text' => '土用',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 27,
-      'oriental_zodiac_text' => '未',
-      'oriental_zodiac' => 8,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '先負',
-      'six_weekday' => 4,
-      'weekday_text' => '日',
-      'month_text' => '卯月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '弥生',
-      'lunar_month' => 3,
-      'lunar_year' => 2015,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.20712995482608676,
-      'moon_phase_angle' => 357.7355409025081,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2015-04-19 03:00:00' => 
-  array (
-    0 => '2015-04-19 03:00:00',
-    1 => 
+    0 => '2015-04-19 03:57:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 4,
@@ -8253,12 +7095,12 @@ return array (
       'dayOfWeek' => 0,
       'dayOfYear' => 109,
       'hour' => 3,
-      'minute' => 0,
+      'minute' => 57,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1429380000,
-      'formatted' => '2015-04-19 03:00:00',
-      'timezone' => 
+      'timestamp' => 1429383420,
+      'formatted' => '2015-04-19 03:57:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -8294,29 +7136,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.3301332308910787,
-      'moon_phase_angle' => 359.45738354214615,
+      'moon_age' => 0.0,
+      'moon_phase_angle' => 356.2964568060236,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2015-04-19 04:00:00' => 
+  '2015-04-19 09:00:00' =>
   array (
-    0 => '2015-04-19 04:00:00',
-    1 => 
+    0 => '2015-04-19 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 4,
       'day' => 19,
       'dayOfWeek' => 0,
       'dayOfYear' => 109,
-      'hour' => 4,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1429383600,
-      'formatted' => '2015-04-19 04:00:00',
-      'timezone' => 
+      'timestamp' => 1429401600,
+      'formatted' => '2015-04-19 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -8352,87 +7194,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.3711455827578902,
-      'moon_phase_angle' => 0.030676754011238927,
+      'moon_age' => 0.211,
+      'moon_phase_angle' => 359.1965066314586,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2015-04-19 06:00:00' => 
+  '2015-04-20 09:00:00' =>
   array (
-    0 => '2015-04-19 06:00:00',
-    1 => 
-    array (
-      'year' => 2015,
-      'month' => 4,
-      'day' => 19,
-      'dayOfWeek' => 0,
-      'dayOfYear' => 109,
-      'hour' => 6,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1429390800,
-      'formatted' => '2015-04-19 06:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 7,
-      'misc_seasonal_node_text' => '土用',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 27,
-      'oriental_zodiac_text' => '未',
-      'oriental_zodiac' => 8,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '先負',
-      'six_weekday' => 4,
-      'weekday_text' => '日',
-      'month_text' => '卯月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '弥生',
-      'lunar_month' => 3,
-      'lunar_year' => 2015,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.45318277133628726,
-      'moon_phase_angle' => 1.1762287336559574,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2015-04-20 00:00:00' => 
-  array (
-    0 => '2015-04-20 00:00:00',
-    1 => 
+    0 => '2015-04-20 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 4,
       'day' => 20,
       'dayOfWeek' => 1,
       'dayOfYear' => 110,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1429455600,
-      'formatted' => '2015-04-20 00:00:00',
-      'timezone' => 
+      'timestamp' => 1429488000,
+      'formatted' => '2015-04-20 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -8468,29 +7252,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 2,
       'is_leap_month' => false,
-      'moon_age' => 1.1923382170498371,
-      'moon_phase_angle' => 11.413466664534159,
+      'moon_age' => 1.211,
+      'moon_phase_angle' => 12.844177787884657,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-04-21 00:00:00' => 
+  '2015-04-21 09:00:00' =>
   array (
-    0 => '2015-04-21 00:00:00',
-    1 => 
+    0 => '2015-04-21 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 4,
       'day' => 21,
       'dayOfWeek' => 2,
       'dayOfYear' => 111,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1429542000,
-      'formatted' => '2015-04-21 00:00:00',
-      'timezone' => 
+      'timestamp' => 1429574400,
+      'formatted' => '2015-04-21 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -8526,29 +7310,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 3,
       'is_leap_month' => false,
-      'moon_age' => 2.180852990131825,
-      'moon_phase_angle' => 24.8034714063629,
+      'moon_age' => 2.211,
+      'moon_phase_angle' => 26.191807886813173,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-04-22 00:00:00' => 
+  '2015-04-22 09:00:00' =>
   array (
-    0 => '2015-04-22 00:00:00',
-    1 => 
+    0 => '2015-04-22 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 4,
       'day' => 22,
       'dayOfWeek' => 3,
       'dayOfYear' => 112,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1429628400,
-      'formatted' => '2015-04-22 00:00:00',
-      'timezone' => 
+      'timestamp' => 1429660800,
+      'formatted' => '2015-04-22 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -8584,29 +7368,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 4,
       'is_leap_month' => false,
-      'moon_age' => 3.1735282158479095,
-      'moon_phase_angle' => 37.82212397009127,
+      'moon_age' => 3.211,
+      'moon_phase_angle' => 39.16061649460545,
       'moon_phase' => 1,
       'moon_phase_text' => '三日月',
     ),
   ),
-  '2015-04-23 00:00:00' => 
+  '2015-04-23 09:00:00' =>
   array (
-    0 => '2015-04-23 00:00:00',
-    1 => 
+    0 => '2015-04-23 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 4,
       'day' => 23,
       'dayOfWeek' => 4,
       'dayOfYear' => 113,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1429714800,
-      'formatted' => '2015-04-23 00:00:00',
-      'timezone' => 
+      'timestamp' => 1429747200,
+      'formatted' => '2015-04-23 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -8642,29 +7426,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 5,
       'is_leap_month' => false,
-      'moon_age' => 4.170801962260157,
-      'moon_phase_angle' => 50.42383515235987,
+      'moon_age' => 4.211,
+      'moon_phase_angle' => 51.709904214813854,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-04-24 00:00:00' => 
+  '2015-04-24 09:00:00' =>
   array (
-    0 => '2015-04-24 00:00:00',
-    1 => 
+    0 => '2015-04-24 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 4,
       'day' => 24,
       'dayOfWeek' => 5,
       'dayOfYear' => 114,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1429801200,
-      'formatted' => '2015-04-24 00:00:00',
-      'timezone' => 
+      'timestamp' => 1429833600,
+      'formatted' => '2015-04-24 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -8700,29 +7484,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 6,
       'is_leap_month' => false,
-      'moon_age' => 5.17260348983109,
-      'moon_phase_angle' => 62.60196194627534,
+      'moon_age' => 5.211,
+      'moon_phase_angle' => 63.837266213146854,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-04-25 00:00:00' => 
+  '2015-04-25 09:00:00' =>
   array (
-    0 => '2015-04-25 00:00:00',
-    1 => 
+    0 => '2015-04-25 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 4,
       'day' => 25,
       'dayOfWeek' => 6,
       'dayOfYear' => 115,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1429887600,
-      'formatted' => '2015-04-25 00:00:00',
-      'timezone' => 
+      'timestamp' => 1429920000,
+      'formatted' => '2015-04-25 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -8758,29 +7542,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 7,
       'is_leap_month' => false,
-      'moon_age' => 6.1785193625837564,
-      'moon_phase_angle' => 74.38390891307458,
+      'moon_age' => 6.211,
+      'moon_phase_angle' => 75.57345181527015,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-04-26 00:00:00' => 
+  '2015-04-26 08:55:00' =>
   array (
-    0 => '2015-04-26 00:00:00',
-    1 => 
+    0 => '2015-04-26 08:55:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 4,
       'day' => 26,
       'dayOfWeek' => 0,
       'dayOfYear' => 116,
-      'hour' => 0,
-      'minute' => 0,
+      'hour' => 8,
+      'minute' => 55,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1429974000,
-      'formatted' => '2015-04-26 00:00:00',
-      'timezone' => 
+      'timestamp' => 1430006100,
+      'formatted' => '2015-04-26 08:55:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -8816,16 +7600,16 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 7.187825620174408,
-      'moon_phase_angle' => 85.82294985213812,
+      'moon_age' => 7.206944444444445,
+      'moon_phase_angle' => 86.93523123326267,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2015-04-26 09:00:00' => 
+  '2015-04-26 09:00:00' =>
   array (
     0 => '2015-04-26 09:00:00',
-    1 => 
+    1 =>
     array (
       'year' => 2015,
       'month' => 4,
@@ -8838,7 +7622,7 @@ return array (
       'micro' => 0,
       'timestamp' => 1430006400,
       'formatted' => '2015-04-26 09:00:00',
-      'timezone' => 
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -8874,29 +7658,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 7.567021180409938,
-      'moon_phase_angle' => 90.03815882345319,
+      'moon_age' => 7.211,
+      'moon_phase_angle' => 86.97431725970785,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2015-04-27 00:00:00' => 
+  '2015-04-27 09:00:00' =>
   array (
-    0 => '2015-04-27 00:00:00',
-    1 => 
+    0 => '2015-04-27 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 4,
       'day' => 27,
       'dayOfWeek' => 1,
       'dayOfYear' => 117,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1430060400,
-      'formatted' => '2015-04-27 00:00:00',
-      'timezone' => 
+      'timestamp' => 1430092800,
+      'formatted' => '2015-04-27 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -8932,29 +7716,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 9,
       'is_leap_month' => false,
-      'moon_age' => 8.199655739124864,
-      'moon_phase_angle' => 96.98931004174935,
+      'moon_age' => 8.211,
+      'moon_phase_angle' => 98.11196089834735,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-04-28 00:00:00' => 
+  '2015-04-28 09:00:00' =>
   array (
-    0 => '2015-04-28 00:00:00',
-    1 => 
+    0 => '2015-04-28 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 4,
       'day' => 28,
       'dayOfWeek' => 2,
       'dayOfYear' => 118,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1430146800,
-      'formatted' => '2015-04-28 00:00:00',
-      'timezone' => 
+      'timestamp' => 1430179200,
+      'formatted' => '2015-04-28 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -8990,29 +7774,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 10,
       'is_leap_month' => false,
-      'moon_age' => 9.210235099308193,
-      'moon_phase_angle' => 107.9621203340488,
+      'moon_age' => 9.211,
+      'moon_phase_angle' => 109.06648566231382,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-04-29 00:00:00' => 
+  '2015-04-29 09:00:00' =>
   array (
-    0 => '2015-04-29 00:00:00',
-    1 => 
+    0 => '2015-04-29 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 4,
       'day' => 29,
       'dayOfWeek' => 3,
       'dayOfYear' => 119,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1430233200,
-      'formatted' => '2015-04-29 00:00:00',
-      'timezone' => 
+      'timestamp' => 1430265600,
+      'formatted' => '2015-04-29 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -9048,29 +7832,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 11,
       'is_leap_month' => false,
-      'moon_age' => 10.208418801426888,
-      'moon_phase_angle' => 118.82288538419651,
+      'moon_age' => 10.211,
+      'moon_phase_angle' => 119.91928581360229,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-04-30 00:00:00' => 
+  '2015-04-30 09:00:00' =>
   array (
-    0 => '2015-04-30 00:00:00',
-    1 => 
+    0 => '2015-04-30 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 4,
       'day' => 30,
       'dayOfWeek' => 4,
       'dayOfYear' => 120,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1430319600,
-      'formatted' => '2015-04-30 00:00:00',
-      'timezone' => 
+      'timestamp' => 1430352000,
+      'formatted' => '2015-04-30 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -9106,29 +7890,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 12,
       'is_leap_month' => false,
-      'moon_age' => 11.20663053356111,
-      'moon_phase_angle' => 129.65046081264458,
+      'moon_age' => 11.211,
+      'moon_phase_angle' => 130.74820742577023,
       'moon_phase' => 3,
       'moon_phase_text' => '十三夜',
     ),
   ),
-  '2015-05-01 00:00:00' => 
+  '2015-05-01 09:00:00' =>
   array (
-    0 => '2015-05-01 00:00:00',
-    1 => 
+    0 => '2015-05-01 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 5,
       'day' => 1,
       'dayOfWeek' => 5,
       'dayOfYear' => 121,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1430406000,
-      'formatted' => '2015-05-01 00:00:00',
-      'timezone' => 
+      'timestamp' => 1430438400,
+      'formatted' => '2015-05-01 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -9164,29 +7948,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 13,
       'is_leap_month' => false,
-      'moon_age' => 12.204952104017138,
-      'moon_phase_angle' => 140.5172584506145,
+      'moon_age' => 12.211,
+      'moon_phase_angle' => 141.62429911956576,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-05-02 00:00:00' => 
+  '2015-05-02 09:00:00' =>
   array (
-    0 => '2015-05-02 00:00:00',
-    1 => 
+    0 => '2015-05-02 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 5,
       'day' => 2,
       'dayOfWeek' => 6,
       'dayOfYear' => 122,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1430492400,
-      'formatted' => '2015-05-02 00:00:00',
-      'timezone' => 
+      'timestamp' => 1430524800,
+      'formatted' => '2015-05-02 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -9222,29 +8006,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 14,
       'is_leap_month' => false,
-      'moon_age' => 13.203450173605233,
-      'moon_phase_angle' => 151.48634227070278,
+      'moon_age' => 13.211,
+      'moon_phase_angle' => 152.60942963011735,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-05-03 00:00:00' => 
+  '2015-05-03 09:00:00' =>
   array (
-    0 => '2015-05-03 00:00:00',
-    1 => 
+    0 => '2015-05-03 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 5,
       'day' => 3,
       'dayOfWeek' => 0,
       'dayOfYear' => 123,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1430578800,
-      'formatted' => '2015-05-03 00:00:00',
-      'timezone' => 
+      'timestamp' => 1430611200,
+      'formatted' => '2015-05-03 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -9280,29 +8064,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 15,
       'is_leap_month' => false,
-      'moon_age' => 14.202183278743178,
-      'moon_phase_angle' => 162.60932641373293,
+      'moon_age' => 14.211,
+      'moon_phase_angle' => 163.754167941099,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-05-04 00:00:00' => 
+  '2015-05-04 09:00:00' =>
   array (
-    0 => '2015-05-04 00:00:00',
-    1 => 
+    0 => '2015-05-04 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 5,
       'day' => 4,
       'dayOfWeek' => 1,
       'dayOfYear' => 124,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1430665200,
-      'formatted' => '2015-05-04 00:00:00',
-      'timezone' => 
+      'timestamp' => 1430697600,
+      'formatted' => '2015-05-04 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -9338,74 +8122,16 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 15.20118534239009,
-      'moon_phase_angle' => 173.92497165321828,
+      'moon_age' => 15.211,
+      'moon_phase_angle' => 175.09600302908447,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2015-05-04 10:00:00' => 
+  '2015-05-04 12:42:00' =>
   array (
-    0 => '2015-05-04 10:00:00',
-    1 => 
-    array (
-      'year' => 2015,
-      'month' => 5,
-      'day' => 4,
-      'dayOfWeek' => 1,
-      'dayOfYear' => 124,
-      'hour' => 10,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1430701200,
-      'formatted' => '2015-05-04 10:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 7,
-      'misc_seasonal_node_text' => '土用',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 27,
-      'oriental_zodiac_text' => '未',
-      'oriental_zodiac' => 8,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '赤口',
-      'six_weekday' => 1,
-      'weekday_text' => '月',
-      'month_text' => '皐月',
-      'holiday_text' => 'みどりの日',
-      'holiday' => 7,
-      'is_holiday' => true,
-      'lunar_month_text' => '弥生',
-      'lunar_month' => 3,
-      'lunar_year' => 2015,
-      'lunar_day' => 16,
-      'is_leap_month' => false,
-      'moon_age' => 15.617522772401571,
-      'moon_phase_angle' => 178.70318935395832,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2015-05-04 12:00:00' => 
-  array (
-    0 => '2015-05-04 12:00:00',
-    1 => 
+    0 => '2015-05-04 12:42:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 5,
@@ -9413,12 +8139,12 @@ return array (
       'dayOfWeek' => 1,
       'dayOfYear' => 124,
       'hour' => 12,
-      'minute' => 0,
+      'minute' => 42,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1430708400,
-      'formatted' => '2015-05-04 12:00:00',
-      'timezone' => 
+      'timestamp' => 1430710920,
+      'formatted' => '2015-05-04 12:42:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -9454,87 +8180,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 15.700790809001774,
-      'moon_phase_angle' => 179.66350483260703,
+      'moon_age' => 15.364583333333334,
+      'moon_phase_angle' => 176.86376594153913,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2015-05-04 13:00:00' => 
+  '2015-05-05 09:00:00' =>
   array (
-    0 => '2015-05-04 13:00:00',
-    1 => 
-    array (
-      'year' => 2015,
-      'month' => 5,
-      'day' => 4,
-      'dayOfWeek' => 1,
-      'dayOfYear' => 124,
-      'hour' => 13,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1430712000,
-      'formatted' => '2015-05-04 13:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 7,
-      'misc_seasonal_node_text' => '土用',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 27,
-      'oriental_zodiac_text' => '未',
-      'oriental_zodiac' => 8,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '赤口',
-      'six_weekday' => 1,
-      'weekday_text' => '月',
-      'month_text' => '皐月',
-      'holiday_text' => 'みどりの日',
-      'holiday' => 7,
-      'is_holiday' => true,
-      'lunar_month_text' => '弥生',
-      'lunar_month' => 3,
-      'lunar_year' => 2015,
-      'lunar_day' => 16,
-      'is_leap_month' => false,
-      'moon_age' => 15.742431823629886,
-      'moon_phase_angle' => 180.14425324389973,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2015-05-05 00:00:00' => 
-  array (
-    0 => '2015-05-05 00:00:00',
-    1 => 
+    0 => '2015-05-05 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 5,
       'day' => 5,
       'dayOfWeek' => 2,
       'dayOfYear' => 125,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1430751600,
-      'formatted' => '2015-05-05 00:00:00',
-      'timezone' => 
+      'timestamp' => 1430784000,
+      'formatted' => '2015-05-05 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -9546,8 +8214,8 @@ return array (
       'lunar_seasonal_festival' => 0,
       'lunar_seasonal_festival_name' => '',
       'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
+      'misc_seasonal_node' => 7,
+      'misc_seasonal_node_text' => '土用',
       'solar_term' => false,
       'solar_term_text' => '',
       'is_solar_term' => false,
@@ -9570,29 +8238,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 17,
       'is_leap_month' => false,
-      'moon_age' => 16.200481904670596,
-      'moon_phase_angle' => 185.45872489173234,
+      'moon_age' => 16.211,
+      'moon_phase_angle' => 186.65858967244947,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-05-06 00:00:00' => 
+  '2015-05-06 09:00:00' =>
   array (
-    0 => '2015-05-06 00:00:00',
-    1 => 
+    0 => '2015-05-06 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 5,
       'day' => 6,
       'dayOfWeek' => 3,
       'dayOfYear' => 126,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1430838000,
-      'formatted' => '2015-05-06 00:00:00',
-      'timezone' => 
+      'timestamp' => 1430870400,
+      'formatted' => '2015-05-06 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -9628,29 +8296,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 18,
       'is_leap_month' => false,
-      'moon_age' => 17.20006235735491,
-      'moon_phase_angle' => 197.223378599946,
+      'moon_age' => 17.211,
+      'moon_phase_angle' => 198.45269269561183,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-05-07 00:00:00' => 
+  '2015-05-07 09:00:00' =>
   array (
-    0 => '2015-05-07 00:00:00',
-    1 => 
+    0 => '2015-05-07 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 5,
       'day' => 7,
       'dayOfWeek' => 4,
       'dayOfYear' => 127,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1430924400,
-      'formatted' => '2015-05-07 00:00:00',
-      'timezone' => 
+      'timestamp' => 1430956800,
+      'formatted' => '2015-05-07 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -9686,29 +8354,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 19,
       'is_leap_month' => false,
-      'moon_age' => 18.19993292912841,
-      'moon_phase_angle' => 209.2209597794566,
+      'moon_age' => 18.211,
+      'moon_phase_angle' => 210.4787977156813,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-05-08 00:00:00' => 
+  '2015-05-08 09:00:00' =>
   array (
-    0 => '2015-05-08 00:00:00',
-    1 => 
+    0 => '2015-05-08 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 5,
       'day' => 8,
       'dayOfWeek' => 5,
       'dayOfYear' => 128,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1431010800,
-      'formatted' => '2015-05-08 00:00:00',
-      'timezone' => 
+      'timestamp' => 1431043200,
+      'formatted' => '2015-05-08 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -9744,29 +8412,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 20,
       'is_leap_month' => false,
-      'moon_age' => 19.200067149940878,
-      'moon_phase_angle' => 221.4456745003285,
+      'moon_age' => 19.211,
+      'moon_phase_angle' => 222.73057515276818,
       'moon_phase' => 5,
       'moon_phase_text' => '十六夜',
     ),
   ),
-  '2015-05-09 00:00:00' => 
+  '2015-05-09 09:00:00' =>
   array (
-    0 => '2015-05-09 00:00:00',
-    1 => 
+    0 => '2015-05-09 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 5,
       'day' => 9,
       'dayOfWeek' => 6,
       'dayOfYear' => 129,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1431097200,
-      'formatted' => '2015-05-09 00:00:00',
-      'timezone' => 
+      'timestamp' => 1431129600,
+      'formatted' => '2015-05-09 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -9802,29 +8470,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 21,
       'is_leap_month' => false,
-      'moon_age' => 20.20048257522285,
-      'moon_phase_angle' => 233.8873534340713,
+      'moon_age' => 20.211,
+      'moon_phase_angle' => 235.19813916000982,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-05-10 00:00:00' => 
+  '2015-05-10 09:00:00' =>
   array (
-    0 => '2015-05-10 00:00:00',
-    1 => 
+    0 => '2015-05-10 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 5,
       'day' => 10,
       'dayOfWeek' => 0,
       'dayOfYear' => 130,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1431183600,
-      'formatted' => '2015-05-10 00:00:00',
-      'timezone' => 
+      'timestamp' => 1431216000,
+      'formatted' => '2015-05-10 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -9860,29 +8528,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 22,
       'is_leap_month' => false,
-      'moon_age' => 21.201137892436236,
-      'moon_phase_angle' => 246.5345076580512,
+      'moon_age' => 21.211,
+      'moon_phase_angle' => 247.87036396286905,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-05-11 00:00:00' => 
+  '2015-05-11 09:00:00' =>
   array (
-    0 => '2015-05-11 00:00:00',
-    1 => 
+    0 => '2015-05-11 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 5,
       'day' => 11,
       'dayOfWeek' => 1,
       'dayOfYear' => 131,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1431270000,
-      'formatted' => '2015-05-11 00:00:00',
-      'timezone' => 
+      'timestamp' => 1431302400,
+      'formatted' => '2015-05-11 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -9918,29 +8586,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 22.202037680428475,
-      'moon_phase_angle' => 259.375980089795,
+      'moon_age' => 22.211,
+      'moon_phase_angle' => 260.73589417339593,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2015-05-11 20:00:00' => 
+  '2015-05-11 19:36:00' =>
   array (
-    0 => '2015-05-11 20:00:00',
-    1 => 
+    0 => '2015-05-11 19:36:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 5,
       'day' => 11,
       'dayOfWeek' => 1,
       'dayOfYear' => 131,
-      'hour' => 20,
-      'minute' => 0,
+      'hour' => 19,
+      'minute' => 36,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1431342000,
-      'formatted' => '2015-05-11 20:00:00',
-      'timezone' => 
+      'timestamp' => 1431340560,
+      'formatted' => '2015-05-11 19:36:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -9976,29 +8644,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 23.036295449826866,
-      'moon_phase_angle' => 270.2174928268626,
+      'moon_age' => 22.652083333333334,
+      'moon_phase_angle' => 266.4766295956898,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2015-05-12 00:00:00' => 
+  '2015-05-12 09:00:00' =>
   array (
-    0 => '2015-05-12 00:00:00',
-    1 => 
+    0 => '2015-05-12 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 5,
       'day' => 12,
       'dayOfWeek' => 2,
       'dayOfYear' => 132,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1431356400,
-      'formatted' => '2015-05-12 00:00:00',
-      'timezone' => 
+      'timestamp' => 1431388800,
+      'formatted' => '2015-05-12 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -10034,29 +8702,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 24,
       'is_leap_month' => false,
-      'moon_age' => 23.203177040908486,
-      'moon_phase_angle' => 272.4003781149416,
+      'moon_age' => 23.211,
+      'moon_phase_angle' => 273.78250656232376,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-05-13 00:00:00' => 
+  '2015-05-13 09:00:00' =>
   array (
-    0 => '2015-05-13 00:00:00',
-    1 => 
+    0 => '2015-05-13 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 5,
       'day' => 13,
       'dayOfWeek' => 3,
       'dayOfYear' => 133,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1431442800,
-      'formatted' => '2015-05-13 00:00:00',
-      'timezone' => 
+      'timestamp' => 1431475200,
+      'formatted' => '2015-05-13 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -10092,29 +8760,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 25,
       'is_leap_month' => false,
-      'moon_age' => 24.204522957094014,
-      'moon_phase_angle' => 285.593004184147,
+      'moon_age' => 24.211,
+      'moon_phase_angle' => 286.9943726241548,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-05-14 00:00:00' => 
+  '2015-05-14 09:00:00' =>
   array (
-    0 => '2015-05-14 00:00:00',
-    1 => 
+    0 => '2015-05-14 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 5,
       'day' => 14,
       'dayOfWeek' => 4,
       'dayOfYear' => 134,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1431529200,
-      'formatted' => '2015-05-14 00:00:00',
-      'timezone' => 
+      'timestamp' => 1431561600,
+      'formatted' => '2015-05-14 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -10150,29 +8818,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 26,
       'is_leap_month' => false,
-      'moon_age' => 25.206077026203275,
-      'moon_phase_angle' => 298.9307782815974,
+      'moon_age' => 25.211,
+      'moon_phase_angle' => 300.34717211997014,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-05-15 00:00:00' => 
+  '2015-05-15 09:00:00' =>
   array (
-    0 => '2015-05-15 00:00:00',
-    1 => 
+    0 => '2015-05-15 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 5,
       'day' => 15,
       'dayOfWeek' => 5,
       'dayOfYear' => 135,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1431615600,
-      'formatted' => '2015-05-15 00:00:00',
-      'timezone' => 
+      'timestamp' => 1431648000,
+      'formatted' => '2015-05-15 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -10208,29 +8876,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 27,
       'is_leap_month' => false,
-      'moon_age' => 26.207754622679204,
-      'moon_phase_angle' => 312.37652364793604,
+      'moon_age' => 26.211,
+      'moon_phase_angle' => 313.8021918551337,
       'moon_phase' => 7,
       'moon_phase_text' => '有明',
     ),
   ),
-  '2015-05-16 00:00:00' => 
+  '2015-05-16 09:00:00' =>
   array (
-    0 => '2015-05-16 00:00:00',
-    1 => 
+    0 => '2015-05-16 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 5,
       'day' => 16,
       'dayOfWeek' => 6,
       'dayOfYear' => 136,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1431702000,
-      'formatted' => '2015-05-16 00:00:00',
-      'timezone' => 
+      'timestamp' => 1431734400,
+      'formatted' => '2015-05-16 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -10266,29 +8934,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 28,
       'is_leap_month' => false,
-      'moon_age' => 27.146441249320596,
-      'moon_phase_angle' => 325.8747313090923,
+      'moon_age' => 27.211,
+      'moon_phase_angle' => 327.3019034515917,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-05-17 00:00:00' => 
+  '2015-05-17 09:00:00' =>
   array (
-    0 => '2015-05-17 00:00:00',
-    1 => 
+    0 => '2015-05-17 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 5,
       'day' => 17,
       'dayOfWeek' => 0,
       'dayOfYear' => 137,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1431788400,
-      'formatted' => '2015-05-17 00:00:00',
-      'timezone' => 
+      'timestamp' => 1431820800,
+      'formatted' => '2015-05-17 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -10324,29 +8992,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 29,
       'is_leap_month' => false,
-      'moon_age' => 28.249411009395807,
-      'moon_phase_angle' => 339.35115118509054,
+      'moon_age' => 28.211,
+      'moon_phase_angle' => 340.7699139114037,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-05-18 00:00:00' => 
+  '2015-05-18 09:00:00' =>
   array (
-    0 => '2015-05-18 00:00:00',
-    1 => 
+    0 => '2015-05-18 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 5,
       'day' => 18,
       'dayOfWeek' => 1,
       'dayOfYear' => 138,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1431874800,
-      'formatted' => '2015-05-18 00:00:00',
-      'timezone' => 
+      'timestamp' => 1431907200,
+      'formatted' => '2015-05-18 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -10382,74 +9050,16 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 29.340547190191536,
-      'moon_phase_angle' => 352.7178390016614,
+      'moon_age' => 29.211,
+      'moon_phase_angle' => 354.11693744902783,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2015-05-18 12:00:00' => 
+  '2015-05-18 13:13:00' =>
   array (
-    0 => '2015-05-18 12:00:00',
-    1 => 
-    array (
-      'year' => 2015,
-      'month' => 5,
-      'day' => 18,
-      'dayOfWeek' => 1,
-      'dayOfYear' => 138,
-      'hour' => 12,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1431918000,
-      'formatted' => '2015-05-18 12:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 27,
-      'oriental_zodiac_text' => '未',
-      'oriental_zodiac' => 8,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '仏滅',
-      'six_weekday' => 5,
-      'weekday_text' => '月',
-      'month_text' => '皐月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '卯月',
-      'lunar_month' => 4,
-      'lunar_year' => 2015,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.3222369570285082,
-      'moon_phase_angle' => 359.3312752470629,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2015-05-18 13:00:00' => 
-  array (
-    0 => '2015-05-18 13:00:00',
-    1 => 
+    0 => '2015-05-18 13:13:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 5,
@@ -10457,12 +9067,12 @@ return array (
       'dayOfWeek' => 1,
       'dayOfYear' => 138,
       'hour' => 13,
-      'minute' => 0,
+      'minute' => 13,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1431921600,
-      'formatted' => '2015-05-18 13:00:00',
-      'timezone' => 
+      'timestamp' => 1431922380,
+      'formatted' => '2015-05-18 13:13:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -10498,87 +9108,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.36367002641782165,
-      'moon_phase_angle' => 359.87977429831074,
+      'moon_age' => 0.0,
+      'moon_phase_angle' => 356.4425199470368,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2015-05-18 14:00:00' => 
+  '2015-05-19 09:00:00' =>
   array (
-    0 => '2015-05-18 14:00:00',
-    1 => 
-    array (
-      'year' => 2015,
-      'month' => 5,
-      'day' => 18,
-      'dayOfWeek' => 1,
-      'dayOfYear' => 138,
-      'hour' => 14,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1431925200,
-      'formatted' => '2015-05-18 14:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 27,
-      'oriental_zodiac_text' => '未',
-      'oriental_zodiac' => 8,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '仏滅',
-      'six_weekday' => 5,
-      'weekday_text' => '月',
-      'month_text' => '皐月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '卯月',
-      'lunar_month' => 4,
-      'lunar_year' => 2015,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.4051005966030061,
-      'moon_phase_angle' => 0.42784166345192887,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2015-05-19 00:00:00' => 
-  array (
-    0 => '2015-05-19 00:00:00',
-    1 => 
+    0 => '2015-05-19 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 5,
       'day' => 19,
       'dayOfWeek' => 2,
       'dayOfYear' => 139,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1431961200,
-      'formatted' => '2015-05-19 00:00:00',
-      'timezone' => 
+      'timestamp' => 1431993600,
+      'formatted' => '2015-05-19 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -10614,29 +9166,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 2,
       'is_leap_month' => false,
-      'moon_age' => 0.819575363304466,
-      'moon_phase_angle' => 5.883496257362353,
+      'moon_age' => 0.824,
+      'moon_phase_angle' => 7.25200840325585,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-05-20 00:00:00' => 
+  '2015-05-20 09:00:00' =>
   array (
-    0 => '2015-05-20 00:00:00',
-    1 => 
+    0 => '2015-05-20 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 5,
       'day' => 20,
       'dayOfWeek' => 3,
       'dayOfYear' => 140,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1432047600,
-      'formatted' => '2015-05-20 00:00:00',
-      'timezone' => 
+      'timestamp' => 1432080000,
+      'formatted' => '2015-05-20 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -10672,29 +9224,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 3,
       'is_leap_month' => false,
-      'moon_age' => 1.8157995692454278,
-      'moon_phase_angle' => 18.766712776816505,
+      'moon_age' => 1.824,
+      'moon_phase_angle' => 20.095904054316883,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-05-21 00:00:00' => 
+  '2015-05-21 09:00:00' =>
   array (
-    0 => '2015-05-21 00:00:00',
-    1 => 
+    0 => '2015-05-21 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 5,
       'day' => 21,
       'dayOfWeek' => 4,
       'dayOfYear' => 141,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1432134000,
-      'formatted' => '2015-05-21 00:00:00',
-      'timezone' => 
+      'timestamp' => 1432166400,
+      'formatted' => '2015-05-21 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -10730,29 +9282,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 4,
       'is_leap_month' => false,
-      'moon_age' => 2.814379752613604,
-      'moon_phase_angle' => 31.308326849428823,
+      'moon_age' => 2.824,
+      'moon_phase_angle' => 32.59293805405655,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-05-22 00:00:00' => 
+  '2015-05-22 09:00:00' =>
   array (
-    0 => '2015-05-22 00:00:00',
-    1 => 
+    0 => '2015-05-22 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 5,
       'day' => 22,
       'dayOfWeek' => 5,
       'dayOfYear' => 142,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1432220400,
-      'formatted' => '2015-05-22 00:00:00',
-      'timezone' => 
+      'timestamp' => 1432252800,
+      'formatted' => '2015-05-22 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -10788,29 +9340,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 5,
       'is_leap_month' => false,
-      'moon_age' => 3.815440713427961,
-      'moon_phase_angle' => 43.47950912368777,
+      'moon_age' => 3.824,
+      'moon_phase_angle' => 44.71821000863273,
       'moon_phase' => 1,
       'moon_phase_text' => '三日月',
     ),
   ),
-  '2015-05-23 00:00:00' => 
+  '2015-05-23 09:00:00' =>
   array (
-    0 => '2015-05-23 00:00:00',
-    1 => 
+    0 => '2015-05-23 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 5,
       'day' => 23,
       'dayOfWeek' => 6,
       'dayOfYear' => 143,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1432306800,
-      'formatted' => '2015-05-23 00:00:00',
-      'timezone' => 
+      'timestamp' => 1432339200,
+      'formatted' => '2015-05-23 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -10846,29 +9398,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 6,
       'is_leap_month' => false,
-      'moon_age' => 4.8188731162808836,
-      'moon_phase_angle' => 55.28408474315624,
+      'moon_age' => 4.824,
+      'moon_phase_angle' => 56.47930512674481,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-05-24 00:00:00' => 
+  '2015-05-24 09:00:00' =>
   array (
-    0 => '2015-05-24 00:00:00',
-    1 => 
+    0 => '2015-05-24 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 5,
       'day' => 24,
       'dayOfWeek' => 0,
       'dayOfYear' => 144,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1432393200,
-      'formatted' => '2015-05-24 00:00:00',
-      'timezone' => 
+      'timestamp' => 1432425600,
+      'formatted' => '2015-05-24 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -10904,29 +9456,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 7,
       'is_leap_month' => false,
-      'moon_age' => 5.824179295450449,
-      'moon_phase_angle' => 66.75576450071213,
+      'moon_age' => 5.824,
+      'moon_phase_angle' => 67.91322454119728,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-05-25 00:00:00' => 
+  '2015-05-25 09:00:00' =>
   array (
-    0 => '2015-05-25 00:00:00',
-    1 => 
+    0 => '2015-05-25 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 5,
       'day' => 25,
       'dayOfWeek' => 1,
       'dayOfYear' => 145,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1432479600,
-      'formatted' => '2015-05-25 00:00:00',
-      'timezone' => 
+      'timestamp' => 1432512000,
+      'formatted' => '2015-05-25 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -10962,74 +9514,16 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 6.823635692242533,
-      'moon_phase_angle' => 77.9522087796603,
+      'moon_age' => 6.824,
+      'moon_phase_angle' => 79.08029155791164,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-05-26 00:00:00' => 
+  '2015-05-26 02:19:00' =>
   array (
-    0 => '2015-05-26 00:00:00',
-    1 => 
-    array (
-      'year' => 2015,
-      'month' => 5,
-      'day' => 26,
-      'dayOfWeek' => 2,
-      'dayOfYear' => 146,
-      'hour' => 0,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1432566000,
-      'formatted' => '2015-05-26 00:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 27,
-      'oriental_zodiac_text' => '未',
-      'oriental_zodiac' => 8,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '赤口',
-      'six_weekday' => 1,
-      'weekday_text' => '火',
-      'month_text' => '皐月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '卯月',
-      'lunar_month' => 4,
-      'lunar_year' => 2015,
-      'lunar_day' => 9,
-      'is_leap_month' => false,
-      'moon_age' => 7.823014535009861,
-      'moon_phase_angle' => 88.94792913605663,
-      'moon_phase' => 2,
-      'moon_phase_text' => '上弦',
-    ),
-  ),
-  '2015-05-26 02:00:00' => 
-  array (
-    0 => '2015-05-26 02:00:00',
-    1 => 
+    0 => '2015-05-26 02:19:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 5,
@@ -11037,12 +9531,12 @@ return array (
       'dayOfWeek' => 2,
       'dayOfYear' => 146,
       'hour' => 2,
-      'minute' => 0,
+      'minute' => 19,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1432573200,
-      'formatted' => '2015-05-26 02:00:00',
-      'timezone' => 
+      'timestamp' => 1432574340,
+      'formatted' => '2015-05-26 02:19:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -11078,29 +9572,87 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 9,
       'is_leap_month' => false,
-      'moon_age' => 7.906296004541218,
-      'moon_phase_angle' => 89.8577831615173,
+      'moon_age' => 7.545833333333333,
+      'moon_phase_angle' => 87.01451703754299,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2015-05-27 00:00:00' => 
+  '2015-05-26 09:00:00' =>
   array (
-    0 => '2015-05-27 00:00:00',
-    1 => 
+    0 => '2015-05-26 09:00:00',
+    1 =>
+    array (
+      'year' => 2015,
+      'month' => 5,
+      'day' => 26,
+      'dayOfWeek' => 2,
+      'dayOfYear' => 146,
+      'hour' => 9,
+      'minute' => 0,
+      'second' => 0,
+      'micro' => 0,
+      'timestamp' => 1432598400,
+      'formatted' => '2015-05-26 09:00:00',
+      'timezone' =>
+      \Carbon\CarbonTimeZone::__set_state(array(
+         'clock' => NULL,
+         'timezone_type' => 3,
+         'timezone' => 'Asia/Tokyo',
+      )),
+      'solar_seasonal_festival' => 0,
+      'solar_seasonal_festival_name' => '',
+      'solar_seasonal_festival_alias' => '',
+      'lunar_seasonal_festival' => 0,
+      'lunar_seasonal_festival_name' => '',
+      'lunar_seasonal_festival_alias' => '',
+      'misc_seasonal_node' => 0,
+      'misc_seasonal_node_text' => '',
+      'solar_term' => false,
+      'solar_term_text' => '',
+      'is_solar_term' => false,
+      'era_name_text' => '平成',
+      'era_name' => 1003,
+      'era_year' => 27,
+      'oriental_zodiac_text' => '未',
+      'oriental_zodiac' => 8,
+      'heavenly_stem_text' => '乙',
+      'heavenly_stem' => 1,
+      'six_weekday_text' => '赤口',
+      'six_weekday' => 1,
+      'weekday_text' => '火',
+      'month_text' => '皐月',
+      'holiday_text' => '',
+      'holiday' => 0,
+      'is_holiday' => false,
+      'lunar_month_text' => '卯月',
+      'lunar_month' => 4,
+      'lunar_year' => 2015,
+      'lunar_day' => 9,
+      'is_leap_month' => false,
+      'moon_age' => 7.824,
+      'moon_phase_angle' => 90.05687418055818,
+      'moon_phase' => 2,
+      'moon_phase_text' => '上弦',
+    ),
+  ),
+  '2015-05-27 09:00:00' =>
+  array (
+    0 => '2015-05-27 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 5,
       'day' => 27,
       'dayOfWeek' => 3,
       'dayOfYear' => 147,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1432652400,
-      'formatted' => '2015-05-27 00:00:00',
-      'timezone' => 
+      'timestamp' => 1432684800,
+      'formatted' => '2015-05-27 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -11136,29 +9688,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 10,
       'is_leap_month' => false,
-      'moon_age' => 8.822369056753814,
-      'moon_phase_angle' => 99.82738548221907,
+      'moon_age' => 8.824,
+      'moon_phase_angle' => 100.92831585601151,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-05-28 00:00:00' => 
+  '2015-05-28 09:00:00' =>
   array (
-    0 => '2015-05-28 00:00:00',
-    1 => 
+    0 => '2015-05-28 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 5,
       'day' => 28,
       'dayOfWeek' => 4,
       'dayOfYear' => 148,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1432738800,
-      'formatted' => '2015-05-28 00:00:00',
-      'timezone' => 
+      'timestamp' => 1432771200,
+      'formatted' => '2015-05-28 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -11194,29 +9746,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 11,
       'is_leap_month' => false,
-      'moon_age' => 9.821740282699466,
-      'moon_phase_angle' => 110.67884220507568,
+      'moon_age' => 9.824,
+      'moon_phase_angle' => 111.78279767368673,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-05-29 00:00:00' => 
+  '2015-05-29 09:00:00' =>
   array (
-    0 => '2015-05-29 00:00:00',
-    1 => 
+    0 => '2015-05-29 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 5,
       'day' => 29,
       'dayOfWeek' => 5,
       'dayOfYear' => 149,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1432825200,
-      'formatted' => '2015-05-29 00:00:00',
-      'timezone' => 
+      'timestamp' => 1432857600,
+      'formatted' => '2015-05-29 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -11252,29 +9804,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 12,
       'is_leap_month' => false,
-      'moon_age' => 10.821186158806086,
-      'moon_phase_angle' => 121.58895907214821,
+      'moon_age' => 10.824,
+      'moon_phase_angle' => 122.70617132498433,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-05-30 00:00:00' => 
+  '2015-05-30 09:00:00' =>
   array (
-    0 => '2015-05-30 00:00:00',
-    1 => 
+    0 => '2015-05-30 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 5,
       'day' => 30,
       'dayOfWeek' => 6,
       'dayOfYear' => 150,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1432911600,
-      'formatted' => '2015-05-30 00:00:00',
-      'timezone' => 
+      'timestamp' => 1432944000,
+      'formatted' => '2015-05-30 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -11310,29 +9862,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 13,
       'is_leap_month' => false,
-      'moon_age' => 11.820718941744417,
-      'moon_phase_angle' => 132.63781510628783,
+      'moon_age' => 11.824,
+      'moon_phase_angle' => 133.7772969997319,
       'moon_phase' => 3,
       'moon_phase_text' => '十三夜',
     ),
   ),
-  '2015-05-31 00:00:00' => 
+  '2015-05-31 09:00:00' =>
   array (
-    0 => '2015-05-31 00:00:00',
-    1 => 
+    0 => '2015-05-31 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 5,
       'day' => 31,
       'dayOfWeek' => 0,
       'dayOfYear' => 151,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1432998000,
-      'formatted' => '2015-05-31 00:00:00',
-      'timezone' => 
+      'timestamp' => 1433030400,
+      'formatted' => '2015-05-31 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -11368,29 +9920,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 14,
       'is_leap_month' => false,
-      'moon_age' => 12.820359446574003,
-      'moon_phase_angle' => 143.89407522761775,
+      'moon_age' => 12.824,
+      'moon_phase_angle' => 145.0633246180259,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-06-01 00:00:00' => 
+  '2015-06-01 09:00:00' =>
   array (
-    0 => '2015-06-01 00:00:00',
-    1 => 
+    0 => '2015-06-01 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 6,
       'day' => 1,
       'dayOfWeek' => 1,
       'dayOfYear' => 152,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1433084400,
-      'formatted' => '2015-06-01 00:00:00',
-      'timezone' => 
+      'timestamp' => 1433116800,
+      'formatted' => '2015-06-01 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -11426,29 +9978,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 15,
       'is_leap_month' => false,
-      'moon_age' => 13.820120351854712,
-      'moon_phase_angle' => 155.41026731561183,
+      'moon_age' => 13.824,
+      'moon_phase_angle' => 156.61478491807497,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-06-02 00:00:00' => 
+  '2015-06-02 09:00:00' =>
   array (
-    0 => '2015-06-02 00:00:00',
-    1 => 
+    0 => '2015-06-02 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 6,
       'day' => 2,
       'dayOfWeek' => 2,
       'dayOfYear' => 153,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1433170800,
-      'formatted' => '2015-06-02 00:00:00',
-      'timezone' => 
+      'timestamp' => 1433203200,
+      'formatted' => '2015-06-02 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -11484,74 +10036,16 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 14.820001969579607,
-      'moon_phase_angle' => 167.21852005612584,
+      'moon_age' => 14.824,
+      'moon_phase_angle' => 168.4611233552861,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-06-03 00:00:00' => 
+  '2015-06-03 01:19:00' =>
   array (
-    0 => '2015-06-03 00:00:00',
-    1 => 
-    array (
-      'year' => 2015,
-      'month' => 6,
-      'day' => 3,
-      'dayOfWeek' => 3,
-      'dayOfYear' => 154,
-      'hour' => 0,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1433257200,
-      'formatted' => '2015-06-03 00:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 27,
-      'oriental_zodiac_text' => '未',
-      'oriental_zodiac' => 8,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '友引',
-      'six_weekday' => 3,
-      'weekday_text' => '水',
-      'month_text' => '水無月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '卯月',
-      'lunar_month' => 4,
-      'lunar_year' => 2015,
-      'lunar_day' => 17,
-      'is_leap_month' => false,
-      'moon_age' => 15.820021962746978,
-      'moon_phase_angle' => 179.32771067645416,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2015-06-03 01:00:00' => 
-  array (
-    0 => '2015-06-03 01:00:00',
-    1 => 
+    0 => '2015-06-03 01:19:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 6,
@@ -11559,12 +10053,12 @@ return array (
       'dayOfWeek' => 3,
       'dayOfYear' => 154,
       'hour' => 1,
-      'minute' => 0,
+      'minute' => 19,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1433260800,
-      'formatted' => '2015-06-03 01:00:00',
-      'timezone' => 
+      'timestamp' => 1433261940,
+      'formatted' => '2015-06-03 01:19:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -11600,29 +10094,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 17,
       'is_leap_month' => false,
-      'moon_age' => 15.86169407935813,
-      'moon_phase_angle' => 179.83865243959642,
+      'moon_age' => 15.504166666666666,
+      'moon_phase_angle' => 176.68721750176485,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2015-06-03 02:00:00' => 
+  '2015-06-03 09:00:00' =>
   array (
-    0 => '2015-06-03 02:00:00',
-    1 => 
+    0 => '2015-06-03 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 6,
       'day' => 3,
       'dayOfWeek' => 3,
       'dayOfYear' => 154,
-      'hour' => 2,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1433264400,
-      'formatted' => '2015-06-03 02:00:00',
-      'timezone' => 
+      'timestamp' => 1433289600,
+      'formatted' => '2015-06-03 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -11658,87 +10152,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 17,
       'is_leap_month' => false,
-      'moon_age' => 15.903355085290968,
-      'moon_phase_angle' => 180.35009210837288,
+      'moon_age' => 15.824,
+      'moon_phase_angle' => 180.6079328751644,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2015-06-03 03:00:00' => 
+  '2015-06-04 09:00:00' =>
   array (
-    0 => '2015-06-03 03:00:00',
-    1 => 
-    array (
-      'year' => 2015,
-      'month' => 6,
-      'day' => 3,
-      'dayOfWeek' => 3,
-      'dayOfYear' => 154,
-      'hour' => 3,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1433268000,
-      'formatted' => '2015-06-03 03:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 27,
-      'oriental_zodiac_text' => '未',
-      'oriental_zodiac' => 8,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '友引',
-      'six_weekday' => 3,
-      'weekday_text' => '水',
-      'month_text' => '水無月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '卯月',
-      'lunar_month' => 4,
-      'lunar_year' => 2015,
-      'lunar_day' => 17,
-      'is_leap_month' => false,
-      'moon_age' => 15.945031218230724,
-      'moon_phase_angle' => 180.86202767516718,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2015-06-04 00:00:00' => 
-  array (
-    0 => '2015-06-04 00:00:00',
-    1 => 
+    0 => '2015-06-04 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 6,
       'day' => 4,
       'dayOfWeek' => 4,
       'dayOfYear' => 155,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1433343600,
-      'formatted' => '2015-06-04 00:00:00',
-      'timezone' => 
+      'timestamp' => 1433376000,
+      'formatted' => '2015-06-04 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -11774,29 +10210,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 18,
       'is_leap_month' => false,
-      'moon_age' => 16.820139231160283,
-      'moon_phase_angle' => 191.72305279528558,
+      'moon_age' => 16.824,
+      'moon_phase_angle' => 193.0372060701509,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-06-05 00:00:00' => 
+  '2015-06-05 09:00:00' =>
   array (
-    0 => '2015-06-05 00:00:00',
-    1 => 
+    0 => '2015-06-05 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 6,
       'day' => 5,
       'dayOfWeek' => 5,
       'dayOfYear' => 156,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1433430000,
-      'formatted' => '2015-06-05 00:00:00',
-      'timezone' => 
+      'timestamp' => 1433462400,
+      'formatted' => '2015-06-05 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -11832,29 +10268,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 19,
       'is_leap_month' => false,
-      'moon_age' => 17.820372867863625,
-      'moon_phase_angle' => 204.36916213024892,
+      'moon_age' => 17.824,
+      'moon_phase_angle' => 205.71124580380564,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-06-06 00:00:00' => 
+  '2015-06-06 09:00:00' =>
   array (
-    0 => '2015-06-06 00:00:00',
-    1 => 
+    0 => '2015-06-06 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 6,
       'day' => 6,
       'dayOfWeek' => 6,
       'dayOfYear' => 157,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1433516400,
-      'formatted' => '2015-06-06 00:00:00',
-      'timezone' => 
+      'timestamp' => 1433548800,
+      'formatted' => '2015-06-06 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -11890,29 +10326,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 20,
       'is_leap_month' => false,
-      'moon_age' => 18.820675089024007,
-      'moon_phase_angle' => 217.2166482049679,
+      'moon_age' => 18.824,
+      'moon_phase_angle' => 218.57977424871677,
       'moon_phase' => 5,
       'moon_phase_text' => '十六夜',
     ),
   ),
-  '2015-06-07 00:00:00' => 
+  '2015-06-07 09:00:00' =>
   array (
-    0 => '2015-06-07 00:00:00',
-    1 => 
+    0 => '2015-06-07 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 6,
       'day' => 7,
       'dayOfWeek' => 0,
       'dayOfYear' => 158,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1433602800,
-      'formatted' => '2015-06-07 00:00:00',
-      'timezone' => 
+      'timestamp' => 1433635200,
+      'formatted' => '2015-06-07 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -11948,29 +10384,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 21,
       'is_leap_month' => false,
-      'moon_age' => 19.82104243990034,
-      'moon_phase_angle' => 230.21100527244045,
+      'moon_age' => 19.824,
+      'moon_phase_angle' => 231.58870067509562,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-06-08 00:00:00' => 
+  '2015-06-08 09:00:00' =>
   array (
-    0 => '2015-06-08 00:00:00',
-    1 => 
+    0 => '2015-06-08 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 6,
       'day' => 8,
       'dayOfWeek' => 1,
       'dayOfYear' => 159,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1433689200,
-      'formatted' => '2015-06-08 00:00:00',
-      'timezone' => 
+      'timestamp' => 1433721600,
+      'formatted' => '2015-06-08 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12006,29 +10442,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 22,
       'is_leap_month' => false,
-      'moon_age' => 20.82145320577547,
-      'moon_phase_angle' => 243.3014435387919,
+      'moon_age' => 20.824,
+      'moon_phase_angle' => 244.68837523099924,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-06-09 00:00:00' => 
+  '2015-06-09 09:00:00' =>
   array (
-    0 => '2015-06-09 00:00:00',
-    1 => 
+    0 => '2015-06-09 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 6,
       'day' => 9,
       'dayOfWeek' => 2,
       'dayOfYear' => 160,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1433775600,
-      'formatted' => '2015-06-09 00:00:00',
-      'timezone' => 
+      'timestamp' => 1433808000,
+      'formatted' => '2015-06-09 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12064,16 +10500,16 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 21.821905967313796,
-      'moon_phase_angle' => 256.4470642584956,
+      'moon_age' => 21.824,
+      'moon_phase_angle' => 257.83917000034745,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-06-10 00:00:00' => 
+  '2015-06-10 00:42:00' =>
   array (
-    0 => '2015-06-10 00:00:00',
-    1 => 
+    0 => '2015-06-10 00:42:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 6,
@@ -12081,12 +10517,12 @@ return array (
       'dayOfWeek' => 3,
       'dayOfYear' => 161,
       'hour' => 0,
-      'minute' => 0,
+      'minute' => 42,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1433862000,
-      'formatted' => '2015-06-10 00:00:00',
-      'timezone' => 
+      'timestamp' => 1433864520,
+      'formatted' => '2015-06-10 00:42:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12122,29 +10558,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 24,
       'is_leap_month' => false,
-      'moon_age' => 22.82236516708508,
-      'moon_phase_angle' => 269.6186456718301,
+      'moon_age' => 22.478472222222223,
+      'moon_phase_angle' => 266.45574049221057,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2015-06-10 01:00:00' => 
+  '2015-06-10 09:00:00' =>
   array (
-    0 => '2015-06-10 01:00:00',
-    1 => 
+    0 => '2015-06-10 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 6,
       'day' => 10,
       'dayOfWeek' => 3,
       'dayOfYear' => 161,
-      'hour' => 1,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1433865600,
-      'formatted' => '2015-06-10 01:00:00',
-      'timezone' => 
+      'timestamp' => 1433894400,
+      'formatted' => '2015-06-10 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12180,29 +10616,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 24,
       'is_leap_month' => false,
-      'moon_age' => 22.864055667538196,
-      'moon_phase_angle' => 270.167704619457,
+      'moon_age' => 22.824,
+      'moon_phase_angle' => 271.01290196497257,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2015-06-11 00:00:00' => 
+  '2015-06-11 09:00:00' =>
   array (
-    0 => '2015-06-11 00:00:00',
-    1 => 
+    0 => '2015-06-11 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 6,
       'day' => 11,
       'dayOfWeek' => 4,
       'dayOfYear' => 162,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1433948400,
-      'formatted' => '2015-06-11 00:00:00',
-      'timezone' => 
+      'timestamp' => 1433980800,
+      'formatted' => '2015-06-11 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12238,29 +10674,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 25,
       'is_leap_month' => false,
-      'moon_age' => 23.822837579995394,
-      'moon_phase_angle' => 282.7958314411434,
+      'moon_age' => 23.824,
+      'moon_phase_angle' => 284.1898082942347,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-06-12 00:00:00' => 
+  '2015-06-12 09:00:00' =>
   array (
-    0 => '2015-06-12 00:00:00',
-    1 => 
+    0 => '2015-06-12 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 6,
       'day' => 12,
       'dayOfWeek' => 5,
       'dayOfYear' => 163,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1434034800,
-      'formatted' => '2015-06-12 00:00:00',
-      'timezone' => 
+      'timestamp' => 1434067200,
+      'formatted' => '2015-06-12 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12296,29 +10732,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 26,
       'is_leap_month' => false,
-      'moon_age' => 24.823306349106133,
-      'moon_phase_angle' => 295.96100282532797,
+      'moon_age' => 24.824,
+      'moon_phase_angle' => 297.3522092047369,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-06-13 00:00:00' => 
+  '2015-06-13 09:00:00' =>
   array (
-    0 => '2015-06-13 00:00:00',
-    1 => 
+    0 => '2015-06-13 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 6,
       'day' => 13,
       'dayOfWeek' => 6,
       'dayOfYear' => 164,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1434121200,
-      'formatted' => '2015-06-13 00:00:00',
-      'timezone' => 
+      'timestamp' => 1434153600,
+      'formatted' => '2015-06-13 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12354,29 +10790,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 27,
       'is_leap_month' => false,
-      'moon_age' => 25.823773892130703,
-      'moon_phase_angle' => 309.0920952010412,
+      'moon_age' => 25.824,
+      'moon_phase_angle' => 310.4771945929529,
       'moon_phase' => 7,
       'moon_phase_text' => '有明',
     ),
   ),
-  '2015-06-14 00:00:00' => 
+  '2015-06-14 09:00:00' =>
   array (
-    0 => '2015-06-14 00:00:00',
-    1 => 
+    0 => '2015-06-14 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 6,
       'day' => 14,
       'dayOfWeek' => 0,
       'dayOfYear' => 165,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1434207600,
-      'formatted' => '2015-06-14 00:00:00',
-      'timezone' => 
+      'timestamp' => 1434240000,
+      'formatted' => '2015-06-14 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12412,29 +10848,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 28,
       'is_leap_month' => false,
-      'moon_age' => 26.826119817471444,
-      'moon_phase_angle' => 322.1569355523449,
+      'moon_age' => 26.824,
+      'moon_phase_angle' => 323.53115229957274,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-06-15 00:00:00' => 
+  '2015-06-15 09:00:00' =>
   array (
-    0 => '2015-06-15 00:00:00',
-    1 => 
+    0 => '2015-06-15 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 6,
       'day' => 15,
       'dayOfWeek' => 1,
       'dayOfYear' => 166,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1434294000,
-      'formatted' => '2015-06-15 00:00:00',
-      'timezone' => 
+      'timestamp' => 1434326400,
+      'formatted' => '2015-06-15 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12470,29 +10906,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 29,
       'is_leap_month' => false,
-      'moon_age' => 27.884256659685015,
-      'moon_phase_angle' => 335.11130403783136,
+      'moon_age' => 27.824,
+      'moon_phase_angle' => 336.46842353828475,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-06-16 00:00:00' => 
+  '2015-06-16 09:00:00' =>
   array (
-    0 => '2015-06-16 00:00:00',
-    1 => 
+    0 => '2015-06-16 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 6,
       'day' => 16,
       'dayOfWeek' => 2,
       'dayOfYear' => 167,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1434380400,
-      'formatted' => '2015-06-16 00:00:00',
-      'timezone' => 
+      'timestamp' => 1434412800,
+      'formatted' => '2015-06-16 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12528,132 +10964,16 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 28.92723411801675,
-      'moon_phase_angle' => 347.9018467261796,
+      'moon_age' => 28.824,
+      'moon_phase_angle' => 349.234949474443,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2015-06-16 21:00:00' => 
+  '2015-06-16 23:05:00' =>
   array (
-    0 => '2015-06-16 21:00:00',
-    1 => 
-    array (
-      'year' => 2015,
-      'month' => 6,
-      'day' => 16,
-      'dayOfWeek' => 2,
-      'dayOfYear' => 167,
-      'hour' => 21,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1434456000,
-      'formatted' => '2015-06-16 21:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 27,
-      'oriental_zodiac_text' => '未',
-      'oriental_zodiac' => 8,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '大安',
-      'six_weekday' => 0,
-      'weekday_text' => '火',
-      'month_text' => '水無月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '皐月',
-      'lunar_month' => 5,
-      'lunar_year' => 2015,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.287896444555372,
-      'moon_phase_angle' => 358.91564796665824,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2015-06-16 22:00:00' => 
-  array (
-    0 => '2015-06-16 22:00:00',
-    1 => 
-    array (
-      'year' => 2015,
-      'month' => 6,
-      'day' => 16,
-      'dayOfWeek' => 2,
-      'dayOfYear' => 167,
-      'hour' => 22,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1434459600,
-      'formatted' => '2015-06-16 22:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 27,
-      'oriental_zodiac_text' => '未',
-      'oriental_zodiac' => 8,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '大安',
-      'six_weekday' => 0,
-      'weekday_text' => '火',
-      'month_text' => '水無月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '皐月',
-      'lunar_month' => 5,
-      'lunar_year' => 2015,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.32955254800617695,
-      'moon_phase_angle' => 359.4353446092892,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2015-06-16 23:00:00' => 
-  array (
-    0 => '2015-06-16 23:00:00',
-    1 => 
+    0 => '2015-06-16 23:05:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 6,
@@ -12661,12 +10981,12 @@ return array (
       'dayOfWeek' => 2,
       'dayOfYear' => 167,
       'hour' => 23,
-      'minute' => 0,
+      'minute' => 5,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1434463200,
-      'formatted' => '2015-06-16 23:00:00',
-      'timezone' => 
+      'timestamp' => 1434463500,
+      'formatted' => '2015-06-16 23:05:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12702,29 +11022,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.3712041969411075,
-      'moon_phase_angle' => 359.9545821410651,
+      'moon_age' => 0.0,
+      'moon_phase_angle' => 356.6247003381281,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2015-06-17 00:00:00' => 
+  '2015-06-17 09:00:00' =>
   array (
-    0 => '2015-06-17 00:00:00',
-    1 => 
+    0 => '2015-06-17 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 6,
       'day' => 17,
       'dayOfWeek' => 3,
       'dayOfYear' => 168,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1434466800,
-      'formatted' => '2015-06-17 00:00:00',
-      'timezone' => 
+      'timestamp' => 1434499200,
+      'formatted' => '2015-06-17 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12760,29 +11080,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 2,
       'is_leap_month' => false,
-      'moon_age' => 0.4128632703796029,
-      'moon_phase_angle' => 0.47335750521409636,
+      'moon_age' => 0.413,
+      'moon_phase_angle' => 1.7760147635263763,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-06-18 00:00:00' => 
+  '2015-06-18 09:00:00' =>
   array (
-    0 => '2015-06-18 00:00:00',
-    1 => 
+    0 => '2015-06-18 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 6,
       'day' => 18,
       'dayOfWeek' => 4,
       'dayOfYear' => 169,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1434553200,
-      'formatted' => '2015-06-18 00:00:00',
-      'timezone' => 
+      'timestamp' => 1434585600,
+      'formatted' => '2015-06-18 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12818,29 +11138,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 3,
       'is_leap_month' => false,
-      'moon_age' => 1.4128472050651908,
-      'moon_phase_angle' => 12.778369509661346,
+      'moon_age' => 1.413,
+      'moon_phase_angle' => 14.045828549628467,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-06-19 00:00:00' => 
+  '2015-06-19 09:00:00' =>
   array (
-    0 => '2015-06-19 00:00:00',
-    1 => 
+    0 => '2015-06-19 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 6,
       'day' => 19,
       'dayOfWeek' => 5,
       'dayOfYear' => 170,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1434639600,
-      'formatted' => '2015-06-19 00:00:00',
-      'timezone' => 
+      'timestamp' => 1434672000,
+      'formatted' => '2015-06-19 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12876,29 +11196,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 4,
       'is_leap_month' => false,
-      'moon_age' => 2.413012420758605,
-      'moon_phase_angle' => 24.786225926340734,
+      'moon_age' => 2.413,
+      'moon_phase_angle' => 26.01624808972535,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-06-20 00:00:00' => 
+  '2015-06-20 09:00:00' =>
   array (
-    0 => '2015-06-20 00:00:00',
-    1 => 
+    0 => '2015-06-20 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 6,
       'day' => 20,
       'dayOfWeek' => 6,
       'dayOfYear' => 171,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1434726000,
-      'formatted' => '2015-06-20 00:00:00',
-      'timezone' => 
+      'timestamp' => 1434758400,
+      'formatted' => '2015-06-20 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12934,29 +11254,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 5,
       'is_leap_month' => false,
-      'moon_age' => 3.4129887688905,
-      'moon_phase_angle' => 36.48924922873397,
+      'moon_age' => 3.413,
+      'moon_phase_angle' => 37.68252794874668,
       'moon_phase' => 1,
       'moon_phase_text' => '三日月',
     ),
   ),
-  '2015-06-21 00:00:00' => 
+  '2015-06-21 09:00:00' =>
   array (
-    0 => '2015-06-21 00:00:00',
-    1 => 
+    0 => '2015-06-21 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 6,
       'day' => 21,
       'dayOfWeek' => 0,
       'dayOfYear' => 172,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1434812400,
-      'formatted' => '2015-06-21 00:00:00',
-      'timezone' => 
+      'timestamp' => 1434844800,
+      'formatted' => '2015-06-21 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12992,29 +11312,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 6,
       'is_leap_month' => false,
-      'moon_age' => 4.412959536071867,
-      'moon_phase_angle' => 47.90496441704451,
+      'moon_age' => 4.413,
+      'moon_phase_angle' => 49.06519322488995,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-06-22 00:00:00' => 
+  '2015-06-22 09:00:00' =>
   array (
-    0 => '2015-06-22 00:00:00',
-    1 => 
+    0 => '2015-06-22 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 6,
       'day' => 22,
       'dayOfWeek' => 1,
       'dayOfYear' => 173,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1434898800,
-      'formatted' => '2015-06-22 00:00:00',
-      'timezone' => 
+      'timestamp' => 1434931200,
+      'formatted' => '2015-06-22 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -13050,29 +11370,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 7,
       'is_leap_month' => false,
-      'moon_age' => 5.412917707115412,
-      'moon_phase_angle' => 59.074738968983326,
+      'moon_age' => 5.413,
+      'moon_phase_angle' => 60.20838951204867,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-06-23 00:00:00' => 
+  '2015-06-23 09:00:00' =>
   array (
-    0 => '2015-06-23 00:00:00',
-    1 => 
+    0 => '2015-06-23 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 6,
       'day' => 23,
       'dayOfWeek' => 2,
       'dayOfYear' => 174,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1434985200,
-      'formatted' => '2015-06-23 00:00:00',
-      'timezone' => 
+      'timestamp' => 1435017600,
+      'formatted' => '2015-06-23 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -13108,29 +11428,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 6.412882481236011,
-      'moon_phase_angle' => 70.06001304925124,
+      'moon_age' => 6.413,
+      'moon_phase_angle' => 71.17585157551976,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-06-24 00:00:00' => 
+  '2015-06-24 09:00:00' =>
   array (
-    0 => '2015-06-24 00:00:00',
-    1 => 
+    0 => '2015-06-24 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 6,
       'day' => 24,
       'dayOfWeek' => 3,
       'dayOfYear' => 175,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1435071600,
-      'formatted' => '2015-06-24 00:00:00',
-      'timezone' => 
+      'timestamp' => 1435104000,
+      'formatted' => '2015-06-24 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -13166,16 +11486,16 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 9,
       'is_leap_month' => false,
-      'moon_age' => 7.412852147128433,
-      'moon_phase_angle' => 80.93736400970788,
+      'moon_age' => 7.413,
+      'moon_phase_angle' => 82.04576602287854,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2015-06-24 20:00:00' => 
+  '2015-06-24 20:03:00' =>
   array (
-    0 => '2015-06-24 20:00:00',
-    1 => 
+    0 => '2015-06-24 20:03:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 6,
@@ -13183,12 +11503,12 @@ return array (
       'dayOfWeek' => 3,
       'dayOfYear' => 175,
       'hour' => 20,
-      'minute' => 0,
+      'minute' => 3,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1435143600,
-      'formatted' => '2015-06-24 20:00:00',
-      'timezone' => 
+      'timestamp' => 1435143780,
+      'formatted' => '2015-06-24 20:03:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -13224,29 +11544,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 9,
       'is_leap_month' => false,
-      'moon_age' => 8.246162593830377,
-      'moon_phase_angle' => 89.98157355490615,
+      'moon_age' => 7.873611111111111,
+      'moon_phase_angle' => 87.04152459618524,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2015-06-25 00:00:00' => 
+  '2015-06-25 09:00:00' =>
   array (
-    0 => '2015-06-25 00:00:00',
-    1 => 
+    0 => '2015-06-25 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 6,
       'day' => 25,
       'dayOfWeek' => 4,
       'dayOfYear' => 176,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1435158000,
-      'formatted' => '2015-06-25 00:00:00',
-      'timezone' => 
+      'timestamp' => 1435190400,
+      'formatted' => '2015-06-25 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -13282,29 +11602,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 10,
       'is_leap_month' => false,
-      'moon_age' => 8.412829746957868,
-      'moon_phase_angle' => 91.79323741718179,
+      'moon_age' => 8.413,
+      'moon_phase_angle' => 92.90541563552341,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-06-26 00:00:00' => 
+  '2015-06-26 09:00:00' =>
   array (
-    0 => '2015-06-26 00:00:00',
-    1 => 
+    0 => '2015-06-26 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 6,
       'day' => 26,
       'dayOfWeek' => 5,
       'dayOfYear' => 177,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1435244400,
-      'formatted' => '2015-06-26 00:00:00',
-      'timezone' => 
+      'timestamp' => 1435276800,
+      'formatted' => '2015-06-26 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -13340,29 +11660,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 11,
       'is_leap_month' => false,
-      'moon_age' => 9.412816934287548,
-      'moon_phase_angle' => 102.71862884174487,
+      'moon_age' => 9.413,
+      'moon_phase_angle' => 103.84589083976893,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-06-27 00:00:00' => 
+  '2015-06-27 09:00:00' =>
   array (
-    0 => '2015-06-27 00:00:00',
-    1 => 
+    0 => '2015-06-27 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 6,
       'day' => 27,
       'dayOfWeek' => 6,
       'dayOfYear' => 178,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1435330800,
-      'formatted' => '2015-06-27 00:00:00',
-      'timezone' => 
+      'timestamp' => 1435363200,
+      'formatted' => '2015-06-27 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -13398,29 +11718,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 12,
       'is_leap_month' => false,
-      'moon_age' => 10.412796201184392,
-      'moon_phase_angle' => 113.8035598059859,
+      'moon_age' => 10.413,
+      'moon_phase_angle' => 114.9566310676883,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-06-28 00:00:00' => 
+  '2015-06-28 09:00:00' =>
   array (
-    0 => '2015-06-28 00:00:00',
-    1 => 
+    0 => '2015-06-28 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 6,
       'day' => 28,
       'dayOfWeek' => 0,
       'dayOfYear' => 179,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1435417200,
-      'formatted' => '2015-06-28 00:00:00',
-      'timezone' => 
+      'timestamp' => 1435449600,
+      'formatted' => '2015-06-28 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -13456,29 +11776,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 13,
       'is_leap_month' => false,
-      'moon_age' => 11.412789183203131,
-      'moon_phase_angle' => 125.13098087804066,
+      'moon_age' => 11.413,
+      'moon_phase_angle' => 126.31931276814097,
       'moon_phase' => 3,
       'moon_phase_text' => '十三夜',
     ),
   ),
-  '2015-06-29 00:00:00' => 
+  '2015-06-29 09:00:00' =>
   array (
-    0 => '2015-06-29 00:00:00',
-    1 => 
+    0 => '2015-06-29 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 6,
       'day' => 29,
       'dayOfWeek' => 1,
       'dayOfYear' => 180,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1435503600,
-      'formatted' => '2015-06-29 00:00:00',
-      'timezone' => 
+      'timestamp' => 1435536000,
+      'formatted' => '2015-06-29 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -13514,29 +11834,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 14,
       'is_leap_month' => false,
-      'moon_age' => 12.41279222117737,
-      'moon_phase_angle' => 136.7698247785159,
+      'moon_age' => 12.413,
+      'moon_phase_angle' => 138.00075341180434,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-06-30 00:00:00' => 
+  '2015-06-30 09:00:00' =>
   array (
-    0 => '2015-06-30 00:00:00',
-    1 => 
+    0 => '2015-06-30 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 6,
       'day' => 30,
       'dayOfWeek' => 2,
       'dayOfYear' => 181,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1435590000,
-      'formatted' => '2015-06-30 00:00:00',
-      'timezone' => 
+      'timestamp' => 1435622400,
+      'formatted' => '2015-06-30 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -13572,29 +11892,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 15,
       'is_leap_month' => false,
-      'moon_age' => 13.412792329210788,
-      'moon_phase_angle' => 148.76738313670805,
+      'moon_age' => 13.413,
+      'moon_phase_angle' => 150.04511047874354,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-07-01 00:00:00' => 
+  '2015-07-01 09:00:00' =>
   array (
-    0 => '2015-07-01 00:00:00',
-    1 => 
+    0 => '2015-07-01 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 7,
       'day' => 1,
       'dayOfWeek' => 3,
       'dayOfYear' => 182,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1435676400,
-      'formatted' => '2015-07-01 00:00:00',
-      'timezone' => 
+      'timestamp' => 1435708800,
+      'formatted' => '2015-07-01 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -13630,29 +11950,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 14.412789716385305,
-      'moon_phase_angle' => 161.14199633587106,
+      'moon_age' => 14.413,
+      'moon_phase_angle' => 162.4666197349165,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-07-02 00:00:00' => 
+  '2015-07-02 09:00:00' =>
   array (
-    0 => '2015-07-02 00:00:00',
-    1 => 
+    0 => '2015-07-02 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 7,
       'day' => 2,
       'dayOfWeek' => 4,
       'dayOfYear' => 183,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1435762800,
-      'formatted' => '2015-07-02 00:00:00',
-      'timezone' => 
+      'timestamp' => 1435795200,
+      'formatted' => '2015-07-02 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -13688,74 +12008,16 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 17,
       'is_leap_month' => false,
-      'moon_age' => 15.412797653116286,
-      'moon_phase_angle' => 173.87795331036227,
+      'moon_age' => 15.413,
+      'moon_phase_angle' => 175.24504594199013,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2015-07-02 10:00:00' => 
+  '2015-07-02 11:20:00' =>
   array (
-    0 => '2015-07-02 10:00:00',
-    1 => 
-    array (
-      'year' => 2015,
-      'month' => 7,
-      'day' => 2,
-      'dayOfWeek' => 4,
-      'dayOfYear' => 183,
-      'hour' => 10,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1435798800,
-      'formatted' => '2015-07-02 10:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 6,
-      'misc_seasonal_node_text' => '半夏生',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 27,
-      'oriental_zodiac_text' => '未',
-      'oriental_zodiac' => 8,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '先負',
-      'six_weekday' => 4,
-      'weekday_text' => '木',
-      'month_text' => '文月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '皐月',
-      'lunar_month' => 5,
-      'lunar_year' => 2015,
-      'lunar_day' => 17,
-      'is_leap_month' => false,
-      'moon_age' => 15.829468031879514,
-      'moon_phase_angle' => 179.2804302683304,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2015-07-02 11:00:00' => 
-  array (
-    0 => '2015-07-02 11:00:00',
-    1 => 
+    0 => '2015-07-02 11:20:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 7,
@@ -13763,12 +12025,12 @@ return array (
       'dayOfWeek' => 4,
       'dayOfYear' => 183,
       'hour' => 11,
-      'minute' => 0,
+      'minute' => 20,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1435802400,
-      'formatted' => '2015-07-02 11:00:00',
-      'timezone' => 
+      'timestamp' => 1435803600,
+      'formatted' => '2015-07-02 11:20:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -13804,145 +12066,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 17,
       'is_leap_month' => false,
-      'moon_age' => 15.87113398173824,
-      'moon_phase_angle' => 179.82347478719555,
+      'moon_age' => 15.510416666666666,
+      'moon_phase_angle' => 176.50467039095787,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2015-07-02 12:00:00' => 
+  '2015-07-03 09:00:00' =>
   array (
-    0 => '2015-07-02 12:00:00',
-    1 => 
-    array (
-      'year' => 2015,
-      'month' => 7,
-      'day' => 2,
-      'dayOfWeek' => 4,
-      'dayOfYear' => 183,
-      'hour' => 12,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1435806000,
-      'formatted' => '2015-07-02 12:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 6,
-      'misc_seasonal_node_text' => '半夏生',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 27,
-      'oriental_zodiac_text' => '未',
-      'oriental_zodiac' => 8,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '先負',
-      'six_weekday' => 4,
-      'weekday_text' => '木',
-      'month_text' => '文月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '皐月',
-      'lunar_month' => 5,
-      'lunar_year' => 2015,
-      'lunar_day' => 17,
-      'is_leap_month' => false,
-      'moon_age' => 15.91279922099784,
-      'moon_phase_angle' => 180.36700581007466,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2015-07-02 13:00:00' => 
-  array (
-    0 => '2015-07-02 13:00:00',
-    1 => 
-    array (
-      'year' => 2015,
-      'month' => 7,
-      'day' => 2,
-      'dayOfWeek' => 4,
-      'dayOfYear' => 183,
-      'hour' => 13,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1435809600,
-      'formatted' => '2015-07-02 13:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 6,
-      'misc_seasonal_node_text' => '半夏生',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 27,
-      'oriental_zodiac_text' => '未',
-      'oriental_zodiac' => 8,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '先負',
-      'six_weekday' => 4,
-      'weekday_text' => '木',
-      'month_text' => '文月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '皐月',
-      'lunar_month' => 5,
-      'lunar_year' => 2015,
-      'lunar_day' => 17,
-      'is_leap_month' => false,
-      'moon_age' => 15.954475218895823,
-      'moon_phase_angle' => 180.9110175976764,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2015-07-03 00:00:00' => 
-  array (
-    0 => '2015-07-03 00:00:00',
-    1 => 
+    0 => '2015-07-03 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 7,
       'day' => 3,
       'dayOfWeek' => 5,
       'dayOfYear' => 184,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1435849200,
-      'formatted' => '2015-07-03 00:00:00',
-      'timezone' => 
+      'timestamp' => 1435881600,
+      'formatted' => '2015-07-03 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -13978,29 +12124,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 18,
       'is_leap_month' => false,
-      'moon_age' => 16.412810233887285,
-      'moon_phase_angle' => 186.92516673005093,
+      'moon_age' => 16.413,
+      'moon_phase_angle' => 188.32624552728447,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-07-04 00:00:00' => 
+  '2015-07-04 09:00:00' =>
   array (
-    0 => '2015-07-04 00:00:00',
-    1 => 
+    0 => '2015-07-04 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 7,
       'day' => 4,
       'dayOfWeek' => 6,
       'dayOfYear' => 185,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1435935600,
-      'formatted' => '2015-07-04 00:00:00',
-      'timezone' => 
+      'timestamp' => 1435968000,
+      'formatted' => '2015-07-04 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -14036,29 +12182,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 19,
       'is_leap_month' => false,
-      'moon_age' => 17.412827285006642,
-      'moon_phase_angle' => 200.20532485115325,
+      'moon_age' => 17.413,
+      'moon_phase_angle' => 201.62925957152797,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-07-05 00:00:00' => 
+  '2015-07-05 09:00:00' =>
   array (
-    0 => '2015-07-05 00:00:00',
-    1 => 
+    0 => '2015-07-05 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 7,
       'day' => 5,
       'dayOfWeek' => 0,
       'dayOfYear' => 186,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1436022000,
-      'formatted' => '2015-07-05 00:00:00',
-      'timezone' => 
+      'timestamp' => 1436054400,
+      'formatted' => '2015-07-05 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -14094,29 +12240,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 20,
       'is_leap_month' => false,
-      'moon_age' => 18.412843422032893,
-      'moon_phase_angle' => 213.6243146152791,
+      'moon_age' => 18.413,
+      'moon_phase_angle' => 215.05917884792564,
       'moon_phase' => 5,
       'moon_phase_text' => '十六夜',
     ),
   ),
-  '2015-07-06 00:00:00' => 
+  '2015-07-06 09:00:00' =>
   array (
-    0 => '2015-07-06 00:00:00',
-    1 => 
+    0 => '2015-07-06 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 7,
       'day' => 6,
       'dayOfWeek' => 1,
       'dayOfYear' => 187,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1436108400,
-      'formatted' => '2015-07-06 00:00:00',
-      'timezone' => 
+      'timestamp' => 1436140800,
+      'formatted' => '2015-07-06 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -14152,29 +12298,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 21,
       'is_leap_month' => false,
-      'moon_age' => 19.412876916583627,
-      'moon_phase_angle' => 227.08779685414487,
+      'moon_age' => 19.413,
+      'moon_phase_angle' => 228.52260859972773,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-07-07 00:00:00' => 
+  '2015-07-07 09:00:00' =>
   array (
-    0 => '2015-07-07 00:00:00',
-    1 => 
+    0 => '2015-07-07 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 7,
       'day' => 7,
       'dayOfWeek' => 2,
       'dayOfYear' => 188,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1436194800,
-      'formatted' => '2015-07-07 00:00:00',
-      'timezone' => 
+      'timestamp' => 1436227200,
+      'formatted' => '2015-07-07 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -14210,29 +12356,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 22,
       'is_leap_month' => false,
-      'moon_age' => 20.41290244506672,
-      'moon_phase_angle' => 240.5151831921709,
+      'moon_age' => 20.413,
+      'moon_phase_angle' => 241.94120347170264,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-07-08 00:00:00' => 
+  '2015-07-08 09:00:00' =>
   array (
-    0 => '2015-07-08 00:00:00',
-    1 => 
+    0 => '2015-07-08 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 7,
       'day' => 8,
       'dayOfWeek' => 3,
       'dayOfYear' => 189,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1436281200,
-      'formatted' => '2015-07-08 00:00:00',
-      'timezone' => 
+      'timestamp' => 1436313600,
+      'formatted' => '2015-07-08 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -14268,29 +12414,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 21.41293828515336,
-      'moon_phase_angle' => 253.8479336620578,
+      'moon_age' => 21.413,
+      'moon_phase_angle' => 255.25936388933272,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-07-09 00:00:00' => 
+  '2015-07-09 05:24:00' =>
   array (
-    0 => '2015-07-09 00:00:00',
-    1 => 
+    0 => '2015-07-09 05:24:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 7,
       'day' => 9,
       'dayOfWeek' => 4,
       'dayOfYear' => 190,
-      'hour' => 0,
-      'minute' => 0,
+      'hour' => 5,
+      'minute' => 24,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1436367600,
-      'formatted' => '2015-07-09 00:00:00',
-      'timezone' => 
+      'timestamp' => 1436387040,
+      'formatted' => '2015-07-09 05:24:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -14326,29 +12472,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 24,
       'is_leap_month' => false,
-      'moon_age' => 22.41297284886241,
-      'moon_phase_angle' => 267.0506522924794,
+      'moon_age' => 22.263194444444444,
+      'moon_phase_angle' => 266.4759991705703,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2015-07-09 06:00:00' => 
+  '2015-07-09 09:00:00' =>
   array (
-    0 => '2015-07-09 06:00:00',
-    1 => 
+    0 => '2015-07-09 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 7,
       'day' => 9,
       'dayOfWeek' => 4,
       'dayOfYear' => 190,
-      'hour' => 6,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1436389200,
-      'formatted' => '2015-07-09 06:00:00',
-      'timezone' => 
+      'timestamp' => 1436400000,
+      'formatted' => '2015-07-09 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -14384,29 +12530,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 24,
       'is_leap_month' => false,
-      'moon_age' => 22.662976544816047,
-      'moon_phase_angle' => 270.32871554242604,
+      'moon_age' => 22.413,
+      'moon_phase_angle' => 268.4445638689391,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2015-07-10 00:00:00' => 
+  '2015-07-10 09:00:00' =>
   array (
-    0 => '2015-07-10 00:00:00',
-    1 => 
+    0 => '2015-07-10 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 7,
       'day' => 10,
       'dayOfWeek' => 5,
       'dayOfYear' => 191,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1436454000,
-      'formatted' => '2015-07-10 00:00:00',
-      'timezone' => 
+      'timestamp' => 1436486400,
+      'formatted' => '2015-07-10 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -14442,29 +12588,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 25,
       'is_leap_month' => false,
-      'moon_age' => 23.41299392329529,
-      'moon_phase_angle' => 280.1062128338469,
+      'moon_age' => 23.413,
+      'moon_phase_angle' => 281.48164850963616,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-07-11 00:00:00' => 
+  '2015-07-11 09:00:00' =>
   array (
-    0 => '2015-07-11 00:00:00',
-    1 => 
+    0 => '2015-07-11 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 7,
       'day' => 11,
       'dayOfWeek' => 6,
       'dayOfYear' => 192,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1436540400,
-      'formatted' => '2015-07-11 00:00:00',
-      'timezone' => 
+      'timestamp' => 1436572800,
+      'formatted' => '2015-07-11 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -14500,29 +12646,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 26,
       'is_leap_month' => false,
-      'moon_age' => 24.412665783427656,
-      'moon_phase_angle' => 293.00773993735936,
+      'moon_age' => 24.413,
+      'moon_phase_angle' => 294.3643190270276,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-07-12 00:00:00' => 
+  '2015-07-12 09:00:00' =>
   array (
-    0 => '2015-07-12 00:00:00',
-    1 => 
+    0 => '2015-07-12 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 7,
       'day' => 12,
       'dayOfWeek' => 0,
       'dayOfYear' => 193,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1436626800,
-      'formatted' => '2015-07-12 00:00:00',
-      'timezone' => 
+      'timestamp' => 1436659200,
+      'formatted' => '2015-07-12 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -14558,29 +12704,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 27,
       'is_leap_month' => false,
-      'moon_age' => 25.411770502105355,
-      'moon_phase_angle' => 305.75047703990475,
+      'moon_age' => 25.413,
+      'moon_phase_angle' => 307.0871982640112,
       'moon_phase' => 7,
       'moon_phase_text' => '有明',
     ),
   ),
-  '2015-07-13 00:00:00' => 
+  '2015-07-13 09:00:00' =>
   array (
-    0 => '2015-07-13 00:00:00',
-    1 => 
+    0 => '2015-07-13 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 7,
       'day' => 13,
       'dayOfWeek' => 1,
       'dayOfYear' => 194,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1436713200,
-      'formatted' => '2015-07-13 00:00:00',
-      'timezone' => 
+      'timestamp' => 1436745600,
+      'formatted' => '2015-07-13 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -14616,29 +12762,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 28,
       'is_leap_month' => false,
-      'moon_age' => 26.49515080466339,
-      'moon_phase_angle' => 318.3258940479077,
+      'moon_age' => 26.413,
+      'moon_phase_angle' => 319.64072486771585,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-07-14 00:00:00' => 
+  '2015-07-14 09:00:00' =>
   array (
-    0 => '2015-07-14 00:00:00',
-    1 => 
+    0 => '2015-07-14 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 7,
       'day' => 14,
       'dayOfWeek' => 2,
       'dayOfYear' => 195,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1436799600,
-      'formatted' => '2015-07-14 00:00:00',
-      'timezone' => 
+      'timestamp' => 1436832000,
+      'formatted' => '2015-07-14 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -14674,29 +12820,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 29,
       'is_leap_month' => false,
-      'moon_age' => 27.505784441395043,
-      'moon_phase_angle' => 330.7193536660758,
+      'moon_age' => 27.413,
+      'moon_phase_angle' => 332.00964303216006,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-07-15 00:00:00' => 
+  '2015-07-15 09:00:00' =>
   array (
-    0 => '2015-07-15 00:00:00',
-    1 => 
+    0 => '2015-07-15 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 7,
       'day' => 15,
       'dayOfWeek' => 3,
       'dayOfYear' => 196,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1436886000,
-      'formatted' => '2015-07-15 00:00:00',
-      'timezone' => 
+      'timestamp' => 1436918400,
+      'formatted' => '2015-07-15 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -14732,29 +12878,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 30,
       'is_leap_month' => false,
-      'moon_age' => 28.499284058487355,
-      'moon_phase_angle' => 342.91154744204823,
+      'moon_age' => 28.413,
+      'moon_phase_angle' => 344.1747923239112,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-07-16 00:00:00' => 
+  '2015-07-16 09:00:00' =>
   array (
-    0 => '2015-07-16 00:00:00',
-    1 => 
+    0 => '2015-07-16 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 7,
       'day' => 16,
       'dayOfWeek' => 4,
       'dayOfYear' => 197,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1436972400,
-      'formatted' => '2015-07-16 00:00:00',
-      'timezone' => 
+      'timestamp' => 1437004800,
+      'formatted' => '2015-07-16 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -14790,16 +12936,16 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 29.474157856921046,
-      'moon_phase_angle' => 354.88289987636904,
+      'moon_age' => 29.413,
+      'moon_phase_angle' => 356.1173665274308,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2015-07-16 10:00:00' => 
+  '2015-07-16 10:24:00' =>
   array (
-    0 => '2015-07-16 10:00:00',
-    1 => 
+    0 => '2015-07-16 10:24:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 7,
@@ -14807,12 +12953,12 @@ return array (
       'dayOfWeek' => 4,
       'dayOfYear' => 197,
       'hour' => 10,
-      'minute' => 0,
+      'minute' => 24,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1437008400,
-      'formatted' => '2015-07-16 10:00:00',
-      'timezone' => 
+      'timestamp' => 1437009840,
+      'formatted' => '2015-07-16 10:24:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -14848,145 +12994,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.35816097259521484,
-      'moon_phase_angle' => 359.8021266421498,
+      'moon_age' => 0.0,
+      'moon_phase_angle' => 356.80682646008995,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2015-07-16 11:00:00' => 
+  '2015-07-17 09:00:00' =>
   array (
-    0 => '2015-07-16 11:00:00',
-    1 => 
-    array (
-      'year' => 2015,
-      'month' => 7,
-      'day' => 16,
-      'dayOfWeek' => 4,
-      'dayOfYear' => 197,
-      'hour' => 11,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1437012000,
-      'formatted' => '2015-07-16 11:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 27,
-      'oriental_zodiac_text' => '未',
-      'oriental_zodiac' => 8,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '赤口',
-      'six_weekday' => 1,
-      'weekday_text' => '木',
-      'month_text' => '文月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '水無月',
-      'lunar_month' => 6,
-      'lunar_year' => 2015,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.39982702350243926,
-      'moon_phase_angle' => 0.2917767502336517,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2015-07-16 13:00:00' => 
-  array (
-    0 => '2015-07-16 13:00:00',
-    1 => 
-    array (
-      'year' => 2015,
-      'month' => 7,
-      'day' => 16,
-      'dayOfWeek' => 4,
-      'dayOfYear' => 197,
-      'hour' => 13,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1437019200,
-      'formatted' => '2015-07-16 13:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 27,
-      'oriental_zodiac_text' => '未',
-      'oriental_zodiac' => 8,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '赤口',
-      'six_weekday' => 1,
-      'weekday_text' => '木',
-      'month_text' => '文月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '水無月',
-      'lunar_month' => 6,
-      'lunar_year' => 2015,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.48315733950585127,
-      'moon_phase_angle' => 1.2698324661958509,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2015-07-17 00:00:00' => 
-  array (
-    0 => '2015-07-17 00:00:00',
-    1 => 
+    0 => '2015-07-17 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 7,
       'day' => 17,
       'dayOfWeek' => 5,
       'dayOfYear' => 198,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1437058800,
-      'formatted' => '2015-07-17 00:00:00',
-      'timezone' => 
+      'timestamp' => 1437091200,
+      'formatted' => '2015-07-17 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -15022,29 +13052,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 2,
       'is_leap_month' => false,
-      'moon_age' => 0.9414979009889066,
-      'moon_phase_angle' => 6.619436084785605,
+      'moon_age' => 0.941,
+      'moon_phase_angle' => 7.82451145157475,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-07-18 00:00:00' => 
+  '2015-07-18 09:00:00' =>
   array (
-    0 => '2015-07-18 00:00:00',
-    1 => 
+    0 => '2015-07-18 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 7,
       'day' => 18,
       'dayOfWeek' => 6,
       'dayOfYear' => 199,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1437145200,
-      'formatted' => '2015-07-18 00:00:00',
-      'timezone' => 
+      'timestamp' => 1437177600,
+      'formatted' => '2015-07-18 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -15080,29 +13110,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 3,
       'is_leap_month' => false,
-      'moon_age' => 1.9414922264404595,
-      'moon_phase_angle' => 18.118427900925198,
+      'moon_age' => 1.941,
+      'moon_phase_angle' => 19.294903373371852,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-07-19 00:00:00' => 
+  '2015-07-19 09:00:00' =>
   array (
-    0 => '2015-07-19 00:00:00',
-    1 => 
+    0 => '2015-07-19 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 7,
       'day' => 19,
       'dayOfWeek' => 0,
       'dayOfYear' => 200,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1437231600,
-      'formatted' => '2015-07-19 00:00:00',
-      'timezone' => 
+      'timestamp' => 1437264000,
+      'formatted' => '2015-07-19 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -15138,29 +13168,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 4,
       'is_leap_month' => false,
-      'moon_age' => 2.9414884340949357,
-      'moon_phase_angle' => 29.392506441900537,
+      'moon_age' => 2.941,
+      'moon_phase_angle' => 30.542957198737128,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-07-20 00:00:00' => 
+  '2015-07-20 09:00:00' =>
   array (
-    0 => '2015-07-20 00:00:00',
-    1 => 
+    0 => '2015-07-20 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 7,
       'day' => 20,
       'dayOfWeek' => 1,
       'dayOfYear' => 201,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1437318000,
-      'formatted' => '2015-07-20 00:00:00',
-      'timezone' => 
+      'timestamp' => 1437350400,
+      'formatted' => '2015-07-20 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -15196,29 +13226,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 5,
       'is_leap_month' => false,
-      'moon_age' => 3.9414912057109177,
-      'moon_phase_angle' => 40.47163091149919,
+      'moon_age' => 3.941,
+      'moon_phase_angle' => 41.600774956453805,
       'moon_phase' => 1,
       'moon_phase_text' => '三日月',
     ),
   ),
-  '2015-07-21 00:00:00' => 
+  '2015-07-21 09:00:00' =>
   array (
-    0 => '2015-07-21 00:00:00',
-    1 => 
+    0 => '2015-07-21 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 7,
       'day' => 21,
       'dayOfWeek' => 2,
       'dayOfYear' => 202,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1437404400,
-      'formatted' => '2015-07-21 00:00:00',
-      'timezone' => 
+      'timestamp' => 1437436800,
+      'formatted' => '2015-07-21 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -15254,29 +13284,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 6,
       'is_leap_month' => false,
-      'moon_age' => 4.94149705208838,
-      'moon_phase_angle' => 51.402983442202085,
+      'moon_age' => 4.941,
+      'moon_phase_angle' => 52.51775186443831,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-07-22 00:00:00' => 
+  '2015-07-22 09:00:00' =>
   array (
-    0 => '2015-07-22 00:00:00',
-    1 => 
+    0 => '2015-07-22 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 7,
       'day' => 22,
       'dayOfWeek' => 3,
       'dayOfYear' => 203,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1437490800,
-      'formatted' => '2015-07-22 00:00:00',
-      'timezone' => 
+      'timestamp' => 1437523200,
+      'formatted' => '2015-07-22 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -15312,29 +13342,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 7,
       'is_leap_month' => false,
-      'moon_age' => 5.941491045523435,
-      'moon_phase_angle' => 62.24925550759018,
+      'moon_age' => 5.941,
+      'moon_phase_angle' => 63.35845434670827,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-07-23 00:00:00' => 
+  '2015-07-23 09:00:00' =>
   array (
-    0 => '2015-07-23 00:00:00',
-    1 => 
+    0 => '2015-07-23 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 7,
       'day' => 23,
       'dayOfWeek' => 4,
       'dayOfYear' => 204,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1437577200,
-      'formatted' => '2015-07-23 00:00:00',
-      'timezone' => 
+      'timestamp' => 1437609600,
+      'formatted' => '2015-07-23 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -15370,29 +13400,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 6.941490147262812,
-      'moon_phase_angle' => 73.08583735141983,
+      'moon_age' => 6.941,
+      'moon_phase_angle' => 74.19955134325912,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-07-24 00:00:00' => 
+  '2015-07-24 09:00:00' =>
   array (
-    0 => '2015-07-24 00:00:00',
-    1 => 
+    0 => '2015-07-24 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 7,
       'day' => 24,
       'dayOfWeek' => 5,
       'dayOfYear' => 205,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1437663600,
-      'formatted' => '2015-07-24 00:00:00',
-      'timezone' => 
+      'timestamp' => 1437696000,
+      'formatted' => '2015-07-24 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -15428,16 +13458,16 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 9,
       'is_leap_month' => false,
-      'moon_age' => 7.941495787817985,
-      'moon_phase_angle' => 83.99721029744396,
+      'moon_age' => 7.941,
+      'moon_phase_angle' => 85.1261966514616,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2015-07-24 13:00:00' => 
+  '2015-07-24 13:04:00' =>
   array (
-    0 => '2015-07-24 13:00:00',
-    1 => 
+    0 => '2015-07-24 13:04:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 7,
@@ -15445,12 +13475,12 @@ return array (
       'dayOfWeek' => 5,
       'dayOfYear' => 205,
       'hour' => 13,
-      'minute' => 0,
+      'minute' => 4,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1437710400,
-      'formatted' => '2015-07-24 13:00:00',
-      'timezone' => 
+      'timestamp' => 1437710640,
+      'formatted' => '2015-07-24 13:04:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -15486,29 +13516,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 9,
       'is_leap_month' => false,
-      'moon_age' => 8.483164971228689,
-      'moon_phase_angle' => 89.97026099541229,
+      'moon_age' => 8.11111111111111,
+      'moon_phase_angle' => 86.99251635459032,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2015-07-25 00:00:00' => 
+  '2015-07-25 09:00:00' =>
   array (
-    0 => '2015-07-25 00:00:00',
-    1 => 
+    0 => '2015-07-25 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 7,
       'day' => 25,
       'dayOfWeek' => 6,
       'dayOfYear' => 206,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1437750000,
-      'formatted' => '2015-07-25 00:00:00',
-      'timezone' => 
+      'timestamp' => 1437782400,
+      'formatted' => '2015-07-25 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -15544,29 +13574,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 10,
       'is_leap_month' => false,
-      'moon_age' => 8.941490060649812,
-      'moon_phase_angle' => 95.07252184300003,
+      'moon_age' => 8.941,
+      'moon_phase_angle' => 96.22768440875943,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-07-26 00:00:00' => 
+  '2015-07-26 09:00:00' =>
   array (
-    0 => '2015-07-26 00:00:00',
-    1 => 
+    0 => '2015-07-26 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 7,
       'day' => 26,
       'dayOfWeek' => 0,
       'dayOfYear' => 207,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1437836400,
-      'formatted' => '2015-07-26 00:00:00',
-      'timezone' => 
+      'timestamp' => 1437868800,
+      'formatted' => '2015-07-26 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -15602,29 +13632,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 11,
       'is_leap_month' => false,
-      'moon_age' => 9.941491223871708,
-      'moon_phase_angle' => 106.40003685224089,
+      'moon_age' => 9.941,
+      'moon_phase_angle' => 107.59183265204764,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-07-27 00:00:00' => 
+  '2015-07-27 09:00:00' =>
   array (
-    0 => '2015-07-27 00:00:00',
-    1 => 
+    0 => '2015-07-27 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 7,
       'day' => 27,
       'dayOfWeek' => 1,
       'dayOfYear' => 208,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1437922800,
-      'formatted' => '2015-07-27 00:00:00',
-      'timezone' => 
+      'timestamp' => 1437955200,
+      'formatted' => '2015-07-27 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -15660,29 +13690,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 12,
       'is_leap_month' => false,
-      'moon_age' => 10.941491293720901,
-      'moon_phase_angle' => 118.06004143077489,
+      'moon_age' => 10.941,
+      'moon_phase_angle' => 119.29757738208545,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-07-28 00:00:00' => 
+  '2015-07-28 09:00:00' =>
   array (
-    0 => '2015-07-28 00:00:00',
-    1 => 
+    0 => '2015-07-28 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 7,
       'day' => 28,
       'dayOfWeek' => 2,
       'dayOfYear' => 209,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1438009200,
-      'formatted' => '2015-07-28 00:00:00',
-      'timezone' => 
+      'timestamp' => 1438041600,
+      'formatted' => '2015-07-28 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -15718,29 +13748,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 13,
       'is_leap_month' => false,
-      'moon_age' => 11.941490623168647,
-      'moon_phase_angle' => 130.11598609831992,
+      'moon_age' => 11.941,
+      'moon_phase_angle' => 131.4057054587539,
       'moon_phase' => 3,
       'moon_phase_text' => '十三夜',
     ),
   ),
-  '2015-07-29 00:00:00' => 
+  '2015-07-29 09:00:00' =>
   array (
-    0 => '2015-07-29 00:00:00',
-    1 => 
+    0 => '2015-07-29 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 7,
       'day' => 29,
       'dayOfWeek' => 3,
       'dayOfYear' => 210,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1438095600,
-      'formatted' => '2015-07-29 00:00:00',
-      'timezone' => 
+      'timestamp' => 1438128000,
+      'formatted' => '2015-07-29 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -15776,29 +13806,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 14,
       'is_leap_month' => false,
-      'moon_age' => 12.94149168021977,
-      'moon_phase_angle' => 142.60435546497504,
+      'moon_age' => 12.941,
+      'moon_phase_angle' => 143.9485338780707,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-07-30 00:00:00' => 
+  '2015-07-30 09:00:00' =>
   array (
-    0 => '2015-07-30 00:00:00',
-    1 => 
+    0 => '2015-07-30 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 7,
       'day' => 30,
       'dayOfWeek' => 4,
       'dayOfYear' => 211,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1438182000,
-      'formatted' => '2015-07-30 00:00:00',
-      'timezone' => 
+      'timestamp' => 1438214400,
+      'formatted' => '2015-07-30 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -15834,29 +13864,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 15,
       'is_leap_month' => false,
-      'moon_age' => 13.941492193378508,
-      'moon_phase_angle' => 155.52497642487998,
+      'moon_age' => 13.941,
+      'moon_phase_angle' => 156.92057519672812,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-07-31 00:00:00' => 
+  '2015-07-31 09:00:00' =>
   array (
-    0 => '2015-07-31 00:00:00',
-    1 => 
+    0 => '2015-07-31 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 7,
       'day' => 31,
       'dayOfWeek' => 5,
       'dayOfYear' => 212,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1438268400,
-      'formatted' => '2015-07-31 00:00:00',
-      'timezone' => 
+      'timestamp' => 1438300800,
+      'formatted' => '2015-07-31 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -15892,16 +13922,16 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 14.941493498627096,
-      'moon_phase_angle' => 168.83484383056253,
+      'moon_age' => 14.941,
+      'moon_phase_angle' => 170.27334099106156,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2015-07-31 19:00:00' => 
+  '2015-07-31 19:43:00' =>
   array (
-    0 => '2015-07-31 19:00:00',
-    1 => 
+    0 => '2015-07-31 19:43:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 7,
@@ -15909,12 +13939,12 @@ return array (
       'dayOfWeek' => 5,
       'dayOfYear' => 212,
       'hour' => 19,
-      'minute' => 0,
+      'minute' => 43,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1438336800,
-      'formatted' => '2015-07-31 19:00:00',
-      'timezone' => 
+      'timestamp' => 1438339380,
+      'formatted' => '2015-07-31 19:43:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -15950,145 +13980,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 15.733161367475986,
-      'moon_phase_angle' => 179.59307462976986,
+      'moon_age' => 15.388194444444444,
+      'moon_phase_angle' => 176.33642228763563,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2015-07-31 20:00:00' => 
+  '2015-08-01 09:00:00' =>
   array (
-    0 => '2015-07-31 20:00:00',
-    1 => 
-    array (
-      'year' => 2015,
-      'month' => 7,
-      'day' => 31,
-      'dayOfWeek' => 5,
-      'dayOfYear' => 212,
-      'hour' => 20,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1438340400,
-      'formatted' => '2015-07-31 20:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 7,
-      'misc_seasonal_node_text' => '土用',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 27,
-      'oriental_zodiac_text' => '未',
-      'oriental_zodiac' => 8,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '先負',
-      'six_weekday' => 4,
-      'weekday_text' => '金',
-      'month_text' => '文月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '水無月',
-      'lunar_month' => 6,
-      'lunar_year' => 2015,
-      'lunar_day' => 16,
-      'is_leap_month' => false,
-      'moon_age' => 15.774829097557813,
-      'moon_phase_angle' => 180.16356182424119,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2015-07-31 21:00:00' => 
-  array (
-    0 => '2015-07-31 21:00:00',
-    1 => 
-    array (
-      'year' => 2015,
-      'month' => 7,
-      'day' => 31,
-      'dayOfWeek' => 5,
-      'dayOfYear' => 212,
-      'hour' => 21,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1438344000,
-      'formatted' => '2015-07-31 21:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 7,
-      'misc_seasonal_node_text' => '土用',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 27,
-      'oriental_zodiac_text' => '未',
-      'oriental_zodiac' => 8,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '先負',
-      'six_weekday' => 4,
-      'weekday_text' => '金',
-      'month_text' => '文月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '水無月',
-      'lunar_month' => 6,
-      'lunar_year' => 2015,
-      'lunar_day' => 16,
-      'is_leap_month' => false,
-      'moon_age' => 15.816495219711214,
-      'moon_phase_angle' => 180.7344138999265,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2015-08-01 00:00:00' => 
-  array (
-    0 => '2015-08-01 00:00:00',
-    1 => 
+    0 => '2015-08-01 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 8,
       'day' => 1,
       'dayOfWeek' => 6,
       'dayOfYear' => 213,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1438354800,
-      'formatted' => '2015-08-01 00:00:00',
-      'timezone' => 
+      'timestamp' => 1438387200,
+      'formatted' => '2015-08-01 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -16124,29 +14038,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 17,
       'is_leap_month' => false,
-      'moon_age' => 15.941488288808614,
-      'moon_phase_angle' => 182.4490748554901,
+      'moon_age' => 15.941,
+      'moon_phase_angle' => 183.9175194492078,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-08-02 00:00:00' => 
+  '2015-08-02 09:00:00' =>
   array (
-    0 => '2015-08-02 00:00:00',
-    1 => 
+    0 => '2015-08-02 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 8,
       'day' => 2,
       'dayOfWeek' => 0,
       'dayOfYear' => 214,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1438441200,
-      'formatted' => '2015-08-02 00:00:00',
-      'timezone' => 
+      'timestamp' => 1438473600,
+      'formatted' => '2015-08-02 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -16182,29 +14096,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 18,
       'is_leap_month' => false,
-      'moon_age' => 16.941488416865468,
-      'moon_phase_angle' => 196.25108168332443,
+      'moon_age' => 16.941,
+      'moon_phase_angle' => 197.73405620376806,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-08-03 00:00:00' => 
+  '2015-08-03 09:00:00' =>
   array (
-    0 => '2015-08-03 00:00:00',
-    1 => 
+    0 => '2015-08-03 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 8,
       'day' => 3,
       'dayOfWeek' => 1,
       'dayOfYear' => 215,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1438527600,
-      'formatted' => '2015-08-03 00:00:00',
-      'timezone' => 
+      'timestamp' => 1438560000,
+      'formatted' => '2015-08-03 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -16240,29 +14154,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 19,
       'is_leap_month' => false,
-      'moon_age' => 17.94148891279474,
-      'moon_phase_angle' => 210.11062951466477,
+      'moon_age' => 17.941,
+      'moon_phase_angle' => 211.5923955321251,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-08-04 00:00:00' => 
+  '2015-08-04 09:00:00' =>
   array (
-    0 => '2015-08-04 00:00:00',
-    1 => 
+    0 => '2015-08-04 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 8,
       'day' => 4,
       'dayOfWeek' => 2,
       'dayOfYear' => 216,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1438614000,
-      'formatted' => '2015-08-04 00:00:00',
-      'timezone' => 
+      'timestamp' => 1438646400,
+      'formatted' => '2015-08-04 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -16298,29 +14212,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 20,
       'is_leap_month' => false,
-      'moon_age' => 18.941491356585175,
-      'moon_phase_angle' => 223.90441085076722,
+      'moon_age' => 18.941,
+      'moon_phase_angle' => 225.3708921035926,
       'moon_phase' => 5,
       'moon_phase_text' => '十六夜',
     ),
   ),
-  '2015-08-05 00:00:00' => 
+  '2015-08-05 09:00:00' =>
   array (
-    0 => '2015-08-05 00:00:00',
-    1 => 
+    0 => '2015-08-05 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 8,
       'day' => 5,
       'dayOfWeek' => 3,
       'dayOfYear' => 217,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1438700400,
-      'formatted' => '2015-08-05 00:00:00',
-      'timezone' => 
+      'timestamp' => 1438732800,
+      'formatted' => '2015-08-05 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -16356,29 +14270,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 21,
       'is_leap_month' => false,
-      'moon_age' => 19.941491647157818,
-      'moon_phase_angle' => 237.5327285742191,
+      'moon_age' => 19.941,
+      'moon_phase_angle' => 238.97314808240236,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-08-06 00:00:00' => 
+  '2015-08-06 09:00:00' =>
   array (
-    0 => '2015-08-06 00:00:00',
-    1 => 
+    0 => '2015-08-06 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 8,
       'day' => 6,
       'dayOfWeek' => 4,
       'dayOfYear' => 218,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1438786800,
-      'formatted' => '2015-08-06 00:00:00',
-      'timezone' => 
+      'timestamp' => 1438819200,
+      'formatted' => '2015-08-06 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -16414,29 +14328,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 22,
       'is_leap_month' => false,
-      'moon_age' => 20.943215225823224,
-      'moon_phase_angle' => 250.9279288927254,
+      'moon_age' => 20.941,
+      'moon_phase_angle' => 252.3358188503042,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-08-07 00:00:00' => 
+  '2015-08-07 09:00:00' =>
   array (
-    0 => '2015-08-07 00:00:00',
-    1 => 
+    0 => '2015-08-07 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 8,
       'day' => 7,
       'dayOfWeek' => 5,
       'dayOfYear' => 219,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1438873200,
-      'formatted' => '2015-08-07 00:00:00',
-      'timezone' => 
+      'timestamp' => 1438905600,
+      'formatted' => '2015-08-07 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -16448,8 +14362,8 @@ return array (
       'lunar_seasonal_festival' => 0,
       'lunar_seasonal_festival_name' => '',
       'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
+      'misc_seasonal_node' => 7,
+      'misc_seasonal_node_text' => '土用',
       'solar_term' => false,
       'solar_term_text' => '',
       'is_solar_term' => false,
@@ -16472,29 +14386,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 21.9455527048558,
-      'moon_phase_angle' => 264.05417647758236,
+      'moon_age' => 21.941,
+      'moon_phase_angle' => 265.42727450907955,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2015-08-07 12:00:00' => 
+  '2015-08-07 11:03:00' =>
   array (
-    0 => '2015-08-07 12:00:00',
-    1 => 
+    0 => '2015-08-07 11:03:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 8,
       'day' => 7,
       'dayOfWeek' => 5,
       'dayOfYear' => 219,
-      'hour' => 12,
-      'minute' => 0,
+      'hour' => 11,
+      'minute' => 3,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1438916400,
-      'formatted' => '2015-08-07 12:00:00',
-      'timezone' => 
+      'timestamp' => 1438912980,
+      'formatted' => '2015-08-07 11:03:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -16506,8 +14420,8 @@ return array (
       'lunar_seasonal_festival' => 0,
       'lunar_seasonal_festival_name' => '',
       'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
+      'misc_seasonal_node' => 7,
+      'misc_seasonal_node_text' => '土用',
       'solar_term' => false,
       'solar_term_text' => '',
       'is_solar_term' => false,
@@ -16530,29 +14444,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 22.44639951037243,
-      'moon_phase_angle' => 270.51246477087466,
+      'moon_age' => 22.027083333333334,
+      'moon_phase_angle' => 266.53255630919585,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2015-08-08 00:00:00' => 
+  '2015-08-08 09:00:00' =>
   array (
-    0 => '2015-08-08 00:00:00',
-    1 => 
+    0 => '2015-08-08 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 8,
       'day' => 8,
       'dayOfWeek' => 6,
       'dayOfYear' => 220,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1438959600,
-      'formatted' => '2015-08-08 00:00:00',
-      'timezone' => 
+      'timestamp' => 1438992000,
+      'formatted' => '2015-08-08 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -16588,29 +14502,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 24,
       'is_leap_month' => false,
-      'moon_age' => 22.947061833459884,
-      'moon_phase_angle' => 276.9011729512632,
+      'moon_age' => 22.941,
+      'moon_phase_angle' => 278.24010625896346,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-08-09 00:00:00' => 
+  '2015-08-09 09:00:00' =>
   array (
-    0 => '2015-08-09 00:00:00',
-    1 => 
+    0 => '2015-08-09 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 8,
       'day' => 9,
       'dayOfWeek' => 0,
       'dayOfYear' => 221,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1439046000,
-      'formatted' => '2015-08-09 00:00:00',
-      'timezone' => 
+      'timestamp' => 1439078400,
+      'formatted' => '2015-08-09 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -16646,29 +14560,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 25,
       'is_leap_month' => false,
-      'moon_age' => 23.94781241985038,
-      'moon_phase_angle' => 289.4753714479792,
+      'moon_age' => 23.941,
+      'moon_phase_angle' => 290.781844682587,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-08-10 00:00:00' => 
+  '2015-08-10 09:00:00' =>
   array (
-    0 => '2015-08-10 00:00:00',
-    1 => 
+    0 => '2015-08-10 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 8,
       'day' => 10,
       'dayOfWeek' => 1,
       'dayOfYear' => 222,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1439132400,
-      'formatted' => '2015-08-10 00:00:00',
-      'timezone' => 
+      'timestamp' => 1439164800,
+      'formatted' => '2015-08-10 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -16704,29 +14618,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 26,
       'is_leap_month' => false,
-      'moon_age' => 24.947900394909084,
-      'moon_phase_angle' => 301.79160938540394,
+      'moon_age' => 24.941,
+      'moon_phase_angle' => 303.06717169504503,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-08-11 00:00:00' => 
+  '2015-08-11 09:00:00' =>
   array (
-    0 => '2015-08-11 00:00:00',
-    1 => 
+    0 => '2015-08-11 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 8,
       'day' => 11,
       'dayOfWeek' => 2,
       'dayOfYear' => 223,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1439218800,
-      'formatted' => '2015-08-11 00:00:00',
-      'timezone' => 
+      'timestamp' => 1439251200,
+      'formatted' => '2015-08-11 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -16762,29 +14676,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 27,
       'is_leap_month' => false,
-      'moon_age' => 25.947372721508145,
-      'moon_phase_angle' => 313.8668873128066,
+      'moon_age' => 25.941,
+      'moon_phase_angle' => 315.11278549002617,
       'moon_phase' => 7,
       'moon_phase_text' => '有明',
     ),
   ),
-  '2015-08-12 00:00:00' => 
+  '2015-08-12 09:00:00' =>
   array (
-    0 => '2015-08-12 00:00:00',
-    1 => 
+    0 => '2015-08-12 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 8,
       'day' => 12,
       'dayOfWeek' => 3,
       'dayOfYear' => 224,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1439305200,
-      'formatted' => '2015-08-12 00:00:00',
-      'timezone' => 
+      'timestamp' => 1439337600,
+      'formatted' => '2015-08-12 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -16820,29 +14734,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 28,
       'is_leap_month' => false,
-      'moon_age' => 27.078359829405635,
-      'moon_phase_angle' => 325.7169405141531,
+      'moon_age' => 26.941,
+      'moon_phase_angle' => 326.9346215139708,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-08-13 00:00:00' => 
+  '2015-08-13 09:00:00' =>
   array (
-    0 => '2015-08-13 00:00:00',
-    1 => 
+    0 => '2015-08-13 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 8,
       'day' => 13,
       'dayOfWeek' => 4,
       'dayOfYear' => 225,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1439391600,
-      'formatted' => '2015-08-13 00:00:00',
-      'timezone' => 
+      'timestamp' => 1439424000,
+      'formatted' => '2015-08-13 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -16878,29 +14792,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 29,
       'is_leap_month' => false,
-      'moon_age' => 28.026829627020597,
-      'moon_phase_angle' => 337.35548812578946,
+      'moon_age' => 27.941,
+      'moon_phase_angle' => 338.54693980176967,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-08-14 00:00:00' => 
+  '2015-08-14 09:00:00' =>
   array (
-    0 => '2015-08-14 00:00:00',
-    1 => 
+    0 => '2015-08-14 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 8,
       'day' => 14,
       'dayOfWeek' => 5,
       'dayOfYear' => 226,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1439478000,
-      'formatted' => '2015-08-14 00:00:00',
-      'timezone' => 
+      'timestamp' => 1439510400,
+      'formatted' => '2015-08-14 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -16936,29 +14850,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 28.959449249463468,
-      'moon_phase_angle' => 348.7955772258267,
+      'moon_age' => 28.941,
+      'moon_phase_angle' => 349.9631761165208,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2015-08-14 22:00:00' => 
+  '2015-08-14 23:53:00' =>
   array (
-    0 => '2015-08-14 22:00:00',
-    1 => 
+    0 => '2015-08-14 23:53:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 8,
       'day' => 14,
       'dayOfWeek' => 5,
       'dayOfYear' => 226,
-      'hour' => 22,
-      'minute' => 0,
+      'hour' => 23,
+      'minute' => 53,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1439557200,
-      'formatted' => '2015-08-14 22:00:00',
-      'timezone' => 
+      'timestamp' => 1439563980,
+      'formatted' => '2015-08-14 23:53:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -16994,29 +14908,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.2963315933011472,
-      'moon_phase_angle' => 359.1207187639794,
+      'moon_age' => 0.0,
+      'moon_phase_angle' => 356.95078735977376,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2015-08-15 00:00:00' => 
+  '2015-08-15 09:00:00' =>
   array (
-    0 => '2015-08-15 00:00:00',
-    1 => 
+    0 => '2015-08-15 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 8,
       'day' => 15,
       'dayOfWeek' => 6,
       'dayOfYear' => 227,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1439564400,
-      'formatted' => '2015-08-15 00:00:00',
-      'timezone' => 
+      'timestamp' => 1439596800,
+      'formatted' => '2015-08-15 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -17052,29 +14966,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 2,
       'is_leap_month' => false,
-      'moon_age' => 0.3796663689427078,
-      'moon_phase_angle' => 0.05220793862324058,
+      'moon_age' => 0.38,
+      'moon_phase_angle' => 1.198456266096514,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-08-16 00:00:00' => 
+  '2015-08-16 09:00:00' =>
   array (
-    0 => '2015-08-16 00:00:00',
-    1 => 
+    0 => '2015-08-16 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 8,
       'day' => 16,
       'dayOfWeek' => 0,
       'dayOfYear' => 228,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1439650800,
-      'formatted' => '2015-08-16 00:00:00',
-      'timezone' => 
+      'timestamp' => 1439683200,
+      'formatted' => '2015-08-16 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -17110,29 +15024,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 3,
       'is_leap_month' => false,
-      'moon_age' => 1.3796633603051305,
-      'moon_phase_angle' => 11.145394206654515,
+      'moon_age' => 1.38,
+      'moon_phase_angle' => 12.273091811759144,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-08-17 00:00:00' => 
+  '2015-08-17 09:00:00' =>
   array (
-    0 => '2015-08-17 00:00:00',
-    1 => 
+    0 => '2015-08-17 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 8,
       'day' => 17,
       'dayOfWeek' => 1,
       'dayOfYear' => 229,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1439737200,
-      'formatted' => '2015-08-17 00:00:00',
-      'timezone' => 
+      'timestamp' => 1439769600,
+      'formatted' => '2015-08-17 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -17168,29 +15082,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 4,
       'is_leap_month' => false,
-      'moon_age' => 2.3796671889722347,
-      'moon_phase_angle' => 22.10295044961063,
+      'moon_age' => 2.38,
+      'moon_phase_angle' => 23.21585144249852,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-08-18 00:00:00' => 
+  '2015-08-18 09:00:00' =>
   array (
-    0 => '2015-08-18 00:00:00',
-    1 => 
+    0 => '2015-08-18 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 8,
       'day' => 18,
       'dayOfWeek' => 2,
       'dayOfYear' => 230,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1439823600,
-      'formatted' => '2015-08-18 00:00:00',
-      'timezone' => 
+      'timestamp' => 1439856000,
+      'formatted' => '2015-08-18 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -17226,29 +15140,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 5,
       'is_leap_month' => false,
-      'moon_age' => 3.379665343556553,
-      'moon_phase_angle' => 32.96253059986569,
+      'moon_age' => 3.38,
+      'moon_phase_angle' => 34.0659828443693,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-08-19 00:00:00' => 
+  '2015-08-19 09:00:00' =>
   array (
-    0 => '2015-08-19 00:00:00',
-    1 => 
+    0 => '2015-08-19 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 8,
       'day' => 19,
       'dayOfWeek' => 3,
       'dayOfYear' => 231,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1439910000,
-      'formatted' => '2015-08-19 00:00:00',
-      'timezone' => 
+      'timestamp' => 1439942400,
+      'formatted' => '2015-08-19 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -17284,29 +15198,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 6,
       'is_leap_month' => false,
-      'moon_age' => 4.379668840672821,
-      'moon_phase_angle' => 43.77268897604435,
+      'moon_age' => 4.38,
+      'moon_phase_angle' => 44.87374784673406,
       'moon_phase' => 1,
       'moon_phase_text' => '三日月',
     ),
   ),
-  '2015-08-20 00:00:00' => 
+  '2015-08-20 09:00:00' =>
   array (
-    0 => '2015-08-20 00:00:00',
-    1 => 
+    0 => '2015-08-20 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 8,
       'day' => 20,
       'dayOfWeek' => 4,
       'dayOfYear' => 232,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1439996400,
-      'formatted' => '2015-08-20 00:00:00',
-      'timezone' => 
+      'timestamp' => 1440028800,
+      'formatted' => '2015-08-20 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -17342,29 +15256,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 7,
       'is_leap_month' => false,
-      'moon_age' => 5.37966448860243,
-      'moon_phase_angle' => 54.59290007276263,
+      'moon_age' => 5.38,
+      'moon_phase_angle' => 55.69990461867482,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-08-21 00:00:00' => 
+  '2015-08-21 09:00:00' =>
   array (
-    0 => '2015-08-21 00:00:00',
-    1 => 
+    0 => '2015-08-21 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 8,
       'day' => 21,
       'dayOfWeek' => 5,
       'dayOfYear' => 233,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1440082800,
-      'formatted' => '2015-08-21 00:00:00',
-      'timezone' => 
+      'timestamp' => 1440115200,
+      'formatted' => '2015-08-21 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -17400,29 +15314,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 6.3796682599931955,
-      'moon_phase_angle' => 65.49252128418922,
+      'moon_age' => 6.38,
+      'moon_phase_angle' => 66.61455156198915,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-08-22 00:00:00' => 
+  '2015-08-22 09:00:00' =>
   array (
-    0 => '2015-08-22 00:00:00',
-    1 => 
+    0 => '2015-08-22 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 8,
       'day' => 22,
       'dayOfWeek' => 6,
       'dayOfYear' => 234,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1440169200,
-      'formatted' => '2015-08-22 00:00:00',
-      'timezone' => 
+      'timestamp' => 1440201600,
+      'formatted' => '2015-08-22 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -17458,29 +15372,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 9,
       'is_leap_month' => false,
-      'moon_age' => 7.379670364782214,
-      'moon_phase_angle' => 76.54860794984191,
+      'moon_age' => 7.38,
+      'moon_phase_angle' => 77.69516946079091,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-08-23 00:00:00' => 
+  '2015-08-23 04:31:00' =>
   array (
-    0 => '2015-08-23 00:00:00',
-    1 => 
+    0 => '2015-08-23 04:31:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 8,
       'day' => 23,
       'dayOfWeek' => 0,
       'dayOfYear' => 235,
-      'hour' => 0,
-      'minute' => 0,
+      'hour' => 4,
+      'minute' => 31,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1440255600,
-      'formatted' => '2015-08-23 00:00:00',
-      'timezone' => 
+      'timestamp' => 1440271860,
+      'formatted' => '2015-08-23 04:31:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -17516,29 +15430,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 10,
       'is_leap_month' => false,
-      'moon_age' => 8.37966220965609,
-      'moon_phase_angle' => 87.8423369959871,
+      'moon_age' => 8.193055555555556,
+      'moon_phase_angle' => 86.88451148161042,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2015-08-23 05:00:00' => 
+  '2015-08-23 09:00:00' =>
   array (
-    0 => '2015-08-23 05:00:00',
-    1 => 
+    0 => '2015-08-23 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 8,
       'day' => 23,
       'dayOfWeek' => 0,
       'dayOfYear' => 235,
-      'hour' => 5,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1440273600,
-      'formatted' => '2015-08-23 05:00:00',
-      'timezone' => 
+      'timestamp' => 1440288000,
+      'formatted' => '2015-08-23 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -17574,29 +15488,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 10,
       'is_leap_month' => false,
-      'moon_age' => 8.588004888035357,
-      'moon_phase_angle' => 90.23261857444515,
+      'moon_age' => 8.38,
+      'moon_phase_angle' => 89.02317300749112,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2015-08-24 00:00:00' => 
+  '2015-08-24 09:00:00' =>
   array (
-    0 => '2015-08-24 00:00:00',
-    1 => 
+    0 => '2015-08-24 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 8,
       'day' => 24,
       'dayOfWeek' => 1,
       'dayOfYear' => 236,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1440342000,
-      'formatted' => '2015-08-24 00:00:00',
-      'timezone' => 
+      'timestamp' => 1440374400,
+      'formatted' => '2015-08-24 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -17632,29 +15546,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 11,
       'is_leap_month' => false,
-      'moon_age' => 9.379664730746299,
-      'moon_phase_angle' => 99.45364772402183,
+      'moon_age' => 9.38,
+      'moon_phase_angle' => 100.67824972138791,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-08-25 00:00:00' => 
+  '2015-08-25 09:00:00' =>
   array (
-    0 => '2015-08-25 00:00:00',
-    1 => 
+    0 => '2015-08-25 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 8,
       'day' => 25,
       'dayOfWeek' => 2,
       'dayOfYear' => 237,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1440428400,
-      'formatted' => '2015-08-25 00:00:00',
-      'timezone' => 
+      'timestamp' => 1440460800,
+      'formatted' => '2015-08-25 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -17690,29 +15604,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 12,
       'is_leap_month' => false,
-      'moon_age' => 10.37966864136979,
-      'moon_phase_angle' => 111.45369987095458,
+      'moon_age' => 10.38,
+      'moon_phase_angle' => 112.7301811023874,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-08-26 00:00:00' => 
+  '2015-08-26 09:00:00' =>
   array (
-    0 => '2015-08-26 00:00:00',
-    1 => 
+    0 => '2015-08-26 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 8,
       'day' => 26,
       'dayOfWeek' => 3,
       'dayOfYear' => 238,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1440514800,
-      'formatted' => '2015-08-26 00:00:00',
-      'timezone' => 
+      'timestamp' => 1440547200,
+      'formatted' => '2015-08-26 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -17748,29 +15662,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 13,
       'is_leap_month' => false,
-      'moon_age' => 11.37966584879905,
-      'moon_phase_angle' => 123.89507330740781,
+      'moon_age' => 11.38,
+      'moon_phase_angle' => 125.22848492474705,
       'moon_phase' => 3,
       'moon_phase_text' => '十三夜',
     ),
   ),
-  '2015-08-27 00:00:00' => 
+  '2015-08-27 09:00:00' =>
   array (
-    0 => '2015-08-27 00:00:00',
-    1 => 
+    0 => '2015-08-27 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 8,
       'day' => 27,
       'dayOfWeek' => 4,
       'dayOfYear' => 239,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1440601200,
-      'formatted' => '2015-08-27 00:00:00',
-      'timezone' => 
+      'timestamp' => 1440633600,
+      'formatted' => '2015-08-27 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -17806,29 +15720,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 14,
       'is_leap_month' => false,
-      'moon_age' => 12.379670020658523,
-      'moon_phase_angle' => 136.80049211109565,
+      'moon_age' => 12.38,
+      'moon_phase_angle' => 138.19108348418743,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-08-28 00:00:00' => 
+  '2015-08-28 09:00:00' =>
   array (
-    0 => '2015-08-28 00:00:00',
-    1 => 
+    0 => '2015-08-28 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 8,
       'day' => 28,
       'dayOfWeek' => 5,
       'dayOfYear' => 240,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1440687600,
-      'formatted' => '2015-08-28 00:00:00',
-      'timezone' => 
+      'timestamp' => 1440720000,
+      'formatted' => '2015-08-28 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -17864,29 +15778,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 15,
       'is_leap_month' => false,
-      'moon_age' => 13.37967073917389,
-      'moon_phase_angle' => 150.15225809598437,
+      'moon_age' => 13.38,
+      'moon_phase_angle' => 151.59437368697616,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-08-29 00:00:00' => 
+  '2015-08-29 09:00:00' =>
   array (
-    0 => '2015-08-29 00:00:00',
-    1 => 
+    0 => '2015-08-29 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 8,
       'day' => 29,
       'dayOfWeek' => 6,
       'dayOfYear' => 241,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1440774000,
-      'formatted' => '2015-08-29 00:00:00',
-      'timezone' => 
+      'timestamp' => 1440806400,
+      'formatted' => '2015-08-29 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -17922,74 +15836,16 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 14.379662231076509,
-      'moon_phase_angle' => 163.88601930752094,
+      'moon_age' => 14.38,
+      'moon_phase_angle' => 165.36817373145988,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-08-30 00:00:00' => 
+  '2015-08-30 03:35:00' =>
   array (
-    0 => '2015-08-30 00:00:00',
-    1 => 
-    array (
-      'year' => 2015,
-      'month' => 8,
-      'day' => 30,
-      'dayOfWeek' => 0,
-      'dayOfYear' => 242,
-      'hour' => 0,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1440860400,
-      'formatted' => '2015-08-30 00:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 27,
-      'oriental_zodiac_text' => '未',
-      'oriental_zodiac' => 8,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '大安',
-      'six_weekday' => 0,
-      'weekday_text' => '日',
-      'month_text' => '葉月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '文月',
-      'lunar_month' => 7,
-      'lunar_year' => 2015,
-      'lunar_day' => 17,
-      'is_leap_month' => false,
-      'moon_age' => 15.379666685126722,
-      'moon_phase_angle' => 177.89282808660815,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2015-08-30 03:00:00' => 
-  array (
-    0 => '2015-08-30 03:00:00',
-    1 => 
+    0 => '2015-08-30 03:35:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 8,
@@ -17997,12 +15853,12 @@ return array (
       'dayOfWeek' => 0,
       'dayOfYear' => 242,
       'hour' => 3,
-      'minute' => 0,
+      'minute' => 35,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1440871200,
-      'formatted' => '2015-08-30 03:00:00',
-      'timezone' => 
+      'timestamp' => 1440873300,
+      'formatted' => '2015-08-30 03:35:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -18038,29 +15894,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 17,
       'is_leap_month' => false,
-      'moon_age' => 15.504668505396694,
-      'moon_phase_angle' => 179.65606808711334,
+      'moon_age' => 15.154166666666667,
+      'moon_phase_angle' => 176.21699304393846,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2015-08-30 04:00:00' => 
+  '2015-08-30 09:00:00' =>
   array (
-    0 => '2015-08-30 04:00:00',
-    1 => 
+    0 => '2015-08-30 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 8,
       'day' => 30,
       'dayOfWeek' => 0,
       'dayOfYear' => 242,
-      'hour' => 4,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1440874800,
-      'formatted' => '2015-08-30 04:00:00',
-      'timezone' => 
+      'timestamp' => 1440892800,
+      'formatted' => '2015-08-30 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -18096,87 +15952,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 17,
       'is_leap_month' => false,
-      'moon_age' => 15.546331190038472,
-      'moon_phase_angle' => 180.2442242235085,
+      'moon_age' => 15.38,
+      'moon_phase_angle' => 179.39903359585065,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2015-08-30 05:00:00' => 
+  '2015-08-31 09:00:00' =>
   array (
-    0 => '2015-08-30 05:00:00',
-    1 => 
-    array (
-      'year' => 2015,
-      'month' => 8,
-      'day' => 30,
-      'dayOfWeek' => 0,
-      'dayOfYear' => 242,
-      'hour' => 5,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1440878400,
-      'formatted' => '2015-08-30 05:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 27,
-      'oriental_zodiac_text' => '未',
-      'oriental_zodiac' => 8,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '大安',
-      'six_weekday' => 0,
-      'weekday_text' => '日',
-      'month_text' => '葉月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '文月',
-      'lunar_month' => 7,
-      'lunar_year' => 2015,
-      'lunar_day' => 17,
-      'is_leap_month' => false,
-      'moon_age' => 15.587997760623693,
-      'moon_phase_angle' => 180.832566513148,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2015-08-31 00:00:00' => 
-  array (
-    0 => '2015-08-31 00:00:00',
-    1 => 
+    0 => '2015-08-31 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 8,
       'day' => 31,
       'dayOfWeek' => 1,
       'dayOfYear' => 243,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1440946800,
-      'formatted' => '2015-08-31 00:00:00',
-      'timezone' => 
+      'timestamp' => 1440979200,
+      'formatted' => '2015-08-31 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -18212,29 +16010,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 18,
       'is_leap_month' => false,
-      'moon_age' => 16.379661382175982,
-      'moon_phase_angle' => 192.03148958686947,
+      'moon_age' => 16.38,
+      'moon_phase_angle' => 193.54340541100004,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-09-01 00:00:00' => 
+  '2015-09-01 09:00:00' =>
   array (
-    0 => '2015-09-01 00:00:00',
-    1 => 
+    0 => '2015-09-01 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 9,
       'day' => 1,
       'dayOfWeek' => 2,
       'dayOfYear' => 244,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1441033200,
-      'formatted' => '2015-09-01 00:00:00',
-      'timezone' => 
+      'timestamp' => 1441065600,
+      'formatted' => '2015-09-01 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -18270,29 +16068,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 19,
       'is_leap_month' => false,
-      'moon_age' => 17.379671182017773,
-      'moon_phase_angle' => 206.14916474234658,
+      'moon_age' => 17.38,
+      'moon_phase_angle' => 207.6484846573668,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-09-02 00:00:00' => 
+  '2015-09-02 09:00:00' =>
   array (
-    0 => '2015-09-02 00:00:00',
-    1 => 
+    0 => '2015-09-02 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 9,
       'day' => 2,
       'dayOfWeek' => 3,
       'dayOfYear' => 245,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1441119600,
-      'formatted' => '2015-09-02 00:00:00',
-      'timezone' => 
+      'timestamp' => 1441152000,
+      'formatted' => '2015-09-02 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -18328,29 +16126,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 20,
       'is_leap_month' => false,
-      'moon_age' => 18.387896532192826,
-      'moon_phase_angle' => 220.104263006257,
+      'moon_age' => 18.38,
+      'moon_phase_angle' => 221.5750153373693,
       'moon_phase' => 5,
       'moon_phase_text' => '十六夜',
     ),
   ),
-  '2015-09-03 00:00:00' => 
+  '2015-09-03 09:00:00' =>
   array (
-    0 => '2015-09-03 00:00:00',
-    1 => 
+    0 => '2015-09-03 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 9,
       'day' => 3,
       'dayOfWeek' => 4,
       'dayOfYear' => 246,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1441206000,
-      'formatted' => '2015-09-03 00:00:00',
-      'timezone' => 
+      'timestamp' => 1441238400,
+      'formatted' => '2015-09-03 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -18386,29 +16184,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 21,
       'is_leap_month' => false,
-      'moon_age' => 19.39702141750604,
-      'moon_phase_angle' => 233.78484311636566,
+      'moon_age' => 19.38,
+      'moon_phase_angle' => 235.21526110052474,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-09-04 00:00:00' => 
+  '2015-09-04 09:00:00' =>
   array (
-    0 => '2015-09-04 00:00:00',
-    1 => 
+    0 => '2015-09-04 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 9,
       'day' => 4,
       'dayOfWeek' => 5,
       'dayOfYear' => 247,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1441292400,
-      'formatted' => '2015-09-04 00:00:00',
-      'timezone' => 
+      'timestamp' => 1441324800,
+      'formatted' => '2015-09-04 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -18444,29 +16242,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 22,
       'is_leap_month' => false,
-      'moon_age' => 20.403608723077923,
-      'moon_phase_angle' => 247.1180334026846,
+      'moon_age' => 20.38,
+      'moon_phase_angle' => 248.5016122625576,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-09-05 00:00:00' => 
+  '2015-09-05 09:00:00' =>
   array (
-    0 => '2015-09-05 00:00:00',
-    1 => 
+    0 => '2015-09-05 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 9,
       'day' => 5,
       'dayOfWeek' => 6,
       'dayOfYear' => 248,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1441378800,
-      'formatted' => '2015-09-05 00:00:00',
-      'timezone' => 
+      'timestamp' => 1441411200,
+      'formatted' => '2015-09-05 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -18502,29 +16300,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 21.407615195028484,
-      'moon_phase_angle' => 260.0702680156182,
+      'moon_age' => 21.38,
+      'moon_phase_angle' => 261.40551266984545,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2015-09-05 20:00:00' => 
+  '2015-09-05 18:54:00' =>
   array (
-    0 => '2015-09-05 20:00:00',
-    1 => 
+    0 => '2015-09-05 18:54:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 9,
       'day' => 5,
       'dayOfWeek' => 6,
       'dayOfYear' => 248,
-      'hour' => 20,
-      'minute' => 0,
+      'hour' => 18,
+      'minute' => 54,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1441450800,
-      'formatted' => '2015-09-05 20:00:00',
-      'timezone' => 
+      'timestamp' => 1441446840,
+      'formatted' => '2015-09-05 18:54:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -18560,29 +16358,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 22.242405677679926,
-      'moon_phase_angle' => 270.5715864317437,
+      'moon_age' => 21.792361111111113,
+      'moon_phase_angle' => 266.6167988504463,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2015-09-06 00:00:00' => 
+  '2015-09-06 09:00:00' =>
   array (
-    0 => '2015-09-06 00:00:00',
-    1 => 
+    0 => '2015-09-06 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 9,
       'day' => 6,
       'dayOfWeek' => 0,
       'dayOfYear' => 249,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1441465200,
-      'formatted' => '2015-09-06 00:00:00',
-      'timezone' => 
+      'timestamp' => 1441497600,
+      'formatted' => '2015-09-06 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -18618,29 +16416,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 24,
       'is_leap_month' => false,
-      'moon_age' => 22.409177880734205,
-      'moon_phase_angle' => 272.6409612647734,
+      'moon_age' => 22.38,
+      'moon_phase_angle' => 273.9299731123263,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-09-07 00:00:00' => 
+  '2015-09-07 09:00:00' =>
   array (
-    0 => '2015-09-07 00:00:00',
-    1 => 
+    0 => '2015-09-07 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 9,
       'day' => 7,
       'dayOfWeek' => 1,
       'dayOfYear' => 250,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1441551600,
-      'formatted' => '2015-09-07 00:00:00',
-      'timezone' => 
+      'timestamp' => 1441584000,
+      'formatted' => '2015-09-07 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -18676,29 +16474,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 25,
       'is_leap_month' => false,
-      'moon_age' => 23.40851092012599,
-      'moon_phase_angle' => 284.85319026739967,
+      'moon_age' => 23.38,
+      'moon_phase_angle' => 286.09996282083114,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-09-08 00:00:00' => 
+  '2015-09-08 09:00:00' =>
   array (
-    0 => '2015-09-08 00:00:00',
-    1 => 
+    0 => '2015-09-08 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 9,
       'day' => 8,
       'dayOfWeek' => 2,
       'dayOfYear' => 251,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1441638000,
-      'formatted' => '2015-09-08 00:00:00',
-      'timezone' => 
+      'timestamp' => 1441670400,
+      'formatted' => '2015-09-08 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -18734,29 +16532,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 26,
       'is_leap_month' => false,
-      'moon_age' => 24.40586261637509,
-      'moon_phase_angle' => 296.74429567407515,
+      'moon_age' => 24.38,
+      'moon_phase_angle' => 297.95362831989644,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-09-09 00:00:00' => 
+  '2015-09-09 09:00:00' =>
   array (
-    0 => '2015-09-09 00:00:00',
-    1 => 
+    0 => '2015-09-09 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 9,
       'day' => 9,
       'dayOfWeek' => 3,
       'dayOfYear' => 252,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1441724400,
-      'formatted' => '2015-09-09 00:00:00',
-      'timezone' => 
+      'timestamp' => 1441756800,
+      'formatted' => '2015-09-09 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -18792,29 +16590,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 27,
       'is_leap_month' => false,
-      'moon_age' => 25.401492179371417,
-      'moon_phase_angle' => 308.3581176257211,
+      'moon_age' => 25.38,
+      'moon_phase_angle' => 309.53531008097184,
       'moon_phase' => 7,
       'moon_phase_text' => '有明',
     ),
   ),
-  '2015-09-10 00:00:00' => 
+  '2015-09-10 09:00:00' =>
   array (
-    0 => '2015-09-10 00:00:00',
-    1 => 
+    0 => '2015-09-10 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 9,
       'day' => 10,
       'dayOfWeek' => 4,
       'dayOfYear' => 253,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1441810800,
-      'formatted' => '2015-09-10 00:00:00',
-      'timezone' => 
+      'timestamp' => 1441843200,
+      'formatted' => '2015-09-10 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -18850,29 +16648,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 28,
       'is_leap_month' => false,
-      'moon_age' => 26.573961728396206,
-      'moon_phase_angle' => 319.7395425560977,
+      'moon_age' => 26.38,
+      'moon_phase_angle' => 320.8902991910851,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-09-11 00:00:00' => 
+  '2015-09-11 09:00:00' =>
   array (
-    0 => '2015-09-11 00:00:00',
-    1 => 
+    0 => '2015-09-11 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 9,
       'day' => 11,
       'dayOfWeek' => 5,
       'dayOfYear' => 254,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1441897200,
-      'formatted' => '2015-09-11 00:00:00',
-      'timezone' => 
+      'timestamp' => 1441929600,
+      'formatted' => '2015-09-11 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -18908,29 +16706,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 29,
       'is_leap_month' => false,
-      'moon_age' => 27.487040152916997,
-      'moon_phase_angle' => 330.9313723072065,
+      'moon_age' => 27.38,
+      'moon_phase_angle' => 332.06138380050845,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-09-12 00:00:00' => 
+  '2015-09-12 09:00:00' =>
   array (
-    0 => '2015-09-12 00:00:00',
-    1 => 
+    0 => '2015-09-12 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 9,
       'day' => 12,
       'dayOfWeek' => 6,
       'dayOfYear' => 255,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1441983600,
-      'formatted' => '2015-09-12 00:00:00',
-      'timezone' => 
+      'timestamp' => 1442016000,
+      'formatted' => '2015-09-12 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -18966,29 +16764,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 30,
       'is_leap_month' => false,
-      'moon_age' => 28.38896672442028,
-      'moon_phase_angle' => 341.973192176886,
+      'moon_age' => 28.38,
+      'moon_phase_angle' => 343.0875265738422,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-09-13 00:00:00' => 
+  '2015-09-13 09:00:00' =>
   array (
-    0 => '2015-09-13 00:00:00',
-    1 => 
+    0 => '2015-09-13 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 9,
       'day' => 13,
       'dayOfWeek' => 0,
       'dayOfYear' => 256,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1442070000,
-      'formatted' => '2015-09-13 00:00:00',
-      'timezone' => 
+      'timestamp' => 1442102400,
+      'formatted' => '2015-09-13 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -19024,74 +16822,16 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 29.282699765781253,
-      'moon_phase_angle' => 352.90178190188,
+      'moon_age' => 29.38,
+      'moon_phase_angle' => 354.00467677826737,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2015-09-13 14:00:00' => 
+  '2015-09-13 15:41:00' =>
   array (
-    0 => '2015-09-13 14:00:00',
-    1 => 
-    array (
-      'year' => 2015,
-      'month' => 9,
-      'day' => 13,
-      'dayOfWeek' => 0,
-      'dayOfYear' => 256,
-      'hour' => 14,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1442120400,
-      'formatted' => '2015-09-13 14:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 27,
-      'oriental_zodiac_text' => '未',
-      'oriental_zodiac' => 8,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '友引',
-      'six_weekday' => 3,
-      'weekday_text' => '日',
-      'month_text' => '長月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '葉月',
-      'lunar_month' => 8,
-      'lunar_year' => 2015,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.3047643154859543,
-      'moon_phase_angle' => 359.23859200488494,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2015-09-13 15:00:00' => 
-  array (
-    0 => '2015-09-13 15:00:00',
-    1 => 
+    0 => '2015-09-13 15:41:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 9,
@@ -19099,12 +16839,12 @@ return array (
       'dayOfWeek' => 0,
       'dayOfYear' => 256,
       'hour' => 15,
-      'minute' => 0,
+      'minute' => 41,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1442124000,
-      'formatted' => '2015-09-13 15:00:00',
-      'timezone' => 
+      'timestamp' => 1442126460,
+      'formatted' => '2015-09-13 15:41:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -19140,203 +16880,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.34643371729180217,
-      'moon_phase_angle' => 359.6903936932796,
+      'moon_age' => 0.0,
+      'moon_phase_angle' => 357.0301254500953,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2015-09-13 16:00:00' => 
+  '2015-09-14 09:00:00' =>
   array (
-    0 => '2015-09-13 16:00:00',
-    1 => 
-    array (
-      'year' => 2015,
-      'month' => 9,
-      'day' => 13,
-      'dayOfWeek' => 0,
-      'dayOfYear' => 256,
-      'hour' => 16,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1442127600,
-      'formatted' => '2015-09-13 16:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 27,
-      'oriental_zodiac_text' => '未',
-      'oriental_zodiac' => 8,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '友引',
-      'six_weekday' => 3,
-      'weekday_text' => '日',
-      'month_text' => '長月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '葉月',
-      'lunar_month' => 8,
-      'lunar_year' => 2015,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.3881073663942516,
-      'moon_phase_angle' => 0.14209885604572037,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2015-09-13 17:00:00' => 
-  array (
-    0 => '2015-09-13 17:00:00',
-    1 => 
-    array (
-      'year' => 2015,
-      'month' => 9,
-      'day' => 13,
-      'dayOfWeek' => 0,
-      'dayOfYear' => 256,
-      'hour' => 17,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1442131200,
-      'formatted' => '2015-09-13 17:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 27,
-      'oriental_zodiac_text' => '未',
-      'oriental_zodiac' => 8,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '友引',
-      'six_weekday' => 3,
-      'weekday_text' => '日',
-      'month_text' => '長月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '葉月',
-      'lunar_month' => 8,
-      'lunar_year' => 2015,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.42976484587416053,
-      'moon_phase_angle' => 0.5937101101102087,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2015-09-13 18:00:00' => 
-  array (
-    0 => '2015-09-13 18:00:00',
-    1 => 
-    array (
-      'year' => 2015,
-      'month' => 9,
-      'day' => 13,
-      'dayOfWeek' => 0,
-      'dayOfYear' => 256,
-      'hour' => 18,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1442134800,
-      'formatted' => '2015-09-13 18:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 27,
-      'oriental_zodiac_text' => '未',
-      'oriental_zodiac' => 8,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '友引',
-      'six_weekday' => 3,
-      'weekday_text' => '日',
-      'month_text' => '長月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '葉月',
-      'lunar_month' => 8,
-      'lunar_year' => 2015,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.4714373047463596,
-      'moon_phase_angle' => 1.0452300696555596,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2015-09-14 00:00:00' => 
-  array (
-    0 => '2015-09-14 00:00:00',
-    1 => 
+    0 => '2015-09-14 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 9,
       'day' => 14,
       'dayOfWeek' => 1,
       'dayOfYear' => 257,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1442156400,
-      'formatted' => '2015-09-14 00:00:00',
-      'timezone' => 
+      'timestamp' => 1442188800,
+      'formatted' => '2015-09-14 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -19372,29 +16938,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 2,
       'is_leap_month' => false,
-      'moon_age' => 0.721434195060283,
-      'moon_phase_angle' => 3.7525804550659245,
+      'moon_age' => 0.721,
+      'moon_phase_angle' => 4.847944347779276,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-09-15 00:00:00' => 
+  '2015-09-15 09:00:00' =>
   array (
-    0 => '2015-09-15 00:00:00',
-    1 => 
+    0 => '2015-09-15 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 9,
       'day' => 15,
       'dayOfWeek' => 2,
       'dayOfYear' => 258,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1442242800,
-      'formatted' => '2015-09-15 00:00:00',
-      'timezone' => 
+      'timestamp' => 1442275200,
+      'formatted' => '2015-09-15 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -19430,29 +16996,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 3,
       'is_leap_month' => false,
-      'moon_age' => 1.7214327063411474,
-      'moon_phase_angle' => 14.561728919654769,
+      'moon_age' => 1.721,
+      'moon_phase_angle' => 15.653974812337395,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-09-16 00:00:00' => 
+  '2015-09-16 09:00:00' =>
   array (
-    0 => '2015-09-16 00:00:00',
-    1 => 
+    0 => '2015-09-16 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 9,
       'day' => 16,
       'dayOfWeek' => 3,
       'dayOfYear' => 259,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1442329200,
-      'formatted' => '2015-09-16 00:00:00',
-      'timezone' => 
+      'timestamp' => 1442361600,
+      'formatted' => '2015-09-16 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -19488,29 +17054,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 4,
       'is_leap_month' => false,
-      'moon_age' => 2.721431916579604,
-      'moon_phase_angle' => 25.368252543493497,
+      'moon_age' => 2.721,
+      'moon_phase_angle' => 26.462786086030434,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-09-17 00:00:00' => 
+  '2015-09-17 09:00:00' =>
   array (
-    0 => '2015-09-17 00:00:00',
-    1 => 
+    0 => '2015-09-17 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 9,
       'day' => 17,
       'dayOfWeek' => 4,
       'dayOfYear' => 260,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1442415600,
-      'formatted' => '2015-09-17 00:00:00',
-      'timezone' => 
+      'timestamp' => 1442448000,
+      'formatted' => '2015-09-17 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -19546,29 +17112,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 5,
       'is_leap_month' => false,
-      'moon_age' => 3.7214319412596524,
-      'moon_phase_angle' => 36.21599014398865,
+      'moon_age' => 3.721,
+      'moon_phase_angle' => 37.31908252390676,
       'moon_phase' => 1,
       'moon_phase_text' => '三日月',
     ),
   ),
-  '2015-09-18 00:00:00' => 
+  '2015-09-18 09:00:00' =>
   array (
-    0 => '2015-09-18 00:00:00',
-    1 => 
+    0 => '2015-09-18 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 9,
       'day' => 18,
       'dayOfWeek' => 5,
       'dayOfYear' => 261,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1442502000,
-      'formatted' => '2015-09-18 00:00:00',
-      'timezone' => 
+      'timestamp' => 1442534400,
+      'formatted' => '2015-09-18 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -19604,29 +17170,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 6,
       'is_leap_month' => false,
-      'moon_age' => 4.7214301927015185,
-      'moon_phase_angle' => 47.154923818732414,
+      'moon_age' => 4.721,
+      'moon_phase_angle' => 48.27332870566255,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-09-19 00:00:00' => 
+  '2015-09-19 09:00:00' =>
   array (
-    0 => '2015-09-19 00:00:00',
-    1 => 
+    0 => '2015-09-19 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 9,
       'day' => 19,
       'dayOfWeek' => 6,
       'dayOfYear' => 262,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1442588400,
-      'formatted' => '2015-09-19 00:00:00',
-      'timezone' => 
+      'timestamp' => 1442620800,
+      'formatted' => '2015-09-19 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -19662,29 +17228,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 7,
       'is_leap_month' => false,
-      'moon_age' => 5.7214343952946365,
-      'moon_phase_angle' => 58.24158628751226,
+      'moon_age' => 5.721,
+      'moon_phase_angle' => 59.38240529700758,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-09-20 00:00:00' => 
+  '2015-09-20 09:00:00' =>
   array (
-    0 => '2015-09-20 00:00:00',
-    1 => 
+    0 => '2015-09-20 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 9,
       'day' => 20,
       'dayOfWeek' => 0,
       'dayOfYear' => 263,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1442674800,
-      'formatted' => '2015-09-20 00:00:00',
-      'timezone' => 
+      'timestamp' => 1442707200,
+      'formatted' => '2015-09-20 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -19720,29 +17286,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 6.7214339300990105,
-      'moon_phase_angle' => 69.53821171731136,
+      'moon_age' => 6.721,
+      'moon_phase_angle' => 70.70904835541424,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-09-21 00:00:00' => 
+  '2015-09-21 09:00:00' =>
   array (
-    0 => '2015-09-21 00:00:00',
-    1 => 
+    0 => '2015-09-21 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 9,
       'day' => 21,
       'dayOfWeek' => 1,
       'dayOfYear' => 264,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1442761200,
-      'formatted' => '2015-09-21 00:00:00',
-      'timezone' => 
+      'timestamp' => 1442793600,
+      'formatted' => '2015-09-21 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -19778,29 +17344,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 9,
       'is_leap_month' => false,
-      'moon_age' => 7.72143207769841,
-      'moon_phase_angle' => 81.11025400332898,
+      'moon_age' => 7.721,
+      'moon_phase_angle' => 82.31918037602793,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2015-09-21 18:00:00' => 
+  '2015-09-21 17:59:00' =>
   array (
-    0 => '2015-09-21 18:00:00',
-    1 => 
+    0 => '2015-09-21 17:59:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 9,
       'day' => 21,
       'dayOfWeek' => 1,
       'dayOfYear' => 264,
-      'hour' => 18,
-      'minute' => 0,
+      'hour' => 17,
+      'minute' => 59,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1442826000,
-      'formatted' => '2015-09-21 18:00:00',
-      'timezone' => 
+      'timestamp' => 1442825940,
+      'formatted' => '2015-09-21 17:59:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -19836,29 +17402,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 9,
       'is_leap_month' => false,
-      'moon_age' => 8.471433996222913,
-      'moon_phase_angle' => 90.00884841722379,
+      'moon_age' => 8.095833333333333,
+      'moon_phase_angle' => 86.75105872885823,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2015-09-22 00:00:00' => 
+  '2015-09-22 09:00:00' =>
   array (
-    0 => '2015-09-22 00:00:00',
-    1 => 
+    0 => '2015-09-22 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 9,
       'day' => 22,
       'dayOfWeek' => 2,
       'dayOfYear' => 265,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1442847600,
-      'formatted' => '2015-09-22 00:00:00',
-      'timezone' => 
+      'timestamp' => 1442880000,
+      'formatted' => '2015-09-22 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -19894,29 +17460,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 10,
       'is_leap_month' => false,
-      'moon_age' => 8.721433462109417,
-      'moon_phase_angle' => 93.02186554182879,
+      'moon_age' => 8.721,
+      'moon_phase_angle' => 94.27673037837522,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-09-23 00:00:00' => 
+  '2015-09-23 09:00:00' =>
   array (
-    0 => '2015-09-23 00:00:00',
-    1 => 
+    0 => '2015-09-23 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 9,
       'day' => 23,
       'dayOfWeek' => 3,
       'dayOfYear' => 266,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1442934000,
-      'formatted' => '2015-09-23 00:00:00',
-      'timezone' => 
+      'timestamp' => 1442966400,
+      'formatted' => '2015-09-23 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -19952,29 +17518,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 11,
       'is_leap_month' => false,
-      'moon_age' => 9.721434235107154,
-      'moon_phase_angle' => 105.3290063458004,
+      'moon_age' => 9.721,
+      'moon_phase_angle' => 106.63609034679425,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-09-24 00:00:00' => 
+  '2015-09-24 09:00:00' =>
   array (
-    0 => '2015-09-24 00:00:00',
-    1 => 
+    0 => '2015-09-24 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 9,
       'day' => 24,
       'dayOfWeek' => 4,
       'dayOfYear' => 267,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1443020400,
-      'formatted' => '2015-09-24 00:00:00',
-      'timezone' => 
+      'timestamp' => 1443052800,
+      'formatted' => '2015-09-24 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -20010,29 +17576,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 12,
       'is_leap_month' => false,
-      'moon_age' => 10.721436641179025,
-      'moon_phase_angle' => 118.07019838885009,
+      'moon_age' => 10.721,
+      'moon_phase_angle' => 119.43264109598161,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-09-25 00:00:00' => 
+  '2015-09-25 09:00:00' =>
   array (
-    0 => '2015-09-25 00:00:00',
-    1 => 
+    0 => '2015-09-25 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 9,
       'day' => 25,
       'dayOfWeek' => 5,
       'dayOfYear' => 268,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1443106800,
-      'formatted' => '2015-09-25 00:00:00',
-      'timezone' => 
+      'timestamp' => 1443139200,
+      'formatted' => '2015-09-25 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -20068,29 +17634,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 13,
       'is_leap_month' => false,
-      'moon_age' => 11.721434587147087,
-      'moon_phase_angle' => 131.25572381011358,
+      'moon_age' => 11.721,
+      'moon_phase_angle' => 132.67216552336748,
       'moon_phase' => 3,
       'moon_phase_text' => '十三夜',
     ),
   ),
-  '2015-09-26 00:00:00' => 
+  '2015-09-26 09:00:00' =>
   array (
-    0 => '2015-09-26 00:00:00',
-    1 => 
+    0 => '2015-09-26 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 9,
       'day' => 26,
       'dayOfWeek' => 6,
       'dayOfYear' => 269,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1443193200,
-      'formatted' => '2015-09-26 00:00:00',
-      'timezone' => 
+      'timestamp' => 1443225600,
+      'formatted' => '2015-09-26 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -20126,29 +17692,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 14,
       'is_leap_month' => false,
-      'moon_age' => 12.721430695615709,
-      'moon_phase_angle' => 144.85730818401336,
+      'moon_age' => 12.721,
+      'moon_phase_angle' => 146.32101176270822,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-09-27 00:00:00' => 
+  '2015-09-27 09:00:00' =>
   array (
-    0 => '2015-09-27 00:00:00',
-    1 => 
+    0 => '2015-09-27 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 9,
       'day' => 27,
       'dayOfWeek' => 0,
       'dayOfYear' => 270,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1443279600,
-      'formatted' => '2015-09-27 00:00:00',
-      'timezone' => 
+      'timestamp' => 1443312000,
+      'formatted' => '2015-09-27 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -20184,29 +17750,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 15,
       'is_leap_month' => false,
-      'moon_age' => 13.721439389977604,
-      'moon_phase_angle' => 158.8016491878999,
+      'moon_age' => 13.721,
+      'moon_phase_angle' => 160.30033445213425,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-09-28 00:00:00' => 
+  '2015-09-28 09:00:00' =>
   array (
-    0 => '2015-09-28 00:00:00',
-    1 => 
+    0 => '2015-09-28 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 9,
       'day' => 28,
       'dayOfWeek' => 1,
       'dayOfYear' => 271,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1443366000,
-      'formatted' => '2015-09-28 00:00:00',
-      'timezone' => 
+      'timestamp' => 1443398400,
+      'formatted' => '2015-09-28 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -20242,16 +17808,16 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 14.721440103836358,
-      'moon_phase_angle' => 172.97162589638418,
+      'moon_age' => 14.721,
+      'moon_phase_angle' => 174.4883149833819,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2015-09-28 11:00:00' => 
+  '2015-09-28 11:51:00' =>
   array (
-    0 => '2015-09-28 11:00:00',
-    1 => 
+    0 => '2015-09-28 11:51:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 9,
@@ -20259,12 +17825,12 @@ return array (
       'dayOfWeek' => 1,
       'dayOfYear' => 271,
       'hour' => 11,
-      'minute' => 0,
+      'minute' => 51,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1443405600,
-      'formatted' => '2015-09-28 11:00:00',
-      'timezone' => 
+      'timestamp' => 1443408660,
+      'formatted' => '2015-09-28 11:51:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -20300,145 +17866,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 15.179769036360085,
-      'moon_phase_angle' => 179.5013519231895,
+      'moon_age' => 14.840277777777779,
+      'moon_phase_angle' => 176.18004213186563,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2015-09-28 12:00:00' => 
+  '2015-09-29 09:00:00' =>
   array (
-    0 => '2015-09-28 12:00:00',
-    1 => 
-    array (
-      'year' => 2015,
-      'month' => 9,
-      'day' => 28,
-      'dayOfWeek' => 1,
-      'dayOfYear' => 271,
-      'hour' => 12,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1443409200,
-      'formatted' => '2015-09-28 12:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 27,
-      'oriental_zodiac_text' => '未',
-      'oriental_zodiac' => 8,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '大安',
-      'six_weekday' => 0,
-      'weekday_text' => '月',
-      'month_text' => '長月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '葉月',
-      'lunar_month' => 8,
-      'lunar_year' => 2015,
-      'lunar_day' => 16,
-      'is_leap_month' => false,
-      'moon_age' => 15.221433828119189,
-      'moon_phase_angle' => 180.09522200348846,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2015-09-28 13:00:00' => 
-  array (
-    0 => '2015-09-28 13:00:00',
-    1 => 
-    array (
-      'year' => 2015,
-      'month' => 9,
-      'day' => 28,
-      'dayOfWeek' => 1,
-      'dayOfYear' => 271,
-      'hour' => 13,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1443412800,
-      'formatted' => '2015-09-28 13:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 27,
-      'oriental_zodiac_text' => '未',
-      'oriental_zodiac' => 8,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '大安',
-      'six_weekday' => 0,
-      'weekday_text' => '月',
-      'month_text' => '長月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '葉月',
-      'lunar_month' => 8,
-      'lunar_year' => 2015,
-      'lunar_day' => 16,
-      'is_leap_month' => false,
-      'moon_age' => 15.263100287877023,
-      'moon_phase_angle' => 180.68908355519517,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2015-09-29 00:00:00' => 
-  array (
-    0 => '2015-09-29 00:00:00',
-    1 => 
+    0 => '2015-09-29 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 9,
       'day' => 29,
       'dayOfWeek' => 2,
       'dayOfYear' => 272,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1443452400,
-      'formatted' => '2015-09-29 00:00:00',
-      'timezone' => 
+      'timestamp' => 1443484800,
+      'formatted' => '2015-09-29 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -20474,29 +17924,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 17,
       'is_leap_month' => false,
-      'moon_age' => 15.72951552318409,
-      'moon_phase_angle' => 187.21758802395442,
+      'moon_age' => 15.721,
+      'moon_phase_angle' => 188.7325866818831,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-09-30 00:00:00' => 
+  '2015-09-30 09:00:00' =>
   array (
-    0 => '2015-09-30 00:00:00',
-    1 => 
+    0 => '2015-09-30 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 9,
       'day' => 30,
       'dayOfWeek' => 3,
       'dayOfYear' => 273,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1443538800,
-      'formatted' => '2015-09-30 00:00:00',
-      'timezone' => 
+      'timestamp' => 1443571200,
+      'formatted' => '2015-09-30 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -20532,29 +17982,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 18,
       'is_leap_month' => false,
-      'moon_age' => 16.746633800677955,
-      'moon_phase_angle' => 201.3776066641995,
+      'moon_age' => 16.721,
+      'moon_phase_angle' => 202.87127534207812,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-10-01 00:00:00' => 
+  '2015-10-01 09:00:00' =>
   array (
-    0 => '2015-10-01 00:00:00',
-    1 => 
+    0 => '2015-10-01 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 10,
       'day' => 1,
       'dayOfWeek' => 4,
       'dayOfYear' => 274,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1443625200,
-      'formatted' => '2015-10-01 00:00:00',
-      'timezone' => 
+      'timestamp' => 1443657600,
+      'formatted' => '2015-10-01 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -20590,29 +18040,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 19,
       'is_leap_month' => false,
-      'moon_age' => 17.761093496810645,
-      'moon_phase_angle' => 215.30154072754877,
+      'moon_age' => 17.721,
+      'moon_phase_angle' => 216.7570965271662,
       'moon_phase' => 5,
       'moon_phase_text' => '十六夜',
     ),
   ),
-  '2015-10-02 00:00:00' => 
+  '2015-10-02 09:00:00' =>
   array (
-    0 => '2015-10-02 00:00:00',
-    1 => 
+    0 => '2015-10-02 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 10,
       'day' => 2,
       'dayOfWeek' => 5,
       'dayOfYear' => 275,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1443711600,
-      'formatted' => '2015-10-02 00:00:00',
-      'timezone' => 
+      'timestamp' => 1443744000,
+      'formatted' => '2015-10-02 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -20648,29 +18098,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 20,
       'is_leap_month' => false,
-      'moon_age' => 18.77201956976205,
-      'moon_phase_angle' => 228.87177117503708,
+      'moon_age' => 18.721,
+      'moon_phase_angle' => 230.27738339291716,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-10-03 00:00:00' => 
+  '2015-10-03 09:00:00' =>
   array (
-    0 => '2015-10-03 00:00:00',
-    1 => 
+    0 => '2015-10-03 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 10,
       'day' => 3,
       'dayOfWeek' => 6,
       'dayOfYear' => 276,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1443798000,
-      'formatted' => '2015-10-03 00:00:00',
-      'timezone' => 
+      'timestamp' => 1443830400,
+      'formatted' => '2015-10-03 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -20706,29 +18156,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 21,
       'is_leap_month' => false,
-      'moon_age' => 19.77896852605045,
-      'moon_phase_angle' => 242.0151931774557,
+      'moon_age' => 19.721,
+      'moon_phase_angle' => 243.36482905146644,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-10-04 00:00:00' => 
+  '2015-10-04 09:00:00' =>
   array (
-    0 => '2015-10-04 00:00:00',
-    1 => 
+    0 => '2015-10-04 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 10,
       'day' => 4,
       'dayOfWeek' => 0,
       'dayOfYear' => 277,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1443884400,
-      'formatted' => '2015-10-04 00:00:00',
-      'timezone' => 
+      'timestamp' => 1443916800,
+      'formatted' => '2015-10-04 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -20764,29 +18214,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 22,
       'is_leap_month' => false,
-      'moon_age' => 20.78188942745328,
-      'moon_phase_angle' => 254.70480915496614,
+      'moon_age' => 20.721,
+      'moon_phase_angle' => 255.99788135460167,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-10-05 00:00:00' => 
+  '2015-10-05 06:06:00' =>
   array (
-    0 => '2015-10-05 00:00:00',
-    1 => 
+    0 => '2015-10-05 06:06:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 10,
       'day' => 5,
       'dayOfWeek' => 1,
       'dayOfYear' => 278,
-      'hour' => 0,
-      'minute' => 0,
+      'hour' => 6,
+      'minute' => 6,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1443970800,
-      'formatted' => '2015-10-05 00:00:00',
-      'timezone' => 
+      'timestamp' => 1443992760,
+      'formatted' => '2015-10-05 06:06:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -20822,29 +18272,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 21.781026147305965,
-      'moon_phase_angle' => 266.95328482613115,
+      'moon_age' => 21.600694444444443,
+      'moon_phase_angle' => 266.74178073439055,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2015-10-05 07:00:00' => 
+  '2015-10-05 09:00:00' =>
   array (
-    0 => '2015-10-05 07:00:00',
-    1 => 
+    0 => '2015-10-05 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 10,
       'day' => 5,
       'dayOfWeek' => 1,
       'dayOfYear' => 278,
-      'hour' => 7,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1443996000,
-      'formatted' => '2015-10-05 07:00:00',
-      'timezone' => 
+      'timestamp' => 1444003200,
+      'formatted' => '2015-10-05 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -20880,29 +18330,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 22.071783119812608,
-      'moon_phase_angle' => 270.44811807923526,
+      'moon_age' => 21.721,
+      'moon_phase_angle' => 268.19346363977604,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2015-10-06 00:00:00' => 
+  '2015-10-06 09:00:00' =>
   array (
-    0 => '2015-10-06 00:00:00',
-    1 => 
+    0 => '2015-10-06 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 10,
       'day' => 6,
       'dayOfWeek' => 2,
       'dayOfYear' => 279,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1444057200,
-      'formatted' => '2015-10-06 00:00:00',
-      'timezone' => 
+      'timestamp' => 1444089600,
+      'formatted' => '2015-10-06 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -20938,29 +18388,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 24,
       'is_leap_month' => false,
-      'moon_age' => 22.776796843856573,
-      'moon_phase_angle' => 278.80236084275344,
+      'moon_age' => 22.721,
+      'moon_phase_angle' => 279.99617468986986,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-10-07 00:00:00' => 
+  '2015-10-07 09:00:00' =>
   array (
-    0 => '2015-10-07 00:00:00',
-    1 => 
+    0 => '2015-10-07 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 10,
       'day' => 7,
       'dayOfWeek' => 3,
       'dayOfYear' => 280,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1444143600,
-      'formatted' => '2015-10-07 00:00:00',
-      'timezone' => 
+      'timestamp' => 1444176000,
+      'formatted' => '2015-10-07 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -20996,29 +18446,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 25,
       'is_leap_month' => false,
-      'moon_age' => 23.76976490020752,
-      'moon_phase_angle' => 290.3116658604471,
+      'moon_age' => 23.721,
+      'moon_phase_angle' => 291.4673311188044,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-10-08 00:00:00' => 
+  '2015-10-08 09:00:00' =>
   array (
-    0 => '2015-10-08 00:00:00',
-    1 => 
+    0 => '2015-10-08 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 10,
       'day' => 8,
       'dayOfWeek' => 4,
       'dayOfYear' => 281,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1444230000,
-      'formatted' => '2015-10-08 00:00:00',
-      'timezone' => 
+      'timestamp' => 1444262400,
+      'formatted' => '2015-10-08 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -21054,29 +18504,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 26,
       'is_leap_month' => false,
-      'moon_age' => 24.760508748702705,
-      'moon_phase_angle' => 301.54909559616135,
+      'moon_age' => 24.721,
+      'moon_phase_angle' => 302.6755996200045,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-10-09 00:00:00' => 
+  '2015-10-09 09:00:00' =>
   array (
-    0 => '2015-10-09 00:00:00',
-    1 => 
+    0 => '2015-10-09 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 10,
       'day' => 9,
       'dayOfWeek' => 5,
       'dayOfYear' => 282,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1444316400,
-      'formatted' => '2015-10-09 00:00:00',
-      'timezone' => 
+      'timestamp' => 1444348800,
+      'formatted' => '2015-10-09 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -21112,29 +18562,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 27,
       'is_leap_month' => false,
-      'moon_age' => 25.74962061131373,
-      'moon_phase_angle' => 312.583597513511,
+      'moon_age' => 25.721,
+      'moon_phase_angle' => 313.6898358879734,
       'moon_phase' => 7,
       'moon_phase_text' => '有明',
     ),
   ),
-  '2015-10-10 00:00:00' => 
+  '2015-10-10 09:00:00' =>
   array (
-    0 => '2015-10-10 00:00:00',
-    1 => 
+    0 => '2015-10-10 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 10,
       'day' => 10,
       'dayOfWeek' => 6,
       'dayOfYear' => 283,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1444402800,
-      'formatted' => '2015-10-10 00:00:00',
-      'timezone' => 
+      'timestamp' => 1444435200,
+      'formatted' => '2015-10-10 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -21170,29 +18620,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 28,
       'is_leap_month' => false,
-      'moon_age' => 26.86819087262669,
-      'moon_phase_angle' => 323.48036948724996,
+      'moon_age' => 26.721,
+      'moon_phase_angle' => 324.57433191619907,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-10-11 00:00:00' => 
+  '2015-10-11 09:00:00' =>
   array (
-    0 => '2015-10-11 00:00:00',
-    1 => 
+    0 => '2015-10-11 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 10,
       'day' => 11,
       'dayOfWeek' => 0,
       'dayOfYear' => 284,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1444489200,
-      'formatted' => '2015-10-11 00:00:00',
-      'timezone' => 
+      'timestamp' => 1444521600,
+      'formatted' => '2015-10-11 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -21228,29 +18678,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 29,
       'is_leap_month' => false,
-      'moon_age' => 27.754250287222057,
-      'moon_phase_angle' => 334.29812732929145,
+      'moon_age' => 27.721,
+      'moon_phase_angle' => 335.38643338741974,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-10-12 00:00:00' => 
+  '2015-10-12 09:00:00' =>
   array (
-    0 => '2015-10-12 00:00:00',
-    1 => 
+    0 => '2015-10-12 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 10,
       'day' => 12,
       'dayOfWeek' => 1,
       'dayOfYear' => 285,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1444575600,
-      'formatted' => '2015-10-12 00:00:00',
-      'timezone' => 
+      'timestamp' => 1444608000,
+      'formatted' => '2015-10-12 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -21286,190 +18736,16 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 30,
       'is_leap_month' => false,
-      'moon_age' => 28.639440461671292,
-      'moon_phase_angle' => 345.08803502253556,
+      'moon_age' => 28.721,
+      'moon_phase_angle' => 346.17607082129814,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-10-13 00:00:00' => 
-  array (
-    0 => '2015-10-13 00:00:00',
-    1 => 
-    array (
-      'year' => 2015,
-      'month' => 10,
-      'day' => 13,
-      'dayOfWeek' => 2,
-      'dayOfYear' => 286,
-      'hour' => 0,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1444662000,
-      'formatted' => '2015-10-13 00:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 27,
-      'oriental_zodiac_text' => '未',
-      'oriental_zodiac' => 8,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '先負',
-      'six_weekday' => 4,
-      'weekday_text' => '火',
-      'month_text' => '神無月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '長月',
-      'lunar_month' => 9,
-      'lunar_year' => 2015,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 29.527156566879093,
-      'moon_phase_angle' => 355.89394566108354,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2015-10-13 06:00:00' => 
-  array (
-    0 => '2015-10-13 06:00:00',
-    1 => 
-    array (
-      'year' => 2015,
-      'month' => 10,
-      'day' => 13,
-      'dayOfWeek' => 2,
-      'dayOfYear' => 286,
-      'hour' => 6,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1444683600,
-      'formatted' => '2015-10-13 06:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 27,
-      'oriental_zodiac_text' => '未',
-      'oriental_zodiac' => 8,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '先負',
-      'six_weekday' => 4,
-      'weekday_text' => '火',
-      'month_text' => '神無月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '長月',
-      'lunar_month' => 9,
-      'lunar_year' => 2015,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.2461420907638967,
-      'moon_phase_angle' => 358.60246020568553,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2015-10-13 08:00:00' => 
-  array (
-    0 => '2015-10-13 08:00:00',
-    1 => 
-    array (
-      'year' => 2015,
-      'month' => 10,
-      'day' => 13,
-      'dayOfWeek' => 2,
-      'dayOfYear' => 286,
-      'hour' => 8,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1444690800,
-      'formatted' => '2015-10-13 08:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 27,
-      'oriental_zodiac_text' => '未',
-      'oriental_zodiac' => 8,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '先負',
-      'six_weekday' => 4,
-      'weekday_text' => '火',
-      'month_text' => '神無月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '長月',
-      'lunar_month' => 9,
-      'lunar_year' => 2015,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.3294666763395071,
-      'moon_phase_angle' => 359.5061442743113,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2015-10-13 09:00:00' => 
+  '2015-10-13 09:00:00' =>
   array (
     0 => '2015-10-13 09:00:00',
-    1 => 
+    1 =>
     array (
       'year' => 2015,
       'month' => 10,
@@ -21482,7 +18758,7 @@ return array (
       'micro' => 0,
       'timestamp' => 1444694400,
       'formatted' => '2015-10-13 09:00:00',
-      'timezone' => 
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -21518,29 +18794,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.37114059226587415,
-      'moon_phase_angle' => 359.95815606703826,
+      'moon_age' => 29.721,
+      'moon_phase_angle' => 356.98641781904337,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2015-10-13 10:00:00' => 
+  '2015-10-13 09:06:00' =>
   array (
-    0 => '2015-10-13 10:00:00',
-    1 => 
+    0 => '2015-10-13 09:06:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 10,
       'day' => 13,
       'dayOfWeek' => 2,
       'dayOfYear' => 286,
-      'hour' => 10,
-      'minute' => 0,
+      'hour' => 9,
+      'minute' => 6,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1444698000,
-      'formatted' => '2015-10-13 10:00:00',
-      'timezone' => 
+      'timestamp' => 1444694760,
+      'formatted' => '2015-10-13 09:06:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -21576,29 +18852,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.4128053169697523,
-      'moon_phase_angle' => 0.41028430483854095,
+      'moon_age' => 0.0,
+      'moon_phase_angle' => 357.03155843053764,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2015-10-14 00:00:00' => 
+  '2015-10-14 09:00:00' =>
   array (
-    0 => '2015-10-14 00:00:00',
-    1 => 
+    0 => '2015-10-14 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 10,
       'day' => 14,
       'dayOfWeek' => 3,
       'dayOfYear' => 287,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1444748400,
-      'formatted' => '2015-10-14 00:00:00',
-      'timezone' => 
+      'timestamp' => 1444780800,
+      'formatted' => '2015-10-14 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -21634,29 +18910,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 2,
       'is_leap_month' => false,
-      'moon_age' => 0.9961328925564885,
-      'moon_phase_angle' => 6.7536573887093425,
+      'moon_age' => 0.996,
+      'moon_phase_angle' => 7.855054318088008,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-10-15 00:00:00' => 
+  '2015-10-15 09:00:00' =>
   array (
-    0 => '2015-10-15 00:00:00',
-    1 => 
+    0 => '2015-10-15 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 10,
       'day' => 15,
       'dayOfWeek' => 4,
       'dayOfYear' => 288,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1444834800,
-      'formatted' => '2015-10-15 00:00:00',
-      'timezone' => 
+      'timestamp' => 1444867200,
+      'formatted' => '2015-10-15 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -21692,29 +18968,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 3,
       'is_leap_month' => false,
-      'moon_age' => 1.9961372837424278,
-      'moon_phase_angle' => 17.700899283882308,
+      'moon_age' => 1.996,
+      'moon_phase_angle' => 18.81555162545942,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-10-16 00:00:00' => 
+  '2015-10-16 09:00:00' =>
   array (
-    0 => '2015-10-16 00:00:00',
-    1 => 
+    0 => '2015-10-16 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 10,
       'day' => 16,
       'dayOfWeek' => 5,
       'dayOfYear' => 289,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1444921200,
-      'formatted' => '2015-10-16 00:00:00',
-      'timezone' => 
+      'timestamp' => 1444953600,
+      'formatted' => '2015-10-16 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -21750,29 +19026,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 4,
       'is_leap_month' => false,
-      'moon_age' => 2.9961376884020865,
-      'moon_phase_angle' => 28.767721407629296,
+      'moon_age' => 2.996,
+      'moon_phase_angle' => 29.89968610881411,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-10-17 00:00:00' => 
+  '2015-10-17 09:00:00' =>
   array (
-    0 => '2015-10-17 00:00:00',
-    1 => 
+    0 => '2015-10-17 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 10,
       'day' => 17,
       'dayOfWeek' => 6,
       'dayOfYear' => 290,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1445007600,
-      'formatted' => '2015-10-17 00:00:00',
-      'timezone' => 
+      'timestamp' => 1445040000,
+      'formatted' => '2015-10-17 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -21808,29 +19084,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 5,
       'is_leap_month' => false,
-      'moon_age' => 3.996133977547288,
-      'moon_phase_angle' => 39.9868901868399,
+      'moon_age' => 3.996,
+      'moon_phase_angle' => 41.14011999426825,
       'moon_phase' => 1,
       'moon_phase_text' => '三日月',
     ),
   ),
-  '2015-10-18 00:00:00' => 
+  '2015-10-18 09:00:00' =>
   array (
-    0 => '2015-10-18 00:00:00',
-    1 => 
+    0 => '2015-10-18 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 10,
       'day' => 18,
       'dayOfWeek' => 0,
       'dayOfYear' => 291,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1445094000,
-      'formatted' => '2015-10-18 00:00:00',
-      'timezone' => 
+      'timestamp' => 1445126400,
+      'formatted' => '2015-10-18 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -21866,29 +19142,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 6,
       'is_leap_month' => false,
-      'moon_age' => 4.996134197805077,
-      'moon_phase_angle' => 51.39381479291018,
+      'moon_age' => 4.996,
+      'moon_phase_angle' => 52.57269858630784,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-10-19 00:00:00' => 
+  '2015-10-19 09:00:00' =>
   array (
-    0 => '2015-10-19 00:00:00',
-    1 => 
+    0 => '2015-10-19 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 10,
       'day' => 19,
       'dayOfWeek' => 1,
       'dayOfYear' => 292,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1445180400,
-      'formatted' => '2015-10-19 00:00:00',
-      'timezone' => 
+      'timestamp' => 1445212800,
+      'formatted' => '2015-10-19 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -21924,29 +19200,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 7,
       'is_leap_month' => false,
-      'moon_age' => 5.9961366900242865,
-      'moon_phase_angle' => 63.02747374190247,
+      'moon_age' => 5.996,
+      'moon_phase_angle' => 64.23725338715604,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-10-20 00:00:00' => 
+  '2015-10-20 09:00:00' =>
   array (
-    0 => '2015-10-20 00:00:00',
-    1 => 
+    0 => '2015-10-20 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 10,
       'day' => 20,
       'dayOfWeek' => 2,
       'dayOfYear' => 293,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1445266800,
-      'formatted' => '2015-10-20 00:00:00',
-      'timezone' => 
+      'timestamp' => 1445299200,
+      'formatted' => '2015-10-20 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -21958,8 +19234,8 @@ return array (
       'lunar_seasonal_festival' => 0,
       'lunar_seasonal_festival_name' => '',
       'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 7,
-      'misc_seasonal_node_text' => '土用',
+      'misc_seasonal_node' => 0,
+      'misc_seasonal_node_text' => '',
       'solar_term' => false,
       'solar_term_text' => '',
       'is_solar_term' => false,
@@ -21982,29 +19258,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 6.9961371859535575,
-      'moon_phase_angle' => 74.929787274512,
+      'moon_age' => 6.996,
+      'moon_phase_angle' => 76.17626875381859,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-10-21 00:00:00' => 
+  '2015-10-21 05:31:00' =>
   array (
-    0 => '2015-10-21 00:00:00',
-    1 => 
+    0 => '2015-10-21 05:31:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 10,
       'day' => 21,
       'dayOfWeek' => 3,
       'dayOfYear' => 294,
-      'hour' => 0,
-      'minute' => 0,
+      'hour' => 5,
+      'minute' => 31,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1445353200,
-      'formatted' => '2015-10-21 00:00:00',
-      'timezone' => 
+      'timestamp' => 1445373060,
+      'formatted' => '2015-10-21 05:31:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -22040,29 +19316,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 9,
       'is_leap_month' => false,
-      'moon_age' => 7.99613782344386,
-      'moon_phase_angle' => 87.14290886609191,
+      'moon_age' => 7.850694444444445,
+      'moon_phase_angle' => 86.63165228480767,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2015-10-21 06:00:00' => 
+  '2015-10-21 09:00:00' =>
   array (
-    0 => '2015-10-21 06:00:00',
-    1 => 
+    0 => '2015-10-21 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 10,
       'day' => 21,
       'dayOfWeek' => 3,
       'dayOfYear' => 294,
-      'hour' => 6,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1445374800,
-      'formatted' => '2015-10-21 06:00:00',
-      'timezone' => 
+      'timestamp' => 1445385600,
+      'formatted' => '2015-10-21 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -22098,29 +19374,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 9,
       'is_leap_month' => false,
-      'moon_age' => 8.246140303555876,
-      'moon_phase_angle' => 90.24932140649048,
+      'moon_age' => 7.996,
+      'moon_phase_angle' => 88.43143967643292,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2015-10-22 00:00:00' => 
+  '2015-10-22 09:00:00' =>
   array (
-    0 => '2015-10-22 00:00:00',
-    1 => 
+    0 => '2015-10-22 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 10,
       'day' => 22,
       'dayOfWeek' => 4,
       'dayOfYear' => 295,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1445439600,
-      'formatted' => '2015-10-22 00:00:00',
-      'timezone' => 
+      'timestamp' => 1445472000,
+      'formatted' => '2015-10-22 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -22156,29 +19432,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 10,
       'is_leap_month' => false,
-      'moon_age' => 8.996132255531847,
-      'moon_phase_angle' => 99.70403084775515,
+      'moon_age' => 8.996,
+      'moon_phase_angle' => 101.03829534625297,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-10-23 00:00:00' => 
+  '2015-10-23 09:00:00' =>
   array (
-    0 => '2015-10-23 00:00:00',
-    1 => 
+    0 => '2015-10-23 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 10,
       'day' => 23,
       'dayOfWeek' => 5,
       'dayOfYear' => 296,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1445526000,
-      'formatted' => '2015-10-23 00:00:00',
-      'timezone' => 
+      'timestamp' => 1445558400,
+      'formatted' => '2015-10-23 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -22214,29 +19490,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 11,
       'is_leap_month' => false,
-      'moon_age' => 9.996133917476982,
-      'moon_phase_angle' => 112.63761200367375,
+      'moon_age' => 9.996,
+      'moon_phase_angle' => 114.01872943793259,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-10-24 00:00:00' => 
+  '2015-10-24 09:00:00' =>
   array (
-    0 => '2015-10-24 00:00:00',
-    1 => 
+    0 => '2015-10-24 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 10,
       'day' => 24,
       'dayOfWeek' => 6,
       'dayOfYear' => 297,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1445612400,
-      'formatted' => '2015-10-24 00:00:00',
-      'timezone' => 
+      'timestamp' => 1445644800,
+      'formatted' => '2015-10-24 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -22272,29 +19548,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 12,
       'is_leap_month' => false,
-      'moon_age' => 10.996133815962821,
-      'moon_phase_angle' => 125.94558832399454,
+      'moon_age' => 10.996,
+      'moon_phase_angle' => 127.37141046748562,
       'moon_phase' => 3,
       'moon_phase_text' => '十三夜',
     ),
   ),
-  '2015-10-25 00:00:00' => 
+  '2015-10-25 09:00:00' =>
   array (
-    0 => '2015-10-25 00:00:00',
-    1 => 
+    0 => '2015-10-25 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 10,
       'day' => 25,
       'dayOfWeek' => 0,
       'dayOfYear' => 298,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1445698800,
-      'formatted' => '2015-10-25 00:00:00',
-      'timezone' => 
+      'timestamp' => 1445731200,
+      'formatted' => '2015-10-25 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -22330,29 +19606,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 13,
       'is_leap_month' => false,
-      'moon_age' => 11.996133402455598,
-      'moon_phase_angle' => 139.59722616771532,
+      'moon_age' => 11.996,
+      'moon_phase_angle' => 141.0614649553767,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-10-26 00:00:00' => 
+  '2015-10-26 09:00:00' =>
   array (
-    0 => '2015-10-26 00:00:00',
-    1 => 
+    0 => '2015-10-26 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 10,
       'day' => 26,
       'dayOfWeek' => 1,
       'dayOfYear' => 299,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1445785200,
-      'formatted' => '2015-10-26 00:00:00',
-      'timezone' => 
+      'timestamp' => 1445817600,
+      'formatted' => '2015-10-26 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -22388,29 +19664,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 14,
       'is_leap_month' => false,
-      'moon_age' => 12.999377364758402,
-      'moon_phase_angle' => 153.52165357766538,
+      'moon_age' => 12.996,
+      'moon_phase_angle' => 155.01302187883456,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-10-27 00:00:00' => 
+  '2015-10-27 09:00:00' =>
   array (
-    0 => '2015-10-27 00:00:00',
-    1 => 
+    0 => '2015-10-27 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 10,
       'day' => 27,
       'dayOfWeek' => 2,
       'dayOfYear' => 300,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1445871600,
-      'formatted' => '2015-10-27 00:00:00',
-      'timezone' => 
+      'timestamp' => 1445904000,
+      'formatted' => '2015-10-27 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -22446,74 +19722,16 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 15,
       'is_leap_month' => false,
-      'moon_age' => 14.016789608635008,
-      'moon_phase_angle' => 167.60704294139884,
+      'moon_age' => 13.996,
+      'moon_phase_angle' => 169.109339454319,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2015-10-27 20:00:00' => 
+  '2015-10-27 21:05:00' =>
   array (
-    0 => '2015-10-27 20:00:00',
-    1 => 
-    array (
-      'year' => 2015,
-      'month' => 10,
-      'day' => 27,
-      'dayOfWeek' => 2,
-      'dayOfYear' => 300,
-      'hour' => 20,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1445943600,
-      'formatted' => '2015-10-27 20:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 7,
-      'misc_seasonal_node_text' => '土用',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 27,
-      'oriental_zodiac_text' => '未',
-      'oriental_zodiac' => 8,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '大安',
-      'six_weekday' => 0,
-      'weekday_text' => '火',
-      'month_text' => '神無月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '長月',
-      'lunar_month' => 9,
-      'lunar_year' => 2015,
-      'lunar_day' => 15,
-      'is_leap_month' => false,
-      'moon_age' => 14.864498753100634,
-      'moon_phase_angle' => 179.364709650281,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2015-10-27 21:00:00' => 
-  array (
-    0 => '2015-10-27 21:00:00',
-    1 => 
+    0 => '2015-10-27 21:05:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 10,
@@ -22521,12 +19739,12 @@ return array (
       'dayOfWeek' => 2,
       'dayOfYear' => 300,
       'hour' => 21,
-      'minute' => 0,
+      'minute' => 5,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1445947200,
-      'formatted' => '2015-10-27 21:00:00',
-      'timezone' => 
+      'timestamp' => 1445947500,
+      'formatted' => '2015-10-27 21:05:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -22562,87 +19780,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 15,
       'is_leap_month' => false,
-      'moon_age' => 14.90686424728483,
-      'moon_phase_angle' => 179.9512827830371,
+      'moon_age' => 14.499305555555555,
+      'moon_phase_angle' => 176.21553223802752,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2015-10-27 23:00:00' => 
+  '2015-10-28 09:00:00' =>
   array (
-    0 => '2015-10-27 23:00:00',
-    1 => 
-    array (
-      'year' => 2015,
-      'month' => 10,
-      'day' => 27,
-      'dayOfWeek' => 2,
-      'dayOfYear' => 300,
-      'hour' => 23,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1445954400,
-      'formatted' => '2015-10-27 23:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 7,
-      'misc_seasonal_node_text' => '土用',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 27,
-      'oriental_zodiac_text' => '未',
-      'oriental_zodiac' => 8,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '大安',
-      'six_weekday' => 0,
-      'weekday_text' => '火',
-      'month_text' => '神無月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '長月',
-      'lunar_month' => 9,
-      'lunar_year' => 2015,
-      'lunar_day' => 15,
-      'is_leap_month' => false,
-      'moon_age' => 14.991580076515675,
-      'moon_phase_angle' => 181.12378993959305,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2015-10-28 00:00:00' => 
-  array (
-    0 => '2015-10-28 00:00:00',
-    1 => 
+    0 => '2015-10-28 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 10,
       'day' => 28,
       'dayOfWeek' => 3,
       'dayOfYear' => 301,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1445958000,
-      'formatted' => '2015-10-28 00:00:00',
-      'timezone' => 
+      'timestamp' => 1445990400,
+      'formatted' => '2015-10-28 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -22678,29 +19838,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 15.03393887821585,
-      'moon_phase_angle' => 181.70970111502564,
+      'moon_age' => 14.996,
+      'moon_phase_angle' => 183.20362192156546,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-10-29 00:00:00' => 
+  '2015-10-29 09:00:00' =>
   array (
-    0 => '2015-10-29 00:00:00',
-    1 => 
+    0 => '2015-10-29 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 10,
       'day' => 29,
       'dayOfWeek' => 4,
       'dayOfYear' => 302,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1446044400,
-      'formatted' => '2015-10-29 00:00:00',
-      'timezone' => 
+      'timestamp' => 1446076800,
+      'formatted' => '2015-10-29 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -22736,29 +19896,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 17,
       'is_leap_month' => false,
-      'moon_age' => 16.04939066618681,
-      'moon_phase_angle' => 195.67313495545272,
+      'moon_age' => 15.996,
+      'moon_phase_angle' => 197.1394481246277,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-10-30 00:00:00' => 
+  '2015-10-30 09:00:00' =>
   array (
-    0 => '2015-10-30 00:00:00',
-    1 => 
+    0 => '2015-10-30 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 10,
       'day' => 30,
       'dayOfWeek' => 5,
       'dayOfYear' => 303,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1446130800,
-      'formatted' => '2015-10-30 00:00:00',
-      'timezone' => 
+      'timestamp' => 1446163200,
+      'formatted' => '2015-10-30 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -22794,29 +19954,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 18,
       'is_leap_month' => false,
-      'moon_age' => 17.06186204450205,
-      'moon_phase_angle' => 209.3525131563777,
+      'moon_age' => 16.996,
+      'moon_phase_angle' => 210.77525882054618,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-10-31 00:00:00' => 
+  '2015-10-31 09:00:00' =>
   array (
-    0 => '2015-10-31 00:00:00',
-    1 => 
+    0 => '2015-10-31 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 10,
       'day' => 31,
       'dayOfWeek' => 6,
       'dayOfYear' => 304,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1446217200,
-      'formatted' => '2015-10-31 00:00:00',
-      'timezone' => 
+      'timestamp' => 1446249600,
+      'formatted' => '2015-10-31 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -22852,29 +20012,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 19,
       'is_leap_month' => false,
-      'moon_age' => 18.070435255300254,
-      'moon_phase_angle' => 222.63684077401894,
+      'moon_age' => 17.996,
+      'moon_phase_angle' => 224.00538457313723,
       'moon_phase' => 5,
       'moon_phase_text' => '十六夜',
     ),
   ),
-  '2015-11-01 00:00:00' => 
+  '2015-11-01 09:00:00' =>
   array (
-    0 => '2015-11-01 00:00:00',
-    1 => 
+    0 => '2015-11-01 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 11,
       'day' => 1,
       'dayOfWeek' => 0,
       'dayOfYear' => 305,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1446303600,
-      'formatted' => '2015-11-01 00:00:00',
-      'timezone' => 
+      'timestamp' => 1446336000,
+      'formatted' => '2015-11-01 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -22910,29 +20070,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 20,
       'is_leap_month' => false,
-      'moon_age' => 19.074672733433545,
-      'moon_phase_angle' => 235.46216334476898,
+      'moon_age' => 18.996,
+      'moon_phase_angle' => 236.77182733511015,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-11-02 00:00:00' => 
+  '2015-11-02 09:00:00' =>
   array (
-    0 => '2015-11-02 00:00:00',
-    1 => 
+    0 => '2015-11-02 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 11,
       'day' => 2,
       'dayOfWeek' => 1,
       'dayOfYear' => 306,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1446390000,
-      'formatted' => '2015-11-02 00:00:00',
-      'timezone' => 
+      'timestamp' => 1446422400,
+      'formatted' => '2015-11-02 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -22968,29 +20128,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 21,
       'is_leap_month' => false,
-      'moon_age' => 20.07455439073965,
-      'moon_phase_angle' => 247.81350444689122,
+      'moon_age' => 19.996,
+      'moon_phase_angle' => 249.0651835302073,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-11-03 00:00:00' => 
+  '2015-11-03 09:00:00' =>
   array (
-    0 => '2015-11-03 00:00:00',
-    1 => 
+    0 => '2015-11-03 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 11,
       'day' => 3,
       'dayOfWeek' => 2,
       'dayOfYear' => 307,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1446476400,
-      'formatted' => '2015-11-03 00:00:00',
-      'timezone' => 
+      'timestamp' => 1446508800,
+      'formatted' => '2015-11-03 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -23026,29 +20186,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 22,
       'is_leap_month' => false,
-      'moon_age' => 21.070478857960552,
-      'moon_phase_angle' => 259.7179616028835,
+      'moon_age' => 20.996,
+      'moon_phase_angle' => 260.9170989330197,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2015-11-03 22:00:00' => 
+  '2015-11-03 21:24:00' =>
   array (
-    0 => '2015-11-03 22:00:00',
-    1 => 
+    0 => '2015-11-03 21:24:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 11,
       'day' => 3,
       'dayOfWeek' => 2,
       'dayOfYear' => 307,
-      'hour' => 22,
-      'minute' => 0,
+      'hour' => 21,
+      'minute' => 24,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1446555600,
-      'formatted' => '2015-11-03 22:00:00',
-      'timezone' => 
+      'timestamp' => 1446553440,
+      'formatted' => '2015-11-03 21:24:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -23084,29 +20244,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 22,
       'is_leap_month' => false,
-      'moon_age' => 21.9804407232441,
-      'moon_phase_angle' => 270.2867264359477,
+      'moon_age' => 21.5125,
+      'moon_phase_angle' => 266.88685223329406,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2015-11-04 00:00:00' => 
+  '2015-11-04 09:00:00' =>
   array (
-    0 => '2015-11-04 00:00:00',
-    1 => 
+    0 => '2015-11-04 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 11,
       'day' => 4,
       'dayOfWeek' => 3,
       'dayOfYear' => 308,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1446562800,
-      'formatted' => '2015-11-04 00:00:00',
-      'timezone' => 
+      'timestamp' => 1446595200,
+      'formatted' => '2015-11-04 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -23142,29 +20302,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 22.06304173450917,
-      'moon_phase_angle' => 271.23325310668406,
+      'moon_age' => 21.996,
+      'moon_phase_angle' => 272.3885446705309,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-11-05 00:00:00' => 
+  '2015-11-05 09:00:00' =>
   array (
-    0 => '2015-11-05 00:00:00',
-    1 => 
+    0 => '2015-11-05 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 11,
       'day' => 5,
       'dayOfWeek' => 4,
       'dayOfYear' => 309,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1446649200,
-      'formatted' => '2015-11-05 00:00:00',
-      'timezone' => 
+      'timestamp' => 1446681600,
+      'formatted' => '2015-11-05 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -23200,29 +20360,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 24,
       'is_leap_month' => false,
-      'moon_age' => 23.053030353505164,
-      'moon_phase_angle' => 282.4357430765755,
+      'moon_age' => 22.996,
+      'moon_phase_angle' => 283.55774029140173,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-11-06 00:00:00' => 
+  '2015-11-06 09:00:00' =>
   array (
-    0 => '2015-11-06 00:00:00',
-    1 => 
+    0 => '2015-11-06 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 11,
       'day' => 6,
       'dayOfWeek' => 5,
       'dayOfYear' => 310,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1446735600,
-      'formatted' => '2015-11-06 00:00:00',
-      'timezone' => 
+      'timestamp' => 1446768000,
+      'formatted' => '2015-11-06 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -23258,29 +20418,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 25,
       'is_leap_month' => false,
-      'moon_age' => 24.04125249106437,
-      'moon_phase_angle' => 293.410158714036,
+      'moon_age' => 23.996,
+      'moon_phase_angle' => 294.50994710588304,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-11-07 00:00:00' => 
+  '2015-11-07 09:00:00' =>
   array (
-    0 => '2015-11-07 00:00:00',
-    1 => 
+    0 => '2015-11-07 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 11,
       'day' => 7,
       'dayOfWeek' => 6,
       'dayOfYear' => 311,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1446822000,
-      'formatted' => '2015-11-07 00:00:00',
-      'timezone' => 
+      'timestamp' => 1446854400,
+      'formatted' => '2015-11-07 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -23292,8 +20452,8 @@ return array (
       'lunar_seasonal_festival' => 0,
       'lunar_seasonal_festival_name' => '',
       'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
+      'misc_seasonal_node' => 7,
+      'misc_seasonal_node_text' => '土用',
       'solar_term' => false,
       'solar_term_text' => '',
       'is_solar_term' => false,
@@ -23316,29 +20476,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 26,
       'is_leap_month' => false,
-      'moon_age' => 25.028491991572082,
-      'moon_phase_angle' => 304.2417208064437,
+      'moon_age' => 24.996,
+      'moon_phase_angle' => 305.3298380155343,
       'moon_phase' => 7,
       'moon_phase_text' => '有明',
     ),
   ),
-  '2015-11-08 00:00:00' => 
+  '2015-11-08 09:00:00' =>
   array (
-    0 => '2015-11-08 00:00:00',
-    1 => 
+    0 => '2015-11-08 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 11,
       'day' => 8,
       'dayOfWeek' => 0,
       'dayOfYear' => 312,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1446908400,
-      'formatted' => '2015-11-08 00:00:00',
-      'timezone' => 
+      'timestamp' => 1446940800,
+      'formatted' => '2015-11-08 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -23374,29 +20534,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 27,
       'is_leap_month' => false,
-      'moon_age' => 26.015482163522393,
-      'moon_phase_angle' => 315.0105138751686,
+      'moon_age' => 25.996,
+      'moon_phase_angle' => 316.096259931996,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-11-09 00:00:00' => 
+  '2015-11-09 09:00:00' =>
   array (
-    0 => '2015-11-09 00:00:00',
-    1 => 
+    0 => '2015-11-09 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 11,
       'day' => 9,
       'dayOfWeek' => 1,
       'dayOfYear' => 313,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1446994800,
-      'formatted' => '2015-11-09 00:00:00',
-      'timezone' => 
+      'timestamp' => 1447027200,
+      'formatted' => '2015-11-09 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -23432,29 +20592,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 28,
       'is_leap_month' => false,
-      'moon_age' => 27.056890622390746,
-      'moon_phase_angle' => 325.7876303229241,
+      'moon_age' => 26.996,
+      'moon_phase_angle' => 326.87882830002786,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-11-10 00:00:00' => 
+  '2015-11-10 09:00:00' =>
   array (
-    0 => '2015-11-10 00:00:00',
-    1 => 
+    0 => '2015-11-10 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 11,
       'day' => 10,
       'dayOfWeek' => 2,
       'dayOfYear' => 314,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1447081200,
-      'formatted' => '2015-11-10 00:00:00',
-      'timezone' => 
+      'timestamp' => 1447113600,
+      'formatted' => '2015-11-10 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -23490,29 +20650,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 29,
       'is_leap_month' => false,
-      'moon_age' => 27.949642904246538,
-      'moon_phase_angle' => 336.6326897847264,
+      'moon_age' => 27.996,
+      'moon_phase_angle' => 337.7357478012766,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-11-11 00:00:00' => 
+  '2015-11-11 09:00:00' =>
   array (
-    0 => '2015-11-11 00:00:00',
-    1 => 
+    0 => '2015-11-11 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 11,
       'day' => 11,
       'dayOfWeek' => 3,
       'dayOfYear' => 315,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1447167600,
-      'formatted' => '2015-11-11 00:00:00',
-      'timezone' => 
+      'timestamp' => 1447200000,
+      'formatted' => '2015-11-11 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -23548,74 +20708,16 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 30,
       'is_leap_month' => false,
-      'moon_age' => 28.85297800149241,
-      'moon_phase_angle' => 347.59254438318635,
+      'moon_age' => 28.996,
+      'moon_phase_angle' => 348.7125178054866,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-11-12 00:00:00' => 
+  '2015-11-12 02:47:00' =>
   array (
-    0 => '2015-11-12 00:00:00',
-    1 => 
-    array (
-      'year' => 2015,
-      'month' => 11,
-      'day' => 12,
-      'dayOfWeek' => 4,
-      'dayOfYear' => 316,
-      'hour' => 0,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1447254000,
-      'formatted' => '2015-11-12 00:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 27,
-      'oriental_zodiac_text' => '未',
-      'oriental_zodiac' => 8,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '仏滅',
-      'six_weekday' => 5,
-      'weekday_text' => '木',
-      'month_text' => '霜月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '神無月',
-      'lunar_month' => 10,
-      'lunar_year' => 2015,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.2590396963059902,
-      'moon_phase_angle' => 358.7011792594444,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2015-11-12 02:00:00' => 
-  array (
-    0 => '2015-11-12 02:00:00',
-    1 => 
+    0 => '2015-11-12 02:47:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 11,
@@ -23623,12 +20725,12 @@ return array (
       'dayOfWeek' => 4,
       'dayOfYear' => 316,
       'hour' => 2,
-      'minute' => 0,
+      'minute' => 47,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1447261200,
-      'formatted' => '2015-11-12 02:00:00',
-      'timezone' => 
+      'timestamp' => 1447264020,
+      'formatted' => '2015-11-12 02:47:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -23664,29 +20766,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.3423725417815149,
-      'moon_phase_angle' => 359.6343885510704,
+      'moon_age' => 0.0,
+      'moon_phase_angle' => 356.9429403111735,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2015-11-12 03:00:00' => 
+  '2015-11-12 09:00:00' =>
   array (
-    0 => '2015-11-12 03:00:00',
-    1 => 
+    0 => '2015-11-12 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 11,
       'day' => 12,
       'dayOfWeek' => 4,
       'dayOfYear' => 316,
-      'hour' => 3,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1447264800,
-      'formatted' => '2015-11-12 03:00:00',
-      'timezone' => 
+      'timestamp' => 1447286400,
+      'formatted' => '2015-11-12 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -23722,29 +20824,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.38404155103489757,
-      'moon_phase_angle' => 0.101443770237438,
+      'moon_age' => 0.259,
+      'moon_phase_angle' => 359.8416594872072,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2015-11-13 00:00:00' => 
+  '2015-11-13 09:00:00' =>
   array (
-    0 => '2015-11-13 00:00:00',
-    1 => 
+    0 => '2015-11-13 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 11,
       'day' => 13,
       'dayOfWeek' => 5,
       'dayOfYear' => 317,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1447340400,
-      'formatted' => '2015-11-13 00:00:00',
-      'timezone' => 
+      'timestamp' => 1447372800,
+      'formatted' => '2015-11-13 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -23780,29 +20882,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 2,
       'is_leap_month' => false,
-      'moon_age' => 1.259046709164977,
-      'moon_phase_angle' => 9.980907858292227,
+      'moon_age' => 1.259,
+      'moon_phase_angle' => 11.143922871358455,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-11-14 00:00:00' => 
+  '2015-11-14 09:00:00' =>
   array (
-    0 => '2015-11-14 00:00:00',
-    1 => 
+    0 => '2015-11-14 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 11,
       'day' => 14,
       'dayOfWeek' => 6,
       'dayOfYear' => 318,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1447426800,
-      'formatted' => '2015-11-14 00:00:00',
-      'timezone' => 
+      'timestamp' => 1447459200,
+      'formatted' => '2015-11-14 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -23838,29 +20940,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 3,
       'is_leap_month' => false,
-      'moon_age' => 2.259040853474289,
-      'moon_phase_angle' => 21.444882568135256,
+      'moon_age' => 2.259,
+      'moon_phase_angle' => 22.63120554981373,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-11-15 00:00:00' => 
+  '2015-11-15 09:00:00' =>
   array (
-    0 => '2015-11-15 00:00:00',
-    1 => 
+    0 => '2015-11-15 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 11,
       'day' => 15,
       'dayOfWeek' => 0,
       'dayOfYear' => 319,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1447513200,
-      'formatted' => '2015-11-15 00:00:00',
-      'timezone' => 
+      'timestamp' => 1447545600,
+      'formatted' => '2015-11-15 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -23896,29 +20998,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 4,
       'is_leap_month' => false,
-      'moon_age' => 3.259040435310453,
-      'moon_phase_angle' => 33.10068883068223,
+      'moon_age' => 3.259,
+      'moon_phase_angle' => 34.31069532665833,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-11-16 00:00:00' => 
+  '2015-11-16 09:00:00' =>
   array (
-    0 => '2015-11-16 00:00:00',
-    1 => 
+    0 => '2015-11-16 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 11,
       'day' => 16,
       'dayOfWeek' => 1,
       'dayOfYear' => 320,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1447599600,
-      'formatted' => '2015-11-16 00:00:00',
-      'timezone' => 
+      'timestamp' => 1447632000,
+      'formatted' => '2015-11-16 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -23954,29 +21056,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 5,
       'is_leap_month' => false,
-      'moon_age' => 4.259045365266502,
-      'moon_phase_angle' => 44.954438764831366,
+      'moon_age' => 4.259,
+      'moon_phase_angle' => 46.18909945659462,
       'moon_phase' => 1,
       'moon_phase_text' => '三日月',
     ),
   ),
-  '2015-11-17 00:00:00' => 
+  '2015-11-17 09:00:00' =>
   array (
-    0 => '2015-11-17 00:00:00',
-    1 => 
+    0 => '2015-11-17 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 11,
       'day' => 17,
       'dayOfWeek' => 2,
       'dayOfYear' => 321,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1447686000,
-      'formatted' => '2015-11-17 00:00:00',
-      'timezone' => 
+      'timestamp' => 1447718400,
+      'formatted' => '2015-11-17 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -24012,29 +21114,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 6,
       'is_leap_month' => false,
-      'moon_age' => 5.25903573166579,
-      'moon_phase_angle' => 57.01445679386296,
+      'moon_age' => 5.259,
+      'moon_phase_angle' => 58.27577867632928,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-11-18 00:00:00' => 
+  '2015-11-18 09:00:00' =>
   array (
-    0 => '2015-11-18 00:00:00',
-    1 => 
+    0 => '2015-11-18 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 11,
       'day' => 18,
       'dayOfWeek' => 3,
       'dayOfYear' => 322,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1447772400,
-      'formatted' => '2015-11-18 00:00:00',
-      'timezone' => 
+      'timestamp' => 1447804800,
+      'formatted' => '2015-11-18 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -24070,29 +21172,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 7,
       'is_leap_month' => false,
-      'moon_age' => 6.259044187143445,
-      'moon_phase_angle' => 69.29348660771879,
+      'moon_age' => 6.259,
+      'moon_phase_angle' => 70.58408700260108,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-11-19 00:00:00' => 
+  '2015-11-19 09:00:00' =>
   array (
-    0 => '2015-11-19 00:00:00',
-    1 => 
+    0 => '2015-11-19 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 11,
       'day' => 19,
       'dayOfWeek' => 4,
       'dayOfYear' => 323,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1447858800,
-      'formatted' => '2015-11-19 00:00:00',
-      'timezone' => 
+      'timestamp' => 1447891200,
+      'formatted' => '2015-11-19 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -24128,29 +21230,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 7.259044493082911,
-      'moon_phase_angle' => 81.8084216828274,
+      'moon_age' => 7.259,
+      'moon_phase_angle' => 83.13061050871173,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2015-11-19 16:00:00' => 
+  '2015-11-19 15:27:00' =>
   array (
-    0 => '2015-11-19 16:00:00',
-    1 => 
+    0 => '2015-11-19 15:27:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 11,
       'day' => 19,
       'dayOfWeek' => 4,
       'dayOfYear' => 323,
-      'hour' => 16,
-      'minute' => 0,
+      'hour' => 15,
+      'minute' => 27,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1447916400,
-      'formatted' => '2015-11-19 16:00:00',
-      'timezone' => 
+      'timestamp' => 1447914420,
+      'formatted' => '2015-11-19 15:27:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -24186,29 +21288,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 7.925708387978375,
-      'moon_phase_angle' => 90.29162015092612,
+      'moon_age' => 7.527777777777778,
+      'moon_phase_angle' => 86.54531881015362,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2015-11-20 00:00:00' => 
+  '2015-11-20 09:00:00' =>
   array (
-    0 => '2015-11-20 00:00:00',
-    1 => 
+    0 => '2015-11-20 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 11,
       'day' => 20,
       'dayOfWeek' => 5,
       'dayOfYear' => 324,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1447945200,
-      'formatted' => '2015-11-20 00:00:00',
-      'timezone' => 
+      'timestamp' => 1447977600,
+      'formatted' => '2015-11-20 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -24244,29 +21346,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 9,
       'is_leap_month' => false,
-      'moon_age' => 8.259039636701345,
-      'moon_phase_angle' => 94.57687248636486,
+      'moon_age' => 8.259,
+      'moon_phase_angle' => 95.93188928017221,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-11-21 00:00:00' => 
+  '2015-11-21 09:00:00' =>
   array (
-    0 => '2015-11-21 00:00:00',
-    1 => 
+    0 => '2015-11-21 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 11,
       'day' => 21,
       'dayOfWeek' => 6,
       'dayOfYear' => 325,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1448031600,
-      'formatted' => '2015-11-21 00:00:00',
-      'timezone' => 
+      'timestamp' => 1448064000,
+      'formatted' => '2015-11-21 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -24302,29 +21404,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 10,
       'is_leap_month' => false,
-      'moon_age' => 9.259040996897966,
-      'moon_phase_angle' => 107.61042586934096,
+      'moon_age' => 9.259,
+      'moon_phase_angle' => 108.998009735034,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-11-22 00:00:00' => 
+  '2015-11-22 09:00:00' =>
   array (
-    0 => '2015-11-22 00:00:00',
-    1 => 
+    0 => '2015-11-22 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 11,
       'day' => 22,
       'dayOfWeek' => 0,
       'dayOfYear' => 326,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1448118000,
-      'formatted' => '2015-11-22 00:00:00',
-      'timezone' => 
+      'timestamp' => 1448150400,
+      'formatted' => '2015-11-22 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -24360,29 +21462,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 11,
       'is_leap_month' => false,
-      'moon_age' => 10.264930805191398,
-      'moon_phase_angle' => 120.90527614878476,
+      'moon_age' => 10.259,
+      'moon_phase_angle' => 122.32310303618274,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-11-23 00:00:00' => 
+  '2015-11-23 09:00:00' =>
   array (
-    0 => '2015-11-23 00:00:00',
-    1 => 
+    0 => '2015-11-23 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 11,
       'day' => 23,
       'dayOfWeek' => 1,
       'dayOfYear' => 327,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1448204400,
-      'formatted' => '2015-11-23 00:00:00',
-      'timezone' => 
+      'timestamp' => 1448236800,
+      'formatted' => '2015-11-23 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -24418,29 +21520,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 12,
       'is_leap_month' => false,
-      'moon_age' => 11.27442466141656,
-      'moon_phase_angle' => 134.43207278394823,
+      'moon_age' => 11.259,
+      'moon_phase_angle' => 135.87465988906595,
       'moon_phase' => 3,
       'moon_phase_text' => '十三夜',
     ),
   ),
-  '2015-11-24 00:00:00' => 
+  '2015-11-24 09:00:00' =>
   array (
-    0 => '2015-11-24 00:00:00',
-    1 => 
+    0 => '2015-11-24 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 11,
       'day' => 24,
       'dayOfWeek' => 2,
       'dayOfYear' => 328,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1448290800,
-      'formatted' => '2015-11-24 00:00:00',
-      'timezone' => 
+      'timestamp' => 1448323200,
+      'formatted' => '2015-11-24 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -24476,29 +21578,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 13,
       'is_leap_month' => false,
-      'moon_age' => 12.28506090119481,
-      'moon_phase_angle' => 148.12817019106762,
+      'moon_age' => 12.259,
+      'moon_phase_angle' => 149.58572599050655,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-11-25 00:00:00' => 
+  '2015-11-25 09:00:00' =>
   array (
-    0 => '2015-11-25 00:00:00',
-    1 => 
+    0 => '2015-11-25 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 11,
       'day' => 25,
       'dayOfWeek' => 3,
       'dayOfYear' => 329,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1448377200,
-      'formatted' => '2015-11-25 00:00:00',
-      'timezone' => 
+      'timestamp' => 1448409600,
+      'formatted' => '2015-11-25 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -24534,132 +21636,16 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 14,
       'is_leap_month' => false,
-      'moon_age' => 13.296115163248032,
-      'moon_phase_angle' => 161.89626914005623,
+      'moon_age' => 13.259,
+      'moon_phase_angle' => 163.3546679743199,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-11-26 00:00:00' => 
+  '2015-11-26 07:44:00' =>
   array (
-    0 => '2015-11-26 00:00:00',
-    1 => 
-    array (
-      'year' => 2015,
-      'month' => 11,
-      'day' => 26,
-      'dayOfWeek' => 4,
-      'dayOfYear' => 330,
-      'hour' => 0,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1448463600,
-      'formatted' => '2015-11-26 00:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 27,
-      'oriental_zodiac_text' => '未',
-      'oriental_zodiac' => 8,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '赤口',
-      'six_weekday' => 1,
-      'weekday_text' => '木',
-      'month_text' => '霜月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '神無月',
-      'lunar_month' => 10,
-      'lunar_year' => 2015,
-      'lunar_day' => 15,
-      'is_leap_month' => false,
-      'moon_age' => 14.306664896663278,
-      'moon_phase_angle' => 175.61252758247863,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2015-11-26 06:00:00' => 
-  array (
-    0 => '2015-11-26 06:00:00',
-    1 => 
-    array (
-      'year' => 2015,
-      'month' => 11,
-      'day' => 26,
-      'dayOfWeek' => 4,
-      'dayOfYear' => 330,
-      'hour' => 6,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1448485200,
-      'formatted' => '2015-11-26 06:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 27,
-      'oriental_zodiac_text' => '未',
-      'oriental_zodiac' => 8,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '赤口',
-      'six_weekday' => 1,
-      'weekday_text' => '木',
-      'month_text' => '霜月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '神無月',
-      'lunar_month' => 10,
-      'lunar_year' => 2015,
-      'lunar_day' => 15,
-      'is_leap_month' => false,
-      'moon_age' => 14.55910139810294,
-      'moon_phase_angle' => 179.0177934437463,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2015-11-26 07:00:00' => 
-  array (
-    0 => '2015-11-26 07:00:00',
-    1 => 
+    0 => '2015-11-26 07:44:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 11,
@@ -24667,12 +21653,12 @@ return array (
       'dayOfWeek' => 4,
       'dayOfYear' => 330,
       'hour' => 7,
-      'minute' => 0,
+      'minute' => 44,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1448488800,
-      'formatted' => '2015-11-26 07:00:00',
-      'timezone' => 
+      'timestamp' => 1448491440,
+      'formatted' => '2015-11-26 07:44:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -24708,74 +21694,16 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 15,
       'is_leap_month' => false,
-      'moon_age' => 14.601153958123177,
-      'moon_phase_angle' => 179.58406445886158,
+      'moon_age' => 14.20625,
+      'moon_phase_angle' => 176.33592796839622,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2015-11-26 08:00:00' => 
-  array (
-    0 => '2015-11-26 08:00:00',
-    1 => 
-    array (
-      'year' => 2015,
-      'month' => 11,
-      'day' => 26,
-      'dayOfWeek' => 4,
-      'dayOfYear' => 330,
-      'hour' => 8,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1448492400,
-      'formatted' => '2015-11-26 08:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 27,
-      'oriental_zodiac_text' => '未',
-      'oriental_zodiac' => 8,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '赤口',
-      'six_weekday' => 1,
-      'weekday_text' => '木',
-      'month_text' => '霜月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '神無月',
-      'lunar_month' => 10,
-      'lunar_year' => 2015,
-      'lunar_day' => 15,
-      'is_leap_month' => false,
-      'moon_age' => 14.643215049989522,
-      'moon_phase_angle' => 180.1499468560786,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2015-11-26 09:00:00' => 
+  '2015-11-26 09:00:00' =>
   array (
     0 => '2015-11-26 09:00:00',
-    1 => 
+    1 =>
     array (
       'year' => 2015,
       'month' => 11,
@@ -24788,7 +21716,7 @@ return array (
       'micro' => 0,
       'timestamp' => 1448496000,
       'formatted' => '2015-11-26 09:00:00',
-      'timezone' => 
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -24824,29 +21752,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 15,
       'is_leap_month' => false,
-      'moon_age' => 14.685277179349214,
-      'moon_phase_angle' => 180.71543144079055,
+      'moon_age' => 14.259,
+      'moon_phase_angle' => 177.05511584230254,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2015-11-27 00:00:00' => 
+  '2015-11-27 09:00:00' =>
   array (
-    0 => '2015-11-27 00:00:00',
-    1 => 
+    0 => '2015-11-27 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 11,
       'day' => 27,
       'dayOfWeek' => 5,
       'dayOfYear' => 331,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1448550000,
-      'formatted' => '2015-11-27 00:00:00',
-      'timezone' => 
+      'timestamp' => 1448582400,
+      'formatted' => '2015-11-27 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -24882,29 +21810,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 15.315684187691659,
-      'moon_phase_angle' => 189.14393590518617,
+      'moon_age' => 15.259,
+      'moon_phase_angle' => 190.55455912148994,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-11-28 00:00:00' => 
+  '2015-11-28 09:00:00' =>
   array (
-    0 => '2015-11-28 00:00:00',
-    1 => 
+    0 => '2015-11-28 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 11,
       'day' => 28,
       'dayOfWeek' => 6,
       'dayOfYear' => 332,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1448636400,
-      'formatted' => '2015-11-28 00:00:00',
-      'timezone' => 
+      'timestamp' => 1448668800,
+      'formatted' => '2015-11-28 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -24940,29 +21868,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 17,
       'is_leap_month' => false,
-      'moon_age' => 16.322306354064494,
-      'moon_phase_angle' => 202.37034188760654,
+      'moon_age' => 16.259,
+      'moon_phase_angle' => 203.7361829180557,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-11-29 00:00:00' => 
+  '2015-11-29 09:00:00' =>
   array (
-    0 => '2015-11-29 00:00:00',
-    1 => 
+    0 => '2015-11-29 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 11,
       'day' => 29,
       'dayOfWeek' => 0,
       'dayOfYear' => 333,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1448722800,
-      'formatted' => '2015-11-29 00:00:00',
-      'timezone' => 
+      'timestamp' => 1448755200,
+      'formatted' => '2015-11-29 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -24998,29 +21926,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 18,
       'is_leap_month' => false,
-      'moon_age' => 17.32588765025139,
-      'moon_phase_angle' => 215.2039423883332,
+      'moon_age' => 17.259,
+      'moon_phase_angle' => 216.51718276860242,
       'moon_phase' => 5,
       'moon_phase_text' => '十六夜',
     ),
   ),
-  '2015-11-30 00:00:00' => 
+  '2015-11-30 09:00:00' =>
   array (
-    0 => '2015-11-30 00:00:00',
-    1 => 
+    0 => '2015-11-30 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 11,
       'day' => 30,
       'dayOfWeek' => 1,
       'dayOfYear' => 334,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1448809200,
-      'formatted' => '2015-11-30 00:00:00',
-      'timezone' => 
+      'timestamp' => 1448841600,
+      'formatted' => '2015-11-30 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -25056,29 +21984,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 19,
       'is_leap_month' => false,
-      'moon_age' => 18.326183419674635,
-      'moon_phase_angle' => 227.60041968204575,
+      'moon_age' => 18.259,
+      'moon_phase_angle' => 228.85866602785046,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-12-01 00:00:00' => 
+  '2015-12-01 09:00:00' =>
   array (
-    0 => '2015-12-01 00:00:00',
-    1 => 
+    0 => '2015-12-01 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 12,
       'day' => 1,
       'dayOfWeek' => 2,
       'dayOfYear' => 335,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1448895600,
-      'formatted' => '2015-12-01 00:00:00',
-      'timezone' => 
+      'timestamp' => 1448928000,
+      'formatted' => '2015-12-01 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -25114,29 +22042,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 20,
       'is_leap_month' => false,
-      'moon_age' => 19.323309641331434,
-      'moon_phase_angle' => 239.5601188182385,
+      'moon_age' => 19.259,
+      'moon_phase_angle' => 240.76599733663303,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-12-02 00:00:00' => 
+  '2015-12-02 09:00:00' =>
   array (
-    0 => '2015-12-02 00:00:00',
-    1 => 
+    0 => '2015-12-02 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 12,
       'day' => 2,
       'dayOfWeek' => 3,
       'dayOfYear' => 336,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1448982000,
-      'formatted' => '2015-12-02 00:00:00',
-      'timezone' => 
+      'timestamp' => 1449014400,
+      'formatted' => '2015-12-02 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -25172,29 +22100,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 21,
       'is_leap_month' => false,
-      'moon_age' => 20.317665514536202,
-      'moon_phase_angle' => 251.12156810468673,
+      'moon_age' => 20.259,
+      'moon_phase_angle' => 252.28185317227124,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-12-03 00:00:00' => 
+  '2015-12-03 09:00:00' =>
   array (
-    0 => '2015-12-03 00:00:00',
-    1 => 
+    0 => '2015-12-03 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 12,
       'day' => 3,
       'dayOfWeek' => 4,
       'dayOfYear' => 337,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1449068400,
-      'formatted' => '2015-12-03 00:00:00',
-      'timezone' => 
+      'timestamp' => 1449100800,
+      'formatted' => '2015-12-03 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -25230,29 +22158,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 22,
       'is_leap_month' => false,
-      'moon_age' => 21.309875901322812,
-      'moon_phase_angle' => 262.351355521958,
+      'moon_age' => 21.259,
+      'moon_phase_angle' => 263.47574954508616,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2015-12-03 18:00:00' => 
+  '2015-12-03 16:40:00' =>
   array (
-    0 => '2015-12-03 18:00:00',
-    1 => 
+    0 => '2015-12-03 16:40:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 12,
       'day' => 3,
       'dayOfWeek' => 4,
       'dayOfYear' => 337,
-      'hour' => 18,
-      'minute' => 0,
+      'hour' => 16,
+      'minute' => 40,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1449133200,
-      'formatted' => '2015-12-03 18:00:00',
-      'timezone' => 
+      'timestamp' => 1449128400,
+      'formatted' => '2015-12-03 16:40:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -25288,29 +22216,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 22,
       'is_leap_month' => false,
-      'moon_age' => 22.053050686605275,
-      'moon_phase_angle' => 270.6062156710889,
+      'moon_age' => 21.57847222222222,
+      'moon_phase_angle' => 266.9974147158513,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2015-12-04 00:00:00' => 
+  '2015-12-04 09:00:00' =>
   array (
-    0 => '2015-12-04 00:00:00',
-    1 => 
+    0 => '2015-12-04 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 12,
       'day' => 4,
       'dayOfWeek' => 5,
       'dayOfYear' => 338,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1449154800,
-      'formatted' => '2015-12-04 00:00:00',
-      'timezone' => 
+      'timestamp' => 1449187200,
+      'formatted' => '2015-12-04 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -25346,29 +22274,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 22.30065329093486,
-      'moon_phase_angle' => 273.3335262454969,
+      'moon_age' => 22.259,
+      'moon_phase_angle' => 274.4333508368814,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-12-05 00:00:00' => 
+  '2015-12-05 09:00:00' =>
   array (
-    0 => '2015-12-05 00:00:00',
-    1 => 
+    0 => '2015-12-05 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 12,
       'day' => 5,
       'dayOfWeek' => 6,
       'dayOfYear' => 339,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1449241200,
-      'formatted' => '2015-12-05 00:00:00',
-      'timezone' => 
+      'timestamp' => 1449273600,
+      'formatted' => '2015-12-05 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -25404,29 +22332,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 24,
       'is_leap_month' => false,
-      'moon_age' => 23.29073764802888,
-      'moon_phase_angle' => 284.16036743003195,
+      'moon_age' => 23.259,
+      'moon_phase_angle' => 285.2473662977282,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-12-06 00:00:00' => 
+  '2015-12-06 09:00:00' =>
   array (
-    0 => '2015-12-06 00:00:00',
-    1 => 
+    0 => '2015-12-06 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 12,
       'day' => 6,
       'dayOfWeek' => 0,
       'dayOfYear' => 340,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1449327600,
-      'formatted' => '2015-12-06 00:00:00',
-      'timezone' => 
+      'timestamp' => 1449360000,
+      'formatted' => '2015-12-06 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -25462,29 +22390,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 25,
       'is_leap_month' => false,
-      'moon_age' => 24.28080881619826,
-      'moon_phase_angle' => 294.9249894991606,
+      'moon_age' => 24.259,
+      'moon_phase_angle' => 296.01042657667256,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-12-07 00:00:00' => 
+  '2015-12-07 09:00:00' =>
   array (
-    0 => '2015-12-07 00:00:00',
-    1 => 
+    0 => '2015-12-07 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 12,
       'day' => 7,
       'dayOfWeek' => 1,
       'dayOfYear' => 341,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1449414000,
-      'formatted' => '2015-12-07 00:00:00',
-      'timezone' => 
+      'timestamp' => 1449446400,
+      'formatted' => '2015-12-07 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -25520,29 +22448,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 26,
       'is_leap_month' => false,
-      'moon_age' => 25.271456229966134,
-      'moon_phase_angle' => 305.71542205725757,
+      'moon_age' => 25.259,
+      'moon_phase_angle' => 306.80950325447236,
       'moon_phase' => 7,
       'moon_phase_text' => '有明',
     ),
   ),
-  '2015-12-08 00:00:00' => 
+  '2015-12-08 09:00:00' =>
   array (
-    0 => '2015-12-08 00:00:00',
-    1 => 
+    0 => '2015-12-08 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 12,
       'day' => 8,
       'dayOfWeek' => 2,
       'dayOfYear' => 342,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1449500400,
-      'formatted' => '2015-12-08 00:00:00',
-      'timezone' => 
+      'timestamp' => 1449532800,
+      'formatted' => '2015-12-08 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -25578,29 +22506,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 27,
       'is_leap_month' => false,
-      'moon_age' => 26.309743011514037,
-      'moon_phase_angle' => 316.60973981190375,
+      'moon_age' => 26.259,
+      'moon_phase_angle' => 317.7212312623518,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-12-09 00:00:00' => 
+  '2015-12-09 09:00:00' =>
   array (
-    0 => '2015-12-09 00:00:00',
-    1 => 
+    0 => '2015-12-09 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 12,
       'day' => 9,
       'dayOfWeek' => 3,
       'dayOfYear' => 343,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1449586800,
-      'formatted' => '2015-12-09 00:00:00',
-      'timezone' => 
+      'timestamp' => 1449619200,
+      'formatted' => '2015-12-09 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -25636,29 +22564,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 28,
       'is_leap_month' => false,
-      'moon_age' => 27.223394796861648,
-      'moon_phase_angle' => 327.6718999070205,
+      'moon_age' => 27.259,
+      'moon_phase_angle' => 328.8077486395523,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-12-10 00:00:00' => 
+  '2015-12-10 09:00:00' =>
   array (
-    0 => '2015-12-10 00:00:00',
-    1 => 
+    0 => '2015-12-10 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 12,
       'day' => 10,
       'dayOfWeek' => 4,
       'dayOfYear' => 344,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1449673200,
-      'formatted' => '2015-12-10 00:00:00',
-      'timezone' => 
+      'timestamp' => 1449705600,
+      'formatted' => '2015-12-10 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -25694,29 +22622,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 29,
       'is_leap_month' => false,
-      'moon_age' => 28.155639830189138,
-      'moon_phase_angle' => 338.9483343499079,
+      'moon_age' => 28.259,
+      'moon_phase_angle' => 340.1131993924625,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-12-11 00:00:00' => 
+  '2015-12-11 09:00:00' =>
   array (
-    0 => '2015-12-11 00:00:00',
-    1 => 
+    0 => '2015-12-11 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 12,
       'day' => 11,
       'dayOfWeek' => 5,
       'dayOfYear' => 345,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1449759600,
-      'formatted' => '2015-12-11 00:00:00',
-      'timezone' => 
+      'timestamp' => 1449792000,
+      'formatted' => '2015-12-11 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -25752,74 +22680,16 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 29.108046145787775,
-      'moon_phase_angle' => 350.4657508433146,
+      'moon_age' => 29.259,
+      'moon_phase_angle' => 351.66159733822576,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2015-12-11 18:00:00' => 
+  '2015-12-11 19:29:00' =>
   array (
-    0 => '2015-12-11 18:00:00',
-    1 => 
-    array (
-      'year' => 2015,
-      'month' => 12,
-      'day' => 11,
-      'dayOfWeek' => 5,
-      'dayOfYear' => 345,
-      'hour' => 18,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1449824400,
-      'formatted' => '2015-12-11 18:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 27,
-      'oriental_zodiac_text' => '未',
-      'oriental_zodiac' => 8,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '大安',
-      'six_weekday' => 0,
-      'weekday_text' => '金',
-      'month_text' => '師走',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '霜月',
-      'lunar_month' => 11,
-      'lunar_year' => 2015,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.3130245031788945,
-      'moon_phase_angle' => 359.2667049068512,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2015-12-11 19:00:00' => 
-  array (
-    0 => '2015-12-11 19:00:00',
-    1 => 
+    0 => '2015-12-11 19:29:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 12,
@@ -25827,12 +22697,12 @@ return array (
       'dayOfWeek' => 5,
       'dayOfYear' => 345,
       'hour' => 19,
-      'minute' => 0,
+      'minute' => 29,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1449828000,
-      'formatted' => '2015-12-11 19:00:00',
-      'timezone' => 
+      'timestamp' => 1449829740,
+      'formatted' => '2015-12-11 19:29:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -25868,145 +22738,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.3546914327889681,
-      'moon_phase_angle' => 359.75968902619945,
+      'moon_age' => 0.0,
+      'moon_phase_angle' => 356.7839282021251,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2015-12-11 20:00:00' => 
+  '2015-12-12 09:00:00' =>
   array (
-    0 => '2015-12-11 20:00:00',
-    1 => 
-    array (
-      'year' => 2015,
-      'month' => 12,
-      'day' => 11,
-      'dayOfWeek' => 5,
-      'dayOfYear' => 345,
-      'hour' => 20,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1449831600,
-      'formatted' => '2015-12-11 20:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 27,
-      'oriental_zodiac_text' => '未',
-      'oriental_zodiac' => 8,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '大安',
-      'six_weekday' => 0,
-      'weekday_text' => '金',
-      'month_text' => '師走',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '霜月',
-      'lunar_month' => 11,
-      'lunar_year' => 2015,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.396358207333833,
-      'moon_phase_angle' => 0.2530924011751381,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2015-12-11 21:00:00' => 
-  array (
-    0 => '2015-12-11 21:00:00',
-    1 => 
-    array (
-      'year' => 2015,
-      'month' => 12,
-      'day' => 11,
-      'dayOfWeek' => 5,
-      'dayOfYear' => 345,
-      'hour' => 21,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1449835200,
-      'formatted' => '2015-12-11 21:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 27,
-      'oriental_zodiac_text' => '未',
-      'oriental_zodiac' => 8,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '大安',
-      'six_weekday' => 0,
-      'weekday_text' => '金',
-      'month_text' => '師走',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '霜月',
-      'lunar_month' => 11,
-      'lunar_year' => 2015,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.4380244645290077,
-      'moon_phase_angle' => 0.7469138452646007,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2015-12-12 00:00:00' => 
-  array (
-    0 => '2015-12-12 00:00:00',
-    1 => 
+    0 => '2015-12-12 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 12,
       'day' => 12,
       'dayOfWeek' => 6,
       'dayOfYear' => 346,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1449846000,
-      'formatted' => '2015-12-12 00:00:00',
-      'timezone' => 
+      'timestamp' => 1449878400,
+      'formatted' => '2015-12-12 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -26042,29 +22796,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 2,
       'is_leap_month' => false,
-      'moon_age' => 0.5630305372178555,
-      'moon_phase_angle' => 2.2308742623073385,
+      'moon_age' => 0.563,
+      'moon_phase_angle' => 3.456973430042467,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-12-13 00:00:00' => 
+  '2015-12-13 09:00:00' =>
   array (
-    0 => '2015-12-13 00:00:00',
-    1 => 
+    0 => '2015-12-13 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 12,
       'day' => 13,
       'dayOfWeek' => 0,
       'dayOfYear' => 347,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1449932400,
-      'formatted' => '2015-12-13 00:00:00',
-      'timezone' => 
+      'timestamp' => 1449964800,
+      'formatted' => '2015-12-13 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -26100,29 +22854,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 3,
       'is_leap_month' => false,
-      'moon_age' => 1.5630274205468595,
-      'moon_phase_angle' => 14.232798892857204,
+      'moon_age' => 1.563,
+      'moon_phase_angle' => 15.486380977883186,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-12-14 00:00:00' => 
+  '2015-12-14 09:00:00' =>
   array (
-    0 => '2015-12-14 00:00:00',
-    1 => 
+    0 => '2015-12-14 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 12,
       'day' => 14,
       'dayOfWeek' => 1,
       'dayOfYear' => 348,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1450018800,
-      'formatted' => '2015-12-14 00:00:00',
-      'timezone' => 
+      'timestamp' => 1450051200,
+      'formatted' => '2015-12-14 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -26158,29 +22912,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 4,
       'is_leap_month' => false,
-      'moon_age' => 2.5630341093055904,
-      'moon_phase_angle' => 26.448087456919268,
+      'moon_age' => 2.563,
+      'moon_phase_angle' => 27.725507273814287,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-12-15 00:00:00' => 
+  '2015-12-15 09:00:00' =>
   array (
-    0 => '2015-12-15 00:00:00',
-    1 => 
+    0 => '2015-12-15 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 12,
       'day' => 15,
       'dayOfWeek' => 2,
       'dayOfYear' => 349,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1450105200,
-      'formatted' => '2015-12-15 00:00:00',
-      'timezone' => 
+      'timestamp' => 1450137600,
+      'formatted' => '2015-12-15 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -26216,29 +22970,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 5,
       'is_leap_month' => false,
-      'moon_age' => 3.5632687262259424,
-      'moon_phase_angle' => 38.84784538111586,
+      'moon_age' => 3.563,
+      'moon_phase_angle' => 40.14575059228042,
       'moon_phase' => 1,
       'moon_phase_text' => '三日月',
     ),
   ),
-  '2015-12-16 00:00:00' => 
+  '2015-12-16 09:00:00' =>
   array (
-    0 => '2015-12-16 00:00:00',
-    1 => 
+    0 => '2015-12-16 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 12,
       'day' => 16,
       'dayOfWeek' => 3,
       'dayOfYear' => 350,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1450191600,
-      'formatted' => '2015-12-16 00:00:00',
-      'timezone' => 
+      'timestamp' => 1450224000,
+      'formatted' => '2015-12-16 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -26274,29 +23028,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 6,
       'is_leap_month' => false,
-      'moon_age' => 4.564282856415957,
-      'moon_phase_angle' => 51.40509428247856,
+      'moon_age' => 4.563,
+      'moon_phase_angle' => 52.72109012068523,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-12-17 00:00:00' => 
+  '2015-12-17 09:00:00' =>
   array (
-    0 => '2015-12-17 00:00:00',
-    1 => 
+    0 => '2015-12-17 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 12,
       'day' => 17,
       'dayOfWeek' => 4,
       'dayOfYear' => 351,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1450278000,
-      'formatted' => '2015-12-17 00:00:00',
-      'timezone' => 
+      'timestamp' => 1450310400,
+      'formatted' => '2015-12-17 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -26332,29 +23086,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 7,
       'is_leap_month' => false,
-      'moon_age' => 5.565639454871416,
-      'moon_phase_angle' => 64.10035164722535,
+      'moon_age' => 5.563,
+      'moon_phase_angle' => 65.43303673099331,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-12-18 00:00:00' => 
+  '2015-12-18 09:00:00' =>
   array (
-    0 => '2015-12-18 00:00:00',
-    1 => 
+    0 => '2015-12-18 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 12,
       'day' => 18,
       'dayOfWeek' => 5,
       'dayOfYear' => 352,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1450364400,
-      'formatted' => '2015-12-18 00:00:00',
-      'timezone' => 
+      'timestamp' => 1450396800,
+      'formatted' => '2015-12-18 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -26390,16 +23144,16 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 6.567362355533987,
-      'moon_phase_angle' => 76.92365308848235,
+      'moon_age' => 6.563,
+      'moon_phase_angle' => 78.27227397482858,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-12-19 00:00:00' => 
+  '2015-12-19 00:14:00' =>
   array (
-    0 => '2015-12-19 00:00:00',
-    1 => 
+    0 => '2015-12-19 00:14:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 12,
@@ -26407,12 +23161,12 @@ return array (
       'dayOfWeek' => 6,
       'dayOfYear' => 353,
       'hour' => 0,
-      'minute' => 0,
+      'minute' => 14,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1450450800,
-      'formatted' => '2015-12-19 00:00:00',
-      'timezone' => 
+      'timestamp' => 1450451640,
+      'formatted' => '2015-12-19 00:14:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -26448,29 +23202,87 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 9,
       'is_leap_month' => false,
-      'moon_age' => 7.569490071386099,
-      'moon_phase_angle' => 89.87219047885918,
+      'moon_age' => 7.197916666666667,
+      'moon_phase_angle' => 86.48635775011866,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2015-12-20 00:00:00' => 
+  '2015-12-19 09:00:00' =>
   array (
-    0 => '2015-12-20 00:00:00',
-    1 => 
+    0 => '2015-12-19 09:00:00',
+    1 =>
+    array (
+      'year' => 2015,
+      'month' => 12,
+      'day' => 19,
+      'dayOfWeek' => 6,
+      'dayOfYear' => 353,
+      'hour' => 9,
+      'minute' => 0,
+      'second' => 0,
+      'micro' => 0,
+      'timestamp' => 1450483200,
+      'formatted' => '2015-12-19 09:00:00',
+      'timezone' =>
+      \Carbon\CarbonTimeZone::__set_state(array(
+         'clock' => NULL,
+         'timezone_type' => 3,
+         'timezone' => 'Asia/Tokyo',
+      )),
+      'solar_seasonal_festival' => 0,
+      'solar_seasonal_festival_name' => '',
+      'solar_seasonal_festival_alias' => '',
+      'lunar_seasonal_festival' => 0,
+      'lunar_seasonal_festival_name' => '',
+      'lunar_seasonal_festival_alias' => '',
+      'misc_seasonal_node' => 0,
+      'misc_seasonal_node_text' => '',
+      'solar_term' => false,
+      'solar_term_text' => '',
+      'is_solar_term' => false,
+      'era_name_text' => '平成',
+      'era_name' => 1003,
+      'era_year' => 27,
+      'oriental_zodiac_text' => '未',
+      'oriental_zodiac' => 8,
+      'heavenly_stem_text' => '乙',
+      'heavenly_stem' => 1,
+      'six_weekday_text' => '先勝',
+      'six_weekday' => 2,
+      'weekday_text' => '土',
+      'month_text' => '師走',
+      'holiday_text' => '',
+      'holiday' => 0,
+      'is_holiday' => false,
+      'lunar_month_text' => '霜月',
+      'lunar_month' => 11,
+      'lunar_year' => 2015,
+      'lunar_day' => 9,
+      'is_leap_month' => false,
+      'moon_age' => 7.563,
+      'moon_phase_angle' => 91.2361689825454,
+      'moon_phase' => 2,
+      'moon_phase_text' => '上弦',
+    ),
+  ),
+  '2015-12-20 09:00:00' =>
+  array (
+    0 => '2015-12-20 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 12,
       'day' => 20,
       'dayOfWeek' => 0,
       'dayOfYear' => 354,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1450537200,
-      'formatted' => '2015-12-20 00:00:00',
-      'timezone' => 
+      'timestamp' => 1450569600,
+      'formatted' => '2015-12-20 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -26506,29 +23318,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 10,
       'is_leap_month' => false,
-      'moon_age' => 8.57203830126673,
-      'moon_phase_angle' => 102.94392347505675,
+      'moon_age' => 8.563,
+      'moon_phase_angle' => 104.32222954719731,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-12-21 00:00:00' => 
+  '2015-12-21 09:00:00' =>
   array (
-    0 => '2015-12-21 00:00:00',
-    1 => 
+    0 => '2015-12-21 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 12,
       'day' => 21,
       'dayOfWeek' => 1,
       'dayOfYear' => 355,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1450623600,
-      'formatted' => '2015-12-21 00:00:00',
-      'timezone' => 
+      'timestamp' => 1450656000,
+      'formatted' => '2015-12-21 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -26564,29 +23376,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 11,
       'is_leap_month' => false,
-      'moon_age' => 9.575007652398199,
-      'moon_phase_angle' => 116.12866481916771,
+      'moon_age' => 9.563,
+      'moon_phase_angle' => 117.51888184295888,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-12-22 00:00:00' => 
+  '2015-12-22 09:00:00' =>
   array (
-    0 => '2015-12-22 00:00:00',
-    1 => 
+    0 => '2015-12-22 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 12,
       'day' => 22,
       'dayOfWeek' => 2,
       'dayOfYear' => 356,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1450710000,
-      'formatted' => '2015-12-22 00:00:00',
-      'timezone' => 
+      'timestamp' => 1450742400,
+      'formatted' => '2015-12-22 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -26622,29 +23434,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 12,
       'is_leap_month' => false,
-      'moon_age' => 10.578346041496843,
-      'moon_phase_angle' => 129.39910762707373,
+      'moon_age' => 10.563,
+      'moon_phase_angle' => 130.79634821270176,
       'moon_phase' => 3,
       'moon_phase_text' => '十三夜',
     ),
   ),
-  '2015-12-23 00:00:00' => 
+  '2015-12-23 09:00:00' =>
   array (
-    0 => '2015-12-23 00:00:00',
-    1 => 
+    0 => '2015-12-23 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 12,
       'day' => 23,
       'dayOfWeek' => 3,
       'dayOfYear' => 357,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1450796400,
-      'formatted' => '2015-12-23 00:00:00',
-      'timezone' => 
+      'timestamp' => 1450828800,
+      'formatted' => '2015-12-23 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -26680,29 +23492,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 13,
       'is_leap_month' => false,
-      'moon_age' => 11.58187903650105,
-      'moon_phase_angle' => 142.70487736300552,
+      'moon_age' => 11.563,
+      'moon_phase_angle' => 144.10117052287345,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-12-24 00:00:00' => 
+  '2015-12-24 09:00:00' =>
   array (
-    0 => '2015-12-24 00:00:00',
-    1 => 
+    0 => '2015-12-24 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 12,
       'day' => 24,
       'dayOfWeek' => 4,
       'dayOfYear' => 358,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1450882800,
-      'formatted' => '2015-12-24 00:00:00',
-      'timezone' => 
+      'timestamp' => 1450915200,
+      'formatted' => '2015-12-24 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -26738,29 +23550,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 14,
       'is_leap_month' => false,
-      'moon_age' => 12.585343867074698,
-      'moon_phase_angle' => 155.97250959854017,
+      'moon_age' => 12.563,
+      'moon_phase_angle' => 157.3572966959519,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-12-25 00:00:00' => 
+  '2015-12-25 09:00:00' =>
   array (
-    0 => '2015-12-25 00:00:00',
-    1 => 
+    0 => '2015-12-25 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 12,
       'day' => 25,
       'dayOfWeek' => 5,
       'dayOfYear' => 359,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1450969200,
-      'formatted' => '2015-12-25 00:00:00',
-      'timezone' => 
+      'timestamp' => 1451001600,
+      'formatted' => '2015-12-25 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -26796,74 +23608,16 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 15,
       'is_leap_month' => false,
-      'moon_age' => 13.588381276931614,
-      'moon_phase_angle' => 169.11276739553375,
+      'moon_age' => 13.563,
+      'moon_phase_angle' => 170.4745272161463,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2015-12-25 19:00:00' => 
+  '2015-12-25 20:11:00' =>
   array (
-    0 => '2015-12-25 19:00:00',
-    1 => 
-    array (
-      'year' => 2015,
-      'month' => 12,
-      'day' => 25,
-      'dayOfWeek' => 5,
-      'dayOfYear' => 359,
-      'hour' => 19,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1451037600,
-      'formatted' => '2015-12-25 19:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 27,
-      'oriental_zodiac_text' => '未',
-      'oriental_zodiac' => 8,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '先勝',
-      'six_weekday' => 2,
-      'weekday_text' => '金',
-      'month_text' => '師走',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '霜月',
-      'lunar_month' => 11,
-      'lunar_year' => 2015,
-      'lunar_day' => 15,
-      'is_leap_month' => false,
-      'moon_age' => 14.381897090468556,
-      'moon_phase_angle' => 179.3643473163961,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2015-12-25 20:00:00' => 
-  array (
-    0 => '2015-12-25 20:00:00',
-    1 => 
+    0 => '2015-12-25 20:11:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 12,
@@ -26871,12 +23625,12 @@ return array (
       'dayOfWeek' => 5,
       'dayOfYear' => 359,
       'hour' => 20,
-      'minute' => 0,
+      'minute' => 11,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1451041200,
-      'formatted' => '2015-12-25 20:00:00',
-      'timezone' => 
+      'timestamp' => 1451041860,
+      'formatted' => '2015-12-25 20:11:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -26912,145 +23666,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 15,
       'is_leap_month' => false,
-      'moon_age' => 14.423647241201252,
-      'moon_phase_angle' => 179.89929592125648,
+      'moon_age' => 14.029166666666667,
+      'moon_phase_angle' => 176.51354719719828,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2015-12-25 21:00:00' => 
+  '2015-12-26 09:00:00' =>
   array (
-    0 => '2015-12-25 21:00:00',
-    1 => 
-    array (
-      'year' => 2015,
-      'month' => 12,
-      'day' => 25,
-      'dayOfWeek' => 5,
-      'dayOfYear' => 359,
-      'hour' => 21,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1451044800,
-      'formatted' => '2015-12-25 21:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 27,
-      'oriental_zodiac_text' => '未',
-      'oriental_zodiac' => 8,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '先勝',
-      'six_weekday' => 2,
-      'weekday_text' => '金',
-      'month_text' => '師走',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '霜月',
-      'lunar_month' => 11,
-      'lunar_year' => 2015,
-      'lunar_day' => 15,
-      'is_leap_month' => false,
-      'moon_age' => 14.465396103449166,
-      'moon_phase_angle' => 180.43374462537892,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2015-12-25 22:00:00' => 
-  array (
-    0 => '2015-12-25 22:00:00',
-    1 => 
-    array (
-      'year' => 2015,
-      'month' => 12,
-      'day' => 25,
-      'dayOfWeek' => 5,
-      'dayOfYear' => 359,
-      'hour' => 22,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1451048400,
-      'formatted' => '2015-12-25 22:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 27,
-      'oriental_zodiac_text' => '未',
-      'oriental_zodiac' => 8,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '先勝',
-      'six_weekday' => 2,
-      'weekday_text' => '金',
-      'month_text' => '師走',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '霜月',
-      'lunar_month' => 11,
-      'lunar_year' => 2015,
-      'lunar_day' => 15,
-      'is_leap_month' => false,
-      'moon_age' => 14.507132280617952,
-      'moon_phase_angle' => 180.96768824387237,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2015-12-26 00:00:00' => 
-  array (
-    0 => '2015-12-26 00:00:00',
-    1 => 
+    0 => '2015-12-26 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 12,
       'day' => 26,
       'dayOfWeek' => 6,
       'dayOfYear' => 360,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1451055600,
-      'formatted' => '2015-12-26 00:00:00',
-      'timezone' => 
+      'timestamp' => 1451088000,
+      'formatted' => '2015-12-26 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -27086,29 +23724,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 14.590615315362811,
-      'moon_phase_angle' => 182.03403985682763,
+      'moon_age' => 14.563,
+      'moon_phase_angle' => 183.36235062263506,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-12-27 00:00:00' => 
+  '2015-12-27 09:00:00' =>
   array (
-    0 => '2015-12-27 00:00:00',
-    1 => 
+    0 => '2015-12-27 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 12,
       'day' => 27,
       'dayOfWeek' => 0,
       'dayOfYear' => 361,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1451142000,
-      'formatted' => '2015-12-27 00:00:00',
-      'timezone' => 
+      'timestamp' => 1451174400,
+      'formatted' => '2015-12-27 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -27144,29 +23782,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 17,
       'is_leap_month' => false,
-      'moon_age' => 15.591729355975986,
-      'moon_phase_angle' => 194.65793945104548,
+      'moon_age' => 15.563,
+      'moon_phase_angle' => 195.94514987205525,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-12-28 00:00:00' => 
+  '2015-12-28 09:00:00' =>
   array (
-    0 => '2015-12-28 00:00:00',
-    1 => 
+    0 => '2015-12-28 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 12,
       'day' => 28,
       'dayOfWeek' => 1,
       'dayOfYear' => 362,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1451228400,
-      'formatted' => '2015-12-28 00:00:00',
-      'timezone' => 
+      'timestamp' => 1451260800,
+      'formatted' => '2015-12-28 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -27202,29 +23840,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 18,
       'is_leap_month' => false,
-      'moon_age' => 16.591533845756203,
-      'moon_phase_angle' => 206.93231954498577,
+      'moon_age' => 16.563,
+      'moon_phase_angle' => 208.17445919486056,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-12-29 00:00:00' => 
+  '2015-12-29 09:00:00' =>
   array (
-    0 => '2015-12-29 00:00:00',
-    1 => 
+    0 => '2015-12-29 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 12,
       'day' => 29,
       'dayOfWeek' => 2,
       'dayOfYear' => 363,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1451314800,
-      'formatted' => '2015-12-29 00:00:00',
-      'timezone' => 
+      'timestamp' => 1451347200,
+      'formatted' => '2015-12-29 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -27260,29 +23898,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 19,
       'is_leap_month' => false,
-      'moon_age' => 17.59001290006563,
-      'moon_phase_angle' => 218.83838446873418,
+      'moon_age' => 17.563,
+      'moon_phase_angle' => 220.0354255909854,
       'moon_phase' => 5,
       'moon_phase_text' => '十六夜',
     ),
   ),
-  '2015-12-30 00:00:00' => 
+  '2015-12-30 09:00:00' =>
   array (
-    0 => '2015-12-30 00:00:00',
-    1 => 
+    0 => '2015-12-30 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 12,
       'day' => 30,
       'dayOfWeek' => 3,
       'dayOfYear' => 364,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1451401200,
-      'formatted' => '2015-12-30 00:00:00',
-      'timezone' => 
+      'timestamp' => 1451433600,
+      'formatted' => '2015-12-30 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -27318,29 +23956,29 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 20,
       'is_leap_month' => false,
-      'moon_age' => 18.587322426959872,
-      'moon_phase_angle' => 230.3912729394882,
+      'moon_age' => 18.563,
+      'moon_phase_angle' => 231.54696517247658,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2015-12-31 00:00:00' => 
+  '2015-12-31 09:00:00' =>
   array (
-    0 => '2015-12-31 00:00:00',
-    1 => 
+    0 => '2015-12-31 09:00:00',
+    1 =>
     array (
       'year' => 2015,
       'month' => 12,
       'day' => 31,
       'dayOfWeek' => 4,
       'dayOfYear' => 365,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1451487600,
-      'formatted' => '2015-12-31 00:00:00',
-      'timezone' => 
+      'timestamp' => 1451520000,
+      'formatted' => '2015-12-31 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -27376,8 +24014,8 @@ return array (
       'lunar_year' => 2015,
       'lunar_day' => 21,
       'is_leap_month' => false,
-      'moon_age' => 19.583766781259328,
-      'moon_phase_angle' => 241.63571790139153,
+      'moon_age' => 19.563,
+      'moon_phase_angle' => 242.75709191942417,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),

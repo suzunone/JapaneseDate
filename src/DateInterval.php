@@ -192,13 +192,13 @@ class DateInterval extends CarbonInterval
      * echo $result->format('Y-m-d');
      * ```
      *
-     * @param \JapaneseDate\DateTime $from 起算日
+     * @param DateTime $from 起算日
      * @param int $n 加算する営業日数（1 以上の整数）
-     * @return \JapaneseDate\DateTime N 営業日後の日付
+     * @return DateTime N 営業日後の日付
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
-    public static function addBusinessDaysToDate($from, $n): DateTime
+    public static function addBusinessDaysToDate(DateTime $from, int $n): DateTime
     {
         $date = DateTime::factory($from);
         $count = 0;
@@ -210,6 +210,24 @@ class DateInterval extends CarbonInterval
         }
 
         return $date;
+    }
+
+    /**
+     * 指定した日時が営業日かどうかを判定します。
+     *
+     * 土曜（dayOfWeek === 6）、日曜（dayOfWeek === 0）、および国民の祝日・休日は
+     * 非営業日とみなします。
+     *
+     * @param DateTime $date 判定対象の日付
+     * @return bool 営業日であれば true、非営業日であれば false
+     */
+    public static function isBusinessDay(DateTime $date): bool
+    {
+        if ($date->dayOfWeek === 0 || $date->dayOfWeek === 6) {
+            return false;
+        }
+
+        return !$date->is_holiday;
     }
 
     /**
@@ -227,13 +245,13 @@ class DateInterval extends CarbonInterval
      * echo $result->format('Y-m-d');
      * ```
      *
-     * @param \JapaneseDate\DateTime $from 起算日
+     * @param DateTime $from 起算日
      * @param int $n 減算する営業日数（1 以上の整数）
-     * @return \JapaneseDate\DateTime N 営業日前の日付
+     * @return DateTime N 営業日前の日付
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
-    public static function subBusinessDaysToDate($from, $n): DateTime
+    public static function subBusinessDaysToDate(DateTime $from, int $n): DateTime
     {
         $date = DateTime::factory($from);
         $count = 0;
@@ -245,24 +263,6 @@ class DateInterval extends CarbonInterval
         }
 
         return $date;
-    }
-
-    /**
-     * 指定した日時が営業日かどうかを判定します。
-     *
-     * 土曜（dayOfWeek === 6）、日曜（dayOfWeek === 0）、および国民の祝日・休日は
-     * 非営業日とみなします。
-     *
-     * @param \JapaneseDate\DateTime $date 判定対象の日付
-     * @return bool 営業日であれば true、非営業日であれば false
-     */
-    public static function isBusinessDay($date): bool
-    {
-        if ($date->dayOfWeek === 0 || $date->dayOfWeek === 6) {
-            return false;
-        }
-
-        return !$date->is_holiday;
     }
 
     // =========================================================================
@@ -283,12 +283,12 @@ class DateInterval extends CarbonInterval
      * echo $interval->h . '時間後';
      * ```
      *
-     * @param \JapaneseDate\DateTime $from カウントダウン基準日時
+     * @param DateTime $from カウントダウン基準日時
      * @return static 次の祝日（当日 00:00:00）までの {@see DateInterval}
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
-    public static function untilNextHoliday($from)
+    public static function untilNextHoliday(DateTime $from): static
     {
         $base = DateTime::factory($from);
         $nextHoliday = $base->copy()->nextHoliday()->startOfDay();
@@ -317,13 +317,13 @@ class DateInterval extends CarbonInterval
      * $interval = DateInterval::untilNextSixWeek(DateTime::now(), DateTime::SIX_WEEKDAY_BUTSUMETSU);
      * ```
      *
-     * @param \JapaneseDate\DateTime $from カウントダウン基準日時
+     * @param DateTime $from カウントダウン基準日時
      * @param int $sixWeekday 目的の六曜（{@see DateTime::SIX_WEEKDAY_TAIAN} など）
      * @return static 指定六曜の翌到来日（当日 00:00:00）までの {@see DateInterval}
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
-    public static function untilNextSixWeek($from, $sixWeekday)
+    public static function untilNextSixWeek(DateTime $from, int $sixWeekday): static
     {
         $base = DateTime::factory($from);
         $current = $base->sixWeekday;
@@ -367,10 +367,10 @@ class DateInterval extends CarbonInterval
      * ```
      *
      * @param int $eraKey 元号定数（{@see DateTime::ERA_MEIJI} など）
-     * @param \JapaneseDate\DateTime|null $until 終了日（null の場合は現在日時）
+     * @param DateTime|null $until 終了日（null の場合は現在日時）
      * @return static 元号の継続期間を表す {@see DateInterval}
      */
-    public static function eraSpan($eraKey, $until = null)
+    public static function eraSpan(int $eraKey, ?DateTime $until = null): static
     {
         if (!isset(static::ERA_START_DATES[$eraKey])) {
             throw new InvalidArgumentException('不明な元号キーです: ' . $eraKey);
@@ -409,18 +409,87 @@ class DateInterval extends CarbonInterval
      * $interval = DateInterval::untilNextSolarTerm(DateTime::now(), 'geshi');
      * ```
      *
-     * @param \JapaneseDate\DateTime $from カウントダウン基準日時
+     * @param DateTime $from カウントダウン基準日時
      * @param string|null $termMethod 節気メソッド名（省略時は最も近い節気を自動検索）
      * @return static 次の節気日（当日 00:00:00）までの {@see DateInterval}
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
-    public static function untilNextSolarTerm($from, $termMethod = null)
+    public static function untilNextSolarTerm(DateTime $from, ?string $termMethod = null): static
     {
         $target = static::findNextSolarTermDate($from, $termMethod);
         $diff = $from->diff($target->startOfDay());
 
         return static::instance(CarbonInterval::days($diff->days));
+    }
+
+    /**
+     * 基準日の「次」に到来する節気日を返します。
+     *
+     * 今年・来年の全節気を走査し、基準日の翌日以降で最も近い節気日を返します。
+     * 特定の節気メソッド名を指定した場合はその節気のみを対象とします。
+     *
+     * @param DateTime $from 起算日
+     * @param string|null $termMethod 節気メソッド名（省略時は全節気から検索）
+     * @return DateTime 次の節気日
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     */
+    protected static function findNextSolarTermDate(DateTime $from, ?string $termMethod = null): DateTime
+    {
+        $methods = $termMethod !== null ? [$termMethod] : array_keys(static::SOLAR_TERM_METHODS);
+        $fromTimestamp = $from->timestamp;
+        $best = null;
+
+        foreach ([$from->year, $from->year + 1] as $year) {
+            foreach ($methods as $method) {
+                try {
+                    $st = static::resolveSolarTerm($method, $year);
+                    $candidate = DateTime::createFromFormat('Y-m-d', sprintf('%04d-%02d-%02d', $st->year, $st->month, $st->day));
+                    // @codeCoverageIgnoreStart
+                    if ($candidate === false) {
+                        continue;
+                    }
+                    // @codeCoverageIgnoreEnd
+                    $candidate = $candidate->startOfDay();
+                    if ($candidate->timestamp > $fromTimestamp
+                        && ($best === null || $candidate->timestamp < $best->timestamp)) {
+                        $best = $candidate;
+                    }
+                    // @codeCoverageIgnoreStart
+                } catch (Throwable) {
+                    continue;
+                }
+                // @codeCoverageIgnoreEnd
+            }
+        }
+
+        // @codeCoverageIgnoreStart
+        return $best ?? DateTime::factory($from)->addDays(15);
+    }
+
+    /**
+     * 指定した節気メソッド名と年から {@see SolarTermDate} を返します。
+     *
+     * まず {@see SimpleSolarTerm} での高速計算を試みて、失敗した場合は
+     * {@see SolarTerm} での精密計算にフォールバックします。
+     *
+     * @param string $method 節気メソッド名（'syunbun', 'geshi' など）
+     * @param int $year 西暦年
+     * @return SolarTermDate 節気日データ
+     * @throws \JapaneseDate\Exceptions\SolarTermException 計算不可能な年の場合
+     */
+    protected static function resolveSolarTerm(string $method, int $year): SolarTermDate
+    {
+        if (Astronomy::solarAlgorithm() === Astronomy::SOLAR_VSOP87) {
+            return (new SolarTerm())->{$method}($year);
+        }
+
+        try {
+            return (new SimpleSolarTerm())->{$method}($year);
+        } catch (Throwable) {
+            return (new SolarTerm())->{$method}($year);
+        }
     }
 
     /**
@@ -437,13 +506,13 @@ class DateInterval extends CarbonInterval
      * echo $result->format('Y-m-d');
      * ```
      *
-     * @param \JapaneseDate\DateTime $from 起算日
+     * @param DateTime $from 起算日
      * @param int $n 進める節気の数（1 以上の整数）
-     * @return \JapaneseDate\DateTime N 節気後の日付
+     * @return DateTime N 節気後の日付
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
-    public static function addSolarTermsToDate($from, $n): DateTime
+    public static function addSolarTermsToDate(DateTime $from, int $n): DateTime
     {
         $date = DateTime::factory($from);
         for ($i = 0; $i < $n; $i++) {
@@ -452,6 +521,10 @@ class DateInterval extends CarbonInterval
 
         return $date;
     }
+
+    // =========================================================================
+    // 旧暦・月相ベースの期間
+    // =========================================================================
 
     /**
      * 基準日から N 節気前の {@see DateTime} を返します。
@@ -467,13 +540,13 @@ class DateInterval extends CarbonInterval
      * echo $result->format('Y-m-d');
      * ```
      *
-     * @param \JapaneseDate\DateTime $from 起算日
+     * @param DateTime $from 起算日
      * @param int $n 遡る節気の数（1 以上の整数）
-     * @return \JapaneseDate\DateTime N 節気前の日付
+     * @return DateTime N 節気前の日付
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
-    public static function subSolarTermsToDate($from, $n): DateTime
+    public static function subSolarTermsToDate(DateTime $from, int $n): DateTime
     {
         $date = DateTime::factory($from);
         for ($i = 0; $i < $n; $i++) {
@@ -481,6 +554,85 @@ class DateInterval extends CarbonInterval
         }
 
         return $date;
+    }
+
+    /**
+     * 基準日の「直前」の節気日を返します。
+     *
+     * 今年・前年の全節気を走査し、基準日の前日以前で最も近い節気日を返します。
+     * 特定の節気メソッド名を指定した場合はその節気のみを対象とします。
+     *
+     * @param DateTime $from 起算日
+     * @param string|null $termMethod 節気メソッド名（省略時は全節気から検索）
+     * @return DateTime 直前の節気日
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     */
+    protected static function findPrevSolarTermDate(DateTime $from, ?string $termMethod = null): DateTime
+    {
+        $methods = $termMethod !== null ? [$termMethod] : array_keys(static::SOLAR_TERM_METHODS);
+        $fromTimestamp = $from->timestamp;
+        $best = null;
+
+        foreach ([$from->year, $from->year - 1] as $year) {
+            foreach ($methods as $method) {
+                try {
+                    $st = static::resolveSolarTerm($method, $year);
+                    $candidate = DateTime::createFromFormat('Y-m-d', sprintf('%04d-%02d-%02d', $st->year, $st->month, $st->day));
+                    // @codeCoverageIgnoreStart
+                    if ($candidate === false) {
+                        continue;
+                    }
+                    // @codeCoverageIgnoreEnd
+                    $candidate = $candidate->startOfDay();
+                    if ($candidate->timestamp < $fromTimestamp
+                        && ($best === null || $candidate->timestamp > $best->timestamp)) {
+                        $best = $candidate;
+                    }
+                    // @codeCoverageIgnoreStart
+                } catch (Throwable) {
+                    continue;
+                }
+                // @codeCoverageIgnoreEnd
+            }
+        }
+
+        // @codeCoverageIgnoreStart
+        return $best ?? DateTime::factory($from)->subDays(15);
+    }
+
+    // =========================================================================
+    // 内部ヘルパー
+    // =========================================================================
+
+    /**
+     * 基準日時から次の新月（月相: MOON_PHASE_SHINGETSU）までの
+     * 残り期間を {@see DateInterval} として返します。
+     *
+     * 天文学的な新月（月の位相角 0°付近）の瞬間を基準に、
+     * 次の新月日（当日 00:00:00）までの差分を返します。
+     *
+     * 【使用例】
+     * ```php
+     * $interval = DateInterval::untilNextNewMoon(DateTime::now());
+     * echo $interval->days . '日後が次の新月です';
+     * ```
+     *
+     * @param DateTime $from カウントダウン基準日時
+     * @return static 次の新月日（当日 00:00:00）までの {@see DateInterval}
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\ErrorException
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     */
+    public static function untilNextNewMoon(DateTime $from): static
+    {
+        $moon = new Moon();
+        $nextNewMoon = $moon->moonPhase(DateTime::factory($from), 0.0)->setTimezone('Asia/Tokyo');
+        $target = DateTime::factory($nextNewMoon)->startOfDay();
+        $diff = $from->diff($target);
+
+        return static::instance($diff);
     }
 
     /**
@@ -505,10 +657,6 @@ class DateInterval extends CarbonInterval
 
         return $totalDays / self::SOLAR_TERM_AVG_DAYS;
     }
-
-    // =========================================================================
-    // 旧暦・月相ベースの期間
-    // =========================================================================
 
     /**
      * このインターバルの総日数を朔望月（新月から次の新月まで、約29.5日）の
@@ -535,163 +683,16 @@ class DateInterval extends CarbonInterval
     }
 
     /**
-     * 基準日時から次の新月（月相: MOON_PHASE_SHINGETSU）までの
-     * 残り期間を {@see DateInterval} として返します。
-     *
-     * 天文学的な新月（月の位相角 0°付近）の瞬間を基準に、
-     * 次の新月日（当日 00:00:00）までの差分を返します。
-     *
-     * 【使用例】
-     * ```php
-     * $interval = DateInterval::untilNextNewMoon(DateTime::now());
-     * echo $interval->days . '日後が次の新月です';
-     * ```
-     *
-     * @param \JapaneseDate\DateTime $from カウントダウン基準日時
-     * @return static 次の新月日（当日 00:00:00）までの {@see DateInterval}
-     * @throws \DateInvalidTimeZoneException
-     * @throws \JapaneseDate\Exceptions\Exception
-     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
-     */
-    public static function untilNextNewMoon($from)
-    {
-        $moon = new Moon();
-        $nextNewMoon = $moon->moonPhase(DateTime::factory($from), 0.0)->setTimezone('Asia/Tokyo');
-        $target = DateTime::factory($nextNewMoon)->startOfDay();
-        $diff = $from->diff($target);
-
-        return static::instance($diff);
-    }
-
-    // =========================================================================
-    // 内部ヘルパー
-    // =========================================================================
-
-    /**
-     * 基準日の「次」に到来する節気日を返します。
-     *
-     * 今年・来年の全節気を走査し、基準日の翌日以降で最も近い節気日を返します。
-     * 特定の節気メソッド名を指定した場合はその節気のみを対象とします。
-     *
-     * @param \JapaneseDate\DateTime $from 起算日
-     * @param string|null $termMethod 節気メソッド名（省略時は全節気から検索）
-     * @return \JapaneseDate\DateTime 次の節気日
-     * @throws \DateInvalidTimeZoneException
-     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
-     */
-    protected static function findNextSolarTermDate($from, $termMethod = null): DateTime
-    {
-        $methods = $termMethod !== null ? [$termMethod] : array_keys(static::SOLAR_TERM_METHODS);
-        $fromTimestamp = $from->timestamp;
-        $best = null;
-
-        foreach ([$from->year, $from->year + 1] as $year) {
-            foreach ($methods as $method) {
-                try {
-                    $st = static::resolveSolarTerm($method, $year);
-                    $candidate = DateTime::createFromFormat('Y-m-d', sprintf('%04d-%02d-%02d', $st->year, $st->month, $st->day));
-                    // @codeCoverageIgnoreStart
-                    if ($candidate === false) {
-                        continue;
-                    }
-                    // @codeCoverageIgnoreEnd
-                    $candidate = $candidate->startOfDay();
-                    if ($candidate->timestamp > $fromTimestamp
-                        && ($best === null || $candidate->timestamp < $best->timestamp)) {
-                        $best = $candidate;
-                    }
-                    // @codeCoverageIgnoreStart
-                } catch (Throwable $exception) {
-                    continue;
-                }
-                // @codeCoverageIgnoreEnd
-            }
-        }
-
-        // @codeCoverageIgnoreStart
-        return $best ?? DateTime::factory($from)->addDays(15);
-    }
-
-    /**
-     * 基準日の「直前」の節気日を返します。
-     *
-     * 今年・前年の全節気を走査し、基準日の前日以前で最も近い節気日を返します。
-     * 特定の節気メソッド名を指定した場合はその節気のみを対象とします。
-     *
-     * @param \JapaneseDate\DateTime $from 起算日
-     * @param string|null $termMethod 節気メソッド名（省略時は全節気から検索）
-     * @return \JapaneseDate\DateTime 直前の節気日
-     * @throws \DateInvalidTimeZoneException
-     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
-     */
-    protected static function findPrevSolarTermDate($from, $termMethod = null): DateTime
-    {
-        $methods = $termMethod !== null ? [$termMethod] : array_keys(static::SOLAR_TERM_METHODS);
-        $fromTimestamp = $from->timestamp;
-        $best = null;
-
-        foreach ([$from->year, $from->year - 1] as $year) {
-            foreach ($methods as $method) {
-                try {
-                    $st = static::resolveSolarTerm($method, $year);
-                    $candidate = DateTime::createFromFormat('Y-m-d', sprintf('%04d-%02d-%02d', $st->year, $st->month, $st->day));
-                    // @codeCoverageIgnoreStart
-                    if ($candidate === false) {
-                        continue;
-                    }
-                    // @codeCoverageIgnoreEnd
-                    $candidate = $candidate->startOfDay();
-                    if ($candidate->timestamp < $fromTimestamp
-                        && ($best === null || $candidate->timestamp > $best->timestamp)) {
-                        $best = $candidate;
-                    }
-                    // @codeCoverageIgnoreStart
-                } catch (Throwable $exception) {
-                    continue;
-                }
-                // @codeCoverageIgnoreEnd
-            }
-        }
-
-        // @codeCoverageIgnoreStart
-        return $best ?? DateTime::factory($from)->subDays(15);
-    }
-
-    /**
-     * 指定した節気メソッド名と年から {@see \JapaneseDate\Elements\SolarTermDate} を返します。
-     *
-     * まず {@see SimpleSolarTerm} での高速計算を試みて、失敗した場合は
-     * {@see SolarTerm} での精密計算にフォールバックします。
-     *
-     * @param string $method 節気メソッド名（'syunbun', 'geshi' など）
-     * @param int    $year   西暦年
-     * @return \JapaneseDate\Elements\SolarTermDate 節気日データ
-     * @throws \JapaneseDate\Exceptions\SolarTermException 計算不可能な年の場合
-     */
-    protected static function resolveSolarTerm($method, $year): SolarTermDate
-    {
-        if (Astronomy::solarAlgorithm() === Astronomy::SOLAR_VSOP87) {
-            return (new SolarTerm())->{$method}($year);
-        }
-
-        try {
-            return (new SimpleSolarTerm())->{$method}($year);
-        } catch (Throwable $exception) {
-            return (new SolarTerm())->{$method}($year);
-        }
-    }
-
-    /**
      * 基準日から指定した営業日数後の日付を算出します。
      *
      * 営業日の判定にはインスタンス個別設定（またはグローバル/デフォルト設定）を使用します。
      *
-     * @param  \JapaneseDate\DateTime $baseDate    計算の基準となる日付
-     * @param  int                    $businessDays 加算する営業日数
-     * @param  DateBusiness|null      $config       判定に使用する設定（省略時はインスタンス設定）
-     * @return \JapaneseDate\DateTime N営業日後の日付
+     * @param DateTime $baseDate 計算の基準となる日付
+     * @param int $businessDays 加算する営業日数
+     * @param DateBusiness|null $config 判定に使用する設定（省略時はインスタンス設定）
+     * @return DateTime N営業日後の日付
      */
-    public function addBusinessDaysTo($baseDate, $businessDays, $config = null): DateTime
+    public function addBusinessDaysTo(DateTime $baseDate, int $businessDays, ?DateBusiness $config = null): DateTime
     {
         $effectiveConfig = $config ?? $this->businessConfig;
         $dt = clone $baseDate;
@@ -709,12 +710,12 @@ class DateInterval extends CarbonInterval
     /**
      * 基準日から指定した営業日数前の日付を算出します。
      *
-     * @param  \JapaneseDate\DateTime $baseDate    計算の基準となる日付
-     * @param  int                    $businessDays 減算する営業日数
-     * @param  DateBusiness|null      $config       判定に使用する設定（省略時はインスタンス設定）
-     * @return \JapaneseDate\DateTime N営業日前の日付
+     * @param DateTime $baseDate 計算の基準となる日付
+     * @param int $businessDays 減算する営業日数
+     * @param DateBusiness|null $config 判定に使用する設定（省略時はインスタンス設定）
+     * @return DateTime N営業日前の日付
      */
-    public function subBusinessDaysFrom($baseDate, $businessDays, $config = null): DateTime
+    public function subBusinessDaysFrom(DateTime $baseDate, int $businessDays, ?DateBusiness $config = null): DateTime
     {
         $effectiveConfig = $config ?? $this->businessConfig;
         $dt = clone $baseDate;
@@ -739,7 +740,7 @@ class DateInterval extends CarbonInterval
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
-    public function countBusinessDaysBetween($start, $end, $config = null): int
+    public function countBusinessDaysBetween(\DateTimeInterface $start, \DateTimeInterface $end, ?DateBusiness $config = null): int
     {
         $effectiveConfig = $config ?? $this->businessConfig;
         $dt = DateTime::factory($start->format('Y-m-d'), $start->getTimezone());

@@ -14,8 +14,8 @@ use JapaneseDate\Elements\SolarTermDate;
  * 指定年の二十四節気を定数キー付き配列として返します。
  *
  * **戻り値の構造:**
- * キーは {@see \JapaneseDate\DateTime::SOLAR_TERM_*} 定数、
- * 値は対応する {@see \JapaneseDate\Elements\SolarTermDate} オブジェクトです。
+ * キーは {@see DateTime::SOLAR_TERM_*} 定数、
+ * 値は対応する {@see SolarTermDate} オブジェクトです。
  *
  * @mixin \JapaneseDate\Components\SolarTerm
  * @mixin \JapaneseDate\Components\SimpleSolarTerm
@@ -29,7 +29,7 @@ trait GetSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    public function getSolarTerms($year): array
+    public function getSolarTerms(int $year): array
     {
         return [
             DateTime::SOLAR_TERM_SYUNBUN => $this->syunbun($year),

@@ -48,7 +48,7 @@ abstract class Map
      *
      * @var array<class-string, array<int, array<string, string>>>
      */
-    protected static $cache = [];
+    protected static array $cache = [];
 
     /**
      * サブクラスで定義するマッピングデータ配列。
@@ -58,7 +58,37 @@ abstract class Map
      *
      * @var array<int, array<string, string>>
      */
-    protected $map = [];
+    protected array $map = [];
+
+    /**
+     * 指定された日付が `start`〜`end` の範囲に収まるマッピング要素をすべて返す。
+     *
+     * - `start` <= $date < `end` の半開区間で判定します。
+     * - 南北朝時代のように複数の元号が並存する場合は、複数要素を含む配列を返します。
+     * - 該当するデータが存在しない場合は空配列を返します。
+     *
+     * @param DateTime|DateTimeImmutable $date 検索基準日
+     * @return array<int, array<string, string>> 条件に合致したマッピング要素の配列
+     * @throws \Exception
+     * @throws \Exception
+     * @throws \Exception
+     */
+    public static function findByDate(DateTime|DateTimeImmutable $date): array
+    {
+        $timestamp = $date->getTimestamp();
+        $results = [];
+
+        foreach (static::loadMap() as $entry) {
+            $start = (new \DateTimeImmutable($entry['start']))->getTimestamp();
+            $end = (new \DateTimeImmutable($entry['end']))->getTimestamp();
+
+            if ($timestamp >= $start && $timestamp < $end) {
+                $results[] = $entry;
+            }
+        }
+
+        return $results;
+    }
 
     /**
      * サブクラスのマッピングデータを遅延ロードし、静的キャッシュに格納して返す。
@@ -77,36 +107,6 @@ abstract class Map
         }
 
         return static::$cache[$class];
-    }
-
-    /**
-     * 指定された日付が `start`〜`end` の範囲に収まるマッピング要素をすべて返す。
-     *
-     * - `start` <= $date < `end` の半開区間で判定します。
-     * - 南北朝時代のように複数の元号が並存する場合は、複数要素を含む配列を返します。
-     * - 該当するデータが存在しない場合は空配列を返します。
-     *
-     * @param \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable $date 検索基準日
-     * @return array<int, array<string, string>> 条件に合致したマッピング要素の配列
-     * @throws \Exception
-     * @throws \Exception
-     * @throws \Exception
-     */
-    public static function findByDate($date): array
-    {
-        $timestamp = $date->getTimestamp();
-        $results = [];
-
-        foreach (static::loadMap() as $entry) {
-            $start = (new \DateTimeImmutable($entry['start']))->getTimestamp();
-            $end = (new \DateTimeImmutable($entry['end']))->getTimestamp();
-
-            if ($timestamp >= $start && $timestamp < $end) {
-                $results[] = $entry;
-            }
-        }
-
-        return $results;
     }
 
     /**

@@ -434,54 +434,54 @@ class JapaneseDateTest extends TestCase
     public function test_getDayByWeekly(): void
     {
         $JapaneseDate = new JapaneseDate();
-        $res = $JapaneseDate->getDayByWeekly(2016, 6, DateTime::SUNDAY, 1, null);
+        $res = $JapaneseDate->getDayByWeekly(2016, 6, DateTime::SUNDAY);
         $this->assertEquals(5, $res);
-        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::SUNDAY, 1, null);
+        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::SUNDAY);
         $this->assertEquals(1, $res);
 
-        $res = $JapaneseDate->getDayByWeekly(2016, 6, DateTime::SUNDAY, 2, null);
+        $res = $JapaneseDate->getDayByWeekly(2016, 6, DateTime::SUNDAY, 2);
         $this->assertEquals(5 + 7, $res);
-        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::SUNDAY, 2, null);
+        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::SUNDAY, 2);
         $this->assertEquals(1 + 7, $res);
 
-        $res = $JapaneseDate->getDayByWeekly(2016, 6, DateTime::MONDAY, 1, null);
+        $res = $JapaneseDate->getDayByWeekly(2016, 6, DateTime::MONDAY);
         $this->assertEquals(6, $res);
-        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::MONDAY, 1, null);
+        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::MONDAY);
         $this->assertEquals(2, $res);
 
-        $res = $JapaneseDate->getDayByWeekly(2016, 6, DateTime::MONDAY, 2, null);
+        $res = $JapaneseDate->getDayByWeekly(2016, 6, DateTime::MONDAY, 2);
         $this->assertEquals(6 + 7, $res);
-        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::MONDAY, 2, null);
+        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::MONDAY, 2);
         $this->assertEquals(2 + 7, $res);
 
-        $res = $JapaneseDate->getDayByWeekly(2016, 6, DateTime::TUESDAY, 1, null);
+        $res = $JapaneseDate->getDayByWeekly(2016, 6, DateTime::TUESDAY);
         $this->assertEquals(7, $res);
-        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::TUESDAY, 1, null);
+        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::TUESDAY);
         $this->assertEquals(3, $res);
 
-        $res = $JapaneseDate->getDayByWeekly(2016, 6, DateTime::TUESDAY, 2, null);
+        $res = $JapaneseDate->getDayByWeekly(2016, 6, DateTime::TUESDAY, 2);
         $this->assertEquals(7 + 7, $res);
-        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::TUESDAY, 2, null);
+        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::TUESDAY, 2);
         $this->assertEquals(3 + 7, $res);
 
-        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::WEDNESDAY, 1, null);
+        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::WEDNESDAY);
         $this->assertEquals(4, $res);
-        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::WEDNESDAY, 2, null);
+        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::WEDNESDAY, 2);
         $this->assertEquals(4 + 7, $res);
 
-        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::THURSDAY, 1, null);
+        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::THURSDAY);
         $this->assertEquals(5, $res);
-        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::THURSDAY, 2, null);
+        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::THURSDAY, 2);
         $this->assertEquals(5 + 7, $res);
 
-        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::FRIDAY, 1, null);
+        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::FRIDAY);
         $this->assertEquals(6, $res);
-        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::FRIDAY, 2, null);
+        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::FRIDAY, 2);
         $this->assertEquals(6 + 7, $res);
 
-        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::SATURDAY, 1, null);
+        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::SATURDAY);
         $this->assertEquals(7, $res);
-        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::SATURDAY, 2, null);
+        $res = $JapaneseDate->getDayByWeekly(2016, 5, DateTime::SATURDAY, 2);
         $this->assertEquals(7 + 7, $res);
     }
     /**
@@ -502,7 +502,7 @@ class JapaneseDateTest extends TestCase
      * @return      void
      * @dataProvider createTestObject
      */
-    public function test_getJanuaryHoliday($JapaneseDate, $JapaneseDateTime): void
+    public function test_getJanuaryHoliday(JapaneseDate $JapaneseDate, DateTime $JapaneseDateTime): void
     {
         $res = $this->invokeExecuteMethod($JapaneseDate, 'getJanuaryHoliday', ['2000', $JapaneseDateTime->getTimezone()]);
         $this->assertArrayHasKey(1, $res);
@@ -527,7 +527,7 @@ class JapaneseDateTest extends TestCase
      * @return      void
      * @dataProvider createTestObject
      */
-    public function test_getJanuaryHolidayTransferHoliday($JapaneseDate, $JapaneseDateTime): void
+    public function test_getJanuaryHolidayTransferHoliday(JapaneseDate $JapaneseDate, DateTime $JapaneseDateTime): void
     {
         $res = $this->invokeExecuteMethod($JapaneseDate, 'getJanuaryHoliday', ['1978', $JapaneseDateTime->getTimezone()]);
         $this->assertArrayHasKey(2, $res);
@@ -580,7 +580,7 @@ class JapaneseDateTest extends TestCase
      * @return      void
      * @dataProvider createTestObject
      */
-    public function test_getFebruaryHoliday($JapaneseDate, $JapaneseDateTime): void
+    public function test_getFebruaryHoliday(JapaneseDate $JapaneseDate, DateTime $JapaneseDateTime): void
     {
         $res = $this->invokeExecuteMethod($JapaneseDate, 'getFebruaryHoliday', ['2016', $JapaneseDateTime->getTimezone()]);
         $this->assertArrayHasKey(11, $res);
@@ -619,7 +619,7 @@ class JapaneseDateTest extends TestCase
      * @return      void
      * @dataProvider createTestObject
      */
-    public function test_getFebruaryHolidayTransferHoliday($JapaneseDate, $JapaneseDateTime): void
+    public function test_getFebruaryHolidayTransferHoliday(JapaneseDate $JapaneseDate, DateTime $JapaneseDateTime): void
     {
         $res = $this->invokeExecuteMethod($JapaneseDate, 'getFebruaryHoliday', ['1979', $JapaneseDateTime->getTimezone()]);
         $this->assertArrayHasKey(11, $res);
@@ -684,7 +684,7 @@ class JapaneseDateTest extends TestCase
      * @return      void
      * @dataProvider createTestObject
      */
-    public function test_getMarchHoliday($JapaneseDate, $JapaneseDateTime): void
+    public function test_getMarchHoliday(JapaneseDate $JapaneseDate, DateTime $JapaneseDateTime): void
     {
         $res = $this->invokeExecuteMethod($JapaneseDate, 'getMarchHoliday', ['2015', $JapaneseDateTime->getTimezone()]);
         $this->assertArrayHasKey(21, $res);
@@ -700,7 +700,7 @@ class JapaneseDateTest extends TestCase
      * @return      void
      * @dataProvider createTestObject
      */
-    public function test_getMarchHoliday_TransferHoliday($JapaneseDate, $JapaneseDateTime): void
+    public function test_getMarchHoliday_TransferHoliday(JapaneseDate $JapaneseDate, DateTime $JapaneseDateTime): void
     {
         $res = $this->invokeExecuteMethod($JapaneseDate, 'getMarchHoliday', ['1988', $JapaneseDateTime->getTimezone()]);
         $this->assertArrayHasKey(20, $res);
@@ -755,7 +755,7 @@ class JapaneseDateTest extends TestCase
      * @return      void
      * @dataProvider createTestObject
      */
-    public function test_getAprilHoliday($JapaneseDate, $JapaneseDateTime): void
+    public function test_getAprilHoliday(JapaneseDate $JapaneseDate, DateTime $JapaneseDateTime): void
     {
         $res = $this->invokeExecuteMethod($JapaneseDate, 'getAprilHoliday', ['1959', $JapaneseDateTime->getTimezone()]);
         $this->assertArrayHasKey(10, $res);
@@ -785,7 +785,7 @@ class JapaneseDateTest extends TestCase
      * @return      void
      * @dataProvider createTestObject
      */
-    public function test_getAprilHoliday_TransferHoliday($JapaneseDate, $JapaneseDateTime): void
+    public function test_getAprilHoliday_TransferHoliday(JapaneseDate $JapaneseDate, DateTime $JapaneseDateTime): void
     {
         $res = $this->invokeExecuteMethod($JapaneseDate, 'getAprilHoliday', ['1973', $JapaneseDateTime->getTimezone()]);
         $this->assertArrayHasKey(29, $res);
@@ -875,7 +875,7 @@ class JapaneseDateTest extends TestCase
      * @return      void
      * @dataProvider createTestObject
      */
-    public function test_getMayHoliday($JapaneseDate, $JapaneseDateTime): void
+    public function test_getMayHoliday(JapaneseDate $JapaneseDate, DateTime $JapaneseDateTime): void
     {
         $res = $this->invokeExecuteMethod($JapaneseDate, 'getMayHoliday', ['2016', $JapaneseDateTime->getTimezone()]);
         $this->assertArrayHasKey(3, $res);
@@ -916,7 +916,7 @@ class JapaneseDateTest extends TestCase
      * @return      void
      * @dataProvider createTestObject
      */
-    public function test_getMayHoliday_TransferHoliday($JapaneseDate, $JapaneseDateTime): void
+    public function test_getMayHoliday_TransferHoliday(JapaneseDate $JapaneseDate, DateTime $JapaneseDateTime): void
     {
         $res = $this->invokeExecuteMethod($JapaneseDate, 'getMayHoliday', ['2015', $JapaneseDateTime->getTimezone()]);
         $this->assertArrayHasKey(3, $res);
@@ -954,7 +954,7 @@ class JapaneseDateTest extends TestCase
      * @return      void
      * @dataProvider createTestObject
      */
-    public function test_getJuneHoliday($JapaneseDate, $JapaneseDateTime): void
+    public function test_getJuneHoliday(JapaneseDate $JapaneseDate, DateTime $JapaneseDateTime): void
     {
         $res = $this->invokeExecuteMethod($JapaneseDate, 'getJuneHoliday', ['2015', $JapaneseDateTime->getTimezone()]);
         $this->assertCount(0, $res);
@@ -972,7 +972,7 @@ class JapaneseDateTest extends TestCase
      * @return      void
      * @dataProvider createTestObject
      */
-    public function test_getJulyHoliday($JapaneseDate, $JapaneseDateTime): void
+    public function test_getJulyHoliday(JapaneseDate $JapaneseDate, DateTime $JapaneseDateTime): void
     {
         $res = $this->invokeExecuteMethod($JapaneseDate, 'getJulyHoliday', ['1995', $JapaneseDateTime->getTimezone()]);
         $this->assertCount(0, $res);
@@ -1196,7 +1196,7 @@ class JapaneseDateTest extends TestCase
      * @return      void
      * @dataProvider createTestObject
      */
-    public function test_getJulyHoliday_TransferHoliday($JapaneseDate, $JapaneseDateTime): void
+    public function test_getJulyHoliday_TransferHoliday(JapaneseDate $JapaneseDate, DateTime $JapaneseDateTime): void
     {
         $res = $this->invokeExecuteMethod($JapaneseDate, 'getJulyHoliday', ['1997', $JapaneseDateTime->getTimezone()]);
         $this->assertArrayHasKey(20, $res);
@@ -1214,7 +1214,7 @@ class JapaneseDateTest extends TestCase
      * @return      void
      * @dataProvider createTestObject
      */
-    public function test_getAugustHoliday($JapaneseDate, $JapaneseDateTime): void
+    public function test_getAugustHoliday(JapaneseDate $JapaneseDate, DateTime $JapaneseDateTime): void
     {
         $res = $this->invokeExecuteMethod($JapaneseDate, 'getAugustHoliday', ['2015', $JapaneseDateTime->getTimezone()]);
         $this->assertCount(0, $res);
@@ -1243,7 +1243,7 @@ class JapaneseDateTest extends TestCase
      * @return      void
      * @dataProvider createTestObject
      */
-    public function test_getAugustHoliday_TransferHoliday($JapaneseDate, $JapaneseDateTime): void
+    public function test_getAugustHoliday_TransferHoliday(JapaneseDate $JapaneseDate, DateTime $JapaneseDateTime): void
     {
         $res = $this->invokeExecuteMethod($JapaneseDate, 'getAugustHoliday', ['2019', $JapaneseDateTime->getTimezone()]);
         $this->assertArrayHasKey(11, $res);
@@ -1280,7 +1280,7 @@ class JapaneseDateTest extends TestCase
      * @return      void
      * @dataProvider createTestObject
      */
-    public function test_nationalHoliday($JapaneseDate, $JapaneseDateTime): void
+    public function test_nationalHoliday(JapaneseDate $JapaneseDate, DateTime $JapaneseDateTime): void
     {
         $res = $this->invokeExecuteMethod($JapaneseDate, 'getMayHoliday', ['1988', $JapaneseDateTime->getTimezone()]);
         $this->assertArrayHasKey(4, $res);
@@ -1384,7 +1384,7 @@ class JapaneseDateTest extends TestCase
      * @return      void
      * @dataProvider createTestObject
      */
-    public function test_getSeptemberHoliday($JapaneseDate, $JapaneseDateTime): void
+    public function test_getSeptemberHoliday(JapaneseDate $JapaneseDate, DateTime $JapaneseDateTime): void
     {
         $res = $this->invokeExecuteMethod($JapaneseDate, 'getSeptemberHoliday', ['1965', $JapaneseDateTime->getTimezone()]);
         $this->assertArrayHasKey(23, $res);
@@ -1426,7 +1426,7 @@ class JapaneseDateTest extends TestCase
      * @return      void
      * @dataProvider createTestObject
      */
-    public function test_getSeptemberHoliday_TransferHoliday($JapaneseDate, $JapaneseDateTime): void
+    public function test_getSeptemberHoliday_TransferHoliday(JapaneseDate $JapaneseDate, DateTime $JapaneseDateTime): void
     {
         $res = $this->invokeExecuteMethod($JapaneseDate, 'getSeptemberHoliday', ['1974', $JapaneseDateTime->getTimezone()]);
         $this->assertArrayHasKey(15, $res);
@@ -1528,7 +1528,7 @@ class JapaneseDateTest extends TestCase
      * @return      void
      * @dataProvider createTestObject
      */
-    public function test_getOctoberHoliday($JapaneseDate, $JapaneseDateTime): void
+    public function test_getOctoberHoliday(JapaneseDate $JapaneseDate, DateTime $JapaneseDateTime): void
     {
         $res = $this->invokeExecuteMethod($JapaneseDate, 'getOctoberHoliday', ['1965', $JapaneseDateTime->getTimezone()]);
         $this->assertCount(0, $res);
@@ -1565,7 +1565,7 @@ class JapaneseDateTest extends TestCase
      * @return      void
      * @dataProvider createTestObject
      */
-    public function test_getOctoberHoliday_TransferHoliday($JapaneseDate, $JapaneseDateTime): void
+    public function test_getOctoberHoliday_TransferHoliday(JapaneseDate $JapaneseDate, DateTime $JapaneseDateTime): void
     {
         $res = $this->invokeExecuteMethod($JapaneseDate, 'getOctoberHoliday', ['1976', $JapaneseDateTime->getTimezone()]);
         $this->assertArrayHasKey(10, $res);
@@ -1601,7 +1601,7 @@ class JapaneseDateTest extends TestCase
      * @return      void
      * @dataProvider createTestObject
      */
-    public function test_getNovemberHoliday($JapaneseDate, $JapaneseDateTime): void
+    public function test_getNovemberHoliday(JapaneseDate $JapaneseDate, DateTime $JapaneseDateTime): void
     {
         $res = $this->invokeExecuteMethod($JapaneseDate, 'getNovemberHoliday', ['2015', $JapaneseDateTime->getTimezone()]);
         $this->assertArrayHasKey(3, $res);
@@ -1628,7 +1628,7 @@ class JapaneseDateTest extends TestCase
      * @return      void
      * @dataProvider createTestObject
      */
-    public function test_getNovemberHoliday_TransferHoliday($JapaneseDate, $JapaneseDateTime): void
+    public function test_getNovemberHoliday_TransferHoliday(JapaneseDate $JapaneseDate, DateTime $JapaneseDateTime): void
     {
         $res = $this->invokeExecuteMethod($JapaneseDate, 'getNovemberHoliday', ['1974', $JapaneseDateTime->getTimezone()]);
         $this->assertArrayHasKey(3, $res);
@@ -1794,7 +1794,7 @@ class JapaneseDateTest extends TestCase
      * @return      void
      * @dataProvider createTestObject
      */
-    public function test_getDecemberHoliday($JapaneseDate, $JapaneseDateTime): void
+    public function test_getDecemberHoliday(JapaneseDate $JapaneseDate, DateTime $JapaneseDateTime): void
     {
         $res = $this->invokeExecuteMethod($JapaneseDate, 'getDecemberHoliday', ['2015', $JapaneseDateTime->getTimezone()]);
         $this->assertArrayHasKey(23, $res);
@@ -1813,7 +1813,7 @@ class JapaneseDateTest extends TestCase
      * @return      void
      * @dataProvider createTestObject
      */
-    public function test_getDecemberHoliday_TransferHoliday($JapaneseDate, $JapaneseDateTime): void
+    public function test_getDecemberHoliday_TransferHoliday(JapaneseDate $JapaneseDate, DateTime $JapaneseDateTime): void
     {
         $res = $this->invokeExecuteMethod($JapaneseDate, 'getDecemberHoliday', ['1990', $JapaneseDateTime->getTimezone()]);
         $this->assertArrayHasKey(23, $res);
@@ -1857,6 +1857,7 @@ class JapaneseDateTest extends TestCase
         $FakerGenerator = new FakerGenerator();
         $FakerGenerator->addProvider(FakerDateTime::class);
 
+        // noinspection PhpUndefinedMethodInspection
         $test_date_time = $FakerGenerator->dateTime();
 
         $JapaneseDate = new JapaneseDate();
@@ -1877,6 +1878,7 @@ class JapaneseDateTest extends TestCase
         $FakerGenerator = new FakerGenerator();
         $FakerGenerator->addProvider(FakerDateTime::class);
 
+        // noinspection PhpUndefinedMethodInspection
         $test_date_time = $FakerGenerator->dateTime();
 
         $JapaneseDate = new JapaneseDate();

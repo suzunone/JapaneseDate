@@ -3,6 +3,7 @@
 namespace Tests\JapaneseDate\Traits;
 
 use JapaneseDate\Components\Astronomy;
+use JapaneseDate\Components\MeeusMoon;
 use JapaneseDate\DateTime;
 use JapaneseDate\DateTimeImmutable;
 use JapaneseDate\Traits\Algorithm;
@@ -10,6 +11,7 @@ use PHPUnit\Framework\Attributes\CoversMethod;
 use PHPUnit\Framework\Attributes\CoversTrait;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
+use Tests\JapaneseDate\InvokeTrait;
 
 /**
  * Algorithm Trait 経由で天文計算アルゴリズムを変更できることを検証する。
@@ -18,9 +20,14 @@ use PHPUnit\Framework\TestCase;
  * @covers \JapaneseDate\Traits\Algorithm::solarAlgorithm
  * @covers \JapaneseDate\Traits\Algorithm::useMoonAlgorithm
  * @covers \JapaneseDate\Traits\Algorithm::moonAlgorithm
+ * @covers \JapaneseDate\Traits\Algorithm::useBoundarySolarAlgorithm
+ * @covers \JapaneseDate\Traits\Algorithm::boundarySolarAlgorithm
+ * @covers \JapaneseDate\Traits\Algorithm::useBoundaryMoonAlgorithm
+ * @covers \JapaneseDate\Traits\Algorithm::boundaryMoonAlgorithm
  */
 class AlgorithmTest extends TestCase
 {
+    use InvokeTrait;
     /**
      * DateTime 系クラスの一覧を返す。
      *
@@ -39,7 +46,7 @@ class AlgorithmTest extends TestCase
      * @param class-string $class
      * @dataProvider dateTimeClassProvider
      */
-    public function test_useSolarAlgorithmAlias($class): void
+    public function test_useSolarAlgorithmAlias(string $class): void
     {
         try {
             $class::useSolarAlgorithm(Astronomy::SOLAR_VSOP87);
@@ -57,7 +64,7 @@ class AlgorithmTest extends TestCase
      * @param class-string $class
      * @dataProvider dateTimeClassProvider
      */
-    public function test_useMoonAlgorithmAlias($class): void
+    public function test_useMoonAlgorithmAlias(string $class): void
     {
         try {
             $class::useMoonAlgorithm(Astronomy::MOON_ELP2000);
@@ -68,5 +75,87 @@ class AlgorithmTest extends TestCase
             Astronomy::useSolarAlgorithm(Astronomy::SOLAR_LEGACY);
             Astronomy::useMoonAlgorithm(Astronomy::MOON_LEGACY);
         }
+    }
+    /**
+     * MOON_ALGORITHM_MEEUS47 定数経由で meeus47 を選択できることを確認する。
+     *
+     * @param class-string $class
+     * @throws \ReflectionException
+     * @dataProvider dateTimeClassProvider
+     */
+    public function test_useMoonAlgorithmAlias_meeus47(string $class): void
+    {
+        try {
+            $class::useMoonAlgorithm($class::MOON_ALGORITHM_MEEUS47);
+            $this->assertSame(Astronomy::MOON_MEEUS47, $class::moonAlgorithm());
+            $impl = $this->invokeGetProperty(Astronomy::factory(), 'moonAlgorithmImpl');
+            $this->assertInstanceOf(MeeusMoon::class, $impl);
+        } finally {
+            Astronomy::useMoonAlgorithm(Astronomy::MOON_LEGACY);
+            $this->invokeSetProperty(Astronomy::class, 'instances', []);
+        }
+    }
+    /**
+     * MOON_ALGORITHM_MEEUS47_NO_C 定数経由で meeus47_no_c を選択できることを確認する。
+     *
+     * @param class-string $class
+     * @throws \ReflectionException
+     * @dataProvider dateTimeClassProvider
+     */
+    public function test_useMoonAlgorithmAlias_meeus47_no_c(string $class): void
+    {
+        try {
+            $class::useMoonAlgorithm($class::MOON_ALGORITHM_MEEUS47_NO_C);
+            $this->assertSame(Astronomy::MOON_MEEUS47_NO_C, $class::moonAlgorithm());
+            $impl = $this->invokeGetProperty(Astronomy::factory(), 'moonAlgorithmImpl');
+            $this->assertInstanceOf(MeeusMoon::class, $impl);
+        } finally {
+            Astronomy::useMoonAlgorithm(Astronomy::MOON_LEGACY);
+            $this->invokeSetProperty(Astronomy::class, 'instances', []);
+        }
+    }
+    /**
+     * DateTime 系クラス経由で境界太陽アルゴリズムを変更できることを確認する。
+     *
+     * @param class-string $class
+     * @dataProvider dateTimeClassProvider
+     */
+    public function test_useBoundarySolarAlgorithmAlias(string $class): void
+    {
+        try {
+            $class::useBoundarySolarAlgorithm(Astronomy::SOLAR_LEGACY);
+
+            $this->assertSame(Astronomy::SOLAR_LEGACY, $class::boundarySolarAlgorithm());
+            $this->assertSame(Astronomy::SOLAR_LEGACY, Astronomy::boundarySolarAlgorithm());
+        } finally {
+            Astronomy::useBoundarySolarAlgorithm(Astronomy::SOLAR_VSOP87);
+        }
+    }
+    /**
+     * DateTime 系クラス経由で境界月アルゴリズムを変更できることを確認する。
+     *
+     * @param class-string $class
+     * @dataProvider dateTimeClassProvider
+     */
+    public function test_useBoundaryMoonAlgorithmAlias(string $class): void
+    {
+        try {
+            $class::useBoundaryMoonAlgorithm(Astronomy::MOON_LEGACY);
+
+            $this->assertSame(Astronomy::MOON_LEGACY, $class::boundaryMoonAlgorithm());
+            $this->assertSame(Astronomy::MOON_LEGACY, Astronomy::boundaryMoonAlgorithm());
+        } finally {
+            Astronomy::useBoundaryMoonAlgorithm(Astronomy::MOON_ELP2000);
+        }
+    }
+    /**
+     * DateTime / DateTimeImmutable に公開定数が正しく定義されていることを確認する。
+     */
+    public function test_publicConstantsAreExposed(): void
+    {
+        $this->assertSame('meeus47', DateTime::MOON_ALGORITHM_MEEUS47);
+        $this->assertSame('meeus47', DateTimeImmutable::MOON_ALGORITHM_MEEUS47);
+        $this->assertSame('meeus47_no_c', DateTime::MOON_ALGORITHM_MEEUS47_NO_C);
+        $this->assertSame('meeus47_no_c', DateTimeImmutable::MOON_ALGORITHM_MEEUS47_NO_C);
     }
 }

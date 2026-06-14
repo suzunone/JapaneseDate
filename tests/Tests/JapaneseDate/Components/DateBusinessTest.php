@@ -1,7 +1,5 @@
 <?php
 
-/** @noinspection PhpUnhandledExceptionInspection */
-
 /**
  * DateBusiness クラスのテスト
  */
@@ -15,10 +13,21 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
 /**
+ * @category    Tests
+ * @package     JapaneseDate
+ * @subpackage  Tests
+ * @author      Suzunone <suzunone.eleven@gmail.com>
+ * @copyright   JapaneseDate
+ * @license     BSD-2
+ * @link        https://github.com/suzunone/JapaneseDate
+ * @see         https://github.com/suzunone/JapaneseDate
  * @covers \JapaneseDate\DateBusiness
  */
 class DateBusinessTest extends TestCase
 {
+    /**
+     * @return void
+     */
     public function test_setClosingWeekdays_and_getClosingWeekdays(): void
     {
         $db = new DateBusiness();
@@ -27,6 +36,9 @@ class DateBusinessTest extends TestCase
         $this->assertArrayHasKey(6, $db->getClosingWeekdays());
         $this->assertArrayNotHasKey(1, $db->getClosingWeekdays());
     }
+    /**
+     * @return void
+     */
     public function test_addClosingWeekday_and_removeClosingWeekday(): void
     {
         $db = new DateBusiness();
@@ -35,6 +47,9 @@ class DateBusinessTest extends TestCase
         $db->removeClosingWeekday(6);
         $this->assertArrayNotHasKey(6, $db->getClosingWeekdays());
     }
+    /**
+     * @return void
+     */
     public function test_setBypassHoliday_and_isBypassHoliday(): void
     {
         $db = new DateBusiness();
@@ -44,6 +59,9 @@ class DateBusinessTest extends TestCase
         $db->setBypassHoliday(true);
         $this->assertTrue($db->isBypassHoliday());
     }
+    /**
+     * @return void
+     */
     public function test_addOpenNthWeekday_and_removeOpenNthWeekday(): void
     {
         $db = new DateBusiness();
@@ -52,6 +70,9 @@ class DateBusinessTest extends TestCase
         $db->removeOpenNthWeekday(6, 2);
         $this->assertArrayNotHasKey('6_2', $db->getOpenNthWeekdays());
     }
+    /**
+     * @return void
+     */
     public function test_addClosingNthWeekday_and_removeClosingNthWeekday(): void
     {
         $db = new DateBusiness();
@@ -61,6 +82,10 @@ class DateBusinessTest extends TestCase
         $db->removeClosingNthWeekday(3, 3);
         $this->assertArrayNotHasKey('3_3', $db->getClosingNthWeekdays());
     }
+    /**
+     * @return void
+     * @throws \Exception
+     */
     public function test_addOpenDate_and_removeOpenDate(): void
     {
         $db = new DateBusiness();
@@ -69,6 +94,10 @@ class DateBusinessTest extends TestCase
         $db->removeOpenDate('2026-12-30');
         $this->assertArrayNotHasKey('20261230', $db->getOpenDates());
     }
+    /**
+     * @return void
+     * @throws \Exception
+     */
     public function test_addOpenDate_with_DateTimeInterface(): void
     {
         $db = new DateBusiness();
@@ -76,6 +105,10 @@ class DateBusinessTest extends TestCase
         $db->addOpenDate($dt);
         $this->assertArrayHasKey('20261230', $db->getOpenDates());
     }
+    /**
+     * @return void
+     * @throws \Exception
+     */
     public function test_addClosingDate_and_removeClosingDate(): void
     {
         $db = new DateBusiness();
@@ -85,6 +118,10 @@ class DateBusinessTest extends TestCase
         $db->removeClosingDate('2026-08-15');
         $this->assertArrayNotHasKey('20260815', $db->getClosingDates());
     }
+    /**
+     * @return void
+     * @throws \Exception
+     */
     public function test_addClosingDate_with_DateTimeInterface(): void
     {
         $db = new DateBusiness();
@@ -92,55 +129,67 @@ class DateBusinessTest extends TestCase
         $db->addClosingDate($dt, '夏期休暇');
         $this->assertArrayHasKey('20260815', $db->getClosingDates());
     }
+    /**
+     * @return void
+     * @throws \Exception
+     */
     public function test_addClosingDate_null_label(): void
     {
         $db = new DateBusiness();
         $db->addClosingDate('2026-08-15');
         $this->assertNull($db->getClosingDates()['20260815']);
     }
+    /**
+     * @return void
+     */
     public function test_addOpenFilter_and_getOpenFilters(): void
     {
         $db = new DateBusiness();
-        $filter = function (DateTimeInterface $d) {
-            return $d->format('d') === '10';
-        };
+        $filter = fn (DateTimeInterface $d) => $d->format('d') === '10';
         $db->addOpenFilter($filter);
         $this->assertCount(1, $db->getOpenFilters());
         $this->assertSame($filter, $db->getOpenFilters()[0]);
     }
+    /**
+     * @return void
+     */
     public function test_addClosingFilter_and_getClosingFilters(): void
     {
         $db = new DateBusiness();
-        $filter = function (DateTimeInterface $d) {
-            return $d->format('md') === '1231';
-        };
+        $filter = fn (DateTimeInterface $d) => $d->format('md') === '1231';
         $db->addClosingFilter($filter, '大晦日');
         $filters = $db->getClosingFilters();
         $this->assertCount(1, $filters);
         $this->assertSame($filter, $filters[0]['filter']);
         $this->assertSame('大晦日', $filters[0]['label']);
     }
+    /**
+     * @return void
+     */
     public function test_addClosingFilter_null_label(): void
     {
         $db = new DateBusiness();
-        $filter = function (DateTimeInterface $d) {
-            return false;
-        };
+        $filter = fn (DateTimeInterface $d) => false;
         $db->addClosingFilter($filter);
         $this->assertNull($db->getClosingFilters()[0]['label']);
     }
+    /**
+     * @return void
+     */
     public function test_setMacro_and_getMacro(): void
     {
         $db = new DateBusiness();
         $this->assertNull($db->getMacro());
-        $macro = function (DateTimeInterface $d) {
-            return true;
-        };
+        $macro = fn (DateTimeInterface $d) => true;
         $db->setMacro($macro);
         $this->assertSame($macro, $db->getMacro());
         $db->setMacro(null);
         $this->assertNull($db->getMacro());
     }
+    /**
+     * @return void
+     * @throws \Exception
+     */
     public function test_reset(): void
     {
         $db = new DateBusiness();
@@ -150,15 +199,9 @@ class DateBusinessTest extends TestCase
             ->addOpenDate('2026-12-30')
             ->addOpenNthWeekday(6, 2)
             ->addClosingNthWeekday(3, 3)
-            ->addOpenFilter(function ($d) {
-                return true;
-            })
-            ->addClosingFilter(function ($d) {
-                return false;
-            })
-            ->setMacro(function ($d) {
-                return true;
-            });
+            ->addOpenFilter(fn ($d) => true)
+            ->addClosingFilter(fn ($d) => false)
+            ->setMacro(fn ($d) => true);
 
         $db->reset();
 
@@ -172,6 +215,10 @@ class DateBusinessTest extends TestCase
         $this->assertEmpty($db->getClosingFilters());
         $this->assertNull($db->getMacro());
     }
+    /**
+     * @return void
+     * @throws \Exception
+     */
     public function test_fluent_interface_returns_static(): void
     {
         $db = new DateBusiness();
@@ -187,12 +234,8 @@ class DateBusinessTest extends TestCase
             ->removeOpenDate('2026-01-01')
             ->addClosingDate('2026-08-15')
             ->removeClosingDate('2026-08-15')
-            ->addOpenFilter(function ($d) {
-                return true;
-            })
-            ->addClosingFilter(function ($d) {
-                return false;
-            })
+            ->addOpenFilter(fn ($d) => true)
+            ->addClosingFilter(fn ($d) => false)
             ->setMacro(null)
             ->reset();
 

@@ -27,9 +27,9 @@ use JapaneseDate\DateTime;
  *
  * 南北朝時代（1331年〜1392年）は北朝・南朝の元号が並存するため、
  * 同一期間に複数のエントリが存在します。
- * `court` キーで {@see \JapaneseDate\DateTime::COURT_NORTH}・
- * {@see \JapaneseDate\DateTime::COURT_SOUTH}・
- * {@see \JapaneseDate\DateTime::COURT_MAIN} を区別します。
+ * `court` キーで {@see DateTime::COURT_NORTH}・
+ * {@see DateTime::COURT_SOUTH}・
+ * {@see DateTime::COURT_MAIN} を区別します。
  *
  * @category    DateTime
  * @package     JapaneseDate
@@ -55,7 +55,7 @@ class HistoricalEraMap extends Map
      *
      * @var array<int, array<string, string>>
      */
-    protected $map = [
+    protected array $map = [
         ['start' => '645-07-29T00:00:00+09:00', 'end' => '650-03-22T00:00:00+09:00', 'name' => '大化', 'kana' => 'タイカ', 'court' => Datetime::COURT_MAIN],
         ['start' => '650-03-22T00:00:00+09:00', 'end' => '655-02-11T00:00:00+09:00', 'name' => '白雉', 'kana' => 'ハクチ', 'court' => Datetime::COURT_MAIN],
         ['start' => '686-08-14T00:00:00+09:00', 'end' => '687-02-17T00:00:00+09:00', 'name' => '朱鳥', 'kana' => 'シュチョウ', 'court' => Datetime::COURT_MAIN],

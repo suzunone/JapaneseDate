@@ -1,8 +1,5 @@
 <?php
 
-/** @noinspection PhpDocMissingThrowsInspection */
-/** @noinspection PhpUnhandledExceptionInspection */
-
 /**
  * SeasonalFestival コンポーネントのテスト
  *
@@ -53,6 +50,9 @@ class SeasonalFestivalTest extends TestCase
     // =========================================================================
     // ファクトリー・定数テスト
     // =========================================================================
+    /**
+     * @return array[]
+     */
     public static function viewNameProvider(): array
     {
         return [
@@ -65,6 +65,9 @@ class SeasonalFestivalTest extends TestCase
             '存在しないキー' => [999, ''],
         ];
     }
+    /**
+     * @return array[]
+     */
     public static function viewAliasProvider(): array
     {
         return [
@@ -77,6 +80,9 @@ class SeasonalFestivalTest extends TestCase
             '存在しないキー' => [999, ''],
         ];
     }
+    /**
+     * @return array[]
+     */
     public static function solarFestivalProvider(): array
     {
         return [
@@ -92,6 +98,9 @@ class SeasonalFestivalTest extends TestCase
     // =========================================================================
     // viewName / viewAlias ユーティリティテスト
     // =========================================================================
+    /**
+     * @return array[]
+     */
     public static function lunarFestivalProvider(): array
     {
         return [
@@ -149,7 +158,7 @@ class SeasonalFestivalTest extends TestCase
      * @param string $expected 期待する式名
      * @dataProvider viewNameProvider
      */
-    public function test_viewName($key, $expected): void
+    public function test_viewName(int $key, string $expected): void
     {
         $festival = SeasonalFestival::factory();
         $this->assertSame($expected, $festival->viewName($key));
@@ -161,7 +170,7 @@ class SeasonalFestivalTest extends TestCase
      * @param string $expected 期待する別名
      * @dataProvider viewAliasProvider
      */
-    public function test_viewAlias($key, $expected): void
+    public function test_viewAlias(int $key, string $expected): void
     {
         $festival = SeasonalFestival::factory();
         $this->assertSame($expected, $festival->viewAlias($key));
@@ -173,7 +182,7 @@ class SeasonalFestivalTest extends TestCase
      * @param int $expected 期待する五節句定数
      * @dataProvider solarFestivalProvider
      */
-    public function test_getSolarFestivalKey($date, $expected): void
+    public function test_getSolarFestivalKey(string $date, int $expected): void
     {
         $festival = SeasonalFestival::factory();
         $this->assertSame($expected, $festival->getSolarFestivalKey(DateTime::parse($date)));
@@ -221,7 +230,7 @@ class SeasonalFestivalTest extends TestCase
      * @param int $expected 期待する五節句定数
      * @dataProvider lunarFestivalProvider
      */
-    public function test_getLunarFestivalKey($date, $expected): void
+    public function test_getLunarFestivalKey(string $date, int $expected): void
     {
         $festival = SeasonalFestival::factory();
         $result = $festival->getLunarFestivalKey(DateTime::parse($date));

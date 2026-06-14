@@ -31,7 +31,7 @@ trait Algorithm
      * @return void
      * @throws \InvalidArgumentException 未対応の太陽アルゴリズムが指定された場合
      */
-    public static function useSolarAlgorithm($algorithm): void
+    public static function useSolarAlgorithm(string $algorithm): void
     {
         Astronomy::useSolarAlgorithm($algorithm);
     }
@@ -53,7 +53,7 @@ trait Algorithm
      * @return void
      * @throws \InvalidArgumentException 未対応の月アルゴリズムが指定された場合
      */
-    public static function useMoonAlgorithm($algorithm): void
+    public static function useMoonAlgorithm(string $algorithm): void
     {
         Astronomy::useMoonAlgorithm($algorithm);
     }
@@ -66,5 +66,49 @@ trait Algorithm
     public static function moonAlgorithm(): string
     {
         return Astronomy::moonAlgorithm();
+    }
+
+    /**
+     * 日付境界計算で使用する太陽黄経アルゴリズムを設定する。
+     *
+     * @param string $algorithm 太陽アルゴリズム
+     * @return void
+     * @throws \InvalidArgumentException 未対応の太陽アルゴリズムが指定された場合
+     */
+    public static function useBoundarySolarAlgorithm(string $algorithm): void
+    {
+        Astronomy::useBoundarySolarAlgorithm($algorithm);
+    }
+
+    /**
+     * 現在の日付境界計算用太陽黄経アルゴリズムを返す。
+     *
+     * @return string 太陽アルゴリズム
+     */
+    public static function boundarySolarAlgorithm(): string
+    {
+        return Astronomy::boundarySolarAlgorithm();
+    }
+
+    /**
+     * 日付境界計算で使用する月黄経アルゴリズムを設定する。
+     *
+     * @param string $algorithm 月アルゴリズム
+     * @return void
+     * @throws \InvalidArgumentException 未対応の月アルゴリズムが指定された場合
+     */
+    public static function useBoundaryMoonAlgorithm(string $algorithm): void
+    {
+        Astronomy::useBoundaryMoonAlgorithm($algorithm);
+    }
+
+    /**
+     * 現在の日付境界計算用月黄経アルゴリズムを返す。
+     *
+     * @return string 月アルゴリズム
+     */
+    public static function boundaryMoonAlgorithm(): string
+    {
+        return Astronomy::boundaryMoonAlgorithm();
     }
 }

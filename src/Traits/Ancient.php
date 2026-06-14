@@ -46,7 +46,7 @@ trait Ancient
     /**
      * 自身の日付に対応する歴史的元号を返す。
      *
-     * {@see \JapaneseDate\Components\HistoricalEra} を呼び出し、
+     * {@see HistoricalEra} を呼び出し、
      * 大化以降に制定されたすべての元号（南北朝の並存元号を含む）を
      * {@see \JapaneseDate\Values\Era} バリューオブジェクトの配列として返します。
      * 大化以前など元号が存在しない日付の場合は空配列を返します。

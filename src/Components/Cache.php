@@ -27,7 +27,7 @@ use JapaneseDate\CacheMode;
  *
  * 旧暦や二十四節気など、同じ入力に対して繰り返し実行されやすい重い計算を
  * {@see forever()} 経由で保存し、次回以降の計算負荷を抑えます。
- * キャッシュ方式は {@see \JapaneseDate\CacheMode} の定数で切り替えられます。
+ * キャッシュ方式は {@see CacheMode} の定数で切り替えられます。
  *
  * **対応するキャッシュ方式:**
  * - `MODE_NONE` — キャッシュせず毎回クロージャを実行
@@ -55,24 +55,24 @@ class Cache extends CacheMode
      *
      * @var int
      */
-    protected static $mode = 1;
+    protected static int $mode = 1;
 
     /**
      * @var ?Closure
      */
-    protected static $cache_closure;
+    protected static ?Closure $cache_closure = null;
 
     /**
      * @var string|null
      */
-    protected static $cache_file_path;
+    protected static ?string $cache_file_path = null;
 
     /**
      * キャッシュデータ
      *
      * @var array
      */
-    protected static $cache = [];
+    protected static array $cache = [];
 
     /**
      * 永続キャッシュ
@@ -81,7 +81,7 @@ class Cache extends CacheMode
      * @param Closure $function
      * @return mixed
      */
-    public static function forever($cache_name, $function)
+    public static function forever(string $cache_name, Closure $function): mixed
     {
         if (static::$mode === static::MODE_NONE) {
             return $function();
@@ -121,7 +121,7 @@ class Cache extends CacheMode
      * @param Closure $function
      * @return mixed
      */
-    protected static function apcForever($cache_name, $function)
+    protected static function apcForever(string $cache_name, Closure $function): mixed
     {
         if (!(function_exists('apcu_fetch') && function_exists('apcu_add'))) {
             return $function();
@@ -147,7 +147,7 @@ class Cache extends CacheMode
      * @param Closure $function
      * @return mixed
      */
-    protected static function fileForever($cache_name, $function)
+    protected static function fileForever(string $cache_name, Closure $function): mixed
     {
         $cache_name_path = realpath(static::$cache_file_path) . DIRECTORY_SEPARATOR . sha1($cache_name);
 
@@ -167,7 +167,7 @@ class Cache extends CacheMode
      *
      * @param int $mode
      */
-    public static function setMode($mode): void
+    public static function setMode(int $mode): void
     {
         static::$mode = $mode;
     }
@@ -177,7 +177,7 @@ class Cache extends CacheMode
      *
      * @param string $cache_file_path
      */
-    public static function setCacheFilePath($cache_file_path): void
+    public static function setCacheFilePath(string $cache_file_path): void
     {
         static::$mode = static::MODE_FILE;
         static::$cache_file_path = $cache_file_path;
@@ -188,7 +188,7 @@ class Cache extends CacheMode
      *
      * @param Closure $function
      */
-    public static function setCacheClosure($function): void
+    public static function setCacheClosure(Closure $function): void
     {
         static::$mode = static::MODE_ORIGINAL;
         static::$cache_closure = $function;

@@ -47,11 +47,18 @@ use JapaneseDate\DateTime;
 class JisEra
 {
     /**
+     * Era のシングルトンインスタンス。
+     *
+     * @var static|null
+     */
+    protected static ?self $instance = null;
+
+    /**
      * 元号定数と元号名文字列のマップ。
      *
      * @var array<int, string>
      */
-    protected $eraNames = [
+    protected array $eraNames = [
         DateTime::ERA_MEIJI => '明治',
         DateTime::ERA_TAISHO => '大正',
         DateTime::ERA_SHOWA => '昭和',
@@ -65,7 +72,7 @@ class JisEra
      *
      * @var array<int, int>
      */
-    protected $eraStartYears = [
+    protected array $eraStartYears = [
         DateTime::ERA_MEIJI => 1868,
         DateTime::ERA_TAISHO => 1912,
         DateTime::ERA_SHOWA => 1926,
@@ -81,7 +88,7 @@ class JisEra
      *
      * @var array<string, int>
      */
-    protected $eraParseBaseYears = [
+    protected array $eraParseBaseYears = [
         '明治' => 1867,
         '大正' => 1911,
         '昭和' => 1925,
@@ -99,28 +106,7 @@ class JisEra
      *
      * @var array<int, int>
      */
-    protected $eraStartTimestamps = [];
-
-    /**
-     * Era のシングルトンインスタンス。
-     *
-     * @var static|null
-     */
-    protected static $instance;
-
-    /**
-     * Era コンポーネントのファクトリメソッド。
-     *
-     * @return static
-     */
-    public static function factory()
-    {
-        if (static::$instance === null) {
-            static::$instance = new static();
-        }
-
-        return static::$instance;
-    }
+    protected array $eraStartTimestamps = [];
 
     /**
      * Era コンストラクタ。
@@ -144,14 +130,28 @@ class JisEra
     }
 
     /**
+     * Era コンポーネントのファクトリメソッド。
+     *
+     * @return static
+     */
+    public static function factory(): static
+    {
+        if (static::$instance === null) {
+            static::$instance = new static();
+        }
+
+        return static::$instance;
+    }
+
+    /**
      * 指定した日付が属する近代元号の定数を返します。
      *
      * 日付のタイムスタンプと各元号開始日時のタイムスタンプを比較して判定します。
      *
      * @param DateTimeInterface $date 判定対象の日付
-     * @return int 元号定数（{@see \JapaneseDate\DateTime::ERA_MEIJI} ～ {@see \JapaneseDate\DateTime::ERA_REIWA}）
+     * @return int 元号定数（{@see DateTime::ERA_MEIJI} ～ {@see DateTime::ERA_REIWA}）
      */
-    public function getEraKey($date): int
+    public function getEraKey(DateTimeInterface $date): int
     {
         $ts = $date->getTimestamp();
 
@@ -183,7 +183,7 @@ class JisEra
      * @param int $eraKey 元号定数
      * @return int 元号年（1始まりの正整数）
      */
-    public function getEraYear($gregorianYear, $eraKey): int
+    public function getEraYear(int $gregorianYear, int $eraKey): int
     {
         return $gregorianYear - $this->eraStartYears[$eraKey] + 1;
     }
@@ -194,7 +194,7 @@ class JisEra
      * @param int $eraKey 元号定数
      * @return string 元号名（「明治」「大正」「昭和」「平成」「令和」のいずれか）。未知のキーは空文字列。
      */
-    public function getEraNameString($eraKey): string
+    public function getEraNameString(int $eraKey): string
     {
         return $this->eraNames[$eraKey] ?? '';
     }
@@ -212,9 +212,8 @@ class JisEra
      *
      * @param string $date_str パースする日付文字列
      * @return int|float|null Unix タイムスタンプ（マイクロ秒がある場合は float）、解析失敗時は null
-     * @param \DateTimeZone|null $default_timezone
      */
-    public function parseJisDate($date_str, $default_timezone = null)
+    public function parseJisDate(string $date_str, ?DateTimeZone $default_timezone = null): int|float|null
     {
         $date_str = trim($date_str);
         $japaneseTimezone = new DateTimeZone('Asia/Tokyo');
@@ -225,7 +224,16 @@ class JisEra
             $date_str = preg_replace('/\.\d{1,6}\s*$/', '', $date_str);
         }
 
-        $createTimestamp = static function (int $year, int $month, int $day, int $hour, int $minute, int $second, DateTimeZone $timezone) use ($microtime): ?float {
+        $parseComponents = static fn (array $matches): array => [
+            (int) $matches[1],
+            (int) $matches[2],
+            (int) $matches[3],
+            isset($matches[4]) && $matches[4] !== '' ? (int) $matches[4] : 0,
+            isset($matches[5]) && $matches[5] !== '' ? (int) $matches[5] : 0,
+            isset($matches[6]) && $matches[6] !== '' ? (int) $matches[6] : 0,
+        ];
+
+        $createTimestamp = static function (int $year, int $month, int $day, int $hour, int $minute, int $second, DateTimeZone $timezone) use ($microtime): float|null {
             $date = DateTimeImmutable::createFromFormat(
                 '!Y-m-d H:i:s',
                 sprintf('%04d-%02d-%02d %02d:%02d:%02d', $year, $month, $day, $hour, $minute, $second),
@@ -242,29 +250,16 @@ class JisEra
 
         if (preg_match('/^(\d{4})[-\/](\d{1,2})[-\/](\d{1,2})(?:[ T](\d{1,2}):(\d{1,2})(?::(\d{1,2}))?)?$/', $date_str, $matches) === 1) {
             $tz = $default_timezone ?? $japaneseTimezone;
+            [$year, $month, $day, $hour, $minute, $second] = $parseComponents($matches);
 
-            return $createTimestamp(
-                (int) $matches[1],
-                (int) $matches[2],
-                (int) $matches[3],
-                isset($matches[4]) && $matches[4] !== '' ? (int) $matches[4] : 0,
-                isset($matches[5]) && $matches[5] !== '' ? (int) $matches[5] : 0,
-                isset($matches[6]) && $matches[6] !== '' ? (int) $matches[6] : 0,
-                $tz
-            );
+            return $createTimestamp($year, $month, $day, $hour, $minute, $second, $tz);
         }
 
         $timePattern = '(?:\s+(\d{1,2})時(\d{1,2})分(?:(\d{1,2})秒)?)?';
         if (preg_match('/^(\d{4})年(\d{1,2})月(\d{1,2})日' . $timePattern . '$/u', $date_str, $matches) === 1) {
-            return $createTimestamp(
-                (int) $matches[1],
-                (int) $matches[2],
-                (int) $matches[3],
-                isset($matches[4]) && $matches[4] !== '' ? (int) $matches[4] : 0,
-                isset($matches[5]) && $matches[5] !== '' ? (int) $matches[5] : 0,
-                isset($matches[6]) && $matches[6] !== '' ? (int) $matches[6] : 0,
-                $japaneseTimezone
-            );
+            [$year, $month, $day, $hour, $minute, $second] = $parseComponents($matches);
+
+            return $createTimestamp($year, $month, $day, $hour, $minute, $second, $japaneseTimezone);
         }
 
         if (preg_match('/^(明治|大正|昭和|平成|令和)(\d{1,2})年(\d{1,2})月(\d{1,2})日' . $timePattern . '$/u', $date_str, $matches) === 1) {

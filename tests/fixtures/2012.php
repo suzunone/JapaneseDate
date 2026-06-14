@@ -1,28 +1,30 @@
 <?php
-// Source data for principal phases (new moon, first quarter, full moon, last quarter):
-// https://eco.mtk.nao.ac.jp/koyomi/yoko/2012/rekiyouXXX.html
-// Source data for intermediate phases (waxing crescent, waxing gibbous, waning gibbous, waning crescent):
+
+// Source data:
 // https://svs.gsfc.nasa.gov/3894/
 // https://svs.gsfc.nasa.gov/vis/a000000/a003800/a003894/mooninfo_2012.json
+// https://eco.mtk.nao.ac.jp/koyomi/yoko/2012/rekiyou121.html
+// https://eco.mtk.nao.ac.jp/koyomi/yoko/2012/rekiyou122.html
+// https://eco.mtk.nao.ac.jp/koyomi/yoko/2012/rekiyou123.html
 
 return array (
-  '2012-01-01 00:00:00' => 
+  '2012-01-01 09:00:00' =>
   array (
-    0 => '2012-01-01 00:00:00',
-    1 => 
+    0 => '2012-01-01 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 1,
       'day' => 1,
       'dayOfWeek' => 0,
       'dayOfYear' => 1,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1325343600,
-      'formatted' => '2012-01-01 00:00:00',
-      'timezone' => 
+      'timestamp' => 1325376000,
+      'formatted' => '2012-01-01 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -58,16 +60,16 @@ return array (
       'lunar_year' => 2011,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 7.244595986790955,
-      'moon_phase_angle' => 83.03176636360183,
+      'moon_age' => 7.246,
+      'moon_phase_angle' => 84.14904758485557,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2012-01-01 15:00:00' => 
+  '2012-01-01 15:15:00' =>
   array (
-    0 => '2012-01-01 15:00:00',
-    1 => 
+    0 => '2012-01-01 15:15:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 1,
@@ -75,12 +77,12 @@ return array (
       'dayOfWeek' => 0,
       'dayOfYear' => 1,
       'hour' => 15,
-      'minute' => 0,
+      'minute' => 15,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1325397600,
-      'formatted' => '2012-01-01 15:00:00',
-      'timezone' => 
+      'timestamp' => 1325398500,
+      'formatted' => '2012-01-01 15:15:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -116,29 +118,29 @@ return array (
       'lunar_year' => 2011,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 7.8691196059808135,
-      'moon_phase_angle' => 89.88600531726411,
+      'moon_age' => 7.5062500000000005,
+      'moon_phase_angle' => 87.0071436917072,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2012-01-02 00:00:00' => 
+  '2012-01-02 09:00:00' =>
   array (
-    0 => '2012-01-02 00:00:00',
-    1 => 
+    0 => '2012-01-02 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 1,
       'day' => 2,
       'dayOfWeek' => 1,
       'dayOfYear' => 2,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1325430000,
-      'formatted' => '2012-01-02 00:00:00',
-      'timezone' => 
+      'timestamp' => 1325462400,
+      'formatted' => '2012-01-02 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -174,29 +176,29 @@ return array (
       'lunar_year' => 2011,
       'lunar_day' => 9,
       'is_leap_month' => false,
-      'moon_age' => 8.24382497323677,
-      'moon_phase_angle' => 93.97118773903719,
+      'moon_age' => 8.246,
+      'moon_phase_angle' => 95.07024276799285,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-01-03 00:00:00' => 
+  '2012-01-03 09:00:00' =>
   array (
-    0 => '2012-01-03 00:00:00',
-    1 => 
+    0 => '2012-01-03 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 1,
       'day' => 3,
       'dayOfWeek' => 2,
       'dayOfYear' => 3,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1325516400,
-      'formatted' => '2012-01-03 00:00:00',
-      'timezone' => 
+      'timestamp' => 1325548800,
+      'formatted' => '2012-01-03 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -232,29 +234,29 @@ return array (
       'lunar_year' => 2011,
       'lunar_day' => 10,
       'is_leap_month' => false,
-      'moon_age' => 9.24303838191554,
-      'moon_phase_angle' => 104.80301156644384,
+      'moon_age' => 9.246,
+      'moon_phase_angle' => 105.89427218729597,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-01-04 00:00:00' => 
+  '2012-01-04 09:00:00' =>
   array (
-    0 => '2012-01-04 00:00:00',
-    1 => 
+    0 => '2012-01-04 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 1,
       'day' => 4,
       'dayOfWeek' => 3,
       'dayOfYear' => 4,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1325602800,
-      'formatted' => '2012-01-04 00:00:00',
-      'timezone' => 
+      'timestamp' => 1325635200,
+      'formatted' => '2012-01-04 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -290,29 +292,29 @@ return array (
       'lunar_year' => 2011,
       'lunar_day' => 11,
       'is_leap_month' => false,
-      'moon_age' => 10.24227627273649,
-      'moon_phase_angle' => 115.61094607840852,
+      'moon_age' => 10.246,
+      'moon_phase_angle' => 116.70470322007651,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-01-05 00:00:00' => 
+  '2012-01-05 09:00:00' =>
   array (
-    0 => '2012-01-05 00:00:00',
-    1 => 
+    0 => '2012-01-05 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 1,
       'day' => 5,
       'dayOfWeek' => 4,
       'dayOfYear' => 5,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1325689200,
-      'formatted' => '2012-01-05 00:00:00',
-      'timezone' => 
+      'timestamp' => 1325721600,
+      'formatted' => '2012-01-05 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -348,29 +350,29 @@ return array (
       'lunar_year' => 2011,
       'lunar_day' => 12,
       'is_leap_month' => false,
-      'moon_age' => 11.24159662052989,
-      'moon_phase_angle' => 126.47577531405403,
+      'moon_age' => 11.246,
+      'moon_phase_angle' => 127.58152476158261,
       'moon_phase' => 3,
       'moon_phase_text' => '十三夜',
     ),
   ),
-  '2012-01-06 00:00:00' => 
+  '2012-01-06 09:00:00' =>
   array (
-    0 => '2012-01-06 00:00:00',
-    1 => 
+    0 => '2012-01-06 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 1,
       'day' => 6,
       'dayOfWeek' => 5,
       'dayOfYear' => 6,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1325775600,
-      'formatted' => '2012-01-06 00:00:00',
-      'timezone' => 
+      'timestamp' => 1325808000,
+      'formatted' => '2012-01-06 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -406,29 +408,29 @@ return array (
       'lunar_year' => 2011,
       'lunar_day' => 13,
       'is_leap_month' => false,
-      'moon_age' => 12.241005079820752,
-      'moon_phase_angle' => 137.47113251630287,
+      'moon_age' => 12.246,
+      'moon_phase_angle' => 138.59719388590673,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-01-07 00:00:00' => 
+  '2012-01-07 09:00:00' =>
   array (
-    0 => '2012-01-07 00:00:00',
-    1 => 
+    0 => '2012-01-07 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 1,
       'day' => 7,
       'dayOfWeek' => 6,
       'dayOfYear' => 7,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1325862000,
-      'formatted' => '2012-01-07 00:00:00',
-      'timezone' => 
+      'timestamp' => 1325894400,
+      'formatted' => '2012-01-07 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -464,29 +466,29 @@ return array (
       'lunar_year' => 2011,
       'lunar_day' => 14,
       'is_leap_month' => false,
-      'moon_age' => 13.240541927982122,
-      'moon_phase_angle' => 148.65955862232835,
+      'moon_age' => 13.246,
+      'moon_phase_angle' => 149.81283713924483,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-01-08 00:00:00' => 
+  '2012-01-08 09:00:00' =>
   array (
-    0 => '2012-01-08 00:00:00',
-    1 => 
+    0 => '2012-01-08 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 1,
       'day' => 8,
       'dayOfWeek' => 0,
       'dayOfYear' => 8,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1325948400,
-      'formatted' => '2012-01-08 00:00:00',
-      'timezone' => 
+      'timestamp' => 1325980800,
+      'formatted' => '2012-01-08 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -522,29 +524,29 @@ return array (
       'lunar_year' => 2011,
       'lunar_day' => 15,
       'is_leap_month' => false,
-      'moon_age' => 14.240212810225785,
-      'moon_phase_angle' => 160.08883395577539,
+      'moon_age' => 14.246,
+      'moon_phase_angle' => 161.2744509716419,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-01-09 00:00:00' => 
+  '2012-01-09 09:00:00' =>
   array (
-    0 => '2012-01-09 00:00:00',
-    1 => 
+    0 => '2012-01-09 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 1,
       'day' => 9,
       'dayOfWeek' => 1,
       'dayOfYear' => 9,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1326034800,
-      'formatted' => '2012-01-09 00:00:00',
-      'timezone' => 
+      'timestamp' => 1326067200,
+      'formatted' => '2012-01-09 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -580,132 +582,16 @@ return array (
       'lunar_year' => 2011,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 15.24001800827682,
-      'moon_phase_angle' => 171.7888710946093,
+      'moon_age' => 15.246,
+      'moon_phase_angle' => 173.0095780867154,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2012-01-09 14:00:00' => 
+  '2012-01-09 16:30:00' =>
   array (
-    0 => '2012-01-09 14:00:00',
-    1 => 
-    array (
-      'year' => 2012,
-      'month' => 1,
-      'day' => 9,
-      'dayOfWeek' => 1,
-      'dayOfYear' => 9,
-      'hour' => 14,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1326085200,
-      'formatted' => '2012-01-09 14:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 24,
-      'oriental_zodiac_text' => '辰',
-      'oriental_zodiac' => 5,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '先負',
-      'six_weekday' => 4,
-      'weekday_text' => '月',
-      'month_text' => '睦月',
-      'holiday_text' => '成人の日',
-      'holiday' => 2,
-      'is_holiday' => true,
-      'lunar_month_text' => '師走',
-      'lunar_month' => 12,
-      'lunar_year' => 2011,
-      'lunar_day' => 16,
-      'is_leap_month' => false,
-      'moon_age' => 15.823309084866196,
-      'moon_phase_angle' => 178.74378422225428,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2012-01-09 15:00:00' => 
-  array (
-    0 => '2012-01-09 15:00:00',
-    1 => 
-    array (
-      'year' => 2012,
-      'month' => 1,
-      'day' => 9,
-      'dayOfWeek' => 1,
-      'dayOfYear' => 9,
-      'hour' => 15,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1326088800,
-      'formatted' => '2012-01-09 15:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 24,
-      'oriental_zodiac_text' => '辰',
-      'oriental_zodiac' => 5,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '先負',
-      'six_weekday' => 4,
-      'weekday_text' => '月',
-      'month_text' => '睦月',
-      'holiday_text' => '成人の日',
-      'holiday' => 2,
-      'is_holiday' => true,
-      'lunar_month_text' => '師走',
-      'lunar_month' => 12,
-      'lunar_year' => 2011,
-      'lunar_day' => 16,
-      'is_leap_month' => false,
-      'moon_age' => 15.864972548559308,
-      'moon_phase_angle' => 179.244218121661,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2012-01-09 16:00:00' => 
-  array (
-    0 => '2012-01-09 16:00:00',
-    1 => 
+    0 => '2012-01-09 16:30:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 1,
@@ -713,12 +599,12 @@ return array (
       'dayOfWeek' => 1,
       'dayOfYear' => 9,
       'hour' => 16,
-      'minute' => 0,
+      'minute' => 30,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1326092400,
-      'formatted' => '2012-01-09 16:00:00',
-      'timezone' => 
+      'timestamp' => 1326094200,
+      'formatted' => '2012-01-09 16:30:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -754,145 +640,29 @@ return array (
       'lunar_year' => 2011,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 15.906638368498534,
-      'moon_phase_angle' => 179.74513562623727,
+      'moon_age' => 15.558,
+      'moon_phase_angle' => 176.73459451622168,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2012-01-09 17:00:00' => 
+  '2012-01-10 09:00:00' =>
   array (
-    0 => '2012-01-09 17:00:00',
-    1 => 
-    array (
-      'year' => 2012,
-      'month' => 1,
-      'day' => 9,
-      'dayOfWeek' => 1,
-      'dayOfYear' => 9,
-      'hour' => 17,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1326096000,
-      'formatted' => '2012-01-09 17:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 24,
-      'oriental_zodiac_text' => '辰',
-      'oriental_zodiac' => 5,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '先負',
-      'six_weekday' => 4,
-      'weekday_text' => '月',
-      'month_text' => '睦月',
-      'holiday_text' => '成人の日',
-      'holiday' => 2,
-      'is_holiday' => true,
-      'lunar_month_text' => '師走',
-      'lunar_month' => 12,
-      'lunar_year' => 2011,
-      'lunar_day' => 16,
-      'is_leap_month' => false,
-      'moon_age' => 15.948304361198097,
-      'moon_phase_angle' => 180.24653581013692,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2012-01-09 18:00:00' => 
-  array (
-    0 => '2012-01-09 18:00:00',
-    1 => 
-    array (
-      'year' => 2012,
-      'month' => 1,
-      'day' => 9,
-      'dayOfWeek' => 1,
-      'dayOfYear' => 9,
-      'hour' => 18,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1326099600,
-      'formatted' => '2012-01-09 18:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 24,
-      'oriental_zodiac_text' => '辰',
-      'oriental_zodiac' => 5,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '先負',
-      'six_weekday' => 4,
-      'weekday_text' => '月',
-      'month_text' => '睦月',
-      'holiday_text' => '成人の日',
-      'holiday' => 2,
-      'is_holiday' => true,
-      'lunar_month_text' => '師走',
-      'lunar_month' => 12,
-      'lunar_year' => 2011,
-      'lunar_day' => 16,
-      'is_leap_month' => false,
-      'moon_age' => 15.989972923882306,
-      'moon_phase_angle' => 180.748417672163,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2012-01-10 00:00:00' => 
-  array (
-    0 => '2012-01-10 00:00:00',
-    1 => 
+    0 => '2012-01-10 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 1,
       'day' => 10,
       'dayOfWeek' => 2,
       'dayOfYear' => 10,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1326121200,
-      'formatted' => '2012-01-10 00:00:00',
-      'timezone' => 
+      'timestamp' => 1326153600,
+      'formatted' => '2012-01-10 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -928,29 +698,29 @@ return array (
       'lunar_year' => 2011,
       'lunar_day' => 17,
       'is_leap_month' => false,
-      'moon_age' => 16.23997124331072,
-      'moon_phase_angle' => 183.76976172733282,
+      'moon_age' => 16.246,
+      'moon_phase_angle' => 185.0254330374883,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-01-11 00:00:00' => 
+  '2012-01-11 09:00:00' =>
   array (
-    0 => '2012-01-11 00:00:00',
-    1 => 
+    0 => '2012-01-11 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 1,
       'day' => 11,
       'dayOfWeek' => 3,
       'dayOfYear' => 11,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1326207600,
-      'formatted' => '2012-01-11 00:00:00',
-      'timezone' => 
+      'timestamp' => 1326240000,
+      'formatted' => '2012-01-11 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -986,29 +756,29 @@ return array (
       'lunar_year' => 2011,
       'lunar_day' => 18,
       'is_leap_month' => false,
-      'moon_age' => 17.240048445761204,
-      'moon_phase_angle' => 196.0217347414776,
+      'moon_age' => 17.246,
+      'moon_phase_angle' => 197.3094121781723,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-01-12 00:00:00' => 
+  '2012-01-12 09:00:00' =>
   array (
-    0 => '2012-01-12 00:00:00',
-    1 => 
+    0 => '2012-01-12 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 1,
       'day' => 12,
       'dayOfWeek' => 4,
       'dayOfYear' => 12,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1326294000,
-      'formatted' => '2012-01-12 00:00:00',
-      'timezone' => 
+      'timestamp' => 1326326400,
+      'formatted' => '2012-01-12 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -1044,29 +814,29 @@ return array (
       'lunar_year' => 2011,
       'lunar_day' => 19,
       'is_leap_month' => false,
-      'moon_age' => 18.24023075448349,
-      'moon_phase_angle' => 208.5176280227435,
+      'moon_age' => 18.246,
+      'moon_phase_angle' => 209.83232489114783,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-01-13 00:00:00' => 
+  '2012-01-13 09:00:00' =>
   array (
-    0 => '2012-01-13 00:00:00',
-    1 => 
+    0 => '2012-01-13 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 1,
       'day' => 13,
       'dayOfWeek' => 5,
       'dayOfYear' => 13,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1326380400,
-      'formatted' => '2012-01-13 00:00:00',
-      'timezone' => 
+      'timestamp' => 1326412800,
+      'formatted' => '2012-01-13 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -1102,29 +872,29 @@ return array (
       'lunar_year' => 2011,
       'lunar_day' => 20,
       'is_leap_month' => false,
-      'moon_age' => 19.240525921341032,
-      'moon_phase_angle' => 221.21790230224897,
+      'moon_age' => 19.246,
+      'moon_phase_angle' => 222.5538596025177,
       'moon_phase' => 5,
       'moon_phase_text' => '十六夜',
     ),
   ),
-  '2012-01-14 00:00:00' => 
+  '2012-01-14 09:00:00' =>
   array (
-    0 => '2012-01-14 00:00:00',
-    1 => 
+    0 => '2012-01-14 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 1,
       'day' => 14,
       'dayOfWeek' => 6,
       'dayOfYear' => 14,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1326466800,
-      'formatted' => '2012-01-14 00:00:00',
-      'timezone' => 
+      'timestamp' => 1326499200,
+      'formatted' => '2012-01-14 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -1160,29 +930,29 @@ return array (
       'lunar_year' => 2011,
       'lunar_day' => 21,
       'is_leap_month' => false,
-      'moon_age' => 20.24088720139116,
-      'moon_phase_angle' => 234.07735561304216,
+      'moon_age' => 20.246,
+      'moon_phase_angle' => 235.42914176648128,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-01-15 00:00:00' => 
+  '2012-01-15 09:00:00' =>
   array (
-    0 => '2012-01-15 00:00:00',
-    1 => 
+    0 => '2012-01-15 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 1,
       'day' => 15,
       'dayOfWeek' => 0,
       'dayOfYear' => 15,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1326553200,
-      'formatted' => '2012-01-15 00:00:00',
-      'timezone' => 
+      'timestamp' => 1326585600,
+      'formatted' => '2012-01-15 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -1218,29 +988,29 @@ return array (
       'lunar_year' => 2011,
       'lunar_day' => 22,
       'is_leap_month' => false,
-      'moon_age' => 21.241300877649337,
-      'moon_phase_angle' => 247.0519096751877,
+      'moon_age' => 21.246,
+      'moon_phase_angle' => 248.41493449169752,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-01-16 00:00:00' => 
+  '2012-01-16 09:00:00' =>
   array (
-    0 => '2012-01-16 00:00:00',
-    1 => 
+    0 => '2012-01-16 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 1,
       'day' => 16,
       'dayOfWeek' => 1,
       'dayOfYear' => 16,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1326639600,
-      'formatted' => '2012-01-16 00:00:00',
-      'timezone' => 
+      'timestamp' => 1326672000,
+      'formatted' => '2012-01-16 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -1276,29 +1046,29 @@ return array (
       'lunar_year' => 2011,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 22.241762910038233,
-      'moon_phase_angle' => 260.10358341976473,
+      'moon_age' => 22.246,
+      'moon_phase_angle' => 261.47405419406675,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2012-01-16 19:00:00' => 
+  '2012-01-16 18:08:00' =>
   array (
-    0 => '2012-01-16 19:00:00',
-    1 => 
+    0 => '2012-01-16 18:08:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 1,
       'day' => 16,
       'dayOfWeek' => 1,
       'dayOfYear' => 16,
-      'hour' => 19,
-      'minute' => 0,
+      'hour' => 18,
+      'minute' => 8,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1326708000,
-      'formatted' => '2012-01-16 19:00:00',
-      'timezone' => 
+      'timestamp' => 1326704880,
+      'formatted' => '2012-01-16 18:08:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -1334,29 +1104,29 @@ return array (
       'lunar_year' => 2011,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 23.03382088104263,
-      'moon_phase_angle' => 270.4707322567195,
+      'moon_age' => 22.626466666666666,
+      'moon_phase_angle' => 266.4566408123998,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2012-01-17 00:00:00' => 
+  '2012-01-17 09:00:00' =>
   array (
-    0 => '2012-01-17 00:00:00',
-    1 => 
+    0 => '2012-01-17 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 1,
       'day' => 17,
       'dayOfWeek' => 2,
       'dayOfYear' => 17,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1326726000,
-      'formatted' => '2012-01-17 00:00:00',
-      'timezone' => 
+      'timestamp' => 1326758400,
+      'formatted' => '2012-01-17 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -1368,8 +1138,8 @@ return array (
       'lunar_seasonal_festival' => 0,
       'lunar_seasonal_festival_name' => '',
       'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 7,
-      'misc_seasonal_node_text' => '土用',
+      'misc_seasonal_node' => 0,
+      'misc_seasonal_node_text' => '',
       'solar_term' => false,
       'solar_term_text' => '',
       'is_solar_term' => false,
@@ -1392,29 +1162,29 @@ return array (
       'lunar_year' => 2011,
       'lunar_day' => 24,
       'is_leap_month' => false,
-      'moon_age' => 23.242260789964348,
-      'moon_phase_angle' => 273.2022536558088,
+      'moon_age' => 23.246,
+      'moon_phase_angle' => 274.5768886474839,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-01-18 00:00:00' => 
+  '2012-01-18 09:00:00' =>
   array (
-    0 => '2012-01-18 00:00:00',
-    1 => 
+    0 => '2012-01-18 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 1,
       'day' => 18,
       'dayOfWeek' => 3,
       'dayOfYear' => 18,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1326812400,
-      'formatted' => '2012-01-18 00:00:00',
-      'timezone' => 
+      'timestamp' => 1326844800,
+      'formatted' => '2012-01-18 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -1450,29 +1220,29 @@ return array (
       'lunar_year' => 2011,
       'lunar_day' => 25,
       'is_leap_month' => false,
-      'moon_age' => 24.24277405720204,
-      'moon_phase_angle' => 286.323842320705,
+      'moon_age' => 24.246,
+      'moon_phase_angle' => 287.6995636893637,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-01-19 00:00:00' => 
+  '2012-01-19 09:00:00' =>
   array (
-    0 => '2012-01-19 00:00:00',
-    1 => 
+    0 => '2012-01-19 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 1,
       'day' => 19,
       'dayOfWeek' => 4,
       'dayOfYear' => 19,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1326898800,
-      'formatted' => '2012-01-19 00:00:00',
-      'timezone' => 
+      'timestamp' => 1326931200,
+      'formatted' => '2012-01-19 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -1508,29 +1278,29 @@ return array (
       'lunar_year' => 2011,
       'lunar_day' => 26,
       'is_leap_month' => false,
-      'moon_age' => 25.24329295195639,
-      'moon_phase_angle' => 299.4457347625253,
+      'moon_age' => 25.246,
+      'moon_phase_angle' => 300.819311092373,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-01-20 00:00:00' => 
+  '2012-01-20 09:00:00' =>
   array (
-    0 => '2012-01-20 00:00:00',
-    1 => 
+    0 => '2012-01-20 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 1,
       'day' => 20,
       'dayOfWeek' => 5,
       'dayOfYear' => 20,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1326985200,
-      'formatted' => '2012-01-20 00:00:00',
-      'timezone' => 
+      'timestamp' => 1327017600,
+      'formatted' => '2012-01-20 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -1566,29 +1336,29 @@ return array (
       'lunar_year' => 2011,
       'lunar_day' => 27,
       'is_leap_month' => false,
-      'moon_age' => 26.2438054215163,
-      'moon_phase_angle' => 312.54113417818905,
+      'moon_age' => 26.246,
+      'moon_phase_angle' => 313.90869341598034,
       'moon_phase' => 7,
       'moon_phase_text' => '有明',
     ),
   ),
-  '2012-01-21 00:00:00' => 
+  '2012-01-21 09:00:00' =>
   array (
-    0 => '2012-01-21 00:00:00',
-    1 => 
+    0 => '2012-01-21 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 1,
       'day' => 21,
       'dayOfWeek' => 6,
       'dayOfYear' => 21,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1327071600,
-      'formatted' => '2012-01-21 00:00:00',
-      'timezone' => 
+      'timestamp' => 1327104000,
+      'formatted' => '2012-01-21 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -1624,29 +1394,29 @@ return array (
       'lunar_year' => 2011,
       'lunar_day' => 28,
       'is_leap_month' => false,
-      'moon_age' => 27.105545863187253,
-      'moon_phase_angle' => 325.5744750695192,
+      'moon_age' => 27.246,
+      'moon_phase_angle' => 326.9310356677643,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-01-22 00:00:00' => 
+  '2012-01-22 09:00:00' =>
   array (
-    0 => '2012-01-22 00:00:00',
-    1 => 
+    0 => '2012-01-22 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 1,
       'day' => 22,
       'dayOfWeek' => 0,
       'dayOfYear' => 22,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1327158000,
-      'formatted' => '2012-01-22 00:00:00',
-      'timezone' => 
+      'timestamp' => 1327190400,
+      'formatted' => '2012-01-22 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -1682,29 +1452,29 @@ return array (
       'lunar_year' => 2011,
       'lunar_day' => 29,
       'is_leap_month' => false,
-      'moon_age' => 28.161369562292784,
-      'moon_phase_angle' => 338.4998449630181,
+      'moon_age' => 28.246,
+      'moon_phase_angle' => 339.83922677294663,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-01-23 00:00:00' => 
+  '2012-01-23 09:00:00' =>
   array (
-    0 => '2012-01-23 00:00:00',
-    1 => 
+    0 => '2012-01-23 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 1,
       'day' => 23,
       'dayOfWeek' => 1,
       'dayOfYear' => 23,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1327244400,
-      'formatted' => '2012-01-23 00:00:00',
-      'timezone' => 
+      'timestamp' => 1327276800,
+      'formatted' => '2012-01-23 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -1740,74 +1510,16 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 29.20221560975009,
-      'moon_phase_angle' => 351.2635445957413,
+      'moon_age' => 29.246,
+      'moon_phase_angle' => 352.57891875886384,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2012-01-23 15:00:00' => 
+  '2012-01-23 16:39:00' =>
   array (
-    0 => '2012-01-23 15:00:00',
-    1 => 
-    array (
-      'year' => 2012,
-      'month' => 1,
-      'day' => 23,
-      'dayOfWeek' => 1,
-      'dayOfYear' => 23,
-      'hour' => 15,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1327298400,
-      'formatted' => '2012-01-23 15:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 7,
-      'misc_seasonal_node_text' => '土用',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 24,
-      'oriental_zodiac_text' => '辰',
-      'oriental_zodiac' => 5,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '先勝',
-      'six_weekday' => 2,
-      'weekday_text' => '月',
-      'month_text' => '睦月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '睦月',
-      'lunar_month' => 1,
-      'lunar_year' => 2012,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.30560669116675854,
-      'moon_phase_angle' => 359.1341126379527,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2012-01-23 16:00:00' => 
-  array (
-    0 => '2012-01-23 16:00:00',
-    1 => 
+    0 => '2012-01-23 16:39:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 1,
@@ -1815,12 +1527,12 @@ return array (
       'dayOfWeek' => 1,
       'dayOfYear' => 23,
       'hour' => 16,
-      'minute' => 0,
+      'minute' => 39,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1327302000,
-      'formatted' => '2012-01-23 16:00:00',
-      'timezone' => 
+      'timestamp' => 1327304340,
+      'formatted' => '2012-01-23 16:39:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -1856,145 +1568,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.34724875073879957,
-      'moon_phase_angle' => 359.65549184881456,
+      'moon_age' => 0.0,
+      'moon_phase_angle' => 356.59526002533715,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2012-01-23 17:00:00' => 
+  '2012-01-24 09:00:00' =>
   array (
-    0 => '2012-01-23 17:00:00',
-    1 => 
-    array (
-      'year' => 2012,
-      'month' => 1,
-      'day' => 23,
-      'dayOfWeek' => 1,
-      'dayOfYear' => 23,
-      'hour' => 17,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1327305600,
-      'formatted' => '2012-01-23 17:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 7,
-      'misc_seasonal_node_text' => '土用',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 24,
-      'oriental_zodiac_text' => '辰',
-      'oriental_zodiac' => 5,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '先勝',
-      'six_weekday' => 2,
-      'weekday_text' => '月',
-      'month_text' => '睦月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '睦月',
-      'lunar_month' => 1,
-      'lunar_year' => 2012,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.3889000383205712,
-      'moon_phase_angle' => 0.17643548197071368,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2012-01-23 18:00:00' => 
-  array (
-    0 => '2012-01-23 18:00:00',
-    1 => 
-    array (
-      'year' => 2012,
-      'month' => 1,
-      'day' => 23,
-      'dayOfWeek' => 1,
-      'dayOfYear' => 23,
-      'hour' => 18,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1327309200,
-      'formatted' => '2012-01-23 18:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 7,
-      'misc_seasonal_node_text' => '土用',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 24,
-      'oriental_zodiac_text' => '辰',
-      'oriental_zodiac' => 5,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '先勝',
-      'six_weekday' => 2,
-      'weekday_text' => '月',
-      'month_text' => '睦月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '睦月',
-      'lunar_month' => 1,
-      'lunar_year' => 2012,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.4305487065576017,
-      'moon_phase_angle' => 0.6969401809299711,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2012-01-24 00:00:00' => 
-  array (
-    0 => '2012-01-24 00:00:00',
-    1 => 
+    0 => '2012-01-24 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 1,
       'day' => 24,
       'dayOfWeek' => 2,
       'dayOfYear' => 24,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1327330800,
-      'formatted' => '2012-01-24 00:00:00',
-      'timezone' => 
+      'timestamp' => 1327363200,
+      'formatted' => '2012-01-24 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -2030,29 +1626,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 2,
       'is_leap_month' => false,
-      'moon_age' => 0.6804660530760884,
-      'moon_phase_angle' => 3.810569107459287,
+      'moon_age' => 0.681,
+      'moon_phase_angle' => 5.0955313161159665,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-01-25 00:00:00' => 
+  '2012-01-25 09:00:00' =>
   array (
-    0 => '2012-01-25 00:00:00',
-    1 => 
+    0 => '2012-01-25 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 1,
       'day' => 25,
       'dayOfWeek' => 3,
       'dayOfYear' => 25,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1327417200,
-      'formatted' => '2012-01-25 00:00:00',
-      'timezone' => 
+      'timestamp' => 1327449600,
+      'formatted' => '2012-01-25 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -2088,29 +1684,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 3,
       'is_leap_month' => false,
-      'moon_age' => 1.6804977492429316,
-      'moon_phase_angle' => 16.093366951618066,
+      'moon_age' => 1.681,
+      'moon_phase_angle' => 17.343111502454576,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-01-26 00:00:00' => 
+  '2012-01-26 09:00:00' =>
   array (
-    0 => '2012-01-26 00:00:00',
-    1 => 
+    0 => '2012-01-26 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 1,
       'day' => 26,
       'dayOfWeek' => 4,
       'dayOfYear' => 26,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1327503600,
-      'formatted' => '2012-01-26 00:00:00',
-      'timezone' => 
+      'timestamp' => 1327536000,
+      'formatted' => '2012-01-26 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -2146,29 +1742,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 4,
       'is_leap_month' => false,
-      'moon_age' => 2.68076148070395,
-      'moon_phase_angle' => 28.08040443541688,
+      'moon_age' => 2.681,
+      'moon_phase_angle' => 29.292592294263386,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-01-27 00:00:00' => 
+  '2012-01-27 09:00:00' =>
   array (
-    0 => '2012-01-27 00:00:00',
-    1 => 
+    0 => '2012-01-27 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 1,
       'day' => 27,
       'dayOfWeek' => 5,
       'dayOfYear' => 27,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1327590000,
-      'formatted' => '2012-01-27 00:00:00',
-      'timezone' => 
+      'timestamp' => 1327622400,
+      'formatted' => '2012-01-27 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -2204,29 +1800,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 5,
       'is_leap_month' => false,
-      'moon_age' => 3.680730802472681,
-      'moon_phase_angle' => 39.76228116144847,
+      'moon_age' => 3.681,
+      'moon_phase_angle' => 40.93745257863043,
       'moon_phase' => 1,
       'moon_phase_text' => '三日月',
     ),
   ),
-  '2012-01-28 00:00:00' => 
+  '2012-01-28 09:00:00' =>
   array (
-    0 => '2012-01-28 00:00:00',
-    1 => 
+    0 => '2012-01-28 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 1,
       'day' => 28,
       'dayOfWeek' => 6,
       'dayOfYear' => 28,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1327676400,
-      'formatted' => '2012-01-28 00:00:00',
-      'timezone' => 
+      'timestamp' => 1327708800,
+      'formatted' => '2012-01-28 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -2262,29 +1858,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 6,
       'is_leap_month' => false,
-      'moon_age' => 4.68069002777338,
-      'moon_phase_angle' => 51.15423587906071,
+      'moon_age' => 4.681,
+      'moon_phase_angle' => 52.29584694117477,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-01-29 00:00:00' => 
+  '2012-01-29 09:00:00' =>
   array (
-    0 => '2012-01-29 00:00:00',
-    1 => 
+    0 => '2012-01-29 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 1,
       'day' => 29,
       'dayOfWeek' => 0,
       'dayOfYear' => 29,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1327762800,
-      'formatted' => '2012-01-29 00:00:00',
-      'timezone' => 
+      'timestamp' => 1327795200,
+      'formatted' => '2012-01-29 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -2320,29 +1916,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 7,
       'is_leap_month' => false,
-      'moon_age' => 5.6806432558223605,
-      'moon_phase_angle' => 62.295182279727726,
+      'moon_age' => 5.681,
+      'moon_phase_angle' => 63.40939142013633,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-01-30 00:00:00' => 
+  '2012-01-30 09:00:00' =>
   array (
-    0 => '2012-01-30 00:00:00',
-    1 => 
+    0 => '2012-01-30 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 1,
       'day' => 30,
       'dayOfWeek' => 1,
       'dayOfYear' => 30,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1327849200,
-      'formatted' => '2012-01-30 00:00:00',
-      'timezone' => 
+      'timestamp' => 1327881600,
+      'formatted' => '2012-01-30 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -2378,29 +1974,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 6.680586348287761,
-      'moon_phase_angle' => 73.24427121938282,
+      'moon_age' => 6.681,
+      'moon_phase_angle' => 74.33952882803817,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-01-31 00:00:00' => 
+  '2012-01-31 09:00:00' =>
   array (
-    0 => '2012-01-31 00:00:00',
-    1 => 
+    0 => '2012-01-31 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 1,
       'day' => 31,
       'dayOfWeek' => 2,
       'dayOfYear' => 31,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1327935600,
-      'formatted' => '2012-01-31 00:00:00',
-      'timezone' => 
+      'timestamp' => 1327968000,
+      'formatted' => '2012-01-31 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -2436,16 +2032,16 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 9,
       'is_leap_month' => false,
-      'moon_age' => 7.680532819125801,
-      'moon_phase_angle' => 84.07616009340381,
+      'moon_age' => 7.681,
+      'moon_phase_angle' => 85.16260555621653,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2012-01-31 13:00:00' => 
+  '2012-01-31 13:10:00' =>
   array (
-    0 => '2012-01-31 13:00:00',
-    1 => 
+    0 => '2012-01-31 13:10:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 1,
@@ -2453,12 +2049,12 @@ return array (
       'dayOfWeek' => 2,
       'dayOfYear' => 31,
       'hour' => 13,
-      'minute' => 0,
+      'minute' => 10,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1327982400,
-      'formatted' => '2012-01-31 13:00:00',
-      'timezone' => 
+      'timestamp' => 1327983000,
+      'formatted' => '2012-01-31 13:10:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -2494,29 +2090,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 9,
       'is_leap_month' => false,
-      'moon_age' => 8.222182610537857,
-      'moon_phase_angle' => 89.92429823547945,
+      'moon_age' => 7.854861111111111,
+      'moon_phase_angle' => 87.0369535300357,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2012-02-01 00:00:00' => 
+  '2012-02-01 09:00:00' =>
   array (
-    0 => '2012-02-01 00:00:00',
-    1 => 
+    0 => '2012-02-01 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 2,
       'day' => 1,
       'dayOfWeek' => 3,
       'dayOfYear' => 32,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1328022000,
-      'formatted' => '2012-02-01 00:00:00',
-      'timezone' => 
+      'timestamp' => 1328054400,
+      'formatted' => '2012-02-01 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -2552,29 +2148,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 10,
       'is_leap_month' => false,
-      'moon_age' => 8.680501976516098,
-      'moon_phase_angle' => 94.87585812323482,
+      'moon_age' => 8.681,
+      'moon_phase_angle' => 95.96456330017293,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-02-02 00:00:00' => 
+  '2012-02-02 09:00:00' =>
   array (
-    0 => '2012-02-02 00:00:00',
-    1 => 
+    0 => '2012-02-02 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 2,
       'day' => 2,
       'dayOfWeek' => 4,
       'dayOfYear' => 33,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1328108400,
-      'formatted' => '2012-02-02 00:00:00',
-      'timezone' => 
+      'timestamp' => 1328140800,
+      'formatted' => '2012-02-02 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -2610,29 +2206,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 11,
       'is_leap_month' => false,
-      'moon_age' => 9.680464369244874,
-      'moon_phase_angle' => 105.73347493813696,
+      'moon_age' => 9.681,
+      'moon_phase_angle' => 106.83568085798635,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-02-03 00:00:00' => 
+  '2012-02-03 09:00:00' =>
   array (
-    0 => '2012-02-03 00:00:00',
-    1 => 
+    0 => '2012-02-03 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 2,
       'day' => 3,
       'dayOfWeek' => 5,
       'dayOfYear' => 34,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1328194800,
-      'formatted' => '2012-02-03 00:00:00',
-      'timezone' => 
+      'timestamp' => 1328227200,
+      'formatted' => '2012-02-03 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -2668,29 +2264,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 12,
       'is_leap_month' => false,
-      'moon_age' => 10.680439729709178,
-      'moon_phase_angle' => 116.73886279796983,
+      'moon_age' => 10.681,
+      'moon_phase_angle' => 117.86527056303282,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-02-04 00:00:00' => 
+  '2012-02-04 09:00:00' =>
   array (
-    0 => '2012-02-04 00:00:00',
-    1 => 
+    0 => '2012-02-04 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 2,
       'day' => 4,
       'dayOfWeek' => 6,
       'dayOfYear' => 35,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1328281200,
-      'formatted' => '2012-02-04 00:00:00',
-      'timezone' => 
+      'timestamp' => 1328313600,
+      'formatted' => '2012-02-04 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -2726,29 +2322,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 13,
       'is_leap_month' => false,
-      'moon_age' => 11.680423312354833,
-      'moon_phase_angle' => 127.97570827053289,
+      'moon_age' => 11.681,
+      'moon_phase_angle' => 129.1358710371301,
       'moon_phase' => 3,
       'moon_phase_text' => '十三夜',
     ),
   ),
-  '2012-02-05 00:00:00' => 
+  '2012-02-05 09:00:00' =>
   array (
-    0 => '2012-02-05 00:00:00',
-    1 => 
+    0 => '2012-02-05 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 2,
       'day' => 5,
       'dayOfWeek' => 0,
       'dayOfYear' => 36,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1328367600,
-      'formatted' => '2012-02-05 00:00:00',
-      'timezone' => 
+      'timestamp' => 1328400000,
+      'formatted' => '2012-02-05 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -2784,29 +2380,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 14,
       'is_leap_month' => false,
-      'moon_age' => 12.680418191943318,
-      'moon_phase_angle' => 139.51483173160892,
+      'moon_age' => 12.681,
+      'moon_phase_angle' => 140.71644409385155,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-02-06 00:00:00' => 
+  '2012-02-06 09:00:00' =>
   array (
-    0 => '2012-02-06 00:00:00',
-    1 => 
+    0 => '2012-02-06 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 2,
       'day' => 6,
       'dayOfWeek' => 1,
       'dayOfYear' => 37,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1328454000,
-      'formatted' => '2012-02-06 00:00:00',
-      'timezone' => 
+      'timestamp' => 1328486400,
+      'formatted' => '2012-02-06 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -2842,29 +2438,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 15,
       'is_leap_month' => false,
-      'moon_age' => 13.680420978460461,
-      'moon_phase_angle' => 151.40670323983954,
+      'moon_age' => 13.681,
+      'moon_phase_angle' => 152.65461468612563,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-02-07 00:00:00' => 
+  '2012-02-07 09:00:00' =>
   array (
-    0 => '2012-02-07 00:00:00',
-    1 => 
+    0 => '2012-02-07 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 2,
       'day' => 7,
       'dayOfWeek' => 2,
       'dayOfYear' => 38,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1328540400,
-      'formatted' => '2012-02-07 00:00:00',
-      'timezone' => 
+      'timestamp' => 1328572800,
+      'formatted' => '2012-02-07 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -2900,74 +2496,16 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 14.680425365455449,
-      'moon_phase_angle' => 163.67394807877184,
+      'moon_age' => 14.681,
+      'moon_phase_angle' => 164.96900980443536,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-02-08 00:00:00' => 
+  '2012-02-08 06:54:00' =>
   array (
-    0 => '2012-02-08 00:00:00',
-    1 => 
-    array (
-      'year' => 2012,
-      'month' => 2,
-      'day' => 8,
-      'dayOfWeek' => 3,
-      'dayOfYear' => 39,
-      'hour' => 0,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1328626800,
-      'formatted' => '2012-02-08 00:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 24,
-      'oriental_zodiac_text' => '辰',
-      'oriental_zodiac' => 5,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '大安',
-      'six_weekday' => 0,
-      'weekday_text' => '水',
-      'month_text' => '如月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '睦月',
-      'lunar_month' => 1,
-      'lunar_year' => 2012,
-      'lunar_day' => 17,
-      'is_leap_month' => false,
-      'moon_age' => 15.680427778046578,
-      'moon_phase_angle' => 176.3055747664783,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2012-02-08 06:00:00' => 
-  array (
-    0 => '2012-02-08 06:00:00',
-    1 => 
+    0 => '2012-02-08 06:54:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 2,
@@ -2975,12 +2513,12 @@ return array (
       'dayOfWeek' => 3,
       'dayOfYear' => 39,
       'hour' => 6,
-      'minute' => 0,
+      'minute' => 54,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1328648400,
-      'formatted' => '2012-02-08 06:00:00',
-      'timezone' => 
+      'timestamp' => 1328651640,
+      'formatted' => '2012-02-08 06:54:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -3016,74 +2554,16 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 17,
       'is_leap_month' => false,
-      'moon_age' => 15.930434095207602,
-      'moon_phase_angle' => 179.51573777517044,
+      'moon_age' => 15.59375,
+      'moon_phase_angle' => 176.52147375178615,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2012-02-08 07:00:00' => 
-  array (
-    0 => '2012-02-08 07:00:00',
-    1 => 
-    array (
-      'year' => 2012,
-      'month' => 2,
-      'day' => 8,
-      'dayOfWeek' => 3,
-      'dayOfYear' => 39,
-      'hour' => 7,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1328652000,
-      'formatted' => '2012-02-08 07:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 24,
-      'oriental_zodiac_text' => '辰',
-      'oriental_zodiac' => 5,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '大安',
-      'six_weekday' => 0,
-      'weekday_text' => '水',
-      'month_text' => '如月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '睦月',
-      'lunar_month' => 1,
-      'lunar_year' => 2012,
-      'lunar_day' => 17,
-      'is_leap_month' => false,
-      'moon_age' => 15.972104580141604,
-      'moon_phase_angle' => 180.05264115386942,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2012-02-08 09:00:00' => 
+  '2012-02-08 09:00:00' =>
   array (
     0 => '2012-02-08 09:00:00',
-    1 => 
+    1 =>
     array (
       'year' => 2012,
       'month' => 2,
@@ -3096,7 +2576,7 @@ return array (
       'micro' => 0,
       'timestamp' => 1328659200,
       'formatted' => '2012-02-08 09:00:00',
-      'timezone' => 
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -3132,29 +2612,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 17,
       'is_leap_month' => false,
-      'moon_age' => 16.055434230249375,
-      'moon_phase_angle' => 181.12801021431284,
+      'moon_age' => 15.681,
+      'moon_phase_angle' => 177.64384718600334,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2012-02-09 00:00:00' => 
+  '2012-02-09 09:00:00' =>
   array (
-    0 => '2012-02-09 00:00:00',
-    1 => 
+    0 => '2012-02-09 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 2,
       'day' => 9,
       'dayOfWeek' => 4,
       'dayOfYear' => 40,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1328713200,
-      'formatted' => '2012-02-09 00:00:00',
-      'timezone' => 
+      'timestamp' => 1328745600,
+      'formatted' => '2012-02-09 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -3190,29 +2670,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 18,
       'is_leap_month' => false,
-      'moon_age' => 16.68043800164014,
-      'moon_phase_angle' => 189.2553916060029,
+      'moon_age' => 16.681,
+      'moon_phase_angle' => 190.6283677864017,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-02-10 00:00:00' => 
+  '2012-02-10 09:00:00' =>
   array (
-    0 => '2012-02-10 00:00:00',
-    1 => 
+    0 => '2012-02-10 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 2,
       'day' => 10,
       'dayOfWeek' => 5,
       'dayOfYear' => 41,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1328799600,
-      'formatted' => '2012-02-10 00:00:00',
-      'timezone' => 
+      'timestamp' => 1328832000,
+      'formatted' => '2012-02-10 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -3248,29 +2728,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 19,
       'is_leap_month' => false,
-      'moon_age' => 17.680468535982072,
-      'moon_phase_angle' => 202.44681370160103,
+      'moon_age' => 17.681,
+      'moon_phase_angle' => 203.84287885010383,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-02-11 00:00:00' => 
+  '2012-02-11 09:00:00' =>
   array (
-    0 => '2012-02-11 00:00:00',
-    1 => 
+    0 => '2012-02-11 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 2,
       'day' => 11,
       'dayOfWeek' => 6,
       'dayOfYear' => 42,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1328886000,
-      'formatted' => '2012-02-11 00:00:00',
-      'timezone' => 
+      'timestamp' => 1328918400,
+      'formatted' => '2012-02-11 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -3306,29 +2786,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 20,
       'is_leap_month' => false,
-      'moon_age' => 18.680494255851954,
-      'moon_phase_angle' => 215.78445660740584,
+      'moon_age' => 18.681,
+      'moon_phase_angle' => 217.19108504623478,
       'moon_phase' => 5,
       'moon_phase_text' => '十六夜',
     ),
   ),
-  '2012-02-12 00:00:00' => 
+  '2012-02-12 09:00:00' =>
   array (
-    0 => '2012-02-12 00:00:00',
-    1 => 
+    0 => '2012-02-12 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 2,
       'day' => 12,
       'dayOfWeek' => 0,
       'dayOfYear' => 43,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1328972400,
-      'formatted' => '2012-02-12 00:00:00',
-      'timezone' => 
+      'timestamp' => 1329004800,
+      'formatted' => '2012-02-12 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -3364,29 +2844,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 21,
       'is_leap_month' => false,
-      'moon_age' => 19.680525976233184,
-      'moon_phase_angle' => 229.17004910703142,
+      'moon_age' => 19.681,
+      'moon_phase_angle' => 230.5758787416997,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-02-13 00:00:00' => 
+  '2012-02-13 09:00:00' =>
   array (
-    0 => '2012-02-13 00:00:00',
-    1 => 
+    0 => '2012-02-13 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 2,
       'day' => 13,
       'dayOfWeek' => 1,
       'dayOfYear' => 44,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1329058800,
-      'formatted' => '2012-02-13 00:00:00',
-      'timezone' => 
+      'timestamp' => 1329091200,
+      'formatted' => '2012-02-13 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -3422,29 +2902,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 22,
       'is_leap_month' => false,
-      'moon_age' => 20.680567007977515,
-      'moon_phase_angle' => 242.51794506843132,
+      'moon_age' => 20.681,
+      'moon_phase_angle' => 243.91414020949182,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-02-14 00:00:00' => 
+  '2012-02-14 09:00:00' =>
   array (
-    0 => '2012-02-14 00:00:00',
-    1 => 
+    0 => '2012-02-14 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 2,
       'day' => 14,
       'dayOfWeek' => 2,
       'dayOfYear' => 45,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1329145200,
-      'formatted' => '2012-02-14 00:00:00',
-      'timezone' => 
+      'timestamp' => 1329177600,
+      'formatted' => '2012-02-14 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -3480,29 +2960,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 21.680610174313188,
-      'moon_phase_angle' => 255.76551562806398,
+      'moon_age' => 21.681,
+      'moon_phase_angle' => 257.1463232539781,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-02-15 00:00:00' => 
+  '2012-02-15 02:04:00' =>
   array (
-    0 => '2012-02-15 00:00:00',
-    1 => 
+    0 => '2012-02-15 02:04:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 2,
       'day' => 15,
       'dayOfWeek' => 3,
       'dayOfYear' => 46,
-      'hour' => 0,
-      'minute' => 0,
+      'hour' => 2,
+      'minute' => 4,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1329231600,
-      'formatted' => '2012-02-15 00:00:00',
-      'timezone' => 
+      'timestamp' => 1329239040,
+      'formatted' => '2012-02-15 02:04:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -3538,29 +3018,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 24,
       'is_leap_month' => false,
-      'moon_age' => 22.68064943002537,
-      'moon_phase_angle' => 268.8760057095059,
+      'moon_age' => 22.39236111111111,
+      'moon_phase_angle' => 266.47183498280515,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2012-02-15 03:00:00' => 
+  '2012-02-15 09:00:00' =>
   array (
-    0 => '2012-02-15 03:00:00',
-    1 => 
+    0 => '2012-02-15 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 2,
       'day' => 15,
       'dayOfWeek' => 3,
       'dayOfYear' => 46,
-      'hour' => 3,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1329242400,
-      'formatted' => '2012-02-15 03:00:00',
-      'timezone' => 
+      'timestamp' => 1329264000,
+      'formatted' => '2012-02-15 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -3596,29 +3076,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 24,
       'is_leap_month' => false,
-      'moon_age' => 22.805646339897066,
-      'moon_phase_angle' => 270.5042479921184,
+      'moon_age' => 22.681,
+      'moon_phase_angle' => 270.2386244704709,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2012-02-16 00:00:00' => 
+  '2012-02-16 09:00:00' =>
   array (
-    0 => '2012-02-16 00:00:00',
-    1 => 
+    0 => '2012-02-16 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 2,
       'day' => 16,
       'dayOfWeek' => 4,
       'dayOfYear' => 47,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1329318000,
-      'formatted' => '2012-02-16 00:00:00',
-      'timezone' => 
+      'timestamp' => 1329350400,
+      'formatted' => '2012-02-16 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -3654,29 +3134,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 25,
       'is_leap_month' => false,
-      'moon_age' => 23.68068051431328,
-      'moon_phase_angle' => 281.83446017242113,
+      'moon_age' => 23.681,
+      'moon_phase_angle' => 283.1783060139253,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-02-17 00:00:00' => 
+  '2012-02-17 09:00:00' =>
   array (
-    0 => '2012-02-17 00:00:00',
-    1 => 
+    0 => '2012-02-17 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 2,
       'day' => 17,
       'dayOfWeek' => 5,
       'dayOfYear' => 48,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1329404400,
-      'formatted' => '2012-02-17 00:00:00',
-      'timezone' => 
+      'timestamp' => 1329436800,
+      'formatted' => '2012-02-17 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -3712,29 +3192,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 26,
       'is_leap_month' => false,
-      'moon_age' => 24.680699121207,
-      'moon_phase_angle' => 294.63938579623857,
+      'moon_age' => 24.681,
+      'moon_phase_angle' => 295.9649019585547,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-02-18 00:00:00' => 
+  '2012-02-18 09:00:00' =>
   array (
-    0 => '2012-02-18 00:00:00',
-    1 => 
+    0 => '2012-02-18 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 2,
       'day' => 18,
       'dayOfWeek' => 6,
       'dayOfYear' => 49,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1329490800,
-      'formatted' => '2012-02-18 00:00:00',
-      'timezone' => 
+      'timestamp' => 1329523200,
+      'formatted' => '2012-02-18 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -3770,29 +3250,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 27,
       'is_leap_month' => false,
-      'moon_age' => 25.680726398713887,
-      'moon_phase_angle' => 307.29337127465874,
+      'moon_age' => 25.681,
+      'moon_phase_angle' => 308.60076511717693,
       'moon_phase' => 7,
       'moon_phase_text' => '有明',
     ),
   ),
-  '2012-02-19 00:00:00' => 
+  '2012-02-19 09:00:00' =>
   array (
-    0 => '2012-02-19 00:00:00',
-    1 => 
+    0 => '2012-02-19 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 2,
       'day' => 19,
       'dayOfWeek' => 0,
       'dayOfYear' => 50,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1329577200,
-      'formatted' => '2012-02-19 00:00:00',
-      'timezone' => 
+      'timestamp' => 1329609600,
+      'formatted' => '2012-02-19 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -3828,29 +3308,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 28,
       'is_leap_month' => false,
-      'moon_age' => 26.61386214071357,
-      'moon_phase_angle' => 319.7953828401546,
+      'moon_age' => 26.681,
+      'moon_phase_angle' => 321.0837926526495,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-02-20 00:00:00' => 
+  '2012-02-20 09:00:00' =>
   array (
-    0 => '2012-02-20 00:00:00',
-    1 => 
+    0 => '2012-02-20 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 2,
       'day' => 20,
       'dayOfWeek' => 1,
       'dayOfYear' => 51,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1329663600,
-      'formatted' => '2012-02-20 00:00:00',
-      'timezone' => 
+      'timestamp' => 1329696000,
+      'formatted' => '2012-02-20 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -3886,29 +3366,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 29,
       'is_leap_month' => false,
-      'moon_age' => 27.620919205857753,
-      'moon_phase_angle' => 332.13650703907496,
+      'moon_age' => 27.681,
+      'moon_phase_angle' => 333.4038955527803,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-02-21 00:00:00' => 
+  '2012-02-21 09:00:00' =>
   array (
-    0 => '2012-02-21 00:00:00',
-    1 => 
+    0 => '2012-02-21 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 2,
       'day' => 21,
       'dayOfWeek' => 2,
       'dayOfYear' => 52,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1329750000,
-      'formatted' => '2012-02-21 00:00:00',
-      'timezone' => 
+      'timestamp' => 1329782400,
+      'formatted' => '2012-02-21 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -3944,132 +3424,16 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 30,
       'is_leap_month' => false,
-      'moon_age' => 28.612757818917125,
-      'moon_phase_angle' => 344.29984709431704,
+      'moon_age' => 28.681,
+      'moon_phase_angle' => 345.54352514958066,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-02-22 00:00:00' => 
+  '2012-02-22 07:35:00' =>
   array (
-    0 => '2012-02-22 00:00:00',
-    1 => 
-    array (
-      'year' => 2012,
-      'month' => 2,
-      'day' => 22,
-      'dayOfWeek' => 3,
-      'dayOfYear' => 53,
-      'hour' => 0,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1329836400,
-      'formatted' => '2012-02-22 00:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 24,
-      'oriental_zodiac_text' => '辰',
-      'oriental_zodiac' => 5,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '友引',
-      'six_weekday' => 3,
-      'weekday_text' => '水',
-      'month_text' => '如月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '如月',
-      'lunar_month' => 2,
-      'lunar_year' => 2012,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.059022894594818354,
-      'moon_phase_angle' => 356.26420355014767,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2012-02-22 06:00:00' => 
-  array (
-    0 => '2012-02-22 06:00:00',
-    1 => 
-    array (
-      'year' => 2012,
-      'month' => 2,
-      'day' => 22,
-      'dayOfWeek' => 3,
-      'dayOfYear' => 53,
-      'hour' => 6,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1329858000,
-      'formatted' => '2012-02-22 06:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 24,
-      'oriental_zodiac_text' => '辰',
-      'oriental_zodiac' => 5,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '友引',
-      'six_weekday' => 3,
-      'weekday_text' => '水',
-      'month_text' => '如月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '如月',
-      'lunar_month' => 2,
-      'lunar_year' => 2012,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.30901726242154837,
-      'moon_phase_angle' => 359.22179468188176,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2012-02-22 07:00:00' => 
-  array (
-    0 => '2012-02-22 07:00:00',
-    1 => 
+    0 => '2012-02-22 07:35:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 2,
@@ -4077,12 +3441,12 @@ return array (
       'dayOfWeek' => 3,
       'dayOfYear' => 53,
       'hour' => 7,
-      'minute' => 0,
+      'minute' => 35,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1329861600,
-      'formatted' => '2012-02-22 07:00:00',
-      'timezone' => 
+      'timestamp' => 1329863700,
+      'formatted' => '2012-02-22 07:35:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -4118,74 +3482,16 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.3506861189380288,
-      'moon_phase_angle' => 359.71337819704553,
+      'moon_age' => 0.0,
+      'moon_phase_angle' => 356.78290743861675,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2012-02-22 08:00:00' => 
-  array (
-    0 => '2012-02-22 08:00:00',
-    1 => 
-    array (
-      'year' => 2012,
-      'month' => 2,
-      'day' => 22,
-      'dayOfWeek' => 3,
-      'dayOfYear' => 53,
-      'hour' => 8,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1329865200,
-      'formatted' => '2012-02-22 08:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 24,
-      'oriental_zodiac_text' => '辰',
-      'oriental_zodiac' => 5,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '友引',
-      'six_weekday' => 3,
-      'weekday_text' => '水',
-      'month_text' => '如月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '如月',
-      'lunar_month' => 2,
-      'lunar_year' => 2012,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.3923483043909073,
-      'moon_phase_angle' => 0.2045736713105839,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2012-02-22 09:00:00' => 
+  '2012-02-22 09:00:00' =>
   array (
     0 => '2012-02-22 09:00:00',
-    1 => 
+    1 =>
     array (
       'year' => 2012,
       'month' => 2,
@@ -4198,7 +3504,7 @@ return array (
       'micro' => 0,
       'timestamp' => 1329868800,
       'formatted' => '2012-02-22 09:00:00',
-      'timezone' => 
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -4234,29 +3540,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.43401556089520454,
-      'moon_phase_angle' => 0.6953801113756413,
+      'moon_age' => 0.059,
+      'moon_phase_angle' => 357.481627437729,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2012-02-23 00:00:00' => 
+  '2012-02-23 09:00:00' =>
   array (
-    0 => '2012-02-23 00:00:00',
-    1 => 
+    0 => '2012-02-23 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 2,
       'day' => 23,
       'dayOfWeek' => 4,
       'dayOfYear' => 54,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1329922800,
-      'formatted' => '2012-02-23 00:00:00',
-      'timezone' => 
+      'timestamp' => 1329955200,
+      'formatted' => '2012-02-23 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -4292,29 +3598,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 2,
       'is_leap_month' => false,
-      'moon_age' => 1.0590144945308566,
-      'moon_phase_angle' => 8.010234316289711,
+      'moon_age' => 1.059,
+      'moon_phase_angle' => 9.199752050009181,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-02-24 00:00:00' => 
+  '2012-02-24 09:00:00' =>
   array (
-    0 => '2012-02-24 00:00:00',
-    1 => 
+    0 => '2012-02-24 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 2,
       'day' => 24,
       'dayOfWeek' => 5,
       'dayOfYear' => 55,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1330009200,
-      'formatted' => '2012-02-24 00:00:00',
-      'timezone' => 
+      'timestamp' => 1330041600,
+      'formatted' => '2012-02-24 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -4350,29 +3656,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 3,
       'is_leap_month' => false,
-      'moon_age' => 2.059013697784394,
-      'moon_phase_angle' => 19.52726041193182,
+      'moon_age' => 2.059,
+      'moon_phase_angle' => 20.688684897042663,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-02-25 00:00:00' => 
+  '2012-02-25 09:00:00' =>
   array (
-    0 => '2012-02-25 00:00:00',
-    1 => 
+    0 => '2012-02-25 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 2,
       'day' => 25,
       'dayOfWeek' => 6,
       'dayOfYear' => 56,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1330095600,
-      'formatted' => '2012-02-25 00:00:00',
-      'timezone' => 
+      'timestamp' => 1330128000,
+      'formatted' => '2012-02-25 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -4408,29 +3714,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 4,
       'is_leap_month' => false,
-      'moon_age' => 3.059023164678365,
-      'moon_phase_angle' => 30.818971244916554,
+      'moon_age' => 3.059,
+      'moon_phase_angle' => 31.95400565356755,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-02-26 00:00:00' => 
+  '2012-02-26 09:00:00' =>
   array (
-    0 => '2012-02-26 00:00:00',
-    1 => 
+    0 => '2012-02-26 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 2,
       'day' => 26,
       'dayOfWeek' => 0,
       'dayOfYear' => 57,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1330182000,
-      'formatted' => '2012-02-26 00:00:00',
-      'timezone' => 
+      'timestamp' => 1330214400,
+      'formatted' => '2012-02-26 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -4466,29 +3772,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 5,
       'is_leap_month' => false,
-      'moon_age' => 4.059017699677497,
-      'moon_phase_angle' => 41.90691787550111,
+      'moon_age' => 4.059,
+      'moon_phase_angle' => 43.019454334193654,
       'moon_phase' => 1,
       'moon_phase_text' => '三日月',
     ),
   ),
-  '2012-02-27 00:00:00' => 
+  '2012-02-27 09:00:00' =>
   array (
-    0 => '2012-02-27 00:00:00',
-    1 => 
+    0 => '2012-02-27 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 2,
       'day' => 27,
       'dayOfWeek' => 1,
       'dayOfYear' => 58,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1330268400,
-      'formatted' => '2012-02-27 00:00:00',
-      'timezone' => 
+      'timestamp' => 1330300800,
+      'formatted' => '2012-02-27 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -4524,29 +3830,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 6,
       'is_leap_month' => false,
-      'moon_age' => 5.059015543200076,
-      'moon_phase_angle' => 52.83151667571536,
+      'moon_age' => 5.059,
+      'moon_phase_angle' => 53.92775494381635,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-02-28 00:00:00' => 
+  '2012-02-28 09:00:00' =>
   array (
-    0 => '2012-02-28 00:00:00',
-    1 => 
+    0 => '2012-02-28 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 2,
       'day' => 28,
       'dayOfWeek' => 2,
       'dayOfYear' => 59,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1330354800,
-      'formatted' => '2012-02-28 00:00:00',
-      'timezone' => 
+      'timestamp' => 1330387200,
+      'formatted' => '2012-02-28 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -4582,29 +3888,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 7,
       'is_leap_month' => false,
-      'moon_age' => 6.059019866399467,
-      'moon_phase_angle' => 63.65093109947452,
+      'moon_age' => 6.059,
+      'moon_phase_angle' => 64.73923506182444,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-02-29 00:00:00' => 
+  '2012-02-29 09:00:00' =>
   array (
-    0 => '2012-02-29 00:00:00',
-    1 => 
+    0 => '2012-02-29 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 2,
       'day' => 29,
       'dayOfWeek' => 3,
       'dayOfYear' => 60,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1330441200,
-      'formatted' => '2012-02-29 00:00:00',
-      'timezone' => 
+      'timestamp' => 1330473600,
+      'formatted' => '2012-02-29 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -4640,29 +3946,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 7.059015414211899,
-      'moon_phase_angle' => 74.43844819724211,
+      'moon_age' => 7.059,
+      'moon_phase_angle' => 75.52890871481168,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-03-01 00:00:00' => 
+  '2012-03-01 09:00:00' =>
   array (
-    0 => '2012-03-01 00:00:00',
-    1 => 
+    0 => '2012-03-01 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 3,
       'day' => 1,
       'dayOfWeek' => 4,
       'dayOfYear' => 61,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1330527600,
-      'formatted' => '2012-03-01 00:00:00',
-      'timezone' => 
+      'timestamp' => 1330560000,
+      'formatted' => '2012-03-01 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -4698,29 +4004,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 9,
       'is_leap_month' => false,
-      'moon_age' => 8.0590152987279,
-      'moon_phase_angle' => 85.27884475284179,
+      'moon_age' => 8.059,
+      'moon_phase_angle' => 86.38260568765838,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2012-03-01 11:00:00' => 
+  '2012-03-01 10:21:00' =>
   array (
-    0 => '2012-03-01 11:00:00',
-    1 => 
+    0 => '2012-03-01 10:21:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 3,
       'day' => 1,
       'dayOfWeek' => 4,
       'dayOfYear' => 61,
-      'hour' => 11,
-      'minute' => 0,
+      'hour' => 10,
+      'minute' => 21,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1330567200,
-      'formatted' => '2012-03-01 11:00:00',
-      'timezone' => 
+      'timestamp' => 1330564860,
+      'formatted' => '2012-03-01 10:21:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -4756,29 +4062,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 9,
       'is_leap_month' => false,
-      'moon_age' => 8.51734640961513,
-      'moon_phase_angle' => 90.29003007531753,
+      'moon_age' => 8.115277777777777,
+      'moon_phase_angle' => 86.99688760677935,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2012-03-02 00:00:00' => 
+  '2012-03-02 09:00:00' =>
   array (
-    0 => '2012-03-02 00:00:00',
-    1 => 
+    0 => '2012-03-02 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 3,
       'day' => 2,
       'dayOfWeek' => 5,
       'dayOfYear' => 62,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1330614000,
-      'formatted' => '2012-03-02 00:00:00',
-      'timezone' => 
+      'timestamp' => 1330646400,
+      'formatted' => '2012-03-02 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -4814,29 +4120,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 10,
       'is_leap_month' => false,
-      'moon_age' => 9.05901774764061,
-      'moon_phase_angle' => 96.26385773068102,
+      'moon_age' => 9.059,
+      'moon_phase_angle' => 97.39237016662486,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-03-03 00:00:00' => 
+  '2012-03-03 09:00:00' =>
   array (
-    0 => '2012-03-03 00:00:00',
-    1 => 
+    0 => '2012-03-03 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 3,
       'day' => 3,
       'dayOfWeek' => 6,
       'dayOfYear' => 63,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1330700400,
-      'formatted' => '2012-03-03 00:00:00',
-      'timezone' => 
+      'timestamp' => 1330732800,
+      'formatted' => '2012-03-03 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -4872,29 +4178,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 11,
       'is_leap_month' => false,
-      'moon_age' => 10.059018068481237,
-      'moon_phase_angle' => 107.48660299115869,
+      'moon_age' => 10.059,
+      'moon_phase_angle' => 108.65086563256003,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-03-04 00:00:00' => 
+  '2012-03-04 09:00:00' =>
   array (
-    0 => '2012-03-04 00:00:00',
-    1 => 
+    0 => '2012-03-04 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 3,
       'day' => 4,
       'dayOfWeek' => 0,
       'dayOfYear' => 64,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1330786800,
-      'formatted' => '2012-03-04 00:00:00',
-      'timezone' => 
+      'timestamp' => 1330819200,
+      'formatted' => '2012-03-04 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -4930,29 +4236,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 12,
       'is_leap_month' => false,
-      'moon_age' => 11.059022705536336,
-      'moon_phase_angle' => 119.03434896092438,
+      'moon_age' => 11.059,
+      'moon_phase_angle' => 120.24414239817605,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-03-05 00:00:00' => 
+  '2012-03-05 09:00:00' =>
   array (
-    0 => '2012-03-05 00:00:00',
-    1 => 
+    0 => '2012-03-05 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 3,
       'day' => 5,
       'dayOfWeek' => 1,
       'dayOfYear' => 65,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1330873200,
-      'formatted' => '2012-03-05 00:00:00',
-      'timezone' => 
+      'timestamp' => 1330905600,
+      'formatted' => '2012-03-05 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -4988,29 +4294,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 13,
       'is_leap_month' => false,
-      'moon_age' => 12.059016464743763,
-      'moon_phase_angle' => 130.97929295317198,
+      'moon_age' => 12.059,
+      'moon_phase_angle' => 132.24212914605363,
       'moon_phase' => 3,
       'moon_phase_text' => '十三夜',
     ),
   ),
-  '2012-03-06 00:00:00' => 
+  '2012-03-06 09:00:00' =>
   array (
-    0 => '2012-03-06 00:00:00',
-    1 => 
+    0 => '2012-03-06 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 3,
       'day' => 6,
       'dayOfWeek' => 2,
       'dayOfYear' => 66,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1330959600,
-      'formatted' => '2012-03-06 00:00:00',
-      'timezone' => 
+      'timestamp' => 1330992000,
+      'formatted' => '2012-03-06 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -5046,29 +4352,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 14,
       'is_leap_month' => false,
-      'moon_age' => 13.059018652420491,
-      'moon_phase_angle' => 143.36747227690458,
+      'moon_age' => 13.059,
+      'moon_phase_angle' => 144.68706782565351,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-03-07 00:00:00' => 
+  '2012-03-07 09:00:00' =>
   array (
-    0 => '2012-03-07 00:00:00',
-    1 => 
+    0 => '2012-03-07 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 3,
       'day' => 7,
       'dayOfWeek' => 3,
       'dayOfYear' => 67,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1331046000,
-      'formatted' => '2012-03-07 00:00:00',
-      'timezone' => 
+      'timestamp' => 1331078400,
+      'formatted' => '2012-03-07 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -5104,29 +4410,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 15,
       'is_leap_month' => false,
-      'moon_age' => 14.059015287086368,
-      'moon_phase_angle' => 156.20727068308676,
+      'moon_age' => 14.059,
+      'moon_phase_angle' => 157.58184923606257,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-03-08 00:00:00' => 
+  '2012-03-08 09:00:00' =>
   array (
-    0 => '2012-03-08 00:00:00',
-    1 => 
+    0 => '2012-03-08 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 3,
       'day' => 8,
       'dayOfWeek' => 4,
       'dayOfYear' => 68,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1331132400,
-      'formatted' => '2012-03-08 00:00:00',
-      'timezone' => 
+      'timestamp' => 1331164800,
+      'formatted' => '2012-03-08 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -5162,74 +4468,16 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 15.059018056839705,
-      'moon_phase_angle' => 169.46074429441853,
+      'moon_age' => 15.059,
+      'moon_phase_angle' => 170.8820962410036,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2012-03-08 17:00:00' => 
+  '2012-03-08 18:39:00' =>
   array (
-    0 => '2012-03-08 17:00:00',
-    1 => 
-    array (
-      'year' => 2012,
-      'month' => 3,
-      'day' => 8,
-      'dayOfWeek' => 4,
-      'dayOfYear' => 68,
-      'hour' => 17,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1331193600,
-      'formatted' => '2012-03-08 17:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 24,
-      'oriental_zodiac_text' => '辰',
-      'oriental_zodiac' => 5,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '大安',
-      'six_weekday' => 0,
-      'weekday_text' => '木',
-      'month_text' => '弥生',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '如月',
-      'lunar_month' => 2,
-      'lunar_year' => 2012,
-      'lunar_day' => 16,
-      'is_leap_month' => false,
-      'moon_age' => 15.767346372827888,
-      'moon_phase_angle' => 179.05381442260625,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2012-03-08 18:00:00' => 
-  array (
-    0 => '2012-03-08 18:00:00',
-    1 => 
+    0 => '2012-03-08 18:39:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 3,
@@ -5237,12 +4485,12 @@ return array (
       'dayOfWeek' => 4,
       'dayOfYear' => 68,
       'hour' => 18,
-      'minute' => 0,
+      'minute' => 39,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1331197200,
-      'formatted' => '2012-03-08 18:00:00',
-      'timezone' => 
+      'timestamp' => 1331199540,
+      'formatted' => '2012-03-08 18:39:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -5278,145 +4526,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 15.809012735728174,
-      'moon_phase_angle' => 179.62238792067296,
+      'moon_age' => 15.46111111111111,
+      'moon_phase_angle' => 176.32497254341467,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2012-03-08 19:00:00' => 
+  '2012-03-09 09:00:00' =>
   array (
-    0 => '2012-03-08 19:00:00',
-    1 => 
-    array (
-      'year' => 2012,
-      'month' => 3,
-      'day' => 8,
-      'dayOfWeek' => 4,
-      'dayOfYear' => 68,
-      'hour' => 19,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1331200800,
-      'formatted' => '2012-03-08 19:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 24,
-      'oriental_zodiac_text' => '辰',
-      'oriental_zodiac' => 5,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '大安',
-      'six_weekday' => 0,
-      'weekday_text' => '木',
-      'month_text' => '弥生',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '如月',
-      'lunar_month' => 2,
-      'lunar_year' => 2012,
-      'lunar_day' => 16,
-      'is_leap_month' => false,
-      'moon_age' => 15.850681275129318,
-      'moon_phase_angle' => 180.19137770332622,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2012-03-08 20:00:00' => 
-  array (
-    0 => '2012-03-08 20:00:00',
-    1 => 
-    array (
-      'year' => 2012,
-      'month' => 3,
-      'day' => 8,
-      'dayOfWeek' => 4,
-      'dayOfYear' => 68,
-      'hour' => 20,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1331204400,
-      'formatted' => '2012-03-08 20:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 24,
-      'oriental_zodiac_text' => '辰',
-      'oriental_zodiac' => 5,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '大安',
-      'six_weekday' => 0,
-      'weekday_text' => '木',
-      'month_text' => '弥生',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '如月',
-      'lunar_month' => 2,
-      'lunar_year' => 2012,
-      'lunar_day' => 16,
-      'is_leap_month' => false,
-      'moon_age' => 15.892357114702463,
-      'moon_phase_angle' => 180.76077407478107,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2012-03-09 00:00:00' => 
-  array (
-    0 => '2012-03-09 00:00:00',
-    1 => 
+    0 => '2012-03-09 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 3,
       'day' => 9,
       'dayOfWeek' => 5,
       'dayOfYear' => 69,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1331218800,
-      'formatted' => '2012-03-09 00:00:00',
-      'timezone' => 
+      'timestamp' => 1331251200,
+      'formatted' => '2012-03-09 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -5452,29 +4584,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 17,
       'is_leap_month' => false,
-      'moon_age' => 16.05901286378503,
-      'moon_phase_angle' => 183.04222879462628,
+      'moon_age' => 16.059,
+      'moon_phase_angle' => 184.49644893444074,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-03-10 00:00:00' => 
+  '2012-03-10 09:00:00' =>
   array (
-    0 => '2012-03-10 00:00:00',
-    1 => 
+    0 => '2012-03-10 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 3,
       'day' => 10,
       'dayOfWeek' => 6,
       'dayOfYear' => 70,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1331305200,
-      'formatted' => '2012-03-10 00:00:00',
-      'timezone' => 
+      'timestamp' => 1331337600,
+      'formatted' => '2012-03-10 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -5510,29 +4642,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 18,
       'is_leap_month' => false,
-      'moon_age' => 17.059015807695687,
-      'moon_phase_angle' => 196.8277667935593,
+      'moon_age' => 17.059,
+      'moon_phase_angle' => 198.2976629343887,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-03-11 00:00:00' => 
+  '2012-03-11 09:00:00' =>
   array (
-    0 => '2012-03-11 00:00:00',
-    1 => 
+    0 => '2012-03-11 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 3,
       'day' => 11,
       'dayOfWeek' => 0,
       'dayOfYear' => 71,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1331391600,
-      'formatted' => '2012-03-11 00:00:00',
-      'timezone' => 
+      'timestamp' => 1331424000,
+      'formatted' => '2012-03-11 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -5568,29 +4700,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 19,
       'is_leap_month' => false,
-      'moon_age' => 18.059017546474934,
-      'moon_phase_angle' => 210.67495886415293,
+      'moon_age' => 18.059,
+      'moon_phase_angle' => 212.14309121135054,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-03-12 00:00:00' => 
+  '2012-03-12 09:00:00' =>
   array (
-    0 => '2012-03-12 00:00:00',
-    1 => 
+    0 => '2012-03-12 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 3,
       'day' => 12,
       'dayOfWeek' => 1,
       'dayOfYear' => 72,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1331478000,
-      'formatted' => '2012-03-12 00:00:00',
-      'timezone' => 
+      'timestamp' => 1331510400,
+      'formatted' => '2012-03-12 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -5626,29 +4758,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 20,
       'is_leap_month' => false,
-      'moon_age' => 19.05901888012886,
-      'moon_phase_angle' => 224.44761366357386,
+      'moon_age' => 19.059,
+      'moon_phase_angle' => 225.89884835756044,
       'moon_phase' => 5,
       'moon_phase_text' => '十六夜',
     ),
   ),
-  '2012-03-13 00:00:00' => 
+  '2012-03-13 09:00:00' =>
   array (
-    0 => '2012-03-13 00:00:00',
-    1 => 
+    0 => '2012-03-13 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 3,
       'day' => 13,
       'dayOfWeek' => 2,
       'dayOfYear' => 73,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1331564400,
-      'formatted' => '2012-03-13 00:00:00',
-      'timezone' => 
+      'timestamp' => 1331596800,
+      'formatted' => '2012-03-13 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -5684,29 +4816,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 21,
       'is_leap_month' => false,
-      'moon_age' => 20.059016642626375,
-      'moon_phase_angle' => 238.03683278310803,
+      'moon_age' => 20.059,
+      'moon_phase_angle' => 239.46002194121377,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-03-14 00:00:00' => 
+  '2012-03-14 09:00:00' =>
   array (
-    0 => '2012-03-14 00:00:00',
-    1 => 
+    0 => '2012-03-14 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 3,
       'day' => 14,
       'dayOfWeek' => 3,
       'dayOfYear' => 74,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1331650800,
-      'formatted' => '2012-03-14 00:00:00',
-      'timezone' => 
+      'timestamp' => 1331683200,
+      'formatted' => '2012-03-14 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -5742,29 +4874,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 22,
       'is_leap_month' => false,
-      'moon_age' => 21.05902368063107,
-      'moon_phase_angle' => 251.37219602606655,
+      'moon_age' => 21.059,
+      'moon_phase_angle' => 252.76103594747437,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-03-15 00:00:00' => 
+  '2012-03-15 09:00:00' =>
   array (
-    0 => '2012-03-15 00:00:00',
-    1 => 
+    0 => '2012-03-15 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 3,
       'day' => 15,
       'dayOfWeek' => 4,
       'dayOfYear' => 75,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1331737200,
-      'formatted' => '2012-03-15 00:00:00',
-      'timezone' => 
+      'timestamp' => 1331769600,
+      'formatted' => '2012-03-15 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -5800,29 +4932,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 22.059892422519624,
-      'moon_phase_angle' => 264.4217820849083,
+      'moon_age' => 22.059,
+      'moon_phase_angle' => 265.7747124828015,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2012-03-15 11:00:00' => 
+  '2012-03-15 10:25:00' =>
   array (
-    0 => '2012-03-15 11:00:00',
-    1 => 
+    0 => '2012-03-15 10:25:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 3,
       'day' => 15,
       'dayOfWeek' => 4,
       'dayOfYear' => 75,
-      'hour' => 11,
-      'minute' => 0,
+      'hour' => 10,
+      'minute' => 25,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1331776800,
-      'formatted' => '2012-03-15 11:00:00',
-      'timezone' => 
+      'timestamp' => 1331774700,
+      'formatted' => '2012-03-15 10:25:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -5858,29 +4990,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 22.518884304910898,
-      'moon_phase_angle' => 270.3060924286833,
+      'moon_age' => 22.118055555555557,
+      'moon_phase_angle' => 266.5338337408414,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2012-03-16 00:00:00' => 
+  '2012-03-16 09:00:00' =>
   array (
-    0 => '2012-03-16 00:00:00',
-    1 => 
+    0 => '2012-03-16 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 3,
       'day' => 16,
       'dayOfWeek' => 5,
       'dayOfYear' => 76,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1331823600,
-      'formatted' => '2012-03-16 00:00:00',
-      'timezone' => 
+      'timestamp' => 1331856000,
+      'formatted' => '2012-03-16 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -5916,29 +5048,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 24,
       'is_leap_month' => false,
-      'moon_age' => 23.06112718442455,
-      'moon_phase_angle' => 277.18411489059224,
+      'moon_age' => 23.059,
+      'moon_phase_angle' => 278.50307770496545,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-03-17 00:00:00' => 
+  '2012-03-17 09:00:00' =>
   array (
-    0 => '2012-03-17 00:00:00',
-    1 => 
+    0 => '2012-03-17 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 3,
       'day' => 17,
       'dayOfWeek' => 6,
       'dayOfYear' => 77,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1331910000,
-      'formatted' => '2012-03-17 00:00:00',
-      'timezone' => 
+      'timestamp' => 1331942400,
+      'formatted' => '2012-03-17 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -5974,29 +5106,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 25,
       'is_leap_month' => false,
-      'moon_age' => 24.061670136172324,
-      'moon_phase_angle' => 289.67666598544906,
+      'moon_age' => 24.059,
+      'moon_phase_angle' => 290.9651082040684,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-03-18 00:00:00' => 
+  '2012-03-18 09:00:00' =>
   array (
-    0 => '2012-03-18 00:00:00',
-    1 => 
+    0 => '2012-03-18 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 3,
       'day' => 18,
       'dayOfWeek' => 0,
       'dayOfYear' => 78,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1331996400,
-      'formatted' => '2012-03-18 00:00:00',
-      'timezone' => 
+      'timestamp' => 1332028800,
+      'formatted' => '2012-03-18 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -6032,29 +5164,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 26,
       'is_leap_month' => false,
-      'moon_age' => 25.061595319770277,
-      'moon_phase_angle' => 301.92477159546564,
+      'moon_age' => 25.059,
+      'moon_phase_angle' => 303.1858542861844,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-03-19 00:00:00' => 
+  '2012-03-19 09:00:00' =>
   array (
-    0 => '2012-03-19 00:00:00',
-    1 => 
+    0 => '2012-03-19 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 3,
       'day' => 19,
       'dayOfWeek' => 1,
       'dayOfYear' => 79,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1332082800,
-      'formatted' => '2012-03-19 00:00:00',
-      'timezone' => 
+      'timestamp' => 1332115200,
+      'formatted' => '2012-03-19 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -6090,29 +5222,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 27,
       'is_leap_month' => false,
-      'moon_age' => 26.060975337401032,
-      'moon_phase_angle' => 313.95324265477916,
+      'moon_age' => 26.059,
+      'moon_phase_angle' => 315.1890530155132,
       'moon_phase' => 7,
       'moon_phase_text' => '有明',
     ),
   ),
-  '2012-03-20 00:00:00' => 
+  '2012-03-20 09:00:00' =>
   array (
-    0 => '2012-03-20 00:00:00',
-    1 => 
+    0 => '2012-03-20 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 3,
       'day' => 20,
       'dayOfWeek' => 2,
       'dayOfYear' => 80,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1332169200,
-      'formatted' => '2012-03-20 00:00:00',
-      'timezone' => 
+      'timestamp' => 1332201600,
+      'formatted' => '2012-03-20 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -6148,29 +5280,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 28,
       'is_leap_month' => false,
-      'moon_age' => 27.08352191248381,
-      'moon_phase_angle' => 325.7815690974021,
+      'moon_age' => 27.059,
+      'moon_phase_angle' => 326.9933380601316,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-03-21 00:00:00' => 
+  '2012-03-21 09:00:00' =>
   array (
-    0 => '2012-03-21 00:00:00',
-    1 => 
+    0 => '2012-03-21 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 3,
       'day' => 21,
       'dayOfWeek' => 3,
       'dayOfYear' => 81,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1332255600,
-      'formatted' => '2012-03-21 00:00:00',
-      'timezone' => 
+      'timestamp' => 1332288000,
+      'formatted' => '2012-03-21 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -6206,29 +5338,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 29,
       'is_leap_month' => false,
-      'moon_age' => 28.103157640112876,
-      'moon_phase_angle' => 337.4226967093021,
+      'moon_age' => 28.059,
+      'moon_phase_angle' => 338.61139616019904,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-03-22 00:00:00' => 
+  '2012-03-22 09:00:00' =>
   array (
-    0 => '2012-03-22 00:00:00',
-    1 => 
+    0 => '2012-03-22 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 3,
       'day' => 22,
       'dayOfWeek' => 4,
       'dayOfYear' => 82,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1332342000,
-      'formatted' => '2012-03-22 00:00:00',
-      'timezone' => 
+      'timestamp' => 1332374400,
+      'formatted' => '2012-03-22 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -6264,74 +5396,16 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 29.061490549705923,
-      'moon_phase_angle' => 348.8847702148799,
+      'moon_age' => 29.059,
+      'moon_phase_angle' => 350.0515247387088,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2012-03-22 21:00:00' => 
+  '2012-03-22 23:37:00' =>
   array (
-    0 => '2012-03-22 21:00:00',
-    1 => 
-    array (
-      'year' => 2012,
-      'month' => 3,
-      'day' => 22,
-      'dayOfWeek' => 4,
-      'dayOfYear' => 82,
-      'hour' => 21,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1332417600,
-      'formatted' => '2012-03-22 21:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 2,
-      'misc_seasonal_node_text' => '彼岸',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 24,
-      'oriental_zodiac_text' => '辰',
-      'oriental_zodiac' => 5,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '先負',
-      'six_weekday' => 4,
-      'weekday_text' => '木',
-      'month_text' => '弥生',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '弥生',
-      'lunar_month' => 3,
-      'lunar_year' => 2012,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.26559456437826157,
-      'moon_phase_angle' => 358.7727079301414,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2012-03-22 23:00:00' => 
-  array (
-    0 => '2012-03-22 23:00:00',
-    1 => 
+    0 => '2012-03-22 23:37:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 3,
@@ -6339,12 +5413,12 @@ return array (
       'dayOfWeek' => 4,
       'dayOfYear' => 82,
       'hour' => 23,
-      'minute' => 0,
+      'minute' => 37,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1332424800,
-      'formatted' => '2012-03-22 23:00:00',
-      'timezone' => 
+      'timestamp' => 1332427020,
+      'formatted' => '2012-03-22 23:37:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -6380,29 +5454,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.34892814652994275,
-      'moon_phase_angle' => 359.7077639671715,
+      'moon_age' => 0.0,
+      'moon_phase_angle' => 356.93475492869334,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2012-03-23 00:00:00' => 
+  '2012-03-23 09:00:00' =>
   array (
-    0 => '2012-03-23 00:00:00',
-    1 => 
+    0 => '2012-03-23 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 3,
       'day' => 23,
       'dayOfWeek' => 5,
       'dayOfYear' => 83,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1332428400,
-      'formatted' => '2012-03-23 00:00:00',
-      'timezone' => 
+      'timestamp' => 1332460800,
+      'formatted' => '2012-03-23 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -6438,29 +5512,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 2,
       'is_leap_month' => false,
-      'moon_age' => 0.39059300255030394,
-      'moon_phase_angle' => 0.17486806563683643,
+      'moon_age' => 0.391,
+      'moon_phase_angle' => 1.3211247668556125,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-03-24 00:00:00' => 
+  '2012-03-24 09:00:00' =>
   array (
-    0 => '2012-03-24 00:00:00',
-    1 => 
+    0 => '2012-03-24 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 3,
       'day' => 24,
       'dayOfWeek' => 6,
       'dayOfYear' => 84,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1332514800,
-      'formatted' => '2012-03-24 00:00:00',
-      'timezone' => 
+      'timestamp' => 1332547200,
+      'formatted' => '2012-03-24 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -6496,29 +5570,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 3,
       'is_leap_month' => false,
-      'moon_age' => 1.390596297569573,
-      'moon_phase_angle' => 11.303587931937237,
+      'moon_age' => 1.391,
+      'moon_phase_angle' => 12.431335170990195,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-03-25 00:00:00' => 
+  '2012-03-25 09:00:00' =>
   array (
-    0 => '2012-03-25 00:00:00',
-    1 => 
+    0 => '2012-03-25 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 3,
       'day' => 25,
       'dayOfWeek' => 0,
       'dayOfYear' => 85,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1332601200,
-      'formatted' => '2012-03-25 00:00:00',
-      'timezone' => 
+      'timestamp' => 1332633600,
+      'formatted' => '2012-03-25 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -6554,29 +5628,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 4,
       'is_leap_month' => false,
-      'moon_age' => 2.3905979972332716,
-      'moon_phase_angle' => 22.289412769170454,
+      'moon_age' => 2.391,
+      'moon_phase_angle' => 23.401630030386286,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-03-26 00:00:00' => 
+  '2012-03-26 09:00:00' =>
   array (
-    0 => '2012-03-26 00:00:00',
-    1 => 
+    0 => '2012-03-26 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 3,
       'day' => 26,
       'dayOfWeek' => 1,
       'dayOfYear' => 86,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1332687600,
-      'formatted' => '2012-03-26 00:00:00',
-      'timezone' => 
+      'timestamp' => 1332720000,
+      'formatted' => '2012-03-26 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -6612,29 +5686,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 5,
       'is_leap_month' => false,
-      'moon_age' => 3.390590143855661,
-      'moon_phase_angle' => 33.162071292035364,
+      'moon_age' => 3.391,
+      'moon_phase_angle' => 34.263263138285296,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-03-27 00:00:00' => 
+  '2012-03-27 09:00:00' =>
   array (
-    0 => '2012-03-27 00:00:00',
-    1 => 
+    0 => '2012-03-27 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 3,
       'day' => 27,
       'dayOfWeek' => 2,
       'dayOfYear' => 87,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1332774000,
-      'formatted' => '2012-03-27 00:00:00',
-      'timezone' => 
+      'timestamp' => 1332806400,
+      'formatted' => '2012-03-27 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -6670,29 +5744,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 6,
       'is_leap_month' => false,
-      'moon_age' => 4.390589963179082,
-      'moon_phase_angle' => 43.96448968200118,
+      'moon_age' => 4.391,
+      'moon_phase_angle' => 45.061000551825195,
       'moon_phase' => 1,
       'moon_phase_text' => '三日月',
     ),
   ),
-  '2012-03-28 00:00:00' => 
+  '2012-03-28 09:00:00' =>
   array (
-    0 => '2012-03-28 00:00:00',
-    1 => 
+    0 => '2012-03-28 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 3,
       'day' => 28,
       'dayOfWeek' => 3,
       'dayOfYear' => 88,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1332860400,
-      'formatted' => '2012-03-28 00:00:00',
-      'timezone' => 
+      'timestamp' => 1332892800,
+      'formatted' => '2012-03-28 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -6728,29 +5802,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 7,
       'is_leap_month' => false,
-      'moon_age' => 5.39059101883322,
-      'moon_phase_angle' => 54.75326358188241,
+      'moon_age' => 5.391,
+      'moon_phase_angle' => 55.853202410365476,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-03-29 00:00:00' => 
+  '2012-03-29 09:00:00' =>
   array (
-    0 => '2012-03-29 00:00:00',
-    1 => 
+    0 => '2012-03-29 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 3,
       'day' => 29,
       'dayOfWeek' => 4,
       'dayOfYear' => 89,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1332946800,
-      'formatted' => '2012-03-29 00:00:00',
-      'timezone' => 
+      'timestamp' => 1332979200,
+      'formatted' => '2012-03-29 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -6786,29 +5860,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 6.3905942514538765,
-      'moon_phase_angle' => 65.59774192481967,
+      'moon_age' => 6.391,
+      'moon_phase_angle' => 66.71057757737564,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-03-30 00:00:00' => 
+  '2012-03-30 09:00:00' =>
   array (
-    0 => '2012-03-30 00:00:00',
-    1 => 
+    0 => '2012-03-30 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 3,
       'day' => 30,
       'dayOfWeek' => 5,
       'dayOfYear' => 90,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1333033200,
-      'formatted' => '2012-03-30 00:00:00',
-      'timezone' => 
+      'timestamp' => 1333065600,
+      'formatted' => '2012-03-30 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -6844,29 +5918,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 9,
       'is_leap_month' => false,
-      'moon_age' => 7.39059131918475,
-      'moon_phase_angle' => 76.57777342366813,
+      'moon_age' => 7.391,
+      'moon_phase_angle' => 77.71377975095537,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-03-31 00:00:00' => 
+  '2012-03-31 04:41:00' =>
   array (
-    0 => '2012-03-31 00:00:00',
-    1 => 
+    0 => '2012-03-31 04:41:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 3,
       'day' => 31,
       'dayOfWeek' => 6,
       'dayOfYear' => 91,
-      'hour' => 0,
-      'minute' => 0,
+      'hour' => 4,
+      'minute' => 41,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1333119600,
-      'formatted' => '2012-03-31 00:00:00',
-      'timezone' => 
+      'timestamp' => 1333136460,
+      'formatted' => '2012-03-31 04:41:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -6902,29 +5976,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 10,
       'is_leap_month' => false,
-      'moon_age' => 8.390590786933899,
-      'moon_phase_angle' => 87.77996921515832,
+      'moon_age' => 8.21111111111111,
+      'moon_phase_angle' => 86.90763888561585,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2012-03-31 05:00:00' => 
+  '2012-03-31 09:00:00' =>
   array (
-    0 => '2012-03-31 05:00:00',
-    1 => 
+    0 => '2012-03-31 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 3,
       'day' => 31,
       'dayOfWeek' => 6,
       'dayOfYear' => 91,
-      'hour' => 5,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1333137600,
-      'formatted' => '2012-03-31 05:00:00',
-      'timezone' => 
+      'timestamp' => 1333152000,
+      'formatted' => '2012-03-31 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -6960,29 +6034,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 10,
       'is_leap_month' => false,
-      'moon_age' => 8.598926350474358,
-      'moon_phase_angle' => 90.14991794860953,
+      'moon_age' => 8.391,
+      'moon_phase_angle' => 88.94965273273003,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2012-04-01 00:00:00' => 
+  '2012-04-01 09:00:00' =>
   array (
-    0 => '2012-04-01 00:00:00',
-    1 => 
+    0 => '2012-04-01 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 4,
       'day' => 1,
       'dayOfWeek' => 0,
       'dayOfYear' => 92,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1333206000,
-      'formatted' => '2012-04-01 00:00:00',
-      'timezone' => 
+      'timestamp' => 1333238400,
+      'formatted' => '2012-04-01 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -7018,29 +6092,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 11,
       'is_leap_month' => false,
-      'moon_age' => 9.390599881764501,
-      'moon_phase_angle' => 99.29208430403966,
+      'moon_age' => 9.391,
+      'moon_phase_angle' => 100.50557031746044,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-04-02 00:00:00' => 
+  '2012-04-02 09:00:00' =>
   array (
-    0 => '2012-04-02 00:00:00',
-    1 => 
+    0 => '2012-04-02 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 4,
       'day' => 2,
       'dayOfWeek' => 1,
       'dayOfYear' => 93,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1333292400,
-      'formatted' => '2012-04-02 00:00:00',
-      'timezone' => 
+      'timestamp' => 1333324800,
+      'formatted' => '2012-04-02 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -7076,29 +6150,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 12,
       'is_leap_month' => false,
-      'moon_age' => 10.390591571107507,
-      'moon_phase_angle' => 111.19493221184034,
+      'moon_age' => 10.391,
+      'moon_phase_angle' => 112.46112938165636,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-04-03 00:00:00' => 
+  '2012-04-03 09:00:00' =>
   array (
-    0 => '2012-04-03 00:00:00',
-    1 => 
+    0 => '2012-04-03 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 4,
       'day' => 3,
       'dayOfWeek' => 2,
       'dayOfYear' => 94,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1333378800,
-      'formatted' => '2012-04-03 00:00:00',
-      'timezone' => 
+      'timestamp' => 1333411200,
+      'formatted' => '2012-04-03 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -7134,29 +6208,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 13,
       'is_leap_month' => false,
-      'moon_age' => 11.390597455203533,
-      'moon_phase_angle' => 123.5515737813632,
+      'moon_age' => 11.391,
+      'moon_phase_angle' => 124.87675867708236,
       'moon_phase' => 3,
       'moon_phase_text' => '十三夜',
     ),
   ),
-  '2012-04-04 00:00:00' => 
+  '2012-04-04 09:00:00' =>
   array (
-    0 => '2012-04-04 00:00:00',
-    1 => 
+    0 => '2012-04-04 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 4,
       'day' => 4,
       'dayOfWeek' => 3,
       'dayOfYear' => 95,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1333465200,
-      'formatted' => '2012-04-04 00:00:00',
-      'timezone' => 
+      'timestamp' => 1333497600,
+      'formatted' => '2012-04-04 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -7192,29 +6266,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 14,
       'is_leap_month' => false,
-      'moon_age' => 12.39059254899621,
-      'moon_phase_angle' => 136.39420553484652,
+      'moon_age' => 12.391,
+      'moon_phase_angle' => 137.7800608734456,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-04-05 00:00:00' => 
+  '2012-04-05 09:00:00' =>
   array (
-    0 => '2012-04-05 00:00:00',
-    1 => 
+    0 => '2012-04-05 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 4,
       'day' => 5,
       'dayOfWeek' => 4,
       'dayOfYear' => 96,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1333551600,
-      'formatted' => '2012-04-05 00:00:00',
-      'timezone' => 
+      'timestamp' => 1333584000,
+      'formatted' => '2012-04-05 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -7250,29 +6324,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 15,
       'is_leap_month' => false,
-      'moon_age' => 13.390591855626553,
-      'moon_phase_angle' => 149.7110878317841,
+      'moon_age' => 13.391,
+      'moon_phase_angle' => 151.1528151368028,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-04-06 00:00:00' => 
+  '2012-04-06 09:00:00' =>
   array (
-    0 => '2012-04-06 00:00:00',
-    1 => 
+    0 => '2012-04-06 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 4,
       'day' => 6,
       'dayOfWeek' => 5,
       'dayOfYear' => 97,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1333638000,
-      'formatted' => '2012-04-06 00:00:00',
-      'timezone' => 
+      'timestamp' => 1333670400,
+      'formatted' => '2012-04-06 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -7308,74 +6382,16 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 14.390593717806041,
-      'moon_phase_angle' => 163.43784838549857,
+      'moon_age' => 14.391,
+      'moon_phase_angle' => 164.9235411300727,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-04-07 00:00:00' => 
+  '2012-04-07 04:19:00' =>
   array (
-    0 => '2012-04-07 00:00:00',
-    1 => 
-    array (
-      'year' => 2012,
-      'month' => 4,
-      'day' => 7,
-      'dayOfWeek' => 6,
-      'dayOfYear' => 98,
-      'hour' => 0,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1333724400,
-      'formatted' => '2012-04-07 00:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 24,
-      'oriental_zodiac_text' => '辰',
-      'oriental_zodiac' => 5,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '先勝',
-      'six_weekday' => 2,
-      'weekday_text' => '土',
-      'month_text' => '卯月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '弥生',
-      'lunar_month' => 3,
-      'lunar_year' => 2012,
-      'lunar_day' => 17,
-      'is_leap_month' => false,
-      'moon_age' => 15.390590101480484,
-      'moon_phase_angle' => 177.45852680558028,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2012-04-07 04:00:00' => 
-  array (
-    0 => '2012-04-07 04:00:00',
-    1 => 
+    0 => '2012-04-07 04:19:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 4,
@@ -7383,12 +6399,12 @@ return array (
       'dayOfWeek' => 6,
       'dayOfYear' => 98,
       'hour' => 4,
-      'minute' => 0,
+      'minute' => 19,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1333738800,
-      'formatted' => '2012-04-07 04:00:00',
-      'timezone' => 
+      'timestamp' => 1333739940,
+      'formatted' => '2012-04-07 04:19:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -7424,29 +6440,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 17,
       'is_leap_month' => false,
-      'moon_age' => 15.557260152418166,
-      'moon_phase_angle' => 179.8134424875822,
+      'moon_age' => 15.195833333333333,
+      'moon_phase_angle' => 176.21483731080133,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2012-04-07 05:00:00' => 
+  '2012-04-07 09:00:00' =>
   array (
-    0 => '2012-04-07 05:00:00',
-    1 => 
+    0 => '2012-04-07 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 4,
       'day' => 7,
       'dayOfWeek' => 6,
       'dayOfYear' => 98,
-      'hour' => 5,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1333742400,
-      'formatted' => '2012-04-07 05:00:00',
-      'timezone' => 
+      'timestamp' => 1333756800,
+      'formatted' => '2012-04-07 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -7482,29 +6498,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 17,
       'is_leap_month' => false,
-      'moon_age' => 15.59893125668168,
-      'moon_phase_angle' => 180.4026945732668,
+      'moon_age' => 15.391,
+      'moon_phase_angle' => 178.970589911071,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2012-04-08 00:00:00' => 
+  '2012-04-08 09:00:00' =>
   array (
-    0 => '2012-04-08 00:00:00',
-    1 => 
+    0 => '2012-04-08 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 4,
       'day' => 8,
       'dayOfWeek' => 0,
       'dayOfYear' => 99,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1333810800,
-      'formatted' => '2012-04-08 00:00:00',
-      'timezone' => 
+      'timestamp' => 1333843200,
+      'formatted' => '2012-04-08 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -7540,29 +6556,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 18,
       'is_leap_month' => false,
-      'moon_age' => 16.390597572084516,
-      'moon_phase_angle' => 191.6196283600902,
+      'moon_age' => 16.391,
+      'moon_phase_angle' => 193.13779241510284,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-04-09 00:00:00' => 
+  '2012-04-09 09:00:00' =>
   array (
-    0 => '2012-04-09 00:00:00',
-    1 => 
+    0 => '2012-04-09 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 4,
       'day' => 9,
       'dayOfWeek' => 1,
       'dayOfYear' => 100,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1333897200,
-      'formatted' => '2012-04-09 00:00:00',
-      'timezone' => 
+      'timestamp' => 1333929600,
+      'formatted' => '2012-04-09 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -7598,29 +6614,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 19,
       'is_leap_month' => false,
-      'moon_age' => 17.390590166207403,
-      'moon_phase_angle' => 205.75499159298053,
+      'moon_age' => 17.391,
+      'moon_phase_angle' => 207.2596044590359,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-04-10 00:00:00' => 
+  '2012-04-10 09:00:00' =>
   array (
-    0 => '2012-04-10 00:00:00',
-    1 => 
+    0 => '2012-04-10 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 4,
       'day' => 10,
       'dayOfWeek' => 2,
       'dayOfYear' => 101,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1333983600,
-      'formatted' => '2012-04-10 00:00:00',
-      'timezone' => 
+      'timestamp' => 1334016000,
+      'formatted' => '2012-04-10 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -7656,29 +6672,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 20,
       'is_leap_month' => false,
-      'moon_age' => 18.39507899293676,
-      'moon_phase_angle' => 219.71356200278206,
+      'moon_age' => 18.391,
+      'moon_phase_angle' => 221.1881857663874,
       'moon_phase' => 5,
       'moon_phase_text' => '十六夜',
     ),
   ),
-  '2012-04-11 00:00:00' => 
+  '2012-04-11 09:00:00' =>
   array (
-    0 => '2012-04-11 00:00:00',
-    1 => 
+    0 => '2012-04-11 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 4,
       'day' => 11,
       'dayOfWeek' => 3,
       'dayOfYear' => 102,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1334070000,
-      'formatted' => '2012-04-11 00:00:00',
-      'timezone' => 
+      'timestamp' => 1334102400,
+      'formatted' => '2012-04-11 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -7714,29 +6730,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 21,
       'is_leap_month' => false,
-      'moon_age' => 19.403809752315283,
-      'moon_phase_angle' => 233.3806812077619,
+      'moon_age' => 19.391,
+      'moon_phase_angle' => 234.81381912117067,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-04-12 00:00:00' => 
+  '2012-04-12 09:00:00' =>
   array (
-    0 => '2012-04-12 00:00:00',
-    1 => 
+    0 => '2012-04-12 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 4,
       'day' => 12,
       'dayOfWeek' => 4,
       'dayOfYear' => 103,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1334156400,
-      'formatted' => '2012-04-12 00:00:00',
-      'timezone' => 
+      'timestamp' => 1334188800,
+      'formatted' => '2012-04-12 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -7772,29 +6788,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 22,
       'is_leap_month' => false,
-      'moon_age' => 20.58181110676378,
-      'moon_phase_angle' => 246.6874092843427,
+      'moon_age' => 20.391,
+      'moon_phase_angle' => 248.07332201547575,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-04-13 00:00:00' => 
+  '2012-04-13 09:00:00' =>
   array (
-    0 => '2012-04-13 00:00:00',
-    1 => 
+    0 => '2012-04-13 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 4,
       'day' => 13,
       'dayOfWeek' => 5,
       'dayOfYear' => 104,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1334242800,
-      'formatted' => '2012-04-13 00:00:00',
-      'timezone' => 
+      'timestamp' => 1334275200,
+      'formatted' => '2012-04-13 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -7830,29 +6846,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 21.061315447092056,
-      'moon_phase_angle' => 259.6083117893262,
+      'moon_age' => 21.391,
+      'moon_phase_angle' => 260.94661372311606,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2012-04-13 21:00:00' => 
+  '2012-04-13 19:50:00' =>
   array (
-    0 => '2012-04-13 21:00:00',
-    1 => 
+    0 => '2012-04-13 19:50:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 4,
       'day' => 13,
       'dayOfWeek' => 5,
       'dayOfYear' => 104,
-      'hour' => 21,
-      'minute' => 0,
+      'hour' => 19,
+      'minute' => 50,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1334318400,
-      'formatted' => '2012-04-13 21:00:00',
-      'timezone' => 
+      'timestamp' => 1334314200,
+      'formatted' => '2012-04-13 19:50:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -7888,29 +6904,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 21.936455212067813,
-      'moon_phase_angle' => 270.6037546019995,
+      'moon_age' => 21.84236111111111,
+      'moon_phase_angle' => 266.63339087521433,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2012-04-14 00:00:00' => 
+  '2012-04-14 09:00:00' =>
   array (
-    0 => '2012-04-14 00:00:00',
-    1 => 
+    0 => '2012-04-14 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 4,
       'day' => 14,
       'dayOfWeek' => 6,
       'dayOfYear' => 105,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1334329200,
-      'formatted' => '2012-04-14 00:00:00',
-      'timezone' => 
+      'timestamp' => 1334361600,
+      'formatted' => '2012-04-14 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -7946,29 +6962,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 24,
       'is_leap_month' => false,
-      'moon_age' => 22.061461355537176,
-      'moon_phase_angle' => 272.15198666672154,
+      'moon_age' => 22.391,
+      'moon_phase_angle' => 273.4460047860765,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-04-15 00:00:00' => 
+  '2012-04-15 09:00:00' =>
   array (
-    0 => '2012-04-15 00:00:00',
-    1 => 
+    0 => '2012-04-15 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 4,
       'day' => 15,
       'dayOfWeek' => 0,
       'dayOfYear' => 106,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1334415600,
-      'formatted' => '2012-04-15 00:00:00',
-      'timezone' => 
+      'timestamp' => 1334448000,
+      'formatted' => '2012-04-15 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -8004,29 +7020,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 25,
       'is_leap_month' => false,
-      'moon_age' => 23.061388130299747,
-      'moon_phase_angle' => 284.3491657852515,
+      'moon_age' => 23.391,
+      'moon_phase_angle' => 285.6038430262825,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-04-16 00:00:00' => 
+  '2012-04-16 09:00:00' =>
   array (
-    0 => '2012-04-16 00:00:00',
-    1 => 
+    0 => '2012-04-16 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 4,
       'day' => 16,
       'dayOfWeek' => 1,
       'dayOfYear' => 107,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1334502000,
-      'formatted' => '2012-04-16 00:00:00',
-      'timezone' => 
+      'timestamp' => 1334534400,
+      'formatted' => '2012-04-16 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -8062,29 +7078,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 26,
       'is_leap_month' => false,
-      'moon_age' => 24.06106168590486,
-      'moon_phase_angle' => 296.24179961657535,
+      'moon_age' => 24.391,
+      'moon_phase_angle' => 297.46222806175035,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-04-17 00:00:00' => 
+  '2012-04-17 09:00:00' =>
   array (
-    0 => '2012-04-17 00:00:00',
-    1 => 
+    0 => '2012-04-17 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 4,
       'day' => 17,
       'dayOfWeek' => 2,
       'dayOfYear' => 108,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1334588400,
-      'formatted' => '2012-04-17 00:00:00',
-      'timezone' => 
+      'timestamp' => 1334620800,
+      'formatted' => '2012-04-17 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -8120,29 +7136,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 27,
       'is_leap_month' => false,
-      'moon_age' => 25.56794663472101,
-      'moon_phase_angle' => 307.87478047639235,
+      'moon_age' => 25.391,
+      'moon_phase_angle' => 309.06579228146353,
       'moon_phase' => 7,
       'moon_phase_text' => '有明',
     ),
   ),
-  '2012-04-18 00:00:00' => 
+  '2012-04-18 09:00:00' =>
   array (
-    0 => '2012-04-18 00:00:00',
-    1 => 
+    0 => '2012-04-18 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 4,
       'day' => 18,
       'dayOfWeek' => 3,
       'dayOfYear' => 109,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1334674800,
-      'formatted' => '2012-04-18 00:00:00',
-      'timezone' => 
+      'timestamp' => 1334707200,
+      'formatted' => '2012-04-18 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -8178,29 +7194,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 28,
       'is_leap_month' => false,
-      'moon_age' => 26.402347974013537,
-      'moon_phase_angle' => 319.290713214256,
+      'moon_age' => 26.391,
+      'moon_phase_angle' => 320.45703856862593,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-04-19 00:00:00' => 
+  '2012-04-19 09:00:00' =>
   array (
-    0 => '2012-04-19 00:00:00',
-    1 => 
+    0 => '2012-04-19 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 4,
       'day' => 19,
       'dayOfWeek' => 4,
       'dayOfYear' => 110,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1334761200,
-      'formatted' => '2012-04-19 00:00:00',
-      'timezone' => 
+      'timestamp' => 1334793600,
+      'formatted' => '2012-04-19 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -8236,29 +7252,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 29,
       'is_leap_month' => false,
-      'moon_age' => 27.45540514416465,
-      'moon_phase_angle' => 330.5274853914033,
+      'moon_age' => 27.391,
+      'moon_phase_angle' => 331.6737595152688,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-04-20 00:00:00' => 
+  '2012-04-20 09:00:00' =>
   array (
-    0 => '2012-04-20 00:00:00',
-    1 => 
+    0 => '2012-04-20 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 4,
       'day' => 20,
       'dayOfWeek' => 5,
       'dayOfYear' => 111,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1334847600,
-      'formatted' => '2012-04-20 00:00:00',
-      'timezone' => 
+      'timestamp' => 1334880000,
+      'formatted' => '2012-04-20 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -8294,29 +7310,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 30,
       'is_leap_month' => false,
-      'moon_age' => 28.361303534968137,
-      'moon_phase_angle' => 341.61811545423177,
+      'moon_age' => 28.391,
+      'moon_phase_angle' => 342.74857613440855,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-04-21 00:00:00' => 
+  '2012-04-21 09:00:00' =>
   array (
-    0 => '2012-04-21 00:00:00',
-    1 => 
+    0 => '2012-04-21 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 4,
       'day' => 21,
       'dayOfWeek' => 6,
       'dayOfYear' => 112,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1334934000,
-      'formatted' => '2012-04-21 00:00:00',
-      'timezone' => 
+      'timestamp' => 1334966400,
+      'formatted' => '2012-04-21 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -8352,16 +7368,16 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 1,
       'is_leap_month' => true,
-      'moon_age' => 29.258529214332192,
-      'moon_phase_angle' => 352.5922634767245,
+      'moon_age' => 29.391,
+      'moon_phase_angle' => 353.7105739714997,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2012-04-21 16:00:00' => 
+  '2012-04-21 16:18:00' =>
   array (
-    0 => '2012-04-21 16:00:00',
-    1 => 
+    0 => '2012-04-21 16:18:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 4,
@@ -8369,12 +7385,12 @@ return array (
       'dayOfWeek' => 6,
       'dayOfYear' => 112,
       'hour' => 16,
-      'minute' => 0,
+      'minute' => 18,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1334991600,
-      'formatted' => '2012-04-21 16:00:00',
-      'timezone' => 
+      'timestamp' => 1334992680,
+      'formatted' => '2012-04-21 16:18:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -8410,145 +7426,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 1,
       'is_leap_month' => true,
-      'moon_age' => 0.3619163907133043,
-      'moon_phase_angle' => 359.85783609849193,
+      'moon_age' => 0.0,
+      'moon_phase_angle' => 357.02678219574426,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2012-04-21 17:00:00' => 
+  '2012-04-22 09:00:00' =>
   array (
-    0 => '2012-04-21 17:00:00',
-    1 => 
-    array (
-      'year' => 2012,
-      'month' => 4,
-      'day' => 21,
-      'dayOfWeek' => 6,
-      'dayOfYear' => 112,
-      'hour' => 17,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1334995200,
-      'formatted' => '2012-04-21 17:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 7,
-      'misc_seasonal_node_text' => '土用',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 24,
-      'oriental_zodiac_text' => '辰',
-      'oriental_zodiac' => 5,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '先負',
-      'six_weekday' => 4,
-      'weekday_text' => '土',
-      'month_text' => '卯月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '弥生',
-      'lunar_month' => 3,
-      'lunar_year' => 2012,
-      'lunar_day' => 1,
-      'is_leap_month' => true,
-      'moon_age' => 0.4035798804834485,
-      'moon_phase_angle' => 0.31084029783169953,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2012-04-21 19:00:00' => 
-  array (
-    0 => '2012-04-21 19:00:00',
-    1 => 
-    array (
-      'year' => 2012,
-      'month' => 4,
-      'day' => 21,
-      'dayOfWeek' => 6,
-      'dayOfYear' => 112,
-      'hour' => 19,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1335002400,
-      'formatted' => '2012-04-21 19:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 7,
-      'misc_seasonal_node_text' => '土用',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 24,
-      'oriental_zodiac_text' => '辰',
-      'oriental_zodiac' => 5,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '先負',
-      'six_weekday' => 4,
-      'weekday_text' => '土',
-      'month_text' => '卯月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '弥生',
-      'lunar_month' => 3,
-      'lunar_year' => 2012,
-      'lunar_day' => 1,
-      'is_leap_month' => true,
-      'moon_age' => 0.48691451689228415,
-      'moon_phase_angle' => 1.21650485916361,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2012-04-22 00:00:00' => 
-  array (
-    0 => '2012-04-22 00:00:00',
-    1 => 
+    0 => '2012-04-22 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 4,
       'day' => 22,
       'dayOfWeek' => 0,
       'dayOfYear' => 113,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1335020400,
-      'formatted' => '2012-04-22 00:00:00',
-      'timezone' => 
+      'timestamp' => 1335052800,
+      'formatted' => '2012-04-22 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -8584,29 +7484,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 2,
       'is_leap_month' => true,
-      'moon_age' => 0.6952564492821693,
-      'moon_phase_angle' => 3.478767944364755,
+      'moon_age' => 0.696,
+      'moon_phase_angle' => 4.588363937497448,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-04-23 00:00:00' => 
+  '2012-04-23 09:00:00' =>
   array (
-    0 => '2012-04-23 00:00:00',
-    1 => 
+    0 => '2012-04-23 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 4,
       'day' => 23,
       'dayOfWeek' => 1,
       'dayOfYear' => 114,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1335106800,
-      'formatted' => '2012-04-23 00:00:00',
-      'timezone' => 
+      'timestamp' => 1335139200,
+      'formatted' => '2012-04-23 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -8642,29 +7542,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 3,
       'is_leap_month' => true,
-      'moon_age' => 1.695251310709864,
-      'moon_phase_angle' => 14.308598214957279,
+      'moon_age' => 1.696,
+      'moon_phase_angle' => 15.413418146351255,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-04-24 00:00:00' => 
+  '2012-04-24 09:00:00' =>
   array (
-    0 => '2012-04-24 00:00:00',
-    1 => 
+    0 => '2012-04-24 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 4,
       'day' => 24,
       'dayOfWeek' => 2,
       'dayOfYear' => 115,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1335193200,
-      'formatted' => '2012-04-24 00:00:00',
-      'timezone' => 
+      'timestamp' => 1335225600,
+      'formatted' => '2012-04-24 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -8700,29 +7600,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 4,
       'is_leap_month' => true,
-      'moon_age' => 2.695255469996482,
-      'moon_phase_angle' => 25.11768213479334,
+      'moon_age' => 2.696,
+      'moon_phase_angle' => 26.222759897821845,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-04-25 00:00:00' => 
+  '2012-04-25 09:00:00' =>
   array (
-    0 => '2012-04-25 00:00:00',
-    1 => 
+    0 => '2012-04-25 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 4,
       'day' => 25,
       'dayOfWeek' => 3,
       'dayOfYear' => 116,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1335279600,
-      'formatted' => '2012-04-25 00:00:00',
-      'timezone' => 
+      'timestamp' => 1335312000,
+      'formatted' => '2012-04-25 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -8758,29 +7658,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 5,
       'is_leap_month' => true,
-      'moon_age' => 3.6952490299008787,
-      'moon_phase_angle' => 35.949170315314234,
+      'moon_age' => 3.696,
+      'moon_phase_angle' => 37.06074408730286,
       'moon_phase' => 1,
       'moon_phase_text' => '三日月',
     ),
   ),
-  '2012-04-26 00:00:00' => 
+  '2012-04-26 09:00:00' =>
   array (
-    0 => '2012-04-26 00:00:00',
-    1 => 
+    0 => '2012-04-26 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 4,
       'day' => 26,
       'dayOfWeek' => 4,
       'dayOfYear' => 117,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1335366000,
-      'formatted' => '2012-04-26 00:00:00',
-      'timezone' => 
+      'timestamp' => 1335398400,
+      'formatted' => '2012-04-26 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -8816,29 +7716,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 6,
       'is_leap_month' => true,
-      'moon_age' => 4.695249334443361,
-      'moon_phase_angle' => 46.854802804238325,
+      'moon_age' => 4.696,
+      'moon_phase_angle' => 47.980059720583114,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-04-27 00:00:00' => 
+  '2012-04-27 09:00:00' =>
   array (
-    0 => '2012-04-27 00:00:00',
-    1 => 
+    0 => '2012-04-27 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 4,
       'day' => 27,
       'dayOfWeek' => 5,
       'dayOfYear' => 118,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1335452400,
-      'formatted' => '2012-04-27 00:00:00',
-      'timezone' => 
+      'timestamp' => 1335484800,
+      'formatted' => '2012-04-27 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -8874,29 +7774,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 7,
       'is_leap_month' => true,
-      'moon_age' => 5.695246495306492,
-      'moon_phase_angle' => 57.89510556386126,
+      'moon_age' => 5.696,
+      'moon_phase_angle' => 59.041906033010406,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-04-28 00:00:00' => 
+  '2012-04-28 09:00:00' =>
   array (
-    0 => '2012-04-28 00:00:00',
-    1 => 
+    0 => '2012-04-28 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 4,
       'day' => 28,
       'dayOfWeek' => 6,
       'dayOfYear' => 119,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1335538800,
-      'formatted' => '2012-04-28 00:00:00',
-      'timezone' => 
+      'timestamp' => 1335571200,
+      'formatted' => '2012-04-28 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -8932,29 +7832,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 8,
       'is_leap_month' => true,
-      'moon_age' => 6.695249260868877,
-      'moon_phase_angle' => 69.13813350117667,
+      'moon_age' => 6.696,
+      'moon_phase_angle' => 70.31485677878185,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-04-29 00:00:00' => 
+  '2012-04-29 09:00:00' =>
   array (
-    0 => '2012-04-29 00:00:00',
-    1 => 
+    0 => '2012-04-29 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 4,
       'day' => 29,
       'dayOfWeek' => 0,
       'dayOfYear' => 120,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1335625200,
-      'formatted' => '2012-04-29 00:00:00',
-      'timezone' => 
+      'timestamp' => 1335657600,
+      'formatted' => '2012-04-29 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -8990,29 +7890,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 9,
       'is_leap_month' => true,
-      'moon_age' => 7.695249040611088,
-      'moon_phase_angle' => 80.65639801354351,
+      'moon_age' => 7.696,
+      'moon_phase_angle' => 81.87171538750945,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2012-04-29 19:00:00' => 
+  '2012-04-29 18:57:00' =>
   array (
-    0 => '2012-04-29 19:00:00',
-    1 => 
+    0 => '2012-04-29 18:57:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 4,
       'day' => 29,
       'dayOfWeek' => 0,
       'dayOfYear' => 120,
-      'hour' => 19,
-      'minute' => 0,
+      'hour' => 18,
+      'minute' => 57,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1335693600,
-      'formatted' => '2012-04-29 19:00:00',
-      'timezone' => 
+      'timestamp' => 1335693420,
+      'formatted' => '2012-04-29 18:57:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -9048,29 +7948,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 9,
       'is_leap_month' => true,
-      'moon_age' => 8.486915261019021,
-      'moon_phase_angle' => 90.01771892465901,
+      'moon_age' => 8.110416666666667,
+      'moon_phase_angle' => 86.7633135066437,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2012-04-30 00:00:00' => 
+  '2012-04-30 09:00:00' =>
   array (
-    0 => '2012-04-30 00:00:00',
-    1 => 
+    0 => '2012-04-30 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 4,
       'day' => 30,
       'dayOfWeek' => 1,
       'dayOfYear' => 121,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1335711600,
-      'formatted' => '2012-04-30 00:00:00',
-      'timezone' => 
+      'timestamp' => 1335744000,
+      'formatted' => '2012-04-30 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -9106,29 +8006,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 10,
       'is_leap_month' => true,
-      'moon_age' => 8.695254444144666,
-      'moon_phase_angle' => 92.52152932638325,
+      'moon_age' => 8.696,
+      'moon_phase_angle' => 93.78379634544368,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-05-01 00:00:00' => 
+  '2012-05-01 09:00:00' =>
   array (
-    0 => '2012-05-01 00:00:00',
-    1 => 
+    0 => '2012-05-01 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 5,
       'day' => 1,
       'dayOfWeek' => 2,
       'dayOfYear' => 122,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1335798000,
-      'formatted' => '2012-05-01 00:00:00',
-      'timezone' => 
+      'timestamp' => 1335830400,
+      'formatted' => '2012-05-01 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -9164,29 +8064,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 11,
       'is_leap_month' => true,
-      'moon_age' => 9.695247780065984,
-      'moon_phase_angle' => 104.79627737147302,
+      'moon_age' => 9.696,
+      'moon_phase_angle' => 106.11237263973943,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-05-02 00:00:00' => 
+  '2012-05-02 09:00:00' =>
   array (
-    0 => '2012-05-02 00:00:00',
-    1 => 
+    0 => '2012-05-02 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 5,
       'day' => 2,
       'dayOfWeek' => 3,
       'dayOfYear' => 123,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1335884400,
-      'formatted' => '2012-05-02 00:00:00',
-      'timezone' => 
+      'timestamp' => 1335916800,
+      'formatted' => '2012-05-02 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -9222,29 +8122,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 12,
       'is_leap_month' => true,
-      'moon_age' => 10.6952483067289,
-      'moon_phase_angle' => 117.52382289683182,
+      'moon_age' => 10.696,
+      'moon_phase_angle' => 118.89753147284804,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-05-03 00:00:00' => 
+  '2012-05-03 09:00:00' =>
   array (
-    0 => '2012-05-03 00:00:00',
-    1 => 
+    0 => '2012-05-03 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 5,
       'day' => 3,
       'dayOfWeek' => 4,
       'dayOfYear' => 124,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1335970800,
-      'formatted' => '2012-05-03 00:00:00',
-      'timezone' => 
+      'timestamp' => 1336003200,
+      'formatted' => '2012-05-03 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -9280,29 +8180,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 13,
       'is_leap_month' => true,
-      'moon_age' => 11.69525267276913,
-      'moon_phase_angle' => 130.71550458618515,
+      'moon_age' => 11.696,
+      'moon_phase_angle' => 132.1457086340424,
       'moon_phase' => 3,
       'moon_phase_text' => '十三夜',
     ),
   ),
-  '2012-05-04 00:00:00' => 
+  '2012-05-04 09:00:00' =>
   array (
-    0 => '2012-05-04 00:00:00',
-    1 => 
+    0 => '2012-05-04 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 5,
       'day' => 4,
       'dayOfWeek' => 5,
       'dayOfYear' => 125,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1336057200,
-      'formatted' => '2012-05-04 00:00:00',
-      'timezone' => 
+      'timestamp' => 1336089600,
+      'formatted' => '2012-05-04 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -9338,29 +8238,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 14,
       'is_leap_month' => true,
-      'moon_age' => 12.695250956807286,
-      'moon_phase_angle' => 144.33947821379977,
+      'moon_age' => 12.696,
+      'moon_phase_angle' => 145.81884097915824,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-05-05 00:00:00' => 
+  '2012-05-05 09:00:00' =>
   array (
-    0 => '2012-05-05 00:00:00',
-    1 => 
+    0 => '2012-05-05 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 5,
       'day' => 5,
       'dayOfWeek' => 6,
       'dayOfYear' => 126,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1336143600,
-      'formatted' => '2012-05-05 00:00:00',
-      'timezone' => 
+      'timestamp' => 1336176000,
+      'formatted' => '2012-05-05 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -9396,29 +8296,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 15,
       'is_leap_month' => true,
-      'moon_age' => 13.695250257384032,
-      'moon_phase_angle' => 158.31462234051864,
+      'moon_age' => 13.696,
+      'moon_phase_angle' => 159.82948783688568,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-05-06 00:00:00' => 
+  '2012-05-06 09:00:00' =>
   array (
-    0 => '2012-05-06 00:00:00',
-    1 => 
+    0 => '2012-05-06 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 5,
       'day' => 6,
       'dayOfWeek' => 0,
       'dayOfYear' => 127,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1336230000,
-      'formatted' => '2012-05-06 00:00:00',
-      'timezone' => 
+      'timestamp' => 1336262400,
+      'formatted' => '2012-05-06 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -9454,16 +8354,16 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 16,
       'is_leap_month' => true,
-      'moon_age' => 14.69524841895327,
-      'moon_phase_angle' => 172.51406801847497,
+      'moon_age' => 14.696,
+      'moon_phase_angle' => 174.045970664891,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2012-05-06 12:00:00' => 
+  '2012-05-06 12:35:00' =>
   array (
-    0 => '2012-05-06 12:00:00',
-    1 => 
+    0 => '2012-05-06 12:35:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 5,
@@ -9471,12 +8371,12 @@ return array (
       'dayOfWeek' => 0,
       'dayOfYear' => 127,
       'hour' => 12,
-      'minute' => 0,
+      'minute' => 35,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1336273200,
-      'formatted' => '2012-05-06 12:00:00',
-      'timezone' => 
+      'timestamp' => 1336275300,
+      'formatted' => '2012-05-06 12:35:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -9512,145 +8412,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 16,
       'is_leap_month' => true,
-      'moon_age' => 15.195248492527753,
-      'moon_phase_angle' => 179.6492453223852,
+      'moon_age' => 14.845138888888888,
+      'moon_phase_angle' => 176.17659641781222,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2012-05-06 13:00:00' => 
+  '2012-05-07 09:00:00' =>
   array (
-    0 => '2012-05-06 13:00:00',
-    1 => 
-    array (
-      'year' => 2012,
-      'month' => 5,
-      'day' => 6,
-      'dayOfWeek' => 0,
-      'dayOfYear' => 127,
-      'hour' => 13,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1336276800,
-      'formatted' => '2012-05-06 13:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 24,
-      'oriental_zodiac_text' => '辰',
-      'oriental_zodiac' => 5,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '赤口',
-      'six_weekday' => 1,
-      'weekday_text' => '日',
-      'month_text' => '皐月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '弥生',
-      'lunar_month' => 3,
-      'lunar_year' => 2012,
-      'lunar_day' => 16,
-      'is_leap_month' => true,
-      'moon_age' => 15.236922492273152,
-      'moon_phase_angle' => 180.24394345289357,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2012-05-06 15:00:00' => 
-  array (
-    0 => '2012-05-06 15:00:00',
-    1 => 
-    array (
-      'year' => 2012,
-      'month' => 5,
-      'day' => 6,
-      'dayOfWeek' => 0,
-      'dayOfYear' => 127,
-      'hour' => 15,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1336284000,
-      'formatted' => '2012-05-06 15:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 24,
-      'oriental_zodiac_text' => '辰',
-      'oriental_zodiac' => 5,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '赤口',
-      'six_weekday' => 1,
-      'weekday_text' => '日',
-      'month_text' => '皐月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '弥生',
-      'lunar_month' => 3,
-      'lunar_year' => 2012,
-      'lunar_day' => 16,
-      'is_leap_month' => true,
-      'moon_age' => 15.320382768753916,
-      'moon_phase_angle' => 181.4332033589663,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2012-05-07 00:00:00' => 
-  array (
-    0 => '2012-05-07 00:00:00',
-    1 => 
+    0 => '2012-05-07 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 5,
       'day' => 7,
       'dayOfWeek' => 1,
       'dayOfYear' => 128,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1336316400,
-      'formatted' => '2012-05-07 00:00:00',
-      'timezone' => 
+      'timestamp' => 1336348800,
+      'formatted' => '2012-05-07 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -9686,29 +8470,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 17,
       'is_leap_month' => true,
-      'moon_age' => 15.702129312325269,
-      'moon_phase_angle' => 186.78023929001446,
+      'moon_age' => 15.696,
+      'moon_phase_angle' => 188.30865596302073,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-05-08 00:00:00' => 
+  '2012-05-08 09:00:00' =>
   array (
-    0 => '2012-05-08 00:00:00',
-    1 => 
+    0 => '2012-05-08 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 5,
       'day' => 8,
       'dayOfWeek' => 2,
       'dayOfYear' => 129,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1336402800,
-      'formatted' => '2012-05-08 00:00:00',
-      'timezone' => 
+      'timestamp' => 1336435200,
+      'formatted' => '2012-05-08 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -9744,29 +8528,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 18,
       'is_leap_month' => true,
-      'moon_age' => 16.718869301490486,
-      'moon_phase_angle' => 200.9484911116879,
+      'moon_age' => 16.696,
+      'moon_phase_angle' => 202.4539482924515,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-05-09 00:00:00' => 
+  '2012-05-09 09:00:00' =>
   array (
-    0 => '2012-05-09 00:00:00',
-    1 => 
+    0 => '2012-05-09 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 5,
       'day' => 9,
       'dayOfWeek' => 3,
       'dayOfYear' => 130,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1336489200,
-      'formatted' => '2012-05-09 00:00:00',
-      'timezone' => 
+      'timestamp' => 1336521600,
+      'formatted' => '2012-05-09 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -9802,29 +8586,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 19,
       'is_leap_month' => true,
-      'moon_age' => 17.73292542854324,
-      'moon_phase_angle' => 214.87222672464142,
+      'moon_age' => 17.696,
+      'moon_phase_angle' => 216.3389460240757,
       'moon_phase' => 5,
       'moon_phase_text' => '十六夜',
     ),
   ),
-  '2012-05-10 00:00:00' => 
+  '2012-05-10 09:00:00' =>
   array (
-    0 => '2012-05-10 00:00:00',
-    1 => 
+    0 => '2012-05-10 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 5,
       'day' => 10,
       'dayOfWeek' => 4,
       'dayOfYear' => 131,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1336575600,
-      'formatted' => '2012-05-10 00:00:00',
-      'timezone' => 
+      'timestamp' => 1336608000,
+      'formatted' => '2012-05-10 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -9860,29 +8644,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 20,
       'is_leap_month' => true,
-      'moon_age' => 18.74357108445838,
-      'moon_phase_angle' => 228.44184285174083,
+      'moon_age' => 18.696,
+      'moon_phase_angle' => 229.8594226995394,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-05-11 00:00:00' => 
+  '2012-05-11 09:00:00' =>
   array (
-    0 => '2012-05-11 00:00:00',
-    1 => 
+    0 => '2012-05-11 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 5,
       'day' => 11,
       'dayOfWeek' => 5,
       'dayOfYear' => 132,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1336662000,
-      'formatted' => '2012-05-11 00:00:00',
-      'timezone' => 
+      'timestamp' => 1336694400,
+      'formatted' => '2012-05-11 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -9918,29 +8702,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 21,
       'is_leap_month' => true,
-      'moon_age' => 19.750441549811512,
-      'moon_phase_angle' => 241.5932478956458,
+      'moon_age' => 19.696,
+      'moon_phase_angle' => 242.95708879636265,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-05-12 00:00:00' => 
+  '2012-05-12 09:00:00' =>
   array (
-    0 => '2012-05-12 00:00:00',
-    1 => 
+    0 => '2012-05-12 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 5,
       'day' => 12,
       'dayOfWeek' => 6,
       'dayOfYear' => 133,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1336748400,
-      'formatted' => '2012-05-12 00:00:00',
-      'timezone' => 
+      'timestamp' => 1336780800,
+      'formatted' => '2012-05-12 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -9976,29 +8760,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 22,
       'is_leap_month' => true,
-      'moon_age' => 20.753536217845976,
-      'moon_phase_angle' => 254.30633622188378,
+      'moon_age' => 20.696,
+      'moon_phase_angle' => 255.6168095533145,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-05-13 00:00:00' => 
+  '2012-05-13 06:47:00' =>
   array (
-    0 => '2012-05-13 00:00:00',
-    1 => 
+    0 => '2012-05-13 06:47:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 5,
       'day' => 13,
       'dayOfWeek' => 0,
       'dayOfYear' => 134,
-      'hour' => 0,
-      'minute' => 0,
+      'hour' => 6,
+      'minute' => 47,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1336834800,
-      'formatted' => '2012-05-13 00:00:00',
-      'timezone' => 
+      'timestamp' => 1336859220,
+      'formatted' => '2012-05-13 06:47:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -10034,29 +8818,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 23,
       'is_leap_month' => true,
-      'moon_age' => 21.753116603009403,
-      'moon_phase_angle' => 266.5968371432757,
+      'moon_age' => 21.603472222222223,
+      'moon_phase_angle' => 266.7436810102497,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2012-05-13 08:00:00' => 
+  '2012-05-13 09:00:00' =>
   array (
-    0 => '2012-05-13 08:00:00',
-    1 => 
+    0 => '2012-05-13 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 5,
       'day' => 13,
       'dayOfWeek' => 0,
       'dayOfYear' => 134,
-      'hour' => 8,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1336863600,
-      'formatted' => '2012-05-13 08:00:00',
-      'timezone' => 
+      'timestamp' => 1336867200,
+      'formatted' => '2012-05-13 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -10092,29 +8876,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 23,
       'is_leap_month' => true,
-      'moon_age' => 22.08559155324474,
-      'moon_phase_angle' => 270.60629913190684,
+      'moon_age' => 21.696,
+      'moon_phase_angle' => 267.85772229745976,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2012-05-14 00:00:00' => 
+  '2012-05-14 09:00:00' =>
   array (
-    0 => '2012-05-14 00:00:00',
-    1 => 
+    0 => '2012-05-14 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 5,
       'day' => 14,
       'dayOfWeek' => 1,
       'dayOfYear' => 135,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1336921200,
-      'formatted' => '2012-05-14 00:00:00',
-      'timezone' => 
+      'timestamp' => 1336953600,
+      'formatted' => '2012-05-14 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -10150,29 +8934,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 24,
       'is_leap_month' => true,
-      'moon_age' => 22.749578789342195,
-      'moon_phase_angle' => 278.50554018184505,
+      'moon_age' => 22.696,
+      'moon_phase_angle' => 279.7225828765823,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-05-15 00:00:00' => 
+  '2012-05-15 09:00:00' =>
   array (
-    0 => '2012-05-15 00:00:00',
-    1 => 
+    0 => '2012-05-15 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 5,
       'day' => 15,
       'dayOfWeek' => 2,
       'dayOfYear' => 136,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1337007600,
-      'formatted' => '2012-05-15 00:00:00',
-      'timezone' => 
+      'timestamp' => 1337040000,
+      'formatted' => '2012-05-15 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -10208,29 +8992,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 25,
       'is_leap_month' => true,
-      'moon_age' => 23.743403527420014,
-      'moon_phase_angle' => 290.08788341211385,
+      'moon_age' => 23.696,
+      'moon_phase_angle' => 291.26799352758496,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-05-16 00:00:00' => 
+  '2012-05-16 09:00:00' =>
   array (
-    0 => '2012-05-16 00:00:00',
-    1 => 
+    0 => '2012-05-16 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 5,
       'day' => 16,
       'dayOfWeek' => 3,
       'dayOfYear' => 137,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1337094000,
-      'formatted' => '2012-05-16 00:00:00',
-      'timezone' => 
+      'timestamp' => 1337126400,
+      'formatted' => '2012-05-16 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -10266,29 +9050,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 26,
       'is_leap_month' => true,
-      'moon_age' => 24.735114112962037,
-      'moon_phase_angle' => 301.4054799502325,
+      'moon_age' => 24.696,
+      'moon_phase_angle' => 302.55635554862516,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-05-17 00:00:00' => 
+  '2012-05-17 09:00:00' =>
   array (
-    0 => '2012-05-17 00:00:00',
-    1 => 
+    0 => '2012-05-17 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 5,
       'day' => 17,
       'dayOfWeek' => 4,
       'dayOfYear' => 138,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1337180400,
-      'formatted' => '2012-05-17 00:00:00',
-      'timezone' => 
+      'timestamp' => 1337212800,
+      'formatted' => '2012-05-17 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -10324,29 +9108,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 27,
       'is_leap_month' => true,
-      'moon_age' => 25.72521334188059,
-      'moon_phase_angle' => 312.5200633685494,
+      'moon_age' => 25.696,
+      'moon_phase_angle' => 313.6496791088499,
       'moon_phase' => 7,
       'moon_phase_text' => '有明',
     ),
   ),
-  '2012-05-18 00:00:00' => 
+  '2012-05-18 09:00:00' =>
   array (
-    0 => '2012-05-18 00:00:00',
-    1 => 
+    0 => '2012-05-18 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 5,
       'day' => 18,
       'dayOfWeek' => 5,
       'dayOfYear' => 139,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1337266800,
-      'formatted' => '2012-05-18 00:00:00',
-      'timezone' => 
+      'timestamp' => 1337299200,
+      'formatted' => '2012-05-18 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -10382,29 +9166,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 28,
       'is_leap_month' => true,
-      'moon_age' => 26.87094208426246,
-      'moon_phase_angle' => 323.48972457240785,
+      'moon_age' => 26.696,
+      'moon_phase_angle' => 324.6055135674524,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-05-19 00:00:00' => 
+  '2012-05-19 09:00:00' =>
   array (
-    0 => '2012-05-19 00:00:00',
-    1 => 
+    0 => '2012-05-19 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 5,
       'day' => 19,
       'dayOfWeek' => 6,
       'dayOfYear' => 140,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1337353200,
-      'formatted' => '2012-05-19 00:00:00',
-      'timezone' => 
+      'timestamp' => 1337385600,
+      'formatted' => '2012-05-19 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -10440,29 +9224,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 29,
       'is_leap_month' => true,
-      'moon_age' => 27.76137949028456,
-      'moon_phase_angle' => 334.3670752921838,
+      'moon_age' => 27.696,
+      'moon_phase_angle' => 335.4752563114127,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-05-20 00:00:00' => 
+  '2012-05-20 09:00:00' =>
   array (
-    0 => '2012-05-20 00:00:00',
-    1 => 
+    0 => '2012-05-20 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 5,
       'day' => 20,
       'dayOfWeek' => 0,
       'dayOfYear' => 141,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1337439600,
-      'formatted' => '2012-05-20 00:00:00',
-      'timezone' => 
+      'timestamp' => 1337472000,
+      'formatted' => '2012-05-20 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -10498,132 +9282,16 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 30,
       'is_leap_month' => true,
-      'moon_age' => 28.649414179059058,
-      'moon_phase_angle' => 345.19893271694656,
+      'moon_age' => 28.696,
+      'moon_phase_angle' => 346.30452308838136,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-05-21 00:00:00' => 
+  '2012-05-21 08:47:00' =>
   array (
-    0 => '2012-05-21 00:00:00',
-    1 => 
-    array (
-      'year' => 2012,
-      'month' => 5,
-      'day' => 21,
-      'dayOfWeek' => 1,
-      'dayOfYear' => 142,
-      'hour' => 0,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1337526000,
-      'formatted' => '2012-05-21 00:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => 4,
-      'solar_term_text' => '小満',
-      'is_solar_term' => true,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 24,
-      'oriental_zodiac_text' => '辰',
-      'oriental_zodiac' => 5,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '仏滅',
-      'six_weekday' => 5,
-      'weekday_text' => '月',
-      'month_text' => '皐月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '卯月',
-      'lunar_month' => 4,
-      'lunar_year' => 2012,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.008718912489712238,
-      'moon_phase_angle' => 356.02714489205823,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2012-05-21 06:00:00' => 
-  array (
-    0 => '2012-05-21 06:00:00',
-    1 => 
-    array (
-      'year' => 2012,
-      'month' => 5,
-      'day' => 21,
-      'dayOfWeek' => 1,
-      'dayOfYear' => 142,
-      'hour' => 6,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1337547600,
-      'formatted' => '2012-05-21 06:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => 4,
-      'solar_term_text' => '小満',
-      'is_solar_term' => true,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 24,
-      'oriental_zodiac_text' => '辰',
-      'oriental_zodiac' => 5,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '仏滅',
-      'six_weekday' => 5,
-      'weekday_text' => '月',
-      'month_text' => '皐月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '卯月',
-      'lunar_month' => 4,
-      'lunar_year' => 2012,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.25871975533664227,
-      'moon_phase_angle' => 358.73818426154287,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2012-05-21 08:00:00' => 
-  array (
-    0 => '2012-05-21 08:00:00',
-    1 => 
+    0 => '2012-05-21 08:47:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 5,
@@ -10631,12 +9299,12 @@ return array (
       'dayOfWeek' => 1,
       'dayOfYear' => 142,
       'hour' => 8,
-      'minute' => 0,
+      'minute' => 47,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1337554800,
-      'formatted' => '2012-05-21 08:00:00',
-      'timezone' => 
+      'timestamp' => 1337557620,
+      'formatted' => '2012-05-21 08:47:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -10672,16 +9340,16 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.3420498496852815,
-      'moon_phase_angle' => 359.6424498704972,
+      'moon_age' => 0.0,
+      'moon_phase_angle' => 357.036736021591,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2012-05-21 09:00:00' => 
+  '2012-05-21 09:00:00' =>
   array (
     0 => '2012-05-21 09:00:00',
-    1 => 
+    1 =>
     array (
       'year' => 2012,
       'month' => 5,
@@ -10694,7 +9362,7 @@ return array (
       'micro' => 0,
       'timestamp' => 1337558400,
       'formatted' => '2012-05-21 09:00:00',
-      'timezone' => 
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -10730,87 +9398,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.3837228212505579,
-      'moon_phase_angle' => 0.09470457065288684,
+      'moon_age' => 0.009,
+      'moon_phase_angle' => 357.13462761224474,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2012-05-21 10:00:00' => 
+  '2012-05-22 09:00:00' =>
   array (
-    0 => '2012-05-21 10:00:00',
-    1 => 
-    array (
-      'year' => 2012,
-      'month' => 5,
-      'day' => 21,
-      'dayOfWeek' => 1,
-      'dayOfYear' => 142,
-      'hour' => 10,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1337562000,
-      'formatted' => '2012-05-21 10:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => 4,
-      'solar_term_text' => '小満',
-      'is_solar_term' => true,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 24,
-      'oriental_zodiac_text' => '辰',
-      'oriental_zodiac' => 5,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '仏滅',
-      'six_weekday' => 5,
-      'weekday_text' => '月',
-      'month_text' => '皐月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '卯月',
-      'lunar_month' => 4,
-      'lunar_year' => 2012,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.42538417456671596,
-      'moon_phase_angle' => 0.5470440987362224,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2012-05-22 00:00:00' => 
-  array (
-    0 => '2012-05-22 00:00:00',
-    1 => 
+    0 => '2012-05-22 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 5,
       'day' => 22,
       'dayOfWeek' => 2,
       'dayOfYear' => 143,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1337612400,
-      'formatted' => '2012-05-22 00:00:00',
-      'timezone' => 
+      'timestamp' => 1337644800,
+      'formatted' => '2012-05-22 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -10846,29 +9456,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 2,
       'is_leap_month' => false,
-      'moon_age' => 1.0087126856669784,
-      'moon_phase_angle' => 6.890199495385659,
+      'moon_age' => 1.009,
+      'moon_phase_angle' => 8.004227884649062,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-05-23 00:00:00' => 
+  '2012-05-23 09:00:00' =>
   array (
-    0 => '2012-05-23 00:00:00',
-    1 => 
+    0 => '2012-05-23 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 5,
       'day' => 23,
       'dayOfWeek' => 3,
       'dayOfYear' => 144,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1337698800,
-      'formatted' => '2012-05-23 00:00:00',
-      'timezone' => 
+      'timestamp' => 1337731200,
+      'formatted' => '2012-05-23 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -10904,29 +9514,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 3,
       'is_leap_month' => false,
-      'moon_age' => 2.008716638199985,
-      'moon_phase_angle' => 17.82525831009744,
+      'moon_age' => 2.009,
+      'moon_phase_angle' => 18.950841881137563,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-05-24 00:00:00' => 
+  '2012-05-24 09:00:00' =>
   array (
-    0 => '2012-05-24 00:00:00',
-    1 => 
+    0 => '2012-05-24 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 5,
       'day' => 24,
       'dayOfWeek' => 4,
       'dayOfYear' => 145,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1337785200,
-      'formatted' => '2012-05-24 00:00:00',
-      'timezone' => 
+      'timestamp' => 1337817600,
+      'formatted' => '2012-05-24 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -10962,29 +9572,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 4,
       'is_leap_month' => false,
-      'moon_age' => 3.0087208156473935,
-      'moon_phase_angle' => 28.870239908161423,
+      'moon_age' => 3.009,
+      'moon_phase_angle' => 30.012477401681906,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-05-25 00:00:00' => 
+  '2012-05-25 09:00:00' =>
   array (
-    0 => '2012-05-25 00:00:00',
-    1 => 
+    0 => '2012-05-25 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 5,
       'day' => 25,
       'dayOfWeek' => 5,
       'dayOfYear' => 146,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1337871600,
-      'formatted' => '2012-05-25 00:00:00',
-      'timezone' => 
+      'timestamp' => 1337904000,
+      'formatted' => '2012-05-25 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -11020,29 +9630,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 5,
       'is_leap_month' => false,
-      'moon_age' => 4.00872043101117,
-      'moon_phase_angle' => 40.06554571698202,
+      'moon_age' => 4.009,
+      'moon_phase_angle' => 41.229441320210185,
       'moon_phase' => 1,
       'moon_phase_text' => '三日月',
     ),
   ),
-  '2012-05-26 00:00:00' => 
+  '2012-05-26 09:00:00' =>
   array (
-    0 => '2012-05-26 00:00:00',
-    1 => 
+    0 => '2012-05-26 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 5,
       'day' => 26,
       'dayOfWeek' => 6,
       'dayOfYear' => 147,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1337958000,
-      'formatted' => '2012-05-26 00:00:00',
-      'timezone' => 
+      'timestamp' => 1337990400,
+      'formatted' => '2012-05-26 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -11078,29 +9688,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 6,
       'is_leap_month' => false,
-      'moon_age' => 5.008714804891497,
-      'moon_phase_angle' => 51.45499836987085,
+      'moon_age' => 5.009,
+      'moon_phase_angle' => 52.645695797435934,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-05-27 00:00:00' => 
+  '2012-05-27 09:00:00' =>
   array (
-    0 => '2012-05-27 00:00:00',
-    1 => 
+    0 => '2012-05-27 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 5,
       'day' => 27,
       'dayOfWeek' => 0,
       'dayOfYear' => 148,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1338044400,
-      'formatted' => '2012-05-27 00:00:00',
-      'timezone' => 
+      'timestamp' => 1338076800,
+      'formatted' => '2012-05-27 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -11136,29 +9746,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 7,
       'is_leap_month' => false,
-      'moon_age' => 6.00871820980683,
-      'moon_phase_angle' => 63.08554174260165,
+      'moon_age' => 6.009,
+      'moon_phase_angle' => 64.30869246230989,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-05-28 00:00:00' => 
+  '2012-05-28 09:00:00' =>
   array (
-    0 => '2012-05-28 00:00:00',
-    1 => 
+    0 => '2012-05-28 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 5,
       'day' => 28,
       'dayOfWeek' => 1,
       'dayOfYear' => 149,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1338130800,
-      'formatted' => '2012-05-28 00:00:00',
-      'timezone' => 
+      'timestamp' => 1338163200,
+      'formatted' => '2012-05-28 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -11194,74 +9804,16 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 7.008716003037989,
-      'moon_phase_angle' => 75.00525295541328,
+      'moon_age' => 7.009,
+      'moon_phase_angle' => 76.2669098175438,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-05-29 00:00:00' => 
+  '2012-05-29 05:16:00' =>
   array (
-    0 => '2012-05-29 00:00:00',
-    1 => 
-    array (
-      'year' => 2012,
-      'month' => 5,
-      'day' => 29,
-      'dayOfWeek' => 2,
-      'dayOfYear' => 150,
-      'hour' => 0,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1338217200,
-      'formatted' => '2012-05-29 00:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 24,
-      'oriental_zodiac_text' => '辰',
-      'oriental_zodiac' => 5,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '赤口',
-      'six_weekday' => 1,
-      'weekday_text' => '火',
-      'month_text' => '皐月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '卯月',
-      'lunar_month' => 4,
-      'lunar_year' => 2012,
-      'lunar_day' => 9,
-      'is_leap_month' => false,
-      'moon_age' => 8.008721372578293,
-      'moon_phase_angle' => 87.25927570506715,
-      'moon_phase' => 2,
-      'moon_phase_text' => '上弦',
-    ),
-  ),
-  '2012-05-29 05:00:00' => 
-  array (
-    0 => '2012-05-29 05:00:00',
-    1 => 
+    0 => '2012-05-29 05:16:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 5,
@@ -11269,12 +9821,12 @@ return array (
       'dayOfWeek' => 2,
       'dayOfYear' => 150,
       'hour' => 5,
-      'minute' => 0,
+      'minute' => 16,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1338235200,
-      'formatted' => '2012-05-29 05:00:00',
-      'timezone' => 
+      'timestamp' => 1338236160,
+      'formatted' => '2012-05-29 05:16:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -11310,29 +9862,87 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 9,
       'is_leap_month' => false,
-      'moon_age' => 8.217051768209785,
-      'moon_phase_angle' => 89.85786259812494,
+      'moon_age' => 7.853472222222222,
+      'moon_phase_angle' => 86.62810566758826,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2012-05-30 00:00:00' => 
+  '2012-05-29 09:00:00' =>
   array (
-    0 => '2012-05-30 00:00:00',
-    1 => 
+    0 => '2012-05-29 09:00:00',
+    1 =>
+    array (
+      'year' => 2012,
+      'month' => 5,
+      'day' => 29,
+      'dayOfWeek' => 2,
+      'dayOfYear' => 150,
+      'hour' => 9,
+      'minute' => 0,
+      'second' => 0,
+      'micro' => 0,
+      'timestamp' => 1338249600,
+      'formatted' => '2012-05-29 09:00:00',
+      'timezone' =>
+      \Carbon\CarbonTimeZone::__set_state(array(
+         'clock' => NULL,
+         'timezone_type' => 3,
+         'timezone' => 'Asia/Tokyo',
+      )),
+      'solar_seasonal_festival' => 0,
+      'solar_seasonal_festival_name' => '',
+      'solar_seasonal_festival_alias' => '',
+      'lunar_seasonal_festival' => 0,
+      'lunar_seasonal_festival_name' => '',
+      'lunar_seasonal_festival_alias' => '',
+      'misc_seasonal_node' => 0,
+      'misc_seasonal_node_text' => '',
+      'solar_term' => false,
+      'solar_term_text' => '',
+      'is_solar_term' => false,
+      'era_name_text' => '平成',
+      'era_name' => 1003,
+      'era_year' => 24,
+      'oriental_zodiac_text' => '辰',
+      'oriental_zodiac' => 5,
+      'heavenly_stem_text' => '壬',
+      'heavenly_stem' => 8,
+      'six_weekday_text' => '赤口',
+      'six_weekday' => 1,
+      'weekday_text' => '火',
+      'month_text' => '皐月',
+      'holiday_text' => '',
+      'holiday' => 0,
+      'is_holiday' => false,
+      'lunar_month_text' => '卯月',
+      'lunar_month' => 4,
+      'lunar_year' => 2012,
+      'lunar_day' => 9,
+      'is_leap_month' => false,
+      'moon_age' => 8.009,
+      'moon_phase_angle' => 88.56502000961515,
+      'moon_phase' => 2,
+      'moon_phase_text' => '上弦',
+    ),
+  ),
+  '2012-05-30 09:00:00' =>
+  array (
+    0 => '2012-05-30 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 5,
       'day' => 30,
       'dayOfWeek' => 3,
       'dayOfYear' => 151,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1338303600,
-      'formatted' => '2012-05-30 00:00:00',
-      'timezone' => 
+      'timestamp' => 1338336000,
+      'formatted' => '2012-05-30 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -11368,29 +9978,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 10,
       'is_leap_month' => false,
-      'moon_age' => 9.008720559999347,
-      'moon_phase_angle' => 99.8834822296917,
+      'moon_age' => 9.009,
+      'moon_phase_angle' => 101.23707346932056,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-05-31 00:00:00' => 
+  '2012-05-31 09:00:00' =>
   array (
-    0 => '2012-05-31 00:00:00',
-    1 => 
+    0 => '2012-05-31 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 5,
       'day' => 31,
       'dayOfWeek' => 4,
       'dayOfYear' => 152,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1338390000,
-      'formatted' => '2012-05-31 00:00:00',
-      'timezone' => 
+      'timestamp' => 1338422400,
+      'formatted' => '2012-05-31 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -11426,29 +10036,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 11,
       'is_leap_month' => false,
-      'moon_age' => 10.008721235673875,
-      'moon_phase_angle' => 112.89612674912625,
+      'moon_age' => 10.009,
+      'moon_phase_angle' => 114.29819828948268,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-06-01 00:00:00' => 
+  '2012-06-01 09:00:00' =>
   array (
-    0 => '2012-06-01 00:00:00',
-    1 => 
+    0 => '2012-06-01 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 6,
       'day' => 1,
       'dayOfWeek' => 5,
       'dayOfYear' => 153,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1338476400,
-      'formatted' => '2012-06-01 00:00:00',
-      'timezone' => 
+      'timestamp' => 1338508800,
+      'formatted' => '2012-06-01 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -11484,29 +10094,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 12,
       'is_leap_month' => false,
-      'moon_age' => 11.008721659891307,
-      'moon_phase_angle' => 126.2885639631564,
+      'moon_age' => 11.009,
+      'moon_phase_angle' => 127.73565048638534,
       'moon_phase' => 3,
       'moon_phase_text' => '十三夜',
     ),
   ),
-  '2012-06-02 00:00:00' => 
+  '2012-06-02 09:00:00' =>
   array (
-    0 => '2012-06-02 00:00:00',
-    1 => 
+    0 => '2012-06-02 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 6,
       'day' => 2,
       'dayOfWeek' => 6,
       'dayOfYear' => 154,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1338562800,
-      'formatted' => '2012-06-02 00:00:00',
-      'timezone' => 
+      'timestamp' => 1338595200,
+      'formatted' => '2012-06-02 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -11542,29 +10152,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 13,
       'is_leap_month' => false,
-      'moon_age' => 12.008712467271835,
-      'moon_phase_angle' => 140.01713147064896,
+      'moon_age' => 12.009,
+      'moon_phase_angle' => 141.50110850063112,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-06-03 00:00:00' => 
+  '2012-06-03 09:00:00' =>
   array (
-    0 => '2012-06-03 00:00:00',
-    1 => 
+    0 => '2012-06-03 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 6,
       'day' => 3,
       'dayOfWeek' => 0,
       'dayOfYear' => 155,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1338649200,
-      'formatted' => '2012-06-03 00:00:00',
-      'timezone' => 
+      'timestamp' => 1338681600,
+      'formatted' => '2012-06-03 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -11600,29 +10210,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 14,
       'is_leap_month' => false,
-      'moon_age' => 13.015007262583822,
-      'moon_phase_angle' => 153.9993339968279,
+      'moon_age' => 13.009,
+      'moon_phase_angle' => 155.5073510801745,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-06-04 00:00:00' => 
+  '2012-06-04 09:00:00' =>
   array (
-    0 => '2012-06-04 00:00:00',
-    1 => 
+    0 => '2012-06-04 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 6,
       'day' => 4,
       'dayOfWeek' => 1,
       'dayOfYear' => 156,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1338735600,
-      'formatted' => '2012-06-04 00:00:00',
-      'timezone' => 
+      'timestamp' => 1338768000,
+      'formatted' => '2012-06-04 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -11658,74 +10268,16 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 15,
       'is_leap_month' => false,
-      'moon_age' => 14.032552405260503,
-      'moon_phase_angle' => 168.117201966923,
+      'moon_age' => 14.009,
+      'moon_phase_angle' => 169.6325585014518,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2012-06-04 19:00:00' => 
+  '2012-06-04 20:12:00' =>
   array (
-    0 => '2012-06-04 19:00:00',
-    1 => 
-    array (
-      'year' => 2012,
-      'month' => 6,
-      'day' => 4,
-      'dayOfWeek' => 1,
-      'dayOfYear' => 156,
-      'hour' => 19,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1338804000,
-      'formatted' => '2012-06-04 19:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 24,
-      'oriental_zodiac_text' => '辰',
-      'oriental_zodiac' => 5,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '赤口',
-      'six_weekday' => 1,
-      'weekday_text' => '月',
-      'month_text' => '水無月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '卯月',
-      'lunar_month' => 4,
-      'lunar_year' => 2012,
-      'lunar_day' => 15,
-      'is_leap_month' => false,
-      'moon_age' => 14.837836226914078,
-      'moon_phase_angle' => 179.29702919251048,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2012-06-04 20:00:00' => 
-  array (
-    0 => '2012-06-04 20:00:00',
-    1 => 
+    0 => '2012-06-04 20:12:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 6,
@@ -11733,12 +10285,12 @@ return array (
       'dayOfWeek' => 1,
       'dayOfYear' => 156,
       'hour' => 20,
-      'minute' => 0,
+      'minute' => 12,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1338807600,
-      'formatted' => '2012-06-04 20:00:00',
-      'timezone' => 
+      'timestamp' => 1338808320,
+      'formatted' => '2012-06-04 20:12:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -11774,87 +10326,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 15,
       'is_leap_month' => false,
-      'moon_age' => 14.880198517814279,
-      'moon_phase_angle' => 179.88394388794887,
+      'moon_age' => 14.475694444444445,
+      'moon_phase_angle' => 176.2250283657283,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2012-06-04 21:00:00' => 
+  '2012-06-05 09:00:00' =>
   array (
-    0 => '2012-06-04 21:00:00',
-    1 => 
-    array (
-      'year' => 2012,
-      'month' => 6,
-      'day' => 4,
-      'dayOfWeek' => 1,
-      'dayOfYear' => 156,
-      'hour' => 21,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1338811200,
-      'formatted' => '2012-06-04 21:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 24,
-      'oriental_zodiac_text' => '辰',
-      'oriental_zodiac' => 5,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '赤口',
-      'six_weekday' => 1,
-      'weekday_text' => '月',
-      'month_text' => '水無月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '卯月',
-      'lunar_month' => 4,
-      'lunar_year' => 2012,
-      'lunar_day' => 15,
-      'is_leap_month' => false,
-      'moon_age' => 14.922562723979354,
-      'moon_phase_angle' => 180.47063403874552,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2012-06-05 00:00:00' => 
-  array (
-    0 => '2012-06-05 00:00:00',
-    1 => 
+    0 => '2012-06-05 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 6,
       'day' => 5,
       'dayOfWeek' => 2,
       'dayOfYear' => 157,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1338822000,
-      'formatted' => '2012-06-05 00:00:00',
-      'timezone' => 
+      'timestamp' => 1338854400,
+      'formatted' => '2012-06-05 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -11890,29 +10384,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 15.049625328741968,
-      'moon_phase_angle' => 182.22925223898247,
+      'moon_age' => 15.009,
+      'moon_phase_angle' => 183.73341511937753,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-06-06 00:00:00' => 
+  '2012-06-06 09:00:00' =>
   array (
-    0 => '2012-06-06 00:00:00',
-    1 => 
+    0 => '2012-06-06 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 6,
       'day' => 6,
       'dayOfWeek' => 3,
       'dayOfYear' => 158,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1338908400,
-      'formatted' => '2012-06-06 00:00:00',
-      'timezone' => 
+      'timestamp' => 1338940800,
+      'formatted' => '2012-06-06 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -11948,29 +10442,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 17,
       'is_leap_month' => false,
-      'moon_age' => 16.06490267533809,
-      'moon_phase_angle' => 196.18925685659718,
+      'moon_age' => 16.009,
+      'moon_phase_angle' => 197.66465317851575,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-06-07 00:00:00' => 
+  '2012-06-07 09:00:00' =>
   array (
-    0 => '2012-06-07 00:00:00',
-    1 => 
+    0 => '2012-06-07 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 6,
       'day' => 7,
       'dayOfWeek' => 4,
       'dayOfYear' => 159,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1338994800,
-      'formatted' => '2012-06-07 00:00:00',
-      'timezone' => 
+      'timestamp' => 1339027200,
+      'formatted' => '2012-06-07 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12006,29 +10500,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 18,
       'is_leap_month' => false,
-      'moon_age' => 17.077262418344617,
-      'moon_phase_angle' => 209.8670359192412,
+      'moon_age' => 17.009,
+      'moon_phase_angle' => 211.29969148080573,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-06-08 00:00:00' => 
+  '2012-06-08 09:00:00' =>
   array (
-    0 => '2012-06-08 00:00:00',
-    1 => 
+    0 => '2012-06-08 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 6,
       'day' => 8,
       'dayOfWeek' => 5,
       'dayOfYear' => 160,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1339081200,
-      'formatted' => '2012-06-08 00:00:00',
-      'timezone' => 
+      'timestamp' => 1339113600,
+      'formatted' => '2012-06-08 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12064,29 +10558,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 19,
       'is_leap_month' => false,
-      'moon_age' => 18.085952445399016,
-      'moon_phase_angle' => 223.16543781358538,
+      'moon_age' => 18.009,
+      'moon_phase_angle' => 224.54654885982364,
       'moon_phase' => 5,
       'moon_phase_text' => '十六夜',
     ),
   ),
-  '2012-06-09 00:00:00' => 
+  '2012-06-09 09:00:00' =>
   array (
-    0 => '2012-06-09 00:00:00',
-    1 => 
+    0 => '2012-06-09 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 6,
       'day' => 9,
       'dayOfWeek' => 6,
       'dayOfYear' => 161,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1339167600,
-      'formatted' => '2012-06-09 00:00:00',
-      'timezone' => 
+      'timestamp' => 1339200000,
+      'formatted' => '2012-06-09 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12122,29 +10616,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 20,
       'is_leap_month' => false,
-      'moon_age' => 19.090570560656488,
-      'moon_phase_angle' => 236.0293890571782,
+      'moon_age' => 19.009,
+      'moon_phase_angle' => 237.35550246878773,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-06-10 00:00:00' => 
+  '2012-06-10 09:00:00' =>
   array (
-    0 => '2012-06-10 00:00:00',
-    1 => 
+    0 => '2012-06-10 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 6,
       'day' => 10,
       'dayOfWeek' => 0,
       'dayOfYear' => 162,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1339254000,
-      'formatted' => '2012-06-10 00:00:00',
-      'timezone' => 
+      'timestamp' => 1339286400,
+      'formatted' => '2012-06-10 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12180,29 +10674,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 21,
       'is_leap_month' => false,
-      'moon_age' => 20.091150293126702,
-      'moon_phase_angle' => 248.4462347369423,
+      'moon_age' => 20.009,
+      'moon_phase_angle' => 249.71841836199698,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-06-11 00:00:00' => 
+  '2012-06-11 09:00:00' =>
   array (
-    0 => '2012-06-11 00:00:00',
-    1 => 
+    0 => '2012-06-11 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 6,
       'day' => 11,
       'dayOfWeek' => 1,
       'dayOfYear' => 163,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1339340400,
-      'formatted' => '2012-06-11 00:00:00',
-      'timezone' => 
+      'timestamp' => 1339372800,
+      'formatted' => '2012-06-11 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12238,29 +10732,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 22,
       'is_leap_month' => false,
-      'moon_age' => 21.08799759345129,
-      'moon_phase_angle' => 260.4394934346536,
+      'moon_age' => 21.009,
+      'moon_phase_angle' => 261.6622195275238,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2012-06-11 20:00:00' => 
+  '2012-06-11 19:41:00' =>
   array (
-    0 => '2012-06-11 20:00:00',
-    1 => 
+    0 => '2012-06-11 19:41:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 6,
       'day' => 11,
       'dayOfWeek' => 1,
       'dayOfYear' => 163,
-      'hour' => 20,
-      'minute' => 0,
+      'hour' => 19,
+      'minute' => 41,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1339412400,
-      'formatted' => '2012-06-11 20:00:00',
-      'timezone' => 
+      'timestamp' => 1339411260,
+      'formatted' => '2012-06-11 19:41:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12296,29 +10790,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 22,
       'is_leap_month' => false,
-      'moon_age' => 21.916228274814785,
-      'moon_phase_angle' => 270.14592596808416,
+      'moon_age' => 21.454166666666666,
+      'moon_phase_angle' => 266.85718542172975,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2012-06-12 00:00:00' => 
+  '2012-06-12 09:00:00' =>
   array (
-    0 => '2012-06-12 00:00:00',
-    1 => 
+    0 => '2012-06-12 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 6,
       'day' => 12,
       'dayOfWeek' => 2,
       'dayOfYear' => 164,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1339426800,
-      'formatted' => '2012-06-12 00:00:00',
-      'timezone' => 
+      'timestamp' => 1339459200,
+      'formatted' => '2012-06-12 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12354,29 +10848,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 22.081632610876113,
-      'moon_phase_angle' => 272.0593295506067,
+      'moon_age' => 22.009,
+      'moon_phase_angle' => 273.2395863282012,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-06-13 00:00:00' => 
+  '2012-06-13 09:00:00' =>
   array (
-    0 => '2012-06-13 00:00:00',
-    1 => 
+    0 => '2012-06-13 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 6,
       'day' => 13,
       'dayOfWeek' => 3,
       'dayOfYear' => 165,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1339513200,
-      'formatted' => '2012-06-13 00:00:00',
-      'timezone' => 
+      'timestamp' => 1339545600,
+      'formatted' => '2012-06-13 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12412,29 +10906,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 24,
       'is_leap_month' => false,
-      'moon_age' => 23.07274214318022,
-      'moon_phase_angle' => 283.3726163080663,
+      'moon_age' => 23.009,
+      'moon_phase_angle' => 284.5192417114748,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-06-14 00:00:00' => 
+  '2012-06-14 09:00:00' =>
   array (
-    0 => '2012-06-14 00:00:00',
-    1 => 
+    0 => '2012-06-14 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 6,
       'day' => 14,
       'dayOfWeek' => 4,
       'dayOfYear' => 166,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1339599600,
-      'formatted' => '2012-06-14 00:00:00',
-      'timezone' => 
+      'timestamp' => 1339632000,
+      'formatted' => '2012-06-14 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12470,29 +10964,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 25,
       'is_leap_month' => false,
-      'moon_age' => 24.062000771053135,
-      'moon_phase_angle' => 294.4543117057813,
+      'moon_age' => 24.009,
+      'moon_phase_angle' => 295.57721007157494,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-06-15 00:00:00' => 
+  '2012-06-15 09:00:00' =>
   array (
-    0 => '2012-06-15 00:00:00',
-    1 => 
+    0 => '2012-06-15 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 6,
       'day' => 15,
       'dayOfWeek' => 5,
       'dayOfYear' => 167,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1339686000,
-      'formatted' => '2012-06-15 00:00:00',
-      'timezone' => 
+      'timestamp' => 1339718400,
+      'formatted' => '2012-06-15 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12528,29 +11022,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 26,
       'is_leap_month' => false,
-      'moon_age' => 25.050127173773944,
-      'moon_phase_angle' => 305.3807862590078,
+      'moon_age' => 25.009,
+      'moon_phase_angle' => 306.4898672372514,
       'moon_phase' => 7,
       'moon_phase_text' => '有明',
     ),
   ),
-  '2012-06-16 00:00:00' => 
+  '2012-06-16 09:00:00' =>
   array (
-    0 => '2012-06-16 00:00:00',
-    1 => 
+    0 => '2012-06-16 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 6,
       'day' => 16,
       'dayOfWeek' => 6,
       'dayOfYear' => 168,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1339772400,
-      'formatted' => '2012-06-16 00:00:00',
-      'timezone' => 
+      'timestamp' => 1339804800,
+      'formatted' => '2012-06-16 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12586,29 +11080,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 27,
       'is_leap_month' => false,
-      'moon_age' => 26.27273425707066,
-      'moon_phase_angle' => 316.2250650648203,
+      'moon_age' => 26.009,
+      'moon_phase_angle' => 317.329219164948,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-06-17 00:00:00' => 
+  '2012-06-17 09:00:00' =>
   array (
-    0 => '2012-06-17 00:00:00',
-    1 => 
+    0 => '2012-06-17 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 6,
       'day' => 17,
       'dayOfWeek' => 0,
       'dayOfYear' => 169,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1339858800,
-      'formatted' => '2012-06-17 00:00:00',
-      'timezone' => 
+      'timestamp' => 1339891200,
+      'formatted' => '2012-06-17 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12644,29 +11138,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 28,
       'is_leap_month' => false,
-      'moon_age' => 27.161785802482008,
-      'moon_phase_angle' => 327.053671265926,
+      'moon_age' => 27.009,
+      'moon_phase_angle' => 328.16029663349553,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-06-18 00:00:00' => 
+  '2012-06-18 09:00:00' =>
   array (
-    0 => '2012-06-18 00:00:00',
-    1 => 
+    0 => '2012-06-18 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 6,
       'day' => 18,
       'dayOfWeek' => 1,
       'dayOfYear' => 170,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1339945200,
-      'formatted' => '2012-06-18 00:00:00',
-      'timezone' => 
+      'timestamp' => 1339977600,
+      'formatted' => '2012-06-18 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12702,29 +11196,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 29,
       'is_leap_month' => false,
-      'moon_age' => 28.055914504131614,
-      'moon_phase_angle' => 337.92473889916283,
+      'moon_age' => 28.009,
+      'moon_phase_angle' => 339.0399648255106,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-06-19 00:00:00' => 
+  '2012-06-19 09:00:00' =>
   array (
-    0 => '2012-06-19 00:00:00',
-    1 => 
+    0 => '2012-06-19 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 6,
       'day' => 19,
       'dayOfWeek' => 2,
       'dayOfYear' => 171,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1340031600,
-      'formatted' => '2012-06-19 00:00:00',
-      'timezone' => 
+      'timestamp' => 1340064000,
+      'formatted' => '2012-06-19 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12760,16 +11254,16 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 30,
       'is_leap_month' => false,
-      'moon_age' => 28.958843059981554,
-      'moon_phase_angle' => 348.88715471253573,
+      'moon_age' => 29.009,
+      'moon_phase_angle' => 350.01632416502014,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-06-20 00:00:00' => 
+  '2012-06-20 00:02:00' =>
   array (
-    0 => '2012-06-20 00:00:00',
-    1 => 
+    0 => '2012-06-20 00:02:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 6,
@@ -12777,12 +11271,12 @@ return array (
       'dayOfWeek' => 3,
       'dayOfYear' => 172,
       'hour' => 0,
-      'minute' => 0,
+      'minute' => 2,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1340118000,
-      'formatted' => '2012-06-20 00:00:00',
-      'timezone' => 
+      'timestamp' => 1340118120,
+      'formatted' => '2012-06-20 00:02:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12818,29 +11312,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.37325578229501843,
-      'moon_phase_angle' => 359.9805910493009,
+      'moon_age' => 0.0,
+      'moon_phase_angle' => 356.9588262638605,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2012-06-20 02:00:00' => 
+  '2012-06-20 09:00:00' =>
   array (
-    0 => '2012-06-20 02:00:00',
-    1 => 
+    0 => '2012-06-20 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 6,
       'day' => 20,
       'dayOfWeek' => 3,
       'dayOfYear' => 172,
-      'hour' => 2,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1340125200,
-      'formatted' => '2012-06-20 02:00:00',
-      'timezone' => 
+      'timestamp' => 1340150400,
+      'formatted' => '2012-06-20 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12876,29 +11370,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.4565846328623593,
-      'moon_phase_angle' => 0.9119934548061224,
+      'moon_age' => 0.374,
+      'moon_phase_angle' => 1.1284086237497633,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2012-06-21 00:00:00' => 
+  '2012-06-21 09:00:00' =>
   array (
-    0 => '2012-06-21 00:00:00',
-    1 => 
+    0 => '2012-06-21 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 6,
       'day' => 21,
       'dayOfWeek' => 4,
       'dayOfYear' => 173,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1340204400,
-      'formatted' => '2012-06-21 00:00:00',
-      'timezone' => 
+      'timestamp' => 1340236800,
+      'formatted' => '2012-06-21 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12934,29 +11428,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 2,
       'is_leap_month' => false,
-      'moon_age' => 1.3732547904364765,
-      'moon_phase_angle' => 11.23634379227579,
+      'moon_age' => 1.374,
+      'moon_phase_angle' => 12.406569769804463,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-06-22 00:00:00' => 
+  '2012-06-22 09:00:00' =>
   array (
-    0 => '2012-06-22 00:00:00',
-    1 => 
+    0 => '2012-06-22 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 6,
       'day' => 22,
       'dayOfWeek' => 5,
       'dayOfYear' => 174,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1340290800,
-      'formatted' => '2012-06-22 00:00:00',
-      'timezone' => 
+      'timestamp' => 1340323200,
+      'formatted' => '2012-06-22 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12992,29 +11486,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 3,
       'is_leap_month' => false,
-      'moon_age' => 2.373254499863833,
-      'moon_phase_angle' => 22.678859605566373,
+      'moon_age' => 2.374,
+      'moon_phase_angle' => 23.87403360333124,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-06-23 00:00:00' => 
+  '2012-06-23 09:00:00' =>
   array (
-    0 => '2012-06-23 00:00:00',
-    1 => 
+    0 => '2012-06-23 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 6,
       'day' => 23,
       'dayOfWeek' => 6,
       'dayOfYear' => 175,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1340377200,
-      'formatted' => '2012-06-23 00:00:00',
-      'timezone' => 
+      'timestamp' => 1340409600,
+      'formatted' => '2012-06-23 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -13050,29 +11544,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 4,
       'is_leap_month' => false,
-      'moon_age' => 3.373253575991839,
-      'moon_phase_angle' => 34.32772703469435,
+      'moon_age' => 3.374,
+      'moon_phase_angle' => 35.549457502729084,
       'moon_phase' => 1,
       'moon_phase_text' => '三日月',
     ),
   ),
-  '2012-06-24 00:00:00' => 
+  '2012-06-24 09:00:00' =>
   array (
-    0 => '2012-06-24 00:00:00',
-    1 => 
+    0 => '2012-06-24 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 6,
       'day' => 24,
       'dayOfWeek' => 0,
       'dayOfYear' => 176,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1340463600,
-      'formatted' => '2012-06-24 00:00:00',
-      'timezone' => 
+      'timestamp' => 1340496000,
+      'formatted' => '2012-06-24 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -13108,29 +11602,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 5,
       'is_leap_month' => false,
-      'moon_age' => 4.373256978113204,
-      'moon_phase_angle' => 46.199745990235726,
+      'moon_age' => 4.374,
+      'moon_phase_angle' => 47.44951120753072,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-06-25 00:00:00' => 
+  '2012-06-25 09:00:00' =>
   array (
-    0 => '2012-06-25 00:00:00',
-    1 => 
+    0 => '2012-06-25 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 6,
       'day' => 25,
       'dayOfWeek' => 1,
       'dayOfYear' => 177,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1340550000,
-      'formatted' => '2012-06-25 00:00:00',
-      'timezone' => 
+      'timestamp' => 1340582400,
+      'formatted' => '2012-06-25 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -13166,29 +11660,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 6,
       'is_leap_month' => false,
-      'moon_age' => 5.3732564970850945,
-      'moon_phase_angle' => 58.31053202984589,
+      'moon_age' => 5.374,
+      'moon_phase_angle' => 59.59032931133778,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-06-26 00:00:00' => 
+  '2012-06-26 09:00:00' =>
   array (
-    0 => '2012-06-26 00:00:00',
-    1 => 
+    0 => '2012-06-26 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 6,
       'day' => 26,
       'dayOfWeek' => 2,
       'dayOfYear' => 178,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1340636400,
-      'formatted' => '2012-06-26 00:00:00',
-      'timezone' => 
+      'timestamp' => 1340668800,
+      'formatted' => '2012-06-26 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -13224,29 +11718,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 7,
       'is_leap_month' => false,
-      'moon_age' => 6.373260608874261,
-      'moon_phase_angle' => 70.67502101760145,
+      'moon_age' => 6.374,
+      'moon_phase_angle' => 71.98724118276624,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-06-27 00:00:00' => 
+  '2012-06-27 09:00:00' =>
   array (
-    0 => '2012-06-27 00:00:00',
-    1 => 
+    0 => '2012-06-27 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 6,
       'day' => 27,
       'dayOfWeek' => 3,
       'dayOfYear' => 179,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1340722800,
-      'formatted' => '2012-06-27 00:00:00',
-      'timezone' => 
+      'timestamp' => 1340755200,
+      'formatted' => '2012-06-27 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -13282,29 +11776,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 7.37325499439612,
-      'moon_phase_angle' => 83.30627575777439,
+      'moon_age' => 7.374,
+      'moon_phase_angle' => 84.65283642750565,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2012-06-27 13:00:00' => 
+  '2012-06-27 12:30:00' =>
   array (
-    0 => '2012-06-27 13:00:00',
-    1 => 
+    0 => '2012-06-27 12:30:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 6,
       'day' => 27,
       'dayOfWeek' => 3,
       'dayOfYear' => 179,
-      'hour' => 13,
-      'minute' => 0,
+      'hour' => 12,
+      'minute' => 30,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1340769600,
-      'formatted' => '2012-06-27 13:00:00',
-      'timezone' => 
+      'timestamp' => 1340767800,
+      'formatted' => '2012-06-27 12:30:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -13340,29 +11834,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 7.914926720783114,
-      'moon_phase_angle' => 90.26273712116298,
+      'moon_age' => 7.519444444444445,
+      'moon_phase_angle' => 86.52284974733652,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2012-06-28 00:00:00' => 
+  '2012-06-28 09:00:00' =>
   array (
-    0 => '2012-06-28 00:00:00',
-    1 => 
+    0 => '2012-06-28 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 6,
       'day' => 28,
       'dayOfWeek' => 4,
       'dayOfYear' => 180,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1340809200,
-      'formatted' => '2012-06-28 00:00:00',
-      'timezone' => 
+      'timestamp' => 1340841600,
+      'formatted' => '2012-06-28 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -13398,29 +11892,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 9,
       'is_leap_month' => false,
-      'moon_age' => 8.373251842334867,
-      'moon_phase_angle' => 96.21220624313342,
+      'moon_age' => 8.374,
+      'moon_phase_angle' => 97.59354518442206,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-06-29 00:00:00' => 
+  '2012-06-29 09:00:00' =>
   array (
-    0 => '2012-06-29 00:00:00',
-    1 => 
+    0 => '2012-06-29 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 6,
       'day' => 29,
       'dayOfWeek' => 5,
       'dayOfYear' => 181,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1340895600,
-      'formatted' => '2012-06-29 00:00:00',
-      'timezone' => 
+      'timestamp' => 1340928000,
+      'formatted' => '2012-06-29 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -13456,29 +11950,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 10,
       'is_leap_month' => false,
-      'moon_age' => 9.374162240885198,
-      'moon_phase_angle' => 109.39023887092567,
+      'moon_age' => 9.374,
+      'moon_phase_angle' => 110.804664216521,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-06-30 00:00:00' => 
+  '2012-06-30 09:00:00' =>
   array (
-    0 => '2012-06-30 00:00:00',
-    1 => 
+    0 => '2012-06-30 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 6,
       'day' => 30,
       'dayOfWeek' => 6,
       'dayOfYear' => 182,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1340982000,
-      'formatted' => '2012-06-30 00:00:00',
-      'timezone' => 
+      'timestamp' => 1341014400,
+      'formatted' => '2012-06-30 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -13514,29 +12008,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 11,
       'is_leap_month' => false,
-      'moon_age' => 10.3833551350981,
-      'moon_phase_angle' => 122.8206317219812,
+      'moon_age' => 10.374,
+      'moon_phase_angle' => 124.26395995320743,
       'moon_phase' => 3,
       'moon_phase_text' => '十三夜',
     ),
   ),
-  '2012-07-01 00:00:00' => 
+  '2012-07-01 09:00:00' =>
   array (
-    0 => '2012-07-01 00:00:00',
-    1 => 
+    0 => '2012-07-01 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 7,
       'day' => 1,
       'dayOfWeek' => 0,
       'dayOfYear' => 183,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1341068400,
-      'formatted' => '2012-07-01 00:00:00',
-      'timezone' => 
+      'timestamp' => 1341100800,
+      'formatted' => '2012-07-01 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -13572,29 +12066,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 12,
       'is_leap_month' => false,
-      'moon_age' => 11.394012129399925,
-      'moon_phase_angle' => 136.4599959147592,
+      'moon_age' => 11.374,
+      'moon_phase_angle' => 137.9251296408579,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-07-02 00:00:00' => 
+  '2012-07-02 09:00:00' =>
   array (
-    0 => '2012-07-02 00:00:00',
-    1 => 
+    0 => '2012-07-02 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 7,
       'day' => 2,
       'dayOfWeek' => 1,
       'dayOfYear' => 184,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1341154800,
-      'formatted' => '2012-07-02 00:00:00',
-      'timezone' => 
+      'timestamp' => 1341187200,
+      'formatted' => '2012-07-02 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -13630,29 +12124,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 13,
       'is_leap_month' => false,
-      'moon_age' => 12.405637902673334,
-      'moon_phase_angle' => 150.23735579882793,
+      'moon_age' => 12.374,
+      'moon_phase_angle' => 151.71389622560991,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-07-03 00:00:00' => 
+  '2012-07-03 09:00:00' =>
   array (
-    0 => '2012-07-03 00:00:00',
-    1 => 
+    0 => '2012-07-03 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 7,
       'day' => 3,
       'dayOfWeek' => 2,
       'dayOfYear' => 185,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1341241200,
-      'formatted' => '2012-07-03 00:00:00',
-      'timezone' => 
+      'timestamp' => 1341273600,
+      'formatted' => '2012-07-03 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -13688,132 +12182,16 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 14,
       'is_leap_month' => false,
-      'moon_age' => 13.417461290955544,
-      'moon_phase_angle' => 164.05547847108744,
+      'moon_age' => 13.374,
+      'moon_phase_angle' => 165.52993206650132,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-07-04 00:00:00' => 
+  '2012-07-04 03:52:00' =>
   array (
-    0 => '2012-07-04 00:00:00',
-    1 => 
-    array (
-      'year' => 2012,
-      'month' => 7,
-      'day' => 4,
-      'dayOfWeek' => 3,
-      'dayOfYear' => 186,
-      'hour' => 0,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1341327600,
-      'formatted' => '2012-07-04 00:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 24,
-      'oriental_zodiac_text' => '辰',
-      'oriental_zodiac' => 5,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '先勝',
-      'six_weekday' => 2,
-      'weekday_text' => '水',
-      'month_text' => '文月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '皐月',
-      'lunar_month' => 5,
-      'lunar_year' => 2012,
-      'lunar_day' => 15,
-      'is_leap_month' => false,
-      'moon_age' => 14.428605992812663,
-      'moon_phase_angle' => 177.79903394159254,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2012-07-04 02:00:00' => 
-  array (
-    0 => '2012-07-04 02:00:00',
-    1 => 
-    array (
-      'year' => 2012,
-      'month' => 7,
-      'day' => 4,
-      'dayOfWeek' => 3,
-      'dayOfYear' => 186,
-      'hour' => 2,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1341334800,
-      'formatted' => '2012-07-04 02:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 24,
-      'oriental_zodiac_text' => '辰',
-      'oriental_zodiac' => 5,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '先勝',
-      'six_weekday' => 2,
-      'weekday_text' => '水',
-      'month_text' => '文月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '皐月',
-      'lunar_month' => 5,
-      'lunar_year' => 2012,
-      'lunar_day' => 15,
-      'is_leap_month' => false,
-      'moon_age' => 14.512812877073884,
-      'moon_phase_angle' => 178.9371845374572,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2012-07-04 03:00:00' => 
-  array (
-    0 => '2012-07-04 03:00:00',
-    1 => 
+    0 => '2012-07-04 03:52:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 7,
@@ -13821,12 +12199,12 @@ return array (
       'dayOfWeek' => 3,
       'dayOfYear' => 186,
       'hour' => 3,
-      'minute' => 0,
+      'minute' => 52,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1341338400,
-      'formatted' => '2012-07-04 03:00:00',
-      'timezone' => 
+      'timestamp' => 1341341520,
+      'formatted' => '2012-07-04 03:52:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -13862,29 +12240,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 15,
       'is_leap_month' => false,
-      'moon_age' => 14.55490120081231,
-      'moon_phase_angle' => 179.50573182171166,
+      'moon_age' => 14.159722222222221,
+      'moon_phase_angle' => 176.33392863623834,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2012-07-04 04:00:00' => 
+  '2012-07-04 09:00:00' =>
   array (
-    0 => '2012-07-04 04:00:00',
-    1 => 
+    0 => '2012-07-04 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 7,
       'day' => 4,
       'dayOfWeek' => 3,
       'dayOfYear' => 186,
-      'hour' => 4,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1341342000,
-      'formatted' => '2012-07-04 04:00:00',
-      'timezone' => 
+      'timestamp' => 1341360000,
+      'formatted' => '2012-07-04 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -13920,87 +12298,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 15,
       'is_leap_month' => false,
-      'moon_age' => 14.59699375461787,
-      'moon_phase_angle' => 180.0739159957859,
+      'moon_age' => 14.374,
+      'moon_phase_angle' => 179.25624118312237,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2012-07-04 05:00:00' => 
+  '2012-07-05 09:00:00' =>
   array (
-    0 => '2012-07-04 05:00:00',
-    1 => 
-    array (
-      'year' => 2012,
-      'month' => 7,
-      'day' => 4,
-      'dayOfWeek' => 3,
-      'dayOfYear' => 186,
-      'hour' => 5,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1341345600,
-      'formatted' => '2012-07-04 05:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 24,
-      'oriental_zodiac_text' => '辰',
-      'oriental_zodiac' => 5,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '先勝',
-      'six_weekday' => 2,
-      'weekday_text' => '水',
-      'month_text' => '文月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '皐月',
-      'lunar_month' => 5,
-      'lunar_year' => 2012,
-      'lunar_day' => 15,
-      'is_leap_month' => false,
-      'moon_age' => 14.63908643182367,
-      'moon_phase_angle' => 180.6417287995127,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2012-07-05 00:00:00' => 
-  array (
-    0 => '2012-07-05 00:00:00',
-    1 => 
+    0 => '2012-07-05 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 7,
       'day' => 5,
       'dayOfWeek' => 4,
       'dayOfYear' => 187,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1341414000,
-      'formatted' => '2012-07-05 00:00:00',
-      'timezone' => 
+      'timestamp' => 1341446400,
+      'formatted' => '2012-07-05 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -14036,29 +12356,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 15.438136531505734,
-      'moon_phase_angle' => 191.3490443826975,
+      'moon_age' => 15.374,
+      'moon_phase_angle' => 192.77455972147834,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-07-06 00:00:00' => 
+  '2012-07-06 09:00:00' =>
   array (
-    0 => '2012-07-06 00:00:00',
-    1 => 
+    0 => '2012-07-06 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 7,
       'day' => 6,
       'dayOfWeek' => 5,
       'dayOfYear' => 188,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1341500400,
-      'formatted' => '2012-07-06 00:00:00',
-      'timezone' => 
+      'timestamp' => 1341532800,
+      'formatted' => '2012-07-06 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -14094,29 +12414,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 17,
       'is_leap_month' => false,
-      'moon_age' => 16.445226603653282,
-      'moon_phase_angle' => 204.60012892839984,
+      'moon_age' => 16.374,
+      'moon_phase_angle' => 205.98259220695059,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-07-07 00:00:00' => 
+  '2012-07-07 09:00:00' =>
   array (
-    0 => '2012-07-07 00:00:00',
-    1 => 
+    0 => '2012-07-07 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 7,
       'day' => 7,
       'dayOfWeek' => 6,
       'dayOfYear' => 189,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1341586800,
-      'formatted' => '2012-07-07 00:00:00',
-      'timezone' => 
+      'timestamp' => 1341619200,
+      'formatted' => '2012-07-07 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -14152,29 +12472,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 18,
       'is_leap_month' => false,
-      'moon_age' => 17.449327384121716,
-      'moon_phase_angle' => 217.47555392098428,
+      'moon_age' => 17.374,
+      'moon_phase_angle' => 218.80813549776047,
       'moon_phase' => 5,
       'moon_phase_text' => '十六夜',
     ),
   ),
-  '2012-07-08 00:00:00' => 
+  '2012-07-08 09:00:00' =>
   array (
-    0 => '2012-07-08 00:00:00',
-    1 => 
+    0 => '2012-07-08 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 7,
       'day' => 8,
       'dayOfWeek' => 0,
       'dayOfYear' => 190,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1341673200,
-      'formatted' => '2012-07-08 00:00:00',
-      'timezone' => 
+      'timestamp' => 1341705600,
+      'formatted' => '2012-07-08 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -14210,29 +12530,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 19,
       'is_leap_month' => false,
-      'moon_age' => 18.450188156682998,
-      'moon_phase_angle' => 229.93601409857007,
+      'moon_age' => 18.374,
+      'moon_phase_angle' => 231.21669357359553,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-07-09 00:00:00' => 
+  '2012-07-09 09:00:00' =>
   array (
-    0 => '2012-07-09 00:00:00',
-    1 => 
+    0 => '2012-07-09 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 7,
       'day' => 9,
       'dayOfWeek' => 1,
       'dayOfYear' => 191,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1341759600,
-      'formatted' => '2012-07-09 00:00:00',
-      'timezone' => 
+      'timestamp' => 1341792000,
+      'formatted' => '2012-07-09 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -14268,29 +12588,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 20,
       'is_leap_month' => false,
-      'moon_age' => 19.447905816603452,
-      'moon_phase_angle' => 241.9808490113245,
+      'moon_age' => 19.374,
+      'moon_phase_angle' => 243.2119027479551,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-07-10 00:00:00' => 
+  '2012-07-10 09:00:00' =>
   array (
-    0 => '2012-07-10 00:00:00',
-    1 => 
+    0 => '2012-07-10 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 7,
       'day' => 10,
       'dayOfWeek' => 2,
       'dayOfYear' => 192,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1341846000,
-      'formatted' => '2012-07-10 00:00:00',
-      'timezone' => 
+      'timestamp' => 1341878400,
+      'formatted' => '2012-07-10 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -14326,29 +12646,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 21,
       'is_leap_month' => false,
-      'moon_age' => 20.44285428710282,
-      'moon_phase_angle' => 253.64316689324477,
+      'moon_age' => 20.374,
+      'moon_phase_angle' => 254.83036693625718,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-07-11 00:00:00' => 
+  '2012-07-11 09:00:00' =>
   array (
-    0 => '2012-07-11 00:00:00',
-    1 => 
+    0 => '2012-07-11 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 7,
       'day' => 11,
       'dayOfWeek' => 3,
       'dayOfYear' => 193,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1341932400,
-      'formatted' => '2012-07-11 00:00:00',
-      'timezone' => 
+      'timestamp' => 1341964800,
+      'formatted' => '2012-07-11 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -14384,29 +12704,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 22,
       'is_leap_month' => false,
-      'moon_age' => 21.435565020423383,
-      'moon_phase_angle' => 264.98167077641796,
+      'moon_age' => 21.374,
+      'moon_phase_angle' => 266.133447157584,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2012-07-11 12:00:00' => 
+  '2012-07-11 10:48:00' =>
   array (
-    0 => '2012-07-11 12:00:00',
-    1 => 
+    0 => '2012-07-11 10:48:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 7,
       'day' => 11,
       'dayOfWeek' => 3,
       'dayOfYear' => 193,
-      'hour' => 12,
-      'minute' => 0,
+      'hour' => 10,
+      'minute' => 48,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1341975600,
-      'formatted' => '2012-07-11 12:00:00',
-      'timezone' => 
+      'timestamp' => 1341971280,
+      'formatted' => '2012-07-11 10:48:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -14442,29 +12762,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 22,
       'is_leap_month' => false,
-      'moon_age' => 21.931290711741894,
-      'moon_phase_angle' => 270.5526322900612,
+      'moon_age' => 21.448611111111113,
+      'moon_phase_angle' => 266.9705480176432,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2012-07-12 00:00:00' => 
+  '2012-07-12 09:00:00' =>
   array (
-    0 => '2012-07-12 00:00:00',
-    1 => 
+    0 => '2012-07-12 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 7,
       'day' => 12,
       'dayOfWeek' => 4,
       'dayOfYear' => 194,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1342018800,
-      'formatted' => '2012-07-12 00:00:00',
-      'timezone' => 
+      'timestamp' => 1342051200,
+      'formatted' => '2012-07-12 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -14500,29 +12820,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 22.426717784255743,
-      'moon_phase_angle' => 276.0717610712053,
+      'moon_age' => 22.374,
+      'moon_phase_angle' => 277.19830625598433,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-07-13 00:00:00' => 
+  '2012-07-13 09:00:00' =>
   array (
-    0 => '2012-07-13 00:00:00',
-    1 => 
+    0 => '2012-07-13 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 7,
       'day' => 13,
       'dayOfWeek' => 5,
       'dayOfYear' => 195,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1342105200,
-      'formatted' => '2012-07-13 00:00:00',
-      'timezone' => 
+      'timestamp' => 1342137600,
+      'formatted' => '2012-07-13 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -14558,29 +12878,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 24,
       'is_leap_month' => false,
-      'moon_age' => 23.41700785793364,
-      'moon_phase_angle' => 286.997489511327,
+      'moon_age' => 23.374,
+      'moon_phase_angle' => 288.1097445999183,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-07-14 00:00:00' => 
+  '2012-07-14 09:00:00' =>
   array (
-    0 => '2012-07-14 00:00:00',
-    1 => 
+    0 => '2012-07-14 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 7,
       'day' => 14,
       'dayOfWeek' => 6,
       'dayOfYear' => 196,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1342191600,
-      'formatted' => '2012-07-14 00:00:00',
-      'timezone' => 
+      'timestamp' => 1342224000,
+      'formatted' => '2012-07-14 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -14616,29 +12936,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 25,
       'is_leap_month' => false,
-      'moon_age' => 24.407094553578645,
-      'moon_phase_angle' => 297.84493046051875,
+      'moon_age' => 24.374,
+      'moon_phase_angle' => 298.9535725521273,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-07-15 00:00:00' => 
+  '2012-07-15 09:00:00' =>
   array (
-    0 => '2012-07-15 00:00:00',
-    1 => 
+    0 => '2012-07-15 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 7,
       'day' => 15,
       'dayOfWeek' => 0,
       'dayOfYear' => 197,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1342278000,
-      'formatted' => '2012-07-15 00:00:00',
-      'timezone' => 
+      'timestamp' => 1342310400,
+      'formatted' => '2012-07-15 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -14674,29 +12994,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 26,
       'is_leap_month' => false,
-      'moon_age' => 25.397573809605092,
-      'moon_phase_angle' => 308.69688903899515,
+      'moon_age' => 25.374,
+      'moon_phase_angle' => 309.81158831451376,
       'moon_phase' => 7,
       'moon_phase_text' => '有明',
     ),
   ),
-  '2012-07-16 00:00:00' => 
+  '2012-07-16 09:00:00' =>
   array (
-    0 => '2012-07-16 00:00:00',
-    1 => 
+    0 => '2012-07-16 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 7,
       'day' => 16,
       'dayOfWeek' => 1,
       'dayOfYear' => 198,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1342364400,
-      'formatted' => '2012-07-16 00:00:00',
-      'timezone' => 
+      'timestamp' => 1342396800,
+      'formatted' => '2012-07-16 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -14732,29 +13052,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 27,
       'is_leap_month' => false,
-      'moon_age' => 26.558014200678407,
-      'moon_phase_angle' => 319.6286147906465,
+      'moon_age' => 26.374,
+      'moon_phase_angle' => 320.75771650988463,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-07-17 00:00:00' => 
+  '2012-07-17 09:00:00' =>
   array (
-    0 => '2012-07-17 00:00:00',
-    1 => 
+    0 => '2012-07-17 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 7,
       'day' => 17,
       'dayOfWeek' => 2,
       'dayOfYear' => 199,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1342450800,
-      'formatted' => '2012-07-17 00:00:00',
-      'timezone' => 
+      'timestamp' => 1342483200,
+      'formatted' => '2012-07-17 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -14790,29 +13110,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 28,
       'is_leap_month' => false,
-      'moon_age' => 27.472093734568297,
-      'moon_phase_angle' => 330.7042304683392,
+      'moon_age' => 27.374,
+      'moon_phase_angle' => 331.85469789319103,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-07-18 00:00:00' => 
+  '2012-07-18 09:00:00' =>
   array (
-    0 => '2012-07-18 00:00:00',
-    1 => 
+    0 => '2012-07-18 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 7,
       'day' => 18,
       'dayOfWeek' => 3,
       'dayOfYear' => 200,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1342537200,
-      'formatted' => '2012-07-18 00:00:00',
-      'timezone' => 
+      'timestamp' => 1342569600,
+      'formatted' => '2012-07-18 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -14848,29 +13168,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 29,
       'is_leap_month' => false,
-      'moon_age' => 28.4032881196163,
-      'moon_phase_angle' => 341.97380054225505,
+      'moon_age' => 28.374,
+      'moon_phase_angle' => 343.1510610537749,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-07-19 00:00:00' => 
+  '2012-07-19 09:00:00' =>
   array (
-    0 => '2012-07-19 00:00:00',
-    1 => 
+    0 => '2012-07-19 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 7,
       'day' => 19,
       'dayOfWeek' => 4,
       'dayOfYear' => 201,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1342623600,
-      'formatted' => '2012-07-19 00:00:00',
-      'timezone' => 
+      'timestamp' => 1342656000,
+      'formatted' => '2012-07-19 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -14906,132 +13226,16 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 29.353859166758447,
-      'moon_phase_angle' => 353.4712449880438,
+      'moon_age' => 29.374,
+      'moon_phase_angle' => 354.67877296018855,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2012-07-19 11:00:00' => 
+  '2012-07-19 13:24:00' =>
   array (
-    0 => '2012-07-19 11:00:00',
-    1 => 
-    array (
-      'year' => 2012,
-      'month' => 7,
-      'day' => 19,
-      'dayOfWeek' => 4,
-      'dayOfYear' => 201,
-      'hour' => 11,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1342663200,
-      'formatted' => '2012-07-19 11:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 7,
-      'misc_seasonal_node_text' => '土用',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 24,
-      'oriental_zodiac_text' => '辰',
-      'oriental_zodiac' => 5,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '赤口',
-      'six_weekday' => 1,
-      'weekday_text' => '木',
-      'month_text' => '文月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '水無月',
-      'lunar_month' => 6,
-      'lunar_year' => 2012,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.2747210110537708,
-      'moon_phase_angle' => 358.8223279289784,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2012-07-19 12:00:00' => 
-  array (
-    0 => '2012-07-19 12:00:00',
-    1 => 
-    array (
-      'year' => 2012,
-      'month' => 7,
-      'day' => 19,
-      'dayOfWeek' => 4,
-      'dayOfYear' => 201,
-      'hour' => 12,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1342666800,
-      'formatted' => '2012-07-19 12:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 7,
-      'misc_seasonal_node_text' => '土用',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 24,
-      'oriental_zodiac_text' => '辰',
-      'oriental_zodiac' => 5,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '赤口',
-      'six_weekday' => 1,
-      'weekday_text' => '木',
-      'month_text' => '文月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '水無月',
-      'lunar_month' => 6,
-      'lunar_year' => 2012,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.31638338370248675,
-      'moon_phase_angle' => 359.31137326045217,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2012-07-19 13:00:00' => 
-  array (
-    0 => '2012-07-19 13:00:00',
-    1 => 
+    0 => '2012-07-19 13:24:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 7,
@@ -15039,12 +13243,12 @@ return array (
       'dayOfWeek' => 4,
       'dayOfYear' => 201,
       'hour' => 13,
-      'minute' => 0,
+      'minute' => 24,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1342670400,
-      'formatted' => '2012-07-19 13:00:00',
-      'timezone' => 
+      'timestamp' => 1342671840,
+      'formatted' => '2012-07-19 13:24:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -15080,145 +13284,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.3580474816262722,
-      'moon_phase_angle' => 359.8008499282374,
+      'moon_age' => 0.0,
+      'moon_phase_angle' => 356.8187071642865,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2012-07-19 14:00:00' => 
+  '2012-07-20 09:00:00' =>
   array (
-    0 => '2012-07-19 14:00:00',
-    1 => 
-    array (
-      'year' => 2012,
-      'month' => 7,
-      'day' => 19,
-      'dayOfWeek' => 4,
-      'dayOfYear' => 201,
-      'hour' => 14,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1342674000,
-      'formatted' => '2012-07-19 14:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 7,
-      'misc_seasonal_node_text' => '土用',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 24,
-      'oriental_zodiac_text' => '辰',
-      'oriental_zodiac' => 5,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '赤口',
-      'six_weekday' => 1,
-      'weekday_text' => '木',
-      'month_text' => '文月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '水無月',
-      'lunar_month' => 6,
-      'lunar_year' => 2012,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.39971351297572255,
-      'moon_phase_angle' => 0.2907579601272232,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2012-07-19 16:00:00' => 
-  array (
-    0 => '2012-07-19 16:00:00',
-    1 => 
-    array (
-      'year' => 2012,
-      'month' => 7,
-      'day' => 19,
-      'dayOfWeek' => 4,
-      'dayOfYear' => 201,
-      'hour' => 16,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1342681200,
-      'formatted' => '2012-07-19 16:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 7,
-      'misc_seasonal_node_text' => '土用',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 24,
-      'oriental_zodiac_text' => '辰',
-      'oriental_zodiac' => 5,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '赤口',
-      'six_weekday' => 1,
-      'weekday_text' => '木',
-      'month_text' => '文月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '水無月',
-      'lunar_month' => 6,
-      'lunar_year' => 2012,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.48305047303438187,
-      'moon_phase_angle' => 1.2718679493367802,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2012-07-20 00:00:00' => 
-  array (
-    0 => '2012-07-20 00:00:00',
-    1 => 
+    0 => '2012-07-20 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 7,
       'day' => 20,
       'dayOfWeek' => 5,
       'dayOfYear' => 202,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1342710000,
-      'formatted' => '2012-07-20 00:00:00',
-      'timezone' => 
+      'timestamp' => 1342742400,
+      'formatted' => '2012-07-20 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -15254,29 +13342,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 2,
       'is_leap_month' => false,
-      'moon_age' => 0.8163828211836517,
-      'moon_phase_angle' => 5.213536067302698,
+      'moon_age' => 0.817,
+      'moon_phase_angle' => 6.452439801934375,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-07-21 00:00:00' => 
+  '2012-07-21 09:00:00' =>
   array (
-    0 => '2012-07-21 00:00:00',
-    1 => 
+    0 => '2012-07-21 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 7,
       'day' => 21,
       'dayOfWeek' => 6,
       'dayOfYear' => 203,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1342796400,
-      'formatted' => '2012-07-21 00:00:00',
-      'timezone' => 
+      'timestamp' => 1342828800,
+      'formatted' => '2012-07-21 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -15312,29 +13400,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 3,
       'is_leap_month' => false,
-      'moon_age' => 1.8163865660317242,
-      'moon_phase_angle' => 17.20166793552741,
+      'moon_age' => 1.817,
+      'moon_phase_angle' => 18.470770583865843,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-07-22 00:00:00' => 
+  '2012-07-22 09:00:00' =>
   array (
-    0 => '2012-07-22 00:00:00',
-    1 => 
+    0 => '2012-07-22 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 7,
       'day' => 22,
       'dayOfWeek' => 0,
       'dayOfYear' => 204,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1342882800,
-      'formatted' => '2012-07-22 00:00:00',
-      'timezone' => 
+      'timestamp' => 1342915200,
+      'formatted' => '2012-07-22 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -15370,29 +13458,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 4,
       'is_leap_month' => false,
-      'moon_age' => 2.816387405153364,
-      'moon_phase_angle' => 29.423646767082005,
+      'moon_age' => 2.817,
+      'moon_phase_angle' => 30.72027255341959,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-07-23 00:00:00' => 
+  '2012-07-23 09:00:00' =>
   array (
-    0 => '2012-07-23 00:00:00',
-    1 => 
+    0 => '2012-07-23 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 7,
       'day' => 23,
       'dayOfWeek' => 1,
       'dayOfYear' => 205,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1342969200,
-      'formatted' => '2012-07-23 00:00:00',
-      'timezone' => 
+      'timestamp' => 1343001600,
+      'formatted' => '2012-07-23 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -15428,29 +13516,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 5,
       'is_leap_month' => false,
-      'moon_age' => 3.81653005303815,
-      'moon_phase_angle' => 41.85920428259847,
+      'moon_age' => 3.817,
+      'moon_phase_angle' => 43.18032332605705,
       'moon_phase' => 1,
       'moon_phase_text' => '三日月',
     ),
   ),
-  '2012-07-24 00:00:00' => 
+  '2012-07-24 09:00:00' =>
   array (
-    0 => '2012-07-24 00:00:00',
-    1 => 
+    0 => '2012-07-24 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 7,
       'day' => 24,
       'dayOfWeek' => 2,
       'dayOfYear' => 206,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1343055600,
-      'formatted' => '2012-07-24 00:00:00',
-      'timezone' => 
+      'timestamp' => 1343088000,
+      'formatted' => '2012-07-24 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -15486,29 +13574,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 6,
       'is_leap_month' => false,
-      'moon_age' => 4.818005729466677,
-      'moon_phase_angle' => 54.485260070197796,
+      'moon_age' => 4.817,
+      'moon_phase_angle' => 55.82834684207528,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-07-25 00:00:00' => 
+  '2012-07-25 09:00:00' =>
   array (
-    0 => '2012-07-25 00:00:00',
-    1 => 
+    0 => '2012-07-25 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 7,
       'day' => 25,
       'dayOfWeek' => 3,
       'dayOfYear' => 207,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1343142000,
-      'formatted' => '2012-07-25 00:00:00',
-      'timezone' => 
+      'timestamp' => 1343174400,
+      'formatted' => '2012-07-25 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -15544,29 +13632,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 7,
       'is_leap_month' => false,
-      'moon_age' => 5.82002411223948,
-      'moon_phase_angle' => 67.28065721816914,
+      'moon_age' => 5.817,
+      'moon_phase_angle' => 68.64387138790578,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-07-26 00:00:00' => 
+  '2012-07-26 09:00:00' =>
   array (
-    0 => '2012-07-26 00:00:00',
-    1 => 
+    0 => '2012-07-26 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 7,
       'day' => 26,
       'dayOfWeek' => 4,
       'dayOfYear' => 208,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1343228400,
-      'formatted' => '2012-07-26 00:00:00',
-      'timezone' => 
+      'timestamp' => 1343260800,
+      'formatted' => '2012-07-26 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -15602,29 +13690,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 6.822570852469653,
-      'moon_phase_angle' => 80.22865669423463,
+      'moon_age' => 6.817,
+      'moon_phase_angle' => 81.61048425363153,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2012-07-26 18:00:00' => 
+  '2012-07-26 17:56:00' =>
   array (
-    0 => '2012-07-26 18:00:00',
-    1 => 
+    0 => '2012-07-26 17:56:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 7,
       'day' => 26,
       'dayOfWeek' => 4,
       'dayOfYear' => 208,
-      'hour' => 18,
-      'minute' => 0,
+      'hour' => 17,
+      'minute' => 56,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1343293200,
-      'formatted' => '2012-07-26 18:00:00',
-      'timezone' => 
+      'timestamp' => 1343292960,
+      'formatted' => '2012-07-26 17:56:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -15660,29 +13748,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 7.574835712090135,
-      'moon_phase_angle' => 90.03189665683092,
+      'moon_age' => 7.188888888888889,
+      'moon_phase_angle' => 86.47282484494349,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2012-07-27 00:00:00' => 
+  '2012-07-27 09:00:00' =>
   array (
-    0 => '2012-07-27 00:00:00',
-    1 => 
+    0 => '2012-07-27 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 7,
       'day' => 27,
       'dayOfWeek' => 5,
       'dayOfYear' => 209,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1343314800,
-      'formatted' => '2012-07-27 00:00:00',
-      'timezone' => 
+      'timestamp' => 1343347200,
+      'formatted' => '2012-07-27 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -15718,29 +13806,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 9,
       'is_leap_month' => false,
-      'moon_age' => 7.825660903472453,
-      'moon_phase_angle' => 93.31618268639235,
+      'moon_age' => 7.817,
+      'moon_phase_angle' => 94.71493656239873,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-07-28 00:00:00' => 
+  '2012-07-28 09:00:00' =>
   array (
-    0 => '2012-07-28 00:00:00',
-    1 => 
+    0 => '2012-07-28 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 7,
       'day' => 28,
       'dayOfWeek' => 6,
       'dayOfYear' => 210,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1343401200,
-      'formatted' => '2012-07-28 00:00:00',
-      'timezone' => 
+      'timestamp' => 1343433600,
+      'formatted' => '2012-07-28 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -15776,29 +13864,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 10,
       'is_leap_month' => false,
-      'moon_age' => 8.829278721939772,
-      'moon_phase_angle' => 106.52971668269244,
+      'moon_age' => 8.817,
+      'moon_phase_angle' => 107.94308703059706,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-07-29 00:00:00' => 
+  '2012-07-29 09:00:00' =>
   array (
-    0 => '2012-07-29 00:00:00',
-    1 => 
+    0 => '2012-07-29 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 7,
       'day' => 29,
       'dayOfWeek' => 0,
       'dayOfYear' => 211,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1343487600,
-      'formatted' => '2012-07-29 00:00:00',
-      'timezone' => 
+      'timestamp' => 1343520000,
+      'formatted' => '2012-07-29 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -15834,29 +13922,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 11,
       'is_leap_month' => false,
-      'moon_age' => 9.83340209396556,
-      'moon_phase_angle' => 119.84879871072413,
+      'moon_age' => 9.817,
+      'moon_phase_angle' => 121.27332038783356,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-07-30 00:00:00' => 
+  '2012-07-30 09:00:00' =>
   array (
-    0 => '2012-07-30 00:00:00',
-    1 => 
+    0 => '2012-07-30 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 7,
       'day' => 30,
       'dayOfWeek' => 1,
       'dayOfYear' => 212,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1343574000,
-      'formatted' => '2012-07-30 00:00:00',
-      'timezone' => 
+      'timestamp' => 1343606400,
+      'formatted' => '2012-07-30 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -15892,29 +13980,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 12,
       'is_leap_month' => false,
-      'moon_age' => 10.83791439794004,
-      'moon_phase_angle' => 133.2390840924497,
+      'moon_age' => 10.817,
+      'moon_phase_angle' => 134.66943165891396,
       'moon_phase' => 3,
       'moon_phase_text' => '十三夜',
     ),
   ),
-  '2012-07-31 00:00:00' => 
+  '2012-07-31 09:00:00' =>
   array (
-    0 => '2012-07-31 00:00:00',
-    1 => 
+    0 => '2012-07-31 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 7,
       'day' => 31,
       'dayOfWeek' => 2,
       'dayOfYear' => 213,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1343660400,
-      'formatted' => '2012-07-31 00:00:00',
-      'timezone' => 
+      'timestamp' => 1343692800,
+      'formatted' => '2012-07-31 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -15950,29 +14038,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 13,
       'is_leap_month' => false,
-      'moon_age' => 11.842595543712378,
-      'moon_phase_angle' => 146.64756604032087,
+      'moon_age' => 11.817,
+      'moon_phase_angle' => 148.07599848299282,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-08-01 00:00:00' => 
+  '2012-08-01 09:00:00' =>
   array (
-    0 => '2012-08-01 00:00:00',
-    1 => 
+    0 => '2012-08-01 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 8,
       'day' => 1,
       'dayOfWeek' => 3,
       'dayOfYear' => 214,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1343746800,
-      'formatted' => '2012-08-01 00:00:00',
-      'timezone' => 
+      'timestamp' => 1343779200,
+      'formatted' => '2012-08-01 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -16008,29 +14096,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 14,
       'is_leap_month' => false,
-      'moon_age' => 12.84711925080046,
-      'moon_phase_angle' => 160.00252686598196,
+      'moon_age' => 12.817,
+      'moon_phase_angle' => 161.41906187932221,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-08-02 00:00:00' => 
+  '2012-08-02 09:00:00' =>
   array (
-    0 => '2012-08-02 00:00:00',
-    1 => 
+    0 => '2012-08-02 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 8,
       'day' => 2,
       'dayOfWeek' => 4,
       'dayOfYear' => 215,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1343833200,
-      'formatted' => '2012-08-02 00:00:00',
-      'timezone' => 
+      'timestamp' => 1343865600,
+      'formatted' => '2012-08-02 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -16066,74 +14154,16 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 15,
       'is_leap_month' => false,
-      'moon_age' => 13.851097207516432,
-      'moon_phase_angle' => 173.21957565226768,
+      'moon_age' => 13.817,
+      'moon_phase_angle' => 174.61320962879813,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2012-08-02 10:00:00' => 
+  '2012-08-02 12:27:00' =>
   array (
-    0 => '2012-08-02 10:00:00',
-    1 => 
-    array (
-      'year' => 2012,
-      'month' => 8,
-      'day' => 2,
-      'dayOfWeek' => 4,
-      'dayOfYear' => 215,
-      'hour' => 10,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1343869200,
-      'formatted' => '2012-08-02 10:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 7,
-      'misc_seasonal_node_text' => '土用',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 24,
-      'oriental_zodiac_text' => '辰',
-      'oriental_zodiac' => 5,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '友引',
-      'six_weekday' => 3,
-      'weekday_text' => '木',
-      'month_text' => '葉月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '水無月',
-      'lunar_month' => 6,
-      'lunar_year' => 2012,
-      'lunar_day' => 15,
-      'is_leap_month' => false,
-      'moon_age' => 14.269157970324159,
-      'moon_phase_angle' => 178.66533451431542,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2012-08-02 12:00:00' => 
-  array (
-    0 => '2012-08-02 12:00:00',
-    1 => 
+    0 => '2012-08-02 12:27:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 8,
@@ -16141,12 +14171,12 @@ return array (
       'dayOfWeek' => 4,
       'dayOfYear' => 215,
       'hour' => 12,
-      'minute' => 0,
+      'minute' => 27,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1343876400,
-      'formatted' => '2012-08-02 12:00:00',
-      'timezone' => 
+      'timestamp' => 1343878020,
+      'formatted' => '2012-08-02 12:27:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -16182,87 +14212,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 15,
       'is_leap_month' => false,
-      'moon_age' => 14.352742760907859,
-      'moon_phase_angle' => 179.74929529347676,
+      'moon_age' => 13.960416666666667,
+      'moon_phase_angle' => 176.49252647051821,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2012-08-02 14:00:00' => 
+  '2012-08-03 09:00:00' =>
   array (
-    0 => '2012-08-02 14:00:00',
-    1 => 
-    array (
-      'year' => 2012,
-      'month' => 8,
-      'day' => 2,
-      'dayOfWeek' => 4,
-      'dayOfYear' => 215,
-      'hour' => 14,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1343883600,
-      'formatted' => '2012-08-02 14:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 7,
-      'misc_seasonal_node_text' => '土用',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 24,
-      'oriental_zodiac_text' => '辰',
-      'oriental_zodiac' => 5,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '友引',
-      'six_weekday' => 3,
-      'weekday_text' => '木',
-      'month_text' => '葉月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '水無月',
-      'lunar_month' => 6,
-      'lunar_year' => 2012,
-      'lunar_day' => 15,
-      'is_leap_month' => false,
-      'moon_age' => 14.436325624585152,
-      'moon_phase_angle' => 180.83142166206835,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2012-08-03 00:00:00' => 
-  array (
-    0 => '2012-08-03 00:00:00',
-    1 => 
+    0 => '2012-08-03 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 8,
       'day' => 3,
       'dayOfWeek' => 5,
       'dayOfYear' => 216,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1343919600,
-      'formatted' => '2012-08-03 00:00:00',
-      'timezone' => 
+      'timestamp' => 1343952000,
+      'formatted' => '2012-08-03 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -16298,29 +14270,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 14.854101198259741,
-      'moon_phase_angle' => 186.21307420353375,
+      'moon_age' => 14.817,
+      'moon_phase_angle' => 187.57360948190447,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-08-04 00:00:00' => 
+  '2012-08-04 09:00:00' =>
   array (
-    0 => '2012-08-04 00:00:00',
-    1 => 
+    0 => '2012-08-04 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 8,
       'day' => 4,
       'dayOfWeek' => 6,
       'dayOfYear' => 217,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1344006000,
-      'formatted' => '2012-08-04 00:00:00',
-      'timezone' => 
+      'timestamp' => 1344038400,
+      'formatted' => '2012-08-04 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -16356,29 +14328,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 17,
       'is_leap_month' => false,
-      'moon_age' => 15.855757802259177,
-      'moon_phase_angle' => 198.90974524872215,
+      'moon_age' => 15.817,
+      'moon_phase_angle' => 200.22954519600526,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-08-05 00:00:00' => 
+  '2012-08-05 09:00:00' =>
   array (
-    0 => '2012-08-05 00:00:00',
-    1 => 
+    0 => '2012-08-05 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 8,
       'day' => 5,
       'dayOfWeek' => 0,
       'dayOfYear' => 218,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1344092400,
-      'formatted' => '2012-08-05 00:00:00',
-      'timezone' => 
+      'timestamp' => 1344124800,
+      'formatted' => '2012-08-05 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -16414,29 +14386,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 18,
       'is_leap_month' => false,
-      'moon_age' => 16.855863101780415,
-      'moon_phase_angle' => 211.260485475934,
+      'moon_age' => 16.817,
+      'moon_phase_angle' => 212.53556478302775,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-08-06 00:00:00' => 
+  '2012-08-06 09:00:00' =>
   array (
-    0 => '2012-08-06 00:00:00',
-    1 => 
+    0 => '2012-08-06 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 8,
       'day' => 6,
       'dayOfWeek' => 1,
       'dayOfYear' => 219,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1344178800,
-      'formatted' => '2012-08-06 00:00:00',
-      'timezone' => 
+      'timestamp' => 1344211200,
+      'formatted' => '2012-08-06 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -16472,29 +14444,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 19,
       'is_leap_month' => false,
-      'moon_age' => 17.85438283905387,
-      'moon_phase_angle' => 223.24723688238356,
+      'moon_age' => 17.817,
+      'moon_phase_angle' => 224.4775928309842,
       'moon_phase' => 5,
       'moon_phase_text' => '十六夜',
     ),
   ),
-  '2012-08-07 00:00:00' => 
+  '2012-08-07 09:00:00' =>
   array (
-    0 => '2012-08-07 00:00:00',
-    1 => 
+    0 => '2012-08-07 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 8,
       'day' => 7,
       'dayOfWeek' => 2,
       'dayOfYear' => 220,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1344265200,
-      'formatted' => '2012-08-07 00:00:00',
-      'timezone' => 
+      'timestamp' => 1344297600,
+      'formatted' => '2012-08-07 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -16530,29 +14502,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 20,
       'is_leap_month' => false,
-      'moon_age' => 18.85147903347388,
-      'moon_phase_angle' => 234.88403356822008,
+      'moon_age' => 18.817,
+      'moon_phase_angle' => 236.0734106376209,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-08-08 00:00:00' => 
+  '2012-08-08 09:00:00' =>
   array (
-    0 => '2012-08-08 00:00:00',
-    1 => 
+    0 => '2012-08-08 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 8,
       'day' => 8,
       'dayOfWeek' => 3,
       'dayOfYear' => 221,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1344351600,
-      'formatted' => '2012-08-08 00:00:00',
-      'timezone' => 
+      'timestamp' => 1344384000,
+      'formatted' => '2012-08-08 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -16588,29 +14560,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 21,
       'is_leap_month' => false,
-      'moon_age' => 19.847456350456923,
-      'moon_phase_angle' => 246.21337536504888,
+      'moon_age' => 19.817,
+      'moon_phase_angle' => 247.3686785481676,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-08-09 00:00:00' => 
+  '2012-08-09 09:00:00' =>
   array (
-    0 => '2012-08-09 00:00:00',
-    1 => 
+    0 => '2012-08-09 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 8,
       'day' => 9,
       'dayOfWeek' => 4,
       'dayOfYear' => 222,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1344438000,
-      'formatted' => '2012-08-09 00:00:00',
-      'timezone' => 
+      'timestamp' => 1344470400,
+      'formatted' => '2012-08-09 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -16646,29 +14618,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 22,
       'is_leap_month' => false,
-      'moon_age' => 20.842697470914572,
-      'moon_phase_angle' => 257.29998975924303,
+      'moon_age' => 20.817,
+      'moon_phase_angle' => 258.4304827463563,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-08-10 00:00:00' => 
+  '2012-08-10 03:55:00' =>
   array (
-    0 => '2012-08-10 00:00:00',
-    1 => 
+    0 => '2012-08-10 03:55:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 8,
       'day' => 10,
       'dayOfWeek' => 5,
       'dayOfYear' => 223,
-      'hour' => 0,
-      'minute' => 0,
+      'hour' => 3,
+      'minute' => 55,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1344524400,
-      'formatted' => '2012-08-10 00:00:00',
-      'timezone' => 
+      'timestamp' => 1344538500,
+      'formatted' => '2012-08-10 03:55:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -16704,29 +14676,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 21.837641659658402,
-      'moon_phase_angle' => 268.22383388843343,
+      'moon_age' => 21.604861111111113,
+      'moon_phase_angle' => 267.0378073634057,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2012-08-10 05:00:00' => 
+  '2012-08-10 09:00:00' =>
   array (
-    0 => '2012-08-10 05:00:00',
-    1 => 
+    0 => '2012-08-10 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 8,
       'day' => 10,
       'dayOfWeek' => 5,
       'dayOfYear' => 223,
-      'hour' => 5,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1344542400,
-      'formatted' => '2012-08-10 05:00:00',
-      'timezone' => 
+      'timestamp' => 1344556800,
+      'formatted' => '2012-08-10 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -16762,29 +14734,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 22.04492271784693,
-      'moon_phase_angle' => 270.48726463905945,
+      'moon_age' => 21.817,
+      'moon_phase_angle' => 269.34022656999286,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2012-08-11 00:00:00' => 
+  '2012-08-11 09:00:00' =>
   array (
-    0 => '2012-08-11 00:00:00',
-    1 => 
+    0 => '2012-08-11 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 8,
       'day' => 11,
       'dayOfWeek' => 6,
       'dayOfYear' => 224,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1344610800,
-      'formatted' => '2012-08-11 00:00:00',
-      'timezone' => 
+      'timestamp' => 1344643200,
+      'formatted' => '2012-08-11 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -16820,29 +14792,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 24,
       'is_leap_month' => false,
-      'moon_age' => 22.832671167794615,
-      'moon_phase_angle' => 279.0734266387325,
+      'moon_age' => 22.817,
+      'moon_phase_angle' => 280.18697623530664,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-08-12 00:00:00' => 
+  '2012-08-12 09:00:00' =>
   array (
-    0 => '2012-08-12 00:00:00',
-    1 => 
+    0 => '2012-08-12 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 8,
       'day' => 12,
       'dayOfWeek' => 0,
       'dayOfYear' => 225,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1344697200,
-      'formatted' => '2012-08-12 00:00:00',
-      'timezone' => 
+      'timestamp' => 1344729600,
+      'formatted' => '2012-08-12 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -16878,29 +14850,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 25,
       'is_leap_month' => false,
-      'moon_age' => 23.828117521479726,
-      'moon_phase_angle' => 289.93983016779544,
+      'moon_age' => 23.817,
+      'moon_phase_angle' => 291.06157686971966,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-08-13 00:00:00' => 
+  '2012-08-13 09:00:00' =>
   array (
-    0 => '2012-08-13 00:00:00',
-    1 => 
+    0 => '2012-08-13 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 8,
       'day' => 13,
       'dayOfWeek' => 1,
       'dayOfYear' => 226,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1344783600,
-      'formatted' => '2012-08-13 00:00:00',
-      'timezone' => 
+      'timestamp' => 1344816000,
+      'formatted' => '2012-08-13 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -16936,29 +14908,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 26,
       'is_leap_month' => false,
-      'moon_age' => 24.82423471286893,
-      'moon_phase_angle' => 300.91109554198965,
+      'moon_age' => 24.817,
+      'moon_phase_angle' => 302.0512728506695,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-08-14 00:00:00' => 
+  '2012-08-14 09:00:00' =>
   array (
-    0 => '2012-08-14 00:00:00',
-    1 => 
+    0 => '2012-08-14 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 8,
       'day' => 14,
       'dayOfWeek' => 2,
       'dayOfYear' => 227,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1344870000,
-      'formatted' => '2012-08-14 00:00:00',
-      'timezone' => 
+      'timestamp' => 1344902400,
+      'formatted' => '2012-08-14 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -16994,29 +14966,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 27,
       'is_leap_month' => false,
-      'moon_age' => 25.821198019664735,
-      'moon_phase_angle' => 312.0668112260534,
+      'moon_age' => 25.817,
+      'moon_phase_angle' => 313.2343396709247,
       'moon_phase' => 7,
       'moon_phase_text' => '有明',
     ),
   ),
-  '2012-08-15 00:00:00' => 
+  '2012-08-15 09:00:00' =>
   array (
-    0 => '2012-08-15 00:00:00',
-    1 => 
+    0 => '2012-08-15 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 8,
       'day' => 15,
       'dayOfWeek' => 3,
       'dayOfYear' => 228,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1344956400,
-      'formatted' => '2012-08-15 00:00:00',
-      'timezone' => 
+      'timestamp' => 1344988800,
+      'formatted' => '2012-08-15 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -17052,29 +15024,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 28,
       'is_leap_month' => false,
-      'moon_age' => 26.891229990082174,
-      'moon_phase_angle' => 323.47252419485096,
+      'moon_age' => 26.817,
+      'moon_phase_angle' => 324.67442509719353,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-08-16 00:00:00' => 
+  '2012-08-16 09:00:00' =>
   array (
-    0 => '2012-08-16 00:00:00',
-    1 => 
+    0 => '2012-08-16 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 8,
       'day' => 16,
       'dayOfWeek' => 4,
       'dayOfYear' => 229,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1345042800,
-      'formatted' => '2012-08-16 00:00:00',
-      'timezone' => 
+      'timestamp' => 1345075200,
+      'formatted' => '2012-08-16 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -17110,29 +15082,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 29,
       'is_leap_month' => false,
-      'moon_age' => 27.860790610922813,
-      'moon_phase_angle' => 335.174203606661,
+      'moon_age' => 27.817,
+      'moon_phase_angle' => 336.41486881549463,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-08-17 00:00:00' => 
+  '2012-08-17 09:00:00' =>
   array (
-    0 => '2012-08-17 00:00:00',
-    1 => 
+    0 => '2012-08-17 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 8,
       'day' => 17,
       'dayOfWeek' => 5,
       'dayOfYear' => 230,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1345129200,
-      'formatted' => '2012-08-17 00:00:00',
-      'timezone' => 
+      'timestamp' => 1345161600,
+      'formatted' => '2012-08-17 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -17168,16 +15140,16 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 30,
       'is_leap_month' => false,
-      'moon_age' => 28.856505460249572,
-      'moon_phase_angle' => 347.1935048742116,
+      'moon_age' => 28.817,
+      'moon_phase_angle' => 348.4740082812448,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-08-18 00:00:00' => 
+  '2012-08-18 00:54:00' =>
   array (
-    0 => '2012-08-18 00:00:00',
-    1 => 
+    0 => '2012-08-18 00:54:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 8,
@@ -17185,12 +15157,12 @@ return array (
       'dayOfWeek' => 6,
       'dayOfYear' => 231,
       'hour' => 0,
-      'minute' => 0,
+      'minute' => 54,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1345215600,
-      'formatted' => '2012-08-18 00:00:00',
-      'timezone' => 
+      'timestamp' => 1345218840,
+      'formatted' => '2012-08-18 00:54:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -17226,29 +15198,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.3367315176874399,
-      'moon_phase_angle' => 359.5251569380057,
+      'moon_age' => 0.0,
+      'moon_phase_angle' => 356.6354689209072,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2012-08-18 01:00:00' => 
+  '2012-08-18 09:00:00' =>
   array (
-    0 => '2012-08-18 01:00:00',
-    1 => 
+    0 => '2012-08-18 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 8,
       'day' => 18,
       'dayOfWeek' => 6,
       'dayOfYear' => 231,
-      'hour' => 1,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1345219200,
-      'formatted' => '2012-08-18 01:00:00',
-      'timezone' => 
+      'timestamp' => 1345248000,
+      'formatted' => '2012-08-18 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -17284,87 +15256,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.3783560753799975,
-      'moon_phase_angle' => 0.04537658713155679,
+      'moon_age' => 0.337,
+      'moon_phase_angle' => 0.8429941192917454,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2012-08-18 02:00:00' => 
+  '2012-08-19 09:00:00' =>
   array (
-    0 => '2012-08-18 02:00:00',
-    1 => 
-    array (
-      'year' => 2012,
-      'month' => 8,
-      'day' => 18,
-      'dayOfWeek' => 6,
-      'dayOfYear' => 231,
-      'hour' => 2,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1345222800,
-      'formatted' => '2012-08-18 02:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 24,
-      'oriental_zodiac_text' => '辰',
-      'oriental_zodiac' => 5,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '先勝',
-      'six_weekday' => 2,
-      'weekday_text' => '土',
-      'month_text' => '葉月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '文月',
-      'lunar_month' => 7,
-      'lunar_year' => 2012,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.41999463737010956,
-      'moon_phase_angle' => 0.5660842220369204,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2012-08-19 00:00:00' => 
-  array (
-    0 => '2012-08-19 00:00:00',
-    1 => 
+    0 => '2012-08-19 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 8,
       'day' => 19,
       'dayOfWeek' => 0,
       'dayOfYear' => 232,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1345302000,
-      'formatted' => '2012-08-19 00:00:00',
-      'timezone' => 
+      'timestamp' => 1345334400,
+      'formatted' => '2012-08-19 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -17400,29 +15314,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 2,
       'is_leap_month' => false,
-      'moon_age' => 1.3357243523932993,
-      'moon_phase_angle' => 12.137963084684827,
+      'moon_age' => 1.337,
+      'moon_phase_angle' => 13.487527637085975,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-08-20 00:00:00' => 
+  '2012-08-20 09:00:00' =>
   array (
-    0 => '2012-08-20 00:00:00',
-    1 => 
+    0 => '2012-08-20 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 8,
       'day' => 20,
       'dayOfWeek' => 1,
       'dayOfYear' => 233,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1345388400,
-      'formatted' => '2012-08-20 00:00:00',
-      'timezone' => 
+      'timestamp' => 1345420800,
+      'formatted' => '2012-08-20 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -17458,29 +15372,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 3,
       'is_leap_month' => false,
-      'moon_age' => 2.3343714317306876,
-      'moon_phase_angle' => 24.980285217343834,
+      'moon_age' => 2.337,
+      'moon_phase_angle' => 26.354030756977437,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-08-21 00:00:00' => 
+  '2012-08-21 09:00:00' =>
   array (
-    0 => '2012-08-21 00:00:00',
-    1 => 
+    0 => '2012-08-21 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 8,
       'day' => 21,
       'dayOfWeek' => 2,
       'dayOfYear' => 234,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1345474800,
-      'formatted' => '2012-08-21 00:00:00',
-      'timezone' => 
+      'timestamp' => 1345507200,
+      'formatted' => '2012-08-21 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -17516,29 +15430,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 4,
       'is_leap_month' => false,
-      'moon_age' => 3.332879048306495,
-      'moon_phase_angle' => 37.989425909890684,
+      'moon_age' => 3.337,
+      'moon_phase_angle' => 39.37930754490978,
       'moon_phase' => 1,
       'moon_phase_text' => '三日月',
     ),
   ),
-  '2012-08-22 00:00:00' => 
+  '2012-08-22 09:00:00' =>
   array (
-    0 => '2012-08-22 00:00:00',
-    1 => 
+    0 => '2012-08-22 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 8,
       'day' => 22,
       'dayOfWeek' => 3,
       'dayOfYear' => 235,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1345561200,
-      'formatted' => '2012-08-22 00:00:00',
-      'timezone' => 
+      'timestamp' => 1345593600,
+      'formatted' => '2012-08-22 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -17574,29 +15488,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 5,
       'is_leap_month' => false,
-      'moon_age' => 4.3313686032779515,
-      'moon_phase_angle' => 51.10262505520515,
+      'moon_age' => 4.337,
+      'moon_phase_angle' => 52.50135534942095,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-08-23 00:00:00' => 
+  '2012-08-23 09:00:00' =>
   array (
-    0 => '2012-08-23 00:00:00',
-    1 => 
+    0 => '2012-08-23 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 8,
       'day' => 23,
       'dayOfWeek' => 4,
       'dayOfYear' => 236,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1345647600,
-      'formatted' => '2012-08-23 00:00:00',
-      'timezone' => 
+      'timestamp' => 1345680000,
+      'formatted' => '2012-08-23 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -17632,29 +15546,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 6,
       'is_leap_month' => false,
-      'moon_age' => 5.329960889648646,
-      'moon_phase_angle' => 64.26645198008282,
+      'moon_age' => 5.337,
+      'moon_phase_angle' => 65.66831233970856,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-08-24 00:00:00' => 
+  '2012-08-24 09:00:00' =>
   array (
-    0 => '2012-08-24 00:00:00',
-    1 => 
+    0 => '2012-08-24 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 8,
       'day' => 24,
       'dayOfWeek' => 5,
       'dayOfYear' => 237,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1345734000,
-      'formatted' => '2012-08-24 00:00:00',
-      'timezone' => 
+      'timestamp' => 1345766400,
+      'formatted' => '2012-08-24 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -17690,29 +15604,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 7,
       'is_leap_month' => false,
-      'moon_age' => 6.328710395842791,
-      'moon_phase_angle' => 77.4418534304296,
+      'moon_age' => 6.337,
+      'moon_phase_angle' => 78.84298908880939,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2012-08-24 23:00:00' => 
+  '2012-08-24 22:54:00' =>
   array (
-    0 => '2012-08-24 23:00:00',
-    1 => 
+    0 => '2012-08-24 22:54:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 8,
       'day' => 24,
       'dayOfWeek' => 5,
       'dayOfYear' => 237,
-      'hour' => 23,
-      'minute' => 0,
+      'hour' => 22,
+      'minute' => 54,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1345816800,
-      'formatted' => '2012-08-24 23:00:00',
-      'timezone' => 
+      'timestamp' => 1345816440,
+      'formatted' => '2012-08-24 22:54:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -17748,29 +15662,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 7,
       'is_leap_month' => false,
-      'moon_age' => 7.286013220436871,
-      'moon_phase_angle' => 90.05583979691869,
+      'moon_age' => 6.916666666666667,
+      'moon_phase_angle' => 86.46719981775433,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2012-08-25 00:00:00' => 
+  '2012-08-25 09:00:00' =>
   array (
-    0 => '2012-08-25 00:00:00',
-    1 => 
+    0 => '2012-08-25 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 8,
       'day' => 25,
       'dayOfWeek' => 6,
       'dayOfYear' => 238,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1345820400,
-      'formatted' => '2012-08-25 00:00:00',
-      'timezone' => 
+      'timestamp' => 1345852800,
+      'formatted' => '2012-08-25 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -17806,29 +15720,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 7.327647500205785,
-      'moon_phase_angle' => 90.60375674887908,
+      'moon_age' => 7.337,
+      'moon_phase_angle' => 92.00191138216712,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-08-26 00:00:00' => 
+  '2012-08-26 09:00:00' =>
   array (
-    0 => '2012-08-26 00:00:00',
-    1 => 
+    0 => '2012-08-26 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 8,
       'day' => 26,
       'dayOfWeek' => 0,
       'dayOfYear' => 239,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1345906800,
-      'formatted' => '2012-08-26 00:00:00',
-      'timezone' => 
+      'timestamp' => 1345939200,
+      'formatted' => '2012-08-26 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -17864,29 +15778,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 9,
       'is_leap_month' => false,
-      'moon_age' => 8.326752291526645,
-      'moon_phase_angle' => 103.73602196516075,
+      'moon_age' => 8.337,
+      'moon_phase_angle' => 105.12970386163022,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-08-27 00:00:00' => 
+  '2012-08-27 09:00:00' =>
   array (
-    0 => '2012-08-27 00:00:00',
-    1 => 
+    0 => '2012-08-27 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 8,
       'day' => 27,
       'dayOfWeek' => 1,
       'dayOfYear' => 240,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1345993200,
-      'formatted' => '2012-08-27 00:00:00',
-      'timezone' => 
+      'timestamp' => 1346025600,
+      'formatted' => '2012-08-27 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -17922,29 +15836,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 10,
       'is_leap_month' => false,
-      'moon_age' => 9.32604419440031,
-      'moon_phase_angle' => 116.82388942518043,
+      'moon_age' => 9.337,
+      'moon_phase_angle' => 118.2111888791782,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-08-28 00:00:00' => 
+  '2012-08-28 09:00:00' =>
   array (
-    0 => '2012-08-28 00:00:00',
-    1 => 
+    0 => '2012-08-28 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 8,
       'day' => 28,
       'dayOfWeek' => 2,
       'dayOfYear' => 241,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1346079600,
-      'formatted' => '2012-08-28 00:00:00',
-      'timezone' => 
+      'timestamp' => 1346112000,
+      'formatted' => '2012-08-28 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -17980,29 +15894,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 11,
       'is_leap_month' => false,
-      'moon_age' => 10.325516094453633,
-      'moon_phase_angle' => 129.84661174737752,
+      'moon_age' => 10.337,
+      'moon_phase_angle' => 131.22418492140275,
       'moon_phase' => 3,
       'moon_phase_text' => '十三夜',
     ),
   ),
-  '2012-08-29 00:00:00' => 
+  '2012-08-29 09:00:00' =>
   array (
-    0 => '2012-08-29 00:00:00',
-    1 => 
+    0 => '2012-08-29 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 8,
       'day' => 29,
       'dayOfWeek' => 3,
       'dayOfYear' => 242,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1346166000,
-      'formatted' => '2012-08-29 00:00:00',
-      'timezone' => 
+      'timestamp' => 1346198400,
+      'formatted' => '2012-08-29 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -18038,29 +15952,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 12,
       'is_leap_month' => false,
-      'moon_age' => 11.325138253625482,
-      'moon_phase_angle' => 142.77277133407875,
+      'moon_age' => 11.337,
+      'moon_phase_angle' => 144.13553673710527,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-08-30 00:00:00' => 
+  '2012-08-30 09:00:00' =>
   array (
-    0 => '2012-08-30 00:00:00',
-    1 => 
+    0 => '2012-08-30 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 8,
       'day' => 30,
       'dayOfWeek' => 4,
       'dayOfYear' => 243,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1346252400,
-      'formatted' => '2012-08-30 00:00:00',
-      'timezone' => 
+      'timestamp' => 1346284800,
+      'formatted' => '2012-08-30 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -18096,29 +16010,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 13,
       'is_leap_month' => false,
-      'moon_age' => 12.324910475406796,
-      'moon_phase_angle' => 155.55997254617543,
+      'moon_age' => 12.337,
+      'moon_phase_angle' => 156.90169462192537,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-08-31 00:00:00' => 
+  '2012-08-31 09:00:00' =>
   array (
-    0 => '2012-08-31 00:00:00',
-    1 => 
+    0 => '2012-08-31 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 8,
       'day' => 31,
       'dayOfWeek' => 5,
       'dayOfYear' => 244,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1346338800,
-      'formatted' => '2012-08-31 00:00:00',
-      'timezone' => 
+      'timestamp' => 1346371200,
+      'formatted' => '2012-08-31 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -18154,74 +16068,16 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 14,
       'is_leap_month' => false,
-      'moon_age' => 13.32479773182422,
-      'moon_phase_angle' => 168.15925873749848,
+      'moon_age' => 13.337,
+      'moon_phase_angle' => 169.47368620681868,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2012-08-31 21:00:00' => 
+  '2012-08-31 22:58:00' =>
   array (
-    0 => '2012-08-31 21:00:00',
-    1 => 
-    array (
-      'year' => 2012,
-      'month' => 8,
-      'day' => 31,
-      'dayOfWeek' => 5,
-      'dayOfYear' => 244,
-      'hour' => 21,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1346414400,
-      'formatted' => '2012-08-31 21:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 8,
-      'misc_seasonal_node_text' => '二百十日',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 24,
-      'oriental_zodiac_text' => '辰',
-      'oriental_zodiac' => 5,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '友引',
-      'six_weekday' => 3,
-      'weekday_text' => '金',
-      'month_text' => '葉月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '文月',
-      'lunar_month' => 7,
-      'lunar_year' => 2012,
-      'lunar_day' => 14,
-      'is_leap_month' => false,
-      'moon_age' => 14.199760577641428,
-      'moon_phase_angle' => 178.9918710780024,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2012-08-31 22:00:00' => 
-  array (
-    0 => '2012-08-31 22:00:00',
-    1 => 
+    0 => '2012-08-31 22:58:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 8,
@@ -18229,12 +16085,12 @@ return array (
       'dayOfWeek' => 5,
       'dayOfYear' => 244,
       'hour' => 22,
-      'minute' => 0,
+      'minute' => 58,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1346418000,
-      'formatted' => '2012-08-31 22:00:00',
-      'timezone' => 
+      'timestamp' => 1346421480,
+      'formatted' => '2012-08-31 22:58:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -18270,87 +16126,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 14,
       'is_leap_month' => false,
-      'moon_age' => 14.241428490262479,
-      'moon_phase_angle' => 179.50273617874439,
+      'moon_age' => 13.919444444444444,
+      'moon_phase_angle' => 176.68174020228852,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2012-08-31 23:00:00' => 
+  '2012-09-01 09:00:00' =>
   array (
-    0 => '2012-08-31 23:00:00',
-    1 => 
-    array (
-      'year' => 2012,
-      'month' => 8,
-      'day' => 31,
-      'dayOfWeek' => 5,
-      'dayOfYear' => 244,
-      'hour' => 23,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1346421600,
-      'formatted' => '2012-08-31 23:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 8,
-      'misc_seasonal_node_text' => '二百十日',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 24,
-      'oriental_zodiac_text' => '辰',
-      'oriental_zodiac' => 5,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '友引',
-      'six_weekday' => 3,
-      'weekday_text' => '金',
-      'month_text' => '葉月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '文月',
-      'lunar_month' => 7,
-      'lunar_year' => 2012,
-      'lunar_day' => 14,
-      'is_leap_month' => false,
-      'moon_age' => 14.283102558460087,
-      'moon_phase_angle' => 180.01312971634928,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2012-09-01 00:00:00' => 
-  array (
-    0 => '2012-09-01 00:00:00',
-    1 => 
+    0 => '2012-09-01 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 9,
       'day' => 1,
       'dayOfWeek' => 6,
       'dayOfYear' => 245,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1346425200,
-      'formatted' => '2012-09-01 00:00:00',
-      'timezone' => 
+      'timestamp' => 1346457600,
+      'formatted' => '2012-09-01 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -18386,29 +16184,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 15,
       'is_leap_month' => false,
-      'moon_age' => 14.32477127108723,
-      'moon_phase_angle' => 180.52305535128224,
+      'moon_age' => 14.337,
+      'moon_phase_angle' => 181.80505840943832,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-09-02 00:00:00' => 
+  '2012-09-02 09:00:00' =>
   array (
-    0 => '2012-09-02 00:00:00',
-    1 => 
+    0 => '2012-09-02 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 9,
       'day' => 2,
       'dayOfWeek' => 0,
       'dayOfYear' => 246,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1346511600,
-      'formatted' => '2012-09-02 00:00:00',
-      'timezone' => 
+      'timestamp' => 1346544000,
+      'formatted' => '2012-09-02 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -18444,29 +16242,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 15.324840888846666,
-      'moon_phase_angle' => 192.61423443110868,
+      'moon_age' => 15.337,
+      'moon_phase_angle' => 193.8606312658603,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-09-03 00:00:00' => 
+  '2012-09-03 09:00:00' =>
   array (
-    0 => '2012-09-03 00:00:00',
-    1 => 
+    0 => '2012-09-03 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 9,
       'day' => 3,
       'dayOfWeek' => 1,
       'dayOfYear' => 247,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1346598000,
-      'formatted' => '2012-09-03 00:00:00',
-      'timezone' => 
+      'timestamp' => 1346630400,
+      'formatted' => '2012-09-03 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -18502,29 +16300,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 17,
       'is_leap_month' => false,
-      'moon_age' => 16.325034162960947,
-      'moon_phase_angle' => 204.4138221052624,
+      'moon_age' => 16.337,
+      'moon_phase_angle' => 205.62383912597537,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-09-04 00:00:00' => 
+  '2012-09-04 09:00:00' =>
   array (
-    0 => '2012-09-04 00:00:00',
-    1 => 
+    0 => '2012-09-04 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 9,
       'day' => 4,
       'dayOfWeek' => 2,
       'dayOfYear' => 248,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1346684400,
-      'formatted' => '2012-09-04 00:00:00',
-      'timezone' => 
+      'timestamp' => 1346716800,
+      'formatted' => '2012-09-04 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -18560,29 +16358,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 18,
       'is_leap_month' => false,
-      'moon_age' => 17.325432942714542,
-      'moon_phase_angle' => 215.92549105267724,
+      'moon_age' => 17.337,
+      'moon_phase_angle' => 217.10106010461794,
       'moon_phase' => 5,
       'moon_phase_text' => '十六夜',
     ),
   ),
-  '2012-09-05 00:00:00' => 
+  '2012-09-05 09:00:00' =>
   array (
-    0 => '2012-09-05 00:00:00',
-    1 => 
+    0 => '2012-09-05 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 9,
       'day' => 5,
       'dayOfWeek' => 3,
       'dayOfYear' => 249,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1346770800,
-      'formatted' => '2012-09-05 00:00:00',
-      'timezone' => 
+      'timestamp' => 1346803200,
+      'formatted' => '2012-09-05 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -18618,29 +16416,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 19,
       'is_leap_month' => false,
-      'moon_age' => 18.32612330885604,
-      'moon_phase_angle' => 227.17650369305636,
+      'moon_age' => 18.337,
+      'moon_phase_angle' => 228.32237356589877,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-09-06 00:00:00' => 
+  '2012-09-06 09:00:00' =>
   array (
-    0 => '2012-09-06 00:00:00',
-    1 => 
+    0 => '2012-09-06 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 9,
       'day' => 6,
       'dayOfWeek' => 4,
       'dayOfYear' => 250,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1346857200,
-      'formatted' => '2012-09-06 00:00:00',
-      'timezone' => 
+      'timestamp' => 1346889600,
+      'formatted' => '2012-09-06 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -18676,29 +16474,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 20,
       'is_leap_month' => false,
-      'moon_age' => 19.327157725114375,
-      'moon_phase_angle' => 238.2157314429278,
+      'moon_age' => 19.337,
+      'moon_phase_angle' => 239.33927461117207,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-09-07 00:00:00' => 
+  '2012-09-07 09:00:00' =>
   array (
-    0 => '2012-09-07 00:00:00',
-    1 => 
+    0 => '2012-09-07 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 9,
       'day' => 7,
       'dayOfWeek' => 5,
       'dayOfYear' => 251,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1346943600,
-      'formatted' => '2012-09-07 00:00:00',
-      'timezone' => 
+      'timestamp' => 1346976000,
+      'formatted' => '2012-09-07 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -18734,29 +16532,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 21,
       'is_leap_month' => false,
-      'moon_age' => 20.328573036473244,
-      'moon_phase_angle' => 249.1098714261479,
+      'moon_age' => 20.337,
+      'moon_phase_angle' => 250.22052648618666,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-09-08 00:00:00' => 
+  '2012-09-08 09:00:00' =>
   array (
-    0 => '2012-09-08 00:00:00',
-    1 => 
+    0 => '2012-09-08 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 9,
       'day' => 8,
       'dayOfWeek' => 6,
       'dayOfYear' => 252,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1347030000,
-      'formatted' => '2012-09-08 00:00:00',
-      'timezone' => 
+      'timestamp' => 1347062400,
+      'formatted' => '2012-09-08 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -18792,29 +16590,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 22,
       'is_leap_month' => false,
-      'moon_age' => 21.330320944543928,
-      'moon_phase_angle' => 259.9388389911936,
+      'moon_age' => 21.337,
+      'moon_phase_angle' => 261.0473260304195,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2012-09-08 23:00:00' => 
+  '2012-09-08 22:15:00' =>
   array (
-    0 => '2012-09-08 23:00:00',
-    1 => 
+    0 => '2012-09-08 22:15:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 9,
       'day' => 8,
       'dayOfWeek' => 6,
       'dayOfYear' => 252,
-      'hour' => 23,
-      'minute' => 0,
+      'hour' => 22,
+      'minute' => 15,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1347112800,
-      'formatted' => '2012-09-08 23:00:00',
-      'timezone' => 
+      'timestamp' => 1347110100,
+      'formatted' => '2012-09-08 22:15:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -18850,29 +16648,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 22,
       'is_leap_month' => false,
-      'moon_age' => 22.290528803598136,
-      'moon_phase_angle' => 270.33704800986027,
+      'moon_age' => 21.889583333333334,
+      'moon_phase_angle' => 267.033469946629,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2012-09-09 00:00:00' => 
+  '2012-09-09 09:00:00' =>
   array (
-    0 => '2012-09-09 00:00:00',
-    1 => 
+    0 => '2012-09-09 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 9,
       'day' => 9,
       'dayOfWeek' => 0,
       'dayOfYear' => 253,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1347116400,
-      'formatted' => '2012-09-09 00:00:00',
-      'timezone' => 
+      'timestamp' => 1347148800,
+      'formatted' => '2012-09-09 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -18908,29 +16706,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 22.33228795416653,
-      'moon_phase_angle' => 270.79086772385944,
+      'moon_age' => 22.337,
+      'moon_phase_angle' => 271.90841422918345,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-09-10 00:00:00' => 
+  '2012-09-10 09:00:00' =>
   array (
-    0 => '2012-09-10 00:00:00',
-    1 => 
+    0 => '2012-09-10 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 9,
       'day' => 10,
       'dayOfWeek' => 1,
       'dayOfYear' => 254,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1347202800,
-      'formatted' => '2012-09-10 00:00:00',
-      'timezone' => 
+      'timestamp' => 1347235200,
+      'formatted' => '2012-09-10 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -18966,29 +16764,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 24,
       'is_leap_month' => false,
-      'moon_age' => 23.334249128587544,
-      'moon_phase_angle' => 281.7573681174268,
+      'moon_age' => 23.337,
+      'moon_phase_angle' => 282.8950723513725,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-09-11 00:00:00' => 
+  '2012-09-11 09:00:00' =>
   array (
-    0 => '2012-09-11 00:00:00',
-    1 => 
+    0 => '2012-09-11 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 9,
       'day' => 11,
       'dayOfWeek' => 2,
       'dayOfYear' => 255,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1347289200,
-      'formatted' => '2012-09-11 00:00:00',
-      'timezone' => 
+      'timestamp' => 1347321600,
+      'formatted' => '2012-09-11 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -19024,29 +16822,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 25,
       'is_leap_month' => false,
-      'moon_age' => 24.335974283516407,
-      'moon_phase_angle' => 292.9272549112135,
+      'moon_age' => 24.337,
+      'moon_phase_angle' => 294.0954964326332,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-09-12 00:00:00' => 
+  '2012-09-12 09:00:00' =>
   array (
-    0 => '2012-09-12 00:00:00',
-    1 => 
+    0 => '2012-09-12 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 9,
       'day' => 12,
       'dayOfWeek' => 3,
       'dayOfYear' => 256,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1347375600,
-      'formatted' => '2012-09-12 00:00:00',
-      'timezone' => 
+      'timestamp' => 1347408000,
+      'formatted' => '2012-09-12 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -19082,29 +16880,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 26,
       'is_leap_month' => false,
-      'moon_age' => 25.33695681206882,
-      'moon_phase_angle' => 304.38035450090405,
+      'moon_age' => 25.337,
+      'moon_phase_angle' => 305.58803901931617,
       'moon_phase' => 7,
       'moon_phase_text' => '有明',
     ),
   ),
-  '2012-09-13 00:00:00' => 
+  '2012-09-13 09:00:00' =>
   array (
-    0 => '2012-09-13 00:00:00',
-    1 => 
+    0 => '2012-09-13 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 9,
       'day' => 13,
       'dayOfWeek' => 4,
       'dayOfYear' => 257,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1347462000,
-      'formatted' => '2012-09-13 00:00:00',
-      'timezone' => 
+      'timestamp' => 1347494400,
+      'formatted' => '2012-09-13 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -19140,29 +16938,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 27,
       'is_leap_month' => false,
-      'moon_age' => 26.307038830271303,
-      'moon_phase_angle' => 316.17973357111464,
+      'moon_age' => 26.337,
+      'moon_phase_angle' => 317.43325511446517,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-09-14 00:00:00' => 
+  '2012-09-14 09:00:00' =>
   array (
-    0 => '2012-09-14 00:00:00',
-    1 => 
+    0 => '2012-09-14 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 9,
       'day' => 14,
       'dayOfWeek' => 5,
       'dayOfYear' => 258,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1347548400,
-      'formatted' => '2012-09-14 00:00:00',
-      'timezone' => 
+      'timestamp' => 1347580800,
+      'formatted' => '2012-09-14 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -19198,29 +16996,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 28,
       'is_leap_month' => false,
-      'moon_age' => 27.31855660411933,
-      'moon_phase_angle' => 328.3634192561541,
+      'moon_age' => 27.337,
+      'moon_phase_angle' => 329.665499322251,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-09-15 00:00:00' => 
+  '2012-09-15 09:00:00' =>
   array (
-    0 => '2012-09-15 00:00:00',
-    1 => 
+    0 => '2012-09-15 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 9,
       'day' => 15,
       'dayOfWeek' => 6,
       'dayOfYear' => 259,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1347634800,
-      'formatted' => '2012-09-15 00:00:00',
-      'timezone' => 
+      'timestamp' => 1347667200,
+      'formatted' => '2012-09-15 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -19256,29 +17054,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 29,
       'is_leap_month' => false,
-      'moon_age' => 28.361454696072578,
-      'moon_phase_angle' => 340.93696205785574,
+      'moon_age' => 28.337,
+      'moon_phase_angle' => 342.2857990070993,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-09-16 00:00:00' => 
+  '2012-09-16 09:00:00' =>
   array (
-    0 => '2012-09-16 00:00:00',
-    1 => 
+    0 => '2012-09-16 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 9,
       'day' => 16,
       'dayOfWeek' => 0,
       'dayOfYear' => 260,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1347721200,
-      'formatted' => '2012-09-16 00:00:00',
-      'timezone' => 
+      'timestamp' => 1347753600,
+      'formatted' => '2012-09-16 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -19314,74 +17112,16 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 29.432059908895134,
-      'moon_phase_angle' => 353.86926381073283,
+      'moon_age' => 29.337,
+      'moon_phase_angle' => 355.2584599854557,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2012-09-16 10:00:00' => 
+  '2012-09-16 11:11:00' =>
   array (
-    0 => '2012-09-16 10:00:00',
-    1 => 
-    array (
-      'year' => 2012,
-      'month' => 9,
-      'day' => 16,
-      'dayOfWeek' => 0,
-      'dayOfYear' => 260,
-      'hour' => 10,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1347757200,
-      'formatted' => '2012-09-16 10:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 24,
-      'oriental_zodiac_text' => '辰',
-      'oriental_zodiac' => 5,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '友引',
-      'six_weekday' => 3,
-      'weekday_text' => '日',
-      'month_text' => '長月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '葉月',
-      'lunar_month' => 8,
-      'lunar_year' => 2012,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.32332183001562953,
-      'moon_phase_angle' => 359.3489527555962,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2012-09-16 11:00:00' => 
-  array (
-    0 => '2012-09-16 11:00:00',
-    1 => 
+    0 => '2012-09-16 11:11:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 9,
@@ -19389,12 +17129,12 @@ return array (
       'dayOfWeek' => 0,
       'dayOfYear' => 260,
       'hour' => 11,
-      'minute' => 0,
+      'minute' => 11,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1347760800,
-      'formatted' => '2012-09-16 11:00:00',
-      'timezone' => 
+      'timestamp' => 1347761460,
+      'formatted' => '2012-09-16 11:11:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -19430,145 +17170,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.36466184770688415,
-      'moon_phase_angle' => 359.89949783325204,
+      'moon_age' => 0.0,
+      'moon_phase_angle' => 356.45391610139893,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2012-09-16 12:00:00' => 
+  '2012-09-17 09:00:00' =>
   array (
-    0 => '2012-09-16 12:00:00',
-    1 => 
-    array (
-      'year' => 2012,
-      'month' => 9,
-      'day' => 16,
-      'dayOfWeek' => 0,
-      'dayOfYear' => 260,
-      'hour' => 12,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1347764400,
-      'formatted' => '2012-09-16 12:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 24,
-      'oriental_zodiac_text' => '辰',
-      'oriental_zodiac' => 5,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '友引',
-      'six_weekday' => 3,
-      'weekday_text' => '日',
-      'month_text' => '長月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '葉月',
-      'lunar_month' => 8,
-      'lunar_year' => 2012,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.40600812109187245,
-      'moon_phase_angle' => 0.45048509361771494,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2012-09-16 13:00:00' => 
-  array (
-    0 => '2012-09-16 13:00:00',
-    1 => 
-    array (
-      'year' => 2012,
-      'month' => 9,
-      'day' => 16,
-      'dayOfWeek' => 0,
-      'dayOfYear' => 260,
-      'hour' => 13,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1347768000,
-      'formatted' => '2012-09-16 13:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 24,
-      'oriental_zodiac_text' => '辰',
-      'oriental_zodiac' => 5,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '友引',
-      'six_weekday' => 3,
-      'weekday_text' => '日',
-      'month_text' => '長月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '葉月',
-      'lunar_month' => 8,
-      'lunar_year' => 2012,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.4473600354976952,
-      'moon_phase_angle' => 1.001907779861824,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2012-09-17 00:00:00' => 
-  array (
-    0 => '2012-09-17 00:00:00',
-    1 => 
+    0 => '2012-09-17 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 9,
       'day' => 17,
       'dayOfWeek' => 1,
       'dayOfYear' => 261,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1347807600,
-      'formatted' => '2012-09-17 00:00:00',
-      'timezone' => 
+      'timestamp' => 1347840000,
+      'formatted' => '2012-09-17 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -19604,29 +17228,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 2,
       'is_leap_month' => false,
-      'moon_age' => 0.902002498973161,
-      'moon_phase_angle' => 7.094305338904434,
+      'moon_age' => 0.909,
+      'moon_phase_angle' => 8.513733548222973,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-09-18 00:00:00' => 
+  '2012-09-18 09:00:00' =>
   array (
-    0 => '2012-09-18 00:00:00',
-    1 => 
+    0 => '2012-09-18 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 9,
       'day' => 18,
       'dayOfWeek' => 2,
       'dayOfYear' => 262,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1347894000,
-      'formatted' => '2012-09-18 00:00:00',
-      'timezone' => 
+      'timestamp' => 1347926400,
+      'formatted' => '2012-09-18 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -19662,29 +17286,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 3,
       'is_leap_month' => false,
-      'moon_age' => 1.8934255549684167,
-      'moon_phase_angle' => 20.52010260346438,
+      'moon_age' => 1.909,
+      'moon_phase_angle' => 21.957438133223718,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-09-19 00:00:00' => 
+  '2012-09-19 09:00:00' =>
   array (
-    0 => '2012-09-19 00:00:00',
-    1 => 
+    0 => '2012-09-19 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 9,
       'day' => 19,
       'dayOfWeek' => 3,
       'dayOfYear' => 263,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1347980400,
-      'formatted' => '2012-09-19 00:00:00',
-      'timezone' => 
+      'timestamp' => 1348012800,
+      'formatted' => '2012-09-19 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -19720,29 +17344,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 4,
       'is_leap_month' => false,
-      'moon_age' => 2.884702977258712,
-      'moon_phase_angle' => 34.0434725390121,
+      'moon_age' => 2.909,
+      'moon_phase_angle' => 35.485936547340714,
       'moon_phase' => 1,
       'moon_phase_text' => '三日月',
     ),
   ),
-  '2012-09-20 00:00:00' => 
+  '2012-09-20 09:00:00' =>
   array (
-    0 => '2012-09-20 00:00:00',
-    1 => 
+    0 => '2012-09-20 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 9,
       'day' => 20,
       'dayOfWeek' => 4,
       'dayOfYear' => 264,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1348066800,
-      'formatted' => '2012-09-20 00:00:00',
-      'timezone' => 
+      'timestamp' => 1348099200,
+      'formatted' => '2012-09-20 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -19778,29 +17402,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 5,
       'is_leap_month' => false,
-      'moon_age' => 3.876467735506594,
-      'moon_phase_angle' => 47.56642757173262,
+      'moon_age' => 3.909,
+      'moon_phase_angle' => 49.00245004266176,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-09-21 00:00:00' => 
+  '2012-09-21 09:00:00' =>
   array (
-    0 => '2012-09-21 00:00:00',
-    1 => 
+    0 => '2012-09-21 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 9,
       'day' => 21,
       'dayOfWeek' => 5,
       'dayOfYear' => 265,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1348153200,
-      'formatted' => '2012-09-21 00:00:00',
-      'timezone' => 
+      'timestamp' => 1348185600,
+      'formatted' => '2012-09-21 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -19836,29 +17460,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 6,
       'is_leap_month' => false,
-      'moon_age' => 4.869130928069353,
-      'moon_phase_angle' => 61.00915508165221,
+      'moon_age' => 4.909,
+      'moon_phase_angle' => 62.42979883462448,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-09-22 00:00:00' => 
+  '2012-09-22 09:00:00' =>
   array (
-    0 => '2012-09-22 00:00:00',
-    1 => 
+    0 => '2012-09-22 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 9,
       'day' => 22,
       'dayOfWeek' => 6,
       'dayOfYear' => 266,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1348239600,
-      'formatted' => '2012-09-22 00:00:00',
-      'timezone' => 
+      'timestamp' => 1348272000,
+      'formatted' => '2012-09-22 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -19894,29 +17518,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 7,
       'is_leap_month' => false,
-      'moon_age' => 5.86290183942765,
-      'moon_phase_angle' => 74.31622596111342,
+      'moon_age' => 5.909,
+      'moon_phase_angle' => 75.716046805351,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-09-23 00:00:00' => 
+  '2012-09-23 04:41:00' =>
   array (
-    0 => '2012-09-23 00:00:00',
-    1 => 
+    0 => '2012-09-23 04:41:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 9,
       'day' => 23,
       'dayOfWeek' => 0,
       'dayOfYear' => 267,
-      'hour' => 0,
-      'minute' => 0,
+      'hour' => 4,
+      'minute' => 41,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1348326000,
-      'formatted' => '2012-09-23 00:00:00',
-      'timezone' => 
+      'timestamp' => 1348342860,
+      'formatted' => '2012-09-23 04:41:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -19952,29 +17576,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 6.857847024220973,
-      'moon_phase_angle' => 87.45567809222106,
+      'moon_age' => 6.729166666666667,
+      'moon_phase_angle' => 86.48663099259579,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2012-09-23 05:00:00' => 
+  '2012-09-23 09:00:00' =>
   array (
-    0 => '2012-09-23 05:00:00',
-    1 => 
+    0 => '2012-09-23 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 9,
       'day' => 23,
       'dayOfWeek' => 0,
       'dayOfYear' => 267,
-      'hour' => 5,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1348344000,
-      'formatted' => '2012-09-23 05:00:00',
-      'timezone' => 
+      'timestamp' => 1348358400,
+      'formatted' => '2012-09-23 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -20010,29 +17634,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 7.06527285464108,
-      'moon_phase_angle' => 90.17039956844926,
+      'moon_age' => 6.909,
+      'moon_phase_angle' => 88.83255729724527,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2012-09-24 00:00:00' => 
+  '2012-09-24 09:00:00' =>
   array (
-    0 => '2012-09-24 00:00:00',
-    1 => 
+    0 => '2012-09-24 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 9,
       'day' => 24,
       'dayOfWeek' => 1,
       'dayOfYear' => 268,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1348412400,
-      'formatted' => '2012-09-24 00:00:00',
-      'timezone' => 
+      'timestamp' => 1348444800,
+      'formatted' => '2012-09-24 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -20068,29 +17692,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 9,
       'is_leap_month' => false,
-      'moon_age' => 7.853943288326263,
-      'moon_phase_angle' => 100.41307202145285,
+      'moon_age' => 7.909,
+      'moon_phase_angle' => 101.76693290922094,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-09-25 00:00:00' => 
+  '2012-09-25 09:00:00' =>
   array (
-    0 => '2012-09-25 00:00:00',
-    1 => 
+    0 => '2012-09-25 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 9,
       'day' => 25,
       'dayOfWeek' => 2,
       'dayOfYear' => 269,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1348498800,
-      'formatted' => '2012-09-25 00:00:00',
-      'timezone' => 
+      'timestamp' => 1348531200,
+      'formatted' => '2012-09-25 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -20126,29 +17750,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 10,
       'is_leap_month' => false,
-      'moon_age' => 8.851146282162517,
-      'moon_phase_angle' => 113.18356538762,
+      'moon_age' => 8.909,
+      'moon_phase_angle' => 114.51462866870457,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-09-26 00:00:00' => 
+  '2012-09-26 09:00:00' =>
   array (
-    0 => '2012-09-26 00:00:00',
-    1 => 
+    0 => '2012-09-26 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 9,
       'day' => 26,
       'dayOfWeek' => 3,
       'dayOfYear' => 270,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1348585200,
-      'formatted' => '2012-09-26 00:00:00',
-      'timezone' => 
+      'timestamp' => 1348617600,
+      'formatted' => '2012-09-26 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -20184,29 +17808,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 11,
       'is_leap_month' => false,
-      'moon_age' => 9.849414410069585,
-      'moon_phase_angle' => 125.76472142103663,
+      'moon_age' => 9.909,
+      'moon_phase_angle' => 127.07232569758571,
       'moon_phase' => 3,
       'moon_phase_text' => '十三夜',
     ),
   ),
-  '2012-09-27 00:00:00' => 
+  '2012-09-27 09:00:00' =>
   array (
-    0 => '2012-09-27 00:00:00',
-    1 => 
+    0 => '2012-09-27 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 9,
       'day' => 27,
       'dayOfWeek' => 4,
       'dayOfYear' => 271,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1348671600,
-      'formatted' => '2012-09-27 00:00:00',
-      'timezone' => 
+      'timestamp' => 1348704000,
+      'formatted' => '2012-09-27 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -20242,29 +17866,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 12,
       'is_leap_month' => false,
-      'moon_age' => 10.84876929037273,
-      'moon_phase_angle' => 138.15182827426187,
+      'moon_age' => 10.909,
+      'moon_phase_angle' => 139.43438551051864,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-09-28 00:00:00' => 
+  '2012-09-28 09:00:00' =>
   array (
-    0 => '2012-09-28 00:00:00',
-    1 => 
+    0 => '2012-09-28 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 9,
       'day' => 28,
       'dayOfWeek' => 5,
       'dayOfYear' => 272,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1348758000,
-      'formatted' => '2012-09-28 00:00:00',
-      'timezone' => 
+      'timestamp' => 1348790400,
+      'formatted' => '2012-09-28 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -20300,29 +17924,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 13,
       'is_leap_month' => false,
-      'moon_age' => 11.849216621834785,
-      'moon_phase_angle' => 150.3364582445923,
+      'moon_age' => 11.909,
+      'moon_phase_angle' => 151.5922250182369,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-09-29 00:00:00' => 
+  '2012-09-29 09:00:00' =>
   array (
-    0 => '2012-09-29 00:00:00',
-    1 => 
+    0 => '2012-09-29 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 9,
       'day' => 29,
       'dayOfWeek' => 6,
       'dayOfYear' => 273,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1348844400,
-      'formatted' => '2012-09-29 00:00:00',
-      'timezone' => 
+      'timestamp' => 1348876800,
+      'formatted' => '2012-09-29 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -20358,29 +17982,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 14,
       'is_leap_month' => false,
-      'moon_age' => 12.850857933983207,
-      'moon_phase_angle' => 162.3080623913968,
+      'moon_age' => 12.909,
+      'moon_phase_angle' => 163.5359206702748,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-09-30 00:00:00' => 
+  '2012-09-30 09:00:00' =>
   array (
-    0 => '2012-09-30 00:00:00',
-    1 => 
+    0 => '2012-09-30 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 9,
       'day' => 30,
       'dayOfWeek' => 0,
       'dayOfYear' => 274,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1348930800,
-      'formatted' => '2012-09-30 00:00:00',
-      'timezone' => 
+      'timestamp' => 1348963200,
+      'formatted' => '2012-09-30 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -20416,74 +18040,16 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 15,
       'is_leap_month' => false,
-      'moon_age' => 13.853732518386096,
-      'moon_phase_angle' => 174.0576929775628,
+      'moon_age' => 13.909,
+      'moon_phase_angle' => 175.25743661319854,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2012-09-30 11:00:00' => 
+  '2012-09-30 12:19:00' =>
   array (
-    0 => '2012-09-30 11:00:00',
-    1 => 
-    array (
-      'year' => 2012,
-      'month' => 9,
-      'day' => 30,
-      'dayOfWeek' => 0,
-      'dayOfYear' => 274,
-      'hour' => 11,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1348970400,
-      'formatted' => '2012-09-30 11:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 24,
-      'oriental_zodiac_text' => '辰',
-      'oriental_zodiac' => 5,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '仏滅',
-      'six_weekday' => 5,
-      'weekday_text' => '日',
-      'month_text' => '長月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '葉月',
-      'lunar_month' => 8,
-      'lunar_year' => 2012,
-      'lunar_day' => 15,
-      'is_leap_month' => false,
-      'moon_age' => 14.313820427749306,
-      'moon_phase_angle' => 179.36765498498056,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2012-09-30 12:00:00' => 
-  array (
-    0 => '2012-09-30 12:00:00',
-    1 => 
+    0 => '2012-09-30 12:19:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 9,
@@ -20491,12 +18057,12 @@ return array (
       'dayOfWeek' => 0,
       'dayOfYear' => 274,
       'hour' => 12,
-      'minute' => 0,
+      'minute' => 19,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1348974000,
-      'formatted' => '2012-09-30 12:00:00',
-      'timezone' => 
+      'timestamp' => 1348975140,
+      'formatted' => '2012-09-30 12:19:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -20532,203 +18098,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 15,
       'is_leap_month' => false,
-      'moon_age' => 14.355661415494978,
-      'moon_phase_angle' => 179.84804019105533,
+      'moon_age' => 14.047222222222222,
+      'moon_phase_angle' => 176.85959667542934,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2012-09-30 13:00:00' => 
+  '2012-10-01 09:00:00' =>
   array (
-    0 => '2012-09-30 13:00:00',
-    1 => 
-    array (
-      'year' => 2012,
-      'month' => 9,
-      'day' => 30,
-      'dayOfWeek' => 0,
-      'dayOfYear' => 274,
-      'hour' => 13,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1348977600,
-      'formatted' => '2012-09-30 13:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 24,
-      'oriental_zodiac_text' => '辰',
-      'oriental_zodiac' => 5,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '仏滅',
-      'six_weekday' => 5,
-      'weekday_text' => '日',
-      'month_text' => '長月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '葉月',
-      'lunar_month' => 8,
-      'lunar_year' => 2012,
-      'lunar_day' => 15,
-      'is_leap_month' => false,
-      'moon_age' => 14.397509860806167,
-      'moon_phase_angle' => 180.32803742886526,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2012-09-30 14:00:00' => 
-  array (
-    0 => '2012-09-30 14:00:00',
-    1 => 
-    array (
-      'year' => 2012,
-      'month' => 9,
-      'day' => 30,
-      'dayOfWeek' => 0,
-      'dayOfYear' => 274,
-      'hour' => 14,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1348981200,
-      'formatted' => '2012-09-30 14:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 24,
-      'oriental_zodiac_text' => '辰',
-      'oriental_zodiac' => 5,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '仏滅',
-      'six_weekday' => 5,
-      'weekday_text' => '日',
-      'month_text' => '長月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '葉月',
-      'lunar_month' => 8,
-      'lunar_year' => 2012,
-      'lunar_day' => 15,
-      'is_leap_month' => false,
-      'moon_age' => 14.439348949119449,
-      'moon_phase_angle' => 180.80764724682388,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2012-09-30 15:00:00' => 
-  array (
-    0 => '2012-09-30 15:00:00',
-    1 => 
-    array (
-      'year' => 2012,
-      'month' => 9,
-      'day' => 30,
-      'dayOfWeek' => 0,
-      'dayOfYear' => 274,
-      'hour' => 15,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1348984800,
-      'formatted' => '2012-09-30 15:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 24,
-      'oriental_zodiac_text' => '辰',
-      'oriental_zodiac' => 5,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '仏滅',
-      'six_weekday' => 5,
-      'weekday_text' => '日',
-      'month_text' => '長月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '葉月',
-      'lunar_month' => 8,
-      'lunar_year' => 2012,
-      'lunar_day' => 15,
-      'is_leap_month' => false,
-      'moon_age' => 14.481196112930775,
-      'moon_phase_angle' => 181.28687021349083,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2012-10-01 00:00:00' => 
-  array (
-    0 => '2012-10-01 00:00:00',
-    1 => 
+    0 => '2012-10-01 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 10,
       'day' => 1,
       'dayOfWeek' => 1,
       'dayOfYear' => 275,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1349017200,
-      'formatted' => '2012-10-01 00:00:00',
-      'timezone' => 
+      'timestamp' => 1349049600,
+      'formatted' => '2012-10-01 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -20764,29 +18156,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 14.857933666091412,
-      'moon_phase_angle' => 185.58258919604768,
+      'moon_age' => 14.909,
+      'moon_phase_angle' => 186.75487971845052,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-10-02 00:00:00' => 
+  '2012-10-02 09:00:00' =>
   array (
-    0 => '2012-10-02 00:00:00',
-    1 => 
+    0 => '2012-10-02 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 10,
       'day' => 2,
       'dayOfWeek' => 2,
       'dayOfYear' => 276,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1349103600,
-      'formatted' => '2012-10-02 00:00:00',
-      'timezone' => 
+      'timestamp' => 1349136000,
+      'formatted' => '2012-10-02 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -20822,29 +18214,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 17,
       'is_leap_month' => false,
-      'moon_age' => 15.863444222602993,
-      'moon_phase_angle' => 196.8903608345552,
+      'moon_age' => 15.909,
+      'moon_phase_angle' => 198.03687359900644,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-10-03 00:00:00' => 
+  '2012-10-03 09:00:00' =>
   array (
-    0 => '2012-10-03 00:00:00',
-    1 => 
+    0 => '2012-10-03 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 10,
       'day' => 3,
       'dayOfWeek' => 3,
       'dayOfYear' => 277,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1349190000,
-      'formatted' => '2012-10-03 00:00:00',
-      'timezone' => 
+      'timestamp' => 1349222400,
+      'formatted' => '2012-10-03 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -20880,29 +18272,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 18,
       'is_leap_month' => false,
-      'moon_age' => 16.87020942149684,
-      'moon_phase_angle' => 208.00199283645634,
+      'moon_age' => 16.909,
+      'moon_phase_angle' => 209.12588806326784,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-10-04 00:00:00' => 
+  '2012-10-04 09:00:00' =>
   array (
-    0 => '2012-10-04 00:00:00',
-    1 => 
+    0 => '2012-10-04 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 10,
       'day' => 4,
       'dayOfWeek' => 4,
       'dayOfYear' => 278,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1349276400,
-      'formatted' => '2012-10-04 00:00:00',
-      'timezone' => 
+      'timestamp' => 1349308800,
+      'formatted' => '2012-10-04 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -20938,29 +18330,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 19,
       'is_leap_month' => false,
-      'moon_age' => 17.87809224613011,
-      'moon_phase_angle' => 218.95320825407634,
+      'moon_age' => 17.909,
+      'moon_phase_angle' => 220.0596725443651,
       'moon_phase' => 5,
       'moon_phase_text' => '十六夜',
     ),
   ),
-  '2012-10-05 00:00:00' => 
+  '2012-10-05 09:00:00' =>
   array (
-    0 => '2012-10-05 00:00:00',
-    1 => 
+    0 => '2012-10-05 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 10,
       'day' => 5,
       'dayOfWeek' => 5,
       'dayOfYear' => 279,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1349362800,
-      'formatted' => '2012-10-05 00:00:00',
-      'timezone' => 
+      'timestamp' => 1349395200,
+      'formatted' => '2012-10-05 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -20996,29 +18388,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 20,
       'is_leap_month' => false,
-      'moon_age' => 18.886799144092947,
-      'moon_phase_angle' => 229.794353438896,
+      'moon_age' => 18.909,
+      'moon_phase_angle' => 230.89071555702213,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-10-06 00:00:00' => 
+  '2012-10-06 09:00:00' =>
   array (
-    0 => '2012-10-06 00:00:00',
-    1 => 
+    0 => '2012-10-06 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 10,
       'day' => 6,
       'dayOfWeek' => 6,
       'dayOfYear' => 280,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1349449200,
-      'formatted' => '2012-10-06 00:00:00',
-      'timezone' => 
+      'timestamp' => 1349481600,
+      'formatted' => '2012-10-06 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -21054,29 +18446,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 21,
       'is_leap_month' => false,
-      'moon_age' => 19.89592952374369,
-      'moon_phase_angle' => 240.58906327338087,
+      'moon_age' => 19.909,
+      'moon_phase_angle' => 241.68436003554308,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-10-07 00:00:00' => 
+  '2012-10-07 09:00:00' =>
   array (
-    0 => '2012-10-07 00:00:00',
-    1 => 
+    0 => '2012-10-07 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 10,
       'day' => 7,
       'dayOfWeek' => 0,
       'dayOfYear' => 281,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1349535600,
-      'formatted' => '2012-10-07 00:00:00',
-      'timezone' => 
+      'timestamp' => 1349568000,
+      'formatted' => '2012-10-07 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -21112,29 +18504,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 22,
       'is_leap_month' => false,
-      'moon_age' => 20.904949750751257,
-      'moon_phase_angle' => 251.4119842230716,
+      'moon_age' => 20.909,
+      'moon_phase_angle' => 252.51627119470325,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-10-08 00:00:00' => 
+  '2012-10-08 09:00:00' =>
   array (
-    0 => '2012-10-08 00:00:00',
-    1 => 
+    0 => '2012-10-08 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 10,
       'day' => 8,
       'dayOfWeek' => 1,
       'dayOfYear' => 282,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1349622000,
-      'formatted' => '2012-10-08 00:00:00',
-      'timezone' => 
+      'timestamp' => 1349654400,
+      'formatted' => '2012-10-08 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -21170,29 +18562,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 21.908703360706568,
-      'moon_phase_angle' => 262.34564559072885,
+      'moon_age' => 21.909,
+      'moon_phase_angle' => 263.4694173268159,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2012-10-08 17:00:00' => 
+  '2012-10-08 16:33:00' =>
   array (
-    0 => '2012-10-08 17:00:00',
-    1 => 
+    0 => '2012-10-08 16:33:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 10,
       'day' => 8,
       'dayOfWeek' => 1,
       'dayOfYear' => 282,
-      'hour' => 17,
-      'minute' => 0,
+      'hour' => 16,
+      'minute' => 33,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1349683200,
-      'formatted' => '2012-10-08 17:00:00',
-      'timezone' => 
+      'timestamp' => 1349681580,
+      'formatted' => '2012-10-08 16:33:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -21228,29 +18620,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 22.616611659526825,
-      'moon_phase_angle' => 270.2044514915325,
+      'moon_age' => 22.22361111111111,
+      'moon_phase_angle' => 266.953930279044,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2012-10-09 00:00:00' => 
+  '2012-10-09 09:00:00' =>
   array (
-    0 => '2012-10-09 00:00:00',
-    1 => 
+    0 => '2012-10-09 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 10,
       'day' => 9,
       'dayOfWeek' => 2,
       'dayOfYear' => 283,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1349708400,
-      'formatted' => '2012-10-09 00:00:00',
-      'timezone' => 
+      'timestamp' => 1349740800,
+      'formatted' => '2012-10-09 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -21286,29 +18678,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 24,
       'is_leap_month' => false,
-      'moon_age' => 22.90813545230776,
-      'moon_phase_angle' => 273.4763222678951,
+      'moon_age' => 22.909,
+      'moon_phase_angle' => 274.63009371890075,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-10-10 00:00:00' => 
+  '2012-10-10 09:00:00' =>
   array (
-    0 => '2012-10-10 00:00:00',
-    1 => 
+    0 => '2012-10-10 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 10,
       'day' => 10,
       'dayOfWeek' => 3,
       'dayOfYear' => 284,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1349794800,
-      'formatted' => '2012-10-10 00:00:00',
-      'timezone' => 
+      'timestamp' => 1349827200,
+      'formatted' => '2012-10-10 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -21344,29 +18736,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 25,
       'is_leap_month' => false,
-      'moon_age' => 23.907739785965532,
-      'moon_phase_angle' => 284.8885276667456,
+      'moon_age' => 23.909,
+      'moon_phase_angle' => 286.08228873094816,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-10-11 00:00:00' => 
+  '2012-10-11 09:00:00' =>
   array (
-    0 => '2012-10-11 00:00:00',
-    1 => 
+    0 => '2012-10-11 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 10,
       'day' => 11,
       'dayOfWeek' => 4,
       'dayOfYear' => 285,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1349881200,
-      'formatted' => '2012-10-11 00:00:00',
-      'timezone' => 
+      'timestamp' => 1349913600,
+      'formatted' => '2012-10-11 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -21402,29 +18794,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 26,
       'is_leap_month' => false,
-      'moon_age' => 24.90757736377418,
-      'moon_phase_angle' => 296.6577427786603,
+      'moon_age' => 24.909,
+      'moon_phase_angle' => 297.899969480409,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-10-12 00:00:00' => 
+  '2012-10-12 09:00:00' =>
   array (
-    0 => '2012-10-12 00:00:00',
-    1 => 
+    0 => '2012-10-12 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 10,
       'day' => 12,
       'dayOfWeek' => 5,
       'dayOfYear' => 286,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1349967600,
-      'formatted' => '2012-10-12 00:00:00',
-      'timezone' => 
+      'timestamp' => 1350000000,
+      'formatted' => '2012-10-12 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -21460,29 +18852,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 27,
       'is_leap_month' => false,
-      'moon_age' => 25.90766500728205,
-      'moon_phase_angle' => 308.8412862306169,
+      'moon_age' => 25.909,
+      'moon_phase_angle' => 310.13749925699926,
       'moon_phase' => 7,
       'moon_phase_text' => '有明',
     ),
   ),
-  '2012-10-13 00:00:00' => 
+  '2012-10-13 09:00:00' =>
   array (
-    0 => '2012-10-13 00:00:00',
-    1 => 
+    0 => '2012-10-13 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 10,
       'day' => 13,
       'dayOfWeek' => 6,
       'dayOfYear' => 287,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1350054000,
-      'formatted' => '2012-10-13 00:00:00',
-      'timezone' => 
+      'timestamp' => 1350086400,
+      'formatted' => '2012-10-13 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -21518,29 +18910,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 28,
       'is_leap_month' => false,
-      'moon_age' => 26.76757659265244,
-      'moon_phase_angle' => 321.4680178949733,
+      'moon_age' => 26.909,
+      'moon_phase_angle' => 322.819283413328,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-10-14 00:00:00' => 
+  '2012-10-14 09:00:00' =>
   array (
-    0 => '2012-10-14 00:00:00',
-    1 => 
+    0 => '2012-10-14 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 10,
       'day' => 14,
       'dayOfWeek' => 0,
       'dayOfYear' => 288,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1350140400,
-      'formatted' => '2012-10-14 00:00:00',
-      'timezone' => 
+      'timestamp' => 1350172800,
+      'formatted' => '2012-10-14 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -21576,29 +18968,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 29,
       'is_leap_month' => false,
-      'moon_age' => 27.851382299470096,
-      'moon_phase_angle' => 334.5288301900681,
+      'moon_age' => 27.909,
+      'moon_phase_angle' => 335.9308162004087,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-10-15 00:00:00' => 
+  '2012-10-15 09:00:00' =>
   array (
-    0 => '2012-10-15 00:00:00',
-    1 => 
+    0 => '2012-10-15 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 10,
       'day' => 15,
       'dayOfWeek' => 1,
       'dayOfYear' => 289,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1350226800,
-      'formatted' => '2012-10-15 00:00:00',
-      'timezone' => 
+      'timestamp' => 1350259200,
+      'formatted' => '2012-10-15 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -21634,16 +19026,16 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 28.963954914039313,
-      'moon_phase_angle' => 347.9711462861682,
+      'moon_age' => 28.909,
+      'moon_phase_angle' => 349.4142106460666,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2012-10-15 21:00:00' => 
+  '2012-10-15 21:03:00' =>
   array (
-    0 => '2012-10-15 21:00:00',
-    1 => 
+    0 => '2012-10-15 21:03:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 10,
@@ -21651,12 +19043,12 @@ return array (
       'dayOfWeek' => 1,
       'dayOfYear' => 289,
       'hour' => 21,
-      'minute' => 0,
+      'minute' => 3,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1350302400,
-      'formatted' => '2012-10-15 21:00:00',
-      'timezone' => 
+      'timestamp' => 1350302580,
+      'formatted' => '2012-10-15 21:03:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -21692,87 +19084,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.3663345957174897,
-      'moon_phase_angle' => 359.9730112965963,
+      'moon_age' => 0.0,
+      'moon_phase_angle' => 356.2946399655706,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2012-10-15 22:00:00' => 
+  '2012-10-16 09:00:00' =>
   array (
-    0 => '2012-10-15 22:00:00',
-    1 => 
-    array (
-      'year' => 2012,
-      'month' => 10,
-      'day' => 15,
-      'dayOfWeek' => 1,
-      'dayOfYear' => 289,
-      'hour' => 22,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1350306000,
-      'formatted' => '2012-10-15 22:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 24,
-      'oriental_zodiac_text' => '辰',
-      'oriental_zodiac' => 5,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '先負',
-      'six_weekday' => 4,
-      'weekday_text' => '月',
-      'month_text' => '神無月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '長月',
-      'lunar_month' => 9,
-      'lunar_year' => 2012,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.40723836375400424,
-      'moon_phase_angle' => 0.5486718057187545,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2012-10-16 00:00:00' => 
-  array (
-    0 => '2012-10-16 00:00:00',
-    1 => 
+    0 => '2012-10-16 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 10,
       'day' => 16,
       'dayOfWeek' => 2,
       'dayOfYear' => 290,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1350313200,
-      'formatted' => '2012-10-16 00:00:00',
-      'timezone' => 
+      'timestamp' => 1350345600,
+      'formatted' => '2012-10-16 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -21808,29 +19142,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 2,
       'is_leap_month' => false,
-      'moon_age' => 0.48904742021113634,
-      'moon_phase_angle' => 1.7008960720486925,
+      'moon_age' => 0.498,
+      'moon_phase_angle' => 3.1712343517383488,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-10-17 00:00:00' => 
+  '2012-10-17 09:00:00' =>
   array (
-    0 => '2012-10-17 00:00:00',
-    1 => 
+    0 => '2012-10-17 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 10,
       'day' => 17,
       'dayOfWeek' => 3,
       'dayOfYear' => 291,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1350399600,
-      'formatted' => '2012-10-17 00:00:00',
-      'timezone' => 
+      'timestamp' => 1350432000,
+      'formatted' => '2012-10-17 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -21866,29 +19200,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 3,
       'is_leap_month' => false,
-      'moon_age' => 1.4704971397295594,
-      'moon_phase_angle' => 15.593673308529077,
+      'moon_age' => 1.498,
+      'moon_phase_angle' => 17.075120574311796,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-10-18 00:00:00' => 
+  '2012-10-18 09:00:00' =>
   array (
-    0 => '2012-10-18 00:00:00',
-    1 => 
+    0 => '2012-10-18 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 10,
       'day' => 18,
       'dayOfWeek' => 4,
       'dayOfYear' => 292,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1350486000,
-      'formatted' => '2012-10-18 00:00:00',
-      'timezone' => 
+      'timestamp' => 1350518400,
+      'formatted' => '2012-10-18 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -21924,29 +19258,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 4,
       'is_leap_month' => false,
-      'moon_age' => 2.4525278797373176,
-      'moon_phase_angle' => 29.513188407309627,
+      'moon_age' => 2.498,
+      'moon_phase_angle' => 30.989220850737894,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-10-19 00:00:00' => 
+  '2012-10-19 09:00:00' =>
   array (
-    0 => '2012-10-19 00:00:00',
-    1 => 
+    0 => '2012-10-19 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 10,
       'day' => 19,
       'dayOfWeek' => 5,
       'dayOfYear' => 293,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1350572400,
-      'formatted' => '2012-10-19 00:00:00',
-      'timezone' => 
+      'timestamp' => 1350604800,
+      'formatted' => '2012-10-19 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -21982,29 +19316,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 5,
       'is_leap_month' => false,
-      'moon_age' => 3.436393808107823,
-      'moon_phase_angle' => 43.33171523061836,
+      'moon_age' => 3.498,
+      'moon_phase_angle' => 44.78745257949558,
       'moon_phase' => 1,
       'moon_phase_text' => '三日月',
     ),
   ),
-  '2012-10-20 00:00:00' => 
+  '2012-10-20 09:00:00' =>
   array (
-    0 => '2012-10-20 00:00:00',
-    1 => 
+    0 => '2012-10-20 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 10,
       'day' => 20,
       'dayOfWeek' => 6,
       'dayOfYear' => 294,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1350658800,
-      'formatted' => '2012-10-20 00:00:00',
-      'timezone' => 
+      'timestamp' => 1350691200,
+      'formatted' => '2012-10-20 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -22040,29 +19374,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 6,
       'is_leap_month' => false,
-      'moon_age' => 4.42292637238279,
-      'moon_phase_angle' => 56.94640090334218,
+      'moon_age' => 4.498,
+      'moon_phase_angle' => 58.370451102523475,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-10-21 00:00:00' => 
+  '2012-10-21 09:00:00' =>
   array (
-    0 => '2012-10-21 00:00:00',
-    1 => 
+    0 => '2012-10-21 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 10,
       'day' => 21,
       'dayOfWeek' => 0,
       'dayOfYear' => 295,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1350745200,
-      'formatted' => '2012-10-21 00:00:00',
-      'timezone' => 
+      'timestamp' => 1350777600,
+      'formatted' => '2012-10-21 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -22098,29 +19432,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 7,
       'is_leap_month' => false,
-      'moon_age' => 5.412592630367726,
-      'moon_phase_angle' => 70.28759549150826,
+      'moon_age' => 5.498,
+      'moon_phase_angle' => 71.6732519000559,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-10-22 00:00:00' => 
+  '2012-10-22 09:00:00' =>
   array (
-    0 => '2012-10-22 00:00:00',
-    1 => 
+    0 => '2012-10-22 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 10,
       'day' => 22,
       'dayOfWeek' => 1,
       'dayOfYear' => 296,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1350831600,
-      'formatted' => '2012-10-22 00:00:00',
-      'timezone' => 
+      'timestamp' => 1350864000,
+      'formatted' => '2012-10-22 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -22156,29 +19490,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 6.405489757657051,
-      'moon_phase_angle' => 83.31896106658999,
+      'moon_age' => 6.498,
+      'moon_phase_angle' => 84.6641388660365,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2012-10-22 13:00:00' => 
+  '2012-10-22 12:32:00' =>
   array (
-    0 => '2012-10-22 13:00:00',
-    1 => 
+    0 => '2012-10-22 12:32:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 10,
       'day' => 22,
       'dayOfWeek' => 1,
       'dayOfYear' => 296,
-      'hour' => 13,
-      'minute' => 0,
+      'hour' => 12,
+      'minute' => 32,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1350878400,
-      'formatted' => '2012-10-22 13:00:00',
-      'timezone' => 
+      'timestamp' => 1350876720,
+      'formatted' => '2012-10-22 12:32:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -22214,29 +19548,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 6.9446444641798735,
-      'moon_phase_angle' => 90.24428332174955,
+      'moon_age' => 6.645138888888889,
+      'moon_phase_angle' => 86.54974950157012,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2012-10-23 00:00:00' => 
+  '2012-10-23 09:00:00' =>
   array (
-    0 => '2012-10-23 00:00:00',
-    1 => 
+    0 => '2012-10-23 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 10,
       'day' => 23,
       'dayOfWeek' => 2,
       'dayOfYear' => 297,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1350918000,
-      'formatted' => '2012-10-23 00:00:00',
-      'timezone' => 
+      'timestamp' => 1350950400,
+      'formatted' => '2012-10-23 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -22272,29 +19606,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 9,
       'is_leap_month' => false,
-      'moon_age' => 7.401547302957624,
-      'moon_phase_angle' => 96.03178351171567,
+      'moon_age' => 7.498,
+      'moon_phase_angle' => 97.3376661049551,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-10-24 00:00:00' => 
+  '2012-10-24 09:00:00' =>
   array (
-    0 => '2012-10-24 00:00:00',
-    1 => 
+    0 => '2012-10-24 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 10,
       'day' => 24,
       'dayOfWeek' => 3,
       'dayOfYear' => 298,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1351004400,
-      'formatted' => '2012-10-24 00:00:00',
-      'timezone' => 
+      'timestamp' => 1351036800,
+      'formatted' => '2012-10-24 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -22330,29 +19664,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 10,
       'is_leap_month' => false,
-      'moon_age' => 8.400536953471601,
-      'moon_phase_angle' => 108.43672033809196,
+      'moon_age' => 8.498,
+      'moon_phase_angle' => 109.70595297567377,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-10-25 00:00:00' => 
+  '2012-10-25 09:00:00' =>
   array (
-    0 => '2012-10-25 00:00:00',
-    1 => 
+    0 => '2012-10-25 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 10,
       'day' => 25,
       'dayOfWeek' => 4,
       'dayOfYear' => 299,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1351090800,
-      'formatted' => '2012-10-25 00:00:00',
-      'timezone' => 
+      'timestamp' => 1351123200,
+      'formatted' => '2012-10-25 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -22388,29 +19722,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 11,
       'is_leap_month' => false,
-      'moon_age' => 9.402209755498916,
-      'moon_phase_angle' => 120.55564351282953,
+      'moon_age' => 9.498,
+      'moon_phase_angle' => 121.79113771275763,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-10-26 00:00:00' => 
+  '2012-10-26 09:00:00' =>
   array (
-    0 => '2012-10-26 00:00:00',
-    1 => 
+    0 => '2012-10-26 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 10,
       'day' => 26,
       'dayOfWeek' => 5,
       'dayOfYear' => 300,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1351177200,
-      'formatted' => '2012-10-26 00:00:00',
-      'timezone' => 
+      'timestamp' => 1351209600,
+      'formatted' => '2012-10-26 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -22446,29 +19780,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 12,
       'is_leap_month' => false,
-      'moon_age' => 10.40633034473285,
-      'moon_phase_angle' => 132.41516879643652,
+      'moon_age' => 10.498,
+      'moon_phase_angle' => 133.6198885274407,
       'moon_phase' => 3,
       'moon_phase_text' => '十三夜',
     ),
   ),
-  '2012-10-27 00:00:00' => 
+  '2012-10-27 09:00:00' =>
   array (
-    0 => '2012-10-27 00:00:00',
-    1 => 
+    0 => '2012-10-27 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 10,
       'day' => 27,
       'dayOfWeek' => 6,
       'dayOfYear' => 301,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1351263600,
-      'formatted' => '2012-10-27 00:00:00',
-      'timezone' => 
+      'timestamp' => 1351296000,
+      'formatted' => '2012-10-27 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -22504,29 +19838,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 13,
       'is_leap_month' => false,
-      'moon_age' => 11.41266959765926,
-      'moon_phase_angle' => 144.04250254735905,
+      'moon_age' => 11.498,
+      'moon_phase_angle' => 145.2197141706285,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-10-28 00:00:00' => 
+  '2012-10-28 09:00:00' =>
   array (
-    0 => '2012-10-28 00:00:00',
-    1 => 
+    0 => '2012-10-28 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 10,
       'day' => 28,
       'dayOfWeek' => 0,
       'dayOfYear' => 302,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1351350000,
-      'formatted' => '2012-10-28 00:00:00',
-      'timezone' => 
+      'timestamp' => 1351382400,
+      'formatted' => '2012-10-28 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -22562,29 +19896,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 14,
       'is_leap_month' => false,
-      'moon_age' => 12.421047086361796,
-      'moon_phase_angle' => 155.46358192420888,
+      'moon_age' => 12.498,
+      'moon_phase_angle' => 156.616857132229,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-10-29 00:00:00' => 
+  '2012-10-29 09:00:00' =>
   array (
-    0 => '2012-10-29 00:00:00',
-    1 => 
+    0 => '2012-10-29 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 10,
       'day' => 29,
       'dayOfWeek' => 1,
       'dayOfYear' => 303,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1351436400,
-      'formatted' => '2012-10-29 00:00:00',
-      'timezone' => 
+      'timestamp' => 1351468800,
+      'formatted' => '2012-10-29 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -22620,74 +19954,16 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 15,
       'is_leap_month' => false,
-      'moon_age' => 13.431268122978508,
-      'moon_phase_angle' => 166.70311297742376,
+      'moon_age' => 13.498,
+      'moon_phase_angle' => 167.8359582318983,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-10-30 00:00:00' => 
+  '2012-10-30 04:49:00' =>
   array (
-    0 => '2012-10-30 00:00:00',
-    1 => 
-    array (
-      'year' => 2012,
-      'month' => 10,
-      'day' => 30,
-      'dayOfWeek' => 2,
-      'dayOfYear' => 304,
-      'hour' => 0,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1351522800,
-      'formatted' => '2012-10-30 00:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 7,
-      'misc_seasonal_node_text' => '土用',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 24,
-      'oriental_zodiac_text' => '辰',
-      'oriental_zodiac' => 5,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '赤口',
-      'six_weekday' => 1,
-      'weekday_text' => '火',
-      'month_text' => '神無月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '長月',
-      'lunar_month' => 9,
-      'lunar_year' => 2012,
-      'lunar_day' => 16,
-      'is_leap_month' => false,
-      'moon_age' => 14.44313932955265,
-      'moon_phase_angle' => 177.7859410696292,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2012-10-30 04:00:00' => 
-  array (
-    0 => '2012-10-30 04:00:00',
-    1 => 
+    0 => '2012-10-30 04:49:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 10,
@@ -22695,12 +19971,12 @@ return array (
       'dayOfWeek' => 2,
       'dayOfYear' => 304,
       'hour' => 4,
-      'minute' => 0,
+      'minute' => 49,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1351537200,
-      'formatted' => '2012-10-30 04:00:00',
-      'timezone' => 
+      'timestamp' => 1351540140,
+      'formatted' => '2012-10-30 04:49:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -22736,29 +20012,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 14.611938363872468,
-      'moon_phase_angle' => 179.61969164310244,
+      'moon_age' => 14.323611111111111,
+      'moon_phase_angle' => 176.98266608201303,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2012-10-30 05:00:00' => 
+  '2012-10-30 09:00:00' =>
   array (
-    0 => '2012-10-30 05:00:00',
-    1 => 
+    0 => '2012-10-30 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 10,
       'day' => 30,
       'dayOfWeek' => 2,
       'dayOfYear' => 304,
-      'hour' => 5,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1351540800,
-      'formatted' => '2012-10-30 05:00:00',
-      'timezone' => 
+      'timestamp' => 1351555200,
+      'formatted' => '2012-10-30 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -22794,87 +20070,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 14.6541403606534,
-      'moon_phase_angle' => 180.07758085703142,
+      'moon_age' => 14.498,
+      'moon_phase_angle' => 178.9015437314365,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2012-10-30 06:00:00' => 
+  '2012-10-31 09:00:00' =>
   array (
-    0 => '2012-10-30 06:00:00',
-    1 => 
-    array (
-      'year' => 2012,
-      'month' => 10,
-      'day' => 30,
-      'dayOfWeek' => 2,
-      'dayOfYear' => 304,
-      'hour' => 6,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1351544400,
-      'formatted' => '2012-10-30 06:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 7,
-      'misc_seasonal_node_text' => '土用',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 24,
-      'oriental_zodiac_text' => '辰',
-      'oriental_zodiac' => 5,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '赤口',
-      'six_weekday' => 1,
-      'weekday_text' => '火',
-      'month_text' => '神無月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '長月',
-      'lunar_month' => 9,
-      'lunar_year' => 2012,
-      'lunar_day' => 16,
-      'is_leap_month' => false,
-      'moon_age' => 14.696342378854752,
-      'moon_phase_angle' => 180.53525496385208,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2012-10-31 00:00:00' => 
-  array (
-    0 => '2012-10-31 00:00:00',
-    1 => 
+    0 => '2012-10-31 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 10,
       'day' => 31,
       'dayOfWeek' => 3,
       'dayOfYear' => 305,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1351609200,
-      'formatted' => '2012-10-31 00:00:00',
-      'timezone' => 
+      'timestamp' => 1351641600,
+      'formatted' => '2012-10-31 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -22910,29 +20128,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 17,
       'is_leap_month' => false,
-      'moon_age' => 15.456435463391244,
-      'moon_phase_angle' => 188.73915043513324,
+      'moon_age' => 15.498,
+      'moon_phase_angle' => 189.84069299592582,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-11-01 00:00:00' => 
+  '2012-11-01 09:00:00' =>
   array (
-    0 => '2012-11-01 00:00:00',
-    1 => 
+    0 => '2012-11-01 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 11,
       'day' => 1,
       'dayOfWeek' => 4,
       'dayOfYear' => 306,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1351695600,
-      'formatted' => '2012-11-01 00:00:00',
-      'timezone' => 
+      'timestamp' => 1351728000,
+      'formatted' => '2012-11-01 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -22968,29 +20186,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 18,
       'is_leap_month' => false,
-      'moon_age' => 16.47082727216184,
-      'moon_phase_angle' => 199.59434978678405,
+      'moon_age' => 16.498,
+      'moon_phase_angle' => 200.68574550619056,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-11-02 00:00:00' => 
+  '2012-11-02 09:00:00' =>
   array (
-    0 => '2012-11-02 00:00:00',
-    1 => 
+    0 => '2012-11-02 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 11,
       'day' => 2,
       'dayOfWeek' => 5,
       'dayOfYear' => 307,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1351782000,
-      'formatted' => '2012-11-02 00:00:00',
-      'timezone' => 
+      'timestamp' => 1351814400,
+      'formatted' => '2012-11-02 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -23026,29 +20244,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 19,
       'is_leap_month' => false,
-      'moon_age' => 17.485906139481813,
-      'moon_phase_angle' => 210.3896759868275,
+      'moon_age' => 17.498,
+      'moon_phase_angle' => 211.47617131172444,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-11-03 00:00:00' => 
+  '2012-11-03 09:00:00' =>
   array (
-    0 => '2012-11-03 00:00:00',
-    1 => 
+    0 => '2012-11-03 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 11,
       'day' => 3,
       'dayOfWeek' => 6,
       'dayOfYear' => 308,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1351868400,
-      'formatted' => '2012-11-03 00:00:00',
-      'timezone' => 
+      'timestamp' => 1351900800,
+      'formatted' => '2012-11-03 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -23084,29 +20302,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 20,
       'is_leap_month' => false,
-      'moon_age' => 18.497622979804873,
-      'moon_phase_angle' => 221.17128473495956,
+      'moon_age' => 18.498,
+      'moon_phase_angle' => 222.25947416075851,
       'moon_phase' => 5,
       'moon_phase_text' => '十六夜',
     ),
   ),
-  '2012-11-04 00:00:00' => 
+  '2012-11-04 09:00:00' =>
   array (
-    0 => '2012-11-04 00:00:00',
-    1 => 
+    0 => '2012-11-04 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 11,
       'day' => 4,
       'dayOfWeek' => 0,
       'dayOfYear' => 309,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1351954800,
-      'formatted' => '2012-11-04 00:00:00',
-      'timezone' => 
+      'timestamp' => 1351987200,
+      'formatted' => '2012-11-04 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -23142,29 +20360,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 21,
       'is_leap_month' => false,
-      'moon_age' => 19.495669490192086,
-      'moon_phase_angle' => 231.99400865847628,
+      'moon_age' => 19.498,
+      'moon_phase_angle' => 233.09148121380818,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-11-05 00:00:00' => 
+  '2012-11-05 09:00:00' =>
   array (
-    0 => '2012-11-05 00:00:00',
-    1 => 
+    0 => '2012-11-05 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 11,
       'day' => 5,
       'dayOfWeek' => 1,
       'dayOfYear' => 310,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1352041200,
-      'formatted' => '2012-11-05 00:00:00',
-      'timezone' => 
+      'timestamp' => 1352073600,
+      'formatted' => '2012-11-05 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -23200,29 +20418,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 22,
       'is_leap_month' => false,
-      'moon_age' => 20.49389883968979,
-      'moon_phase_angle' => 242.9210888295733,
+      'moon_age' => 20.498,
+      'moon_phase_angle' => 244.03612089383182,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-11-06 00:00:00' => 
+  '2012-11-06 09:00:00' =>
   array (
-    0 => '2012-11-06 00:00:00',
-    1 => 
+    0 => '2012-11-06 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 11,
       'day' => 6,
       'dayOfWeek' => 2,
       'dayOfYear' => 311,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1352127600,
-      'formatted' => '2012-11-06 00:00:00',
-      'timezone' => 
+      'timestamp' => 1352160000,
+      'formatted' => '2012-11-06 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -23258,29 +20476,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 21.492397280409932,
-      'moon_phase_angle' => 254.02274069159387,
+      'moon_age' => 21.498,
+      'moon_phase_angle' => 255.1642085394871,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-11-07 00:00:00' => 
+  '2012-11-07 09:00:00' =>
   array (
-    0 => '2012-11-07 00:00:00',
-    1 => 
+    0 => '2012-11-07 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 11,
       'day' => 7,
       'dayOfWeek' => 3,
       'dayOfYear' => 312,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1352214000,
-      'formatted' => '2012-11-07 00:00:00',
-      'timezone' => 
+      'timestamp' => 1352246400,
+      'formatted' => '2012-11-07 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -23316,29 +20534,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 24,
       'is_leap_month' => false,
-      'moon_age' => 22.49131968570873,
-      'moon_phase_angle' => 265.3732620301197,
+      'moon_age' => 22.498,
+      'moon_phase_angle' => 266.55047164812663,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2012-11-07 10:00:00' => 
+  '2012-11-07 09:36:00' =>
   array (
-    0 => '2012-11-07 10:00:00',
-    1 => 
+    0 => '2012-11-07 09:36:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 11,
       'day' => 7,
       'dayOfWeek' => 3,
       'dayOfYear' => 312,
-      'hour' => 10,
-      'minute' => 0,
+      'hour' => 9,
+      'minute' => 36,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1352250000,
-      'formatted' => '2012-11-07 10:00:00',
-      'timezone' => 
+      'timestamp' => 1352248560,
+      'formatted' => '2012-11-07 09:36:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -23374,29 +20592,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 24,
       'is_leap_month' => false,
-      'moon_age' => 22.90767759550363,
-      'moon_phase_angle' => 270.1937778216874,
+      'moon_age' => 22.522916666666667,
+      'moon_phase_angle' => 266.83908236718844,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2012-11-08 00:00:00' => 
+  '2012-11-08 09:00:00' =>
   array (
-    0 => '2012-11-08 00:00:00',
-    1 => 
+    0 => '2012-11-08 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 11,
       'day' => 8,
       'dayOfWeek' => 4,
       'dayOfYear' => 313,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1352300400,
-      'formatted' => '2012-11-08 00:00:00',
-      'timezone' => 
+      'timestamp' => 1352332800,
+      'formatted' => '2012-11-08 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -23432,29 +20650,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 25,
       'is_leap_month' => false,
-      'moon_age' => 23.49075255356729,
-      'moon_phase_angle' => 277.04629271587595,
+      'moon_age' => 23.498,
+      'moon_phase_angle' => 278.2683023104337,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-11-09 00:00:00' => 
+  '2012-11-09 09:00:00' =>
   array (
-    0 => '2012-11-09 00:00:00',
-    1 => 
+    0 => '2012-11-09 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 11,
       'day' => 9,
       'dayOfWeek' => 5,
       'dayOfYear' => 314,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1352386800,
-      'formatted' => '2012-11-09 00:00:00',
-      'timezone' => 
+      'timestamp' => 1352419200,
+      'formatted' => '2012-11-09 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -23490,29 +20708,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 26,
       'is_leap_month' => false,
-      'moon_age' => 24.490795052610338,
-      'moon_phase_angle' => 289.10784829800997,
+      'moon_age' => 24.498,
+      'moon_phase_angle' => 290.38218855398986,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-11-10 00:00:00' => 
+  '2012-11-10 09:00:00' =>
   array (
-    0 => '2012-11-10 00:00:00',
-    1 => 
+    0 => '2012-11-10 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 11,
       'day' => 10,
       'dayOfWeek' => 6,
       'dayOfYear' => 315,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1352473200,
-      'formatted' => '2012-11-10 00:00:00',
-      'timezone' => 
+      'timestamp' => 1352505600,
+      'formatted' => '2012-11-10 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -23548,29 +20766,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 27,
       'is_leap_month' => false,
-      'moon_age' => 25.491514428984374,
-      'moon_phase_angle' => 301.6070339887976,
+      'moon_age' => 25.498,
+      'moon_phase_angle' => 302.93813463040726,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-11-11 00:00:00' => 
+  '2012-11-11 09:00:00' =>
   array (
-    0 => '2012-11-11 00:00:00',
-    1 => 
+    0 => '2012-11-11 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 11,
       'day' => 11,
       'dayOfWeek' => 0,
       'dayOfYear' => 316,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1352559600,
-      'formatted' => '2012-11-11 00:00:00',
-      'timezone' => 
+      'timestamp' => 1352592000,
+      'formatted' => '2012-11-11 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -23606,29 +20824,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 28,
       'is_leap_month' => false,
-      'moon_age' => 26.492911643348634,
-      'moon_phase_angle' => 314.56508946570483,
+      'moon_age' => 26.498,
+      'moon_phase_angle' => 315.9528503615975,
       'moon_phase' => 7,
       'moon_phase_text' => '有明',
     ),
   ),
-  '2012-11-12 00:00:00' => 
+  '2012-11-12 09:00:00' =>
   array (
-    0 => '2012-11-12 00:00:00',
-    1 => 
+    0 => '2012-11-12 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 11,
       'day' => 12,
       'dayOfWeek' => 1,
       'dayOfYear' => 317,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1352646000,
-      'formatted' => '2012-11-12 00:00:00',
-      'timezone' => 
+      'timestamp' => 1352678400,
+      'formatted' => '2012-11-12 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -23664,29 +20882,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 29,
       'is_leap_month' => false,
-      'moon_age' => 27.323338870568513,
-      'moon_phase_angle' => 327.9646676795692,
+      'moon_age' => 27.498,
+      'moon_phase_angle' => 329.40352349270415,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-11-13 00:00:00' => 
+  '2012-11-13 09:00:00' =>
   array (
-    0 => '2012-11-13 00:00:00',
-    1 => 
+    0 => '2012-11-13 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 11,
       'day' => 13,
       'dayOfWeek' => 2,
       'dayOfYear' => 318,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1352732400,
-      'formatted' => '2012-11-13 00:00:00',
-      'timezone' => 
+      'timestamp' => 1352764800,
+      'formatted' => '2012-11-13 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -23722,132 +20940,16 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 30,
       'is_leap_month' => false,
-      'moon_age' => 28.463064676760077,
-      'moon_phase_angle' => 341.7426534365138,
+      'moon_age' => 28.498,
+      'moon_phase_angle' => 343.22140935666994,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-11-14 00:00:00' => 
+  '2012-11-14 07:08:00' =>
   array (
-    0 => '2012-11-14 00:00:00',
-    1 => 
-    array (
-      'year' => 2012,
-      'month' => 11,
-      'day' => 14,
-      'dayOfWeek' => 3,
-      'dayOfYear' => 319,
-      'hour' => 0,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1352818800,
-      'formatted' => '2012-11-14 00:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 24,
-      'oriental_zodiac_text' => '辰',
-      'oriental_zodiac' => 5,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '仏滅',
-      'six_weekday' => 5,
-      'weekday_text' => '水',
-      'month_text' => '霜月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '神無月',
-      'lunar_month' => 10,
-      'lunar_year' => 2012,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.07552561908960342,
-      'moon_phase_angle' => 355.7904440356314,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2012-11-14 06:00:00' => 
-  array (
-    0 => '2012-11-14 06:00:00',
-    1 => 
-    array (
-      'year' => 2012,
-      'month' => 11,
-      'day' => 14,
-      'dayOfWeek' => 3,
-      'dayOfYear' => 319,
-      'hour' => 6,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1352840400,
-      'formatted' => '2012-11-14 06:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 24,
-      'oriental_zodiac_text' => '辰',
-      'oriental_zodiac' => 5,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '仏滅',
-      'six_weekday' => 5,
-      'weekday_text' => '水',
-      'month_text' => '霜月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '神無月',
-      'lunar_month' => 10,
-      'lunar_year' => 2012,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.3189181066118181,
-      'moon_phase_angle' => 359.328226260811,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2012-11-14 07:00:00' => 
-  array (
-    0 => '2012-11-14 07:00:00',
-    1 => 
+    0 => '2012-11-14 07:08:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 11,
@@ -23855,12 +20957,12 @@ return array (
       'dayOfWeek' => 3,
       'dayOfYear' => 319,
       'hour' => 7,
-      'minute' => 0,
+      'minute' => 8,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1352844000,
-      'formatted' => '2012-11-14 07:00:00',
-      'timezone' => 
+      'timestamp' => 1352844480,
+      'formatted' => '2012-11-14 07:08:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -23896,29 +20998,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.35948351630941033,
-      'moon_phase_angle' => 359.91845664321,
+      'moon_age' => 0.0,
+      'moon_phase_angle' => 356.1927721194001,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2012-11-14 08:00:00' => 
+  '2012-11-14 09:00:00' =>
   array (
-    0 => '2012-11-14 08:00:00',
-    1 => 
+    0 => '2012-11-14 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 11,
       'day' => 14,
       'dayOfWeek' => 3,
       'dayOfYear' => 319,
-      'hour' => 8,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1352847600,
-      'formatted' => '2012-11-14 08:00:00',
-      'timezone' => 
+      'timestamp' => 1352851200,
+      'formatted' => '2012-11-14 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -23954,29 +21056,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.4000521767884493,
-      'moon_phase_angle' => 0.5088275463813545,
+      'moon_age' => 0.078,
+      'moon_phase_angle' => 357.29311140264156,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2012-11-15 00:00:00' => 
+  '2012-11-15 09:00:00' =>
   array (
-    0 => '2012-11-15 00:00:00',
-    1 => 
+    0 => '2012-11-15 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 11,
       'day' => 15,
       'dayOfWeek' => 4,
       'dayOfYear' => 320,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1352905200,
-      'formatted' => '2012-11-15 00:00:00',
-      'timezone' => 
+      'timestamp' => 1352937600,
+      'formatted' => '2012-11-15 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -24012,29 +21114,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 2,
       'is_leap_month' => false,
-      'moon_age' => 1.0491815968416631,
-      'moon_phase_angle' => 9.964306468268035,
+      'moon_age' => 1.078,
+      'moon_phase_angle' => 11.471959696994361,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-11-16 00:00:00' => 
+  '2012-11-16 09:00:00' =>
   array (
-    0 => '2012-11-16 00:00:00',
-    1 => 
+    0 => '2012-11-16 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 11,
       'day' => 16,
       'dayOfWeek' => 5,
       'dayOfYear' => 321,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1352991600,
-      'formatted' => '2012-11-16 00:00:00',
-      'timezone' => 
+      'timestamp' => 1353024000,
+      'formatted' => '2012-11-16 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -24070,29 +21172,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 3,
       'is_leap_month' => false,
-      'moon_age' => 2.024266641587019,
-      'moon_phase_angle' => 24.104942103137432,
+      'moon_age' => 2.078,
+      'moon_phase_angle' => 25.59826546633613,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-11-17 00:00:00' => 
+  '2012-11-17 09:00:00' =>
   array (
-    0 => '2012-11-17 00:00:00',
-    1 => 
+    0 => '2012-11-17 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 11,
       'day' => 17,
       'dayOfWeek' => 6,
       'dayOfYear' => 322,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1353078000,
-      'formatted' => '2012-11-17 00:00:00',
-      'timezone' => 
+      'timestamp' => 1353110400,
+      'formatted' => '2012-11-17 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -24128,29 +21230,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 4,
       'is_leap_month' => false,
-      'moon_age' => 3.002648692112416,
-      'moon_phase_angle' => 38.06128518498792,
+      'moon_age' => 3.078,
+      'moon_phase_angle' => 39.52322149572012,
       'moon_phase' => 1,
       'moon_phase_text' => '三日月',
     ),
   ),
-  '2012-11-18 00:00:00' => 
+  '2012-11-18 09:00:00' =>
   array (
-    0 => '2012-11-18 00:00:00',
-    1 => 
+    0 => '2012-11-18 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 11,
       'day' => 18,
       'dayOfWeek' => 0,
       'dayOfYear' => 323,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1353164400,
-      'formatted' => '2012-11-18 00:00:00',
-      'timezone' => 
+      'timestamp' => 1353196800,
+      'formatted' => '2012-11-18 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -24186,29 +21288,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 5,
       'is_leap_month' => false,
-      'moon_age' => 3.9856258491054177,
-      'moon_phase_angle' => 51.71148324593619,
+      'moon_age' => 4.078,
+      'moon_phase_angle' => 53.129362864107776,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-11-19 00:00:00' => 
+  '2012-11-19 09:00:00' =>
   array (
-    0 => '2012-11-19 00:00:00',
-    1 => 
+    0 => '2012-11-19 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 11,
       'day' => 19,
       'dayOfWeek' => 1,
       'dayOfYear' => 324,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1353250800,
-      'formatted' => '2012-11-19 00:00:00',
-      'timezone' => 
+      'timestamp' => 1353283200,
+      'formatted' => '2012-11-19 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -24244,29 +21346,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 6,
       'is_leap_month' => false,
-      'moon_age' => 4.973919523879886,
-      'moon_phase_angle' => 64.97545493086528,
+      'moon_age' => 5.078,
+      'moon_phase_angle' => 66.3421078024123,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-11-20 00:00:00' => 
+  '2012-11-20 09:00:00' =>
   array (
-    0 => '2012-11-20 00:00:00',
-    1 => 
+    0 => '2012-11-20 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 11,
       'day' => 20,
       'dayOfWeek' => 2,
       'dayOfYear' => 325,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1353337200,
-      'formatted' => '2012-11-20 00:00:00',
-      'timezone' => 
+      'timestamp' => 1353369600,
+      'formatted' => '2012-11-20 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -24302,29 +21404,87 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 7,
       'is_leap_month' => false,
-      'moon_age' => 5.967673644423485,
-      'moon_phase_angle' => 77.81731042187417,
+      'moon_age' => 6.078,
+      'moon_phase_angle' => 79.13094020350982,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2012-11-21 00:00:00' => 
+  '2012-11-20 23:31:00' =>
   array (
-    0 => '2012-11-21 00:00:00',
-    1 => 
+    0 => '2012-11-20 23:31:00',
+    1 =>
+    array (
+      'year' => 2012,
+      'month' => 11,
+      'day' => 20,
+      'dayOfWeek' => 2,
+      'dayOfYear' => 325,
+      'hour' => 23,
+      'minute' => 31,
+      'second' => 0,
+      'micro' => 0,
+      'timestamp' => 1353421860,
+      'formatted' => '2012-11-20 23:31:00',
+      'timezone' =>
+      \Carbon\CarbonTimeZone::__set_state(array(
+         'clock' => NULL,
+         'timezone_type' => 3,
+         'timezone' => 'Asia/Tokyo',
+      )),
+      'solar_seasonal_festival' => 0,
+      'solar_seasonal_festival_name' => '',
+      'solar_seasonal_festival_alias' => '',
+      'lunar_seasonal_festival' => 0,
+      'lunar_seasonal_festival_name' => '',
+      'lunar_seasonal_festival_alias' => '',
+      'misc_seasonal_node' => 0,
+      'misc_seasonal_node_text' => '',
+      'solar_term' => false,
+      'solar_term_text' => '',
+      'is_solar_term' => false,
+      'era_name_text' => '平成',
+      'era_name' => 1003,
+      'era_year' => 24,
+      'oriental_zodiac_text' => '辰',
+      'oriental_zodiac' => 5,
+      'heavenly_stem_text' => '壬',
+      'heavenly_stem' => 8,
+      'six_weekday_text' => '仏滅',
+      'six_weekday' => 5,
+      'weekday_text' => '火',
+      'month_text' => '霜月',
+      'holiday_text' => '',
+      'holiday' => 0,
+      'is_holiday' => false,
+      'lunar_month_text' => '神無月',
+      'lunar_month' => 10,
+      'lunar_year' => 2012,
+      'lunar_day' => 7,
+      'is_leap_month' => false,
+      'moon_age' => 6.682638888888889,
+      'moon_phase_angle' => 86.66229550767713,
+      'moon_phase' => 2,
+      'moon_phase_text' => '上弦',
+    ),
+  ),
+  '2012-11-21 09:00:00' =>
+  array (
+    0 => '2012-11-21 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 11,
       'day' => 21,
       'dayOfWeek' => 3,
       'dayOfYear' => 326,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1353423600,
-      'formatted' => '2012-11-21 00:00:00',
-      'timezone' => 
+      'timestamp' => 1353456000,
+      'formatted' => '2012-11-21 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -24360,29 +21520,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 6.966645429376513,
-      'moon_phase_angle' => 90.23966131665443,
+      'moon_age' => 7.078,
+      'moon_phase_angle' => 91.50271630829741,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-11-22 00:00:00' => 
+  '2012-11-22 09:00:00' =>
   array (
-    0 => '2012-11-22 00:00:00',
-    1 => 
+    0 => '2012-11-22 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 11,
       'day' => 22,
       'dayOfWeek' => 4,
       'dayOfYear' => 327,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1353510000,
-      'formatted' => '2012-11-22 00:00:00',
-      'timezone' => 
+      'timestamp' => 1353542400,
+      'formatted' => '2012-11-22 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -24418,29 +21578,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 9,
       'is_leap_month' => false,
-      'moon_age' => 7.970331123098731,
-      'moon_phase_angle' => 102.27360967192931,
+      'moon_age' => 8.078,
+      'moon_phase_angle' => 103.49128968714325,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-11-23 00:00:00' => 
+  '2012-11-23 09:00:00' =>
   array (
-    0 => '2012-11-23 00:00:00',
-    1 => 
+    0 => '2012-11-23 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 11,
       'day' => 23,
       'dayOfWeek' => 5,
       'dayOfYear' => 328,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1353596400,
-      'formatted' => '2012-11-23 00:00:00',
-      'timezone' => 
+      'timestamp' => 1353628800,
+      'formatted' => '2012-11-23 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -24476,29 +21636,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 10,
       'is_leap_month' => false,
-      'moon_age' => 8.978085818700492,
-      'moon_phase_angle' => 113.9679380130182,
+      'moon_age' => 9.078,
+      'moon_phase_angle' => 115.1469544055582,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-11-24 00:00:00' => 
+  '2012-11-24 09:00:00' =>
   array (
-    0 => '2012-11-24 00:00:00',
-    1 => 
+    0 => '2012-11-24 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 11,
       'day' => 24,
       'dayOfWeek' => 6,
       'dayOfYear' => 329,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1353682800,
-      'formatted' => '2012-11-24 00:00:00',
-      'timezone' => 
+      'timestamp' => 1353715200,
+      'formatted' => '2012-11-24 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -24534,29 +21694,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 11,
       'is_leap_month' => false,
-      'moon_age' => 9.989218446426094,
-      'moon_phase_angle' => 125.37974683959746,
+      'moon_age' => 10.078,
+      'moon_phase_angle' => 126.52750044076805,
       'moon_phase' => 3,
       'moon_phase_text' => '十三夜',
     ),
   ),
-  '2012-11-25 00:00:00' => 
+  '2012-11-25 09:00:00' =>
   array (
-    0 => '2012-11-25 00:00:00',
-    1 => 
+    0 => '2012-11-25 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 11,
       'day' => 25,
       'dayOfWeek' => 0,
       'dayOfYear' => 330,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1353769200,
-      'formatted' => '2012-11-25 00:00:00',
-      'timezone' => 
+      'timestamp' => 1353801600,
+      'formatted' => '2012-11-25 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -24592,29 +21752,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 12,
       'is_leap_month' => false,
-      'moon_age' => 11.0030402620323,
-      'moon_phase_angle' => 136.56749305861464,
+      'moon_age' => 11.078,
+      'moon_phase_angle' => 137.69143424421742,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-11-26 00:00:00' => 
+  '2012-11-26 09:00:00' =>
   array (
-    0 => '2012-11-26 00:00:00',
-    1 => 
+    0 => '2012-11-26 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 11,
       'day' => 26,
       'dayOfWeek' => 1,
       'dayOfYear' => 331,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1353855600,
-      'formatted' => '2012-11-26 00:00:00',
-      'timezone' => 
+      'timestamp' => 1353888000,
+      'formatted' => '2012-11-26 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -24650,29 +21810,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 13,
       'is_leap_month' => false,
-      'moon_age' => 12.018904491327703,
-      'moon_phase_angle' => 147.58652735939597,
+      'moon_age' => 12.078,
+      'moon_phase_angle' => 148.69352429855783,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-11-27 00:00:00' => 
+  '2012-11-27 09:00:00' =>
   array (
-    0 => '2012-11-27 00:00:00',
-    1 => 
+    0 => '2012-11-27 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 11,
       'day' => 27,
       'dayOfWeek' => 2,
       'dayOfYear' => 332,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1353942000,
-      'formatted' => '2012-11-27 00:00:00',
-      'timezone' => 
+      'timestamp' => 1353974400,
+      'formatted' => '2012-11-27 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -24708,29 +21868,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 14,
       'is_leap_month' => false,
-      'moon_age' => 13.036220219917595,
-      'moon_phase_angle' => 158.4868226132636,
+      'moon_age' => 13.078,
+      'moon_phase_angle' => 159.58271688484876,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-11-28 00:00:00' => 
+  '2012-11-28 09:00:00' =>
   array (
-    0 => '2012-11-28 00:00:00',
-    1 => 
+    0 => '2012-11-28 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 11,
       'day' => 28,
       'dayOfWeek' => 3,
       'dayOfYear' => 333,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1354028400,
-      'formatted' => '2012-11-28 00:00:00',
-      'timezone' => 
+      'timestamp' => 1354060800,
+      'formatted' => '2012-11-28 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -24766,74 +21926,16 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 15,
       'is_leap_month' => false,
-      'moon_age' => 14.05442929873243,
-      'moon_phase_angle' => 169.3124643297329,
+      'moon_age' => 14.078,
+      'moon_phase_angle' => 170.40210861959284,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2012-11-28 22:00:00' => 
+  '2012-11-28 23:46:00' =>
   array (
-    0 => '2012-11-28 22:00:00',
-    1 => 
-    array (
-      'year' => 2012,
-      'month' => 11,
-      'day' => 28,
-      'dayOfWeek' => 3,
-      'dayOfYear' => 333,
-      'hour' => 22,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1354107600,
-      'formatted' => '2012-11-28 22:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 24,
-      'oriental_zodiac_text' => '辰',
-      'oriental_zodiac' => 5,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '赤口',
-      'six_weekday' => 1,
-      'weekday_text' => '水',
-      'month_text' => '霜月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '神無月',
-      'lunar_month' => 10,
-      'lunar_year' => 2012,
-      'lunar_day' => 15,
-      'is_leap_month' => false,
-      'moon_age' => 14.988165353890508,
-      'moon_phase_angle' => 179.20378458276224,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2012-11-28 23:00:00' => 
-  array (
-    0 => '2012-11-28 23:00:00',
-    1 => 
+    0 => '2012-11-28 23:46:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 11,
@@ -24841,12 +21943,12 @@ return array (
       'dayOfWeek' => 3,
       'dayOfYear' => 333,
       'hour' => 23,
-      'minute' => 0,
+      'minute' => 46,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1354111200,
-      'formatted' => '2012-11-28 23:00:00',
-      'timezone' => 
+      'timestamp' => 1354113960,
+      'formatted' => '2012-11-28 23:46:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -24882,29 +21984,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 15,
       'is_leap_month' => false,
-      'moon_age' => 15.030608618166298,
-      'moon_phase_angle' => 179.65313163871235,
+      'moon_age' => 14.693055555555556,
+      'moon_phase_angle' => 177.04117938980792,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2012-11-29 00:00:00' => 
+  '2012-11-29 09:00:00' =>
   array (
-    0 => '2012-11-29 00:00:00',
-    1 => 
+    0 => '2012-11-29 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 11,
       'day' => 29,
       'dayOfWeek' => 4,
       'dayOfYear' => 334,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1354114800,
-      'formatted' => '2012-11-29 00:00:00',
-      'timezone' => 
+      'timestamp' => 1354147200,
+      'formatted' => '2012-11-29 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -24940,29 +22042,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 15.073056913912296,
-      'moon_phase_angle' => 180.1024764934803,
+      'moon_age' => 15.078,
+      'moon_phase_angle' => 181.19022021155934,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-11-30 00:00:00' => 
+  '2012-11-30 09:00:00' =>
   array (
-    0 => '2012-11-30 00:00:00',
-    1 => 
+    0 => '2012-11-30 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 11,
       'day' => 30,
       'dayOfWeek' => 5,
       'dayOfYear' => 335,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1354201200,
-      'formatted' => '2012-11-30 00:00:00',
-      'timezone' => 
+      'timestamp' => 1354233600,
+      'formatted' => '2012-11-30 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -24998,29 +22100,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 17,
       'is_leap_month' => false,
-      'moon_age' => 16.075293818488717,
-      'moon_phase_angle' => 190.89258244972163,
+      'moon_age' => 16.078,
+      'moon_phase_angle' => 191.98278595685355,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-12-01 00:00:00' => 
+  '2012-12-01 09:00:00' =>
   array (
-    0 => '2012-12-01 00:00:00',
-    1 => 
+    0 => '2012-12-01 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 12,
       'day' => 1,
       'dayOfWeek' => 6,
       'dayOfYear' => 336,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1354287600,
-      'formatted' => '2012-12-01 00:00:00',
-      'timezone' => 
+      'timestamp' => 1354320000,
+      'formatted' => '2012-12-01 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -25056,29 +22158,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 18,
       'is_leap_month' => false,
-      'moon_age' => 17.07238889252767,
-      'moon_phase_angle' => 201.71751736986454,
+      'moon_age' => 17.078,
+      'moon_phase_angle' => 202.81472609054094,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-12-02 00:00:00' => 
+  '2012-12-02 09:00:00' =>
   array (
-    0 => '2012-12-02 00:00:00',
-    1 => 
+    0 => '2012-12-02 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 12,
       'day' => 2,
       'dayOfWeek' => 0,
       'dayOfYear' => 337,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1354374000,
-      'formatted' => '2012-12-02 00:00:00',
-      'timezone' => 
+      'timestamp' => 1354406400,
+      'formatted' => '2012-12-02 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -25114,29 +22216,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 19,
       'is_leap_month' => false,
-      'moon_age' => 18.069658521097153,
-      'moon_phase_angle' => 212.61346533706524,
+      'moon_age' => 18.078,
+      'moon_phase_angle' => 213.72237294563473,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-12-03 00:00:00' => 
+  '2012-12-03 09:00:00' =>
   array (
-    0 => '2012-12-03 00:00:00',
-    1 => 
+    0 => '2012-12-03 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 12,
       'day' => 3,
       'dayOfWeek' => 1,
       'dayOfYear' => 338,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1354460400,
-      'formatted' => '2012-12-03 00:00:00',
-      'timezone' => 
+      'timestamp' => 1354492800,
+      'formatted' => '2012-12-03 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -25172,29 +22274,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 20,
       'is_leap_month' => false,
-      'moon_age' => 19.067198700737208,
-      'moon_phase_angle' => 223.6202923192651,
+      'moon_age' => 19.078,
+      'moon_phase_angle' => 224.74584371172853,
       'moon_phase' => 5,
       'moon_phase_text' => '十六夜',
     ),
   ),
-  '2012-12-04 00:00:00' => 
+  '2012-12-04 09:00:00' =>
   array (
-    0 => '2012-12-04 00:00:00',
-    1 => 
+    0 => '2012-12-04 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 12,
       'day' => 4,
       'dayOfWeek' => 2,
       'dayOfYear' => 339,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1354546800,
-      'formatted' => '2012-12-04 00:00:00',
-      'timezone' => 
+      'timestamp' => 1354579200,
+      'formatted' => '2012-12-04 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -25230,29 +22332,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 21,
       'is_leap_month' => false,
-      'moon_age' => 20.0651294933632,
-      'moon_phase_angle' => 234.78304736680806,
+      'moon_age' => 20.078,
+      'moon_phase_angle' => 235.93088815496372,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-12-05 00:00:00' => 
+  '2012-12-05 09:00:00' =>
   array (
-    0 => '2012-12-05 00:00:00',
-    1 => 
+    0 => '2012-12-05 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 12,
       'day' => 5,
       'dayOfWeek' => 3,
       'dayOfYear' => 340,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1354633200,
-      'formatted' => '2012-12-05 00:00:00',
-      'timezone' => 
+      'timestamp' => 1354665600,
+      'formatted' => '2012-12-05 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -25288,29 +22390,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 22,
       'is_leap_month' => false,
-      'moon_age' => 21.06354689737782,
-      'moon_phase_angle' => 246.1523768204722,
+      'moon_age' => 21.078,
+      'moon_phase_angle' => 247.32921745760922,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-12-06 00:00:00' => 
+  '2012-12-06 09:00:00' =>
   array (
-    0 => '2012-12-06 00:00:00',
-    1 => 
+    0 => '2012-12-06 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 12,
       'day' => 6,
       'dayOfWeek' => 4,
       'dayOfYear' => 341,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1354719600,
-      'formatted' => '2012-12-06 00:00:00',
-      'timezone' => 
+      'timestamp' => 1354752000,
+      'formatted' => '2012-12-06 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -25346,16 +22448,16 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 22.06257120706141,
-      'moon_phase_angle' => 257.7833637628925,
+      'moon_age' => 22.078,
+      'moon_phase_angle' => 258.9966928898567,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-12-07 00:00:00' => 
+  '2012-12-07 00:31:00' =>
   array (
-    0 => '2012-12-07 00:00:00',
-    1 => 
+    0 => '2012-12-07 00:31:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 12,
@@ -25363,12 +22465,12 @@ return array (
       'dayOfWeek' => 5,
       'dayOfYear' => 342,
       'hour' => 0,
-      'minute' => 0,
+      'minute' => 31,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1354806000,
-      'formatted' => '2012-12-07 00:00:00',
-      'timezone' => 
+      'timestamp' => 1354807860,
+      'formatted' => '2012-12-07 00:31:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -25404,29 +22506,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 24,
       'is_leap_month' => false,
-      'moon_age' => 23.06233250629157,
-      'moon_phase_angle' => 269.7323252232145,
+      'moon_age' => 22.724305555555556,
+      'moon_phase_angle' => 266.7097764680266,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2012-12-07 01:00:00' => 
+  '2012-12-07 09:00:00' =>
   array (
-    0 => '2012-12-07 01:00:00',
-    1 => 
+    0 => '2012-12-07 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 12,
       'day' => 7,
       'dayOfWeek' => 5,
       'dayOfYear' => 342,
-      'hour' => 1,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1354809600,
-      'formatted' => '2012-12-07 01:00:00',
-      'timezone' => 
+      'timestamp' => 1354838400,
+      'formatted' => '2012-12-07 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -25462,29 +22564,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 24,
       'is_leap_month' => false,
-      'moon_age' => 23.104010802228004,
-      'moon_phase_angle' => 270.2378970842443,
+      'moon_age' => 23.078,
+      'moon_phase_angle' => 270.9893738135676,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2012-12-08 00:00:00' => 
+  '2012-12-08 09:00:00' =>
   array (
-    0 => '2012-12-08 00:00:00',
-    1 => 
+    0 => '2012-12-08 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 12,
       'day' => 8,
       'dayOfWeek' => 6,
       'dayOfYear' => 343,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1354892400,
-      'formatted' => '2012-12-08 00:00:00',
-      'timezone' => 
+      'timestamp' => 1354924800,
+      'formatted' => '2012-12-08 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -25520,29 +22622,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 25,
       'is_leap_month' => false,
-      'moon_age' => 24.06294406671077,
-      'moon_phase_angle' => 282.05113432628275,
+      'moon_age' => 24.078,
+      'moon_phase_angle' => 283.35758058515466,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-12-09 00:00:00' => 
+  '2012-12-09 09:00:00' =>
   array (
-    0 => '2012-12-09 00:00:00',
-    1 => 
+    0 => '2012-12-09 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 12,
       'day' => 9,
       'dayOfWeek' => 0,
       'dayOfYear' => 344,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1354978800,
-      'formatted' => '2012-12-09 00:00:00',
-      'timezone' => 
+      'timestamp' => 1355011200,
+      'formatted' => '2012-12-09 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -25578,29 +22680,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 26,
       'is_leap_month' => false,
-      'moon_age' => 25.064450323581696,
-      'moon_phase_angle' => 294.7788551031684,
+      'moon_age' => 25.078,
+      'moon_phase_angle' => 296.13776003303565,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-12-10 00:00:00' => 
+  '2012-12-10 09:00:00' =>
   array (
-    0 => '2012-12-10 00:00:00',
-    1 => 
+    0 => '2012-12-10 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 12,
       'day' => 10,
       'dayOfWeek' => 1,
       'dayOfYear' => 345,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1355065200,
-      'formatted' => '2012-12-10 00:00:00',
-      'timezone' => 
+      'timestamp' => 1355097600,
+      'formatted' => '2012-12-10 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -25636,29 +22738,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 27,
       'is_leap_month' => false,
-      'moon_age' => 26.06688108248636,
-      'moon_phase_angle' => 307.93107038734206,
+      'moon_age' => 26.078,
+      'moon_phase_angle' => 309.3419748501896,
       'moon_phase' => 7,
       'moon_phase_text' => '有明',
     ),
   ),
-  '2012-12-11 00:00:00' => 
+  '2012-12-11 09:00:00' =>
   array (
-    0 => '2012-12-11 00:00:00',
-    1 => 
+    0 => '2012-12-11 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 12,
       'day' => 11,
       'dayOfWeek' => 2,
       'dayOfYear' => 346,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1355151600,
-      'formatted' => '2012-12-11 00:00:00',
-      'timezone' => 
+      'timestamp' => 1355184000,
+      'formatted' => '2012-12-11 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -25694,29 +22796,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 28,
       'is_leap_month' => false,
-      'moon_age' => 26.796172912376313,
-      'moon_phase_angle' => 321.48841317231495,
+      'moon_age' => 27.078,
+      'moon_phase_angle' => 322.9462342780904,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-12-12 00:00:00' => 
+  '2012-12-12 09:00:00' =>
   array (
-    0 => '2012-12-12 00:00:00',
-    1 => 
+    0 => '2012-12-12 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 12,
       'day' => 12,
       'dayOfWeek' => 3,
       'dayOfYear' => 347,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1355238000,
-      'formatted' => '2012-12-12 00:00:00',
-      'timezone' => 
+      'timestamp' => 1355270400,
+      'formatted' => '2012-12-12 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -25752,29 +22854,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 29,
       'is_leap_month' => false,
-      'moon_age' => 27.94466912388274,
-      'moon_phase_angle' => 335.38737372334356,
+      'moon_age' => 28.078,
+      'moon_phase_angle' => 336.881297922627,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-12-13 00:00:00' => 
+  '2012-12-13 09:00:00' =>
   array (
-    0 => '2012-12-13 00:00:00',
-    1 => 
+    0 => '2012-12-13 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 12,
       'day' => 13,
       'dayOfWeek' => 4,
       'dayOfYear' => 348,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1355324400,
-      'formatted' => '2012-12-13 00:00:00',
-      'timezone' => 
+      'timestamp' => 1355356800,
+      'formatted' => '2012-12-13 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -25810,74 +22912,16 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 29.107871892540096,
-      'moon_phase_angle' => 349.5177344869536,
+      'moon_age' => 29.078,
+      'moon_phase_angle' => 351.0311361301567,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2012-12-13 16:00:00' => 
+  '2012-12-13 17:42:00' =>
   array (
-    0 => '2012-12-13 16:00:00',
-    1 => 
-    array (
-      'year' => 2012,
-      'month' => 12,
-      'day' => 13,
-      'dayOfWeek' => 4,
-      'dayOfYear' => 348,
-      'hour' => 16,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1355382000,
-      'formatted' => '2012-12-13 16:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 24,
-      'oriental_zodiac_text' => '辰',
-      'oriental_zodiac' => 5,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '大安',
-      'six_weekday' => 0,
-      'weekday_text' => '木',
-      'month_text' => '師走',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '霜月',
-      'lunar_month' => 11,
-      'lunar_year' => 2012,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.29587847413495183,
-      'moon_phase_angle' => 358.9940768442418,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2012-12-13 17:00:00' => 
-  array (
-    0 => '2012-12-13 17:00:00',
-    1 => 
+    0 => '2012-12-13 17:42:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 12,
@@ -25885,12 +22929,12 @@ return array (
       'dayOfWeek' => 4,
       'dayOfYear' => 348,
       'hour' => 17,
-      'minute' => 0,
+      'minute' => 42,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1355385600,
-      'formatted' => '2012-12-13 17:00:00',
-      'timezone' => 
+      'timestamp' => 1355388120,
+      'formatted' => '2012-12-13 17:42:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -25926,87 +22970,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.3364103133790195,
-      'moon_phase_angle' => 359.58645000114643,
+      'moon_age' => 0.0,
+      'moon_phase_angle' => 356.18452083985994,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2012-12-13 18:00:00' => 
+  '2012-12-14 09:00:00' =>
   array (
-    0 => '2012-12-13 18:00:00',
-    1 => 
-    array (
-      'year' => 2012,
-      'month' => 12,
-      'day' => 13,
-      'dayOfWeek' => 4,
-      'dayOfYear' => 348,
-      'hour' => 18,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1355389200,
-      'formatted' => '2012-12-13 18:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 24,
-      'oriental_zodiac_text' => '辰',
-      'oriental_zodiac' => 5,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '大安',
-      'six_weekday' => 0,
-      'weekday_text' => '木',
-      'month_text' => '師走',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '霜月',
-      'lunar_month' => 11,
-      'lunar_year' => 2012,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.3769412497058511,
-      'moon_phase_angle' => 0.17876069091863656,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2012-12-14 00:00:00' => 
-  array (
-    0 => '2012-12-14 00:00:00',
-    1 => 
+    0 => '2012-12-14 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 12,
       'day' => 14,
       'dayOfWeek' => 5,
       'dayOfYear' => 349,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1355410800,
-      'formatted' => '2012-12-14 00:00:00',
-      'timezone' => 
+      'timestamp' => 1355443200,
+      'formatted' => '2012-12-14 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -26042,29 +23028,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 2,
       'is_leap_month' => false,
-      'moon_age' => 0.6201863093301654,
-      'moon_phase_angle' => 3.730615030542708,
+      'moon_age' => 0.638,
+      'moon_phase_angle' => 5.242927051518166,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-12-15 00:00:00' => 
+  '2012-12-15 09:00:00' =>
   array (
-    0 => '2012-12-15 00:00:00',
-    1 => 
+    0 => '2012-12-15 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 12,
       'day' => 15,
       'dayOfWeek' => 6,
       'dayOfYear' => 350,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1355497200,
-      'formatted' => '2012-12-15 00:00:00',
-      'timezone' => 
+      'timestamp' => 1355529600,
+      'formatted' => '2012-12-15 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -26100,29 +23086,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 3,
       'is_leap_month' => false,
-      'moon_age' => 1.594772485550493,
-      'moon_phase_angle' => 17.857946123227066,
+      'moon_age' => 1.638,
+      'moon_phase_angle' => 19.348145780477807,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-12-16 00:00:00' => 
+  '2012-12-16 09:00:00' =>
   array (
-    0 => '2012-12-16 00:00:00',
-    1 => 
+    0 => '2012-12-16 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 12,
       'day' => 16,
       'dayOfWeek' => 0,
       'dayOfYear' => 351,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1355583600,
-      'formatted' => '2012-12-16 00:00:00',
-      'timezone' => 
+      'timestamp' => 1355616000,
+      'formatted' => '2012-12-16 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -26158,29 +23144,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 4,
       'is_leap_month' => false,
-      'moon_age' => 2.5734454612247646,
-      'moon_phase_angle' => 31.738996872091207,
+      'moon_age' => 2.638,
+      'moon_phase_angle' => 33.189203553960226,
       'moon_phase' => 1,
       'moon_phase_text' => '三日月',
     ),
   ),
-  '2012-12-17 00:00:00' => 
+  '2012-12-17 09:00:00' =>
   array (
-    0 => '2012-12-17 00:00:00',
-    1 => 
+    0 => '2012-12-17 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 12,
       'day' => 17,
       'dayOfWeek' => 1,
       'dayOfYear' => 352,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1355670000,
-      'formatted' => '2012-12-17 00:00:00',
-      'timezone' => 
+      'timestamp' => 1355702400,
+      'formatted' => '2012-12-17 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -26216,29 +23202,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 5,
       'is_leap_month' => false,
-      'moon_age' => 3.5577386771328747,
-      'moon_phase_angle' => 45.245585249337694,
+      'moon_age' => 3.638,
+      'moon_phase_angle' => 46.643391800256666,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-12-18 00:00:00' => 
+  '2012-12-18 09:00:00' =>
   array (
-    0 => '2012-12-18 00:00:00',
-    1 => 
+    0 => '2012-12-18 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 12,
       'day' => 18,
       'dayOfWeek' => 2,
       'dayOfYear' => 353,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1355756400,
-      'formatted' => '2012-12-18 00:00:00',
-      'timezone' => 
+      'timestamp' => 1355788800,
+      'formatted' => '2012-12-18 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -26274,29 +23260,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 6,
       'is_leap_month' => false,
-      'moon_age' => 4.548461208119988,
-      'moon_phase_angle' => 58.298057084935465,
+      'moon_age' => 4.638,
+      'moon_phase_angle' => 59.637264752737735,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-12-19 00:00:00' => 
+  '2012-12-19 09:00:00' =>
   array (
-    0 => '2012-12-19 00:00:00',
-    1 => 
+    0 => '2012-12-19 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 12,
       'day' => 19,
       'dayOfWeek' => 3,
       'dayOfYear' => 354,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1355842800,
-      'formatted' => '2012-12-19 00:00:00',
-      'timezone' => 
+      'timestamp' => 1355875200,
+      'formatted' => '2012-12-19 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -26332,29 +23318,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 7,
       'is_leap_month' => false,
-      'moon_age' => 5.545711911283433,
-      'moon_phase_angle' => 70.86882142169259,
+      'moon_age' => 5.638,
+      'moon_phase_angle' => 72.14902429836457,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-12-20 00:00:00' => 
+  '2012-12-20 09:00:00' =>
   array (
-    0 => '2012-12-20 00:00:00',
-    1 => 
+    0 => '2012-12-20 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 12,
       'day' => 20,
       'dayOfWeek' => 4,
       'dayOfYear' => 355,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1355929200,
-      'formatted' => '2012-12-20 00:00:00',
-      'timezone' => 
+      'timestamp' => 1355961600,
+      'formatted' => '2012-12-20 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -26390,16 +23376,16 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 6.5490605547092855,
-      'moon_phase_angle' => 82.97559351824407,
+      'moon_age' => 6.638,
+      'moon_phase_angle' => 84.20113188314792,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2012-12-20 14:00:00' => 
+  '2012-12-20 14:19:00' =>
   array (
-    0 => '2012-12-20 14:00:00',
-    1 => 
+    0 => '2012-12-20 14:19:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 12,
@@ -26407,12 +23393,12 @@ return array (
       'dayOfWeek' => 4,
       'dayOfYear' => 355,
       'hour' => 14,
-      'minute' => 0,
+      'minute' => 19,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1355979600,
-      'formatted' => '2012-12-20 14:00:00',
-      'timezone' => 
+      'timestamp' => 1355980740,
+      'formatted' => '2012-12-20 14:19:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -26448,29 +23434,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 7.136847032699734,
-      'moon_phase_angle' => 89.84284932020478,
+      'moon_age' => 6.8590277777777775,
+      'moon_phase_angle' => 86.8138024095312,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2012-12-21 00:00:00' => 
+  '2012-12-21 09:00:00' =>
   array (
-    0 => '2012-12-21 00:00:00',
-    1 => 
+    0 => '2012-12-21 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 12,
       'day' => 21,
       'dayOfWeek' => 5,
       'dayOfYear' => 356,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1356015600,
-      'formatted' => '2012-12-21 00:00:00',
-      'timezone' => 
+      'timestamp' => 1356048000,
+      'formatted' => '2012-12-21 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -26506,29 +23492,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 9,
       'is_leap_month' => false,
-      'moon_age' => 7.5577039192430675,
-      'moon_phase_angle' => 94.66922754052206,
+      'moon_age' => 7.638,
+      'moon_phase_angle' => 95.84783521320219,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-12-22 00:00:00' => 
+  '2012-12-22 09:00:00' =>
   array (
-    0 => '2012-12-22 00:00:00',
-    1 => 
+    0 => '2012-12-22 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 12,
       'day' => 22,
       'dayOfWeek' => 6,
       'dayOfYear' => 357,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1356102000,
-      'formatted' => '2012-12-22 00:00:00',
-      'timezone' => 
+      'timestamp' => 1356134400,
+      'formatted' => '2012-12-22 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -26564,29 +23550,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 10,
       'is_leap_month' => false,
-      'moon_age' => 8.57061353418976,
-      'moon_phase_angle' => 106.02068542212274,
+      'moon_age' => 8.638,
+      'moon_phase_angle' => 107.16205088477454,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-12-23 00:00:00' => 
+  '2012-12-23 09:00:00' =>
   array (
-    0 => '2012-12-23 00:00:00',
-    1 => 
+    0 => '2012-12-23 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 12,
       'day' => 23,
       'dayOfWeek' => 0,
       'dayOfYear' => 358,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1356188400,
-      'formatted' => '2012-12-23 00:00:00',
-      'timezone' => 
+      'timestamp' => 1356220800,
+      'formatted' => '2012-12-23 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -26622,29 +23608,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 11,
       'is_leap_month' => false,
-      'moon_age' => 9.586700466927141,
-      'moon_phase_angle' => 117.10985287306212,
+      'moon_age' => 9.638,
+      'moon_phase_angle' => 118.22428105016994,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-12-24 00:00:00' => 
+  '2012-12-24 09:00:00' =>
   array (
-    0 => '2012-12-24 00:00:00',
-    1 => 
+    0 => '2012-12-24 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 12,
       'day' => 24,
       'dayOfWeek' => 1,
       'dayOfYear' => 359,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1356274800,
-      'formatted' => '2012-12-24 00:00:00',
-      'timezone' => 
+      'timestamp' => 1356307200,
+      'formatted' => '2012-12-24 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -26680,29 +23666,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 12,
       'is_leap_month' => false,
-      'moon_age' => 10.604880524799228,
-      'moon_phase_angle' => 128.01714071845632,
+      'moon_age' => 10.638,
+      'moon_phase_angle' => 129.1144772189518,
       'moon_phase' => 3,
       'moon_phase_text' => '十三夜',
     ),
   ),
-  '2012-12-25 00:00:00' => 
+  '2012-12-25 09:00:00' =>
   array (
-    0 => '2012-12-25 00:00:00',
-    1 => 
+    0 => '2012-12-25 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 12,
       'day' => 25,
       'dayOfWeek' => 2,
       'dayOfYear' => 360,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1356361200,
-      'formatted' => '2012-12-25 00:00:00',
-      'timezone' => 
+      'timestamp' => 1356393600,
+      'formatted' => '2012-12-25 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -26738,29 +23724,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 13,
       'is_leap_month' => false,
-      'moon_age' => 11.624164084438235,
-      'moon_phase_angle' => 138.8177580507161,
+      'moon_age' => 11.638,
+      'moon_phase_angle' => 139.906716665567,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-12-26 00:00:00' => 
+  '2012-12-26 09:00:00' =>
   array (
-    0 => '2012-12-26 00:00:00',
-    1 => 
+    0 => '2012-12-26 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 12,
       'day' => 26,
       'dayOfWeek' => 3,
       'dayOfYear' => 361,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1356447600,
-      'formatted' => '2012-12-26 00:00:00',
-      'timezone' => 
+      'timestamp' => 1356480000,
+      'formatted' => '2012-12-26 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -26796,29 +23782,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 14,
       'is_leap_month' => false,
-      'moon_age' => 12.63655286282301,
-      'moon_phase_angle' => 149.57816652877938,
+      'moon_age' => 12.638,
+      'moon_phase_angle' => 150.66612331345343,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-12-27 00:00:00' => 
+  '2012-12-27 09:00:00' =>
   array (
-    0 => '2012-12-27 00:00:00',
-    1 => 
+    0 => '2012-12-27 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 12,
       'day' => 27,
       'dayOfWeek' => 4,
       'dayOfYear' => 362,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1356534000,
-      'formatted' => '2012-12-27 00:00:00',
-      'timezone' => 
+      'timestamp' => 1356566400,
+      'formatted' => '2012-12-27 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -26854,29 +23840,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 15,
       'is_leap_month' => false,
-      'moon_age' => 13.633405128028244,
-      'moon_phase_angle' => 160.35424423824531,
+      'moon_age' => 13.638,
+      'moon_phase_angle' => 161.44736709469203,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-12-28 00:00:00' => 
+  '2012-12-28 09:00:00' =>
   array (
-    0 => '2012-12-28 00:00:00',
-    1 => 
+    0 => '2012-12-28 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 12,
       'day' => 28,
       'dayOfWeek' => 5,
       'dayOfYear' => 363,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1356620400,
-      'formatted' => '2012-12-28 00:00:00',
-      'timezone' => 
+      'timestamp' => 1356652800,
+      'formatted' => '2012-12-28 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -26912,132 +23898,16 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 14.630431150551885,
-      'moon_phase_angle' => 171.1908525650942,
+      'moon_age' => 14.638,
+      'moon_phase_angle' => 172.29425422013844,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2012-12-28 17:00:00' => 
+  '2012-12-28 19:21:00' =>
   array (
-    0 => '2012-12-28 17:00:00',
-    1 => 
-    array (
-      'year' => 2012,
-      'month' => 12,
-      'day' => 28,
-      'dayOfWeek' => 5,
-      'dayOfYear' => 363,
-      'hour' => 17,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1356681600,
-      'formatted' => '2012-12-28 17:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 24,
-      'oriental_zodiac_text' => '辰',
-      'oriental_zodiac' => 5,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '友引',
-      'six_weekday' => 3,
-      'weekday_text' => '金',
-      'month_text' => '師走',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '霜月',
-      'lunar_month' => 11,
-      'lunar_year' => 2012,
-      'lunar_day' => 16,
-      'is_leap_month' => false,
-      'moon_age' => 15.33680668566376,
-      'moon_phase_angle' => 178.92269081907682,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2012-12-28 18:00:00' => 
-  array (
-    0 => '2012-12-28 18:00:00',
-    1 => 
-    array (
-      'year' => 2012,
-      'month' => 12,
-      'day' => 28,
-      'dayOfWeek' => 5,
-      'dayOfYear' => 363,
-      'hour' => 18,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1356685200,
-      'formatted' => '2012-12-28 18:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 24,
-      'oriental_zodiac_text' => '辰',
-      'oriental_zodiac' => 5,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '友引',
-      'six_weekday' => 3,
-      'weekday_text' => '金',
-      'month_text' => '師走',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '霜月',
-      'lunar_month' => 11,
-      'lunar_year' => 2012,
-      'lunar_day' => 16,
-      'is_leap_month' => false,
-      'moon_age' => 15.378368868492544,
-      'moon_phase_angle' => 179.37921369535303,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2012-12-28 19:00:00' => 
-  array (
-    0 => '2012-12-28 19:00:00',
-    1 => 
+    0 => '2012-12-28 19:21:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 12,
@@ -27045,12 +23915,12 @@ return array (
       'dayOfWeek' => 5,
       'dayOfYear' => 363,
       'hour' => 19,
-      'minute' => 0,
+      'minute' => 21,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1356688800,
-      'formatted' => '2012-12-28 19:00:00',
-      'timezone' => 
+      'timestamp' => 1356690060,
+      'formatted' => '2012-12-28 19:21:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -27086,145 +23956,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 15.419911247678101,
-      'moon_phase_angle' => 179.8359381780801,
+      'moon_age' => 15.06875,
+      'moon_phase_angle' => 177.0009517301247,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2012-12-28 20:00:00' => 
+  '2012-12-29 09:00:00' =>
   array (
-    0 => '2012-12-28 20:00:00',
-    1 => 
-    array (
-      'year' => 2012,
-      'month' => 12,
-      'day' => 28,
-      'dayOfWeek' => 5,
-      'dayOfYear' => 363,
-      'hour' => 20,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1356692400,
-      'formatted' => '2012-12-28 20:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 24,
-      'oriental_zodiac_text' => '辰',
-      'oriental_zodiac' => 5,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '友引',
-      'six_weekday' => 3,
-      'weekday_text' => '金',
-      'month_text' => '師走',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '霜月',
-      'lunar_month' => 11,
-      'lunar_year' => 2012,
-      'lunar_day' => 16,
-      'is_leap_month' => false,
-      'moon_age' => 15.461478907614946,
-      'moon_phase_angle' => 180.29286602436088,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2012-12-28 22:00:00' => 
-  array (
-    0 => '2012-12-28 22:00:00',
-    1 => 
-    array (
-      'year' => 2012,
-      'month' => 12,
-      'day' => 28,
-      'dayOfWeek' => 5,
-      'dayOfYear' => 363,
-      'hour' => 22,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1356699600,
-      'formatted' => '2012-12-28 22:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '平成',
-      'era_name' => 1003,
-      'era_year' => 24,
-      'oriental_zodiac_text' => '辰',
-      'oriental_zodiac' => 5,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '友引',
-      'six_weekday' => 3,
-      'weekday_text' => '金',
-      'month_text' => '師走',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '霜月',
-      'lunar_month' => 11,
-      'lunar_year' => 2012,
-      'lunar_day' => 16,
-      'is_leap_month' => false,
-      'moon_age' => 15.544596258550882,
-      'moon_phase_angle' => 181.2073387008096,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2012-12-29 00:00:00' => 
-  array (
-    0 => '2012-12-29 00:00:00',
-    1 => 
+    0 => '2012-12-29 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 12,
       'day' => 29,
       'dayOfWeek' => 6,
       'dayOfYear' => 364,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1356706800,
-      'formatted' => '2012-12-29 00:00:00',
-      'timezone' => 
+      'timestamp' => 1356739200,
+      'formatted' => '2012-12-29 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -27260,29 +24014,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 17,
       'is_leap_month' => false,
-      'moon_age' => 15.62771289004013,
-      'moon_phase_angle' => 182.1226453797724,
+      'moon_age' => 15.638,
+      'moon_phase_angle' => 183.24033456911098,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-12-30 00:00:00' => 
+  '2012-12-30 09:00:00' =>
   array (
-    0 => '2012-12-30 00:00:00',
-    1 => 
+    0 => '2012-12-30 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 12,
       'day' => 30,
       'dayOfWeek' => 0,
       'dayOfYear' => 365,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1356793200,
-      'formatted' => '2012-12-30 00:00:00',
-      'timezone' => 
+      'timestamp' => 1356825600,
+      'formatted' => '2012-12-30 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -27318,29 +24072,29 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 18,
       'is_leap_month' => false,
-      'moon_age' => 16.625286229886115,
-      'moon_phase_angle' => 193.17600579808806,
+      'moon_age' => 16.638,
+      'moon_phase_angle' => 194.3107831300896,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2012-12-31 00:00:00' => 
+  '2012-12-31 09:00:00' =>
   array (
-    0 => '2012-12-31 00:00:00',
-    1 => 
+    0 => '2012-12-31 09:00:00',
+    1 =>
     array (
       'year' => 2012,
       'month' => 12,
       'day' => 31,
       'dayOfWeek' => 1,
       'dayOfYear' => 366,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1356879600,
-      'formatted' => '2012-12-31 00:00:00',
-      'timezone' => 
+      'timestamp' => 1356912000,
+      'formatted' => '2012-12-31 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -27376,8 +24130,8 @@ return array (
       'lunar_year' => 2012,
       'lunar_day' => 19,
       'is_leap_month' => false,
-      'moon_age' => 17.62320785271004,
-      'moon_phase_angle' => 204.37192022065688,
+      'moon_age' => 17.638,
+      'moon_phase_angle' => 205.52564323685766,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
