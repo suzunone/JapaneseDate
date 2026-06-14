@@ -509,6 +509,7 @@ class FalseTimezoneDate extends DateTimeImmutable
     /**
      * @return \DateTimeZone|false
      */
+    #[\ReturnTypeWillChange]
     public function getTimezone()
     {
         return false;

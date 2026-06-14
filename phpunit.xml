@@ -7,7 +7,6 @@
          stopOnError="false"
          stopOnFailure="false"
          xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.5/phpunit.xsd"
-         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.5/phpunit.xsd"
          cacheDirectory=".phpunit.cache"
          backupStaticProperties="false"
          requireCoverageMetadata="true"
