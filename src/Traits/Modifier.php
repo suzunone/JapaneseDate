@@ -41,7 +41,7 @@ trait Modifier
     public function nextHoliday(): static
     {
         /**
-         * @var  \JapaneseDate\DateTime|static|\JapaneseDate\Traits\Modifier|\Carbon\Carbon $date
+         * @var  \JapaneseDate\DateTime|static|Modifier|\Carbon\Carbon $date
          */
         $date = $this;
         do {

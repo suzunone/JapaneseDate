@@ -27,9 +27,9 @@ use JapaneseDate\DateTime;
  *
  * 南北朝時代（1331年〜1392年）は北朝・南朝の元号が並存するため、
  * 同一期間に複数のエントリが存在します。
- * `court` キーで {@see \JapaneseDate\DateTime::COURT_NORTH}・
- * {@see \JapaneseDate\DateTime::COURT_SOUTH}・
- * {@see \JapaneseDate\DateTime::COURT_MAIN} を区別します。
+ * `court` キーで {@see DateTime::COURT_NORTH}・
+ * {@see DateTime::COURT_SOUTH}・
+ * {@see DateTime::COURT_MAIN} を区別します。
  *
  * @category    DateTime
  * @package     JapaneseDate

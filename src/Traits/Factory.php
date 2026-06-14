@@ -96,12 +96,12 @@ trait Factory
      * `new DateTime()` よりも {@see factory()} を使用すると、
      * Unix タイムスタンプや DateTimeInterface オブジェクトも直接渡せて便利です。
      *
-     * @param int|float|string|\DateTimeInterface|null $date_time
+     * @param int|float|string|DateTimeInterface|null $date_time
      *   生成する日時。日時文字列・Unix タイムスタンプ・DateTimeInterface・null のいずれかを渡せます。
-     * @param \DateTimeZone|null $time_zone
+     * @param DateTimeZone|null $time_zone
      *   タイムゾーン。省略時は PHP のデフォルトタイムゾーンを使用します。
-     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
-     * @throws \Exception
+     * @throws NativeDateTimeException
+     * @throws Exception
      *   日時文字列の解析に失敗した場合にスローされます。
      */
     public function __construct($date_time = null, $time_zone = null)
@@ -120,35 +120,6 @@ trait Factory
         $this->MiscSeasonalNode = MiscSeasonalNode::factory();
         $this->SeasonalFestival = SeasonalFestival::factory();
         $this->SeventyTwoKouCalculator = SeventyTwoKouCalculator::factory();
-    }
-
-    /**
-     * フォーマット指定文字列から日時インスタンスを生成します。
-     *
-     * Carbon の `createFromFormat()` はコンストラクタを経由しないため、
-     * JapaneseDate 固有のコンポーネントが未初期化のまま返されることがあります。
-     * このオーバーライドにより、返却されたインスタンスのコンポーネントを確実に初期化します。
-     *
-     * @param string                            $format   日時フォーマット文字列
-     * @param string                            $time     パース対象の日時文字列
-     * @param \DateTimeZone|string|int|null     $timezone タイムゾーン（省略可）
-     * @return static|null
-     */
-    public static function createFromFormat($format, $time, $timezone = null): ?static
-    {
-        $instance = parent::createFromFormat($format, $time, $timezone);
-
-        if ($instance !== null && !isset($instance->SeasonalFestival)) {
-            $instance->jisEra = JisEra::factory();
-            $instance->JapaneseDate = JapaneseDate::factory();
-            $instance->LunarCalendar = LunarCalendar::factory();
-            $instance->SexagenaryCycle = SexagenaryCycle::factory();
-            $instance->MiscSeasonalNode = MiscSeasonalNode::factory();
-            $instance->SeasonalFestival = SeasonalFestival::factory();
-            $instance->SeventyTwoKouCalculator = SeventyTwoKouCalculator::factory();
-        }
-
-        return $instance;
     }
 
     /**
@@ -212,15 +183,15 @@ trait Factory
      * $dt = DateTime::factory('2026-05-01 12:34:56', new \DateTimeZone('Asia/Tokyo'));
      * ```
      *
-     * @param int|float|string|\DateTimeInterface|null $date_time
+     * @param int|float|string|DateTimeInterface|null $date_time
      *   生成元となる日時値。Unix タイムスタンプ（int/float）、
-     *   {@see \DateTimeInterface} の実装オブジェクト、
+     *   {@see DateTimeInterface} の実装オブジェクト、
      *   日時文字列（西暦・和暦・相対表現に対応）、または null（現在日時）を渡せます。
-     * @param \DateTimeZone|null $time_zone
+     * @param DateTimeZone|null $time_zone
      *   使用するタイムゾーン。省略した場合の挙動は引数の型によって異なります（型別動作の表を参照）。
      * @return static 指定した日時を表す新しいインスタンス
      * @throws \DateInvalidTimeZoneException
-     * @throws \JapaneseDate\Exceptions\NativeDateTimeException 日時文字列の解析に失敗した場合にスローされます。
+     * @throws NativeDateTimeException 日時文字列の解析に失敗した場合にスローされます。
      */
     public static function factory(int|float|string|DateTimeInterface|null $date_time = null, DateTimeZone|null $time_zone = null): static
     {
@@ -275,8 +246,8 @@ trait Factory
      * Carbon の `createFromTimestamp()` はコンストラクタをバイパスするため
      * コンポーネントプロパティが初期化されない。このメソッドはタイムスタンプを
      * 日時文字列に変換してから `new static()` を呼び出すことで初期化を保証する。
-     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
-     * @throws \Exception
+     * @throws NativeDateTimeException
+     * @throws Exception
      * @throws \DateInvalidTimeZoneException
      */
     protected static function newFromTimestamp(float $timestamp, ?DateTimeZone $tz): static
@@ -288,8 +259,43 @@ trait Factory
         return new static($native->format('Y-m-d H:i:s') . sprintf('.%06d', $micro), $displayTz);
     }
 
+    /**
+     * @param string $date_str
+     * @param \DateTimeZone|null $timezone
+     * @return int|float|null
+     */
     protected static function parseJisDate(string $date_str, ?DateTimeZone $timezone = null): int|float|null
     {
         return (new JisEra())->parseJisDate($date_str, $timezone);
+    }
+
+    /**
+     * フォーマット指定文字列から日時インスタンスを生成します。
+     *
+     * Carbon の `createFromFormat()` はコンストラクタを経由しないため、
+     * JapaneseDate 固有のコンポーネントが未初期化のまま返されることがあります。
+     * このオーバーライドにより、返却されたインスタンスのコンポーネントを確実に初期化します。
+     *
+     * @param string $format 日時フォーマット文字列
+     * @param string $time パース対象の日時文字列
+     * @param DateTimeZone|string|int|null $timezone タイムゾーン（省略可）
+     * @return static|null
+     */
+    public static function createFromFormat($format, $time, $timezone = null): ?static
+    {
+        /** @noinspection PhpMultipleClassDeclarationsInspection */
+        $instance = parent::createFromFormat($format, $time, $timezone);
+
+        if ($instance !== null && !isset($instance->SeasonalFestival)) {
+            $instance->jisEra = JisEra::factory();
+            $instance->JapaneseDate = JapaneseDate::factory();
+            $instance->LunarCalendar = LunarCalendar::factory();
+            $instance->SexagenaryCycle = SexagenaryCycle::factory();
+            $instance->MiscSeasonalNode = MiscSeasonalNode::factory();
+            $instance->SeasonalFestival = SeasonalFestival::factory();
+            $instance->SeventyTwoKouCalculator = SeventyTwoKouCalculator::factory();
+        }
+
+        return $instance;
     }
 }

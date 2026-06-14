@@ -1,28 +1,30 @@
 <?php
-// Source data for principal phases (new moon, first quarter, full moon, last quarter):
-// https://eco.mtk.nao.ac.jp/koyomi/yoko/2025/rekiyouXXX.html
-// Source data for intermediate phases (waxing crescent, waxing gibbous, waning gibbous, waning crescent):
+
+// Source data:
 // https://svs.gsfc.nasa.gov/5415/
 // https://svs.gsfc.nasa.gov/vis/a000000/a005400/a005415/mooninfo_2025.json
+// https://eco.mtk.nao.ac.jp/koyomi/yoko/2025/rekiyou251.html
+// https://eco.mtk.nao.ac.jp/koyomi/yoko/2025/rekiyou252.html
+// https://eco.mtk.nao.ac.jp/koyomi/yoko/2025/rekiyou253.html
 
 return array (
-  '2025-01-01 00:00:00' => 
+  '2025-01-01 09:00:00' =>
   array (
-    0 => '2025-01-01 00:00:00',
-    1 => 
+    0 => '2025-01-01 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 1,
       'day' => 1,
       'dayOfWeek' => 3,
       'dayOfYear' => 1,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1735657200,
-      'formatted' => '2025-01-01 00:00:00',
-      'timezone' => 
+      'timestamp' => 1735689600,
+      'formatted' => '2025-01-01 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -58,29 +60,29 @@ return array (
       'lunar_year' => 2024,
       'lunar_day' => 2,
       'is_leap_month' => false,
-      'moon_age' => 1.0648837187327445,
-      'moon_phase_angle' => 8.4579832489934,
+      'moon_age' => 1.065,
+      'moon_phase_angle' => 9.738479155107768,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-01-02 00:00:00' => 
+  '2025-01-02 09:00:00' =>
   array (
-    0 => '2025-01-02 00:00:00',
-    1 => 
+    0 => '2025-01-02 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 1,
       'day' => 2,
       'dayOfWeek' => 4,
       'dayOfYear' => 2,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1735743600,
-      'formatted' => '2025-01-02 00:00:00',
-      'timezone' => 
+      'timestamp' => 1735776000,
+      'formatted' => '2025-01-02 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -116,29 +118,29 @@ return array (
       'lunar_year' => 2024,
       'lunar_day' => 3,
       'is_leap_month' => false,
-      'moon_age' => 2.0649296389892697,
-      'moon_phase_angle' => 20.906619078585663,
+      'moon_age' => 2.065,
+      'moon_phase_angle' => 22.211761421747326,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-01-03 00:00:00' => 
+  '2025-01-03 09:00:00' =>
   array (
-    0 => '2025-01-03 00:00:00',
-    1 => 
+    0 => '2025-01-03 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 1,
       'day' => 3,
       'dayOfWeek' => 5,
       'dayOfYear' => 3,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1735830000,
-      'formatted' => '2025-01-03 00:00:00',
-      'timezone' => 
+      'timestamp' => 1735862400,
+      'formatted' => '2025-01-03 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -174,29 +176,29 @@ return array (
       'lunar_year' => 2024,
       'lunar_day' => 4,
       'is_leap_month' => false,
-      'moon_age' => 3.0650360831059515,
-      'moon_phase_angle' => 33.53807290318616,
+      'moon_age' => 3.065,
+      'moon_phase_angle' => 34.86228869149937,
       'moon_phase' => 1,
       'moon_phase_text' => '三日月',
     ),
   ),
-  '2025-01-04 00:00:00' => 
+  '2025-01-04 09:00:00' =>
   array (
-    0 => '2025-01-04 00:00:00',
-    1 => 
+    0 => '2025-01-04 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 1,
       'day' => 4,
       'dayOfWeek' => 6,
       'dayOfYear' => 4,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1735916400,
-      'formatted' => '2025-01-04 00:00:00',
-      'timezone' => 
+      'timestamp' => 1735948800,
+      'formatted' => '2025-01-04 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -232,29 +234,29 @@ return array (
       'lunar_year' => 2024,
       'lunar_day' => 5,
       'is_leap_month' => false,
-      'moon_age' => 4.065211662556976,
-      'moon_phase_angle' => 46.308099489649805,
+      'moon_age' => 4.065,
+      'moon_phase_angle' => 47.64657952121206,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-01-05 00:00:00' => 
+  '2025-01-05 09:00:00' =>
   array (
-    0 => '2025-01-05 00:00:00',
-    1 => 
+    0 => '2025-01-05 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 1,
       'day' => 5,
       'dayOfWeek' => 0,
       'dayOfYear' => 5,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1736002800,
-      'formatted' => '2025-01-05 00:00:00',
-      'timezone' => 
+      'timestamp' => 1736035200,
+      'formatted' => '2025-01-05 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -290,29 +292,29 @@ return array (
       'lunar_year' => 2024,
       'lunar_day' => 6,
       'is_leap_month' => false,
-      'moon_age' => 5.065473465714604,
-      'moon_phase_angle' => 59.18021563654605,
+      'moon_age' => 5.065,
+      'moon_phase_angle' => 60.52936889636578,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-01-06 00:00:00' => 
+  '2025-01-06 09:00:00' =>
   array (
-    0 => '2025-01-06 00:00:00',
-    1 => 
+    0 => '2025-01-06 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 1,
       'day' => 6,
       'dayOfWeek' => 1,
       'dayOfYear' => 6,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1736089200,
-      'formatted' => '2025-01-06 00:00:00',
-      'timezone' => 
+      'timestamp' => 1736121600,
+      'formatted' => '2025-01-06 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -348,29 +350,29 @@ return array (
       'lunar_year' => 2024,
       'lunar_day' => 7,
       'is_leap_month' => false,
-      'moon_age' => 6.065852462779731,
-      'moon_phase_angle' => 72.12951069442988,
+      'moon_age' => 6.065,
+      'moon_phase_angle' => 73.48698663593484,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-01-07 00:00:00' => 
+  '2025-01-07 08:56:00' =>
   array (
-    0 => '2025-01-07 00:00:00',
-    1 => 
+    0 => '2025-01-07 08:56:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 1,
       'day' => 7,
       'dayOfWeek' => 2,
       'dayOfYear' => 7,
-      'hour' => 0,
-      'minute' => 0,
+      'hour' => 8,
+      'minute' => 56,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1736175600,
-      'formatted' => '2025-01-07 00:00:00',
-      'timezone' => 
+      'timestamp' => 1736207760,
+      'formatted' => '2025-01-07 08:56:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -406,16 +408,16 @@ return array (
       'lunar_year' => 2024,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 7.066363639198244,
-      'moon_phase_angle' => 85.14162907454704,
+      'moon_age' => 7.062200000000001,
+      'moon_phase_angle' => 86.46974454281076,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2025-01-07 09:00:00' => 
+  '2025-01-07 09:00:00' =>
   array (
     0 => '2025-01-07 09:00:00',
-    1 => 
+    1 =>
     array (
       'year' => 2025,
       'month' => 1,
@@ -428,7 +430,7 @@ return array (
       'micro' => 0,
       'timestamp' => 1736208000,
       'formatted' => '2025-01-07 09:00:00',
-      'timezone' => 
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -464,29 +466,29 @@ return array (
       'lunar_year' => 2024,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 7.4415873270481825,
-      'moon_phase_angle' => 90.03549778431,
+      'moon_age' => 7.065,
+      'moon_phase_angle' => 86.50598523571188,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2025-01-08 00:00:00' => 
+  '2025-01-08 09:00:00' =>
   array (
-    0 => '2025-01-08 00:00:00',
-    1 => 
+    0 => '2025-01-08 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 1,
       'day' => 8,
       'dayOfWeek' => 3,
       'dayOfYear' => 8,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1736262000,
-      'formatted' => '2025-01-08 00:00:00',
-      'timezone' => 
+      'timestamp' => 1736294400,
+      'formatted' => '2025-01-08 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -522,29 +524,29 @@ return array (
       'lunar_year' => 2024,
       'lunar_day' => 9,
       'is_leap_month' => false,
-      'moon_age' => 8.067017392255366,
-      'moon_phase_angle' => 98.20739558230895,
+      'moon_age' => 8.065,
+      'moon_phase_angle' => 99.57738895175339,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-01-09 00:00:00' => 
+  '2025-01-09 09:00:00' =>
   array (
-    0 => '2025-01-09 00:00:00',
-    1 => 
+    0 => '2025-01-09 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 1,
       'day' => 9,
       'dayOfWeek' => 4,
       'dayOfYear' => 9,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1736348400,
-      'formatted' => '2025-01-09 00:00:00',
-      'timezone' => 
+      'timestamp' => 1736380800,
+      'formatted' => '2025-01-09 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -580,29 +582,29 @@ return array (
       'lunar_year' => 2024,
       'lunar_day' => 10,
       'is_leap_month' => false,
-      'moon_age' => 9.067820057738572,
-      'moon_phase_angle' => 111.31480986122037,
+      'moon_age' => 9.065,
+      'moon_phase_angle' => 112.68835843018059,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-01-10 00:00:00' => 
+  '2025-01-10 09:00:00' =>
   array (
-    0 => '2025-01-10 00:00:00',
-    1 => 
+    0 => '2025-01-10 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 1,
       'day' => 10,
       'dayOfWeek' => 5,
       'dayOfYear' => 10,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1736434800,
-      'formatted' => '2025-01-10 00:00:00',
-      'timezone' => 
+      'timestamp' => 1736467200,
+      'formatted' => '2025-01-10 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -638,29 +640,29 @@ return array (
       'lunar_year' => 2024,
       'lunar_day' => 11,
       'is_leap_month' => false,
-      'moon_age' => 10.06875090720132,
-      'moon_phase_angle' => 124.44091711467496,
+      'moon_age' => 10.065,
+      'moon_phase_angle' => 125.81407055289054,
       'moon_phase' => 3,
       'moon_phase_text' => '十三夜',
     ),
   ),
-  '2025-01-11 00:00:00' => 
+  '2025-01-11 09:00:00' =>
   array (
-    0 => '2025-01-11 00:00:00',
-    1 => 
+    0 => '2025-01-11 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 1,
       'day' => 11,
       'dayOfWeek' => 6,
       'dayOfYear' => 11,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1736521200,
-      'formatted' => '2025-01-11 00:00:00',
-      'timezone' => 
+      'timestamp' => 1736553600,
+      'formatted' => '2025-01-11 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -696,29 +698,29 @@ return array (
       'lunar_year' => 2024,
       'lunar_day' => 12,
       'is_leap_month' => false,
-      'moon_age' => 11.06976425461471,
-      'moon_phase_angle' => 137.54630044300666,
+      'moon_age' => 11.065,
+      'moon_phase_angle' => 138.91278113000055,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-01-12 00:00:00' => 
+  '2025-01-12 09:00:00' =>
   array (
-    0 => '2025-01-12 00:00:00',
-    1 => 
+    0 => '2025-01-12 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 1,
       'day' => 12,
       'dayOfWeek' => 0,
       'dayOfYear' => 12,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1736607600,
-      'formatted' => '2025-01-12 00:00:00',
-      'timezone' => 
+      'timestamp' => 1736640000,
+      'formatted' => '2025-01-12 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -754,29 +756,29 @@ return array (
       'lunar_year' => 2024,
       'lunar_day' => 13,
       'is_leap_month' => false,
-      'moon_age' => 12.070771612692624,
-      'moon_phase_angle' => 150.57447830631128,
+      'moon_age' => 12.065,
+      'moon_phase_angle' => 151.92617206072526,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-01-13 00:00:00' => 
+  '2025-01-13 09:00:00' =>
   array (
-    0 => '2025-01-13 00:00:00',
-    1 => 
+    0 => '2025-01-13 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 1,
       'day' => 13,
       'dayOfWeek' => 1,
       'dayOfYear' => 13,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1736694000,
-      'formatted' => '2025-01-13 00:00:00',
-      'timezone' => 
+      'timestamp' => 1736726400,
+      'formatted' => '2025-01-13 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -812,74 +814,16 @@ return array (
       'lunar_year' => 2024,
       'lunar_day' => 14,
       'is_leap_month' => false,
-      'moon_age' => 13.071621305309236,
-      'moon_phase_angle' => 163.45715250691748,
+      'moon_age' => 13.065,
+      'moon_phase_angle' => 164.7853943623669,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-01-14 00:00:00' => 
+  '2025-01-14 07:27:00' =>
   array (
-    0 => '2025-01-14 00:00:00',
-    1 => 
-    array (
-      'year' => 2025,
-      'month' => 1,
-      'day' => 14,
-      'dayOfWeek' => 2,
-      'dayOfYear' => 14,
-      'hour' => 0,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1736780400,
-      'formatted' => '2025-01-14 00:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 7,
-      'oriental_zodiac_text' => '巳',
-      'oriental_zodiac' => 6,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '友引',
-      'six_weekday' => 3,
-      'weekday_text' => '火',
-      'month_text' => '睦月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '師走',
-      'lunar_month' => 12,
-      'lunar_year' => 2024,
-      'lunar_day' => 15,
-      'is_leap_month' => false,
-      'moon_age' => 14.072160396259278,
-      'moon_phase_angle' => 176.12425024963366,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2025-01-14 07:00:00' => 
-  array (
-    0 => '2025-01-14 07:00:00',
-    1 => 
+    0 => '2025-01-14 07:27:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 1,
@@ -887,12 +831,12 @@ return array (
       'dayOfWeek' => 2,
       'dayOfYear' => 14,
       'hour' => 7,
-      'minute' => 0,
+      'minute' => 27,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1736805600,
-      'formatted' => '2025-01-14 07:00:00',
-      'timezone' => 
+      'timestamp' => 1736807220,
+      'formatted' => '2025-01-14 07:27:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -928,74 +872,16 @@ return array (
       'lunar_year' => 2024,
       'lunar_day' => 15,
       'is_leap_month' => false,
-      'moon_age' => 14.363916521891952,
-      'moon_phase_angle' => 179.76914455744446,
+      'moon_age' => 13.9999,
+      'moon_phase_angle' => 176.613210754771,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2025-01-14 08:00:00' => 
-  array (
-    0 => '2025-01-14 08:00:00',
-    1 => 
-    array (
-      'year' => 2025,
-      'month' => 1,
-      'day' => 14,
-      'dayOfWeek' => 2,
-      'dayOfYear' => 14,
-      'hour' => 8,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1736809200,
-      'formatted' => '2025-01-14 08:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 7,
-      'oriental_zodiac_text' => '巳',
-      'oriental_zodiac' => 6,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '友引',
-      'six_weekday' => 3,
-      'weekday_text' => '火',
-      'month_text' => '睦月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '師走',
-      'lunar_month' => 12,
-      'lunar_year' => 2024,
-      'lunar_day' => 15,
-      'is_leap_month' => false,
-      'moon_age' => 14.405592383351177,
-      'moon_phase_angle' => 180.28784734259003,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2025-01-14 09:00:00' => 
+  '2025-01-14 09:00:00' =>
   array (
     0 => '2025-01-14 09:00:00',
-    1 => 
+    1 =>
     array (
       'year' => 2025,
       'month' => 1,
@@ -1008,7 +894,7 @@ return array (
       'micro' => 0,
       'timestamp' => 1736812800,
       'formatted' => '2025-01-14 09:00:00',
-      'timezone' => 
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -1044,29 +930,29 @@ return array (
       'lunar_year' => 2024,
       'lunar_day' => 15,
       'is_leap_month' => false,
-      'moon_age' => 14.447269478347152,
-      'moon_phase_angle' => 180.8060409974004,
+      'moon_age' => 14.065,
+      'moon_phase_angle' => 177.4213171244325,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2025-01-15 00:00:00' => 
+  '2025-01-15 09:00:00' =>
   array (
-    0 => '2025-01-15 00:00:00',
-    1 => 
+    0 => '2025-01-15 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 1,
       'day' => 15,
       'dayOfWeek' => 3,
       'dayOfYear' => 15,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1736866800,
-      'formatted' => '2025-01-15 00:00:00',
-      'timezone' => 
+      'timestamp' => 1736899200,
+      'formatted' => '2025-01-15 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -1102,29 +988,29 @@ return array (
       'lunar_year' => 2024,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 15.072289068251848,
-      'moon_phase_angle' => 188.515879464154,
+      'moon_age' => 15.065,
+      'moon_phase_angle' => 189.77614297199798,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-01-16 00:00:00' => 
+  '2025-01-16 09:00:00' =>
   array (
-    0 => '2025-01-16 00:00:00',
-    1 => 
+    0 => '2025-01-16 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 1,
       'day' => 16,
       'dayOfWeek' => 4,
       'dayOfYear' => 16,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1736953200,
-      'formatted' => '2025-01-16 00:00:00',
-      'timezone' => 
+      'timestamp' => 1736985600,
+      'formatted' => '2025-01-16 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -1160,29 +1046,29 @@ return array (
       'lunar_year' => 2024,
       'lunar_day' => 17,
       'is_leap_month' => false,
-      'moon_age' => 16.071942488197237,
-      'moon_phase_angle' => 200.59270221983024,
+      'moon_age' => 16.065,
+      'moon_phase_angle' => 201.8132875939369,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-01-17 00:00:00' => 
+  '2025-01-17 09:00:00' =>
   array (
-    0 => '2025-01-17 00:00:00',
-    1 => 
+    0 => '2025-01-17 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 1,
       'day' => 17,
       'dayOfWeek' => 5,
       'dayOfYear' => 17,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1737039600,
-      'formatted' => '2025-01-17 00:00:00',
-      'timezone' => 
+      'timestamp' => 1737072000,
+      'formatted' => '2025-01-17 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -1218,29 +1104,29 @@ return array (
       'lunar_year' => 2024,
       'lunar_day' => 18,
       'is_leap_month' => false,
-      'moon_age' => 17.07114932173863,
-      'moon_phase_angle' => 212.34218229265068,
+      'moon_age' => 17.065,
+      'moon_phase_angle' => 213.52327884626962,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-01-18 00:00:00' => 
+  '2025-01-18 09:00:00' =>
   array (
-    0 => '2025-01-18 00:00:00',
-    1 => 
+    0 => '2025-01-18 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 1,
       'day' => 18,
       'dayOfWeek' => 6,
       'dayOfYear' => 18,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1737126000,
-      'formatted' => '2025-01-18 00:00:00',
-      'timezone' => 
+      'timestamp' => 1737158400,
+      'formatted' => '2025-01-18 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -1276,29 +1162,29 @@ return array (
       'lunar_year' => 2024,
       'lunar_day' => 19,
       'is_leap_month' => false,
-      'moon_age' => 18.070031507406384,
-      'moon_phase_angle' => 223.77999912128308,
+      'moon_age' => 18.065,
+      'moon_phase_angle' => 224.92494508646178,
       'moon_phase' => 5,
       'moon_phase_text' => '十六夜',
     ),
   ),
-  '2025-01-19 00:00:00' => 
+  '2025-01-19 09:00:00' =>
   array (
-    0 => '2025-01-19 00:00:00',
-    1 => 
+    0 => '2025-01-19 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 1,
       'day' => 19,
       'dayOfWeek' => 0,
       'dayOfYear' => 19,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1737212400,
-      'formatted' => '2025-01-19 00:00:00',
-      'timezone' => 
+      'timestamp' => 1737244800,
+      'formatted' => '2025-01-19 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -1334,29 +1220,29 @@ return array (
       'lunar_year' => 2024,
       'lunar_day' => 20,
       'is_leap_month' => false,
-      'moon_age' => 19.068749071098864,
-      'moon_phase_angle' => 234.94752996095636,
+      'moon_age' => 19.065,
+      'moon_phase_angle' => 236.06263076006755,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-01-20 00:00:00' => 
+  '2025-01-20 09:00:00' =>
   array (
-    0 => '2025-01-20 00:00:00',
-    1 => 
+    0 => '2025-01-20 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 1,
       'day' => 20,
       'dayOfWeek' => 1,
       'dayOfYear' => 20,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1737298800,
-      'formatted' => '2025-01-20 00:00:00',
-      'timezone' => 
+      'timestamp' => 1737331200,
+      'formatted' => '2025-01-20 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -1392,29 +1278,29 @@ return array (
       'lunar_year' => 2024,
       'lunar_day' => 21,
       'is_leap_month' => false,
-      'moon_age' => 20.067498250864446,
-      'moon_phase_angle' => 245.907011296692,
+      'moon_age' => 20.065,
+      'moon_phase_angle' => 247.00102031740957,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-01-21 00:00:00' => 
+  '2025-01-21 09:00:00' =>
   array (
-    0 => '2025-01-21 00:00:00',
-    1 => 
+    0 => '2025-01-21 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 1,
       'day' => 21,
       'dayOfWeek' => 2,
       'dayOfYear' => 21,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1737385200,
-      'formatted' => '2025-01-21 00:00:00',
-      'timezone' => 
+      'timestamp' => 1737417600,
+      'formatted' => '2025-01-21 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -1450,29 +1336,29 @@ return array (
       'lunar_year' => 2024,
       'lunar_day' => 22,
       'is_leap_month' => false,
-      'moon_age' => 21.066414972767234,
-      'moon_phase_angle' => 256.7358353506797,
+      'moon_age' => 21.065,
+      'moon_phase_angle' => 257.81916773742944,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-01-22 00:00:00' => 
+  '2025-01-22 05:31:00' =>
   array (
-    0 => '2025-01-22 00:00:00',
-    1 => 
+    0 => '2025-01-22 05:31:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 1,
       'day' => 22,
       'dayOfWeek' => 3,
       'dayOfYear' => 22,
-      'hour' => 0,
-      'minute' => 0,
+      'hour' => 5,
+      'minute' => 31,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1737471600,
-      'formatted' => '2025-01-22 00:00:00',
-      'timezone' => 
+      'timestamp' => 1737491460,
+      'formatted' => '2025-01-22 05:31:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -1508,29 +1394,29 @@ return array (
       'lunar_year' => 2024,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 22.065615135710686,
-      'moon_phase_angle' => 267.52084248568065,
+      'moon_age' => 21.9197,
+      'moon_phase_angle' => 267.0378594653316,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2025-01-22 06:00:00' => 
+  '2025-01-22 09:00:00' =>
   array (
-    0 => '2025-01-22 06:00:00',
-    1 => 
+    0 => '2025-01-22 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 1,
       'day' => 22,
       'dayOfWeek' => 3,
       'dayOfYear' => 22,
-      'hour' => 6,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1737493200,
-      'formatted' => '2025-01-22 06:00:00',
-      'timezone' => 
+      'timestamp' => 1737504000,
+      'formatted' => '2025-01-22 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -1566,29 +1452,29 @@ return array (
       'lunar_year' => 2024,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 22.315466083120555,
-      'moon_phase_angle' => 270.22087965878217,
+      'moon_age' => 22.065,
+      'moon_phase_angle' => 268.6047245957193,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2025-01-23 00:00:00' => 
+  '2025-01-23 09:00:00' =>
   array (
-    0 => '2025-01-23 00:00:00',
-    1 => 
+    0 => '2025-01-23 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 1,
       'day' => 23,
       'dayOfWeek' => 4,
       'dayOfYear' => 23,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1737558000,
-      'formatted' => '2025-01-23 00:00:00',
-      'timezone' => 
+      'timestamp' => 1737590400,
+      'formatted' => '2025-01-23 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -1624,29 +1510,29 @@ return array (
       'lunar_year' => 2024,
       'lunar_day' => 24,
       'is_leap_month' => false,
-      'moon_age' => 23.065118410624564,
-      'moon_phase_angle' => 278.35284566053747,
+      'moon_age' => 23.065,
+      'moon_phase_angle' => 279.44856954069417,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-01-24 00:00:00' => 
+  '2025-01-24 09:00:00' =>
   array (
-    0 => '2025-01-24 00:00:00',
-    1 => 
+    0 => '2025-01-24 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 1,
       'day' => 24,
       'dayOfWeek' => 5,
       'dayOfYear' => 24,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1737644400,
-      'formatted' => '2025-01-24 00:00:00',
-      'timezone' => 
+      'timestamp' => 1737676800,
+      'formatted' => '2025-01-24 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -1682,29 +1568,29 @@ return array (
       'lunar_year' => 2024,
       'lunar_day' => 25,
       'is_leap_month' => false,
-      'moon_age' => 24.064885535277426,
-      'moon_phase_angle' => 289.32119037619987,
+      'moon_age' => 24.065,
+      'moon_phase_angle' => 290.43947373169635,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-01-25 00:00:00' => 
+  '2025-01-25 09:00:00' =>
   array (
-    0 => '2025-01-25 00:00:00',
-    1 => 
+    0 => '2025-01-25 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 1,
       'day' => 25,
       'dayOfWeek' => 6,
       'dayOfYear' => 25,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1737730800,
-      'formatted' => '2025-01-25 00:00:00',
-      'timezone' => 
+      'timestamp' => 1737763200,
+      'formatted' => '2025-01-25 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -1740,29 +1626,29 @@ return array (
       'lunar_year' => 2024,
       'lunar_day' => 26,
       'is_leap_month' => false,
-      'moon_age' => 25.06486564874649,
-      'moon_phase_angle' => 300.50798867918263,
+      'moon_age' => 25.065,
+      'moon_phase_angle' => 301.65829863015995,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-01-26 00:00:00' => 
+  '2025-01-26 09:00:00' =>
   array (
-    0 => '2025-01-26 00:00:00',
-    1 => 
+    0 => '2025-01-26 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 1,
       'day' => 26,
       'dayOfWeek' => 0,
       'dayOfYear' => 26,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1737817200,
-      'formatted' => '2025-01-26 00:00:00',
-      'timezone' => 
+      'timestamp' => 1737849600,
+      'formatted' => '2025-01-26 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -1798,29 +1684,29 @@ return array (
       'lunar_year' => 2024,
       'lunar_day' => 27,
       'is_leap_month' => false,
-      'moon_age' => 26.064867458771914,
-      'moon_phase_angle' => 311.9817941794338,
+      'moon_age' => 26.065,
+      'moon_phase_angle' => 313.1715124487107,
       'moon_phase' => 7,
       'moon_phase_text' => '有明',
     ),
   ),
-  '2025-01-27 00:00:00' => 
+  '2025-01-27 09:00:00' =>
   array (
-    0 => '2025-01-27 00:00:00',
-    1 => 
+    0 => '2025-01-27 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 1,
       'day' => 27,
       'dayOfWeek' => 1,
       'dayOfYear' => 27,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1737903600,
-      'formatted' => '2025-01-27 00:00:00',
-      'timezone' => 
+      'timestamp' => 1737936000,
+      'formatted' => '2025-01-27 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -1856,29 +1742,29 @@ return array (
       'lunar_year' => 2024,
       'lunar_day' => 28,
       'is_leap_month' => false,
-      'moon_age' => 26.931175472824215,
-      'moon_phase_angle' => 323.7909153241676,
+      'moon_age' => 27.065,
+      'moon_phase_angle' => 325.0244063638992,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-01-28 00:00:00' => 
+  '2025-01-28 09:00:00' =>
   array (
-    0 => '2025-01-28 00:00:00',
-    1 => 
+    0 => '2025-01-28 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 1,
       'day' => 28,
       'dayOfWeek' => 2,
       'dayOfYear' => 28,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1737990000,
-      'formatted' => '2025-01-28 00:00:00',
-      'timezone' => 
+      'timestamp' => 1738022400,
+      'formatted' => '2025-01-28 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -1914,29 +1800,29 @@ return array (
       'lunar_year' => 2024,
       'lunar_day' => 29,
       'is_leap_month' => false,
-      'moon_age' => 27.940117743010013,
-      'moon_phase_angle' => 335.957245702698,
+      'moon_age' => 28.065,
+      'moon_phase_angle' => 337.2351074974477,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-01-29 00:00:00' => 
+  '2025-01-29 09:00:00' =>
   array (
-    0 => '2025-01-29 00:00:00',
-    1 => 
+    0 => '2025-01-29 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 1,
       'day' => 29,
       'dayOfWeek' => 3,
       'dayOfYear' => 29,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1738076400,
-      'formatted' => '2025-01-29 00:00:00',
-      'timezone' => 
+      'timestamp' => 1738108800,
+      'formatted' => '2025-01-29 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -1972,16 +1858,16 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 28.97673531170407,
-      'moon_phase_angle' => 348.4722059566161,
+      'moon_age' => 29.065,
+      'moon_phase_angle' => 349.79105466328326,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2025-01-29 21:00:00' => 
+  '2025-01-29 21:36:00' =>
   array (
-    0 => '2025-01-29 21:00:00',
-    1 => 
+    0 => '2025-01-29 21:36:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 1,
@@ -1989,12 +1875,12 @@ return array (
       'dayOfWeek' => 3,
       'dayOfYear' => 29,
       'hour' => 21,
-      'minute' => 0,
+      'minute' => 36,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1738152000,
-      'formatted' => '2025-01-29 21:00:00',
-      'timezone' => 
+      'timestamp' => 1738154160,
+      'formatted' => '2025-01-29 21:36:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -2030,145 +1916,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.34877185989171267,
-      'moon_phase_angle' => 359.6787088671462,
+      'moon_age' => 0.0,
+      'moon_phase_angle' => 356.50785748299376,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2025-01-29 22:00:00' => 
+  '2025-01-30 09:00:00' =>
   array (
-    0 => '2025-01-29 22:00:00',
-    1 => 
-    array (
-      'year' => 2025,
-      'month' => 1,
-      'day' => 29,
-      'dayOfWeek' => 3,
-      'dayOfYear' => 29,
-      'hour' => 22,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1738155600,
-      'formatted' => '2025-01-29 22:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 7,
-      'misc_seasonal_node_text' => '土用',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 7,
-      'oriental_zodiac_text' => '巳',
-      'oriental_zodiac' => 6,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '先勝',
-      'six_weekday' => 2,
-      'weekday_text' => '水',
-      'month_text' => '睦月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '睦月',
-      'lunar_month' => 1,
-      'lunar_year' => 2025,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.39026475697755814,
-      'moon_phase_angle' => 0.21759910586041542,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2025-01-29 23:00:00' => 
-  array (
-    0 => '2025-01-29 23:00:00',
-    1 => 
-    array (
-      'year' => 2025,
-      'month' => 1,
-      'day' => 29,
-      'dayOfWeek' => 3,
-      'dayOfYear' => 29,
-      'hour' => 23,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1738159200,
-      'formatted' => '2025-01-29 23:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 7,
-      'misc_seasonal_node_text' => '土用',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 7,
-      'oriental_zodiac_text' => '巳',
-      'oriental_zodiac' => 6,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '先勝',
-      'six_weekday' => 2,
-      'weekday_text' => '水',
-      'month_text' => '睦月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '睦月',
-      'lunar_month' => 1,
-      'lunar_year' => 2025,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.4317653523758054,
-      'moon_phase_angle' => 0.7569278888802842,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2025-01-30 00:00:00' => 
-  array (
-    0 => '2025-01-30 00:00:00',
-    1 => 
+    0 => '2025-01-30 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 1,
       'day' => 30,
       'dayOfWeek' => 4,
       'dayOfYear' => 30,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1738162800,
-      'formatted' => '2025-01-30 00:00:00',
-      'timezone' => 
+      'timestamp' => 1738195200,
+      'formatted' => '2025-01-30 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -2204,29 +1974,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 2,
       'is_leap_month' => false,
-      'moon_age' => 0.4732483485713601,
-      'moon_phase_angle' => 1.2966898459583263,
+      'moon_age' => 0.475,
+      'moon_phase_angle' => 2.6496604956441843,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-01-31 00:00:00' => 
+  '2025-01-31 09:00:00' =>
   array (
-    0 => '2025-01-31 00:00:00',
-    1 => 
+    0 => '2025-01-31 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 1,
       'day' => 31,
       'dayOfWeek' => 5,
       'dayOfYear' => 31,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1738249200,
-      'formatted' => '2025-01-31 00:00:00',
-      'timezone' => 
+      'timestamp' => 1738281600,
+      'formatted' => '2025-01-31 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -2262,29 +2032,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 3,
       'is_leap_month' => false,
-      'moon_age' => 1.4686121926642954,
-      'moon_phase_angle' => 14.366273190472896,
+      'moon_age' => 1.475,
+      'moon_phase_angle' => 15.744114437409394,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-02-01 00:00:00' => 
+  '2025-02-01 09:00:00' =>
   array (
-    0 => '2025-02-01 00:00:00',
-    1 => 
+    0 => '2025-02-01 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 2,
       'day' => 1,
       'dayOfWeek' => 6,
       'dayOfYear' => 32,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1738335600,
-      'formatted' => '2025-02-01 00:00:00',
-      'timezone' => 
+      'timestamp' => 1738368000,
+      'formatted' => '2025-02-01 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -2320,29 +2090,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 4,
       'is_leap_month' => false,
-      'moon_age' => 2.4634779379703104,
-      'moon_phase_angle' => 27.60127932579826,
+      'moon_age' => 2.475,
+      'moon_phase_angle' => 28.993713927705983,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-02-02 00:00:00' => 
+  '2025-02-02 09:00:00' =>
   array (
-    0 => '2025-02-02 00:00:00',
-    1 => 
+    0 => '2025-02-02 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 2,
       'day' => 2,
       'dayOfWeek' => 0,
       'dayOfYear' => 33,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1738422000,
-      'formatted' => '2025-02-02 00:00:00',
-      'timezone' => 
+      'timestamp' => 1738454400,
+      'formatted' => '2025-02-02 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -2378,29 +2148,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 5,
       'is_leap_month' => false,
-      'moon_age' => 3.458272321615368,
-      'moon_phase_angle' => 40.919218543012164,
+      'moon_age' => 3.475,
+      'moon_phase_angle' => 42.316327493967435,
       'moon_phase' => 1,
       'moon_phase_text' => '三日月',
     ),
   ),
-  '2025-02-03 00:00:00' => 
+  '2025-02-03 09:00:00' =>
   array (
-    0 => '2025-02-03 00:00:00',
-    1 => 
+    0 => '2025-02-03 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 2,
       'day' => 3,
       'dayOfWeek' => 1,
       'dayOfYear' => 34,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1738508400,
-      'formatted' => '2025-02-03 00:00:00',
-      'timezone' => 
+      'timestamp' => 1738540800,
+      'formatted' => '2025-02-03 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -2436,29 +2206,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 6,
       'is_leap_month' => false,
-      'moon_age' => 4.4533309494145215,
-      'moon_phase_angle' => 54.24615198409242,
+      'moon_age' => 4.475,
+      'moon_phase_angle' => 55.63951382100652,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-02-04 00:00:00' => 
+  '2025-02-04 09:00:00' =>
   array (
-    0 => '2025-02-04 00:00:00',
-    1 => 
+    0 => '2025-02-04 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 2,
       'day' => 4,
       'dayOfWeek' => 2,
       'dayOfYear' => 35,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1738594800,
-      'formatted' => '2025-02-04 00:00:00',
-      'timezone' => 
+      'timestamp' => 1738627200,
+      'formatted' => '2025-02-04 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -2494,29 +2264,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 7,
       'is_leap_month' => false,
-      'moon_age' => 5.448855753522366,
-      'moon_phase_angle' => 67.52375958982782,
+      'moon_age' => 5.475,
+      'moon_phase_angle' => 68.90722694817396,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-02-05 00:00:00' => 
+  '2025-02-05 09:00:00' =>
   array (
-    0 => '2025-02-05 00:00:00',
-    1 => 
+    0 => '2025-02-05 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 2,
       'day' => 5,
       'dayOfWeek' => 3,
       'dayOfYear' => 36,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1738681200,
-      'formatted' => '2025-02-05 00:00:00',
-      'timezone' => 
+      'timestamp' => 1738713600,
+      'formatted' => '2025-02-05 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -2552,16 +2322,16 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 6.44497025385499,
-      'moon_phase_angle' => 80.7110109411704,
+      'moon_age' => 6.475,
+      'moon_phase_angle' => 82.08079914249072,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2025-02-05 17:00:00' => 
+  '2025-02-05 17:02:00' =>
   array (
-    0 => '2025-02-05 17:00:00',
-    1 => 
+    0 => '2025-02-05 17:02:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 2,
@@ -2569,12 +2339,12 @@ return array (
       'dayOfWeek' => 3,
       'dayOfYear' => 36,
       'hour' => 17,
-      'minute' => 0,
+      'minute' => 2,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1738742400,
-      'formatted' => '2025-02-05 17:00:00',
-      'timezone' => 
+      'timestamp' => 1738742520,
+      'formatted' => '2025-02-05 17:02:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -2610,29 +2380,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 7.150928748305887,
-      'moon_phase_angle' => 89.98230296602122,
+      'moon_age' => 6.809722222222222,
+      'moon_phase_angle' => 86.46462047729631,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2025-02-06 00:00:00' => 
+  '2025-02-06 09:00:00' =>
   array (
-    0 => '2025-02-06 00:00:00',
-    1 => 
+    0 => '2025-02-06 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 2,
       'day' => 6,
       'dayOfWeek' => 4,
       'dayOfYear' => 37,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1738767600,
-      'formatted' => '2025-02-06 00:00:00',
-      'timezone' => 
+      'timestamp' => 1738800000,
+      'formatted' => '2025-02-06 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -2668,29 +2438,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 9,
       'is_leap_month' => false,
-      'moon_age' => 7.441704411059618,
-      'moon_phase_angle' => 93.78118050133264,
+      'moon_age' => 7.475,
+      'moon_phase_angle' => 95.135166742992,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-02-07 00:00:00' => 
+  '2025-02-07 09:00:00' =>
   array (
-    0 => '2025-02-07 00:00:00',
-    1 => 
+    0 => '2025-02-07 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 2,
       'day' => 7,
       'dayOfWeek' => 5,
       'dayOfYear' => 38,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1738854000,
-      'formatted' => '2025-02-07 00:00:00',
-      'timezone' => 
+      'timestamp' => 1738886400,
+      'formatted' => '2025-02-07 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -2726,29 +2496,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 10,
       'is_leap_month' => false,
-      'moon_age' => 8.439078070223331,
-      'moon_phase_angle' => 106.71627184446425,
+      'moon_age' => 8.475,
+      'moon_phase_angle' => 108.0528432476388,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-02-08 00:00:00' => 
+  '2025-02-08 09:00:00' =>
   array (
-    0 => '2025-02-08 00:00:00',
-    1 => 
+    0 => '2025-02-08 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 2,
       'day' => 8,
       'dayOfWeek' => 6,
       'dayOfYear' => 39,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1738940400,
-      'formatted' => '2025-02-08 00:00:00',
-      'timezone' => 
+      'timestamp' => 1738972800,
+      'formatted' => '2025-02-08 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -2784,29 +2554,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 11,
       'is_leap_month' => false,
-      'moon_age' => 9.437100584618747,
-      'moon_phase_angle' => 119.50118303830857,
+      'moon_age' => 9.475,
+      'moon_phase_angle' => 120.81830784780561,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-02-09 00:00:00' => 
+  '2025-02-09 09:00:00' =>
   array (
-    0 => '2025-02-09 00:00:00',
-    1 => 
+    0 => '2025-02-09 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 2,
       'day' => 9,
       'dayOfWeek' => 0,
       'dayOfYear' => 40,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1739026800,
-      'formatted' => '2025-02-09 00:00:00',
-      'timezone' => 
+      'timestamp' => 1739059200,
+      'formatted' => '2025-02-09 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -2842,29 +2612,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 12,
       'is_leap_month' => false,
-      'moon_age' => 10.435796589590609,
-      'moon_phase_angle' => 132.11949528094522,
+      'moon_age' => 10.475,
+      'moon_phase_angle' => 133.4145254921495,
       'moon_phase' => 3,
       'moon_phase_text' => '十三夜',
     ),
   ),
-  '2025-02-10 00:00:00' => 
+  '2025-02-10 09:00:00' =>
   array (
-    0 => '2025-02-10 00:00:00',
-    1 => 
+    0 => '2025-02-10 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 2,
       'day' => 10,
       'dayOfWeek' => 1,
       'dayOfYear' => 41,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1739113200,
-      'formatted' => '2025-02-10 00:00:00',
-      'timezone' => 
+      'timestamp' => 1739145600,
+      'formatted' => '2025-02-10 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -2900,29 +2670,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 13,
       'is_leap_month' => false,
-      'moon_age' => 11.435199008788913,
-      'moon_phase_angle' => 144.55194829205743,
+      'moon_age' => 11.475,
+      'moon_phase_angle' => 145.82209321767107,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-02-11 00:00:00' => 
+  '2025-02-11 09:00:00' =>
   array (
-    0 => '2025-02-11 00:00:00',
-    1 => 
+    0 => '2025-02-11 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 2,
       'day' => 11,
       'dayOfWeek' => 2,
       'dayOfYear' => 42,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1739199600,
-      'formatted' => '2025-02-11 00:00:00',
-      'timezone' => 
+      'timestamp' => 1739232000,
+      'formatted' => '2025-02-11 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -2958,29 +2728,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 14,
       'is_leap_month' => false,
-      'moon_age' => 12.4353689965792,
-      'moon_phase_angle' => 156.77774748390448,
+      'moon_age' => 12.475,
+      'moon_phase_angle' => 158.02071003573835,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-02-12 00:00:00' => 
+  '2025-02-12 09:00:00' =>
   array (
-    0 => '2025-02-12 00:00:00',
-    1 => 
+    0 => '2025-02-12 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 2,
       'day' => 12,
       'dayOfWeek' => 3,
       'dayOfYear' => 43,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1739286000,
-      'formatted' => '2025-02-12 00:00:00',
-      'timezone' => 
+      'timestamp' => 1739318400,
+      'formatted' => '2025-02-12 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -3016,29 +2786,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 15,
       'is_leap_month' => false,
-      'moon_age' => 13.436368969734758,
-      'moon_phase_angle' => 168.77804063164666,
+      'moon_age' => 13.475,
+      'moon_phase_angle' => 169.9923779550872,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2025-02-12 21:00:00' => 
+  '2025-02-12 22:53:00' =>
   array (
-    0 => '2025-02-12 21:00:00',
-    1 => 
+    0 => '2025-02-12 22:53:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 2,
       'day' => 12,
       'dayOfWeek' => 3,
       'dayOfYear' => 43,
-      'hour' => 21,
-      'minute' => 0,
+      'hour' => 22,
+      'minute' => 53,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1739361600,
-      'formatted' => '2025-02-12 21:00:00',
-      'timezone' => 
+      'timestamp' => 1739368380,
+      'formatted' => '2025-02-12 22:53:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -3074,87 +2844,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 15,
       'is_leap_month' => false,
-      'moon_age' => 14.312985517084599,
-      'moon_phase_angle' => 179.08329858466212,
+      'moon_age' => 14.053472222222222,
+      'moon_phase_angle' => 176.80913464288307,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2025-02-12 23:00:00' => 
+  '2025-02-13 09:00:00' =>
   array (
-    0 => '2025-02-12 23:00:00',
-    1 => 
-    array (
-      'year' => 2025,
-      'month' => 2,
-      'day' => 12,
-      'dayOfWeek' => 3,
-      'dayOfYear' => 43,
-      'hour' => 23,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1739368800,
-      'formatted' => '2025-02-12 23:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 7,
-      'oriental_zodiac_text' => '巳',
-      'oriental_zodiac' => 6,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '先負',
-      'six_weekday' => 4,
-      'weekday_text' => '水',
-      'month_text' => '如月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '睦月',
-      'lunar_month' => 1,
-      'lunar_year' => 2025,
-      'lunar_day' => 15,
-      'is_leap_month' => false,
-      'moon_age' => 14.39651477523148,
-      'moon_phase_angle' => 180.0551170283745,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2025-02-13 00:00:00' => 
-  array (
-    0 => '2025-02-13 00:00:00',
-    1 => 
+    0 => '2025-02-13 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 2,
       'day' => 13,
       'dayOfWeek' => 4,
       'dayOfYear' => 44,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1739372400,
-      'formatted' => '2025-02-13 00:00:00',
-      'timezone' => 
+      'timestamp' => 1739404800,
+      'formatted' => '2025-02-13 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -3190,29 +2902,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 14.43827697308734,
-      'moon_phase_angle' => 180.54039841070195,
+      'moon_age' => 14.475,
+      'moon_phase_angle' => 181.7256138661359,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-02-14 00:00:00' => 
+  '2025-02-14 09:00:00' =>
   array (
-    0 => '2025-02-14 00:00:00',
-    1 => 
+    0 => '2025-02-14 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 2,
       'day' => 14,
       'dayOfWeek' => 5,
       'dayOfYear' => 45,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1739458800,
-      'formatted' => '2025-02-14 00:00:00',
-      'timezone' => 
+      'timestamp' => 1739491200,
+      'formatted' => '2025-02-14 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -3248,29 +2960,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 17,
       'is_leap_month' => false,
-      'moon_age' => 15.441130759194493,
-      'moon_phase_angle' => 192.06305487714425,
+      'moon_age' => 15.475,
+      'moon_phase_angle' => 193.21974459867835,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-02-15 00:00:00' => 
+  '2025-02-15 09:00:00' =>
   array (
-    0 => '2025-02-15 00:00:00',
-    1 => 
+    0 => '2025-02-15 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 2,
       'day' => 15,
       'dayOfWeek' => 6,
       'dayOfYear' => 46,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1739545200,
-      'formatted' => '2025-02-15 00:00:00',
-      'timezone' => 
+      'timestamp' => 1739577600,
+      'formatted' => '2025-02-15 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -3306,29 +3018,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 18,
       'is_leap_month' => false,
-      'moon_age' => 16.444942397996783,
-      'moon_phase_angle' => 203.35797553019432,
+      'moon_age' => 16.475,
+      'moon_phase_angle' => 204.48822500946272,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-02-16 00:00:00' => 
+  '2025-02-16 09:00:00' =>
   array (
-    0 => '2025-02-16 00:00:00',
-    1 => 
+    0 => '2025-02-16 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 2,
       'day' => 16,
       'dayOfWeek' => 0,
       'dayOfYear' => 47,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1739631600,
-      'formatted' => '2025-02-16 00:00:00',
-      'timezone' => 
+      'timestamp' => 1739664000,
+      'formatted' => '2025-02-16 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -3364,29 +3076,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 19,
       'is_leap_month' => false,
-      'moon_age' => 17.449691988062114,
-      'moon_phase_angle' => 214.45233049763235,
+      'moon_age' => 17.475,
+      'moon_phase_angle' => 215.56017601117304,
       'moon_phase' => 5,
       'moon_phase_text' => '十六夜',
     ),
   ),
-  '2025-02-17 00:00:00' => 
+  '2025-02-17 09:00:00' =>
   array (
-    0 => '2025-02-17 00:00:00',
-    1 => 
+    0 => '2025-02-17 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 2,
       'day' => 17,
       'dayOfWeek' => 1,
       'dayOfYear' => 48,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1739718000,
-      'formatted' => '2025-02-17 00:00:00',
-      'timezone' => 
+      'timestamp' => 1739750400,
+      'formatted' => '2025-02-17 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -3422,29 +3134,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 20,
       'is_leap_month' => false,
-      'moon_age' => 18.45525692170486,
-      'moon_phase_angle' => 225.38841970522682,
+      'moon_age' => 18.475,
+      'moon_phase_angle' => 226.48000525452386,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-02-18 00:00:00' => 
+  '2025-02-18 09:00:00' =>
   array (
-    0 => '2025-02-18 00:00:00',
-    1 => 
+    0 => '2025-02-18 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 2,
       'day' => 18,
       'dayOfWeek' => 2,
       'dayOfYear' => 49,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1739804400,
-      'formatted' => '2025-02-18 00:00:00',
-      'timezone' => 
+      'timestamp' => 1739836800,
+      'formatted' => '2025-02-18 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -3480,29 +3192,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 21,
       'is_leap_month' => false,
-      'moon_age' => 19.46144477883354,
-      'moon_phase_angle' => 236.22236553342998,
+      'moon_age' => 19.475,
+      'moon_phase_angle' => 237.30563745826282,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-02-19 00:00:00' => 
+  '2025-02-19 09:00:00' =>
   array (
-    0 => '2025-02-19 00:00:00',
-    1 => 
+    0 => '2025-02-19 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 2,
       'day' => 19,
       'dayOfWeek' => 3,
       'dayOfYear' => 50,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1739890800,
-      'formatted' => '2025-02-19 00:00:00',
-      'timezone' => 
+      'timestamp' => 1739923200,
+      'formatted' => '2025-02-19 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -3538,29 +3250,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 22,
       'is_leap_month' => false,
-      'moon_age' => 20.467943295370787,
-      'moon_phase_angle' => 247.0219248735839,
+      'moon_age' => 20.475,
+      'moon_phase_angle' => 248.1060637426987,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-02-20 00:00:00' => 
+  '2025-02-20 09:00:00' =>
   array (
-    0 => '2025-02-20 00:00:00',
-    1 => 
+    0 => '2025-02-20 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 2,
       'day' => 20,
       'dayOfWeek' => 4,
       'dayOfYear' => 51,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1739977200,
-      'formatted' => '2025-02-20 00:00:00',
-      'timezone' => 
+      'timestamp' => 1740009600,
+      'formatted' => '2025-02-20 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -3596,29 +3308,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 21.47435018932447,
-      'moon_phase_angle' => 257.8636376836837,
+      'moon_age' => 21.475,
+      'moon_phase_angle' => 258.9585387459788,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-02-21 00:00:00' => 
+  '2025-02-21 02:33:00' =>
   array (
-    0 => '2025-02-21 00:00:00',
-    1 => 
+    0 => '2025-02-21 02:33:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 2,
       'day' => 21,
       'dayOfWeek' => 5,
       'dayOfYear' => 52,
-      'hour' => 0,
-      'minute' => 0,
+      'hour' => 2,
+      'minute' => 33,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1740063600,
-      'formatted' => '2025-02-21 00:00:00',
-      'timezone' => 
+      'timestamp' => 1740072780,
+      'formatted' => '2025-02-21 02:33:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -3654,29 +3366,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 24,
       'is_leap_month' => false,
-      'moon_age' => 22.474844254087657,
-      'moon_phase_angle' => 268.8293153218169,
+      'moon_age' => 22.20625,
+      'moon_phase_angle' => 266.974622894895,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2025-02-21 03:00:00' => 
+  '2025-02-21 09:00:00' =>
   array (
-    0 => '2025-02-21 03:00:00',
-    1 => 
+    0 => '2025-02-21 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 2,
       'day' => 21,
       'dayOfWeek' => 5,
       'dayOfYear' => 52,
-      'hour' => 3,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1740074400,
-      'formatted' => '2025-02-21 03:00:00',
-      'timezone' => 
+      'timestamp' => 1740096000,
+      'formatted' => '2025-02-21 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -3712,29 +3424,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 24,
       'is_leap_month' => false,
-      'moon_age' => 22.599804169498384,
-      'moon_phase_angle' => 270.21288575913627,
+      'moon_age' => 22.475,
+      'moon_phase_angle' => 269.94519993652455,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2025-02-22 00:00:00' => 
+  '2025-02-22 09:00:00' =>
   array (
-    0 => '2025-02-22 00:00:00',
-    1 => 
+    0 => '2025-02-22 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 2,
       'day' => 22,
       'dayOfWeek' => 6,
       'dayOfYear' => 53,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1740150000,
-      'formatted' => '2025-02-22 00:00:00',
-      'timezone' => 
+      'timestamp' => 1740182400,
+      'formatted' => '2025-02-22 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -3770,29 +3482,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 25,
       'is_leap_month' => false,
-      'moon_age' => 23.474544301629066,
-      'moon_phase_angle' => 280.00166960828653,
+      'moon_age' => 23.475,
+      'moon_phase_angle' => 281.14861990411725,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-02-23 00:00:00' => 
+  '2025-02-23 09:00:00' =>
   array (
-    0 => '2025-02-23 00:00:00',
-    1 => 
+    0 => '2025-02-23 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 2,
       'day' => 23,
       'dayOfWeek' => 0,
       'dayOfYear' => 54,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1740236400,
-      'formatted' => '2025-02-23 00:00:00',
-      'timezone' => 
+      'timestamp' => 1740268800,
+      'formatted' => '2025-02-23 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -3828,29 +3540,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 26,
       'is_leap_month' => false,
-      'moon_age' => 24.47434990108013,
-      'moon_phase_angle' => 291.4587793885517,
+      'moon_age' => 24.475,
+      'moon_phase_angle' => 292.6459541562044,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-02-24 00:00:00' => 
+  '2025-02-24 09:00:00' =>
   array (
-    0 => '2025-02-24 00:00:00',
-    1 => 
+    0 => '2025-02-24 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 2,
       'day' => 24,
       'dayOfWeek' => 1,
       'dayOfYear' => 55,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1740322800,
-      'formatted' => '2025-02-24 00:00:00',
-      'timezone' => 
+      'timestamp' => 1740355200,
+      'formatted' => '2025-02-24 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -3886,29 +3598,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 27,
       'is_leap_month' => false,
-      'moon_age' => 25.474269956815988,
-      'moon_phase_angle' => 303.2671793867885,
+      'moon_age' => 25.475,
+      'moon_phase_angle' => 304.50170869602107,
       'moon_phase' => 7,
       'moon_phase_text' => '有明',
     ),
   ),
-  '2025-02-25 00:00:00' => 
+  '2025-02-25 09:00:00' =>
   array (
-    0 => '2025-02-25 00:00:00',
-    1 => 
+    0 => '2025-02-25 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 2,
       'day' => 25,
       'dayOfWeek' => 2,
       'dayOfYear' => 56,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1740409200,
-      'formatted' => '2025-02-25 00:00:00',
-      'timezone' => 
+      'timestamp' => 1740441600,
+      'formatted' => '2025-02-25 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -3944,29 +3656,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 28,
       'is_leap_month' => false,
-      'moon_age' => 26.26243390390122,
-      'moon_phase_angle' => 315.4737383891125,
+      'moon_age' => 26.475,
+      'moon_phase_angle' => 316.759554892859,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-02-26 00:00:00' => 
+  '2025-02-26 09:00:00' =>
   array (
-    0 => '2025-02-26 00:00:00',
-    1 => 
+    0 => '2025-02-26 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 2,
       'day' => 26,
       'dayOfWeek' => 3,
       'dayOfYear' => 57,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1740495600,
-      'formatted' => '2025-02-26 00:00:00',
-      'timezone' => 
+      'timestamp' => 1740528000,
+      'formatted' => '2025-02-26 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -4002,29 +3714,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 29,
       'is_leap_month' => false,
-      'moon_age' => 27.310578559203385,
-      'moon_phase_angle' => 328.0972217355379,
+      'moon_age' => 27.475,
+      'moon_phase_angle' => 329.4341545832285,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-02-27 00:00:00' => 
+  '2025-02-27 09:00:00' =>
   array (
-    0 => '2025-02-27 00:00:00',
-    1 => 
+    0 => '2025-02-27 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 2,
       'day' => 27,
       'dayOfWeek' => 4,
       'dayOfYear' => 58,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1740582000,
-      'formatted' => '2025-02-27 00:00:00',
-      'timezone' => 
+      'timestamp' => 1740614400,
+      'formatted' => '2025-02-27 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -4060,74 +3772,16 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 30,
       'is_leap_month' => false,
-      'moon_age' => 28.390285159139275,
-      'moon_phase_angle' => 341.12136947871,
+      'moon_age' => 28.475,
+      'moon_phase_angle' => 342.50472553312204,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-02-28 00:00:00' => 
-  array (
-    0 => '2025-02-28 00:00:00',
-    1 => 
-    array (
-      'year' => 2025,
-      'month' => 2,
-      'day' => 28,
-      'dayOfWeek' => 5,
-      'dayOfYear' => 59,
-      'hour' => 0,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1740668400,
-      'formatted' => '2025-02-28 00:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 7,
-      'oriental_zodiac_text' => '巳',
-      'oriental_zodiac' => 6,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '友引',
-      'six_weekday' => 3,
-      'weekday_text' => '金',
-      'month_text' => '如月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '如月',
-      'lunar_month' => 2,
-      'lunar_year' => 2025,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 29.495984538602023,
-      'moon_phase_angle' => 354.4920093434136,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2025-02-28 09:00:00' => 
+  '2025-02-28 09:00:00' =>
   array (
     0 => '2025-02-28 09:00:00',
-    1 => 
+    1 =>
     array (
       'year' => 2025,
       'month' => 2,
@@ -4140,7 +3794,7 @@ return array (
       'micro' => 0,
       'timestamp' => 1740700800,
       'formatted' => '2025-02-28 09:00:00',
-      'timezone' => 
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -4176,29 +3830,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.33921426348388195,
-      'moon_phase_angle' => 359.5781456971926,
+      'moon_age' => 29.475,
+      'moon_phase_angle' => 355.9127456002514,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2025-02-28 10:00:00' => 
+  '2025-02-28 09:45:00' =>
   array (
-    0 => '2025-02-28 10:00:00',
-    1 => 
+    0 => '2025-02-28 09:45:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 2,
       'day' => 28,
       'dayOfWeek' => 5,
       'dayOfYear' => 59,
-      'hour' => 10,
-      'minute' => 0,
+      'hour' => 9,
+      'minute' => 45,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1740704400,
-      'formatted' => '2025-02-28 10:00:00',
-      'timezone' => 
+      'timestamp' => 1740703500,
+      'formatted' => '2025-02-28 09:45:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -4234,87 +3888,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.38029042538255453,
-      'moon_phase_angle' => 0.14528141988256493,
+      'moon_age' => 0.0,
+      'moon_phase_angle' => 356.33625233624457,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2025-02-28 11:00:00' => 
+  '2025-03-01 09:00:00' =>
   array (
-    0 => '2025-02-28 11:00:00',
-    1 => 
-    array (
-      'year' => 2025,
-      'month' => 2,
-      'day' => 28,
-      'dayOfWeek' => 5,
-      'dayOfYear' => 59,
-      'hour' => 11,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1740708000,
-      'formatted' => '2025-02-28 11:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 7,
-      'oriental_zodiac_text' => '巳',
-      'oriental_zodiac' => 6,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '友引',
-      'six_weekday' => 3,
-      'weekday_text' => '金',
-      'month_text' => '如月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '如月',
-      'lunar_month' => 2,
-      'lunar_year' => 2025,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.4213657211512327,
-      'moon_phase_angle' => 0.7127895448031154,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2025-03-01 00:00:00' => 
-  array (
-    0 => '2025-03-01 00:00:00',
-    1 => 
+    0 => '2025-03-01 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 3,
       'day' => 1,
       'dayOfWeek' => 6,
       'dayOfYear' => 60,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1740754800,
-      'formatted' => '2025-03-01 00:00:00',
-      'timezone' => 
+      'timestamp' => 1740787200,
+      'formatted' => '2025-03-01 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -4350,29 +3946,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 2,
       'is_leap_month' => false,
-      'moon_age' => 0.9551348108798265,
-      'moon_phase_angle' => 8.12048151732347,
+      'moon_age' => 0.969,
+      'moon_phase_angle' => 9.565996155868447,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-03-02 00:00:00' => 
+  '2025-03-02 09:00:00' =>
   array (
-    0 => '2025-03-02 00:00:00',
-    1 => 
+    0 => '2025-03-02 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 3,
       'day' => 2,
       'dayOfWeek' => 0,
       'dayOfYear' => 61,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1740841200,
-      'formatted' => '2025-03-02 00:00:00',
-      'timezone' => 
+      'timestamp' => 1740873600,
+      'formatted' => '2025-03-02 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -4408,29 +4004,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 3,
       'is_leap_month' => false,
-      'moon_age' => 1.9402080001309514,
-      'moon_phase_angle' => 21.893966353099245,
+      'moon_age' => 1.969,
+      'moon_phase_angle' => 23.3495361925809,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-03-03 00:00:00' => 
+  '2025-03-03 09:00:00' =>
   array (
-    0 => '2025-03-03 00:00:00',
-    1 => 
+    0 => '2025-03-03 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 3,
       'day' => 3,
       'dayOfWeek' => 1,
       'dayOfYear' => 62,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1740927600,
-      'formatted' => '2025-03-03 00:00:00',
-      'timezone' => 
+      'timestamp' => 1740960000,
+      'formatted' => '2025-03-03 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -4466,29 +4062,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 4,
       'is_leap_month' => false,
-      'moon_age' => 2.925824613776058,
-      'moon_phase_angle' => 35.69093694565498,
+      'moon_age' => 2.969,
+      'moon_phase_angle' => 37.141577845945164,
       'moon_phase' => 1,
       'moon_phase_text' => '三日月',
     ),
   ),
-  '2025-03-04 00:00:00' => 
+  '2025-03-04 09:00:00' =>
   array (
-    0 => '2025-03-04 00:00:00',
-    1 => 
+    0 => '2025-03-04 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 3,
       'day' => 4,
       'dayOfWeek' => 2,
       'dayOfYear' => 63,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1741014000,
-      'formatted' => '2025-03-04 00:00:00',
-      'timezone' => 
+      'timestamp' => 1741046400,
+      'formatted' => '2025-03-04 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -4524,29 +4120,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 5,
       'is_leap_month' => false,
-      'moon_age' => 3.912924380041659,
-      'moon_phase_angle' => 49.39755774700194,
+      'moon_age' => 3.969,
+      'moon_phase_angle' => 50.830058583685116,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-03-05 00:00:00' => 
+  '2025-03-05 09:00:00' =>
   array (
-    0 => '2025-03-05 00:00:00',
-    1 => 
+    0 => '2025-03-05 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 3,
       'day' => 5,
       'dayOfWeek' => 3,
       'dayOfYear' => 64,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1741100400,
-      'formatted' => '2025-03-05 00:00:00',
-      'timezone' => 
+      'timestamp' => 1741132800,
+      'formatted' => '2025-03-05 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -4582,29 +4178,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 6,
       'is_leap_month' => false,
-      'moon_age' => 4.902145380619913,
-      'moon_phase_angle' => 62.92081466047796,
+      'moon_age' => 4.969,
+      'moon_phase_angle' => 64.32534247642593,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-03-06 00:00:00' => 
+  '2025-03-06 09:00:00' =>
   array (
-    0 => '2025-03-06 00:00:00',
-    1 => 
+    0 => '2025-03-06 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 3,
       'day' => 6,
       'dayOfWeek' => 4,
       'dayOfYear' => 65,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1741186800,
-      'formatted' => '2025-03-06 00:00:00',
-      'timezone' => 
+      'timestamp' => 1741219200,
+      'formatted' => '2025-03-06 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -4640,29 +4236,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 7,
       'is_leap_month' => false,
-      'moon_age' => 5.89381755143404,
-      'moon_phase_angle' => 76.19556976498444,
+      'moon_age' => 5.969,
+      'moon_phase_angle' => 77.56630863097155,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-03-07 00:00:00' => 
+  '2025-03-07 01:32:00' =>
   array (
-    0 => '2025-03-07 00:00:00',
-    1 => 
+    0 => '2025-03-07 01:32:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 3,
       'day' => 7,
       'dayOfWeek' => 5,
       'dayOfYear' => 66,
-      'hour' => 0,
-      'minute' => 0,
+      'hour' => 1,
+      'minute' => 32,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1741273200,
-      'formatted' => '2025-03-07 00:00:00',
-      'timezone' => 
+      'timestamp' => 1741278720,
+      'formatted' => '2025-03-07 01:32:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -4698,29 +4294,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 6.888073123060167,
-      'moon_phase_angle' => 89.18521961318044,
+      'moon_age' => 6.657638888888889,
+      'moon_phase_angle' => 86.52167316729123,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2025-03-07 02:00:00' => 
+  '2025-03-07 09:00:00' =>
   array (
-    0 => '2025-03-07 02:00:00',
-    1 => 
+    0 => '2025-03-07 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 3,
       'day' => 7,
       'dayOfWeek' => 5,
       'dayOfYear' => 66,
-      'hour' => 2,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1741280400,
-      'formatted' => '2025-03-07 02:00:00',
-      'timezone' => 
+      'timestamp' => 1741305600,
+      'formatted' => '2025-03-07 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -4756,29 +4352,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 6.97105214651674,
-      'moon_phase_angle' => 90.25429086310362,
+      'moon_age' => 6.969,
+      'moon_phase_angle' => 90.5199012388054,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2025-03-08 00:00:00' => 
+  '2025-03-08 09:00:00' =>
   array (
-    0 => '2025-03-08 00:00:00',
-    1 => 
+    0 => '2025-03-08 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 3,
       'day' => 8,
       'dayOfWeek' => 6,
       'dayOfYear' => 67,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1741359600,
-      'formatted' => '2025-03-08 00:00:00',
-      'timezone' => 
+      'timestamp' => 1741392000,
+      'formatted' => '2025-03-08 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -4814,29 +4410,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 9,
       'is_leap_month' => false,
-      'moon_age' => 7.884840780403465,
-      'moon_phase_angle' => 101.87756319789406,
+      'moon_age' => 7.969,
+      'moon_phase_angle' => 103.17633652184696,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-03-09 00:00:00' => 
+  '2025-03-09 09:00:00' =>
   array (
-    0 => '2025-03-09 00:00:00',
-    1 => 
+    0 => '2025-03-09 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 3,
       'day' => 9,
       'dayOfWeek' => 0,
       'dayOfYear' => 68,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1741446000,
-      'formatted' => '2025-03-09 00:00:00',
-      'timezone' => 
+      'timestamp' => 1741478400,
+      'formatted' => '2025-03-09 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -4872,29 +4468,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 10,
       'is_leap_month' => false,
-      'moon_age' => 8.883990139700472,
-      'moon_phase_angle' => 114.27826914767516,
+      'moon_age' => 8.969,
+      'moon_phase_angle' => 115.54263276568457,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-03-10 00:00:00' => 
+  '2025-03-10 09:00:00' =>
   array (
-    0 => '2025-03-10 00:00:00',
-    1 => 
+    0 => '2025-03-10 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 3,
       'day' => 10,
       'dayOfWeek' => 1,
       'dayOfYear' => 69,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1741532400,
-      'formatted' => '2025-03-10 00:00:00',
-      'timezone' => 
+      'timestamp' => 1741564800,
+      'formatted' => '2025-03-10 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -4930,29 +4526,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 11,
       'is_leap_month' => false,
-      'moon_age' => 9.885327411815524,
-      'moon_phase_angle' => 126.40410477283604,
+      'moon_age' => 9.969,
+      'moon_phase_angle' => 127.63632818649495,
       'moon_phase' => 3,
       'moon_phase_text' => '十三夜',
     ),
   ),
-  '2025-03-11 00:00:00' => 
+  '2025-03-11 09:00:00' =>
   array (
-    0 => '2025-03-11 00:00:00',
-    1 => 
+    0 => '2025-03-11 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 3,
       'day' => 11,
       'dayOfWeek' => 2,
       'dayOfYear' => 70,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1741618800,
-      'formatted' => '2025-03-11 00:00:00',
-      'timezone' => 
+      'timestamp' => 1741651200,
+      'formatted' => '2025-03-11 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -4988,29 +4584,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 12,
       'is_leap_month' => false,
-      'moon_age' => 10.888682482298464,
-      'moon_phase_angle' => 138.2773664914023,
+      'moon_age' => 10.969,
+      'moon_phase_angle' => 139.48026839093055,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-03-12 00:00:00' => 
+  '2025-03-12 09:00:00' =>
   array (
-    0 => '2025-03-12 00:00:00',
-    1 => 
+    0 => '2025-03-12 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 3,
       'day' => 12,
       'dayOfWeek' => 3,
       'dayOfYear' => 71,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1741705200,
-      'formatted' => '2025-03-12 00:00:00',
-      'timezone' => 
+      'timestamp' => 1741737600,
+      'formatted' => '2025-03-12 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -5046,29 +4642,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 13,
       'is_leap_month' => false,
-      'moon_age' => 11.893911366350949,
-      'moon_phase_angle' => 149.92218179164928,
+      'moon_age' => 11.969,
+      'moon_phase_angle' => 151.09889303670386,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-03-13 00:00:00' => 
+  '2025-03-13 09:00:00' =>
   array (
-    0 => '2025-03-13 00:00:00',
-    1 => 
+    0 => '2025-03-13 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 3,
       'day' => 13,
       'dayOfWeek' => 4,
       'dayOfYear' => 72,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1741791600,
-      'formatted' => '2025-03-13 00:00:00',
-      'timezone' => 
+      'timestamp' => 1741824000,
+      'formatted' => '2025-03-13 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -5104,29 +4700,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 14,
       'is_leap_month' => false,
-      'moon_age' => 12.900873994454741,
-      'moon_phase_angle' => 161.36276151165782,
+      'moon_age' => 12.969,
+      'moon_phase_angle' => 162.51637342145727,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-03-14 00:00:00' => 
+  '2025-03-14 09:00:00' =>
   array (
-    0 => '2025-03-14 00:00:00',
-    1 => 
+    0 => '2025-03-14 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 3,
       'day' => 14,
       'dayOfWeek' => 5,
       'dayOfYear' => 73,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1741878000,
-      'formatted' => '2025-03-14 00:00:00',
-      'timezone' => 
+      'timestamp' => 1741910400,
+      'formatted' => '2025-03-14 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -5162,16 +4758,16 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 15,
       'is_leap_month' => false,
-      'moon_age' => 13.909408010076731,
-      'moon_phase_angle' => 172.6233126861244,
+      'moon_age' => 13.969,
+      'moon_phase_angle' => 173.75670041957378,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2025-03-14 15:00:00' => 
+  '2025-03-14 15:55:00' =>
   array (
-    0 => '2025-03-14 15:00:00',
-    1 => 
+    0 => '2025-03-14 15:55:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 3,
@@ -5179,12 +4775,12 @@ return array (
       'dayOfWeek' => 5,
       'dayOfYear' => 73,
       'hour' => 15,
-      'minute' => 0,
+      'minute' => 55,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1741932000,
-      'formatted' => '2025-03-14 15:00:00',
-      'timezone' => 
+      'timestamp' => 1741935300,
+      'formatted' => '2025-03-14 15:55:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -5220,145 +4816,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 15,
       'is_leap_month' => false,
-      'moon_age' => 14.540481972973794,
-      'moon_phase_angle' => 179.58088281628798,
+      'moon_age' => 14.256944444444445,
+      'moon_phase_angle' => 176.96673822054103,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2025-03-14 16:00:00' => 
+  '2025-03-15 09:00:00' =>
   array (
-    0 => '2025-03-14 16:00:00',
-    1 => 
-    array (
-      'year' => 2025,
-      'month' => 3,
-      'day' => 14,
-      'dayOfWeek' => 5,
-      'dayOfYear' => 73,
-      'hour' => 16,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1741935600,
-      'formatted' => '2025-03-14 16:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 7,
-      'oriental_zodiac_text' => '巳',
-      'oriental_zodiac' => 6,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '仏滅',
-      'six_weekday' => 5,
-      'weekday_text' => '金',
-      'month_text' => '弥生',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '如月',
-      'lunar_month' => 2,
-      'lunar_year' => 2025,
-      'lunar_day' => 15,
-      'is_leap_month' => false,
-      'moon_age' => 14.582583312876523,
-      'moon_phase_angle' => 180.04273011044026,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2025-03-14 17:00:00' => 
-  array (
-    0 => '2025-03-14 17:00:00',
-    1 => 
-    array (
-      'year' => 2025,
-      'month' => 3,
-      'day' => 14,
-      'dayOfWeek' => 5,
-      'dayOfYear' => 73,
-      'hour' => 17,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1741939200,
-      'formatted' => '2025-03-14 17:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 7,
-      'oriental_zodiac_text' => '巳',
-      'oriental_zodiac' => 6,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '仏滅',
-      'six_weekday' => 5,
-      'weekday_text' => '金',
-      'month_text' => '弥生',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '如月',
-      'lunar_month' => 2,
-      'lunar_year' => 2025,
-      'lunar_day' => 15,
-      'is_leap_month' => false,
-      'moon_age' => 14.624675226397812,
-      'moon_phase_angle' => 180.50434001908152,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2025-03-15 00:00:00' => 
-  array (
-    0 => '2025-03-15 00:00:00',
-    1 => 
+    0 => '2025-03-15 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 3,
       'day' => 15,
       'dayOfWeek' => 6,
       'dayOfYear' => 74,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1741964400,
-      'formatted' => '2025-03-15 00:00:00',
-      'timezone' => 
+      'timestamp' => 1741996800,
+      'formatted' => '2025-03-15 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -5394,29 +4874,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 14.919384460896254,
-      'moon_phase_angle' => 183.72913824379287,
+      'moon_age' => 14.969,
+      'moon_phase_angle' => 184.84524314716316,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-03-16 00:00:00' => 
+  '2025-03-16 09:00:00' =>
   array (
-    0 => '2025-03-16 00:00:00',
-    1 => 
+    0 => '2025-03-16 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 3,
       'day' => 16,
       'dayOfWeek' => 0,
       'dayOfYear' => 75,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1742050800,
-      'formatted' => '2025-03-16 00:00:00',
-      'timezone' => 
+      'timestamp' => 1742083200,
+      'formatted' => '2025-03-16 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -5452,29 +4932,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 17,
       'is_leap_month' => false,
-      'moon_age' => 15.930571713950485,
-      'moon_phase_angle' => 194.70839900103417,
+      'moon_age' => 15.969,
+      'moon_phase_angle' => 195.8108331773018,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-03-17 00:00:00' => 
+  '2025-03-17 09:00:00' =>
   array (
-    0 => '2025-03-17 00:00:00',
-    1 => 
+    0 => '2025-03-17 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 3,
       'day' => 17,
       'dayOfWeek' => 1,
       'dayOfYear' => 76,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1742137200,
-      'formatted' => '2025-03-17 00:00:00',
-      'timezone' => 
+      'timestamp' => 1742169600,
+      'formatted' => '2025-03-17 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -5510,29 +4990,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 18,
       'is_leap_month' => false,
-      'moon_age' => 16.942730561830103,
-      'moon_phase_angle' => 205.59405179396396,
+      'moon_age' => 16.969,
+      'moon_phase_angle' => 206.68754760317796,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-03-18 00:00:00' => 
+  '2025-03-18 09:00:00' =>
   array (
-    0 => '2025-03-18 00:00:00',
-    1 => 
+    0 => '2025-03-18 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 3,
       'day' => 18,
       'dayOfWeek' => 2,
       'dayOfYear' => 77,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1742223600,
-      'formatted' => '2025-03-18 00:00:00',
-      'timezone' => 
+      'timestamp' => 1742256000,
+      'formatted' => '2025-03-18 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -5568,29 +5048,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 19,
       'is_leap_month' => false,
-      'moon_age' => 17.955463009420782,
-      'moon_phase_angle' => 216.42556468582723,
+      'moon_age' => 17.969,
+      'moon_phase_angle' => 217.51595300632678,
       'moon_phase' => 5,
       'moon_phase_text' => '十六夜',
     ),
   ),
-  '2025-03-19 00:00:00' => 
+  '2025-03-19 09:00:00' =>
   array (
-    0 => '2025-03-19 00:00:00',
-    1 => 
+    0 => '2025-03-19 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 3,
       'day' => 19,
       'dayOfWeek' => 3,
       'dayOfYear' => 78,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1742310000,
-      'formatted' => '2025-03-19 00:00:00',
-      'timezone' => 
+      'timestamp' => 1742342400,
+      'formatted' => '2025-03-19 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -5626,29 +5106,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 20,
       'is_leap_month' => false,
-      'moon_age' => 18.968308066017926,
-      'moon_phase_angle' => 227.25011061094526,
+      'moon_age' => 18.969,
+      'moon_phase_angle' => 228.3440082542031,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-03-20 00:00:00' => 
+  '2025-03-20 09:00:00' =>
   array (
-    0 => '2025-03-20 00:00:00',
-    1 => 
+    0 => '2025-03-20 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 3,
       'day' => 20,
       'dayOfWeek' => 4,
       'dayOfYear' => 79,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1742396400,
-      'formatted' => '2025-03-20 00:00:00',
-      'timezone' => 
+      'timestamp' => 1742428800,
+      'formatted' => '2025-03-20 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -5684,29 +5164,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 21,
       'is_leap_month' => false,
-      'moon_age' => 19.967631718609482,
-      'moon_phase_angle' => 238.12302192539124,
+      'moon_age' => 19.969,
+      'moon_phase_angle' => 239.2276641898515,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-03-21 00:00:00' => 
+  '2025-03-21 09:00:00' =>
   array (
-    0 => '2025-03-21 00:00:00',
-    1 => 
+    0 => '2025-03-21 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 3,
       'day' => 21,
       'dayOfWeek' => 5,
       'dayOfYear' => 80,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1742482800,
-      'formatted' => '2025-03-21 00:00:00',
-      'timezone' => 
+      'timestamp' => 1742515200,
+      'formatted' => '2025-03-21 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -5742,29 +5222,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 22,
       'is_leap_month' => false,
-      'moon_age' => 20.96632722718641,
-      'moon_phase_angle' => 249.10732154020062,
+      'moon_age' => 20.969,
+      'moon_phase_angle' => 250.23068252472103,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-03-22 00:00:00' => 
+  '2025-03-22 09:00:00' =>
   array (
-    0 => '2025-03-22 00:00:00',
-    1 => 
+    0 => '2025-03-22 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 3,
       'day' => 22,
       'dayOfWeek' => 6,
       'dayOfYear' => 81,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1742569200,
-      'formatted' => '2025-03-22 00:00:00',
-      'timezone' => 
+      'timestamp' => 1742601600,
+      'formatted' => '2025-03-22 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -5800,29 +5280,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 21.965247668791562,
-      'moon_phase_angle' => 260.2721220110721,
+      'moon_age' => 21.969,
+      'moon_phase_angle' => 261.42296213128026,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2025-03-22 21:00:00' => 
+  '2025-03-22 20:29:00' =>
   array (
-    0 => '2025-03-22 21:00:00',
-    1 => 
+    0 => '2025-03-22 20:29:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 3,
       'day' => 22,
       'dayOfWeek' => 6,
       'dayOfYear' => 81,
-      'hour' => 21,
-      'minute' => 0,
+      'hour' => 20,
+      'minute' => 29,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1742644800,
-      'formatted' => '2025-03-22 21:00:00',
-      'timezone' => 
+      'timestamp' => 1742642940,
+      'formatted' => '2025-03-22 20:29:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -5858,29 +5338,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 22.839559329673648,
-      'moon_phase_angle' => 270.2461508352228,
+      'moon_age' => 22.447222222222223,
+      'moon_phase_angle' => 266.86631257980264,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2025-03-23 00:00:00' => 
+  '2025-03-23 09:00:00' =>
   array (
-    0 => '2025-03-23 00:00:00',
-    1 => 
+    0 => '2025-03-23 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 3,
       'day' => 23,
       'dayOfWeek' => 0,
       'dayOfYear' => 82,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1742655600,
-      'formatted' => '2025-03-23 00:00:00',
-      'timezone' => 
+      'timestamp' => 1742688000,
+      'formatted' => '2025-03-23 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -5916,29 +5396,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 24,
       'is_leap_month' => false,
-      'moon_age' => 22.96448060683906,
-      'moon_phase_angle' => 271.68961663303924,
+      'moon_age' => 22.969,
+      'moon_phase_angle' => 272.8769877743602,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-03-24 00:00:00' => 
+  '2025-03-24 09:00:00' =>
   array (
-    0 => '2025-03-24 00:00:00',
-    1 => 
+    0 => '2025-03-24 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 3,
       'day' => 24,
       'dayOfWeek' => 1,
       'dayOfYear' => 83,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1742742000,
-      'formatted' => '2025-03-24 00:00:00',
-      'timezone' => 
+      'timestamp' => 1742774400,
+      'formatted' => '2025-03-24 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -5974,29 +5454,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 25,
       'is_leap_month' => false,
-      'moon_age' => 23.964118279051036,
-      'moon_phase_angle' => 283.4303219950923,
+      'moon_age' => 23.969,
+      'moon_phase_angle' => 284.66249563979034,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-03-25 00:00:00' => 
+  '2025-03-25 09:00:00' =>
   array (
-    0 => '2025-03-25 00:00:00',
-    1 => 
+    0 => '2025-03-25 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 3,
       'day' => 25,
       'dayOfWeek' => 2,
       'dayOfYear' => 84,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1742828400,
-      'formatted' => '2025-03-25 00:00:00',
-      'timezone' => 
+      'timestamp' => 1742860800,
+      'formatted' => '2025-03-25 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -6032,29 +5512,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 26,
       'is_leap_month' => false,
-      'moon_age' => 24.967509026639163,
-      'moon_phase_angle' => 295.5562658708113,
+      'moon_age' => 24.969,
+      'moon_phase_angle' => 296.8395203061303,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-03-26 00:00:00' => 
+  '2025-03-26 09:00:00' =>
   array (
-    0 => '2025-03-26 00:00:00',
-    1 => 
+    0 => '2025-03-26 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 3,
       'day' => 26,
       'dayOfWeek' => 3,
       'dayOfYear' => 85,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1742914800,
-      'formatted' => '2025-03-26 00:00:00',
-      'timezone' => 
+      'timestamp' => 1742947200,
+      'formatted' => '2025-03-26 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -6090,29 +5570,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 27,
       'is_leap_month' => false,
-      'moon_age' => 25.965118094347417,
-      'moon_phase_angle' => 308.1120929287746,
+      'moon_age' => 25.969,
+      'moon_phase_angle' => 309.44974454234335,
       'moon_phase' => 7,
       'moon_phase_text' => '有明',
     ),
   ),
-  '2025-03-27 00:00:00' => 
+  '2025-03-27 09:00:00' =>
   array (
-    0 => '2025-03-27 00:00:00',
-    1 => 
+    0 => '2025-03-27 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 3,
       'day' => 27,
       'dayOfWeek' => 4,
       'dayOfYear' => 86,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1743001200,
-      'formatted' => '2025-03-27 00:00:00',
-      'timezone' => 
+      'timestamp' => 1743033600,
+      'formatted' => '2025-03-27 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -6148,29 +5628,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 28,
       'is_leap_month' => false,
-      'moon_age' => 26.96410876652226,
-      'moon_phase_angle' => 321.1147383199537,
+      'moon_age' => 26.969,
+      'moon_phase_angle' => 322.506341292768,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-03-28 00:00:00' => 
+  '2025-03-28 09:00:00' =>
   array (
-    0 => '2025-03-28 00:00:00',
-    1 => 
+    0 => '2025-03-28 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 3,
       'day' => 28,
       'dayOfWeek' => 5,
       'dayOfYear' => 87,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1743087600,
-      'formatted' => '2025-03-28 00:00:00',
-      'timezone' => 
+      'timestamp' => 1743120000,
+      'formatted' => '2025-03-28 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -6206,29 +5686,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 29,
       'is_leap_month' => false,
-      'moon_age' => 27.964591800700873,
-      'moon_phase_angle' => 334.54344245032803,
+      'moon_age' => 27.969,
+      'moon_phase_angle' => 335.983899512385,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-03-29 00:00:00' => 
+  '2025-03-29 09:00:00' =>
   array (
-    0 => '2025-03-29 00:00:00',
-    1 => 
+    0 => '2025-03-29 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 3,
       'day' => 29,
       'dayOfWeek' => 6,
       'dayOfYear' => 88,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1743174000,
-      'formatted' => '2025-03-29 00:00:00',
-      'timezone' => 
+      'timestamp' => 1743206400,
+      'formatted' => '2025-03-29 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -6264,16 +5744,16 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 29.00366494725862,
-      'moon_phase_angle' => 348.3331602260504,
+      'moon_age' => 28.969,
+      'moon_phase_angle' => 349.8119639495595,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2025-03-29 19:00:00' => 
+  '2025-03-29 19:58:00' =>
   array (
-    0 => '2025-03-29 19:00:00',
-    1 => 
+    0 => '2025-03-29 19:58:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 3,
@@ -6281,12 +5761,12 @@ return array (
       'dayOfWeek' => 6,
       'dayOfYear' => 88,
       'hour' => 19,
-      'minute' => 0,
+      'minute' => 58,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1743242400,
-      'formatted' => '2025-03-29 19:00:00',
-      'timezone' => 
+      'timestamp' => 1743245880,
+      'formatted' => '2025-03-29 19:58:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -6322,145 +5802,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.32665814086794853,
-      'moon_phase_angle' => 359.43551729946046,
+      'moon_age' => 0.0,
+      'moon_phase_angle' => 356.21758095504526,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2025-03-29 20:00:00' => 
+  '2025-03-30 09:00:00' =>
   array (
-    0 => '2025-03-29 20:00:00',
-    1 => 
-    array (
-      'year' => 2025,
-      'month' => 3,
-      'day' => 29,
-      'dayOfWeek' => 6,
-      'dayOfYear' => 88,
-      'hour' => 20,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1743246000,
-      'formatted' => '2025-03-29 20:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 7,
-      'oriental_zodiac_text' => '巳',
-      'oriental_zodiac' => 6,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '先負',
-      'six_weekday' => 4,
-      'weekday_text' => '土',
-      'month_text' => '弥生',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '弥生',
-      'lunar_month' => 3,
-      'lunar_year' => 2025,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.36728165531530976,
-      'moon_phase_angle' => 0.022972590713420615,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2025-03-29 21:00:00' => 
-  array (
-    0 => '2025-03-29 21:00:00',
-    1 => 
-    array (
-      'year' => 2025,
-      'month' => 3,
-      'day' => 29,
-      'dayOfWeek' => 6,
-      'dayOfYear' => 88,
-      'hour' => 21,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1743249600,
-      'formatted' => '2025-03-29 21:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 7,
-      'oriental_zodiac_text' => '巳',
-      'oriental_zodiac' => 6,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '先負',
-      'six_weekday' => 4,
-      'weekday_text' => '土',
-      'month_text' => '弥生',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '弥生',
-      'lunar_month' => 3,
-      'lunar_year' => 2025,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.4079034351743758,
-      'moon_phase_angle' => 0.6106651138942496,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2025-03-30 00:00:00' => 
-  array (
-    0 => '2025-03-30 00:00:00',
-    1 => 
+    0 => '2025-03-30 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 3,
       'day' => 30,
       'dayOfWeek' => 0,
       'dayOfYear' => 89,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1743260400,
-      'formatted' => '2025-03-30 00:00:00',
-      'timezone' => 
+      'timestamp' => 1743292800,
+      'formatted' => '2025-03-30 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -6496,29 +5860,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 2,
       'is_leap_month' => false,
-      'moon_age' => 0.5297760493122041,
-      'moon_phase_angle' => 2.3750552627365735,
+      'moon_age' => 0.543,
+      'moon_phase_angle' => 3.8764807237979166,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-03-31 00:00:00' => 
+  '2025-03-31 09:00:00' =>
   array (
-    0 => '2025-03-31 00:00:00',
-    1 => 
+    0 => '2025-03-31 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 3,
       'day' => 31,
       'dayOfWeek' => 1,
       'dayOfYear' => 90,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1743346800,
-      'formatted' => '2025-03-31 00:00:00',
-      'timezone' => 
+      'timestamp' => 1743379200,
+      'formatted' => '2025-03-31 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -6554,29 +5918,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 3,
       'is_leap_month' => false,
-      'moon_age' => 1.5048839985392988,
-      'moon_phase_angle' => 16.5266944318547,
+      'moon_age' => 1.543,
+      'moon_phase_angle' => 18.031607815480918,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-04-01 00:00:00' => 
+  '2025-04-01 09:00:00' =>
   array (
-    0 => '2025-04-01 00:00:00',
-    1 => 
+    0 => '2025-04-01 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 4,
       'day' => 1,
       'dayOfWeek' => 2,
       'dayOfYear' => 91,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1743433200,
-      'formatted' => '2025-04-01 00:00:00',
-      'timezone' => 
+      'timestamp' => 1743465600,
+      'formatted' => '2025-04-01 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -6612,29 +5976,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 4,
       'is_leap_month' => false,
-      'moon_age' => 2.4816663381643593,
-      'moon_phase_angle' => 30.631344994200035,
+      'moon_age' => 2.543,
+      'moon_phase_angle' => 32.12029561495806,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-04-02 00:00:00' => 
+  '2025-04-02 09:00:00' =>
   array (
-    0 => '2025-04-02 00:00:00',
-    1 => 
+    0 => '2025-04-02 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 4,
       'day' => 2,
       'dayOfWeek' => 3,
       'dayOfYear' => 92,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1743519600,
-      'formatted' => '2025-04-02 00:00:00',
-      'timezone' => 
+      'timestamp' => 1743552000,
+      'formatted' => '2025-04-02 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -6670,29 +6034,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 5,
       'is_leap_month' => false,
-      'moon_age' => 3.4617782328277826,
-      'moon_phase_angle' => 44.54158933360006,
+      'moon_age' => 3.543,
+      'moon_phase_angle' => 45.99802331827214,
       'moon_phase' => 1,
       'moon_phase_text' => '三日月',
     ),
   ),
-  '2025-04-03 00:00:00' => 
+  '2025-04-03 09:00:00' =>
   array (
-    0 => '2025-04-03 00:00:00',
-    1 => 
+    0 => '2025-04-03 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 4,
       'day' => 3,
       'dayOfWeek' => 4,
       'dayOfYear' => 93,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1743606000,
-      'formatted' => '2025-04-03 00:00:00',
-      'timezone' => 
+      'timestamp' => 1743638400,
+      'formatted' => '2025-04-03 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -6728,29 +6092,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 6,
       'is_leap_month' => false,
-      'moon_age' => 3.964367817156017,
-      'moon_phase_angle' => 58.14027299648269,
+      'moon_age' => 4.543,
+      'moon_phase_angle' => 59.55260505838371,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-04-04 00:00:00' => 
+  '2025-04-04 09:00:00' =>
   array (
-    0 => '2025-04-04 00:00:00',
-    1 => 
+    0 => '2025-04-04 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 4,
       'day' => 4,
       'dayOfWeek' => 5,
       'dayOfYear' => 94,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1743692400,
-      'formatted' => '2025-04-04 00:00:00',
-      'timezone' => 
+      'timestamp' => 1743724800,
+      'formatted' => '2025-04-04 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -6786,29 +6150,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 7,
       'is_leap_month' => false,
-      'moon_age' => 4.964787872042507,
-      'moon_phase_angle' => 71.3527379065101,
+      'moon_age' => 5.543,
+      'moon_phase_angle' => 72.71497086285133,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-04-05 00:00:00' => 
+  '2025-04-05 09:00:00' =>
   array (
-    0 => '2025-04-05 00:00:00',
-    1 => 
+    0 => '2025-04-05 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 4,
       'day' => 5,
       'dayOfWeek' => 6,
       'dayOfYear' => 95,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1743778800,
-      'formatted' => '2025-04-05 00:00:00',
-      'timezone' => 
+      'timestamp' => 1743811200,
+      'formatted' => '2025-04-05 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -6844,16 +6208,16 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 5.965072872117162,
-      'moon_phase_angle' => 84.1486404199277,
+      'moon_age' => 6.543,
+      'moon_phase_angle' => 85.45980635878446,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2025-04-05 11:00:00' => 
+  '2025-04-05 11:15:00' =>
   array (
-    0 => '2025-04-05 11:00:00',
-    1 => 
+    0 => '2025-04-05 11:15:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 4,
@@ -6861,12 +6225,12 @@ return array (
       'dayOfWeek' => 6,
       'dayOfYear' => 95,
       'hour' => 11,
-      'minute' => 0,
+      'minute' => 15,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1743818400,
-      'formatted' => '2025-04-05 11:00:00',
-      'timezone' => 
+      'timestamp' => 1743819300,
+      'formatted' => '2025-04-05 11:15:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -6902,29 +6266,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 6.423463958315551,
-      'moon_phase_angle' => 89.87513074151492,
+      'moon_age' => 6.636805555555555,
+      'moon_phase_angle' => 86.63339016148556,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2025-04-06 00:00:00' => 
+  '2025-04-06 09:00:00' =>
   array (
-    0 => '2025-04-06 00:00:00',
-    1 => 
+    0 => '2025-04-06 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 4,
       'day' => 6,
       'dayOfWeek' => 0,
       'dayOfYear' => 96,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1743865200,
-      'formatted' => '2025-04-06 00:00:00',
-      'timezone' => 
+      'timestamp' => 1743897600,
+      'formatted' => '2025-04-06 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -6960,29 +6324,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 9,
       'is_leap_month' => false,
-      'moon_age' => 6.9651063634082675,
-      'moon_phase_angle' => 96.53549803947831,
+      'moon_age' => 7.543,
+      'moon_phase_angle' => 97.79851427901164,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-04-07 00:00:00' => 
+  '2025-04-07 09:00:00' =>
   array (
-    0 => '2025-04-07 00:00:00',
-    1 => 
+    0 => '2025-04-07 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 4,
       'day' => 7,
       'dayOfWeek' => 1,
       'dayOfYear' => 97,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1743951600,
-      'formatted' => '2025-04-07 00:00:00',
-      'timezone' => 
+      'timestamp' => 1743984000,
+      'formatted' => '2025-04-07 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -7018,29 +6382,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 10,
       'is_leap_month' => false,
-      'moon_age' => 7.964913777541369,
-      'moon_phase_angle' => 108.54803986216882,
+      'moon_age' => 8.543,
+      'moon_phase_angle' => 109.76844523374287,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-04-08 00:00:00' => 
+  '2025-04-08 09:00:00' =>
   array (
-    0 => '2025-04-08 00:00:00',
-    1 => 
+    0 => '2025-04-08 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 4,
       'day' => 8,
       'dayOfWeek' => 2,
       'dayOfYear' => 98,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1744038000,
-      'formatted' => '2025-04-08 00:00:00',
-      'timezone' => 
+      'timestamp' => 1744070400,
+      'formatted' => '2025-04-08 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -7076,29 +6440,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 11,
       'is_leap_month' => false,
-      'moon_age' => 8.964574928861111,
-      'moon_phase_angle' => 120.23705055674883,
+      'moon_age' => 9.543,
+      'moon_phase_angle' => 121.42182738988495,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-04-09 00:00:00' => 
+  '2025-04-09 09:00:00' =>
   array (
-    0 => '2025-04-09 00:00:00',
-    1 => 
+    0 => '2025-04-09 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 4,
       'day' => 9,
       'dayOfWeek' => 3,
       'dayOfYear' => 99,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1744124400,
-      'formatted' => '2025-04-09 00:00:00',
-      'timezone' => 
+      'timestamp' => 1744156800,
+      'formatted' => '2025-04-09 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -7134,29 +6498,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 12,
       'is_leap_month' => false,
-      'moon_age' => 9.964238464832306,
-      'moon_phase_angle' => 131.65996478057542,
+      'moon_age' => 10.543,
+      'moon_phase_angle' => 132.8164736524405,
       'moon_phase' => 3,
       'moon_phase_text' => '十三夜',
     ),
   ),
-  '2025-04-10 00:00:00' => 
+  '2025-04-10 09:00:00' =>
   array (
-    0 => '2025-04-10 00:00:00',
-    1 => 
+    0 => '2025-04-10 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 4,
       'day' => 10,
       'dayOfWeek' => 4,
       'dayOfYear' => 100,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1744210800,
-      'formatted' => '2025-04-10 00:00:00',
-      'timezone' => 
+      'timestamp' => 1744243200,
+      'formatted' => '2025-04-10 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -7192,29 +6556,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 13,
       'is_leap_month' => false,
-      'moon_age' => 11.463879903312773,
-      'moon_phase_angle' => 142.87408843160736,
+      'moon_age' => 11.543,
+      'moon_phase_angle' => 144.00917986839437,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-04-11 00:00:00' => 
+  '2025-04-11 09:00:00' =>
   array (
-    0 => '2025-04-11 00:00:00',
-    1 => 
+    0 => '2025-04-11 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 4,
       'day' => 11,
       'dayOfWeek' => 5,
       'dayOfYear' => 101,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1744297200,
-      'formatted' => '2025-04-11 00:00:00',
-      'timezone' => 
+      'timestamp' => 1744329600,
+      'formatted' => '2025-04-11 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -7250,29 +6614,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 14,
       'is_leap_month' => false,
-      'moon_age' => 12.478385555557907,
-      'moon_phase_angle' => 153.9324591633821,
+      'moon_age' => 12.543,
+      'moon_phase_angle' => 155.05197457234505,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-04-12 00:00:00' => 
+  '2025-04-12 09:00:00' =>
   array (
-    0 => '2025-04-12 00:00:00',
-    1 => 
+    0 => '2025-04-12 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 4,
       'day' => 12,
       'dayOfWeek' => 6,
       'dayOfYear' => 102,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1744383600,
-      'formatted' => '2025-04-12 00:00:00',
-      'timezone' => 
+      'timestamp' => 1744416000,
+      'formatted' => '2025-04-12 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -7308,190 +6672,16 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 15,
       'is_leap_month' => false,
-      'moon_age' => 13.49421369144693,
-      'moon_phase_angle' => 164.88198018158306,
+      'moon_age' => 13.543,
+      'moon_phase_angle' => 165.99082496058358,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-04-13 00:00:00' => 
-  array (
-    0 => '2025-04-13 00:00:00',
-    1 => 
-    array (
-      'year' => 2025,
-      'month' => 4,
-      'day' => 13,
-      'dayOfWeek' => 0,
-      'dayOfYear' => 103,
-      'hour' => 0,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1744470000,
-      'formatted' => '2025-04-13 00:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 7,
-      'oriental_zodiac_text' => '巳',
-      'oriental_zodiac' => 6,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '赤口',
-      'six_weekday' => 1,
-      'weekday_text' => '日',
-      'month_text' => '卯月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '弥生',
-      'lunar_month' => 3,
-      'lunar_year' => 2025,
-      'lunar_day' => 16,
-      'is_leap_month' => false,
-      'moon_age' => 14.510886694304645,
-      'moon_phase_angle' => 175.76336445247588,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2025-04-13 06:00:00' => 
-  array (
-    0 => '2025-04-13 06:00:00',
-    1 => 
-    array (
-      'year' => 2025,
-      'month' => 4,
-      'day' => 13,
-      'dayOfWeek' => 0,
-      'dayOfYear' => 103,
-      'hour' => 6,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1744491600,
-      'formatted' => '2025-04-13 06:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 7,
-      'oriental_zodiac_text' => '巳',
-      'oriental_zodiac' => 6,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '赤口',
-      'six_weekday' => 1,
-      'weekday_text' => '日',
-      'month_text' => '卯月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '弥生',
-      'lunar_month' => 3,
-      'lunar_year' => 2025,
-      'lunar_day' => 16,
-      'is_leap_month' => false,
-      'moon_age' => 14.765143486205488,
-      'moon_phase_angle' => 178.4773406235462,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2025-04-13 08:00:00' => 
-  array (
-    0 => '2025-04-13 08:00:00',
-    1 => 
-    array (
-      'year' => 2025,
-      'month' => 4,
-      'day' => 13,
-      'dayOfWeek' => 0,
-      'dayOfYear' => 103,
-      'hour' => 8,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1744498800,
-      'formatted' => '2025-04-13 08:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 7,
-      'oriental_zodiac_text' => '巳',
-      'oriental_zodiac' => 6,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '赤口',
-      'six_weekday' => 1,
-      'weekday_text' => '日',
-      'month_text' => '卯月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '弥生',
-      'lunar_month' => 3,
-      'lunar_year' => 2025,
-      'lunar_day' => 16,
-      'is_leap_month' => false,
-      'moon_age' => 14.849891927558929,
-      'moon_phase_angle' => 179.38164436054353,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2025-04-13 09:00:00' => 
+  '2025-04-13 09:00:00' =>
   array (
     0 => '2025-04-13 09:00:00',
-    1 => 
+    1 =>
     array (
       'year' => 2025,
       'month' => 4,
@@ -7504,7 +6694,7 @@ return array (
       'micro' => 0,
       'timestamp' => 1744502400,
       'formatted' => '2025-04-13 09:00:00',
-      'timezone' => 
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -7540,29 +6730,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 14.892277993261814,
-      'moon_phase_angle' => 179.83374049576588,
+      'moon_age' => 14.543,
+      'moon_phase_angle' => 176.86601490844993,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2025-04-13 10:00:00' => 
+  '2025-04-13 09:22:00' =>
   array (
-    0 => '2025-04-13 10:00:00',
-    1 => 
+    0 => '2025-04-13 09:22:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 4,
       'day' => 13,
       'dayOfWeek' => 0,
       'dayOfYear' => 103,
-      'hour' => 10,
-      'minute' => 0,
+      'hour' => 9,
+      'minute' => 22,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1744506000,
-      'formatted' => '2025-04-13 10:00:00',
-      'timezone' => 
+      'timestamp' => 1744503720,
+      'formatted' => '2025-04-13 09:22:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -7598,87 +6788,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 14.93465300789103,
-      'moon_phase_angle' => 180.28580266579638,
+      'moon_age' => 14.558333333333334,
+      'moon_phase_angle' => 177.03186120412377,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2025-04-13 12:00:00' => 
+  '2025-04-14 09:00:00' =>
   array (
-    0 => '2025-04-13 12:00:00',
-    1 => 
-    array (
-      'year' => 2025,
-      'month' => 4,
-      'day' => 13,
-      'dayOfWeek' => 0,
-      'dayOfYear' => 103,
-      'hour' => 12,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1744513200,
-      'formatted' => '2025-04-13 12:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 7,
-      'oriental_zodiac_text' => '巳',
-      'oriental_zodiac' => 6,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '赤口',
-      'six_weekday' => 1,
-      'weekday_text' => '日',
-      'month_text' => '卯月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '弥生',
-      'lunar_month' => 3,
-      'lunar_year' => 2025,
-      'lunar_day' => 16,
-      'is_leap_month' => false,
-      'moon_age' => 15.019405691418797,
-      'moon_phase_angle' => 181.18983464998854,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2025-04-14 00:00:00' => 
-  array (
-    0 => '2025-04-14 00:00:00',
-    1 => 
+    0 => '2025-04-14 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 4,
       'day' => 14,
       'dayOfWeek' => 1,
       'dayOfYear' => 104,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1744556400,
-      'formatted' => '2025-04-14 00:00:00',
-      'timezone' => 
+      'timestamp' => 1744588800,
+      'formatted' => '2025-04-14 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -7714,29 +6846,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 17,
       'is_leap_month' => false,
-      'moon_age' => 15.527978622354567,
-      'moon_phase_angle' => 186.61243480563155,
+      'moon_age' => 15.543,
+      'moon_phase_angle' => 187.71341786544716,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-04-15 00:00:00' => 
+  '2025-04-15 09:00:00' =>
   array (
-    0 => '2025-04-15 00:00:00',
-    1 => 
+    0 => '2025-04-15 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 4,
       'day' => 15,
       'dayOfWeek' => 2,
       'dayOfYear' => 105,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1744642800,
-      'formatted' => '2025-04-15 00:00:00',
-      'timezone' => 
+      'timestamp' => 1744675200,
+      'formatted' => '2025-04-15 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -7772,29 +6904,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 18,
       'is_leap_month' => false,
-      'moon_age' => 16.543015343602747,
-      'moon_phase_angle' => 197.46234340594017,
+      'moon_age' => 16.543,
+      'moon_phase_angle' => 198.56631643819398,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-04-16 00:00:00' => 
+  '2025-04-16 09:00:00' =>
   array (
-    0 => '2025-04-16 00:00:00',
-    1 => 
+    0 => '2025-04-16 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 4,
       'day' => 16,
       'dayOfWeek' => 3,
       'dayOfYear' => 106,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1744729200,
-      'formatted' => '2025-04-16 00:00:00',
-      'timezone' => 
+      'timestamp' => 1744761600,
+      'formatted' => '2025-04-16 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -7806,8 +6938,8 @@ return array (
       'lunar_seasonal_festival' => 0,
       'lunar_seasonal_festival_name' => '',
       'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 7,
-      'misc_seasonal_node_text' => '土用',
+      'misc_seasonal_node' => 0,
+      'misc_seasonal_node_text' => '',
       'solar_term' => false,
       'solar_term_text' => '',
       'is_solar_term' => false,
@@ -7830,29 +6962,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 19,
       'is_leap_month' => false,
-      'moon_age' => 17.540421245153993,
-      'moon_phase_angle' => 208.34627216812467,
+      'moon_age' => 17.543,
+      'moon_phase_angle' => 209.45782749477672,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-04-17 00:00:00' => 
+  '2025-04-17 09:00:00' =>
   array (
-    0 => '2025-04-17 00:00:00',
-    1 => 
+    0 => '2025-04-17 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 4,
       'day' => 17,
       'dayOfWeek' => 4,
       'dayOfYear' => 107,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1744815600,
-      'formatted' => '2025-04-17 00:00:00',
-      'timezone' => 
+      'timestamp' => 1744848000,
+      'formatted' => '2025-04-17 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -7888,29 +7020,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 20,
       'is_leap_month' => false,
-      'moon_age' => 18.537971986923367,
-      'moon_phase_angle' => 219.30016354301847,
+      'moon_age' => 18.543,
+      'moon_phase_angle' => 220.423861229805,
       'moon_phase' => 5,
       'moon_phase_text' => '十六夜',
     ),
   ),
-  '2025-04-18 00:00:00' => 
+  '2025-04-18 09:00:00' =>
   array (
-    0 => '2025-04-18 00:00:00',
-    1 => 
+    0 => '2025-04-18 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 4,
       'day' => 18,
       'dayOfWeek' => 5,
       'dayOfYear' => 108,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1744902000,
-      'formatted' => '2025-04-18 00:00:00',
-      'timezone' => 
+      'timestamp' => 1744934400,
+      'formatted' => '2025-04-18 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -7946,29 +7078,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 21,
       'is_leap_month' => false,
-      'moon_age' => 19.535780241712928,
-      'moon_phase_angle' => 230.3650272055833,
+      'moon_age' => 19.543,
+      'moon_phase_angle' => 231.50592864762655,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-04-19 00:00:00' => 
+  '2025-04-19 09:00:00' =>
   array (
-    0 => '2025-04-19 00:00:00',
-    1 => 
+    0 => '2025-04-19 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 4,
       'day' => 19,
       'dayOfWeek' => 6,
       'dayOfYear' => 109,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1744988400,
-      'formatted' => '2025-04-19 00:00:00',
-      'timezone' => 
+      'timestamp' => 1745020800,
+      'formatted' => '2025-04-19 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -8004,29 +7136,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 22,
       'is_leap_month' => false,
-      'moon_age' => 20.53395752608776,
-      'moon_phase_angle' => 241.58837501769617,
+      'moon_age' => 20.543,
+      'moon_phase_angle' => 242.7526878109431,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-04-20 00:00:00' => 
+  '2025-04-20 09:00:00' =>
   array (
-    0 => '2025-04-20 00:00:00',
-    1 => 
+    0 => '2025-04-20 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 4,
       'day' => 20,
       'dayOfWeek' => 0,
       'dayOfYear' => 110,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1745074800,
-      'formatted' => '2025-04-20 00:00:00',
-      'timezone' => 
+      'timestamp' => 1745107200,
+      'formatted' => '2025-04-20 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -8062,29 +7194,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 21.532604317180812,
-      'moon_phase_angle' => 253.02434061953352,
+      'moon_age' => 21.543,
+      'moon_phase_angle' => 254.21944234681933,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-04-21 00:00:00' => 
+  '2025-04-21 09:00:00' =>
   array (
-    0 => '2025-04-21 00:00:00',
-    1 => 
+    0 => '2025-04-21 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 4,
       'day' => 21,
       'dayOfWeek' => 1,
       'dayOfYear' => 111,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1745161200,
-      'formatted' => '2025-04-21 00:00:00',
-      'timezone' => 
+      'timestamp' => 1745193600,
+      'formatted' => '2025-04-21 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -8120,29 +7252,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 24,
       'is_leap_month' => false,
-      'moon_age' => 22.531855047680438,
-      'moon_phase_angle' => 264.7320245349137,
+      'moon_age' => 22.543,
+      'moon_phase_angle' => 265.9655888413045,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2025-04-21 11:00:00' => 
+  '2025-04-21 10:36:00' =>
   array (
-    0 => '2025-04-21 11:00:00',
-    1 => 
+    0 => '2025-04-21 10:36:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 4,
       'day' => 21,
       'dayOfWeek' => 1,
       'dayOfYear' => 111,
-      'hour' => 11,
-      'minute' => 0,
+      'hour' => 10,
+      'minute' => 36,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1745200800,
-      'formatted' => '2025-04-21 11:00:00',
-      'timezone' => 
+      'timestamp' => 1745199360,
+      'formatted' => '2025-04-21 10:36:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -8178,29 +7310,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 24,
       'is_leap_month' => false,
-      'moon_age' => 22.990081502124667,
-      'moon_phase_angle' => 270.20543915624836,
+      'moon_age' => 22.60972222222222,
+      'moon_phase_angle' => 266.7600696915759,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2025-04-22 00:00:00' => 
+  '2025-04-22 09:00:00' =>
   array (
-    0 => '2025-04-22 00:00:00',
-    1 => 
+    0 => '2025-04-22 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 4,
       'day' => 22,
       'dayOfWeek' => 2,
       'dayOfYear' => 112,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1745247600,
-      'formatted' => '2025-04-22 00:00:00',
-      'timezone' => 
+      'timestamp' => 1745280000,
+      'formatted' => '2025-04-22 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -8236,29 +7368,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 25,
       'is_leap_month' => false,
-      'moon_age' => 23.531829496845603,
-      'moon_phase_angle' => 276.77157415242453,
+      'moon_age' => 23.543,
+      'moon_phase_angle' => 278.05033564837913,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-04-23 00:00:00' => 
+  '2025-04-23 09:00:00' =>
   array (
-    0 => '2025-04-23 00:00:00',
-    1 => 
+    0 => '2025-04-23 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 4,
       'day' => 23,
       'dayOfWeek' => 3,
       'dayOfYear' => 113,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1745334000,
-      'formatted' => '2025-04-23 00:00:00',
-      'timezone' => 
+      'timestamp' => 1745366400,
+      'formatted' => '2025-04-23 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -8294,29 +7426,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 26,
       'is_leap_month' => false,
-      'moon_age' => 24.532632856164128,
-      'moon_phase_angle' => 289.197530681668,
+      'moon_age' => 24.543,
+      'moon_phase_angle' => 290.5264275209421,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-04-24 00:00:00' => 
+  '2025-04-24 09:00:00' =>
   array (
-    0 => '2025-04-24 00:00:00',
-    1 => 
+    0 => '2025-04-24 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 4,
       'day' => 24,
       'dayOfWeek' => 4,
       'dayOfYear' => 114,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1745420400,
-      'formatted' => '2025-04-24 00:00:00',
-      'timezone' => 
+      'timestamp' => 1745452800,
+      'formatted' => '2025-04-24 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -8352,29 +7484,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 27,
       'is_leap_month' => false,
-      'moon_age' => 25.53432328486815,
-      'moon_phase_angle' => 302.0492214203767,
+      'moon_age' => 25.543,
+      'moon_phase_angle' => 303.4309074155755,
       'moon_phase' => 7,
       'moon_phase_text' => '有明',
     ),
   ),
-  '2025-04-25 00:00:00' => 
+  '2025-04-25 09:00:00' =>
   array (
-    0 => '2025-04-25 00:00:00',
-    1 => 
+    0 => '2025-04-25 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 4,
       'day' => 25,
       'dayOfWeek' => 5,
       'dayOfYear' => 115,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1745506800,
-      'formatted' => '2025-04-25 00:00:00',
-      'timezone' => 
+      'timestamp' => 1745539200,
+      'formatted' => '2025-04-25 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -8410,29 +7542,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 28,
       'is_leap_month' => false,
-      'moon_age' => 26.5368986367248,
-      'moon_phase_angle' => 315.33870164565775,
+      'moon_age' => 26.543,
+      'moon_phase_angle' => 316.77261478881894,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-04-26 00:00:00' => 
+  '2025-04-26 09:00:00' =>
   array (
-    0 => '2025-04-26 00:00:00',
-    1 => 
+    0 => '2025-04-26 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 4,
       'day' => 26,
       'dayOfWeek' => 6,
       'dayOfYear' => 116,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1745593200,
-      'formatted' => '2025-04-26 00:00:00',
-      'timezone' => 
+      'timestamp' => 1745625600,
+      'formatted' => '2025-04-26 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -8468,29 +7600,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 29,
       'is_leap_month' => false,
-      'moon_age' => 27.419738640221148,
-      'moon_phase_angle' => 329.03818142028354,
+      'moon_age' => 27.543,
+      'moon_phase_angle' => 330.51871088154496,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-04-27 00:00:00' => 
+  '2025-04-27 09:00:00' =>
   array (
-    0 => '2025-04-27 00:00:00',
-    1 => 
+    0 => '2025-04-27 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 4,
       'day' => 27,
       'dayOfWeek' => 0,
       'dayOfYear' => 117,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1745679600,
-      'formatted' => '2025-04-27 00:00:00',
-      'timezone' => 
+      'timestamp' => 1745712000,
+      'formatted' => '2025-04-27 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -8526,132 +7658,16 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 30,
       'is_leap_month' => false,
-      'moon_age' => 28.578601473620473,
-      'moon_phase_angle' => 343.0708274118655,
+      'moon_age' => 28.543,
+      'moon_phase_angle' => 344.5855752558345,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-04-28 00:00:00' => 
+  '2025-04-28 04:31:00' =>
   array (
-    0 => '2025-04-28 00:00:00',
-    1 => 
-    array (
-      'year' => 2025,
-      'month' => 4,
-      'day' => 28,
-      'dayOfWeek' => 1,
-      'dayOfYear' => 118,
-      'hour' => 0,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1745766000,
-      'formatted' => '2025-04-28 00:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 7,
-      'misc_seasonal_node_text' => '土用',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 7,
-      'oriental_zodiac_text' => '巳',
-      'oriental_zodiac' => 6,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '仏滅',
-      'six_weekday' => 5,
-      'weekday_text' => '月',
-      'month_text' => '卯月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '卯月',
-      'lunar_month' => 4,
-      'lunar_year' => 2025,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.18124037655070424,
-      'moon_phase_angle' => 357.3102195926722,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2025-04-28 03:00:00' => 
-  array (
-    0 => '2025-04-28 03:00:00',
-    1 => 
-    array (
-      'year' => 2025,
-      'month' => 4,
-      'day' => 28,
-      'dayOfWeek' => 1,
-      'dayOfYear' => 118,
-      'hour' => 3,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1745776800,
-      'formatted' => '2025-04-28 03:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 7,
-      'misc_seasonal_node_text' => '土用',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 7,
-      'oriental_zodiac_text' => '巳',
-      'oriental_zodiac' => 6,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '仏滅',
-      'six_weekday' => 5,
-      'weekday_text' => '月',
-      'month_text' => '卯月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '卯月',
-      'lunar_month' => 4,
-      'lunar_year' => 2025,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.3025187263265252,
-      'moon_phase_angle' => 359.09678599071657,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2025-04-28 04:00:00' => 
-  array (
-    0 => '2025-04-28 04:00:00',
-    1 => 
+    0 => '2025-04-28 04:31:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 4,
@@ -8659,12 +7675,12 @@ return array (
       'dayOfWeek' => 1,
       'dayOfYear' => 118,
       'hour' => 4,
-      'minute' => 0,
+      'minute' => 31,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1745780400,
-      'formatted' => '2025-04-28 04:00:00',
-      'timezone' => 
+      'timestamp' => 1745782260,
+      'formatted' => '2025-04-28 04:31:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -8700,29 +7716,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.34295606845989823,
-      'moon_phase_angle' => 359.6924013476254,
+      'moon_age' => 0.0,
+      'moon_phase_angle' => 356.1705200008421,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2025-04-28 05:00:00' => 
+  '2025-04-28 09:00:00' =>
   array (
-    0 => '2025-04-28 05:00:00',
-    1 => 
+    0 => '2025-04-28 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 4,
       'day' => 28,
       'dayOfWeek' => 1,
       'dayOfYear' => 118,
-      'hour' => 5,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1745784000,
-      'formatted' => '2025-04-28 05:00:00',
-      'timezone' => 
+      'timestamp' => 1745798400,
+      'formatted' => '2025-04-28 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -8758,29 +7774,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.3833859246224165,
-      'moon_phase_angle' => 0.28804175805773724,
+      'moon_age' => 0.187,
+      'moon_phase_angle' => 358.8402497846449,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2025-04-29 00:00:00' => 
+  '2025-04-29 09:00:00' =>
   array (
-    0 => '2025-04-29 00:00:00',
-    1 => 
+    0 => '2025-04-29 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 4,
       'day' => 29,
       'dayOfWeek' => 2,
       'dayOfYear' => 119,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1745852400,
-      'formatted' => '2025-04-29 00:00:00',
-      'timezone' => 
+      'timestamp' => 1745884800,
+      'formatted' => '2025-04-29 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -8816,29 +7832,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 2,
       'is_leap_month' => false,
-      'moon_age' => 1.152070271782577,
-      'moon_phase_angle' => 11.592656682103161,
+      'moon_age' => 1.187,
+      'moon_phase_angle' => 13.115554176151093,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-04-30 00:00:00' => 
+  '2025-04-30 09:00:00' =>
   array (
-    0 => '2025-04-30 00:00:00',
-    1 => 
+    0 => '2025-04-30 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 4,
       'day' => 30,
       'dayOfWeek' => 3,
       'dayOfYear' => 120,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1745938800,
-      'formatted' => '2025-04-30 00:00:00',
-      'timezone' => 
+      'timestamp' => 1745971200,
+      'formatted' => '2025-04-30 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -8874,29 +7890,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 3,
       'is_leap_month' => false,
-      'moon_age' => 2.125785401556641,
-      'moon_phase_angle' => 25.741774330106082,
+      'moon_age' => 2.187,
+      'moon_phase_angle' => 27.23616427584134,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-05-01 00:00:00' => 
+  '2025-05-01 09:00:00' =>
   array (
-    0 => '2025-05-01 00:00:00',
-    1 => 
+    0 => '2025-05-01 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 5,
       'day' => 1,
       'dayOfWeek' => 4,
       'dayOfYear' => 121,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1746025200,
-      'formatted' => '2025-05-01 00:00:00',
-      'timezone' => 
+      'timestamp' => 1746057600,
+      'formatted' => '2025-05-01 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -8932,29 +7948,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 4,
       'is_leap_month' => false,
-      'moon_age' => 3.104413967579603,
-      'moon_phase_angle' => 39.598507015756915,
+      'moon_age' => 3.187,
+      'moon_phase_angle' => 41.047731106555425,
       'moon_phase' => 1,
       'moon_phase_text' => '三日月',
     ),
   ),
-  '2025-05-02 00:00:00' => 
+  '2025-05-02 09:00:00' =>
   array (
-    0 => '2025-05-02 00:00:00',
-    1 => 
+    0 => '2025-05-02 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 5,
       'day' => 2,
       'dayOfWeek' => 5,
       'dayOfYear' => 122,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1746111600,
-      'formatted' => '2025-05-02 00:00:00',
-      'timezone' => 
+      'timestamp' => 1746144000,
+      'formatted' => '2025-05-02 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -8990,29 +8006,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 5,
       'is_leap_month' => false,
-      'moon_age' => 4.089275675360113,
-      'moon_phase_angle' => 53.0459730381282,
+      'moon_age' => 4.187,
+      'moon_phase_angle' => 54.43977389813291,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-05-03 00:00:00' => 
+  '2025-05-03 09:00:00' =>
   array (
-    0 => '2025-05-03 00:00:00',
-    1 => 
+    0 => '2025-05-03 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 5,
       'day' => 3,
       'dayOfWeek' => 6,
       'dayOfYear' => 123,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1746198000,
-      'formatted' => '2025-05-03 00:00:00',
-      'timezone' => 
+      'timestamp' => 1746230400,
+      'formatted' => '2025-05-03 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -9048,29 +8064,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 6,
       'is_leap_month' => false,
-      'moon_age' => 5.0808858522213995,
-      'moon_phase_angle' => 66.02177653816432,
+      'moon_age' => 5.187,
+      'moon_phase_angle' => 67.3562668786178,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-05-04 00:00:00' => 
+  '2025-05-04 09:00:00' =>
   array (
-    0 => '2025-05-04 00:00:00',
-    1 => 
+    0 => '2025-05-04 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 5,
       'day' => 4,
       'dayOfWeek' => 0,
       'dayOfYear' => 124,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1746284400,
-      'formatted' => '2025-05-04 00:00:00',
-      'timezone' => 
+      'timestamp' => 1746316800,
+      'formatted' => '2025-05-04 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -9106,29 +8122,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 7,
       'is_leap_month' => false,
-      'moon_age' => 6.0790790459141135,
-      'moon_phase_angle' => 78.51652469977537,
+      'moon_age' => 6.187,
+      'moon_phase_angle' => 79.79337136773034,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2025-05-04 23:00:00' => 
+  '2025-05-04 22:52:00' =>
   array (
-    0 => '2025-05-04 23:00:00',
-    1 => 
+    0 => '2025-05-04 22:52:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 5,
       'day' => 4,
       'dayOfWeek' => 0,
       'dayOfYear' => 124,
-      'hour' => 23,
-      'minute' => 0,
+      'hour' => 22,
+      'minute' => 52,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1746367200,
-      'formatted' => '2025-05-04 23:00:00',
-      'timezone' => 
+      'timestamp' => 1746366720,
+      'formatted' => '2025-05-04 22:52:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -9164,29 +8180,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 7,
       'is_leap_month' => false,
-      'moon_age' => 7.041267923079431,
-      'moon_phase_angle' => 90.06935054267359,
+      'moon_age' => 6.764583333333333,
+      'moon_phase_angle' => 86.77404536674358,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2025-05-05 00:00:00' => 
+  '2025-05-05 09:00:00' =>
   array (
-    0 => '2025-05-05 00:00:00',
-    1 => 
+    0 => '2025-05-05 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 5,
       'day' => 5,
       'dayOfWeek' => 1,
       'dayOfYear' => 125,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1746370800,
-      'formatted' => '2025-05-05 00:00:00',
-      'timezone' => 
+      'timestamp' => 1746403200,
+      'formatted' => '2025-05-05 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -9222,29 +8238,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 7.083220382686704,
-      'moon_phase_angle' => 90.56306789185459,
+      'moon_age' => 7.187,
+      'moon_phase_angle' => 91.78827543770635,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-05-06 00:00:00' => 
+  '2025-05-06 09:00:00' =>
   array (
-    0 => '2025-05-06 00:00:00',
-    1 => 
+    0 => '2025-05-06 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 5,
       'day' => 6,
       'dayOfWeek' => 2,
       'dayOfYear' => 126,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1746457200,
-      'formatted' => '2025-05-06 00:00:00',
-      'timezone' => 
+      'timestamp' => 1746489600,
+      'formatted' => '2025-05-06 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -9280,29 +8296,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 9,
       'is_leap_month' => false,
-      'moon_age' => 8.09236524021253,
-      'moon_phase_angle' => 102.2222540265318,
+      'moon_age' => 8.187,
+      'moon_phase_angle' => 103.40466998322137,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-05-07 00:00:00' => 
+  '2025-05-07 09:00:00' =>
   array (
-    0 => '2025-05-07 00:00:00',
-    1 => 
+    0 => '2025-05-07 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 5,
       'day' => 7,
       'dayOfWeek' => 3,
       'dayOfYear' => 127,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1746543600,
-      'formatted' => '2025-05-07 00:00:00',
-      'timezone' => 
+      'timestamp' => 1746576000,
+      'formatted' => '2025-05-07 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -9338,29 +8354,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 10,
       'is_leap_month' => false,
-      'moon_age' => 9.105501342564821,
-      'moon_phase_angle' => 113.56951906366453,
+      'moon_age' => 9.187,
+      'moon_phase_angle' => 114.71922938161791,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-05-08 00:00:00' => 
+  '2025-05-08 09:00:00' =>
   array (
-    0 => '2025-05-08 00:00:00',
-    1 => 
+    0 => '2025-05-08 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 5,
       'day' => 8,
       'dayOfWeek' => 4,
       'dayOfYear' => 128,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1746630000,
-      'formatted' => '2025-05-08 00:00:00',
-      'timezone' => 
+      'timestamp' => 1746662400,
+      'formatted' => '2025-05-08 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -9396,29 +8412,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 11,
       'is_leap_month' => false,
-      'moon_age' => 10.12153356615454,
-      'moon_phase_angle' => 124.68432662323013,
+      'moon_age' => 10.187,
+      'moon_phase_angle' => 125.81124293272647,
       'moon_phase' => 3,
       'moon_phase_text' => '十三夜',
     ),
   ),
-  '2025-05-09 00:00:00' => 
+  '2025-05-09 09:00:00' =>
   array (
-    0 => '2025-05-09 00:00:00',
-    1 => 
+    0 => '2025-05-09 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 5,
       'day' => 9,
       'dayOfWeek' => 5,
       'dayOfYear' => 129,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1746716400,
-      'formatted' => '2025-05-09 00:00:00',
-      'timezone' => 
+      'timestamp' => 1746748800,
+      'formatted' => '2025-05-09 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -9454,29 +8470,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 12,
       'is_leap_month' => false,
-      'moon_age' => 11.139449985697865,
-      'moon_phase_angle' => 135.64280056705007,
+      'moon_age' => 11.187,
+      'moon_phase_angle' => 136.7557285876274,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-05-10 00:00:00' => 
+  '2025-05-10 09:00:00' =>
   array (
-    0 => '2025-05-10 00:00:00',
-    1 => 
+    0 => '2025-05-10 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 5,
       'day' => 10,
       'dayOfWeek' => 6,
       'dayOfYear' => 130,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1746802800,
-      'formatted' => '2025-05-10 00:00:00',
-      'timezone' => 
+      'timestamp' => 1746835200,
+      'formatted' => '2025-05-10 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -9512,29 +8528,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 13,
       'is_leap_month' => false,
-      'moon_age' => 12.158328579738736,
-      'moon_phase_angle' => 146.51312804823596,
+      'moon_age' => 12.187,
+      'moon_phase_angle' => 147.619443743558,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-05-11 00:00:00' => 
+  '2025-05-11 09:00:00' =>
   array (
-    0 => '2025-05-11 00:00:00',
-    1 => 
+    0 => '2025-05-11 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 5,
       'day' => 11,
       'dayOfWeek' => 0,
       'dayOfYear' => 131,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1746889200,
-      'formatted' => '2025-05-11 00:00:00',
-      'timezone' => 
+      'timestamp' => 1746921600,
+      'formatted' => '2025-05-11 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -9570,29 +8586,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 14,
       'is_leap_month' => false,
-      'moon_age' => 13.177421308588237,
-      'moon_phase_angle' => 157.35316422736662,
+      'moon_age' => 13.187,
+      'moon_phase_angle' => 158.4589743327453,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-05-12 00:00:00' => 
+  '2025-05-12 09:00:00' =>
   array (
-    0 => '2025-05-12 00:00:00',
-    1 => 
+    0 => '2025-05-12 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 5,
       'day' => 12,
       'dayOfWeek' => 1,
       'dayOfYear' => 132,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1746975600,
-      'formatted' => '2025-05-12 00:00:00',
-      'timezone' => 
+      'timestamp' => 1747008000,
+      'formatted' => '2025-05-12 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -9628,74 +8644,16 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 15,
       'is_leap_month' => false,
-      'moon_age' => 14.185203526169062,
-      'moon_phase_angle' => 168.2097959477945,
+      'moon_age' => 14.187,
+      'moon_phase_angle' => 169.32024303221885,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-05-13 00:00:00' => 
+  '2025-05-13 01:56:00' =>
   array (
-    0 => '2025-05-13 00:00:00',
-    1 => 
-    array (
-      'year' => 2025,
-      'month' => 5,
-      'day' => 13,
-      'dayOfWeek' => 2,
-      'dayOfYear' => 133,
-      'hour' => 0,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1747062000,
-      'formatted' => '2025-05-13 00:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 7,
-      'oriental_zodiac_text' => '巳',
-      'oriental_zodiac' => 6,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '先勝',
-      'six_weekday' => 2,
-      'weekday_text' => '火',
-      'month_text' => '皐月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '卯月',
-      'lunar_month' => 4,
-      'lunar_year' => 2025,
-      'lunar_day' => 16,
-      'is_leap_month' => false,
-      'moon_age' => 15.182149400003254,
-      'moon_phase_angle' => 179.1197804285201,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2025-05-13 01:00:00' => 
-  array (
-    0 => '2025-05-13 01:00:00',
-    1 => 
+    0 => '2025-05-13 01:56:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 5,
@@ -9703,12 +8661,12 @@ return array (
       'dayOfWeek' => 2,
       'dayOfYear' => 133,
       'hour' => 1,
-      'minute' => 0,
+      'minute' => 56,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1747065600,
-      'formatted' => '2025-05-13 01:00:00',
-      'timezone' => 
+      'timestamp' => 1747068960,
+      'formatted' => '2025-05-13 01:56:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -9744,29 +8702,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 15.223689293954521,
-      'moon_phase_angle' => 179.57596753158145,
+      'moon_age' => 14.89236111111111,
+      'moon_phase_angle' => 177.01639242119134,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2025-05-13 02:00:00' => 
+  '2025-05-13 09:00:00' =>
   array (
-    0 => '2025-05-13 02:00:00',
-    1 => 
+    0 => '2025-05-13 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 5,
       'day' => 13,
       'dayOfWeek' => 2,
       'dayOfYear' => 133,
-      'hour' => 2,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1747069200,
-      'formatted' => '2025-05-13 02:00:00',
-      'timezone' => 
+      'timestamp' => 1747094400,
+      'formatted' => '2025-05-13 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -9802,145 +8760,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 15.265236074570566,
-      'moon_phase_angle' => 180.0322996936156,
+      'moon_age' => 15.187,
+      'moon_phase_angle' => 180.23916678083896,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2025-05-13 03:00:00' => 
+  '2025-05-14 09:00:00' =>
   array (
-    0 => '2025-05-13 03:00:00',
-    1 => 
-    array (
-      'year' => 2025,
-      'month' => 5,
-      'day' => 13,
-      'dayOfWeek' => 2,
-      'dayOfYear' => 133,
-      'hour' => 3,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1747072800,
-      'formatted' => '2025-05-13 03:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 7,
-      'oriental_zodiac_text' => '巳',
-      'oriental_zodiac' => 6,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '先勝',
-      'six_weekday' => 2,
-      'weekday_text' => '火',
-      'month_text' => '皐月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '卯月',
-      'lunar_month' => 4,
-      'lunar_year' => 2025,
-      'lunar_day' => 16,
-      'is_leap_month' => false,
-      'moon_age' => 15.306772168260068,
-      'moon_phase_angle' => 180.48877872124135,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2025-05-13 05:00:00' => 
-  array (
-    0 => '2025-05-13 05:00:00',
-    1 => 
-    array (
-      'year' => 2025,
-      'month' => 5,
-      'day' => 13,
-      'dayOfWeek' => 2,
-      'dayOfYear' => 133,
-      'hour' => 5,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1747080000,
-      'formatted' => '2025-05-13 05:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 7,
-      'oriental_zodiac_text' => '巳',
-      'oriental_zodiac' => 6,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '先勝',
-      'six_weekday' => 2,
-      'weekday_text' => '火',
-      'month_text' => '皐月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '卯月',
-      'lunar_month' => 4,
-      'lunar_year' => 2025,
-      'lunar_day' => 16,
-      'is_leap_month' => false,
-      'moon_age' => 15.38987127551809,
-      'moon_phase_angle' => 181.40218457048687,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2025-05-14 00:00:00' => 
-  array (
-    0 => '2025-05-14 00:00:00',
-    1 => 
+    0 => '2025-05-14 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 5,
       'day' => 14,
       'dayOfWeek' => 3,
       'dayOfYear' => 134,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1747148400,
-      'formatted' => '2025-05-14 00:00:00',
-      'timezone' => 
+      'timestamp' => 1747180800,
+      'formatted' => '2025-05-14 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -9976,29 +8818,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 17,
       'is_leap_month' => false,
-      'moon_age' => 16.17930445028469,
-      'moon_phase_angle' => 190.1118458948331,
+      'moon_age' => 16.187,
+      'moon_phase_angle' => 191.24356965033473,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-05-15 00:00:00' => 
+  '2025-05-15 09:00:00' =>
   array (
-    0 => '2025-05-15 00:00:00',
-    1 => 
+    0 => '2025-05-15 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 5,
       'day' => 15,
       'dayOfWeek' => 4,
       'dayOfYear' => 135,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1747234800,
-      'formatted' => '2025-05-15 00:00:00',
-      'timezone' => 
+      'timestamp' => 1747267200,
+      'formatted' => '2025-05-15 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -10034,29 +8876,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 18,
       'is_leap_month' => false,
-      'moon_age' => 17.176760548260063,
-      'moon_phase_angle' => 201.20978978719813,
+      'moon_age' => 17.187,
+      'moon_phase_angle' => 202.35645031106932,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-05-16 00:00:00' => 
+  '2025-05-16 09:00:00' =>
   array (
-    0 => '2025-05-16 00:00:00',
-    1 => 
+    0 => '2025-05-16 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 5,
       'day' => 16,
       'dayOfWeek' => 5,
       'dayOfYear' => 136,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1747321200,
-      'formatted' => '2025-05-16 00:00:00',
-      'timezone' => 
+      'timestamp' => 1747353600,
+      'formatted' => '2025-05-16 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -10092,29 +8934,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 19,
       'is_leap_month' => false,
-      'moon_age' => 18.174536843318492,
-      'moon_phase_angle' => 212.43616518116647,
+      'moon_age' => 18.187,
+      'moon_phase_angle' => 213.60017457739622,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-05-17 00:00:00' => 
+  '2025-05-17 09:00:00' =>
   array (
-    0 => '2025-05-17 00:00:00',
-    1 => 
+    0 => '2025-05-17 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 5,
       'day' => 17,
       'dayOfWeek' => 6,
       'dayOfYear' => 137,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1747407600,
-      'formatted' => '2025-05-17 00:00:00',
-      'timezone' => 
+      'timestamp' => 1747440000,
+      'formatted' => '2025-05-17 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -10150,29 +8992,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 20,
       'is_leap_month' => false,
-      'moon_age' => 19.17273244727403,
-      'moon_phase_angle' => 223.81597570133363,
+      'moon_age' => 19.187,
+      'moon_phase_angle' => 225.0005099957991,
       'moon_phase' => 5,
       'moon_phase_text' => '十六夜',
     ),
   ),
-  '2025-05-18 00:00:00' => 
+  '2025-05-18 09:00:00' =>
   array (
-    0 => '2025-05-18 00:00:00',
-    1 => 
+    0 => '2025-05-18 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 5,
       'day' => 18,
       'dayOfWeek' => 0,
       'dayOfYear' => 138,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1747494000,
-      'formatted' => '2025-05-18 00:00:00',
-      'timezone' => 
+      'timestamp' => 1747526400,
+      'formatted' => '2025-05-18 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -10208,29 +9050,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 21,
       'is_leap_month' => false,
-      'moon_age' => 20.171393677592278,
-      'moon_phase_angle' => 235.37966788377213,
+      'moon_age' => 20.187,
+      'moon_phase_angle' => 236.58928648775623,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-05-19 00:00:00' => 
+  '2025-05-19 09:00:00' =>
   array (
-    0 => '2025-05-19 00:00:00',
-    1 => 
+    0 => '2025-05-19 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 5,
       'day' => 19,
       'dayOfWeek' => 1,
       'dayOfYear' => 139,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1747580400,
-      'formatted' => '2025-05-19 00:00:00',
-      'timezone' => 
+      'timestamp' => 1747612800,
+      'formatted' => '2025-05-19 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -10266,29 +9108,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 22,
       'is_leap_month' => false,
-      'moon_age' => 21.170642662327737,
-      'moon_phase_angle' => 247.16465415970708,
+      'moon_age' => 21.187,
+      'moon_phase_angle' => 248.40502811056632,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-05-20 00:00:00' => 
+  '2025-05-20 09:00:00' =>
   array (
-    0 => '2025-05-20 00:00:00',
-    1 => 
+    0 => '2025-05-20 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 5,
       'day' => 20,
       'dayOfWeek' => 2,
       'dayOfYear' => 140,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1747666800,
-      'formatted' => '2025-05-20 00:00:00',
-      'timezone' => 
+      'timestamp' => 1747699200,
+      'formatted' => '2025-05-20 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -10324,29 +9166,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 22.17057253420353,
-      'moon_phase_angle' => 259.21461595048686,
+      'moon_age' => 22.187,
+      'moon_phase_angle' => 260.49153535597367,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2025-05-20 22:00:00' => 
+  '2025-05-20 20:59:00' =>
   array (
-    0 => '2025-05-20 22:00:00',
-    1 => 
+    0 => '2025-05-20 20:59:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 5,
       'day' => 20,
       'dayOfWeek' => 2,
       'dayOfYear' => 140,
-      'hour' => 22,
-      'minute' => 0,
+      'hour' => 20,
+      'minute' => 59,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1747746000,
-      'formatted' => '2025-05-20 22:00:00',
-      'timezone' => 
+      'timestamp' => 1747742340,
+      'formatted' => '2025-05-20 20:59:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -10382,29 +9224,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 23.08786869002506,
-      'moon_phase_angle' => 270.5328148979167,
+      'moon_age' => 22.68611111111111,
+      'moon_phase_angle' => 266.6420210519979,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2025-05-21 00:00:00' => 
+  '2025-05-21 09:00:00' =>
   array (
-    0 => '2025-05-21 00:00:00',
-    1 => 
+    0 => '2025-05-21 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 5,
       'day' => 21,
       'dayOfWeek' => 3,
       'dayOfYear' => 141,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1747753200,
-      'formatted' => '2025-05-21 00:00:00',
-      'timezone' => 
+      'timestamp' => 1747785600,
+      'formatted' => '2025-05-21 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -10440,29 +9282,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 24,
       'is_leap_month' => false,
-      'moon_age' => 23.17129076598212,
-      'moon_phase_angle' => 271.57590269611956,
+      'moon_age' => 23.187,
+      'moon_phase_angle' => 272.8943106839,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-05-22 00:00:00' => 
+  '2025-05-22 09:00:00' =>
   array (
-    0 => '2025-05-22 00:00:00',
-    1 => 
+    0 => '2025-05-22 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 5,
       'day' => 22,
       'dayOfWeek' => 4,
       'dayOfYear' => 142,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1747839600,
-      'formatted' => '2025-05-22 00:00:00',
-      'timezone' => 
+      'timestamp' => 1747872000,
+      'formatted' => '2025-05-22 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -10498,29 +9340,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 25,
       'is_leap_month' => false,
-      'moon_age' => 24.17290431726724,
-      'moon_phase_angle' => 284.29050761646477,
+      'moon_age' => 24.187,
+      'moon_phase_angle' => 285.65398419055964,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-05-23 00:00:00' => 
+  '2025-05-23 09:00:00' =>
   array (
-    0 => '2025-05-23 00:00:00',
-    1 => 
+    0 => '2025-05-23 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 5,
       'day' => 23,
       'dayOfWeek' => 5,
       'dayOfYear' => 143,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1747926000,
-      'formatted' => '2025-05-23 00:00:00',
-      'timezone' => 
+      'timestamp' => 1747958400,
+      'formatted' => '2025-05-23 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -10556,29 +9398,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 26,
       'is_leap_month' => false,
-      'moon_age' => 25.175457035191357,
-      'moon_phase_angle' => 297.38554427982587,
+      'moon_age' => 25.187,
+      'moon_phase_angle' => 298.79571440253613,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-05-24 00:00:00' => 
+  '2025-05-24 09:00:00' =>
   array (
-    0 => '2025-05-24 00:00:00',
-    1 => 
+    0 => '2025-05-24 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 5,
       'day' => 24,
       'dayOfWeek' => 6,
       'dayOfYear' => 144,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1748012400,
-      'formatted' => '2025-05-24 00:00:00',
-      'timezone' => 
+      'timestamp' => 1748044800,
+      'formatted' => '2025-05-24 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -10614,29 +9456,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 27,
       'is_leap_month' => false,
-      'moon_age' => 26.178909230045974,
-      'moon_phase_angle' => 310.86016204104607,
+      'moon_age' => 26.187,
+      'moon_phase_angle' => 312.31516487844124,
       'moon_phase' => 7,
       'moon_phase_text' => '有明',
     ),
   ),
-  '2025-05-25 00:00:00' => 
+  '2025-05-25 09:00:00' =>
   array (
-    0 => '2025-05-25 00:00:00',
-    1 => 
+    0 => '2025-05-25 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 5,
       'day' => 25,
       'dayOfWeek' => 0,
       'dayOfYear' => 145,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1748098800,
-      'formatted' => '2025-05-25 00:00:00',
-      'timezone' => 
+      'timestamp' => 1748131200,
+      'formatted' => '2025-05-25 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -10672,29 +9514,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 28,
       'is_leap_month' => false,
-      'moon_age' => 27.06334920893827,
-      'moon_phase_angle' => 324.6726254948491,
+      'moon_age' => 27.187,
+      'moon_phase_angle' => 326.1648408627717,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-05-26 00:00:00' => 
+  '2025-05-26 09:00:00' =>
   array (
-    0 => '2025-05-26 00:00:00',
-    1 => 
+    0 => '2025-05-26 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 5,
       'day' => 26,
       'dayOfWeek' => 1,
       'dayOfYear' => 146,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1748185200,
-      'formatted' => '2025-05-26 00:00:00',
-      'timezone' => 
+      'timestamp' => 1748217600,
+      'formatted' => '2025-05-26 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -10730,29 +9572,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 29,
       'is_leap_month' => false,
-      'moon_age' => 28.22155646481955,
-      'moon_phase_angle' => 338.7324069858198,
+      'moon_age' => 28.187,
+      'moon_phase_angle' => 340.24715481049185,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-05-27 00:00:00' => 
+  '2025-05-27 09:00:00' =>
   array (
-    0 => '2025-05-27 00:00:00',
-    1 => 
+    0 => '2025-05-27 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 5,
       'day' => 27,
       'dayOfWeek' => 2,
       'dayOfYear' => 147,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1748271600,
-      'formatted' => '2025-05-27 00:00:00',
-      'timezone' => 
+      'timestamp' => 1748304000,
+      'formatted' => '2025-05-27 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -10788,74 +9630,16 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 29.383930424372046,
-      'moon_phase_angle' => 352.90301632655985,
+      'moon_age' => 29.187,
+      'moon_phase_angle' => 354.4199944091202,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2025-05-27 10:00:00' => 
+  '2025-05-27 12:02:00' =>
   array (
-    0 => '2025-05-27 10:00:00',
-    1 => 
-    array (
-      'year' => 2025,
-      'month' => 5,
-      'day' => 27,
-      'dayOfWeek' => 2,
-      'dayOfYear' => 147,
-      'hour' => 10,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1748307600,
-      'formatted' => '2025-05-27 10:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 7,
-      'oriental_zodiac_text' => '巳',
-      'oriental_zodiac' => 6,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '大安',
-      'six_weekday' => 0,
-      'weekday_text' => '火',
-      'month_text' => '皐月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '皐月',
-      'lunar_month' => 5,
-      'lunar_year' => 2025,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.28292403975501657,
-      'moon_phase_angle' => 358.8011494055321,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2025-05-27 12:00:00' => 
-  array (
-    0 => '2025-05-27 12:00:00',
-    1 => 
+    0 => '2025-05-27 12:02:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 5,
@@ -10863,12 +9647,12 @@ return array (
       'dayOfWeek' => 2,
       'dayOfYear' => 147,
       'hour' => 12,
-      'minute' => 0,
+      'minute' => 2,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1748314800,
-      'formatted' => '2025-05-27 12:00:00',
-      'timezone' => 
+      'timestamp' => 1748314920,
+      'formatted' => '2025-05-27 12:02:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -10904,29 +9688,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.36422787606716156,
-      'moon_phase_angle' => 359.97852986309164,
+      'moon_age' => 0.0,
+      'moon_phase_angle' => 356.2093788626143,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2025-05-28 00:00:00' => 
+  '2025-05-28 09:00:00' =>
   array (
-    0 => '2025-05-28 00:00:00',
-    1 => 
+    0 => '2025-05-28 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 5,
       'day' => 28,
       'dayOfWeek' => 3,
       'dayOfYear' => 148,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1748358000,
-      'formatted' => '2025-05-28 00:00:00',
-      'timezone' => 
+      'timestamp' => 1748390400,
+      'formatted' => '2025-05-28 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -10962,29 +9746,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 2,
       'is_leap_month' => false,
-      'moon_age' => 0.8523815358057618,
-      'moon_phase_angle' => 7.018781694702824,
+      'moon_age' => 0.873,
+      'moon_phase_angle' => 8.516072949128386,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-05-29 00:00:00' => 
+  '2025-05-29 09:00:00' =>
   array (
-    0 => '2025-05-29 00:00:00',
-    1 => 
+    0 => '2025-05-29 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 5,
       'day' => 29,
       'dayOfWeek' => 4,
       'dayOfYear' => 149,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1748444400,
-      'formatted' => '2025-05-29 00:00:00',
-      'timezone' => 
+      'timestamp' => 1748476800,
+      'formatted' => '2025-05-29 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -11020,29 +9804,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 3,
       'is_leap_month' => false,
-      'moon_age' => 1.8315595625899732,
-      'moon_phase_angle' => 20.912603912836587,
+      'moon_age' => 1.873,
+      'moon_phase_angle' => 22.371124030535384,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-05-30 00:00:00' => 
+  '2025-05-30 09:00:00' =>
   array (
-    0 => '2025-05-30 00:00:00',
-    1 => 
+    0 => '2025-05-30 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 5,
       'day' => 30,
       'dayOfWeek' => 5,
       'dayOfYear' => 150,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1748530800,
-      'formatted' => '2025-05-30 00:00:00',
-      'timezone' => 
+      'timestamp' => 1748563200,
+      'formatted' => '2025-05-30 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -11078,29 +9862,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 4,
       'is_leap_month' => false,
-      'moon_age' => 2.8159378352575004,
-      'moon_phase_angle' => 34.4454440604095,
+      'moon_age' => 2.873,
+      'moon_phase_angle' => 35.85179676590624,
       'moon_phase' => 1,
       'moon_phase_text' => '三日月',
     ),
   ),
-  '2025-05-31 00:00:00' => 
+  '2025-05-31 09:00:00' =>
   array (
-    0 => '2025-05-31 00:00:00',
-    1 => 
+    0 => '2025-05-31 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 5,
       'day' => 31,
       'dayOfWeek' => 6,
       'dayOfYear' => 151,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1748617200,
-      'formatted' => '2025-05-31 00:00:00',
-      'timezone' => 
+      'timestamp' => 1748649600,
+      'formatted' => '2025-05-31 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -11136,29 +9920,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 5,
       'is_leap_month' => false,
-      'moon_age' => 3.8065043999813497,
-      'moon_phase_angle' => 47.52713651619597,
+      'moon_age' => 3.873,
+      'moon_phase_angle' => 48.87449038108147,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-06-01 00:00:00' => 
+  '2025-06-01 09:00:00' =>
   array (
-    0 => '2025-06-01 00:00:00',
-    1 => 
+    0 => '2025-06-01 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 6,
       'day' => 1,
       'dayOfWeek' => 0,
       'dayOfYear' => 152,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1748703600,
-      'formatted' => '2025-06-01 00:00:00',
-      'timezone' => 
+      'timestamp' => 1748736000,
+      'formatted' => '2025-06-01 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -11194,29 +9978,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 6,
       'is_leap_month' => false,
-      'moon_age' => 4.803506593219936,
-      'moon_phase_angle' => 60.12317354787734,
+      'moon_age' => 4.873,
+      'moon_phase_angle' => 61.410890118080914,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-06-02 00:00:00' => 
+  '2025-06-02 09:00:00' =>
   array (
-    0 => '2025-06-02 00:00:00',
-    1 => 
+    0 => '2025-06-02 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 6,
       'day' => 2,
       'dayOfWeek' => 1,
       'dayOfYear' => 153,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1748790000,
-      'formatted' => '2025-06-02 00:00:00',
-      'timezone' => 
+      'timestamp' => 1748822400,
+      'formatted' => '2025-06-02 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -11252,29 +10036,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 7,
       'is_leap_month' => false,
-      'moon_age' => 5.806562073063105,
-      'moon_phase_angle' => 72.24898438325611,
+      'moon_age' => 5.873,
+      'moon_phase_angle' => 73.48165780223174,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-06-03 00:00:00' => 
+  '2025-06-03 09:00:00' =>
   array (
-    0 => '2025-06-03 00:00:00',
-    1 => 
+    0 => '2025-06-03 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 6,
       'day' => 3,
       'dayOfWeek' => 2,
       'dayOfYear' => 154,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1748876400,
-      'formatted' => '2025-06-03 00:00:00',
-      'timezone' => 
+      'timestamp' => 1748908800,
+      'formatted' => '2025-06-03 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -11310,29 +10094,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 6.814796873368323,
-      'moon_phase_angle' => 83.95735528560543,
+      'moon_age' => 6.873,
+      'moon_phase_angle' => 85.14337384617343,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2025-06-03 13:00:00' => 
+  '2025-06-03 12:41:00' =>
   array (
-    0 => '2025-06-03 13:00:00',
-    1 => 
+    0 => '2025-06-03 12:41:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 6,
       'day' => 3,
       'dayOfWeek' => 2,
       'dayOfYear' => 154,
-      'hour' => 13,
-      'minute' => 0,
+      'hour' => 12,
+      'minute' => 41,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1748923200,
-      'formatted' => '2025-06-03 13:00:00',
-      'timezone' => 
+      'timestamp' => 1748922060,
+      'formatted' => '2025-06-03 12:41:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -11368,29 +10152,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 7.362716475035995,
-      'moon_phase_angle' => 90.15140961703052,
+      'moon_age' => 7.027083333333334,
+      'moon_phase_angle' => 86.90170401923127,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2025-06-04 00:00:00' => 
+  '2025-06-04 09:00:00' =>
   array (
-    0 => '2025-06-04 00:00:00',
-    1 => 
+    0 => '2025-06-04 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 6,
       'day' => 4,
       'dayOfWeek' => 3,
       'dayOfYear' => 155,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1748962800,
-      'formatted' => '2025-06-04 00:00:00',
-      'timezone' => 
+      'timestamp' => 1748995200,
+      'formatted' => '2025-06-04 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -11426,29 +10210,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 9,
       'is_leap_month' => false,
-      'moon_age' => 7.827112148981541,
-      'moon_phase_angle' => 95.32428240596242,
+      'moon_age' => 7.873,
+      'moon_phase_angle' => 96.47418521254927,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-06-05 00:00:00' => 
+  '2025-06-05 09:00:00' =>
   array (
-    0 => '2025-06-05 00:00:00',
-    1 => 
+    0 => '2025-06-05 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 6,
       'day' => 5,
       'dayOfWeek' => 4,
       'dayOfYear' => 156,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1749049200,
-      'formatted' => '2025-06-05 00:00:00',
-      'timezone' => 
+      'timestamp' => 1749081600,
+      'formatted' => '2025-06-05 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -11484,29 +10268,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 10,
       'is_leap_month' => false,
-      'moon_age' => 8.842303175944835,
-      'moon_phase_angle' => 106.43665891387701,
+      'moon_age' => 8.873,
+      'moon_phase_angle' => 107.56160013379208,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-06-06 00:00:00' => 
+  '2025-06-06 09:00:00' =>
   array (
-    0 => '2025-06-06 00:00:00',
-    1 => 
+    0 => '2025-06-06 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 6,
       'day' => 6,
       'dayOfWeek' => 5,
       'dayOfYear' => 157,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1749135600,
-      'formatted' => '2025-06-06 00:00:00',
-      'timezone' => 
+      'timestamp' => 1749168000,
+      'formatted' => '2025-06-06 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -11542,29 +10326,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 11,
       'is_leap_month' => false,
-      'moon_age' => 9.85916634555906,
-      'moon_phase_angle' => 117.38286555969256,
+      'moon_age' => 9.873,
+      'moon_phase_angle' => 118.49349470618893,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-06-07 00:00:00' => 
+  '2025-06-07 09:00:00' =>
   array (
-    0 => '2025-06-07 00:00:00',
-    1 => 
+    0 => '2025-06-07 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 6,
       'day' => 7,
       'dayOfWeek' => 6,
       'dayOfYear' => 158,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1749222000,
-      'formatted' => '2025-06-07 00:00:00',
-      'timezone' => 
+      'timestamp' => 1749254400,
+      'formatted' => '2025-06-07 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -11600,29 +10384,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 12,
       'is_leap_month' => false,
-      'moon_age' => 10.872976837679744,
-      'moon_phase_angle' => 128.2461178946394,
+      'moon_age' => 10.873,
+      'moon_phase_angle' => 129.3519368419734,
       'moon_phase' => 3,
       'moon_phase_text' => '十三夜',
     ),
   ),
-  '2025-06-08 00:00:00' => 
+  '2025-06-08 09:00:00' =>
   array (
-    0 => '2025-06-08 00:00:00',
-    1 => 
+    0 => '2025-06-08 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 6,
       'day' => 8,
       'dayOfWeek' => 0,
       'dayOfYear' => 159,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1749308400,
-      'formatted' => '2025-06-08 00:00:00',
-      'timezone' => 
+      'timestamp' => 1749340800,
+      'formatted' => '2025-06-08 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -11658,29 +10442,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 13,
       'is_leap_month' => false,
-      'moon_age' => 11.870255364570767,
-      'moon_phase_angle' => 139.0999892343015,
+      'moon_age' => 11.873,
+      'moon_phase_angle' => 140.20906370799653,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-06-09 00:00:00' => 
+  '2025-06-09 09:00:00' =>
   array (
-    0 => '2025-06-09 00:00:00',
-    1 => 
+    0 => '2025-06-09 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 6,
       'day' => 9,
       'dayOfWeek' => 1,
       'dayOfYear' => 160,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1749394800,
-      'formatted' => '2025-06-09 00:00:00',
-      'timezone' => 
+      'timestamp' => 1749427200,
+      'formatted' => '2025-06-09 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -11716,29 +10500,87 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 14,
       'is_leap_month' => false,
-      'moon_age' => 12.867714568972588,
-      'moon_phase_angle' => 150.0056019412478,
+      'moon_age' => 12.873,
+      'moon_phase_angle' => 151.1244598977411,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-06-10 00:00:00' => 
+  '2025-06-10 09:00:00' =>
   array (
-    0 => '2025-06-10 00:00:00',
-    1 => 
+    0 => '2025-06-10 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 6,
       'day' => 10,
       'dayOfWeek' => 2,
       'dayOfYear' => 161,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1749481200,
-      'formatted' => '2025-06-10 00:00:00',
-      'timezone' => 
+      'timestamp' => 1749513600,
+      'formatted' => '2025-06-10 09:00:00',
+      'timezone' =>
+      \Carbon\CarbonTimeZone::__set_state(array(
+         'clock' => NULL,
+         'timezone_type' => 3,
+         'timezone' => 'Asia/Tokyo',
+      )),
+      'solar_seasonal_festival' => 0,
+      'solar_seasonal_festival_name' => '',
+      'solar_seasonal_festival_alias' => '',
+      'lunar_seasonal_festival' => 0,
+      'lunar_seasonal_festival_name' => '',
+      'lunar_seasonal_festival_alias' => '',
+      'misc_seasonal_node' => 0,
+      'misc_seasonal_node_text' => '',
+      'solar_term' => false,
+      'solar_term_text' => '',
+      'is_solar_term' => false,
+      'era_name_text' => '令和',
+      'era_name' => 1004,
+      'era_year' => 7,
+      'oriental_zodiac_text' => '巳',
+      'oriental_zodiac' => 6,
+      'heavenly_stem_text' => '乙',
+      'heavenly_stem' => 1,
+      'six_weekday_text' => '先勝',
+      'six_weekday' => 2,
+      'weekday_text' => '火',
+      'month_text' => '水無月',
+      'holiday_text' => '',
+      'holiday' => 0,
+      'is_holiday' => false,
+      'lunar_month_text' => '皐月',
+      'lunar_month' => 5,
+      'lunar_year' => 2025,
+      'lunar_day' => 15,
+      'is_leap_month' => false,
+      'moon_age' => 13.873,
+      'moon_phase_angle' => 162.1438294456113,
+      'moon_phase' => NULL,
+      'moon_phase_text' => '',
+    ),
+  ),
+  '2025-06-11 09:00:00' =>
+  array (
+    0 => '2025-06-11 09:00:00',
+    1 =>
+    array (
+      'year' => 2025,
+      'month' => 6,
+      'day' => 11,
+      'dayOfWeek' => 3,
+      'dayOfYear' => 162,
+      'hour' => 9,
+      'minute' => 0,
+      'second' => 0,
+      'micro' => 0,
+      'timestamp' => 1749600000,
+      'formatted' => '2025-06-11 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -11762,64 +10604,6 @@ return array (
       'oriental_zodiac' => 6,
       'heavenly_stem_text' => '乙',
       'heavenly_stem' => 1,
-      'six_weekday_text' => '先勝',
-      'six_weekday' => 2,
-      'weekday_text' => '火',
-      'month_text' => '水無月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '皐月',
-      'lunar_month' => 5,
-      'lunar_year' => 2025,
-      'lunar_day' => 15,
-      'is_leap_month' => false,
-      'moon_age' => 13.86540973559022,
-      'moon_phase_angle' => 161.01024206158314,
-      'moon_phase' => NULL,
-      'moon_phase_text' => '',
-    ),
-  ),
-  '2025-06-11 00:00:00' => 
-  array (
-    0 => '2025-06-11 00:00:00',
-    1 => 
-    array (
-      'year' => 2025,
-      'month' => 6,
-      'day' => 11,
-      'dayOfWeek' => 3,
-      'dayOfYear' => 162,
-      'hour' => 0,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1749567600,
-      'formatted' => '2025-06-11 00:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 7,
-      'oriental_zodiac_text' => '巳',
-      'oriental_zodiac' => 6,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
       'six_weekday_text' => '友引',
       'six_weekday' => 3,
       'weekday_text' => '水',
@@ -11832,74 +10616,16 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 14.863413582090288,
-      'moon_phase_angle' => 172.14739642703412,
+      'moon_age' => 14.873,
+      'moon_phase_angle' => 173.29905864033884,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2025-06-11 15:00:00' => 
+  '2025-06-11 16:44:00' =>
   array (
-    0 => '2025-06-11 15:00:00',
-    1 => 
-    array (
-      'year' => 2025,
-      'month' => 6,
-      'day' => 11,
-      'dayOfWeek' => 3,
-      'dayOfYear' => 162,
-      'hour' => 15,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1749621600,
-      'formatted' => '2025-06-11 15:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 7,
-      'oriental_zodiac_text' => '巳',
-      'oriental_zodiac' => 6,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '友引',
-      'six_weekday' => 3,
-      'weekday_text' => '水',
-      'month_text' => '水無月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '皐月',
-      'lunar_month' => 5,
-      'lunar_year' => 2025,
-      'lunar_day' => 16,
-      'is_leap_month' => false,
-      'moon_age' => 15.487332422751933,
-      'moon_phase_angle' => 179.18527754725812,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2025-06-11 16:00:00' => 
-  array (
-    0 => '2025-06-11 16:00:00',
-    1 => 
+    0 => '2025-06-11 16:44:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 6,
@@ -11907,12 +10633,12 @@ return array (
       'dayOfWeek' => 3,
       'dayOfYear' => 162,
       'hour' => 16,
-      'minute' => 0,
+      'minute' => 44,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1749625200,
-      'formatted' => '2025-06-11 16:00:00',
-      'timezone' => 
+      'timestamp' => 1749627840,
+      'formatted' => '2025-06-11 16:44:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -11924,8 +10650,8 @@ return array (
       'lunar_seasonal_festival' => 0,
       'lunar_seasonal_festival_name' => '',
       'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
+      'misc_seasonal_node' => 5,
+      'misc_seasonal_node_text' => '入梅',
       'solar_term' => false,
       'solar_term_text' => '',
       'is_solar_term' => false,
@@ -11948,145 +10674,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 15.528932816814631,
-      'moon_phase_angle' => 179.65669737087592,
+      'moon_age' => 15.195833333333333,
+      'moon_phase_angle' => 176.92600558039635,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2025-06-11 17:00:00' => 
+  '2025-06-12 09:00:00' =>
   array (
-    0 => '2025-06-11 17:00:00',
-    1 => 
-    array (
-      'year' => 2025,
-      'month' => 6,
-      'day' => 11,
-      'dayOfWeek' => 3,
-      'dayOfYear' => 162,
-      'hour' => 17,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1749628800,
-      'formatted' => '2025-06-11 17:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 7,
-      'oriental_zodiac_text' => '巳',
-      'oriental_zodiac' => 6,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '友引',
-      'six_weekday' => 3,
-      'weekday_text' => '水',
-      'month_text' => '水無月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '皐月',
-      'lunar_month' => 5,
-      'lunar_year' => 2025,
-      'lunar_day' => 16,
-      'is_leap_month' => false,
-      'moon_age' => 15.570538413245231,
-      'moon_phase_angle' => 180.1284004085669,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2025-06-11 18:00:00' => 
-  array (
-    0 => '2025-06-11 18:00:00',
-    1 => 
-    array (
-      'year' => 2025,
-      'month' => 6,
-      'day' => 11,
-      'dayOfWeek' => 3,
-      'dayOfYear' => 162,
-      'hour' => 18,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1749632400,
-      'formatted' => '2025-06-11 18:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 7,
-      'oriental_zodiac_text' => '巳',
-      'oriental_zodiac' => 6,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '友引',
-      'six_weekday' => 3,
-      'weekday_text' => '水',
-      'month_text' => '水無月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '皐月',
-      'lunar_month' => 5,
-      'lunar_year' => 2025,
-      'lunar_day' => 16,
-      'is_leap_month' => false,
-      'moon_age' => 15.61214360082522,
-      'moon_phase_angle' => 180.60038739308868,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2025-06-12 00:00:00' => 
-  array (
-    0 => '2025-06-12 00:00:00',
-    1 => 
+    0 => '2025-06-12 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 6,
       'day' => 12,
       'dayOfWeek' => 4,
       'dayOfYear' => 163,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1749654000,
-      'formatted' => '2025-06-12 00:00:00',
-      'timezone' => 
+      'timestamp' => 1749686400,
+      'formatted' => '2025-06-12 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12122,29 +10732,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 17,
       'is_leap_month' => false,
-      'moon_age' => 15.861754060722888,
-      'moon_phase_angle' => 183.43831137832035,
+      'moon_age' => 15.873,
+      'moon_phase_angle' => 184.6099105654631,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-06-13 00:00:00' => 
+  '2025-06-13 09:00:00' =>
   array (
-    0 => '2025-06-13 00:00:00',
-    1 => 
+    0 => '2025-06-13 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 6,
       'day' => 13,
       'dayOfWeek' => 5,
       'dayOfYear' => 164,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1749740400,
-      'formatted' => '2025-06-13 00:00:00',
-      'timezone' => 
+      'timestamp' => 1749772800,
+      'formatted' => '2025-06-13 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12180,29 +10790,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 18,
       'is_leap_month' => false,
-      'moon_age' => 16.860431452281773,
-      'moon_phase_angle' => 194.89506221838207,
+      'moon_age' => 16.873,
+      'moon_phase_angle' => 196.087410173793,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-06-14 00:00:00' => 
+  '2025-06-14 09:00:00' =>
   array (
-    0 => '2025-06-14 00:00:00',
-    1 => 
+    0 => '2025-06-14 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 6,
       'day' => 14,
       'dayOfWeek' => 6,
       'dayOfYear' => 165,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1749826800,
-      'formatted' => '2025-06-14 00:00:00',
-      'timezone' => 
+      'timestamp' => 1749859200,
+      'formatted' => '2025-06-14 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12238,29 +10848,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 19,
       'is_leap_month' => false,
-      'moon_age' => 17.859465825371444,
-      'moon_phase_angle' => 206.52481747073205,
+      'moon_age' => 17.873,
+      'moon_phase_angle' => 207.73845556501692,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-06-15 00:00:00' => 
+  '2025-06-15 09:00:00' =>
   array (
-    0 => '2025-06-15 00:00:00',
-    1 => 
+    0 => '2025-06-15 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 6,
       'day' => 15,
       'dayOfWeek' => 0,
       'dayOfYear' => 166,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1749913200,
-      'formatted' => '2025-06-15 00:00:00',
-      'timezone' => 
+      'timestamp' => 1749945600,
+      'formatted' => '2025-06-15 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12296,29 +10906,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 20,
       'is_leap_month' => false,
-      'moon_age' => 18.8588498365134,
-      'moon_phase_angle' => 218.33458734784557,
+      'moon_age' => 18.873,
+      'moon_phase_angle' => 219.57063220773304,
       'moon_phase' => 5,
       'moon_phase_text' => '十六夜',
     ),
   ),
-  '2025-06-16 00:00:00' => 
+  '2025-06-16 09:00:00' =>
   array (
-    0 => '2025-06-16 00:00:00',
-    1 => 
+    0 => '2025-06-16 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 6,
       'day' => 16,
       'dayOfWeek' => 1,
       'dayOfYear' => 167,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1749999600,
-      'formatted' => '2025-06-16 00:00:00',
-      'timezone' => 
+      'timestamp' => 1750032000,
+      'formatted' => '2025-06-16 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12354,29 +10964,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 21,
       'is_leap_month' => false,
-      'moon_age' => 19.858636715449393,
-      'moon_phase_angle' => 230.3354161070808,
+      'moon_age' => 19.873,
+      'moon_phase_angle' => 231.59601827965616,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-06-17 00:00:00' => 
+  '2025-06-17 09:00:00' =>
   array (
-    0 => '2025-06-17 00:00:00',
-    1 => 
+    0 => '2025-06-17 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 6,
       'day' => 17,
       'dayOfWeek' => 2,
       'dayOfYear' => 168,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1750086000,
-      'formatted' => '2025-06-17 00:00:00',
-      'timezone' => 
+      'timestamp' => 1750118400,
+      'formatted' => '2025-06-17 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12412,29 +11022,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 22,
       'is_leap_month' => false,
-      'moon_age' => 20.858835929539055,
-      'moon_phase_angle' => 242.54484990948168,
+      'moon_age' => 20.873,
+      'moon_phase_angle' => 243.83302270582504,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-06-18 00:00:00' => 
+  '2025-06-18 09:00:00' =>
   array (
-    0 => '2025-06-18 00:00:00',
-    1 => 
+    0 => '2025-06-18 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 6,
       'day' => 18,
       'dayOfWeek' => 3,
       'dayOfYear' => 169,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1750172400,
-      'formatted' => '2025-06-18 00:00:00',
-      'timezone' => 
+      'timestamp' => 1750204800,
+      'formatted' => '2025-06-18 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12470,29 +11080,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 21.85950673604384,
-      'moon_phase_angle' => 254.98663109789925,
+      'moon_age' => 21.873,
+      'moon_phase_angle' => 256.30562974228746,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-06-19 00:00:00' => 
+  '2025-06-19 04:19:00' =>
   array (
-    0 => '2025-06-19 00:00:00',
-    1 => 
+    0 => '2025-06-19 04:19:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 6,
       'day' => 19,
       'dayOfWeek' => 4,
       'dayOfYear' => 170,
-      'hour' => 0,
-      'minute' => 0,
+      'hour' => 4,
+      'minute' => 19,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1750258800,
-      'formatted' => '2025-06-19 00:00:00',
-      'timezone' => 
+      'timestamp' => 1750274340,
+      'formatted' => '2025-06-19 04:19:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12528,29 +11138,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 24,
       'is_leap_month' => false,
-      'moon_age' => 22.860710993409157,
-      'moon_phase_angle' => 267.68690183819547,
+      'moon_age' => 22.678472222222222,
+      'moon_phase_angle' => 266.53301443747114,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2025-06-19 05:00:00' => 
+  '2025-06-19 09:00:00' =>
   array (
-    0 => '2025-06-19 05:00:00',
-    1 => 
+    0 => '2025-06-19 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 6,
       'day' => 19,
       'dayOfWeek' => 4,
       'dayOfYear' => 170,
-      'hour' => 5,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1750276800,
-      'formatted' => '2025-06-19 05:00:00',
-      'timezone' => 
+      'timestamp' => 1750291200,
+      'formatted' => '2025-06-19 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12586,29 +11196,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 24,
       'is_leap_month' => false,
-      'moon_age' => 23.06936112139374,
-      'moon_phase_angle' => 270.36748839345375,
+      'moon_age' => 22.873,
+      'moon_phase_angle' => 269.0395026099925,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2025-06-20 00:00:00' => 
+  '2025-06-20 09:00:00' =>
   array (
-    0 => '2025-06-20 00:00:00',
-    1 => 
+    0 => '2025-06-20 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 6,
       'day' => 20,
       'dayOfWeek' => 5,
       'dayOfYear' => 171,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1750345200,
-      'formatted' => '2025-06-20 00:00:00',
-      'timezone' => 
+      'timestamp' => 1750377600,
+      'formatted' => '2025-06-20 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12644,29 +11254,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 25,
       'is_leap_month' => false,
-      'moon_age' => 23.86248323554173,
-      'moon_phase_angle' => 280.66673696608774,
+      'moon_age' => 23.873,
+      'moon_phase_angle' => 282.0544689433377,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-06-21 00:00:00' => 
+  '2025-06-21 09:00:00' =>
   array (
-    0 => '2025-06-21 00:00:00',
-    1 => 
+    0 => '2025-06-21 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 6,
       'day' => 21,
       'dayOfWeek' => 6,
       'dayOfYear' => 172,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1750431600,
-      'formatted' => '2025-06-21 00:00:00',
-      'timezone' => 
+      'timestamp' => 1750464000,
+      'formatted' => '2025-06-21 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12702,29 +11312,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 26,
       'is_leap_month' => false,
-      'moon_age' => 24.86483610002324,
-      'moon_phase_angle' => 293.9316622131515,
+      'moon_age' => 24.873,
+      'moon_phase_angle' => 295.35369459570506,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-06-22 00:00:00' => 
+  '2025-06-22 09:00:00' =>
   array (
-    0 => '2025-06-22 00:00:00',
-    1 => 
+    0 => '2025-06-22 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 6,
       'day' => 22,
       'dayOfWeek' => 0,
       'dayOfYear' => 173,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1750518000,
-      'formatted' => '2025-06-22 00:00:00',
-      'timezone' => 
+      'timestamp' => 1750550400,
+      'formatted' => '2025-06-22 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12760,29 +11370,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 27,
       'is_leap_month' => false,
-      'moon_age' => 25.86769199371338,
-      'moon_phase_angle' => 307.460080564167,
+      'moon_age' => 25.873,
+      'moon_phase_angle' => 308.9117007400841,
       'moon_phase' => 7,
       'moon_phase_text' => '有明',
     ),
   ),
-  '2025-06-23 00:00:00' => 
+  '2025-06-23 09:00:00' =>
   array (
-    0 => '2025-06-23 00:00:00',
-    1 => 
+    0 => '2025-06-23 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 6,
       'day' => 23,
       'dayOfWeek' => 1,
       'dayOfYear' => 174,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1750604400,
-      'formatted' => '2025-06-23 00:00:00',
-      'timezone' => 
+      'timestamp' => 1750636800,
+      'formatted' => '2025-06-23 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12818,29 +11428,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 28,
       'is_leap_month' => false,
-      'moon_age' => 26.772659019710808,
-      'moon_phase_angle' => 321.19408716192146,
+      'moon_age' => 26.873,
+      'moon_phase_angle' => 322.66548874173367,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-06-24 00:00:00' => 
+  '2025-06-24 09:00:00' =>
   array (
-    0 => '2025-06-24 00:00:00',
-    1 => 
+    0 => '2025-06-24 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 6,
       'day' => 24,
       'dayOfWeek' => 2,
       'dayOfYear' => 175,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1750690800,
-      'formatted' => '2025-06-24 00:00:00',
-      'timezone' => 
+      'timestamp' => 1750723200,
+      'formatted' => '2025-06-24 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12876,29 +11486,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 29,
       'is_leap_month' => false,
-      'moon_age' => 27.90896315654212,
-      'moon_phase_angle' => 335.0371755834852,
+      'moon_age' => 27.873,
+      'moon_phase_angle' => 336.51369918802243,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-06-25 00:00:00' => 
+  '2025-06-25 09:00:00' =>
   array (
-    0 => '2025-06-25 00:00:00',
-    1 => 
+    0 => '2025-06-25 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 6,
       'day' => 25,
       'dayOfWeek' => 3,
       'dayOfYear' => 176,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1750777200,
-      'formatted' => '2025-06-25 00:00:00',
-      'timezone' => 
+      'timestamp' => 1750809600,
+      'formatted' => '2025-06-25 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12934,16 +11544,16 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 29.039542367359935,
-      'moon_phase_angle' => 348.86239922722416,
+      'moon_age' => 28.873,
+      'moon_phase_angle' => 350.3266699869273,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2025-06-25 19:00:00' => 
+  '2025-06-25 19:32:00' =>
   array (
-    0 => '2025-06-25 19:00:00',
-    1 => 
+    0 => '2025-06-25 19:32:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 6,
@@ -12951,12 +11561,12 @@ return array (
       'dayOfWeek' => 3,
       'dayOfYear' => 176,
       'hour' => 19,
-      'minute' => 0,
+      'minute' => 32,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1750845600,
-      'formatted' => '2025-06-25 19:00:00',
-      'timezone' => 
+      'timestamp' => 1750847520,
+      'formatted' => '2025-06-25 19:32:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12992,87 +11602,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.3485886063426733,
-      'moon_phase_angle' => 359.702814754649,
+      'moon_age' => 0.0,
+      'moon_phase_angle' => 356.342097411474,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2025-06-25 20:00:00' => 
+  '2025-06-26 09:00:00' =>
   array (
-    0 => '2025-06-25 20:00:00',
-    1 => 
-    array (
-      'year' => 2025,
-      'month' => 6,
-      'day' => 25,
-      'dayOfWeek' => 3,
-      'dayOfYear' => 176,
-      'hour' => 20,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1750849200,
-      'formatted' => '2025-06-25 20:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 7,
-      'oriental_zodiac_text' => '巳',
-      'oriental_zodiac' => 6,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '赤口',
-      'six_weekday' => 1,
-      'weekday_text' => '水',
-      'month_text' => '水無月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '水無月',
-      'lunar_month' => 6,
-      'lunar_year' => 2025,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.3897467600181699,
-      'moon_phase_angle' => 0.26936534609258445,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2025-06-26 00:00:00' => 
-  array (
-    0 => '2025-06-26 00:00:00',
-    1 => 
+    0 => '2025-06-26 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 6,
       'day' => 26,
       'dayOfWeek' => 4,
       'dayOfYear' => 177,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1750863600,
-      'formatted' => '2025-06-26 00:00:00',
-      'timezone' => 
+      'timestamp' => 1750896000,
+      'formatted' => '2025-06-26 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -13108,29 +11660,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 2,
       'is_leap_month' => false,
-      'moon_age' => 0.5543929864652455,
-      'moon_phase_angle' => 2.530843097317657,
+      'moon_age' => 0.561,
+      'moon_phase_angle' => 3.9659604235029633,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-06-27 00:00:00' => 
+  '2025-06-27 09:00:00' =>
   array (
-    0 => '2025-06-27 00:00:00',
-    1 => 
+    0 => '2025-06-27 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 6,
       'day' => 27,
       'dayOfWeek' => 5,
       'dayOfYear' => 178,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1750950000,
-      'formatted' => '2025-06-27 00:00:00',
-      'timezone' => 
+      'timestamp' => 1750982400,
+      'formatted' => '2025-06-27 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -13166,29 +11718,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 3,
       'is_leap_month' => false,
-      'moon_age' => 1.5441681761294603,
-      'moon_phase_angle' => 15.915264269990473,
+      'moon_age' => 1.561,
+      'moon_phase_angle' => 17.30764721490972,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-06-28 00:00:00' => 
+  '2025-06-28 09:00:00' =>
   array (
-    0 => '2025-06-28 00:00:00',
-    1 => 
+    0 => '2025-06-28 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 6,
       'day' => 28,
       'dayOfWeek' => 6,
       'dayOfYear' => 179,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1751036400,
-      'formatted' => '2025-06-28 00:00:00',
-      'timezone' => 
+      'timestamp' => 1751068800,
+      'formatted' => '2025-06-28 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -13224,29 +11776,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 4,
       'is_leap_month' => false,
-      'moon_age' => 2.5377410044893622,
-      'moon_phase_angle' => 28.92094907547019,
+      'moon_age' => 2.561,
+      'moon_phase_angle' => 30.262031235061528,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-06-29 00:00:00' => 
+  '2025-06-29 09:00:00' =>
   array (
-    0 => '2025-06-29 00:00:00',
-    1 => 
+    0 => '2025-06-29 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 6,
       'day' => 29,
       'dayOfWeek' => 0,
       'dayOfYear' => 180,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1751122800,
-      'formatted' => '2025-06-29 00:00:00',
-      'timezone' => 
+      'timestamp' => 1751155200,
+      'formatted' => '2025-06-29 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -13282,29 +11834,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 5,
       'is_leap_month' => false,
-      'moon_age' => 3.535576304420829,
-      'moon_phase_angle' => 41.49750462353465,
+      'moon_age' => 3.561,
+      'moon_phase_angle' => 42.78429061435497,
       'moon_phase' => 1,
       'moon_phase_text' => '三日月',
     ),
   ),
-  '2025-06-30 00:00:00' => 
+  '2025-06-30 09:00:00' =>
   array (
-    0 => '2025-06-30 00:00:00',
-    1 => 
+    0 => '2025-06-30 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 6,
       'day' => 30,
       'dayOfWeek' => 1,
       'dayOfYear' => 181,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1751209200,
-      'formatted' => '2025-06-30 00:00:00',
-      'timezone' => 
+      'timestamp' => 1751241600,
+      'formatted' => '2025-06-30 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -13340,29 +11892,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 6,
       'is_leap_month' => false,
-      'moon_age' => 4.537579871248454,
-      'moon_phase_angle' => 53.64002976138481,
+      'moon_age' => 4.561,
+      'moon_phase_angle' => 54.87477787229872,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-07-01 00:00:00' => 
+  '2025-07-01 09:00:00' =>
   array (
-    0 => '2025-07-01 00:00:00',
-    1 => 
+    0 => '2025-07-01 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 7,
       'day' => 1,
       'dayOfWeek' => 2,
       'dayOfYear' => 182,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1751295600,
-      'formatted' => '2025-07-01 00:00:00',
-      'timezone' => 
+      'timestamp' => 1751328000,
+      'formatted' => '2025-07-01 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -13398,29 +11950,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 7,
       'is_leap_month' => false,
-      'moon_age' => 5.543284538667649,
-      'moon_phase_angle' => 65.38234583626495,
+      'moon_age' => 5.561,
+      'moon_phase_angle' => 66.57155181365935,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-07-02 00:00:00' => 
+  '2025-07-02 09:00:00' =>
   array (
-    0 => '2025-07-02 00:00:00',
-    1 => 
+    0 => '2025-07-02 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 7,
       'day' => 2,
       'dayOfWeek' => 3,
       'dayOfYear' => 183,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1751382000,
-      'formatted' => '2025-07-02 00:00:00',
-      'timezone' => 
+      'timestamp' => 1751414400,
+      'formatted' => '2025-07-02 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -13456,29 +12008,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 6.551920055877417,
-      'moon_phase_angle' => 76.78645714820559,
+      'moon_age' => 6.561,
+      'moon_phase_angle' => 77.93943391176563,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-07-03 00:00:00' => 
+  '2025-07-03 04:30:00' =>
   array (
-    0 => '2025-07-03 00:00:00',
-    1 => 
+    0 => '2025-07-03 04:30:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 7,
       'day' => 3,
       'dayOfWeek' => 4,
       'dayOfYear' => 184,
-      'hour' => 0,
-      'minute' => 0,
+      'hour' => 4,
+      'minute' => 30,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1751468400,
-      'formatted' => '2025-07-03 00:00:00',
-      'timezone' => 
+      'timestamp' => 1751484600,
+      'formatted' => '2025-07-03 04:30:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -13514,29 +12066,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 9,
       'is_leap_month' => false,
-      'moon_age' => 7.56134356604889,
-      'moon_phase_angle' => 87.93177873766447,
+      'moon_age' => 7.373611111111111,
+      'moon_phase_angle' => 86.98912351822858,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2025-07-03 05:00:00' => 
+  '2025-07-03 09:00:00' =>
   array (
-    0 => '2025-07-03 05:00:00',
-    1 => 
+    0 => '2025-07-03 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 7,
       'day' => 3,
       'dayOfWeek' => 4,
       'dayOfYear' => 184,
-      'hour' => 5,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1751486400,
-      'formatted' => '2025-07-03 05:00:00',
-      'timezone' => 
+      'timestamp' => 1751500800,
+      'formatted' => '2025-07-03 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -13572,29 +12124,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 9,
       'is_leap_month' => false,
-      'moon_age' => 7.769410517066717,
-      'moon_phase_angle' => 90.22919753275808,
+      'moon_age' => 7.561,
+      'moon_phase_angle' => 89.0591723961977,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2025-07-04 00:00:00' => 
+  '2025-07-04 09:00:00' =>
   array (
-    0 => '2025-07-04 00:00:00',
-    1 => 
+    0 => '2025-07-04 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 7,
       'day' => 4,
       'dayOfWeek' => 5,
       'dayOfYear' => 185,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1751554800,
-      'formatted' => '2025-07-04 00:00:00',
-      'timezone' => 
+      'timestamp' => 1751587200,
+      'formatted' => '2025-07-04 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -13630,29 +12182,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 10,
       'is_leap_month' => false,
-      'moon_age' => 8.559983543120325,
-      'moon_phase_angle' => 98.90578543305378,
+      'moon_age' => 8.561,
+      'moon_phase_angle' => 100.01846600295735,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-07-05 00:00:00' => 
+  '2025-07-05 09:00:00' =>
   array (
-    0 => '2025-07-05 00:00:00',
-    1 => 
+    0 => '2025-07-05 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 7,
       'day' => 5,
       'dayOfWeek' => 6,
       'dayOfYear' => 186,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1751641200,
-      'formatted' => '2025-07-05 00:00:00',
-      'timezone' => 
+      'timestamp' => 1751673600,
+      'formatted' => '2025-07-05 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -13688,29 +12240,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 11,
       'is_leap_month' => false,
-      'moon_age' => 9.558605188969523,
-      'moon_phase_angle' => 109.7966482250691,
+      'moon_age' => 9.561,
+      'moon_phase_angle' => 110.9050040014422,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-07-06 00:00:00' => 
+  '2025-07-06 09:00:00' =>
   array (
-    0 => '2025-07-06 00:00:00',
-    1 => 
+    0 => '2025-07-06 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 7,
       'day' => 6,
       'dayOfWeek' => 0,
       'dayOfYear' => 187,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1751727600,
-      'formatted' => '2025-07-06 00:00:00',
-      'timezone' => 
+      'timestamp' => 1751760000,
+      'formatted' => '2025-07-06 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -13746,29 +12298,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 12,
       'is_leap_month' => false,
-      'moon_age' => 10.557268764823675,
-      'moon_phase_angle' => 120.6875515013945,
+      'moon_age' => 10.561,
+      'moon_phase_angle' => 121.80103322561571,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-07-07 00:00:00' => 
+  '2025-07-07 09:00:00' =>
   array (
-    0 => '2025-07-07 00:00:00',
-    1 => 
+    0 => '2025-07-07 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 7,
       'day' => 7,
       'dayOfWeek' => 1,
       'dayOfYear' => 188,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1751814000,
-      'formatted' => '2025-07-07 00:00:00',
-      'timezone' => 
+      'timestamp' => 1751846400,
+      'formatted' => '2025-07-07 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -13804,29 +12356,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 13,
       'is_leap_month' => false,
-      'moon_age' => 11.55606992635876,
-      'moon_phase_angle' => 131.65226086262186,
+      'moon_age' => 11.561,
+      'moon_phase_angle' => 132.77900949440223,
       'moon_phase' => 3,
       'moon_phase_text' => '十三夜',
     ),
   ),
-  '2025-07-08 00:00:00' => 
+  '2025-07-08 09:00:00' =>
   array (
-    0 => '2025-07-08 00:00:00',
-    1 => 
+    0 => '2025-07-08 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 7,
       'day' => 8,
       'dayOfWeek' => 2,
       'dayOfYear' => 189,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1751900400,
-      'formatted' => '2025-07-08 00:00:00',
-      'timezone' => 
+      'timestamp' => 1751932800,
+      'formatted' => '2025-07-08 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -13862,29 +12414,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 14,
       'is_leap_month' => false,
-      'moon_age' => 12.55504761915654,
-      'moon_phase_angle' => 142.75165447004747,
+      'moon_age' => 12.561,
+      'moon_phase_angle' => 143.89817080002464,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-07-09 00:00:00' => 
+  '2025-07-09 09:00:00' =>
   array (
-    0 => '2025-07-09 00:00:00',
-    1 => 
+    0 => '2025-07-09 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 7,
       'day' => 9,
       'dayOfWeek' => 3,
       'dayOfYear' => 190,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1751986800,
-      'formatted' => '2025-07-09 00:00:00',
-      'timezone' => 
+      'timestamp' => 1752019200,
+      'formatted' => '2025-07-09 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -13920,29 +12472,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 15,
       'is_leap_month' => false,
-      'moon_age' => 13.554234399925917,
-      'moon_phase_angle' => 154.0312250452937,
+      'moon_age' => 13.561,
+      'moon_phase_angle' => 155.20212542608078,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-07-10 00:00:00' => 
+  '2025-07-10 09:00:00' =>
   array (
-    0 => '2025-07-10 00:00:00',
-    1 => 
+    0 => '2025-07-10 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 7,
       'day' => 10,
       'dayOfWeek' => 4,
       'dayOfYear' => 191,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1752073200,
-      'formatted' => '2025-07-10 00:00:00',
-      'timezone' => 
+      'timestamp' => 1752105600,
+      'formatted' => '2025-07-10 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -13978,74 +12530,16 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 14.553640332538635,
-      'moon_phase_angle' => 165.51984664509578,
+      'moon_age' => 14.561,
+      'moon_phase_angle' => 166.7177613604507,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-07-11 00:00:00' => 
+  '2025-07-11 05:37:00' =>
   array (
-    0 => '2025-07-11 00:00:00',
-    1 => 
-    array (
-      'year' => 2025,
-      'month' => 7,
-      'day' => 11,
-      'dayOfWeek' => 5,
-      'dayOfYear' => 192,
-      'hour' => 0,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1752159600,
-      'formatted' => '2025-07-11 00:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 7,
-      'oriental_zodiac_text' => '巳',
-      'oriental_zodiac' => 6,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '仏滅',
-      'six_weekday' => 5,
-      'weekday_text' => '金',
-      'month_text' => '文月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '水無月',
-      'lunar_month' => 6,
-      'lunar_year' => 2025,
-      'lunar_day' => 17,
-      'is_leap_month' => false,
-      'moon_age' => 15.553251879289746,
-      'moon_phase_angle' => 177.2302344318519,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2025-07-11 05:00:00' => 
-  array (
-    0 => '2025-07-11 05:00:00',
-    1 => 
+    0 => '2025-07-11 05:37:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 7,
@@ -14053,12 +12547,12 @@ return array (
       'dayOfWeek' => 5,
       'dayOfYear' => 192,
       'hour' => 5,
-      'minute' => 0,
+      'minute' => 37,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1752177600,
-      'formatted' => '2025-07-11 05:00:00',
-      'timezone' => 
+      'timestamp' => 1752179820,
+      'formatted' => '2025-07-11 05:37:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -14094,29 +12588,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 17,
       'is_leap_month' => false,
-      'moon_age' => 15.761535737197846,
-      'moon_phase_angle' => 179.69792553622665,
+      'moon_age' => 15.42013888888889,
+      'moon_phase_angle' => 176.7876572345295,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2025-07-11 06:00:00' => 
+  '2025-07-11 09:00:00' =>
   array (
-    0 => '2025-07-11 06:00:00',
-    1 => 
+    0 => '2025-07-11 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 7,
       'day' => 11,
       'dayOfWeek' => 5,
       'dayOfYear' => 192,
-      'hour' => 6,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1752181200,
-      'formatted' => '2025-07-11 06:00:00',
-      'timezone' => 
+      'timestamp' => 1752192000,
+      'formatted' => '2025-07-11 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -14152,87 +12646,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 17,
       'is_leap_month' => false,
-      'moon_age' => 15.803193554282188,
-      'moon_phase_angle' => 180.19261153290705,
+      'moon_age' => 15.561,
+      'moon_phase_angle' => 178.455905725663,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2025-07-11 07:00:00' => 
+  '2025-07-12 09:00:00' =>
   array (
-    0 => '2025-07-11 07:00:00',
-    1 => 
-    array (
-      'year' => 2025,
-      'month' => 7,
-      'day' => 11,
-      'dayOfWeek' => 5,
-      'dayOfYear' => 192,
-      'hour' => 7,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1752184800,
-      'formatted' => '2025-07-11 07:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 7,
-      'oriental_zodiac_text' => '巳',
-      'oriental_zodiac' => 6,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '仏滅',
-      'six_weekday' => 5,
-      'weekday_text' => '金',
-      'month_text' => '文月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '水無月',
-      'lunar_month' => 6,
-      'lunar_year' => 2025,
-      'lunar_day' => 17,
-      'is_leap_month' => false,
-      'moon_age' => 15.8448581751436,
-      'moon_phase_angle' => 180.6876786540737,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2025-07-12 00:00:00' => 
-  array (
-    0 => '2025-07-12 00:00:00',
-    1 => 
+    0 => '2025-07-12 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 7,
       'day' => 12,
       'dayOfWeek' => 6,
       'dayOfYear' => 193,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1752246000,
-      'formatted' => '2025-07-12 00:00:00',
-      'timezone' => 
+      'timestamp' => 1752278400,
+      'formatted' => '2025-07-12 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -14268,29 +12704,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 18,
       'is_leap_month' => false,
-      'moon_age' => 16.55309095000848,
-      'moon_phase_angle' => 189.16138600163822,
+      'moon_age' => 16.561,
+      'moon_phase_angle' => 190.41402280196053,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-07-13 00:00:00' => 
+  '2025-07-13 09:00:00' =>
   array (
-    0 => '2025-07-13 00:00:00',
-    1 => 
+    0 => '2025-07-13 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 7,
       'day' => 13,
       'dayOfWeek' => 0,
       'dayOfYear' => 194,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1752332400,
-      'formatted' => '2025-07-13 00:00:00',
-      'timezone' => 
+      'timestamp' => 1752364800,
+      'formatted' => '2025-07-13 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -14326,29 +12762,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 19,
       'is_leap_month' => false,
-      'moon_age' => 17.55310583068058,
-      'moon_phase_angle' => 201.3028483463948,
+      'moon_age' => 17.561,
+      'moon_phase_angle' => 202.58073503015817,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-07-14 00:00:00' => 
+  '2025-07-14 09:00:00' =>
   array (
-    0 => '2025-07-14 00:00:00',
-    1 => 
+    0 => '2025-07-14 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 7,
       'day' => 14,
       'dayOfWeek' => 1,
       'dayOfYear' => 195,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1752418800,
-      'formatted' => '2025-07-14 00:00:00',
-      'timezone' => 
+      'timestamp' => 1752451200,
+      'formatted' => '2025-07-14 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -14384,29 +12820,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 20,
       'is_leap_month' => false,
-      'moon_age' => 18.55331270582974,
-      'moon_phase_angle' => 213.64002805840806,
+      'moon_age' => 18.561,
+      'moon_phase_angle' => 214.94125439801303,
       'moon_phase' => 5,
       'moon_phase_text' => '十六夜',
     ),
   ),
-  '2025-07-15 00:00:00' => 
+  '2025-07-15 09:00:00' =>
   array (
-    0 => '2025-07-15 00:00:00',
-    1 => 
+    0 => '2025-07-15 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 7,
       'day' => 15,
       'dayOfWeek' => 2,
       'dayOfYear' => 196,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1752505200,
-      'formatted' => '2025-07-15 00:00:00',
-      'timezone' => 
+      'timestamp' => 1752537600,
+      'formatted' => '2025-07-15 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -14442,29 +12878,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 21,
       'is_leap_month' => false,
-      'moon_age' => 19.553690097294748,
-      'moon_phase_angle' => 226.1592240132077,
+      'moon_age' => 19.561,
+      'moon_phase_angle' => 227.48229361313545,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-07-16 00:00:00' => 
+  '2025-07-16 09:00:00' =>
   array (
-    0 => '2025-07-16 00:00:00',
-    1 => 
+    0 => '2025-07-16 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 7,
       'day' => 16,
       'dayOfWeek' => 3,
       'dayOfYear' => 197,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1752591600,
-      'formatted' => '2025-07-16 00:00:00',
-      'timezone' => 
+      'timestamp' => 1752624000,
+      'formatted' => '2025-07-16 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -14500,29 +12936,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 22,
       'is_leap_month' => false,
-      'moon_age' => 20.554240361321718,
-      'moon_phase_angle' => 238.85089033432297,
+      'moon_age' => 20.561,
+      'moon_phase_angle' => 240.1949734721268,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-07-17 00:00:00' => 
+  '2025-07-17 09:00:00' =>
   array (
-    0 => '2025-07-17 00:00:00',
-    1 => 
+    0 => '2025-07-17 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 7,
       'day' => 17,
       'dayOfWeek' => 4,
       'dayOfYear' => 198,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1752678000,
-      'formatted' => '2025-07-17 00:00:00',
-      'timezone' => 
+      'timestamp' => 1752710400,
+      'formatted' => '2025-07-17 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -14558,29 +12994,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 21.554951870813966,
-      'moon_phase_angle' => 251.7099501769651,
+      'moon_age' => 21.561,
+      'moon_phase_angle' => 253.07466868374337,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-07-18 00:00:00' => 
+  '2025-07-18 09:00:00' =>
   array (
-    0 => '2025-07-18 00:00:00',
-    1 => 
+    0 => '2025-07-18 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 7,
       'day' => 18,
       'dayOfWeek' => 5,
       'dayOfYear' => 199,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1752764400,
-      'formatted' => '2025-07-18 00:00:00',
-      'timezone' => 
+      'timestamp' => 1752796800,
+      'formatted' => '2025-07-18 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -14616,29 +13052,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 24,
       'is_leap_month' => false,
-      'moon_age' => 22.555828729644418,
-      'moon_phase_angle' => 264.7326959388263,
+      'moon_age' => 22.561,
+      'moon_phase_angle' => 266.11747206994426,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2025-07-18 10:00:00' => 
+  '2025-07-18 09:38:00' =>
   array (
-    0 => '2025-07-18 10:00:00',
-    1 => 
+    0 => '2025-07-18 09:38:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 7,
       'day' => 18,
       'dayOfWeek' => 5,
       'dayOfYear' => 199,
-      'hour' => 10,
-      'minute' => 0,
+      'hour' => 9,
+      'minute' => 38,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1752800400,
-      'formatted' => '2025-07-18 10:00:00',
-      'timezone' => 
+      'timestamp' => 1752799080,
+      'formatted' => '2025-07-18 09:38:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -14674,29 +13110,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 24,
       'is_leap_month' => false,
-      'moon_age' => 22.972913243807852,
-      'moon_phase_angle' => 270.2054970228689,
+      'moon_age' => 22.5875,
+      'moon_phase_angle' => 266.46380168097534,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2025-07-19 00:00:00' => 
+  '2025-07-19 09:00:00' =>
   array (
-    0 => '2025-07-19 00:00:00',
-    1 => 
+    0 => '2025-07-19 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 7,
       'day' => 19,
       'dayOfWeek' => 6,
       'dayOfYear' => 200,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1752850800,
-      'formatted' => '2025-07-19 00:00:00',
-      'timezone' => 
+      'timestamp' => 1752883200,
+      'formatted' => '2025-07-19 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -14732,29 +13168,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 25,
       'is_leap_month' => false,
-      'moon_age' => 23.55688455607742,
-      'moon_phase_angle' => 277.9107477610773,
+      'moon_age' => 23.561,
+      'moon_phase_angle' => 279.31386420078553,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-07-20 00:00:00' => 
+  '2025-07-20 09:00:00' =>
   array (
-    0 => '2025-07-20 00:00:00',
-    1 => 
+    0 => '2025-07-20 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 7,
       'day' => 20,
       'dayOfWeek' => 0,
       'dayOfYear' => 201,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1752937200,
-      'formatted' => '2025-07-20 00:00:00',
-      'timezone' => 
+      'timestamp' => 1752969600,
+      'formatted' => '2025-07-20 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -14790,29 +13226,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 26,
       'is_leap_month' => false,
-      'moon_age' => 24.558087880257517,
-      'moon_phase_angle' => 291.22353109234393,
+      'moon_age' => 24.561,
+      'moon_phase_angle' => 292.64116613435897,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-07-21 00:00:00' => 
+  '2025-07-21 09:00:00' =>
   array (
-    0 => '2025-07-21 00:00:00',
-    1 => 
+    0 => '2025-07-21 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 7,
       'day' => 21,
       'dayOfWeek' => 1,
       'dayOfYear' => 202,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1753023600,
-      'formatted' => '2025-07-21 00:00:00',
-      'timezone' => 
+      'timestamp' => 1753056000,
+      'formatted' => '2025-07-21 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -14848,29 +13284,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 27,
       'is_leap_month' => false,
-      'moon_age' => 25.55938118090853,
-      'moon_phase_angle' => 304.6315993537651,
+      'moon_age' => 25.561,
+      'moon_phase_angle' => 306.0572147286363,
       'moon_phase' => 7,
       'moon_phase_text' => '有明',
     ),
   ),
-  '2025-07-22 00:00:00' => 
+  '2025-07-22 09:00:00' =>
   array (
-    0 => '2025-07-22 00:00:00',
-    1 => 
+    0 => '2025-07-22 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 7,
       'day' => 22,
       'dayOfWeek' => 2,
       'dayOfYear' => 203,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1753110000,
-      'formatted' => '2025-07-22 00:00:00',
-      'timezone' => 
+      'timestamp' => 1753142400,
+      'formatted' => '2025-07-22 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -14906,29 +13342,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 28,
       'is_leap_month' => false,
-      'moon_age' => 26.504276269259243,
-      'moon_phase_angle' => 318.07353766889423,
+      'moon_age' => 26.561,
+      'moon_phase_angle' => 319.4979782461022,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-07-23 00:00:00' => 
+  '2025-07-23 09:00:00' =>
   array (
-    0 => '2025-07-23 00:00:00',
-    1 => 
+    0 => '2025-07-23 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 7,
       'day' => 23,
       'dayOfWeek' => 3,
       'dayOfYear' => 204,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1753196400,
-      'formatted' => '2025-07-23 00:00:00',
-      'timezone' => 
+      'timestamp' => 1753228800,
+      'formatted' => '2025-07-23 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -14964,29 +13400,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 29,
       'is_leap_month' => false,
-      'moon_age' => 27.59971614941427,
-      'moon_phase_angle' => 331.46864753412825,
+      'moon_age' => 27.561,
+      'moon_phase_angle' => 332.8810518492844,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-07-24 00:00:00' => 
+  '2025-07-24 09:00:00' =>
   array (
-    0 => '2025-07-24 00:00:00',
-    1 => 
+    0 => '2025-07-24 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 7,
       'day' => 24,
       'dayOfWeek' => 4,
       'dayOfYear' => 205,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1753282800,
-      'formatted' => '2025-07-24 00:00:00',
-      'timezone' => 
+      'timestamp' => 1753315200,
+      'formatted' => '2025-07-24 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -15022,132 +13458,16 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 30,
       'is_leap_month' => false,
-      'moon_age' => 28.681039948625802,
-      'moon_phase_angle' => 344.7258649562975,
+      'moon_age' => 28.561,
+      'moon_phase_angle' => 346.1151134471756,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-07-25 00:00:00' => 
+  '2025-07-25 04:11:00' =>
   array (
-    0 => '2025-07-25 00:00:00',
-    1 => 
-    array (
-      'year' => 2025,
-      'month' => 7,
-      'day' => 25,
-      'dayOfWeek' => 5,
-      'dayOfYear' => 206,
-      'hour' => 0,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1753369200,
-      'formatted' => '2025-07-25 00:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 7,
-      'misc_seasonal_node_text' => '土用',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 7,
-      'oriental_zodiac_text' => '巳',
-      'oriental_zodiac' => 6,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '赤口',
-      'six_weekday' => 1,
-      'weekday_text' => '金',
-      'month_text' => '文月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '水無月',
-      'lunar_month' => 6,
-      'lunar_year' => 2025,
-      'lunar_day' => 1,
-      'is_leap_month' => true,
-      'moon_age' => 0.2001017234288156,
-      'moon_phase_angle' => 357.7569212938347,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2025-07-25 03:00:00' => 
-  array (
-    0 => '2025-07-25 03:00:00',
-    1 => 
-    array (
-      'year' => 2025,
-      'month' => 7,
-      'day' => 25,
-      'dayOfWeek' => 5,
-      'dayOfYear' => 206,
-      'hour' => 3,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1753380000,
-      'formatted' => '2025-07-25 03:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 7,
-      'misc_seasonal_node_text' => '土用',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 7,
-      'oriental_zodiac_text' => '巳',
-      'oriental_zodiac' => 6,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '赤口',
-      'six_weekday' => 1,
-      'weekday_text' => '金',
-      'month_text' => '文月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '水無月',
-      'lunar_month' => 6,
-      'lunar_year' => 2025,
-      'lunar_day' => 1,
-      'is_leap_month' => true,
-      'moon_age' => 0.32479319255799055,
-      'moon_phase_angle' => 359.3660624167151,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2025-07-25 04:00:00' => 
-  array (
-    0 => '2025-07-25 04:00:00',
-    1 => 
+    0 => '2025-07-25 04:11:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 7,
@@ -15155,12 +13475,12 @@ return array (
       'dayOfWeek' => 5,
       'dayOfYear' => 206,
       'hour' => 4,
-      'minute' => 0,
+      'minute' => 11,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1753383600,
-      'formatted' => '2025-07-25 04:00:00',
-      'timezone' => 
+      'timestamp' => 1753384260,
+      'formatted' => '2025-07-25 04:11:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -15196,29 +13516,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 1,
       'is_leap_month' => true,
-      'moon_age' => 0.36636986630037427,
-      'moon_phase_angle' => 359.9013800829839,
+      'moon_age' => 0.0,
+      'moon_phase_angle' => 356.527146498059,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2025-07-25 05:00:00' => 
+  '2025-07-25 09:00:00' =>
   array (
-    0 => '2025-07-25 05:00:00',
-    1 => 
+    0 => '2025-07-25 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 7,
       'day' => 25,
       'dayOfWeek' => 5,
       'dayOfYear' => 206,
-      'hour' => 5,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1753387200,
-      'formatted' => '2025-07-25 05:00:00',
-      'timezone' => 
+      'timestamp' => 1753401600,
+      'formatted' => '2025-07-25 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -15254,87 +13574,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 1,
       'is_leap_month' => true,
-      'moon_age' => 0.40793597092851996,
-      'moon_phase_angle' => 0.4361595298522616,
+      'moon_age' => 0.201,
+      'moon_phase_angle' => 359.113170646939,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2025-07-25 06:00:00' => 
+  '2025-07-26 09:00:00' =>
   array (
-    0 => '2025-07-25 06:00:00',
-    1 => 
-    array (
-      'year' => 2025,
-      'month' => 7,
-      'day' => 25,
-      'dayOfWeek' => 5,
-      'dayOfYear' => 206,
-      'hour' => 6,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1753390800,
-      'formatted' => '2025-07-25 06:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 7,
-      'misc_seasonal_node_text' => '土用',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 7,
-      'oriental_zodiac_text' => '巳',
-      'oriental_zodiac' => 6,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '赤口',
-      'six_weekday' => 1,
-      'weekday_text' => '金',
-      'month_text' => '文月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '水無月',
-      'lunar_month' => 6,
-      'lunar_year' => 2025,
-      'lunar_day' => 1,
-      'is_leap_month' => true,
-      'moon_age' => 0.44950379617512226,
-      'moon_phase_angle' => 0.9703967502186259,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2025-07-26 00:00:00' => 
-  array (
-    0 => '2025-07-26 00:00:00',
-    1 => 
+    0 => '2025-07-26 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 7,
       'day' => 26,
       'dayOfWeek' => 6,
       'dayOfYear' => 207,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1753455600,
-      'formatted' => '2025-07-26 00:00:00',
-      'timezone' => 
+      'timestamp' => 1753488000,
+      'formatted' => '2025-07-26 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -15370,29 +13632,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 2,
       'is_leap_month' => true,
-      'moon_age' => 1.1982666980475187,
-      'moon_phase_angle' => 10.489931390194585,
+      'moon_age' => 1.201,
+      'moon_phase_angle' => 11.805908088173453,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-07-27 00:00:00' => 
+  '2025-07-27 09:00:00' =>
   array (
-    0 => '2025-07-27 00:00:00',
-    1 => 
+    0 => '2025-07-27 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 7,
       'day' => 27,
       'dayOfWeek' => 0,
       'dayOfYear' => 208,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1753542000,
-      'formatted' => '2025-07-27 00:00:00',
-      'timezone' => 
+      'timestamp' => 1753574400,
+      'formatted' => '2025-07-27 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -15428,29 +13690,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 3,
       'is_leap_month' => true,
-      'moon_age' => 2.1979786697775126,
-      'moon_phase_angle' => 22.87956442860218,
+      'moon_age' => 2.201,
+      'moon_phase_angle' => 24.151485793387593,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-07-28 00:00:00' => 
+  '2025-07-28 09:00:00' =>
   array (
-    0 => '2025-07-28 00:00:00',
-    1 => 
+    0 => '2025-07-28 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 7,
       'day' => 28,
       'dayOfWeek' => 1,
       'dayOfYear' => 209,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1753628400,
-      'formatted' => '2025-07-28 00:00:00',
-      'timezone' => 
+      'timestamp' => 1753660800,
+      'formatted' => '2025-07-28 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -15486,29 +13748,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 4,
       'is_leap_month' => true,
-      'moon_age' => 3.199259261600673,
-      'moon_phase_angle' => 34.91167410558228,
+      'moon_age' => 3.201,
+      'moon_phase_angle' => 36.1397024941937,
       'moon_phase' => 1,
       'moon_phase_text' => '三日月',
     ),
   ),
-  '2025-07-29 00:00:00' => 
+  '2025-07-29 09:00:00' =>
   array (
-    0 => '2025-07-29 00:00:00',
-    1 => 
+    0 => '2025-07-29 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 7,
       'day' => 29,
       'dayOfWeek' => 2,
       'dayOfYear' => 210,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1753714800,
-      'formatted' => '2025-07-29 00:00:00',
-      'timezone' => 
+      'timestamp' => 1753747200,
+      'formatted' => '2025-07-29 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -15544,29 +13806,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 5,
       'is_leap_month' => true,
-      'moon_age' => 4.200577181763947,
-      'moon_phase_angle' => 46.6025200341838,
+      'moon_age' => 4.201,
+      'moon_phase_angle' => 47.79062376772349,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-07-30 00:00:00' => 
+  '2025-07-30 09:00:00' =>
   array (
-    0 => '2025-07-30 00:00:00',
-    1 => 
+    0 => '2025-07-30 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 7,
       'day' => 30,
       'dayOfWeek' => 3,
       'dayOfYear' => 211,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1753801200,
-      'formatted' => '2025-07-30 00:00:00',
-      'timezone' => 
+      'timestamp' => 1753833600,
+      'formatted' => '2025-07-30 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -15602,29 +13864,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 6,
       'is_leap_month' => true,
-      'moon_age' => 5.200379129499197,
-      'moon_phase_angle' => 57.99423067234832,
+      'moon_age' => 5.201,
+      'moon_phase_angle' => 59.14944030660297,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-07-31 00:00:00' => 
+  '2025-07-31 09:00:00' =>
   array (
-    0 => '2025-07-31 00:00:00',
-    1 => 
+    0 => '2025-07-31 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 7,
       'day' => 31,
       'dayOfWeek' => 4,
       'dayOfYear' => 212,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1753887600,
-      'formatted' => '2025-07-31 00:00:00',
-      'timezone' => 
+      'timestamp' => 1753920000,
+      'formatted' => '2025-07-31 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -15660,29 +13922,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 7,
       'is_leap_month' => true,
-      'moon_age' => 6.200139162596315,
-      'moon_phase_angle' => 69.1485031259654,
+      'moon_age' => 6.201,
+      'moon_phase_angle' => 70.27980468490395,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-08-01 00:00:00' => 
+  '2025-08-01 09:00:00' =>
   array (
-    0 => '2025-08-01 00:00:00',
-    1 => 
+    0 => '2025-08-01 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 8,
       'day' => 1,
       'dayOfWeek' => 5,
       'dayOfYear' => 213,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1753974000,
-      'formatted' => '2025-08-01 00:00:00',
-      'timezone' => 
+      'timestamp' => 1754006400,
+      'formatted' => '2025-08-01 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -15718,29 +13980,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 8,
       'is_leap_month' => true,
-      'moon_age' => 7.199877927079797,
-      'moon_phase_angle' => 80.14006150448103,
+      'moon_age' => 7.201,
+      'moon_phase_angle' => 81.25731594734975,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2025-08-01 22:00:00' => 
+  '2025-08-01 21:41:00' =>
   array (
-    0 => '2025-08-01 22:00:00',
-    1 => 
+    0 => '2025-08-01 21:41:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 8,
       'day' => 1,
       'dayOfWeek' => 5,
       'dayOfYear' => 213,
-      'hour' => 22,
-      'minute' => 0,
+      'hour' => 21,
+      'minute' => 41,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1754053200,
-      'formatted' => '2025-08-01 22:00:00',
-      'timezone' => 
+      'timestamp' => 1754052060,
+      'formatted' => '2025-08-01 21:41:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -15776,29 +14038,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 8,
       'is_leap_month' => true,
-      'moon_age' => 8.116321842186153,
-      'moon_phase_angle' => 90.14244886243392,
+      'moon_age' => 7.729166666666667,
+      'moon_phase_angle' => 87.02464795155905,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2025-08-02 00:00:00' => 
+  '2025-08-02 09:00:00' =>
   array (
-    0 => '2025-08-02 00:00:00',
-    1 => 
+    0 => '2025-08-02 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 8,
       'day' => 2,
       'dayOfWeek' => 6,
       'dayOfYear' => 214,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1754060400,
-      'formatted' => '2025-08-02 00:00:00',
-      'timezone' => 
+      'timestamp' => 1754092800,
+      'formatted' => '2025-08-02 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -15834,29 +14096,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 9,
       'is_leap_month' => true,
-      'moon_age' => 8.19963674293831,
-      'moon_phase_angle' => 91.05061046704253,
+      'moon_age' => 8.201,
+      'moon_phase_angle' => 92.16382757013955,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-08-03 00:00:00' => 
+  '2025-08-03 09:00:00' =>
   array (
-    0 => '2025-08-03 00:00:00',
-    1 => 
+    0 => '2025-08-03 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 8,
       'day' => 3,
       'dayOfWeek' => 0,
       'dayOfYear' => 215,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1754146800,
-      'formatted' => '2025-08-03 00:00:00',
-      'timezone' => 
+      'timestamp' => 1754179200,
+      'formatted' => '2025-08-03 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -15892,29 +14154,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 10,
       'is_leap_month' => true,
-      'moon_age' => 9.19940771535039,
-      'moon_phase_angle' => 101.96356026049335,
+      'moon_age' => 9.201,
+      'moon_phase_angle' => 103.08246490943532,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-08-04 00:00:00' => 
+  '2025-08-04 09:00:00' =>
   array (
-    0 => '2025-08-04 00:00:00',
-    1 => 
+    0 => '2025-08-04 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 8,
       'day' => 4,
       'dayOfWeek' => 1,
       'dayOfYear' => 216,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1754233200,
-      'formatted' => '2025-08-04 00:00:00',
-      'timezone' => 
+      'timestamp' => 1754265600,
+      'formatted' => '2025-08-04 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -15950,29 +14212,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 11,
       'is_leap_month' => true,
-      'moon_age' => 10.199211236089468,
-      'moon_phase_angle' => 112.95921494679013,
+      'moon_age' => 10.201,
+      'moon_phase_angle' => 114.09297585332189,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-08-05 00:00:00' => 
+  '2025-08-05 09:00:00' =>
   array (
-    0 => '2025-08-05 00:00:00',
-    1 => 
+    0 => '2025-08-05 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 8,
       'day' => 5,
       'dayOfWeek' => 2,
       'dayOfYear' => 217,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1754319600,
-      'formatted' => '2025-08-05 00:00:00',
-      'timezone' => 
+      'timestamp' => 1754352000,
+      'formatted' => '2025-08-05 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -16008,29 +14270,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 12,
       'is_leap_month' => true,
-      'moon_age' => 11.199054087977856,
-      'moon_phase_angle' => 124.11028292196974,
+      'moon_age' => 11.201,
+      'moon_phase_angle' => 125.26714123201637,
       'moon_phase' => 3,
       'moon_phase_text' => '十三夜',
     ),
   ),
-  '2025-08-06 00:00:00' => 
+  '2025-08-06 09:00:00' =>
   array (
-    0 => '2025-08-06 00:00:00',
-    1 => 
+    0 => '2025-08-06 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 8,
       'day' => 6,
       'dayOfWeek' => 3,
       'dayOfYear' => 218,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1754406000,
-      'formatted' => '2025-08-06 00:00:00',
-      'timezone' => 
+      'timestamp' => 1754438400,
+      'formatted' => '2025-08-06 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -16066,29 +14328,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 13,
       'is_leap_month' => true,
-      'moon_age' => 12.198937692213804,
-      'moon_phase_angle' => 135.47755153012173,
+      'moon_age' => 12.201,
+      'moon_phase_angle' => 136.6642809214857,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-08-07 00:00:00' => 
+  '2025-08-07 09:00:00' =>
   array (
-    0 => '2025-08-07 00:00:00',
-    1 => 
+    0 => '2025-08-07 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 8,
       'day' => 7,
       'dayOfWeek' => 4,
       'dayOfYear' => 219,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1754492400,
-      'formatted' => '2025-08-07 00:00:00',
-      'timezone' => 
+      'timestamp' => 1754524800,
+      'formatted' => '2025-08-07 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -16124,29 +14386,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 14,
       'is_leap_month' => true,
-      'moon_age' => 13.198874874971807,
-      'moon_phase_angle' => 147.10589192868403,
+      'moon_age' => 13.201,
+      'moon_phase_angle' => 148.32719446774104,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-08-08 00:00:00' => 
+  '2025-08-08 09:00:00' =>
   array (
-    0 => '2025-08-08 00:00:00',
-    1 => 
+    0 => '2025-08-08 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 8,
       'day' => 8,
       'dayOfWeek' => 5,
       'dayOfYear' => 220,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1754578800,
-      'formatted' => '2025-08-08 00:00:00',
-      'timezone' => 
+      'timestamp' => 1754611200,
+      'formatted' => '2025-08-08 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -16182,29 +14444,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 15,
       'is_leap_month' => true,
-      'moon_age' => 14.198856154456735,
-      'moon_phase_angle' => 159.0210849366305,
+      'moon_age' => 14.201,
+      'moon_phase_angle' => 160.27912116740484,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-08-09 00:00:00' => 
+  '2025-08-09 09:00:00' =>
   array (
-    0 => '2025-08-09 00:00:00',
-    1 => 
+    0 => '2025-08-09 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 8,
       'day' => 9,
       'dayOfWeek' => 6,
       'dayOfYear' => 221,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1754665200,
-      'formatted' => '2025-08-09 00:00:00',
-      'timezone' => 
+      'timestamp' => 1754697600,
+      'formatted' => '2025-08-09 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -16240,16 +14502,16 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 16,
       'is_leap_month' => true,
-      'moon_age' => 15.198868329171091,
-      'moon_phase_angle' => 171.2282020958585,
+      'moon_age' => 15.201,
+      'moon_phase_angle' => 172.5224283679527,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2025-08-09 16:00:00' => 
+  '2025-08-09 16:55:00' =>
   array (
-    0 => '2025-08-09 16:00:00',
-    1 => 
+    0 => '2025-08-09 16:55:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 8,
@@ -16257,12 +14519,12 @@ return array (
       'dayOfWeek' => 6,
       'dayOfYear' => 221,
       'hour' => 16,
-      'minute' => 0,
+      'minute' => 55,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1754722800,
-      'formatted' => '2025-08-09 16:00:00',
-      'timezone' => 
+      'timestamp' => 1754726100,
+      'formatted' => '2025-08-09 16:55:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -16298,203 +14560,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 16,
       'is_leap_month' => true,
-      'moon_age' => 15.865568237844855,
-      'moon_phase_angle' => 179.5218019065009,
+      'moon_age' => 15.530555555555555,
+      'moon_phase_angle' => 176.62246280800687,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2025-08-09 17:00:00' => 
+  '2025-08-10 09:00:00' =>
   array (
-    0 => '2025-08-09 17:00:00',
-    1 => 
-    array (
-      'year' => 2025,
-      'month' => 8,
-      'day' => 9,
-      'dayOfWeek' => 6,
-      'dayOfYear' => 221,
-      'hour' => 17,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1754726400,
-      'formatted' => '2025-08-09 17:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 7,
-      'oriental_zodiac_text' => '巳',
-      'oriental_zodiac' => 6,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '先負',
-      'six_weekday' => 4,
-      'weekday_text' => '土',
-      'month_text' => '葉月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '水無月',
-      'lunar_month' => 6,
-      'lunar_year' => 2025,
-      'lunar_day' => 16,
-      'is_leap_month' => true,
-      'moon_age' => 15.907237341161817,
-      'moon_phase_angle' => 180.04406518890528,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2025-08-09 18:00:00' => 
-  array (
-    0 => '2025-08-09 18:00:00',
-    1 => 
-    array (
-      'year' => 2025,
-      'month' => 8,
-      'day' => 9,
-      'dayOfWeek' => 6,
-      'dayOfYear' => 221,
-      'hour' => 18,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1754730000,
-      'formatted' => '2025-08-09 18:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 7,
-      'oriental_zodiac_text' => '巳',
-      'oriental_zodiac' => 6,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '先負',
-      'six_weekday' => 4,
-      'weekday_text' => '土',
-      'month_text' => '葉月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '水無月',
-      'lunar_month' => 6,
-      'lunar_year' => 2025,
-      'lunar_day' => 16,
-      'is_leap_month' => true,
-      'moon_age' => 15.948905299417675,
-      'moon_phase_angle' => 180.56677455183677,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2025-08-09 19:00:00' => 
-  array (
-    0 => '2025-08-09 19:00:00',
-    1 => 
-    array (
-      'year' => 2025,
-      'month' => 8,
-      'day' => 9,
-      'dayOfWeek' => 6,
-      'dayOfYear' => 221,
-      'hour' => 19,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1754733600,
-      'formatted' => '2025-08-09 19:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 7,
-      'oriental_zodiac_text' => '巳',
-      'oriental_zodiac' => 6,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '先負',
-      'six_weekday' => 4,
-      'weekday_text' => '土',
-      'month_text' => '葉月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '水無月',
-      'lunar_month' => 6,
-      'lunar_year' => 2025,
-      'lunar_day' => 16,
-      'is_leap_month' => true,
-      'moon_age' => 15.990571353118867,
-      'moon_phase_angle' => 181.08992741494237,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2025-08-10 00:00:00' => 
-  array (
-    0 => '2025-08-10 00:00:00',
-    1 => 
+    0 => '2025-08-10 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 8,
       'day' => 10,
       'dayOfWeek' => 0,
       'dayOfYear' => 222,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1754751600,
-      'formatted' => '2025-08-10 00:00:00',
-      'timezone' => 
+      'timestamp' => 1754784000,
+      'formatted' => '2025-08-10 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -16530,29 +14618,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 17,
       'is_leap_month' => true,
-      'moon_age' => 16.19892996456474,
-      'moon_phase_angle' => 183.71225095066572,
+      'moon_age' => 16.201,
+      'moon_phase_angle' => 185.0396324645712,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-08-11 00:00:00' => 
+  '2025-08-11 09:00:00' =>
   array (
-    0 => '2025-08-11 00:00:00',
-    1 => 
+    0 => '2025-08-11 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 8,
       'day' => 11,
       'dayOfWeek' => 1,
       'dayOfYear' => 223,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1754838000,
-      'formatted' => '2025-08-11 00:00:00',
-      'timezone' => 
+      'timestamp' => 1754870400,
+      'formatted' => '2025-08-11 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -16588,29 +14676,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 18,
       'is_leap_month' => true,
-      'moon_age' => 17.19902066187933,
-      'moon_phase_angle' => 196.4413754695707,
+      'moon_age' => 17.201,
+      'moon_phase_angle' => 197.79693106117927,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-08-12 00:00:00' => 
+  '2025-08-12 09:00:00' =>
   array (
-    0 => '2025-08-12 00:00:00',
-    1 => 
+    0 => '2025-08-12 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 8,
       'day' => 12,
       'dayOfWeek' => 2,
       'dayOfYear' => 224,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1754924400,
-      'formatted' => '2025-08-12 00:00:00',
-      'timezone' => 
+      'timestamp' => 1754956800,
+      'formatted' => '2025-08-12 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -16646,29 +14734,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 19,
       'is_leap_month' => true,
-      'moon_age' => 18.19914767704904,
-      'moon_phase_angle' => 209.37215835611477,
+      'moon_age' => 18.201,
+      'moon_phase_angle' => 210.74972365697457,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-08-13 00:00:00' => 
+  '2025-08-13 09:00:00' =>
   array (
-    0 => '2025-08-13 00:00:00',
-    1 => 
+    0 => '2025-08-13 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 8,
       'day' => 13,
       'dayOfWeek' => 3,
       'dayOfYear' => 225,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1755010800,
-      'formatted' => '2025-08-13 00:00:00',
-      'timezone' => 
+      'timestamp' => 1755043200,
+      'formatted' => '2025-08-13 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -16704,29 +14792,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 20,
       'is_leap_month' => true,
-      'moon_age' => 19.199295272119343,
-      'moon_phase_angle' => 222.4558133234521,
+      'moon_age' => 19.201,
+      'moon_phase_angle' => 223.84887701535072,
       'moon_phase' => 5,
       'moon_phase_text' => '十六夜',
     ),
   ),
-  '2025-08-14 00:00:00' => 
+  '2025-08-14 09:00:00' =>
   array (
-    0 => '2025-08-14 00:00:00',
-    1 => 
+    0 => '2025-08-14 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 8,
       'day' => 14,
       'dayOfWeek' => 4,
       'dayOfYear' => 226,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1755097200,
-      'formatted' => '2025-08-14 00:00:00',
-      'timezone' => 
+      'timestamp' => 1755129600,
+      'formatted' => '2025-08-14 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -16762,29 +14850,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 21,
       'is_leap_month' => true,
-      'moon_age' => 20.199479315429926,
-      'moon_phase_angle' => 235.64368860294536,
+      'moon_age' => 20.201,
+      'moon_phase_angle' => 237.04612475364473,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-08-15 00:00:00' => 
+  '2025-08-15 09:00:00' =>
   array (
-    0 => '2025-08-15 00:00:00',
-    1 => 
+    0 => '2025-08-15 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 8,
       'day' => 15,
       'dayOfWeek' => 5,
       'dayOfYear' => 227,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1755183600,
-      'formatted' => '2025-08-15 00:00:00',
-      'timezone' => 
+      'timestamp' => 1755216000,
+      'formatted' => '2025-08-15 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -16820,29 +14908,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 22,
       'is_leap_month' => true,
-      'moon_age' => 21.199673772789538,
-      'moon_phase_angle' => 248.89075617763348,
+      'moon_age' => 21.201,
+      'moon_phase_angle' => 250.2972508034012,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-08-16 00:00:00' => 
+  '2025-08-16 09:00:00' =>
   array (
-    0 => '2025-08-16 00:00:00',
-    1 => 
+    0 => '2025-08-16 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 8,
       'day' => 16,
       'dayOfWeek' => 6,
       'dayOfYear' => 228,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1755270000,
-      'formatted' => '2025-08-16 00:00:00',
-      'timezone' => 
+      'timestamp' => 1755302400,
+      'formatted' => '2025-08-16 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -16878,29 +14966,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 23,
       'is_leap_month' => true,
-      'moon_age' => 22.19988421164453,
-      'moon_phase_angle' => 262.15652598940005,
+      'moon_age' => 22.201,
+      'moon_phase_angle' => 263.5625534563812,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2025-08-16 15:00:00' => 
+  '2025-08-16 14:12:00' =>
   array (
-    0 => '2025-08-16 15:00:00',
-    1 => 
+    0 => '2025-08-16 14:12:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 8,
       'day' => 16,
       'dayOfWeek' => 6,
       'dayOfYear' => 228,
-      'hour' => 15,
-      'minute' => 0,
+      'hour' => 14,
+      'minute' => 12,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1755324000,
-      'formatted' => '2025-08-16 15:00:00',
-      'timezone' => 
+      'timestamp' => 1755321120,
+      'formatted' => '2025-08-16 14:12:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -16936,29 +15024,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 23,
       'is_leap_month' => true,
-      'moon_age' => 22.82501706155017,
-      'moon_phase_angle' => 270.4405142296532,
+      'moon_age' => 22.417361111111113,
+      'moon_phase_angle' => 266.434956241448,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2025-08-17 00:00:00' => 
+  '2025-08-17 09:00:00' =>
   array (
-    0 => '2025-08-17 00:00:00',
-    1 => 
+    0 => '2025-08-17 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 8,
       'day' => 17,
       'dayOfWeek' => 0,
       'dayOfYear' => 229,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1755356400,
-      'formatted' => '2025-08-17 00:00:00',
-      'timezone' => 
+      'timestamp' => 1755388800,
+      'formatted' => '2025-08-17 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -16994,29 +15082,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 24,
       'is_leap_month' => true,
-      'moon_age' => 23.200099318288267,
-      'moon_phase_angle' => 275.40374645773704,
+      'moon_age' => 23.201,
+      'moon_phase_angle' => 276.80514291616987,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-08-18 00:00:00' => 
+  '2025-08-18 09:00:00' =>
   array (
-    0 => '2025-08-18 00:00:00',
-    1 => 
+    0 => '2025-08-18 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 8,
       'day' => 18,
       'dayOfWeek' => 1,
       'dayOfYear' => 230,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1755442800,
-      'formatted' => '2025-08-18 00:00:00',
-      'timezone' => 
+      'timestamp' => 1755475200,
+      'formatted' => '2025-08-18 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -17052,29 +15140,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 25,
       'is_leap_month' => true,
-      'moon_age' => 24.20031214552,
-      'moon_phase_angle' => 288.59596772513487,
+      'moon_age' => 24.201,
+      'moon_phase_angle' => 289.9883846866952,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-08-19 00:00:00' => 
+  '2025-08-19 09:00:00' =>
   array (
-    0 => '2025-08-19 00:00:00',
-    1 => 
+    0 => '2025-08-19 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 8,
       'day' => 19,
       'dayOfWeek' => 2,
       'dayOfYear' => 231,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1755529200,
-      'formatted' => '2025-08-19 00:00:00',
-      'timezone' => 
+      'timestamp' => 1755561600,
+      'formatted' => '2025-08-19 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -17110,29 +15198,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 26,
       'is_leap_month' => true,
-      'moon_age' => 25.200503344647586,
-      'moon_phase_angle' => 301.6953376740162,
+      'moon_age' => 25.201,
+      'moon_phase_angle' => 303.0739418844816,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-08-20 00:00:00' => 
+  '2025-08-20 09:00:00' =>
   array (
-    0 => '2025-08-20 00:00:00',
-    1 => 
+    0 => '2025-08-20 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 8,
       'day' => 20,
       'dayOfWeek' => 3,
       'dayOfYear' => 232,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1755615600,
-      'formatted' => '2025-08-20 00:00:00',
-      'timezone' => 
+      'timestamp' => 1755648000,
+      'formatted' => '2025-08-20 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -17168,29 +15256,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 27,
       'is_leap_month' => true,
-      'moon_age' => 26.2003111098893,
-      'moon_phase_angle' => 314.66182301819026,
+      'moon_age' => 26.201,
+      'moon_phase_angle' => 316.02143494404885,
       'moon_phase' => 7,
       'moon_phase_text' => '有明',
     ),
   ),
-  '2025-08-21 00:00:00' => 
+  '2025-08-21 09:00:00' =>
   array (
-    0 => '2025-08-21 00:00:00',
-    1 => 
+    0 => '2025-08-21 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 8,
       'day' => 21,
       'dayOfWeek' => 4,
       'dayOfYear' => 233,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1755702000,
-      'formatted' => '2025-08-21 00:00:00',
-      'timezone' => 
+      'timestamp' => 1755734400,
+      'formatted' => '2025-08-21 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -17226,29 +15314,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 28,
       'is_leap_month' => true,
-      'moon_age' => 27.250078366747438,
-      'moon_phase_angle' => 327.45448398433336,
+      'moon_age' => 27.201,
+      'moon_phase_angle' => 328.7900479477966,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-08-22 00:00:00' => 
+  '2025-08-22 09:00:00' =>
   array (
-    0 => '2025-08-22 00:00:00',
-    1 => 
+    0 => '2025-08-22 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 8,
       'day' => 22,
       'dayOfWeek' => 5,
       'dayOfYear' => 234,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1755788400,
-      'formatted' => '2025-08-22 00:00:00',
-      'timezone' => 
+      'timestamp' => 1755820800,
+      'formatted' => '2025-08-22 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -17284,29 +15372,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 29,
       'is_leap_month' => true,
-      'moon_age' => 28.274771523805647,
-      'moon_phase_angle' => 340.0346825679802,
+      'moon_age' => 28.201,
+      'moon_phase_angle' => 341.34179842793174,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-08-23 00:00:00' => 
+  '2025-08-23 09:00:00' =>
   array (
-    0 => '2025-08-23 00:00:00',
-    1 => 
+    0 => '2025-08-23 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 8,
       'day' => 23,
       'dayOfWeek' => 6,
       'dayOfYear' => 235,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1755874800,
-      'formatted' => '2025-08-23 00:00:00',
-      'timezone' => 
+      'timestamp' => 1755907200,
+      'formatted' => '2025-08-23 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -17342,74 +15430,16 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 29.27864658241564,
-      'moon_phase_angle' => 352.37044390067814,
+      'moon_age' => 29.201,
+      'moon_phase_angle' => 353.64579072936965,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2025-08-23 14:00:00' => 
+  '2025-08-23 15:07:00' =>
   array (
-    0 => '2025-08-23 14:00:00',
-    1 => 
-    array (
-      'year' => 2025,
-      'month' => 8,
-      'day' => 23,
-      'dayOfWeek' => 6,
-      'dayOfYear' => 235,
-      'hour' => 14,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1755925200,
-      'formatted' => '2025-08-23 14:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => 10,
-      'solar_term_text' => '処暑',
-      'is_solar_term' => true,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 7,
-      'oriental_zodiac_text' => '巳',
-      'oriental_zodiac' => 6,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '先勝',
-      'six_weekday' => 2,
-      'weekday_text' => '土',
-      'month_text' => '葉月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '文月',
-      'lunar_month' => 7,
-      'lunar_year' => 2025,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.32886049756780267,
-      'moon_phase_angle' => 359.44453821623716,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2025-08-23 15:00:00' => 
-  array (
-    0 => '2025-08-23 15:00:00',
-    1 => 
+    0 => '2025-08-23 15:07:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 8,
@@ -17417,12 +15447,12 @@ return array (
       'dayOfWeek' => 6,
       'dayOfYear' => 235,
       'hour' => 15,
-      'minute' => 0,
+      'minute' => 7,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1755928800,
-      'formatted' => '2025-08-23 15:00:00',
-      'timezone' => 
+      'timestamp' => 1755929220,
+      'formatted' => '2025-08-23 15:07:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -17458,145 +15488,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.3705383660271764,
-      'moon_phase_angle' => 359.9463026143454,
+      'moon_age' => 0.0,
+      'moon_phase_angle' => 356.73932937057043,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2025-08-23 16:00:00' => 
+  '2025-08-24 09:00:00' =>
   array (
-    0 => '2025-08-23 16:00:00',
-    1 => 
-    array (
-      'year' => 2025,
-      'month' => 8,
-      'day' => 23,
-      'dayOfWeek' => 6,
-      'dayOfYear' => 235,
-      'hour' => 16,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1755932400,
-      'formatted' => '2025-08-23 16:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => 10,
-      'solar_term_text' => '処暑',
-      'is_solar_term' => true,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 7,
-      'oriental_zodiac_text' => '巳',
-      'oriental_zodiac' => 6,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '先勝',
-      'six_weekday' => 2,
-      'weekday_text' => '土',
-      'month_text' => '葉月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '文月',
-      'lunar_month' => 7,
-      'lunar_year' => 2025,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.41220027580857277,
-      'moon_phase_angle' => 0.44759386324867023,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2025-08-23 17:00:00' => 
-  array (
-    0 => '2025-08-23 17:00:00',
-    1 => 
-    array (
-      'year' => 2025,
-      'month' => 8,
-      'day' => 23,
-      'dayOfWeek' => 6,
-      'dayOfYear' => 235,
-      'hour' => 17,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1755936000,
-      'formatted' => '2025-08-23 17:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => 10,
-      'solar_term_text' => '処暑',
-      'is_solar_term' => true,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 7,
-      'oriental_zodiac_text' => '巳',
-      'oriental_zodiac' => 6,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '先勝',
-      'six_weekday' => 2,
-      'weekday_text' => '土',
-      'month_text' => '葉月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '文月',
-      'lunar_month' => 7,
-      'lunar_year' => 2025,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.4538687733002007,
-      'moon_phase_angle' => 0.9484116595749015,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2025-08-24 00:00:00' => 
-  array (
-    0 => '2025-08-24 00:00:00',
-    1 => 
+    0 => '2025-08-24 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 8,
       'day' => 24,
       'dayOfWeek' => 0,
       'dayOfYear' => 236,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1755961200,
-      'formatted' => '2025-08-24 00:00:00',
-      'timezone' => 
+      'timestamp' => 1755993600,
+      'formatted' => '2025-08-24 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -17632,29 +15546,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 2,
       'is_leap_month' => false,
-      'moon_age' => 0.7455352679826319,
-      'moon_phase_angle' => 4.440863705230157,
+      'moon_age' => 0.745,
+      'moon_phase_angle' => 5.682561464552435,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-08-25 00:00:00' => 
+  '2025-08-25 09:00:00' =>
   array (
-    0 => '2025-08-25 00:00:00',
-    1 => 
+    0 => '2025-08-25 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 8,
       'day' => 25,
       'dayOfWeek' => 1,
       'dayOfYear' => 237,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1756047600,
-      'formatted' => '2025-08-25 00:00:00',
-      'timezone' => 
+      'timestamp' => 1756080000,
+      'formatted' => '2025-08-25 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -17690,29 +15604,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 3,
       'is_leap_month' => false,
-      'moon_age' => 1.745532135013491,
-      'moon_phase_angle' => 16.23955396048197,
+      'moon_age' => 1.745,
+      'moon_phase_angle' => 17.44757326019453,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-08-26 00:00:00' => 
+  '2025-08-26 09:00:00' =>
   array (
-    0 => '2025-08-26 00:00:00',
-    1 => 
+    0 => '2025-08-26 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 8,
       'day' => 26,
       'dayOfWeek' => 2,
       'dayOfYear' => 238,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1756134000,
-      'formatted' => '2025-08-26 00:00:00',
-      'timezone' => 
+      'timestamp' => 1756166400,
+      'formatted' => '2025-08-26 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -17748,29 +15662,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 4,
       'is_leap_month' => false,
-      'moon_age' => 2.745530389249325,
-      'moon_phase_angle' => 27.776530091678637,
+      'moon_age' => 2.745,
+      'moon_phase_angle' => 28.953091470071882,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-08-27 00:00:00' => 
+  '2025-08-27 09:00:00' =>
   array (
-    0 => '2025-08-27 00:00:00',
-    1 => 
+    0 => '2025-08-27 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 8,
       'day' => 27,
       'dayOfWeek' => 3,
       'dayOfYear' => 239,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1756220400,
-      'formatted' => '2025-08-27 00:00:00',
-      'timezone' => 
+      'timestamp' => 1756252800,
+      'formatted' => '2025-08-27 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -17806,29 +15720,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 5,
       'is_leap_month' => false,
-      'moon_age' => 3.745534545276314,
-      'moon_phase_angle' => 39.0784354538097,
+      'moon_age' => 3.745,
+      'moon_phase_angle' => 40.22814441973543,
       'moon_phase' => 1,
       'moon_phase_text' => '三日月',
     ),
   ),
-  '2025-08-28 00:00:00' => 
+  '2025-08-28 09:00:00' =>
   array (
-    0 => '2025-08-28 00:00:00',
-    1 => 
+    0 => '2025-08-28 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 8,
       'day' => 28,
       'dayOfWeek' => 4,
       'dayOfYear' => 240,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1756306800,
-      'formatted' => '2025-08-28 00:00:00',
-      'timezone' => 
+      'timestamp' => 1756339200,
+      'formatted' => '2025-08-28 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -17864,29 +15778,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 6,
       'is_leap_month' => false,
-      'moon_age' => 4.745531570632011,
-      'moon_phase_angle' => 50.18736769474299,
+      'moon_age' => 4.745,
+      'moon_phase_angle' => 51.316878831074945,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-08-29 00:00:00' => 
+  '2025-08-29 09:00:00' =>
   array (
-    0 => '2025-08-29 00:00:00',
-    1 => 
+    0 => '2025-08-29 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 8,
       'day' => 29,
       'dayOfWeek' => 5,
       'dayOfYear' => 241,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1756393200,
-      'formatted' => '2025-08-29 00:00:00',
-      'timezone' => 
+      'timestamp' => 1756425600,
+      'formatted' => '2025-08-29 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -17922,29 +15836,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 7,
       'is_leap_month' => false,
-      'moon_age' => 5.745527648832649,
-      'moon_phase_angle' => 61.15872558893997,
+      'moon_age' => 5.745,
+      'moon_phase_angle' => 62.27603678396224,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-08-30 00:00:00' => 
+  '2025-08-30 09:00:00' =>
   array (
-    0 => '2025-08-30 00:00:00',
-    1 => 
+    0 => '2025-08-30 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 8,
       'day' => 30,
       'dayOfWeek' => 6,
       'dayOfYear' => 242,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1756479600,
-      'formatted' => '2025-08-30 00:00:00',
-      'timezone' => 
+      'timestamp' => 1756512000,
+      'formatted' => '2025-08-30 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -17980,29 +15894,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 6.745535003952682,
-      'moon_phase_angle' => 72.05845662616036,
+      'moon_age' => 6.745,
+      'moon_phase_angle' => 73.17221562419061,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-08-31 00:00:00' => 
+  '2025-08-31 09:00:00' =>
   array (
-    0 => '2025-08-31 00:00:00',
-    1 => 
+    0 => '2025-08-31 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 8,
       'day' => 31,
       'dayOfWeek' => 0,
       'dayOfYear' => 243,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1756566000,
-      'formatted' => '2025-08-31 00:00:00',
-      'timezone' => 
+      'timestamp' => 1756598400,
+      'formatted' => '2025-08-31 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -18038,29 +15952,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 9,
       'is_leap_month' => false,
-      'moon_age' => 7.745536998845637,
-      'moon_phase_angle' => 82.95993266699165,
+      'moon_age' => 7.745,
+      'moon_phase_angle' => 84.07908731462922,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2025-08-31 16:00:00' => 
+  '2025-08-31 15:25:00' =>
   array (
-    0 => '2025-08-31 16:00:00',
-    1 => 
+    0 => '2025-08-31 15:25:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 8,
       'day' => 31,
       'dayOfWeek' => 0,
       'dayOfYear' => 243,
-      'hour' => 16,
-      'minute' => 0,
+      'hour' => 15,
+      'minute' => 25,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1756623600,
-      'formatted' => '2025-08-31 16:00:00',
-      'timezone' => 
+      'timestamp' => 1756621500,
+      'formatted' => '2025-08-31 15:25:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -18096,29 +16010,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 9,
       'is_leap_month' => false,
-      'moon_age' => 8.412200962658972,
-      'moon_phase_angle' => 90.26669647359498,
+      'moon_age' => 8.0125,
+      'moon_phase_angle' => 87.00687253929783,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2025-09-01 00:00:00' => 
+  '2025-09-01 09:00:00' =>
   array (
-    0 => '2025-09-01 00:00:00',
-    1 => 
+    0 => '2025-09-01 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 9,
       'day' => 1,
       'dayOfWeek' => 1,
       'dayOfYear' => 244,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1756652400,
-      'formatted' => '2025-09-01 00:00:00',
-      'timezone' => 
+      'timestamp' => 1756684800,
+      'formatted' => '2025-09-01 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -18154,29 +16068,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 10,
       'is_leap_month' => false,
-      'moon_age' => 8.74553698906675,
-      'moon_phase_angle' => 93.94050196561707,
+      'moon_age' => 8.745,
+      'moon_phase_angle' => 95.07424676307352,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-09-02 00:00:00' => 
+  '2025-09-02 09:00:00' =>
   array (
-    0 => '2025-09-02 00:00:00',
-    1 => 
+    0 => '2025-09-02 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 9,
       'day' => 2,
       'dayOfWeek' => 2,
       'dayOfYear' => 245,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1756738800,
-      'formatted' => '2025-09-02 00:00:00',
-      'timezone' => 
+      'timestamp' => 1756771200,
+      'formatted' => '2025-09-02 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -18212,29 +16126,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 11,
       'is_leap_month' => false,
-      'moon_age' => 9.745527132879943,
-      'moon_phase_angle' => 105.07756407854754,
+      'moon_age' => 9.745,
+      'moon_phase_angle' => 106.23523389574399,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-09-03 00:00:00' => 
+  '2025-09-03 09:00:00' =>
   array (
-    0 => '2025-09-03 00:00:00',
-    1 => 
+    0 => '2025-09-03 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 9,
       'day' => 3,
       'dayOfWeek' => 3,
       'dayOfYear' => 246,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1756825200,
-      'formatted' => '2025-09-03 00:00:00',
-      'timezone' => 
+      'timestamp' => 1756857600,
+      'formatted' => '2025-09-03 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -18270,29 +16184,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 12,
       'is_leap_month' => false,
-      'moon_age' => 10.745530374813825,
-      'moon_phase_angle' => 116.44409147629256,
+      'moon_age' => 10.745,
+      'moon_phase_angle' => 117.63455703736264,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-09-04 00:00:00' => 
+  '2025-09-04 09:00:00' =>
   array (
-    0 => '2025-09-04 00:00:00',
-    1 => 
+    0 => '2025-09-04 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 9,
       'day' => 4,
       'dayOfWeek' => 4,
       'dayOfYear' => 247,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1756911600,
-      'formatted' => '2025-09-04 00:00:00',
-      'timezone' => 
+      'timestamp' => 1756944000,
+      'formatted' => '2025-09-04 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -18328,29 +16242,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 13,
       'is_leap_month' => false,
-      'moon_age' => 11.745529260020703,
-      'moon_phase_angle' => 128.1033323514987,
+      'moon_age' => 11.745,
+      'moon_phase_angle' => 129.33397432968067,
       'moon_phase' => 3,
       'moon_phase_text' => '十三夜',
     ),
   ),
-  '2025-09-05 00:00:00' => 
+  '2025-09-05 09:00:00' =>
   array (
-    0 => '2025-09-05 00:00:00',
-    1 => 
+    0 => '2025-09-05 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 9,
       'day' => 5,
       'dayOfWeek' => 5,
       'dayOfYear' => 248,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1756998000,
-      'formatted' => '2025-09-05 00:00:00',
-      'timezone' => 
+      'timestamp' => 1757030400,
+      'formatted' => '2025-09-05 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -18386,29 +16300,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 14,
       'is_leap_month' => false,
-      'moon_age' => 12.745535710360855,
-      'moon_phase_angle' => 140.10289885447145,
+      'moon_age' => 12.745,
+      'moon_phase_angle' => 141.37849222153085,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-09-06 00:00:00' => 
+  '2025-09-06 09:00:00' =>
   array (
-    0 => '2025-09-06 00:00:00',
-    1 => 
+    0 => '2025-09-06 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 9,
       'day' => 6,
       'dayOfWeek' => 6,
       'dayOfYear' => 249,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1757084400,
-      'formatted' => '2025-09-06 00:00:00',
-      'timezone' => 
+      'timestamp' => 1757116800,
+      'formatted' => '2025-09-06 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -18444,29 +16358,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 15,
       'is_leap_month' => false,
-      'moon_age' => 13.74552987748757,
-      'moon_phase_angle' => 152.4687000545308,
+      'moon_age' => 13.745,
+      'moon_phase_angle' => 153.79062397442496,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-09-07 00:00:00' => 
+  '2025-09-07 09:00:00' =>
   array (
-    0 => '2025-09-07 00:00:00',
-    1 => 
+    0 => '2025-09-07 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 9,
       'day' => 7,
       'dayOfWeek' => 0,
       'dayOfYear' => 250,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1757170800,
-      'formatted' => '2025-09-07 00:00:00',
-      'timezone' => 
+      'timestamp' => 1757203200,
+      'formatted' => '2025-09-07 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -18502,132 +16416,16 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 14.745531209278852,
-      'moon_phase_angle' => 165.1997367673336,
+      'moon_age' => 14.745,
+      'moon_phase_angle' => 166.565657053044,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-09-08 00:00:00' => 
+  '2025-09-08 03:09:00' =>
   array (
-    0 => '2025-09-08 00:00:00',
-    1 => 
-    array (
-      'year' => 2025,
-      'month' => 9,
-      'day' => 8,
-      'dayOfWeek' => 1,
-      'dayOfYear' => 251,
-      'hour' => 0,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1757257200,
-      'formatted' => '2025-09-08 00:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 7,
-      'oriental_zodiac_text' => '巳',
-      'oriental_zodiac' => 6,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '大安',
-      'six_weekday' => 0,
-      'weekday_text' => '月',
-      'month_text' => '長月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '文月',
-      'lunar_month' => 7,
-      'lunar_year' => 2025,
-      'lunar_day' => 17,
-      'is_leap_month' => false,
-      'moon_age' => 15.745529612060636,
-      'moon_phase_angle' => 178.26519221555006,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2025-09-08 02:00:00' => 
-  array (
-    0 => '2025-09-08 02:00:00',
-    1 => 
-    array (
-      'year' => 2025,
-      'month' => 9,
-      'day' => 8,
-      'dayOfWeek' => 1,
-      'dayOfYear' => 251,
-      'hour' => 2,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1757264400,
-      'formatted' => '2025-09-08 02:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 7,
-      'oriental_zodiac_text' => '巳',
-      'oriental_zodiac' => 6,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '大安',
-      'six_weekday' => 0,
-      'weekday_text' => '月',
-      'month_text' => '長月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '文月',
-      'lunar_month' => 7,
-      'lunar_year' => 2025,
-      'lunar_day' => 17,
-      'is_leap_month' => false,
-      'moon_age' => 15.828868150245398,
-      'moon_phase_angle' => 179.3673920769444,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2025-09-08 03:00:00' => 
-  array (
-    0 => '2025-09-08 03:00:00',
-    1 => 
+    0 => '2025-09-08 03:09:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 9,
@@ -18635,12 +16433,12 @@ return array (
       'dayOfWeek' => 1,
       'dayOfYear' => 251,
       'hour' => 3,
-      'minute' => 0,
+      'minute' => 9,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1757268000,
-      'formatted' => '2025-09-08 03:00:00',
-      'timezone' => 
+      'timestamp' => 1757268540,
+      'formatted' => '2025-09-08 03:09:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -18676,29 +16474,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 17,
       'is_leap_month' => false,
-      'moon_age' => 15.870532233733684,
-      'moon_phase_angle' => 179.91919897817655,
+      'moon_age' => 15.501388888888888,
+      'moon_phase_angle' => 176.4478436817206,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2025-09-08 04:00:00' => 
+  '2025-09-08 09:00:00' =>
   array (
-    0 => '2025-09-08 04:00:00',
-    1 => 
+    0 => '2025-09-08 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 9,
       'day' => 8,
       'dayOfWeek' => 1,
       'dayOfYear' => 251,
-      'hour' => 4,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1757271600,
-      'formatted' => '2025-09-08 04:00:00',
-      'timezone' => 
+      'timestamp' => 1757289600,
+      'formatted' => '2025-09-08 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -18734,29 +16532,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 17,
       'is_leap_month' => false,
-      'moon_age' => 15.91219456680119,
-      'moon_phase_angle' => 180.4714698921332,
+      'moon_age' => 15.745,
+      'moon_phase_angle' => 179.66912535412902,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2025-09-09 00:00:00' => 
+  '2025-09-09 09:00:00' =>
   array (
-    0 => '2025-09-09 00:00:00',
-    1 => 
+    0 => '2025-09-09 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 9,
       'day' => 9,
       'dayOfWeek' => 2,
       'dayOfYear' => 252,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1757343600,
-      'formatted' => '2025-09-09 00:00:00',
-      'timezone' => 
+      'timestamp' => 1757376000,
+      'formatted' => '2025-09-09 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -18792,29 +16590,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 18,
       'is_leap_month' => false,
-      'moon_age' => 16.745538088027388,
-      'moon_phase_angle' => 191.6052875982662,
+      'moon_age' => 16.745,
+      'moon_phase_angle' => 193.03797896846459,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-09-10 00:00:00' => 
+  '2025-09-10 09:00:00' =>
   array (
-    0 => '2025-09-10 00:00:00',
-    1 => 
+    0 => '2025-09-10 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 9,
       'day' => 10,
       'dayOfWeek' => 3,
       'dayOfYear' => 253,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1757430000,
-      'formatted' => '2025-09-10 00:00:00',
-      'timezone' => 
+      'timestamp' => 1757462400,
+      'formatted' => '2025-09-10 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -18850,29 +16648,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 19,
       'is_leap_month' => false,
-      'moon_age' => 17.745527257677168,
-      'moon_phase_angle' => 205.13675207485437,
+      'moon_age' => 17.745,
+      'moon_phase_angle' => 206.58647816249947,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-09-11 00:00:00' => 
+  '2025-09-11 09:00:00' =>
   array (
-    0 => '2025-09-11 00:00:00',
-    1 => 
+    0 => '2025-09-11 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 9,
       'day' => 11,
       'dayOfWeek' => 4,
       'dayOfYear' => 254,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1757516400,
-      'formatted' => '2025-09-11 00:00:00',
-      'timezone' => 
+      'timestamp' => 1757548800,
+      'formatted' => '2025-09-11 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -18908,29 +16706,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 20,
       'is_leap_month' => false,
-      'moon_age' => 18.745532987173647,
-      'moon_phase_angle' => 218.76249629007742,
+      'moon_age' => 18.745,
+      'moon_phase_angle' => 220.21641602153204,
       'moon_phase' => 5,
       'moon_phase_text' => '十六夜',
     ),
   ),
-  '2025-09-12 00:00:00' => 
+  '2025-09-12 09:00:00' =>
   array (
-    0 => '2025-09-12 00:00:00',
-    1 => 
+    0 => '2025-09-12 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 9,
       'day' => 12,
       'dayOfWeek' => 5,
       'dayOfYear' => 255,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1757602800,
-      'formatted' => '2025-09-12 00:00:00',
-      'timezone' => 
+      'timestamp' => 1757635200,
+      'formatted' => '2025-09-12 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -18966,29 +16764,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 21,
       'is_leap_month' => false,
-      'moon_age' => 19.745532159227878,
-      'moon_phase_angle' => 232.3836178207054,
+      'moon_age' => 19.745,
+      'moon_phase_angle' => 233.82951248075025,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-09-13 00:00:00' => 
+  '2025-09-13 09:00:00' =>
   array (
-    0 => '2025-09-13 00:00:00',
-    1 => 
+    0 => '2025-09-13 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 9,
       'day' => 13,
       'dayOfWeek' => 6,
       'dayOfYear' => 256,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1757689200,
-      'formatted' => '2025-09-13 00:00:00',
-      'timezone' => 
+      'timestamp' => 1757721600,
+      'formatted' => '2025-09-13 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -19024,29 +16822,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 22,
       'is_leap_month' => false,
-      'moon_age' => 20.74553842144087,
-      'moon_phase_angle' => 245.91092948875382,
+      'moon_age' => 20.745,
+      'moon_phase_angle' => 247.338806886113,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-09-14 00:00:00' => 
+  '2025-09-14 09:00:00' =>
   array (
-    0 => '2025-09-14 00:00:00',
-    1 => 
+    0 => '2025-09-14 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 9,
       'day' => 14,
       'dayOfWeek' => 0,
       'dayOfYear' => 257,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1757775600,
-      'formatted' => '2025-09-14 00:00:00',
-      'timezone' => 
+      'timestamp' => 1757808000,
+      'formatted' => '2025-09-14 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -19082,29 +16880,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 21.745532085653394,
-      'moon_phase_angle' => 259.2733453764003,
+      'moon_age' => 21.745,
+      'moon_phase_angle' => 260.6763114147393,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2025-09-14 20:00:00' => 
+  '2025-09-14 19:33:00' =>
   array (
-    0 => '2025-09-14 20:00:00',
-    1 => 
+    0 => '2025-09-14 19:33:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 9,
       'day' => 14,
       'dayOfWeek' => 0,
       'dayOfYear' => 257,
-      'hour' => 20,
-      'minute' => 0,
+      'hour' => 19,
+      'minute' => 33,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1757847600,
-      'formatted' => '2025-09-14 20:00:00',
-      'timezone' => 
+      'timestamp' => 1757845980,
+      'formatted' => '2025-09-14 19:33:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -19140,29 +16938,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 22.578870850615203,
-      'moon_phase_angle' => 270.2465631838885,
+      'moon_age' => 22.184722222222224,
+      'moon_phase_angle' => 266.4722367316608,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2025-09-15 00:00:00' => 
+  '2025-09-15 09:00:00' =>
   array (
-    0 => '2025-09-15 00:00:00',
-    1 => 
+    0 => '2025-09-15 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 9,
       'day' => 15,
       'dayOfWeek' => 1,
       'dayOfYear' => 258,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1757862000,
-      'formatted' => '2025-09-15 00:00:00',
-      'timezone' => 
+      'timestamp' => 1757894400,
+      'formatted' => '2025-09-15 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -19198,29 +16996,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 24,
       'is_leap_month' => false,
-      'moon_age' => 22.745544331148267,
-      'moon_phase_angle' => 272.42164540340525,
+      'moon_age' => 22.745,
+      'moon_phase_angle' => 273.7958025502777,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-09-16 00:00:00' => 
+  '2025-09-16 09:00:00' =>
   array (
-    0 => '2025-09-16 00:00:00',
-    1 => 
+    0 => '2025-09-16 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 9,
       'day' => 16,
       'dayOfWeek' => 2,
       'dayOfYear' => 259,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1757948400,
-      'formatted' => '2025-09-16 00:00:00',
-      'timezone' => 
+      'timestamp' => 1757980800,
+      'formatted' => '2025-09-16 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -19256,29 +17054,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 25,
       'is_leap_month' => false,
-      'moon_age' => 23.746162132825702,
-      'moon_phase_angle' => 285.32773418714606,
+      'moon_age' => 23.745,
+      'moon_phase_angle' => 286.6713997726782,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-09-17 00:00:00' => 
+  '2025-09-17 09:00:00' =>
   array (
-    0 => '2025-09-17 00:00:00',
-    1 => 
+    0 => '2025-09-17 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 9,
       'day' => 17,
       'dayOfWeek' => 3,
       'dayOfYear' => 260,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1758034800,
-      'formatted' => '2025-09-17 00:00:00',
-      'timezone' => 
+      'timestamp' => 1758067200,
+      'formatted' => '2025-09-17 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -19314,29 +17112,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 26,
       'is_leap_month' => false,
-      'moon_age' => 24.746493317186832,
-      'moon_phase_angle' => 297.98074709631146,
+      'moon_age' => 24.745,
+      'moon_phase_angle' => 299.2935716745063,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-09-18 00:00:00' => 
+  '2025-09-18 09:00:00' =>
   array (
-    0 => '2025-09-18 00:00:00',
-    1 => 
+    0 => '2025-09-18 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 9,
       'day' => 18,
       'dayOfWeek' => 4,
       'dayOfYear' => 261,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1758121200,
-      'formatted' => '2025-09-18 00:00:00',
-      'timezone' => 
+      'timestamp' => 1758153600,
+      'formatted' => '2025-09-18 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -19372,29 +17170,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 27,
       'is_leap_month' => false,
-      'moon_age' => 25.74660266796127,
-      'moon_phase_angle' => 310.38183123880066,
+      'moon_age' => 25.745,
+      'moon_phase_angle' => 311.66423376154887,
       'moon_phase' => 7,
       'moon_phase_text' => '有明',
     ),
   ),
-  '2025-09-19 00:00:00' => 
+  '2025-09-19 09:00:00' =>
   array (
-    0 => '2025-09-19 00:00:00',
-    1 => 
+    0 => '2025-09-19 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 9,
       'day' => 19,
       'dayOfWeek' => 5,
       'dayOfYear' => 262,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1758207600,
-      'formatted' => '2025-09-19 00:00:00',
-      'timezone' => 
+      'timestamp' => 1758240000,
+      'formatted' => '2025-09-19 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -19430,29 +17228,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 28,
       'is_leap_month' => false,
-      'moon_age' => 26.826714395223497,
-      'moon_phase_angle' => 322.5392187028153,
+      'moon_age' => 26.745,
+      'moon_phase_angle' => 323.79214855072513,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-09-20 00:00:00' => 
+  '2025-09-20 09:00:00' =>
   array (
-    0 => '2025-09-20 00:00:00',
-    1 => 
+    0 => '2025-09-20 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 9,
       'day' => 20,
       'dayOfWeek' => 6,
       'dayOfYear' => 263,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1758294000,
-      'formatted' => '2025-09-20 00:00:00',
-      'timezone' => 
+      'timestamp' => 1758326400,
+      'formatted' => '2025-09-20 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -19488,29 +17286,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 29,
       'is_leap_month' => false,
-      'moon_age' => 27.798091861563115,
-      'moon_phase_angle' => 334.46463934406074,
+      'moon_age' => 27.745,
+      'moon_phase_angle' => 335.6894371789812,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-09-21 00:00:00' => 
+  '2025-09-21 09:00:00' =>
   array (
-    0 => '2025-09-21 00:00:00',
-    1 => 
+    0 => '2025-09-21 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 9,
       'day' => 21,
       'dayOfWeek' => 0,
       'dayOfYear' => 264,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1758380400,
-      'formatted' => '2025-09-21 00:00:00',
-      'timezone' => 
+      'timestamp' => 1758412800,
+      'formatted' => '2025-09-21 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -19546,132 +17344,16 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 30,
       'is_leap_month' => false,
-      'moon_age' => 28.751982404528498,
-      'moon_phase_angle' => 346.1714974095289,
+      'moon_age' => 28.745,
+      'moon_phase_angle' => 347.3697459674983,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-09-22 00:00:00' => 
+  '2025-09-22 04:54:00' =>
   array (
-    0 => '2025-09-22 00:00:00',
-    1 => 
-    array (
-      'year' => 2025,
-      'month' => 9,
-      'day' => 22,
-      'dayOfWeek' => 1,
-      'dayOfYear' => 265,
-      'hour' => 0,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1758466800,
-      'formatted' => '2025-09-22 00:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 2,
-      'misc_seasonal_node_text' => '彼岸',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 7,
-      'oriental_zodiac_text' => '巳',
-      'oriental_zodiac' => 6,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '友引',
-      'six_weekday' => 3,
-      'weekday_text' => '月',
-      'month_text' => '長月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '葉月',
-      'lunar_month' => 8,
-      'lunar_year' => 2025,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.17081180354580283,
-      'moon_phase_angle' => 357.67473385480986,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2025-09-22 03:00:00' => 
-  array (
-    0 => '2025-09-22 03:00:00',
-    1 => 
-    array (
-      'year' => 2025,
-      'month' => 9,
-      'day' => 22,
-      'dayOfWeek' => 1,
-      'dayOfYear' => 265,
-      'hour' => 3,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1758477600,
-      'formatted' => '2025-09-22 03:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 2,
-      'misc_seasonal_node_text' => '彼岸',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 7,
-      'oriental_zodiac_text' => '巳',
-      'oriental_zodiac' => 6,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '友引',
-      'six_weekday' => 3,
-      'weekday_text' => '月',
-      'month_text' => '長月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '葉月',
-      'lunar_month' => 8,
-      'lunar_year' => 2025,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.2958082426339388,
-      'moon_phase_angle' => 359.0991577550964,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2025-09-22 04:00:00' => 
-  array (
-    0 => '2025-09-22 04:00:00',
-    1 => 
+    0 => '2025-09-22 04:54:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 9,
@@ -19679,12 +17361,12 @@ return array (
       'dayOfWeek' => 1,
       'dayOfYear' => 265,
       'hour' => 4,
-      'minute' => 0,
+      'minute' => 54,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1758481200,
-      'formatted' => '2025-09-22 04:00:00',
-      'timezone' => 
+      'timestamp' => 1758484440,
+      'formatted' => '2025-09-22 04:54:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -19720,29 +17402,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.33747354708611965,
-      'moon_phase_angle' => 359.57332519894874,
+      'moon_age' => 0.0,
+      'moon_phase_angle' => 356.90089326286295,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2025-09-22 05:00:00' => 
+  '2025-09-22 09:00:00' =>
   array (
-    0 => '2025-09-22 05:00:00',
-    1 => 
+    0 => '2025-09-22 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 9,
       'day' => 22,
       'dayOfWeek' => 1,
       'dayOfYear' => 265,
-      'hour' => 5,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1758484800,
-      'formatted' => '2025-09-22 05:00:00',
-      'timezone' => 
+      'timestamp' => 1758499200,
+      'formatted' => '2025-09-22 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -19778,87 +17460,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.37914603343233466,
-      'moon_phase_angle' => 0.047174794157712086,
+      'moon_age' => 0.171,
+      'moon_phase_angle' => 358.84823985401323,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2025-09-22 06:00:00' => 
+  '2025-09-23 09:00:00' =>
   array (
-    0 => '2025-09-22 06:00:00',
-    1 => 
-    array (
-      'year' => 2025,
-      'month' => 9,
-      'day' => 22,
-      'dayOfWeek' => 1,
-      'dayOfYear' => 265,
-      'hour' => 6,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1758488400,
-      'formatted' => '2025-09-22 06:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 2,
-      'misc_seasonal_node_text' => '彼岸',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 7,
-      'oriental_zodiac_text' => '巳',
-      'oriental_zodiac' => 6,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '友引',
-      'six_weekday' => 3,
-      'weekday_text' => '月',
-      'month_text' => '長月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '葉月',
-      'lunar_month' => 8,
-      'lunar_year' => 2025,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.4208044116385281,
-      'moon_phase_angle' => 0.5207079949522608,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2025-09-23 00:00:00' => 
-  array (
-    0 => '2025-09-23 00:00:00',
-    1 => 
+    0 => '2025-09-23 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 9,
       'day' => 23,
       'dayOfWeek' => 2,
       'dayOfYear' => 266,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1758553200,
-      'formatted' => '2025-09-23 00:00:00',
-      'timezone' => 
+      'timestamp' => 1758585600,
+      'formatted' => '2025-09-23 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -19894,29 +17518,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 2,
       'is_leap_month' => false,
-      'moon_age' => 1.1708117104135454,
-      'moon_phase_angle' => 8.991968846613617,
+      'moon_age' => 1.171,
+      'moon_phase_angle' => 10.143035943875333,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-09-24 00:00:00' => 
+  '2025-09-24 09:00:00' =>
   array (
-    0 => '2025-09-24 00:00:00',
-    1 => 
+    0 => '2025-09-24 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 9,
       'day' => 24,
       'dayOfWeek' => 3,
       'dayOfYear' => 267,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1758639600,
-      'formatted' => '2025-09-24 00:00:00',
-      'timezone' => 
+      'timestamp' => 1758672000,
+      'formatted' => '2025-09-24 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -19952,29 +17576,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 3,
       'is_leap_month' => false,
-      'moon_age' => 2.1708058090880513,
-      'moon_phase_angle' => 20.145363017625982,
+      'moon_age' => 2.171,
+      'moon_phase_angle' => 21.277244183758228,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-09-25 00:00:00' => 
+  '2025-09-25 09:00:00' =>
   array (
-    0 => '2025-09-25 00:00:00',
-    1 => 
+    0 => '2025-09-25 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 9,
       'day' => 25,
       'dayOfWeek' => 4,
       'dayOfYear' => 268,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1758726000,
-      'formatted' => '2025-09-25 00:00:00',
-      'timezone' => 
+      'timestamp' => 1758758400,
+      'formatted' => '2025-09-25 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -20010,29 +17634,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 4,
       'is_leap_month' => false,
-      'moon_age' => 3.1708085415884852,
-      'moon_phase_angle' => 31.16362700971763,
+      'moon_age' => 3.171,
+      'moon_phase_angle' => 32.280810798413995,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-09-26 00:00:00' => 
+  '2025-09-26 09:00:00' =>
   array (
-    0 => '2025-09-26 00:00:00',
-    1 => 
+    0 => '2025-09-26 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 9,
       'day' => 26,
       'dayOfWeek' => 5,
       'dayOfYear' => 269,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1758812400,
-      'formatted' => '2025-09-26 00:00:00',
-      'timezone' => 
+      'timestamp' => 1758844800,
+      'formatted' => '2025-09-26 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -20068,29 +17692,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 5,
       'is_leap_month' => false,
-      'moon_age' => 4.170808169525117,
-      'moon_phase_angle' => 42.08370567754909,
+      'moon_age' => 4.171,
+      'moon_phase_angle' => 43.1918204855956,
       'moon_phase' => 1,
       'moon_phase_text' => '三日月',
     ),
   ),
-  '2025-09-27 00:00:00' => 
+  '2025-09-27 09:00:00' =>
   array (
-    0 => '2025-09-27 00:00:00',
-    1 => 
+    0 => '2025-09-27 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 9,
       'day' => 27,
       'dayOfWeek' => 6,
       'dayOfYear' => 270,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1758898800,
-      'formatted' => '2025-09-27 00:00:00',
-      'timezone' => 
+      'timestamp' => 1758931200,
+      'formatted' => '2025-09-27 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -20126,29 +17750,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 6,
       'is_leap_month' => false,
-      'moon_age' => 5.170808997005224,
-      'moon_phase_angle' => 52.95181199052291,
+      'moon_age' => 5.171,
+      'moon_phase_angle' => 54.057328068517165,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-09-28 00:00:00' => 
+  '2025-09-28 09:00:00' =>
   array (
-    0 => '2025-09-28 00:00:00',
-    1 => 
+    0 => '2025-09-28 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 9,
       'day' => 28,
       'dayOfWeek' => 0,
       'dayOfYear' => 271,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1758985200,
-      'formatted' => '2025-09-28 00:00:00',
-      'timezone' => 
+      'timestamp' => 1759017600,
+      'formatted' => '2025-09-28 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -20184,29 +17808,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 7,
       'is_leap_month' => false,
-      'moon_age' => 6.17080657556653,
-      'moon_phase_angle' => 63.823626167139224,
+      'moon_age' => 6.171,
+      'moon_phase_angle' => 64.93374406912179,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-09-29 00:00:00' => 
+  '2025-09-29 09:00:00' =>
   array (
-    0 => '2025-09-29 00:00:00',
-    1 => 
+    0 => '2025-09-29 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 9,
       'day' => 29,
       'dayOfWeek' => 1,
       'dayOfYear' => 272,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1759071600,
-      'formatted' => '2025-09-29 00:00:00',
-      'timezone' => 
+      'timestamp' => 1759104000,
+      'formatted' => '2025-09-29 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -20242,29 +17866,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 7.170807635877281,
-      'moon_phase_angle' => 74.76355713806512,
+      'moon_age' => 7.171,
+      'moon_phase_angle' => 75.88640640949029,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-09-30 00:00:00' => 
+  '2025-09-30 08:54:00' =>
   array (
-    0 => '2025-09-30 00:00:00',
-    1 => 
+    0 => '2025-09-30 08:54:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 9,
       'day' => 30,
       'dayOfWeek' => 2,
       'dayOfYear' => 273,
-      'hour' => 0,
-      'minute' => 0,
+      'hour' => 8,
+      'minute' => 54,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1759158000,
-      'formatted' => '2025-09-30 00:00:00',
-      'timezone' => 
+      'timestamp' => 1759190040,
+      'formatted' => '2025-09-30 08:54:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -20300,16 +17924,16 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 9,
       'is_leap_month' => false,
-      'moon_age' => 8.170814100187272,
-      'moon_phase_angle' => 85.84296386913985,
+      'moon_age' => 8.166666666666666,
+      'moon_phase_angle' => 86.94108218934531,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2025-09-30 09:00:00' => 
+  '2025-09-30 09:00:00' =>
   array (
     0 => '2025-09-30 09:00:00',
-    1 => 
+    1 =>
     array (
       'year' => 2025,
       'month' => 9,
@@ -20322,7 +17946,7 @@ return array (
       'micro' => 0,
       'timestamp' => 1759190400,
       'formatted' => '2025-09-30 09:00:00',
-      'timezone' => 
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -20358,29 +17982,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 9,
       'is_leap_month' => false,
-      'moon_age' => 8.545814218465239,
-      'moon_phase_angle' => 90.049032507725,
+      'moon_age' => 8.171,
+      'moon_phase_angle' => 86.98775086478904,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2025-10-01 00:00:00' => 
+  '2025-10-01 09:00:00' =>
   array (
-    0 => '2025-10-01 00:00:00',
-    1 => 
+    0 => '2025-10-01 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 10,
       'day' => 1,
       'dayOfWeek' => 3,
       'dayOfYear' => 274,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1759244400,
-      'formatted' => '2025-10-01 00:00:00',
-      'timezone' => 
+      'timestamp' => 1759276800,
+      'formatted' => '2025-10-01 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -20416,29 +18040,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 10,
       'is_leap_month' => false,
-      'moon_age' => 9.170806406531483,
-      'moon_phase_angle' => 97.13716957603819,
+      'moon_age' => 9.171,
+      'moon_phase_angle' => 98.31375269982436,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-10-02 00:00:00' => 
+  '2025-10-02 09:00:00' =>
   array (
-    0 => '2025-10-02 00:00:00',
-    1 => 
+    0 => '2025-10-02 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 10,
       'day' => 2,
       'dayOfWeek' => 4,
       'dayOfYear' => 275,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1759330800,
-      'formatted' => '2025-10-02 00:00:00',
-      'timezone' => 
+      'timestamp' => 1759363200,
+      'formatted' => '2025-10-02 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -20474,29 +18098,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 11,
       'is_leap_month' => false,
-      'moon_age' => 10.170808556955308,
-      'moon_phase_angle' => 108.72094913988872,
+      'moon_age' => 10.171,
+      'moon_phase_angle' => 109.93876191414728,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-10-03 00:00:00' => 
+  '2025-10-03 09:00:00' =>
   array (
-    0 => '2025-10-03 00:00:00',
-    1 => 
+    0 => '2025-10-03 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 10,
       'day' => 3,
       'dayOfWeek' => 5,
       'dayOfYear' => 276,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1759417200,
-      'formatted' => '2025-10-03 00:00:00',
-      'timezone' => 
+      'timestamp' => 1759449600,
+      'formatted' => '2025-10-03 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -20532,29 +18156,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 12,
       'is_leap_month' => false,
-      'moon_age' => 11.170806782320142,
-      'moon_phase_angle' => 120.66227825592196,
+      'moon_age' => 11.171,
+      'moon_phase_angle' => 121.92892999020606,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-10-04 00:00:00' => 
+  '2025-10-04 09:00:00' =>
   array (
-    0 => '2025-10-04 00:00:00',
-    1 => 
+    0 => '2025-10-04 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 10,
       'day' => 4,
       'dayOfWeek' => 6,
       'dayOfYear' => 277,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1759503600,
-      'formatted' => '2025-10-04 00:00:00',
-      'timezone' => 
+      'timestamp' => 1759536000,
+      'formatted' => '2025-10-04 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -20590,29 +18214,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 13,
       'is_leap_month' => false,
-      'moon_age' => 12.170811540447176,
-      'moon_phase_angle' => 133.01402851866075,
+      'moon_age' => 12.171,
+      'moon_phase_angle' => 134.33413971392233,
       'moon_phase' => 3,
       'moon_phase_text' => '十三夜',
     ),
   ),
-  '2025-10-05 00:00:00' => 
+  '2025-10-05 09:00:00' =>
   array (
-    0 => '2025-10-05 00:00:00',
-    1 => 
+    0 => '2025-10-05 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 10,
       'day' => 5,
       'dayOfWeek' => 0,
       'dayOfYear' => 278,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1759590000,
-      'formatted' => '2025-10-05 00:00:00',
-      'timezone' => 
+      'timestamp' => 1759622400,
+      'formatted' => '2025-10-05 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -20648,29 +18272,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 14,
       'is_leap_month' => false,
-      'moon_age' => 13.170810515992343,
-      'moon_phase_angle' => 145.80405507524182,
+      'moon_age' => 13.171,
+      'moon_phase_angle' => 147.17835542841075,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-10-06 00:00:00' => 
+  '2025-10-06 09:00:00' =>
   array (
-    0 => '2025-10-06 00:00:00',
-    1 => 
+    0 => '2025-10-06 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 10,
       'day' => 6,
       'dayOfWeek' => 1,
       'dayOfYear' => 279,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1759676400,
-      'formatted' => '2025-10-06 00:00:00',
-      'timezone' => 
+      'timestamp' => 1759708800,
+      'formatted' => '2025-10-06 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -20706,29 +18330,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 15,
       'is_leap_month' => false,
-      'moon_age' => 14.170813464093953,
-      'moon_phase_angle' => 159.0249713063722,
+      'moon_age' => 14.171,
+      'moon_phase_angle' => 160.4494531891164,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-10-07 00:00:00' => 
+  '2025-10-07 09:00:00' =>
   array (
-    0 => '2025-10-07 00:00:00',
-    1 => 
+    0 => '2025-10-07 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 10,
       'day' => 7,
       'dayOfWeek' => 2,
       'dayOfYear' => 280,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1759762800,
-      'formatted' => '2025-10-07 00:00:00',
-      'timezone' => 
+      'timestamp' => 1759795200,
+      'formatted' => '2025-10-07 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -20764,74 +18388,16 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 15.170808296650648,
-      'moon_phase_angle' => 172.62631423049484,
+      'moon_age' => 15.171,
+      'moon_phase_angle' => 174.0915613964676,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2025-10-07 11:00:00' => 
+  '2025-10-07 12:48:00' =>
   array (
-    0 => '2025-10-07 11:00:00',
-    1 => 
-    array (
-      'year' => 2025,
-      'month' => 10,
-      'day' => 7,
-      'dayOfWeek' => 2,
-      'dayOfYear' => 280,
-      'hour' => 11,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1759802400,
-      'formatted' => '2025-10-07 11:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 7,
-      'oriental_zodiac_text' => '巳',
-      'oriental_zodiac' => 6,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '大安',
-      'six_weekday' => 0,
-      'weekday_text' => '火',
-      'month_text' => '神無月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '葉月',
-      'lunar_month' => 8,
-      'lunar_year' => 2025,
-      'lunar_day' => 16,
-      'is_leap_month' => false,
-      'moon_age' => 15.629139601252973,
-      'moon_phase_angle' => 178.96285373863816,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2025-10-07 12:00:00' => 
-  array (
-    0 => '2025-10-07 12:00:00',
-    1 => 
+    0 => '2025-10-07 12:48:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 10,
@@ -20839,12 +18405,12 @@ return array (
       'dayOfWeek' => 2,
       'dayOfYear' => 280,
       'hour' => 12,
-      'minute' => 0,
+      'minute' => 48,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1759806000,
-      'formatted' => '2025-10-07 12:00:00',
-      'timezone' => 
+      'timestamp' => 1759808880,
+      'formatted' => '2025-10-07 12:48:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -20880,87 +18446,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 15.670806305017322,
-      'moon_phase_angle' => 179.54149550174745,
+      'moon_age' => 15.329166666666667,
+      'moon_phase_angle' => 176.2795240279652,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2025-10-07 13:00:00' => 
+  '2025-10-08 09:00:00' =>
   array (
-    0 => '2025-10-07 13:00:00',
-    1 => 
-    array (
-      'year' => 2025,
-      'month' => 10,
-      'day' => 7,
-      'dayOfWeek' => 2,
-      'dayOfYear' => 280,
-      'hour' => 13,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1759809600,
-      'formatted' => '2025-10-07 13:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 7,
-      'oriental_zodiac_text' => '巳',
-      'oriental_zodiac' => 6,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '大安',
-      'six_weekday' => 0,
-      'weekday_text' => '火',
-      'month_text' => '神無月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '葉月',
-      'lunar_month' => 8,
-      'lunar_year' => 2025,
-      'lunar_day' => 16,
-      'is_leap_month' => false,
-      'moon_age' => 15.712472897022963,
-      'moon_phase_angle' => 180.12052849659676,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2025-10-08 00:00:00' => 
-  array (
-    0 => '2025-10-08 00:00:00',
-    1 => 
+    0 => '2025-10-08 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 10,
       'day' => 8,
       'dayOfWeek' => 3,
       'dayOfYear' => 281,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1759849200,
-      'formatted' => '2025-10-08 00:00:00',
-      'timezone' => 
+      'timestamp' => 1759881600,
+      'formatted' => '2025-10-08 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -20996,29 +18504,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 17,
       'is_leap_month' => false,
-      'moon_age' => 16.170811312273145,
-      'moon_phase_angle' => 186.51285530874682,
+      'moon_age' => 16.171,
+      'moon_phase_angle' => 188.0042351653605,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-10-09 00:00:00' => 
+  '2025-10-09 09:00:00' =>
   array (
-    0 => '2025-10-09 00:00:00',
-    1 => 
+    0 => '2025-10-09 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 10,
       'day' => 9,
       'dayOfWeek' => 4,
       'dayOfYear' => 282,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1759935600,
-      'formatted' => '2025-10-09 00:00:00',
-      'timezone' => 
+      'timestamp' => 1759968000,
+      'formatted' => '2025-10-09 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -21054,29 +18562,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 18,
       'is_leap_month' => false,
-      'moon_age' => 17.17081085173413,
-      'moon_phase_angle' => 200.55237899209936,
+      'moon_age' => 17.171,
+      'moon_phase_angle' => 202.05171294217305,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-10-10 00:00:00' => 
+  '2025-10-10 09:00:00' =>
   array (
-    0 => '2025-10-10 00:00:00',
-    1 => 
+    0 => '2025-10-10 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 10,
       'day' => 10,
       'dayOfWeek' => 5,
       'dayOfYear' => 283,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1760022000,
-      'formatted' => '2025-10-10 00:00:00',
-      'timezone' => 
+      'timestamp' => 1760054400,
+      'formatted' => '2025-10-10 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -21112,29 +18620,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 19,
       'is_leap_month' => false,
-      'moon_age' => 18.170809717383236,
-      'moon_phase_angle' => 214.59340558216977,
+      'moon_age' => 18.171,
+      'moon_phase_angle' => 216.08184202952182,
       'moon_phase' => 5,
       'moon_phase_text' => '十六夜',
     ),
   ),
-  '2025-10-11 00:00:00' => 
+  '2025-10-11 09:00:00' =>
   array (
-    0 => '2025-10-11 00:00:00',
-    1 => 
+    0 => '2025-10-11 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 10,
       'day' => 11,
       'dayOfWeek' => 6,
       'dayOfYear' => 284,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1760108400,
-      'formatted' => '2025-10-11 00:00:00',
-      'timezone' => 
+      'timestamp' => 1760140800,
+      'formatted' => '2025-10-11 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -21170,29 +18678,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 20,
       'is_leap_month' => false,
-      'moon_age' => 19.170813098549843,
-      'moon_phase_angle' => 228.488844525228,
+      'moon_age' => 19.171,
+      'moon_phase_angle' => 229.9498477410139,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-10-12 00:00:00' => 
+  '2025-10-12 09:00:00' =>
   array (
-    0 => '2025-10-12 00:00:00',
-    1 => 
+    0 => '2025-10-12 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 10,
       'day' => 12,
       'dayOfWeek' => 0,
       'dayOfYear' => 285,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1760194800,
-      'formatted' => '2025-10-12 00:00:00',
-      'timezone' => 
+      'timestamp' => 1760227200,
+      'formatted' => '2025-10-12 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -21228,29 +18736,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 21,
       'is_leap_month' => false,
-      'moon_age' => 20.177618583198637,
-      'moon_phase_angle' => 242.1182460097587,
+      'moon_age' => 20.171,
+      'moon_phase_angle' => 243.53968904384237,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-10-13 00:00:00' => 
+  '2025-10-13 09:00:00' =>
   array (
-    0 => '2025-10-13 00:00:00',
-    1 => 
+    0 => '2025-10-13 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 10,
       'day' => 13,
       'dayOfWeek' => 1,
       'dayOfYear' => 286,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1760281200,
-      'formatted' => '2025-10-13 00:00:00',
-      'timezone' => 
+      'timestamp' => 1760313600,
+      'formatted' => '2025-10-13 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -21286,29 +18794,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 22,
       'is_leap_month' => false,
-      'moon_age' => 21.18270952021703,
-      'moon_phase_angle' => 255.4018423751407,
+      'moon_age' => 21.171,
+      'moon_phase_angle' => 256.7768651619664,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-10-14 00:00:00' => 
+  '2025-10-14 03:13:00' =>
   array (
-    0 => '2025-10-14 00:00:00',
-    1 => 
+    0 => '2025-10-14 03:13:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 10,
       'day' => 14,
       'dayOfWeek' => 2,
       'dayOfYear' => 287,
-      'hour' => 0,
-      'minute' => 0,
+      'hour' => 3,
+      'minute' => 13,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1760367600,
-      'formatted' => '2025-10-14 00:00:00',
-      'timezone' => 
+      'timestamp' => 1760379180,
+      'formatted' => '2025-10-14 03:13:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -21344,29 +18852,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 22.18569749686867,
-      'moon_phase_angle' => 268.3036436725036,
+      'moon_age' => 21.929861111111112,
+      'moon_phase_angle' => 266.5683664556977,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2025-10-14 04:00:00' => 
+  '2025-10-14 09:00:00' =>
   array (
-    0 => '2025-10-14 04:00:00',
-    1 => 
+    0 => '2025-10-14 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 10,
       'day' => 14,
       'dayOfWeek' => 2,
       'dayOfYear' => 287,
-      'hour' => 4,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1760382000,
-      'formatted' => '2025-10-14 04:00:00',
-      'timezone' => 
+      'timestamp' => 1760400000,
+      'formatted' => '2025-10-14 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -21402,29 +18910,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 22.352663096040487,
-      'moon_phase_angle' => 270.41649233940444,
+      'moon_age' => 22.171,
+      'moon_phase_angle' => 269.6304368279931,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2025-10-15 00:00:00' => 
+  '2025-10-15 09:00:00' =>
   array (
-    0 => '2025-10-15 00:00:00',
-    1 => 
+    0 => '2025-10-15 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 10,
       'day' => 15,
       'dayOfWeek' => 3,
       'dayOfYear' => 288,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1760454000,
-      'formatted' => '2025-10-15 00:00:00',
-      'timezone' => 
+      'timestamp' => 1760486400,
+      'formatted' => '2025-10-15 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -21460,29 +18968,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 24,
       'is_leap_month' => false,
-      'moon_age' => 23.186720128171146,
-      'moon_phase_angle' => 280.8254398415416,
+      'moon_age' => 23.171,
+      'moon_phase_angle' => 282.10624961592396,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-10-16 00:00:00' => 
+  '2025-10-16 09:00:00' =>
   array (
-    0 => '2025-10-16 00:00:00',
-    1 => 
+    0 => '2025-10-16 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 10,
       'day' => 16,
       'dayOfWeek' => 4,
       'dayOfYear' => 289,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1760540400,
-      'formatted' => '2025-10-16 00:00:00',
-      'timezone' => 
+      'timestamp' => 1760572800,
+      'formatted' => '2025-10-16 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -21518,29 +19026,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 25,
       'is_leap_month' => false,
-      'moon_age' => 24.185981112532318,
-      'moon_phase_angle' => 292.9959499097779,
+      'moon_age' => 24.171,
+      'moon_phase_angle' => 294.23565469835665,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-10-17 00:00:00' => 
+  '2025-10-17 09:00:00' =>
   array (
-    0 => '2025-10-17 00:00:00',
-    1 => 
+    0 => '2025-10-17 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 10,
       'day' => 17,
       'dayOfWeek' => 5,
       'dayOfYear' => 290,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1760626800,
-      'formatted' => '2025-10-17 00:00:00',
-      'timezone' => 
+      'timestamp' => 1760659200,
+      'formatted' => '2025-10-17 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -21576,29 +19084,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 26,
       'is_leap_month' => false,
-      'moon_age' => 25.183720076456666,
-      'moon_phase_angle' => 304.8591805027014,
+      'moon_age' => 25.171,
+      'moon_phase_angle' => 306.06384852146635,
       'moon_phase' => 7,
       'moon_phase_text' => '有明',
     ),
   ),
-  '2025-10-18 00:00:00' => 
+  '2025-10-18 09:00:00' =>
   array (
-    0 => '2025-10-18 00:00:00',
-    1 => 
+    0 => '2025-10-18 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 10,
       'day' => 18,
       'dayOfWeek' => 6,
       'dayOfYear' => 291,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1760713200,
-      'formatted' => '2025-10-18 00:00:00',
-      'timezone' => 
+      'timestamp' => 1760745600,
+      'formatted' => '2025-10-18 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -21634,29 +19142,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 27,
       'is_leap_month' => false,
-      'moon_age' => 26.311759970294624,
-      'moon_phase_angle' => 316.4645789979029,
+      'moon_age' => 26.171,
+      'moon_phase_angle' => 317.6403420350368,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-10-19 00:00:00' => 
+  '2025-10-19 09:00:00' =>
   array (
-    0 => '2025-10-19 00:00:00',
-    1 => 
+    0 => '2025-10-19 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 10,
       'day' => 19,
       'dayOfWeek' => 0,
       'dayOfYear' => 292,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1760799600,
-      'formatted' => '2025-10-19 00:00:00',
-      'timezone' => 
+      'timestamp' => 1760832000,
+      'formatted' => '2025-10-19 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -21692,29 +19200,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 28,
       'is_leap_month' => false,
-      'moon_age' => 27.240995837519257,
-      'moon_phase_angle' => 327.8600710826771,
+      'moon_age' => 27.171,
+      'moon_phase_angle' => 329.0124510912922,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-10-20 00:00:00' => 
+  '2025-10-20 09:00:00' =>
   array (
-    0 => '2025-10-20 00:00:00',
-    1 => 
+    0 => '2025-10-20 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 10,
       'day' => 20,
       'dayOfWeek' => 1,
       'dayOfYear' => 293,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1760886000,
-      'formatted' => '2025-10-20 00:00:00',
-      'timezone' => 
+      'timestamp' => 1760918400,
+      'formatted' => '2025-10-20 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -21750,29 +19258,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 29,
       'is_leap_month' => false,
-      'moon_age' => 28.1576577347278,
-      'moon_phase_angle' => 339.088106837606,
+      'moon_age' => 28.171,
+      'moon_phase_angle' => 340.2217758247812,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-10-21 00:00:00' => 
+  '2025-10-21 09:00:00' =>
   array (
-    0 => '2025-10-21 00:00:00',
-    1 => 
+    0 => '2025-10-21 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 10,
       'day' => 21,
       'dayOfWeek' => 2,
       'dayOfYear' => 294,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1760972400,
-      'formatted' => '2025-10-21 00:00:00',
-      'timezone' => 
+      'timestamp' => 1761004800,
+      'formatted' => '2025-10-21 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -21808,132 +19316,16 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 29.064475364195495,
-      'moon_phase_angle' => 350.1843744405126,
+      'moon_age' => 29.171,
+      'moon_phase_angle' => 351.3032679912198,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2025-10-21 19:00:00' => 
+  '2025-10-21 21:25:00' =>
   array (
-    0 => '2025-10-21 19:00:00',
-    1 => 
-    array (
-      'year' => 2025,
-      'month' => 10,
-      'day' => 21,
-      'dayOfWeek' => 2,
-      'dayOfYear' => 294,
-      'hour' => 19,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1761040800,
-      'formatted' => '2025-10-21 19:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 7,
-      'misc_seasonal_node_text' => '土用',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 7,
-      'oriental_zodiac_text' => '巳',
-      'oriental_zodiac' => 6,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '先負',
-      'six_weekday' => 4,
-      'weekday_text' => '火',
-      'month_text' => '神無月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '長月',
-      'lunar_month' => 9,
-      'lunar_year' => 2025,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.2742373365908861,
-      'moon_phase_angle' => 358.89527201750866,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2025-10-21 20:00:00' => 
-  array (
-    0 => '2025-10-21 20:00:00',
-    1 => 
-    array (
-      'year' => 2025,
-      'month' => 10,
-      'day' => 21,
-      'dayOfWeek' => 2,
-      'dayOfYear' => 294,
-      'hour' => 20,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1761044400,
-      'formatted' => '2025-10-21 20:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 7,
-      'misc_seasonal_node_text' => '土用',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 7,
-      'oriental_zodiac_text' => '巳',
-      'oriental_zodiac' => 6,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '先負',
-      'six_weekday' => 4,
-      'weekday_text' => '火',
-      'month_text' => '神無月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '長月',
-      'lunar_month' => 9,
-      'lunar_year' => 2025,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.315910205245018,
-      'moon_phase_angle' => 359.352223110325,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2025-10-21 21:00:00' => 
-  array (
-    0 => '2025-10-21 21:00:00',
-    1 => 
+    0 => '2025-10-21 21:25:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 10,
@@ -21941,12 +19333,12 @@ return array (
       'dayOfWeek' => 2,
       'dayOfYear' => 294,
       'hour' => 21,
-      'minute' => 0,
+      'minute' => 25,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1761048000,
-      'formatted' => '2025-10-21 21:00:00',
-      'timezone' => 
+      'timestamp' => 1761049500,
+      'formatted' => '2025-10-21 21:25:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -21982,145 +19374,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.35757294250652194,
-      'moon_phase_angle' => 359.80903548135996,
+      'moon_age' => 0.0,
+      'moon_phase_angle' => 356.99606222995317,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2025-10-21 22:00:00' => 
+  '2025-10-22 09:00:00' =>
   array (
-    0 => '2025-10-21 22:00:00',
-    1 => 
-    array (
-      'year' => 2025,
-      'month' => 10,
-      'day' => 21,
-      'dayOfWeek' => 2,
-      'dayOfYear' => 294,
-      'hour' => 22,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1761051600,
-      'formatted' => '2025-10-21 22:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 7,
-      'misc_seasonal_node_text' => '土用',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 7,
-      'oriental_zodiac_text' => '巳',
-      'oriental_zodiac' => 6,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '先負',
-      'six_weekday' => 4,
-      'weekday_text' => '火',
-      'month_text' => '神無月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '長月',
-      'lunar_month' => 9,
-      'lunar_year' => 2025,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.3992361156269908,
-      'moon_phase_angle' => 0.26571097120756804,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2025-10-21 23:00:00' => 
-  array (
-    0 => '2025-10-21 23:00:00',
-    1 => 
-    array (
-      'year' => 2025,
-      'month' => 10,
-      'day' => 21,
-      'dayOfWeek' => 2,
-      'dayOfYear' => 294,
-      'hour' => 23,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1761055200,
-      'formatted' => '2025-10-21 23:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 7,
-      'misc_seasonal_node_text' => '土用',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 7,
-      'oriental_zodiac_text' => '巳',
-      'oriental_zodiac' => 6,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '先負',
-      'six_weekday' => 4,
-      'weekday_text' => '火',
-      'month_text' => '神無月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '長月',
-      'lunar_month' => 9,
-      'lunar_year' => 2025,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.44091020058840513,
-      'moon_phase_angle' => 0.722251418395075,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2025-10-22 00:00:00' => 
-  array (
-    0 => '2025-10-22 00:00:00',
-    1 => 
+    0 => '2025-10-22 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 10,
       'day' => 22,
       'dayOfWeek' => 3,
       'dayOfYear' => 295,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1761058800,
-      'formatted' => '2025-10-22 00:00:00',
-      'timezone' => 
+      'timestamp' => 1761091200,
+      'formatted' => '2025-10-22 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -22156,29 +19432,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 2,
       'is_leap_month' => false,
-      'moon_age' => 0.4825746160931885,
-      'moon_phase_angle' => 1.1786586433873651,
+      'moon_age' => 0.483,
+      'moon_phase_angle' => 2.2863078334535203,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-10-23 00:00:00' => 
+  '2025-10-23 09:00:00' =>
   array (
-    0 => '2025-10-23 00:00:00',
-    1 => 
+    0 => '2025-10-23 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 10,
       'day' => 23,
       'dayOfWeek' => 4,
       'dayOfYear' => 296,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1761145200,
-      'formatted' => '2025-10-23 00:00:00',
-      'timezone' => 
+      'timestamp' => 1761177600,
+      'formatted' => '2025-10-23 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -22214,29 +19490,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 3,
       'is_leap_month' => false,
-      'moon_age' => 1.482577111106366,
-      'moon_phase_angle' => 12.097245864243234,
+      'moon_age' => 1.483,
+      'moon_phase_angle' => 13.197127617078337,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-10-24 00:00:00' => 
+  '2025-10-24 09:00:00' =>
   array (
-    0 => '2025-10-24 00:00:00',
-    1 => 
+    0 => '2025-10-24 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 10,
       'day' => 24,
       'dayOfWeek' => 5,
       'dayOfYear' => 297,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1761231600,
-      'formatted' => '2025-10-24 00:00:00',
-      'timezone' => 
+      'timestamp' => 1761264000,
+      'formatted' => '2025-10-24 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -22272,29 +19548,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 4,
       'is_leap_month' => false,
-      'moon_age' => 2.482575709465891,
-      'moon_phase_angle' => 22.966234323496508,
+      'moon_age' => 2.483,
+      'moon_phase_angle' => 24.06199753187977,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-10-25 00:00:00' => 
+  '2025-10-25 09:00:00' =>
   array (
-    0 => '2025-10-25 00:00:00',
-    1 => 
+    0 => '2025-10-25 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 10,
       'day' => 25,
       'dayOfWeek' => 6,
       'dayOfYear' => 298,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1761318000,
-      'formatted' => '2025-10-25 00:00:00',
-      'timezone' => 
+      'timestamp' => 1761350400,
+      'formatted' => '2025-10-25 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -22330,29 +19606,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 5,
       'is_leap_month' => false,
-      'moon_age' => 3.48257174808532,
-      'moon_phase_angle' => 33.81509964206103,
+      'moon_age' => 3.483,
+      'moon_phase_angle' => 34.91074132600431,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-10-26 00:00:00' => 
+  '2025-10-26 09:00:00' =>
   array (
-    0 => '2025-10-26 00:00:00',
-    1 => 
+    0 => '2025-10-26 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 10,
       'day' => 26,
       'dayOfWeek' => 0,
       'dayOfYear' => 299,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1761404400,
-      'formatted' => '2025-10-26 00:00:00',
-      'timezone' => 
+      'timestamp' => 1761436800,
+      'formatted' => '2025-10-26 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -22388,29 +19664,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 6,
       'is_leap_month' => false,
-      'moon_age' => 4.482567369937897,
-      'moon_phase_angle' => 44.679915369036564,
+      'moon_age' => 4.483,
+      'moon_phase_angle' => 45.78013186255728,
       'moon_phase' => 1,
       'moon_phase_text' => '三日月',
     ),
   ),
-  '2025-10-27 00:00:00' => 
+  '2025-10-27 09:00:00' =>
   array (
-    0 => '2025-10-27 00:00:00',
-    1 => 
+    0 => '2025-10-27 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 10,
       'day' => 27,
       'dayOfWeek' => 1,
       'dayOfYear' => 300,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1761490800,
-      'formatted' => '2025-10-27 00:00:00',
-      'timezone' => 
+      'timestamp' => 1761523200,
+      'formatted' => '2025-10-27 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -22446,29 +19722,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 7,
       'is_leap_month' => false,
-      'moon_age' => 5.482569141313434,
-      'moon_phase_angle' => 55.60573133097412,
+      'moon_age' => 5.483,
+      'moon_phase_angle' => 56.71649183932783,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-10-28 00:00:00' => 
+  '2025-10-28 09:00:00' =>
   array (
-    0 => '2025-10-28 00:00:00',
-    1 => 
+    0 => '2025-10-28 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 10,
       'day' => 28,
       'dayOfWeek' => 2,
       'dayOfYear' => 301,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1761577200,
-      'formatted' => '2025-10-28 00:00:00',
-      'timezone' => 
+      'timestamp' => 1761609600,
+      'formatted' => '2025-10-28 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -22504,29 +19780,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 6.482576654758304,
-      'moon_phase_angle' => 66.64772941877496,
+      'moon_age' => 6.483,
+      'moon_phase_angle' => 67.77671618637032,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-10-29 00:00:00' => 
+  '2025-10-29 09:00:00' =>
   array (
-    0 => '2025-10-29 00:00:00',
-    1 => 
+    0 => '2025-10-29 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 10,
       'day' => 29,
       'dayOfWeek' => 3,
       'dayOfYear' => 302,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1761663600,
-      'formatted' => '2025-10-29 00:00:00',
-      'timezone' => 
+      'timestamp' => 1761696000,
+      'formatted' => '2025-10-29 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -22562,29 +19838,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 9,
       'is_leap_month' => false,
-      'moon_age' => 7.482568878214806,
-      'moon_phase_angle' => 77.87084366878165,
+      'moon_age' => 7.483,
+      'moon_phase_angle' => 79.02724905975043,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-10-30 00:00:00' => 
+  '2025-10-30 01:21:00' =>
   array (
-    0 => '2025-10-30 00:00:00',
-    1 => 
+    0 => '2025-10-30 01:21:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 10,
       'day' => 30,
       'dayOfWeek' => 4,
       'dayOfYear' => 303,
-      'hour' => 0,
-      'minute' => 0,
+      'hour' => 1,
+      'minute' => 21,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1761750000,
-      'formatted' => '2025-10-30 00:00:00',
-      'timezone' => 
+      'timestamp' => 1761754860,
+      'formatted' => '2025-10-30 01:21:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -22620,29 +19896,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 10,
       'is_leap_month' => false,
-      'moon_age' => 8.482571092434227,
-      'moon_phase_angle' => 89.34750437032164,
+      'moon_age' => 8.16388888888889,
+      'moon_phase_angle' => 86.83787951182799,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2025-10-30 02:00:00' => 
+  '2025-10-30 09:00:00' =>
   array (
-    0 => '2025-10-30 02:00:00',
-    1 => 
+    0 => '2025-10-30 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 10,
       'day' => 30,
       'dayOfWeek' => 4,
       'dayOfYear' => 303,
-      'hour' => 2,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1761757200,
-      'formatted' => '2025-10-30 02:00:00',
-      'timezone' => 
+      'timestamp' => 1761782400,
+      'formatted' => '2025-10-30 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -22678,29 +19954,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 10,
       'is_leap_month' => false,
-      'moon_age' => 8.56590313417837,
-      'moon_phase_angle' => 90.31770684500324,
+      'moon_age' => 8.483,
+      'moon_phase_angle' => 90.54107089820099,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2025-10-31 00:00:00' => 
+  '2025-10-31 09:00:00' =>
   array (
-    0 => '2025-10-31 00:00:00',
-    1 => 
+    0 => '2025-10-31 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 10,
       'day' => 31,
       'dayOfWeek' => 5,
       'dayOfYear' => 304,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1761836400,
-      'formatted' => '2025-10-31 00:00:00',
-      'timezone' => 
+      'timestamp' => 1761868800,
+      'formatted' => '2025-10-31 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -22736,29 +20012,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 11,
       'is_leap_month' => false,
-      'moon_age' => 9.482572513632476,
-      'moon_phase_angle' => 101.15304878575557,
+      'moon_age' => 9.483,
+      'moon_phase_angle' => 102.3928247343847,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-11-01 00:00:00' => 
+  '2025-11-01 09:00:00' =>
   array (
-    0 => '2025-11-01 00:00:00',
-    1 => 
+    0 => '2025-11-01 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 11,
       'day' => 1,
       'dayOfWeek' => 6,
       'dayOfYear' => 305,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1761922800,
-      'formatted' => '2025-11-01 00:00:00',
-      'timezone' => 
+      'timestamp' => 1761955200,
+      'formatted' => '2025-11-01 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -22794,29 +20070,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 12,
       'is_leap_month' => false,
-      'moon_age' => 10.482571459840983,
-      'moon_phase_angle' => 113.35823627650981,
+      'moon_age' => 10.483,
+      'moon_phase_angle' => 114.6515579104582,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-11-02 00:00:00' => 
+  '2025-11-02 09:00:00' =>
   array (
-    0 => '2025-11-02 00:00:00',
-    1 => 
+    0 => '2025-11-02 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 11,
       'day' => 2,
       'dayOfWeek' => 0,
       'dayOfYear' => 306,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1762009200,
-      'formatted' => '2025-11-02 00:00:00',
-      'timezone' => 
+      'timestamp' => 1762041600,
+      'formatted' => '2025-11-02 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -22852,29 +20128,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 13,
       'is_leap_month' => false,
-      'moon_age' => 11.482566548045725,
-      'moon_phase_angle' => 126.01837084023907,
+      'moon_age' => 11.483,
+      'moon_phase_angle' => 127.36996267844205,
       'moon_phase' => 3,
       'moon_phase_text' => '十三夜',
     ),
   ),
-  '2025-11-03 00:00:00' => 
+  '2025-11-03 09:00:00' =>
   array (
-    0 => '2025-11-03 00:00:00',
-    1 => 
+    0 => '2025-11-03 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 11,
       'day' => 3,
       'dayOfWeek' => 1,
       'dayOfYear' => 307,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1762095600,
-      'formatted' => '2025-11-03 00:00:00',
-      'timezone' => 
+      'timestamp' => 1762128000,
+      'formatted' => '2025-11-03 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -22910,29 +20186,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 14,
       'is_leap_month' => false,
-      'moon_age' => 12.482571237720549,
-      'moon_phase_angle' => 139.15942019516757,
+      'moon_age' => 12.483,
+      'moon_phase_angle' => 140.56984425875427,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-11-04 00:00:00' => 
+  '2025-11-04 09:00:00' =>
   array (
-    0 => '2025-11-04 00:00:00',
-    1 => 
+    0 => '2025-11-04 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 11,
       'day' => 4,
       'dayOfWeek' => 2,
       'dayOfYear' => 308,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1762182000,
-      'formatted' => '2025-11-04 00:00:00',
-      'timezone' => 
+      'timestamp' => 1762214400,
+      'formatted' => '2025-11-04 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -22968,29 +20244,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 15,
       'is_leap_month' => false,
-      'moon_age' => 13.482567774131894,
-      'moon_phase_angle' => 152.76294524515143,
+      'moon_age' => 13.483,
+      'moon_phase_angle' => 154.22641511576293,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-11-05 00:00:00' => 
+  '2025-11-05 09:00:00' =>
   array (
-    0 => '2025-11-05 00:00:00',
-    1 => 
+    0 => '2025-11-05 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 11,
       'day' => 5,
       'dayOfWeek' => 3,
       'dayOfYear' => 309,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1762268400,
-      'formatted' => '2025-11-05 00:00:00',
-      'timezone' => 
+      'timestamp' => 1762300800,
+      'formatted' => '2025-11-05 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -23026,74 +20302,16 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 14.482575956732035,
-      'moon_phase_angle' => 166.7544830028186,
+      'moon_age' => 14.483,
+      'moon_phase_angle' => 168.2573756045262,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2025-11-05 21:00:00' => 
+  '2025-11-05 22:19:00' =>
   array (
-    0 => '2025-11-05 21:00:00',
-    1 => 
-    array (
-      'year' => 2025,
-      'month' => 11,
-      'day' => 5,
-      'dayOfWeek' => 3,
-      'dayOfYear' => 309,
-      'hour' => 21,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1762344000,
-      'formatted' => '2025-11-05 21:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 7,
-      'misc_seasonal_node_text' => '土用',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 7,
-      'oriental_zodiac_text' => '巳',
-      'oriental_zodiac' => 6,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '赤口',
-      'six_weekday' => 1,
-      'weekday_text' => '水',
-      'month_text' => '霜月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '長月',
-      'lunar_month' => 9,
-      'lunar_year' => 2025,
-      'lunar_day' => 16,
-      'is_leap_month' => false,
-      'moon_age' => 15.357576608657837,
-      'moon_phase_angle' => 179.21271906328138,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2025-11-05 22:00:00' => 
-  array (
-    0 => '2025-11-05 22:00:00',
-    1 => 
+    0 => '2025-11-05 22:19:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 11,
@@ -23101,12 +20319,12 @@ return array (
       'dayOfWeek' => 3,
       'dayOfYear' => 309,
       'hour' => 22,
-      'minute' => 0,
+      'minute' => 19,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1762347600,
-      'formatted' => '2025-11-05 22:00:00',
-      'timezone' => 
+      'timestamp' => 1762348740,
+      'formatted' => '2025-11-05 22:19:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -23142,87 +20360,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 15.399239089805633,
-      'moon_phase_angle' => 179.80895292045375,
+      'moon_age' => 15.0375,
+      'moon_phase_angle' => 176.15502184260987,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2025-11-05 23:00:00' => 
+  '2025-11-06 09:00:00' =>
   array (
-    0 => '2025-11-05 23:00:00',
-    1 => 
-    array (
-      'year' => 2025,
-      'month' => 11,
-      'day' => 5,
-      'dayOfWeek' => 3,
-      'dayOfYear' => 309,
-      'hour' => 23,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1762351200,
-      'formatted' => '2025-11-05 23:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 7,
-      'misc_seasonal_node_text' => '土用',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 7,
-      'oriental_zodiac_text' => '巳',
-      'oriental_zodiac' => 6,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '赤口',
-      'six_weekday' => 1,
-      'weekday_text' => '水',
-      'month_text' => '霜月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '長月',
-      'lunar_month' => 9,
-      'lunar_year' => 2025,
-      'lunar_day' => 16,
-      'is_leap_month' => false,
-      'moon_age' => 15.440900803543627,
-      'moon_phase_angle' => 180.40535557121777,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2025-11-06 00:00:00' => 
-  array (
-    0 => '2025-11-06 00:00:00',
-    1 => 
+    0 => '2025-11-06 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 11,
       'day' => 6,
       'dayOfWeek' => 4,
       'dayOfYear' => 310,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1762354800,
-      'formatted' => '2025-11-06 00:00:00',
-      'timezone' => 
+      'timestamp' => 1762387200,
+      'formatted' => '2025-11-06 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -23258,29 +20418,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 17,
       'is_leap_month' => false,
-      'moon_age' => 15.482571717351675,
-      'moon_phase_angle' => 181.00191318138627,
+      'moon_age' => 15.483,
+      'moon_phase_angle' => 182.52382390368075,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-11-07 00:00:00' => 
+  '2025-11-07 09:00:00' =>
   array (
-    0 => '2025-11-07 00:00:00',
-    1 => 
+    0 => '2025-11-07 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 11,
       'day' => 7,
       'dayOfWeek' => 5,
       'dayOfYear' => 311,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1762441200,
-      'formatted' => '2025-11-07 00:00:00',
-      'timezone' => 
+      'timestamp' => 1762473600,
+      'formatted' => '2025-11-07 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -23316,29 +20476,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 18,
       'is_leap_month' => false,
-      'moon_age' => 16.48256886471063,
-      'moon_phase_angle' => 195.32927223518087,
+      'moon_age' => 16.483,
+      'moon_phase_angle' => 196.8468114832915,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-11-08 00:00:00' => 
+  '2025-11-08 09:00:00' =>
   array (
-    0 => '2025-11-08 00:00:00',
-    1 => 
+    0 => '2025-11-08 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 11,
       'day' => 8,
       'dayOfWeek' => 6,
       'dayOfYear' => 312,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1762527600,
-      'formatted' => '2025-11-08 00:00:00',
-      'timezone' => 
+      'timestamp' => 1762560000,
+      'formatted' => '2025-11-08 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -23374,29 +20534,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 19,
       'is_leap_month' => false,
-      'moon_age' => 17.49646596191451,
-      'moon_phase_angle' => 209.54543891913363,
+      'moon_age' => 17.483,
+      'moon_phase_angle' => 211.0367711135683,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-11-09 00:00:00' => 
+  '2025-11-09 09:00:00' =>
   array (
-    0 => '2025-11-09 00:00:00',
-    1 => 
+    0 => '2025-11-09 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 11,
       'day' => 9,
       'dayOfWeek' => 0,
       'dayOfYear' => 313,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1762614000,
-      'formatted' => '2025-11-09 00:00:00',
-      'timezone' => 
+      'timestamp' => 1762646400,
+      'formatted' => '2025-11-09 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -23432,29 +20592,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 20,
       'is_leap_month' => false,
-      'moon_age' => 18.509548767935485,
-      'moon_phase_angle' => 223.4788411677247,
+      'moon_age' => 18.483,
+      'moon_phase_angle' => 224.9267813351398,
       'moon_phase' => 5,
       'moon_phase_text' => '十六夜',
     ),
   ),
-  '2025-11-10 00:00:00' => 
+  '2025-11-10 09:00:00' =>
   array (
-    0 => '2025-11-10 00:00:00',
-    1 => 
+    0 => '2025-11-10 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 11,
       'day' => 10,
       'dayOfWeek' => 1,
       'dayOfYear' => 314,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1762700400,
-      'formatted' => '2025-11-10 00:00:00',
-      'timezone' => 
+      'timestamp' => 1762732800,
+      'formatted' => '2025-11-10 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -23490,29 +20650,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 21,
       'is_leap_month' => false,
-      'moon_age' => 19.518966127652675,
-      'moon_phase_angle' => 237.00535935731932,
+      'moon_age' => 19.483,
+      'moon_phase_angle' => 238.39864257090494,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-11-11 00:00:00' => 
+  '2025-11-11 09:00:00' =>
   array (
-    0 => '2025-11-11 00:00:00',
-    1 => 
+    0 => '2025-11-11 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 11,
       'day' => 11,
       'dayOfWeek' => 2,
       'dayOfYear' => 315,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1762786800,
-      'formatted' => '2025-11-11 00:00:00',
-      'timezone' => 
+      'timestamp' => 1762819200,
+      'formatted' => '2025-11-11 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -23548,29 +20708,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 22,
       'is_leap_month' => false,
-      'moon_age' => 20.524479426443577,
-      'moon_phase_angle' => 250.0606825250371,
+      'moon_age' => 20.483,
+      'moon_phase_angle' => 251.39429199710446,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-11-12 00:00:00' => 
+  '2025-11-12 09:00:00' =>
   array (
-    0 => '2025-11-12 00:00:00',
-    1 => 
+    0 => '2025-11-12 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 11,
       'day' => 12,
       'dayOfWeek' => 3,
       'dayOfYear' => 316,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1762873200,
-      'formatted' => '2025-11-12 00:00:00',
-      'timezone' => 
+      'timestamp' => 1762905600,
+      'formatted' => '2025-11-12 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -23606,29 +20766,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 21.526186235714704,
-      'moon_phase_angle' => 262.6368557376791,
+      'moon_age' => 21.483,
+      'moon_phase_angle' => 263.9118413056817,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2025-11-12 15:00:00' => 
+  '2025-11-12 14:28:00' =>
   array (
-    0 => '2025-11-12 15:00:00',
-    1 => 
+    0 => '2025-11-12 14:28:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 11,
       'day' => 12,
       'dayOfWeek' => 3,
       'dayOfYear' => 316,
-      'hour' => 15,
-      'minute' => 0,
+      'hour' => 14,
+      'minute' => 28,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1762927200,
-      'formatted' => '2025-11-12 15:00:00',
-      'timezone' => 
+      'timestamp' => 1762925280,
+      'formatted' => '2025-11-12 14:28:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -23664,29 +20824,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 22.150494426488876,
-      'moon_phase_angle' => 270.26792417792103,
+      'moon_age' => 21.710416666666667,
+      'moon_phase_angle' => 266.6997555879247,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2025-11-13 00:00:00' => 
+  '2025-11-13 09:00:00' =>
   array (
-    0 => '2025-11-13 00:00:00',
-    1 => 
+    0 => '2025-11-13 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 11,
       'day' => 13,
       'dayOfWeek' => 4,
       'dayOfYear' => 317,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1762959600,
-      'formatted' => '2025-11-13 00:00:00',
-      'timezone' => 
+      'timestamp' => 1762992000,
+      'formatted' => '2025-11-13 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -23722,29 +20882,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 24,
       'is_leap_month' => false,
-      'moon_age' => 22.52449638862163,
-      'moon_phase_angle' => 274.76892421749443,
+      'moon_age' => 22.483,
+      'moon_phase_angle' => 275.9913731751984,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-11-14 00:00:00' => 
+  '2025-11-14 09:00:00' =>
   array (
-    0 => '2025-11-14 00:00:00',
-    1 => 
+    0 => '2025-11-14 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 11,
       'day' => 14,
       'dayOfWeek' => 5,
       'dayOfYear' => 318,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1763046000,
-      'formatted' => '2025-11-14 00:00:00',
-      'timezone' => 
+      'timestamp' => 1763078400,
+      'formatted' => '2025-11-14 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -23780,29 +20940,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 25,
       'is_leap_month' => false,
-      'moon_age' => 23.519936631433666,
-      'moon_phase_angle' => 286.51860697599,
+      'moon_age' => 23.483,
+      'moon_phase_angle' => 287.69767552315847,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-11-15 00:00:00' => 
+  '2025-11-15 09:00:00' =>
   array (
-    0 => '2025-11-15 00:00:00',
-    1 => 
+    0 => '2025-11-15 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 11,
       'day' => 15,
       'dayOfWeek' => 6,
       'dayOfYear' => 319,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1763132400,
-      'formatted' => '2025-11-15 00:00:00',
-      'timezone' => 
+      'timestamp' => 1763164800,
+      'formatted' => '2025-11-15 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -23838,29 +20998,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 26,
       'is_leap_month' => false,
-      'moon_age' => 24.51309861196205,
-      'moon_phase_angle' => 297.9596563867816,
+      'moon_age' => 24.483,
+      'moon_phase_angle' => 299.1053396155547,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-11-16 00:00:00' => 
+  '2025-11-16 09:00:00' =>
   array (
-    0 => '2025-11-16 00:00:00',
-    1 => 
+    0 => '2025-11-16 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 11,
       'day' => 16,
       'dayOfWeek' => 0,
       'dayOfYear' => 320,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1763218800,
-      'formatted' => '2025-11-16 00:00:00',
-      'timezone' => 
+      'timestamp' => 1763251200,
+      'formatted' => '2025-11-16 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -23896,29 +21056,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 27,
       'is_leap_month' => false,
-      'moon_age' => 25.504532429855317,
-      'moon_phase_angle' => 309.16681992173676,
+      'moon_age' => 25.483,
+      'moon_phase_angle' => 310.2883395896838,
       'moon_phase' => 7,
       'moon_phase_text' => '有明',
     ),
   ),
-  '2025-11-17 00:00:00' => 
+  '2025-11-17 09:00:00' =>
   array (
-    0 => '2025-11-17 00:00:00',
-    1 => 
+    0 => '2025-11-17 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 11,
       'day' => 17,
       'dayOfWeek' => 1,
       'dayOfYear' => 321,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1763305200,
-      'formatted' => '2025-11-17 00:00:00',
-      'timezone' => 
+      'timestamp' => 1763337600,
+      'formatted' => '2025-11-17 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -23954,29 +21114,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 28,
       'is_leap_month' => false,
-      'moon_age' => 26.603682332350253,
-      'moon_phase_angle' => 320.2085659166909,
+      'moon_age' => 26.483,
+      'moon_phase_angle' => 321.3137144424627,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-11-18 00:00:00' => 
+  '2025-11-18 09:00:00' =>
   array (
-    0 => '2025-11-18 00:00:00',
-    1 => 
+    0 => '2025-11-18 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 11,
       'day' => 18,
       'dayOfWeek' => 2,
       'dayOfYear' => 322,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1763391600,
-      'formatted' => '2025-11-18 00:00:00',
-      'timezone' => 
+      'timestamp' => 1763424000,
+      'formatted' => '2025-11-18 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -24012,29 +21172,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 29,
       'is_leap_month' => false,
-      'moon_age' => 27.498364639146565,
-      'moon_phase_angle' => 331.1430444064083,
+      'moon_age' => 27.483,
+      'moon_phase_angle' => 332.23819401197125,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-11-19 00:00:00' => 
+  '2025-11-19 09:00:00' =>
   array (
-    0 => '2025-11-19 00:00:00',
-    1 => 
+    0 => '2025-11-19 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 11,
       'day' => 19,
       'dayOfWeek' => 3,
       'dayOfYear' => 323,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1763478000,
-      'formatted' => '2025-11-19 00:00:00',
-      'timezone' => 
+      'timestamp' => 1763510400,
+      'formatted' => '2025-11-19 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -24070,29 +21230,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 30,
       'is_leap_month' => false,
-      'moon_age' => 28.389242973788022,
-      'moon_phase_angle' => 342.0166761045168,
+      'moon_age' => 28.483,
+      'moon_phase_angle' => 343.1069780904628,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-11-20 00:00:00' => 
+  '2025-11-20 09:00:00' =>
   array (
-    0 => '2025-11-20 00:00:00',
-    1 => 
+    0 => '2025-11-20 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 11,
       'day' => 20,
       'dayOfWeek' => 4,
       'dayOfYear' => 324,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1763564400,
-      'formatted' => '2025-11-20 00:00:00',
-      'timezone' => 
+      'timestamp' => 1763596800,
+      'formatted' => '2025-11-20 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -24128,132 +21288,16 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 29.278930327067464,
-      'moon_phase_angle' => 352.8648837026278,
+      'moon_age' => 29.483,
+      'moon_phase_angle' => 353.95440218749343,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2025-11-20 13:00:00' => 
+  '2025-11-20 15:47:00' =>
   array (
-    0 => '2025-11-20 13:00:00',
-    1 => 
-    array (
-      'year' => 2025,
-      'month' => 11,
-      'day' => 20,
-      'dayOfWeek' => 4,
-      'dayOfYear' => 324,
-      'hour' => 13,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1763611200,
-      'formatted' => '2025-11-20 13:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 7,
-      'oriental_zodiac_text' => '巳',
-      'oriental_zodiac' => 6,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '仏滅',
-      'six_weekday' => 5,
-      'weekday_text' => '木',
-      'month_text' => '霜月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '神無月',
-      'lunar_month' => 10,
-      'lunar_year' => 2025,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.2588767926208675,
-      'moon_phase_angle' => 358.7401378906498,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2025-11-20 14:00:00' => 
-  array (
-    0 => '2025-11-20 14:00:00',
-    1 => 
-    array (
-      'year' => 2025,
-      'month' => 11,
-      'day' => 20,
-      'dayOfWeek' => 4,
-      'dayOfYear' => 324,
-      'hour' => 14,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1763614800,
-      'formatted' => '2025-11-20 14:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 7,
-      'oriental_zodiac_text' => '巳',
-      'oriental_zodiac' => 6,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '仏滅',
-      'six_weekday' => 5,
-      'weekday_text' => '木',
-      'month_text' => '霜月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '神無月',
-      'lunar_month' => 10,
-      'lunar_year' => 2025,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.30054730037227273,
-      'moon_phase_angle' => 359.19220601702693,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2025-11-20 15:00:00' => 
-  array (
-    0 => '2025-11-20 15:00:00',
-    1 => 
+    0 => '2025-11-20 15:47:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 11,
@@ -24261,12 +21305,12 @@ return array (
       'dayOfWeek' => 4,
       'dayOfYear' => 324,
       'hour' => 15,
-      'minute' => 0,
+      'minute' => 47,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1763618400,
-      'formatted' => '2025-11-20 15:00:00',
-      'timezone' => 
+      'timestamp' => 1763621220,
+      'formatted' => '2025-11-20 15:47:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -24302,203 +21346,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.34221076825633645,
-      'moon_phase_angle' => 359.64429993307573,
+      'moon_age' => 0.0,
+      'moon_phase_angle' => 357.0201585072377,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2025-11-20 16:00:00' => 
+  '2025-11-21 09:00:00' =>
   array (
-    0 => '2025-11-20 16:00:00',
-    1 => 
-    array (
-      'year' => 2025,
-      'month' => 11,
-      'day' => 20,
-      'dayOfWeek' => 4,
-      'dayOfYear' => 324,
-      'hour' => 16,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1763622000,
-      'formatted' => '2025-11-20 16:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 7,
-      'oriental_zodiac_text' => '巳',
-      'oriental_zodiac' => 6,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '仏滅',
-      'six_weekday' => 5,
-      'weekday_text' => '木',
-      'month_text' => '霜月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '神無月',
-      'lunar_month' => 10,
-      'lunar_year' => 2025,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.3838776210322976,
-      'moon_phase_angle' => 0.09642118068677519,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2025-11-20 17:00:00' => 
-  array (
-    0 => '2025-11-20 17:00:00',
-    1 => 
-    array (
-      'year' => 2025,
-      'month' => 11,
-      'day' => 20,
-      'dayOfWeek' => 4,
-      'dayOfYear' => 324,
-      'hour' => 17,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1763625600,
-      'formatted' => '2025-11-20 17:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 7,
-      'oriental_zodiac_text' => '巳',
-      'oriental_zodiac' => 6,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '仏滅',
-      'six_weekday' => 5,
-      'weekday_text' => '木',
-      'month_text' => '霜月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '神無月',
-      'lunar_month' => 10,
-      'lunar_year' => 2025,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.4255480030551553,
-      'moon_phase_angle' => 0.548571299142651,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2025-11-20 18:00:00' => 
-  array (
-    0 => '2025-11-20 18:00:00',
-    1 => 
-    array (
-      'year' => 2025,
-      'month' => 11,
-      'day' => 20,
-      'dayOfWeek' => 4,
-      'dayOfYear' => 324,
-      'hour' => 18,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1763629200,
-      'formatted' => '2025-11-20 18:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 7,
-      'oriental_zodiac_text' => '巳',
-      'oriental_zodiac' => 6,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '仏滅',
-      'six_weekday' => 5,
-      'weekday_text' => '木',
-      'month_text' => '霜月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '神無月',
-      'lunar_month' => 10,
-      'lunar_year' => 2025,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.4672117135487497,
-      'moon_phase_angle' => 1.0007518091724137,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2025-11-21 00:00:00' => 
-  array (
-    0 => '2025-11-21 00:00:00',
-    1 => 
+    0 => '2025-11-21 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 11,
       'day' => 21,
       'dayOfWeek' => 5,
       'dayOfYear' => 325,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1763650800,
-      'formatted' => '2025-11-21 00:00:00',
-      'timezone' => 
+      'timestamp' => 1763683200,
+      'formatted' => '2025-11-21 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -24534,29 +21404,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 2,
       'is_leap_month' => false,
-      'moon_age' => 0.7172127179801464,
-      'moon_phase_angle' => 3.7145581706552377,
+      'moon_age' => 0.717,
+      'moon_phase_angle' => 4.806382610141554,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-11-22 00:00:00' => 
+  '2025-11-22 09:00:00' =>
   array (
-    0 => '2025-11-22 00:00:00',
-    1 => 
+    0 => '2025-11-22 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 11,
       'day' => 22,
       'dayOfWeek' => 6,
       'dayOfYear' => 326,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1763737200,
-      'formatted' => '2025-11-22 00:00:00',
-      'timezone' => 
+      'timestamp' => 1763769600,
+      'formatted' => '2025-11-22 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -24592,29 +21462,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 3,
       'is_leap_month' => false,
-      'moon_age' => 1.717211159877479,
-      'moon_phase_angle' => 14.587812867886527,
+      'moon_age' => 1.717,
+      'moon_phase_angle' => 15.684354774770782,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-11-23 00:00:00' => 
+  '2025-11-23 09:00:00' =>
   array (
-    0 => '2025-11-23 00:00:00',
-    1 => 
+    0 => '2025-11-23 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 11,
       'day' => 23,
       'dayOfWeek' => 0,
       'dayOfYear' => 327,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1763823600,
-      'formatted' => '2025-11-23 00:00:00',
-      'timezone' => 
+      'timestamp' => 1763856000,
+      'formatted' => '2025-11-23 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -24650,29 +21520,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 4,
       'is_leap_month' => false,
-      'moon_age' => 2.7172101521864533,
-      'moon_phase_angle' => 25.506459558294097,
+      'moon_age' => 2.717,
+      'moon_phase_angle' => 26.61009801149956,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-11-24 00:00:00' => 
+  '2025-11-24 09:00:00' =>
   array (
-    0 => '2025-11-24 00:00:00',
-    1 => 
+    0 => '2025-11-24 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 11,
       'day' => 24,
       'dayOfWeek' => 1,
       'dayOfYear' => 328,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1763910000,
-      'formatted' => '2025-11-24 00:00:00',
-      'timezone' => 
+      'timestamp' => 1763942400,
+      'formatted' => '2025-11-24 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -24708,29 +21578,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 5,
       'is_leap_month' => false,
-      'moon_age' => 3.7172092399559915,
-      'moon_phase_angle' => 36.49652483686964,
+      'moon_age' => 3.717,
+      'moon_phase_angle' => 37.61053027118368,
       'moon_phase' => 1,
       'moon_phase_text' => '三日月',
     ),
   ),
-  '2025-11-25 00:00:00' => 
+  '2025-11-25 09:00:00' =>
   array (
-    0 => '2025-11-25 00:00:00',
-    1 => 
+    0 => '2025-11-25 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 11,
       'day' => 25,
       'dayOfWeek' => 2,
       'dayOfYear' => 329,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1763996400,
-      'formatted' => '2025-11-25 00:00:00',
-      'timezone' => 
+      'timestamp' => 1764028800,
+      'formatted' => '2025-11-25 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -24766,29 +21636,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 6,
       'is_leap_month' => false,
-      'moon_age' => 4.717216091230512,
-      'moon_phase_angle' => 47.592086778201434,
+      'moon_age' => 4.717,
+      'moon_phase_angle' => 48.721434660456026,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-11-26 00:00:00' => 
+  '2025-11-26 09:00:00' =>
   array (
-    0 => '2025-11-26 00:00:00',
-    1 => 
+    0 => '2025-11-26 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 11,
       'day' => 26,
       'dayOfWeek' => 3,
       'dayOfYear' => 330,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1764082800,
-      'formatted' => '2025-11-26 00:00:00',
-      'timezone' => 
+      'timestamp' => 1764115200,
+      'formatted' => '2025-11-26 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -24824,29 +21694,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 7,
       'is_leap_month' => false,
-      'moon_age' => 5.7172102108597755,
-      'moon_phase_angle' => 58.83776171053361,
+      'moon_age' => 5.717,
+      'moon_phase_angle' => 59.989326925709804,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-11-27 00:00:00' => 
+  '2025-11-27 09:00:00' =>
   array (
-    0 => '2025-11-27 00:00:00',
-    1 => 
+    0 => '2025-11-27 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 11,
       'day' => 27,
       'dayOfWeek' => 4,
       'dayOfYear' => 331,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1764169200,
-      'formatted' => '2025-11-27 00:00:00',
-      'timezone' => 
+      'timestamp' => 1764201600,
+      'formatted' => '2025-11-27 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -24882,29 +21752,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 6.717209403868765,
-      'moon_phase_angle' => 70.2892522585164,
+      'moon_age' => 6.717,
+      'moon_phase_angle' => 71.47119527489019,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-11-28 00:00:00' => 
+  '2025-11-28 09:00:00' =>
   array (
-    0 => '2025-11-28 00:00:00',
-    1 => 
+    0 => '2025-11-28 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 11,
       'day' => 28,
       'dayOfWeek' => 5,
       'dayOfYear' => 332,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1764255600,
-      'formatted' => '2025-11-28 00:00:00',
-      'timezone' => 
+      'timestamp' => 1764288000,
+      'formatted' => '2025-11-28 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -24940,29 +21810,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 9,
       'is_leap_month' => false,
-      'moon_age' => 7.7172077489085495,
-      'moon_phase_angle' => 82.01140031601099,
+      'moon_age' => 7.717,
+      'moon_phase_angle' => 83.23213555746295,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2025-11-28 16:00:00' => 
+  '2025-11-28 15:59:00' =>
   array (
-    0 => '2025-11-28 16:00:00',
-    1 => 
+    0 => '2025-11-28 15:59:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 11,
       'day' => 28,
       'dayOfWeek' => 5,
       'dayOfYear' => 332,
-      'hour' => 16,
-      'minute' => 0,
+      'hour' => 15,
+      'minute' => 59,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1764313200,
-      'formatted' => '2025-11-28 16:00:00',
-      'timezone' => 
+      'timestamp' => 1764313140,
+      'formatted' => '2025-11-28 15:59:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -24998,29 +21868,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 9,
       'is_leap_month' => false,
-      'moon_age' => 8.383874544408172,
-      'moon_phase_angle' => 90.01064128113504,
+      'moon_age' => 8.008333333333333,
+      'moon_phase_angle' => 86.71649815306054,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2025-11-29 00:00:00' => 
+  '2025-11-29 09:00:00' =>
   array (
-    0 => '2025-11-29 00:00:00',
-    1 => 
+    0 => '2025-11-29 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 11,
       'day' => 29,
       'dayOfWeek' => 6,
       'dayOfYear' => 333,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1764342000,
-      'formatted' => '2025-11-29 00:00:00',
-      'timezone' => 
+      'timestamp' => 1764374400,
+      'formatted' => '2025-11-29 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -25056,29 +21926,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 10,
       'is_leap_month' => false,
-      'moon_age' => 8.71721210097894,
-      'moon_phase_angle' => 94.07313911010769,
+      'moon_age' => 8.717,
+      'moon_phase_angle' => 95.34048896509563,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-11-30 00:00:00' => 
+  '2025-11-30 09:00:00' =>
   array (
-    0 => '2025-11-30 00:00:00',
-    1 => 
+    0 => '2025-11-30 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 11,
       'day' => 30,
       'dayOfWeek' => 0,
       'dayOfYear' => 334,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1764428400,
-      'formatted' => '2025-11-30 00:00:00',
-      'timezone' => 
+      'timestamp' => 1764460800,
+      'formatted' => '2025-11-30 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -25114,29 +21984,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 11,
       'is_leap_month' => false,
-      'moon_age' => 9.717215521726757,
-      'moon_phase_angle' => 106.53871112687145,
+      'moon_age' => 9.717,
+      'moon_phase_angle' => 107.85927518316174,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-12-01 00:00:00' => 
+  '2025-12-01 09:00:00' =>
   array (
-    0 => '2025-12-01 00:00:00',
-    1 => 
+    0 => '2025-12-01 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 12,
       'day' => 1,
       'dayOfWeek' => 1,
       'dayOfYear' => 335,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1764514800,
-      'formatted' => '2025-12-01 00:00:00',
-      'timezone' => 
+      'timestamp' => 1764547200,
+      'formatted' => '2025-12-01 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -25172,29 +22042,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 12,
       'is_leap_month' => false,
-      'moon_age' => 10.71721632964909,
-      'moon_phase_angle' => 119.45482401844109,
+      'moon_age' => 10.717,
+      'moon_phase_angle' => 120.83275198790173,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-12-02 00:00:00' => 
+  '2025-12-02 09:00:00' =>
   array (
-    0 => '2025-12-02 00:00:00',
-    1 => 
+    0 => '2025-12-02 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 12,
       'day' => 2,
       'dayOfWeek' => 2,
       'dayOfYear' => 336,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1764601200,
-      'formatted' => '2025-12-02 00:00:00',
-      'timezone' => 
+      'timestamp' => 1764633600,
+      'formatted' => '2025-12-02 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -25230,29 +22100,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 13,
       'is_leap_month' => false,
-      'moon_age' => 11.717212946154177,
-      'moon_phase_angle' => 132.8344693033614,
+      'moon_age' => 11.717,
+      'moon_phase_angle' => 134.26901041384758,
       'moon_phase' => 3,
       'moon_phase_text' => '十三夜',
     ),
   ),
-  '2025-12-03 00:00:00' => 
+  '2025-12-03 09:00:00' =>
   array (
-    0 => '2025-12-03 00:00:00',
-    1 => 
+    0 => '2025-12-03 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 12,
       'day' => 3,
       'dayOfWeek' => 3,
       'dayOfYear' => 337,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1764687600,
-      'formatted' => '2025-12-03 00:00:00',
-      'timezone' => 
+      'timestamp' => 1764720000,
+      'formatted' => '2025-12-03 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -25288,29 +22158,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 14,
       'is_leap_month' => false,
-      'moon_age' => 12.717208981979638,
-      'moon_phase_angle' => 146.64062038307773,
+      'moon_age' => 12.717,
+      'moon_phase_angle' => 148.12322473846928,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-12-04 00:00:00' => 
+  '2025-12-04 09:00:00' =>
   array (
-    0 => '2025-12-04 00:00:00',
-    1 => 
+    0 => '2025-12-04 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 12,
       'day' => 4,
       'dayOfWeek' => 4,
       'dayOfYear' => 338,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1764774000,
-      'formatted' => '2025-12-04 00:00:00',
-      'timezone' => 
+      'timestamp' => 1764806400,
+      'formatted' => '2025-12-04 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -25346,132 +22216,16 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 15,
       'is_leap_month' => false,
-      'moon_age' => 13.717207813635468,
-      'moon_phase_angle' => 160.77576160155715,
+      'moon_age' => 13.717,
+      'moon_phase_angle' => 162.28916612656337,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-12-05 00:00:00' => 
+  '2025-12-05 08:14:00' =>
   array (
-    0 => '2025-12-05 00:00:00',
-    1 => 
-    array (
-      'year' => 2025,
-      'month' => 12,
-      'day' => 5,
-      'dayOfWeek' => 5,
-      'dayOfYear' => 339,
-      'hour' => 0,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1764860400,
-      'formatted' => '2025-12-05 00:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 7,
-      'oriental_zodiac_text' => '巳',
-      'oriental_zodiac' => 6,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '先勝',
-      'six_weekday' => 2,
-      'weekday_text' => '金',
-      'month_text' => '師走',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '神無月',
-      'lunar_month' => 10,
-      'lunar_year' => 2025,
-      'lunar_day' => 16,
-      'is_leap_month' => false,
-      'moon_age' => 14.726626470219344,
-      'moon_phase_angle' => 175.08497639678922,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2025-12-05 07:00:00' => 
-  array (
-    0 => '2025-12-05 07:00:00',
-    1 => 
-    array (
-      'year' => 2025,
-      'month' => 12,
-      'day' => 5,
-      'dayOfWeek' => 5,
-      'dayOfYear' => 339,
-      'hour' => 7,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1764885600,
-      'formatted' => '2025-12-05 07:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 7,
-      'oriental_zodiac_text' => '巳',
-      'oriental_zodiac' => 6,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '先勝',
-      'six_weekday' => 2,
-      'weekday_text' => '金',
-      'month_text' => '師走',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '神無月',
-      'lunar_month' => 10,
-      'lunar_year' => 2025,
-      'lunar_day' => 16,
-      'is_leap_month' => false,
-      'moon_age' => 15.023832336533815,
-      'moon_phase_angle' => 179.26413113465537,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2025-12-05 08:00:00' => 
-  array (
-    0 => '2025-12-05 08:00:00',
-    1 => 
+    0 => '2025-12-05 08:14:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 12,
@@ -25479,12 +22233,12 @@ return array (
       'dayOfWeek' => 5,
       'dayOfYear' => 339,
       'hour' => 8,
-      'minute' => 0,
+      'minute' => 14,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1764889200,
-      'formatted' => '2025-12-05 08:00:00',
-      'timezone' => 
+      'timestamp' => 1764890040,
+      'formatted' => '2025-12-05 08:14:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -25520,16 +22274,16 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 15.066279780119658,
-      'moon_phase_angle' => 179.86074220209318,
+      'moon_age' => 14.685416666666667,
+      'moon_phase_angle' => 176.1481069937402,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2025-12-05 09:00:00' => 
+  '2025-12-05 09:00:00' =>
   array (
     0 => '2025-12-05 09:00:00',
-    1 => 
+    1 =>
     array (
       'year' => 2025,
       'month' => 12,
@@ -25542,7 +22296,7 @@ return array (
       'micro' => 0,
       'timestamp' => 1764892800,
       'formatted' => '2025-12-05 09:00:00',
-      'timezone' => 
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -25578,29 +22332,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 15.108732372522354,
-      'moon_phase_angle' => 180.45720684599002,
+      'moon_age' => 14.717,
+      'moon_phase_angle' => 176.60585714412838,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2025-12-06 00:00:00' => 
+  '2025-12-06 09:00:00' =>
   array (
-    0 => '2025-12-06 00:00:00',
-    1 => 
+    0 => '2025-12-06 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 12,
       'day' => 6,
       'dayOfWeek' => 6,
       'dayOfYear' => 340,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1764946800,
-      'formatted' => '2025-12-06 00:00:00',
-      'timezone' => 
+      'timestamp' => 1764979200,
+      'formatted' => '2025-12-06 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -25636,29 +22390,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 17,
       'is_leap_month' => false,
-      'moon_age' => 15.745079066604376,
-      'moon_phase_angle' => 189.3768832229395,
+      'moon_age' => 15.717,
+      'moon_phase_angle' => 190.8809303638686,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-12-07 00:00:00' => 
+  '2025-12-07 09:00:00' =>
   array (
-    0 => '2025-12-07 00:00:00',
-    1 => 
+    0 => '2025-12-07 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 12,
       'day' => 7,
       'dayOfWeek' => 0,
       'dayOfYear' => 341,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1765033200,
-      'formatted' => '2025-12-07 00:00:00',
-      'timezone' => 
+      'timestamp' => 1765065600,
+      'formatted' => '2025-12-07 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -25694,29 +22448,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 18,
       'is_leap_month' => false,
-      'moon_age' => 16.761067762505263,
-      'moon_phase_angle' => 203.45825120280222,
+      'moon_age' => 16.717,
+      'moon_phase_angle' => 204.92471084522123,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-12-08 00:00:00' => 
+  '2025-12-08 09:00:00' =>
   array (
-    0 => '2025-12-08 00:00:00',
-    1 => 
+    0 => '2025-12-08 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 12,
       'day' => 8,
       'dayOfWeek' => 1,
       'dayOfYear' => 342,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1765119600,
-      'formatted' => '2025-12-08 00:00:00',
-      'timezone' => 
+      'timestamp' => 1765152000,
+      'formatted' => '2025-12-08 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -25752,29 +22506,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 19,
       'is_leap_month' => false,
-      'moon_age' => 17.77330871205777,
-      'moon_phase_angle' => 217.16979491573062,
+      'moon_age' => 17.717,
+      'moon_phase_angle' => 218.5837513171182,
       'moon_phase' => 5,
       'moon_phase_text' => '十六夜',
     ),
   ),
-  '2025-12-09 00:00:00' => 
+  '2025-12-09 09:00:00' =>
   array (
-    0 => '2025-12-09 00:00:00',
-    1 => 
+    0 => '2025-12-09 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 12,
       'day' => 9,
       'dayOfWeek' => 2,
       'dayOfYear' => 343,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1765206000,
-      'formatted' => '2025-12-09 00:00:00',
-      'timezone' => 
+      'timestamp' => 1765238400,
+      'formatted' => '2025-12-09 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -25810,29 +22564,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 20,
       'is_leap_month' => false,
-      'moon_age' => 18.781079333741218,
-      'moon_phase_angle' => 230.409862012825,
+      'moon_age' => 18.717,
+      'moon_phase_angle' => 231.76286936380387,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-12-10 00:00:00' => 
+  '2025-12-10 09:00:00' =>
   array (
-    0 => '2025-12-10 00:00:00',
-    1 => 
+    0 => '2025-12-10 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 12,
       'day' => 10,
       'dayOfWeek' => 3,
       'dayOfYear' => 344,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1765292400,
-      'formatted' => '2025-12-10 00:00:00',
-      'timezone' => 
+      'timestamp' => 1765324800,
+      'formatted' => '2025-12-10 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -25868,29 +22622,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 21,
       'is_leap_month' => false,
-      'moon_age' => 19.784258175175637,
-      'moon_phase_angle' => 243.1402522965511,
+      'moon_age' => 19.717,
+      'moon_phase_angle' => 244.4304240488045,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-12-11 00:00:00' => 
+  '2025-12-11 09:00:00' =>
   array (
-    0 => '2025-12-11 00:00:00',
-    1 => 
+    0 => '2025-12-11 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 12,
       'day' => 11,
       'dayOfWeek' => 4,
       'dayOfYear' => 345,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1765378800,
-      'formatted' => '2025-12-11 00:00:00',
-      'timezone' => 
+      'timestamp' => 1765411200,
+      'formatted' => '2025-12-11 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -25926,29 +22680,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 22,
       'is_leap_month' => false,
-      'moon_age' => 20.783112782984972,
-      'moon_phase_angle' => 255.37743877428187,
+      'moon_age' => 20.717,
+      'moon_phase_angle' => 256.6089850629195,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-12-12 00:00:00' => 
+  '2025-12-12 05:52:00' =>
   array (
-    0 => '2025-12-12 00:00:00',
-    1 => 
+    0 => '2025-12-12 05:52:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 12,
       'day' => 12,
       'dayOfWeek' => 5,
       'dayOfYear' => 346,
-      'hour' => 0,
-      'minute' => 0,
+      'hour' => 5,
+      'minute' => 52,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1765465200,
-      'formatted' => '2025-12-12 00:00:00',
-      'timezone' => 
+      'timestamp' => 1765486320,
+      'formatted' => '2025-12-12 05:52:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -25984,29 +22738,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 21.778255365788937,
-      'moon_phase_angle' => 267.17668467728794,
+      'moon_age' => 21.586805555555557,
+      'moon_phase_angle' => 266.84608628387195,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2025-12-12 07:00:00' => 
+  '2025-12-12 09:00:00' =>
   array (
-    0 => '2025-12-12 07:00:00',
-    1 => 
+    0 => '2025-12-12 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 12,
       'day' => 12,
       'dayOfWeek' => 5,
       'dayOfYear' => 346,
-      'hour' => 7,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1765490400,
-      'formatted' => '2025-12-12 07:00:00',
-      'timezone' => 
+      'timestamp' => 1765497600,
+      'formatted' => '2025-12-12 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -26042,29 +22796,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 22.06791263166815,
-      'moon_phase_angle' => 270.54647797152916,
+      'moon_age' => 21.717,
+      'moon_phase_angle' => 268.3583895107908,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2025-12-13 00:00:00' => 
+  '2025-12-13 09:00:00' =>
   array (
-    0 => '2025-12-13 00:00:00',
-    1 => 
+    0 => '2025-12-13 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 12,
       'day' => 13,
       'dayOfWeek' => 6,
       'dayOfYear' => 347,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1765551600,
-      'formatted' => '2025-12-13 00:00:00',
-      'timezone' => 
+      'timestamp' => 1765584000,
+      'formatted' => '2025-12-13 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -26100,29 +22854,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 24,
       'is_leap_month' => false,
-      'moon_age' => 22.77042987337336,
-      'moon_phase_angle' => 278.61556658256836,
+      'moon_age' => 22.717,
+      'moon_phase_angle' => 279.7584587549469,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-12-14 00:00:00' => 
+  '2025-12-14 09:00:00' =>
   array (
-    0 => '2025-12-14 00:00:00',
-    1 => 
+    0 => '2025-12-14 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 12,
       'day' => 14,
       'dayOfWeek' => 0,
       'dayOfYear' => 348,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1765638000,
-      'formatted' => '2025-12-14 00:00:00',
-      'timezone' => 
+      'timestamp' => 1765670400,
+      'formatted' => '2025-12-14 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -26158,29 +22912,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 25,
       'is_leap_month' => false,
-      'moon_age' => 23.76041580690071,
-      'moon_phase_angle' => 289.7803567118973,
+      'moon_age' => 23.717,
+      'moon_phase_angle' => 290.89557646355763,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-12-15 00:00:00' => 
+  '2025-12-15 09:00:00' =>
   array (
-    0 => '2025-12-15 00:00:00',
-    1 => 
+    0 => '2025-12-15 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 12,
       'day' => 15,
       'dayOfWeek' => 1,
       'dayOfYear' => 349,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1765724400,
-      'formatted' => '2025-12-15 00:00:00',
-      'timezone' => 
+      'timestamp' => 1765756800,
+      'formatted' => '2025-12-15 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -26216,29 +22970,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 26,
       'is_leap_month' => false,
-      'moon_age' => 24.748976881615818,
-      'moon_phase_angle' => 300.7561560779764,
+      'moon_age' => 24.717,
+      'moon_phase_angle' => 301.85377669680787,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-12-16 00:00:00' => 
+  '2025-12-16 09:00:00' =>
   array (
-    0 => '2025-12-16 00:00:00',
-    1 => 
+    0 => '2025-12-16 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 12,
       'day' => 16,
       'dayOfWeek' => 2,
       'dayOfYear' => 350,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1765810800,
-      'formatted' => '2025-12-16 00:00:00',
-      'timezone' => 
+      'timestamp' => 1765843200,
+      'formatted' => '2025-12-16 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -26274,29 +23028,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 27,
       'is_leap_month' => false,
-      'moon_age' => 25.736774427816272,
-      'moon_phase_angle' => 311.62038210492136,
+      'moon_age' => 25.717,
+      'moon_phase_angle' => 312.7091088490078,
       'moon_phase' => 7,
       'moon_phase_text' => '有明',
     ),
   ),
-  '2025-12-17 00:00:00' => 
+  '2025-12-17 09:00:00' =>
   array (
-    0 => '2025-12-17 00:00:00',
-    1 => 
+    0 => '2025-12-17 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 12,
       'day' => 17,
       'dayOfWeek' => 3,
       'dayOfYear' => 351,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1765897200,
-      'formatted' => '2025-12-17 00:00:00',
-      'timezone' => 
+      'timestamp' => 1765929600,
+      'formatted' => '2025-12-17 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -26332,29 +23086,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 28,
       'is_leap_month' => false,
-      'moon_age' => 26.78221202935496,
-      'moon_phase_angle' => 322.43890364444155,
+      'moon_age' => 26.717,
+      'moon_phase_angle' => 323.52607257436756,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-12-18 00:00:00' => 
+  '2025-12-18 09:00:00' =>
   array (
-    0 => '2025-12-18 00:00:00',
-    1 => 
+    0 => '2025-12-18 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 12,
       'day' => 18,
       'dayOfWeek' => 4,
       'dayOfYear' => 352,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1765983600,
-      'formatted' => '2025-12-18 00:00:00',
-      'timezone' => 
+      'timestamp' => 1766016000,
+      'formatted' => '2025-12-18 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -26390,29 +23144,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 29,
       'is_leap_month' => false,
-      'moon_age' => 27.671307599781393,
-      'moon_phase_angle' => 333.2642743483972,
+      'moon_age' => 27.717,
+      'moon_phase_angle' => 334.35574673968506,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-12-19 00:00:00' => 
+  '2025-12-19 09:00:00' =>
   array (
-    0 => '2025-12-19 00:00:00',
-    1 => 
+    0 => '2025-12-19 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 12,
       'day' => 19,
       'dayOfWeek' => 5,
       'dayOfYear' => 353,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1766070000,
-      'formatted' => '2025-12-19 00:00:00',
-      'timezone' => 
+      'timestamp' => 1766102400,
+      'formatted' => '2025-12-19 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -26448,74 +23202,16 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 30,
       'is_leap_month' => false,
-      'moon_age' => 28.565139207667052,
-      'moon_phase_angle' => 344.13577419927645,
+      'moon_age' => 28.717,
+      'moon_phase_angle' => 345.23577433237875,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-12-20 00:00:00' => 
-  array (
-    0 => '2025-12-20 00:00:00',
-    1 => 
-    array (
-      'year' => 2025,
-      'month' => 12,
-      'day' => 20,
-      'dayOfWeek' => 6,
-      'dayOfYear' => 354,
-      'hour' => 0,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1766156400,
-      'formatted' => '2025-12-20 00:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 7,
-      'oriental_zodiac_text' => '巳',
-      'oriental_zodiac' => 6,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '大安',
-      'six_weekday' => 0,
-      'weekday_text' => '土',
-      'month_text' => '師走',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '霜月',
-      'lunar_month' => 11,
-      'lunar_year' => 2025,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 29.46568686017239,
-      'moon_phase_angle' => 355.08112073620896,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2025-12-20 09:00:00' => 
+  '2025-12-20 09:00:00' =>
   array (
     0 => '2025-12-20 09:00:00',
-    1 => 
+    1 =>
     array (
       'year' => 2025,
       'month' => 12,
@@ -26528,7 +23224,7 @@ return array (
       'micro' => 0,
       'timestamp' => 1766188800,
       'formatted' => '2025-12-20 09:00:00',
-      'timezone' => 
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -26564,16 +23260,16 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.3032535123638809,
-      'moon_phase_angle' => 359.20879430257304,
+      'moon_age' => 29.717,
+      'moon_phase_angle' => 356.19230407975095,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2025-12-20 10:00:00' => 
+  '2025-12-20 10:43:00' =>
   array (
-    0 => '2025-12-20 10:00:00',
-    1 => 
+    0 => '2025-12-20 10:43:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 12,
@@ -26581,12 +23277,12 @@ return array (
       'dayOfWeek' => 6,
       'dayOfYear' => 354,
       'hour' => 10,
-      'minute' => 0,
+      'minute' => 43,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1766192400,
-      'formatted' => '2025-12-20 10:00:00',
-      'timezone' => 
+      'timestamp' => 1766194980,
+      'formatted' => '2025-12-20 10:43:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -26622,203 +23318,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.34492062497884035,
-      'moon_phase_angle' => 359.66827260121056,
+      'moon_age' => 0.0,
+      'moon_phase_angle' => 356.97944719444735,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2025-12-20 11:00:00' => 
+  '2025-12-21 09:00:00' =>
   array (
-    0 => '2025-12-20 11:00:00',
-    1 => 
-    array (
-      'year' => 2025,
-      'month' => 12,
-      'day' => 20,
-      'dayOfWeek' => 6,
-      'dayOfYear' => 354,
-      'hour' => 11,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1766196000,
-      'formatted' => '2025-12-20 11:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 7,
-      'oriental_zodiac_text' => '巳',
-      'oriental_zodiac' => 6,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '大安',
-      'six_weekday' => 0,
-      'weekday_text' => '土',
-      'month_text' => '師走',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '霜月',
-      'lunar_month' => 11,
-      'lunar_year' => 2025,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.38659246545284986,
-      'moon_phase_angle' => 0.12792450285303403,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2025-12-20 12:00:00' => 
-  array (
-    0 => '2025-12-20 12:00:00',
-    1 => 
-    array (
-      'year' => 2025,
-      'month' => 12,
-      'day' => 20,
-      'dayOfWeek' => 6,
-      'dayOfYear' => 354,
-      'hour' => 12,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1766199600,
-      'formatted' => '2025-12-20 12:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 7,
-      'oriental_zodiac_text' => '巳',
-      'oriental_zodiac' => 6,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '大安',
-      'six_weekday' => 0,
-      'weekday_text' => '土',
-      'month_text' => '師走',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '霜月',
-      'lunar_month' => 11,
-      'lunar_year' => 2025,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.4282585489563644,
-      'moon_phase_angle' => 0.5877510704580686,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2025-12-20 13:00:00' => 
-  array (
-    0 => '2025-12-20 13:00:00',
-    1 => 
-    array (
-      'year' => 2025,
-      'month' => 12,
-      'day' => 20,
-      'dayOfWeek' => 6,
-      'dayOfYear' => 354,
-      'hour' => 13,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1766203200,
-      'formatted' => '2025-12-20 13:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 7,
-      'oriental_zodiac_text' => '巳',
-      'oriental_zodiac' => 6,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '大安',
-      'six_weekday' => 0,
-      'weekday_text' => '土',
-      'month_text' => '師走',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '霜月',
-      'lunar_month' => 11,
-      'lunar_year' => 2025,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.4699189541861415,
-      'moon_phase_angle' => 1.0477533779085775,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2025-12-21 00:00:00' => 
-  array (
-    0 => '2025-12-21 00:00:00',
-    1 => 
+    0 => '2025-12-21 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 12,
       'day' => 21,
       'dayOfWeek' => 0,
       'dayOfYear' => 355,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1766242800,
-      'formatted' => '2025-12-21 00:00:00',
-      'timezone' => 
+      'timestamp' => 1766275200,
+      'formatted' => '2025-12-21 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -26854,29 +23376,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 2,
       'is_leap_month' => false,
-      'moon_age' => 0.928254954982549,
-      'moon_phase_angle' => 6.119679566849072,
+      'moon_age' => 0.928,
+      'moon_phase_angle' => 7.243622299284141,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-12-22 00:00:00' => 
+  '2025-12-22 09:00:00' =>
   array (
-    0 => '2025-12-22 00:00:00',
-    1 => 
+    0 => '2025-12-22 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 12,
       'day' => 22,
       'dayOfWeek' => 1,
       'dayOfYear' => 356,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1766329200,
-      'formatted' => '2025-12-22 00:00:00',
-      'timezone' => 
+      'timestamp' => 1766361600,
+      'formatted' => '2025-12-22 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -26912,29 +23434,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 3,
       'is_leap_month' => false,
-      'moon_age' => 1.9282549833878875,
-      'moon_phase_angle' => 17.26680664710682,
+      'moon_age' => 1.928,
+      'moon_phase_angle' => 18.404855624017443,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-12-23 00:00:00' => 
+  '2025-12-23 09:00:00' =>
   array (
-    0 => '2025-12-23 00:00:00',
-    1 => 
+    0 => '2025-12-23 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 12,
       'day' => 23,
       'dayOfWeek' => 2,
       'dayOfYear' => 357,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1766415600,
-      'formatted' => '2025-12-23 00:00:00',
-      'timezone' => 
+      'timestamp' => 1766448000,
+      'formatted' => '2025-12-23 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -26970,29 +23492,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 4,
       'is_leap_month' => false,
-      'moon_age' => 2.928256126586348,
-      'moon_phase_angle' => 28.538683568207773,
+      'moon_age' => 2.928,
+      'moon_phase_angle' => 29.692889704141578,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-12-24 00:00:00' => 
+  '2025-12-24 09:00:00' =>
   array (
-    0 => '2025-12-24 00:00:00',
-    1 => 
+    0 => '2025-12-24 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 12,
       'day' => 24,
       'dayOfWeek' => 3,
       'dayOfYear' => 358,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1766502000,
-      'formatted' => '2025-12-24 00:00:00',
-      'timezone' => 
+      'timestamp' => 1766534400,
+      'formatted' => '2025-12-24 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -27028,29 +23550,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 5,
       'is_leap_month' => false,
-      'moon_age' => 3.9282517568208277,
-      'moon_phase_angle' => 39.95678794843906,
+      'moon_age' => 3.928,
+      'moon_phase_angle' => 41.13055640595189,
       'moon_phase' => 1,
       'moon_phase_text' => '三日月',
     ),
   ),
-  '2025-12-25 00:00:00' => 
+  '2025-12-25 09:00:00' =>
   array (
-    0 => '2025-12-25 00:00:00',
-    1 => 
+    0 => '2025-12-25 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 12,
       'day' => 25,
       'dayOfWeek' => 4,
       'dayOfYear' => 359,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1766588400,
-      'formatted' => '2025-12-25 00:00:00',
-      'timezone' => 
+      'timestamp' => 1766620800,
+      'formatted' => '2025-12-25 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -27086,29 +23608,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 6,
       'is_leap_month' => false,
-      'moon_age' => 4.9282506187446415,
-      'moon_phase_angle' => 51.55105942341294,
+      'moon_age' => 4.928,
+      'moon_phase_angle' => 52.749244312615986,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-12-26 00:00:00' => 
+  '2025-12-26 09:00:00' =>
   array (
-    0 => '2025-12-26 00:00:00',
-    1 => 
+    0 => '2025-12-26 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 12,
       'day' => 26,
       'dayOfWeek' => 5,
       'dayOfYear' => 360,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1766674800,
-      'formatted' => '2025-12-26 00:00:00',
-      'timezone' => 
+      'timestamp' => 1766707200,
+      'formatted' => '2025-12-26 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -27144,29 +23666,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 7,
       'is_leap_month' => false,
-      'moon_age' => 5.928251817356795,
-      'moon_phase_angle' => 63.36087997576959,
+      'moon_age' => 5.928,
+      'moon_phase_angle' => 64.58932705491293,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-12-27 00:00:00' => 
+  '2025-12-27 09:00:00' =>
   array (
-    0 => '2025-12-27 00:00:00',
-    1 => 
+    0 => '2025-12-27 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 12,
       'day' => 27,
       'dayOfWeek' => 6,
       'dayOfYear' => 361,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1766761200,
-      'formatted' => '2025-12-27 00:00:00',
-      'timezone' => 
+      'timestamp' => 1766793600,
+      'formatted' => '2025-12-27 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -27202,74 +23724,16 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 6.928259076550603,
-      'moon_phase_angle' => 75.43312362370727,
+      'moon_age' => 6.928,
+      'moon_phase_angle' => 76.69793291962333,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-12-28 00:00:00' => 
+  '2025-12-28 04:10:00' =>
   array (
-    0 => '2025-12-28 00:00:00',
-    1 => 
-    array (
-      'year' => 2025,
-      'month' => 12,
-      'day' => 28,
-      'dayOfWeek' => 0,
-      'dayOfYear' => 362,
-      'hour' => 0,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1766847600,
-      'formatted' => '2025-12-28 00:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 7,
-      'oriental_zodiac_text' => '巳',
-      'oriental_zodiac' => 6,
-      'heavenly_stem_text' => '乙',
-      'heavenly_stem' => 1,
-      'six_weekday_text' => '先勝',
-      'six_weekday' => 2,
-      'weekday_text' => '日',
-      'month_text' => '師走',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '霜月',
-      'lunar_month' => 11,
-      'lunar_year' => 2025,
-      'lunar_day' => 9,
-      'is_leap_month' => false,
-      'moon_age' => 7.928250442259014,
-      'moon_phase_angle' => 87.81670513881613,
-      'moon_phase' => 2,
-      'moon_phase_text' => '上弦',
-    ),
-  ),
-  '2025-12-28 04:00:00' => 
-  array (
-    0 => '2025-12-28 04:00:00',
-    1 => 
+    0 => '2025-12-28 04:10:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 12,
@@ -27277,12 +23741,12 @@ return array (
       'dayOfWeek' => 0,
       'dayOfYear' => 362,
       'hour' => 4,
-      'minute' => 0,
+      'minute' => 10,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1766862000,
-      'formatted' => '2025-12-28 04:00:00',
-      'timezone' => 
+      'timestamp' => 1766862600,
+      'formatted' => '2025-12-28 04:10:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -27318,29 +23782,87 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 9,
       'is_leap_month' => false,
-      'moon_age' => 8.094918147660792,
-      'moon_phase_angle' => 89.9140488059237,
+      'moon_age' => 7.727083333333334,
+      'moon_phase_angle' => 86.59344554464946,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2025-12-29 00:00:00' => 
+  '2025-12-28 09:00:00' =>
   array (
-    0 => '2025-12-29 00:00:00',
-    1 => 
+    0 => '2025-12-28 09:00:00',
+    1 =>
+    array (
+      'year' => 2025,
+      'month' => 12,
+      'day' => 28,
+      'dayOfWeek' => 0,
+      'dayOfYear' => 362,
+      'hour' => 9,
+      'minute' => 0,
+      'second' => 0,
+      'micro' => 0,
+      'timestamp' => 1766880000,
+      'formatted' => '2025-12-28 09:00:00',
+      'timezone' =>
+      \Carbon\CarbonTimeZone::__set_state(array(
+         'clock' => NULL,
+         'timezone_type' => 3,
+         'timezone' => 'Asia/Tokyo',
+      )),
+      'solar_seasonal_festival' => 0,
+      'solar_seasonal_festival_name' => '',
+      'solar_seasonal_festival_alias' => '',
+      'lunar_seasonal_festival' => 0,
+      'lunar_seasonal_festival_name' => '',
+      'lunar_seasonal_festival_alias' => '',
+      'misc_seasonal_node' => 0,
+      'misc_seasonal_node_text' => '',
+      'solar_term' => false,
+      'solar_term_text' => '',
+      'is_solar_term' => false,
+      'era_name_text' => '令和',
+      'era_name' => 1004,
+      'era_year' => 7,
+      'oriental_zodiac_text' => '巳',
+      'oriental_zodiac' => 6,
+      'heavenly_stem_text' => '乙',
+      'heavenly_stem' => 1,
+      'six_weekday_text' => '先勝',
+      'six_weekday' => 2,
+      'weekday_text' => '日',
+      'month_text' => '師走',
+      'holiday_text' => '',
+      'holiday' => 0,
+      'is_holiday' => false,
+      'lunar_month_text' => '霜月',
+      'lunar_month' => 11,
+      'lunar_year' => 2025,
+      'lunar_day' => 9,
+      'is_leap_month' => false,
+      'moon_age' => 7.928,
+      'moon_phase_angle' => 89.12344421247428,
+      'moon_phase' => 2,
+      'moon_phase_text' => '上弦',
+    ),
+  ),
+  '2025-12-29 09:00:00' =>
+  array (
+    0 => '2025-12-29 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 12,
       'day' => 29,
       'dayOfWeek' => 1,
       'dayOfYear' => 363,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1766934000,
-      'formatted' => '2025-12-29 00:00:00',
-      'timezone' => 
+      'timestamp' => 1766966400,
+      'formatted' => '2025-12-29 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -27376,29 +23898,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 10,
       'is_leap_month' => false,
-      'moon_age' => 8.928253395948559,
-      'moon_phase_angle' => 100.55336164393833,
+      'moon_age' => 8.928,
+      'moon_phase_angle' => 101.90607549396384,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-12-30 00:00:00' => 
+  '2025-12-30 09:00:00' =>
   array (
-    0 => '2025-12-30 00:00:00',
-    1 => 
+    0 => '2025-12-30 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 12,
       'day' => 30,
       'dayOfWeek' => 2,
       'dayOfYear' => 364,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1767020400,
-      'formatted' => '2025-12-30 00:00:00',
-      'timezone' => 
+      'timestamp' => 1767052800,
+      'formatted' => '2025-12-30 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -27434,29 +23956,29 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 11,
       'is_leap_month' => false,
-      'moon_age' => 9.92825535684824,
-      'moon_phase_angle' => 113.66509545474989,
+      'moon_age' => 9.928,
+      'moon_phase_angle' => 115.06472320658503,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2025-12-31 00:00:00' => 
+  '2025-12-31 09:00:00' =>
   array (
-    0 => '2025-12-31 00:00:00',
-    1 => 
+    0 => '2025-12-31 09:00:00',
+    1 =>
     array (
       'year' => 2025,
       'month' => 12,
       'day' => 31,
       'dayOfWeek' => 3,
       'dayOfYear' => 365,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1767106800,
-      'formatted' => '2025-12-31 00:00:00',
-      'timezone' => 
+      'timestamp' => 1767139200,
+      'formatted' => '2025-12-31 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -27492,8 +24014,8 @@ return array (
       'lunar_year' => 2025,
       'lunar_day' => 12,
       'is_leap_month' => false,
-      'moon_age' => 10.928259086795151,
-      'moon_phase_angle' => 127.14010630610181,
+      'moon_age' => 10.928,
+      'moon_phase_angle' => 128.58240456574237,
       'moon_phase' => 3,
       'moon_phase_text' => '十三夜',
     ),

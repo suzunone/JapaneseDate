@@ -1,8 +1,5 @@
 <?php
 
-/** @noinspection PhpDocMissingThrowsInspection */
-/** @noinspection PhpUnhandledExceptionInspection */
-
 /**
  * SeasonalFestival コンポーネントのテスト
  *
@@ -53,6 +50,9 @@ class SeasonalFestivalTest extends TestCase
     // =========================================================================
     // ファクトリー・定数テスト
     // =========================================================================
+    /**
+     * @return array[]
+     */
     public static function viewNameProvider(): array
     {
         return [
@@ -65,6 +65,9 @@ class SeasonalFestivalTest extends TestCase
             '存在しないキー' => [999, ''],
         ];
     }
+    /**
+     * @return array[]
+     */
     public static function viewAliasProvider(): array
     {
         return [
@@ -77,6 +80,9 @@ class SeasonalFestivalTest extends TestCase
             '存在しないキー' => [999, ''],
         ];
     }
+    /**
+     * @return array[]
+     */
     public static function solarFestivalProvider(): array
     {
         return [
@@ -92,6 +98,9 @@ class SeasonalFestivalTest extends TestCase
     // =========================================================================
     // viewName / viewAlias ユーティリティテスト
     // =========================================================================
+    /**
+     * @return array[]
+     */
     public static function lunarFestivalProvider(): array
     {
         return [

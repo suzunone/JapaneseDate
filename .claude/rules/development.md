@@ -83,6 +83,25 @@ class NewFeatureTraitTest extends TestCase
 
 テストでもスネークケース・キャメルケースの両プロパティアクセスを検証すること。
 
+### 動的メソッド呼び出しの禁止
+
+`->{$method}()` のような動的メソッド呼び出しは使用しない。
+
+呼び出し先のメソッド名が文字列変数で渡される場合は、`match` 式で明示的に分岐すること。
+
+```php
+// 悪い例: 動的呼び出し
+$obj->{$method}($year);
+
+// 良い例: match で明示的に分岐
+match ($method) {
+    'foo' => $obj->foo($year),
+    'bar' => $obj->bar($year),
+};
+```
+
+対象のメソッドが増えた場合も、`match` に追記する形で対応する。
+
 ### PHPDoc
 - すべての新規メソッド・プロパティに日本語で詳細な PHPDoc を記述する
 - `@param`・`@return` の型は正確に記載する

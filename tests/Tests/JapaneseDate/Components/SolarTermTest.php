@@ -3,7 +3,6 @@
 namespace Tests\JapaneseDate\Components;
 
 use JapaneseDate\Components\Astronomy;
-use JapaneseDate\Components\Cache;
 use JapaneseDate\Components\SolarTerm;
 use JapaneseDate\Components\Traits\GetSolarTerm;
 use JapaneseDate\DateTime;
@@ -18,6 +17,10 @@ use PHPUnit\Framework\TestCase;
 use Tests\JapaneseDate\Components\Traits\SolarTermDataProviderTrait;
 
 /**
+ *
+ */
+/**
+ *
  * @covers \JapaneseDate\Components\SolarTerm
  * @covers \JapaneseDate\Components\Traits\GetSolarTerm
  * @covers \JapaneseDate\Components\SolarTerm::__construct
@@ -83,126 +86,6 @@ class SolarTermTest extends TestCase
         'usui' => DateTime::SOLAR_TERM_USUI,
         'keichitsu' => DateTime::SOLAR_TERM_KEICHITSU,
     ];
-    /**
-     * 年ごとの二十四節気一覧を検証するため、暦要項のデータを年単位にまとめる。
-     */
-    public static function naoRekiYokoYearDataProvider(): array
-    {
-        $years = [];
-
-        foreach (self::naoRekiYokoSolarTermDataProvider() as [$year, $solarTerm, $month, $day]) {
-            $years[$year][$solarTerm] = [$month, $day];
-        }
-
-        $cases = [];
-
-        foreach ($years as $year => $expected) {
-            ksort($expected);
-            $cases[$year] = [(int) $year, $expected];
-        }
-
-        return $cases;
-    }
-    /**
-     * 国立天文台暦要項の「二十四節気および雑節」で確認した日付を返す。
-     */
-    public static function naoRekiYokoSolarTermDataProvider(): array
-    {
-        return array_merge(
-            self::getSolarTermDataProvider(),
-            self::solarTermsForYear(2020, [
-                DateTime::SOLAR_TERM_SYOUKAN => [1, 6],
-                DateTime::SOLAR_TERM_DAIKAN => [1, 20],
-                DateTime::SOLAR_TERM_RISSYUN => [2, 4],
-                DateTime::SOLAR_TERM_USUI => [2, 19],
-                DateTime::SOLAR_TERM_KEICHITSU => [3, 5],
-                DateTime::SOLAR_TERM_SYUNBUN => [3, 20],
-                DateTime::SOLAR_TERM_SEIMEI => [4, 4],
-                DateTime::SOLAR_TERM_KOKUU => [4, 19],
-                DateTime::SOLAR_TERM_RIKKA => [5, 5],
-                DateTime::SOLAR_TERM_SYOUMAN => [5, 20],
-                DateTime::SOLAR_TERM_BOUSYU => [6, 5],
-                DateTime::SOLAR_TERM_GESHI => [6, 21],
-                DateTime::SOLAR_TERM_SYOUSYO => [7, 7],
-                DateTime::SOLAR_TERM_TAISYO => [7, 22],
-                DateTime::SOLAR_TERM_RISSYUU => [8, 7],
-                DateTime::SOLAR_TERM_SYOSYO => [8, 23],
-                DateTime::SOLAR_TERM_HAKURO => [9, 7],
-                DateTime::SOLAR_TERM_SYUUBUN => [9, 22],
-                DateTime::SOLAR_TERM_KANRO => [10, 8],
-                DateTime::SOLAR_TERM_SOUKOU => [10, 23],
-                DateTime::SOLAR_TERM_RITTOU => [11, 7],
-                DateTime::SOLAR_TERM_SYOUSETSU => [11, 22],
-                DateTime::SOLAR_TERM_TAISETSU => [12, 7],
-                DateTime::SOLAR_TERM_TOUJI => [12, 21],
-            ]),
-            self::solarTermsForYear(2024, [
-                DateTime::SOLAR_TERM_SYOUKAN => [1, 6],
-                DateTime::SOLAR_TERM_DAIKAN => [1, 20],
-                DateTime::SOLAR_TERM_RISSYUN => [2, 4],
-                DateTime::SOLAR_TERM_USUI => [2, 19],
-                DateTime::SOLAR_TERM_KEICHITSU => [3, 5],
-                DateTime::SOLAR_TERM_SYUNBUN => [3, 20],
-                DateTime::SOLAR_TERM_SEIMEI => [4, 4],
-                DateTime::SOLAR_TERM_KOKUU => [4, 19],
-                DateTime::SOLAR_TERM_RIKKA => [5, 5],
-                DateTime::SOLAR_TERM_SYOUMAN => [5, 20],
-                DateTime::SOLAR_TERM_BOUSYU => [6, 5],
-                DateTime::SOLAR_TERM_GESHI => [6, 21],
-                DateTime::SOLAR_TERM_SYOUSYO => [7, 6],
-                DateTime::SOLAR_TERM_TAISYO => [7, 22],
-                DateTime::SOLAR_TERM_RISSYUU => [8, 7],
-                DateTime::SOLAR_TERM_SYOSYO => [8, 22],
-                DateTime::SOLAR_TERM_HAKURO => [9, 7],
-                DateTime::SOLAR_TERM_SYUUBUN => [9, 22],
-                DateTime::SOLAR_TERM_KANRO => [10, 8],
-                DateTime::SOLAR_TERM_SOUKOU => [10, 23],
-                DateTime::SOLAR_TERM_RITTOU => [11, 7],
-                DateTime::SOLAR_TERM_SYOUSETSU => [11, 22],
-                DateTime::SOLAR_TERM_TAISETSU => [12, 7],
-                DateTime::SOLAR_TERM_TOUJI => [12, 21],
-            ]),
-            self::solarTermsForYear(2026, [
-                DateTime::SOLAR_TERM_SYOUKAN => [1, 5],
-                DateTime::SOLAR_TERM_DAIKAN => [1, 20],
-                DateTime::SOLAR_TERM_RISSYUN => [2, 4],
-                DateTime::SOLAR_TERM_USUI => [2, 19],
-                DateTime::SOLAR_TERM_KEICHITSU => [3, 5],
-                DateTime::SOLAR_TERM_SYUNBUN => [3, 20],
-                DateTime::SOLAR_TERM_SEIMEI => [4, 5],
-                DateTime::SOLAR_TERM_KOKUU => [4, 20],
-                DateTime::SOLAR_TERM_RIKKA => [5, 5],
-                DateTime::SOLAR_TERM_SYOUMAN => [5, 21],
-                DateTime::SOLAR_TERM_BOUSYU => [6, 6],
-                DateTime::SOLAR_TERM_GESHI => [6, 21],
-                DateTime::SOLAR_TERM_SYOUSYO => [7, 7],
-                DateTime::SOLAR_TERM_TAISYO => [7, 23],
-                DateTime::SOLAR_TERM_RISSYUU => [8, 7],
-                DateTime::SOLAR_TERM_SYOSYO => [8, 23],
-                DateTime::SOLAR_TERM_HAKURO => [9, 7],
-                DateTime::SOLAR_TERM_SYUUBUN => [9, 23],
-                DateTime::SOLAR_TERM_KANRO => [10, 8],
-                DateTime::SOLAR_TERM_SOUKOU => [10, 23],
-                DateTime::SOLAR_TERM_RITTOU => [11, 7],
-                DateTime::SOLAR_TERM_SYOUSETSU => [11, 22],
-                DateTime::SOLAR_TERM_TAISETSU => [12, 7],
-                DateTime::SOLAR_TERM_TOUJI => [12, 22],
-            ]),
-        );
-    }
-    /**
-     * 指定年の二十四節気データをデータプロバイダ用のケース配列に変換する。
-     */
-    private static function solarTermsForYear(int $year, array $solarTerms): array
-    {
-        $cases = [];
-
-        foreach ($solarTerms as $solarTerm => [$month, $day]) {
-            $cases[$year . ' ' . $solarTerm] = [$year, $solarTerm, $month, $day];
-        }
-
-        return $cases;
-    }
     /**
      * 各二十四節気メソッドを暦要項の期待値で検証するためのケースを返す。
      */
@@ -283,12 +166,20 @@ class SolarTermTest extends TestCase
 
         try {
             $astronomy = new class () extends Astronomy {
-
                 /** @var int[] */
                 public array $hours = [];
 
                 private int $calls = 0;
 
+                /**
+                 * @param int $year
+                 * @param int $month
+                 * @param float $day
+                 * @param float $hour
+                 * @param float $min
+                 * @param float $sec
+                 * @return float
+                 */
                 public function longitudeSun(int $year, int $month, float $day, float $hour, float $min, float $sec): float
                 {
                     $this->hours[] = (int) $hour;
@@ -313,6 +204,15 @@ class SolarTermTest extends TestCase
     public function test_findSolarTermReturnsFalseWhenLongitudeRangeDoesNotChange(): void
     {
         $astronomy = new class () extends Astronomy {
+            /**
+             * @param int $year
+             * @param int $month
+             * @param float $day
+             * @param float $hour
+             * @param float $min
+             * @param float $sec
+             * @return float
+             */
             public function longitudeSun(int $year, int $month, float $day, float $hour, float $min, float $sec): float
             {
                 return 10.0;
@@ -331,6 +231,15 @@ class SolarTermTest extends TestCase
         $astronomy = new class () extends Astronomy {
             private int $calls = 0;
 
+            /**
+             * @param int $year
+             * @param int $month
+             * @param float $day
+             * @param float $hour
+             * @param float $min
+             * @param float $sec
+             * @return float
+             */
             public function longitudeSun(int $year, int $month, float $day, float $hour, float $min, float $sec): float
             {
                 return $this->calls++ === 0 ? 350.0 : 360.0;
@@ -352,6 +261,15 @@ class SolarTermTest extends TestCase
 
             private int $calls = 0;
 
+            /**
+             * @param int $year
+             * @param int $month
+             * @param float $day
+             * @param float $hour
+             * @param float $min
+             * @param float $sec
+             * @return float
+             */
             public function longitudeSun(int $year, int $month, float $day, float $hour, float $min, float $sec): float
             {
                 $this->hours[] = (int) $hour;
@@ -365,6 +283,10 @@ class SolarTermTest extends TestCase
         $this->assertSame(DateTime::SOLAR_TERM_SEIMEI, $solarTerm);
         $this->assertSame([0, 0], $astronomy->hours);
     }
+    /**
+     * @return void
+     * @throws \JapaneseDate\Exceptions\Exception
+     */
     public function test_findSolarTermUsesMidnightBoundaryForVsop87(): void
     {
         $astronomy = new class () extends Astronomy {
@@ -373,6 +295,24 @@ class SolarTermTest extends TestCase
 
             private int $calls = 0;
 
+            /** @noinspection PhpUnused */
+            /**
+             * @return string
+             */
+            public function sunAlgorithmName(): string
+            {
+                return Astronomy::SOLAR_VSOP87;
+            }
+
+            /**
+             * @param int $year
+             * @param int $month
+             * @param float $day
+             * @param float $hour
+             * @param float $min
+             * @param float $sec
+             * @return float
+             */
             public function longitudeSun(int $year, int $month, float $day, float $hour, float $min, float $sec): float
             {
                 $this->hours[] = (int) $hour;
@@ -381,46 +321,221 @@ class SolarTermTest extends TestCase
             }
         };
 
-        try {
-            Astronomy::useSolarAlgorithm(Astronomy::SOLAR_VSOP87);
-
-            $solarTerm = (new SolarTerm($astronomy))->findSolarTerm(2000, 3, 20);
-        } finally {
-            Astronomy::useSolarAlgorithm(Astronomy::SOLAR_LEGACY);
-            Astronomy::useMoonAlgorithm(Astronomy::MOON_LEGACY);
-        }
+        $solarTerm = (new SolarTerm($astronomy))->findSolarTerm(2000, 3, 20);
 
         $this->assertSame(DateTime::SOLAR_TERM_SEIMEI, $solarTerm);
         $this->assertSame([0, 0], $astronomy->hours);
     }
-    public function test_vsop87SolarTermsMatchNaoRekiYokoData(): void
+    /**
+     * 日付境界直前に315度へ到達する2021年の立春を2月3日と判定することを確認する。
+     *
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
+     */
+    public function test_vsop87Rissyun2021FallsOnFebruaryThird(): void
+    {
+        $previousAlgorithm = Astronomy::solarAlgorithm();
+        Astronomy::useSolarAlgorithm(Astronomy::SOLAR_VSOP87);
+
+        try {
+            $rissyun = (new SolarTerm())->rissyun(2021);
+
+            self::assertSolarTermDate(
+                2021,
+                DateTime::SOLAR_TERM_RISSYUN,
+                2,
+                3,
+                $rissyun
+            );
+        } finally {
+            Astronomy::useSolarAlgorithm($previousAlgorithm);
+        }
+    }
+    /**
+     * @param $year
+     * @param $expected
+     * @return void
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
+     * @dataProvider naoRekiYokoYearDataProvider
+     */
+    public function test_vsop87SolarTermsMatchNaoRekiYokoData($year, $expected): void
     {
         try {
             Astronomy::useSolarAlgorithm(Astronomy::SOLAR_VSOP87);
+            $actual = array_map(static function ($date) {
+                return [$date->month, $date->day];
+            }, (new SolarTerm())->getSolarTerms($year));
 
-            foreach (self::naoRekiYokoYearDataProvider() as [$year, $expected]) {
-                if (!in_array($year, [2020, 2024, 2026], true)) {
-                    continue;
-                }
-
-                $actual = [];
-                foreach ((new SolarTerm())->getSolarTerms($year) as $solarTerm => $date) {
-                    $actual[$solarTerm] = [$date->month, $date->day];
-                }
-
-                $this->assertSame($expected, $actual, (string) $year);
-            }
+            $this->assertSame($expected, $actual, (string) $year);
         } finally {
             Astronomy::useSolarAlgorithm(Astronomy::SOLAR_LEGACY);
             Astronomy::useMoonAlgorithm(Astronomy::MOON_LEGACY);
         }
     }
     /**
+     * 年ごとの二十四節気一覧を検証するため、暦要項のデータを年単位にまとめる。
+     */
+    public static function naoRekiYokoYearDataProvider(): array
+    {
+        $years = [];
+
+        foreach (self::naoRekiYokoSolarTermDataProvider() as [$year, $solarTerm, $month, $day]) {
+            $years[$year][$solarTerm] = [$month, $day];
+        }
+
+        $cases = [];
+
+        foreach ($years as $year => $expected) {
+            ksort($expected);
+            $cases[$year] = [(int) $year, $expected];
+        }
+
+        return $cases;
+    }
+    /**
+     * 国立天文台暦要項の「二十四節気および雑節」で確認した日付を返す。
+     */
+    public static function naoRekiYokoSolarTermDataProvider(): array
+    {
+        return array_merge(
+            self::getSolarTermDataProvider(),
+            self::solarTermsForYear(2020, [
+                DateTime::SOLAR_TERM_SYOUKAN => [1, 6],
+                DateTime::SOLAR_TERM_DAIKAN => [1, 20],
+                DateTime::SOLAR_TERM_RISSYUN => [2, 4],
+                DateTime::SOLAR_TERM_USUI => [2, 19],
+                DateTime::SOLAR_TERM_KEICHITSU => [3, 5],
+                DateTime::SOLAR_TERM_SYUNBUN => [3, 20],
+                DateTime::SOLAR_TERM_SEIMEI => [4, 4],
+                DateTime::SOLAR_TERM_KOKUU => [4, 19],
+                DateTime::SOLAR_TERM_RIKKA => [5, 5],
+                DateTime::SOLAR_TERM_SYOUMAN => [5, 20],
+                DateTime::SOLAR_TERM_BOUSYU => [6, 5],
+                DateTime::SOLAR_TERM_GESHI => [6, 21],
+                DateTime::SOLAR_TERM_SYOUSYO => [7, 7],
+                DateTime::SOLAR_TERM_TAISYO => [7, 22],
+                DateTime::SOLAR_TERM_RISSYUU => [8, 7],
+                DateTime::SOLAR_TERM_SYOSYO => [8, 23],
+                DateTime::SOLAR_TERM_HAKURO => [9, 7],
+                DateTime::SOLAR_TERM_SYUUBUN => [9, 22],
+                DateTime::SOLAR_TERM_KANRO => [10, 8],
+                DateTime::SOLAR_TERM_SOUKOU => [10, 23],
+                DateTime::SOLAR_TERM_RITTOU => [11, 7],
+                DateTime::SOLAR_TERM_SYOUSETSU => [11, 22],
+                DateTime::SOLAR_TERM_TAISETSU => [12, 7],
+                DateTime::SOLAR_TERM_TOUJI => [12, 21],
+            ]),
+            self::solarTermsForYear(2021, [
+                DateTime::SOLAR_TERM_SYOUKAN => [1, 5],
+                DateTime::SOLAR_TERM_DAIKAN => [1, 20],
+                DateTime::SOLAR_TERM_RISSYUN => [2, 3],
+                DateTime::SOLAR_TERM_USUI => [2, 18],
+                DateTime::SOLAR_TERM_KEICHITSU => [3, 5],
+                DateTime::SOLAR_TERM_SYUNBUN => [3, 20],
+                DateTime::SOLAR_TERM_SEIMEI => [4, 4],
+                DateTime::SOLAR_TERM_KOKUU => [4, 20],
+                DateTime::SOLAR_TERM_RIKKA => [5, 5],
+                DateTime::SOLAR_TERM_SYOUMAN => [5, 21],
+                DateTime::SOLAR_TERM_BOUSYU => [6, 5],
+                DateTime::SOLAR_TERM_GESHI => [6, 21],
+                DateTime::SOLAR_TERM_SYOUSYO => [7, 7],
+                DateTime::SOLAR_TERM_TAISYO => [7, 22],
+                DateTime::SOLAR_TERM_RISSYUU => [8, 7],
+                DateTime::SOLAR_TERM_SYOSYO => [8, 23],
+                DateTime::SOLAR_TERM_HAKURO => [9, 7],
+                DateTime::SOLAR_TERM_SYUUBUN => [9, 23],
+                DateTime::SOLAR_TERM_KANRO => [10, 8],
+                DateTime::SOLAR_TERM_SOUKOU => [10, 23],
+                DateTime::SOLAR_TERM_RITTOU => [11, 7],
+                DateTime::SOLAR_TERM_SYOUSETSU => [11, 22],
+                DateTime::SOLAR_TERM_TAISETSU => [12, 7],
+                DateTime::SOLAR_TERM_TOUJI => [12, 22],
+            ]),
+            self::solarTermsForYear(2024, [
+                DateTime::SOLAR_TERM_SYOUKAN => [1, 6],
+                DateTime::SOLAR_TERM_DAIKAN => [1, 20],
+                DateTime::SOLAR_TERM_RISSYUN => [2, 4],
+                DateTime::SOLAR_TERM_USUI => [2, 19],
+                DateTime::SOLAR_TERM_KEICHITSU => [3, 5],
+                DateTime::SOLAR_TERM_SYUNBUN => [3, 20],
+                DateTime::SOLAR_TERM_SEIMEI => [4, 4],
+                DateTime::SOLAR_TERM_KOKUU => [4, 19],
+                DateTime::SOLAR_TERM_RIKKA => [5, 5],
+                DateTime::SOLAR_TERM_SYOUMAN => [5, 20],
+                DateTime::SOLAR_TERM_BOUSYU => [6, 5],
+                DateTime::SOLAR_TERM_GESHI => [6, 21],
+                DateTime::SOLAR_TERM_SYOUSYO => [7, 6],
+                DateTime::SOLAR_TERM_TAISYO => [7, 22],
+                DateTime::SOLAR_TERM_RISSYUU => [8, 7],
+                DateTime::SOLAR_TERM_SYOSYO => [8, 22],
+                DateTime::SOLAR_TERM_HAKURO => [9, 7],
+                DateTime::SOLAR_TERM_SYUUBUN => [9, 22],
+                DateTime::SOLAR_TERM_KANRO => [10, 8],
+                DateTime::SOLAR_TERM_SOUKOU => [10, 23],
+                DateTime::SOLAR_TERM_RITTOU => [11, 7],
+                DateTime::SOLAR_TERM_SYOUSETSU => [11, 22],
+                DateTime::SOLAR_TERM_TAISETSU => [12, 7],
+                DateTime::SOLAR_TERM_TOUJI => [12, 21],
+            ]),
+            self::solarTermsForYear(2026, [
+                DateTime::SOLAR_TERM_SYOUKAN => [1, 5],
+                DateTime::SOLAR_TERM_DAIKAN => [1, 20],
+                DateTime::SOLAR_TERM_RISSYUN => [2, 4],
+                DateTime::SOLAR_TERM_USUI => [2, 19],
+                DateTime::SOLAR_TERM_KEICHITSU => [3, 5],
+                DateTime::SOLAR_TERM_SYUNBUN => [3, 20],
+                DateTime::SOLAR_TERM_SEIMEI => [4, 5],
+                DateTime::SOLAR_TERM_KOKUU => [4, 20],
+                DateTime::SOLAR_TERM_RIKKA => [5, 5],
+                DateTime::SOLAR_TERM_SYOUMAN => [5, 21],
+                DateTime::SOLAR_TERM_BOUSYU => [6, 6],
+                DateTime::SOLAR_TERM_GESHI => [6, 21],
+                DateTime::SOLAR_TERM_SYOUSYO => [7, 7],
+                DateTime::SOLAR_TERM_TAISYO => [7, 23],
+                DateTime::SOLAR_TERM_RISSYUU => [8, 7],
+                DateTime::SOLAR_TERM_SYOSYO => [8, 23],
+                DateTime::SOLAR_TERM_HAKURO => [9, 7],
+                DateTime::SOLAR_TERM_SYUUBUN => [9, 23],
+                DateTime::SOLAR_TERM_KANRO => [10, 8],
+                DateTime::SOLAR_TERM_SOUKOU => [10, 23],
+                DateTime::SOLAR_TERM_RITTOU => [11, 7],
+                DateTime::SOLAR_TERM_SYOUSETSU => [11, 22],
+                DateTime::SOLAR_TERM_TAISETSU => [12, 7],
+                DateTime::SOLAR_TERM_TOUJI => [12, 22],
+            ]),
+        );
+    }
+    /**
+     * 指定年の二十四節気データをデータプロバイダ用のケース配列に変換する。
+     */
+    private static function solarTermsForYear(int $year, array $solarTerms): array
+    {
+        $cases = [];
+
+        foreach ($solarTerms as $solarTerm => [$month, $day]) {
+            $cases[$year . ' ' . $solarTerm] = [$year, $solarTerm, $month, $day];
+        }
+
+        return $cases;
+    }
+    /**
      * 天文計算で該当日が見つからない場合に例外が発生することを確認する。
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     public function test_getSolarTermThrowsWhenAstronomicalCalculationFindsNoMatchingDay(): void
     {
         $astronomy = new class () extends Astronomy {
+            /**
+             * @param int $year
+             * @param int $month
+             * @param float $day
+             * @param float $hour
+             * @param float $min
+             * @param float $sec
+             * @return float
+             */
             public function longitudeSun(int $year, int $month, float $day, float $hour, float $min, float $sec): float
             {
                 return 10.0;
@@ -433,6 +548,7 @@ class SolarTermTest extends TestCase
     }
     /**
      * 未定義の二十四節気コードを指定した場合に例外が発生することを確認する。
+     * @throws \JapaneseDate\Exceptions\Exception
      */
     public function test_getSolarTermRejectsUndefinedSolarTerm(): void
     {

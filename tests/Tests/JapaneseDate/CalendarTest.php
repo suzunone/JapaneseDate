@@ -2,6 +2,7 @@
 
 /** @noinspection PhpDocMissingThrowsInspection */
 /** @noinspection PhpUnhandledExceptionInspection */
+/** @noinspection PhpUndefinedMethodInspection */
 
 /**
  * Calendar クラスのテスト
@@ -21,7 +22,6 @@
 namespace Tests\JapaneseDate;
 
 use DateTimeImmutable;
-use Exception;
 use Faker\Factory as FakerFactory;
 use Faker\Generator as FakerGenerator;
 use Faker\Provider\DateTime as FakerDateTime;
@@ -33,7 +33,6 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\CoversMethod;
 use PHPUnit\Framework\Attributes\Depends;
 use PHPUnit\Framework\TestCase;
-use ReturnTypeWillChange;
 
 /**
  * Calendar クラスのテスト
@@ -57,6 +56,12 @@ use ReturnTypeWillChange;
 class CalendarTest extends TestCase
 {
     use InvokeTrait;
+    /**
+     * @return void
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     * @throws \ReflectionException
+     */
     public function test_construct(): void
     {
         $FakerGenerator = new FakerGenerator();
@@ -78,6 +83,11 @@ class CalendarTest extends TestCase
             $this->invokeGetProperty($Calendar, 'timezone')->getName()
         );
     }
+    /**
+     * @return void
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     */
     public function test_getDatesOfMonth(): void
     {
         $FakerGenerator = new FakerGenerator();
@@ -96,6 +106,11 @@ class CalendarTest extends TestCase
         $this->assertEquals(1, $res[0]->day);
         $this->assertInstanceOf(DateTime::class, $res[0]);
     }
+    /**
+     * @return array|null
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     */
     public function test_getWorkingDayByLimit(): ?array
     {
         $faker = FakerFactory::create();
@@ -146,6 +161,11 @@ class CalendarTest extends TestCase
 
         return $res;
     }
+    /**
+     * @return void
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     * @throws \ReflectionException
+     */
     public function test_getWorkingDayByLimit_wrapsNativeDateTimeException(): void
     {
         $Calendar = new Calendar('2018-05-01');
@@ -161,7 +181,7 @@ class CalendarTest extends TestCase
      * @param array $res
      * @depends test_getWorkingDayByLimit
      */
-    public function test_getWorkingDay($res = []): void
+    public function test_getWorkingDay(array $res = []): void
     {
         $faker = FakerFactory::create();
         $lim = $faker->numberBetween(1, 1000);
@@ -176,6 +196,11 @@ class CalendarTest extends TestCase
         // getWorkingDay() が getWorkingDayByLimit() に処理を委譲することを確認する
         $this->assertEquals($res, $Calendar->getWorkingDay($lim));
     }
+    /**
+     * @return void
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     */
     public function test_getWorkingDayBySpan(): void
     {
         $Calendar = new Calendar('2018-05-01');
@@ -186,6 +211,12 @@ class CalendarTest extends TestCase
         $this->assertEquals('2018-05-31', $res[30]->format('Y-m-d'));
         $this->assertCount(31, $res);
     }
+    /**
+     * @return void
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     * @throws \ReflectionException
+     */
     public function test_getCompareFormat(): void
     {
         $FakerGenerator = new FakerGenerator();
@@ -203,6 +234,12 @@ class CalendarTest extends TestCase
             $this->invokeExecuteMethod($Calendar, 'getCompareFormat', [$test_date_time])
         );
     }
+    /**
+     * @return void
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     * @throws \ReflectionException
+     */
     public function test_isWorkingDay(): void
     {
         $FakerGenerator = new FakerGenerator();
@@ -345,6 +382,10 @@ class CalendarTest extends TestCase
 
         return $Calendar;
     }
+    /**
+     * @return void
+     * @throws \ReflectionException
+     */
     public function test_setBypassHoliday(): void
     {
         $Calendar = new Calendar();
@@ -406,6 +447,7 @@ class CalendarTest extends TestCase
     }
     /**
      * @param \JapaneseDate\Calendar $Calendar
+     * @noinspection PhpUnused
      * @depends test_addBypassWeekDay
      */
     public function test_removeBypassWeekDay(Calendar $Calendar): void
@@ -508,10 +550,19 @@ class CalendarTest extends TestCase
  */
 class ThrowingDateTime extends DateTime
 {
-    #[ReturnTypeWillChange]
-    public function add($unit, $value = 1, $overflow = null): static
+    /**
+     * @param mixed $unit
+     * @param mixed $value
+     * @param mixed $overflow
+     * @return static
+     * @throws \RuntimeException
+     * @noinspection PhpUnused
+     * @noinspection PhpParameterNameChangedDuringInheritanceInspection
+     */
+    #[\ReturnTypeWillChange]
+    public function add($unit, $value = 1, $overflow = null)
     {
         // Calendar 側で NativeDateTimeException に変換される例外を発生させる
-        throw new Exception('DateTime add failed.');
+        throw new \RuntimeException('DateTime add failed.');
     }
 }

@@ -149,6 +149,7 @@ class SeventyTwoKouCalculatorTest extends TestCase
     }
     /**
      * getKouText() が正しい名称を返すことを確認する。
+     * @noinspection PhpUnusedParameterInspection
      * @dataProvider provideKouAttributes
      */
     public function test_getKouText(int $kouNumber, string $expectedText, string $_, string $__): void
@@ -158,6 +159,7 @@ class SeventyTwoKouCalculatorTest extends TestCase
     }
     /**
      * getKouReading() が正しい読みを返すことを確認する。
+     * @noinspection PhpUnusedParameterInspection
      * @dataProvider provideKouAttributes
      */
     public function test_getKouReading(int $kouNumber, string $_, string $expectedReading, string $__): void
@@ -167,6 +169,7 @@ class SeventyTwoKouCalculatorTest extends TestCase
     }
     /**
      * getKouType() が正しい候種別を返すことを確認する。
+     * @noinspection PhpUnusedParameterInspection
      * @dataProvider provideKouAttributes
      */
     public function test_getKouType(int $kouNumber, string $_, string $__, string $expectedType): void
@@ -414,7 +417,6 @@ class SeventyTwoKouCalculatorTest extends TestCase
             Astronomy::useMoonAlgorithm(Astronomy::MOON_LEGACY);
         }
     }
-
     /**
      * findPreviousSolarTermInfo() が前の節気の情報を正しく返すことを確認する。
      * 立春（kouIndex=0）の前は大寒（kouIndex=23）。

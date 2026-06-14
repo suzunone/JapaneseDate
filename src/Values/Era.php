@@ -14,9 +14,9 @@ use JapaneseDate\DateTimeImmutable;
  * 開始日・終了日は magic property として clone した日付オブジェクトを返します。
  *
  * 開始日と終了日は、コンストラクタに渡された基準日オブジェクトと同じ可変性を保ちます。
- * つまり {@see \JapaneseDate\DateTime} を渡した場合は {@see startDate} と {@see endDate} も
- * {@see \JapaneseDate\DateTime}、{@see \JapaneseDate\DateTimeImmutable} を渡した場合は
- * {@see \JapaneseDate\DateTimeImmutable} になります。
+ * つまり {@see DateTime} を渡した場合は {@see startDate} と {@see endDate} も
+ * {@see DateTime}、{@see DateTimeImmutable} を渡した場合は
+ * {@see DateTimeImmutable} になります。
  *
  * @category    DateTime
  * @package     JapaneseDate
@@ -28,8 +28,8 @@ use JapaneseDate\DateTimeImmutable;
  * @see         https://github.com/suzunone/JapaneseDate
  * @since       1.0.0
  *
- * @property-read \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable $startDate 元号の開始日。
- * @property-read \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable $endDate   元号の終了日。
+ * @property-read DateTime|DateTimeImmutable $startDate 元号の開始日。
+ * @property-read DateTime|DateTimeImmutable $endDate   元号の終了日。
  */
 class Era
 {
@@ -38,7 +38,7 @@ class Era
      *
      * 外部から取得される際は {@see __get()} により clone が返されます。
      *
-     * @var \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @var DateTime|DateTimeImmutable
      */
     protected DateTime|DateTimeImmutable $startDate;
 
@@ -47,24 +47,24 @@ class Era
      *
      * 外部から取得される際は {@see __get()} により clone が返されます。
      *
-     * @var \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @var DateTime|DateTimeImmutable
      */
     protected DateTime|DateTimeImmutable $endDate;
 
     /**
      * 元号情報を生成します。
      *
-     * `$start` と `$end` は {@see \JapaneseDate\DateTime::factory()} または
-     * {@see \JapaneseDate\DateTimeImmutable::factory()} に渡される日付文字列です。
+     * `$start` と `$end` は {@see DateTime::factory} または
+     * {@see DateTimeImmutable::factory} に渡される日付文字列です。
      * `$currentDate` が immutable の場合は開始日・終了日も immutable、mutable の場合は
      * mutable な日付オブジェクトとして保持します。
      *
      * @param string $name 元号名（例: "延元"）。
      * @param string $kana 元号名の読み。
-     * @param string $court 朝廷区分（{@see \JapaneseDate\DateTime::CHOUTEI_NORTH}、{@see \JapaneseDate\DateTime::CHOUTEI_SOUTH}、{@see \JapaneseDate\DateTime::CHOUTEI_MAIN}）。
+     * @param string $court 朝廷区分（{@see DateTime::CHOUTEI_NORTH}、{@see DateTime::CHOUTEI_SOUTH}、{@see DateTime::CHOUTEI_MAIN}）。
      * @param string $start 元号の開始日を表す日付文字列。
      * @param string $end 元号の終了日を表す日付文字列。
-     * @param \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable $currentDate 作成元の日付オブジェクト。
+     * @param DateTime|DateTimeImmutable $currentDate 作成元の日付オブジェクト。
      *
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
@@ -99,7 +99,7 @@ class Era
      *
      * @param string $name 取得するプロパティ名。
      *
-     * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable 元号の開始日または終了日。
+     * @return DateTime|DateTimeImmutable 元号の開始日または終了日。
      */
     public function __get(string $name): DateTime|DateTimeImmutable
     {
@@ -112,7 +112,7 @@ class Era
      * @param string $name 代入しようとしたプロパティ名。
      * @param mixed $value 代入しようとした値。
      *
-     * @throws \ErrorException
+     * @throws ErrorException
      */
     public function __set(string $name, mixed $value): void
     {
