@@ -28,7 +28,7 @@ trait DeltaTTrait
      * @param int $month グレゴリオ暦の月
      * @return float ΔT 秒
      */
-    protected function approximateDeltaTSeconds(int $year, int $month): float
+    protected function approximateDeltaTSeconds($year, $month): float
     {
         $y = $year + ($month - 0.5) / 12.0;
 

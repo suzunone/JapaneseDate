@@ -49,7 +49,7 @@ class MeeusMoonTest extends TestCase
     {
         $this->assertSame(
             'e4c3fc1cf8aff72baa848a7c6770ad435a0b766ef9de6d2e907e8007244a2e2a',
-            hash('sha256', json_encode(MeeusMoon::TABLE_47A, JSON_THROW_ON_ERROR))
+            hash('sha256', json_encode(MeeusMoon::TABLE_47A, 0))
         );
     }
     /**
@@ -60,7 +60,7 @@ class MeeusMoonTest extends TestCase
     {
         $this->assertSame(
             'dcd1e6d06a263b87c23ac2deb86dab5436f34e952ed37c0bfa867493825f3661',
-            hash('sha256', json_encode(MeeusMoon::TABLE_47B, JSON_THROW_ON_ERROR))
+            hash('sha256', json_encode(MeeusMoon::TABLE_47B, 0))
         );
     }
     // ==================== moonAlgorithmName ====================
@@ -69,14 +69,14 @@ class MeeusMoonTest extends TestCase
      */
     public function test_moonAlgorithmName_with_c_correction(): void
     {
-        $this->assertSame('meeus47', (new MeeusMoon(applyNasaCCorrection: true))->moonAlgorithmName());
+        $this->assertSame('meeus47', (new MeeusMoon(true))->moonAlgorithmName());
     }
     /**
      * @return void
      */
     public function test_moonAlgorithmName_without_c_correction(): void
     {
-        $this->assertSame('meeus47_no_c', (new MeeusMoon(applyNasaCCorrection: false))->moonAlgorithmName());
+        $this->assertSame('meeus47_no_c', (new MeeusMoon(false))->moonAlgorithmName());
     }
     // ==================== eccentricityFactor ====================
     /**
@@ -150,7 +150,7 @@ class MeeusMoonTest extends TestCase
      * @throws \ReflectionException
      * @dataProvider normalizeAngle360Provider
      */
-    public function test_normalizeAngle360(float $input, float $expected): void
+    public function test_normalizeAngle360($input, $expected): void
     {
         $meeus = new MeeusMoon();
         $result = $this->invokeExecuteMethod($meeus, 'normalizeAngle360', [$input]);
@@ -189,9 +189,9 @@ class MeeusMoonTest extends TestCase
      * @throws \ReflectionException
      * @dataProvider deltaTPolynomialProvider
      */
-    public function test_deltaTPolynomialForDecimalYear(float $y, float $expected): void
+    public function test_deltaTPolynomialForDecimalYear($y, $expected): void
     {
-        $meeus = new MeeusMoon(applyNasaCCorrection: false);
+        $meeus = new MeeusMoon(false);
         $result = $this->invokeExecuteMethod($meeus, 'deltaTPolynomialForDecimalYear', [$y]);
         $this->assertEqualsWithDelta($expected, $result, 0.001);
     }
@@ -202,8 +202,8 @@ class MeeusMoonTest extends TestCase
      */
     public function test_c_correction_boundary_1955_is_zero(): void
     {
-        $mC = new MeeusMoon(applyNasaCCorrection: true);
-        $mNC = new MeeusMoon(applyNasaCCorrection: false);
+        $mC = new MeeusMoon(true);
+        $mNC = new MeeusMoon(false);
         $c1 = $this->invokeExecuteMethod($mC, 'deltaTForDecimalYear', [1955.0]);
         $n1 = $this->invokeExecuteMethod($mNC, 'deltaTForDecimalYear', [1955.0]);
         // 1955.0 は c補正不要区間の下端 → c=0
@@ -215,8 +215,8 @@ class MeeusMoonTest extends TestCase
      */
     public function test_c_correction_boundary_2005_is_zero(): void
     {
-        $mC = new MeeusMoon(applyNasaCCorrection: true);
-        $mNC = new MeeusMoon(applyNasaCCorrection: false);
+        $mC = new MeeusMoon(true);
+        $mNC = new MeeusMoon(false);
         $c2 = $this->invokeExecuteMethod($mC, 'deltaTForDecimalYear', [2005.0]);
         $n2 = $this->invokeExecuteMethod($mNC, 'deltaTForDecimalYear', [2005.0]);
         // 2005.0 は c補正不要区間の上端 → c=0
@@ -228,8 +228,8 @@ class MeeusMoonTest extends TestCase
      */
     public function test_c_correction_outside_range_is_nonzero(): void
     {
-        $mC = new MeeusMoon(applyNasaCCorrection: true);
-        $mNC = new MeeusMoon(applyNasaCCorrection: false);
+        $mC = new MeeusMoon(true);
+        $mNC = new MeeusMoon(false);
         // 2005 超では c ≠ 0（c < 0 なのでモードにより ΔT が小さくなる）
         $c3 = $this->invokeExecuteMethod($mC, 'deltaTForDecimalYear', [2005.0 + 1.0 / 12.0]);
         $n3 = $this->invokeExecuteMethod($mNC, 'deltaTForDecimalYear', [2005.0 + 1.0 / 12.0]);
@@ -242,8 +242,8 @@ class MeeusMoonTest extends TestCase
      */
     public function test_c_correction_before_1955_is_nonzero(): void
     {
-        $mC = new MeeusMoon(applyNasaCCorrection: true);
-        $mNC = new MeeusMoon(applyNasaCCorrection: false);
+        $mC = new MeeusMoon(true);
+        $mNC = new MeeusMoon(false);
         $c4 = $this->invokeExecuteMethod($mC, 'deltaTForDecimalYear', [1700.0]);
         $n4 = $this->invokeExecuteMethod($mNC, 'deltaTForDecimalYear', [1700.0]);
         $this->assertNotEqualsWithDelta($n4, $c4, 1e-6);
@@ -275,9 +275,9 @@ class MeeusMoonTest extends TestCase
      * @throws \ReflectionException
      * @dataProvider deltaTWithCProvider
      */
-    public function test_deltaTForDecimalYear_with_c(float $y, float $expected): void
+    public function test_deltaTForDecimalYear_with_c($y, $expected): void
     {
-        $meeus = new MeeusMoon(applyNasaCCorrection: true);
+        $meeus = new MeeusMoon(true);
         $result = $this->invokeExecuteMethod($meeus, 'deltaTForDecimalYear', [$y]);
         $this->assertEqualsWithDelta($expected, $result, 0.001);
     }
@@ -287,7 +287,7 @@ class MeeusMoonTest extends TestCase
      */
     public function test_approximateDeltaTSeconds_matches_deltaTForDecimalYear(): void
     {
-        $meeus = new MeeusMoon(applyNasaCCorrection: false);
+        $meeus = new MeeusMoon(false);
         $y = 2000 + (1 - 0.5) / 12.0;
         $viaInt = $this->invokeExecuteMethod($meeus, 'approximateDeltaTSeconds', [2000, 1]);
         $viaFloat = $this->invokeExecuteMethod($meeus, 'deltaTForDecimalYear', [$y]);
@@ -330,7 +330,7 @@ class MeeusMoonTest extends TestCase
      * @return void
      * @dataProvider roundTripProvider
      */
-    public function test_gregorianJd_round_trip(int $y, int $m, int $d): void
+    public function test_gregorianJd_round_trip($y, $m, $d): void
     {
         $jd = MeeusMoon::gregorianToJd($y, $m, $d);
         [$y2, $m2, $d2] = MeeusMoon::jdToGregorianYmd($jd);
@@ -342,12 +342,12 @@ class MeeusMoonTest extends TestCase
      * @return void
      * @dataProvider invalidJdeProvider
      */
-    public function test_calculateFromJde_rejects_invalid_jde(float $bad): void
+    public function test_calculateFromJde_rejects_invalid_jde($bad): void
     {
         $thrown = false;
         try {
             (new MeeusMoon())->calculateFromJde($bad);
-        } catch (InvalidArgumentException) {
+        } catch (InvalidArgumentException $exception) {
             $thrown = true;
         }
         $this->assertTrue($thrown);
@@ -450,7 +450,7 @@ class MeeusMoonTest extends TestCase
     public function test_gregorianToJd_rejects_jd_without_one_second_resolution(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        MeeusMoon::gregorianToJd(1_000_000_000, 1, 1);
+        MeeusMoon::gregorianToJd(1000000000, 1, 1);
     }
     /**
      * @return void
@@ -477,7 +477,7 @@ class MeeusMoonTest extends TestCase
 
         try {
             (new MeeusMoon())->longitudeMoon(2000, 2, 30, 0, 0, 0);
-        } catch (InvalidArgumentException) {
+        } catch (InvalidArgumentException $exception) {
             $thrown = true;
         }
         $this->assertTrue($thrown);
@@ -501,7 +501,7 @@ class MeeusMoonTest extends TestCase
              * @param int $month
              * @return float
              */
-            public function approximateDeltaTSeconds(int $year, int $month): float
+            public function approximateDeltaTSeconds($year, $month): float
             {
                 return INF;
             }
@@ -662,7 +662,7 @@ class MeeusMoonTest extends TestCase
      * @return void
      * @dataProvider physicalRangeJdeProvider
      */
-    public function test_calculateFromJde_physical_range(float $jde): void
+    public function test_calculateFromJde_physical_range($jde): void
     {
         $result = (new MeeusMoon())->calculateFromJde($jde);
         $this->assertGreaterThanOrEqual(0.0, $result['apparentLongitude']);
@@ -687,7 +687,7 @@ class MeeusMoonTest extends TestCase
      * @return void
      * @dataProvider extremeJdeProvider
      */
-    public function test_calculateFromJde_extreme_jde_returns_finite(float $jde): void
+    public function test_calculateFromJde_extreme_jde_returns_finite($jde): void
     {
         $r = (new MeeusMoon())->calculateFromJde($jde);
         $this->assertTrue(is_finite($r['apparentLongitude']));
@@ -778,7 +778,7 @@ class MeeusMoonTest extends TestCase
                 Astronomy::useMoonAlgorithm($constant);
                 $this->invokeSetProperty(Astronomy::class, 'instances', []);
                 $viaFactory = Astronomy::factory()->longitudeMoon(2024, 6, 1, 12, 0, 0);
-                $direct = (new Astronomy(null, new MeeusMoon(applyNasaCCorrection: $applyC)))
+                $direct = (new Astronomy(null, new MeeusMoon($applyC)))
                     ->longitudeMoon(2024, 6, 1, 12, 0, 0);
                 $this->assertEqualsWithDelta(
                     $direct,

@@ -51,14 +51,14 @@ class JisEra
      *
      * @var static|null
      */
-    protected static ?self $instance = null;
+    protected static $instance;
 
     /**
      * 元号定数と元号名文字列のマップ。
      *
      * @var array<int, string>
      */
-    protected array $eraNames = [
+    protected $eraNames = [
         DateTime::ERA_MEIJI => '明治',
         DateTime::ERA_TAISHO => '大正',
         DateTime::ERA_SHOWA => '昭和',
@@ -72,7 +72,7 @@ class JisEra
      *
      * @var array<int, int>
      */
-    protected array $eraStartYears = [
+    protected $eraStartYears = [
         DateTime::ERA_MEIJI => 1868,
         DateTime::ERA_TAISHO => 1912,
         DateTime::ERA_SHOWA => 1926,
@@ -88,7 +88,7 @@ class JisEra
      *
      * @var array<string, int>
      */
-    protected array $eraParseBaseYears = [
+    protected $eraParseBaseYears = [
         '明治' => 1867,
         '大正' => 1911,
         '昭和' => 1925,
@@ -106,7 +106,7 @@ class JisEra
      *
      * @var array<int, int>
      */
-    protected array $eraStartTimestamps = [];
+    protected $eraStartTimestamps = [];
 
     /**
      * Era コンストラクタ。
@@ -134,7 +134,7 @@ class JisEra
      *
      * @return static
      */
-    public static function factory(): static
+    public static function factory()
     {
         if (static::$instance === null) {
             static::$instance = new static();
@@ -151,7 +151,7 @@ class JisEra
      * @param DateTimeInterface $date 判定対象の日付
      * @return int 元号定数（{@see DateTime::ERA_MEIJI} ～ {@see DateTime::ERA_REIWA}）
      */
-    public function getEraKey(DateTimeInterface $date): int
+    public function getEraKey($date): int
     {
         $ts = $date->getTimestamp();
 
@@ -183,7 +183,7 @@ class JisEra
      * @param int $eraKey 元号定数
      * @return int 元号年（1始まりの正整数）
      */
-    public function getEraYear(int $gregorianYear, int $eraKey): int
+    public function getEraYear($gregorianYear, $eraKey): int
     {
         return $gregorianYear - $this->eraStartYears[$eraKey] + 1;
     }
@@ -194,7 +194,7 @@ class JisEra
      * @param int $eraKey 元号定数
      * @return string 元号名（「明治」「大正」「昭和」「平成」「令和」のいずれか）。未知のキーは空文字列。
      */
-    public function getEraNameString(int $eraKey): string
+    public function getEraNameString($eraKey): string
     {
         return $this->eraNames[$eraKey] ?? '';
     }
@@ -212,8 +212,9 @@ class JisEra
      *
      * @param string $date_str パースする日付文字列
      * @return int|float|null Unix タイムスタンプ（マイクロ秒がある場合は float）、解析失敗時は null
+     * @param \DateTimeZone|null $default_timezone
      */
-    public function parseJisDate(string $date_str, ?DateTimeZone $default_timezone = null): int|float|null
+    public function parseJisDate($date_str, $default_timezone = null)
     {
         $date_str = trim($date_str);
         $japaneseTimezone = new DateTimeZone('Asia/Tokyo');
@@ -224,16 +225,18 @@ class JisEra
             $date_str = preg_replace('/\.\d{1,6}\s*$/', '', $date_str);
         }
 
-        $parseComponents = static fn (array $matches): array => [
-            (int) $matches[1],
-            (int) $matches[2],
-            (int) $matches[3],
-            isset($matches[4]) && $matches[4] !== '' ? (int) $matches[4] : 0,
-            isset($matches[5]) && $matches[5] !== '' ? (int) $matches[5] : 0,
-            isset($matches[6]) && $matches[6] !== '' ? (int) $matches[6] : 0,
-        ];
+        $parseComponents = static function (array $matches): array {
+            return [
+                (int) $matches[1],
+                (int) $matches[2],
+                (int) $matches[3],
+                isset($matches[4]) && $matches[4] !== '' ? (int) $matches[4] : 0,
+                isset($matches[5]) && $matches[5] !== '' ? (int) $matches[5] : 0,
+                isset($matches[6]) && $matches[6] !== '' ? (int) $matches[6] : 0,
+            ];
+        };
 
-        $createTimestamp = static function (int $year, int $month, int $day, int $hour, int $minute, int $second, DateTimeZone $timezone) use ($microtime): float|null {
+        $createTimestamp = static function (int $year, int $month, int $day, int $hour, int $minute, int $second, DateTimeZone $timezone) use ($microtime): ?float {
             $date = DateTimeImmutable::createFromFormat(
                 '!Y-m-d H:i:s',
                 sprintf('%04d-%02d-%02d %02d:%02d:%02d', $year, $month, $day, $hour, $minute, $second),

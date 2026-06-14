@@ -32,7 +32,7 @@ trait Business
      *
      * @return static この日または翌以降の直近営業日を表すインスタンス
      */
-    public function shiftToClosestBusinessDayAfter(): static
+    public function shiftToClosestBusinessDayAfter()
     {
         if ($this->isBusinessDay()) {
             return clone $this;
@@ -60,7 +60,7 @@ trait Business
      *
      * @return static 次の営業日を表すインスタンス
      */
-    public function nextBusinessDay(): static
+    public function nextBusinessDay()
     {
         $dt = clone $this;
         $dt = $dt->addDay();
@@ -78,7 +78,7 @@ trait Business
      *
      * @return static この日または前以前の直近営業日を表すインスタンス
      */
-    public function shiftToClosestBusinessDayBefore(): static
+    public function shiftToClosestBusinessDayBefore()
     {
         if ($this->isBusinessDay()) {
             return clone $this;
@@ -94,7 +94,7 @@ trait Business
      *
      * @return static 前の営業日を表すインスタンス
      */
-    public function previousBusinessDay(): static
+    public function previousBusinessDay()
     {
         $dt = clone $this;
         $dt = $dt->subDay();
@@ -111,7 +111,7 @@ trait Business
      * @param int $days 加算する営業日数（正の整数）
      * @return static N営業日後を表すインスタンス
      */
-    public function addBusinessDays(int $days): static
+    public function addBusinessDays($days)
     {
         $dt = clone $this;
         $count = 0;
@@ -131,7 +131,7 @@ trait Business
      * @param int $days 減算する営業日数（正の整数）
      * @return static N営業日前を表すインスタンス
      */
-    public function subBusinessDays(int $days): static
+    public function subBusinessDays($days)
     {
         $dt = clone $this;
         $count = 0;

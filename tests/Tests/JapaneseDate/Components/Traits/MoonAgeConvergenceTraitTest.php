@@ -25,7 +25,7 @@ class MoonAgeConvergenceTraitTest extends TestCase
     /**
      * @return object
      */
-    private function makeInstance(): object
+    private function makeInstance()
     {
         return new class () {
             use MoonAgeConvergenceTrait;

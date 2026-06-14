@@ -43,7 +43,7 @@ class DeltaTTraitTest extends TestCase
      * @throws \ReflectionException
      * @dataProvider dataProvider_approximateDeltaTSeconds
      */
-    public function test_approximateDeltaTSeconds(int $year, int $month, float $expected): void
+    public function test_approximateDeltaTSeconds($year, $month, $expected): void
     {
         $instance = new class () {
             use DeltaTTrait;

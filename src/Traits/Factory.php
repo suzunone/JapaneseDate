@@ -193,7 +193,7 @@ trait Factory
      * @throws \DateInvalidTimeZoneException
      * @throws NativeDateTimeException 日時文字列の解析に失敗した場合にスローされます。
      */
-    public static function factory(int|float|string|DateTimeInterface|null $date_time = null, DateTimeZone|null $time_zone = null): static
+    public static function factory($date_time = null, $time_zone = null)
     {
         if ($date_time === null) {
             return new static(null, $time_zone);
@@ -249,12 +249,15 @@ trait Factory
      * @throws NativeDateTimeException
      * @throws Exception
      * @throws \DateInvalidTimeZoneException
+     * @param float $timestamp
+     * @param \DateTimeZone|null $tz
+     * @return static
      */
-    protected static function newFromTimestamp(float $timestamp, ?DateTimeZone $tz): static
+    protected static function newFromTimestamp($timestamp, $tz)
     {
         $displayTz = $tz ?? new DateTimeZone(date_default_timezone_get());
         $native = (new DateTimeImmutable('@' . (int) $timestamp))->setTimezone($displayTz);
-        $micro = max(0, (int) round(($timestamp - (int) $timestamp) * 1_000_000));
+        $micro = max(0, (int) round(($timestamp - (int) $timestamp) * 1000000));
 
         return new static($native->format('Y-m-d H:i:s') . sprintf('.%06d', $micro), $displayTz);
     }
@@ -264,7 +267,7 @@ trait Factory
      * @param \DateTimeZone|null $timezone
      * @return int|float|null
      */
-    protected static function parseJisDate(string $date_str, ?DateTimeZone $timezone = null): int|float|null
+    protected static function parseJisDate($date_str, $timezone = null)
     {
         return (new JisEra())->parseJisDate($date_str, $timezone);
     }
@@ -281,7 +284,7 @@ trait Factory
      * @param DateTimeZone|string|int|null $timezone タイムゾーン（省略可）
      * @return static|null
      */
-    public static function createFromFormat($format, $time, $timezone = null): ?static
+    public static function createFromFormat($format, $time, $timezone = null): ?self
     {
         /** @noinspection PhpMultipleClassDeclarationsInspection */
         $instance = parent::createFromFormat($format, $time, $timezone);

@@ -46,7 +46,7 @@ class AlgorithmTest extends TestCase
      * @param class-string $class
      * @dataProvider dateTimeClassProvider
      */
-    public function test_useSolarAlgorithmAlias(string $class): void
+    public function test_useSolarAlgorithmAlias($class): void
     {
         try {
             $class::useSolarAlgorithm(Astronomy::SOLAR_VSOP87);
@@ -64,7 +64,7 @@ class AlgorithmTest extends TestCase
      * @param class-string $class
      * @dataProvider dateTimeClassProvider
      */
-    public function test_useMoonAlgorithmAlias(string $class): void
+    public function test_useMoonAlgorithmAlias($class): void
     {
         try {
             $class::useMoonAlgorithm(Astronomy::MOON_ELP2000);
@@ -83,7 +83,7 @@ class AlgorithmTest extends TestCase
      * @throws \ReflectionException
      * @dataProvider dateTimeClassProvider
      */
-    public function test_useMoonAlgorithmAlias_meeus47(string $class): void
+    public function test_useMoonAlgorithmAlias_meeus47($class): void
     {
         try {
             $class::useMoonAlgorithm($class::MOON_ALGORITHM_MEEUS47);
@@ -102,7 +102,7 @@ class AlgorithmTest extends TestCase
      * @throws \ReflectionException
      * @dataProvider dateTimeClassProvider
      */
-    public function test_useMoonAlgorithmAlias_meeus47_no_c(string $class): void
+    public function test_useMoonAlgorithmAlias_meeus47_no_c($class): void
     {
         try {
             $class::useMoonAlgorithm($class::MOON_ALGORITHM_MEEUS47_NO_C);
@@ -120,7 +120,7 @@ class AlgorithmTest extends TestCase
      * @param class-string $class
      * @dataProvider dateTimeClassProvider
      */
-    public function test_useBoundarySolarAlgorithmAlias(string $class): void
+    public function test_useBoundarySolarAlgorithmAlias($class): void
     {
         try {
             $class::useBoundarySolarAlgorithm(Astronomy::SOLAR_LEGACY);
@@ -137,7 +137,7 @@ class AlgorithmTest extends TestCase
      * @param class-string $class
      * @dataProvider dateTimeClassProvider
      */
-    public function test_useBoundaryMoonAlgorithmAlias(string $class): void
+    public function test_useBoundaryMoonAlgorithmAlias($class): void
     {
         try {
             $class::useBoundaryMoonAlgorithm(Astronomy::MOON_LEGACY);

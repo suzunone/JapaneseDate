@@ -50,8 +50,9 @@ class MeeusMoonAge implements MoonAgeAlgorithm
 
     /**
      * 太陽・月の黄経計算に使用する Astronomy インスタンス。
+     * @var \JapaneseDate\Components\Astronomy
      */
-    private Astronomy $astronomy;
+    private $astronomy;
 
     /**
      * @param Astronomy $astronomy 黄経計算に使用する Astronomy インスタンス
@@ -80,7 +81,7 @@ class MeeusMoonAge implements MoonAgeAlgorithm
      * @throws \JapaneseDate\Exceptions\MoonAgeConvergenceException 朔の時刻が 30 反復以内に収束しなかった場合
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
-    public function moonAge(int $year, int $month, int $day, float $hour, float $min, float $sec): float
+    public function moonAge($year, $month, $day, $hour, $min, $sec): float
     {
         if (!is_finite($hour) || !is_finite($min) || !is_finite($sec)) {
             throw new InvalidArgumentException('Hour/min/sec must be finite numbers.');

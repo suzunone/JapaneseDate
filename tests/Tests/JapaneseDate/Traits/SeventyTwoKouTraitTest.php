@@ -74,8 +74,13 @@ class SeventyTwoKouTraitTest extends TestCase
     /**
      * getSeventyTwoKou() が正しい候番号を返すことを確認する（DateTime）。
      * @dataProvider provideKouData
+     * @param string $dateStr
+     * @param int $expectedKou
+     * @param string $_
+     * @param string $__
+     * @param string $___
      */
-    public function test_getSeventyTwoKou_via_DateTime(string $dateStr, int $expectedKou, string $_, string $__, string $___): void
+    public function test_getSeventyTwoKou_via_DateTime($dateStr, $expectedKou, $_, $__, $___): void
     {
         $dt = new DateTime($dateStr);
         $kou = $this->invokeExecuteMethod($dt, 'getSeventyTwoKou', []);
@@ -84,8 +89,13 @@ class SeventyTwoKouTraitTest extends TestCase
     /**
      * getSeventyTwoKou() が正しい候番号を返すことを確認する（DateTimeImmutable）。
      * @dataProvider provideKouData
+     * @param string $dateStr
+     * @param int $expectedKou
+     * @param string $_
+     * @param string $__
+     * @param string $___
      */
-    public function test_getSeventyTwoKou_via_DateTimeImmutable(string $dateStr, int $expectedKou, string $_, string $__, string $___): void
+    public function test_getSeventyTwoKou_via_DateTimeImmutable($dateStr, $expectedKou, $_, $__, $___): void
     {
         $dt = new DateTimeImmutable($dateStr);
         $kou = $this->invokeExecuteMethod($dt, 'getSeventyTwoKou', []);
@@ -97,8 +107,13 @@ class SeventyTwoKouTraitTest extends TestCase
     /**
      * getSeventyTwoKouText() が正しい名称を返すことを確認する。
      * @dataProvider provideKouData
+     * @param string $dateStr
+     * @param int $_
+     * @param string $expectedText
+     * @param string $__
+     * @param string $___
      */
-    public function test_getSeventyTwoKouText(string $dateStr, int $_, string $expectedText, string $__, string $___): void
+    public function test_getSeventyTwoKouText($dateStr, $_, $expectedText, $__, $___): void
     {
         $dt = new DateTime($dateStr);
         $text = $this->invokeExecuteMethod($dt, 'getSeventyTwoKouText', []);
@@ -110,8 +125,13 @@ class SeventyTwoKouTraitTest extends TestCase
     /**
      * getSeventyTwoKouReading() が正しい読みを返すことを確認する。
      * @dataProvider provideKouData
+     * @param string $dateStr
+     * @param int $_
+     * @param string $__
+     * @param string $expectedReading
+     * @param string $___
      */
-    public function test_getSeventyTwoKouReading(string $dateStr, int $_, string $__, string $expectedReading, string $___): void
+    public function test_getSeventyTwoKouReading($dateStr, $_, $__, $expectedReading, $___): void
     {
         $dt = new DateTime($dateStr);
         $reading = $this->invokeExecuteMethod($dt, 'getSeventyTwoKouReading', []);
@@ -123,8 +143,13 @@ class SeventyTwoKouTraitTest extends TestCase
     /**
      * getSeventyTwoKouType() が正しい候種別を返すことを確認する。
      * @dataProvider provideKouData
+     * @param string $dateStr
+     * @param int $_
+     * @param string $__
+     * @param string $___
+     * @param string $expectedType
      */
-    public function test_getSeventyTwoKouType(string $dateStr, int $_, string $__, string $___, string $expectedType): void
+    public function test_getSeventyTwoKouType($dateStr, $_, $__, $___, $expectedType): void
     {
         $dt = new DateTime($dateStr);
         $type = $this->invokeExecuteMethod($dt, 'getSeventyTwoKouType', []);

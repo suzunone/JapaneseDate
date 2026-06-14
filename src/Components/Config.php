@@ -51,14 +51,17 @@ class Config
 
     public const KEY_SOLAR_TERM = 'solarTerm';
 
-    protected static array $lc_path = [];
+    /**
+     * @var mixed[]
+     */
+    protected static $lc_path = [];
 
     /**
      * 配列で旧暦マッピングデータのパスを置き換えます
      *
      * @param array $lc_path
      */
-    public static function setLCPath(array $lc_path): void
+    public static function setLCPath($lc_path): void
     {
         self::$lc_path = $lc_path;
     }
@@ -68,7 +71,7 @@ class Config
      *
      * @param string $lc_path
      */
-    public static function addLCPath(string $lc_path): void
+    public static function addLCPath($lc_path): void
     {
         array_unshift(self::$lc_path, $lc_path);
     }
@@ -79,7 +82,7 @@ class Config
      * @param int $year
      * @return array
      */
-    public static function getLC(int $year): array
+    public static function getLC($year): array
     {
         $config = self::getConfig($year);
         if (!count($config) || !isset($config[self::KEY_LUNAR_CALENDAR])) {
@@ -101,7 +104,7 @@ class Config
      * @param int $year
      * @return array
      */
-    public static function getConfig(int $year): array
+    public static function getConfig($year): array
     {
         $res = [];
         foreach (self::$lc_path as $lc_path) {
@@ -121,7 +124,7 @@ class Config
      * @param int $year
      * @return array
      */
-    public static function getST(int $year): array
+    public static function getST($year): array
     {
         $config = self::getConfig($year);
         if (!count($config) || !isset($config[self::KEY_SOLAR_TERM])) {

@@ -26,7 +26,10 @@ class SolarTermDate
         3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12, 1, 1, 2, 2, 3,
     ];
 
-    protected array $attribute = [
+    /**
+     * @var mixed[]
+     */
+    protected $attribute = [
         'is_sekki' => false,
         'is_chuki' => false,
 
@@ -63,13 +66,16 @@ class SolarTermDate
      * @param string $key
      * @return string|DateTime|null|int|bool|float
      */
-    public function __get(string $key): null|string|DateTime|int|bool|float
+    public function __get(string $key)
     {
-        return $this->attribute[$key] ?? match ($key) {
-            'solarTermText' => JapaneseDate::SOLAR_TERM[$this->solar_term],
-            'dateTime' => DateTime::create($this->year, $this->month, $this->day),
-            default => null,
-        };
+        switch ($key) {
+            case 'solarTermText':
+                return $this->attribute[$key] ?? JapaneseDate::SOLAR_TERM[$this->solar_term];
+            case 'dateTime':
+                return $this->attribute[$key] ?? DateTime::create($this->year, $this->month, $this->day);
+            default:
+                return $this->attribute[$key] ?? null;
+        }
     }
 
     /**
@@ -77,7 +83,7 @@ class SolarTermDate
      * @param mixed $value
      * @return void
      */
-    public function __set(string $key, mixed $value)
+    public function __set(string $key, $value)
     {
         throw new RuntimeException('Can not set key:' . $key . ' =  ' . $value);
     }
@@ -88,9 +94,12 @@ class SolarTermDate
      */
     public function __isset(string $key): bool
     {
-        return match ($key) {
-            'solarTermText', 'dateTime' => true,
-            default => isset($this->attribute[$key]),
-        };
+        switch ($key) {
+            case 'solarTermText':
+            case 'dateTime':
+                return true;
+            default:
+                return isset($this->attribute[$key]);
+        }
     }
 }

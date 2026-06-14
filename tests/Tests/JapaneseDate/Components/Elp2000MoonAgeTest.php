@@ -79,7 +79,7 @@ class Elp2000MoonAgeTest extends TestCase
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      * @dataProvider moonAgeProvider
      */
-    public function test_moonAge(int $year, int $month, int $day, float $hour, float $min, float $sec, int $expectedRounded): void
+    public function test_moonAge($year, $month, $day, $hour, $min, $sec, $expectedRounded): void
     {
         $moonAge = new Elp2000MoonAge($this->makeElp2000Astronomy());
         $result = $moonAge->moonAge($year, $month, $day, $hour, $min, $sec);
@@ -177,18 +177,29 @@ class Elp2000MoonAgeTest extends TestCase
     private function makeSequencedAstronomy(array $sequence): Astronomy
     {
         return new class ($sequence) extends Astronomy {
-            private int $sunIndex = 0;
+            /**
+             * @var array
+             */
+            private $sequence;
+            /**
+             * @var int
+             */
+            private $sunIndex = 0;
 
-            private int $moonIndex = 0;
+            /**
+             * @var int
+             */
+            private $moonIndex = 0;
 
             /**
              * @param array $sequence
              */
-            public function __construct(/**
-             * @readonly
-             */
-            private array $sequence)
+            public function __construct(array $sequence)
             {
+                /**
+                 * @readonly
+                 */
+                $this->sequence = $sequence;
                 parent::__construct();
             }
 
@@ -201,7 +212,7 @@ class Elp2000MoonAgeTest extends TestCase
              * @param float $sec
              * @return float
              */
-            public function longitudeSun(int $year, int $month, float $day, float $hour, float $min, float $sec): float
+            public function longitudeSun($year, $month, $day, $hour, $min, $sec): float
             {
                 $value = $this->sequence[min($this->sunIndex, count($this->sequence) - 1)][0];
                 $this->sunIndex++;
@@ -218,7 +229,7 @@ class Elp2000MoonAgeTest extends TestCase
              * @param float $sec
              * @return float
              */
-            public function longitudeMoon(int $year, int $month, int $day, float $hour, float $min, float $sec): float
+            public function longitudeMoon($year, $month, $day, $hour, $min, $sec): float
             {
                 $value = $this->sequence[min($this->moonIndex, count($this->sequence) - 1)][1];
                 $this->moonIndex++;

@@ -78,7 +78,7 @@ class LegacyAstronomy implements SunAlgorithm, MoonAlgorithm
      * @return float 太陽の視黄経（度、0〜360）
      * @throws \Exception
      */
-    public function longitudeSun(int $year, int $month, float $day, float $hour, float $min, float $sec): float
+    public function longitudeSun($year, $month, $day, $hour, $min, $sec): float
     {
         $julian_year = $this->computeJulianYear($year, $month, $day, $hour, $min, $sec)
             - self::LEGACY_MODEL_OFFSET_YEARS;
@@ -125,7 +125,7 @@ class LegacyAstronomy implements SunAlgorithm, MoonAlgorithm
      * @param float $julian_year 2000.0 からの経過年数
      * @return float 太陽の黄経（視黄経、度）
      */
-    public function jy2LongitudeSun(float $julian_year): float
+    public function jy2LongitudeSun($julian_year): float
     {
         $terms = [
             [0.0003, 329.7, 44.43],
@@ -198,7 +198,7 @@ class LegacyAstronomy implements SunAlgorithm, MoonAlgorithm
      * @return float 月の視黄経（度、0〜360）
      * @throws \Exception
      */
-    public function longitudeMoon(int $year, int $month, int $day, float $hour, float $min, float $sec): float
+    public function longitudeMoon($year, $month, $day, $hour, $min, $sec): float
     {
         $julian_year = $this->computeJulianYear($year, $month, $day, $hour, $min, $sec)
             - self::LEGACY_MODEL_OFFSET_YEARS;
@@ -214,7 +214,7 @@ class LegacyAstronomy implements SunAlgorithm, MoonAlgorithm
      * @param float $julian_year 2000.0 からの経過年数
      * @return float 月の黄経（視黄経、度）
      */
-    public function jY2LongitudeMoon(float $julian_year): float
+    public function jY2LongitudeMoon($julian_year): float
     {
         $tmp = $this->sumPeriodicTerms([
             [0.0006, 54.0, 19.3],

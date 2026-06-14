@@ -95,37 +95,39 @@ class Astronomy
     /**
      * @var string 太陽アルゴリズム
      */
-    protected static string $solarAlgorithm = self::SOLAR_LEGACY;
+    protected static $solarAlgorithm = self::SOLAR_LEGACY;
 
     /**
      * @var string 月アルゴリズム
      */
-    protected static string $moonAlgorithm = self::MOON_LEGACY;
+    protected static $moonAlgorithm = self::MOON_LEGACY;
 
     /**
      * @var string 日付境界計算に使用する太陽アルゴリズム
      */
-    protected static string $boundarySolarAlgorithm = self::SOLAR_VSOP87;
+    protected static $boundarySolarAlgorithm = self::SOLAR_VSOP87;
 
     /**
      * @var string 日付境界計算に使用する月アルゴリズム
      */
-    protected static string $boundaryMoonAlgorithm = self::MOON_MEEUS47;
+    protected static $boundaryMoonAlgorithm = self::MOON_MEEUS47;
 
     /**
      * @var array<string, self>
      */
-    protected static array $instances = [];
+    protected static $instances = [];
 
     /**
      * 注入された太陽黄経計算アルゴリズム実装。
+     * @var \JapaneseDate\Components\Contracts\SunAlgorithm
      */
-    private SunAlgorithm $sunAlgorithmImpl;
+    private $sunAlgorithmImpl;
 
     /**
      * 注入された月黄経計算アルゴリズム実装。
+     * @var \JapaneseDate\Components\Contracts\MoonAlgorithm
      */
-    private MoonAlgorithm $moonAlgorithmImpl;
+    private $moonAlgorithmImpl;
 
     /**
      * 太陽・月の計算実装を注入して初期化する。
@@ -138,7 +140,7 @@ class Astronomy
      */
     public function __construct(
         ?SunAlgorithm $sunAlgorithm = null,
-        ?MoonAlgorithm $moonAlgorithm = null,
+        ?MoonAlgorithm $moonAlgorithm = null
     ) {
         if ($sunAlgorithm === null && $moonAlgorithm === null) {
             $legacy = new LegacyAstronomy();
@@ -157,7 +159,7 @@ class Astronomy
      * @return void
      * @throws InvalidArgumentException 未対応の太陽アルゴリズムが指定された場合
      */
-    public static function useSolarAlgorithm(string $algorithm): void
+    public static function useSolarAlgorithm($algorithm): void
     {
         if (!in_array($algorithm, [self::SOLAR_LEGACY, self::SOLAR_VSOP87], true)) {
             throw new InvalidArgumentException('Unsupported solar algorithm: ' . $algorithm);
@@ -183,7 +185,7 @@ class Astronomy
      * @return void
      * @throws InvalidArgumentException 未対応の月アルゴリズムが指定された場合
      */
-    public static function useMoonAlgorithm(string $algorithm): void
+    public static function useMoonAlgorithm($algorithm): void
     {
         if (!in_array($algorithm, [self::MOON_LEGACY, self::MOON_ELP2000, self::MOON_MEEUS47, self::MOON_MEEUS47_NO_C], true)) {
             throw new InvalidArgumentException('Unsupported moon algorithm: ' . $algorithm);
@@ -209,7 +211,7 @@ class Astronomy
      * @return void
      * @throws InvalidArgumentException 未対応の太陽アルゴリズムが指定された場合
      */
-    public static function useBoundarySolarAlgorithm(string $algorithm): void
+    public static function useBoundarySolarAlgorithm($algorithm): void
     {
         if (!in_array($algorithm, [self::SOLAR_LEGACY, self::SOLAR_VSOP87], true)) {
             throw new InvalidArgumentException('Unsupported solar algorithm: ' . $algorithm);
@@ -235,7 +237,7 @@ class Astronomy
      * @return void
      * @throws InvalidArgumentException 未対応の月アルゴリズムが指定された場合
      */
-    public static function useBoundaryMoonAlgorithm(string $algorithm): void
+    public static function useBoundaryMoonAlgorithm($algorithm): void
     {
         if (!in_array($algorithm, [self::MOON_LEGACY, self::MOON_ELP2000, self::MOON_MEEUS47, self::MOON_MEEUS47_NO_C], true)) {
             throw new InvalidArgumentException('Unsupported moon algorithm: ' . $algorithm);
@@ -301,7 +303,7 @@ class Astronomy
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\Exception
      */
-    public function moonPhase(int $year, int $month, int $day, float $hour, float $min, float $sec): int
+    public function moonPhase($year, $month, $day, $hour, $min, $sec): int
     {
         $phase_angle = $this->moonPhaseAngle($year, $month, $day, $hour, $min, $sec);
 
@@ -321,7 +323,7 @@ class Astronomy
      * @throws \JapaneseDate\Exceptions\Exception|\DateInvalidTimeZoneException
      * @throws \Exception
      */
-    public function moonPhaseAngle(int $year, int $month, int $day, float $hour, float $min, float $sec): float
+    public function moonPhaseAngle($year, $month, $day, $hour, $min, $sec): float
     {
         $longitude_moon = $this->longitudeMoon($year, $month, $day, $hour, $min, $sec);
         $longitude_sun = $this->longitudeSun($year, $month, $day, $hour, $min, $sec);
@@ -345,11 +347,13 @@ class Astronomy
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      * @throws \Exception
      */
-    public function longitudeMoon(int $year, int $month, int $day, float $hour, float $min, float $sec): float
+    public function longitudeMoon($year, $month, $day, $hour, $min, $sec): float
     {
         $key = __METHOD__ . '-' . $this->moonAlgorithmName() . '-' . $year . '-' . $month . '-' . $day . '-' . $hour . '-' . $min . '-' . $sec;
 
-        return $this->oneTimeCache($key, fn () => $this->moonAlgorithmImpl->longitudeMoon($year, $month, $day, $hour, $min, $sec));
+        return $this->oneTimeCache($key, function () use ($year, $month, $day, $hour, $min, $sec) {
+            return $this->moonAlgorithmImpl->longitudeMoon($year, $month, $day, $hour, $min, $sec);
+        });
     }
 
     /**
@@ -366,11 +370,13 @@ class Astronomy
      * @return    float 太陽の黄経（視黄経）
      * @throws \Exception
      */
-    public function longitudeSun(int $year, int $month, float $day, float $hour, float $min, float $sec): float
+    public function longitudeSun($year, $month, $day, $hour, $min, $sec): float
     {
         $key = __METHOD__ . '-' . $this->sunAlgorithmName() . '-' . $year . '-' . $month . '-' . $day . '-' . $hour . '-' . $min . '-' . $sec;
 
-        return $this->oneTimeCache($key, fn () => $this->sunAlgorithmImpl->longitudeSun($year, $month, $day, $hour, $min, $sec));
+        return $this->oneTimeCache($key, function () use ($year, $month, $day, $hour, $min, $sec) {
+            return $this->sunAlgorithmImpl->longitudeSun($year, $month, $day, $hour, $min, $sec);
+        });
     }
 
     /**
@@ -379,7 +385,7 @@ class Astronomy
      * @param float $angle 角度
      * @return    float 角度（正規化後）
      */
-    public function normalizeAngle(float $angle): float
+    public function normalizeAngle($angle): float
     {
         return $angle - 360.0 * floor($angle / 360.0);
     }
@@ -395,7 +401,7 @@ class Astronomy
      * @param float $sec
      * @return    float ユリウス日
      */
-    public function gregorian2JD(int $year, int $month, int $day, float $hour, float $min, float $sec): float
+    public function gregorian2JD($year, $month, $day, $hour, $min, $sec): float
     {
         $julian_date = gregoriantojd($month, $day, $year);
         $julian_date += $hour / self::DAY_TO_HOUR_FLOAT + $min / self::DAY_TO_MINUTE_FLOAT + $sec / self::DAY_TO_SECOND_FLOAT;
@@ -409,7 +415,7 @@ class Astronomy
      * @param float $jd ユリウス日
      * @return    array($year, $month, $day, $hour, $min, $sec)  西暦年月日，世界時
      */
-    public function jD2Gregorian(float $jd): array
+    public function jD2Gregorian($jd): array
     {
         $cal = cal_from_jd(floor($jd), CAL_GREGORIAN);
 
@@ -434,7 +440,7 @@ class Astronomy
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
-    public function gregorian2JY(int $year, int $month, int $day, float $hour, float $min, float $sec): float
+    public function gregorian2JY($year, $month, $day, $hour, $min, $sec): float
     {
         $timestamp = DateTime::factory(
             implode('-', [$year, $month, $day]) . ' ' . implode(':', [$hour, $min, $sec]),
@@ -475,22 +481,33 @@ class Astronomy
      * @param string $moonAlgorithm 月黄経計算アルゴリズム識別子
      * @return static
      */
-    protected static function buildInstanceByAlgorithms(string $solarAlgorithm, string $moonAlgorithm): self
+    protected static function buildInstanceByAlgorithms($solarAlgorithm, $moonAlgorithm): self
     {
         $key = $solarAlgorithm . ':' . $moonAlgorithm;
 
         if (!isset(self::$instances[$key])) {
-            $sunImpl = match ($solarAlgorithm) {
-                self::SOLAR_VSOP87 => new Vsop87Astronomy(),
-                default => null,
-            };
-            // ELP2000が大きすぎて認識されないので
-            $moonImpl = match ($moonAlgorithm) {
-                self::MOON_ELP2000 => new ELP2000(),
-                self::MOON_MEEUS47 => new MeeusMoon(applyNasaCCorrection: true),
-                self::MOON_MEEUS47_NO_C => new MeeusMoon(applyNasaCCorrection: false),
-                default => null,
-            };
+            switch ($solarAlgorithm) {
+                case self::SOLAR_VSOP87:
+                    $sunImpl = new Vsop87Astronomy();
+                    break;
+                default:
+                    $sunImpl = null;
+                    break;
+            }
+            switch ($moonAlgorithm) {
+                case self::MOON_ELP2000:
+                    $moonImpl = new ELP2000();
+                    break;
+                case self::MOON_MEEUS47:
+                    $moonImpl = new MeeusMoon(true);
+                    break;
+                case self::MOON_MEEUS47_NO_C:
+                    $moonImpl = new MeeusMoon(false);
+                    break;
+                default:
+                    $moonImpl = null;
+                    break;
+            }
             self::$instances[$key] = new self($sunImpl, $moonImpl);
         }
 

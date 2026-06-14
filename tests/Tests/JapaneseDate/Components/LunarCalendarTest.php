@@ -389,7 +389,7 @@ class LunarCalendarTest extends TestCase
      * @throws \ReflectionException
      * @dataProvider makeLunarCalendarDataProvider
      */
-    public function test_makeLunarCalendar(string $date): void
+    public function test_makeLunarCalendar($date): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_LEGACY);
         DateTime::useMoonAlgorithm(DateTime::MOON_ALGORITHM_LEGACY);
@@ -400,10 +400,12 @@ class LunarCalendarTest extends TestCase
         $year = (int) $year;
         $calendar_array = $this->invokeExecuteMethod($LunarCalendar, 'makeLunarCalendar', [$year]);
         $dates = array_map(
-            static fn (array $item): string => sprintf('%04d/%02d/%02d', $item['year'], $item['month'], $item['day']),
+            static function (array $item): string {
+                return sprintf('%04d/%02d/%02d', $item['year'], $item['month'], $item['day']);
+            },
             $calendar_array
         );
-        $this->assertContains($date, $dates, json_encode($calendar_array, JSON_THROW_ON_ERROR));
+        $this->assertContains($date, $dates, json_encode($calendar_array, 0));
     }
     /**
      * 指定日時の月齢を丸めた値で確認する
@@ -438,7 +440,10 @@ class LunarCalendarTest extends TestCase
     public function test_moonAge_delegatesToInjectedMoonAgeAlgorithm(): void
     {
         $stub = new class () implements MoonAgeAlgorithm {
-            public ?array $receivedArgs = null;
+            /**
+             * @var mixed[]|null
+             */
+            public $receivedArgs;
 
             /**
              * @param int $year
@@ -449,7 +454,7 @@ class LunarCalendarTest extends TestCase
              * @param float $sec
              * @return float
              */
-            public function moonAge(int $year, int $month, int $day, float $hour, float $min, float $sec): float
+            public function moonAge($year, $month, $day, $hour, $min, $sec): float
             {
                 $this->receivedArgs = [$year, $month, $day, $hour, $min, $sec];
 
@@ -525,10 +530,11 @@ PHP
             ->atLeast()
             ->once()
             ->andReturnUsing(
-                static fn (int $year, int $month, int $day, float $hour, float $min, float $sec): float =>
-                    $meeusMoon->longitudeMoon($year, $month, $day, $hour, $min, $sec)
+                static function (int $year, int $month, int $day, float $hour, float $min, float $sec) use ($meeusMoon): float {
+                    return $meeusMoon->longitudeMoon($year, $month, $day, $hour, $min, $sec);
+                }
             );
-        $astronomy = new Astronomy(moonAlgorithm: $elp2000Spy);
+        $astronomy = new Astronomy(null, $elp2000Spy);
         $lunarCalendar = new LunarCalendar($astronomy);
         $this->assertSame(Astronomy::MOON_ELP2000, $astronomy->moonAlgorithmName());
         $calendar_array = $this->invokeExecuteMethod($lunarCalendar, 'makeLunarCalendar', [2023]);
@@ -725,7 +731,7 @@ PHP
      */
     public function test_factory_meeus47_creates_MeeusMoonAge_as_default(): void
     {
-        $ast = new Astronomy(null, new MeeusMoon(applyNasaCCorrection: true));
+        $ast = new Astronomy(null, new MeeusMoon(true));
         $lc = new LunarCalendar($ast);
 
         $moonAge = $this->invokeGetProperty($lc, 'moonAgeAlgorithm');
@@ -737,7 +743,7 @@ PHP
      */
     public function test_factory_meeus47_no_c_creates_MeeusMoonAge_as_default(): void
     {
-        $ast = new Astronomy(null, new MeeusMoon(applyNasaCCorrection: false));
+        $ast = new Astronomy(null, new MeeusMoon(false));
         $lc = new LunarCalendar($ast);
 
         $moonAge = $this->invokeGetProperty($lc, 'moonAgeAlgorithm');
@@ -752,7 +758,7 @@ PHP
     public function test_makeLunarCalendar_with_meeus47_returns_array(): void
     {
         $meeusMoonSpy = Mockery::mock(MeeusMoon::class, [true])->makePartial();
-        $astronomy = new Astronomy(moonAlgorithm: $meeusMoonSpy);
+        $astronomy = new Astronomy(null, $meeusMoonSpy);
         $lunarCalendar = new LunarCalendar($astronomy);
         $this->assertSame(Astronomy::MOON_MEEUS47, $astronomy->moonAlgorithmName());
         $calendar_array = $this->invokeExecuteMethod($lunarCalendar, 'makeLunarCalendar', [2023]);
@@ -793,7 +799,7 @@ PHP
      */
     public function test_moonPhase_with_meeus47_returns_correct_value(): void
     {
-        $ast = new Astronomy(new Vsop87Astronomy(), new MeeusMoon(applyNasaCCorrection: true));
+        $ast = new Astronomy(new Vsop87Astronomy(), new MeeusMoon(true));
         $lc = new LunarCalendar($ast);
 
         // 2023-01-22 05:53 UTC = JST 14:53 → 月相 0（新月）
@@ -808,7 +814,7 @@ PHP
      */
     public function test_moonPhase_with_meeus47_fullMoon(): void
     {
-        $ast = new Astronomy(new Vsop87Astronomy(), new MeeusMoon(applyNasaCCorrection: true));
+        $ast = new Astronomy(new Vsop87Astronomy(), new MeeusMoon(true));
         $lc = new LunarCalendar($ast);
 
         // 2023-02-06 03:29 UTC = JST 12:29 → 月相 4（満月）

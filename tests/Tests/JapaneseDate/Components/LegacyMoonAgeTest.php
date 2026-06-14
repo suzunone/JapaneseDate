@@ -85,7 +85,7 @@ class LegacyMoonAgeTest extends TestCase
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      * @dataProvider moonAgeProvider
      */
-    public function test_moonAge(int $year, int $month, int $day, float $hour, float $min, float $sec, int $expectedRounded): void
+    public function test_moonAge($year, $month, $day, $hour, $min, $sec, $expectedRounded): void
     {
         $moonAge = new LegacyMoonAge(new Astronomy());
         $result = $moonAge->moonAge($year, $month, $day, $hour, $min, $sec);

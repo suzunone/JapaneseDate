@@ -185,8 +185,10 @@ class GetterTest extends TestCase
     /**
      * toArray が Carbon の基本情報に日本暦情報を追加して返すことを確認する。
      * @dataProvider toArrayExternalCalendarDataProvider
+     * @param string $date
+     * @param mixed[] $expected
      */
-    public function test_toArray(string $date, array $expected): void
+    public function test_toArray($date, $expected): void
     {
         $DateTime = new DateTime($date);
         $result = $DateTime->toArray();
@@ -228,8 +230,10 @@ class GetterTest extends TestCase
     /**
      * 二十四節気の日付プロパティが期待する日時を返すことを確認する。
      * @dataProvider solarTermDateGetterDataProvider
+     * @param string $property
+     * @param string $expected
      */
-    public function test_get_solar_term_date_property(string $property, string $expected): void
+    public function test_get_solar_term_date_property($property, $expected): void
     {
         $DateTime = new DateTime('2018-01-01 12:34:56');
         $this->assertSame($expected, $DateTime->{$property}->format('Y-m-d H:i:s'));
@@ -578,8 +582,12 @@ class GetterTest extends TestCase
     {
         $DateTime = new DateTime('645-08-01T00:00:00+09:00');
         $this->assertSame(
-            array_map(static fn ($e) => $e->name, $DateTime->historicalEras),
-            array_map(static fn ($e) => $e->name, $DateTime->historical_eras)
+            array_map(static function ($e) {
+                return $e->name;
+            }, $DateTime->historicalEras),
+            array_map(static function ($e) {
+                return $e->name;
+            }, $DateTime->historical_eras)
         );
     }
     /**
