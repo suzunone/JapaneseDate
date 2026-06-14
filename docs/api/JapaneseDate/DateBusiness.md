@@ -41,10 +41,8 @@ $config = (new DateBusiness())
 
 | Return | Method | Description |
 |---|---|---|
-| DateBusiness | [setClosingWeekdays()](#setclosingweekdays) | 休業曜日を一括設定します。 |
 | DateBusiness | [addClosingWeekday()](#addclosingweekday) | 休業曜日を1件追加します。 |
 | DateBusiness | [removeClosingWeekday()](#removeclosingweekday) | 休業曜日の設定を削除します。 |
-| DateBusiness | [setBypassHoliday()](#setbypassholiday) | 祝日を休業日として扱うかどうかを設定します。 |
 | DateBusiness | [addOpenNthWeekday()](#addopennthweekday) | 第XX曜日を営業日として指定します（曜日設定・祝日設定より優先）。 |
 | DateBusiness | [removeOpenNthWeekday()](#removeopennthweekday) | 第XX曜日の営業指定を削除します。 |
 | DateBusiness | [addClosingNthWeekday()](#addclosingnthweekday) | 第XX曜日を休業日として指定します（営業指定より優先）。 |
@@ -55,10 +53,11 @@ $config = (new DateBusiness())
 | DateBusiness | [removeClosingDate()](#removeclosingdate) | 特定日の休業指定を削除します。 |
 | DateBusiness | [addOpenFilter()](#addopenfilter) | 営業指定フィルタを追加します（優先度7）。 |
 | DateBusiness | [addClosingFilter()](#addclosingfilter) | 休業指定フィルタを追加します（優先度8）。 |
-| DateBusiness | [setMacro()](#setmacro) | 判定ロジックを完全に上書きするマクロを設定します（優先度9・最高）。 |
 | DateBusiness | [reset()](#reset) | すべての設定をリセットしてデフォルト状態（土日休み・祝日休み）に戻します。 |
 | array | [getClosingWeekdays()](#getclosingweekdays) | 休業曜日の設定を取得します。 |
+| DateBusiness | [setClosingWeekdays()](#setclosingweekdays) | 休業曜日を一括設定します。 |
 | bool | [isBypassHoliday()](#isbypassholiday) | 祝日を休業日とするかどうかを取得します。 |
+| DateBusiness | [setBypassHoliday()](#setbypassholiday) | 祝日を休業日として扱うかどうかを設定します。 |
 | array | [getOpenNthWeekdays()](#getopennthweekdays) | 第XX曜日 営業指定の設定を取得します。 |
 | array | [getClosingNthWeekdays()](#getclosingnthweekdays) | 第XX曜日 休業指定の設定を取得します。 |
 | array | [getOpenDates()](#getopendates) | 特定日 営業指定の設定を取得します。 |
@@ -66,35 +65,11 @@ $config = (new DateBusiness())
 | array | [getOpenFilters()](#getopenfilters) | 営業指定フィルタの一覧を取得します。 |
 | array | [getClosingFilters()](#getclosingfilters) | 休業指定フィルタの一覧を取得します。 |
 | callable\|null | [getMacro()](#getmacro) | マクロを取得します。 |
+| DateBusiness | [setMacro()](#setmacro) | 判定ロジックを完全に上書きするマクロを設定します（優先度9・最高）。 |
 
 ---
 
 ## Method Details
-
-### setClosingWeekdays
-
-```php
-public DateBusiness setClosingWeekdays($weekdays)
-```
-
-休業曜日を一括設定します。
-
-0（日曜）〜 6（土曜）の整数配列で指定します。
-既存の設定を上書きします。
-
-**使用例:**
-```php
-$config->setClosingWeekdays([0, 6]); // 日曜・土曜を休業に
-```
-
-**Parameters:**
-
-| Type | Name | Default | Description |
-|---|---|---|---|
-| array | `$weekdays` | —  | 休業曜日の配列（例: [0, 6] で日・土） |
-
-**Returns:** [DateBusiness](../JapaneseDate/DateBusiness.md) — メソッドチェーン用に自身を返します
----
 
 ### addClosingWeekday
 
@@ -126,25 +101,6 @@ public DateBusiness removeClosingWeekday($weekday)
 | Type | Name | Default | Description |
 |---|---|---|---|
 | int | `$weekday` | —  | 曜日（0=日曜〜6=土曜） |
-
-**Returns:** [DateBusiness](../JapaneseDate/DateBusiness.md) — メソッドチェーン用に自身を返します
----
-
-### setBypassHoliday
-
-```php
-public DateBusiness setBypassHoliday($bypass)
-```
-
-祝日を休業日として扱うかどうかを設定します。
-
-デフォルトは `true`（祝日を休業日とする）です。
-
-**Parameters:**
-
-| Type | Name | Default | Description |
-|---|---|---|---|
-| bool | `$bypass` | —  | true の場合、祝日を休業日とする |
 
 **Returns:** [DateBusiness](../JapaneseDate/DateBusiness.md) — メソッドチェーン用に自身を返します
 ---
@@ -392,34 +348,6 @@ $config->addClosingFilter(
 **Returns:** [DateBusiness](../JapaneseDate/DateBusiness.md) — メソッドチェーン用に自身を返します
 ---
 
-### setMacro
-
-```php
-public DateBusiness setMacro($macro)
-```
-
-判定ロジックを完全に上書きするマクロを設定します（優先度9・最高）。
-
-マクロは `fn(\DateTimeInterface $date): bool` の形式で、
-`true` を返した場合にその日を営業日、`false` を返した場合に休業日と判定します。
-設定されたマクロは他のすべての設定より優先されます。
-`null` を渡すとマクロを解除します。
-
-**使用例:**
-```php
-// 月〜木のみ営業という完全カスタムロジック
-$config->setMacro(fn(\DateTimeInterface $d) => in_array((int)$d->format('N'), [1,2,3,4]));
-```
-
-**Parameters:**
-
-| Type | Name | Default | Description |
-|---|---|---|---|
-| callable\|null | `$macro` | —  | `fn(\DateTimeInterface $date): bool` 形式のコールバック、または null |
-
-**Returns:** [DateBusiness](../JapaneseDate/DateBusiness.md) — メソッドチェーン用に自身を返します
----
-
 ### reset
 
 ```php
@@ -442,6 +370,31 @@ public array getClosingWeekdays()
 **Returns:** array
 ---
 
+### setClosingWeekdays
+
+```php
+public DateBusiness setClosingWeekdays($weekdays)
+```
+
+休業曜日を一括設定します。
+
+0（日曜）〜 6（土曜）の整数配列で指定します。
+既存の設定を上書きします。
+
+**使用例:**
+```php
+$config->setClosingWeekdays([0, 6]); // 日曜・土曜を休業に
+```
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| array | `$weekdays` | —  | 休業曜日の配列（例: [0, 6] で日・土） |
+
+**Returns:** [DateBusiness](../JapaneseDate/DateBusiness.md) — メソッドチェーン用に自身を返します
+---
+
 ### isBypassHoliday
 
 ```php
@@ -451,6 +404,25 @@ public bool isBypassHoliday()
 祝日を休業日とするかどうかを取得します。
 
 **Returns:** bool
+---
+
+### setBypassHoliday
+
+```php
+public DateBusiness setBypassHoliday($bypass)
+```
+
+祝日を休業日として扱うかどうかを設定します。
+
+デフォルトは `true`（祝日を休業日とする）です。
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| bool | `$bypass` | —  | true の場合、祝日を休業日とする |
+
+**Returns:** [DateBusiness](../JapaneseDate/DateBusiness.md) — メソッドチェーン用に自身を返します
 ---
 
 ### getOpenNthWeekdays
@@ -528,5 +500,33 @@ public callable\|null getMacro()
 マクロを取得します。
 
 **Returns:** callable\|null
+---
+
+### setMacro
+
+```php
+public DateBusiness setMacro($macro)
+```
+
+判定ロジックを完全に上書きするマクロを設定します（優先度9・最高）。
+
+マクロは `fn(\DateTimeInterface $date): bool` の形式で、
+`true` を返した場合にその日を営業日、`false` を返した場合に休業日と判定します。
+設定されたマクロは他のすべての設定より優先されます。
+`null` を渡すとマクロを解除します。
+
+**使用例:**
+```php
+// 月〜木のみ営業という完全カスタムロジック
+$config->setMacro(fn(\DateTimeInterface $d) => in_array((int)$d->format('N'), [1,2,3,4]));
+```
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| callable\|null | `$macro` | —  | `fn(\DateTimeInterface $date): bool` 形式のコールバック、または null |
+
+**Returns:** [DateBusiness](../JapaneseDate/DateBusiness.md) — メソッドチェーン用に自身を返します
 ---
 

@@ -269,6 +269,19 @@ class FindSolarTermTest extends TestCase
         $this->assertSame(self::expectedDate($term, '01:02:03'), $result->format('Y-m-d H:i:s'));
     }
 
+    /**
+     * 天文計算版の SolarTerm から指定年の二十四節気日付を取得する。
+     */
+    private static function astronomicalSolarTerm(string $method, int $year): SolarTermDate
+    {
+        return (new SolarTerm())->{$method}($year);
+    }
+
+    /**
+     * @return void
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     * @throws \ReflectionException
+     */
     public function test_getSolarTermUsesVsop87AlgorithmWhenSelected(): void
     {
         try {
@@ -284,14 +297,6 @@ class FindSolarTermTest extends TestCase
             Astronomy::useSolarAlgorithm(Astronomy::SOLAR_LEGACY);
             Astronomy::useMoonAlgorithm(Astronomy::MOON_LEGACY);
         }
-    }
-
-    /**
-     * 天文計算版の SolarTerm から指定年の二十四節気日付を取得する。
-     */
-    private static function astronomicalSolarTerm(string $method, int $year): SolarTermDate
-    {
-        return (new SolarTerm())->{$method}($year);
     }
 
     /**

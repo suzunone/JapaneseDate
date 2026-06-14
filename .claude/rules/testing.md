@@ -97,7 +97,7 @@ $this->invokeSetProperty(FooCalculator::class, 'instance', null);
 
 ```bash
 # 全体テスト（large を除外）
-vendor/bin/paratest --exclude-group large
+vendor/bin/paratest --exclude-group large --exclude-group long-running
 
 # 特定ファイルのみ
 vendor/bin/paratest tests/Tests/JapaneseDate/Traits/FooTraitTest.php
@@ -107,7 +107,7 @@ vendor/bin/paratest tests/Tests/JapaneseDate/Traits/FooTraitTest.php
 
 ### 実装後の確認
 - 新規・修正したテストファイルは単体で実行し、対象テストが期待通り通ることを確認する
-- 既存機能に影響する Trait、Getter、DateTime、DateTimeImmutable、Map を変更した場合は、関連テストだけでなく全体テスト（`vendor/bin/paratest --exclude-group large`）も行う
+- 既存機能に影響する Trait、Getter、DateTime、DateTimeImmutable、Map を変更した場合は、関連テストだけでなく全体テスト（`vendor/bin/paratest --exclude-group large --exclude-group long-running`）も行う
 - 全体実行が時間・環境の都合でできない場合は、その理由と未確認範囲を作業結果に明記する
 
 ---

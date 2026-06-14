@@ -6,7 +6,7 @@ class **Calendar**
 
 様々な除外条件（設定）に基づいて、特定の期間や月の営業日・日付オブジェクトの配列を生成するクラス。
 
-旧来の bypass 系 API と、[\JapaneseDate\DateBusiness](../JapaneseDate/DateBusiness.html) を使った新しい
+旧来の bypass 系 API と、DateBusiness を使った新しい
 営業日カレンダー設定の両方をサポートしています。
 
 **bypass 系 API（旧来方式）**
@@ -15,10 +15,10 @@ class **Calendar**
   getWorkingDay()} / {@link getWorkingDayBySpan() で取得します。
 
 **DateBusiness カレンダー API（新方式）**
-- [\JapaneseDate\DateBusiness](../JapaneseDate/DateBusiness.html) オブジェクトで曜日・祝日・第XX曜日・特定日・
+- DateBusiness オブジェクトで曜日・祝日・第XX曜日・特定日・
   フィルタ・マクロを優先順位付きで柔軟に組み合わせられます。
 - setBusinessConfig() でインスタンス個別設定を、
-  \JapaneseDate\Components\BusinessCalendar::setGlobalConfig() でグローバル設定を指定します。
+  BusinessCalendar::setGlobalConfig でグローバル設定を指定します。
 - getBusinessDaysBySpan()} / {@link getBusinessDaysByLimit()} / {@link isBusinessDayByConfig() で取得・判定します。
 
 【bypass 系 使用例: 土日祝と特定日を除外した5営業日を取得する】
@@ -66,8 +66,8 @@ $days = $calendar->getBusinessDaysByLimit(5);
 
 | Return | Method | Description |
 |---|---|---|
-| DateBusinessCommon | [setBusinessConfig()](#setbusinessconfig) | インスタンスに個別の営業日設定を適用します。 |
 | DateBusiness\|null | [getBusinessConfig()](#getbusinessconfig) | インスタンスが保持している個別の営業日設定を取得します。 |
+| DateBusinessCommon | [setBusinessConfig()](#setbusinessconfig) | インスタンスに個別の営業日設定を適用します。 |
 | DateBusinessCommon | [setClosingDay()](#setclosingday) | 特定の日付を休業日として指定します。 |
 | DateBusinessCommon | [setOpenDay()](#setopenday) | 特定の日付を営業日として指定します。 |
 | DateBusinessCommon | [setClosingWeekdays()](#setclosingweekdays) | 休業曜日を一括設定します。 |
@@ -89,13 +89,28 @@ $days = $calendar->getBusinessDaysByLimit(5);
 | array | [getWorkingDayBySpan()](#getworkingdaybyspan) | 期間内の営業日を取得します（bypass 系 API）。 |
 | array | [getWorkingDay()](#getworkingday) | 営業日を取得します（bypass 系 API）。 |
 | array | [getWorkingDayByLimit()](#getworkingdaybylimit) | 指定件数の営業日を取得します（bypass 系 API）。 |
-| bool | [isBusinessDayByConfig()](#isbusinessdaybyconfig) | 開始日（または指定日付）が営業日かどうかを [\JapaneseDate\DateBusiness](../JapaneseDate/DateBusiness.html) 設定で判定します。 |
-| array | [getBusinessDaysBySpan()](#getbusinessdaysbyspan) | [\JapaneseDate\DateBusiness](../JapaneseDate/DateBusiness.html) 設定を使用して期間内の営業日を取得します。 |
-| array | [getBusinessDaysByLimit()](#getbusinessdaysbylimit) | [\JapaneseDate\DateBusiness](../JapaneseDate/DateBusiness.html) 設定を使用して指定件数の営業日を取得します。 |
+| bool | [isBusinessDayByConfig()](#isbusinessdaybyconfig) | 開始日（または指定日付）が営業日かどうかを DateBusiness 設定で判定します。 |
+| array | [getBusinessDaysBySpan()](#getbusinessdaysbyspan) | DateBusiness 設定を使用して期間内の営業日を取得します。 |
+| array | [getBusinessDaysByLimit()](#getbusinessdaysbylimit) | DateBusiness 設定を使用して指定件数の営業日を取得します。 |
 
 ---
 
 ## Method Details
+
+### getBusinessConfig
+
+```php
+public DateBusiness\|null getBusinessConfig()
+```
+
+インスタンスが保持している個別の営業日設定を取得します。
+
+個別設定を持っていない場合は `null` を返します。
+判定に実際に使用される設定（グローバル/デフォルト含む解決済み設定）は
+BusinessCalendar::resolveConfig() で取得できます。
+
+**Returns:** [DateBusiness](../JapaneseDate/DateBusiness.md)\|null — インスタンス個別設定、または null
+---
 
 ### setBusinessConfig
 
@@ -122,21 +137,6 @@ $dt->setBusinessConfig(
 | [DateBusiness](../JapaneseDate/DateBusiness.md)\|null | `$config` | —  | インスタンスに適用する設定オブジェクト、または null（解除） |
 
 **Returns:** DateBusinessCommon — メソッドチェーン用に自身を返します
----
-
-### getBusinessConfig
-
-```php
-public DateBusiness\|null getBusinessConfig()
-```
-
-インスタンスが保持している個別の営業日設定を取得します。
-
-個別設定を持っていない場合は `null` を返します。
-判定に実際に使用される設定（グローバル/デフォルト含む解決済み設定）は
-BusinessCalendar::resolveConfig() で取得できます。
-
-**Returns:** [DateBusiness](../JapaneseDate/DateBusiness.md)\|null — インスタンス個別設定、または null
 ---
 
 ### setClosingDay
@@ -441,7 +441,7 @@ public array getDatesOfMonth()
 指定月の全日付配列を取得します。
 
 コンストラクタで指定した日付が属する月の、1日から月末までの
-[\JapaneseDate\DateTime](../JapaneseDate/DateTime.html) 配列を返します。
+[DateTime](https://www.php.net/DateTime) 配列を返します。
 
 **使用例:**
 ```php
@@ -629,7 +629,7 @@ public array getWorkingDayByLimit($lim_day)
 public bool isBusinessDayByConfig($date = null)
 ```
 
-開始日（または指定日付）が営業日かどうかを [\JapaneseDate\DateBusiness](../JapaneseDate/DateBusiness.html) 設定で判定します。
+開始日（または指定日付）が営業日かどうかを DateBusiness 設定で判定します。
 
 インスタンス個別設定 → グローバル設定 → デフォルト設定（土日・祝日休み）の順で
 有効な設定を解決して判定します。
@@ -656,10 +656,10 @@ $calendar->isBusinessDayByConfig();     // true
 public array getBusinessDaysBySpan($jdt_end)
 ```
 
-[\JapaneseDate\DateBusiness](../JapaneseDate/DateBusiness.html) 設定を使用して期間内の営業日を取得します。
+DateBusiness 設定を使用して期間内の営業日を取得します。
 
 旧来の getWorkingDayBySpan() と異なり、インスタンス個別の
-[\JapaneseDate\DateBusiness](../JapaneseDate/DateBusiness.html) 設定（グローバル/デフォルト含む）を使用して
+DateBusiness 設定（グローバル/デフォルト含む）を使用して
 優先順位付きで営業日を判定します。
 
 **使用例:**
@@ -689,10 +689,10 @@ $days = $calendar->getBusinessDaysBySpan('2026-08-31');
 public array getBusinessDaysByLimit($lim_day)
 ```
 
-[\JapaneseDate\DateBusiness](../JapaneseDate/DateBusiness.html) 設定を使用して指定件数の営業日を取得します。
+DateBusiness 設定を使用して指定件数の営業日を取得します。
 
 旧来の getWorkingDayByLimit() と異なり、インスタンス個別の
-[\JapaneseDate\DateBusiness](../JapaneseDate/DateBusiness.html) 設定（グローバル/デフォルト含む）を使用して
+DateBusiness 設定（グローバル/デフォルト含む）を使用して
 優先順位付きで営業日を判定します。
 
 **使用例:**

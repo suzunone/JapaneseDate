@@ -31,8 +31,8 @@ use JapaneseDate\DateTimeImmutable;
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
  * @since        2020-03-11
- * @mixin \JapaneseDate\DateTime
- * @mixin \JapaneseDate\DateTimeImmutable
+ * @mixin DateTime
+ * @mixin DateTimeImmutable
  * @property-read int $solar_seasonal_festival 西暦の月日から五節句IDを取得する（スネークケース）。五節句定数（0〜5）を返す。節句でない場合は 0。
  * @property-read string $solar_seasonal_festival_name 西暦の月日から五節句の式名を取得する（スネークケース）。式名または空文字列。
  * @property-read string $solar_seasonal_festival_alias 西暦の月日から五節句の別名を取得する（スネークケース）。別名または空文字列。
@@ -139,13 +139,13 @@ use JapaneseDate\DateTimeImmutable;
  * @property-read DateTime|DateTimeImmutable $keichitsu その年の啓蟄の日の日時を取得する。値は、 啓蟄の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。
  * @property-read DateTime|DateTimeImmutable $next_keichitsu 次の啓蟄の日の日時を取得する。値は、 次の啓蟄の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が啓蟄の日の場合は翌年の啓蟄の日が返されます。
  * @property-read DateTime|DateTimeImmutable $before_keichitsu 前の啓蟄の日の日時を取得する。値は、 前の啓蟄の日の日時を表す DateTime オブジェクト、またはimmutableの場合は DateTimeImmutable オブジェクトが返されます。当日が啓蟄の日の場合は前年の啓蟄の日が返されます。
- * @property-read int $solarSeasonalFestival 西暦の月日から五節句IDを取得する。値は {@see \JapaneseDate\DateTime::SEASONAL_FESTIVAL_NONE}（0）〜{@see \JapaneseDate\DateTime::SEASONAL_FESTIVAL_CHOYO}（5）のいずれかです。節句でない場合は 0 を返します。
+ * @property-read int $solarSeasonalFestival 西暦の月日から五節句IDを取得する。値は {@see DateTime::SEASONAL_FESTIVAL_NONE}（0）〜{@see DateTime::SEASONAL_FESTIVAL_CHOYO}（5）のいずれかです。節句でない場合は 0 を返します。
  * @property-read string $solarSeasonalFestivalName 西暦の月日から五節句の式名を取得する。「人日の節句」「上巳の節句」「端午の節句」「七夕の節句」「重陽の節句」のいずれか、または節句でない場合は空文字列を返します。
  * @property-read string $solarSeasonalFestivalAlias 西暦の月日から五節句の別名を取得する。「七草の節句」「桃の節句」「菖蒲の節句」「笹の節句」「菊の節句」のいずれか、または節句でない場合は空文字列を返します。
- * @property-read int $lunarSeasonalFestival 旧暦の月日から五節句IDを取得する。値は {@see \JapaneseDate\DateTime::SEASONAL_FESTIVAL_NONE}（0）〜{@see \JapaneseDate\DateTime::SEASONAL_FESTIVAL_CHOYO}（5）のいずれかです。節句でない場合は 0 を返します。
+ * @property-read int $lunarSeasonalFestival 旧暦の月日から五節句IDを取得する。値は {@see DateTime::SEASONAL_FESTIVAL_NONE}（0）〜{@see DateTime::SEASONAL_FESTIVAL_CHOYO}（5）のいずれかです。節句でない場合は 0 を返します。
  * @property-read string $lunarSeasonalFestivalName 旧暦の月日から五節句の式名を取得する。「人日の節句」「上巳の節句」「端午の節句」「七夕の節句」「重陽の節句」のいずれか、または節句でない場合は空文字列を返します。
  * @property-read string $lunarSeasonalFestivalAlias 旧暦の月日から五節句の別名を取得する。「七草の節句」「桃の節句」「菖蒲の節句」「笹の節句」「菊の節句」のいずれか、または節句でない場合は空文字列を返します。
- * @property-read int $miscSeasonalNode その日が該当する雑節の定数を取得する。値は {@see \JapaneseDate\DateTime::MISC_SEASONAL_NODE_NONE}（0）〜{@see \JapaneseDate\DateTime::MISC_SEASONAL_NODE_NIHYAKUNIJUUNICHI}（9）のいずれかです。雑節でない場合は 0 を返します。
+ * @property-read int $miscSeasonalNode その日が該当する雑節の定数を取得する。値は {@see DateTime::MISC_SEASONAL_NODE_NONE}（0）〜{@see DateTime::MISC_SEASONAL_NODE_NIHYAKUNIJUUNICHI}（9）のいずれかです。雑節でない場合は 0 を返します。
  * @property-read string $miscSeasonalNodeText その日が該当する雑節の日本語名を取得する。「節分」「彼岸」「社日」「八十八夜」「入梅」「半夏生」「土用」「二百十日」「二百二十日」のいずれか、または雑節でない場合は空文字列を返します。
  * @property-read int|bool $solarTerm 24節気を取得する。値は、 1 から 24 までの整数、または 24節気でない場合は false になります。
  * @property-read string $solarTermText 24節気の名前を取得する。値は、 24節気の名前を表す文字列、または 24節気でない場合は空文字列になります。
@@ -254,14 +254,16 @@ trait Getter
      * @param string $name
      * @return \DateTimeZone|int|string
      * @throws \DateInvalidTimeZoneException
+     * @throws \DateMalformedStringException
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      * @throws \JapaneseDate\Exceptions\SolarTermException
      * @throws \JsonException
      */
-    public function __get($name): mixed
+    public function __get(string $name): mixed
     {
+        /** @noinspection PhpMultipleClassDeclarationsInspection */
         return match ($name) {
             'solar_seasonal_festival', 'solarSeasonalFestival' => $this->getSolarSeasonalFestival(),
             'solar_seasonal_festival_name', 'solarSeasonalFestivalName' => $this->viewSolarSeasonalFestivalName(),
@@ -391,6 +393,7 @@ trait Getter
         $moon_phase_text = $this->moon_phase_text;
         $moon_age = $this->moon_age;
 
+        /** @noinspection PhpMultipleClassDeclarationsInspection */
         return array_merge(parent::toArray(), [
             'solar_seasonal_festival' => $this->solar_seasonal_festival,
             'solar_seasonal_festival_name' => $this->solar_seasonal_festival_name,

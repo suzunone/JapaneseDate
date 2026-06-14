@@ -115,8 +115,8 @@ $interval = DateInterval::untilNextSolarTerm(DateTime::now());
 
 | Return | Method | Description |
 |---|---|---|
-| DateBusinessCommon | [setBusinessConfig()](#setbusinessconfig) | インスタンスに個別の営業日設定を適用します。 |
 | DateBusiness\|null | [getBusinessConfig()](#getbusinessconfig) | インスタンスが保持している個別の営業日設定を取得します。 |
+| DateBusinessCommon | [setBusinessConfig()](#setbusinessconfig) | インスタンスに個別の営業日設定を適用します。 |
 | DateBusinessCommon | [setClosingDay()](#setclosingday) | 特定の日付を休業日として指定します。 |
 | DateBusinessCommon | [setOpenDay()](#setopenday) | 特定の日付を営業日として指定します。 |
 | DateBusinessCommon | [setClosingWeekdays()](#setclosingweekdays) | 休業曜日を一括設定します。 |
@@ -129,17 +129,17 @@ $interval = DateInterval::untilNextSolarTerm(DateTime::now());
 | bool | [checkIsBusinessDay()](#checkisbusinessday) | 指定した日付（または自身が保持する日付）が営業日かどうかを判定します。 |
 | string\|null | [checkGetBusinessDayLabel()](#checkgetbusinessdaylabel) | 指定した日付（または自身が保持する日付）の休業ラベルを取得します。 |
 | DateTime | [addBusinessDaysToDate()](#addbusinessdaystodate) | 基準日から N 営業日後の {DateTime} オブジェクトを返します。 |
-| DateTime | [subBusinessDaysToDate()](#subbusinessdaystodate) | 基準日から N 営業日前の {DateTime} オブジェクトを返します。 |
 | bool | [isBusinessDay()](#isbusinessday) | 指定した日時が営業日かどうかを判定します。 |
+| DateTime | [subBusinessDaysToDate()](#subbusinessdaystodate) | 基準日から N 営業日前の {DateTime} オブジェクトを返します。 |
 | DateInterval | [untilNextHoliday()](#untilnextholiday) | 基準日時から次の日本の祝日・休日（振替休日・国民の休日を含む）までの 残り期間を {DateInterval} として返します。 |
 | DateInterval | [untilNextSixWeek()](#untilnextsixweek) | 基準日時から指定した六曜が次に到来するまでの残り期間を {DateInterval} として返します。 |
 | DateInterval | [eraSpan()](#eraspan) | 指定した元号が継続した期間（開始日から終了日まで）を {DateInterval} として返します。 |
 | DateInterval | [untilNextSolarTerm()](#untilnextsolarterm) | 基準日時から次に到来する二十四節気（または指定した節気）までの 残り期間を {DateInterval} として返します。 |
 | DateTime | [addSolarTermsToDate()](#addsolartermstodate) | 基準日から N 節気後の {DateTime} を返します。 |
 | DateTime | [subSolarTermsToDate()](#subsolartermstodate) | 基準日から N 節気前の {DateTime} を返します。 |
+| DateInterval | [untilNextNewMoon()](#untilnextnewmoon) | 基準日時から次の新月（月相: MOON_PHASE_SHINGETSU）までの 残り期間を {DateInterval} として返します。 |
 | float | [toSolarTermCount()](#tosolartermcount) | このインターバルの総日数を二十四節気の周期数（約15日を1単位）に換算して返します。 |
 | float | [toLunarMonthCount()](#tolunarmonthcount) | このインターバルの総日数を朔望月（新月から次の新月まで、約29.5日）の 数に換算して返します。 |
-| DateInterval | [untilNextNewMoon()](#untilnextnewmoon) | 基準日時から次の新月（月相: MOON_PHASE_SHINGETSU）までの 残り期間を {DateInterval} として返します。 |
 | DateTime | [addBusinessDaysTo()](#addbusinessdaysto) | 基準日から指定した営業日数後の日付を算出します。 |
 | DateTime | [subBusinessDaysFrom()](#subbusinessdaysfrom) | 基準日から指定した営業日数前の日付を算出します。 |
 | int | [countBusinessDaysBetween()](#countbusinessdaysbetween) | 2つの日付間の営業日数を計算します。 |
@@ -350,6 +350,21 @@ $interval = DateInterval::untilNextSolarTerm(DateTime::now());
 
 ## Method Details
 
+### getBusinessConfig
+
+```php
+public DateBusiness\|null getBusinessConfig()
+```
+
+インスタンスが保持している個別の営業日設定を取得します。
+
+個別設定を持っていない場合は `null` を返します。
+判定に実際に使用される設定（グローバル/デフォルト含む解決済み設定）は
+BusinessCalendar::resolveConfig() で取得できます。
+
+**Returns:** [DateBusiness](../JapaneseDate/DateBusiness.md)\|null — インスタンス個別設定、または null
+---
+
 ### setBusinessConfig
 
 ```php
@@ -375,21 +390,6 @@ $dt->setBusinessConfig(
 | [DateBusiness](../JapaneseDate/DateBusiness.md)\|null | `$config` | —  | インスタンスに適用する設定オブジェクト、または null（解除） |
 
 **Returns:** DateBusinessCommon — メソッドチェーン用に自身を返します
----
-
-### getBusinessConfig
-
-```php
-public DateBusiness\|null getBusinessConfig()
-```
-
-インスタンスが保持している個別の営業日設定を取得します。
-
-個別設定を持っていない場合は `null` を返します。
-判定に実際に使用される設定（グローバル/デフォルト含む解決済み設定）は
-BusinessCalendar::resolveConfig() で取得できます。
-
-**Returns:** [DateBusiness](../JapaneseDate/DateBusiness.md)\|null — インスタンス個別設定、または null
 ---
 
 ### setClosingDay
@@ -694,6 +694,26 @@ echo $result->format('Y-m-d');
 - [NativeDateTimeException](../JapaneseDate/Exceptions/NativeDateTimeException.md)
 ---
 
+### isBusinessDay
+
+```php
+static public bool isBusinessDay($date)
+```
+
+指定した日時が営業日かどうかを判定します。
+
+土曜（dayOfWeek === 6）、日曜（dayOfWeek === 0）、および国民の祝日・休日は
+非営業日とみなします。
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| [DateTime](../JapaneseDate/DateTime.md) | `$date` | —  | 判定対象の日付 |
+
+**Returns:** bool — 営業日であれば true、非営業日であれば false
+---
+
 ### subBusinessDaysToDate
 
 ```php
@@ -726,26 +746,6 @@ echo $result->format('Y-m-d');
 
 - DateInvalidTimeZoneException
 - [NativeDateTimeException](../JapaneseDate/Exceptions/NativeDateTimeException.md)
----
-
-### isBusinessDay
-
-```php
-static public bool isBusinessDay($date)
-```
-
-指定した日時が営業日かどうかを判定します。
-
-土曜（dayOfWeek === 6）、日曜（dayOfWeek === 0）、および国民の祝日・休日は
-非営業日とみなします。
-
-**Parameters:**
-
-| Type | Name | Default | Description |
-|---|---|---|---|
-| [DateTime](../JapaneseDate/DateTime.md) | `$date` | —  | 判定対象の日付 |
-
-**Returns:** bool — 営業日であれば true、非営業日であれば false
 ---
 
 ### untilNextHoliday
@@ -952,6 +952,39 @@ echo $result->format('Y-m-d');
 - [NativeDateTimeException](../JapaneseDate/Exceptions/NativeDateTimeException.md)
 ---
 
+### untilNextNewMoon
+
+```php
+static public DateInterval untilNextNewMoon($from)
+```
+
+基準日時から次の新月（月相: MOON_PHASE_SHINGETSU）までの
+残り期間を {DateInterval} として返します。
+
+天文学的な新月（月の位相角 0°付近）の瞬間を基準に、
+次の新月日（当日 00:00:00）までの差分を返します。
+
+【使用例】
+```php
+$interval = DateInterval::untilNextNewMoon(DateTime::now());
+echo $interval->days . '日後が次の新月です';
+```
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| [DateTime](../JapaneseDate/DateTime.md) | `$from` | —  | カウントダウン基準日時 |
+
+**Returns:** [DateInterval](../JapaneseDate/DateInterval.md) — 次の新月日（当日 00:00:00）までの {\JapaneseDate\DateInterval}
+**Throws:**
+
+- DateInvalidTimeZoneException
+- [ErrorException](../JapaneseDate/Exceptions/ErrorException.md)
+- [Exception](../JapaneseDate/Exceptions/Exception.md)
+- [NativeDateTimeException](../JapaneseDate/Exceptions/NativeDateTimeException.md)
+---
+
 ### toSolarTermCount
 
 ```php
@@ -995,38 +1028,6 @@ echo round($lunarInterval->toLunarMonthCount(), 1) . '旧暦月分';
 ```
 
 **Returns:** float — 朔望月数（{\JapaneseDate\self::SYNODIC_MONTH_DAYS} を1単位とした換算値）
----
-
-### untilNextNewMoon
-
-```php
-static public DateInterval untilNextNewMoon($from)
-```
-
-基準日時から次の新月（月相: MOON_PHASE_SHINGETSU）までの
-残り期間を {DateInterval} として返します。
-
-天文学的な新月（月の位相角 0°付近）の瞬間を基準に、
-次の新月日（当日 00:00:00）までの差分を返します。
-
-【使用例】
-```php
-$interval = DateInterval::untilNextNewMoon(DateTime::now());
-echo $interval->days . '日後が次の新月です';
-```
-
-**Parameters:**
-
-| Type | Name | Default | Description |
-|---|---|---|---|
-| [DateTime](../JapaneseDate/DateTime.md) | `$from` | —  | カウントダウン基準日時 |
-
-**Returns:** [DateInterval](../JapaneseDate/DateInterval.md) — 次の新月日（当日 00:00:00）までの {\JapaneseDate\DateInterval}
-**Throws:**
-
-- DateInvalidTimeZoneException
-- [Exception](../JapaneseDate/Exceptions/Exception.md)
-- [NativeDateTimeException](../JapaneseDate/Exceptions/NativeDateTimeException.md)
 ---
 
 ### addBusinessDaysTo

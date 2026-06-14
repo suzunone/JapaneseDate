@@ -1,28 +1,30 @@
 <?php
-// Source data for principal phases (new moon, first quarter, full moon, last quarter):
-// https://eco.mtk.nao.ac.jp/koyomi/yoko/2022/rekiyouXXX.html
-// Source data for intermediate phases (waxing crescent, waxing gibbous, waning gibbous, waning crescent):
+
+// Source data:
 // https://svs.gsfc.nasa.gov/4955/
 // https://svs.gsfc.nasa.gov/vis/a000000/a004900/a004955/mooninfo_2022.json
+// https://eco.mtk.nao.ac.jp/koyomi/yoko/2022/rekiyou221.html
+// https://eco.mtk.nao.ac.jp/koyomi/yoko/2022/rekiyou222.html
+// https://eco.mtk.nao.ac.jp/koyomi/yoko/2022/rekiyou223.html
 
 return array (
-  '2022-01-01 00:00:00' => 
+  '2022-01-01 09:00:00' =>
   array (
-    0 => '2022-01-01 00:00:00',
-    1 => 
+    0 => '2022-01-01 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 1,
       'day' => 1,
       'dayOfWeek' => 6,
       'dayOfYear' => 1,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1640962800,
-      'formatted' => '2022-01-01 00:00:00',
-      'timezone' => 
+      'timestamp' => 1640995200,
+      'formatted' => '2022-01-01 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -58,29 +60,29 @@ return array (
       'lunar_year' => 2021,
       'lunar_day' => 29,
       'is_leap_month' => false,
-      'moon_age' => 27.47630175776252,
-      'moon_phase_angle' => 329.70523088147087,
+      'moon_age' => 27.678,
+      'moon_phase_angle' => 331.1792714845369,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-01-02 00:00:00' => 
+  '2022-01-02 09:00:00' =>
   array (
-    0 => '2022-01-02 00:00:00',
-    1 => 
+    0 => '2022-01-02 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 1,
       'day' => 2,
       'dayOfWeek' => 0,
       'dayOfYear' => 2,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1641049200,
-      'formatted' => '2022-01-02 00:00:00',
-      'timezone' => 
+      'timestamp' => 1641081600,
+      'formatted' => '2022-01-02 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -116,132 +118,16 @@ return array (
       'lunar_year' => 2021,
       'lunar_day' => 30,
       'is_leap_month' => false,
-      'moon_age' => 28.63370781871894,
-      'moon_phase_angle' => 343.76300753008746,
+      'moon_age' => 28.678,
+      'moon_phase_angle' => 345.25736963086734,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-01-03 00:00:00' => 
+  '2022-01-03 03:33:00' =>
   array (
-    0 => '2022-01-03 00:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 1,
-      'day' => 3,
-      'dayOfWeek' => 1,
-      'dayOfYear' => 3,
-      'hour' => 0,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1641135600,
-      'formatted' => '2022-01-03 00:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '赤口',
-      'six_weekday' => 1,
-      'weekday_text' => '月',
-      'month_text' => '睦月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '師走',
-      'lunar_month' => 12,
-      'lunar_year' => 2021,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.22144479863345623,
-      'moon_phase_angle' => 357.91044215000056,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2022-01-03 02:00:00' => 
-  array (
-    0 => '2022-01-03 02:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 1,
-      'day' => 3,
-      'dayOfWeek' => 1,
-      'dayOfYear' => 3,
-      'hour' => 2,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1641142800,
-      'formatted' => '2022-01-03 02:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '赤口',
-      'six_weekday' => 1,
-      'weekday_text' => '月',
-      'month_text' => '睦月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '師走',
-      'lunar_month' => 12,
-      'lunar_year' => 2021,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.3027106439694762,
-      'moon_phase_angle' => 359.0883470535656,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2022-01-03 03:00:00' => 
-  array (
-    0 => '2022-01-03 03:00:00',
-    1 => 
+    0 => '2022-01-03 03:33:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 1,
@@ -249,12 +135,12 @@ return array (
       'dayOfWeek' => 1,
       'dayOfYear' => 3,
       'hour' => 3,
-      'minute' => 0,
+      'minute' => 33,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1641146400,
-      'formatted' => '2022-01-03 03:00:00',
-      'timezone' => 
+      'timestamp' => 1641148380,
+      'formatted' => '2022-01-03 03:33:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -290,29 +176,29 @@ return array (
       'lunar_year' => 2021,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.3433579159900546,
-      'moon_phase_angle' => 359.67707304846033,
+      'moon_age' => 0.0,
+      'moon_phase_angle' => 356.19473312876215,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2022-01-03 04:00:00' => 
+  '2022-01-03 09:00:00' =>
   array (
-    0 => '2022-01-03 04:00:00',
-    1 => 
+    0 => '2022-01-03 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 1,
       'day' => 3,
       'dayOfWeek' => 1,
       'dayOfYear' => 3,
-      'hour' => 4,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1641150000,
-      'formatted' => '2022-01-03 04:00:00',
-      'timezone' => 
+      'timestamp' => 1641168000,
+      'formatted' => '2022-01-03 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -348,29 +234,29 @@ return array (
       'lunar_year' => 2021,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.38399561401456594,
-      'moon_phase_angle' => 0.2656316303671815,
+      'moon_age' => 0.227,
+      'moon_phase_angle' => 359.40504034459065,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2022-01-04 00:00:00' => 
+  '2022-01-04 09:00:00' =>
   array (
-    0 => '2022-01-04 00:00:00',
-    1 => 
+    0 => '2022-01-04 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 1,
       'day' => 4,
       'dayOfWeek' => 2,
       'dayOfYear' => 4,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1641222000,
-      'formatted' => '2022-01-04 00:00:00',
-      'timezone' => 
+      'timestamp' => 1641254400,
+      'formatted' => '2022-01-04 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -406,29 +292,29 @@ return array (
       'lunar_year' => 2021,
       'lunar_day' => 2,
       'is_leap_month' => false,
-      'moon_age' => 1.197757828515023,
-      'moon_phase_angle' => 11.982937714073444,
+      'moon_age' => 1.227,
+      'moon_phase_angle' => 13.456450986741004,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-01-05 00:00:00' => 
+  '2022-01-05 09:00:00' =>
   array (
-    0 => '2022-01-05 00:00:00',
-    1 => 
+    0 => '2022-01-05 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 1,
       'day' => 5,
       'dayOfWeek' => 3,
       'dayOfYear' => 5,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1641308400,
-      'formatted' => '2022-01-05 00:00:00',
-      'timezone' => 
+      'timestamp' => 1641340800,
+      'formatted' => '2022-01-05 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -464,29 +350,29 @@ return array (
       'lunar_year' => 2021,
       'lunar_day' => 3,
       'is_leap_month' => false,
-      'moon_age' => 2.177788633387536,
-      'moon_phase_angle' => 25.81798561358488,
+      'moon_age' => 2.227,
+      'moon_phase_angle' => 27.251933005677415,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-01-06 00:00:00' => 
+  '2022-01-06 09:00:00' =>
   array (
-    0 => '2022-01-06 00:00:00',
-    1 => 
+    0 => '2022-01-06 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 1,
       'day' => 6,
       'dayOfWeek' => 4,
       'dayOfYear' => 6,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1641394800,
-      'formatted' => '2022-01-06 00:00:00',
-      'timezone' => 
+      'timestamp' => 1641427200,
+      'formatted' => '2022-01-06 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -522,29 +408,29 @@ return array (
       'lunar_year' => 2021,
       'lunar_day' => 4,
       'is_leap_month' => false,
-      'moon_age' => 3.1631692689843476,
-      'moon_phase_angle' => 39.282235891920095,
+      'moon_age' => 3.227,
+      'moon_phase_angle' => 40.663687858444064,
       'moon_phase' => 1,
       'moon_phase_text' => '三日月',
     ),
   ),
-  '2022-01-07 00:00:00' => 
+  '2022-01-07 09:00:00' =>
   array (
-    0 => '2022-01-07 00:00:00',
-    1 => 
+    0 => '2022-01-07 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 1,
       'day' => 7,
       'dayOfWeek' => 5,
       'dayOfYear' => 7,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1641481200,
-      'formatted' => '2022-01-07 00:00:00',
-      'timezone' => 
+      'timestamp' => 1641513600,
+      'formatted' => '2022-01-07 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -580,29 +466,29 @@ return array (
       'lunar_year' => 2021,
       'lunar_day' => 5,
       'is_leap_month' => false,
-      'moon_age' => 4.1547822444699705,
-      'moon_phase_angle' => 52.29024117714056,
+      'moon_age' => 4.227,
+      'moon_phase_angle' => 53.612679805237406,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-01-08 00:00:00' => 
+  '2022-01-08 09:00:00' =>
   array (
-    0 => '2022-01-08 00:00:00',
-    1 => 
+    0 => '2022-01-08 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 1,
       'day' => 8,
       'dayOfWeek' => 6,
       'dayOfYear' => 8,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1641567600,
-      'formatted' => '2022-01-08 00:00:00',
-      'timezone' => 
+      'timestamp' => 1641600000,
+      'formatted' => '2022-01-08 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -638,29 +524,29 @@ return array (
       'lunar_year' => 2021,
       'lunar_day' => 6,
       'is_leap_month' => false,
-      'moon_age' => 5.152827173471451,
-      'moon_phase_angle' => 64.81029846403055,
+      'moon_age' => 5.227,
+      'moon_phase_angle' => 66.07321399035993,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-01-09 00:00:00' => 
+  '2022-01-09 09:00:00' =>
   array (
-    0 => '2022-01-09 00:00:00',
-    1 => 
+    0 => '2022-01-09 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 1,
       'day' => 9,
       'dayOfWeek' => 0,
       'dayOfYear' => 9,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1641654000,
-      'formatted' => '2022-01-09 00:00:00',
-      'timezone' => 
+      'timestamp' => 1641686400,
+      'formatted' => '2022-01-09 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -696,74 +582,16 @@ return array (
       'lunar_year' => 2021,
       'lunar_day' => 7,
       'is_leap_month' => false,
-      'moon_age' => 6.156873461790383,
-      'moon_phase_angle' => 76.85885487742445,
+      'moon_age' => 6.227,
+      'moon_phase_angle' => 78.06672910140355,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-01-10 00:00:00' => 
+  '2022-01-10 03:11:00' =>
   array (
-    0 => '2022-01-10 00:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 1,
-      'day' => 10,
-      'dayOfWeek' => 1,
-      'dayOfYear' => 10,
-      'hour' => 0,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1641740400,
-      'formatted' => '2022-01-10 00:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '先勝',
-      'six_weekday' => 2,
-      'weekday_text' => '月',
-      'month_text' => '睦月',
-      'holiday_text' => '成人の日',
-      'holiday' => 2,
-      'is_holiday' => true,
-      'lunar_month_text' => '師走',
-      'lunar_month' => 12,
-      'lunar_year' => 2021,
-      'lunar_day' => 8,
-      'is_leap_month' => false,
-      'moon_age' => 7.16610875306651,
-      'moon_phase_angle' => 88.48846230935447,
-      'moon_phase' => 2,
-      'moon_phase_text' => '上弦',
-    ),
-  ),
-  '2022-01-10 03:00:00' => 
-  array (
-    0 => '2022-01-10 03:00:00',
-    1 => 
+    0 => '2022-01-10 03:11:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 1,
@@ -771,12 +599,12 @@ return array (
       'dayOfWeek' => 1,
       'dayOfYear' => 10,
       'hour' => 3,
-      'minute' => 0,
+      'minute' => 11,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1641751200,
-      'formatted' => '2022-01-10 03:00:00',
-      'timezone' => 
+      'timestamp' => 1641751860,
+      'formatted' => '2022-01-10 03:11:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -812,29 +640,87 @@ return array (
       'lunar_year' => 2021,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 7.292575411964208,
-      'moon_phase_angle' => 89.91628910665816,
+      'moon_age' => 6.9847222222222225,
+      'moon_phase_angle' => 86.87602815135136,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2022-01-11 00:00:00' => 
+  '2022-01-10 09:00:00' =>
   array (
-    0 => '2022-01-11 00:00:00',
-    1 => 
+    0 => '2022-01-10 09:00:00',
+    1 =>
+    array (
+      'year' => 2022,
+      'month' => 1,
+      'day' => 10,
+      'dayOfWeek' => 1,
+      'dayOfYear' => 10,
+      'hour' => 9,
+      'minute' => 0,
+      'second' => 0,
+      'micro' => 0,
+      'timestamp' => 1641772800,
+      'formatted' => '2022-01-10 09:00:00',
+      'timezone' =>
+      \Carbon\CarbonTimeZone::__set_state(array(
+         'clock' => NULL,
+         'timezone_type' => 3,
+         'timezone' => 'Asia/Tokyo',
+      )),
+      'solar_seasonal_festival' => 0,
+      'solar_seasonal_festival_name' => '',
+      'solar_seasonal_festival_alias' => '',
+      'lunar_seasonal_festival' => 0,
+      'lunar_seasonal_festival_name' => '',
+      'lunar_seasonal_festival_alias' => '',
+      'misc_seasonal_node' => 0,
+      'misc_seasonal_node_text' => '',
+      'solar_term' => false,
+      'solar_term_text' => '',
+      'is_solar_term' => false,
+      'era_name_text' => '令和',
+      'era_name' => 1004,
+      'era_year' => 4,
+      'oriental_zodiac_text' => '寅',
+      'oriental_zodiac' => 3,
+      'heavenly_stem_text' => '壬',
+      'heavenly_stem' => 8,
+      'six_weekday_text' => '先勝',
+      'six_weekday' => 2,
+      'weekday_text' => '月',
+      'month_text' => '睦月',
+      'holiday_text' => '成人の日',
+      'holiday' => 2,
+      'is_holiday' => true,
+      'lunar_month_text' => '師走',
+      'lunar_month' => 12,
+      'lunar_year' => 2021,
+      'lunar_day' => 8,
+      'is_leap_month' => false,
+      'moon_age' => 7.227,
+      'moon_phase_angle' => 89.649432546931,
+      'moon_phase' => 2,
+      'moon_phase_text' => '上弦',
+    ),
+  ),
+  '2022-01-11 09:00:00' =>
+  array (
+    0 => '2022-01-11 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 1,
       'day' => 11,
       'dayOfWeek' => 2,
       'dayOfYear' => 11,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1641826800,
-      'formatted' => '2022-01-11 00:00:00',
-      'timezone' => 
+      'timestamp' => 1641859200,
+      'formatted' => '2022-01-11 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -870,29 +756,29 @@ return array (
       'lunar_year' => 2021,
       'lunar_day' => 9,
       'is_leap_month' => false,
-      'moon_age' => 8.17944377148524,
-      'moon_phase_angle' => 99.77427644104176,
+      'moon_age' => 8.227,
+      'moon_phase_angle' => 100.89863443703888,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-01-12 00:00:00' => 
+  '2022-01-12 09:00:00' =>
   array (
-    0 => '2022-01-12 00:00:00',
-    1 => 
+    0 => '2022-01-12 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 1,
       'day' => 12,
       'dayOfWeek' => 3,
       'dayOfYear' => 12,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1641913200,
-      'formatted' => '2022-01-12 00:00:00',
-      'timezone' => 
+      'timestamp' => 1641945600,
+      'formatted' => '2022-01-12 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -928,29 +814,29 @@ return array (
       'lunar_year' => 2021,
       'lunar_day' => 10,
       'is_leap_month' => false,
-      'moon_age' => 9.19570797169581,
-      'moon_phase_angle' => 110.8021948844877,
+      'moon_age' => 9.227,
+      'moon_phase_angle' => 111.9009434973602,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-01-13 00:00:00' => 
+  '2022-01-13 09:00:00' =>
   array (
-    0 => '2022-01-13 00:00:00',
-    1 => 
+    0 => '2022-01-13 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 1,
       'day' => 13,
       'dayOfWeek' => 4,
       'dayOfYear' => 13,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1641999600,
-      'formatted' => '2022-01-13 00:00:00',
-      'timezone' => 
+      'timestamp' => 1642032000,
+      'formatted' => '2022-01-13 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -986,29 +872,29 @@ return array (
       'lunar_year' => 2021,
       'lunar_day' => 11,
       'is_leap_month' => false,
-      'moon_age' => 10.21371791139245,
-      'moon_phase_angle' => 121.65975032387217,
+      'moon_age' => 10.227,
+      'moon_phase_angle' => 122.74347004793535,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-01-14 00:00:00' => 
+  '2022-01-14 09:00:00' =>
   array (
-    0 => '2022-01-14 00:00:00',
-    1 => 
+    0 => '2022-01-14 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 1,
       'day' => 14,
       'dayOfWeek' => 5,
       'dayOfYear' => 14,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1642086000,
-      'formatted' => '2022-01-14 00:00:00',
-      'timezone' => 
+      'timestamp' => 1642118400,
+      'formatted' => '2022-01-14 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -1044,29 +930,29 @@ return array (
       'lunar_year' => 2021,
       'lunar_day' => 12,
       'is_leap_month' => false,
-      'moon_age' => 11.22630223724991,
-      'moon_phase_angle' => 132.42966225945077,
+      'moon_age' => 11.227,
+      'moon_phase_angle' => 133.5078442918184,
       'moon_phase' => 3,
       'moon_phase_text' => '十三夜',
     ),
   ),
-  '2022-01-15 00:00:00' => 
+  '2022-01-15 09:00:00' =>
   array (
-    0 => '2022-01-15 00:00:00',
-    1 => 
+    0 => '2022-01-15 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 1,
       'day' => 15,
       'dayOfWeek' => 6,
       'dayOfYear' => 15,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1642172400,
-      'formatted' => '2022-01-15 00:00:00',
-      'timezone' => 
+      'timestamp' => 1642204800,
+      'formatted' => '2022-01-15 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -1102,29 +988,29 @@ return array (
       'lunar_year' => 2021,
       'lunar_day' => 13,
       'is_leap_month' => false,
-      'moon_age' => 12.22336664237082,
-      'moon_phase_angle' => 143.1855083289418,
+      'moon_age' => 12.227,
+      'moon_phase_angle' => 144.26633148318325,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-01-16 00:00:00' => 
+  '2022-01-16 09:00:00' =>
   array (
-    0 => '2022-01-16 00:00:00',
-    1 => 
+    0 => '2022-01-16 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 1,
       'day' => 16,
       'dayOfWeek' => 0,
       'dayOfYear' => 16,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1642258800,
-      'formatted' => '2022-01-16 00:00:00',
-      'timezone' => 
+      'timestamp' => 1642291200,
+      'formatted' => '2022-01-16 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -1160,29 +1046,29 @@ return array (
       'lunar_year' => 2021,
       'lunar_day' => 14,
       'is_leap_month' => false,
-      'moon_age' => 13.220603184774518,
-      'moon_phase_angle' => 153.98900976200088,
+      'moon_age' => 13.227,
+      'moon_phase_angle' => 155.07934445498609,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-01-17 00:00:00' => 
+  '2022-01-17 09:00:00' =>
   array (
-    0 => '2022-01-17 00:00:00',
-    1 => 
+    0 => '2022-01-17 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 1,
       'day' => 17,
       'dayOfWeek' => 1,
       'dayOfYear' => 17,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1642345200,
-      'formatted' => '2022-01-17 00:00:00',
-      'timezone' => 
+      'timestamp' => 1642377600,
+      'formatted' => '2022-01-17 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -1218,132 +1104,16 @@ return array (
       'lunar_year' => 2021,
       'lunar_day' => 15,
       'is_leap_month' => false,
-      'moon_age' => 14.218077634926885,
-      'moon_phase_angle' => 164.8886571189139,
+      'moon_age' => 14.227,
+      'moon_phase_angle' => 165.99400321173243,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-01-18 00:00:00' => 
+  '2022-01-18 08:48:00' =>
   array (
-    0 => '2022-01-18 00:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 1,
-      'day' => 18,
-      'dayOfWeek' => 2,
-      'dayOfYear' => 18,
-      'hour' => 0,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1642431600,
-      'formatted' => '2022-01-18 00:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 7,
-      'misc_seasonal_node_text' => '土用',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '先負',
-      'six_weekday' => 4,
-      'weekday_text' => '火',
-      'month_text' => '睦月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '師走',
-      'lunar_month' => 12,
-      'lunar_year' => 2021,
-      'lunar_day' => 16,
-      'is_leap_month' => false,
-      'moon_age' => 15.215854540932924,
-      'moon_phase_angle' => 175.91963586425766,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2022-01-18 07:00:00' => 
-  array (
-    0 => '2022-01-18 07:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 1,
-      'day' => 18,
-      'dayOfWeek' => 2,
-      'dayOfYear' => 18,
-      'hour' => 7,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1642456800,
-      'formatted' => '2022-01-18 07:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 7,
-      'misc_seasonal_node_text' => '土用',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '先負',
-      'six_weekday' => 4,
-      'weekday_text' => '火',
-      'month_text' => '睦月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '師走',
-      'lunar_month' => 12,
-      'lunar_year' => 2021,
-      'lunar_day' => 16,
-      'is_leap_month' => false,
-      'moon_age' => 15.506934315897524,
-      'moon_phase_angle' => 179.1653461058537,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2022-01-18 08:00:00' => 
-  array (
-    0 => '2022-01-18 08:00:00',
-    1 => 
+    0 => '2022-01-18 08:48:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 1,
@@ -1351,12 +1121,12 @@ return array (
       'dayOfWeek' => 2,
       'dayOfYear' => 18,
       'hour' => 8,
-      'minute' => 0,
+      'minute' => 48,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1642460400,
-      'formatted' => '2022-01-18 08:00:00',
-      'timezone' => 
+      'timestamp' => 1642463280,
+      'formatted' => '2022-01-18 08:48:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -1392,16 +1162,16 @@ return array (
       'lunar_year' => 2021,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 15.54851922346279,
-      'moon_phase_angle' => 179.63012152483697,
+      'moon_age' => 15.21875,
+      'moon_phase_angle' => 176.95117566584707,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2022-01-18 09:00:00' => 
+  '2022-01-18 09:00:00' =>
   array (
     0 => '2022-01-18 09:00:00',
-    1 => 
+    1 =>
     array (
       'year' => 2022,
       'month' => 1,
@@ -1414,7 +1184,7 @@ return array (
       'micro' => 0,
       'timestamp' => 1642464000,
       'formatted' => '2022-01-18 09:00:00',
-      'timezone' => 
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -1450,87 +1220,29 @@ return array (
       'lunar_year' => 2021,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 15.590103565715253,
-      'moon_phase_angle' => 180.0951759172159,
+      'moon_age' => 15.227,
+      'moon_phase_angle' => 177.04388276472497,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2022-01-18 10:00:00' => 
+  '2022-01-19 09:00:00' =>
   array (
-    0 => '2022-01-18 10:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 1,
-      'day' => 18,
-      'dayOfWeek' => 2,
-      'dayOfYear' => 18,
-      'hour' => 10,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1642467600,
-      'formatted' => '2022-01-18 10:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 7,
-      'misc_seasonal_node_text' => '土用',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '先負',
-      'six_weekday' => 4,
-      'weekday_text' => '火',
-      'month_text' => '睦月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '師走',
-      'lunar_month' => 12,
-      'lunar_year' => 2021,
-      'lunar_day' => 16,
-      'is_leap_month' => false,
-      'moon_age' => 15.6316873957403,
-      'moon_phase_angle' => 180.5605103406571,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2022-01-19 00:00:00' => 
-  array (
-    0 => '2022-01-19 00:00:00',
-    1 => 
+    0 => '2022-01-19 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 1,
       'day' => 19,
       'dayOfWeek' => 3,
       'dayOfYear' => 19,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1642518000,
-      'formatted' => '2022-01-19 00:00:00',
-      'timezone' => 
+      'timestamp' => 1642550400,
+      'formatted' => '2022-01-19 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -1566,29 +1278,29 @@ return array (
       'lunar_year' => 2021,
       'lunar_day' => 17,
       'is_leap_month' => false,
-      'moon_age' => 16.213966097682714,
-      'moon_phase_angle' => 187.10512936540908,
+      'moon_age' => 16.227,
+      'moon_phase_angle' => 188.25038798300818,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-01-20 00:00:00' => 
+  '2022-01-20 09:00:00' =>
   array (
-    0 => '2022-01-20 00:00:00',
-    1 => 
+    0 => '2022-01-20 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 1,
       'day' => 20,
       'dayOfWeek' => 4,
       'dayOfYear' => 20,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1642604400,
-      'formatted' => '2022-01-20 00:00:00',
-      'timezone' => 
+      'timestamp' => 1642636800,
+      'formatted' => '2022-01-20 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -1624,29 +1336,29 @@ return array (
       'lunar_year' => 2021,
       'lunar_day' => 18,
       'is_leap_month' => false,
-      'moon_age' => 17.21243694378063,
-      'moon_phase_angle' => 198.45901681574725,
+      'moon_age' => 17.227,
+      'moon_phase_angle' => 199.62595712824012,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-01-21 00:00:00' => 
+  '2022-01-21 09:00:00' =>
   array (
-    0 => '2022-01-21 00:00:00',
-    1 => 
+    0 => '2022-01-21 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 1,
       'day' => 21,
       'dayOfWeek' => 5,
       'dayOfYear' => 21,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1642690800,
-      'formatted' => '2022-01-21 00:00:00',
-      'timezone' => 
+      'timestamp' => 1642723200,
+      'formatted' => '2022-01-21 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -1682,29 +1394,29 @@ return array (
       'lunar_year' => 2021,
       'lunar_day' => 19,
       'is_leap_month' => false,
-      'moon_age' => 18.211260003969073,
-      'moon_phase_angle' => 209.9897391223007,
+      'moon_age' => 18.227,
+      'moon_phase_angle' => 211.17857394653046,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-01-22 00:00:00' => 
+  '2022-01-22 09:00:00' =>
   array (
-    0 => '2022-01-22 00:00:00',
-    1 => 
+    0 => '2022-01-22 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 1,
       'day' => 22,
       'dayOfWeek' => 6,
       'dayOfYear' => 22,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1642777200,
-      'formatted' => '2022-01-22 00:00:00',
-      'timezone' => 
+      'timestamp' => 1642809600,
+      'formatted' => '2022-01-22 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -1740,29 +1452,29 @@ return array (
       'lunar_year' => 2021,
       'lunar_day' => 20,
       'is_leap_month' => false,
-      'moon_age' => 19.210477735847235,
-      'moon_phase_angle' => 221.70475119452857,
+      'moon_age' => 19.227,
+      'moon_phase_angle' => 222.91640600790328,
       'moon_phase' => 5,
       'moon_phase_text' => '十六夜',
     ),
   ),
-  '2022-01-23 00:00:00' => 
+  '2022-01-23 09:00:00' =>
   array (
-    0 => '2022-01-23 00:00:00',
-    1 => 
+    0 => '2022-01-23 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 1,
       'day' => 23,
       'dayOfWeek' => 0,
       'dayOfYear' => 23,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1642863600,
-      'formatted' => '2022-01-23 00:00:00',
-      'timezone' => 
+      'timestamp' => 1642896000,
+      'formatted' => '2022-01-23 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -1798,29 +1510,29 @@ return array (
       'lunar_year' => 2021,
       'lunar_day' => 21,
       'is_leap_month' => false,
-      'moon_age' => 20.2100713243708,
-      'moon_phase_angle' => 233.6146473312083,
+      'moon_age' => 20.227,
+      'moon_phase_angle' => 234.85134354511965,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-01-24 00:00:00' => 
+  '2022-01-24 09:00:00' =>
   array (
-    0 => '2022-01-24 00:00:00',
-    1 => 
+    0 => '2022-01-24 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 1,
       'day' => 24,
       'dayOfWeek' => 1,
       'dayOfYear' => 24,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1642950000,
-      'formatted' => '2022-01-24 00:00:00',
-      'timezone' => 
+      'timestamp' => 1642982400,
+      'formatted' => '2022-01-24 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -1856,29 +1568,29 @@ return array (
       'lunar_year' => 2021,
       'lunar_day' => 22,
       'is_leap_month' => false,
-      'moon_age' => 21.21010079421103,
-      'moon_phase_angle' => 245.73586925004915,
+      'moon_age' => 21.227,
+      'moon_phase_angle' => 247.00074148671575,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-01-25 00:00:00' => 
+  '2022-01-25 09:00:00' =>
   array (
-    0 => '2022-01-25 00:00:00',
-    1 => 
+    0 => '2022-01-25 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 1,
       'day' => 25,
       'dayOfWeek' => 2,
       'dayOfYear' => 25,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1643036400,
-      'formatted' => '2022-01-25 00:00:00',
-      'timezone' => 
+      'timestamp' => 1643068800,
+      'formatted' => '2022-01-25 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -1914,29 +1626,29 @@ return array (
       'lunar_year' => 2021,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 22.210611948743463,
-      'moon_phase_angle' => 258.09094887381127,
+      'moon_age' => 22.227,
+      'moon_phase_angle' => 259.3871030482579,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2022-01-25 23:00:00' => 
+  '2022-01-25 22:41:00' =>
   array (
-    0 => '2022-01-25 23:00:00',
-    1 => 
+    0 => '2022-01-25 22:41:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 1,
       'day' => 25,
       'dayOfWeek' => 2,
       'dayOfYear' => 25,
-      'hour' => 23,
-      'minute' => 0,
+      'hour' => 22,
+      'minute' => 41,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1643119200,
-      'formatted' => '2022-01-25 23:00:00',
-      'timezone' => 
+      'timestamp' => 1643118060,
+      'formatted' => '2022-01-25 22:41:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -1972,29 +1684,29 @@ return array (
       'lunar_year' => 2021,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 23.169920732732862,
-      'moon_phase_angle' => 270.17438585232003,
+      'moon_age' => 22.79722222222222,
+      'moon_phase_angle' => 266.5646944159362,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2022-01-26 00:00:00' => 
+  '2022-01-26 09:00:00' =>
   array (
-    0 => '2022-01-26 00:00:00',
-    1 => 
+    0 => '2022-01-26 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 1,
       'day' => 26,
       'dayOfWeek' => 3,
       'dayOfYear' => 26,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1643122800,
-      'formatted' => '2022-01-26 00:00:00',
-      'timezone' => 
+      'timestamp' => 1643155200,
+      'formatted' => '2022-01-26 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -2030,29 +1742,29 @@ return array (
       'lunar_year' => 2021,
       'lunar_day' => 24,
       'is_leap_month' => false,
-      'moon_age' => 23.21164445579052,
-      'moon_phase_angle' => 270.7054892800801,
+      'moon_age' => 23.227,
+      'moon_phase_angle' => 272.03525815035294,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-01-27 00:00:00' => 
+  '2022-01-27 09:00:00' =>
   array (
-    0 => '2022-01-27 00:00:00',
-    1 => 
+    0 => '2022-01-27 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 1,
       'day' => 27,
       'dayOfWeek' => 4,
       'dayOfYear' => 27,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1643209200,
-      'formatted' => '2022-01-27 00:00:00',
-      'timezone' => 
+      'timestamp' => 1643241600,
+      'formatted' => '2022-01-27 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -2088,29 +1800,29 @@ return array (
       'lunar_year' => 2021,
       'lunar_day' => 25,
       'is_leap_month' => false,
-      'moon_age' => 24.213254902046174,
-      'moon_phase_angle' => 283.6015373735896,
+      'moon_age' => 24.227,
+      'moon_phase_angle' => 284.9661549048114,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-01-28 00:00:00' => 
+  '2022-01-28 09:00:00' =>
   array (
-    0 => '2022-01-28 00:00:00',
-    1 => 
+    0 => '2022-01-28 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 1,
       'day' => 28,
       'dayOfWeek' => 5,
       'dayOfYear' => 28,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1643295600,
-      'formatted' => '2022-01-28 00:00:00',
-      'timezone' => 
+      'timestamp' => 1643328000,
+      'formatted' => '2022-01-28 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -2146,29 +1858,29 @@ return array (
       'lunar_year' => 2021,
       'lunar_day' => 26,
       'is_leap_month' => false,
-      'moon_age' => 25.215448648668826,
-      'moon_phase_angle' => 296.78772438291185,
+      'moon_age' => 25.227,
+      'moon_phase_angle' => 298.1867970435616,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-01-29 00:00:00' => 
+  '2022-01-29 09:00:00' =>
   array (
-    0 => '2022-01-29 00:00:00',
-    1 => 
+    0 => '2022-01-29 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 1,
       'day' => 29,
       'dayOfWeek' => 6,
       'dayOfYear' => 29,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1643382000,
-      'formatted' => '2022-01-29 00:00:00',
-      'timezone' => 
+      'timestamp' => 1643414400,
+      'formatted' => '2022-01-29 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -2204,29 +1916,29 @@ return array (
       'lunar_year' => 2021,
       'lunar_day' => 27,
       'is_leap_month' => false,
-      'moon_age' => 26.218199078459293,
-      'moon_phase_angle' => 310.24769198685163,
+      'moon_age' => 26.227,
+      'moon_phase_angle' => 311.677804767258,
       'moon_phase' => 7,
       'moon_phase_text' => '有明',
     ),
   ),
-  '2022-01-30 00:00:00' => 
+  '2022-01-30 09:00:00' =>
   array (
-    0 => '2022-01-30 00:00:00',
-    1 => 
+    0 => '2022-01-30 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 1,
       'day' => 30,
       'dayOfWeek' => 0,
       'dayOfYear' => 30,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1643468400,
-      'formatted' => '2022-01-30 00:00:00',
-      'timezone' => 
+      'timestamp' => 1643500800,
+      'formatted' => '2022-01-30 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -2262,29 +1974,29 @@ return array (
       'lunar_year' => 2021,
       'lunar_day' => 28,
       'is_leap_month' => false,
-      'moon_age' => 26.99592744480291,
-      'moon_phase_angle' => 323.92987341545063,
+      'moon_age' => 27.227,
+      'moon_phase_angle' => 325.3827567678667,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-01-31 00:00:00' => 
+  '2022-01-31 09:00:00' =>
   array (
-    0 => '2022-01-31 00:00:00',
-    1 => 
+    0 => '2022-01-31 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 1,
       'day' => 31,
       'dayOfWeek' => 1,
       'dayOfYear' => 31,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1643554800,
-      'formatted' => '2022-01-31 00:00:00',
-      'timezone' => 
+      'timestamp' => 1643587200,
+      'formatted' => '2022-01-31 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -2320,29 +2032,29 @@ return array (
       'lunar_year' => 2021,
       'lunar_day' => 29,
       'is_leap_month' => false,
-      'moon_age' => 28.130509112639665,
-      'moon_phase_angle' => 337.7430535140956,
+      'moon_age' => 28.227,
+      'moon_phase_angle' => 339.20485033320347,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-02-01 00:00:00' => 
+  '2022-02-01 09:00:00' =>
   array (
-    0 => '2022-02-01 00:00:00',
-    1 => 
+    0 => '2022-02-01 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 2,
       'day' => 1,
       'dayOfWeek' => 2,
       'dayOfYear' => 32,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1643641200,
-      'formatted' => '2022-02-01 00:00:00',
-      'timezone' => 
+      'timestamp' => 1643673600,
+      'formatted' => '2022-02-01 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -2378,74 +2090,16 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 29.2612378500908,
-      'moon_phase_angle' => 351.56193065204053,
+      'moon_age' => 29.227,
+      'moon_phase_angle' => 353.01478860778417,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2022-02-01 13:00:00' => 
+  '2022-02-01 14:46:00' =>
   array (
-    0 => '2022-02-01 13:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 2,
-      'day' => 1,
-      'dayOfWeek' => 2,
-      'dayOfYear' => 32,
-      'hour' => 13,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1643688000,
-      'formatted' => '2022-02-01 13:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 7,
-      'misc_seasonal_node_text' => '土用',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '先勝',
-      'six_weekday' => 2,
-      'weekday_text' => '火',
-      'month_text' => '如月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '睦月',
-      'lunar_month' => 1,
-      'lunar_year' => 2022,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.2974772141315043,
-      'moon_phase_angle' => 358.99909154283375,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2022-02-01 14:00:00' => 
-  array (
-    0 => '2022-02-01 14:00:00',
-    1 => 
+    0 => '2022-02-01 14:46:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 2,
@@ -2453,12 +2107,12 @@ return array (
       'dayOfWeek' => 2,
       'dayOfYear' => 32,
       'hour' => 14,
-      'minute' => 0,
+      'minute' => 46,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1643691600,
-      'formatted' => '2022-02-01 14:00:00',
-      'timezone' => 
+      'timestamp' => 1643694360,
+      'formatted' => '2022-02-01 14:46:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -2494,145 +2148,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.33856847370043397,
-      'moon_phase_angle' => 359.5688553206929,
+      'moon_age' => 0.0,
+      'moon_phase_angle' => 356.31523615070483,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2022-02-01 15:00:00' => 
+  '2022-02-02 09:00:00' =>
   array (
-    0 => '2022-02-01 15:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 2,
-      'day' => 1,
-      'dayOfWeek' => 2,
-      'dayOfYear' => 32,
-      'hour' => 15,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1643695200,
-      'formatted' => '2022-02-01 15:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 7,
-      'misc_seasonal_node_text' => '土用',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '先勝',
-      'six_weekday' => 2,
-      'weekday_text' => '火',
-      'month_text' => '如月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '睦月',
-      'lunar_month' => 1,
-      'lunar_year' => 2022,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.3796598482877016,
-      'moon_phase_angle' => 0.13823618559848683,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2022-02-01 16:00:00' => 
-  array (
-    0 => '2022-02-01 16:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 2,
-      'day' => 1,
-      'dayOfWeek' => 2,
-      'dayOfYear' => 32,
-      'hour' => 16,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1643698800,
-      'formatted' => '2022-02-01 16:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 7,
-      'misc_seasonal_node_text' => '土用',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '先勝',
-      'six_weekday' => 2,
-      'weekday_text' => '火',
-      'month_text' => '如月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '睦月',
-      'lunar_month' => 1,
-      'lunar_year' => 2022,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.4207506310194731,
-      'moon_phase_angle' => 0.7072242398754724,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2022-02-02 00:00:00' => 
-  array (
-    0 => '2022-02-02 00:00:00',
-    1 => 
+    0 => '2022-02-02 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 2,
       'day' => 2,
       'dayOfWeek' => 3,
       'dayOfYear' => 33,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1643727600,
-      'formatted' => '2022-02-02 00:00:00',
-      'timezone' => 
+      'timestamp' => 1643760000,
+      'formatted' => '2022-02-02 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -2668,29 +2206,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 2,
       'is_leap_month' => false,
-      'moon_age' => 0.74970170436427,
-      'moon_phase_angle' => 5.243823076295882,
+      'moon_age' => 0.76,
+      'moon_phase_angle' => 6.669416634660763,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-02-03 00:00:00' => 
+  '2022-02-03 09:00:00' =>
   array (
-    0 => '2022-02-03 00:00:00',
-    1 => 
+    0 => '2022-02-03 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 2,
       'day' => 3,
       'dayOfWeek' => 4,
       'dayOfYear' => 34,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1643814000,
-      'formatted' => '2022-02-03 00:00:00',
-      'timezone' => 
+      'timestamp' => 1643846400,
+      'formatted' => '2022-02-03 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -2726,29 +2264,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 3,
       'is_leap_month' => false,
-      'moon_age' => 1.7387375049293041,
-      'moon_phase_angle' => 18.652686051372882,
+      'moon_age' => 1.76,
+      'moon_phase_angle' => 20.035803417323564,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-02-04 00:00:00' => 
+  '2022-02-04 09:00:00' =>
   array (
-    0 => '2022-02-04 00:00:00',
-    1 => 
+    0 => '2022-02-04 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 2,
       'day' => 4,
       'dayOfWeek' => 5,
       'dayOfYear' => 35,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1643900400,
-      'formatted' => '2022-02-04 00:00:00',
-      'timezone' => 
+      'timestamp' => 1643932800,
+      'formatted' => '2022-02-04 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -2784,29 +2322,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 4,
       'is_leap_month' => false,
-      'moon_age' => 2.7318219407461584,
-      'moon_phase_angle' => 31.682323730023768,
+      'moon_age' => 2.76,
+      'moon_phase_angle' => 33.013109136993876,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-02-05 00:00:00' => 
+  '2022-02-05 09:00:00' =>
   array (
-    0 => '2022-02-05 00:00:00',
-    1 => 
+    0 => '2022-02-05 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 2,
       'day' => 5,
       'dayOfWeek' => 6,
       'dayOfYear' => 36,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1643986800,
-      'formatted' => '2022-02-05 00:00:00',
-      'timezone' => 
+      'timestamp' => 1644019200,
+      'formatted' => '2022-02-05 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -2842,29 +2380,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 5,
       'is_leap_month' => false,
-      'moon_age' => 3.729501858353615,
-      'moon_phase_angle' => 44.2713633007653,
+      'moon_age' => 3.76,
+      'moon_phase_angle' => 45.54592616710346,
       'moon_phase' => 1,
       'moon_phase_text' => '三日月',
     ),
   ),
-  '2022-02-06 00:00:00' => 
+  '2022-02-06 09:00:00' =>
   array (
-    0 => '2022-02-06 00:00:00',
-    1 => 
+    0 => '2022-02-06 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 2,
       'day' => 6,
       'dayOfWeek' => 0,
       'dayOfYear' => 37,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1644073200,
-      'formatted' => '2022-02-06 00:00:00',
-      'timezone' => 
+      'timestamp' => 1644105600,
+      'formatted' => '2022-02-06 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -2900,29 +2438,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 6,
       'is_leap_month' => false,
-      'moon_age' => 4.73174459207803,
-      'moon_phase_angle' => 56.406875661583456,
+      'moon_age' => 4.76,
+      'moon_phase_angle' => 57.62682785109263,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-02-07 00:00:00' => 
+  '2022-02-07 09:00:00' =>
   array (
-    0 => '2022-02-07 00:00:00',
-    1 => 
+    0 => '2022-02-07 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 2,
       'day' => 7,
       'dayOfWeek' => 1,
       'dayOfYear' => 38,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1644159600,
-      'formatted' => '2022-02-07 00:00:00',
-      'timezone' => 
+      'timestamp' => 1644192000,
+      'formatted' => '2022-02-07 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -2958,29 +2496,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 7,
       'is_leap_month' => false,
-      'moon_age' => 5.738099052105099,
-      'moon_phase_angle' => 68.11860091210087,
+      'moon_age' => 5.76,
+      'moon_phase_angle' => 69.29004067337559,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-02-08 00:00:00' => 
+  '2022-02-08 09:00:00' =>
   array (
-    0 => '2022-02-08 00:00:00',
-    1 => 
+    0 => '2022-02-08 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 2,
       'day' => 8,
       'dayOfWeek' => 2,
       'dayOfYear' => 39,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1644246000,
-      'formatted' => '2022-02-08 00:00:00',
-      'timezone' => 
+      'timestamp' => 1644278400,
+      'formatted' => '2022-02-08 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -3016,29 +2554,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 6.7477735336869955,
-      'moon_phase_angle' => 79.46819552171979,
+      'moon_age' => 6.76,
+      'moon_phase_angle' => 80.6003972011626,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2022-02-08 23:00:00' => 
+  '2022-02-08 22:50:00' =>
   array (
-    0 => '2022-02-08 23:00:00',
-    1 => 
+    0 => '2022-02-08 22:50:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 2,
       'day' => 8,
       'dayOfWeek' => 2,
       'dayOfYear' => 39,
-      'hour' => 23,
-      'minute' => 0,
+      'hour' => 22,
+      'minute' => 50,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1644328800,
-      'formatted' => '2022-02-08 23:00:00',
-      'timezone' => 
+      'timestamp' => 1644328200,
+      'formatted' => '2022-02-08 22:50:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -3074,29 +2612,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 7.717582114972174,
-      'moon_phase_angle' => 90.08073471330277,
+      'moon_age' => 7.336111111111111,
+      'moon_phase_angle' => 86.99143397747468,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2022-02-09 00:00:00' => 
+  '2022-02-09 09:00:00' =>
   array (
-    0 => '2022-02-09 00:00:00',
-    1 => 
+    0 => '2022-02-09 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 2,
       'day' => 9,
       'dayOfWeek' => 3,
       'dayOfYear' => 40,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1644332400,
-      'formatted' => '2022-02-09 00:00:00',
-      'timezone' => 
+      'timestamp' => 1644364800,
+      'formatted' => '2022-02-09 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -3132,29 +2670,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 9,
       'is_leap_month' => false,
-      'moon_age' => 7.759787929710001,
-      'moon_phase_angle' => 90.53754311853822,
+      'moon_age' => 7.76,
+      'moon_phase_angle' => 91.64155497988452,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-02-10 00:00:00' => 
+  '2022-02-10 09:00:00' =>
   array (
-    0 => '2022-02-10 00:00:00',
-    1 => 
+    0 => '2022-02-10 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 2,
       'day' => 10,
       'dayOfWeek' => 4,
       'dayOfYear' => 41,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1644418800,
-      'formatted' => '2022-02-10 00:00:00',
-      'timezone' => 
+      'timestamp' => 1644451200,
+      'formatted' => '2022-02-10 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -3190,29 +2728,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 10,
       'is_leap_month' => false,
-      'moon_age' => 8.758542736060917,
-      'moon_phase_angle' => 101.41846177436491,
+      'moon_age' => 8.76,
+      'moon_phase_angle' => 102.50585481035023,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-02-11 00:00:00' => 
+  '2022-02-11 09:00:00' =>
   array (
-    0 => '2022-02-11 00:00:00',
-    1 => 
+    0 => '2022-02-11 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 2,
       'day' => 11,
       'dayOfWeek' => 5,
       'dayOfYear' => 42,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1644505200,
-      'formatted' => '2022-02-11 00:00:00',
-      'timezone' => 
+      'timestamp' => 1644537600,
+      'formatted' => '2022-02-11 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -3248,29 +2786,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 11,
       'is_leap_month' => false,
-      'moon_age' => 9.756889315787703,
-      'moon_phase_angle' => 112.20452313245752,
+      'moon_age' => 9.76,
+      'moon_phase_angle' => 113.28647351557495,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-02-12 00:00:00' => 
+  '2022-02-12 09:00:00' =>
   array (
-    0 => '2022-02-12 00:00:00',
-    1 => 
+    0 => '2022-02-12 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 2,
       'day' => 12,
       'dayOfWeek' => 6,
       'dayOfYear' => 43,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1644591600,
-      'formatted' => '2022-02-12 00:00:00',
-      'timezone' => 
+      'timestamp' => 1644624000,
+      'formatted' => '2022-02-12 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -3306,29 +2844,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 12,
       'is_leap_month' => false,
-      'moon_age' => 10.755292376503348,
-      'moon_phase_angle' => 122.98475451523802,
+      'moon_age' => 10.76,
+      'moon_phase_angle' => 124.071479770145,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-02-13 00:00:00' => 
+  '2022-02-13 09:00:00' =>
   array (
-    0 => '2022-02-13 00:00:00',
-    1 => 
+    0 => '2022-02-13 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 2,
       'day' => 13,
       'dayOfWeek' => 0,
       'dayOfYear' => 44,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1644678000,
-      'formatted' => '2022-02-13 00:00:00',
-      'timezone' => 
+      'timestamp' => 1644710400,
+      'formatted' => '2022-02-13 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -3364,29 +2902,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 13,
       'is_leap_month' => false,
-      'moon_age' => 11.753844785504043,
-      'moon_phase_angle' => 133.83869500621884,
+      'moon_age' => 11.76,
+      'moon_phase_angle' => 134.9391062447845,
       'moon_phase' => 3,
       'moon_phase_text' => '十三夜',
     ),
   ),
-  '2022-02-14 00:00:00' => 
+  '2022-02-14 09:00:00' =>
   array (
-    0 => '2022-02-14 00:00:00',
-    1 => 
+    0 => '2022-02-14 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 2,
       'day' => 14,
       'dayOfWeek' => 1,
       'dayOfYear' => 45,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1644764400,
-      'formatted' => '2022-02-14 00:00:00',
-      'timezone' => 
+      'timestamp' => 1644796800,
+      'formatted' => '2022-02-14 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -3422,29 +2960,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 14,
       'is_leap_month' => false,
-      'moon_age' => 12.752590962219983,
-      'moon_phase_angle' => 144.83239925307635,
+      'moon_age' => 12.76,
+      'moon_phase_angle' => 145.95376838114586,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-02-15 00:00:00' => 
+  '2022-02-15 09:00:00' =>
   array (
-    0 => '2022-02-15 00:00:00',
-    1 => 
+    0 => '2022-02-15 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 2,
       'day' => 15,
       'dayOfWeek' => 2,
       'dayOfYear' => 46,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1644850800,
-      'formatted' => '2022-02-15 00:00:00',
-      'timezone' => 
+      'timestamp' => 1644883200,
+      'formatted' => '2022-02-15 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -3480,29 +3018,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 15,
       'is_leap_month' => false,
-      'moon_age' => 13.751588884275407,
-      'moon_phase_angle' => 156.0153201890284,
+      'moon_age' => 13.76,
+      'moon_phase_angle' => 157.16284845351345,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-02-16 00:00:00' => 
+  '2022-02-16 09:00:00' =>
   array (
-    0 => '2022-02-16 00:00:00',
-    1 => 
+    0 => '2022-02-16 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 2,
       'day' => 16,
       'dayOfWeek' => 3,
       'dayOfYear' => 47,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1644937200,
-      'formatted' => '2022-02-16 00:00:00',
-      'timezone' => 
+      'timestamp' => 1644969600,
+      'formatted' => '2022-02-16 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -3538,74 +3076,16 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 14.7508360510692,
-      'moon_phase_angle' => 167.41838560300013,
+      'moon_age' => 14.76,
+      'moon_phase_angle' => 168.59478505086494,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-02-17 00:00:00' => 
+  '2022-02-17 01:57:00' =>
   array (
-    0 => '2022-02-17 00:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 2,
-      'day' => 17,
-      'dayOfWeek' => 4,
-      'dayOfYear' => 48,
-      'hour' => 0,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1645023600,
-      'formatted' => '2022-02-17 00:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '大安',
-      'six_weekday' => 0,
-      'weekday_text' => '木',
-      'month_text' => '如月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '睦月',
-      'lunar_month' => 1,
-      'lunar_year' => 2022,
-      'lunar_day' => 17,
-      'is_leap_month' => false,
-      'moon_age' => 15.75034013390541,
-      'moon_phase_angle' => 179.05384801704568,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2022-02-17 01:00:00' => 
-  array (
-    0 => '2022-02-17 01:00:00',
-    1 => 
+    0 => '2022-02-17 01:57:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 2,
@@ -3613,12 +3093,12 @@ return array (
       'dayOfWeek' => 4,
       'dayOfYear' => 48,
       'hour' => 1,
-      'minute' => 0,
+      'minute' => 57,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1645027200,
-      'formatted' => '2022-02-17 01:00:00',
-      'timezone' => 
+      'timestamp' => 1645030620,
+      'formatted' => '2022-02-17 01:57:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -3654,29 +3134,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 17,
       'is_leap_month' => false,
-      'moon_age' => 15.792000645305961,
-      'moon_phase_angle' => 179.54368956204186,
+      'moon_age' => 15.465972222222222,
+      'moon_phase_angle' => 176.80880867317038,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2022-02-17 02:00:00' => 
+  '2022-02-17 09:00:00' =>
   array (
-    0 => '2022-02-17 02:00:00',
-    1 => 
+    0 => '2022-02-17 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 2,
       'day' => 17,
       'dayOfWeek' => 4,
       'dayOfYear' => 48,
-      'hour' => 2,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1645030800,
-      'formatted' => '2022-02-17 02:00:00',
-      'timezone' => 
+      'timestamp' => 1645056000,
+      'formatted' => '2022-02-17 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -3712,87 +3192,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 17,
       'is_leap_month' => false,
-      'moon_age' => 15.833651274908334,
-      'moon_phase_angle' => 180.03392809515643,
+      'moon_age' => 15.76,
+      'moon_phase_angle' => 180.25925557279274,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2022-02-17 03:00:00' => 
+  '2022-02-18 09:00:00' =>
   array (
-    0 => '2022-02-17 03:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 2,
-      'day' => 17,
-      'dayOfWeek' => 4,
-      'dayOfYear' => 48,
-      'hour' => 3,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1645034400,
-      'formatted' => '2022-02-17 03:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '大安',
-      'six_weekday' => 0,
-      'weekday_text' => '木',
-      'month_text' => '如月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '睦月',
-      'lunar_month' => 1,
-      'lunar_year' => 2022,
-      'lunar_day' => 17,
-      'is_leap_month' => false,
-      'moon_age' => 15.875296954531223,
-      'moon_phase_angle' => 180.52456270847364,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2022-02-18 00:00:00' => 
-  array (
-    0 => '2022-02-18 00:00:00',
-    1 => 
+    0 => '2022-02-18 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 2,
       'day' => 18,
       'dayOfWeek' => 5,
       'dayOfYear' => 49,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1645110000,
-      'formatted' => '2022-02-18 00:00:00',
-      'timezone' => 
+      'timestamp' => 1645142400,
+      'formatted' => '2022-02-18 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -3828,29 +3250,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 18,
       'is_leap_month' => false,
-      'moon_age' => 16.75008896831423,
-      'moon_phase_angle' => 190.9174566184106,
+      'moon_age' => 16.76,
+      'moon_phase_angle' => 192.14996393480146,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-02-19 00:00:00' => 
+  '2022-02-19 09:00:00' =>
   array (
-    0 => '2022-02-19 00:00:00',
-    1 => 
+    0 => '2022-02-19 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 2,
       'day' => 19,
       'dayOfWeek' => 6,
       'dayOfYear' => 50,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1645196400,
-      'formatted' => '2022-02-19 00:00:00',
-      'timezone' => 
+      'timestamp' => 1645228800,
+      'formatted' => '2022-02-19 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -3886,29 +3308,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 19,
       'is_leap_month' => false,
-      'moon_age' => 17.750043492764235,
-      'moon_phase_angle' => 202.9930644754679,
+      'moon_age' => 17.76,
+      'moon_phase_angle' => 204.24980129082283,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-02-20 00:00:00' => 
+  '2022-02-20 09:00:00' =>
   array (
-    0 => '2022-02-20 00:00:00',
-    1 => 
+    0 => '2022-02-20 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 2,
       'day' => 20,
       'dayOfWeek' => 0,
       'dayOfYear' => 51,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1645282800,
-      'formatted' => '2022-02-20 00:00:00',
-      'timezone' => 
+      'timestamp' => 1645315200,
+      'formatted' => '2022-02-20 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -3944,29 +3366,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 20,
       'is_leap_month' => false,
-      'moon_age' => 18.750194931868464,
-      'moon_phase_angle' => 215.25901977278622,
+      'moon_age' => 18.76,
+      'moon_phase_angle' => 216.53732548765151,
       'moon_phase' => 5,
       'moon_phase_text' => '十六夜',
     ),
   ),
-  '2022-02-21 00:00:00' => 
+  '2022-02-21 09:00:00' =>
   array (
-    0 => '2022-02-21 00:00:00',
-    1 => 
+    0 => '2022-02-21 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 2,
       'day' => 21,
       'dayOfWeek' => 1,
       'dayOfYear' => 52,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1645369200,
-      'formatted' => '2022-02-21 00:00:00',
-      'timezone' => 
+      'timestamp' => 1645401600,
+      'formatted' => '2022-02-21 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -4002,29 +3424,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 21,
       'is_leap_month' => false,
-      'moon_age' => 19.750521152745932,
-      'moon_phase_angle' => 227.6948994197041,
+      'moon_age' => 19.76,
+      'moon_phase_angle' => 228.99303573898223,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-02-22 00:00:00' => 
+  '2022-02-22 09:00:00' =>
   array (
-    0 => '2022-02-22 00:00:00',
-    1 => 
+    0 => '2022-02-22 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 2,
       'day' => 22,
       'dayOfWeek' => 2,
       'dayOfYear' => 53,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1645455600,
-      'formatted' => '2022-02-22 00:00:00',
-      'timezone' => 
+      'timestamp' => 1645488000,
+      'formatted' => '2022-02-22 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -4060,29 +3482,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 22,
       'is_leap_month' => false,
-      'moon_age' => 20.75100372498855,
-      'moon_phase_angle' => 240.28672782195764,
+      'moon_age' => 20.76,
+      'moon_phase_angle' => 241.60392655590496,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-02-23 00:00:00' => 
+  '2022-02-23 09:00:00' =>
   array (
-    0 => '2022-02-23 00:00:00',
-    1 => 
+    0 => '2022-02-23 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 2,
       'day' => 23,
       'dayOfWeek' => 3,
       'dayOfYear' => 54,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1645542000,
-      'formatted' => '2022-02-23 00:00:00',
-      'timezone' => 
+      'timestamp' => 1645574400,
+      'formatted' => '2022-02-23 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -4118,29 +3540,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 21.751650256104767,
-      'moon_phase_angle' => 253.02902169890757,
+      'moon_age' => 21.76,
+      'moon_phase_angle' => 254.36509592349617,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-02-24 00:00:00' => 
+  '2022-02-24 07:32:00' =>
   array (
-    0 => '2022-02-24 00:00:00',
-    1 => 
+    0 => '2022-02-24 07:32:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 2,
       'day' => 24,
       'dayOfWeek' => 4,
       'dayOfYear' => 55,
-      'hour' => 0,
-      'minute' => 0,
+      'hour' => 7,
+      'minute' => 32,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1645628400,
-      'formatted' => '2022-02-24 00:00:00',
-      'timezone' => 
+      'timestamp' => 1645655520,
+      'formatted' => '2022-02-24 07:32:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -4176,29 +3598,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 24,
       'is_leap_month' => false,
-      'moon_age' => 22.752478730864823,
-      'moon_phase_angle' => 265.92274323454967,
+      'moon_age' => 22.698611111111113,
+      'moon_phase_angle' => 266.4841065644617,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2022-02-24 08:00:00' => 
+  '2022-02-24 09:00:00' =>
   array (
-    0 => '2022-02-24 08:00:00',
-    1 => 
+    0 => '2022-02-24 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 2,
       'day' => 24,
       'dayOfWeek' => 4,
       'dayOfYear' => 55,
-      'hour' => 8,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1645657200,
-      'formatted' => '2022-02-24 08:00:00',
-      'timezone' => 
+      'timestamp' => 1645660800,
+      'formatted' => '2022-02-24 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -4234,29 +3656,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 24,
       'is_leap_month' => false,
-      'moon_age' => 23.086119348183274,
-      'moon_phase_angle' => 270.25468783992494,
+      'moon_age' => 22.76,
+      'moon_phase_angle' => 267.27758576972235,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2022-02-25 00:00:00' => 
+  '2022-02-25 09:00:00' =>
   array (
-    0 => '2022-02-25 00:00:00',
-    1 => 
+    0 => '2022-02-25 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 2,
       'day' => 25,
       'dayOfWeek' => 5,
       'dayOfYear' => 56,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1645714800,
-      'formatted' => '2022-02-25 00:00:00',
-      'timezone' => 
+      'timestamp' => 1645747200,
+      'formatted' => '2022-02-25 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -4292,29 +3714,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 25,
       'is_leap_month' => false,
-      'moon_age' => 23.75347051071003,
-      'moon_phase_angle' => 278.96926950898614,
+      'moon_age' => 23.76,
+      'moon_phase_angle' => 280.342275157608,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-02-26 00:00:00' => 
+  '2022-02-26 09:00:00' =>
   array (
-    0 => '2022-02-26 00:00:00',
-    1 => 
+    0 => '2022-02-26 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 2,
       'day' => 26,
       'dayOfWeek' => 6,
       'dayOfYear' => 57,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1645801200,
-      'formatted' => '2022-02-26 00:00:00',
-      'timezone' => 
+      'timestamp' => 1645833600,
+      'formatted' => '2022-02-26 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -4350,29 +3772,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 26,
       'is_leap_month' => false,
-      'moon_age' => 24.75464549474418,
-      'moon_phase_angle' => 292.16157749249425,
+      'moon_age' => 24.76,
+      'moon_phase_angle' => 293.55078347888957,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-02-27 00:00:00' => 
+  '2022-02-27 09:00:00' =>
   array (
-    0 => '2022-02-27 00:00:00',
-    1 => 
+    0 => '2022-02-27 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 2,
       'day' => 27,
       'dayOfWeek' => 0,
       'dayOfYear' => 58,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1645887600,
-      'formatted' => '2022-02-27 00:00:00',
-      'timezone' => 
+      'timestamp' => 1645920000,
+      'formatted' => '2022-02-27 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -4408,29 +3830,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 27,
       'is_leap_month' => false,
-      'moon_age' => 25.755959689617157,
-      'moon_phase_angle' => 305.4748949708074,
+      'moon_age' => 25.76,
+      'moon_phase_angle' => 306.87585700712174,
       'moon_phase' => 7,
       'moon_phase_text' => '有明',
     ),
   ),
-  '2022-02-28 00:00:00' => 
+  '2022-02-28 09:00:00' =>
   array (
-    0 => '2022-02-28 00:00:00',
-    1 => 
+    0 => '2022-02-28 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 2,
       'day' => 28,
       'dayOfWeek' => 1,
       'dayOfYear' => 59,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1645974000,
-      'formatted' => '2022-02-28 00:00:00',
-      'timezone' => 
+      'timestamp' => 1646006400,
+      'formatted' => '2022-02-28 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -4466,29 +3888,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 28,
       'is_leap_month' => false,
-      'moon_age' => 26.567947658388256,
-      'moon_phase_angle' => 318.8598986557415,
+      'moon_age' => 26.76,
+      'moon_phase_angle' => 320.2648577223285,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-03-01 00:00:00' => 
+  '2022-03-01 09:00:00' =>
   array (
-    0 => '2022-03-01 00:00:00',
-    1 => 
+    0 => '2022-03-01 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 3,
       'day' => 1,
       'dayOfWeek' => 2,
       'dayOfYear' => 60,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1646060400,
-      'formatted' => '2022-03-01 00:00:00',
-      'timezone' => 
+      'timestamp' => 1646092800,
+      'formatted' => '2022-03-01 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -4524,29 +3946,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 29,
       'is_leap_month' => false,
-      'moon_age' => 27.663612778442292,
-      'moon_phase_angle' => 332.2416642423162,
+      'moon_age' => 27.76,
+      'moon_phase_angle' => 333.6397558035001,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-03-02 00:00:00' => 
+  '2022-03-02 09:00:00' =>
   array (
-    0 => '2022-03-02 00:00:00',
-    1 => 
+    0 => '2022-03-02 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 3,
       'day' => 2,
       'dayOfWeek' => 3,
       'dayOfYear' => 61,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1646146800,
-      'formatted' => '2022-03-02 00:00:00',
-      'timezone' => 
+      'timestamp' => 1646179200,
+      'formatted' => '2022-03-02 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -4582,132 +4004,16 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 30,
       'is_leap_month' => false,
-      'moon_age' => 28.748230240451484,
-      'moon_phase_angle' => 345.5262576209932,
+      'moon_age' => 28.76,
+      'moon_phase_angle' => 346.90504739256113,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-03-03 00:00:00' => 
+  '2022-03-03 02:35:00' =>
   array (
-    0 => '2022-03-03 00:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 3,
-      'day' => 3,
-      'dayOfWeek' => 4,
-      'dayOfYear' => 62,
-      'hour' => 0,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1646233200,
-      'formatted' => '2022-03-03 00:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 2,
-      'solar_seasonal_festival_name' => '上巳の節句',
-      'solar_seasonal_festival_alias' => '桃の節句',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '友引',
-      'six_weekday' => 3,
-      'weekday_text' => '木',
-      'month_text' => '弥生',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '如月',
-      'lunar_month' => 2,
-      'lunar_year' => 2022,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.26700086472555995,
-      'moon_phase_angle' => 358.6143002567926,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2022-03-03 01:00:00' => 
-  array (
-    0 => '2022-03-03 01:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 3,
-      'day' => 3,
-      'dayOfWeek' => 4,
-      'dayOfYear' => 62,
-      'hour' => 1,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1646236800,
-      'formatted' => '2022-03-03 01:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 2,
-      'solar_seasonal_festival_name' => '上巳の節句',
-      'solar_seasonal_festival_alias' => '桃の節句',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '友引',
-      'six_weekday' => 3,
-      'weekday_text' => '木',
-      'month_text' => '弥生',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '如月',
-      'lunar_month' => 2,
-      'lunar_year' => 2022,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.3085386767052114,
-      'moon_phase_angle' => 359.15399255168967,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2022-03-03 02:00:00' => 
-  array (
-    0 => '2022-03-03 02:00:00',
-    1 => 
+    0 => '2022-03-03 02:35:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 3,
@@ -4715,12 +4021,12 @@ return array (
       'dayOfWeek' => 4,
       'dayOfYear' => 62,
       'hour' => 2,
-      'minute' => 0,
+      'minute' => 35,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1646240400,
-      'formatted' => '2022-03-03 02:00:00',
-      'timezone' => 
+      'timestamp' => 1646242500,
+      'formatted' => '2022-03-03 02:35:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -4756,29 +4062,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.350067843683064,
-      'moon_phase_angle' => 359.6931809556076,
+      'moon_age' => 0.0,
+      'moon_phase_angle' => 356.4967015047067,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2022-03-03 03:00:00' => 
+  '2022-03-03 09:00:00' =>
   array (
-    0 => '2022-03-03 03:00:00',
-    1 => 
+    0 => '2022-03-03 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 3,
       'day' => 3,
       'dayOfWeek' => 4,
       'dayOfYear' => 62,
-      'hour' => 3,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1646244000,
-      'formatted' => '2022-03-03 03:00:00',
-      'timezone' => 
+      'timestamp' => 1646265600,
+      'formatted' => '2022-03-03 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -4814,87 +4120,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.39161282405257225,
-      'moon_phase_angle' => 0.23185990882240048,
+      'moon_age' => 0.267,
+      'moon_phase_angle' => 359.96198054275516,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2022-03-03 04:00:00' => 
+  '2022-03-04 09:00:00' =>
   array (
-    0 => '2022-03-03 04:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 3,
-      'day' => 3,
-      'dayOfWeek' => 4,
-      'dayOfYear' => 62,
-      'hour' => 4,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1646247600,
-      'formatted' => '2022-03-03 04:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 2,
-      'solar_seasonal_festival_name' => '上巳の節句',
-      'solar_seasonal_festival_alias' => '桃の節句',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '友引',
-      'six_weekday' => 3,
-      'weekday_text' => '木',
-      'month_text' => '弥生',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '如月',
-      'lunar_month' => 2,
-      'lunar_year' => 2022,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.43314872588962317,
-      'moon_phase_angle' => 0.7700239466295784,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2022-03-04 00:00:00' => 
-  array (
-    0 => '2022-03-04 00:00:00',
-    1 => 
+    0 => '2022-03-04 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 3,
       'day' => 4,
       'dayOfWeek' => 5,
       'dayOfYear' => 63,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1646319600,
-      'formatted' => '2022-03-04 00:00:00',
-      'timezone' => 
+      'timestamp' => 1646352000,
+      'formatted' => '2022-03-04 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -4930,29 +4178,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 2,
       'is_leap_month' => false,
-      'moon_age' => 1.2645554658956826,
-      'moon_phase_angle' => 11.417552259259423,
+      'moon_age' => 1.267,
+      'moon_phase_angle' => 12.724959148196547,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-03-05 00:00:00' => 
+  '2022-03-05 09:00:00' =>
   array (
-    0 => '2022-03-05 00:00:00',
-    1 => 
+    0 => '2022-03-05 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 3,
       'day' => 5,
       'dayOfWeek' => 6,
       'dayOfYear' => 64,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1646406000,
-      'formatted' => '2022-03-05 00:00:00',
-      'timezone' => 
+      'timestamp' => 1646438400,
+      'formatted' => '2022-03-05 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -4988,29 +4236,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 3,
       'is_leap_month' => false,
-      'moon_age' => 2.263909798115492,
-      'moon_phase_angle' => 23.873451507205914,
+      'moon_age' => 2.267,
+      'moon_phase_angle' => 25.135290382212645,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-03-06 00:00:00' => 
+  '2022-03-06 09:00:00' =>
   array (
-    0 => '2022-03-06 00:00:00',
-    1 => 
+    0 => '2022-03-06 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 3,
       'day' => 6,
       'dayOfWeek' => 0,
       'dayOfYear' => 65,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1646492400,
-      'formatted' => '2022-03-06 00:00:00',
-      'timezone' => 
+      'timestamp' => 1646524800,
+      'formatted' => '2022-03-06 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -5046,29 +4294,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 4,
       'is_leap_month' => false,
-      'moon_age' => 3.2651943722739816,
-      'moon_phase_angle' => 35.95361387934412,
+      'moon_age' => 3.267,
+      'moon_phase_angle' => 37.168874038053445,
       'moon_phase' => 1,
       'moon_phase_text' => '三日月',
     ),
   ),
-  '2022-03-07 00:00:00' => 
+  '2022-03-07 09:00:00' =>
   array (
-    0 => '2022-03-07 00:00:00',
-    1 => 
+    0 => '2022-03-07 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 3,
       'day' => 7,
       'dayOfWeek' => 1,
       'dayOfYear' => 66,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1646578800,
-      'formatted' => '2022-03-07 00:00:00',
-      'timezone' => 
+      'timestamp' => 1646611200,
+      'formatted' => '2022-03-07 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -5104,29 +4352,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 5,
       'is_leap_month' => false,
-      'moon_age' => 4.267916094046086,
-      'moon_phase_angle' => 47.66524119631782,
+      'moon_age' => 4.267,
+      'moon_phase_angle' => 48.83700966492057,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-03-08 00:00:00' => 
+  '2022-03-08 09:00:00' =>
   array (
-    0 => '2022-03-08 00:00:00',
-    1 => 
+    0 => '2022-03-08 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 3,
       'day' => 8,
       'dayOfWeek' => 2,
       'dayOfYear' => 67,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1646665200,
-      'formatted' => '2022-03-08 00:00:00',
-      'timezone' => 
+      'timestamp' => 1646697600,
+      'formatted' => '2022-03-08 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -5162,29 +4410,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 6,
       'is_leap_month' => false,
-      'moon_age' => 5.267646562308073,
-      'moon_phase_angle' => 59.04696115551366,
+      'moon_age' => 5.267,
+      'moon_phase_angle' => 60.1818096560948,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-03-09 00:00:00' => 
+  '2022-03-09 09:00:00' =>
   array (
-    0 => '2022-03-09 00:00:00',
-    1 => 
+    0 => '2022-03-09 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 3,
       'day' => 9,
       'dayOfWeek' => 3,
       'dayOfYear' => 68,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1646751600,
-      'formatted' => '2022-03-09 00:00:00',
-      'timezone' => 
+      'timestamp' => 1646784000,
+      'formatted' => '2022-03-09 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -5220,29 +4468,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 7,
       'is_leap_month' => false,
-      'moon_age' => 6.267319977749139,
-      'moon_phase_angle' => 70.16169103988119,
+      'moon_age' => 6.267,
+      'moon_phase_angle' => 71.2687690483948,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-03-10 00:00:00' => 
+  '2022-03-10 09:00:00' =>
   array (
-    0 => '2022-03-10 00:00:00',
-    1 => 
+    0 => '2022-03-10 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 3,
       'day' => 10,
       'dayOfWeek' => 4,
       'dayOfYear' => 69,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1646838000,
-      'formatted' => '2022-03-10 00:00:00',
-      'timezone' => 
+      'timestamp' => 1646870400,
+      'formatted' => '2022-03-10 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -5278,29 +4526,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 7.266958007588983,
-      'moon_phase_angle' => 81.08877572250572,
+      'moon_age' => 7.267,
+      'moon_phase_angle' => 82.17878099226436,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2022-03-10 20:00:00' => 
+  '2022-03-10 19:45:00' =>
   array (
-    0 => '2022-03-10 20:00:00',
-    1 => 
+    0 => '2022-03-10 19:45:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 3,
       'day' => 10,
       'dayOfWeek' => 4,
       'dayOfYear' => 69,
-      'hour' => 20,
-      'minute' => 0,
+      'hour' => 19,
+      'minute' => 45,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1646910000,
-      'formatted' => '2022-03-10 20:00:00',
-      'timezone' => 
+      'timestamp' => 1646909100,
+      'formatted' => '2022-03-10 19:45:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -5336,29 +4584,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 8.099996760021895,
-      'moon_phase_angle' => 90.11504130586559,
+      'moon_age' => 7.715277777777778,
+      'moon_phase_angle' => 87.0316052351406,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2022-03-11 00:00:00' => 
+  '2022-03-11 09:00:00' =>
   array (
-    0 => '2022-03-11 00:00:00',
-    1 => 
+    0 => '2022-03-11 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 3,
       'day' => 11,
       'dayOfWeek' => 5,
       'dayOfYear' => 70,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1646924400,
-      'formatted' => '2022-03-11 00:00:00',
-      'timezone' => 
+      'timestamp' => 1646956800,
+      'formatted' => '2022-03-11 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -5394,29 +4642,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 9,
       'is_leap_month' => false,
-      'moon_age' => 8.26659503672272,
-      'moon_phase_angle' => 91.91668306057852,
+      'moon_age' => 8.267,
+      'moon_phase_angle' => 93.00089946647415,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-03-12 00:00:00' => 
+  '2022-03-12 09:00:00' =>
   array (
-    0 => '2022-03-12 00:00:00',
-    1 => 
+    0 => '2022-03-12 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 3,
       'day' => 12,
       'dayOfWeek' => 6,
       'dayOfYear' => 71,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1647010800,
-      'formatted' => '2022-03-12 00:00:00',
-      'timezone' => 
+      'timestamp' => 1647043200,
+      'formatted' => '2022-03-12 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -5452,29 +4700,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 10,
       'is_leap_month' => false,
-      'moon_age' => 9.266268784180284,
-      'moon_phase_angle' => 102.73662484622105,
+      'moon_age' => 9.267,
+      'moon_phase_angle' => 103.82614499530985,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-03-13 00:00:00' => 
+  '2022-03-13 09:00:00' =>
   array (
-    0 => '2022-03-13 00:00:00',
-    1 => 
+    0 => '2022-03-13 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 3,
       'day' => 13,
       'dayOfWeek' => 0,
       'dayOfYear' => 72,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1647097200,
-      'formatted' => '2022-03-13 00:00:00',
-      'timezone' => 
+      'timestamp' => 1647129600,
+      'formatted' => '2022-03-13 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -5510,29 +4758,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 11,
       'is_leap_month' => false,
-      'moon_age' => 10.265990010928363,
-      'moon_phase_angle' => 113.63690943195456,
+      'moon_age' => 10.267,
+      'moon_phase_angle' => 114.74203375443619,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-03-14 00:00:00' => 
+  '2022-03-14 09:00:00' =>
   array (
-    0 => '2022-03-14 00:00:00',
-    1 => 
+    0 => '2022-03-14 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 3,
       'day' => 14,
       'dayOfWeek' => 1,
       'dayOfYear' => 73,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1647183600,
-      'formatted' => '2022-03-14 00:00:00',
-      'timezone' => 
+      'timestamp' => 1647216000,
+      'formatted' => '2022-03-14 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -5568,29 +4816,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 12,
       'is_leap_month' => false,
-      'moon_age' => 11.265758316032588,
-      'moon_phase_angle' => 124.69764959561866,
+      'moon_age' => 11.267,
+      'moon_phase_angle' => 125.82735808611761,
       'moon_phase' => 3,
       'moon_phase_text' => '十三夜',
     ),
   ),
-  '2022-03-15 00:00:00' => 
+  '2022-03-15 09:00:00' =>
   array (
-    0 => '2022-03-15 00:00:00',
-    1 => 
+    0 => '2022-03-15 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 3,
       'day' => 15,
       'dayOfWeek' => 2,
       'dayOfYear' => 74,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1647270000,
-      'formatted' => '2022-03-15 00:00:00',
-      'timezone' => 
+      'timestamp' => 1647302400,
+      'formatted' => '2022-03-15 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -5626,29 +4874,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 13,
       'is_leap_month' => false,
-      'moon_age' => 12.265581728890538,
-      'moon_phase_angle' => 135.985580611382,
+      'moon_age' => 12.267,
+      'moon_phase_angle' => 137.14696921591403,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-03-16 00:00:00' => 
+  '2022-03-16 09:00:00' =>
   array (
-    0 => '2022-03-16 00:00:00',
-    1 => 
+    0 => '2022-03-16 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 3,
       'day' => 16,
       'dayOfWeek' => 3,
       'dayOfYear' => 75,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1647356400,
-      'formatted' => '2022-03-16 00:00:00',
-      'timezone' => 
+      'timestamp' => 1647388800,
+      'formatted' => '2022-03-16 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -5684,29 +4932,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 14,
       'is_leap_month' => false,
-      'moon_age' => 13.265484265051782,
-      'moon_phase_angle' => 147.5491144274609,
+      'moon_age' => 13.267,
+      'moon_phase_angle' => 148.74678981528112,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-03-17 00:00:00' => 
+  '2022-03-17 09:00:00' =>
   array (
-    0 => '2022-03-17 00:00:00',
-    1 => 
+    0 => '2022-03-17 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 3,
       'day' => 17,
       'dayOfWeek' => 4,
       'dayOfYear' => 76,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1647442800,
-      'formatted' => '2022-03-17 00:00:00',
-      'timezone' => 
+      'timestamp' => 1647475200,
+      'formatted' => '2022-03-17 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -5742,29 +4990,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 15,
       'is_leap_month' => false,
-      'moon_age' => 14.265445731114596,
-      'moon_phase_angle' => 159.41425986008974,
+      'moon_age' => 14.267,
+      'moon_phase_angle' => 160.64984522944914,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-03-18 00:00:00' => 
+  '2022-03-18 09:00:00' =>
   array (
-    0 => '2022-03-18 00:00:00',
-    1 => 
+    0 => '2022-03-18 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 3,
       'day' => 18,
       'dayOfWeek' => 5,
       'dayOfYear' => 77,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1647529200,
-      'formatted' => '2022-03-18 00:00:00',
-      'timezone' => 
+      'timestamp' => 1647561600,
+      'formatted' => '2022-03-18 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -5800,74 +5048,16 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 15.265459822490811,
-      'moon_phase_angle' => 171.582479745717,
+      'moon_age' => 15.267,
+      'moon_phase_angle' => 172.85448295626836,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2022-03-18 15:00:00' => 
+  '2022-03-18 16:18:00' =>
   array (
-    0 => '2022-03-18 15:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 3,
-      'day' => 18,
-      'dayOfWeek' => 5,
-      'dayOfYear' => 77,
-      'hour' => 15,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1647583200,
-      'formatted' => '2022-03-18 15:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 2,
-      'misc_seasonal_node_text' => '彼岸',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '大安',
-      'six_weekday' => 0,
-      'weekday_text' => '金',
-      'month_text' => '弥生',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '如月',
-      'lunar_month' => 2,
-      'lunar_year' => 2022,
-      'lunar_day' => 16,
-      'is_leap_month' => false,
-      'moon_age' => 15.890502009540796,
-      'moon_phase_angle' => 179.33255364572852,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2022-03-18 16:00:00' => 
-  array (
-    0 => '2022-03-18 16:00:00',
-    1 => 
+    0 => '2022-03-18 16:18:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 3,
@@ -5875,12 +5065,12 @@ return array (
       'dayOfWeek' => 5,
       'dayOfYear' => 77,
       'hour' => 16,
-      'minute' => 0,
+      'minute' => 18,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1647586800,
-      'formatted' => '2022-03-18 16:00:00',
-      'timezone' => 
+      'timestamp' => 1647587880,
+      'formatted' => '2022-03-18 16:18:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -5916,145 +5106,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 15.9321722346358,
-      'moon_phase_angle' => 179.8529242821297,
+      'moon_age' => 15.571527777777778,
+      'moon_phase_angle' => 176.6233002803291,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2022-03-18 17:00:00' => 
+  '2022-03-19 09:00:00' =>
   array (
-    0 => '2022-03-18 17:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 3,
-      'day' => 18,
-      'dayOfWeek' => 5,
-      'dayOfYear' => 77,
-      'hour' => 17,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1647590400,
-      'formatted' => '2022-03-18 17:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 2,
-      'misc_seasonal_node_text' => '彼岸',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '大安',
-      'six_weekday' => 0,
-      'weekday_text' => '金',
-      'month_text' => '弥生',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '如月',
-      'lunar_month' => 2,
-      'lunar_year' => 2022,
-      'lunar_day' => 16,
-      'is_leap_month' => false,
-      'moon_age' => 15.973840409889817,
-      'moon_phase_angle' => 180.37374006945055,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2022-03-18 18:00:00' => 
-  array (
-    0 => '2022-03-18 18:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 3,
-      'day' => 18,
-      'dayOfWeek' => 5,
-      'dayOfYear' => 77,
-      'hour' => 18,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1647594000,
-      'formatted' => '2022-03-18 18:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 2,
-      'misc_seasonal_node_text' => '彼岸',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '大安',
-      'six_weekday' => 0,
-      'weekday_text' => '金',
-      'month_text' => '弥生',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '如月',
-      'lunar_month' => 2,
-      'lunar_year' => 2022,
-      'lunar_day' => 16,
-      'is_leap_month' => false,
-      'moon_age' => 16.01550596766174,
-      'moon_phase_angle' => 180.89499774901168,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2022-03-19 00:00:00' => 
-  array (
-    0 => '2022-03-19 00:00:00',
-    1 => 
+    0 => '2022-03-19 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 3,
       'day' => 19,
       'dayOfWeek' => 6,
       'dayOfYear' => 78,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1647615600,
-      'formatted' => '2022-03-19 00:00:00',
-      'timezone' => 
+      'timestamp' => 1647648000,
+      'formatted' => '2022-03-19 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -6090,29 +5164,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 17,
       'is_leap_month' => false,
-      'moon_age' => 16.26552898949012,
-      'moon_phase_angle' => 184.03163643811376,
+      'moon_age' => 16.267,
+      'moon_phase_angle' => 185.33585679813893,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-03-20 00:00:00' => 
+  '2022-03-20 09:00:00' =>
   array (
-    0 => '2022-03-20 00:00:00',
-    1 => 
+    0 => '2022-03-20 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 3,
       'day' => 20,
       'dayOfWeek' => 0,
       'dayOfYear' => 79,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1647702000,
-      'formatted' => '2022-03-20 00:00:00',
-      'timezone' => 
+      'timestamp' => 1647734400,
+      'formatted' => '2022-03-20 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -6148,29 +5222,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 18,
       'is_leap_month' => false,
-      'moon_age' => 17.265652790199965,
-      'moon_phase_angle' => 196.72062505847973,
+      'moon_age' => 17.267,
+      'moon_phase_angle' => 198.0510450999814,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-03-21 00:00:00' => 
+  '2022-03-21 09:00:00' =>
   array (
-    0 => '2022-03-21 00:00:00',
-    1 => 
+    0 => '2022-03-21 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 3,
       'day' => 21,
       'dayOfWeek' => 1,
       'dayOfYear' => 80,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1647788400,
-      'formatted' => '2022-03-21 00:00:00',
-      'timezone' => 
+      'timestamp' => 1647820800,
+      'formatted' => '2022-03-21 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -6206,29 +5280,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 19,
       'is_leap_month' => false,
-      'moon_age' => 18.26580161554739,
-      'moon_phase_angle' => 209.59713019533604,
+      'moon_age' => 18.267,
+      'moon_phase_angle' => 210.94702407942202,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-03-22 00:00:00' => 
+  '2022-03-22 09:00:00' =>
   array (
-    0 => '2022-03-22 00:00:00',
-    1 => 
+    0 => '2022-03-22 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 3,
       'day' => 22,
       'dayOfWeek' => 2,
       'dayOfYear' => 81,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1647874800,
-      'formatted' => '2022-03-22 00:00:00',
-      'timezone' => 
+      'timestamp' => 1647907200,
+      'formatted' => '2022-03-22 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -6264,29 +5338,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 20,
       'is_leap_month' => false,
-      'moon_age' => 19.26599373202771,
-      'moon_phase_angle' => 222.60665118734363,
+      'moon_age' => 19.267,
+      'moon_phase_angle' => 223.96959782282008,
       'moon_phase' => 5,
       'moon_phase_text' => '十六夜',
     ),
   ),
-  '2022-03-23 00:00:00' => 
+  '2022-03-23 09:00:00' =>
   array (
-    0 => '2022-03-23 00:00:00',
-    1 => 
+    0 => '2022-03-23 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 3,
       'day' => 23,
       'dayOfWeek' => 3,
       'dayOfYear' => 82,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1647961200,
-      'formatted' => '2022-03-23 00:00:00',
-      'timezone' => 
+      'timestamp' => 1647993600,
+      'formatted' => '2022-03-23 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -6322,29 +5396,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 21,
       'is_leap_month' => false,
-      'moon_age' => 20.266198097728193,
-      'moon_phase_angle' => 235.70025914036265,
+      'moon_age' => 20.267,
+      'moon_phase_angle' => 237.07084841698259,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-03-24 00:00:00' => 
+  '2022-03-24 09:00:00' =>
   array (
-    0 => '2022-03-24 00:00:00',
-    1 => 
+    0 => '2022-03-24 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 3,
       'day' => 24,
       'dayOfWeek' => 4,
       'dayOfYear' => 83,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1648047600,
-      'formatted' => '2022-03-24 00:00:00',
-      'timezone' => 
+      'timestamp' => 1648080000,
+      'formatted' => '2022-03-24 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -6380,29 +5454,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 22,
       'is_leap_month' => false,
-      'moon_age' => 21.266429180279374,
-      'moon_phase_angle' => 248.83892923175466,
+      'moon_age' => 21.267,
+      'moon_phase_angle' => 250.21304667127924,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-03-25 00:00:00' => 
+  '2022-03-25 09:00:00' =>
   array (
-    0 => '2022-03-25 00:00:00',
-    1 => 
+    0 => '2022-03-25 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 3,
       'day' => 25,
       'dayOfWeek' => 5,
       'dayOfYear' => 84,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1648134000,
-      'formatted' => '2022-03-25 00:00:00',
-      'timezone' => 
+      'timestamp' => 1648166400,
+      'formatted' => '2022-03-25 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -6438,29 +5512,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 22.266674417536706,
-      'moon_phase_angle' => 261.99354715303537,
+      'moon_age' => 22.267,
+      'moon_phase_angle' => 263.36816764474645,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2022-03-25 15:00:00' => 
+  '2022-03-25 14:37:00' =>
   array (
-    0 => '2022-03-25 15:00:00',
-    1 => 
+    0 => '2022-03-25 14:37:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 3,
       'day' => 25,
       'dayOfWeek' => 5,
       'dayOfYear' => 84,
-      'hour' => 15,
-      'minute' => 0,
+      'hour' => 14,
+      'minute' => 37,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1648188000,
-      'formatted' => '2022-03-25 15:00:00',
-      'timezone' => 
+      'timestamp' => 1648186620,
+      'formatted' => '2022-03-25 14:37:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -6496,29 +5570,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 22.89183308184147,
-      'moon_phase_angle' => 270.2130030871422,
+      'moon_age' => 22.50138888888889,
+      'moon_phase_angle' => 266.44624138193154,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2022-03-26 00:00:00' => 
+  '2022-03-26 09:00:00' =>
   array (
-    0 => '2022-03-26 00:00:00',
-    1 => 
+    0 => '2022-03-26 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 3,
       'day' => 26,
       'dayOfWeek' => 6,
       'dayOfYear' => 85,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1648220400,
-      'formatted' => '2022-03-26 00:00:00',
-      'timezone' => 
+      'timestamp' => 1648252800,
+      'formatted' => '2022-03-26 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -6554,29 +5628,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 24,
       'is_leap_month' => false,
-      'moon_age' => 23.266926255077124,
-      'moon_phase_angle' => 275.14117695382157,
+      'moon_age' => 23.267,
+      'moon_phase_angle' => 276.5136987029921,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-03-27 00:00:00' => 
+  '2022-03-27 09:00:00' =>
   array (
-    0 => '2022-03-27 00:00:00',
-    1 => 
+    0 => '2022-03-27 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 3,
       'day' => 27,
       'dayOfWeek' => 0,
       'dayOfYear' => 86,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1648306800,
-      'formatted' => '2022-03-27 00:00:00',
-      'timezone' => 
+      'timestamp' => 1648339200,
+      'formatted' => '2022-03-27 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -6612,29 +5686,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 25,
       'is_leap_month' => false,
-      'moon_age' => 24.26716469647363,
-      'moon_phase_angle' => 288.2593039520334,
+      'moon_age' => 24.267,
+      'moon_phase_angle' => 289.62667045745417,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-03-28 00:00:00' => 
+  '2022-03-28 09:00:00' =>
   array (
-    0 => '2022-03-28 00:00:00',
-    1 => 
+    0 => '2022-03-28 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 3,
       'day' => 28,
       'dayOfWeek' => 1,
       'dayOfYear' => 87,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1648393200,
-      'formatted' => '2022-03-28 00:00:00',
-      'timezone' => 
+      'timestamp' => 1648425600,
+      'formatted' => '2022-03-28 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -6670,29 +5744,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 26,
       'is_leap_month' => false,
-      'moon_age' => 25.266335208900273,
-      'moon_phase_angle' => 301.3202677472037,
+      'moon_age' => 25.267,
+      'moon_phase_angle' => 302.67831195158453,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-03-29 00:00:00' => 
+  '2022-03-29 09:00:00' =>
   array (
-    0 => '2022-03-29 00:00:00',
-    1 => 
+    0 => '2022-03-29 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 3,
       'day' => 29,
       'dayOfWeek' => 2,
       'dayOfYear' => 88,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1648479600,
-      'formatted' => '2022-03-29 00:00:00',
-      'timezone' => 
+      'timestamp' => 1648512000,
+      'formatted' => '2022-03-29 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -6728,29 +5802,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 27,
       'is_leap_month' => false,
-      'moon_age' => 26.266830852255225,
-      'moon_phase_angle' => 314.2879595797474,
+      'moon_age' => 26.267,
+      'moon_phase_angle' => 315.6313377312042,
       'moon_phase' => 7,
       'moon_phase_text' => '有明',
     ),
   ),
-  '2022-03-30 00:00:00' => 
+  '2022-03-30 09:00:00' =>
   array (
-    0 => '2022-03-30 00:00:00',
-    1 => 
+    0 => '2022-03-30 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 3,
       'day' => 30,
       'dayOfWeek' => 3,
       'dayOfYear' => 89,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1648566000,
-      'formatted' => '2022-03-30 00:00:00',
-      'timezone' => 
+      'timestamp' => 1648598400,
+      'formatted' => '2022-03-30 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -6786,29 +5860,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 28,
       'is_leap_month' => false,
-      'moon_age' => 27.266187264584005,
-      'moon_phase_angle' => 327.11813405983935,
+      'moon_age' => 27.267,
+      'moon_phase_angle' => 328.4408795408645,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-03-31 00:00:00' => 
+  '2022-03-31 09:00:00' =>
   array (
-    0 => '2022-03-31 00:00:00',
-    1 => 
+    0 => '2022-03-31 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 3,
       'day' => 31,
       'dayOfWeek' => 4,
       'dayOfYear' => 90,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1648652400,
-      'formatted' => '2022-03-31 00:00:00',
-      'timezone' => 
+      'timestamp' => 1648684800,
+      'formatted' => '2022-03-31 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -6844,29 +5918,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 29,
       'is_leap_month' => false,
-      'moon_age' => 28.26594889862463,
-      'moon_phase_angle' => 339.7625177000699,
+      'moon_age' => 28.267,
+      'moon_phase_angle' => 341.05890042320965,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-04-01 00:00:00' => 
+  '2022-04-01 09:00:00' =>
   array (
-    0 => '2022-04-01 00:00:00',
-    1 => 
+    0 => '2022-04-01 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 4,
       'day' => 1,
       'dayOfWeek' => 5,
       'dayOfYear' => 91,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1648738800,
-      'formatted' => '2022-04-01 00:00:00',
-      'timezone' => 
+      'timestamp' => 1648771200,
+      'formatted' => '2022-04-01 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -6902,16 +5976,16 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 29.265082087045847,
-      'moon_phase_angle' => 352.17563211875233,
+      'moon_age' => 29.267,
+      'moon_phase_angle' => 353.4409405147927,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2022-04-01 15:00:00' => 
+  '2022-04-01 15:24:00' =>
   array (
-    0 => '2022-04-01 15:00:00',
-    1 => 
+    0 => '2022-04-01 15:24:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 4,
@@ -6919,12 +5993,12 @@ return array (
       'dayOfWeek' => 5,
       'dayOfYear' => 91,
       'hour' => 15,
-      'minute' => 0,
+      'minute' => 24,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1648792800,
-      'formatted' => '2022-04-01 15:00:00',
-      'timezone' => 
+      'timestamp' => 1648794240,
+      'formatted' => '2022-04-01 15:24:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -6960,145 +6034,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.3584904312156141,
-      'moon_phase_angle' => 359.80013138528767,
+      'moon_age' => 0.0,
+      'moon_phase_angle' => 356.69832550339703,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2022-04-01 16:00:00' => 
+  '2022-04-02 09:00:00' =>
   array (
-    0 => '2022-04-01 16:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 4,
-      'day' => 1,
-      'dayOfWeek' => 5,
-      'dayOfYear' => 91,
-      'hour' => 16,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1648796400,
-      'formatted' => '2022-04-01 16:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '先負',
-      'six_weekday' => 4,
-      'weekday_text' => '金',
-      'month_text' => '卯月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '弥生',
-      'lunar_month' => 3,
-      'lunar_year' => 2022,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.4001595238223672,
-      'moon_phase_angle' => 0.3045694998186921,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2022-04-01 17:00:00' => 
-  array (
-    0 => '2022-04-01 17:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 4,
-      'day' => 1,
-      'dayOfWeek' => 5,
-      'dayOfYear' => 91,
-      'hour' => 17,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1648800000,
-      'formatted' => '2022-04-01 17:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '先負',
-      'six_weekday' => 4,
-      'weekday_text' => '金',
-      'month_text' => '卯月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '弥生',
-      'lunar_month' => 3,
-      'lunar_year' => 2022,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.44182200636714697,
-      'moon_phase_angle' => 0.8085171376044258,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2022-04-02 00:00:00' => 
-  array (
-    0 => '2022-04-02 00:00:00',
-    1 => 
+    0 => '2022-04-02 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 4,
       'day' => 2,
       'dayOfWeek' => 6,
       'dayOfYear' => 92,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1648825200,
-      'formatted' => '2022-04-02 00:00:00',
-      'timezone' => 
+      'timestamp' => 1648857600,
+      'formatted' => '2022-04-02 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -7134,29 +6092,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 2,
       'is_leap_month' => false,
-      'moon_age' => 0.7334846607409418,
-      'moon_phase_angle' => 4.322332054894881,
+      'moon_age' => 0.733,
+      'moon_phase_angle' => 5.553470238313865,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-04-03 00:00:00' => 
+  '2022-04-03 09:00:00' =>
   array (
-    0 => '2022-04-03 00:00:00',
-    1 => 
+    0 => '2022-04-03 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 4,
       'day' => 3,
       'dayOfWeek' => 0,
       'dayOfYear' => 93,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1648911600,
-      'formatted' => '2022-04-03 00:00:00',
-      'timezone' => 
+      'timestamp' => 1648944000,
+      'formatted' => '2022-04-03 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -7192,29 +6150,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 3,
       'is_leap_month' => false,
-      'moon_age' => 1.7334907101467252,
-      'moon_phase_angle' => 16.18414457558412,
+      'moon_age' => 1.733,
+      'moon_phase_angle' => 17.380051570475395,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-04-04 00:00:00' => 
+  '2022-04-04 09:00:00' =>
   array (
-    0 => '2022-04-04 00:00:00',
-    1 => 
+    0 => '2022-04-04 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 4,
       'day' => 4,
       'dayOfWeek' => 1,
       'dayOfYear' => 94,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1648998000,
-      'formatted' => '2022-04-04 00:00:00',
-      'timezone' => 
+      'timestamp' => 1649030400,
+      'formatted' => '2022-04-04 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -7250,29 +6208,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 4,
       'is_leap_month' => false,
-      'moon_age' => 2.7334930673241615,
-      'moon_phase_angle' => 27.762935727140587,
+      'moon_age' => 2.733,
+      'moon_phase_angle' => 28.92498346215704,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-04-05 00:00:00' => 
+  '2022-04-05 09:00:00' =>
   array (
-    0 => '2022-04-05 00:00:00',
-    1 => 
+    0 => '2022-04-05 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 4,
       'day' => 5,
       'dayOfWeek' => 2,
       'dayOfYear' => 95,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1649084400,
-      'formatted' => '2022-04-05 00:00:00',
-      'timezone' => 
+      'timestamp' => 1649116800,
+      'formatted' => '2022-04-05 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -7308,29 +6266,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 5,
       'is_leap_month' => false,
-      'moon_age' => 3.733495144639164,
-      'moon_phase_angle' => 39.0817084948371,
+      'moon_age' => 3.733,
+      'moon_phase_angle' => 40.213930396199885,
       'moon_phase' => 1,
       'moon_phase_text' => '三日月',
     ),
   ),
-  '2022-04-06 00:00:00' => 
+  '2022-04-06 09:00:00' =>
   array (
-    0 => '2022-04-06 00:00:00',
-    1 => 
+    0 => '2022-04-06 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 4,
       'day' => 6,
       'dayOfWeek' => 3,
       'dayOfYear' => 96,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1649170800,
-      'formatted' => '2022-04-06 00:00:00',
-      'timezone' => 
+      'timestamp' => 1649203200,
+      'formatted' => '2022-04-06 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -7366,29 +6324,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 6,
       'is_leap_month' => false,
-      'moon_age' => 4.733485926873982,
-      'moon_phase_angle' => 50.18300030982456,
+      'moon_age' => 4.733,
+      'moon_phase_angle' => 51.29195915135878,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-04-07 00:00:00' => 
+  '2022-04-07 09:00:00' =>
   array (
-    0 => '2022-04-07 00:00:00',
-    1 => 
+    0 => '2022-04-07 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 4,
       'day' => 7,
       'dayOfWeek' => 4,
       'dayOfYear' => 97,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1649257200,
-      'formatted' => '2022-04-07 00:00:00',
-      'timezone' => 
+      'timestamp' => 1649289600,
+      'formatted' => '2022-04-07 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -7424,29 +6382,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 7,
       'is_leap_month' => false,
-      'moon_age' => 5.733490506652743,
-      'moon_phase_angle' => 61.12575029575608,
+      'moon_age' => 5.733,
+      'moon_phase_angle' => 62.21999523398724,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-04-08 00:00:00' => 
+  '2022-04-08 09:00:00' =>
   array (
-    0 => '2022-04-08 00:00:00',
-    1 => 
+    0 => '2022-04-08 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 4,
       'day' => 8,
       'dayOfWeek' => 5,
       'dayOfYear' => 98,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1649343600,
-      'formatted' => '2022-04-08 00:00:00',
-      'timezone' => 
+      'timestamp' => 1649376000,
+      'formatted' => '2022-04-08 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -7482,29 +6440,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 6.733484977390617,
-      'moon_phase_angle' => 71.98141697874297,
+      'moon_age' => 6.733,
+      'moon_phase_angle' => 73.07072511223326,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-04-09 00:00:00' => 
+  '2022-04-09 09:00:00' =>
   array (
-    0 => '2022-04-09 00:00:00',
-    1 => 
+    0 => '2022-04-09 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 4,
       'day' => 9,
       'dayOfWeek' => 6,
       'dayOfYear' => 99,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1649430000,
-      'formatted' => '2022-04-09 00:00:00',
-      'timezone' => 
+      'timestamp' => 1649462400,
+      'formatted' => '2022-04-09 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -7540,29 +6498,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 9,
       'is_leap_month' => false,
-      'moon_age' => 7.733492339029908,
-      'moon_phase_angle' => 82.82981144909886,
+      'moon_age' => 7.733,
+      'moon_phase_angle' => 83.92449174873387,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2022-04-09 16:00:00' => 
+  '2022-04-09 15:48:00' =>
   array (
-    0 => '2022-04-09 16:00:00',
-    1 => 
+    0 => '2022-04-09 15:48:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 4,
       'day' => 9,
       'dayOfWeek' => 6,
       'dayOfYear' => 99,
-      'hour' => 16,
-      'minute' => 0,
+      'hour' => 15,
+      'minute' => 48,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1649487600,
-      'formatted' => '2022-04-09 16:00:00',
-      'timezone' => 
+      'timestamp' => 1649486880,
+      'formatted' => '2022-04-09 15:48:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -7598,29 +6556,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 9,
       'is_leap_month' => false,
-      'moon_age' => 8.400158767588437,
-      'moon_phase_angle' => 90.09940118669473,
+      'moon_age' => 8.016666666666667,
+      'moon_phase_angle' => 87.01186363671317,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2022-04-10 00:00:00' => 
+  '2022-04-10 09:00:00' =>
   array (
-    0 => '2022-04-10 00:00:00',
-    1 => 
+    0 => '2022-04-10 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 4,
       'day' => 10,
       'dayOfWeek' => 0,
       'dayOfYear' => 100,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1649516400,
-      'formatted' => '2022-04-10 00:00:00',
-      'timezone' => 
+      'timestamp' => 1649548800,
+      'formatted' => '2022-04-10 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -7656,29 +6614,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 10,
       'is_leap_month' => false,
-      'moon_age' => 8.733486402779818,
-      'moon_phase_angle' => 93.7547578017701,
+      'moon_age' => 8.733,
+      'moon_phase_angle' => 94.86513067255166,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-04-11 00:00:00' => 
+  '2022-04-11 09:00:00' =>
   array (
-    0 => '2022-04-11 00:00:00',
-    1 => 
+    0 => '2022-04-11 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 4,
       'day' => 11,
       'dayOfWeek' => 1,
       'dayOfYear' => 101,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1649602800,
-      'formatted' => '2022-04-11 00:00:00',
-      'timezone' => 
+      'timestamp' => 1649635200,
+      'formatted' => '2022-04-11 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -7714,29 +6672,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 11,
       'is_leap_month' => false,
-      'moon_age' => 9.733486648183316,
-      'moon_phase_angle' => 104.83942938202141,
+      'moon_age' => 9.733,
+      'moon_phase_angle' => 105.97535600540078,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-04-12 00:00:00' => 
+  '2022-04-12 09:00:00' =>
   array (
-    0 => '2022-04-12 00:00:00',
-    1 => 
+    0 => '2022-04-12 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 4,
       'day' => 12,
       'dayOfWeek' => 2,
       'dayOfYear' => 102,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1649689200,
-      'formatted' => '2022-04-12 00:00:00',
-      'timezone' => 
+      'timestamp' => 1649721600,
+      'formatted' => '2022-04-12 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -7772,29 +6730,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 12,
       'is_leap_month' => false,
-      'moon_age' => 10.733488275203854,
-      'moon_phase_angle' => 116.16110542457535,
+      'moon_age' => 10.733,
+      'moon_phase_angle' => 117.33136463333744,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-04-13 00:00:00' => 
+  '2022-04-13 09:00:00' =>
   array (
-    0 => '2022-04-13 00:00:00',
-    1 => 
+    0 => '2022-04-13 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 4,
       'day' => 13,
       'dayOfWeek' => 3,
       'dayOfYear' => 103,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1649775600,
-      'formatted' => '2022-04-13 00:00:00',
-      'timezone' => 
+      'timestamp' => 1649808000,
+      'formatted' => '2022-04-13 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -7830,29 +6788,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 13,
       'is_leap_month' => false,
-      'moon_age' => 11.733494370710105,
-      'moon_phase_angle' => 127.7851945418505,
+      'moon_age' => 11.733,
+      'moon_phase_angle' => 128.9966532316334,
       'moon_phase' => 3,
       'moon_phase_text' => '十三夜',
     ),
   ),
-  '2022-04-14 00:00:00' => 
+  '2022-04-14 09:00:00' =>
   array (
-    0 => '2022-04-14 00:00:00',
-    1 => 
+    0 => '2022-04-14 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 4,
       'day' => 14,
       'dayOfWeek' => 4,
       'dayOfYear' => 104,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1649862000,
-      'formatted' => '2022-04-14 00:00:00',
-      'timezone' => 
+      'timestamp' => 1649894400,
+      'formatted' => '2022-04-14 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -7888,29 +6846,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 14,
       'is_leap_month' => false,
-      'moon_age' => 12.733493796084076,
-      'moon_phase_angle' => 139.75871483594352,
+      'moon_age' => 12.733,
+      'moon_phase_angle' => 141.01545791945034,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-04-15 00:00:00' => 
+  '2022-04-15 09:00:00' =>
   array (
-    0 => '2022-04-15 00:00:00',
-    1 => 
+    0 => '2022-04-15 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 4,
       'day' => 15,
       'dayOfWeek' => 5,
       'dayOfYear' => 105,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1649948400,
-      'formatted' => '2022-04-15 00:00:00',
-      'timezone' => 
+      'timestamp' => 1649980800,
+      'formatted' => '2022-04-15 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -7946,29 +6904,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 15,
       'is_leap_month' => false,
-      'moon_age' => 13.733490977436304,
-      'moon_phase_angle' => 152.10398631000777,
+      'moon_age' => 13.733,
+      'moon_phase_angle' => 153.40667090447852,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-04-16 00:00:00' => 
+  '2022-04-16 09:00:00' =>
   array (
-    0 => '2022-04-16 00:00:00',
-    1 => 
+    0 => '2022-04-16 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 4,
       'day' => 16,
       'dayOfWeek' => 6,
       'dayOfYear' => 106,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1650034800,
-      'formatted' => '2022-04-16 00:00:00',
-      'timezone' => 
+      'timestamp' => 1650067200,
+      'formatted' => '2022-04-16 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -8004,74 +6962,16 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 14.733490609563887,
-      'moon_phase_angle' => 164.81391954514422,
+      'moon_age' => 14.733,
+      'moon_phase_angle' => 166.15954323311271,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-04-17 00:00:00' => 
+  '2022-04-17 03:55:00' =>
   array (
-    0 => '2022-04-17 00:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 4,
-      'day' => 17,
-      'dayOfWeek' => 0,
-      'dayOfYear' => 107,
-      'hour' => 0,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1650121200,
-      'formatted' => '2022-04-17 00:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 7,
-      'misc_seasonal_node_text' => '土用',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '先勝',
-      'six_weekday' => 2,
-      'weekday_text' => '日',
-      'month_text' => '卯月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '弥生',
-      'lunar_month' => 3,
-      'lunar_year' => 2022,
-      'lunar_day' => 17,
-      'is_leap_month' => false,
-      'moon_age' => 15.73348981840536,
-      'moon_phase_angle' => 177.8506252500544,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2022-04-17 03:00:00' => 
-  array (
-    0 => '2022-04-17 03:00:00',
-    1 => 
+    0 => '2022-04-17 03:55:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 4,
@@ -8079,12 +6979,12 @@ return array (
       'dayOfWeek' => 0,
       'dayOfYear' => 107,
       'hour' => 3,
-      'minute' => 0,
+      'minute' => 55,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1650132000,
-      'formatted' => '2022-04-17 03:00:00',
-      'timezone' => 
+      'timestamp' => 1650135300,
+      'formatted' => '2022-04-17 03:55:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -8120,29 +7020,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 17,
       'is_leap_month' => false,
-      'moon_age' => 15.858491700142622,
-      'moon_phase_angle' => 179.50018595150289,
+      'moon_age' => 15.521527777777777,
+      'moon_phase_angle' => 176.44007959589803,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2022-04-17 04:00:00' => 
+  '2022-04-17 09:00:00' =>
   array (
-    0 => '2022-04-17 04:00:00',
-    1 => 
+    0 => '2022-04-17 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 4,
       'day' => 17,
       'dayOfWeek' => 0,
       'dayOfYear' => 107,
-      'hour' => 4,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1650135600,
-      'formatted' => '2022-04-17 04:00:00',
-      'timezone' => 
+      'timestamp' => 1650153600,
+      'formatted' => '2022-04-17 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -8178,87 +7078,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 17,
       'is_leap_month' => false,
-      'moon_age' => 15.900160806253552,
-      'moon_phase_angle' => 180.0509262108612,
+      'moon_age' => 15.733,
+      'moon_phase_angle' => 179.23275033754234,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2022-04-17 05:00:00' => 
+  '2022-04-18 09:00:00' =>
   array (
-    0 => '2022-04-17 05:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 4,
-      'day' => 17,
-      'dayOfWeek' => 0,
-      'dayOfYear' => 107,
-      'hour' => 5,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1650139200,
-      'formatted' => '2022-04-17 05:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 7,
-      'misc_seasonal_node_text' => '土用',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '先勝',
-      'six_weekday' => 2,
-      'weekday_text' => '日',
-      'month_text' => '卯月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '弥生',
-      'lunar_month' => 3,
-      'lunar_year' => 2022,
-      'lunar_day' => 17,
-      'is_leap_month' => false,
-      'moon_age' => 15.941817744635046,
-      'moon_phase_angle' => 180.60210016678977,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2022-04-18 00:00:00' => 
-  array (
-    0 => '2022-04-18 00:00:00',
-    1 => 
+    0 => '2022-04-18 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 4,
       'day' => 18,
       'dayOfWeek' => 1,
       'dayOfYear' => 108,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1650207600,
-      'formatted' => '2022-04-18 00:00:00',
-      'timezone' => 
+      'timestamp' => 1650240000,
+      'formatted' => '2022-04-18 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -8294,29 +7136,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 18,
       'is_leap_month' => false,
-      'moon_age' => 16.733487294986844,
-      'moon_phase_angle' => 191.1486980130559,
+      'moon_age' => 16.733,
+      'moon_phase_angle' => 192.55808192342568,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-04-19 00:00:00' => 
+  '2022-04-19 09:00:00' =>
   array (
-    0 => '2022-04-19 00:00:00',
-    1 => 
+    0 => '2022-04-19 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 4,
       'day' => 19,
       'dayOfWeek' => 2,
       'dayOfYear' => 109,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1650294000,
-      'formatted' => '2022-04-19 00:00:00',
-      'timezone' => 
+      'timestamp' => 1650326400,
+      'formatted' => '2022-04-19 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -8352,29 +7194,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 19,
       'is_leap_month' => false,
-      'moon_age' => 17.73348632734269,
-      'moon_phase_angle' => 204.62328115326196,
+      'moon_age' => 17.733,
+      'moon_phase_angle' => 206.0488628880869,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-04-20 00:00:00' => 
+  '2022-04-20 09:00:00' =>
   array (
-    0 => '2022-04-20 00:00:00',
-    1 => 
+    0 => '2022-04-20 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 4,
       'day' => 20,
       'dayOfWeek' => 3,
       'dayOfYear' => 110,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1650380400,
-      'formatted' => '2022-04-20 00:00:00',
-      'timezone' => 
+      'timestamp' => 1650412800,
+      'formatted' => '2022-04-20 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -8410,29 +7252,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 20,
       'is_leap_month' => false,
-      'moon_age' => 18.73348479811102,
-      'moon_phase_angle' => 218.18132604588496,
+      'moon_age' => 18.733,
+      'moon_phase_angle' => 219.61151915551952,
       'moon_phase' => 5,
       'moon_phase_text' => '十六夜',
     ),
   ),
-  '2022-04-21 00:00:00' => 
+  '2022-04-21 09:00:00' =>
   array (
-    0 => '2022-04-21 00:00:00',
-    1 => 
+    0 => '2022-04-21 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 4,
       'day' => 21,
       'dayOfWeek' => 4,
       'dayOfYear' => 111,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1650466800,
-      'formatted' => '2022-04-21 00:00:00',
-      'timezone' => 
+      'timestamp' => 1650499200,
+      'formatted' => '2022-04-21 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -8468,29 +7310,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 21,
       'is_leap_month' => false,
-      'moon_age' => 19.733494211919606,
-      'moon_phase_angle' => 231.73322550574403,
+      'moon_age' => 19.733,
+      'moon_phase_angle' => 233.1573488180705,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-04-22 00:00:00' => 
+  '2022-04-22 09:00:00' =>
   array (
-    0 => '2022-04-22 00:00:00',
-    1 => 
+    0 => '2022-04-22 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 4,
       'day' => 22,
       'dayOfWeek' => 5,
       'dayOfYear' => 112,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1650553200,
-      'formatted' => '2022-04-22 00:00:00',
-      'timezone' => 
+      'timestamp' => 1650585600,
+      'formatted' => '2022-04-22 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -8526,29 +7368,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 22,
       'is_leap_month' => false,
-      'moon_age' => 20.733488380908966,
-      'moon_phase_angle' => 245.20196594251934,
+      'moon_age' => 20.733,
+      'moon_phase_angle' => 246.6114359939074,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-04-23 00:00:00' => 
+  '2022-04-23 09:00:00' =>
   array (
-    0 => '2022-04-23 00:00:00',
-    1 => 
+    0 => '2022-04-23 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 4,
       'day' => 23,
       'dayOfWeek' => 6,
       'dayOfYear' => 113,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1650639600,
-      'formatted' => '2022-04-23 00:00:00',
-      'timezone' => 
+      'timestamp' => 1650672000,
+      'formatted' => '2022-04-23 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -8584,29 +7426,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 21.733486666344106,
-      'moon_phase_angle' => 258.5280797888691,
+      'moon_age' => 21.733,
+      'moon_phase_angle' => 259.9169305158818,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2022-04-23 22:00:00' => 
+  '2022-04-23 20:56:00' =>
   array (
-    0 => '2022-04-23 22:00:00',
-    1 => 
+    0 => '2022-04-23 20:56:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 4,
       'day' => 23,
       'dayOfWeek' => 6,
       'dayOfYear' => 113,
-      'hour' => 22,
-      'minute' => 0,
+      'hour' => 20,
+      'minute' => 56,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1650718800,
-      'formatted' => '2022-04-23 22:00:00',
-      'timezone' => 
+      'timestamp' => 1650714960,
+      'formatted' => '2022-04-23 20:56:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -8642,29 +7484,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 22.650159085169435,
-      'moon_phase_angle' => 270.5828290752197,
+      'moon_age' => 22.230555555555554,
+      'moon_phase_angle' => 266.4647075149676,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2022-04-24 00:00:00' => 
+  '2022-04-24 09:00:00' =>
   array (
-    0 => '2022-04-24 00:00:00',
-    1 => 
+    0 => '2022-04-24 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 4,
       'day' => 24,
       'dayOfWeek' => 0,
       'dayOfYear' => 114,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1650726000,
-      'formatted' => '2022-04-24 00:00:00',
-      'timezone' => 
+      'timestamp' => 1650758400,
+      'formatted' => '2022-04-24 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -8700,29 +7542,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 24,
       'is_leap_month' => false,
-      'moon_age' => 22.733488405589014,
-      'moon_phase_angle' => 271.6702719344537,
+      'moon_age' => 22.733,
+      'moon_phase_angle' => 273.0348541859032,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-04-25 00:00:00' => 
+  '2022-04-25 09:00:00' =>
   array (
-    0 => '2022-04-25 00:00:00',
-    1 => 
+    0 => '2022-04-25 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 4,
       'day' => 25,
       'dayOfWeek' => 1,
       'dayOfYear' => 115,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1650812400,
-      'formatted' => '2022-04-25 00:00:00',
-      'timezone' => 
+      'timestamp' => 1650844800,
+      'formatted' => '2022-04-25 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -8758,29 +7600,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 25,
       'is_leap_month' => false,
-      'moon_age' => 23.73352860286832,
-      'moon_phase_angle' => 284.6028501321153,
+      'moon_age' => 23.733,
+      'moon_phase_angle' => 285.94104293113026,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-04-26 00:00:00' => 
+  '2022-04-26 09:00:00' =>
   array (
-    0 => '2022-04-26 00:00:00',
-    1 => 
+    0 => '2022-04-26 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 4,
       'day' => 26,
       'dayOfWeek' => 2,
       'dayOfYear' => 116,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1650898800,
-      'formatted' => '2022-04-26 00:00:00',
-      'timezone' => 
+      'timestamp' => 1650931200,
+      'formatted' => '2022-04-26 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -8816,29 +7658,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 26,
       'is_leap_month' => false,
-      'moon_age' => 24.733754112385213,
-      'moon_phase_angle' => 297.31162892776126,
+      'moon_age' => 24.733,
+      'moon_phase_angle' => 298.62213919679,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-04-27 00:00:00' => 
+  '2022-04-27 09:00:00' =>
   array (
-    0 => '2022-04-27 00:00:00',
-    1 => 
+    0 => '2022-04-27 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 4,
       'day' => 27,
       'dayOfWeek' => 3,
       'dayOfYear' => 117,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1650985200,
-      'formatted' => '2022-04-27 00:00:00',
-      'timezone' => 
+      'timestamp' => 1651017600,
+      'formatted' => '2022-04-27 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -8874,29 +7716,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 27,
       'is_leap_month' => false,
-      'moon_age' => 25.733839893247932,
-      'moon_phase_angle' => 309.78986318497635,
+      'moon_age' => 25.733,
+      'moon_phase_angle' => 311.0719571948759,
       'moon_phase' => 7,
       'moon_phase_text' => '有明',
     ),
   ),
-  '2022-04-28 00:00:00' => 
+  '2022-04-28 09:00:00' =>
   array (
-    0 => '2022-04-28 00:00:00',
-    1 => 
+    0 => '2022-04-28 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 4,
       'day' => 28,
       'dayOfWeek' => 4,
       'dayOfYear' => 118,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1651071600,
-      'formatted' => '2022-04-28 00:00:00',
-      'timezone' => 
+      'timestamp' => 1651104000,
+      'formatted' => '2022-04-28 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -8932,29 +7774,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 28,
       'is_leap_month' => false,
-      'moon_age' => 26.78812850374201,
-      'moon_phase_angle' => 322.03527730214466,
+      'moon_age' => 26.733,
+      'moon_phase_angle' => 323.28881750108724,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-04-29 00:00:00' => 
+  '2022-04-29 09:00:00' =>
   array (
-    0 => '2022-04-29 00:00:00',
-    1 => 
+    0 => '2022-04-29 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 4,
       'day' => 29,
       'dayOfWeek' => 5,
       'dayOfYear' => 119,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1651158000,
-      'formatted' => '2022-04-29 00:00:00',
-      'timezone' => 
+      'timestamp' => 1651190400,
+      'formatted' => '2022-04-29 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -8990,29 +7832,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 29,
       'is_leap_month' => false,
-      'moon_age' => 27.766509157283544,
-      'moon_phase_angle' => 334.0486607281623,
+      'moon_age' => 27.733,
+      'moon_phase_angle' => 335.2741023649805,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-04-30 00:00:00' => 
+  '2022-04-30 09:00:00' =>
   array (
-    0 => '2022-04-30 00:00:00',
-    1 => 
+    0 => '2022-04-30 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 4,
       'day' => 30,
       'dayOfWeek' => 6,
       'dayOfYear' => 120,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1651244400,
-      'formatted' => '2022-04-30 00:00:00',
-      'timezone' => 
+      'timestamp' => 1651276800,
+      'formatted' => '2022-04-30 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -9048,132 +7890,16 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 30,
       'is_leap_month' => false,
-      'moon_age' => 28.72638939475113,
-      'moon_phase_angle' => 345.8339787207808,
+      'moon_age' => 28.733,
+      'moon_phase_angle' => 347.03220823776604,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-05-01 00:00:00' => 
+  '2022-05-01 05:28:00' =>
   array (
-    0 => '2022-05-01 00:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 5,
-      'day' => 1,
-      'dayOfWeek' => 0,
-      'dayOfYear' => 121,
-      'hour' => 0,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1651330800,
-      'formatted' => '2022-05-01 00:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 7,
-      'misc_seasonal_node_text' => '土用',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '仏滅',
-      'six_weekday' => 5,
-      'weekday_text' => '日',
-      'month_text' => '皐月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '卯月',
-      'lunar_month' => 4,
-      'lunar_year' => 2022,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.1476195533759892,
-      'moon_phase_angle' => 357.3996008205003,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2022-05-01 04:00:00' => 
-  array (
-    0 => '2022-05-01 04:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 5,
-      'day' => 1,
-      'dayOfWeek' => 0,
-      'dayOfYear' => 121,
-      'hour' => 4,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1651345200,
-      'formatted' => '2022-05-01 04:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 7,
-      'misc_seasonal_node_text' => '土用',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '仏滅',
-      'six_weekday' => 5,
-      'weekday_text' => '日',
-      'month_text' => '皐月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '卯月',
-      'lunar_month' => 4,
-      'lunar_year' => 2022,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.31429020082578063,
-      'moon_phase_angle' => 359.3067562065489,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2022-05-01 05:00:00' => 
-  array (
-    0 => '2022-05-01 05:00:00',
-    1 => 
+    0 => '2022-05-01 05:28:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 5,
@@ -9181,12 +7907,12 @@ return array (
       'dayOfWeek' => 0,
       'dayOfYear' => 121,
       'hour' => 5,
-      'minute' => 0,
+      'minute' => 28,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1651348800,
-      'formatted' => '2022-05-01 05:00:00',
-      'timezone' => 
+      'timestamp' => 1651350480,
+      'formatted' => '2022-05-01 05:28:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -9222,29 +7948,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.35595547454431653,
-      'moon_phase_angle' => 359.7826617872715,
+      'moon_age' => 0.0,
+      'moon_phase_angle' => 356.886172104123,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2022-05-01 06:00:00' => 
+  '2022-05-01 09:00:00' =>
   array (
-    0 => '2022-05-01 06:00:00',
-    1 => 
+    0 => '2022-05-01 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 5,
       'day' => 1,
       'dayOfWeek' => 0,
       'dayOfYear' => 121,
-      'hour' => 6,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1651352400,
-      'formatted' => '2022-05-01 06:00:00',
-      'timezone' => 
+      'timestamp' => 1651363200,
+      'formatted' => '2022-05-01 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -9280,87 +8006,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.39762554969638586,
-      'moon_phase_angle' => 0.25821685599589017,
+      'moon_age' => 0.147,
+      'moon_phase_angle' => 358.5718528441827,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2022-05-01 07:00:00' => 
+  '2022-05-02 09:00:00' =>
   array (
-    0 => '2022-05-01 07:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 5,
-      'day' => 1,
-      'dayOfWeek' => 0,
-      'dayOfYear' => 121,
-      'hour' => 7,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1651356000,
-      'formatted' => '2022-05-01 07:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 7,
-      'misc_seasonal_node_text' => '土用',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '仏滅',
-      'six_weekday' => 5,
-      'weekday_text' => '日',
-      'month_text' => '皐月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '卯月',
-      'lunar_month' => 4,
-      'lunar_year' => 2022,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.43928975611925125,
-      'moon_phase_angle' => 0.7334228633097979,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2022-05-02 00:00:00' => 
-  array (
-    0 => '2022-05-02 00:00:00',
-    1 => 
+    0 => '2022-05-02 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 5,
       'day' => 2,
       'dayOfWeek' => 1,
       'dayOfYear' => 122,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1651417200,
-      'formatted' => '2022-05-02 00:00:00',
-      'timezone' => 
+      'timestamp' => 1651449600,
+      'formatted' => '2022-05-02 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -9396,29 +8064,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 2,
       'is_leap_month' => false,
-      'moon_age' => 1.1476231734268367,
-      'moon_phase_angle' => 8.760044498708695,
+      'moon_age' => 1.147,
+      'moon_phase_angle' => 9.908216498975435,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-05-03 00:00:00' => 
+  '2022-05-03 09:00:00' =>
   array (
-    0 => '2022-05-03 00:00:00',
-    1 => 
+    0 => '2022-05-03 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 5,
       'day' => 3,
       'dayOfWeek' => 2,
       'dayOfYear' => 123,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1651503600,
-      'formatted' => '2022-05-03 00:00:00',
-      'timezone' => 
+      'timestamp' => 1651536000,
+      'formatted' => '2022-05-03 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -9454,29 +8122,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 3,
       'is_leap_month' => false,
-      'moon_age' => 2.1476234290748835,
-      'moon_phase_angle' => 19.937792770063623,
+      'moon_age' => 2.147,
+      'moon_phase_angle' => 21.065004303957245,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-05-04 00:00:00' => 
+  '2022-05-04 09:00:00' =>
   array (
-    0 => '2022-05-04 00:00:00',
-    1 => 
+    0 => '2022-05-04 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 5,
       'day' => 4,
       'dayOfWeek' => 3,
       'dayOfYear' => 124,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1651590000,
-      'formatted' => '2022-05-04 00:00:00',
-      'timezone' => 
+      'timestamp' => 1651622400,
+      'formatted' => '2022-05-04 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -9512,29 +8180,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 4,
       'is_leap_month' => false,
-      'moon_age' => 3.147626036312431,
-      'moon_phase_angle' => 30.96463594133529,
+      'moon_age' => 3.147,
+      'moon_phase_angle' => 32.07567276573461,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-05-05 00:00:00' => 
+  '2022-05-05 09:00:00' =>
   array (
-    0 => '2022-05-05 00:00:00',
-    1 => 
+    0 => '2022-05-05 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 5,
       'day' => 5,
       'dayOfWeek' => 4,
       'dayOfYear' => 125,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1651676400,
-      'formatted' => '2022-05-05 00:00:00',
-      'timezone' => 
+      'timestamp' => 1651708800,
+      'formatted' => '2022-05-05 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -9570,29 +8238,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 5,
       'is_leap_month' => false,
-      'moon_age' => 4.147616936825216,
-      'moon_phase_angle' => 41.88240229758208,
+      'moon_age' => 4.147,
+      'moon_phase_angle' => 42.983648820292295,
       'moon_phase' => 1,
       'moon_phase_text' => '三日月',
     ),
   ),
-  '2022-05-06 00:00:00' => 
+  '2022-05-06 09:00:00' =>
   array (
-    0 => '2022-05-06 00:00:00',
-    1 => 
+    0 => '2022-05-06 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 5,
       'day' => 6,
       'dayOfWeek' => 5,
       'dayOfYear' => 126,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1651762800,
-      'formatted' => '2022-05-06 00:00:00',
-      'timezone' => 
+      'timestamp' => 1651795200,
+      'formatted' => '2022-05-06 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -9628,29 +8296,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 6,
       'is_leap_month' => false,
-      'moon_age' => 5.147625740617514,
-      'moon_phase_angle' => 52.742941140110766,
+      'moon_age' => 5.147,
+      'moon_phase_angle' => 53.84190461272039,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-05-07 00:00:00' => 
+  '2022-05-07 09:00:00' =>
   array (
-    0 => '2022-05-07 00:00:00',
-    1 => 
+    0 => '2022-05-07 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 5,
       'day' => 7,
       'dayOfWeek' => 6,
       'dayOfYear' => 127,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1651849200,
-      'formatted' => '2022-05-07 00:00:00',
-      'timezone' => 
+      'timestamp' => 1651881600,
+      'formatted' => '2022-05-07 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -9686,29 +8354,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 7,
       'is_leap_month' => false,
-      'moon_age' => 6.147625675424933,
-      'moon_phase_angle' => 63.60734668600418,
+      'moon_age' => 6.147,
+      'moon_phase_angle' => 64.71221133994709,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-05-08 00:00:00' => 
+  '2022-05-08 09:00:00' =>
   array (
-    0 => '2022-05-08 00:00:00',
-    1 => 
+    0 => '2022-05-08 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 5,
       'day' => 8,
       'dayOfWeek' => 0,
       'dayOfYear' => 128,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1651935600,
-      'formatted' => '2022-05-08 00:00:00',
-      'timezone' => 
+      'timestamp' => 1651968000,
+      'formatted' => '2022-05-08 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -9744,29 +8412,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 7.147621255833656,
-      'moon_phase_angle' => 74.54439966225678,
+      'moon_age' => 7.147,
+      'moon_phase_angle' => 75.66389509021974,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-05-09 00:00:00' => 
+  '2022-05-09 09:00:00' =>
   array (
-    0 => '2022-05-09 00:00:00',
-    1 => 
+    0 => '2022-05-09 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 5,
       'day' => 9,
       'dayOfWeek' => 1,
       'dayOfYear' => 129,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1652022000,
-      'formatted' => '2022-05-09 00:00:00',
-      'timezone' => 
+      'timestamp' => 1652054400,
+      'formatted' => '2022-05-09 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -9802,29 +8470,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 9,
       'is_leap_month' => false,
-      'moon_age' => 8.147620460018516,
-      'moon_phase_angle' => 85.62813284071518,
+      'moon_age' => 8.147,
+      'moon_phase_angle' => 86.77151797404252,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2022-05-09 10:00:00' => 
+  '2022-05-09 09:21:00' =>
   array (
-    0 => '2022-05-09 10:00:00',
-    1 => 
+    0 => '2022-05-09 09:21:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 5,
       'day' => 9,
       'dayOfWeek' => 1,
       'dayOfYear' => 129,
-      'hour' => 10,
-      'minute' => 0,
+      'hour' => 9,
+      'minute' => 21,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1652058000,
-      'formatted' => '2022-05-09 10:00:00',
-      'timezone' => 
+      'timestamp' => 1652055660,
+      'formatted' => '2022-05-09 09:21:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -9860,29 +8528,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 9,
       'is_leap_month' => false,
-      'moon_age' => 8.564284826163203,
-      'moon_phase_angle' => 90.30770797108053,
+      'moon_age' => 8.161805555555556,
+      'moon_phase_angle' => 86.93503701490752,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2022-05-10 00:00:00' => 
+  '2022-05-10 09:00:00' =>
   array (
-    0 => '2022-05-10 00:00:00',
-    1 => 
+    0 => '2022-05-10 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 5,
       'day' => 10,
       'dayOfWeek' => 2,
       'dayOfYear' => 130,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1652108400,
-      'formatted' => '2022-05-10 00:00:00',
-      'timezone' => 
+      'timestamp' => 1652140800,
+      'formatted' => '2022-05-10 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -9918,29 +8586,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 10,
       'is_leap_month' => false,
-      'moon_age' => 9.147620182018727,
-      'moon_phase_angle' => 96.93432997858883,
+      'moon_age' => 9.147,
+      'moon_phase_angle' => 98.11102325080049,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-05-11 00:00:00' => 
+  '2022-05-11 09:00:00' =>
   array (
-    0 => '2022-05-11 00:00:00',
-    1 => 
+    0 => '2022-05-11 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 5,
       'day' => 11,
       'dayOfWeek' => 3,
       'dayOfYear' => 131,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1652194800,
-      'formatted' => '2022-05-11 00:00:00',
-      'timezone' => 
+      'timestamp' => 1652227200,
+      'formatted' => '2022-05-11 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -9976,29 +8644,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 11,
       'is_leap_month' => false,
-      'moon_age' => 10.147618900984526,
-      'moon_phase_angle' => 108.53570133000551,
+      'moon_age' => 10.147,
+      'moon_phase_angle' => 109.75433874642849,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-05-12 00:00:00' => 
+  '2022-05-12 09:00:00' =>
   array (
-    0 => '2022-05-12 00:00:00',
-    1 => 
+    0 => '2022-05-12 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 5,
       'day' => 12,
       'dayOfWeek' => 4,
       'dayOfYear' => 132,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1652281200,
-      'formatted' => '2022-05-12 00:00:00',
-      'timezone' => 
+      'timestamp' => 1652313600,
+      'formatted' => '2022-05-12 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -10034,29 +8702,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 12,
       'is_leap_month' => false,
-      'moon_age' => 11.147625745739788,
-      'moon_phase_angle' => 120.4955275340536,
+      'moon_age' => 11.147,
+      'moon_phase_angle' => 121.76272620869543,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-05-13 00:00:00' => 
+  '2022-05-13 09:00:00' =>
   array (
-    0 => '2022-05-13 00:00:00',
-    1 => 
+    0 => '2022-05-13 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 5,
       'day' => 13,
       'dayOfWeek' => 5,
       'dayOfYear' => 133,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1652367600,
-      'formatted' => '2022-05-13 00:00:00',
-      'timezone' => 
+      'timestamp' => 1652400000,
+      'formatted' => '2022-05-13 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -10092,29 +8760,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 13,
       'is_leap_month' => false,
-      'moon_age' => 12.147621027659625,
-      'moon_phase_angle' => 132.8598350669897,
+      'moon_age' => 12.147,
+      'moon_phase_angle' => 134.17913687953097,
       'moon_phase' => 3,
       'moon_phase_text' => '十三夜',
     ),
   ),
-  '2022-05-14 00:00:00' => 
+  '2022-05-14 09:00:00' =>
   array (
-    0 => '2022-05-14 00:00:00',
-    1 => 
+    0 => '2022-05-14 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 5,
       'day' => 14,
       'dayOfWeek' => 6,
       'dayOfYear' => 134,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1652454000,
-      'formatted' => '2022-05-14 00:00:00',
-      'timezone' => 
+      'timestamp' => 1652486400,
+      'formatted' => '2022-05-14 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -10150,29 +8818,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 14,
       'is_leap_month' => false,
-      'moon_age' => 13.147621267009526,
-      'moon_phase_angle' => 145.64874621998436,
+      'moon_age' => 13.147,
+      'moon_phase_angle' => 147.01994578306827,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-05-15 00:00:00' => 
+  '2022-05-15 09:00:00' =>
   array (
-    0 => '2022-05-15 00:00:00',
-    1 => 
+    0 => '2022-05-15 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 5,
       'day' => 15,
       'dayOfWeek' => 0,
       'dayOfYear' => 135,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1652540400,
-      'formatted' => '2022-05-15 00:00:00',
-      'timezone' => 
+      'timestamp' => 1652572800,
+      'formatted' => '2022-05-15 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -10208,29 +8876,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 15,
       'is_leap_month' => false,
-      'moon_age' => 14.147623748518527,
-      'moon_phase_angle' => 158.84850785988186,
+      'moon_age' => 14.147,
+      'moon_phase_angle' => 160.26723006932423,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-05-16 00:00:00' => 
+  '2022-05-16 09:00:00' =>
   array (
-    0 => '2022-05-16 00:00:00',
-    1 => 
+    0 => '2022-05-16 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 5,
       'day' => 16,
       'dayOfWeek' => 1,
       'dayOfYear' => 136,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1652626800,
-      'formatted' => '2022-05-16 00:00:00',
-      'timezone' => 
+      'timestamp' => 1652659200,
+      'formatted' => '2022-05-16 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -10266,74 +8934,16 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 15.147616679780185,
-      'moon_phase_angle' => 172.40657130754678,
+      'moon_age' => 15.147,
+      'moon_phase_angle' => 173.86402033209717,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2022-05-16 12:00:00' => 
+  '2022-05-16 13:14:00' =>
   array (
-    0 => '2022-05-16 12:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 5,
-      'day' => 16,
-      'dayOfWeek' => 1,
-      'dayOfYear' => 136,
-      'hour' => 12,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1652670000,
-      'formatted' => '2022-05-16 12:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '先勝',
-      'six_weekday' => 2,
-      'weekday_text' => '月',
-      'month_text' => '皐月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '卯月',
-      'lunar_month' => 4,
-      'lunar_year' => 2022,
-      'lunar_day' => 16,
-      'is_leap_month' => false,
-      'moon_age' => 15.647622093558311,
-      'moon_phase_angle' => 179.2929817528612,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2022-05-16 13:00:00' => 
-  array (
-    0 => '2022-05-16 13:00:00',
-    1 => 
+    0 => '2022-05-16 13:14:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 5,
@@ -10341,12 +8951,12 @@ return array (
       'dayOfWeek' => 1,
       'dayOfYear' => 136,
       'hour' => 13,
-      'minute' => 0,
+      'minute' => 14,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1652673600,
-      'formatted' => '2022-05-16 13:00:00',
-      'timezone' => 
+      'timestamp' => 1652674440,
+      'formatted' => '2022-05-16 13:14:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -10382,87 +8992,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 15.689288662280887,
-      'moon_phase_angle' => 179.86945244465045,
+      'moon_age' => 15.323611111111111,
+      'moon_phase_angle' => 176.2919926477449,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2022-05-16 14:00:00' => 
+  '2022-05-17 09:00:00' =>
   array (
-    0 => '2022-05-16 14:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 5,
-      'day' => 16,
-      'dayOfWeek' => 1,
-      'dayOfYear' => 136,
-      'hour' => 14,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1652677200,
-      'formatted' => '2022-05-16 14:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '先勝',
-      'six_weekday' => 2,
-      'weekday_text' => '月',
-      'month_text' => '皐月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '卯月',
-      'lunar_month' => 4,
-      'lunar_year' => 2022,
-      'lunar_day' => 16,
-      'is_leap_month' => false,
-      'moon_age' => 15.730950130615383,
-      'moon_phase_angle' => 180.4462831687622,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2022-05-17 00:00:00' => 
-  array (
-    0 => '2022-05-17 00:00:00',
-    1 => 
+    0 => '2022-05-17 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 5,
       'day' => 17,
       'dayOfWeek' => 2,
       'dayOfYear' => 137,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1652713200,
-      'formatted' => '2022-05-17 00:00:00',
-      'timezone' => 
+      'timestamp' => 1652745600,
+      'formatted' => '2022-05-17 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -10498,29 +9050,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 17,
       'is_leap_month' => false,
-      'moon_age' => 16.147619834169745,
-      'moon_phase_angle' => 186.23239114503815,
+      'moon_age' => 16.147,
+      'moon_phase_angle' => 187.71557470337643,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-05-18 00:00:00' => 
+  '2022-05-18 09:00:00' =>
   array (
-    0 => '2022-05-18 00:00:00',
-    1 => 
+    0 => '2022-05-18 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 5,
       'day' => 18,
       'dayOfWeek' => 3,
       'dayOfYear' => 138,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1652799600,
-      'formatted' => '2022-05-18 00:00:00',
-      'timezone' => 
+      'timestamp' => 1652832000,
+      'formatted' => '2022-05-18 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -10556,29 +9108,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 18,
       'is_leap_month' => false,
-      'moon_age' => 17.14762383233756,
-      'moon_phase_angle' => 200.20568459467432,
+      'moon_age' => 17.147,
+      'moon_phase_angle' => 201.69857796704179,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-05-19 00:00:00' => 
+  '2022-05-19 09:00:00' =>
   array (
-    0 => '2022-05-19 00:00:00',
-    1 => 
+    0 => '2022-05-19 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 5,
       'day' => 19,
       'dayOfWeek' => 4,
       'dayOfYear' => 139,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1652886000,
-      'formatted' => '2022-05-19 00:00:00',
-      'timezone' => 
+      'timestamp' => 1652918400,
+      'formatted' => '2022-05-19 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -10614,29 +9166,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 19,
       'is_leap_month' => false,
-      'moon_age' => 18.147626389749348,
-      'moon_phase_angle' => 214.1915934904575,
+      'moon_age' => 18.147,
+      'moon_phase_angle' => 215.6773011174168,
       'moon_phase' => 5,
       'moon_phase_text' => '十六夜',
     ),
   ),
-  '2022-05-20 00:00:00' => 
+  '2022-05-20 09:00:00' =>
   array (
-    0 => '2022-05-20 00:00:00',
-    1 => 
+    0 => '2022-05-20 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 5,
       'day' => 20,
       'dayOfWeek' => 5,
       'dayOfYear' => 140,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1652972400,
-      'formatted' => '2022-05-20 00:00:00',
-      'timezone' => 
+      'timestamp' => 1653004800,
+      'formatted' => '2022-05-20 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -10672,29 +9224,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 20,
       'is_leap_month' => false,
-      'moon_age' => 19.147623498458415,
-      'moon_phase_angle' => 228.05937854223674,
+      'moon_age' => 19.147,
+      'moon_phase_angle' => 229.52268282656183,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-05-21 00:00:00' => 
+  '2022-05-21 09:00:00' =>
   array (
-    0 => '2022-05-21 00:00:00',
-    1 => 
+    0 => '2022-05-21 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 5,
       'day' => 21,
       'dayOfWeek' => 6,
       'dayOfYear' => 141,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1653058800,
-      'formatted' => '2022-05-21 00:00:00',
-      'timezone' => 
+      'timestamp' => 1653091200,
+      'formatted' => '2022-05-21 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -10730,29 +9282,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 21,
       'is_leap_month' => false,
-      'moon_age' => 20.153428780380636,
-      'moon_phase_angle' => 241.69957660285442,
+      'moon_age' => 20.147,
+      'moon_phase_angle' => 243.12894916841756,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-05-22 00:00:00' => 
+  '2022-05-22 09:00:00' =>
   array (
-    0 => '2022-05-22 00:00:00',
-    1 => 
+    0 => '2022-05-22 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 5,
       'day' => 22,
       'dayOfWeek' => 0,
       'dayOfYear' => 142,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1653145200,
-      'formatted' => '2022-05-22 00:00:00',
-      'timezone' => 
+      'timestamp' => 1653177600,
+      'formatted' => '2022-05-22 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -10788,29 +9340,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 22,
       'is_leap_month' => false,
-      'moon_age' => 21.15857211034745,
-      'moon_phase_angle' => 255.03516065677377,
+      'moon_age' => 21.147,
+      'moon_phase_angle' => 256.4236150179763,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-05-23 00:00:00' => 
+  '2022-05-23 03:43:00' =>
   array (
-    0 => '2022-05-23 00:00:00',
-    1 => 
+    0 => '2022-05-23 03:43:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 5,
       'day' => 23,
       'dayOfWeek' => 1,
       'dayOfYear' => 143,
-      'hour' => 0,
-      'minute' => 0,
+      'hour' => 3,
+      'minute' => 43,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1653231600,
-      'formatted' => '2022-05-23 00:00:00',
-      'timezone' => 
+      'timestamp' => 1653244980,
+      'formatted' => '2022-05-23 03:43:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -10846,29 +9398,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 22.16185780474916,
-      'moon_phase_angle' => 268.0248175039229,
+      'moon_age' => 21.927083333333332,
+      'moon_phase_angle' => 266.5503522032668,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2022-05-23 04:00:00' => 
+  '2022-05-23 09:00:00' =>
   array (
-    0 => '2022-05-23 04:00:00',
-    1 => 
+    0 => '2022-05-23 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 5,
       'day' => 23,
       'dayOfWeek' => 1,
       'dayOfYear' => 143,
-      'hour' => 4,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1653246000,
-      'formatted' => '2022-05-23 04:00:00',
-      'timezone' => 
+      'timestamp' => 1653264000,
+      'formatted' => '2022-05-23 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -10904,29 +9456,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 22.32890634564683,
-      'moon_phase_angle' => 270.1550789074967,
+      'moon_age' => 22.147,
+      'moon_phase_angle' => 269.36962124195225,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2022-05-24 00:00:00' => 
+  '2022-05-24 09:00:00' =>
   array (
-    0 => '2022-05-24 00:00:00',
-    1 => 
+    0 => '2022-05-24 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 5,
       'day' => 24,
       'dayOfWeek' => 2,
       'dayOfYear' => 144,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1653318000,
-      'formatted' => '2022-05-24 00:00:00',
-      'timezone' => 
+      'timestamp' => 1653350400,
+      'formatted' => '2022-05-24 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -10962,29 +9514,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 24,
       'is_leap_month' => false,
-      'moon_age' => 23.163395926821977,
-      'moon_phase_angle' => 280.65937325087873,
+      'moon_age' => 23.147,
+      'moon_phase_angle' => 281.96112619134317,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-05-25 00:00:00' => 
+  '2022-05-25 09:00:00' =>
   array (
-    0 => '2022-05-25 00:00:00',
-    1 => 
+    0 => '2022-05-25 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 5,
       'day' => 25,
       'dayOfWeek' => 3,
       'dayOfYear' => 145,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1653404400,
-      'formatted' => '2022-05-25 00:00:00',
-      'timezone' => 
+      'timestamp' => 1653436800,
+      'formatted' => '2022-05-25 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -11020,29 +9572,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 25,
       'is_leap_month' => false,
-      'moon_age' => 24.163323972839862,
-      'moon_phase_angle' => 292.9541307674057,
+      'moon_age' => 24.147,
+      'moon_phase_angle' => 294.21576490996887,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-05-26 00:00:00' => 
+  '2022-05-26 09:00:00' =>
   array (
-    0 => '2022-05-26 00:00:00',
-    1 => 
+    0 => '2022-05-26 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 5,
       'day' => 26,
       'dayOfWeek' => 4,
       'dayOfYear' => 146,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1653490800,
-      'formatted' => '2022-05-26 00:00:00',
-      'timezone' => 
+      'timestamp' => 1653523200,
+      'formatted' => '2022-05-26 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -11078,29 +9630,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 26,
       'is_leap_month' => false,
-      'moon_age' => 25.16180016985163,
-      'moon_phase_angle' => 304.940052192308,
+      'moon_age' => 25.147,
+      'moon_phase_angle' => 306.16599529945,
       'moon_phase' => 7,
       'moon_phase_text' => '有明',
     ),
   ),
-  '2022-05-27 00:00:00' => 
+  '2022-05-27 09:00:00' =>
   array (
-    0 => '2022-05-27 00:00:00',
-    1 => 
+    0 => '2022-05-27 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 5,
       'day' => 27,
       'dayOfWeek' => 5,
       'dayOfYear' => 147,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1653577200,
-      'formatted' => '2022-05-27 00:00:00',
-      'timezone' => 
+      'timestamp' => 1653609600,
+      'formatted' => '2022-05-27 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -11136,29 +9688,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 27,
       'is_leap_month' => false,
-      'moon_age' => 26.33046263470718,
-      'moon_phase_angle' => 316.6559030215555,
+      'moon_age' => 26.147,
+      'moon_phase_angle' => 317.85132768892703,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-05-28 00:00:00' => 
+  '2022-05-28 09:00:00' =>
   array (
-    0 => '2022-05-28 00:00:00',
-    1 => 
+    0 => '2022-05-28 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 5,
       'day' => 28,
       'dayOfWeek' => 6,
       'dayOfYear' => 148,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1653663600,
-      'formatted' => '2022-05-28 00:00:00',
-      'timezone' => 
+      'timestamp' => 1653696000,
+      'formatted' => '2022-05-28 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -11194,29 +9746,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 28,
       'is_leap_month' => false,
-      'moon_age' => 27.26648413078332,
-      'moon_phase_angle' => 328.1424373994879,
+      'moon_age' => 27.147,
+      'moon_phase_angle' => 329.31251401654526,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-05-29 00:00:00' => 
+  '2022-05-29 09:00:00' =>
   array (
-    0 => '2022-05-29 00:00:00',
-    1 => 
+    0 => '2022-05-29 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 5,
       'day' => 29,
       'dayOfWeek' => 0,
       'dayOfYear' => 149,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1653750000,
-      'formatted' => '2022-05-29 00:00:00',
-      'timezone' => 
+      'timestamp' => 1653782400,
+      'formatted' => '2022-05-29 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -11252,29 +9804,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 29,
       'is_leap_month' => false,
-      'moon_age' => 28.188061297549247,
-      'moon_phase_angle' => 339.4388989371387,
+      'moon_age' => 28.147,
+      'moon_phase_angle' => 340.588231855327,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-05-30 00:00:00' => 
+  '2022-05-30 09:00:00' =>
   array (
-    0 => '2022-05-30 00:00:00',
-    1 => 
+    0 => '2022-05-30 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 5,
       'day' => 30,
       'dayOfWeek' => 1,
       'dayOfYear' => 150,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1653836400,
-      'formatted' => '2022-05-30 00:00:00',
-      'timezone' => 
+      'timestamp' => 1653868800,
+      'formatted' => '2022-05-30 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -11310,132 +9862,16 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 29.09808732862988,
-      'moon_phase_angle' => 350.58163799827275,
+      'moon_age' => 29.147,
+      'moon_phase_angle' => 351.7141960046766,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2022-05-30 18:00:00' => 
+  '2022-05-30 20:30:00' =>
   array (
-    0 => '2022-05-30 18:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 5,
-      'day' => 30,
-      'dayOfWeek' => 1,
-      'dayOfYear' => 150,
-      'hour' => 18,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1653901200,
-      'formatted' => '2022-05-30 18:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '大安',
-      'six_weekday' => 0,
-      'weekday_text' => '月',
-      'month_text' => '皐月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '皐月',
-      'lunar_month' => 5,
-      'lunar_year' => 2022,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.2711170930415392,
-      'moon_phase_angle' => 358.8581846544746,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2022-05-30 19:00:00' => 
-  array (
-    0 => '2022-05-30 19:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 5,
-      'day' => 30,
-      'dayOfWeek' => 1,
-      'dayOfYear' => 150,
-      'hour' => 19,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1653904800,
-      'formatted' => '2022-05-30 19:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '大安',
-      'six_weekday' => 0,
-      'weekday_text' => '月',
-      'month_text' => '皐月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '皐月',
-      'lunar_month' => 5,
-      'lunar_year' => 2022,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.31278441939502954,
-      'moon_phase_angle' => 359.3162915504367,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2022-05-30 20:00:00' => 
-  array (
-    0 => '2022-05-30 20:00:00',
-    1 => 
+    0 => '2022-05-30 20:30:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 5,
@@ -11443,12 +9879,12 @@ return array (
       'dayOfWeek' => 1,
       'dayOfYear' => 150,
       'hour' => 20,
-      'minute' => 0,
+      'minute' => 30,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1653908400,
-      'formatted' => '2022-05-30 20:00:00',
-      'timezone' => 
+      'timestamp' => 1653910200,
+      'formatted' => '2022-05-30 20:30:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -11484,145 +9920,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.3544503264129162,
-      'moon_phase_angle' => 359.77423500859504,
+      'moon_age' => 0.0,
+      'moon_phase_angle' => 357.002195875904,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2022-05-30 21:00:00' => 
+  '2022-05-31 09:00:00' =>
   array (
-    0 => '2022-05-30 21:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 5,
-      'day' => 30,
-      'dayOfWeek' => 1,
-      'dayOfYear' => 150,
-      'hour' => 21,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1653912000,
-      'formatted' => '2022-05-30 21:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '大安',
-      'six_weekday' => 0,
-      'weekday_text' => '月',
-      'month_text' => '皐月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '皐月',
-      'lunar_month' => 5,
-      'lunar_year' => 2022,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.3961150818504393,
-      'moon_phase_angle' => 0.23201736669294348,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2022-05-30 22:00:00' => 
-  array (
-    0 => '2022-05-30 22:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 5,
-      'day' => 30,
-      'dayOfWeek' => 1,
-      'dayOfYear' => 150,
-      'hour' => 22,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1653915600,
-      'formatted' => '2022-05-30 22:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '大安',
-      'six_weekday' => 0,
-      'weekday_text' => '月',
-      'month_text' => '皐月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '皐月',
-      'lunar_month' => 5,
-      'lunar_year' => 2022,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.43777888733893633,
-      'moon_phase_angle' => 0.6896409809113919,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2022-05-31 00:00:00' => 
-  array (
-    0 => '2022-05-31 00:00:00',
-    1 => 
+    0 => '2022-05-31 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 5,
       'day' => 31,
       'dayOfWeek' => 2,
       'dayOfYear' => 151,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1653922800,
-      'formatted' => '2022-05-31 00:00:00',
-      'timezone' => 
+      'timestamp' => 1653955200,
+      'formatted' => '2022-05-31 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -11658,29 +9978,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 2,
       'is_leap_month' => false,
-      'moon_age' => 0.521114666480571,
-      'moon_phase_angle' => 1.6044213975266644,
+      'moon_age' => 0.521,
+      'moon_phase_angle' => 2.7240058098919206,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-06-01 00:00:00' => 
+  '2022-06-01 09:00:00' =>
   array (
-    0 => '2022-06-01 00:00:00',
-    1 => 
+    0 => '2022-06-01 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 6,
       'day' => 1,
       'dayOfWeek' => 3,
       'dayOfYear' => 152,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1654009200,
-      'formatted' => '2022-06-01 00:00:00',
-      'timezone' => 
+      'timestamp' => 1654041600,
+      'formatted' => '2022-06-01 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -11716,29 +10036,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 3,
       'is_leap_month' => false,
-      'moon_age' => 1.5211110743694007,
-      'moon_phase_angle' => 12.539932024121327,
+      'moon_age' => 1.521,
+      'moon_phase_angle' => 13.650776553879439,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-06-02 00:00:00' => 
+  '2022-06-02 09:00:00' =>
   array (
-    0 => '2022-06-02 00:00:00',
-    1 => 
+    0 => '2022-06-02 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 6,
       'day' => 2,
       'dayOfWeek' => 4,
       'dayOfYear' => 153,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1654095600,
-      'formatted' => '2022-06-02 00:00:00',
-      'timezone' => 
+      'timestamp' => 1654128000,
+      'formatted' => '2022-06-02 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -11774,29 +10094,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 4,
       'is_leap_month' => false,
-      'moon_age' => 2.521111384034157,
-      'moon_phase_angle' => 23.421897096126187,
+      'moon_age' => 2.521,
+      'moon_phase_angle' => 24.52893102699045,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-06-03 00:00:00' => 
+  '2022-06-03 09:00:00' =>
   array (
-    0 => '2022-06-03 00:00:00',
-    1 => 
+    0 => '2022-06-03 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 6,
       'day' => 3,
       'dayOfWeek' => 5,
       'dayOfYear' => 154,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1654182000,
-      'formatted' => '2022-06-03 00:00:00',
-      'timezone' => 
+      'timestamp' => 1654214400,
+      'formatted' => '2022-06-03 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -11832,29 +10152,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 5,
       'is_leap_month' => false,
-      'moon_age' => 3.521110712084919,
-      'moon_phase_angle' => 34.28744967745557,
+      'moon_age' => 3.521,
+      'moon_phase_angle' => 35.39607108529587,
       'moon_phase' => 1,
       'moon_phase_text' => '三日月',
     ),
   ),
-  '2022-06-04 00:00:00' => 
+  '2022-06-04 09:00:00' =>
   array (
-    0 => '2022-06-04 00:00:00',
-    1 => 
+    0 => '2022-06-04 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 6,
       'day' => 4,
       'dayOfWeek' => 6,
       'dayOfYear' => 155,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1654268400,
-      'formatted' => '2022-06-04 00:00:00',
-      'timezone' => 
+      'timestamp' => 1654300800,
+      'formatted' => '2022-06-04 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -11890,29 +10210,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 6,
       'is_leap_month' => false,
-      'moon_age' => 4.521113948896527,
-      'moon_phase_angle' => 45.17915364900918,
+      'moon_age' => 4.521,
+      'moon_phase_angle' => 46.29502257011018,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-06-05 00:00:00' => 
+  '2022-06-05 09:00:00' =>
   array (
-    0 => '2022-06-05 00:00:00',
-    1 => 
+    0 => '2022-06-05 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 6,
       'day' => 5,
       'dayOfWeek' => 0,
       'dayOfYear' => 156,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1654354800,
-      'formatted' => '2022-06-05 00:00:00',
-      'timezone' => 
+      'timestamp' => 1654387200,
+      'formatted' => '2022-06-05 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -11948,29 +10268,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 7,
       'is_leap_month' => false,
-      'moon_age' => 5.521118797827512,
-      'moon_phase_angle' => 56.14642035464904,
+      'moon_age' => 5.521,
+      'moon_phase_angle' => 57.275684599545286,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-06-06 00:00:00' => 
+  '2022-06-06 09:00:00' =>
   array (
-    0 => '2022-06-06 00:00:00',
-    1 => 
+    0 => '2022-06-06 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 6,
       'day' => 6,
       'dayOfWeek' => 1,
       'dayOfYear' => 157,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1654441200,
-      'formatted' => '2022-06-06 00:00:00',
-      'timezone' => 
+      'timestamp' => 1654473600,
+      'formatted' => '2022-06-06 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12006,29 +10326,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 6.521116845775396,
-      'moon_phase_angle' => 67.24596232351125,
+      'moon_age' => 6.521,
+      'moon_phase_angle' => 68.39579678018876,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-06-07 00:00:00' => 
+  '2022-06-07 09:00:00' =>
   array (
-    0 => '2022-06-07 00:00:00',
-    1 => 
+    0 => '2022-06-07 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 6,
       'day' => 7,
       'dayOfWeek' => 2,
       'dayOfYear' => 158,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1654527600,
-      'formatted' => '2022-06-07 00:00:00',
-      'timezone' => 
+      'timestamp' => 1654560000,
+      'formatted' => '2022-06-07 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12064,29 +10384,87 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 9,
       'is_leap_month' => false,
-      'moon_age' => 7.521115363109857,
-      'moon_phase_angle' => 78.54099289397195,
+      'moon_age' => 7.521,
+      'moon_phase_angle' => 79.71979068960941,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2022-06-08 00:00:00' => 
+  '2022-06-07 23:48:00' =>
   array (
-    0 => '2022-06-08 00:00:00',
-    1 => 
+    0 => '2022-06-07 23:48:00',
+    1 =>
+    array (
+      'year' => 2022,
+      'month' => 6,
+      'day' => 7,
+      'dayOfWeek' => 2,
+      'dayOfYear' => 158,
+      'hour' => 23,
+      'minute' => 48,
+      'second' => 0,
+      'micro' => 0,
+      'timestamp' => 1654613280,
+      'formatted' => '2022-06-07 23:48:00',
+      'timezone' =>
+      \Carbon\CarbonTimeZone::__set_state(array(
+         'clock' => NULL,
+         'timezone_type' => 3,
+         'timezone' => 'Asia/Tokyo',
+      )),
+      'solar_seasonal_festival' => 0,
+      'solar_seasonal_festival_name' => '',
+      'solar_seasonal_festival_alias' => '',
+      'lunar_seasonal_festival' => 0,
+      'lunar_seasonal_festival_name' => '',
+      'lunar_seasonal_festival_alias' => '',
+      'misc_seasonal_node' => 0,
+      'misc_seasonal_node_text' => '',
+      'solar_term' => false,
+      'solar_term_text' => '',
+      'is_solar_term' => false,
+      'era_name_text' => '令和',
+      'era_name' => 1004,
+      'era_year' => 4,
+      'oriental_zodiac_text' => '寅',
+      'oriental_zodiac' => 3,
+      'heavenly_stem_text' => '壬',
+      'heavenly_stem' => 8,
+      'six_weekday_text' => '先勝',
+      'six_weekday' => 2,
+      'weekday_text' => '火',
+      'month_text' => '水無月',
+      'holiday_text' => '',
+      'holiday' => 0,
+      'is_holiday' => false,
+      'lunar_month_text' => '皐月',
+      'lunar_month' => 5,
+      'lunar_year' => 2022,
+      'lunar_day' => 9,
+      'is_leap_month' => false,
+      'moon_age' => 8.1375,
+      'moon_phase_angle' => 86.83405872972529,
+      'moon_phase' => 2,
+      'moon_phase_text' => '上弦',
+    ),
+  ),
+  '2022-06-08 09:00:00' =>
+  array (
+    0 => '2022-06-08 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 6,
       'day' => 8,
       'dayOfWeek' => 3,
       'dayOfYear' => 159,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1654614000,
-      'formatted' => '2022-06-08 00:00:00',
-      'timezone' => 
+      'timestamp' => 1654646400,
+      'formatted' => '2022-06-08 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12122,29 +10500,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 10,
       'is_leap_month' => false,
-      'moon_age' => 8.521109308116138,
-      'moon_phase_angle' => 90.09884276693538,
+      'moon_age' => 8.521,
+      'moon_phase_angle' => 91.31554655233546,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-06-09 00:00:00' => 
+  '2022-06-09 09:00:00' =>
   array (
-    0 => '2022-06-09 00:00:00',
-    1 => 
+    0 => '2022-06-09 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 6,
       'day' => 9,
       'dayOfWeek' => 4,
       'dayOfYear' => 160,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1654700400,
-      'formatted' => '2022-06-09 00:00:00',
-      'timezone' => 
+      'timestamp' => 1654732800,
+      'formatted' => '2022-06-09 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12180,29 +10558,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 11,
       'is_leap_month' => false,
-      'moon_age' => 9.521116763819009,
-      'moon_phase_angle' => 101.98660806686075,
+      'moon_age' => 9.521,
+      'moon_phase_angle' => 103.24939188035623,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-06-10 00:00:00' => 
+  '2022-06-10 09:00:00' =>
   array (
-    0 => '2022-06-10 00:00:00',
-    1 => 
+    0 => '2022-06-10 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 6,
       'day' => 10,
       'dayOfWeek' => 5,
       'dayOfYear' => 161,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1654786800,
-      'formatted' => '2022-06-10 00:00:00',
-      'timezone' => 
+      'timestamp' => 1654819200,
+      'formatted' => '2022-06-10 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12238,29 +10616,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 12,
       'is_leap_month' => false,
-      'moon_age' => 10.521114212926477,
-      'moon_phase_angle' => 114.26444548696146,
+      'moon_age' => 10.521,
+      'moon_phase_angle' => 115.5794354572996,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-06-11 00:00:00' => 
+  '2022-06-11 09:00:00' =>
   array (
-    0 => '2022-06-11 00:00:00',
-    1 => 
+    0 => '2022-06-11 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 6,
       'day' => 11,
       'dayOfWeek' => 6,
       'dayOfYear' => 162,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1654873200,
-      'formatted' => '2022-06-11 00:00:00',
-      'timezone' => 
+      'timestamp' => 1654905600,
+      'formatted' => '2022-06-11 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12296,29 +10674,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 13,
       'is_leap_month' => false,
-      'moon_age' => 11.521114434115589,
-      'moon_phase_angle' => 126.97634765640117,
+      'moon_age' => 11.521,
+      'moon_phase_angle' => 128.34672923837502,
       'moon_phase' => 3,
       'moon_phase_text' => '十三夜',
     ),
   ),
-  '2022-06-12 00:00:00' => 
+  '2022-06-12 09:00:00' =>
   array (
-    0 => '2022-06-12 00:00:00',
-    1 => 
+    0 => '2022-06-12 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 6,
       'day' => 12,
       'dayOfWeek' => 0,
       'dayOfYear' => 163,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1654959600,
-      'formatted' => '2022-06-12 00:00:00',
-      'timezone' => 
+      'timestamp' => 1654992000,
+      'formatted' => '2022-06-12 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12354,29 +10732,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 14,
       'is_leap_month' => false,
-      'moon_age' => 12.521118729375303,
-      'moon_phase_angle' => 140.1388856228948,
+      'moon_age' => 12.521,
+      'moon_phase_angle' => 141.5640349168482,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-06-13 00:00:00' => 
+  '2022-06-13 09:00:00' =>
   array (
-    0 => '2022-06-13 00:00:00',
-    1 => 
+    0 => '2022-06-13 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 6,
       'day' => 13,
       'dayOfWeek' => 1,
       'dayOfYear' => 164,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1655046000,
-      'formatted' => '2022-06-13 00:00:00',
-      'timezone' => 
+      'timestamp' => 1655078400,
+      'formatted' => '2022-06-13 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12412,29 +10790,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 15,
       'is_leap_month' => false,
-      'moon_age' => 13.521110143512487,
-      'moon_phase_angle' => 153.7296634527211,
+      'moon_age' => 13.521,
+      'moon_phase_angle' => 155.20389638366873,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-06-14 00:00:00' => 
+  '2022-06-14 09:00:00' =>
   array (
-    0 => '2022-06-14 00:00:00',
-    1 => 
+    0 => '2022-06-14 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 6,
       'day' => 14,
       'dayOfWeek' => 2,
       'dayOfYear' => 165,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1655132400,
-      'formatted' => '2022-06-14 00:00:00',
-      'timezone' => 
+      'timestamp' => 1655164800,
+      'formatted' => '2022-06-14 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12470,74 +10848,16 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 14.521110950037837,
-      'moon_phase_angle' => 167.6789107928191,
+      'moon_age' => 14.521,
+      'moon_phase_angle' => 169.19035840941203,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2022-06-14 19:00:00' => 
+  '2022-06-14 20:52:00' =>
   array (
-    0 => '2022-06-14 19:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 6,
-      'day' => 14,
-      'dayOfWeek' => 2,
-      'dayOfYear' => 165,
-      'hour' => 19,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1655200800,
-      'formatted' => '2022-06-14 19:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '友引',
-      'six_weekday' => 3,
-      'weekday_text' => '火',
-      'month_text' => '水無月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '皐月',
-      'lunar_month' => 5,
-      'lunar_year' => 2022,
-      'lunar_day' => 16,
-      'is_leap_month' => false,
-      'moon_age' => 15.312776982784271,
-      'moon_phase_angle' => 178.89998591041422,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2022-06-14 20:00:00' => 
-  array (
-    0 => '2022-06-14 20:00:00',
-    1 => 
+    0 => '2022-06-14 20:52:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 6,
@@ -12545,12 +10865,12 @@ return array (
       'dayOfWeek' => 2,
       'dayOfYear' => 165,
       'hour' => 20,
-      'minute' => 0,
+      'minute' => 52,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1655204400,
-      'formatted' => '2022-06-14 20:00:00',
-      'timezone' => 
+      'timestamp' => 1655207520,
+      'formatted' => '2022-06-14 20:52:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12586,145 +10906,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 15.354442761279643,
-      'moon_phase_angle' => 179.49338009829174,
+      'moon_age' => 15.015277777777778,
+      'moon_phase_angle' => 176.19753328760436,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2022-06-14 21:00:00' => 
+  '2022-06-15 09:00:00' =>
   array (
-    0 => '2022-06-14 21:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 6,
-      'day' => 14,
-      'dayOfWeek' => 2,
-      'dayOfYear' => 165,
-      'hour' => 21,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1655208000,
-      'formatted' => '2022-06-14 21:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '友引',
-      'six_weekday' => 3,
-      'weekday_text' => '火',
-      'month_text' => '水無月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '皐月',
-      'lunar_month' => 5,
-      'lunar_year' => 2022,
-      'lunar_day' => 16,
-      'is_leap_month' => false,
-      'moon_age' => 15.396112385205925,
-      'moon_phase_angle' => 180.08697390164204,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2022-06-14 22:00:00' => 
-  array (
-    0 => '2022-06-14 22:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 6,
-      'day' => 14,
-      'dayOfWeek' => 2,
-      'dayOfYear' => 165,
-      'hour' => 22,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1655211600,
-      'formatted' => '2022-06-14 22:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '友引',
-      'six_weekday' => 3,
-      'weekday_text' => '火',
-      'month_text' => '水無月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '皐月',
-      'lunar_month' => 5,
-      'lunar_year' => 2022,
-      'lunar_day' => 16,
-      'is_leap_month' => false,
-      'moon_age' => 15.437784817069769,
-      'moon_phase_angle' => 180.68075527481486,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2022-06-15 00:00:00' => 
-  array (
-    0 => '2022-06-15 00:00:00',
-    1 => 
+    0 => '2022-06-15 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 6,
       'day' => 15,
       'dayOfWeek' => 3,
       'dayOfYear' => 166,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1655218800,
-      'formatted' => '2022-06-15 00:00:00',
-      'timezone' => 
+      'timestamp' => 1655251200,
+      'formatted' => '2022-06-15 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12760,29 +10964,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 17,
       'is_leap_month' => false,
-      'moon_age' => 15.521111143752933,
-      'moon_phase_angle' => 181.8688322591907,
+      'moon_age' => 15.521,
+      'moon_phase_angle' => 183.3997536929695,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-06-16 00:00:00' => 
+  '2022-06-16 09:00:00' =>
   array (
-    0 => '2022-06-16 00:00:00',
-    1 => 
+    0 => '2022-06-16 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 6,
       'day' => 16,
       'dayOfWeek' => 4,
       'dayOfYear' => 167,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1655305200,
-      'formatted' => '2022-06-16 00:00:00',
-      'timezone' => 
+      'timestamp' => 1655337600,
+      'formatted' => '2022-06-16 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12818,29 +11022,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 18,
       'is_leap_month' => false,
-      'moon_age' => 16.521767663769424,
-      'moon_phase_angle' => 196.14446383022468,
+      'moon_age' => 16.521,
+      'moon_phase_angle' => 197.6737482985107,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-06-17 00:00:00' => 
+  '2022-06-17 09:00:00' =>
   array (
-    0 => '2022-06-17 00:00:00',
-    1 => 
+    0 => '2022-06-17 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 6,
       'day' => 17,
       'dayOfWeek' => 5,
       'dayOfYear' => 168,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1655391600,
-      'formatted' => '2022-06-17 00:00:00',
-      'timezone' => 
+      'timestamp' => 1655424000,
+      'formatted' => '2022-06-17 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12876,29 +11080,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 19,
       'is_leap_month' => false,
-      'moon_age' => 17.53727164072916,
-      'moon_phase_angle' => 210.33583371084376,
+      'moon_age' => 17.521,
+      'moon_phase_angle' => 211.84283843550293,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-06-18 00:00:00' => 
+  '2022-06-18 09:00:00' =>
   array (
-    0 => '2022-06-18 00:00:00',
-    1 => 
+    0 => '2022-06-18 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 6,
       'day' => 18,
       'dayOfWeek' => 6,
       'dayOfYear' => 169,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1655478000,
-      'formatted' => '2022-06-18 00:00:00',
-      'timezone' => 
+      'timestamp' => 1655510400,
+      'formatted' => '2022-06-18 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12934,29 +11138,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 20,
       'is_leap_month' => false,
-      'moon_age' => 18.550266495440155,
-      'moon_phase_angle' => 224.28562637107046,
+      'moon_age' => 18.521,
+      'moon_phase_angle' => 225.75355901078257,
       'moon_phase' => 5,
       'moon_phase_text' => '十六夜',
     ),
   ),
-  '2022-06-19 00:00:00' => 
+  '2022-06-19 09:00:00' =>
   array (
-    0 => '2022-06-19 00:00:00',
-    1 => 
+    0 => '2022-06-19 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 6,
       'day' => 19,
       'dayOfWeek' => 0,
       'dayOfYear' => 170,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1655564400,
-      'formatted' => '2022-06-19 00:00:00',
-      'timezone' => 
+      'timestamp' => 1655596800,
+      'formatted' => '2022-06-19 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -12992,29 +11196,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 21,
       'is_leap_month' => false,
-      'moon_age' => 19.5600330918096,
-      'moon_phase_angle' => 237.8732035010337,
+      'moon_age' => 19.521,
+      'moon_phase_angle' => 239.290894615717,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-06-20 00:00:00' => 
+  '2022-06-20 09:00:00' =>
   array (
-    0 => '2022-06-20 00:00:00',
-    1 => 
+    0 => '2022-06-20 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 6,
       'day' => 20,
       'dayOfWeek' => 1,
       'dayOfYear' => 171,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1655650800,
-      'formatted' => '2022-06-20 00:00:00',
-      'timezone' => 
+      'timestamp' => 1655683200,
+      'formatted' => '2022-06-20 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -13050,29 +11254,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 22,
       'is_leap_month' => false,
-      'moon_age' => 20.566224364563823,
-      'moon_phase_angle' => 251.02765123135003,
+      'moon_age' => 20.521,
+      'moon_phase_angle' => 252.3898068099814,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-06-21 00:00:00' => 
+  '2022-06-21 09:00:00' =>
   array (
-    0 => '2022-06-21 00:00:00',
-    1 => 
+    0 => '2022-06-21 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 6,
       'day' => 21,
       'dayOfWeek' => 2,
       'dayOfYear' => 172,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1655737200,
-      'formatted' => '2022-06-21 00:00:00',
-      'timezone' => 
+      'timestamp' => 1655769600,
+      'formatted' => '2022-06-21 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -13108,29 +11312,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 21.56889232294634,
-      'moon_phase_angle' => 263.7281130388335,
+      'moon_age' => 21.521,
+      'moon_phase_angle' => 265.0346915545727,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2022-06-21 13:00:00' => 
+  '2022-06-21 12:11:00' =>
   array (
-    0 => '2022-06-21 13:00:00',
-    1 => 
+    0 => '2022-06-21 12:11:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 6,
       'day' => 21,
       'dayOfWeek' => 2,
       'dayOfYear' => 172,
-      'hour' => 13,
-      'minute' => 0,
+      'hour' => 12,
+      'minute' => 11,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1655784000,
-      'formatted' => '2022-06-21 13:00:00',
-      'timezone' => 
+      'timestamp' => 1655781060,
+      'formatted' => '2022-06-21 12:11:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -13166,29 +11370,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 22.110622759908438,
-      'moon_phase_angle' => 270.4238277626228,
+      'moon_age' => 21.653472222222224,
+      'moon_phase_angle' => 266.6787246925313,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2022-06-22 00:00:00' => 
+  '2022-06-22 09:00:00' =>
   array (
-    0 => '2022-06-22 00:00:00',
-    1 => 
+    0 => '2022-06-22 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 6,
       'day' => 22,
       'dayOfWeek' => 3,
       'dayOfYear' => 173,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1655823600,
-      'formatted' => '2022-06-22 00:00:00',
-      'timezone' => 
+      'timestamp' => 1655856000,
+      'formatted' => '2022-06-22 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -13224,29 +11428,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 24,
       'is_leap_month' => false,
-      'moon_age' => 22.56830460485071,
-      'moon_phase_angle' => 275.99479805990234,
+      'moon_age' => 22.521,
+      'moon_phase_angle' => 277.2499597926162,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-06-23 00:00:00' => 
+  '2022-06-23 09:00:00' =>
   array (
-    0 => '2022-06-23 00:00:00',
-    1 => 
+    0 => '2022-06-23 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 6,
       'day' => 23,
       'dayOfWeek' => 4,
       'dayOfYear' => 174,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1655910000,
-      'formatted' => '2022-06-23 00:00:00',
-      'timezone' => 
+      'timestamp' => 1655942400,
+      'formatted' => '2022-06-23 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -13282,29 +11486,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 25,
       'is_leap_month' => false,
-      'moon_age' => 23.564898474607617,
-      'moon_phase_angle' => 287.87593326011483,
+      'moon_age' => 23.521,
+      'moon_phase_angle' => 289.0867393122834,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-06-24 00:00:00' => 
+  '2022-06-24 09:00:00' =>
   array (
-    0 => '2022-06-24 00:00:00',
-    1 => 
+    0 => '2022-06-24 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 6,
       'day' => 24,
       'dayOfWeek' => 5,
       'dayOfYear' => 175,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1655996400,
-      'formatted' => '2022-06-24 00:00:00',
-      'timezone' => 
+      'timestamp' => 1656028800,
+      'formatted' => '2022-06-24 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -13340,29 +11544,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 26,
       'is_leap_month' => false,
-      'moon_age' => 24.559152342844754,
-      'moon_phase_angle' => 299.4349326400136,
+      'moon_age' => 24.521,
+      'moon_phase_angle' => 300.6099350622071,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-06-25 00:00:00' => 
+  '2022-06-25 09:00:00' =>
   array (
-    0 => '2022-06-25 00:00:00',
-    1 => 
+    0 => '2022-06-25 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 6,
       'day' => 25,
       'dayOfWeek' => 6,
       'dayOfYear' => 176,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1656082800,
-      'formatted' => '2022-06-25 00:00:00',
-      'timezone' => 
+      'timestamp' => 1656115200,
+      'formatted' => '2022-06-25 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -13398,29 +11602,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 27,
       'is_leap_month' => false,
-      'moon_age' => 25.55156882572919,
-      'moon_phase_angle' => 310.74005171581683,
+      'moon_age' => 25.521,
+      'moon_phase_angle' => 311.8879813380222,
       'moon_phase' => 7,
       'moon_phase_text' => '有明',
     ),
   ),
-  '2022-06-26 00:00:00' => 
+  '2022-06-26 09:00:00' =>
   array (
-    0 => '2022-06-26 00:00:00',
-    1 => 
+    0 => '2022-06-26 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 6,
       'day' => 26,
       'dayOfWeek' => 0,
       'dayOfYear' => 177,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1656169200,
-      'formatted' => '2022-06-26 00:00:00',
-      'timezone' => 
+      'timestamp' => 1656201600,
+      'formatted' => '2022-06-26 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -13456,29 +11660,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 28,
       'is_leap_month' => false,
-      'moon_age' => 26.74076522668296,
-      'moon_phase_angle' => 321.8571657944522,
+      'moon_age' => 26.521,
+      'moon_phase_angle' => 322.9859559735255,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-06-27 00:00:00' => 
+  '2022-06-27 09:00:00' =>
   array (
-    0 => '2022-06-27 00:00:00',
-    1 => 
+    0 => '2022-06-27 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 6,
       'day' => 27,
       'dayOfWeek' => 1,
       'dayOfYear' => 178,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1656255600,
-      'formatted' => '2022-06-27 00:00:00',
-      'timezone' => 
+      'timestamp' => 1656288000,
+      'formatted' => '2022-06-27 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -13514,29 +11718,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 29,
       'is_leap_month' => false,
-      'moon_age' => 27.639273712089597,
-      'moon_phase_angle' => 332.84545141685936,
+      'moon_age' => 27.521,
+      'moon_phase_angle' => 333.96178922381193,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-06-28 00:00:00' => 
+  '2022-06-28 09:00:00' =>
   array (
-    0 => '2022-06-28 00:00:00',
-    1 => 
+    0 => '2022-06-28 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 6,
       'day' => 28,
       'dayOfWeek' => 2,
       'dayOfYear' => 179,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1656342000,
-      'formatted' => '2022-06-28 00:00:00',
-      'timezone' => 
+      'timestamp' => 1656374400,
+      'formatted' => '2022-06-28 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -13572,74 +11776,16 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 30,
       'is_leap_month' => false,
-      'moon_age' => 28.532732086399882,
-      'moon_phase_angle' => 343.75547740317677,
+      'moon_age' => 28.521,
+      'moon_phase_angle' => 344.864899488207,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-06-29 00:00:00' => 
-  array (
-    0 => '2022-06-29 00:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 6,
-      'day' => 29,
-      'dayOfWeek' => 3,
-      'dayOfYear' => 180,
-      'hour' => 0,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1656428400,
-      'formatted' => '2022-06-29 00:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '赤口',
-      'six_weekday' => 1,
-      'weekday_text' => '水',
-      'month_text' => '水無月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '水無月',
-      'lunar_month' => 6,
-      'lunar_year' => 2022,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 29.424345626639514,
-      'moon_phase_angle' => 354.6292187435137,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2022-06-29 09:00:00' => 
+  '2022-06-29 09:00:00' =>
   array (
     0 => '2022-06-29 09:00:00',
-    1 => 
+    1 =>
     array (
       'year' => 2022,
       'month' => 6,
@@ -13652,7 +11798,7 @@ return array (
       'micro' => 0,
       'timestamp' => 1656460800,
       'formatted' => '2022-06-29 09:00:00',
-      'timezone' => 
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -13688,16 +11834,16 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.2558412402868271,
-      'moon_phase_angle' => 358.7048136989097,
+      'moon_age' => 29.521,
+      'moon_phase_angle' => 355.73650339930157,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2022-06-29 11:00:00' => 
+  '2022-06-29 11:52:00' =>
   array (
-    0 => '2022-06-29 11:00:00',
-    1 => 
+    0 => '2022-06-29 11:52:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 6,
@@ -13705,12 +11851,12 @@ return array (
       'dayOfWeek' => 3,
       'dayOfYear' => 180,
       'hour' => 11,
-      'minute' => 0,
+      'minute' => 52,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1656468000,
-      'formatted' => '2022-06-29 11:00:00',
-      'timezone' => 
+      'timestamp' => 1656471120,
+      'formatted' => '2022-06-29 11:52:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -13746,145 +11892,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.33918124763295054,
-      'moon_phase_angle' => 359.61064788166954,
+      'moon_age' => 0.0,
+      'moon_phase_angle' => 357.03463362321406,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2022-06-29 12:00:00' => 
+  '2022-06-30 09:00:00' =>
   array (
-    0 => '2022-06-29 12:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 6,
-      'day' => 29,
-      'dayOfWeek' => 3,
-      'dayOfYear' => 180,
-      'hour' => 12,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1656471600,
-      'formatted' => '2022-06-29 12:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '赤口',
-      'six_weekday' => 1,
-      'weekday_text' => '水',
-      'month_text' => '水無月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '水無月',
-      'lunar_month' => 6,
-      'lunar_year' => 2022,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.38084091106429696,
-      'moon_phase_angle' => 0.06359820156448848,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2022-06-29 14:00:00' => 
-  array (
-    0 => '2022-06-29 14:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 6,
-      'day' => 29,
-      'dayOfWeek' => 3,
-      'dayOfYear' => 180,
-      'hour' => 14,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1656478800,
-      'formatted' => '2022-06-29 14:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '赤口',
-      'six_weekday' => 1,
-      'weekday_text' => '水',
-      'month_text' => '水無月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '水無月',
-      'lunar_month' => 6,
-      'lunar_year' => 2022,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.46417613234370947,
-      'moon_phase_angle' => 0.969576178950291,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2022-06-30 00:00:00' => 
-  array (
-    0 => '2022-06-30 00:00:00',
-    1 => 
+    0 => '2022-06-30 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 6,
       'day' => 30,
       'dayOfWeek' => 4,
       'dayOfYear' => 181,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1656514800,
-      'formatted' => '2022-06-30 00:00:00',
-      'timezone' => 
+      'timestamp' => 1656547200,
+      'formatted' => '2022-06-30 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -13920,87 +11950,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 2,
       'is_leap_month' => false,
-      'moon_age' => 0.8808484580367804,
-      'moon_phase_angle' => 5.501570500244981,
+      'moon_age' => 0.88,
+      'moon_phase_angle' => 6.611045440433756,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-07-01 00:00:00' => 
+  '2022-07-01 09:00:00' =>
   array (
-    0 => '2022-07-01 00:00:00',
-    1 => 
+    0 => '2022-07-01 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 7,
       'day' => 1,
       'dayOfWeek' => 5,
       'dayOfYear' => 182,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1656601200,
-      'formatted' => '2022-07-01 00:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 6,
-      'misc_seasonal_node_text' => '半夏生',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '友引',
-      'six_weekday' => 3,
-      'weekday_text' => '金',
-      'month_text' => '文月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '水無月',
-      'lunar_month' => 6,
-      'lunar_year' => 2022,
-      'lunar_day' => 3,
-      'is_leap_month' => false,
-      'moon_age' => 1.8808445469476283,
-      'moon_phase_angle' => 16.402964580614338,
-      'moon_phase' => NULL,
-      'moon_phase_text' => '',
-    ),
-  ),
-  '2022-07-02 00:00:00' => 
-  array (
-    0 => '2022-07-02 00:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 7,
-      'day' => 2,
-      'dayOfWeek' => 6,
-      'dayOfYear' => 183,
-      'hour' => 0,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1656687600,
-      'formatted' => '2022-07-02 00:00:00',
-      'timezone' => 
+      'timestamp' => 1656633600,
+      'formatted' => '2022-07-01 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -14024,6 +11996,64 @@ return array (
       'oriental_zodiac' => 3,
       'heavenly_stem_text' => '壬',
       'heavenly_stem' => 8,
+      'six_weekday_text' => '友引',
+      'six_weekday' => 3,
+      'weekday_text' => '金',
+      'month_text' => '文月',
+      'holiday_text' => '',
+      'holiday' => 0,
+      'is_holiday' => false,
+      'lunar_month_text' => '水無月',
+      'lunar_month' => 6,
+      'lunar_year' => 2022,
+      'lunar_day' => 3,
+      'is_leap_month' => false,
+      'moon_age' => 1.88,
+      'moon_phase_angle' => 17.518552848279143,
+      'moon_phase' => NULL,
+      'moon_phase_text' => '',
+    ),
+  ),
+  '2022-07-02 09:00:00' =>
+  array (
+    0 => '2022-07-02 09:00:00',
+    1 =>
+    array (
+      'year' => 2022,
+      'month' => 7,
+      'day' => 2,
+      'dayOfWeek' => 6,
+      'dayOfYear' => 183,
+      'hour' => 9,
+      'minute' => 0,
+      'second' => 0,
+      'micro' => 0,
+      'timestamp' => 1656720000,
+      'formatted' => '2022-07-02 09:00:00',
+      'timezone' =>
+      \Carbon\CarbonTimeZone::__set_state(array(
+         'clock' => NULL,
+         'timezone_type' => 3,
+         'timezone' => 'Asia/Tokyo',
+      )),
+      'solar_seasonal_festival' => 0,
+      'solar_seasonal_festival_name' => '',
+      'solar_seasonal_festival_alias' => '',
+      'lunar_seasonal_festival' => 0,
+      'lunar_seasonal_festival_name' => '',
+      'lunar_seasonal_festival_alias' => '',
+      'misc_seasonal_node' => 6,
+      'misc_seasonal_node_text' => '半夏生',
+      'solar_term' => false,
+      'solar_term_text' => '',
+      'is_solar_term' => false,
+      'era_name_text' => '令和',
+      'era_name' => 1004,
+      'era_year' => 4,
+      'oriental_zodiac_text' => '寅',
+      'oriental_zodiac' => 3,
+      'heavenly_stem_text' => '壬',
+      'heavenly_stem' => 8,
       'six_weekday_text' => '先負',
       'six_weekday' => 4,
       'weekday_text' => '土',
@@ -14036,29 +12066,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 4,
       'is_leap_month' => false,
-      'moon_age' => 2.8808471066877246,
-      'moon_phase_angle' => 27.36260620024511,
+      'moon_age' => 2.88,
+      'moon_phase_angle' => 28.48788503238562,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-07-03 00:00:00' => 
+  '2022-07-03 09:00:00' =>
   array (
-    0 => '2022-07-03 00:00:00',
-    1 => 
+    0 => '2022-07-03 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 7,
       'day' => 3,
       'dayOfWeek' => 0,
       'dayOfYear' => 184,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1656774000,
-      'formatted' => '2022-07-03 00:00:00',
-      'timezone' => 
+      'timestamp' => 1656806400,
+      'formatted' => '2022-07-03 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -14094,29 +12124,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 5,
       'is_leap_month' => false,
-      'moon_age' => 3.880840700119734,
-      'moon_phase_angle' => 38.411918203726984,
+      'moon_age' => 3.88,
+      'moon_phase_angle' => 39.55051186651107,
       'moon_phase' => 1,
       'moon_phase_text' => '三日月',
     ),
   ),
-  '2022-07-04 00:00:00' => 
+  '2022-07-04 09:00:00' =>
   array (
-    0 => '2022-07-04 00:00:00',
-    1 => 
+    0 => '2022-07-04 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 7,
       'day' => 4,
       'dayOfWeek' => 1,
       'dayOfYear' => 185,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1656860400,
-      'formatted' => '2022-07-04 00:00:00',
-      'timezone' => 
+      'timestamp' => 1656892800,
+      'formatted' => '2022-07-04 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -14152,29 +12182,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 6,
       'is_leap_month' => false,
-      'moon_age' => 4.880841159727424,
-      'moon_phase_angle' => 49.587505119610796,
+      'moon_age' => 4.88,
+      'moon_phase_angle' => 50.743899267673285,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-07-05 00:00:00' => 
+  '2022-07-05 09:00:00' =>
   array (
-    0 => '2022-07-05 00:00:00',
-    1 => 
+    0 => '2022-07-05 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 7,
       'day' => 5,
       'dayOfWeek' => 2,
       'dayOfYear' => 186,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1656946800,
-      'formatted' => '2022-07-05 00:00:00',
-      'timezone' => 
+      'timestamp' => 1656979200,
+      'formatted' => '2022-07-05 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -14210,29 +12240,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 7,
       'is_leap_month' => false,
-      'moon_age' => 5.880843160208315,
-      'moon_phase_angle' => 60.933167520460415,
+      'moon_age' => 5.88,
+      'moon_phase_angle' => 62.113361454537056,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-07-06 00:00:00' => 
+  '2022-07-06 09:00:00' =>
   array (
-    0 => '2022-07-06 00:00:00',
-    1 => 
+    0 => '2022-07-06 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 7,
       'day' => 6,
       'dayOfWeek' => 3,
       'dayOfYear' => 187,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1657033200,
-      'formatted' => '2022-07-06 00:00:00',
-      'timezone' => 
+      'timestamp' => 1657065600,
+      'formatted' => '2022-07-06 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -14268,29 +12298,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 6.880841282662004,
-      'moon_phase_angle' => 72.50036869747372,
+      'moon_age' => 6.88,
+      'moon_phase_angle' => 73.71173691085339,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-07-07 00:00:00' => 
+  '2022-07-07 09:00:00' =>
   array (
-    0 => '2022-07-07 00:00:00',
-    1 => 
+    0 => '2022-07-07 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 7,
       'day' => 7,
       'dayOfWeek' => 4,
       'dayOfYear' => 188,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1657119600,
-      'formatted' => '2022-07-07 00:00:00',
-      'timezone' => 
+      'timestamp' => 1657152000,
+      'formatted' => '2022-07-07 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -14326,16 +12356,16 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 9,
       'is_leap_month' => false,
-      'moon_age' => 7.880838285665959,
-      'moon_phase_angle' => 84.3466032351496,
+      'moon_age' => 7.88,
+      'moon_phase_angle' => 85.59692713804023,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2022-07-07 11:00:00' => 
+  '2022-07-07 11:14:00' =>
   array (
-    0 => '2022-07-07 11:00:00',
-    1 => 
+    0 => '2022-07-07 11:14:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 7,
@@ -14343,12 +12373,12 @@ return array (
       'dayOfWeek' => 4,
       'dayOfYear' => 188,
       'hour' => 11,
-      'minute' => 0,
+      'minute' => 14,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1657159200,
-      'formatted' => '2022-07-07 11:00:00',
-      'timezone' => 
+      'timestamp' => 1657160040,
+      'formatted' => '2022-07-07 11:14:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -14384,29 +12414,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 9,
       'is_leap_month' => false,
-      'moon_age' => 8.339175205677748,
-      'moon_phase_angle' => 89.88570508909014,
+      'moon_age' => 7.973611111111111,
+      'moon_phase_angle' => 86.71959683254278,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2022-07-08 00:00:00' => 
+  '2022-07-08 09:00:00' =>
   array (
-    0 => '2022-07-08 00:00:00',
-    1 => 
+    0 => '2022-07-08 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 7,
       'day' => 8,
       'dayOfWeek' => 5,
       'dayOfYear' => 189,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1657206000,
-      'formatted' => '2022-07-08 00:00:00',
-      'timezone' => 
+      'timestamp' => 1657238400,
+      'formatted' => '2022-07-08 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -14442,29 +12472,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 10,
       'is_leap_month' => false,
-      'moon_age' => 8.880845324601978,
-      'moon_phase_angle' => 96.53109388436316,
+      'moon_age' => 8.88,
+      'moon_phase_angle' => 97.8273810010843,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-07-09 00:00:00' => 
+  '2022-07-09 09:00:00' =>
   array (
-    0 => '2022-07-09 00:00:00',
-    1 => 
+    0 => '2022-07-09 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 7,
       'day' => 9,
       'dayOfWeek' => 6,
       'dayOfYear' => 190,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1657292400,
-      'formatted' => '2022-07-09 00:00:00',
-      'timezone' => 
+      'timestamp' => 1657324800,
+      'formatted' => '2022-07-09 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -14500,29 +12530,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 11,
       'is_leap_month' => false,
-      'moon_age' => 9.88084597652778,
-      'moon_phase_angle' => 109.10728470448109,
+      'moon_age' => 9.88,
+      'moon_phase_angle' => 110.45488527154154,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-07-10 00:00:00' => 
+  '2022-07-10 09:00:00' =>
   array (
-    0 => '2022-07-10 00:00:00',
-    1 => 
+    0 => '2022-07-10 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 7,
       'day' => 10,
       'dayOfWeek' => 0,
       'dayOfYear' => 191,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1657378800,
-      'formatted' => '2022-07-10 00:00:00',
-      'timezone' => 
+      'timestamp' => 1657411200,
+      'formatted' => '2022-07-10 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -14558,29 +12588,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 12,
       'is_leap_month' => false,
-      'moon_age' => 10.880839522928,
-      'moon_phase_angle' => 122.11191828157374,
+      'moon_age' => 10.88,
+      'moon_phase_angle' => 123.51362630130586,
       'moon_phase' => 3,
       'moon_phase_text' => '十三夜',
     ),
   ),
-  '2022-07-11 00:00:00' => 
+  '2022-07-11 09:00:00' =>
   array (
-    0 => '2022-07-11 00:00:00',
-    1 => 
+    0 => '2022-07-11 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 7,
       'day' => 11,
       'dayOfWeek' => 1,
       'dayOfYear' => 192,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1657465200,
-      'formatted' => '2022-07-11 00:00:00',
-      'timezone' => 
+      'timestamp' => 1657497600,
+      'formatted' => '2022-07-11 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -14616,29 +12646,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 13,
       'is_leap_month' => false,
-      'moon_age' => 11.880840715486556,
-      'moon_phase_angle' => 135.55142301892084,
+      'moon_age' => 11.88,
+      'moon_phase_angle' => 137.0058259595267,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-07-12 00:00:00' => 
+  '2022-07-12 09:00:00' =>
   array (
-    0 => '2022-07-12 00:00:00',
-    1 => 
+    0 => '2022-07-12 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 7,
       'day' => 12,
       'dayOfWeek' => 2,
       'dayOfYear' => 193,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1657551600,
-      'formatted' => '2022-07-12 00:00:00',
-      'timezone' => 
+      'timestamp' => 1657584000,
+      'formatted' => '2022-07-12 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -14674,29 +12704,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 14,
       'is_leap_month' => false,
-      'moon_age' => 12.880846468731761,
-      'moon_phase_angle' => 149.3881594034221,
+      'moon_age' => 12.88,
+      'moon_phase_angle' => 150.88739417355242,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-07-13 00:00:00' => 
+  '2022-07-13 09:00:00' =>
   array (
-    0 => '2022-07-13 00:00:00',
-    1 => 
+    0 => '2022-07-13 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 7,
       'day' => 13,
       'dayOfWeek' => 3,
       'dayOfYear' => 194,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1657638000,
-      'formatted' => '2022-07-13 00:00:00',
-      'timezone' => 
+      'timestamp' => 1657670400,
+      'formatted' => '2022-07-13 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -14732,132 +12762,16 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 15,
       'is_leap_month' => false,
-      'moon_age' => 13.880847197491676,
-      'moon_phase_angle' => 163.53142760648785,
+      'moon_age' => 13.88,
+      'moon_phase_angle' => 165.05997894821118,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-07-14 00:00:00' => 
+  '2022-07-14 03:38:00' =>
   array (
-    0 => '2022-07-14 00:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 7,
-      'day' => 14,
-      'dayOfWeek' => 4,
-      'dayOfYear' => 195,
-      'hour' => 0,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1657724400,
-      'formatted' => '2022-07-14 00:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '先負',
-      'six_weekday' => 4,
-      'weekday_text' => '木',
-      'month_text' => '文月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '水無月',
-      'lunar_month' => 6,
-      'lunar_year' => 2022,
-      'lunar_day' => 16,
-      'is_leap_month' => false,
-      'moon_age' => 14.896872279699892,
-      'moon_phase_angle' => 177.839422513663,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2022-07-14 02:00:00' => 
-  array (
-    0 => '2022-07-14 02:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 7,
-      'day' => 14,
-      'dayOfWeek' => 4,
-      'dayOfYear' => 195,
-      'hour' => 2,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1657731600,
-      'formatted' => '2022-07-14 02:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '先負',
-      'six_weekday' => 4,
-      'weekday_text' => '木',
-      'month_text' => '文月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '水無月',
-      'lunar_month' => 6,
-      'lunar_year' => 2022,
-      'lunar_day' => 16,
-      'is_leap_month' => false,
-      'moon_age' => 14.981778456829488,
-      'moon_phase_angle' => 179.0338002366397,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2022-07-14 03:00:00' => 
-  array (
-    0 => '2022-07-14 03:00:00',
-    1 => 
+    0 => '2022-07-14 03:38:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 7,
@@ -14865,12 +12779,12 @@ return array (
       'dayOfWeek' => 4,
       'dayOfYear' => 195,
       'hour' => 3,
-      'minute' => 0,
+      'minute' => 38,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1657735200,
-      'formatted' => '2022-07-14 03:00:00',
-      'timezone' => 
+      'timestamp' => 1657737480,
+      'formatted' => '2022-07-14 03:38:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -14906,29 +12820,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 15.024227015208453,
-      'moon_phase_angle' => 179.63092697512843,
+      'moon_age' => 14.656944444444445,
+      'moon_phase_angle' => 176.1710475472703,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2022-07-14 04:00:00' => 
+  '2022-07-14 09:00:00' =>
   array (
-    0 => '2022-07-14 04:00:00',
-    1 => 
+    0 => '2022-07-14 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 7,
       'day' => 14,
       'dayOfWeek' => 4,
       'dayOfYear' => 195,
-      'hour' => 4,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1657738800,
-      'formatted' => '2022-07-14 04:00:00',
-      'timezone' => 
+      'timestamp' => 1657756800,
+      'formatted' => '2022-07-14 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -14964,29 +12878,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 15.066678145434707,
-      'moon_phase_angle' => 180.22799423769874,
+      'moon_age' => 14.88,
+      'moon_phase_angle' => 179.37572248541977,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2022-07-15 00:00:00' => 
+  '2022-07-15 09:00:00' =>
   array (
-    0 => '2022-07-15 00:00:00',
-    1 => 
+    0 => '2022-07-15 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 7,
       'day' => 15,
       'dayOfWeek' => 5,
       'dayOfYear' => 196,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1657810800,
-      'formatted' => '2022-07-15 00:00:00',
-      'timezone' => 
+      'timestamp' => 1657843200,
+      'formatted' => '2022-07-15 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -15022,29 +12936,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 17,
       'is_leap_month' => false,
-      'moon_age' => 15.915149227716029,
-      'moon_phase_angle' => 192.1361079195588,
+      'moon_age' => 15.88,
+      'moon_phase_angle' => 193.656760758476,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-07-16 00:00:00' => 
+  '2022-07-16 09:00:00' =>
   array (
-    0 => '2022-07-16 00:00:00',
-    1 => 
+    0 => '2022-07-16 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 7,
       'day' => 16,
       'dayOfWeek' => 6,
       'dayOfYear' => 197,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1657897200,
-      'formatted' => '2022-07-16 00:00:00',
-      'timezone' => 
+      'timestamp' => 1657929600,
+      'formatted' => '2022-07-16 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -15080,29 +12994,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 18,
       'is_leap_month' => false,
-      'moon_age' => 16.931168956682086,
-      'moon_phase_angle' => 206.24051518742021,
+      'moon_age' => 16.88,
+      'moon_phase_angle' => 207.72491793521124,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-07-17 00:00:00' => 
+  '2022-07-17 09:00:00' =>
   array (
-    0 => '2022-07-17 00:00:00',
-    1 => 
+    0 => '2022-07-17 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 7,
       'day' => 17,
       'dayOfWeek' => 0,
       'dayOfYear' => 198,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1657983600,
-      'formatted' => '2022-07-17 00:00:00',
-      'timezone' => 
+      'timestamp' => 1658016000,
+      'formatted' => '2022-07-17 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -15138,29 +13052,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 19,
       'is_leap_month' => false,
-      'moon_age' => 17.94370314432308,
-      'moon_phase_angle' => 219.99883009970785,
+      'moon_age' => 17.88,
+      'moon_phase_angle' => 221.43207504177755,
       'moon_phase' => 5,
       'moon_phase_text' => '十六夜',
     ),
   ),
-  '2022-07-18 00:00:00' => 
+  '2022-07-18 09:00:00' =>
   array (
-    0 => '2022-07-18 00:00:00',
-    1 => 
+    0 => '2022-07-18 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 7,
       'day' => 18,
       'dayOfWeek' => 1,
       'dayOfYear' => 199,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1658070000,
-      'formatted' => '2022-07-18 00:00:00',
-      'timezone' => 
+      'timestamp' => 1658102400,
+      'formatted' => '2022-07-18 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -15196,29 +13110,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 20,
       'is_leap_month' => false,
-      'moon_age' => 18.95201925514266,
-      'moon_phase_angle' => 233.30770728809284,
+      'moon_age' => 18.88,
+      'moon_phase_angle' => 234.68146402174062,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-07-19 00:00:00' => 
+  '2022-07-19 09:00:00' =>
   array (
-    0 => '2022-07-19 00:00:00',
-    1 => 
+    0 => '2022-07-19 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 7,
       'day' => 19,
       'dayOfWeek' => 2,
       'dayOfYear' => 200,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1658156400,
-      'formatted' => '2022-07-19 00:00:00',
-      'timezone' => 
+      'timestamp' => 1658188800,
+      'formatted' => '2022-07-19 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -15230,8 +13144,8 @@ return array (
       'lunar_seasonal_festival' => 0,
       'lunar_seasonal_festival_name' => '',
       'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 7,
-      'misc_seasonal_node_text' => '土用',
+      'misc_seasonal_node' => 0,
+      'misc_seasonal_node_text' => '',
       'solar_term' => false,
       'solar_term_text' => '',
       'is_solar_term' => false,
@@ -15254,29 +13168,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 21,
       'is_leap_month' => false,
-      'moon_age' => 19.955922819208354,
-      'moon_phase_angle' => 246.12241128829436,
+      'moon_age' => 19.88,
+      'moon_phase_angle' => 247.43466262356242,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-07-20 00:00:00' => 
+  '2022-07-20 09:00:00' =>
   array (
-    0 => '2022-07-20 00:00:00',
-    1 => 
+    0 => '2022-07-20 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 7,
       'day' => 20,
       'dayOfWeek' => 3,
       'dayOfYear' => 201,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1658242800,
-      'formatted' => '2022-07-20 00:00:00',
-      'timezone' => 
+      'timestamp' => 1658275200,
+      'formatted' => '2022-07-20 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -15312,29 +13226,87 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 22,
       'is_leap_month' => false,
-      'moon_age' => 20.955619072075933,
-      'moon_phase_angle' => 258.4511218334223,
+      'moon_age' => 20.88,
+      'moon_phase_angle' => 259.70534678401725,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2022-07-21 00:00:00' => 
+  '2022-07-20 23:19:00' =>
   array (
-    0 => '2022-07-21 00:00:00',
-    1 => 
+    0 => '2022-07-20 23:19:00',
+    1 =>
+    array (
+      'year' => 2022,
+      'month' => 7,
+      'day' => 20,
+      'dayOfWeek' => 3,
+      'dayOfYear' => 201,
+      'hour' => 23,
+      'minute' => 19,
+      'second' => 0,
+      'micro' => 0,
+      'timestamp' => 1658326740,
+      'formatted' => '2022-07-20 23:19:00',
+      'timezone' =>
+      \Carbon\CarbonTimeZone::__set_state(array(
+         'clock' => NULL,
+         'timezone_type' => 3,
+         'timezone' => 'Asia/Tokyo',
+      )),
+      'solar_seasonal_festival' => 0,
+      'solar_seasonal_festival_name' => '',
+      'solar_seasonal_festival_alias' => '',
+      'lunar_seasonal_festival' => 0,
+      'lunar_seasonal_festival_name' => '',
+      'lunar_seasonal_festival_alias' => '',
+      'misc_seasonal_node' => 7,
+      'misc_seasonal_node_text' => '土用',
+      'solar_term' => false,
+      'solar_term_text' => '',
+      'is_solar_term' => false,
+      'era_name_text' => '令和',
+      'era_name' => 1004,
+      'era_year' => 4,
+      'oriental_zodiac_text' => '寅',
+      'oriental_zodiac' => 3,
+      'heavenly_stem_text' => '壬',
+      'heavenly_stem' => 8,
+      'six_weekday_text' => '先負',
+      'six_weekday' => 4,
+      'weekday_text' => '水',
+      'month_text' => '文月',
+      'holiday_text' => '',
+      'holiday' => 0,
+      'is_holiday' => false,
+      'lunar_month_text' => '水無月',
+      'lunar_month' => 6,
+      'lunar_year' => 2022,
+      'lunar_day' => 22,
+      'is_leap_month' => false,
+      'moon_age' => 21.477083333333333,
+      'moon_phase_angle' => 266.81560175401773,
+      'moon_phase' => 6,
+      'moon_phase_text' => '下弦',
+    ),
+  ),
+  '2022-07-21 09:00:00' =>
+  array (
+    0 => '2022-07-21 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 7,
       'day' => 21,
       'dayOfWeek' => 4,
       'dayOfYear' => 202,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1658329200,
-      'formatted' => '2022-07-21 00:00:00',
-      'timezone' => 
+      'timestamp' => 1658361600,
+      'formatted' => '2022-07-21 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -15370,29 +13342,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 21.951642786618322,
-      'moon_phase_angle' => 270.3414054934958,
+      'moon_age' => 21.88,
+      'moon_phase_angle' => 271.54524541455345,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-07-22 00:00:00' => 
+  '2022-07-22 09:00:00' =>
   array (
-    0 => '2022-07-22 00:00:00',
-    1 => 
+    0 => '2022-07-22 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 7,
       'day' => 22,
       'dayOfWeek' => 5,
       'dayOfYear' => 203,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1658415600,
-      'formatted' => '2022-07-22 00:00:00',
-      'timezone' => 
+      'timestamp' => 1658448000,
+      'formatted' => '2022-07-22 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -15428,29 +13400,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 24,
       'is_leap_month' => false,
-      'moon_age' => 22.944666099734604,
-      'moon_phase_angle' => 281.86495155337997,
+      'moon_age' => 22.88,
+      'moon_phase_angle' => 283.0284653745527,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-07-23 00:00:00' => 
+  '2022-07-23 09:00:00' =>
   array (
-    0 => '2022-07-23 00:00:00',
-    1 => 
+    0 => '2022-07-23 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 7,
       'day' => 23,
       'dayOfWeek' => 6,
       'dayOfYear' => 204,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1658502000,
-      'formatted' => '2022-07-23 00:00:00',
-      'timezone' => 
+      'timestamp' => 1658534400,
+      'formatted' => '2022-07-23 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -15486,29 +13458,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 25,
       'is_leap_month' => false,
-      'moon_age' => 23.93543877825141,
-      'moon_phase_angle' => 293.10430733857316,
+      'moon_age' => 23.88,
+      'moon_phase_angle' => 294.2382542095577,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-07-24 00:00:00' => 
+  '2022-07-24 09:00:00' =>
   array (
-    0 => '2022-07-24 00:00:00',
-    1 => 
+    0 => '2022-07-24 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 7,
       'day' => 24,
       'dayOfWeek' => 0,
       'dayOfYear' => 205,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1658588400,
-      'formatted' => '2022-07-24 00:00:00',
-      'timezone' => 
+      'timestamp' => 1658620800,
+      'formatted' => '2022-07-24 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -15544,29 +13516,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 26,
       'is_leap_month' => false,
-      'moon_age' => 24.924696309957653,
-      'moon_phase_angle' => 304.14293362236,
+      'moon_age' => 24.88,
+      'moon_phase_angle' => 305.25751983005824,
       'moon_phase' => 7,
       'moon_phase_text' => '有明',
     ),
   ),
-  '2022-07-25 00:00:00' => 
+  '2022-07-25 09:00:00' =>
   array (
-    0 => '2022-07-25 00:00:00',
-    1 => 
+    0 => '2022-07-25 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 7,
       'day' => 25,
       'dayOfWeek' => 1,
       'dayOfYear' => 206,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1658674800,
-      'formatted' => '2022-07-25 00:00:00',
-      'timezone' => 
+      'timestamp' => 1658707200,
+      'formatted' => '2022-07-25 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -15602,29 +13574,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 27,
       'is_leap_month' => false,
-      'moon_age' => 25.91309701791033,
-      'moon_phase_angle' => 315.0584752161145,
+      'moon_age' => 25.88,
+      'moon_phase_angle' => 316.1626857418893,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-07-26 00:00:00' => 
+  '2022-07-26 09:00:00' =>
   array (
-    0 => '2022-07-26 00:00:00',
-    1 => 
+    0 => '2022-07-26 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 7,
       'day' => 26,
       'dayOfWeek' => 2,
       'dayOfYear' => 207,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1658761200,
-      'formatted' => '2022-07-26 00:00:00',
-      'timezone' => 
+      'timestamp' => 1658793600,
+      'formatted' => '2022-07-26 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -15660,29 +13632,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 28,
       'is_leap_month' => false,
-      'moon_age' => 27.06878113900715,
-      'moon_phase_angle' => 325.9186507129449,
+      'moon_age' => 26.88,
+      'moon_phase_angle' => 327.0200168969455,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-07-27 00:00:00' => 
+  '2022-07-27 09:00:00' =>
   array (
-    0 => '2022-07-27 00:00:00',
-    1 => 
+    0 => '2022-07-27 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 7,
       'day' => 27,
       'dayOfWeek' => 3,
       'dayOfYear' => 208,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1658847600,
-      'formatted' => '2022-07-27 00:00:00',
-      'timezone' => 
+      'timestamp' => 1658880000,
+      'formatted' => '2022-07-27 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -15718,29 +13690,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 29,
       'is_leap_month' => false,
-      'moon_age' => 27.960648540551155,
-      'moon_phase_angle' => 336.7792040773052,
+      'moon_age' => 27.88,
+      'moon_phase_angle' => 337.883798607609,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-07-28 00:00:00' => 
+  '2022-07-28 09:00:00' =>
   array (
-    0 => '2022-07-28 00:00:00',
-    1 => 
+    0 => '2022-07-28 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 7,
       'day' => 28,
       'dayOfWeek' => 4,
       'dayOfYear' => 209,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1658934000,
-      'formatted' => '2022-07-28 00:00:00',
-      'timezone' => 
+      'timestamp' => 1658966400,
+      'formatted' => '2022-07-28 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -15776,74 +13748,16 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 30,
       'is_leap_month' => false,
-      'moon_age' => 28.857202656710832,
-      'moon_phase_angle' => 347.68357414230564,
+      'moon_age' => 28.88,
+      'moon_phase_angle' => 348.7960864655976,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-07-29 00:00:00' => 
+  '2022-07-29 02:55:00' =>
   array (
-    0 => '2022-07-29 00:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 7,
-      'day' => 29,
-      'dayOfWeek' => 5,
-      'dayOfYear' => 210,
-      'hour' => 0,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1659020400,
-      'formatted' => '2022-07-29 00:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 7,
-      'misc_seasonal_node_text' => '土用',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '先勝',
-      'six_weekday' => 2,
-      'weekday_text' => '金',
-      'month_text' => '文月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '文月',
-      'lunar_month' => 7,
-      'lunar_year' => 2022,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.2539130011573434,
-      'moon_phase_angle' => 358.6641048872663,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2022-07-29 02:00:00' => 
-  array (
-    0 => '2022-07-29 02:00:00',
-    1 => 
+    0 => '2022-07-29 02:55:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 7,
@@ -15851,12 +13765,12 @@ return array (
       'dayOfWeek' => 5,
       'dayOfYear' => 210,
       'hour' => 2,
-      'minute' => 0,
+      'minute' => 55,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1659027600,
-      'formatted' => '2022-07-29 02:00:00',
-      'timezone' => 
+      'timestamp' => 1659030900,
+      'formatted' => '2022-07-29 02:55:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -15892,29 +13806,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.3372530397027731,
-      'moon_phase_angle' => 359.58338030548623,
+      'moon_age' => 0.0,
+      'moon_phase_angle' => 356.992926660458,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2022-07-29 03:00:00' => 
+  '2022-07-29 09:00:00' =>
   array (
-    0 => '2022-07-29 03:00:00',
-    1 => 
+    0 => '2022-07-29 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 7,
       'day' => 29,
       'dayOfWeek' => 5,
       'dayOfYear' => 210,
-      'hour' => 3,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1659031200,
-      'formatted' => '2022-07-29 03:00:00',
-      'timezone' => 
+      'timestamp' => 1659052800,
+      'formatted' => '2022-07-29 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -15950,87 +13864,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.3789098556153476,
-      'moon_phase_angle' => 0.04328316762438078,
+      'moon_age' => 0.253,
+      'moon_phase_angle' => 359.78795391704847,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2022-07-29 04:00:00' => 
+  '2022-07-30 09:00:00' =>
   array (
-    0 => '2022-07-29 04:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 7,
-      'day' => 29,
-      'dayOfWeek' => 5,
-      'dayOfYear' => 210,
-      'hour' => 4,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1659034800,
-      'formatted' => '2022-07-29 04:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 7,
-      'misc_seasonal_node_text' => '土用',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '先勝',
-      'six_weekday' => 2,
-      'weekday_text' => '金',
-      'month_text' => '文月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '文月',
-      'lunar_month' => 7,
-      'lunar_year' => 2022,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.4205824285745621,
-      'moon_phase_angle' => 0.5033647244779473,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2022-07-30 00:00:00' => 
-  array (
-    0 => '2022-07-30 00:00:00',
-    1 => 
+    0 => '2022-07-30 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 7,
       'day' => 30,
       'dayOfWeek' => 6,
       'dayOfYear' => 211,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1659106800,
-      'formatted' => '2022-07-30 00:00:00',
-      'timezone' => 
+      'timestamp' => 1659139200,
+      'formatted' => '2022-07-30 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -16066,29 +13922,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 2,
       'is_leap_month' => false,
-      'moon_age' => 1.2539097829721868,
-      'moon_phase_angle' => 9.74464387469554,
+      'moon_age' => 1.253,
+      'moon_phase_angle' => 10.882211702028343,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-07-31 00:00:00' => 
+  '2022-07-31 09:00:00' =>
   array (
-    0 => '2022-07-31 00:00:00',
-    1 => 
+    0 => '2022-07-31 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 7,
       'day' => 31,
       'dayOfWeek' => 0,
       'dayOfYear' => 212,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1659193200,
-      'formatted' => '2022-07-31 00:00:00',
-      'timezone' => 
+      'timestamp' => 1659225600,
+      'formatted' => '2022-07-31 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -16124,29 +13980,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 3,
       'is_leap_month' => false,
-      'moon_age' => 2.253913344349712,
-      'moon_phase_angle' => 20.9442463241884,
+      'moon_age' => 2.253,
+      'moon_phase_angle' => 22.09738266966427,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-08-01 00:00:00' => 
+  '2022-08-01 09:00:00' =>
   array (
-    0 => '2022-08-01 00:00:00',
-    1 => 
+    0 => '2022-08-01 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 8,
       'day' => 1,
       'dayOfWeek' => 1,
       'dayOfYear' => 213,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1659279600,
-      'formatted' => '2022-08-01 00:00:00',
-      'timezone' => 
+      'timestamp' => 1659312000,
+      'formatted' => '2022-08-01 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -16182,29 +14038,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 4,
       'is_leap_month' => false,
-      'moon_age' => 3.2539133983664215,
-      'moon_phase_angle' => 32.281480429682404,
+      'moon_age' => 3.253,
+      'moon_phase_angle' => 33.45228686358263,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-08-02 00:00:00' => 
+  '2022-08-02 09:00:00' =>
   array (
-    0 => '2022-08-02 00:00:00',
-    1 => 
+    0 => '2022-08-02 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 8,
       'day' => 2,
       'dayOfWeek' => 2,
       'dayOfYear' => 214,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1659366000,
-      'formatted' => '2022-08-02 00:00:00',
-      'timezone' => 
+      'timestamp' => 1659398400,
+      'formatted' => '2022-08-02 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -16240,29 +14096,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 5,
       'is_leap_month' => false,
-      'moon_age' => 4.253916419111192,
-      'moon_phase_angle' => 43.77855625359129,
+      'moon_age' => 4.253,
+      'moon_phase_angle' => 44.97019849435637,
       'moon_phase' => 1,
       'moon_phase_text' => '三日月',
     ),
   ),
-  '2022-08-03 00:00:00' => 
+  '2022-08-03 09:00:00' =>
   array (
-    0 => '2022-08-03 00:00:00',
-    1 => 
+    0 => '2022-08-03 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 8,
       'day' => 3,
       'dayOfWeek' => 3,
       'dayOfYear' => 215,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1659452400,
-      'formatted' => '2022-08-03 00:00:00',
-      'timezone' => 
+      'timestamp' => 1659484800,
+      'formatted' => '2022-08-03 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -16298,29 +14154,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 6,
       'is_leap_month' => false,
-      'moon_age' => 5.253910758532584,
-      'moon_phase_angle' => 55.464507041736965,
+      'moon_age' => 5.253,
+      'moon_phase_angle' => 56.68152004226488,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-08-04 00:00:00' => 
+  '2022-08-04 09:00:00' =>
   array (
-    0 => '2022-08-04 00:00:00',
-    1 => 
+    0 => '2022-08-04 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 8,
       'day' => 4,
       'dayOfWeek' => 4,
       'dayOfYear' => 216,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1659538800,
-      'formatted' => '2022-08-04 00:00:00',
-      'timezone' => 
+      'timestamp' => 1659571200,
+      'formatted' => '2022-08-04 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -16356,29 +14212,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 7,
       'is_leap_month' => false,
-      'moon_age' => 6.253912798129022,
-      'moon_phase_angle' => 67.37639779028675,
+      'moon_age' => 6.253,
+      'moon_phase_angle' => 68.62433026212099,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-08-05 00:00:00' => 
+  '2022-08-05 09:00:00' =>
   array (
-    0 => '2022-08-05 00:00:00',
-    1 => 
+    0 => '2022-08-05 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 8,
       'day' => 5,
       'dayOfWeek' => 5,
       'dayOfYear' => 217,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1659625200,
-      'formatted' => '2022-08-05 00:00:00',
-      'timezone' => 
+      'timestamp' => 1659657600,
+      'formatted' => '2022-08-05 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -16414,16 +14270,16 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 7.253918605390936,
-      'moon_phase_angle' => 79.55785578194906,
+      'moon_age' => 7.253,
+      'moon_phase_angle' => 80.84246644413255,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2022-08-05 20:00:00' => 
+  '2022-08-05 20:07:00' =>
   array (
-    0 => '2022-08-05 20:00:00',
-    1 => 
+    0 => '2022-08-05 20:07:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 8,
@@ -16431,12 +14287,12 @@ return array (
       'dayOfWeek' => 5,
       'dayOfYear' => 217,
       'hour' => 20,
-      'minute' => 0,
+      'minute' => 7,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1659697200,
-      'formatted' => '2022-08-05 20:00:00',
-      'timezone' => 
+      'timestamp' => 1659697620,
+      'formatted' => '2022-08-05 20:07:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -16472,29 +14328,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 8.08724911371246,
-      'moon_phase_angle' => 89.94783202550536,
+      'moon_age' => 7.716666666666667,
+      'moon_phase_angle' => 86.60774554193867,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2022-08-06 00:00:00' => 
+  '2022-08-06 09:00:00' =>
   array (
-    0 => '2022-08-06 00:00:00',
-    1 => 
+    0 => '2022-08-06 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 8,
       'day' => 6,
       'dayOfWeek' => 6,
       'dayOfYear' => 218,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1659711600,
-      'formatted' => '2022-08-06 00:00:00',
-      'timezone' => 
+      'timestamp' => 1659744000,
+      'formatted' => '2022-08-06 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -16530,29 +14386,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 9,
       'is_leap_month' => false,
-      'moon_age' => 8.253914800006896,
-      'moon_phase_angle' => 92.05422323986491,
+      'moon_age' => 8.253,
+      'moon_phase_angle' => 93.38065409121253,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-08-07 00:00:00' => 
+  '2022-08-07 09:00:00' =>
   array (
-    0 => '2022-08-07 00:00:00',
-    1 => 
+    0 => '2022-08-07 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 8,
       'day' => 7,
       'dayOfWeek' => 0,
       'dayOfYear' => 219,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1659798000,
-      'formatted' => '2022-08-07 00:00:00',
-      'timezone' => 
+      'timestamp' => 1659830400,
+      'formatted' => '2022-08-07 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -16588,29 +14444,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 10,
       'is_leap_month' => false,
-      'moon_age' => 9.25391948595643,
-      'moon_phase_angle' => 104.90396815322109,
+      'moon_age' => 9.253,
+      'moon_phase_angle' => 106.27589497876662,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-08-08 00:00:00' => 
+  '2022-08-08 09:00:00' =>
   array (
-    0 => '2022-08-08 00:00:00',
-    1 => 
+    0 => '2022-08-08 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 8,
       'day' => 8,
       'dayOfWeek' => 1,
       'dayOfYear' => 220,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1659884400,
-      'formatted' => '2022-08-08 00:00:00',
-      'timezone' => 
+      'timestamp' => 1659916800,
+      'formatted' => '2022-08-08 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -16646,29 +14502,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 11,
       'is_leap_month' => false,
-      'moon_age' => 10.253908917307854,
-      'moon_phase_angle' => 118.1266459544263,
+      'moon_age' => 10.253,
+      'moon_phase_angle' => 119.54491691284358,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-08-09 00:00:00' => 
+  '2022-08-09 09:00:00' =>
   array (
-    0 => '2022-08-09 00:00:00',
-    1 => 
+    0 => '2022-08-09 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 8,
       'day' => 9,
       'dayOfWeek' => 2,
       'dayOfYear' => 221,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1659970800,
-      'formatted' => '2022-08-09 00:00:00',
-      'timezone' => 
+      'timestamp' => 1660003200,
+      'formatted' => '2022-08-09 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -16704,29 +14560,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 12,
       'is_leap_month' => false,
-      'moon_age' => 11.253915707580745,
-      'moon_phase_angle' => 131.70905344414228,
+      'moon_age' => 11.253,
+      'moon_phase_angle' => 133.16963784246866,
       'moon_phase' => 3,
       'moon_phase_text' => '十三夜',
     ),
   ),
-  '2022-08-10 00:00:00' => 
+  '2022-08-10 09:00:00' =>
   array (
-    0 => '2022-08-10 00:00:00',
-    1 => 
+    0 => '2022-08-10 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 8,
       'day' => 10,
       'dayOfWeek' => 3,
       'dayOfYear' => 222,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1660057200,
-      'formatted' => '2022-08-10 00:00:00',
-      'timezone' => 
+      'timestamp' => 1660089600,
+      'formatted' => '2022-08-10 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -16762,29 +14618,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 13,
       'is_leap_month' => false,
-      'moon_age' => 12.26538201700896,
-      'moon_phase_angle' => 145.59327392980492,
+      'moon_age' => 12.253,
+      'moon_phase_angle' => 147.08548253992367,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-08-11 00:00:00' => 
+  '2022-08-11 09:00:00' =>
   array (
-    0 => '2022-08-11 00:00:00',
-    1 => 
+    0 => '2022-08-11 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 8,
       'day' => 11,
       'dayOfWeek' => 4,
       'dayOfYear' => 223,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1660143600,
-      'formatted' => '2022-08-11 00:00:00',
-      'timezone' => 
+      'timestamp' => 1660176000,
+      'formatted' => '2022-08-11 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -16820,29 +14676,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 14,
       'is_leap_month' => false,
-      'moon_age' => 13.28055590763688,
-      'moon_phase_angle' => 159.6721805250201,
+      'moon_age' => 13.253,
+      'moon_phase_angle' => 161.17880933701161,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-08-12 00:00:00' => 
+  '2022-08-12 09:00:00' =>
   array (
-    0 => '2022-08-12 00:00:00',
-    1 => 
+    0 => '2022-08-12 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 8,
       'day' => 12,
       'dayOfWeek' => 5,
       'dayOfYear' => 224,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1660230000,
-      'formatted' => '2022-08-12 00:00:00',
-      'timezone' => 
+      'timestamp' => 1660262400,
+      'formatted' => '2022-08-12 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -16878,16 +14734,16 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 15,
       'is_leap_month' => false,
-      'moon_age' => 14.295806246344,
-      'moon_phase_angle' => 173.79762291612545,
+      'moon_age' => 14.253,
+      'moon_phase_angle' => 175.29770550572266,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2022-08-12 10:00:00' => 
+  '2022-08-12 10:36:00' =>
   array (
-    0 => '2022-08-12 10:00:00',
-    1 => 
+    0 => '2022-08-12 10:36:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 8,
@@ -16895,12 +14751,12 @@ return array (
       'dayOfWeek' => 5,
       'dayOfYear' => 224,
       'hour' => 10,
-      'minute' => 0,
+      'minute' => 36,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1660266000,
-      'formatted' => '2022-08-12 10:00:00',
-      'timezone' => 
+      'timestamp' => 1660268160,
+      'formatted' => '2022-08-12 10:36:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -16936,145 +14792,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 15,
       'is_leap_month' => false,
-      'moon_age' => 14.718515353742987,
-      'moon_phase_angle' => 179.65714476816922,
+      'moon_age' => 14.32013888888889,
+      'moon_phase_angle' => 176.23576938554837,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2022-08-12 11:00:00' => 
+  '2022-08-13 09:00:00' =>
   array (
-    0 => '2022-08-12 11:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 8,
-      'day' => 12,
-      'dayOfWeek' => 5,
-      'dayOfYear' => 224,
-      'hour' => 11,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1660269600,
-      'formatted' => '2022-08-12 11:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '先負',
-      'six_weekday' => 4,
-      'weekday_text' => '金',
-      'month_text' => '葉月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '文月',
-      'lunar_month' => 7,
-      'lunar_year' => 2022,
-      'lunar_day' => 15,
-      'is_leap_month' => false,
-      'moon_age' => 14.760767686646432,
-      'moon_phase_angle' => 180.241468352566,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2022-08-12 12:00:00' => 
-  array (
-    0 => '2022-08-12 12:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 8,
-      'day' => 12,
-      'dayOfWeek' => 5,
-      'dayOfYear' => 224,
-      'hour' => 12,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1660273200,
-      'formatted' => '2022-08-12 12:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '先負',
-      'six_weekday' => 4,
-      'weekday_text' => '金',
-      'month_text' => '葉月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '文月',
-      'lunar_month' => 7,
-      'lunar_year' => 2022,
-      'lunar_day' => 15,
-      'is_leap_month' => false,
-      'moon_age' => 14.80302269011736,
-      'moon_phase_angle' => 180.82544832232156,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2022-08-13 00:00:00' => 
-  array (
-    0 => '2022-08-13 00:00:00',
-    1 => 
+    0 => '2022-08-13 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 8,
       'day' => 13,
       'dayOfWeek' => 6,
       'dayOfYear' => 225,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1660316400,
-      'formatted' => '2022-08-13 00:00:00',
-      'timezone' => 
+      'timestamp' => 1660348800,
+      'formatted' => '2022-08-13 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -17110,29 +14850,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 15.309756101109087,
-      'moon_phase_angle' => 187.80225165535526,
+      'moon_age' => 15.253,
+      'moon_phase_angle' => 189.27518692088614,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-08-14 00:00:00' => 
+  '2022-08-14 09:00:00' =>
   array (
-    0 => '2022-08-14 00:00:00',
-    1 => 
+    0 => '2022-08-14 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 8,
       'day' => 14,
       'dayOfWeek' => 0,
       'dayOfYear' => 226,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1660402800,
-      'formatted' => '2022-08-14 00:00:00',
-      'timezone' => 
+      'timestamp' => 1660435200,
+      'formatted' => '2022-08-14 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -17168,29 +14908,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 17,
       'is_leap_month' => false,
-      'moon_age' => 16.321159991435707,
-      'moon_phase_angle' => 201.5290696824711,
+      'moon_age' => 16.253,
+      'moon_phase_angle' => 202.95810597602133,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-08-15 00:00:00' => 
+  '2022-08-15 09:00:00' =>
   array (
-    0 => '2022-08-15 00:00:00',
-    1 => 
+    0 => '2022-08-15 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 8,
       'day' => 15,
       'dayOfWeek' => 1,
       'dayOfYear' => 227,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1660489200,
-      'formatted' => '2022-08-15 00:00:00',
-      'timezone' => 
+      'timestamp' => 1660521600,
+      'formatted' => '2022-08-15 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -17226,29 +14966,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 18,
       'is_leap_month' => false,
-      'moon_age' => 17.329119300004095,
-      'moon_phase_angle' => 214.8582256709454,
+      'moon_age' => 17.253,
+      'moon_phase_angle' => 216.2323265538,
       'moon_phase' => 5,
       'moon_phase_text' => '十六夜',
     ),
   ),
-  '2022-08-16 00:00:00' => 
+  '2022-08-16 09:00:00' =>
   array (
-    0 => '2022-08-16 00:00:00',
-    1 => 
+    0 => '2022-08-16 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 8,
       'day' => 16,
       'dayOfWeek' => 2,
       'dayOfYear' => 228,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1660575600,
-      'formatted' => '2022-08-16 00:00:00',
-      'timezone' => 
+      'timestamp' => 1660608000,
+      'formatted' => '2022-08-16 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -17284,29 +15024,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 19,
       'is_leap_month' => false,
-      'moon_age' => 18.333180447109044,
-      'moon_phase_angle' => 227.7222634862119,
+      'moon_age' => 18.253,
+      'moon_phase_angle' => 229.0366798023312,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-08-17 00:00:00' => 
+  '2022-08-17 09:00:00' =>
   array (
-    0 => '2022-08-17 00:00:00',
-    1 => 
+    0 => '2022-08-17 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 8,
       'day' => 17,
       'dayOfWeek' => 3,
       'dayOfYear' => 229,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1660662000,
-      'formatted' => '2022-08-17 00:00:00',
-      'timezone' => 
+      'timestamp' => 1660694400,
+      'formatted' => '2022-08-17 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -17342,29 +15082,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 20,
       'is_leap_month' => false,
-      'moon_age' => 19.333361425437033,
-      'moon_phase_angle' => 240.10749868344766,
+      'moon_age' => 19.253,
+      'moon_phase_angle' => 241.36353389086037,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-08-18 00:00:00' => 
+  '2022-08-18 09:00:00' =>
   array (
-    0 => '2022-08-18 00:00:00',
-    1 => 
+    0 => '2022-08-18 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 8,
       'day' => 18,
       'dayOfWeek' => 4,
       'dayOfYear' => 230,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1660748400,
-      'formatted' => '2022-08-18 00:00:00',
-      'timezone' => 
+      'timestamp' => 1660780800,
+      'formatted' => '2022-08-18 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -17400,29 +15140,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 21,
       'is_leap_month' => false,
-      'moon_age' => 20.330007376614958,
-      'moon_phase_angle' => 252.0451646939899,
+      'moon_age' => 20.253,
+      'moon_phase_angle' => 253.24917718010204,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-08-19 00:00:00' => 
+  '2022-08-19 09:00:00' =>
   array (
-    0 => '2022-08-19 00:00:00',
-    1 => 
+    0 => '2022-08-19 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 8,
       'day' => 19,
       'dayOfWeek' => 5,
       'dayOfYear' => 231,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1660834800,
-      'formatted' => '2022-08-19 00:00:00',
-      'timezone' => 
+      'timestamp' => 1660867200,
+      'formatted' => '2022-08-19 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -17458,29 +15198,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 22,
       'is_leap_month' => false,
-      'moon_age' => 21.323738537728786,
-      'moon_phase_angle' => 263.59807477367593,
+      'moon_age' => 21.253,
+      'moon_phase_angle' => 264.7597814255581,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2022-08-19 14:00:00' => 
+  '2022-08-19 13:36:00' =>
   array (
-    0 => '2022-08-19 14:00:00',
-    1 => 
+    0 => '2022-08-19 13:36:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 8,
       'day' => 19,
       'dayOfWeek' => 5,
       'dayOfYear' => 231,
-      'hour' => 14,
-      'minute' => 0,
+      'hour' => 13,
+      'minute' => 36,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1660885200,
-      'formatted' => '2022-08-19 14:00:00',
-      'timezone' => 
+      'timestamp' => 1660883760,
+      'formatted' => '2022-08-19 13:36:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -17516,29 +15256,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 22,
       'is_leap_month' => false,
-      'moon_age' => 21.902364158071578,
-      'moon_phase_angle' => 270.19143076376895,
+      'moon_age' => 21.445138888888888,
+      'moon_phase_angle' => 266.9298871024015,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2022-08-20 00:00:00' => 
+  '2022-08-20 09:00:00' =>
   array (
-    0 => '2022-08-20 00:00:00',
-    1 => 
+    0 => '2022-08-20 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 8,
       'day' => 20,
       'dayOfWeek' => 6,
       'dayOfYear' => 232,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1660921200,
-      'formatted' => '2022-08-20 00:00:00',
-      'timezone' => 
+      'timestamp' => 1660953600,
+      'formatted' => '2022-08-20 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -17574,29 +15314,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 22.315290205646306,
-      'moon_phase_angle' => 274.8473331536141,
+      'moon_age' => 22.253,
+      'moon_phase_angle' => 275.9779122705378,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-08-21 00:00:00' => 
+  '2022-08-21 09:00:00' =>
   array (
-    0 => '2022-08-21 00:00:00',
-    1 => 
+    0 => '2022-08-21 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 8,
       'day' => 21,
       'dayOfWeek' => 0,
       'dayOfYear' => 233,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1661007600,
-      'formatted' => '2022-08-21 00:00:00',
-      'timezone' => 
+      'timestamp' => 1661040000,
+      'formatted' => '2022-08-21 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -17632,29 +15372,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 24,
       'is_leap_month' => false,
-      'moon_age' => 23.305423754733056,
-      'moon_phase_angle' => 285.8813467637672,
+      'moon_age' => 23.253,
+      'moon_phase_angle' => 286.99196295599484,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-08-22 00:00:00' => 
+  '2022-08-22 09:00:00' =>
   array (
-    0 => '2022-08-22 00:00:00',
-    1 => 
+    0 => '2022-08-22 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 8,
       'day' => 22,
       'dayOfWeek' => 1,
       'dayOfYear' => 234,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1661094000,
-      'formatted' => '2022-08-22 00:00:00',
-      'timezone' => 
+      'timestamp' => 1661126400,
+      'formatted' => '2022-08-22 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -17690,29 +15430,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 25,
       'is_leap_month' => false,
-      'moon_age' => 24.29485349683091,
-      'moon_phase_angle' => 296.7876131905872,
+      'moon_age' => 24.253,
+      'moon_phase_angle' => 297.88859685482845,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-08-23 00:00:00' => 
+  '2022-08-23 09:00:00' =>
   array (
-    0 => '2022-08-23 00:00:00',
-    1 => 
+    0 => '2022-08-23 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 8,
       'day' => 23,
       'dayOfWeek' => 2,
       'dayOfYear' => 235,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1661180400,
-      'formatted' => '2022-08-23 00:00:00',
-      'timezone' => 
+      'timestamp' => 1661212800,
+      'formatted' => '2022-08-23 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -17748,29 +15488,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 26,
       'is_leap_month' => false,
-      'moon_age' => 25.284211044199765,
-      'moon_phase_angle' => 307.6468978679717,
+      'moon_age' => 25.253,
+      'moon_phase_angle' => 308.7473633796177,
       'moon_phase' => 7,
       'moon_phase_text' => '有明',
     ),
   ),
-  '2022-08-24 00:00:00' => 
+  '2022-08-24 09:00:00' =>
   array (
-    0 => '2022-08-24 00:00:00',
-    1 => 
+    0 => '2022-08-24 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 8,
       'day' => 24,
       'dayOfWeek' => 3,
       'dayOfYear' => 236,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1661266800,
-      'formatted' => '2022-08-24 00:00:00',
-      'timezone' => 
+      'timestamp' => 1661299200,
+      'formatted' => '2022-08-24 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -17806,29 +15546,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 27,
       'is_leap_month' => false,
-      'moon_age' => 26.464994928477644,
-      'moon_phase_angle' => 318.52924205884995,
+      'moon_age' => 26.253,
+      'moon_phase_angle' => 319.63683795670465,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-08-25 00:00:00' => 
+  '2022-08-25 09:00:00' =>
   array (
-    0 => '2022-08-25 00:00:00',
-    1 => 
+    0 => '2022-08-25 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 8,
       'day' => 25,
       'dayOfWeek' => 4,
       'dayOfYear' => 237,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1661353200,
-      'formatted' => '2022-08-25 00:00:00',
-      'timezone' => 
+      'timestamp' => 1661385600,
+      'formatted' => '2022-08-25 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -17864,29 +15604,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 28,
       'is_leap_month' => false,
-      'moon_age' => 27.36763280877316,
-      'moon_phase_angle' => 329.49142983507755,
+      'moon_age' => 27.253,
+      'moon_phase_angle' => 330.6121183228963,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-08-26 00:00:00' => 
+  '2022-08-26 09:00:00' =>
   array (
-    0 => '2022-08-26 00:00:00',
-    1 => 
+    0 => '2022-08-26 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 8,
       'day' => 26,
       'dayOfWeek' => 5,
       'dayOfYear' => 238,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1661439600,
-      'formatted' => '2022-08-26 00:00:00',
-      'timezone' => 
+      'timestamp' => 1661472000,
+      'formatted' => '2022-08-26 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -17922,29 +15662,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 29,
       'is_leap_month' => false,
-      'moon_age' => 28.281295051010638,
-      'moon_phase_angle' => 340.57582676035565,
+      'moon_age' => 28.253,
+      'moon_phase_angle' => 341.7137789281262,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-08-27 00:00:00' => 
+  '2022-08-27 09:00:00' =>
   array (
-    0 => '2022-08-27 00:00:00',
-    1 => 
+    0 => '2022-08-27 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 8,
       'day' => 27,
       'dayOfWeek' => 6,
       'dayOfYear' => 239,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1661526000,
-      'formatted' => '2022-08-27 00:00:00',
-      'timezone' => 
+      'timestamp' => 1661558400,
+      'formatted' => '2022-08-27 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -17980,16 +15720,16 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 29.20790232965195,
-      'moon_phase_angle' => 351.81071159443974,
+      'moon_age' => 29.253,
+      'moon_phase_angle' => 352.968424146938,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2022-08-27 17:00:00' => 
+  '2022-08-27 17:17:00' =>
   array (
-    0 => '2022-08-27 17:00:00',
-    1 => 
+    0 => '2022-08-27 17:17:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 8,
@@ -17997,12 +15737,12 @@ return array (
       'dayOfWeek' => 6,
       'dayOfYear' => 239,
       'hour' => 17,
-      'minute' => 0,
+      'minute' => 17,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1661587200,
-      'formatted' => '2022-08-27 17:00:00',
-      'timezone' => 
+      'timestamp' => 1661588220,
+      'formatted' => '2022-08-27 17:17:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -18038,145 +15778,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.3635456096380949,
-      'moon_phase_angle' => 359.86901920755855,
+      'moon_age' => 0.0,
+      'moon_phase_angle' => 356.8913292860359,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2022-08-27 18:00:00' => 
+  '2022-08-28 09:00:00' =>
   array (
-    0 => '2022-08-27 18:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 8,
-      'day' => 27,
-      'dayOfWeek' => 6,
-      'dayOfYear' => 239,
-      'hour' => 18,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1661590800,
-      'formatted' => '2022-08-27 18:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '友引',
-      'six_weekday' => 3,
-      'weekday_text' => '土',
-      'month_text' => '葉月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '葉月',
-      'lunar_month' => 8,
-      'lunar_year' => 2022,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.40520792873576283,
-      'moon_phase_angle' => 0.34571822501430916,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2022-08-27 20:00:00' => 
-  array (
-    0 => '2022-08-27 20:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 8,
-      'day' => 27,
-      'dayOfWeek' => 6,
-      'dayOfYear' => 239,
-      'hour' => 20,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1661598000,
-      'formatted' => '2022-08-27 20:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '友引',
-      'six_weekday' => 3,
-      'weekday_text' => '土',
-      'month_text' => '葉月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '葉月',
-      'lunar_month' => 8,
-      'lunar_year' => 2022,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.488542431499809,
-      'moon_phase_angle' => 1.3000194212321787,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2022-08-28 00:00:00' => 
-  array (
-    0 => '2022-08-28 00:00:00',
-    1 => 
+    0 => '2022-08-28 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 8,
       'day' => 28,
       'dayOfWeek' => 0,
       'dayOfYear' => 240,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1661612400,
-      'formatted' => '2022-08-28 00:00:00',
-      'timezone' => 
+      'timestamp' => 1661644800,
+      'formatted' => '2022-08-28 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -18212,29 +15836,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 2,
       'is_leap_month' => false,
-      'moon_age' => 0.6552079850807786,
-      'moon_phase_angle' => 3.212244864086472,
+      'moon_age' => 0.655,
+      'moon_phase_angle' => 4.390908085123414,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-08-29 00:00:00' => 
+  '2022-08-29 09:00:00' =>
   array (
-    0 => '2022-08-29 00:00:00',
-    1 => 
+    0 => '2022-08-29 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 8,
       'day' => 29,
       'dayOfWeek' => 1,
       'dayOfYear' => 241,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1661698800,
-      'formatted' => '2022-08-29 00:00:00',
-      'timezone' => 
+      'timestamp' => 1661731200,
+      'formatted' => '2022-08-29 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -18270,29 +15894,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 3,
       'is_leap_month' => false,
-      'moon_age' => 1.655209191609174,
-      'moon_phase_angle' => 14.788006188702468,
+      'moon_age' => 1.655,
+      'moon_phase_angle' => 15.988083742115833,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-08-30 00:00:00' => 
+  '2022-08-30 09:00:00' =>
   array (
-    0 => '2022-08-30 00:00:00',
-    1 => 
+    0 => '2022-08-30 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 8,
       'day' => 30,
       'dayOfWeek' => 2,
       'dayOfYear' => 242,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1661785200,
-      'formatted' => '2022-08-30 00:00:00',
-      'timezone' => 
+      'timestamp' => 1661817600,
+      'formatted' => '2022-08-30 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -18328,29 +15952,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 4,
       'is_leap_month' => false,
-      'moon_age' => 2.655214778613299,
-      'moon_phase_angle' => 26.541634891506874,
+      'moon_age' => 2.655,
+      'moon_phase_angle' => 27.76355122387517,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-08-31 00:00:00' => 
+  '2022-08-31 09:00:00' =>
   array (
-    0 => '2022-08-31 00:00:00',
-    1 => 
+    0 => '2022-08-31 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 8,
       'day' => 31,
       'dayOfWeek' => 3,
       'dayOfYear' => 243,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1661871600,
-      'formatted' => '2022-08-31 00:00:00',
-      'timezone' => 
+      'timestamp' => 1661904000,
+      'formatted' => '2022-08-31 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -18386,29 +16010,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 5,
       'is_leap_month' => false,
-      'moon_age' => 3.6552122179418802,
-      'moon_phase_angle' => 38.47767283947428,
+      'moon_age' => 3.655,
+      'moon_phase_angle' => 39.72242201979381,
       'moon_phase' => 1,
       'moon_phase_text' => '三日月',
     ),
   ),
-  '2022-09-01 00:00:00' => 
+  '2022-09-01 09:00:00' =>
   array (
-    0 => '2022-09-01 00:00:00',
-    1 => 
+    0 => '2022-09-01 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 9,
       'day' => 1,
       'dayOfWeek' => 4,
       'dayOfYear' => 244,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1661958000,
-      'formatted' => '2022-09-01 00:00:00',
-      'timezone' => 
+      'timestamp' => 1661990400,
+      'formatted' => '2022-09-01 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -18444,29 +16068,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 6,
       'is_leap_month' => false,
-      'moon_age' => 4.655213184189051,
-      'moon_phase_angle' => 50.605426260582306,
+      'moon_age' => 4.655,
+      'moon_phase_angle' => 51.87487376709706,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-09-02 00:00:00' => 
+  '2022-09-02 09:00:00' =>
   array (
-    0 => '2022-09-02 00:00:00',
-    1 => 
+    0 => '2022-09-02 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 9,
       'day' => 2,
       'dayOfWeek' => 5,
       'dayOfYear' => 245,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1662044400,
-      'formatted' => '2022-09-02 00:00:00',
-      'timezone' => 
+      'timestamp' => 1662076800,
+      'formatted' => '2022-09-02 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -18502,29 +16126,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 7,
       'is_leap_month' => false,
-      'moon_age' => 5.655208744108677,
-      'moon_phase_angle' => 62.94059619787859,
+      'moon_age' => 5.655,
+      'moon_phase_angle' => 64.23737862687997,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-09-03 00:00:00' => 
+  '2022-09-03 09:00:00' =>
   array (
-    0 => '2022-09-03 00:00:00',
-    1 => 
+    0 => '2022-09-03 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 9,
       'day' => 3,
       'dayOfWeek' => 6,
       'dayOfYear' => 246,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1662130800,
-      'formatted' => '2022-09-03 00:00:00',
-      'timezone' => 
+      'timestamp' => 1662163200,
+      'formatted' => '2022-09-03 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -18560,74 +16184,16 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 6.6552077033557,
-      'moon_phase_angle' => 75.50384678280463,
+      'moon_age' => 6.655,
+      'moon_phase_angle' => 76.83080720622775,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-09-04 00:00:00' => 
+  '2022-09-04 03:08:00' =>
   array (
-    0 => '2022-09-04 00:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 9,
-      'day' => 4,
-      'dayOfWeek' => 0,
-      'dayOfYear' => 247,
-      'hour' => 0,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1662217200,
-      'formatted' => '2022-09-04 00:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '仏滅',
-      'six_weekday' => 5,
-      'weekday_text' => '日',
-      'month_text' => '長月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '葉月',
-      'lunar_month' => 8,
-      'lunar_year' => 2022,
-      'lunar_day' => 9,
-      'is_leap_month' => false,
-      'moon_age' => 7.655208974145353,
-      'moon_phase_angle' => 88.3157182051672,
-      'moon_phase' => 2,
-      'moon_phase_text' => '上弦',
-    ),
-  ),
-  '2022-09-04 03:00:00' => 
-  array (
-    0 => '2022-09-04 03:00:00',
-    1 => 
+    0 => '2022-09-04 03:08:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 9,
@@ -18635,12 +16201,12 @@ return array (
       'dayOfWeek' => 0,
       'dayOfYear' => 247,
       'hour' => 3,
-      'minute' => 0,
+      'minute' => 8,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1662228000,
-      'formatted' => '2022-09-04 03:00:00',
-      'timezone' => 
+      'timestamp' => 1662228480,
+      'formatted' => '2022-09-04 03:08:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -18676,29 +16242,87 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 9,
       'is_leap_month' => false,
-      'moon_age' => 7.780204195994884,
-      'moon_phase_angle' => 89.93544497526574,
+      'moon_age' => 7.410416666666666,
+      'moon_phase_angle' => 86.51136565504925,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2022-09-05 00:00:00' => 
+  '2022-09-04 09:00:00' =>
   array (
-    0 => '2022-09-05 00:00:00',
-    1 => 
+    0 => '2022-09-04 09:00:00',
+    1 =>
+    array (
+      'year' => 2022,
+      'month' => 9,
+      'day' => 4,
+      'dayOfWeek' => 0,
+      'dayOfYear' => 247,
+      'hour' => 9,
+      'minute' => 0,
+      'second' => 0,
+      'micro' => 0,
+      'timestamp' => 1662249600,
+      'formatted' => '2022-09-04 09:00:00',
+      'timezone' =>
+      \Carbon\CarbonTimeZone::__set_state(array(
+         'clock' => NULL,
+         'timezone_type' => 3,
+         'timezone' => 'Asia/Tokyo',
+      )),
+      'solar_seasonal_festival' => 0,
+      'solar_seasonal_festival_name' => '',
+      'solar_seasonal_festival_alias' => '',
+      'lunar_seasonal_festival' => 0,
+      'lunar_seasonal_festival_name' => '',
+      'lunar_seasonal_festival_alias' => '',
+      'misc_seasonal_node' => 0,
+      'misc_seasonal_node_text' => '',
+      'solar_term' => false,
+      'solar_term_text' => '',
+      'is_solar_term' => false,
+      'era_name_text' => '令和',
+      'era_name' => 1004,
+      'era_year' => 4,
+      'oriental_zodiac_text' => '寅',
+      'oriental_zodiac' => 3,
+      'heavenly_stem_text' => '壬',
+      'heavenly_stem' => 8,
+      'six_weekday_text' => '仏滅',
+      'six_weekday' => 5,
+      'weekday_text' => '日',
+      'month_text' => '長月',
+      'holiday_text' => '',
+      'holiday' => 0,
+      'is_holiday' => false,
+      'lunar_month_text' => '葉月',
+      'lunar_month' => 8,
+      'lunar_year' => 2022,
+      'lunar_day' => 9,
+      'is_leap_month' => false,
+      'moon_age' => 7.655,
+      'moon_phase_angle' => 89.67503680669256,
+      'moon_phase' => 2,
+      'moon_phase_text' => '上弦',
+    ),
+  ),
+  '2022-09-05 09:00:00' =>
+  array (
+    0 => '2022-09-05 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 9,
       'day' => 5,
       'dayOfWeek' => 1,
       'dayOfYear' => 248,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1662303600,
-      'formatted' => '2022-09-05 00:00:00',
-      'timezone' => 
+      'timestamp' => 1662336000,
+      'formatted' => '2022-09-05 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -18734,29 +16358,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 10,
       'is_leap_month' => false,
-      'moon_age' => 8.659515004605055,
-      'moon_phase_angle' => 101.38825416603612,
+      'moon_age' => 8.655,
+      'moon_phase_angle' => 102.78028363973993,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-09-06 00:00:00' => 
+  '2022-09-06 09:00:00' =>
   array (
-    0 => '2022-09-06 00:00:00',
-    1 => 
+    0 => '2022-09-06 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 9,
       'day' => 6,
       'dayOfWeek' => 2,
       'dayOfYear' => 249,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1662390000,
-      'formatted' => '2022-09-06 00:00:00',
-      'timezone' => 
+      'timestamp' => 1662422400,
+      'formatted' => '2022-09-06 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -18792,29 +16416,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 11,
       'is_leap_month' => false,
-      'moon_age' => 9.66586977429688,
-      'moon_phase_angle' => 114.71455612579425,
+      'moon_age' => 9.655,
+      'moon_phase_angle' => 116.13648918847045,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-09-07 00:00:00' => 
+  '2022-09-07 09:00:00' =>
   array (
-    0 => '2022-09-07 00:00:00',
-    1 => 
+    0 => '2022-09-07 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 9,
       'day' => 7,
       'dayOfWeek' => 3,
       'dayOfYear' => 250,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1662476400,
-      'formatted' => '2022-09-07 00:00:00',
-      'timezone' => 
+      'timestamp' => 1662508800,
+      'formatted' => '2022-09-07 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -18850,29 +16474,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 12,
       'is_leap_month' => false,
-      'moon_age' => 10.67341585084796,
-      'moon_phase_angle' => 128.2588072069952,
+      'moon_age' => 10.655,
+      'moon_phase_angle' => 129.70359995249325,
       'moon_phase' => 3,
       'moon_phase_text' => '十三夜',
     ),
   ),
-  '2022-09-08 00:00:00' => 
+  '2022-09-08 09:00:00' =>
   array (
-    0 => '2022-09-08 00:00:00',
-    1 => 
+    0 => '2022-09-08 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 9,
       'day' => 8,
       'dayOfWeek' => 4,
       'dayOfYear' => 251,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1662562800,
-      'formatted' => '2022-09-08 00:00:00',
-      'timezone' => 
+      'timestamp' => 1662595200,
+      'formatted' => '2022-09-08 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -18908,29 +16532,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 13,
       'is_leap_month' => false,
-      'moon_age' => 11.6817795089446,
-      'moon_phase_angle' => 141.95046630311762,
+      'moon_age' => 11.655,
+      'moon_phase_angle' => 143.40669453032694,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-09-09 00:00:00' => 
+  '2022-09-09 09:00:00' =>
   array (
-    0 => '2022-09-09 00:00:00',
-    1 => 
+    0 => '2022-09-09 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 9,
       'day' => 9,
       'dayOfWeek' => 5,
       'dayOfYear' => 252,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1662649200,
-      'formatted' => '2022-09-09 00:00:00',
-      'timezone' => 
+      'timestamp' => 1662681600,
+      'formatted' => '2022-09-09 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -18966,29 +16590,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 14,
       'is_leap_month' => false,
-      'moon_age' => 12.690361049491912,
-      'moon_phase_angle' => 155.68639887558203,
+      'moon_age' => 12.655,
+      'moon_phase_angle' => 157.13945778680673,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-09-10 00:00:00' => 
+  '2022-09-10 09:00:00' =>
   array (
-    0 => '2022-09-10 00:00:00',
-    1 => 
+    0 => '2022-09-10 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 9,
       'day' => 10,
       'dayOfWeek' => 6,
       'dayOfYear' => 253,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1662735600,
-      'formatted' => '2022-09-10 00:00:00',
-      'timezone' => 
+      'timestamp' => 1662768000,
+      'formatted' => '2022-09-10 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -19024,16 +16648,16 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 15,
       'is_leap_month' => false,
-      'moon_age' => 13.698415140155703,
-      'moon_phase_angle' => 169.34265096451855,
+      'moon_age' => 13.655,
+      'moon_phase_angle' => 170.77696173891212,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2022-09-10 18:00:00' => 
+  '2022-09-10 18:59:00' =>
   array (
-    0 => '2022-09-10 18:00:00',
-    1 => 
+    0 => '2022-09-10 18:59:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 9,
@@ -19041,12 +16665,12 @@ return array (
       'dayOfWeek' => 6,
       'dayOfYear' => 253,
       'hour' => 18,
-      'minute' => 0,
+      'minute' => 59,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1662800400,
-      'formatted' => '2022-09-10 18:00:00',
-      'timezone' => 
+      'timestamp' => 1662803940,
+      'formatted' => '2022-09-10 18:59:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -19082,203 +16706,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 15,
       'is_leap_month' => false,
-      'moon_age' => 14.453648169059306,
-      'moon_phase_angle' => 179.4564509688012,
+      'moon_age' => 14.070833333333333,
+      'moon_phase_angle' => 176.39174689219314,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2022-09-10 19:00:00' => 
+  '2022-09-11 09:00:00' =>
   array (
-    0 => '2022-09-10 19:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 9,
-      'day' => 10,
-      'dayOfWeek' => 6,
-      'dayOfYear' => 253,
-      'hour' => 19,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1662804000,
-      'formatted' => '2022-09-10 19:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '仏滅',
-      'six_weekday' => 5,
-      'weekday_text' => '土',
-      'month_text' => '長月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '葉月',
-      'lunar_month' => 8,
-      'lunar_year' => 2022,
-      'lunar_day' => 15,
-      'is_leap_month' => false,
-      'moon_age' => 14.49557380285114,
-      'moon_phase_angle' => 180.0139490641692,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2022-09-10 20:00:00' => 
-  array (
-    0 => '2022-09-10 20:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 9,
-      'day' => 10,
-      'dayOfWeek' => 6,
-      'dayOfYear' => 253,
-      'hour' => 20,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1662807600,
-      'formatted' => '2022-09-10 20:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '仏滅',
-      'six_weekday' => 5,
-      'weekday_text' => '土',
-      'month_text' => '長月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '葉月',
-      'lunar_month' => 8,
-      'lunar_year' => 2022,
-      'lunar_day' => 15,
-      'is_leap_month' => false,
-      'moon_age' => 14.537499322090298,
-      'moon_phase_angle' => 180.57093521466214,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2022-09-10 21:00:00' => 
-  array (
-    0 => '2022-09-10 21:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 9,
-      'day' => 10,
-      'dayOfWeek' => 6,
-      'dayOfYear' => 253,
-      'hour' => 21,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1662811200,
-      'formatted' => '2022-09-10 21:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '仏滅',
-      'six_weekday' => 5,
-      'weekday_text' => '土',
-      'month_text' => '長月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '葉月',
-      'lunar_month' => 8,
-      'lunar_year' => 2022,
-      'lunar_day' => 15,
-      'is_leap_month' => false,
-      'moon_age' => 14.579418685287237,
-      'moon_phase_angle' => 181.12740226479306,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2022-09-11 00:00:00' => 
-  array (
-    0 => '2022-09-11 00:00:00',
-    1 => 
+    0 => '2022-09-11 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 9,
       'day' => 11,
       'dayOfWeek' => 0,
       'dayOfYear' => 254,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1662822000,
-      'formatted' => '2022-09-11 00:00:00',
-      'timezone' => 
+      'timestamp' => 1662854400,
+      'formatted' => '2022-09-11 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -19314,29 +16764,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 14.705178136005998,
-      'moon_phase_angle' => 182.79361899234723,
+      'moon_age' => 14.655,
+      'moon_phase_angle' => 184.1949857565406,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-09-12 00:00:00' => 
+  '2022-09-12 09:00:00' =>
   array (
-    0 => '2022-09-12 00:00:00',
-    1 => 
+    0 => '2022-09-12 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 9,
       'day' => 12,
       'dayOfWeek' => 1,
       'dayOfYear' => 255,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1662908400,
-      'formatted' => '2022-09-12 00:00:00',
-      'timezone' => 
+      'timestamp' => 1662940800,
+      'formatted' => '2022-09-12 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -19372,29 +16822,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 17,
       'is_leap_month' => false,
-      'moon_age' => 15.70999865513295,
-      'moon_phase_angle' => 195.9327242730674,
+      'moon_age' => 15.655,
+      'moon_phase_angle' => 197.29018976243867,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-09-13 00:00:00' => 
+  '2022-09-13 09:00:00' =>
   array (
-    0 => '2022-09-13 00:00:00',
-    1 => 
+    0 => '2022-09-13 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 9,
       'day' => 13,
       'dayOfWeek' => 2,
       'dayOfYear' => 256,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1662994800,
-      'formatted' => '2022-09-13 00:00:00',
-      'timezone' => 
+      'timestamp' => 1663027200,
+      'formatted' => '2022-09-13 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -19430,29 +16880,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 18,
       'is_leap_month' => false,
-      'moon_age' => 16.712461625691503,
-      'moon_phase_angle' => 208.68803982782256,
+      'moon_age' => 16.655,
+      'moon_phase_angle' => 209.99510404511213,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-09-14 00:00:00' => 
+  '2022-09-14 09:00:00' =>
   array (
-    0 => '2022-09-14 00:00:00',
-    1 => 
+    0 => '2022-09-14 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 9,
       'day' => 14,
       'dayOfWeek' => 3,
       'dayOfYear' => 257,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1663081200,
-      'formatted' => '2022-09-14 00:00:00',
-      'timezone' => 
+      'timestamp' => 1663113600,
+      'formatted' => '2022-09-14 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -19488,29 +16938,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 19,
       'is_leap_month' => false,
-      'moon_age' => 17.712442787829787,
-      'moon_phase_angle' => 221.02911766150297,
+      'moon_age' => 17.655,
+      'moon_phase_angle' => 222.28433862587482,
       'moon_phase' => 5,
       'moon_phase_text' => '十六夜',
     ),
   ),
-  '2022-09-15 00:00:00' => 
+  '2022-09-15 09:00:00' =>
   array (
-    0 => '2022-09-15 00:00:00',
-    1 => 
+    0 => '2022-09-15 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 9,
       'day' => 15,
       'dayOfWeek' => 4,
       'dayOfYear' => 258,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1663167600,
-      'formatted' => '2022-09-15 00:00:00',
-      'timezone' => 
+      'timestamp' => 1663200000,
+      'formatted' => '2022-09-15 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -19546,29 +16996,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 20,
       'is_leap_month' => false,
-      'moon_age' => 18.71005711890757,
-      'moon_phase_angle' => 232.96530317355473,
+      'moon_age' => 18.655,
+      'moon_phase_angle' => 234.17214086244508,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-09-16 00:00:00' => 
+  '2022-09-16 09:00:00' =>
   array (
-    0 => '2022-09-16 00:00:00',
-    1 => 
+    0 => '2022-09-16 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 9,
       'day' => 16,
       'dayOfWeek' => 5,
       'dayOfYear' => 259,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1663254000,
-      'formatted' => '2022-09-16 00:00:00',
-      'timezone' => 
+      'timestamp' => 1663286400,
+      'formatted' => '2022-09-16 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -19604,29 +17054,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 21,
       'is_leap_month' => false,
-      'moon_age' => 19.70565837621689,
-      'moon_phase_angle' => 244.5384924609931,
+      'moon_age' => 19.655,
+      'moon_phase_angle' => 245.70431688155287,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-09-17 00:00:00' => 
+  '2022-09-17 09:00:00' =>
   array (
-    0 => '2022-09-17 00:00:00',
-    1 => 
+    0 => '2022-09-17 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 9,
       'day' => 17,
       'dayOfWeek' => 6,
       'dayOfYear' => 260,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1663340400,
-      'formatted' => '2022-09-17 00:00:00',
-      'timezone' => 
+      'timestamp' => 1663372800,
+      'formatted' => '2022-09-17 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -19662,29 +17112,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 22,
       'is_leap_month' => false,
-      'moon_age' => 20.699735609814525,
-      'moon_phase_angle' => 255.8137317435578,
+      'moon_age' => 20.655,
+      'moon_phase_angle' => 256.94830132713355,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-09-18 00:00:00' => 
+  '2022-09-18 06:52:00' =>
   array (
-    0 => '2022-09-18 00:00:00',
-    1 => 
+    0 => '2022-09-18 06:52:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 9,
       'day' => 18,
       'dayOfWeek' => 0,
       'dayOfYear' => 261,
-      'hour' => 0,
-      'minute' => 0,
+      'hour' => 6,
+      'minute' => 52,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1663426800,
-      'formatted' => '2022-09-18 00:00:00',
-      'timezone' => 
+      'timestamp' => 1663451520,
+      'formatted' => '2022-09-18 06:52:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -19720,29 +17170,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 21.69283996662125,
-      'moon_phase_angle' => 266.87006243585336,
+      'moon_age' => 21.56597222222222,
+      'moon_phase_angle' => 267.00934399949847,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2022-09-18 08:00:00' => 
+  '2022-09-18 09:00:00' =>
   array (
-    0 => '2022-09-18 08:00:00',
-    1 => 
+    0 => '2022-09-18 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 9,
       'day' => 18,
       'dayOfWeek' => 0,
       'dayOfYear' => 261,
-      'hour' => 8,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1663455600,
-      'formatted' => '2022-09-18 08:00:00',
-      'timezone' => 
+      'timestamp' => 1663459200,
+      'formatted' => '2022-09-18 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -19778,29 +17228,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 22.023751518223435,
-      'moon_phase_angle' => 270.52154105876104,
+      'moon_age' => 21.655,
+      'moon_phase_angle' => 267.9840531065249,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2022-09-19 00:00:00' => 
+  '2022-09-19 09:00:00' =>
   array (
-    0 => '2022-09-19 00:00:00',
-    1 => 
+    0 => '2022-09-19 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 9,
       'day' => 19,
       'dayOfWeek' => 1,
       'dayOfYear' => 262,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1663513200,
-      'formatted' => '2022-09-19 00:00:00',
-      'timezone' => 
+      'timestamp' => 1663545600,
+      'formatted' => '2022-09-19 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -19836,29 +17286,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 24,
       'is_leap_month' => false,
-      'moon_age' => 22.685509577859193,
-      'moon_phase_angle' => 277.79271776156867,
+      'moon_age' => 22.655,
+      'moon_phase_angle' => 278.89672160908657,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-09-20 00:00:00' => 
+  '2022-09-20 09:00:00' =>
   array (
-    0 => '2022-09-20 00:00:00',
-    1 => 
+    0 => '2022-09-20 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 9,
       'day' => 20,
       'dayOfWeek' => 2,
       'dayOfYear' => 263,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1663599600,
-      'formatted' => '2022-09-20 00:00:00',
-      'timezone' => 
+      'timestamp' => 1663632000,
+      'formatted' => '2022-09-20 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -19894,29 +17344,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 25,
       'is_leap_month' => false,
-      'moon_age' => 23.67824577400461,
-      'moon_phase_angle' => 288.66683470622644,
+      'moon_age' => 23.655,
+      'moon_phase_angle' => 289.77083127769777,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-09-21 00:00:00' => 
+  '2022-09-21 09:00:00' =>
   array (
-    0 => '2022-09-21 00:00:00',
-    1 => 
+    0 => '2022-09-21 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 9,
       'day' => 21,
       'dayOfWeek' => 3,
       'dayOfYear' => 264,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1663686000,
-      'formatted' => '2022-09-21 00:00:00',
-      'timezone' => 
+      'timestamp' => 1663718400,
+      'formatted' => '2022-09-21 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -19952,29 +17402,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 26,
       'is_leap_month' => false,
-      'moon_age' => 24.67144921468571,
-      'moon_phase_angle' => 299.5723981799125,
+      'moon_age' => 24.655,
+      'moon_phase_angle' => 300.68543321690163,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-09-22 00:00:00' => 
+  '2022-09-22 09:00:00' =>
   array (
-    0 => '2022-09-22 00:00:00',
-    1 => 
+    0 => '2022-09-22 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 9,
       'day' => 22,
       'dayOfWeek' => 4,
       'dayOfYear' => 265,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1663772400,
-      'formatted' => '2022-09-22 00:00:00',
-      'timezone' => 
+      'timestamp' => 1663804800,
+      'formatted' => '2022-09-22 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -20010,29 +17460,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 27,
       'is_leap_month' => false,
-      'moon_age' => 25.665463513694704,
-      'moon_phase_angle' => 310.58007694649973,
+      'moon_age' => 25.655,
+      'moon_phase_angle' => 311.70992727611986,
       'moon_phase' => 7,
       'moon_phase_text' => '有明',
     ),
   ),
-  '2022-09-23 00:00:00' => 
+  '2022-09-23 09:00:00' =>
   array (
-    0 => '2022-09-23 00:00:00',
-    1 => 
+    0 => '2022-09-23 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 9,
       'day' => 23,
       'dayOfWeek' => 5,
       'dayOfYear' => 266,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1663858800,
-      'formatted' => '2022-09-23 00:00:00',
-      'timezone' => 
+      'timestamp' => 1663891200,
+      'formatted' => '2022-09-23 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -20068,29 +17518,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 28,
       'is_leap_month' => false,
-      'moon_age' => 26.740453480886607,
-      'moon_phase_angle' => 321.7477892745703,
+      'moon_age' => 26.655,
+      'moon_phase_angle' => 322.90059053511675,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-09-24 00:00:00' => 
+  '2022-09-24 09:00:00' =>
   array (
-    0 => '2022-09-24 00:00:00',
-    1 => 
+    0 => '2022-09-24 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 9,
       'day' => 24,
       'dayOfWeek' => 6,
       'dayOfYear' => 267,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1663945200,
-      'formatted' => '2022-09-24 00:00:00',
-      'timezone' => 
+      'timestamp' => 1663977600,
+      'formatted' => '2022-09-24 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -20126,29 +17576,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 29,
       'is_leap_month' => false,
-      'moon_age' => 27.680008525638222,
-      'moon_phase_angle' => 333.1181137681791,
+      'moon_age' => 27.655,
+      'moon_phase_angle' => 334.2980583672166,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-09-25 00:00:00' => 
+  '2022-09-25 09:00:00' =>
   array (
-    0 => '2022-09-25 00:00:00',
-    1 => 
+    0 => '2022-09-25 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 9,
       'day' => 25,
       'dayOfWeek' => 0,
       'dayOfYear' => 268,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1664031600,
-      'formatted' => '2022-09-25 00:00:00',
-      'timezone' => 
+      'timestamp' => 1664064000,
+      'formatted' => '2022-09-25 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -20184,74 +17634,16 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 30,
       'is_leap_month' => false,
-      'moon_age' => 28.638747039394765,
-      'moon_phase_angle' => 344.716912256629,
+      'moon_age' => 28.655,
+      'moon_phase_angle' => 345.9261262595013,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-09-26 00:00:00' => 
+  '2022-09-26 06:55:00' =>
   array (
-    0 => '2022-09-26 00:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 9,
-      'day' => 26,
-      'dayOfWeek' => 1,
-      'dayOfYear' => 269,
-      'hour' => 0,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1664118000,
-      'formatted' => '2022-09-26 00:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 2,
-      'misc_seasonal_node_text' => '彼岸',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '先負',
-      'six_weekday' => 4,
-      'weekday_text' => '月',
-      'month_text' => '長月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '長月',
-      'lunar_month' => 9,
-      'lunar_year' => 2022,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.08752106502652168,
-      'moon_phase_angle' => 356.5536233321075,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2022-09-26 06:00:00' => 
-  array (
-    0 => '2022-09-26 06:00:00',
-    1 => 
+    0 => '2022-09-26 06:55:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 9,
@@ -20259,12 +17651,12 @@ return array (
       'dayOfWeek' => 1,
       'dayOfYear' => 269,
       'hour' => 6,
-      'minute' => 0,
+      'minute' => 55,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1664139600,
-      'formatted' => '2022-09-26 06:00:00',
-      'timezone' => 
+      'timestamp' => 1664142900,
+      'formatted' => '2022-09-26 06:55:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -20300,132 +17692,16 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.33752025524154305,
-      'moon_phase_angle' => 359.54967938809,
+      'moon_age' => 0.0,
+      'moon_phase_angle' => 356.75287454214515,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2022-09-26 07:00:00' => 
-  array (
-    0 => '2022-09-26 07:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 9,
-      'day' => 26,
-      'dayOfWeek' => 1,
-      'dayOfYear' => 269,
-      'hour' => 7,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1664143200,
-      'formatted' => '2022-09-26 07:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 2,
-      'misc_seasonal_node_text' => '彼岸',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '先負',
-      'six_weekday' => 4,
-      'weekday_text' => '月',
-      'month_text' => '長月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '長月',
-      'lunar_month' => 9,
-      'lunar_year' => 2022,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.3791854348964989,
-      'moon_phase_angle' => 0.05043090674431028,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2022-09-26 08:00:00' => 
-  array (
-    0 => '2022-09-26 08:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 9,
-      'day' => 26,
-      'dayOfWeek' => 1,
-      'dayOfYear' => 269,
-      'hour' => 8,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1664146800,
-      'formatted' => '2022-09-26 08:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 2,
-      'misc_seasonal_node_text' => '彼岸',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '先負',
-      'six_weekday' => 4,
-      'weekday_text' => '月',
-      'month_text' => '長月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '長月',
-      'lunar_month' => 9,
-      'lunar_year' => 2022,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.4208599394187331,
-      'moon_phase_angle' => 0.551582419781596,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2022-09-26 09:00:00' => 
+  '2022-09-26 09:00:00' =>
   array (
     0 => '2022-09-26 09:00:00',
-    1 => 
+    1 =>
     array (
       'year' => 2022,
       'month' => 9,
@@ -20438,7 +17714,7 @@ return array (
       'micro' => 0,
       'timestamp' => 1664150400,
       'formatted' => '2022-09-26 09:00:00',
-      'timezone' => 
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -20474,29 +17750,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.4625205947086215,
-      'moon_phase_angle' => 1.0531329011920718,
+      'moon_age' => 0.087,
+      'moon_phase_angle' => 357.79227886318426,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2022-09-27 00:00:00' => 
+  '2022-09-27 09:00:00' =>
   array (
-    0 => '2022-09-27 00:00:00',
-    1 => 
+    0 => '2022-09-27 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 9,
       'day' => 27,
       'dayOfWeek' => 2,
       'dayOfYear' => 270,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1664204400,
-      'formatted' => '2022-09-27 00:00:00',
-      'timezone' => 
+      'timestamp' => 1664236800,
+      'formatted' => '2022-09-27 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -20532,29 +17808,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 2,
       'is_leap_month' => false,
-      'moon_age' => 1.087519924622029,
-      'moon_phase_angle' => 8.623503026951568,
+      'moon_age' => 1.087,
+      'moon_phase_angle' => 9.890180984665477,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-09-28 00:00:00' => 
+  '2022-09-28 09:00:00' =>
   array (
-    0 => '2022-09-28 00:00:00',
-    1 => 
+    0 => '2022-09-28 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 9,
       'day' => 28,
       'dayOfWeek' => 3,
       'dayOfYear' => 271,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1664290800,
-      'formatted' => '2022-09-28 00:00:00',
-      'timezone' => 
+      'timestamp' => 1664323200,
+      'formatted' => '2022-09-28 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -20590,29 +17866,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 3,
       'is_leap_month' => false,
-      'moon_age' => 2.0876640086062253,
-      'moon_phase_angle' => 20.91161783282905,
+      'moon_age' => 2.087,
+      'moon_phase_angle' => 22.203888833517226,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-09-29 00:00:00' => 
+  '2022-09-29 09:00:00' =>
   array (
-    0 => '2022-09-29 00:00:00',
-    1 => 
+    0 => '2022-09-29 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 9,
       'day' => 29,
       'dayOfWeek' => 4,
       'dayOfYear' => 272,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1664377200,
-      'formatted' => '2022-09-29 00:00:00',
-      'timezone' => 
+      'timestamp' => 1664409600,
+      'formatted' => '2022-09-29 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -20648,29 +17924,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 4,
       'is_leap_month' => false,
-      'moon_age' => 3.088096920400858,
-      'moon_phase_angle' => 33.39778266993574,
+      'moon_age' => 3.087,
+      'moon_phase_angle' => 34.71289177846856,
       'moon_phase' => 1,
       'moon_phase_text' => '三日月',
     ),
   ),
-  '2022-09-30 00:00:00' => 
+  '2022-09-30 09:00:00' =>
   array (
-    0 => '2022-09-30 00:00:00',
-    1 => 
+    0 => '2022-09-30 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 9,
       'day' => 30,
       'dayOfWeek' => 5,
       'dayOfYear' => 273,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1664463600,
-      'formatted' => '2022-09-30 00:00:00',
-      'timezone' => 
+      'timestamp' => 1664496000,
+      'formatted' => '2022-09-30 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -20706,29 +17982,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 5,
       'is_leap_month' => false,
-      'moon_age' => 4.088750579860061,
-      'moon_phase_angle' => 46.06116133430746,
+      'moon_age' => 4.087,
+      'moon_phase_angle' => 47.396611790598286,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-10-01 00:00:00' => 
+  '2022-10-01 09:00:00' =>
   array (
-    0 => '2022-10-01 00:00:00',
-    1 => 
+    0 => '2022-10-01 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 10,
       'day' => 1,
       'dayOfWeek' => 6,
       'dayOfYear' => 274,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1664550000,
-      'formatted' => '2022-10-01 00:00:00',
-      'timezone' => 
+      'timestamp' => 1664582400,
+      'formatted' => '2022-10-01 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -20764,29 +18040,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 6,
       'is_leap_month' => false,
-      'moon_age' => 5.0896465526893735,
-      'moon_phase_angle' => 58.88317792832697,
+      'moon_age' => 5.087,
+      'moon_phase_angle' => 60.23697543721934,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-10-02 00:00:00' => 
+  '2022-10-02 09:00:00' =>
   array (
-    0 => '2022-10-02 00:00:00',
-    1 => 
+    0 => '2022-10-02 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 10,
       'day' => 2,
       'dayOfWeek' => 0,
       'dayOfYear' => 275,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1664636400,
-      'formatted' => '2022-10-02 00:00:00',
-      'timezone' => 
+      'timestamp' => 1664668800,
+      'formatted' => '2022-10-02 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -20822,74 +18098,16 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 7,
       'is_leap_month' => false,
-      'moon_age' => 6.090812484268099,
-      'moon_phase_angle' => 71.84774122610276,
+      'moon_age' => 6.087,
+      'moon_phase_angle' => 73.21819959603113,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-10-03 00:00:00' => 
-  array (
-    0 => '2022-10-03 00:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 10,
-      'day' => 3,
-      'dayOfWeek' => 1,
-      'dayOfYear' => 276,
-      'hour' => 0,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1664722800,
-      'formatted' => '2022-10-03 00:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '仏滅',
-      'six_weekday' => 5,
-      'weekday_text' => '月',
-      'month_text' => '神無月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '長月',
-      'lunar_month' => 9,
-      'lunar_year' => 2022,
-      'lunar_day' => 8,
-      'is_leap_month' => false,
-      'moon_age' => 7.092246451880783,
-      'moon_phase_angle' => 84.9387149462211,
-      'moon_phase' => 2,
-      'moon_phase_text' => '上弦',
-    ),
-  ),
-  '2022-10-03 09:00:00' => 
+  '2022-10-03 09:00:00' =>
   array (
     0 => '2022-10-03 09:00:00',
-    1 => 
+    1 =>
     array (
       'year' => 2022,
       'month' => 10,
@@ -20902,7 +18120,7 @@ return array (
       'micro' => 0,
       'timestamp' => 1664755200,
       'formatted' => '2022-10-03 09:00:00',
-      'timezone' => 
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -20938,29 +18156,87 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 7.4678462743759155,
-      'moon_phase_angle' => 89.87642332888316,
+      'moon_age' => 7.087,
+      'moon_phase_angle' => 86.323787269093,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2022-10-04 00:00:00' => 
+  '2022-10-03 09:14:00' =>
   array (
-    0 => '2022-10-04 00:00:00',
-    1 => 
+    0 => '2022-10-03 09:14:00',
+    1 =>
+    array (
+      'year' => 2022,
+      'month' => 10,
+      'day' => 3,
+      'dayOfWeek' => 1,
+      'dayOfYear' => 276,
+      'hour' => 9,
+      'minute' => 14,
+      'second' => 0,
+      'micro' => 0,
+      'timestamp' => 1664756040,
+      'formatted' => '2022-10-03 09:14:00',
+      'timezone' =>
+      \Carbon\CarbonTimeZone::__set_state(array(
+         'clock' => NULL,
+         'timezone_type' => 3,
+         'timezone' => 'Asia/Tokyo',
+      )),
+      'solar_seasonal_festival' => 0,
+      'solar_seasonal_festival_name' => '',
+      'solar_seasonal_festival_alias' => '',
+      'lunar_seasonal_festival' => 0,
+      'lunar_seasonal_festival_name' => '',
+      'lunar_seasonal_festival_alias' => '',
+      'misc_seasonal_node' => 0,
+      'misc_seasonal_node_text' => '',
+      'solar_term' => false,
+      'solar_term_text' => '',
+      'is_solar_term' => false,
+      'era_name_text' => '令和',
+      'era_name' => 1004,
+      'era_year' => 4,
+      'oriental_zodiac_text' => '寅',
+      'oriental_zodiac' => 3,
+      'heavenly_stem_text' => '壬',
+      'heavenly_stem' => 8,
+      'six_weekday_text' => '仏滅',
+      'six_weekday' => 5,
+      'weekday_text' => '月',
+      'month_text' => '神無月',
+      'holiday_text' => '',
+      'holiday' => 0,
+      'is_holiday' => false,
+      'lunar_month_text' => '長月',
+      'lunar_month' => 9,
+      'lunar_year' => 2022,
+      'lunar_day' => 8,
+      'is_leap_month' => false,
+      'moon_age' => 7.096527777777778,
+      'moon_phase_angle' => 86.45174772931935,
+      'moon_phase' => 2,
+      'moon_phase_text' => '上弦',
+    ),
+  ),
+  '2022-10-04 09:00:00' =>
+  array (
+    0 => '2022-10-04 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 10,
       'day' => 4,
       'dayOfWeek' => 2,
       'dayOfYear' => 277,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1664809200,
-      'formatted' => '2022-10-04 00:00:00',
-      'timezone' => 
+      'timestamp' => 1664841600,
+      'formatted' => '2022-10-04 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -20996,29 +18272,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 9,
       'is_leap_month' => false,
-      'moon_age' => 8.093955056276172,
-      'moon_phase_angle' => 98.13519747001254,
+      'moon_age' => 8.087,
+      'moon_phase_angle' => 99.5316674972178,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-10-05 00:00:00' => 
+  '2022-10-05 09:00:00' =>
   array (
-    0 => '2022-10-05 00:00:00',
-    1 => 
+    0 => '2022-10-05 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 10,
       'day' => 5,
       'dayOfWeek' => 3,
       'dayOfYear' => 278,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1664895600,
-      'formatted' => '2022-10-05 00:00:00',
-      'timezone' => 
+      'timestamp' => 1664928000,
+      'formatted' => '2022-10-05 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -21054,29 +18330,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 10,
       'is_leap_month' => false,
-      'moon_age' => 9.09592007752508,
-      'moon_phase_angle' => 111.40624080070097,
+      'moon_age' => 9.087,
+      'moon_phase_angle' => 112.80910417579551,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-10-06 00:00:00' => 
+  '2022-10-06 09:00:00' =>
   array (
-    0 => '2022-10-06 00:00:00',
-    1 => 
+    0 => '2022-10-06 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 10,
       'day' => 6,
       'dayOfWeek' => 4,
       'dayOfYear' => 279,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1664982000,
-      'formatted' => '2022-10-06 00:00:00',
-      'timezone' => 
+      'timestamp' => 1665014400,
+      'formatted' => '2022-10-06 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -21112,29 +18388,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 11,
       'is_leap_month' => false,
-      'moon_age' => 10.09805572219193,
-      'moon_phase_angle' => 124.70695267691477,
+      'moon_age' => 10.087,
+      'moon_phase_angle' => 126.10930860136293,
       'moon_phase' => 3,
       'moon_phase_text' => '十三夜',
     ),
   ),
-  '2022-10-07 00:00:00' => 
+  '2022-10-07 09:00:00' =>
   array (
-    0 => '2022-10-07 00:00:00',
-    1 => 
+    0 => '2022-10-07 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 10,
       'day' => 7,
       'dayOfWeek' => 5,
       'dayOfYear' => 280,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1665068400,
-      'formatted' => '2022-10-07 00:00:00',
-      'timezone' => 
+      'timestamp' => 1665100800,
+      'formatted' => '2022-10-07 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -21170,29 +18446,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 12,
       'is_leap_month' => false,
-      'moon_age' => 11.100230297539383,
-      'moon_phase_angle' => 137.9778860216532,
+      'moon_age' => 11.087,
+      'moon_phase_angle' => 139.3714188778973,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-10-08 00:00:00' => 
+  '2022-10-08 09:00:00' =>
   array (
-    0 => '2022-10-08 00:00:00',
-    1 => 
+    0 => '2022-10-08 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 10,
       'day' => 8,
       'dayOfWeek' => 6,
       'dayOfYear' => 281,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1665154800,
-      'formatted' => '2022-10-08 00:00:00',
-      'timezone' => 
+      'timestamp' => 1665187200,
+      'formatted' => '2022-10-08 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -21228,29 +18504,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 13,
       'is_leap_month' => false,
-      'moon_age' => 12.102258413564414,
-      'moon_phase_angle' => 151.14877377728354,
+      'moon_age' => 12.087,
+      'moon_phase_angle' => 152.5246333553991,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-10-09 00:00:00' => 
+  '2022-10-09 09:00:00' =>
   array (
-    0 => '2022-10-09 00:00:00',
-    1 => 
+    0 => '2022-10-09 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 10,
       'day' => 9,
       'dayOfWeek' => 0,
       'dayOfYear' => 282,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1665241200,
-      'formatted' => '2022-10-09 00:00:00',
-      'timezone' => 
+      'timestamp' => 1665273600,
+      'formatted' => '2022-10-09 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -21286,29 +18562,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 14,
       'is_leap_month' => false,
-      'moon_age' => 13.10393617907539,
-      'moon_phase_angle' => 164.14621655232358,
+      'moon_age' => 13.087,
+      'moon_phase_angle' => 165.49599217665062,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-10-10 00:00:00' => 
+  '2022-10-10 05:55:00' =>
   array (
-    0 => '2022-10-10 00:00:00',
-    1 => 
+    0 => '2022-10-10 05:55:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 10,
       'day' => 10,
       'dayOfWeek' => 1,
       'dayOfYear' => 283,
-      'hour' => 0,
-      'minute' => 0,
+      'hour' => 5,
+      'minute' => 55,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1665327600,
-      'formatted' => '2022-10-10 00:00:00',
-      'timezone' => 
+      'timestamp' => 1665348900,
+      'formatted' => '2022-10-10 05:55:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -21344,29 +18620,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 15,
       'is_leap_month' => false,
-      'moon_age' => 14.105035930406302,
-      'moon_phase_angle' => 176.9034506072748,
+      'moon_age' => 13.958333333333334,
+      'moon_phase_angle' => 176.60111630157115,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2022-10-10 04:00:00' => 
+  '2022-10-10 09:00:00' =>
   array (
-    0 => '2022-10-10 04:00:00',
-    1 => 
+    0 => '2022-10-10 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 10,
       'day' => 10,
       'dayOfWeek' => 1,
       'dayOfYear' => 283,
-      'hour' => 4,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1665342000,
-      'formatted' => '2022-10-10 04:00:00',
-      'timezone' => 
+      'timestamp' => 1665360000,
+      'formatted' => '2022-10-10 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -21402,145 +18678,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 15,
       'is_leap_month' => false,
-      'moon_age' => 14.271817895118147,
-      'moon_phase_angle' => 179.00242668687903,
+      'moon_age' => 14.087,
+      'moon_phase_angle' => 178.22004671621363,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2022-10-10 06:00:00' => 
+  '2022-10-11 09:00:00' =>
   array (
-    0 => '2022-10-10 06:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 10,
-      'day' => 10,
-      'dayOfWeek' => 1,
-      'dayOfYear' => 283,
-      'hour' => 6,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1665349200,
-      'formatted' => '2022-10-10 06:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '大安',
-      'six_weekday' => 0,
-      'weekday_text' => '月',
-      'month_text' => '神無月',
-      'holiday_text' => 'スポーツの日',
-      'holiday' => 24,
-      'is_holiday' => true,
-      'lunar_month_text' => '長月',
-      'lunar_month' => 9,
-      'lunar_year' => 2022,
-      'lunar_day' => 15,
-      'is_leap_month' => false,
-      'moon_age' => 14.35520260129124,
-      'moon_phase_angle' => 180.04880610213254,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2022-10-10 07:00:00' => 
-  array (
-    0 => '2022-10-10 07:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 10,
-      'day' => 10,
-      'dayOfWeek' => 1,
-      'dayOfYear' => 283,
-      'hour' => 7,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1665352800,
-      'formatted' => '2022-10-10 07:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '大安',
-      'six_weekday' => 0,
-      'weekday_text' => '月',
-      'month_text' => '神無月',
-      'holiday_text' => 'スポーツの日',
-      'holiday' => 24,
-      'is_holiday' => true,
-      'lunar_month_text' => '長月',
-      'lunar_month' => 9,
-      'lunar_year' => 2022,
-      'lunar_day' => 15,
-      'is_leap_month' => false,
-      'moon_age' => 14.396894538775086,
-      'moon_phase_angle' => 180.57120935155368,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2022-10-11 00:00:00' => 
-  array (
-    0 => '2022-10-11 00:00:00',
-    1 => 
+    0 => '2022-10-11 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 10,
       'day' => 11,
       'dayOfWeek' => 2,
       'dayOfYear' => 284,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1665414000,
-      'formatted' => '2022-10-11 00:00:00',
-      'timezone' => 
+      'timestamp' => 1665446400,
+      'formatted' => '2022-10-11 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -21576,29 +18736,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 15.10541332140565,
-      'moon_phase_angle' => 189.3695857551255,
+      'moon_age' => 15.087,
+      'moon_phase_angle' => 190.64798566146706,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-10-12 00:00:00' => 
+  '2022-10-12 09:00:00' =>
   array (
-    0 => '2022-10-12 00:00:00',
-    1 => 
+    0 => '2022-10-12 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 10,
       'day' => 12,
       'dayOfWeek' => 3,
       'dayOfYear' => 285,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1665500400,
-      'formatted' => '2022-10-12 00:00:00',
-      'timezone' => 
+      'timestamp' => 1665532800,
+      'formatted' => '2022-10-12 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -21634,29 +18794,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 17,
       'is_leap_month' => false,
-      'moon_age' => 16.105010592844337,
-      'moon_phase_angle' => 201.5160946270652,
+      'moon_age' => 16.087,
+      'moon_phase_angle' => 202.7540258701423,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-10-13 00:00:00' => 
+  '2022-10-13 09:00:00' =>
   array (
-    0 => '2022-10-13 00:00:00',
-    1 => 
+    0 => '2022-10-13 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 10,
       'day' => 13,
       'dayOfWeek' => 4,
       'dayOfYear' => 286,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1665586800,
-      'formatted' => '2022-10-13 00:00:00',
-      'timezone' => 
+      'timestamp' => 1665619200,
+      'formatted' => '2022-10-13 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -21692,29 +18852,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 18,
       'is_leap_month' => false,
-      'moon_age' => 17.103863237891346,
-      'moon_phase_angle' => 213.33953857525566,
+      'moon_age' => 17.087,
+      'moon_phase_angle' => 214.53791446458075,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-10-14 00:00:00' => 
+  '2022-10-14 09:00:00' =>
   array (
-    0 => '2022-10-14 00:00:00',
-    1 => 
+    0 => '2022-10-14 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 10,
       'day' => 14,
       'dayOfWeek' => 5,
       'dayOfYear' => 287,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1665673200,
-      'formatted' => '2022-10-14 00:00:00',
-      'timezone' => 
+      'timestamp' => 1665705600,
+      'formatted' => '2022-10-14 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -21750,29 +18910,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 19,
       'is_leap_month' => false,
-      'moon_age' => 18.1020797342062,
-      'moon_phase_angle' => 224.8607982980268,
+      'moon_age' => 18.087,
+      'moon_phase_angle' => 226.0237169863972,
       'moon_phase' => 5,
       'moon_phase_text' => '十六夜',
     ),
   ),
-  '2022-10-15 00:00:00' => 
+  '2022-10-15 09:00:00' =>
   array (
-    0 => '2022-10-15 00:00:00',
-    1 => 
+    0 => '2022-10-15 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 10,
       'day' => 15,
       'dayOfWeek' => 6,
       'dayOfYear' => 288,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1665759600,
-      'formatted' => '2022-10-15 00:00:00',
-      'timezone' => 
+      'timestamp' => 1665792000,
+      'formatted' => '2022-10-15 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -21808,29 +18968,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 20,
       'is_leap_month' => false,
-      'moon_age' => 19.09987033205107,
-      'moon_phase_angle' => 236.1218580449115,
+      'moon_age' => 19.087,
+      'moon_phase_angle' => 237.25606762346274,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-10-16 00:00:00' => 
+  '2022-10-16 09:00:00' =>
   array (
-    0 => '2022-10-16 00:00:00',
-    1 => 
+    0 => '2022-10-16 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 10,
       'day' => 16,
       'dayOfWeek' => 0,
       'dayOfYear' => 289,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1665846000,
-      'formatted' => '2022-10-16 00:00:00',
-      'timezone' => 
+      'timestamp' => 1665878400,
+      'formatted' => '2022-10-16 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -21866,29 +19026,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 21,
       'is_leap_month' => false,
-      'moon_age' => 20.09744189400226,
-      'moon_phase_angle' => 247.18133639448632,
+      'moon_age' => 20.087,
+      'moon_phase_angle' => 248.2953498566565,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-10-17 00:00:00' => 
+  '2022-10-17 09:00:00' =>
   array (
-    0 => '2022-10-17 00:00:00',
-    1 => 
+    0 => '2022-10-17 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 10,
       'day' => 17,
       'dayOfWeek' => 1,
       'dayOfYear' => 290,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1665932400,
-      'formatted' => '2022-10-17 00:00:00',
-      'timezone' => 
+      'timestamp' => 1665964800,
+      'formatted' => '2022-10-17 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -21924,29 +19084,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 22,
       'is_leap_month' => false,
-      'moon_age' => 21.095018898602575,
-      'moon_phase_angle' => 258.10967147131726,
+      'moon_age' => 21.087,
+      'moon_phase_angle' => 259.21289190577454,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-10-18 00:00:00' => 
+  '2022-10-18 02:15:00' =>
   array (
-    0 => '2022-10-18 00:00:00',
-    1 => 
+    0 => '2022-10-18 02:15:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 10,
       'day' => 18,
       'dayOfWeek' => 2,
       'dayOfYear' => 291,
-      'hour' => 0,
-      'minute' => 0,
+      'hour' => 2,
+      'minute' => 15,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1666018800,
-      'formatted' => '2022-10-18 00:00:00',
-      'timezone' => 
+      'timestamp' => 1666026900,
+      'formatted' => '2022-10-18 02:15:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -21982,29 +19142,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 22.09276456385851,
-      'moon_phase_angle' => 268.9844408478674,
+      'moon_age' => 21.805555555555557,
+      'moon_phase_angle' => 267.02813482009316,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2022-10-18 03:00:00' => 
+  '2022-10-18 09:00:00' =>
   array (
-    0 => '2022-10-18 03:00:00',
-    1 => 
+    0 => '2022-10-18 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 10,
       'day' => 18,
       'dayOfWeek' => 2,
       'dayOfYear' => 291,
-      'hour' => 3,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1666029600,
-      'formatted' => '2022-10-18 03:00:00',
-      'timezone' => 
+      'timestamp' => 1666051200,
+      'formatted' => '2022-10-18 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -22040,29 +19200,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 22.217507322318852,
-      'moon_phase_angle' => 270.3440189227414,
+      'moon_age' => 22.087,
+      'moon_phase_angle' => 270.0865675620288,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2022-10-19 00:00:00' => 
+  '2022-10-19 09:00:00' =>
   array (
-    0 => '2022-10-19 00:00:00',
-    1 => 
+    0 => '2022-10-19 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 10,
       'day' => 19,
       'dayOfWeek' => 3,
       'dayOfYear' => 292,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1666105200,
-      'formatted' => '2022-10-19 00:00:00',
-      'timezone' => 
+      'timestamp' => 1666137600,
+      'formatted' => '2022-10-19 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -22098,29 +19258,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 24,
       'is_leap_month' => false,
-      'moon_age' => 23.090820737648755,
-      'moon_phase_angle' => 279.8859229772607,
+      'moon_age' => 23.087,
+      'moon_phase_angle' => 280.9966288290855,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-10-20 00:00:00' => 
+  '2022-10-20 09:00:00' =>
   array (
-    0 => '2022-10-20 00:00:00',
-    1 => 
+    0 => '2022-10-20 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 10,
       'day' => 20,
       'dayOfWeek' => 4,
       'dayOfYear' => 293,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1666191600,
-      'formatted' => '2022-10-20 00:00:00',
-      'timezone' => 
+      'timestamp' => 1666224000,
+      'formatted' => '2022-10-20 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -22156,29 +19316,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 25,
       'is_leap_month' => false,
-      'moon_age' => 24.089262044988573,
-      'moon_phase_angle' => 290.8927756378923,
+      'moon_age' => 24.087,
+      'moon_phase_angle' => 292.02141425698903,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-10-21 00:00:00' => 
+  '2022-10-21 09:00:00' =>
   array (
-    0 => '2022-10-21 00:00:00',
-    1 => 
+    0 => '2022-10-21 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 10,
       'day' => 21,
       'dayOfWeek' => 5,
       'dayOfYear' => 294,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1666278000,
-      'formatted' => '2022-10-21 00:00:00',
-      'timezone' => 
+      'timestamp' => 1666310400,
+      'formatted' => '2022-10-21 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -22214,29 +19374,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 26,
       'is_leap_month' => false,
-      'moon_age' => 25.08809585077688,
-      'moon_phase_angle' => 302.0776391102863,
+      'moon_age' => 25.087,
+      'moon_phase_angle' => 303.23274272951596,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-10-22 00:00:00' => 
+  '2022-10-22 09:00:00' =>
   array (
-    0 => '2022-10-22 00:00:00',
-    1 => 
+    0 => '2022-10-22 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 10,
       'day' => 22,
       'dayOfWeek' => 6,
       'dayOfYear' => 295,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1666364400,
-      'formatted' => '2022-10-22 00:00:00',
-      'timezone' => 
+      'timestamp' => 1666396800,
+      'formatted' => '2022-10-22 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -22272,29 +19432,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 27,
       'is_leap_month' => false,
-      'moon_age' => 26.087518106214702,
-      'moon_phase_angle' => 313.50256183120695,
+      'moon_age' => 26.087,
+      'moon_phase_angle' => 314.6911041297193,
       'moon_phase' => 7,
       'moon_phase_text' => '有明',
     ),
   ),
-  '2022-10-23 00:00:00' => 
+  '2022-10-23 09:00:00' =>
   array (
-    0 => '2022-10-23 00:00:00',
-    1 => 
+    0 => '2022-10-23 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 10,
       'day' => 23,
       'dayOfWeek' => 0,
       'dayOfYear' => 296,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1666450800,
-      'formatted' => '2022-10-23 00:00:00',
-      'timezone' => 
+      'timestamp' => 1666483200,
+      'formatted' => '2022-10-23 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -22330,29 +19490,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 28,
       'is_leap_month' => false,
-      'moon_age' => 27.043995521175056,
-      'moon_phase_angle' => 325.214378098739,
+      'moon_age' => 27.087,
+      'moon_phase_angle' => 326.44100764144827,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-10-24 00:00:00' => 
+  '2022-10-24 09:00:00' =>
   array (
-    0 => '2022-10-24 00:00:00',
-    1 => 
+    0 => '2022-10-24 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 10,
       'day' => 24,
       'dayOfWeek' => 1,
       'dayOfYear' => 297,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1666537200,
-      'formatted' => '2022-10-24 00:00:00',
-      'timezone' => 
+      'timestamp' => 1666569600,
+      'formatted' => '2022-10-24 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -22388,29 +19548,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 29,
       'is_leap_month' => false,
-      'moon_age' => 28.040367480045497,
-      'moon_phase_angle' => 337.2404957634444,
+      'moon_age' => 28.087,
+      'moon_phase_angle' => 338.50700837389957,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-10-25 00:00:00' => 
+  '2022-10-25 09:00:00' =>
   array (
-    0 => '2022-10-25 00:00:00',
-    1 => 
+    0 => '2022-10-25 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 10,
       'day' => 25,
       'dayOfWeek' => 2,
       'dayOfYear' => 298,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1666623600,
-      'formatted' => '2022-10-25 00:00:00',
-      'timezone' => 
+      'timestamp' => 1666656000,
+      'formatted' => '2022-10-25 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -22446,16 +19606,16 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 29.062583038727134,
-      'moon_phase_angle' => 349.5858701581967,
+      'moon_age' => 29.087,
+      'moon_phase_angle' => 350.8910634664167,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2022-10-25 19:00:00' => 
+  '2022-10-25 19:49:00' =>
   array (
-    0 => '2022-10-25 19:00:00',
-    1 => 
+    0 => '2022-10-25 19:49:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 10,
@@ -22463,12 +19623,12 @@ return array (
       'dayOfWeek' => 2,
       'dayOfYear' => 298,
       'hour' => 19,
-      'minute' => 0,
+      'minute' => 49,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1666692000,
-      'formatted' => '2022-10-25 19:00:00',
-      'timezone' => 
+      'timestamp' => 1666694940,
+      'formatted' => '2022-10-25 19:49:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -22504,145 +19664,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.34082668414339423,
-      'moon_phase_angle' => 359.57432203533585,
+      'moon_age' => 0.0,
+      'moon_phase_angle' => 356.57161366638877,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2022-10-25 20:00:00' => 
+  '2022-10-26 09:00:00' =>
   array (
-    0 => '2022-10-25 20:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 10,
-      'day' => 25,
-      'dayOfWeek' => 2,
-      'dayOfYear' => 298,
-      'hour' => 20,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1666695600,
-      'formatted' => '2022-10-25 20:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 7,
-      'misc_seasonal_node_text' => '土用',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '仏滅',
-      'six_weekday' => 5,
-      'weekday_text' => '火',
-      'month_text' => '神無月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '神無月',
-      'lunar_month' => 10,
-      'lunar_year' => 2022,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.3823923231102526,
-      'moon_phase_angle' => 0.10494164945248485,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2022-10-25 21:00:00' => 
-  array (
-    0 => '2022-10-25 21:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 10,
-      'day' => 25,
-      'dayOfWeek' => 2,
-      'dayOfYear' => 298,
-      'hour' => 21,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1666699200,
-      'formatted' => '2022-10-25 21:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 7,
-      'misc_seasonal_node_text' => '土用',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '仏滅',
-      'six_weekday' => 5,
-      'weekday_text' => '火',
-      'month_text' => '神無月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '神無月',
-      'lunar_month' => 10,
-      'lunar_year' => 2022,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.4239575448445976,
-      'moon_phase_angle' => 0.6360306910962095,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2022-10-26 00:00:00' => 
-  array (
-    0 => '2022-10-26 00:00:00',
-    1 => 
+    0 => '2022-10-26 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 10,
       'day' => 26,
       'dayOfWeek' => 3,
       'dayOfYear' => 299,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1666710000,
-      'formatted' => '2022-10-26 00:00:00',
-      'timezone' => 
+      'timestamp' => 1666742400,
+      'formatted' => '2022-10-26 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -22678,29 +19722,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 2,
       'is_leap_month' => false,
-      'moon_age' => 0.5486481036059558,
-      'moon_phase_angle' => 2.2320799813645635,
+      'moon_age' => 0.55,
+      'moon_phase_angle' => 3.571961236380133,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-10-27 00:00:00' => 
+  '2022-10-27 09:00:00' =>
   array (
-    0 => '2022-10-27 00:00:00',
-    1 => 
+    0 => '2022-10-27 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 10,
       'day' => 27,
       'dayOfWeek' => 4,
       'dayOfYear' => 300,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1666796400,
-      'formatted' => '2022-10-27 00:00:00',
-      'timezone' => 
+      'timestamp' => 1666828800,
+      'formatted' => '2022-10-27 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -22736,29 +19780,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 3,
       'is_leap_month' => false,
-      'moon_age' => 1.5457900664769113,
-      'moon_phase_angle' => 15.139209472102294,
+      'moon_age' => 1.55,
+      'moon_phase_angle' => 16.50745955975924,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-10-28 00:00:00' => 
+  '2022-10-28 09:00:00' =>
   array (
-    0 => '2022-10-28 00:00:00',
-    1 => 
+    0 => '2022-10-28 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 10,
       'day' => 28,
       'dayOfWeek' => 5,
       'dayOfYear' => 301,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1666882800,
-      'formatted' => '2022-10-28 00:00:00',
-      'timezone' => 
+      'timestamp' => 1666915200,
+      'formatted' => '2022-10-28 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -22794,29 +19838,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 4,
       'is_leap_month' => false,
-      'moon_age' => 2.542427659034729,
-      'moon_phase_angle' => 28.250627304176476,
+      'moon_age' => 2.55,
+      'moon_phase_angle' => 29.639274411156975,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-10-29 00:00:00' => 
+  '2022-10-29 09:00:00' =>
   array (
-    0 => '2022-10-29 00:00:00',
-    1 => 
+    0 => '2022-10-29 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 10,
       'day' => 29,
       'dayOfWeek' => 6,
       'dayOfYear' => 302,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1666969200,
-      'formatted' => '2022-10-29 00:00:00',
-      'timezone' => 
+      'timestamp' => 1667001600,
+      'formatted' => '2022-10-29 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -22852,29 +19896,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 5,
       'is_leap_month' => false,
-      'moon_age' => 3.5388400559313595,
-      'moon_phase_angle' => 41.49991157560143,
+      'moon_age' => 3.55,
+      'moon_phase_angle' => 42.900211094317655,
       'moon_phase' => 1,
       'moon_phase_text' => '三日月',
     ),
   ),
-  '2022-10-30 00:00:00' => 
+  '2022-10-30 09:00:00' =>
   array (
-    0 => '2022-10-30 00:00:00',
-    1 => 
+    0 => '2022-10-30 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 10,
       'day' => 30,
       'dayOfWeek' => 0,
       'dayOfYear' => 303,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1667055600,
-      'formatted' => '2022-10-30 00:00:00',
-      'timezone' => 
+      'timestamp' => 1667088000,
+      'formatted' => '2022-10-30 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -22910,29 +19954,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 6,
       'is_leap_month' => false,
-      'moon_age' => 4.535312857944518,
-      'moon_phase_angle' => 54.8184656748804,
+      'moon_age' => 4.55,
+      'moon_phase_angle' => 56.22190123642068,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-10-31 00:00:00' => 
+  '2022-10-31 09:00:00' =>
   array (
-    0 => '2022-10-31 00:00:00',
-    1 => 
+    0 => '2022-10-31 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 10,
       'day' => 31,
       'dayOfWeek' => 1,
       'dayOfYear' => 304,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1667142000,
-      'formatted' => '2022-10-31 00:00:00',
-      'timezone' => 
+      'timestamp' => 1667174400,
+      'formatted' => '2022-10-31 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -22968,29 +20012,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 7,
       'is_leap_month' => false,
-      'moon_age' => 5.53203747048974,
-      'moon_phase_angle' => 68.14215227874004,
+      'moon_age' => 5.55,
+      'moon_phase_angle' => 69.54131004178498,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-11-01 00:00:00' => 
+  '2022-11-01 09:00:00' =>
   array (
-    0 => '2022-11-01 00:00:00',
-    1 => 
+    0 => '2022-11-01 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 11,
       'day' => 1,
       'dayOfWeek' => 2,
       'dayOfYear' => 305,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1667228400,
-      'formatted' => '2022-11-01 00:00:00',
-      'timezone' => 
+      'timestamp' => 1667260800,
+      'formatted' => '2022-11-01 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -23026,29 +20070,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 6.5291378032416105,
-      'moon_phase_angle' => 81.41566609458022,
+      'moon_age' => 6.55,
+      'moon_phase_angle' => 82.80466840775495,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2022-11-01 16:00:00' => 
+  '2022-11-01 15:37:00' =>
   array (
-    0 => '2022-11-01 16:00:00',
-    1 => 
+    0 => '2022-11-01 15:37:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 11,
       'day' => 1,
       'dayOfWeek' => 2,
       'dayOfYear' => 305,
-      'hour' => 16,
-      'minute' => 0,
+      'hour' => 15,
+      'minute' => 37,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1667286000,
-      'formatted' => '2022-11-01 16:00:00',
-      'timezone' => 
+      'timestamp' => 1667284620,
+      'formatted' => '2022-11-01 15:37:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -23084,29 +20128,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 7.194129464682192,
-      'moon_phase_angle' => 90.21421139148714,
+      'moon_age' => 6.825,
+      'moon_phase_angle' => 86.44541229166242,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2022-11-02 00:00:00' => 
+  '2022-11-02 09:00:00' =>
   array (
-    0 => '2022-11-02 00:00:00',
-    1 => 
+    0 => '2022-11-02 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 11,
       'day' => 2,
       'dayOfWeek' => 3,
       'dayOfYear' => 306,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1667314800,
-      'formatted' => '2022-11-02 00:00:00',
-      'timezone' => 
+      'timestamp' => 1667347200,
+      'formatted' => '2022-11-02 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -23142,29 +20186,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 9,
       'is_leap_month' => false,
-      'moon_age' => 7.526694730389863,
-      'moon_phase_angle' => 94.59411302285443,
+      'moon_age' => 7.55,
+      'moon_phase_angle' => 95.9685275025858,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-11-03 00:00:00' => 
+  '2022-11-03 09:00:00' =>
   array (
-    0 => '2022-11-03 00:00:00',
-    1 => 
+    0 => '2022-11-03 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 11,
       'day' => 3,
       'dayOfWeek' => 4,
       'dayOfYear' => 307,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1667401200,
-      'formatted' => '2022-11-03 00:00:00',
-      'timezone' => 
+      'timestamp' => 1667433600,
+      'formatted' => '2022-11-03 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -23200,29 +20244,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 10,
       'is_leap_month' => false,
-      'moon_age' => 8.52473019855097,
-      'moon_phase_angle' => 107.64229250251131,
+      'moon_age' => 8.55,
+      'moon_phase_angle' => 108.9986225111158,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-11-04 00:00:00' => 
+  '2022-11-04 09:00:00' =>
   array (
-    0 => '2022-11-04 00:00:00',
-    1 => 
+    0 => '2022-11-04 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 11,
       'day' => 4,
       'dayOfWeek' => 5,
       'dayOfYear' => 308,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1667487600,
-      'formatted' => '2022-11-04 00:00:00',
-      'timezone' => 
+      'timestamp' => 1667520000,
+      'formatted' => '2022-11-04 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -23258,29 +20302,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 11,
       'is_leap_month' => false,
-      'moon_age' => 9.523259910289198,
-      'moon_phase_angle' => 120.53250011679859,
+      'moon_age' => 9.55,
+      'moon_phase_angle' => 121.86772375160487,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-11-05 00:00:00' => 
+  '2022-11-05 09:00:00' =>
   array (
-    0 => '2022-11-05 00:00:00',
-    1 => 
+    0 => '2022-11-05 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 11,
       'day' => 5,
       'dayOfWeek' => 6,
       'dayOfYear' => 309,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1667574000,
-      'formatted' => '2022-11-05 00:00:00',
-      'timezone' => 
+      'timestamp' => 1667606400,
+      'formatted' => '2022-11-05 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -23316,29 +20360,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 12,
       'is_leap_month' => false,
-      'moon_age' => 10.522252862807363,
-      'moon_phase_angle' => 133.2421305596977,
+      'moon_age' => 10.55,
+      'moon_phase_angle' => 134.55352160502068,
       'moon_phase' => 3,
       'moon_phase_text' => '十三夜',
     ),
   ),
-  '2022-11-06 00:00:00' => 
+  '2022-11-06 09:00:00' =>
   array (
-    0 => '2022-11-06 00:00:00',
-    1 => 
+    0 => '2022-11-06 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 11,
       'day' => 6,
       'dayOfWeek' => 0,
       'dayOfYear' => 310,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1667660400,
-      'formatted' => '2022-11-06 00:00:00',
-      'timezone' => 
+      'timestamp' => 1667692800,
+      'formatted' => '2022-11-06 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -23374,29 +20418,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 13,
       'is_leap_month' => false,
-      'moon_age' => 11.521728691644967,
-      'moon_phase_angle' => 145.7520001788474,
+      'moon_age' => 11.55,
+      'moon_phase_angle' => 147.03722406757296,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-11-07 00:00:00' => 
+  '2022-11-07 09:00:00' =>
   array (
-    0 => '2022-11-07 00:00:00',
-    1 => 
+    0 => '2022-11-07 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 11,
       'day' => 7,
       'dayOfWeek' => 1,
       'dayOfYear' => 311,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1667746800,
-      'formatted' => '2022-11-07 00:00:00',
-      'timezone' => 
+      'timestamp' => 1667779200,
+      'formatted' => '2022-11-07 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -23432,29 +20476,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 14,
       'is_leap_month' => false,
-      'moon_age' => 12.521690430119634,
-      'moon_phase_angle' => 158.04593826714884,
+      'moon_age' => 12.55,
+      'moon_phase_angle' => 159.3032184976491,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-11-08 00:00:00' => 
+  '2022-11-08 09:00:00' =>
   array (
-    0 => '2022-11-08 00:00:00',
-    1 => 
+    0 => '2022-11-08 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 11,
       'day' => 8,
       'dayOfWeek' => 2,
       'dayOfYear' => 312,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1667833200,
-      'formatted' => '2022-11-08 00:00:00',
-      'timezone' => 
+      'timestamp' => 1667865600,
+      'formatted' => '2022-11-08 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -23490,74 +20534,16 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 15,
       'is_leap_month' => false,
-      'moon_age' => 13.52215757407248,
-      'moon_phase_angle' => 170.11170393231845,
+      'moon_age' => 13.55,
+      'moon_phase_angle' => 171.33992948444705,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2022-11-08 19:00:00' => 
+  '2022-11-08 20:02:00' =>
   array (
-    0 => '2022-11-08 19:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 11,
-      'day' => 8,
-      'dayOfWeek' => 2,
-      'dayOfYear' => 312,
-      'hour' => 19,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1667901600,
-      'formatted' => '2022-11-08 19:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '赤口',
-      'six_weekday' => 1,
-      'weekday_text' => '火',
-      'month_text' => '霜月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '神無月',
-      'lunar_month' => 10,
-      'lunar_year' => 2022,
-      'lunar_day' => 15,
-      'is_leap_month' => false,
-      'moon_age' => 14.314572727773339,
-      'moon_phase_angle' => 179.4974575658512,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2022-11-08 20:00:00' => 
-  array (
-    0 => '2022-11-08 20:00:00',
-    1 => 
+    0 => '2022-11-08 20:02:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 11,
@@ -23565,12 +20551,12 @@ return array (
       'dayOfWeek' => 2,
       'dayOfYear' => 312,
       'hour' => 20,
-      'minute' => 0,
+      'minute' => 2,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1667905200,
-      'formatted' => '2022-11-08 20:00:00',
-      'timezone' => 
+      'timestamp' => 1667905320,
+      'formatted' => '2022-11-08 20:02:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -23606,87 +20592,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 15,
       'is_leap_month' => false,
-      'moon_age' => 14.356278175953776,
-      'moon_phase_angle' => 179.987357623161,
+      'moon_age' => 14.009027777777778,
+      'moon_phase_angle' => 176.79470999714295,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2022-11-08 21:00:00' => 
+  '2022-11-09 09:00:00' =>
   array (
-    0 => '2022-11-08 21:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 11,
-      'day' => 8,
-      'dayOfWeek' => 2,
-      'dayOfYear' => 312,
-      'hour' => 21,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1667908800,
-      'formatted' => '2022-11-08 21:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '赤口',
-      'six_weekday' => 1,
-      'weekday_text' => '火',
-      'month_text' => '霜月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '神無月',
-      'lunar_month' => 10,
-      'lunar_year' => 2022,
-      'lunar_day' => 15,
-      'is_leap_month' => false,
-      'moon_age' => 14.397999021690339,
-      'moon_phase_angle' => 180.4768503358094,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2022-11-09 00:00:00' => 
-  array (
-    0 => '2022-11-09 00:00:00',
-    1 => 
+    0 => '2022-11-09 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 11,
       'day' => 9,
       'dayOfWeek' => 3,
       'dayOfYear' => 313,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1667919600,
-      'formatted' => '2022-11-09 00:00:00',
-      'timezone' => 
+      'timestamp' => 1667952000,
+      'formatted' => '2022-11-09 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -23722,29 +20650,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 14.523154546506703,
-      'moon_phase_angle' => 181.94288816045415,
+      'moon_age' => 14.55,
+      'moon_phase_angle' => 183.14173543905676,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-11-10 00:00:00' => 
+  '2022-11-10 09:00:00' =>
   array (
-    0 => '2022-11-10 00:00:00',
-    1 => 
+    0 => '2022-11-10 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 11,
       'day' => 10,
       'dayOfWeek' => 4,
       'dayOfYear' => 314,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1668006000,
-      'formatted' => '2022-11-10 00:00:00',
-      'timezone' => 
+      'timestamp' => 1668038400,
+      'formatted' => '2022-11-10 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -23780,29 +20708,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 17,
       'is_leap_month' => false,
-      'moon_age' => 15.52473444538191,
-      'moon_phase_angle' => 193.5412366669048,
+      'moon_age' => 15.55,
+      'moon_phase_angle' => 194.71143982948817,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-11-11 00:00:00' => 
+  '2022-11-11 09:00:00' =>
   array (
-    0 => '2022-11-11 00:00:00',
-    1 => 
+    0 => '2022-11-11 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 11,
       'day' => 11,
       'dayOfWeek' => 5,
       'dayOfYear' => 315,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1668092400,
-      'formatted' => '2022-11-11 00:00:00',
-      'timezone' => 
+      'timestamp' => 1668124800,
+      'formatted' => '2022-11-11 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -23838,29 +20766,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 18,
       'is_leap_month' => false,
-      'moon_age' => 16.526919065974653,
-      'moon_phase_angle' => 204.91880054999498,
+      'moon_age' => 16.55,
+      'moon_phase_angle' => 206.0625337388791,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-11-12 00:00:00' => 
+  '2022-11-12 09:00:00' =>
   array (
-    0 => '2022-11-12 00:00:00',
-    1 => 
+    0 => '2022-11-12 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 11,
       'day' => 12,
       'dayOfWeek' => 6,
       'dayOfYear' => 316,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1668178800,
-      'formatted' => '2022-11-12 00:00:00',
-      'timezone' => 
+      'timestamp' => 1668211200,
+      'formatted' => '2022-11-12 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -23896,29 +20824,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 19,
       'is_leap_month' => false,
-      'moon_age' => 17.52973696636036,
-      'moon_phase_angle' => 216.0994534403282,
+      'moon_age' => 17.55,
+      'moon_phase_angle' => 217.22059054927792,
       'moon_phase' => 5,
       'moon_phase_text' => '十六夜',
     ),
   ),
-  '2022-11-13 00:00:00' => 
+  '2022-11-13 09:00:00' =>
   array (
-    0 => '2022-11-13 00:00:00',
-    1 => 
+    0 => '2022-11-13 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 11,
       'day' => 13,
       'dayOfWeek' => 0,
       'dayOfYear' => 317,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1668265200,
-      'formatted' => '2022-11-13 00:00:00',
-      'timezone' => 
+      'timestamp' => 1668297600,
+      'formatted' => '2022-11-13 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -23954,29 +20882,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 20,
       'is_leap_month' => false,
-      'moon_age' => 18.533144485205412,
-      'moon_phase_angle' => 227.11952499804428,
+      'moon_age' => 18.55,
+      'moon_phase_angle' => 228.22357938574532,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-11-14 00:00:00' => 
+  '2022-11-14 09:00:00' =>
   array (
-    0 => '2022-11-14 00:00:00',
-    1 => 
+    0 => '2022-11-14 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 11,
       'day' => 14,
       'dayOfWeek' => 1,
       'dayOfYear' => 318,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1668351600,
-      'formatted' => '2022-11-14 00:00:00',
-      'timezone' => 
+      'timestamp' => 1668384000,
+      'formatted' => '2022-11-14 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -24012,29 +20940,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 21,
       'is_leap_month' => false,
-      'moon_age' => 19.537084197159857,
-      'moon_phase_angle' => 238.02750161783717,
+      'moon_age' => 19.55,
+      'moon_phase_angle' => 239.1213169987374,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-11-15 00:00:00' => 
+  '2022-11-15 09:00:00' =>
   array (
-    0 => '2022-11-15 00:00:00',
-    1 => 
+    0 => '2022-11-15 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 11,
       'day' => 15,
       'dayOfWeek' => 2,
       'dayOfYear' => 319,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1668438000,
-      'formatted' => '2022-11-15 00:00:00',
-      'timezone' => 
+      'timestamp' => 1668470400,
+      'formatted' => '2022-11-15 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -24070,29 +20998,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 22,
       'is_leap_month' => false,
-      'moon_age' => 20.541370554827154,
-      'moon_phase_angle' => 248.8828715623566,
+      'moon_age' => 20.55,
+      'moon_phase_angle' => 249.97433923392134,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-11-16 00:00:00' => 
+  '2022-11-16 09:00:00' =>
   array (
-    0 => '2022-11-16 00:00:00',
-    1 => 
+    0 => '2022-11-16 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 11,
       'day' => 16,
       'dayOfWeek' => 3,
       'dayOfYear' => 320,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1668524400,
-      'formatted' => '2022-11-16 00:00:00',
-      'timezone' => 
+      'timestamp' => 1668556800,
+      'formatted' => '2022-11-16 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -24128,29 +21056,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 21.54579762276262,
-      'moon_phase_angle' => 259.75421436869954,
+      'moon_age' => 21.55,
+      'moon_phase_angle' => 260.8521737001779,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2022-11-16 23:00:00' => 
+  '2022-11-16 22:27:00' =>
   array (
-    0 => '2022-11-16 23:00:00',
-    1 => 
+    0 => '2022-11-16 22:27:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 11,
       'day' => 16,
       'dayOfWeek' => 3,
       'dayOfYear' => 320,
-      'hour' => 23,
-      'minute' => 0,
+      'hour' => 22,
+      'minute' => 27,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1668607200,
-      'formatted' => '2022-11-16 23:00:00',
-      'timezone' => 
+      'timestamp' => 1668605220,
+      'formatted' => '2022-11-16 22:27:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -24186,29 +21114,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 22.508187462575734,
-      'moon_phase_angle' => 270.2569674048189,
+      'moon_age' => 22.10972222222222,
+      'moon_phase_angle' => 266.9873025689628,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2022-11-17 00:00:00' => 
+  '2022-11-17 09:00:00' =>
   array (
-    0 => '2022-11-17 00:00:00',
-    1 => 
+    0 => '2022-11-17 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 11,
       'day' => 17,
       'dayOfWeek' => 4,
       'dayOfYear' => 321,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1668610800,
-      'formatted' => '2022-11-17 00:00:00',
-      'timezone' => 
+      'timestamp' => 1668643200,
+      'formatted' => '2022-11-17 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -24244,29 +21172,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 24,
       'is_leap_month' => false,
-      'moon_age' => 22.54989148909226,
-      'moon_phase_angle' => 270.71656395918876,
+      'moon_age' => 22.55,
+      'moon_phase_angle' => 271.83070508194544,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-11-18 00:00:00' => 
+  '2022-11-18 09:00:00' =>
   array (
-    0 => '2022-11-18 00:00:00',
-    1 => 
+    0 => '2022-11-18 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 11,
       'day' => 18,
       'dayOfWeek' => 5,
       'dayOfYear' => 322,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1668697200,
-      'formatted' => '2022-11-18 00:00:00',
-      'timezone' => 
+      'timestamp' => 1668729600,
+      'formatted' => '2022-11-18 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -24302,29 +21230,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 25,
       'is_leap_month' => false,
-      'moon_age' => 23.549727633129805,
-      'moon_phase_angle' => 281.84795312158565,
+      'moon_age' => 23.55,
+      'moon_phase_angle' => 282.988362969137,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-11-19 00:00:00' => 
+  '2022-11-19 09:00:00' =>
   array (
-    0 => '2022-11-19 00:00:00',
-    1 => 
+    0 => '2022-11-19 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 11,
       'day' => 19,
       'dayOfWeek' => 6,
       'dayOfYear' => 323,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1668783600,
-      'formatted' => '2022-11-19 00:00:00',
-      'timezone' => 
+      'timestamp' => 1668816000,
+      'formatted' => '2022-11-19 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -24360,29 +21288,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 26,
       'is_leap_month' => false,
-      'moon_age' => 24.549608145374805,
-      'moon_phase_angle' => 293.22493138635286,
+      'moon_age' => 24.55,
+      'moon_phase_angle' => 294.40113973920324,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-11-20 00:00:00' => 
+  '2022-11-20 09:00:00' =>
   array (
-    0 => '2022-11-20 00:00:00',
-    1 => 
+    0 => '2022-11-20 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 11,
       'day' => 20,
       'dayOfWeek' => 0,
       'dayOfYear' => 324,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1668870000,
-      'formatted' => '2022-11-20 00:00:00',
-      'timezone' => 
+      'timestamp' => 1668902400,
+      'formatted' => '2022-11-20 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -24418,29 +21346,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 27,
       'is_leap_month' => false,
-      'moon_age' => 25.549545584712178,
-      'moon_phase_angle' => 304.916814086054,
+      'moon_age' => 25.55,
+      'moon_phase_angle' => 306.1365969005833,
       'moon_phase' => 7,
       'moon_phase_text' => '有明',
     ),
   ),
-  '2022-11-21 00:00:00' => 
+  '2022-11-21 09:00:00' =>
   array (
-    0 => '2022-11-21 00:00:00',
-    1 => 
+    0 => '2022-11-21 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 11,
       'day' => 21,
       'dayOfWeek' => 1,
       'dayOfYear' => 325,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1668956400,
-      'formatted' => '2022-11-21 00:00:00',
-      'timezone' => 
+      'timestamp' => 1668988800,
+      'formatted' => '2022-11-21 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -24476,29 +21404,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 28,
       'is_leap_month' => false,
-      'moon_age' => 26.381036551812976,
-      'moon_phase_angle' => 316.97856309181475,
+      'moon_age' => 26.55,
+      'moon_phase_angle' => 318.24691029320877,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-11-22 00:00:00' => 
+  '2022-11-22 09:00:00' =>
   array (
-    0 => '2022-11-22 00:00:00',
-    1 => 
+    0 => '2022-11-22 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 11,
       'day' => 22,
       'dayOfWeek' => 2,
       'dayOfYear' => 326,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1669042800,
-      'formatted' => '2022-11-22 00:00:00',
-      'timezone' => 
+      'timestamp' => 1669075200,
+      'formatted' => '2022-11-22 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -24534,29 +21462,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 29,
       'is_leap_month' => false,
-      'moon_age' => 27.4160230207763,
-      'moon_phase_angle' => 329.44262078126917,
+      'moon_age' => 27.55,
+      'moon_phase_angle' => 330.761028610196,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-11-23 00:00:00' => 
+  '2022-11-23 09:00:00' =>
   array (
-    0 => '2022-11-23 00:00:00',
-    1 => 
+    0 => '2022-11-23 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 11,
       'day' => 23,
       'dayOfWeek' => 3,
       'dayOfYear' => 327,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1669129200,
-      'formatted' => '2022-11-23 00:00:00',
-      'timezone' => 
+      'timestamp' => 1669161600,
+      'formatted' => '2022-11-23 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -24592,74 +21520,16 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 30,
       'is_leap_month' => false,
-      'moon_age' => 28.483451026635557,
-      'moon_phase_angle' => 342.3107687374685,
+      'moon_age' => 28.55,
+      'moon_phase_angle' => 343.67671869806526,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-11-24 00:00:00' => 
+  '2022-11-24 07:57:00' =>
   array (
-    0 => '2022-11-24 00:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 11,
-      'day' => 24,
-      'dayOfWeek' => 4,
-      'dayOfYear' => 328,
-      'hour' => 0,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1669215600,
-      'formatted' => '2022-11-24 00:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '大安',
-      'six_weekday' => 0,
-      'weekday_text' => '木',
-      'month_text' => '霜月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '霜月',
-      'lunar_month' => 11,
-      'lunar_year' => 2022,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.04344259621575475,
-      'moon_phase_angle' => 355.5480268306174,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2022-11-24 07:00:00' => 
-  array (
-    0 => '2022-11-24 07:00:00',
-    1 => 
+    0 => '2022-11-24 07:57:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 11,
@@ -24667,12 +21537,12 @@ return array (
       'dayOfWeek' => 4,
       'dayOfYear' => 328,
       'hour' => 7,
-      'minute' => 0,
+      'minute' => 57,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1669240800,
-      'formatted' => '2022-11-24 07:00:00',
-      'timezone' => 
+      'timestamp' => 1669244220,
+      'formatted' => '2022-11-24 07:57:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -24708,74 +21578,16 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.3316694679670036,
-      'moon_phase_angle' => 359.4688157936743,
+      'moon_age' => 0.0,
+      'moon_phase_angle' => 356.3670382052377,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2022-11-24 08:00:00' => 
-  array (
-    0 => '2022-11-24 08:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 11,
-      'day' => 24,
-      'dayOfWeek' => 4,
-      'dayOfYear' => 328,
-      'hour' => 8,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1669244400,
-      'formatted' => '2022-11-24 08:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '大安',
-      'six_weekday' => 0,
-      'weekday_text' => '木',
-      'month_text' => '霜月',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '霜月',
-      'lunar_month' => 11,
-      'lunar_year' => 2022,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.3728315504267812,
-      'moon_phase_angle' => 0.03086510453593405,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2022-11-24 09:00:00' => 
+  '2022-11-24 09:00:00' =>
   array (
     0 => '2022-11-24 09:00:00',
-    1 => 
+    1 =>
     array (
       'year' => 2022,
       'month' => 11,
@@ -24788,7 +21600,7 @@ return array (
       'micro' => 0,
       'timestamp' => 1669248000,
       'formatted' => '2022-11-24 09:00:00',
-      'timezone' => 
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -24824,29 +21636,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.4139878307469189,
-      'moon_phase_angle' => 0.5933768910938966,
+      'moon_age' => 0.044,
+      'moon_phase_angle' => 356.9545922375131,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2022-11-25 00:00:00' => 
+  '2022-11-25 09:00:00' =>
   array (
-    0 => '2022-11-25 00:00:00',
-    1 => 
+    0 => '2022-11-25 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 11,
       'day' => 25,
       'dayOfWeek' => 5,
       'dayOfYear' => 329,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1669302000,
-      'formatted' => '2022-11-25 00:00:00',
-      'timezone' => 
+      'timestamp' => 1669334400,
+      'formatted' => '2022-11-25 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -24882,29 +21694,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 2,
       'is_leap_month' => false,
-      'moon_age' => 1.0310921645723283,
-      'moon_phase_angle' => 9.08128209507305,
+      'moon_age' => 1.044,
+      'moon_phase_angle' => 10.517193959927965,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-11-26 00:00:00' => 
+  '2022-11-26 09:00:00' =>
   array (
-    0 => '2022-11-26 00:00:00',
-    1 => 
+    0 => '2022-11-26 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 11,
       'day' => 26,
       'dayOfWeek' => 6,
       'dayOfYear' => 330,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1669388400,
-      'formatted' => '2022-11-26 00:00:00',
-      'timezone' => 
+      'timestamp' => 1669420800,
+      'formatted' => '2022-11-26 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -24940,29 +21752,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 3,
       'is_leap_month' => false,
-      'moon_age' => 2.017834517173469,
-      'moon_phase_angle' => 22.80499400857269,
+      'moon_age' => 2.044,
+      'moon_phase_angle' => 24.255654609780294,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-11-27 00:00:00' => 
+  '2022-11-27 09:00:00' =>
   array (
-    0 => '2022-11-27 00:00:00',
-    1 => 
+    0 => '2022-11-27 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 11,
       'day' => 27,
       'dayOfWeek' => 0,
       'dayOfYear' => 331,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1669474800,
-      'formatted' => '2022-11-27 00:00:00',
-      'timezone' => 
+      'timestamp' => 1669507200,
+      'formatted' => '2022-11-27 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -24998,29 +21810,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 4,
       'is_leap_month' => false,
-      'moon_age' => 3.0048441709950566,
-      'moon_phase_angle' => 36.594413316780106,
+      'moon_age' => 3.044,
+      'moon_phase_angle' => 38.04392600941003,
       'moon_phase' => 1,
       'moon_phase_text' => '三日月',
     ),
   ),
-  '2022-11-28 00:00:00' => 
+  '2022-11-28 09:00:00' =>
   array (
-    0 => '2022-11-28 00:00:00',
-    1 => 
+    0 => '2022-11-28 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 11,
       'day' => 28,
       'dayOfWeek' => 1,
       'dayOfYear' => 332,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1669561200,
-      'formatted' => '2022-11-28 00:00:00',
-      'timezone' => 
+      'timestamp' => 1669593600,
+      'formatted' => '2022-11-28 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -25056,29 +21868,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 5,
       'is_leap_month' => false,
-      'moon_age' => 3.993077944032848,
-      'moon_phase_angle' => 50.32371881616271,
+      'moon_age' => 4.044,
+      'moon_phase_angle' => 51.75734949347401,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-11-29 00:00:00' => 
+  '2022-11-29 09:00:00' =>
   array (
-    0 => '2022-11-29 00:00:00',
-    1 => 
+    0 => '2022-11-29 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 11,
       'day' => 29,
       'dayOfWeek' => 2,
       'dayOfYear' => 333,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1669647600,
-      'formatted' => '2022-11-29 00:00:00',
-      'timezone' => 
+      'timestamp' => 1669680000,
+      'formatted' => '2022-11-29 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -25114,29 +21926,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 6,
       'is_leap_month' => false,
-      'moon_age' => 4.983231449499726,
-      'moon_phase_angle' => 63.884006516134974,
+      'moon_age' => 5.044,
+      'moon_phase_angle' => 65.29022108643593,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-11-30 00:00:00' => 
+  '2022-11-30 09:00:00' =>
   array (
-    0 => '2022-11-30 00:00:00',
-    1 => 
+    0 => '2022-11-30 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 11,
       'day' => 30,
       'dayOfWeek' => 3,
       'dayOfYear' => 334,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1669734000,
-      'formatted' => '2022-11-30 00:00:00',
-      'timezone' => 
+      'timestamp' => 1669766400,
+      'formatted' => '2022-11-30 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -25172,29 +21984,87 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 7,
       'is_leap_month' => false,
-      'moon_age' => 5.975653149653226,
-      'moon_phase_angle' => 77.19594922291742,
+      'moon_age' => 6.044,
+      'moon_phase_angle' => 78.56744709454014,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2022-12-01 00:00:00' => 
+  '2022-11-30 23:37:00' =>
   array (
-    0 => '2022-12-01 00:00:00',
-    1 => 
+    0 => '2022-11-30 23:37:00',
+    1 =>
+    array (
+      'year' => 2022,
+      'month' => 11,
+      'day' => 30,
+      'dayOfWeek' => 3,
+      'dayOfYear' => 334,
+      'hour' => 23,
+      'minute' => 37,
+      'second' => 0,
+      'micro' => 0,
+      'timestamp' => 1669819020,
+      'formatted' => '2022-11-30 23:37:00',
+      'timezone' =>
+      \Carbon\CarbonTimeZone::__set_state(array(
+         'clock' => NULL,
+         'timezone_type' => 3,
+         'timezone' => 'Asia/Tokyo',
+      )),
+      'solar_seasonal_festival' => 0,
+      'solar_seasonal_festival_name' => '',
+      'solar_seasonal_festival_alias' => '',
+      'lunar_seasonal_festival' => 0,
+      'lunar_seasonal_festival_name' => '',
+      'lunar_seasonal_festival_alias' => '',
+      'misc_seasonal_node' => 0,
+      'misc_seasonal_node_text' => '',
+      'solar_term' => false,
+      'solar_term_text' => '',
+      'is_solar_term' => false,
+      'era_name_text' => '令和',
+      'era_name' => 1004,
+      'era_year' => 4,
+      'oriental_zodiac_text' => '寅',
+      'oriental_zodiac' => 3,
+      'heavenly_stem_text' => '壬',
+      'heavenly_stem' => 8,
+      'six_weekday_text' => '大安',
+      'six_weekday' => 0,
+      'weekday_text' => '水',
+      'month_text' => '霜月',
+      'holiday_text' => '',
+      'holiday' => 0,
+      'is_holiday' => false,
+      'lunar_month_text' => '霜月',
+      'lunar_month' => 11,
+      'lunar_year' => 2022,
+      'lunar_day' => 7,
+      'is_leap_month' => false,
+      'moon_age' => 6.652777777777778,
+      'moon_phase_angle' => 86.5095719882751,
+      'moon_phase' => 2,
+      'moon_phase_text' => '上弦',
+    ),
+  ),
+  '2022-12-01 09:00:00' =>
+  array (
+    0 => '2022-12-01 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 12,
       'day' => 1,
       'dayOfWeek' => 4,
       'dayOfYear' => 335,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1669820400,
-      'formatted' => '2022-12-01 00:00:00',
-      'timezone' => 
+      'timestamp' => 1669852800,
+      'formatted' => '2022-12-01 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -25230,29 +22100,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 6.970444764010608,
-      'moon_phase_angle' => 90.21438156116002,
+      'moon_age' => 7.044,
+      'moon_phase_angle' => 91.54802804281923,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-12-02 00:00:00' => 
+  '2022-12-02 09:00:00' =>
   array (
-    0 => '2022-12-02 00:00:00',
-    1 => 
+    0 => '2022-12-02 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 12,
       'day' => 2,
       'dayOfWeek' => 5,
       'dayOfYear' => 336,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1669906800,
-      'formatted' => '2022-12-02 00:00:00',
-      'timezone' => 
+      'timestamp' => 1669939200,
+      'formatted' => '2022-12-02 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -25288,29 +22158,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 9,
       'is_leap_month' => false,
-      'moon_age' => 7.967516118660569,
-      'moon_phase_angle' => 102.92531533524041,
+      'moon_age' => 8.044,
+      'moon_phase_angle' => 104.22130695814289,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-12-03 00:00:00' => 
+  '2022-12-03 09:00:00' =>
   array (
-    0 => '2022-12-03 00:00:00',
-    1 => 
+    0 => '2022-12-03 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 12,
       'day' => 3,
       'dayOfWeek' => 6,
       'dayOfYear' => 337,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1669993200,
-      'formatted' => '2022-12-03 00:00:00',
-      'timezone' => 
+      'timestamp' => 1670025600,
+      'formatted' => '2022-12-03 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -25346,29 +22216,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 10,
       'is_leap_month' => false,
-      'moon_age' => 8.966685533057898,
-      'moon_phase_angle' => 115.33828216078089,
+      'moon_age' => 9.044,
+      'moon_phase_angle' => 116.5989275426409,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-12-04 00:00:00' => 
+  '2022-12-04 09:00:00' =>
   array (
-    0 => '2022-12-04 00:00:00',
-    1 => 
+    0 => '2022-12-04 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 12,
       'day' => 4,
       'dayOfWeek' => 0,
       'dayOfYear' => 338,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1670079600,
-      'formatted' => '2022-12-04 00:00:00',
-      'timezone' => 
+      'timestamp' => 1670112000,
+      'formatted' => '2022-12-04 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -25404,29 +22274,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 11,
       'is_leap_month' => false,
-      'moon_age' => 9.96773737296462,
-      'moon_phase_angle' => 127.47707806500011,
+      'moon_age' => 10.044,
+      'moon_phase_angle' => 128.7057054360971,
       'moon_phase' => 3,
       'moon_phase_text' => '十三夜',
     ),
   ),
-  '2022-12-05 00:00:00' => 
+  '2022-12-05 09:00:00' =>
   array (
-    0 => '2022-12-05 00:00:00',
-    1 => 
+    0 => '2022-12-05 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 12,
       'day' => 5,
       'dayOfWeek' => 1,
       'dayOfYear' => 339,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1670166000,
-      'formatted' => '2022-12-05 00:00:00',
-      'timezone' => 
+      'timestamp' => 1670198400,
+      'formatted' => '2022-12-05 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -25462,29 +22332,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 12,
       'is_leap_month' => false,
-      'moon_age' => 10.970485913101584,
-      'moon_phase_angle' => 139.37148599101698,
+      'moon_age' => 11.044,
+      'moon_phase_angle' => 140.57165706660174,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-12-06 00:00:00' => 
+  '2022-12-06 09:00:00' =>
   array (
-    0 => '2022-12-06 00:00:00',
-    1 => 
+    0 => '2022-12-06 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 12,
       'day' => 6,
       'dayOfWeek' => 2,
       'dayOfYear' => 340,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1670252400,
-      'formatted' => '2022-12-06 00:00:00',
-      'timezone' => 
+      'timestamp' => 1670284800,
+      'formatted' => '2022-12-06 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -25520,29 +22390,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 13,
       'is_leap_month' => false,
-      'moon_age' => 11.974754029419273,
-      'moon_phase_angle' => 151.0512707777106,
+      'moon_age' => 12.044,
+      'moon_phase_angle' => 152.2263208750865,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-12-07 00:00:00' => 
+  '2022-12-07 09:00:00' =>
   array (
-    0 => '2022-12-07 00:00:00',
-    1 => 
+    0 => '2022-12-07 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 12,
       'day' => 7,
       'dayOfWeek' => 3,
       'dayOfYear' => 341,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1670338800,
-      'formatted' => '2022-12-07 00:00:00',
-      'timezone' => 
+      'timestamp' => 1670371200,
+      'formatted' => '2022-12-07 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -25578,29 +22448,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 14,
       'is_leap_month' => false,
-      'moon_age' => 12.980412446893752,
-      'moon_phase_angle' => 162.54288188104078,
+      'moon_age' => 13.044,
+      'moon_phase_angle' => 163.6957311914523,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-12-08 00:00:00' => 
+  '2022-12-08 09:00:00' =>
   array (
-    0 => '2022-12-08 00:00:00',
-    1 => 
+    0 => '2022-12-08 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 12,
       'day' => 8,
       'dayOfWeek' => 4,
       'dayOfYear' => 342,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1670425200,
-      'formatted' => '2022-12-08 00:00:00',
-      'timezone' => 
+      'timestamp' => 1670457600,
+      'formatted' => '2022-12-08 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -25636,132 +22506,16 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 15,
       'is_leap_month' => false,
-      'moon_age' => 13.987404903862625,
-      'moon_phase_angle' => 173.8687045839473,
+      'moon_age' => 14.044,
+      'moon_phase_angle' => 175.00192391589457,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2022-12-08 11:00:00' => 
+  '2022-12-08 13:08:00' =>
   array (
-    0 => '2022-12-08 11:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 12,
-      'day' => 8,
-      'dayOfWeek' => 4,
-      'dayOfYear' => 342,
-      'hour' => 11,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1670464800,
-      'formatted' => '2022-12-08 11:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '先勝',
-      'six_weekday' => 2,
-      'weekday_text' => '木',
-      'month_text' => '師走',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '霜月',
-      'lunar_month' => 11,
-      'lunar_year' => 2022,
-      'lunar_day' => 15,
-      'is_leap_month' => false,
-      'moon_age' => 14.449352910276502,
-      'moon_phase_angle' => 179.00971369300666,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2022-12-08 12:00:00' => 
-  array (
-    0 => '2022-12-08 12:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 12,
-      'day' => 8,
-      'dayOfWeek' => 4,
-      'dayOfYear' => 342,
-      'hour' => 12,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1670468400,
-      'formatted' => '2022-12-08 12:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '先勝',
-      'six_weekday' => 2,
-      'weekday_text' => '木',
-      'month_text' => '師走',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '霜月',
-      'lunar_month' => 11,
-      'lunar_year' => 2022,
-      'lunar_day' => 15,
-      'is_leap_month' => false,
-      'moon_age' => 14.491364319808781,
-      'moon_phase_angle' => 179.47561840651466,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2022-12-08 13:00:00' => 
-  array (
-    0 => '2022-12-08 13:00:00',
-    1 => 
+    0 => '2022-12-08 13:08:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 12,
@@ -25769,12 +22523,12 @@ return array (
       'dayOfWeek' => 4,
       'dayOfYear' => 342,
       'hour' => 13,
-      'minute' => 0,
+      'minute' => 8,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1670472000,
-      'formatted' => '2022-12-08 13:00:00',
-      'timezone' => 
+      'timestamp' => 1670472480,
+      'formatted' => '2022-12-08 13:08:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -25810,87 +22564,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 15,
       'is_leap_month' => false,
-      'moon_age' => 14.533372414764017,
-      'moon_phase_angle' => 179.94128577188354,
+      'moon_age' => 14.215972222222222,
+      'moon_phase_angle' => 176.93406893187083,
       'moon_phase' => 4,
       'moon_phase_text' => '満月',
     ),
   ),
-  '2022-12-08 14:00:00' => 
+  '2022-12-09 09:00:00' =>
   array (
-    0 => '2022-12-08 14:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 12,
-      'day' => 8,
-      'dayOfWeek' => 4,
-      'dayOfYear' => 342,
-      'hour' => 14,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1670475600,
-      'formatted' => '2022-12-08 14:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '先勝',
-      'six_weekday' => 2,
-      'weekday_text' => '木',
-      'month_text' => '師走',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '霜月',
-      'lunar_month' => 11,
-      'lunar_year' => 2022,
-      'lunar_day' => 15,
-      'is_leap_month' => false,
-      'moon_age' => 14.575383663643152,
-      'moon_phase_angle' => 180.40671717924948,
-      'moon_phase' => 4,
-      'moon_phase_text' => '満月',
-    ),
-  ),
-  '2022-12-09 00:00:00' => 
-  array (
-    0 => '2022-12-09 00:00:00',
-    1 => 
+    0 => '2022-12-09 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 12,
       'day' => 9,
       'dayOfWeek' => 5,
       'dayOfYear' => 343,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1670511600,
-      'formatted' => '2022-12-09 00:00:00',
-      'timezone' => 
+      'timestamp' => 1670544000,
+      'formatted' => '2022-12-09 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -25926,29 +22622,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 16,
       'is_leap_month' => false,
-      'moon_age' => 14.995620837435126,
-      'moon_phase_angle' => 185.04836196988177,
+      'moon_age' => 15.044,
+      'moon_phase_angle' => 186.164459357763,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-12-10 00:00:00' => 
+  '2022-12-10 09:00:00' =>
   array (
-    0 => '2022-12-10 00:00:00',
-    1 => 
+    0 => '2022-12-10 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 12,
       'day' => 10,
       'dayOfWeek' => 6,
       'dayOfYear' => 344,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1670598000,
-      'formatted' => '2022-12-10 00:00:00',
-      'timezone' => 
+      'timestamp' => 1670630400,
+      'formatted' => '2022-12-10 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -25984,29 +22680,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 17,
       'is_leap_month' => false,
-      'moon_age' => 16.004996263422072,
-      'moon_phase_angle' => 196.101387548221,
+      'moon_age' => 16.044,
+      'moon_phase_angle' => 197.2031761035165,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-12-11 00:00:00' => 
+  '2022-12-11 09:00:00' =>
   array (
-    0 => '2022-12-11 00:00:00',
-    1 => 
+    0 => '2022-12-11 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 12,
       'day' => 11,
       'dayOfWeek' => 0,
       'dayOfYear' => 345,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1670684400,
-      'formatted' => '2022-12-11 00:00:00',
-      'timezone' => 
+      'timestamp' => 1670716800,
+      'formatted' => '2022-12-11 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -26042,29 +22738,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 18,
       'is_leap_month' => false,
-      'moon_age' => 17.015362604986876,
-      'moon_phase_angle' => 207.05052265363895,
+      'moon_age' => 17.044,
+      'moon_phase_angle' => 208.14139698532654,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-12-12 00:00:00' => 
+  '2022-12-12 09:00:00' =>
   array (
-    0 => '2022-12-12 00:00:00',
-    1 => 
+    0 => '2022-12-12 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 12,
       'day' => 12,
       'dayOfWeek' => 1,
       'dayOfYear' => 346,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1670770800,
-      'formatted' => '2022-12-12 00:00:00',
-      'timezone' => 
+      'timestamp' => 1670803200,
+      'formatted' => '2022-12-12 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -26100,29 +22796,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 19,
       'is_leap_month' => false,
-      'moon_age' => 18.026520827785134,
-      'moon_phase_angle' => 217.9249374418348,
+      'moon_age' => 18.044,
+      'moon_phase_angle' => 219.00904179421846,
       'moon_phase' => 5,
       'moon_phase_text' => '十六夜',
     ),
   ),
-  '2022-12-13 00:00:00' => 
+  '2022-12-13 09:00:00' =>
   array (
-    0 => '2022-12-13 00:00:00',
-    1 => 
+    0 => '2022-12-13 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 12,
       'day' => 13,
       'dayOfWeek' => 2,
       'dayOfYear' => 347,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1670857200,
-      'formatted' => '2022-12-13 00:00:00',
-      'timezone' => 
+      'timestamp' => 1670889600,
+      'formatted' => '2022-12-13 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -26158,29 +22854,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 20,
       'is_leap_month' => false,
-      'moon_age' => 19.03813392110169,
-      'moon_phase_angle' => 228.76281509059473,
+      'moon_age' => 19.044,
+      'moon_phase_angle' => 229.84527247274812,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-12-14 00:00:00' => 
+  '2022-12-14 09:00:00' =>
   array (
-    0 => '2022-12-14 00:00:00',
-    1 => 
+    0 => '2022-12-14 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 12,
       'day' => 14,
       'dayOfWeek' => 3,
       'dayOfYear' => 348,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1670943600,
-      'formatted' => '2022-12-14 00:00:00',
-      'timezone' => 
+      'timestamp' => 1670976000,
+      'formatted' => '2022-12-14 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -26216,29 +22912,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 21,
       'is_leap_month' => false,
-      'moon_age' => 20.043335469439626,
-      'moon_phase_angle' => 239.61292668834946,
+      'moon_age' => 20.044,
+      'moon_phase_angle' => 240.70023112358137,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-12-15 00:00:00' => 
+  '2022-12-15 09:00:00' =>
   array (
-    0 => '2022-12-15 00:00:00',
-    1 => 
+    0 => '2022-12-15 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 12,
       'day' => 15,
       'dayOfWeek' => 4,
       'dayOfYear' => 349,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1671030000,
-      'formatted' => '2022-12-15 00:00:00',
-      'timezone' => 
+      'timestamp' => 1671062400,
+      'formatted' => '2022-12-15 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -26274,29 +22970,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 22,
       'is_leap_month' => false,
-      'moon_age' => 21.042159197852015,
-      'moon_phase_angle' => 250.53498454539425,
+      'moon_age' => 21.044,
+      'moon_phase_angle' => 251.63532729047864,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-12-16 00:00:00' => 
+  '2022-12-16 09:00:00' =>
   array (
-    0 => '2022-12-16 00:00:00',
-    1 => 
+    0 => '2022-12-16 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 12,
       'day' => 16,
       'dayOfWeek' => 5,
       'dayOfYear' => 350,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1671116400,
-      'formatted' => '2022-12-16 00:00:00',
-      'timezone' => 
+      'timestamp' => 1671148800,
+      'formatted' => '2022-12-16 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -26332,29 +23028,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 22.04113471042365,
-      'moon_phase_angle' => 261.5986285296483,
+      'moon_age' => 22.044,
+      'moon_phase_angle' => 262.7217137849449,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2022-12-16 19:00:00' => 
+  '2022-12-16 17:56:00' =>
   array (
-    0 => '2022-12-16 19:00:00',
-    1 => 
+    0 => '2022-12-16 17:56:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 12,
       'day' => 16,
       'dayOfWeek' => 5,
       'dayOfYear' => 350,
-      'hour' => 19,
-      'minute' => 0,
+      'hour' => 17,
+      'minute' => 56,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1671184800,
-      'formatted' => '2022-12-16 19:00:00',
-      'timezone' => 
+      'timestamp' => 1671180960,
+      'formatted' => '2022-12-16 17:56:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -26390,29 +23086,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 23,
       'is_leap_month' => false,
-      'moon_age' => 22.832164054736495,
-      'moon_phase_angle' => 270.50842059996404,
+      'moon_age' => 22.415972222222223,
+      'moon_phase_angle' => 266.9025142321377,
       'moon_phase' => 6,
       'moon_phase_text' => '下弦',
     ),
   ),
-  '2022-12-17 00:00:00' => 
+  '2022-12-17 09:00:00' =>
   array (
-    0 => '2022-12-17 00:00:00',
-    1 => 
+    0 => '2022-12-17 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 12,
       'day' => 17,
       'dayOfWeek' => 6,
       'dayOfYear' => 351,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1671202800,
-      'formatted' => '2022-12-17 00:00:00',
-      'timezone' => 
+      'timestamp' => 1671235200,
+      'formatted' => '2022-12-17 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -26448,29 +23144,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 24,
       'is_leap_month' => false,
-      'moon_age' => 23.04034447297454,
-      'moon_phase_angle' => 272.8808461247116,
+      'moon_age' => 23.044,
+      'moon_phase_angle' => 274.03700708102235,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-12-18 00:00:00' => 
+  '2022-12-18 09:00:00' =>
   array (
-    0 => '2022-12-18 00:00:00',
-    1 => 
+    0 => '2022-12-18 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 12,
       'day' => 18,
       'dayOfWeek' => 0,
       'dayOfYear' => 352,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1671289200,
-      'formatted' => '2022-12-18 00:00:00',
-      'timezone' => 
+      'timestamp' => 1671321600,
+      'formatted' => '2022-12-18 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -26506,29 +23202,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 25,
       'is_leap_month' => false,
-      'moon_age' => 24.039871194865555,
-      'moon_phase_angle' => 284.46147727554137,
+      'moon_age' => 24.044,
+      'moon_phase_angle' => 285.660444270573,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-12-19 00:00:00' => 
+  '2022-12-19 09:00:00' =>
   array (
-    0 => '2022-12-19 00:00:00',
-    1 => 
+    0 => '2022-12-19 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 12,
       'day' => 19,
       'dayOfWeek' => 1,
       'dayOfYear' => 353,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1671375600,
-      'formatted' => '2022-12-19 00:00:00',
-      'timezone' => 
+      'timestamp' => 1671408000,
+      'formatted' => '2022-12-19 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -26564,29 +23260,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 26,
       'is_leap_month' => false,
-      'moon_age' => 25.039794331416488,
-      'moon_phase_angle' => 296.41630751190814,
+      'moon_age' => 25.044,
+      'moon_phase_angle' => 297.6661645294261,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-12-20 00:00:00' => 
+  '2022-12-20 09:00:00' =>
   array (
-    0 => '2022-12-20 00:00:00',
-    1 => 
+    0 => '2022-12-20 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 12,
       'day' => 20,
       'dayOfWeek' => 2,
       'dayOfYear' => 354,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1671462000,
-      'formatted' => '2022-12-20 00:00:00',
-      'timezone' => 
+      'timestamp' => 1671494400,
+      'formatted' => '2022-12-20 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -26622,29 +23318,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 27,
       'is_leap_month' => false,
-      'moon_age' => 26.040170238353312,
-      'moon_phase_angle' => 308.8073023790822,
+      'moon_age' => 26.044,
+      'moon_phase_angle' => 310.1136631206343,
       'moon_phase' => 7,
       'moon_phase_text' => '有明',
     ),
   ),
-  '2022-12-21 00:00:00' => 
+  '2022-12-21 09:00:00' =>
   array (
-    0 => '2022-12-21 00:00:00',
-    1 => 
+    0 => '2022-12-21 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 12,
       'day' => 21,
       'dayOfWeek' => 3,
       'dayOfYear' => 355,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1671548400,
-      'formatted' => '2022-12-21 00:00:00',
-      'timezone' => 
+      'timestamp' => 1671580800,
+      'formatted' => '2022-12-21 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -26680,29 +23376,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 28,
       'is_leap_month' => false,
-      'moon_age' => 26.792110347798406,
-      'moon_phase_angle' => 321.6700838200892,
+      'moon_age' => 27.044,
+      'moon_phase_angle' => 323.0349039223513,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-12-22 00:00:00' => 
+  '2022-12-22 09:00:00' =>
   array (
-    0 => '2022-12-22 00:00:00',
-    1 => 
+    0 => '2022-12-22 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 12,
       'day' => 22,
       'dayOfWeek' => 4,
       'dayOfYear' => 356,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1671634800,
-      'formatted' => '2022-12-22 00:00:00',
-      'timezone' => 
+      'timestamp' => 1671667200,
+      'formatted' => '2022-12-22 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -26738,29 +23434,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 29,
       'is_leap_month' => false,
-      'moon_age' => 27.89899684922242,
-      'moon_phase_angle' => 335.0001163297884,
+      'moon_age' => 28.044,
+      'moon_phase_angle' => 336.4198238341125,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-12-23 00:00:00' => 
+  '2022-12-23 09:00:00' =>
   array (
-    0 => '2022-12-23 00:00:00',
-    1 => 
+    0 => '2022-12-23 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 12,
       'day' => 23,
       'dayOfWeek' => 5,
       'dayOfYear' => 357,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1671721200,
-      'formatted' => '2022-12-23 00:00:00',
-      'timezone' => 
+      'timestamp' => 1671753600,
+      'formatted' => '2022-12-23 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -26796,74 +23492,16 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 29.036694900742113,
-      'moon_phase_angle' => 348.741236553374,
+      'moon_age' => 29.044,
+      'moon_phase_angle' => 350.2050801834074,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2022-12-23 17:00:00' => 
+  '2022-12-23 19:17:00' =>
   array (
-    0 => '2022-12-23 17:00:00',
-    1 => 
-    array (
-      'year' => 2022,
-      'month' => 12,
-      'day' => 23,
-      'dayOfWeek' => 5,
-      'dayOfYear' => 357,
-      'hour' => 17,
-      'minute' => 0,
-      'second' => 0,
-      'micro' => 0,
-      'timestamp' => 1671782400,
-      'formatted' => '2022-12-23 17:00:00',
-      'timezone' => 
-      \Carbon\CarbonTimeZone::__set_state(array(
-         'clock' => NULL,
-         'timezone_type' => 3,
-         'timezone' => 'Asia/Tokyo',
-      )),
-      'solar_seasonal_festival' => 0,
-      'solar_seasonal_festival_name' => '',
-      'solar_seasonal_festival_alias' => '',
-      'lunar_seasonal_festival' => 0,
-      'lunar_seasonal_festival_name' => '',
-      'lunar_seasonal_festival_alias' => '',
-      'misc_seasonal_node' => 0,
-      'misc_seasonal_node_text' => '',
-      'solar_term' => false,
-      'solar_term_text' => '',
-      'is_solar_term' => false,
-      'era_name_text' => '令和',
-      'era_name' => 1004,
-      'era_year' => 4,
-      'oriental_zodiac_text' => '寅',
-      'oriental_zodiac' => 3,
-      'heavenly_stem_text' => '壬',
-      'heavenly_stem' => 8,
-      'six_weekday_text' => '赤口',
-      'six_weekday' => 1,
-      'weekday_text' => '金',
-      'month_text' => '師走',
-      'holiday_text' => '',
-      'holiday' => 0,
-      'is_holiday' => false,
-      'lunar_month_text' => '師走',
-      'lunar_month' => 12,
-      'lunar_year' => 2022,
-      'lunar_day' => 1,
-      'is_leap_month' => false,
-      'moon_age' => 0.27326852083206177,
-      'moon_phase_angle' => 358.6644637610496,
-      'moon_phase' => 0,
-      'moon_phase_text' => '新月',
-    ),
-  ),
-  '2022-12-23 19:00:00' => 
-  array (
-    0 => '2022-12-23 19:00:00',
-    1 => 
+    0 => '2022-12-23 19:17:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 12,
@@ -26871,12 +23509,12 @@ return array (
       'dayOfWeek' => 5,
       'dayOfYear' => 357,
       'hour' => 19,
-      'minute' => 0,
+      'minute' => 17,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1671789600,
-      'formatted' => '2022-12-23 19:00:00',
-      'timezone' => 
+      'timestamp' => 1671790620,
+      'formatted' => '2022-12-23 19:17:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -26912,29 +23550,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 1,
       'is_leap_month' => false,
-      'moon_age' => 0.3544944813475013,
-      'moon_phase_angle' => 359.8394357057918,
+      'moon_age' => 0.0,
+      'moon_phase_angle' => 356.2066435395724,
       'moon_phase' => 0,
       'moon_phase_text' => '新月',
     ),
   ),
-  '2022-12-24 00:00:00' => 
+  '2022-12-24 09:00:00' =>
   array (
-    0 => '2022-12-24 00:00:00',
-    1 => 
+    0 => '2022-12-24 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 12,
       'day' => 24,
       'dayOfWeek' => 6,
       'dayOfYear' => 358,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1671807600,
-      'formatted' => '2022-12-24 00:00:00',
-      'timezone' => 
+      'timestamp' => 1671840000,
+      'formatted' => '2022-12-24 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -26970,29 +23608,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 2,
       'is_leap_month' => false,
-      'moon_age' => 0.5575334811583161,
-      'moon_phase_angle' => 2.7821446273728725,
+      'moon_age' => 0.572,
+      'moon_phase_angle' => 4.2724567224775,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-12-25 00:00:00' => 
+  '2022-12-25 09:00:00' =>
   array (
-    0 => '2022-12-25 00:00:00',
-    1 => 
+    0 => '2022-12-25 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 12,
       'day' => 25,
       'dayOfWeek' => 0,
       'dayOfYear' => 359,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1671894000,
-      'formatted' => '2022-12-25 00:00:00',
-      'timezone' => 
+      'timestamp' => 1671926400,
+      'formatted' => '2022-12-25 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -27028,29 +23666,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 3,
       'is_leap_month' => false,
-      'moon_age' => 1.5321492818184197,
-      'moon_phase_angle' => 16.966146102425455,
+      'moon_age' => 1.572,
+      'moon_phase_angle' => 18.46124810713303,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-12-26 00:00:00' => 
+  '2022-12-26 09:00:00' =>
   array (
-    0 => '2022-12-26 00:00:00',
-    1 => 
+    0 => '2022-12-26 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 12,
       'day' => 26,
       'dayOfWeek' => 1,
       'dayOfYear' => 360,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1671980400,
-      'formatted' => '2022-12-26 00:00:00',
-      'timezone' => 
+      'timestamp' => 1672012800,
+      'formatted' => '2022-12-26 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -27086,29 +23724,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 4,
       'is_leap_month' => false,
-      'moon_age' => 2.508511370047927,
-      'moon_phase_angle' => 31.114961293880413,
+      'moon_age' => 2.572,
+      'moon_phase_angle' => 32.5934204795725,
       'moon_phase' => 1,
       'moon_phase_text' => '三日月',
     ),
   ),
-  '2022-12-27 00:00:00' => 
+  '2022-12-27 09:00:00' =>
   array (
-    0 => '2022-12-27 00:00:00',
-    1 => 
+    0 => '2022-12-27 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 12,
       'day' => 27,
       'dayOfWeek' => 2,
       'dayOfYear' => 361,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1672066800,
-      'formatted' => '2022-12-27 00:00:00',
-      'timezone' => 
+      'timestamp' => 1672099200,
+      'formatted' => '2022-12-27 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -27144,29 +23782,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 5,
       'is_leap_month' => false,
-      'moon_age' => 3.488473915029317,
-      'moon_phase_angle' => 45.0602001752398,
+      'moon_age' => 3.572,
+      'moon_phase_angle' => 46.5043247234824,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-12-28 00:00:00' => 
+  '2022-12-28 09:00:00' =>
   array (
-    0 => '2022-12-28 00:00:00',
-    1 => 
+    0 => '2022-12-28 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 12,
       'day' => 28,
       'dayOfWeek' => 3,
       'dayOfYear' => 362,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1672153200,
-      'formatted' => '2022-12-28 00:00:00',
-      'timezone' => 
+      'timestamp' => 1672185600,
+      'formatted' => '2022-12-28 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -27202,29 +23840,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 6,
       'is_leap_month' => false,
-      'moon_age' => 4.473218662198633,
-      'moon_phase_angle' => 58.67133196541721,
+      'moon_age' => 4.572,
+      'moon_phase_angle' => 60.068939110552606,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-12-29 00:00:00' => 
+  '2022-12-29 09:00:00' =>
   array (
-    0 => '2022-12-29 00:00:00',
-    1 => 
+    0 => '2022-12-29 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 12,
       'day' => 29,
       'dayOfWeek' => 4,
       'dayOfYear' => 363,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1672239600,
-      'formatted' => '2022-12-29 00:00:00',
-      'timezone' => 
+      'timestamp' => 1672272000,
+      'formatted' => '2022-12-29 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -27260,29 +23898,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 7,
       'is_leap_month' => false,
-      'moon_age' => 5.463213898707181,
-      'moon_phase_angle' => 71.87092704881854,
+      'moon_age' => 5.572,
+      'moon_phase_angle' => 73.21581871503571,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),
   ),
-  '2022-12-30 00:00:00' => 
+  '2022-12-30 09:00:00' =>
   array (
-    0 => '2022-12-30 00:00:00',
-    1 => 
+    0 => '2022-12-30 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 12,
       'day' => 30,
       'dayOfWeek' => 5,
       'dayOfYear' => 364,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1672326000,
-      'formatted' => '2022-12-30 00:00:00',
-      'timezone' => 
+      'timestamp' => 1672358400,
+      'formatted' => '2022-12-30 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -27318,29 +23956,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 6.458370028063655,
-      'moon_phase_angle' => 84.63495946681252,
+      'moon_age' => 6.572,
+      'moon_phase_angle' => 85.92665847677137,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2022-12-30 11:00:00' => 
+  '2022-12-30 10:21:00' =>
   array (
-    0 => '2022-12-30 11:00:00',
-    1 => 
+    0 => '2022-12-30 10:21:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 12,
       'day' => 30,
       'dayOfWeek' => 5,
       'dayOfYear' => 364,
-      'hour' => 11,
-      'minute' => 0,
+      'hour' => 10,
+      'minute' => 21,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1672365600,
-      'formatted' => '2022-12-30 11:00:00',
-      'timezone' => 
+      'timestamp' => 1672363260,
+      'formatted' => '2022-12-30 10:21:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -27376,29 +24014,29 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 8,
       'is_leap_month' => false,
-      'moon_age' => 6.916094299405813,
-      'moon_phase_angle' => 90.3435412718743,
+      'moon_age' => 6.627777777777778,
+      'moon_phase_angle' => 86.62901473334699,
       'moon_phase' => 2,
       'moon_phase_text' => '上弦',
     ),
   ),
-  '2022-12-31 00:00:00' => 
+  '2022-12-31 09:00:00' =>
   array (
-    0 => '2022-12-31 00:00:00',
-    1 => 
+    0 => '2022-12-31 09:00:00',
+    1 =>
     array (
       'year' => 2022,
       'month' => 12,
       'day' => 31,
       'dayOfWeek' => 6,
       'dayOfYear' => 365,
-      'hour' => 0,
+      'hour' => 9,
       'minute' => 0,
       'second' => 0,
       'micro' => 0,
-      'timestamp' => 1672412400,
-      'formatted' => '2022-12-31 00:00:00',
-      'timezone' => 
+      'timestamp' => 1672444800,
+      'formatted' => '2022-12-31 09:00:00',
+      'timezone' =>
       \Carbon\CarbonTimeZone::__set_state(array(
          'clock' => NULL,
          'timezone_type' => 3,
@@ -27434,8 +24072,8 @@ return array (
       'lunar_year' => 2022,
       'lunar_day' => 9,
       'is_leap_month' => false,
-      'moon_age' => 7.458228663541377,
-      'moon_phase_angle' => 96.98235214429963,
+      'moon_age' => 7.572,
+      'moon_phase_angle' => 98.22509443697265,
       'moon_phase' => NULL,
       'moon_phase_text' => '',
     ),

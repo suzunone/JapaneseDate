@@ -27,7 +27,7 @@ use JapaneseDate\CacheMode;
  *
  * 旧暦や二十四節気など、同じ入力に対して繰り返し実行されやすい重い計算を
  * {@see forever()} 経由で保存し、次回以降の計算負荷を抑えます。
- * キャッシュ方式は {@see \JapaneseDate\CacheMode} の定数で切り替えられます。
+ * キャッシュ方式は {@see CacheMode} の定数で切り替えられます。
  *
  * **対応するキャッシュ方式:**
  * - `MODE_NONE` — キャッシュせず毎回クロージャを実行
