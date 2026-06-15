@@ -93,22 +93,48 @@ class Elp2000MoonAge implements MoonAgeAlgorithm
 
         // 既知の新月を基準に、対象日時に最も近い新月のおおよその時刻を推定し、
         // そこから収束計算を始めることで ELP2000 の評価回数（反復回数）を抑える。
-        // 収束条件・反復内の補正ロジックは変更しないため、最終的に収束する朔の
-        // 時刻（および月齢）は従来の初期値（対象日時そのもの）から始めた場合と
-        // 変わらない想定です。
         $cycles = round(($julian_date_0 - self::REFERENCE_NEW_MOON_JD) / self::SYNODIC_MONTH);
         $approxNewMoon = self::REFERENCE_NEW_MOON_JD + $cycles * self::SYNODIC_MONTH;
 
-        $tm1 = floor($approxNewMoon);
-        $tm2 = $approxNewMoon - $tm1;
+        // 朔の時刻を収束計算する
+        $newMoonJd = $this->findNewMoonJd($approxNewMoon, $julian_date_0);
 
-        // 朔の時刻を計算
-        // 誤差が±1 sec以内になったら打ち切る
+        // round() により approxNewMoon が次の朔を指した場合、直前の朔へ再収束する
+        if ($newMoonJd > $julian_date_0) {
+            $newMoonJd = $this->findNewMoonJd($newMoonJd - self::SYNODIC_MONTH, $julian_date_0);
+        }
+
+        // 時刻引数を合成
+        $res = $julian_date_0 - $newMoonJd;
+        if ($res < 0) {
+            $res += self::SYNODIC_MONTH;
+        }
+        if ($res > 30) {
+            $res -= 30;
+        }
+
+        return $res;
+    }
+
+    /**
+     * 与えられた近似ユリウス日を起点として朔の時刻を収束計算し、朔のユリウス日を返す。
+     *
+     * @param float $approxJd 収束計算の開始点（おおよその朔のユリウス日）
+     * @param float $julianDate0 計算基準のユリウス日（15回・30回の安全弁リセット基準）
+     * @return float 収束後の朔のユリウス日
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     * @throws \Exception
+     */
+    private function findNewMoonJd(float $approxJd, float $julianDate0): float
+    {
+        $tm1 = floor($approxJd);
+        $tm2 = $approxJd - $tm1;
         $counter = 1;
         $delta_t1 = 0;
         $delta_t2 = 1;
 
-        while (($delta_t1 + abs($delta_t2)) > Astronomy::DAYS_PER_SEC) {
+        while (abs($delta_t1 + $delta_t2) > Astronomy::DAYS_PER_SEC) {
             $julian_date = $tm1 + $tm2;
             $timestamp = (int) floor(($julian_date - 2440587.5) * Astronomy::DAY_TO_SECOND_FLOAT);
             $fractionalSecond = ($julian_date - 2440587.5) * Astronomy::DAY_TO_SECOND_FLOAT - $timestamp;
@@ -122,7 +148,7 @@ class Elp2000MoonAge implements MoonAgeAlgorithm
             $min = (int) $jst->format('i');
             $sec = (int) $jst->format('s') + $fractionalSecond;
             $longitude_sun = $this->astronomy->longitudeSun($year, $month, $day, $hour, $min, $sec);
-            $longitude_moon = $this->astronomy->longitudeMoon($year, $month, $day, $hour, $min, $sec);
+            $longitude_moon = $this->astronomy->longitudeMoonFast($year, $month, $day, $hour, $min, $sec);
 
             // ΔΛ ＝Λ moon－Λ sun
             $delta_rm = $longitude_moon - $longitude_sun;
@@ -142,7 +168,7 @@ class Elp2000MoonAge implements MoonAgeAlgorithm
                 self::SYNODIC_MONTH,
                 $tm1,
                 $tm2,
-                $julian_date_0,
+                $julianDate0,
                 $counter
             );
             // @codeCoverageIgnoreStart
@@ -153,15 +179,47 @@ class Elp2000MoonAge implements MoonAgeAlgorithm
             $counter++;
         }
 
-        // 時刻引数を合成
-        $res = $julian_date_0 - ($tm2 + $tm1);
-        if ($res < 0) {
-            $res += self::SYNODIC_MONTH;
-        }
-        if ($res > 30) {
-            $res -= 30;
+        // フル精度スナップ: 縮約収束後に ELP2000 フル級数で詰める（最大5回）。
+        // 縮約誤差（ΔΛ_full - ΔΛ_reduced、最大数秒相当）を解消し、
+        // フル精度のみで収束した場合と同じ朔 JD へ揃える。
+        // applyConvergenceStep は使わず（カウンタ安全弁の誤作動防止）、ステップを直接計算する。
+        $snapDeltaT1 = 1;
+        $snapDeltaT2 = 0;
+        $snapMaxIter = 5;
+        while (abs($snapDeltaT1 + $snapDeltaT2) > Astronomy::DAYS_PER_SEC && $snapMaxIter-- > 0) {
+            $julian_date = $tm1 + $tm2;
+            $timestamp = (int) floor(($julian_date - 2440587.5) * Astronomy::DAY_TO_SECOND_FLOAT);
+            $fractionalSecond = ($julian_date - 2440587.5) * Astronomy::DAY_TO_SECOND_FLOAT - $timestamp;
+            $jst = (new DateTimeImmutable("@$timestamp"))->setTimezone(new DateTimeZone('Asia/Tokyo'));
+            $snapYear  = (int) $jst->format('Y');
+            $snapMonth = (int) $jst->format('n');
+            $snapDay   = (int) $jst->format('j');
+            $snapHour  = (int) $jst->format('G');
+            $snapMin   = (int) $jst->format('i');
+            $snapSec   = (int) $jst->format('s') + $fractionalSecond;
+
+            $lonSun  = $this->astronomy->longitudeSun($snapYear, $snapMonth, $snapDay, $snapHour, $snapMin, $snapSec);
+            $lonMoon = $this->astronomy->longitudeMoon($snapYear, $snapMonth, $snapDay, $snapHour, $snapMin, $snapSec);
+
+            $deltaRm = $lonMoon - $lonSun;
+            if ($lonSun >= 0 && $lonSun <= 20 && $lonMoon >= 300) {
+                $deltaRm = $this->astronomy->normalizeAngle($deltaRm);
+                $deltaRm = 360 - $deltaRm;
+            } elseif (abs($deltaRm) > 40.0) {
+                $deltaRm = $this->astronomy->normalizeAngle($deltaRm);
+            }
+
+            $snapDeltaT2 = $deltaRm * self::SYNODIC_MONTH / 360.0;
+            $snapDeltaT1 = floor($snapDeltaT2);
+            $snapDeltaT2 -= $snapDeltaT1;
+            $tm1 -= $snapDeltaT1;
+            $tm2 -= $snapDeltaT2;
+            if ($tm2 < 0) {
+                $tm2++;
+                $tm1--;
+            }
         }
 
-        return $res;
+        return $tm1 + $tm2;
     }
 }

@@ -69,8 +69,10 @@ class LegacyMoonAgeTest extends TestCase
             '2022 3月朔' => [2022, 3, 3, 0, 0, 0, 0],
             '2022 7月朔' => [2022, 7, 29, 0, 0, 0, 0],
             '2015 11月朔' => [2015, 11, 12, 0, 0, 0, 0],
-            // 春分付近: 春分付近補正・ΔΛ > 40°補正・$res > 30 補正を通る
-            '2017 春分付近の月齢4' => [2017, 4, 2, 0, 0, 0, 4],
+            // 春分付近（朔前3日）: 入力日の Legacy 座標で sun≈4.7°・moon≈326° → Spring Fix を通る
+            '2017 春分付近の月齢26' => [2017, 3, 25, 0, 0, 0, 26],
+            // 春分から12日後・朔から5日後（月齢≈4.6）。旧コードは while バグで早期終了し誤値4を返していた
+            '2017 4月初旬の月齢5' => [2017, 4, 2, 0, 0, 0, 5],
         ];
     }
 
@@ -161,5 +163,67 @@ class LegacyMoonAgeTest extends TestCase
             $moonAge->moonAge(2017, 4, 11, 15, 8, 0),
             0.47
         );
+    }
+
+    /**
+     * 30日超過後の再収束ループで、春分付近補正と引き込み範囲補正を通過する。
+     */
+    public function test_moonAge_appliesCorrectionsDuringSecondConvergence(): void
+    {
+        $astronomy = $this->makeSequencedAstronomy([
+            [200.0, 300.0],
+            [200.0, 300.0],
+            [200.0, 300.0],
+            [200.0, 300.0],
+            [180.0, 180.0 + 1.0e-5],
+            [10.0, 305.0],
+            [200.0, 300.0],
+            [180.0, 180.0 + 1.0e-5],
+        ]);
+        $moonAge = new LegacyMoonAge($astronomy);
+
+        $result = $moonAge->moonAge(2024, 1, 11, 8, 0, 0);
+
+        $this->assertGreaterThanOrEqual(0.0, $result);
+        $this->assertLessThan(30.0, $result);
+    }
+
+    /**
+     * 太陽・月の黄経をあらかじめ用意した数列で順に返す Astronomy を生成する。
+     *
+     * @param array<int, array{0: float, 1: float}> $sequence [太陽黄経, 月黄経] の組の数列
+     * @return Astronomy
+     */
+    private function makeSequencedAstronomy(array $sequence): Astronomy
+    {
+        return new class ($sequence) extends Astronomy {
+            private int $sunIndex = 0;
+
+            private int $moonIndex = 0;
+
+            /**
+             * @param array<int, array{0: float, 1: float}> $sequence
+             */
+            public function __construct(private readonly array $sequence)
+            {
+                parent::__construct();
+            }
+
+            public function longitudeSun(int $year, int $month, float $day, float $hour, float $min, float $sec): float
+            {
+                $value = $this->sequence[min($this->sunIndex, count($this->sequence) - 1)][0];
+                $this->sunIndex++;
+
+                return $value;
+            }
+
+            public function longitudeMoon(int $year, int $month, int $day, float $hour, float $min, float $sec): float
+            {
+                $value = $this->sequence[min($this->moonIndex, count($this->sequence) - 1)][1];
+                $this->moonIndex++;
+
+                return $value;
+            }
+        };
     }
 }

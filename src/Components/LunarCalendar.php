@@ -63,6 +63,18 @@ class LunarCalendar
     use OneTimeCacheTrait;
 
     /**
+     * 太陽黄経の日進度上限（°/日）。中気境界を飛び越えないジャンプ日数の算出に使用する
+     *  1.04くらいまで詰められると思うが、中気の計算はそこまで重い処理ではないため安全側に倒す
+     */
+    private const MAX_SUN_DAILY_MOTION = 1.10;
+
+    /** 朔望月の平均周期（日）。朔ループのジャンプ日数見積もりに使用する */
+    private const SYNODIC_MONTH = 29.53;
+
+    /** 朔境界前の安全マージン（日数）。次の朔日を飛び越えないようにこの日数分早めに切り替える */
+    private const SAKU_SKIP_MARGIN_DAYS = 3;
+
+    /**
      * 朔の一覧
      *
      * @var array
@@ -267,6 +279,15 @@ class LunarCalendar
                 $age2 = $this->moonAge($Date->year, $Date->month, $Date->day, 23, 59, 59);
             } else {
                 $age1 = $this->moonAge($Date->year, $Date->month, $Date->day, 0, 0, 0);
+
+                // 次の朔まで安全マージン以上の残り日数がある場合は一気にスキップする
+                $sakuSkipDays = $this->calcSakuSkipDays($age1);
+                if ($sakuSkipDays > 0) {
+                    $Date = $Date->addDays($sakuSkipDays);
+
+                    continue;
+                }
+
                 $age2 = $this->moonAge($Date->year, $Date->month, $Date->day, 23, 59, 59);
 
                 if ($age2 > $age1) {
@@ -304,15 +325,21 @@ class LunarCalendar
             $counter++;
         }
 
-        // 中気を求める
+        // 中気を求める（$end_timestamp は朔ループで計算済みのものを再利用する）
         $sun_calendar = [];
         $counter = 0;
         $Date = Carbon::create($year - 1, 11, 10);
-        $EndDate = Carbon::create($year + 1, 3);
-
-        $end_timestamp = $EndDate->timestamp;
         while ($end_timestamp > $Date->timestamp) {
             $longitude_sun_1 = $this->astronomy()->longitudeSun($Date->year, $Date->month, $Date->day, 0, 0, 0);
+
+            // 次の中気境界（30°の偶数倍）まで安全マージン以上の残り日数がある場合は一気にスキップする
+            $chukiSkipDays = $this->calcChukiSkipDays($longitude_sun_1);
+            if ($chukiSkipDays > 0) {
+                $Date->addDays($chukiSkipDays);
+
+                continue;
+            }
+
             $longitude_sun_2 = $this->astronomy()->longitudeSun($Date->year, $Date->month, $Date->day, 24, 0, 0);
             $tmp_ls_1 = floor($longitude_sun_1 / 15.0);
             $tml_ls_2 = floor($longitude_sun_2 / 15.0);
@@ -352,7 +379,7 @@ class LunarCalendar
             $sun_calendar[$counter]['year'] = $Date->year;
             $counter++;
 
-            // 実行時間短縮のため、21日ほどすすめる
+            // 同じ中気日を再判定しないよう21日進める
             $Date->addDays(21);
         }
 
@@ -384,6 +411,45 @@ class LunarCalendar
         array_pop($lunar_calendar);
 
         return $lunar_calendar;
+    }
+
+    /**
+     * 太陽黄経から次の中気境界（黄経が30°の偶数倍に達する日）まで、
+     * 境界を飛び越えずにスキップできる最大日数を計算する。
+     *
+     * 太陽黄経の日進度上限（{@see self::MAX_SUN_DAILY_MOTION}°/日）を使い、
+     * 上限速度で進んだ場合でも交差日の直前までに止まる日数を返す。
+     * 戻り値が 0 の場合は呼び出し元で通常の1日刻り判定に移行すること。
+     *
+     * @param float $longitudeSun 現在の太陽黄経（度、0°〜360°）
+     * @return int スキップ可能な日数（0 以上）
+     */
+    private function calcChukiSkipDays(float $longitudeSun): int
+    {
+        $sector15 = (int) floor($longitudeSun / 15.0);
+        $nextBoundary = ((int) floor($sector15 / 2) + 1) * 30.0;
+        $remaining = $nextBoundary - $longitudeSun;
+
+        // floor を使う: ceil だと境界から1日以内でもスキップしてしまい、
+        // キャリブレーション（legacy 黄経ずれを VSOP87 で補正）が動かないため。
+        return max(0, (int) floor($remaining / self::MAX_SUN_DAILY_MOTION) - 1);
+    }
+
+    /**
+     * 月齢から次の朔までの残り日数を概算し、安全マージンを差し引いたスキップ可能な日数を計算する。
+     *
+     * 朔望月周期（{@see self::SYNODIC_MONTH} 日）から現在の月齢を引いた値が次の朔までの概算日数で、
+     * そこから {@see self::SAKU_SKIP_MARGIN_DAYS} 日のマージンを差し引いた分だけジャンプできる。
+     * 戻り値が 0 の場合は呼び出し元で通常の moonAge 比較判定に移行すること。
+     *
+     * @param float $moonAge 当日 0:00:00 の月齢（0 〜 約29.53 の範囲）
+     * @return int スキップ可能な日数（0 以上）
+     */
+    private function calcSakuSkipDays(float $moonAge): int
+    {
+        $remaining = self::SYNODIC_MONTH - $moonAge;
+
+        return max(0, (int) floor($remaining) - self::SAKU_SKIP_MARGIN_DAYS);
     }
 
     /**
@@ -436,6 +502,11 @@ class LunarCalendar
     /**
      * 月齢を求める（視黄経）
      *
+     * 月齢計算は longitudeSun/longitudeMoon の反復収束を伴う重い処理であり、
+     * 同一引数で複数回呼ばれる（朔ループ内・隣接年の重複計算範囲）。
+     * OneTimeCacheTrait でメモ化し、同一インスタンス内での重複収束計算を抑制する。
+     * 引数が1つでも異なれば別エントリとして計算する（0:00:00 と 23:59:59 は別）。
+     *
      * @param int $year , $month, $day  グレゴリオ暦による年月日
      * @param int $month
      * @param int $day
@@ -448,7 +519,14 @@ class LunarCalendar
      */
     public function moonAge(int $year, int $month, int $day, float $hour, float $min, float $sec): float
     {
-        return $this->moonAgeAlgorithm->moonAge($year, $month, $day, $hour, $min, $sec);
+        $key = __METHOD__ . ':' . $this->astronomy->algorithmName()
+            . ':' . $year . ':' . $month . ':' . $day
+            . ':' . $hour . ':' . $min . ':' . $sec;
+
+        return $this->oneTimeCache(
+            $key,
+            fn () => $this->moonAgeAlgorithm->moonAge($year, $month, $day, $hour, $min, $sec)
+        );
     }
 
     /**
