@@ -26,6 +26,7 @@ use JapaneseDate\Traits\Component;
 use JapaneseDate\Traits\DateTimeImport;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\CoversTrait;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\PreserveGlobalState;
 use PHPUnit\Framework\Attributes\RunInSeparateProcess;
 use PHPUnit\Framework\TestCase;
@@ -250,4 +251,5 @@ class DateTimeTest extends TestCase
         $date = DateTime::factory('2024-06-01 12:34:56.789000');
         $this->assertEquals('2024-06-01 12:34:56.789000', $date->format('Y-m-d H:i:s.u'));
     }
+
 }

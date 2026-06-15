@@ -162,6 +162,24 @@ class Elp2000MoonAgeTest extends TestCase
     }
 
     /**
+     * フル精度スナップにおいて「春分付近の朔」補正分岐を確実に通過する。
+     */
+    public function test_moonAge_passesSpringEquinoxCorrectionBranchDuringFullPrecisionSnap(): void
+    {
+        $astronomy = $this->makeSequencedAstronomy([
+            [180.0, 180.0 + 1.0e-5],
+            [10.0, 305.0],
+            [180.0, 180.0 + 1.0e-5],
+        ]);
+        $moonAge = new Elp2000MoonAge($astronomy);
+
+        $result = $moonAge->moonAge(2024, 1, 11, 8, 0, 0);
+
+        $this->assertGreaterThanOrEqual(0.0, $result);
+        $this->assertLessThan(30.0, $result);
+    }
+
+    /**
      * 黄経差の収束ループにおいて「ΔΛ が引き込み範囲（±40°）を逸脱した場合」の
      * 補正分岐、および収束後の月齢が30以上になった場合の補正分岐
      * （$res -= 30）を確実に通過するケースを検証する。
@@ -260,6 +278,26 @@ class Elp2000MoonAgeTest extends TestCase
                 $this->moonIndex++;
 
                 return $value;
+            }
+
+            /**
+             * @param int $year
+             * @param int $month
+             * @param int $day
+             * @param float $hour
+             * @param float $min
+             * @param float $sec
+             * @return float
+             */
+            public function longitudeMoonFast(
+                int $year,
+                int $month,
+                int $day,
+                float $hour,
+                float $min,
+                float $sec
+            ): float {
+                return $this->longitudeMoon($year, $month, $day, $hour, $min, $sec);
             }
 
             public function normalizeAngle(float $angle): float
