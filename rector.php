@@ -34,6 +34,6 @@ return RectorConfig::configure()
     // 5. アノテーションからアトリビュートへの自動変換ルールを除外する
     ->withSkip([
         AnnotationToAttributeRector::class,
-        __DIR__ . '/src/Components/ELP2000.php',
+        __DIR__ . '/src/Components/Traits/ELP2000Sub.php',
         __DIR__ . '/tests/fixtures/',
     ]);
