@@ -148,7 +148,7 @@ class Elp2000MoonAge implements MoonAgeAlgorithm
             $min = (int) $jst->format('i');
             $sec = (int) $jst->format('s') + $fractionalSecond;
             $longitude_sun = $this->astronomy->longitudeSun($year, $month, $day, $hour, $min, $sec);
-            $longitude_moon = $this->astronomy->longitudeMoon($year, $month, $day, $hour, $min, $sec);
+            $longitude_moon = $this->astronomy->longitudeMoonFast($year, $month, $day, $hour, $min, $sec);
 
             // ΔΛ ＝Λ moon－Λ sun
             $delta_rm = $longitude_moon - $longitude_sun;
@@ -177,6 +177,47 @@ class Elp2000MoonAge implements MoonAgeAlgorithm
             }
             // @codeCoverageIgnoreEnd
             $counter++;
+        }
+
+        // フル精度スナップ: 縮約収束後に ELP2000 フル級数で詰める（最大5回）。
+        // 縮約誤差（ΔΛ_full - ΔΛ_reduced、最大数秒相当）を解消し、
+        // フル精度のみで収束した場合と同じ朔 JD へ揃える。
+        // applyConvergenceStep は使わず（カウンタ安全弁の誤作動防止）、ステップを直接計算する。
+        $snapDeltaT1 = 1;
+        $snapDeltaT2 = 0;
+        $snapMaxIter = 5;
+        while (abs($snapDeltaT1 + $snapDeltaT2) > Astronomy::DAYS_PER_SEC && $snapMaxIter-- > 0) {
+            $julian_date = $tm1 + $tm2;
+            $timestamp = (int) floor(($julian_date - 2440587.5) * Astronomy::DAY_TO_SECOND_FLOAT);
+            $fractionalSecond = ($julian_date - 2440587.5) * Astronomy::DAY_TO_SECOND_FLOAT - $timestamp;
+            $jst = (new DateTimeImmutable("@$timestamp"))->setTimezone(new DateTimeZone('Asia/Tokyo'));
+            $snapYear  = (int) $jst->format('Y');
+            $snapMonth = (int) $jst->format('n');
+            $snapDay   = (int) $jst->format('j');
+            $snapHour  = (int) $jst->format('G');
+            $snapMin   = (int) $jst->format('i');
+            $snapSec   = (int) $jst->format('s') + $fractionalSecond;
+
+            $lonSun  = $this->astronomy->longitudeSun($snapYear, $snapMonth, $snapDay, $snapHour, $snapMin, $snapSec);
+            $lonMoon = $this->astronomy->longitudeMoon($snapYear, $snapMonth, $snapDay, $snapHour, $snapMin, $snapSec);
+
+            $deltaRm = $lonMoon - $lonSun;
+            if ($lonSun >= 0 && $lonSun <= 20 && $lonMoon >= 300) {
+                $deltaRm = $this->astronomy->normalizeAngle($deltaRm);
+                $deltaRm = 360 - $deltaRm;
+            } elseif (abs($deltaRm) > 40.0) {
+                $deltaRm = $this->astronomy->normalizeAngle($deltaRm);
+            }
+
+            $snapDeltaT2 = $deltaRm * self::SYNODIC_MONTH / 360.0;
+            $snapDeltaT1 = floor($snapDeltaT2);
+            $snapDeltaT2 -= $snapDeltaT1;
+            $tm1 -= $snapDeltaT1;
+            $tm2 -= $snapDeltaT2;
+            if ($tm2 < 0) {
+                $tm2++;
+                $tm1--;
+            }
         }
 
         return $tm1 + $tm2;
