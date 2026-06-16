@@ -33,6 +33,8 @@ class Elp2000MoonAgeConvergenceTest extends TestCase
      * 既知の朔を含む区間で残差オラクルがゼロ交差を検出できることを確認する。
      *
      * @return void
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     #[Group('convergence-bug')]
     public function test_residualOracleIsCalibratedNearKnownNewMoon(): void
@@ -75,6 +77,8 @@ class Elp2000MoonAgeConvergenceTest extends TestCase
      *
      * @param string $jstDateTime 入力日時（JST）
      * @return void
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     #[DataProvider('prematureConvergenceProvider')]
     #[Group('convergence-bug')]
@@ -95,6 +99,8 @@ class Elp2000MoonAgeConvergenceTest extends TestCase
      * 2000〜2030年の固定疑似乱数標本で収束不良率を計測する。
      *
      * @return void
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     #[Group('long-running')]
     public function test_reportsPrematureConvergenceRateAcrossThirtyOneYears(): void
@@ -134,6 +140,8 @@ class Elp2000MoonAgeConvergenceTest extends TestCase
      * @param Astronomy $astronomy 診断対象と同じ太陽・月モデル
      * @param DateTimeImmutable $date 入力日時（JST）
      * @return float 符号付き黄経差（度）
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     private function moonAgeResidual(Astronomy $astronomy, DateTimeImmutable $date): float
     {
@@ -157,6 +165,8 @@ class Elp2000MoonAgeConvergenceTest extends TestCase
      * @param Astronomy $astronomy 太陽・月モデル
      * @param float $timestamp Unix 時刻
      * @return float 符号付き黄経差（度）
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     private function residualAtTimestamp(Astronomy $astronomy, float $timestamp): float
     {
@@ -190,6 +200,8 @@ class Elp2000MoonAgeConvergenceTest extends TestCase
      * @param int $leftTimestamp 区間左端
      * @param int $rightTimestamp 区間右端
      * @return int モデル上の朔の Unix 時刻
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     private function bisectNewMoonTimestamp(Astronomy $astronomy, int $leftTimestamp, int $rightTimestamp): int
     {
@@ -218,6 +230,7 @@ class Elp2000MoonAgeConvergenceTest extends TestCase
      * 固定 seed の線形合同法で2000〜2030年から日時を抽出する。
      *
      * @return iterable<int, DateTimeImmutable>
+     * @throws \Exception
      */
     private function sweepDates(): iterable
     {

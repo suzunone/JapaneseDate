@@ -66,13 +66,13 @@ class LunarCalendar
      * 太陽黄経の日進度上限（°/日）。中気境界を飛び越えないジャンプ日数の算出に使用する
      *  1.04くらいまで詰められると思うが、中気の計算はそこまで重い処理ではないため安全側に倒す
      */
-    private const MAX_SUN_DAILY_MOTION = 1.10;
+    protected const MAX_SUN_DAILY_MOTION = 1.10;
 
     /** 朔望月の平均周期（日）。朔ループのジャンプ日数見積もりに使用する */
-    private const SYNODIC_MONTH = 29.53;
+    protected const SYNODIC_MONTH = 29.53;
 
     /** 朔境界前の安全マージン（日数）。次の朔日を飛び越えないようにこの日数分早めに切り替える */
-    private const SAKU_SKIP_MARGIN_DAYS = 3;
+    protected const SAKU_SKIP_MARGIN_DAYS = 3;
 
     /**
      * 朔の一覧
@@ -193,6 +193,15 @@ class LunarCalendar
 
                 break;
             }
+        }
+
+        if ($items === []) {
+            throw new ErrorException(sprintf(
+                '旧暦日を算出できる朔区間が見つかりませんでした: %04d-%02d-%02d',
+                $year,
+                $month,
+                $day
+            ));
         }
 
         return $items;
@@ -383,28 +392,84 @@ class LunarCalendar
             $Date->addDays(21);
         }
 
-        // 旧暦月と、閏月のフラグを追加
+        // 旧暦月と、閏月のフラグを追加（冬至月アンカー + 無中気法）
         $lunar_calendar_count = count($lunar_calendar);
-        for ($iterator_1 = 0; $iterator_1 < $lunar_calendar_count - 1; $iterator_1++) {
+
+        // パス1: 各月に含まれる中気の一覧を作成する。
+        // 2033年問題のように1朔月へ複数の中気が入る場合があるため、最初の1件で打ち切らない。
+        $monthChuki = [];
+        for ($i = 0; $i < $lunar_calendar_count - 1; $i++) {
             foreach ($sun_calendar as $sun_item) {
-                if (!($lunar_calendar[$iterator_1]['jd'] <= $sun_item['jd'] && $lunar_calendar[$iterator_1 + 1]['jd'] > $sun_item['jd'])) {
-                    continue;
+                if ($lunar_calendar[$i]['jd'] <= $sun_item['jd']
+                    && $lunar_calendar[$i + 1]['jd'] > $sun_item['jd']) {
+                    $monthChuki[$i][] = $sun_item;
                 }
-                $lunar_calendar[$iterator_1]['lunar_month'] = $sun_item['lunar_month'];
-                $lunar_calendar[$iterator_1]['lunar_month_leap'] = false;
+            }
+        }
 
-                $lunar_calendar[$iterator_1 + 1]['lunar_month'] = $sun_item['lunar_month'];
-                $lunar_calendar[$iterator_1 + 1]['lunar_month_leap'] = true;
-
-                $lunar_calendar[$iterator_1]['lunar_year'] = $year;
-                $lunar_calendar[$iterator_1 + 1]['lunar_year'] = $year;
-
-                if ($iterator_1 < $lunar_calendar[$iterator_1]['lunar_month']) {
-                    $lunar_calendar[$iterator_1]['lunar_year']--;
-                    $lunar_calendar[$iterator_1 + 1]['lunar_year']--;
+        $winterSolsticeMonthIndexes = [];
+        $winterSolsticeYears = [];
+        foreach ($monthChuki as $i => $chukiItems) {
+            foreach ($chukiItems as $chukiItem) {
+                if ((int) $chukiItem['lunar_month'] === 11) {
+                    $winterSolsticeMonthIndexes[] = $i;
+                    $winterSolsticeYears[$i] = $chukiItem['year'];
+                    break;
                 }
+            }
+        }
 
-                break;
+        if (count($winterSolsticeMonthIndexes)) {
+            $firstAnchorIndex = $winterSolsticeMonthIndexes[0];
+            $currentMonth = 11;
+            $currentYear = $winterSolsticeYears[$firstAnchorIndex];
+            for ($i = $firstAnchorIndex; $i >= 0; $i--) {
+                $lunar_calendar[$i]['lunar_month'] = (float) $currentMonth;
+                $lunar_calendar[$i]['lunar_month_leap'] = false;
+                $lunar_calendar[$i]['lunar_year'] = $currentYear;
+
+                $currentMonth--;
+                if ($currentMonth === 0) {
+                    $currentMonth = 12; // @codeCoverageIgnore
+                }
+                if ($currentMonth === 12) {
+                    $currentYear--; // @codeCoverageIgnore
+                }
+            }
+
+            foreach ($winterSolsticeMonthIndexes as $anchorPosition => $anchorIndex) {
+                $currentMonth = 11;
+                $currentYear = $winterSolsticeYears[$anchorIndex];
+                $lunar_calendar[$anchorIndex]['lunar_month'] = (float) $currentMonth;
+                $lunar_calendar[$anchorIndex]['lunar_month_leap'] = false;
+                $lunar_calendar[$anchorIndex]['lunar_year'] = $currentYear;
+
+                $nextAnchorIndex = $winterSolsticeMonthIndexes[$anchorPosition + 1] ?? null;
+                $endIndex = $nextAnchorIndex ?? $lunar_calendar_count - 1;
+                $leapMonthsRemaining = $nextAnchorIndex === null ? 1 : max(0, $nextAnchorIndex - $anchorIndex - 12);
+
+                for ($i = $anchorIndex + 1; $i < $endIndex; $i++) {
+                    if ($leapMonthsRemaining > 0 && !isset($monthChuki[$i])) {
+                        $lunar_calendar[$i]['lunar_month'] = (float) $currentMonth;
+                        $lunar_calendar[$i]['lunar_month_leap'] = true;
+                        $lunar_calendar[$i]['lunar_year'] = $currentYear;
+                        $leapMonthsRemaining--;
+
+                        continue;
+                    }
+
+                    $currentMonth++;
+                    if ($currentMonth === 13) {
+                        $currentMonth = 1;
+                    }
+                    if ($currentMonth === 1) {
+                        $currentYear++;
+                    }
+
+                    $lunar_calendar[$i]['lunar_month'] = (float) $currentMonth;
+                    $lunar_calendar[$i]['lunar_month_leap'] = false;
+                    $lunar_calendar[$i]['lunar_year'] = $currentYear;
+                }
             }
         }
 
@@ -424,7 +489,7 @@ class LunarCalendar
      * @param float $longitudeSun 現在の太陽黄経（度、0°〜360°）
      * @return int スキップ可能な日数（0 以上）
      */
-    private function calcChukiSkipDays(float $longitudeSun): int
+    protected function calcChukiSkipDays(float $longitudeSun): int
     {
         $sector15 = (int) floor($longitudeSun / 15.0);
         $nextBoundary = ((int) floor($sector15 / 2) + 1) * 30.0;
@@ -445,7 +510,7 @@ class LunarCalendar
      * @param float $moonAge 当日 0:00:00 の月齢（0 〜 約29.53 の範囲）
      * @return int スキップ可能な日数（0 以上）
      */
-    private function calcSakuSkipDays(float $moonAge): int
+    protected function calcSakuSkipDays(float $moonAge): int
     {
         $remaining = self::SYNODIC_MONTH - $moonAge;
 

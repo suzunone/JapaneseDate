@@ -10,12 +10,22 @@ use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Tests\JapaneseDate\InvokeTrait;
 
-/**
- *
- */
 
 /**
+ * Vsop87Astronomy クラスのテスト。
  *
+ * VSOP87 アルゴリズムによる太陽黄経計算が NASA/JPL Horizons の参照値と一致すること、
+ * および算出角度が常に [0, 360) の正規化範囲に収まることを確認する。
+ *
+ * @category    Tests
+ * @package     JapaneseDate
+ * @subpackage  Tests\Components
+ * @author      Suzunone <suzunone.eleven@gmail.com>
+ * @copyright   JapaneseDate
+ * @license     BSD-2
+ * @link        https://github.com/suzunone/JapaneseDate
+ * @see         https://github.com/suzunone/JapaneseDate
+ * @since       Release 1.0.0 から利用可能
  */
 #[CoversClass(Vsop87Astronomy::class)]
 class Vsop87AstronomyTest extends TestCase
@@ -46,6 +56,8 @@ class Vsop87AstronomyTest extends TestCase
     }
 
     /**
+     * sunAlgorithmName() が VSOP87 識別子を返し、SunAlgorithm インターフェースを実装していることを確認する。
+     *
      * @return void
      */
     public function test_algorithmNameReturnsVsop87(): void
@@ -58,6 +70,8 @@ class Vsop87AstronomyTest extends TestCase
     }
 
     /**
+     * approximateDeltaTSeconds() が 2050 年に対して 2050-2150 分岐の多項式を使うことを確認する。
+     *
      * @return void
      * @throws \ReflectionException
      */
@@ -73,6 +87,8 @@ class Vsop87AstronomyTest extends TestCase
     }
 
     /**
+     * longitudeSun() の計算値が NASA/JPL Horizons の視太陽黄経と 0.0005° 以内で一致することを確認する。
+     *
      * @param int $year
      * @param int $month
      * @param int $day
@@ -94,6 +110,8 @@ class Vsop87AstronomyTest extends TestCase
     }
 
     /**
+     * longitudeSun() が常に [0, 360) の正規化された角度を返すことを確認する。
+     *
      * @param int $year
      * @param int $month
      * @param int $day

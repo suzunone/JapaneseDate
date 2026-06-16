@@ -88,9 +88,14 @@ class Era
      * @param string $name 取得するプロパティ名。
      *
      * @return DateTime|DateTimeImmutable 元号の開始日または終了日。
+     * @throws ErrorException 未定義プロパティを取得しようとした場合。
      */
     public function __get(string $name): DateTime|DateTimeImmutable
     {
+        if ($name !== 'startDate' && $name !== 'endDate') {
+            throw new ErrorException('Undefined property ' . $name);
+        }
+
         return clone $this->$name;
     }
 

@@ -691,6 +691,7 @@ echo $result->format('Y-m-d');
 **Throws:**
 
 - DateInvalidTimeZoneException
+- [InfiniteLoopException](../JapaneseDate/Exceptions/InfiniteLoopException.md)
 - [NativeDateTimeException](../JapaneseDate/Exceptions/NativeDateTimeException.md)
 ---
 
@@ -745,6 +746,7 @@ echo $result->format('Y-m-d');
 **Throws:**
 
 - DateInvalidTimeZoneException
+- [InfiniteLoopException](../JapaneseDate/Exceptions/InfiniteLoopException.md)
 - [NativeDateTimeException](../JapaneseDate/Exceptions/NativeDateTimeException.md)
 ---
 
@@ -1049,6 +1051,9 @@ public DateTime addBusinessDaysTo($baseDate, $businessDays, $config = null)
 | [DateBusiness](../JapaneseDate/DateBusiness.md)\|null | `$config` | `null` | 判定に使用する設定（省略時はインスタンス設定） |
 
 **Returns:** [DateTime](../JapaneseDate/DateTime.md) — N営業日後の日付
+**Throws:**
+
+- [InfiniteLoopException](../JapaneseDate/Exceptions/InfiniteLoopException.md)
 ---
 
 ### subBusinessDaysFrom
@@ -1068,6 +1073,9 @@ public DateTime subBusinessDaysFrom($baseDate, $businessDays, $config = null)
 | [DateBusiness](../JapaneseDate/DateBusiness.md)\|null | `$config` | `null` | 判定に使用する設定（省略時はインスタンス設定） |
 
 **Returns:** [DateTime](../JapaneseDate/DateTime.md) — N営業日前の日付
+**Throws:**
+
+- [InfiniteLoopException](../JapaneseDate/Exceptions/InfiniteLoopException.md)
 ---
 
 ### countBusinessDaysBetween

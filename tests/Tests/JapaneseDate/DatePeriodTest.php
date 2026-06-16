@@ -656,6 +656,26 @@ class DatePeriodTest extends TestCase
     }
 
     /**
+     * splitByEra: 明治開始前の期間も欠落せず元号なし区間として返る。
+     */
+    public function test_splitByEra_keeps_period_before_meiji_start(): void
+    {
+        $period = DatePeriod::create('1860-01-01', '1 day', '1868-02-01');
+        $split = $period->splitByEra();
+
+        $this->assertArrayHasKey(0, $split);
+        $this->assertArrayHasKey(DateTime::ERA_MEIJI, $split);
+
+        $noEraPeriod = $split[0];
+        $this->assertEquals('1860-01-01', $noEraPeriod->getStartDate()->format('Y-m-d'));
+        $this->assertEquals('1868-01-24', $noEraPeriod->getEndDate()->format('Y-m-d'));
+
+        $meijiPeriod = $split[DateTime::ERA_MEIJI];
+        $this->assertEquals('1868-01-25', $meijiPeriod->getStartDate()->format('Y-m-d'));
+        $this->assertEquals('1868-02-01', $meijiPeriod->getEndDate()->format('Y-m-d'));
+    }
+
+    /**
      * eachJapaneseFiscalYear: 指定した年度分の年度開始日（4月1日）が取得できる。
      */
     public function test_eachJapaneseFiscalYear_count(): void

@@ -18,12 +18,24 @@
 namespace Tests\JapaneseDate;
 
 use JapaneseDate\DateTime;
-use JapaneseDate\Exceptions\NativeDateTimeException;
 use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * DateTime クラスのテスト(CoversNothing)
+ *
+ * @category    Tests
+ * @package     JapaneseDate
+ * @subpackage  Tests
+ * @author      Suzunone <suzunone.eleven@gmail.com>
+ * @copyright   JapaneseDate
+ * @license     BSD-2
+ * @link        https://github.com/suzunone/JapaneseDate
+ * @see         https://github.com/suzunone/JapaneseDate
+ * @since       2026-06-16
+ */
 #[CoversNothing]
 #[Group('long-running')]
 class DateTimeCoversNothingTest extends TestCase

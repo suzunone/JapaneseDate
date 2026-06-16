@@ -1,20 +1,5 @@
 <?php
 
-/**
- * LunarCalendar の統合テスト（カバレッジ対象外）
- *
- * @category    Tests
- * @package     JapaneseDate
- * @subpackage  Tests
- * @author      Suzunone<suzunone.eleven@gmail.com>
- * @copyright   JapaneseDate
- * @license     BSD-2
- * @version     GIT: $Id$
- * @link        https://github.com/suzunone/JapaneseDate
- * @see         https://github.com/suzunone/JapaneseDate
- * @since       1.0.0 リリースから利用可能
- */
-
 namespace Tests\JapaneseDate\Components;
 
 use JapaneseDate\Components\Astronomy;
@@ -27,6 +12,23 @@ use PHPUnit\Framework\Attributes\RunInSeparateProcess;
 use PHPUnit\Framework\TestCase;
 use Tests\JapaneseDate\InvokeTrait;
 
+
+/**
+ * LunarCalendar の統合テスト（カバレッジ対象外）。
+ *
+ * makeLunarCalendar() による旧暦朔日判定・閏月算出・全アルゴリズム組み合わせを検証する。
+ * カバレッジ計測対象外のため #[CoversNothing] を付与し、実動作の正確性のみを確認する。
+ *
+ * @category    Tests
+ * @package     JapaneseDate
+ * @subpackage  Tests\Components
+ * @author      Suzunone <suzunone.eleven@gmail.com>
+ * @copyright   JapaneseDate
+ * @license     BSD-2
+ * @link        https://github.com/suzunone/JapaneseDate
+ * @see         https://github.com/suzunone/JapaneseDate
+ * @since       Release 1.0.0 から利用可能
+ */
 #[CoversNothing]
 class LunarCalendarCoversNothingTest extends TestCase
 {
@@ -240,6 +242,9 @@ class LunarCalendarCoversNothingTest extends TestCase
             '2024/12/31' => ['2024/12/31'],
             // 月黄経負値バグ修正後: 2034-03-20 が朔日として認識されること
             '2034/03/20' => ['2034/03/20'],
+            // 2033年問題の修正確認: 旧暦11月（正規）と閏11月の朔日が正しく検出される
+            '2033/11/22' => ['2033/11/22'],
+            '2033/12/22' => ['2033/12/22'],
             // >= 1900 キャリブレーション: makeLunarCalendar(2001) のループ内で
             // 2000-12-25 が age1=28.78 > 20, age2=0.026 < 0.17 を満たしキャリブレーションが発動する
             '2001/01/24' => ['2001/01/24'],
@@ -277,6 +282,79 @@ class LunarCalendarCoversNothingTest extends TestCase
         );
 
         $this->assertContains($date, $dates, json_encode($calendar_array, JSON_THROW_ON_ERROR));
+    }
+
+    /**
+     * 2033年の各朔日に対して旧暦月番号と閏月フラグを検証するデータプロバイダ
+     *
+     * @return array<string, array{string, int, bool}>
+     */
+    public static function makeLunarCalendar2033LeapMonthProvider(): array
+    {
+        return [
+            '2033年正規11月の朔' => ['2033/11/22', 11, false],
+            '2033年閏11月の朔'   => ['2033/12/22', 11, true],
+        ];
+    }
+
+    /**
+     * 2033年の旧暦月番号と閏月フラグが正しく算出されることを確認する。
+     *
+     * @param string $date       グレゴリオ暦の朔日（YYYY/MM/DD 形式）
+     * @param int    $expectedLunarMonth 期待する旧暦月番号
+     * @param bool   $expectedIsLeap    期待する閏月フラグ
+     * @return void
+     * @throws \ReflectionException
+     */
+    #[DataProvider('makeLunarCalendar2033LeapMonthProvider')]
+    public function test_makeLunarCalendar_2033_leapMonth(
+        string $date,
+        int $expectedLunarMonth,
+        bool $expectedIsLeap
+    ): void {
+        DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_LEGACY);
+        DateTime::useMoonAlgorithm(DateTime::MOON_ALGORITHM_LEGACY);
+        DateTime::useBoundarySolarAlgorithm(DateTime::SOLAR_ALGORITHM_VSOP87);
+        DateTime::useBoundaryMoonAlgorithm(DateTime::MOON_ALGORITHM_MEEUS47);
+
+        $LunarCalendar = LunarCalendar::factory();
+        [$year] = explode('/', $date, 2);
+        $calendar_array = $this->invokeExecuteMethod($LunarCalendar, 'makeLunarCalendar', [(int) $year]);
+
+        [$y, $m, $d] = array_map('intval', explode('/', $date));
+        $entry = current(array_filter(
+            $calendar_array,
+            fn ($item) => $item['year'] === $y && $item['month'] === $m && $item['day'] === $d
+        ));
+
+        $this->assertNotFalse($entry, "{$date} が朔日テーブルに存在しない");
+        $this->assertSame($expectedLunarMonth, (int) $entry['lunar_month']);
+        $this->assertSame($expectedIsLeap, $entry['lunar_month_leap']);
+    }
+
+    /**
+     * 2033年の旧暦カレンダーに閏月がちょうど1つ存在し、それが閏11月であることを確認する。
+     *
+     * @return void
+     * @throws \ReflectionException
+     */
+    public function test_makeLunarCalendar_2033_exactlyOneLeapMonth(): void
+    {
+        DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_LEGACY);
+        DateTime::useMoonAlgorithm(DateTime::MOON_ALGORITHM_LEGACY);
+        DateTime::useBoundarySolarAlgorithm(DateTime::SOLAR_ALGORITHM_VSOP87);
+        DateTime::useBoundaryMoonAlgorithm(DateTime::MOON_ALGORITHM_MEEUS47);
+
+        $LunarCalendar = LunarCalendar::factory();
+        $calendar_array = $this->invokeExecuteMethod($LunarCalendar, 'makeLunarCalendar', [2033]);
+
+        $leapMonths = array_values(array_filter(
+            $calendar_array,
+            fn ($item) => $item['lunar_month_leap'] === true
+        ));
+
+        $this->assertCount(1, $leapMonths, '2033年の閏月がちょうど1つでない');
+        $this->assertSame(11, (int) $leapMonths[0]['lunar_month'], '2033年の閏月が11月でない');
     }
 
     /**

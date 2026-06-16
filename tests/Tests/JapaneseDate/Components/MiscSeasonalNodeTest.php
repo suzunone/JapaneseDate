@@ -623,6 +623,18 @@ class MiscSeasonalNodeTest extends TestCase
     }
 
     /**
+     * DateTimeImmutable で入梅を判定できることを確認する。
+     */
+    public function test_isNyubai_acceptsDateTimeImmutable(): void
+    {
+        DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_VSOP87);
+        DateTime::useMoonAlgorithm(DateTime::MOON_ALGORITHM_ELP2000);
+        $node = MiscSeasonalNode::factory();
+
+        $this->assertTrue($node->isNyubai(DateTimeImmutable::parse('2024-06-10')));
+    }
+
+    /**
      * @param int $year
      * @param int $month
      * @param int $day
@@ -697,6 +709,18 @@ class MiscSeasonalNodeTest extends TestCase
         $node = MiscSeasonalNode::factory();
         $date = DateTime::parse(sprintf('%04d-%02d-%02d', $year, $month, $day));
         $this->assertTrue($node->isHangesho($date), "{$year}年{$month}月{$day}日は半夏生");
+    }
+
+    /**
+     * DateTimeImmutable で半夏生を判定できることを確認する。
+     */
+    public function test_isHangesho_acceptsDateTimeImmutable(): void
+    {
+        DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_VSOP87);
+        DateTime::useMoonAlgorithm(DateTime::MOON_ALGORITHM_ELP2000);
+        $node = MiscSeasonalNode::factory();
+
+        $this->assertTrue($node->isHangesho(DateTimeImmutable::parse('2024-07-01')));
     }
 
     /**

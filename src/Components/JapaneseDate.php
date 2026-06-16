@@ -798,11 +798,10 @@ class JapaneseDate
      */
     public function viewWeekday(int $key): string
     {
-        if ($key >= count(self::WEEKDAY_NAME)) {
-            $key -= count(self::WEEKDAY_NAME);
-        }
+        $count = count(self::WEEKDAY_NAME);
+        $key = (($key % $count) + $count) % $count;
 
-        return self::WEEKDAY_NAME[$key];
+        return self::WEEKDAY_NAME[$key] ?? '';
     }
 
     /**

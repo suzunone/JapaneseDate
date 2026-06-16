@@ -390,14 +390,14 @@ trait Modern
      * その日が属する元号を整数定数で返します。
      *
      * 日付と各元号の開始日を比較して、明治・大正・昭和・平成・令和の
-     * いずれに属するかを判定します。
+     * いずれに属するかを判定します。明治開始前の日付は 0 を返します。
      *
      * 各元号の開始日（比較基準）:
      * - 大正: 1912年7月30日 00:00:00
      * - 昭和: 1926年12月25日 00:00:00
      * - 平成: 1989年1月8日 00:00:00
      * - 令和: 2019年5月1日 00:00:00
-     * - （上記未満は明治扱い）
+     * - 明治: 1868年1月25日 00:00:00
      *
      * 返り値の定数:
      * - {@see \JapaneseDate\DateTime::ERA_MEIJI}  = 1000（明治）
@@ -406,7 +406,7 @@ trait Modern
      * - {@see \JapaneseDate\DateTime::ERA_HEISEI} = 1003（平成）
      * - {@see \JapaneseDate\DateTime::ERA_REIWA}  = 1004（令和）
      *
-     * @return int 元号定数（{@see \JapaneseDate\DateTime::ERA_MEIJI} ～ {@see \JapaneseDate\DateTime::ERA_REIWA}）
+     * @return int 元号定数（{@see \JapaneseDate\DateTime::ERA_MEIJI} ～ {@see \JapaneseDate\DateTime::ERA_REIWA}）。元号なしの場合は 0。
      */
     protected function getEraName(): int
     {
@@ -418,6 +418,7 @@ trait Modern
      *
      * 「令和X年」「平成Y年」のように、元号の開始年を基準とした
      * 1始まりの年数を返します。計算式は「西暦年 - 元号開始年 + 1」です。
+     * 元号なしの場合は 0 を返します。
      *
      * 元号ごとの開始年（計算基準）:
      * - 明治: 1868年
@@ -431,7 +432,7 @@ trait Modern
      * - 1989年 → 平成1年（1989 - 1989 + 1 = 1）
      *
      * @param int|null $era_key 元号定数（省略時は {@see getEraName()} で自動判定）
-     * @return int 元号年（1始まりの正整数）
+     * @return int 元号年（1始まりの正整数）。元号なしの場合は 0。
      */
     protected function getEraYear(?int $era_key = null): int
     {
