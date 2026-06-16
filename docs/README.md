@@ -132,7 +132,7 @@ echo JapaneseDateTime::parse('first day of December 2018')->addWeeks(2);    // 2
 
 ``` .php
 
-echo JapaneseDateTime::parse(time());    // 2026-06-13 22:20:39
+echo JapaneseDateTime::parse(time());    // 2026-06-16 22:45:54
 echo JapaneseDateTime::parse(new DateTime('now'));    // PHP Fatal error:  Uncaught TypeError: DateTime::__construct() expects parameter 1 to be string, object given
 ```
 
@@ -143,9 +143,9 @@ echo JapaneseDateTime::parse(new DateTime('now'));    // PHP Fatal error:  Uncau
 そういった場合は、`JapaneseDate\DateTime::factory()`を使用します。
 
 ``` .php
-echo JapaneseDateTime::factory(time());    // 2026-06-13 22:20:39
+echo JapaneseDateTime::factory(time());    // 2026-06-17 07:45:54
 
-echo JapaneseDateTime::factory(new DateTime('now'));    // 2026-06-14 07:20:39
+echo JapaneseDateTime::factory(new DateTime('now'));    // 2026-06-17 07:45:54
 
 // もちろんこういったコードも動作します
 echo JapaneseDateTime::factory('first day of December 2018')->addWeeks(2);    // 2018-12-15 00:00:00
@@ -164,7 +164,7 @@ echo JapaneseDateTime::factory('H1/01/08');    // 1989-01-08 00:00:00
 
 // 数字のみの文字列の扱いに注意してください。
 // 8桁（YYYYMMDD）は strtotime() でパースします。
-echo JapaneseDateTime::factory('20180404');    // 2018-04-04 00:00:00
+echo JapaneseDateTime::factory('20180404');    // 1970-08-22 22:40:04
 // 9〜11桁はUNIXタイムスタンプとして int にキャストして処理します（strtotime() は対応しないため）。
 // 変換はデフォルトタイムゾーンで行われます。
 echo JapaneseDateTime::factory('100');    // 1970-01-01 09:01:40
@@ -173,7 +173,7 @@ echo JapaneseDateTime::parse('20180404050505');    // 2018-04-04 05:05:05
 echo JapaneseDateTime::factory('20180404050505');    // 2018-04-04 05:05:05
 // タイムスタンプを int 型で渡す場合は必ず int にキャストしてください。
 // 大きな数値をそのまま int リテラルで書くと精度が失われます。
-echo JapaneseDateTime::factory(20180404050505);    // 2061-07-19 07:48:25
+echo JapaneseDateTime::factory(20180404050505);    // 2061-07-19 16:48:25
 
 ```
 
@@ -188,13 +188,13 @@ echo JapaneseDateTime::factory(20180404050505);    // 2061-07-19 07:48:25
 
 ``` .php
 $now = JapaneseDateTime::now();
-echo $now;                               // 2026-06-14 07:20:39
+echo $now;                               // 2026-06-17 07:45:54
 $today = JapaneseDateTime::today();
-echo $today;                             // 2026-06-14 00:00:00
+echo $today;                             // 2026-06-17 00:00:00
 $tomorrow = JapaneseDateTime::tomorrow('Europe/London');
-echo $tomorrow;                          // 2026-06-14 00:00:00
+echo $tomorrow;                          // 2026-06-17 00:00:00
 $yesterday = JapaneseDateTime::yesterday();
-echo $yesterday;                         // 2026-06-13 00:00:00
+echo $yesterday;                         // 2026-06-16 00:00:00
 ```
 
 Getter
@@ -924,14 +924,14 @@ echo $result->format('Y-m-d');  // 2026-05-01
 
 // 次の祝日までの残り期間を DateInterval として取得する
 $interval = DateInterval::untilNextHoliday(JapaneseDateTime::parse('2026-05-01'));
-echo $interval->days . '日後が次の祝日';  // 日後が次の祝日
+echo $interval->days . '日後が次の祝日';  // 2日後が次の祝日
 
 // 次の大安までの残り期間を取得する
 $interval = DateInterval::untilNextSixWeek(
     JapaneseDateTime::parse('2026-05-01'),
     JapaneseDateTime::SIX_WEEKDAY_TAIAN
 );
-echo $interval->days . '日後が次の大安';  // 日後が次の大安
+echo $interval->days . '日後が次の大安';  // 6日後が次の大安
 
 // 令和の継続期間を取得する
 $interval = DateInterval::eraSpan(JapaneseDateTime::ERA_REIWA, JapaneseDateTime::parse('2026-05-01'));

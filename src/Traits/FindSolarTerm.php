@@ -24,7 +24,7 @@ use Throwable;
  * @license     BSD-2
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
- * @since       Release 1.0.0 から利用可能
+ * @since       1.0.0
  * @mixin DateTime
  * @mixin DateTimeImmutable
  */
