@@ -26,9 +26,9 @@ use PHPUnit\Framework\TestCase;
  * @license     BSD-2
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
- * @covers \JapaneseDate\Components\BusinessCalendar
- * @covers \JapaneseDate\DateBusiness
  */
+#[CoversClass(BusinessCalendar::class)]
+#[CoversClass(DateBusiness::class)]
 class BusinessCalendarTest extends TestCase
 {
     /**
@@ -41,6 +41,7 @@ class BusinessCalendarTest extends TestCase
         $this->assertArrayHasKey(6, $config->getClosingWeekdays()); // 土曜
         $this->assertTrue($config->isBypassHoliday());
     }
+
     /**
      * @return void
      */
@@ -48,6 +49,7 @@ class BusinessCalendarTest extends TestCase
     {
         $this->assertNull(BusinessCalendar::getGlobalConfig());
     }
+
     /**
      * @return void
      */
@@ -57,6 +59,7 @@ class BusinessCalendarTest extends TestCase
         BusinessCalendar::setGlobalConfig($config);
         $this->assertSame($config, BusinessCalendar::getGlobalConfig());
     }
+
     /**
      * @return void
      */
@@ -67,6 +70,7 @@ class BusinessCalendarTest extends TestCase
         BusinessCalendar::setGlobalConfig(null);
         $this->assertNull(BusinessCalendar::getGlobalConfig());
     }
+
     /**
      * @return void
      */
@@ -76,6 +80,7 @@ class BusinessCalendarTest extends TestCase
         BusinessCalendar::setDefaultConfig($config);
         $this->assertSame($config, BusinessCalendar::getDefaultConfig());
     }
+
     /**
      * @return void
      */
@@ -86,6 +91,7 @@ class BusinessCalendarTest extends TestCase
         $this->assertArrayHasKey(0, $config->getClosingWeekdays());
         $this->assertArrayHasKey(6, $config->getClosingWeekdays());
     }
+
     /**
      * @return void
      */
@@ -98,6 +104,7 @@ class BusinessCalendarTest extends TestCase
         $resolved = BusinessCalendar::resolveConfig($instanceConfig);
         $this->assertSame($instanceConfig, $resolved);
     }
+
     /**
      * @return void
      */
@@ -109,6 +116,7 @@ class BusinessCalendarTest extends TestCase
         $resolved = BusinessCalendar::resolveConfig(null);
         $this->assertSame($globalConfig, $resolved);
     }
+
     /**
      * @return void
      */
@@ -117,6 +125,7 @@ class BusinessCalendarTest extends TestCase
         $resolved = BusinessCalendar::resolveConfig(null);
         $this->assertSame(BusinessCalendar::getDefaultConfig(), $resolved);
     }
+
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -128,6 +137,7 @@ class BusinessCalendarTest extends TestCase
         $dt = DateTime::factory('2026-05-25');
         $this->assertTrue(BusinessCalendar::isBusinessDay($dt));
     }
+
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -139,7 +149,9 @@ class BusinessCalendarTest extends TestCase
         $dt = DateTime::factory('2026-05-30');
         $this->assertFalse(BusinessCalendar::isBusinessDay($dt));
     }
+
     // --- isBusinessDay のテスト ---
+
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -151,6 +163,7 @@ class BusinessCalendarTest extends TestCase
         $dt = DateTime::factory('2026-05-31');
         $this->assertFalse(BusinessCalendar::isBusinessDay($dt));
     }
+
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -162,6 +175,7 @@ class BusinessCalendarTest extends TestCase
         $dt = DateTime::factory('2026-01-01');
         $this->assertFalse(BusinessCalendar::isBusinessDay($dt));
     }
+
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -174,6 +188,7 @@ class BusinessCalendarTest extends TestCase
         $dt = DateTime::factory('2026-01-01');
         $this->assertTrue(BusinessCalendar::isBusinessDay($dt, $config));
     }
+
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -192,6 +207,7 @@ class BusinessCalendarTest extends TestCase
         $dt2 = DateTime::factory('2026-06-06'); // 第1土曜（通常の休み）
         $this->assertFalse(BusinessCalendar::isBusinessDay($dt2, $config));
     }
+
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -208,7 +224,9 @@ class BusinessCalendarTest extends TestCase
         $dt = DateTime::factory('2026-06-13');
         $this->assertFalse(BusinessCalendar::isBusinessDay($dt, $config));
     }
+
     // 優先度3: 第XX曜日 営業指定が曜日設定を上書き
+
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -223,7 +241,9 @@ class BusinessCalendarTest extends TestCase
         $dt = DateTime::factory('2026-06-13');
         $this->assertTrue(BusinessCalendar::isBusinessDay($dt, $config));
     }
+
     // 優先度4: 第XX曜日 休業指定が営業指定を上書き
+
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -239,7 +259,9 @@ class BusinessCalendarTest extends TestCase
         $dt = DateTime::factory('2026-05-25');
         $this->assertFalse(BusinessCalendar::isBusinessDay($dt, $config));
     }
+
     // 優先度5: 特定日 営業指定が休業設定を上書き
+
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -255,7 +277,9 @@ class BusinessCalendarTest extends TestCase
         $dt = DateTime::factory('2026-05-25');
         $this->assertTrue(BusinessCalendar::isBusinessDay($dt, $config));
     }
+
     // 優先度6: 特定日 休業指定が営業指定を上書き
+
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -271,7 +295,9 @@ class BusinessCalendarTest extends TestCase
         $dt = DateTime::factory('2026-05-25');
         $this->assertFalse(BusinessCalendar::isBusinessDay($dt, $config));
     }
+
     // 優先度7: 営業指定フィルタが休業日指定を上書き
+
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -288,7 +314,9 @@ class BusinessCalendarTest extends TestCase
         $saturday = DateTime::factory('2026-05-30'); // 土曜
         $this->assertTrue(BusinessCalendar::isBusinessDay($saturday, $config));
     }
+
     // 優先度8: 休業指定フィルタが営業フィルタを上書き
+
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -302,7 +330,9 @@ class BusinessCalendarTest extends TestCase
         $monday = DateTime::factory('2026-05-25');
         $this->assertFalse(BusinessCalendar::isBusinessDay($monday, $config));
     }
+
     // 優先度9: マクロが最高優先度
+
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -313,6 +343,7 @@ class BusinessCalendarTest extends TestCase
         $dt = DateTime::factory('2026-05-25'); // 月曜
         $this->assertNull(BusinessCalendar::getClosingLabel($dt));
     }
+
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -324,7 +355,9 @@ class BusinessCalendarTest extends TestCase
         $dt = DateTime::factory('2026-05-30'); // 土曜
         $this->assertNull(BusinessCalendar::getClosingLabel($dt));
     }
+
     // --- getClosingLabel のテスト ---
+
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -339,6 +372,7 @@ class BusinessCalendarTest extends TestCase
         $dt = DateTime::factory('2026-08-14');
         $this->assertSame('夏期休暇', BusinessCalendar::getClosingLabel($dt, $config));
     }
+
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -354,6 +388,7 @@ class BusinessCalendarTest extends TestCase
         $dt = DateTime::factory('2026-06-17');
         $this->assertSame('第3水曜定休', BusinessCalendar::getClosingLabel($dt, $config));
     }
+
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -368,6 +403,7 @@ class BusinessCalendarTest extends TestCase
         $dt = DateTime::factory('2026-08-14'); // 金曜
         $this->assertSame('夏期休暇フィルタ', BusinessCalendar::getClosingLabel($dt, $config));
     }
+
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -381,6 +417,7 @@ class BusinessCalendarTest extends TestCase
         $dt = DateTime::factory('2026-05-25');
         $this->assertNull(BusinessCalendar::getClosingLabel($dt, $config));
     }
+
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -392,6 +429,7 @@ class BusinessCalendarTest extends TestCase
         $dt = DateTime::factory('2026-01-01');
         $this->assertNull(BusinessCalendar::getClosingLabel($dt));
     }
+
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -409,6 +447,7 @@ class BusinessCalendarTest extends TestCase
         $this->assertFalse(BusinessCalendar::isBusinessDay($dt));
         $this->assertSame('グローバル休業', BusinessCalendar::getClosingLabel($dt));
     }
+
     /**
      * @return void
      */
@@ -424,6 +463,7 @@ class BusinessCalendarTest extends TestCase
         $newDefault = BusinessCalendar::getDefaultConfig();
         $this->assertNotSame($config, $newDefault);
     }
+
     /**
      * @return void
      */
@@ -437,6 +477,7 @@ class BusinessCalendarTest extends TestCase
         $dt = new \DateTime('2026-05-30'); // 土曜
         $this->assertFalse(BusinessCalendar::isBusinessDay($dt, $config));
     }
+
     /**
      * getHoliday() の catch ブランチ:
      * getTimezone() が false を返す DateTimeInterface を渡すと
@@ -455,6 +496,7 @@ class BusinessCalendarTest extends TestCase
         // 祝日判定も catch により NO_HOLIDAY → 営業日
         $this->assertTrue(BusinessCalendar::isBusinessDay($badDate, $config));
     }
+
     /**
      * getClosingLabel() で isBypassHoliday() が false のとき、祝日チェックをスキップするブランチ。
      */
@@ -470,6 +512,7 @@ class BusinessCalendarTest extends TestCase
         // bypassHoliday=false → 祝日チェックブロックに入らない ← 未カバーブランチ
         $this->assertSame('臨時休業', BusinessCalendar::getClosingLabel($dt, $config));
     }
+
     /**
      * @return void
      */
@@ -477,6 +520,7 @@ class BusinessCalendarTest extends TestCase
     {
         BusinessCalendar::resetAll();
     }
+
     /**
      * @return void
      */

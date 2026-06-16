@@ -247,7 +247,7 @@ class ELP2000 implements MoonAlgorithm
      * @param numeric-string $t J2000.0 起算のユリウス世紀
      * @return array{0: float, 1: float, 2: float, 3: float, 4: float, 5: float, 6: float, 7: float, 8: float, 9: float, 10: float, 11: float, 12: float, 13: float, 14: float, 15: float, 16: float} [ft, fd, flp, fl, ff, fpd, fplp, fpl, fpf, fp1, fp2, fp3, fp4, fp5, fp6, fp7, fp8]
      */
-    private function seriesArgumentsAsFloats(string $t): array
+    protected function seriesArgumentsAsFloats(string $t): array
     {
         $args = $this->lunarArguments($t);
         $linArgs = $this->linearLunarArguments($t);

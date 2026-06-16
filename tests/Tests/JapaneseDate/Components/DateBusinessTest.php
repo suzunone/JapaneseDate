@@ -21,8 +21,8 @@ use PHPUnit\Framework\TestCase;
  * @license     BSD-2
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
- * @covers \JapaneseDate\DateBusiness
  */
+#[CoversClass(DateBusiness::class)]
 class DateBusinessTest extends TestCase
 {
     /**
@@ -36,6 +36,7 @@ class DateBusinessTest extends TestCase
         $this->assertArrayHasKey(6, $db->getClosingWeekdays());
         $this->assertArrayNotHasKey(1, $db->getClosingWeekdays());
     }
+
     /**
      * @return void
      */
@@ -47,6 +48,7 @@ class DateBusinessTest extends TestCase
         $db->removeClosingWeekday(6);
         $this->assertArrayNotHasKey(6, $db->getClosingWeekdays());
     }
+
     /**
      * @return void
      */
@@ -59,6 +61,7 @@ class DateBusinessTest extends TestCase
         $db->setBypassHoliday(true);
         $this->assertTrue($db->isBypassHoliday());
     }
+
     /**
      * @return void
      */
@@ -70,6 +73,7 @@ class DateBusinessTest extends TestCase
         $db->removeOpenNthWeekday(6, 2);
         $this->assertArrayNotHasKey('6_2', $db->getOpenNthWeekdays());
     }
+
     /**
      * @return void
      */
@@ -82,6 +86,7 @@ class DateBusinessTest extends TestCase
         $db->removeClosingNthWeekday(3, 3);
         $this->assertArrayNotHasKey('3_3', $db->getClosingNthWeekdays());
     }
+
     /**
      * @return void
      * @throws \Exception
@@ -94,6 +99,7 @@ class DateBusinessTest extends TestCase
         $db->removeOpenDate('2026-12-30');
         $this->assertArrayNotHasKey('20261230', $db->getOpenDates());
     }
+
     /**
      * @return void
      * @throws \Exception
@@ -105,6 +111,7 @@ class DateBusinessTest extends TestCase
         $db->addOpenDate($dt);
         $this->assertArrayHasKey('20261230', $db->getOpenDates());
     }
+
     /**
      * @return void
      * @throws \Exception
@@ -118,6 +125,7 @@ class DateBusinessTest extends TestCase
         $db->removeClosingDate('2026-08-15');
         $this->assertArrayNotHasKey('20260815', $db->getClosingDates());
     }
+
     /**
      * @return void
      * @throws \Exception
@@ -129,6 +137,7 @@ class DateBusinessTest extends TestCase
         $db->addClosingDate($dt, '夏期休暇');
         $this->assertArrayHasKey('20260815', $db->getClosingDates());
     }
+
     /**
      * @return void
      * @throws \Exception
@@ -139,6 +148,7 @@ class DateBusinessTest extends TestCase
         $db->addClosingDate('2026-08-15');
         $this->assertNull($db->getClosingDates()['20260815']);
     }
+
     /**
      * @return void
      */
@@ -150,6 +160,7 @@ class DateBusinessTest extends TestCase
         $this->assertCount(1, $db->getOpenFilters());
         $this->assertSame($filter, $db->getOpenFilters()[0]);
     }
+
     /**
      * @return void
      */
@@ -163,6 +174,7 @@ class DateBusinessTest extends TestCase
         $this->assertSame($filter, $filters[0]['filter']);
         $this->assertSame('大晦日', $filters[0]['label']);
     }
+
     /**
      * @return void
      */
@@ -173,6 +185,7 @@ class DateBusinessTest extends TestCase
         $db->addClosingFilter($filter);
         $this->assertNull($db->getClosingFilters()[0]['label']);
     }
+
     /**
      * @return void
      */
@@ -186,6 +199,7 @@ class DateBusinessTest extends TestCase
         $db->setMacro(null);
         $this->assertNull($db->getMacro());
     }
+
     /**
      * @return void
      * @throws \Exception
@@ -215,6 +229,7 @@ class DateBusinessTest extends TestCase
         $this->assertEmpty($db->getClosingFilters());
         $this->assertNull($db->getMacro());
     }
+
     /**
      * @return void
      * @throws \Exception

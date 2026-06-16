@@ -36,12 +36,13 @@ use Tests\JapaneseDate\InvokeTrait;
  * @package     JapaneseDate
  * @subpackage  Components
  * @author      Suzunone<suzunone.eleven@gmail.com>
- * @covers \JapaneseDate\Components\Elp2000MoonAge
- * @covers \JapaneseDate\Components\Elp2000MoonAge::moonAge
  */
+#[CoversClass(Elp2000MoonAge::class)]
+#[CoversMethod(Elp2000MoonAge::class, 'moonAge')]
 class Elp2000MoonAgeTest extends TestCase
 {
     use InvokeTrait;
+
     /**
      * 月齢の期待値（丸め値）を返すデータセット
      *
@@ -60,12 +61,15 @@ class Elp2000MoonAgeTest extends TestCase
             '2020朔' => [2020, 12, 15, 1, 17, 0, 0],
             // 朔翌日付近: 月齢 ≈ 1
             '2020朔翌日' => [2020, 12, 16, 1, 17, 0, 1],
-            // 春分付近: ΔΛ > 40°補正・$res > 30 補正を通る
-            '2017 春分付近の月齢4' => [2017, 4, 2, 0, 0, 0, 4],
+            // 春分付近（朔前3日）: approxNewMoon が朔当日 → $res<0 で直前朔へ再収束。Spring Fix を通る
+            '2017 春分付近の月齢26' => [2017, 3, 25, 0, 0, 0, 26],
+            // 春分から12日後・朔から5日後（月齢≈4.5）。旧コードは while バグで早期終了し誤値4を返していた
+            '2017 4月初旬の月齢5' => [2017, 4, 2, 0, 0, 0, 5],
             // 収束計算結果が負値となり、朔望月加算補正(ELP2000固有)を通るケース
             '2015朔望月加算補正ケース' => [2015, 1, 19, 0, 0, 0, 28],
         ];
     }
+
     /**
      * @param int $year
      * @param int $month
@@ -77,12 +81,20 @@ class Elp2000MoonAgeTest extends TestCase
      * @return void
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
-     * @dataProvider moonAgeProvider
      */
-    public function test_moonAge(int $year, int $month, int $day, float $hour, float $min, float $sec, int $expectedRounded): void
-    {
+    #[DataProvider('moonAgeProvider')]
+    public function test_moonAge(
+        int $year,
+        int $month,
+        int $day,
+        float $hour,
+        float $min,
+        float $sec,
+        int $expectedRounded
+    ): void {
         $moonAge = new Elp2000MoonAge($this->makeElp2000Astronomy());
         $result = $moonAge->moonAge($year, $month, $day, $hour, $min, $sec);
+
         $this->assertEquals(
             $expectedRounded,
             (int) round($result) % 30,
@@ -98,6 +110,7 @@ class Elp2000MoonAgeTest extends TestCase
             )
         );
     }
+
     /**
      * ELP2000 を月黄経アルゴリズムとして注入した Astronomy を生成する
      *
@@ -107,6 +120,7 @@ class Elp2000MoonAgeTest extends TestCase
     {
         return new Astronomy(new Vsop87Astronomy(), new ELP2000());
     }
+
     /**
      * 月齢は常に [0, 30) の範囲の値を返す
      *
@@ -127,6 +141,7 @@ class Elp2000MoonAgeTest extends TestCase
             $this->assertLessThan(30.0, $result, "$y-$m-$d で月齢が30以上になった");
         }
     }
+
     /**
      * 黄経差の収束ループにおいて「春分付近の朔」補正分岐
      * （太陽黄経 0〜20°かつ月黄経 300°以上で ΔΛ ＝ 360 － ΔΛ と補正する分岐）
@@ -145,6 +160,25 @@ class Elp2000MoonAgeTest extends TestCase
         $this->assertGreaterThanOrEqual(0.0, $result);
         $this->assertLessThan(30.0, $result);
     }
+
+    /**
+     * フル精度スナップにおいて「春分付近の朔」補正分岐を確実に通過する。
+     */
+    public function test_moonAge_passesSpringEquinoxCorrectionBranchDuringFullPrecisionSnap(): void
+    {
+        $astronomy = $this->makeSequencedAstronomy([
+            [180.0, 180.0 + 1.0e-5],
+            [10.0, 305.0],
+            [180.0, 180.0 + 1.0e-5],
+        ]);
+        $moonAge = new Elp2000MoonAge($astronomy);
+
+        $result = $moonAge->moonAge(2024, 1, 11, 8, 0, 0);
+
+        $this->assertGreaterThanOrEqual(0.0, $result);
+        $this->assertLessThan(30.0, $result);
+    }
+
     /**
      * 黄経差の収束ループにおいて「ΔΛ が引き込み範囲（±40°）を逸脱した場合」の
      * 補正分岐、および収束後の月齢が30以上になった場合の補正分岐
@@ -166,29 +200,49 @@ class Elp2000MoonAgeTest extends TestCase
         $this->assertGreaterThanOrEqual(0.0, $result);
         $this->assertLessThan(30.0, $result);
     }
+
+    /**
+     * 直前の朔への再収束後も未来時刻となった場合、朔望月を加算して負値を補正する。
+     */
+    public function test_moonAge_addsSynodicMonthWhenSecondConvergenceReturnsFutureDate(): void
+    {
+        $astronomy = $this->makeSequencedAstronomy([
+            [180.0, 180.0 + 1.0e-5],
+            [200.0, 300.0],
+            [180.0, 180.0 + 1.0e-5],
+        ], -360.0);
+        $moonAge = new Elp2000MoonAge($astronomy);
+
+        $result = $moonAge->moonAge(2024, 1, 11, 8, 0, 0);
+
+        $this->assertGreaterThanOrEqual(0.0, $result);
+        $this->assertLessThan(30.0, $result);
+    }
+
     /**
      * 太陽・月の黄経をあらかじめ用意した数列で順に返す Astronomy を生成する。
      *
      * 数列を使い切った場合は最後の要素を返し続け、収束ループを終了させる。
      *
      * @param array<int, array{0: float, 1: float}> $sequence [太陽黄経, 月黄経] の組の数列
+     * @param null|float $normalizedAngle normalizeAngle() が返す固定値
      * @return \JapaneseDate\Components\Astronomy
      */
-    private function makeSequencedAstronomy(array $sequence): Astronomy
+    private function makeSequencedAstronomy(array $sequence, ?float $normalizedAngle = null): Astronomy
     {
-        return new class ($sequence) extends Astronomy {
+        return new class ($sequence, $normalizedAngle) extends Astronomy {
             private int $sunIndex = 0;
 
             private int $moonIndex = 0;
 
             /**
-             * @param array $sequence
+             * @param array<int, array{0: float, 1: float}> $sequence
+             * @param null|float $normalizedAngle
              */
-            public function __construct(/**
-             * @readonly
-             */
-            private array $sequence)
-            {
+            public function __construct(
+                private readonly array $sequence,
+                private readonly ?float $normalizedAngle
+            ) {
                 parent::__construct();
             }
 
@@ -225,8 +279,38 @@ class Elp2000MoonAgeTest extends TestCase
 
                 return $value;
             }
+
+            /**
+             * @param int $year
+             * @param int $month
+             * @param int $day
+             * @param float $hour
+             * @param float $min
+             * @param float $sec
+             * @return float
+             */
+            public function longitudeMoonFast(
+                int $year,
+                int $month,
+                int $day,
+                float $hour,
+                float $min,
+                float $sec
+            ): float {
+                return $this->longitudeMoon($year, $month, $day, $hour, $min, $sec);
+            }
+
+            /**
+             * @param float $angle
+             * @return float
+             */
+            public function normalizeAngle(float $angle): float
+            {
+                return $this->normalizedAngle ?? parent::normalizeAngle($angle);
+            }
         };
     }
+
     /**
      * NASA SVS の 2014-01-01 00:00 UTC（09:00 JST）の月齢と比較する。
      *

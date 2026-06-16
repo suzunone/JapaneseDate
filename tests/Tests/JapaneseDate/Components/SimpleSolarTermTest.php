@@ -13,16 +13,28 @@ use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Tests\JapaneseDate\Components\Traits\SolarTermDataProviderTrait;
 
+
 /**
+ * SimpleSolarTerm クラスのテスト。
  *
- */
-/**
+ * 生成済み参照テーブルによる二十四節気日付取得が国立天文台暦要項の期待値と一致すること、
+ * 期間境界・年単位オーバーライド・サポート範囲外年の例外処理を確認する。
  *
- * @covers \JapaneseDate\Components\SimpleSolarTerm
+ * @category    Tests
+ * @package     JapaneseDate
+ * @subpackage  Tests\Components
+ * @author      Suzunone <suzunone.eleven@gmail.com>
+ * @copyright   JapaneseDate
+ * @license     BSD-2
+ * @link        https://github.com/suzunone/JapaneseDate
+ * @see         https://github.com/suzunone/JapaneseDate
+ * @since       Release 1.0.0 から利用可能
  */
+#[CoversClass(SimpleSolarTerm::class)]
 class SimpleSolarTermTest extends TestCase
 {
     use SolarTermDataProviderTrait;
+
     /**
      * SimpleSolarTerm のメソッド名と二十四節気コードの対応表。
      */
@@ -52,6 +64,7 @@ class SimpleSolarTermTest extends TestCase
         'usui' => DateTime::SOLAR_TERM_USUI,
         'keichitsu' => DateTime::SOLAR_TERM_KEICHITSU,
     ];
+
     /**
      * 年ごとの二十四節気一覧を検証するため、暦要項のデータを年単位にまとめる。
      */
@@ -72,6 +85,7 @@ class SimpleSolarTermTest extends TestCase
 
         return $cases;
     }
+
     /**
      * 国立天文台暦要項の「二十四節気および雑節」で確認した日付を返す。
      */
@@ -159,6 +173,7 @@ class SimpleSolarTermTest extends TestCase
             ]),
         );
     }
+
     /**
      * 指定年の二十四節気データをデータプロバイダ用のケース配列に変換する。
      */
@@ -172,6 +187,7 @@ class SimpleSolarTermTest extends TestCase
 
         return $cases;
     }
+
     /**
      * 生成済みテーブルの各期間を検証するデータを返す。
      */
@@ -227,6 +243,7 @@ class SimpleSolarTermTest extends TestCase
 
         return $cases;
     }
+
     /**
      * 生成済みテーブルに定義された年単位の例外オーバーライドを返す。
      */
@@ -255,7 +272,7 @@ class SimpleSolarTermTest extends TestCase
             'touji' => [DateTime::SOLAR_TERM_TOUJI, [2367 => 23, 1646 => 22]],
             'syoukan' => [DateTime::SOLAR_TERM_SYOUKAN, [2332 => 7, 1607 => 6, 1710 => 6, 1850 => 6, 2229 => 6]],
             'daikan' => [DateTime::SOLAR_TERM_DAIKAN, [2362 => 21, 1604 => 21, 1950 => 21]],
-            'rissyun' => [DateTime::SOLAR_TERM_RISSYUN, [2157 => 4, 2601 => 5, 2465 => 4, 2737 => 5]],
+            'rissyun' => [DateTime::SOLAR_TERM_RISSYUN, [2157 => 4]],
             'usui' => [DateTime::SOLAR_TERM_USUI, [2302 => 20, 2030 => 19, 2133 => 19]],
             'keichitsu' => [DateTime::SOLAR_TERM_KEICHITSU, [2187 => 6, 2220 => 6, 2253 => 6, 2286 => 6]],
         ];
@@ -273,6 +290,7 @@ class SimpleSolarTermTest extends TestCase
 
         return $cases;
     }
+
     /**
      * サポート範囲外の年を検証するため、各二十四節気メソッドのケースを返す。
      */
@@ -282,10 +300,12 @@ class SimpleSolarTermTest extends TestCase
 
         foreach (array_keys(self::SOLAR_TERM_METHODS) as $method) {
             $cases[$method . ' before supported range'] = [$method, 1599];
+            $cases[$method . ' after supported range'] = [$method, 2400];
         }
 
         return $cases;
     }
+
     /**
      * 二十四節気コードから該当年の日付を取得できることを確認する。
      *
@@ -296,28 +316,32 @@ class SimpleSolarTermTest extends TestCase
      * @return void
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
-     * @dataProvider naoRekiYokoSolarTermDataProvider
      */
+    #[DataProvider('naoRekiYokoSolarTermDataProvider')]
     public function test_getSolarTerm($year, $solar_term_code, $month, $day): void
     {
         $SolarTerm = new SimpleSolarTerm();
         $SolarTermData = $SolarTerm->getSolarTerm($year, $solar_term_code);
+
         $this->assertInstanceOf(SolarTermDate::class, $SolarTermData);
         $this->assertSame($year, $SolarTermData->year);
         $this->assertSame($solar_term_code, $SolarTermData->solar_term);
         $this->assertSame($month, $SolarTermData->month);
         $this->assertSame($day, $SolarTermData->day);
     }
+
     /**
      * 年単位で取得した二十四節気一覧が暦要項の期待値と一致することを確認する。
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
-     * @dataProvider naoRekiYokoYearDataProvider
      */
+    #[DataProvider('naoRekiYokoYearDataProvider')]
     public function test_getSolarTermsMatchesNaoRekiYoko($year, array $expected): void
     {
         $solarTerms = (new SimpleSolarTerm())->getSolarTerms($year);
+
         $this->assertSame(array_keys($expected), array_keys($solarTerms));
+
         foreach ($expected as $solarTerm => [$month, $day]) {
             $this->assertInstanceOf(SolarTermDate::class, $solarTerms[$solarTerm]);
             $this->assertSame($year, $solarTerms[$solarTerm]->year);
@@ -326,39 +350,65 @@ class SimpleSolarTermTest extends TestCase
             $this->assertSame($day, $solarTerms[$solarTerm]->day);
         }
     }
+
+    /**
+     * 対応表の開始年で全二十四節気を取得できることを確認する。
+     *
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
+     */
+    public function test_getSolarTermsSupportsTableStartYear(): void
+    {
+        $solarTerms = (new SimpleSolarTerm())->getSolarTerms(1600);
+
+        $this->assertCount(24, $solarTerms);
+
+        foreach ($solarTerms as $solarTerm => $solarTermDate) {
+            $this->assertInstanceOf(SolarTermDate::class, $solarTermDate);
+            $this->assertSame(1600, $solarTermDate->year);
+            $this->assertSame($solarTerm, $solarTermDate->solar_term);
+        }
+    }
+
     /**
      * 生成済みテーブルの期間境界で、各メソッドが期待する日付を返すことを確認する。
-     * @dataProvider simpleSolarTermTableRangeDataProvider
      */
+    #[DataProvider('simpleSolarTermTableRangeDataProvider')]
     public function test_simpleSolarTermTableRanges($method, $year, $solarTerm, $day): void
     {
         $solarTermDate = (new SimpleSolarTerm())->{$method}($year);
+
         $this->assertInstanceOf(SolarTermDate::class, $solarTermDate);
         $this->assertSame($year, $solarTermDate->year);
         $this->assertSame($solarTerm, $solarTermDate->solar_term);
         $this->assertSame($day, $solarTermDate->day, $year);
     }
+
     /**
      * 年単位の例外オーバーライドが期待する日付を返すことを確認する。
-     * @dataProvider simpleSolarTermYearOverrideDataProvider
      */
+    #[DataProvider('simpleSolarTermYearOverrideDataProvider')]
     public function test_simpleSolarTermYearOverrides($method, $year, $solarTerm, $day): void
     {
         $solarTermDate = (new SimpleSolarTerm())->{$method}($year);
+
         $this->assertInstanceOf(SolarTermDate::class, $solarTermDate);
         $this->assertSame($year, $solarTermDate->year);
         $this->assertSame($solarTerm, $solarTermDate->solar_term);
         $this->assertSame($day, $solarTermDate->day);
     }
+
     /**
      * サポート範囲外の年を指定した場合に例外が発生することを確認する。
-     * @dataProvider unsupportedYearDataProvider
      */
+    #[DataProvider('unsupportedYearDataProvider')]
     public function test_simpleSolarTermMethodsRejectUnsupportedYear($method, $year): void
     {
         $this->expectException(SolarTermException::class);
+
         (new SimpleSolarTerm())->{$method}($year);
     }
+
     /**
      * 未定義の二十四節気コードを指定した場合に例外が発生することを確認する。
      * @throws \JapaneseDate\Exceptions\Exception

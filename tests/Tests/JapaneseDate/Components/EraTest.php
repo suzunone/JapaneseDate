@@ -42,11 +42,12 @@ use Tests\JapaneseDate\InvokeTrait;
  * @author      Suzunone<suzunone.eleven@gmail.com>
  * @link        https://github.com/suzunone/JapaneseDate
  * @since       8.4.0
- * @covers \JapaneseDate\Components\JisEra
  */
+#[CoversClass(JisEra::class)]
 class EraTest extends TestCase
 {
     use InvokeTrait;
+
     /**
      * getEraKey のテストデータ。
      *
@@ -55,6 +56,8 @@ class EraTest extends TestCase
     public static function eraKeyProvider(): array
     {
         return [
+            '明治開始前' => ['1868-01-24T23:59:59+09:00', 0],
+            '明治開始日' => ['1868-01-25T00:00:00+09:00', DateTime::ERA_MEIJI],
             '明治（1912-07-29 JST 直前）' => ['1912-07-29T23:59:59+09:00', DateTime::ERA_MEIJI],
             '大正開始日（1912-07-30 JST）' => ['1912-07-30T00:00:00+09:00', DateTime::ERA_TAISHO],
             '大正（1926-12-24 JST）' => ['1926-12-24T23:59:59+09:00', DateTime::ERA_TAISHO],
@@ -66,6 +69,7 @@ class EraTest extends TestCase
             '令和（2026-01-01 JST）' => ['2026-01-01T00:00:00+09:00', DateTime::ERA_REIWA],
         ];
     }
+
     /**
      * getEraYear のテストデータ。
      *
@@ -84,11 +88,14 @@ class EraTest extends TestCase
             '平成31年（2019年）' => [2019, DateTime::ERA_HEISEI, 31],
             '令和元年（2019年）' => [2019, DateTime::ERA_REIWA, 1],
             '令和8年（2026年）' => [2026, DateTime::ERA_REIWA, 8],
+            '元号なし' => [1867, 0, 0],
         ];
     }
+
     // =========================================================================
     // factory()
     // =========================================================================
+
     /**
      * getEraNameString のテストデータ。
      *
@@ -104,9 +111,11 @@ class EraTest extends TestCase
             '令和' => [DateTime::ERA_REIWA, '令和'],
         ];
     }
+
     // =========================================================================
     // getEraKey()
     // =========================================================================
+
     /**
      * parseJisDate のテストデータ。
      *
@@ -130,6 +139,7 @@ class EraTest extends TestCase
             'パース不可能な文字列' => ['不正な文字列！！', null],
         ];
     }
+
     /**
      * JST タイムゾーンで指定日時の Unix タイムスタンプを返すヘルパー。
      */
@@ -143,6 +153,7 @@ class EraTest extends TestCase
 
         return (float) $dt->getTimestamp();
     }
+
     /**
      * factory() は同一インスタンスを返すこと。
      */
@@ -152,50 +163,57 @@ class EraTest extends TestCase
         $b = JisEra::factory();
         $this->assertSame($a, $b);
     }
+
     // =========================================================================
     // getEraYear()
     // =========================================================================
+
     /**
      * DateTime インスタンスで getEraKey() が正しい元号定数を返すこと。
-     * @dataProvider eraKeyProvider
      */
+    #[DataProvider('eraKeyProvider')]
     public function test_getEraKey_with_DateTime(string $dateStr, int $expectedEra): void
     {
         $dt = new DateTime($dateStr);
         $era = new JisEra();
         $this->assertSame($expectedEra, $era->getEraKey($dt));
     }
+
     /**
      * DateTimeImmutable インスタンスでも getEraKey() が正しい元号定数を返すこと。
-     * @dataProvider eraKeyProvider
      */
+    #[DataProvider('eraKeyProvider')]
     public function test_getEraKey_with_DateTimeImmutable(string $dateStr, int $expectedEra): void
     {
         $dt = new DateTimeImmutable($dateStr);
         $era = new JisEra();
         $this->assertSame($expectedEra, $era->getEraKey($dt));
     }
+
     // =========================================================================
     // getEraNameString()
     // =========================================================================
+
     /**
      * getEraYear() が正しい元号年を返すこと。
-     * @dataProvider eraYearProvider
      */
+    #[DataProvider('eraYearProvider')]
     public function test_getEraYear(int $gregorianYear, int $eraKey, int $expectedYear): void
     {
         $era = new JisEra();
         $this->assertSame($expectedYear, $era->getEraYear($gregorianYear, $eraKey));
     }
+
     /**
      * getEraNameString() が正しい元号名を返すこと。
-     * @dataProvider eraNameProvider
      */
+    #[DataProvider('eraNameProvider')]
     public function test_getEraNameString(int $eraKey, string $expectedName): void
     {
         $era = new JisEra();
         $this->assertSame($expectedName, $era->getEraNameString($eraKey));
     }
+
     /**
      * 未知の元号キーを渡すと空文字列を返すこと。
      */
@@ -204,18 +222,52 @@ class EraTest extends TestCase
         $era = new JisEra();
         $this->assertSame('', $era->getEraNameString(9999));
     }
+
+    /**
+     * 明治開始前の日付では元号名・元号年が未該当として返ること。
+     */
+    public function test_before_meiji_start_returns_no_era_values(): void
+    {
+        $dt = new DateTime('1868-01-24T23:59:59+09:00');
+
+        $this->assertSame(0, $dt->eraName);
+        $this->assertSame('', $dt->eraNameText);
+        $this->assertSame(0, $dt->eraYear);
+    }
+
     // =========================================================================
     // parseJisDate()
     // =========================================================================
+
     /**
      * parseJisDate() が各書式を正しく Unix タイムスタンプへ変換すること。
-     * @dataProvider parseJisDateProvider
      */
+    #[DataProvider('parseJisDateProvider')]
     public function test_parseJisDate(string $input, int|float|null $expected): void
     {
         $era = new JisEra();
-        $this->assertSame($expected, $era->parseJisDate($input));
+        $this->assertSame($expected, $era->parseJisDate($input, new DateTimeZone('Asia/Tokyo')));
     }
+
+    /**
+     * parseJisDate() がデフォルトタイムゾーンで和暦・JIS元号形式を解釈すること。
+     */
+    public function test_parseJisDate_uses_default_timezone_for_japanese_formats(): void
+    {
+        $defaultTimezone = date_default_timezone_get();
+        date_default_timezone_set('America/New_York');
+
+        try {
+            $era = new JisEra();
+            $timestamp = $era->parseJisDate('R7-05-01');
+            $date = DateTimeImmutable::createFromTimestamp($timestamp, new DateTimeZone('America/New_York'));
+
+            $this->assertSame('2025-05-01 00:00:00 -04:00', $date->format('Y-m-d H:i:s P'));
+        } finally {
+            date_default_timezone_set($defaultTimezone);
+        }
+    }
+
     /**
      * @return void
      * @throws \ReflectionException
@@ -225,6 +277,7 @@ class EraTest extends TestCase
         // シングルトンをリセットしてテスト間の干渉を防ぐ
         $this->invokeSetProperty(JisEra::class, 'instance', null);
     }
+
     /**
      * @return void
      * @throws \ReflectionException

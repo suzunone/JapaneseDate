@@ -69,19 +69,7 @@ class Era
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
-    public function __construct(/**
-     * @readonly
-     */
-    public string $name, /**
-     * @readonly
-     */
-    public string $kana, /**
-     * @readonly
-     */
-    public string $court, string $start, string $end, /**
-     * @readonly
-     */
-    protected DateTime|DateTimeImmutable $currentDate)
+    public function __construct(public readonly string $name, public readonly string $kana, public readonly string $court, string $start, string $end, protected readonly DateTime|DateTimeImmutable $currentDate)
     {
         if ($currentDate instanceof DateTimeImmutable) {
             $this->startDate = DateTimeImmutable::factory($start);
@@ -100,9 +88,14 @@ class Era
      * @param string $name 取得するプロパティ名。
      *
      * @return DateTime|DateTimeImmutable 元号の開始日または終了日。
+     * @throws ErrorException 未定義プロパティを取得しようとした場合。
      */
     public function __get(string $name): DateTime|DateTimeImmutable
     {
+        if ($name !== 'startDate' && $name !== 'endDate') {
+            throw new ErrorException('Undefined property ' . $name);
+        }
+
         return clone $this->$name;
     }
 

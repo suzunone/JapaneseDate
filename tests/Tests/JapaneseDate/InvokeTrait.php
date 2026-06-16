@@ -15,7 +15,6 @@
 
 namespace Tests\JapaneseDate;
 
-use PHPUnit\Framework\Attributes\CoversNothing;
 use ReflectionClass;
 
 use const PHP_VERSION_ID;
@@ -32,7 +31,6 @@ use const PHP_VERSION_ID;
  * @see         https://github.com/suzunone/JapaneseDate
  * @since       Class available since Release 1.0.0
  */
-#[CoversNothing]
 trait InvokeTrait
 {
     /**

@@ -41,13 +41,14 @@ use PHPUnit\Framework\TestCase;
  * @author      Suzunone<suzunone.eleven@gmail.com>
  * @link        https://github.com/suzunone/JapaneseDate
  * @since       8.4.0
- * @covers \JapaneseDate\Values\Era
  */
+#[CoversClass(Era::class)]
 class EraTest extends TestCase
 {
     // =========================================================================
     // コンストラクタ
     // =========================================================================
+
     /**
      * DateTime を渡したとき、公開プロパティが正しく設定されること。
      */
@@ -67,6 +68,7 @@ class EraTest extends TestCase
         $this->assertSame('タイカ', $era->kana);
         $this->assertSame(DateTime::COURT_MAIN, $era->court);
     }
+
     /**
      * DateTime を渡したとき、startDate / endDate が DateTime インスタンスであること。
      * @noinspection Annotator
@@ -86,6 +88,7 @@ class EraTest extends TestCase
         $this->assertInstanceOf(DateTime::class, $era->startDate);
         $this->assertInstanceOf(DateTime::class, $era->endDate);
     }
+
     /**
      * DateTimeImmutable を渡したとき、startDate / endDate が DateTimeImmutable インスタンスであること。
      */
@@ -104,6 +107,7 @@ class EraTest extends TestCase
         $this->assertInstanceOf(DateTimeImmutable::class, $era->startDate);
         $this->assertInstanceOf(DateTimeImmutable::class, $era->endDate);
     }
+
     /**
      * startDate / endDate が指定した日付文字列に対応する値を持つこと。
      */
@@ -122,9 +126,11 @@ class EraTest extends TestCase
         $this->assertSame('0645-07-29', $era->startDate->format('Y-m-d'));
         $this->assertSame('0650-03-22', $era->endDate->format('Y-m-d'));
     }
+
     // =========================================================================
     // __get
     // =========================================================================
+
     /**
      * __get で取得した startDate はオリジナルとは別のインスタンス（クローン）であること。
      */
@@ -146,6 +152,7 @@ class EraTest extends TestCase
         $this->assertNotSame($first, $second);
         $this->assertSame($first->format('Y-m-d'), $second->format('Y-m-d'));
     }
+
     /**
      * __get で取得した endDate はオリジナルとは別のインスタンス（クローン）であること。
      */
@@ -167,9 +174,31 @@ class EraTest extends TestCase
         $this->assertNotSame($first, $second);
         $this->assertSame($first->format('Y-m-d'), $second->format('Y-m-d'));
     }
+
+    /**
+     * 未定義プロパティを取得すると TypeError ではなく明示的な例外を送出すること。
+     */
+    public function test_get_throws_error_exception_for_undefined_property(): void
+    {
+        $current = new DateTime('645-08-01T00:00:00+09:00');
+        $era = new Era(
+            '大化',
+            'タイカ',
+            DateTime::COURT_MAIN,
+            '645-07-29T00:00:00+09:00',
+            '650-03-22T00:00:00+09:00',
+            $current
+        );
+
+        $this->expectException(ErrorException::class);
+        /** @noinspection PhpUndefinedFieldInspection */
+        $era->unknownDate;
+    }
+
     // =========================================================================
     // __set
     // =========================================================================
+
     /**
      * readonly プロパティへの書き込みは ErrorException をスローすること。
      */
@@ -189,9 +218,11 @@ class EraTest extends TestCase
         /** @noinspection Annotator */
         $era->startDate = new DateTime('2025-01-01');
     }
+
     // =========================================================================
     // __isset
     // =========================================================================
+
     /**
      * 存在するプロパティ（startDate）に isset すると true が返ること。
      */
@@ -210,6 +241,7 @@ class EraTest extends TestCase
         $this->assertTrue(isset($era->startDate));
         $this->assertTrue(isset($era->endDate));
     }
+
     /**
      * 存在しないプロパティに isset すると false が返ること。
      */

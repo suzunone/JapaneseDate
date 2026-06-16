@@ -82,6 +82,17 @@ class BusinessCalendar
     protected static ?DateBusiness $defaultConfig = null;
 
     /**
+     * 営業日探索ループの1ステップあたりの最大走査日数。
+     *
+     * 全曜日を休業に設定した場合などで営業日が永久に見つからない状況を検出するための上限値。
+     * nextBusinessDay / previousBusinessDay などの探索ループがこの日数を超えると
+     * {@see \JapaneseDate\Exceptions\InfiniteLoopException} をスローします。
+     *
+     * @var int
+     */
+    public const BUSINESS_DAY_SEARCH_LIMIT = 366;
+
+    /**
      * グローバル設定を取得します。
      *
      * グローバル設定が未設定の場合は `null` を返します。
