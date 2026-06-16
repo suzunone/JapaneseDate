@@ -11,17 +11,20 @@ use JapaneseDate\Elements\SolarTermDate;
 use Throwable;
 
 /**
- * Trait SolarTerm
+ * 二十四節気の日付取得・移動メソッドをまとめたトレイト。
+ *
+ * 太陽アルゴリズムに応じて SimpleSolarTerm（参照テーブル）または SolarTerm（天文計算）を
+ * 自動選択し、今年・次回・前回の各節気日付を DateTime / DateTimeImmutable で返す。
  *
  * @category    DateTime
  * @package     JapaneseDate
  * @subpackage  Traits
  * @author      Suzunone <suzunone.eleven@gmail.com>
- * @copyright   Suzunone
+ * @copyright   JapaneseDate
  * @license     BSD-2
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
- * @since        2026-05-28
+ * @since       1.0.0
  * @mixin DateTime
  * @mixin DateTimeImmutable
  */
@@ -30,6 +33,8 @@ trait FindSolarTerm
     /**
      * 今年の春分の日を取得する
      * @return DateTime|DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getSyunbun()
     {
@@ -37,42 +42,119 @@ trait FindSolarTerm
     }
 
     /**
-     * @param string $method
-     * @param int $year
+     * 指定節気メソッドと年を使って二十四節気の日付を取得し、現在インスタンスと同じ時刻でコピーを返す。
+     *
+     * @param string $method 節気メソッド名（例: 'syunbun'）
+     * @param int $year 計算対象年
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getSolarTermDate($method, $year)
     {
         $st = $this->findSolarTerm($method, $year);
 
-        return $this->setDateTime($st->year, $st->month, $st->day, $this->hour, $this->minute, $this->second);
+        return $this->copy()->setDateTime($st->year, $st->month, $st->day, $this->hour, $this->minute, $this->second);
     }
 
     /**
-     * @param string $method
-     * @param int $year
+     * 太陽アルゴリズムを選択して二十四節気の日付情報を取得する。
+     *
+     * VSOP87 の場合は SolarTerm を直接使用し、それ以外は SimpleSolarTerm を試みて
+     * 失敗した場合に SolarTerm へフォールバックする。
+     *
+     * @param string $method 節気メソッド名（例: 'syunbun'）
+     * @param int $year 計算対象年
      * @return \JapaneseDate\Elements\SolarTermDate
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function findSolarTerm($method, $year): SolarTermDate
     {
         if (Astronomy::solarAlgorithm() === Astronomy::SOLAR_VSOP87) {
-            return (new SolarTerm())->{$method}($year);
+            return static::callSolarTermMethod(new SolarTerm(), $method, $year);
         }
 
         try {
             $SolarTerm = new SimpleSolarTerm();
 
-            return $SolarTerm->{$method}($year);
+            return static::callSolarTermMethod($SolarTerm, $method, $year);
         } catch (Throwable $exception) {
             $SolarTerm = new SolarTerm();
 
-            return $SolarTerm->{$method}($year);
+            return static::callSolarTermMethod($SolarTerm, $method, $year);
+        }
+    }
+
+    /**
+     * 二十四節気計算クラスのメソッドを明示分岐で呼び出す。
+     *
+     * @param SimpleSolarTerm|SolarTerm $solarTerm 二十四節気計算クラス
+     * @param string $method 節気メソッド名
+     * @param int $year 計算対象年
+     * @return SolarTermDate 二十四節気の日付
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
+     */
+    protected static function callSolarTermMethod($solarTerm, $method, $year): SolarTermDate
+    {
+        switch ($method) {
+            case 'syunbun':
+                return $solarTerm->syunbun($year);
+            case 'seimei':
+                return $solarTerm->seimei($year);
+            case 'kokuu':
+                return $solarTerm->kokuu($year);
+            case 'rikka':
+                return $solarTerm->rikka($year);
+            case 'syouman':
+                return $solarTerm->syouman($year);
+            case 'bousyu':
+                return $solarTerm->bousyu($year);
+            case 'geshi':
+                return $solarTerm->geshi($year);
+            case 'syousyo':
+                return $solarTerm->syousyo($year);
+            case 'taisyo':
+                return $solarTerm->taisyo($year);
+            case 'rissyuu':
+                return $solarTerm->rissyuu($year);
+            case 'syosyo':
+                return $solarTerm->syosyo($year);
+            case 'hakuro':
+                return $solarTerm->hakuro($year);
+            case 'syuubun':
+                return $solarTerm->syuubun($year);
+            case 'kanro':
+                return $solarTerm->kanro($year);
+            case 'soukou':
+                return $solarTerm->soukou($year);
+            case 'rittou':
+                return $solarTerm->rittou($year);
+            case 'syousetsu':
+                return $solarTerm->syousetsu($year);
+            case 'taisetsu':
+                return $solarTerm->taisetsu($year);
+            case 'touji':
+                return $solarTerm->touji($year);
+            case 'syoukan':
+                return $solarTerm->syoukan($year);
+            case 'daikan':
+                return $solarTerm->daikan($year);
+            case 'rissyun':
+                return $solarTerm->rissyun($year);
+            case 'usui':
+                return $solarTerm->usui($year);
+            case 'keichitsu':
+                return $solarTerm->keichitsu($year);
         }
     }
 
     /**
      * 次の春分の日を取得する
      * @return DateTime|DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getNextSyunbun()
     {
@@ -80,8 +162,14 @@ trait FindSolarTerm
     }
 
     /**
-     * @param string $method
+     * 次回の二十四節気日付を取得する。
+     *
+     * 当年の節気日が現在日時以前であれば翌年の日付を返す。
+     *
+     * @param string $method 節気メソッド名（例: 'syunbun'）
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getNextSolarTermDate($method)
     {
@@ -98,6 +186,8 @@ trait FindSolarTerm
     /**
      * 前回の春分の日を取得する
      * @return DateTime|DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getBeforeSyunbun()
     {
@@ -105,8 +195,14 @@ trait FindSolarTerm
     }
 
     /**
-     * @param string $method
+     * 前回の二十四節気日付を取得する。
+     *
+     * 当年の節気日が現在日時以降であれば前年の日付を返す。
+     *
+     * @param string $method 節気メソッド名（例: 'syunbun'）
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getBeforeSolarTermDate($method)
     {
@@ -121,7 +217,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 今年の清明の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getSeimei()
     {
@@ -129,7 +228,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 次の清明の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getNextSeimei()
     {
@@ -137,7 +239,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 前回の清明の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getBeforeSeimei()
     {
@@ -145,7 +250,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 今年の穀雨の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getKokuu()
     {
@@ -153,7 +261,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 次の穀雨の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getNextKokuu()
     {
@@ -161,7 +272,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 前回の穀雨の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getBeforeKokuu()
     {
@@ -169,7 +283,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 今年の立夏の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getRikka()
     {
@@ -177,7 +294,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 次の立夏の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getNextRikka()
     {
@@ -185,7 +305,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 前回の立夏の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getBeforeRikka()
     {
@@ -193,7 +316,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 今年の小満の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getSyouman()
     {
@@ -201,7 +327,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 次の小満の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getNextSyouman()
     {
@@ -209,7 +338,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 前回の小満の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getBeforeSyouman()
     {
@@ -217,7 +349,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 今年の芒種の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getBousyu()
     {
@@ -225,7 +360,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 次の芒種の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getNextBousyu()
     {
@@ -233,7 +371,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 前回の芒種の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getBeforeBousyu()
     {
@@ -241,7 +382,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 今年の夏至の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getGeshi()
     {
@@ -249,7 +393,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 次の夏至の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getNextGeshi()
     {
@@ -257,7 +404,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 前回の夏至の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getBeforeGeshi()
     {
@@ -265,7 +415,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 今年の小暑の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getSyousyo()
     {
@@ -273,7 +426,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 次の小暑の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getNextSyousyo()
     {
@@ -281,7 +437,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 前回の小暑の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getBeforeSyousyo()
     {
@@ -289,7 +448,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 今年の大暑の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getTaisyo()
     {
@@ -297,7 +459,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 次の大暑の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getNextTaisyo()
     {
@@ -305,7 +470,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 前回の大暑の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getBeforeTaisyo()
     {
@@ -313,7 +481,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 今年の立秋の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getRissyuu()
     {
@@ -321,7 +492,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 次の立秋の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getNextRissyuu()
     {
@@ -329,7 +503,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 前回の立秋の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getBeforeRissyuu()
     {
@@ -337,7 +514,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 今年の処暑の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getSyosyo()
     {
@@ -345,7 +525,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 次の処暑の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getNextSyosyo()
     {
@@ -353,7 +536,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 前回の処暑の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getBeforeSyosyo()
     {
@@ -361,7 +547,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 今年の白露の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getHakuro()
     {
@@ -369,7 +558,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 次の白露の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getNextHakuro()
     {
@@ -377,7 +569,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 前回の白露の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getBeforeHakuro()
     {
@@ -385,7 +580,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 今年の秋分の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getSyuubun()
     {
@@ -393,7 +591,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 次の秋分の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getNextSyuubun()
     {
@@ -401,7 +602,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 前回の秋分の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getBeforeSyuubun()
     {
@@ -409,7 +613,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 今年の寒露の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getKanro()
     {
@@ -417,7 +624,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 次の寒露の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getNextKanro()
     {
@@ -425,7 +635,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 前回の寒露の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getBeforeKanro()
     {
@@ -433,7 +646,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 今年の霜降の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getSoukou()
     {
@@ -441,7 +657,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 次の霜降の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getNextSoukou()
     {
@@ -449,7 +668,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 前回の霜降の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getBeforeSoukou()
     {
@@ -457,7 +679,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 今年の立冬の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getRittou()
     {
@@ -465,7 +690,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 次の立冬の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getNextRittou()
     {
@@ -473,7 +701,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 前回の立冬の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getBeforeRittou()
     {
@@ -481,7 +712,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 今年の小雪の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getSyousetsu()
     {
@@ -489,7 +723,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 次の小雪の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getNextSyousetsu()
     {
@@ -497,7 +734,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 前回の小雪の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getBeforeSyousetsu()
     {
@@ -505,7 +745,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 今年の大雪の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getTaisetsu()
     {
@@ -513,7 +756,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 次の大雪の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getNextTaisetsu()
     {
@@ -521,7 +767,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 前回の大雪の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getBeforeTaisetsu()
     {
@@ -529,7 +778,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 今年の冬至の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getTouji()
     {
@@ -537,7 +789,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 次の冬至の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getNextTouji()
     {
@@ -545,7 +800,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 前回の冬至の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getBeforeTouji()
     {
@@ -553,7 +811,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 今年の小寒の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getSyoukan()
     {
@@ -561,7 +822,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 次の小寒の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getNextSyoukan()
     {
@@ -569,7 +833,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 前回の小寒の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getBeforeSyoukan()
     {
@@ -577,7 +844,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 今年の大寒の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getDaikan()
     {
@@ -585,7 +855,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 次の大寒の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getNextDaikan()
     {
@@ -593,7 +866,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 前回の大寒の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getBeforeDaikan()
     {
@@ -601,7 +877,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 今年の立春の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getRissyun()
     {
@@ -609,7 +888,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 次の立春の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getNextRissyun()
     {
@@ -617,7 +899,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 前回の立春の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getBeforeRissyun()
     {
@@ -625,7 +910,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 今年の雨水の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getUsui()
     {
@@ -633,7 +921,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 次の雨水の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getNextUsui()
     {
@@ -641,7 +932,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 前回の雨水の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getBeforeUsui()
     {
@@ -649,7 +943,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 今年の啓蟄の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getKeichitsu()
     {
@@ -657,7 +954,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 次の啓蟄の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getNextKeichitsu()
     {
@@ -665,7 +965,10 @@ trait FindSolarTerm
     }
 
     /**
+     * 前回の啓蟄の日を取得する。
      * @return \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
      */
     protected function getBeforeKeichitsu()
     {

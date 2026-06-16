@@ -764,6 +764,20 @@ class DatePeriod extends CarbonPeriod
         $eraKeys = array_keys(static::ERA_START_DATES);
         sort($eraKeys);
 
+        $firstEraKey = $eraKeys[0];
+        $firstEraStart = DateTime::parse(static::ERA_START_DATES[$firstEraKey]);
+        if ($startDate->lt($firstEraStart)) {
+            $subEnd = $endDate->lt($firstEraStart) ? $endDate : $firstEraStart->copy()->subDay();
+
+            if ($startDate->lte($subEnd)) {
+                $result[0] = static::create(
+                    $startDate->format('Y-m-d'),
+                    $this->getDateInterval(),
+                    $subEnd->format('Y-m-d')
+                );
+            }
+        }
+
         foreach ($eraKeys as $eraKey) {
             $eraStart = DateTime::parse(static::ERA_START_DATES[$eraKey]);
             $eraEndStr = static::ERA_END_DATES[$eraKey];

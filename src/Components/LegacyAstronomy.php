@@ -34,17 +34,17 @@ class LegacyAstronomy implements SunAlgorithm, MoonAlgorithm
     /**
      * J2000.0 の Unix エポック時刻（2000-01-01 12:00:00 UTC）。
      */
-    private const J2000_UNIX_TIMESTAMP = 946728000;
+    protected const J2000_UNIX_TIMESTAMP = 946728000;
 
     /**
      * 1ユリウス年の秒数（365.25日）。
      */
-    private const JULIAN_YEAR_SECONDS = 31557600.0;
+    protected const JULIAN_YEAR_SECONDS = 31557600.0;
 
     /**
      * 従来の近似式が前提としているJ2000基準との差（6時間、ユリウス年）。
      */
-    private const LEGACY_MODEL_OFFSET_YEARS = 21600.0 / self::JULIAN_YEAR_SECONDS;
+    protected const LEGACY_MODEL_OFFSET_YEARS = 21600.0 / self::JULIAN_YEAR_SECONDS;
 
     /**
      * このアルゴリズムの太陽計算識別子を返す。
@@ -101,7 +101,7 @@ class LegacyAstronomy implements SunAlgorithm, MoonAlgorithm
      * @return float 2000.0 からの経過年数
      * @throws \Exception
      */
-    private function computeJulianYear(int $year, int $month, float $day, float $hour, float $min, float $sec): float
+    protected function computeJulianYear($year, $month, $day, $hour, $min, $sec): float
     {
         $dayInteger = (int) floor($day);
         $jstMidnight = new DateTimeImmutable(
@@ -165,7 +165,7 @@ class LegacyAstronomy implements SunAlgorithm, MoonAlgorithm
      * @param float $julian_year 2000.0 からの経過年数
      * @return float 周期項の和
      */
-    private function sumPeriodicTerms(array $terms, float $julian_year): float
+    protected function sumPeriodicTerms($terms, $julian_year): float
     {
         $result = 0.0;
         foreach ($terms as [$amplitude, $phase, $speed]) {
@@ -181,7 +181,7 @@ class LegacyAstronomy implements SunAlgorithm, MoonAlgorithm
      * @param float $angle 正規化前の角度（度）
      * @return float 正規化後の角度（0 ≤ angle < 360）
      */
-    private function normalizeAngle(float $angle): float
+    protected function normalizeAngle($angle): float
     {
         return $angle - 360.0 * floor($angle / 360.0);
     }

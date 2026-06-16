@@ -80,14 +80,14 @@ class MeeusMoon implements MoonAlgorithm
     /**
      * @var bool
      */
-    private $applyNasaCCorrection = true;
+    protected $applyNasaCCorrection = true;
     /**
      * Meeus AA2 Chapter 47 Table 47.A (pp.339-340) の周期項配列。
      * 各行: [D, M, M', F, Σl, Σr]。月の黄経・距離の振幅係数（Σl は 10^-6 度、Σr は km/1000 単位）。
      * 60 行。soniakeys/meeus c7f0dba からの転記。
      *
      * 公開理由: 後方互換のため public const として API 公開する。Codex レビューから
-     * 繰り返し「テスト容易性のために private が望ましい」と指摘されているが、本プロジェクト
+     * 繰り返し「テスト容易性のために protected が望ましい」と指摘されているが、本プロジェクト
      * 規約と後方互換性維持のため public を選択する。
      *
      * @var array<int, array{int,int,int,int,int,int}>
@@ -232,7 +232,7 @@ class MeeusMoon implements MoonAlgorithm
      * (float)PHP_INT_MAX は double で正確に表現できず int キャスト時にオーバーフローしうるため、
      * 保守的にこの値を境界として使う。
      */
-    private const SAFE_INT_BOUND = 9007199254740992.0;
+    protected const SAFE_INT_BOUND = 9007199254740992.0;
 
     /**
      * MeeusMoon コンストラクタ。
@@ -427,8 +427,9 @@ class MeeusMoon implements MoonAlgorithm
      * これを避けるため、IEEE-754 double で正確に表現できる最大連続整数 2^53 を境界として使う。
      *
      * @throws InvalidArgumentException
+     * @param float $v
      */
-    private static function safeFloorToInt(float $v): int
+    protected static function safeFloorToInt($v): int
     {
         /** @noinspection NotOptimalIfConditionsInspection */
         if (!is_finite($v) || $v < -self::SAFE_INT_BOUND || $v > self::SAFE_INT_BOUND) {
@@ -440,8 +441,9 @@ class MeeusMoon implements MoonAlgorithm
 
     /**
      * うるう年判定（先発グレゴリオ暦、天文学的年番号）。
+     * @param int $year
      */
-    private static function isLeapYear(int $year): bool
+    protected static function isLeapYear($year): bool
     {
         if ($year % 400 === 0) {
             return true;
@@ -455,8 +457,10 @@ class MeeusMoon implements MoonAlgorithm
 
     /**
      * 月の日数を返す（先発グレゴリオ暦）。
+     * @param int $year
+     * @param int $month
      */
-    private static function daysInGregorianMonth(int $year, int $month): int
+    protected static function daysInGregorianMonth($year, $month): int
     {
         switch ($month) {
             case 1:
@@ -485,7 +489,7 @@ class MeeusMoon implements MoonAlgorithm
      * @param float $t ユリウス世紀数（J2000.0 起点）
      * @return array{lprime: float, d: float, m: float, mp: float, f: float, a1: float, a2: float, a3: float, e: float}
      */
-    private function computeAngles(float $t): array
+    protected function computeAngles($t): array
     {
         $t2 = $t * $t;
         $t3 = $t2 * $t;
@@ -524,7 +528,7 @@ class MeeusMoon implements MoonAlgorithm
      * @param array{lprime: float, d: float, m: float, mp: float, f: float, a1: float, a2: float, a3: float, e: float} $angles
      * @return array{sigmaL: float, sigmaR: float, sigmaB: float}
      */
-    private function sumPeriodicTerms(array $angles): array
+    protected function sumPeriodicTerms($angles): array
     {
         $calcArg = static function (float $dCoeff, float $mCoeff, float $mpCoeff, float $fCoeff) use ($angles): float {
             return deg2rad($dCoeff * $angles['d'] + $mCoeff * $angles['m'] + $mpCoeff * $angles['mp'] + $fCoeff * $angles['f']);
@@ -574,7 +578,7 @@ class MeeusMoon implements MoonAlgorithm
      * @param float $t ユリウス世紀数
      * @return array{lon: float, lat: float, dist: float}
      */
-    private function computeGeometricPosition(float $t): array
+    protected function computeGeometricPosition($t): array
     {
         $angles = $this->computeAngles($t);
         $sums = $this->sumPeriodicTerms($angles);
@@ -596,7 +600,7 @@ class MeeusMoon implements MoonAlgorithm
      * @param float $e 地球軌道離心率
      * @param int $mCoeff M の係数（絶対値が 1 なら E、2 なら E²）
      */
-    private function eccentricityFactor(float $e, int $mCoeff): float
+    protected function eccentricityFactor($e, $mCoeff): float
     {
         switch (abs($mCoeff)) {
             case 1:
@@ -617,7 +621,7 @@ class MeeusMoon implements MoonAlgorithm
      * @param float $t ユリウス世紀数
      * @param float $lprimeDeg 月の平均黄経（度）
      */
-    private function deltaPsiDeg(float $t, float $lprimeDeg): float
+    protected function deltaPsiDeg($t, $lprimeDeg): float
     {
         $lSun = 280.4664567 + 36000.76983 * $t;
         $omega = 125.04452 - 1934.136261 * $t;
@@ -631,8 +635,9 @@ class MeeusMoon implements MoonAlgorithm
 
     /**
      * 角度を [0, 360) に正規化する。
+     * @param float $angle
      */
-    private function normalizeAngle360(float $angle): float
+    protected function normalizeAngle360($angle): float
     {
         $mod = fmod($angle, 360.0);
 
@@ -648,7 +653,7 @@ class MeeusMoon implements MoonAlgorithm
      *
      * @param float $y 小数年
      */
-    private function deltaTPolynomialForDecimalYear(float $y): float
+    protected function deltaTPolynomialForDecimalYear($y): float
     {
         if ($y < -500.0) {
             $u = ($y - 1820.0) / 100.0;
@@ -787,7 +792,7 @@ class MeeusMoon implements MoonAlgorithm
      *
      * @param float $y 小数年
      */
-    private function deltaTForDecimalYear(float $y): float
+    protected function deltaTForDecimalYear($y): float
     {
         $poly = $this->deltaTPolynomialForDecimalYear($y);
 

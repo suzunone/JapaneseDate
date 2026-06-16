@@ -28,6 +28,7 @@ use JapaneseDate\Components\Moon;
 use JapaneseDate\Components\SimpleSolarTerm;
 use JapaneseDate\Components\SolarTerm;
 use JapaneseDate\Elements\SolarTermDate;
+use JapaneseDate\Exceptions\InfiniteLoopException;
 use JapaneseDate\Traits\DateBusinessCommon;
 use Throwable;
 
@@ -195,16 +196,23 @@ class DateInterval extends CarbonInterval
      * @param int $n 加算する営業日数（1 以上の整数）
      * @return DateTime N 営業日後の日付
      * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\InfiniteLoopException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     public static function addBusinessDaysToDate($from, $n): DateTime
     {
         $date = DateTime::factory($from);
         $count = 0;
+        $consecutiveNonBusinessDays = 0;
         while ($count < $n) {
             $date = $date->addDay();
             if (static::isBusinessDay($date)) {
                 $count++;
+                $consecutiveNonBusinessDays = 0;
+            } elseif (++$consecutiveNonBusinessDays >= BusinessCalendar::BUSINESS_DAY_SEARCH_LIMIT) {
+                throw new InfiniteLoopException(
+                    '営業日が ' . BusinessCalendar::BUSINESS_DAY_SEARCH_LIMIT . ' 日以内に見つかりませんでした。営業日の設定を確認してください。'
+                );
             }
         }
 
@@ -248,16 +256,23 @@ class DateInterval extends CarbonInterval
      * @param int $n 減算する営業日数（1 以上の整数）
      * @return DateTime N 営業日前の日付
      * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\InfiniteLoopException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     public static function subBusinessDaysToDate($from, $n): DateTime
     {
         $date = DateTime::factory($from);
         $count = 0;
+        $consecutiveNonBusinessDays = 0;
         while ($count < $n) {
             $date = $date->subDay();
             if (static::isBusinessDay($date)) {
                 $count++;
+                $consecutiveNonBusinessDays = 0;
+            } elseif (++$consecutiveNonBusinessDays >= BusinessCalendar::BUSINESS_DAY_SEARCH_LIMIT) {
+                throw new InfiniteLoopException(
+                    '営業日が ' . BusinessCalendar::BUSINESS_DAY_SEARCH_LIMIT . ' 日以内に見つかりませんでした。営業日の設定を確認してください。'
+                );
             }
         }
 
@@ -292,7 +307,7 @@ class DateInterval extends CarbonInterval
         $nextHoliday = $base->copy()->nextHoliday()->startOfDay();
         $diff = $base->diff($nextHoliday);
 
-        return static::instance(CarbonInterval::days($diff->days));
+        return static::instance($diff);
     }
 
     // =========================================================================
@@ -337,7 +352,7 @@ class DateInterval extends CarbonInterval
         $target = $base->copy()->addDays($daysToAdd)->startOfDay();
         $diff = $base->diff($target);
 
-        return static::instance(CarbonInterval::days($diff->days));
+        return static::instance($diff);
     }
 
     // =========================================================================
@@ -415,7 +430,7 @@ class DateInterval extends CarbonInterval
         $target = static::findNextSolarTermDate($from, $termMethod);
         $diff = $from->diff($target->startOfDay());
 
-        return static::instance(CarbonInterval::days($diff->days));
+        return static::instance($diff);
     }
 
     /**
@@ -428,10 +443,15 @@ class DateInterval extends CarbonInterval
      * @param string|null $termMethod 節気メソッド名（省略時は全節気から検索）
      * @return DateTime 次の節気日
      * @throws \DateInvalidTimeZoneException
+     * @throws InvalidArgumentException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     protected static function findNextSolarTermDate($from, $termMethod = null): DateTime
     {
+        if ($termMethod !== null) {
+            static::assertSolarTermMethodExists($termMethod);
+        }
+
         $methods = $termMethod !== null ? [$termMethod] : array_keys(static::SOLAR_TERM_METHODS);
         $fromTimestamp = $from->timestamp;
         $best = null;
@@ -472,18 +492,85 @@ class DateInterval extends CarbonInterval
      * @param string $method 節気メソッド名（'syunbun', 'geshi' など）
      * @param int $year 西暦年
      * @return SolarTermDate 節気日データ
+     * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException 計算不可能な年の場合
      */
     protected static function resolveSolarTerm($method, $year): SolarTermDate
     {
+        static::assertSolarTermMethodExists($method);
+
         if (Astronomy::solarAlgorithm() === Astronomy::SOLAR_VSOP87) {
-            return (new SolarTerm())->{$method}($year);
+            return static::callSolarTermMethod(new SolarTerm(), $method, $year);
         }
 
         try {
-            return (new SimpleSolarTerm())->{$method}($year);
+            return static::callSolarTermMethod(new SimpleSolarTerm(), $method, $year);
         } catch (Throwable $exception) {
-            return (new SolarTerm())->{$method}($year);
+            return static::callSolarTermMethod(new SolarTerm(), $method, $year);
+        }
+    }
+
+    /**
+     * 二十四節気計算クラスのメソッドを明示分岐で呼び出します。
+     *
+     * @param SimpleSolarTerm|SolarTerm $solarTerm 二十四節気計算クラス
+     * @param string $method 節気メソッド名
+     * @param int $year 計算対象年
+     * @return SolarTermDate 二十四節気の日付
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
+     */
+    protected static function callSolarTermMethod($solarTerm, $method, $year): SolarTermDate
+    {
+        switch ($method) {
+            case 'syunbun':
+                return $solarTerm->syunbun($year);
+            case 'seimei':
+                return $solarTerm->seimei($year);
+            case 'kokuu':
+                return $solarTerm->kokuu($year);
+            case 'rikka':
+                return $solarTerm->rikka($year);
+            case 'syouman':
+                return $solarTerm->syouman($year);
+            case 'bousyu':
+                return $solarTerm->bousyu($year);
+            case 'geshi':
+                return $solarTerm->geshi($year);
+            case 'syousyo':
+                return $solarTerm->syousyo($year);
+            case 'taisyo':
+                return $solarTerm->taisyo($year);
+            case 'rissyuu':
+                return $solarTerm->rissyuu($year);
+            case 'syosyo':
+                return $solarTerm->syosyo($year);
+            case 'hakuro':
+                return $solarTerm->hakuro($year);
+            case 'syuubun':
+                return $solarTerm->syuubun($year);
+            case 'kanro':
+                return $solarTerm->kanro($year);
+            case 'soukou':
+                return $solarTerm->soukou($year);
+            case 'rittou':
+                return $solarTerm->rittou($year);
+            case 'syousetsu':
+                return $solarTerm->syousetsu($year);
+            case 'taisetsu':
+                return $solarTerm->taisetsu($year);
+            case 'touji':
+                return $solarTerm->touji($year);
+            case 'syoukan':
+                return $solarTerm->syoukan($year);
+            case 'daikan':
+                return $solarTerm->daikan($year);
+            case 'rissyun':
+                return $solarTerm->rissyun($year);
+            case 'usui':
+                return $solarTerm->usui($year);
+            case 'keichitsu':
+                return $solarTerm->keichitsu($year);
         }
     }
 
@@ -560,10 +647,15 @@ class DateInterval extends CarbonInterval
      * @param string|null $termMethod 節気メソッド名（省略時は全節気から検索）
      * @return DateTime 直前の節気日
      * @throws \DateInvalidTimeZoneException
+     * @throws InvalidArgumentException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     protected static function findPrevSolarTermDate($from, $termMethod = null): DateTime
     {
+        if ($termMethod !== null) {
+            static::assertSolarTermMethodExists($termMethod);
+        }
+
         $methods = $termMethod !== null ? [$termMethod] : array_keys(static::SOLAR_TERM_METHODS);
         $fromTimestamp = $from->timestamp;
         $best = null;
@@ -593,6 +685,19 @@ class DateInterval extends CarbonInterval
 
         // @codeCoverageIgnoreStart
         return $best ?? DateTime::factory($from)->subDays(15);
+    }
+
+    /**
+     * 指定された二十四節気メソッド名が公開マップに存在することを検証します。
+     *
+     * @param string $method 節気メソッド名
+     * @throws InvalidArgumentException 未知の節気メソッド名が指定された場合
+     */
+    protected static function assertSolarTermMethodExists($method): void
+    {
+        if (!isset(static::SOLAR_TERM_METHODS[$method])) {
+            throw new InvalidArgumentException('不明な節気メソッド名です: ' . $method);
+        }
     }
 
     // =========================================================================
@@ -684,16 +789,23 @@ class DateInterval extends CarbonInterval
      * @param int $businessDays 加算する営業日数
      * @param DateBusiness|null $config 判定に使用する設定（省略時はインスタンス設定）
      * @return DateTime N営業日後の日付
+     * @throws \JapaneseDate\Exceptions\InfiniteLoopException
      */
     public function addBusinessDaysTo($baseDate, $businessDays, $config = null): DateTime
     {
         $effectiveConfig = $config ?? $this->businessConfig;
         $dt = clone $baseDate;
         $count = 0;
+        $consecutiveNonBusinessDays = 0;
         while ($count < $businessDays) {
             $dt->addDay();
             if (BusinessCalendar::isBusinessDay($dt, $effectiveConfig)) {
                 $count++;
+                $consecutiveNonBusinessDays = 0;
+            } elseif (++$consecutiveNonBusinessDays >= BusinessCalendar::BUSINESS_DAY_SEARCH_LIMIT) {
+                throw new InfiniteLoopException(
+                    '営業日が ' . BusinessCalendar::BUSINESS_DAY_SEARCH_LIMIT . ' 日以内に見つかりませんでした。営業日の設定を確認してください。'
+                );
             }
         }
 
@@ -707,16 +819,23 @@ class DateInterval extends CarbonInterval
      * @param int $businessDays 減算する営業日数
      * @param DateBusiness|null $config 判定に使用する設定（省略時はインスタンス設定）
      * @return DateTime N営業日前の日付
+     * @throws \JapaneseDate\Exceptions\InfiniteLoopException
      */
     public function subBusinessDaysFrom($baseDate, $businessDays, $config = null): DateTime
     {
         $effectiveConfig = $config ?? $this->businessConfig;
         $dt = clone $baseDate;
         $count = 0;
+        $consecutiveNonBusinessDays = 0;
         while ($count < $businessDays) {
             $dt->subDay();
             if (BusinessCalendar::isBusinessDay($dt, $effectiveConfig)) {
                 $count++;
+                $consecutiveNonBusinessDays = 0;
+            } elseif (++$consecutiveNonBusinessDays >= BusinessCalendar::BUSINESS_DAY_SEARCH_LIMIT) {
+                throw new InfiniteLoopException(
+                    '営業日が ' . BusinessCalendar::BUSINESS_DAY_SEARCH_LIMIT . ' 日以内に見つかりませんでした。営業日の設定を確認してください。'
+                );
             }
         }
 
@@ -737,9 +856,9 @@ class DateInterval extends CarbonInterval
     {
         $effectiveConfig = $config ?? $this->businessConfig;
         $dt = DateTime::factory($start->format('Y-m-d'), $start->getTimezone());
-        $endKey = $end->format('Ymd');
+        $endDate = DateTime::factory($end->format('Y-m-d'), $end->getTimezone());
         $count = 0;
-        while ($dt->format('Ymd') <= $endKey) {
+        while ($dt->getTimestamp() <= $endDate->getTimestamp()) {
             if (BusinessCalendar::isBusinessDay($dt, $effectiveConfig)) {
                 $count++;
             }

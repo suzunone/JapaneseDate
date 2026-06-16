@@ -41,20 +41,20 @@ class LegacyMoonAge implements MoonAgeAlgorithm
     /**
      * Unix エポック（1970-01-01 00:00:00 UTC）のユリウス日。
      */
-    private const UNIX_EPOCH_JD = 2440587.5;
+    protected const UNIX_EPOCH_JD = 2440587.5;
 
     /**
      * 従来の月齢収束式と修正後のLegacy黄経基準を接続する内部座標差（日）。
      *
      * 標準UT JDを使いつつ、従来の収束式が前提とする内部座標を維持する。
      */
-    private const LEGACY_JD_OFFSET = 1.25;
+    protected const LEGACY_JD_OFFSET = 1.25;
 
     /**
      * 太陽・月の黄経計算および暦変換に使用する Astronomy インスタンス。
      * @var \JapaneseDate\Components\Astronomy
      */
-    private $astronomy;
+    protected $astronomy;
 
     /**
      * @param Astronomy $astronomy 黄経計算・暦変換に使用する Astronomy インスタンス
@@ -99,7 +99,7 @@ class LegacyMoonAge implements MoonAgeAlgorithm
         $delta_t1 = 0;
         $delta_t2 = 1;
 
-        while (($delta_t1 + abs($delta_t2)) > Astronomy::DAYS_PER_SEC) {
+        while (abs($delta_t1 + $delta_t2) > Astronomy::DAYS_PER_SEC) {
             $julian_date = $tm1 + $tm2;
             [$year, $month, $day, $hour, $min, $sec] = $this->astronomy->jD2Gregorian($julian_date);
             $longitude_sun = $this->astronomy->longitudeSun($year, $month, $day, $hour, $min, $sec);
@@ -139,8 +139,49 @@ class LegacyMoonAge implements MoonAgeAlgorithm
 
         // 時刻引数を合成
         $res = $julian_date_0 - ($tm2 + $tm1);
+        if ($res < 0) {
+            $res += self::SYNODIC_MONTH;
+        }
         if ($res > 30) {
-            $res -= 30;
+            // 春分特例等で2朔以上前の朔に収束した場合、1朔望月後を起点に直近の朔へ再収束する。
+            // 再収束は近傍から始まるため counter=1 固有補正（δΛ < 0 の正規化）を適用しない。
+            $approx = ($tm1 + $tm2) + self::SYNODIC_MONTH;
+            $tm1 = floor($approx);
+            $tm2 = $approx - $tm1;
+            $counter = 1;
+            $delta_t1 = 0;
+            $delta_t2 = 1;
+            while (abs($delta_t1 + $delta_t2) > Astronomy::DAYS_PER_SEC) {
+                $julian_date = $tm1 + $tm2;
+                [$year, $month, $day, $hour, $min, $sec] = $this->astronomy->jD2Gregorian($julian_date);
+                $longitude_sun = $this->astronomy->longitudeSun($year, $month, $day, $hour, $min, $sec);
+                $longitude_moon = $this->astronomy->longitudeMoon($year, $month, $day, $hour, $min, $sec);
+                $delta_rm = $longitude_moon - $longitude_sun;
+                if ($longitude_sun >= 0 && $longitude_sun <= 20 && $longitude_moon >= 300) {
+                    $delta_rm = $this->astronomy->normalizeAngle($delta_rm);
+                    $delta_rm = 360 - $delta_rm;
+                } elseif (abs($delta_rm) > 40.0) {
+                    $delta_rm = $this->astronomy->normalizeAngle($delta_rm);
+                }
+                [$tm1, $tm2, $delta_t1, $delta_t2, $shouldBreak] = $this->applyConvergenceStep(
+                    $delta_rm,
+                    self::SYNODIC_MONTH,
+                    $tm1,
+                    $tm2,
+                    $julian_date_0,
+                    $counter
+                );
+                // @codeCoverageIgnoreStart
+                if ($shouldBreak) {
+                    break;
+                }
+                // @codeCoverageIgnoreEnd
+                $counter++;
+            }
+            $res = $julian_date_0 - ($tm2 + $tm1);
+            if ($res < 0) {
+                $res += self::SYNODIC_MONTH;
+            }
         }
 
         return $res;
@@ -158,7 +199,7 @@ class LegacyMoonAge implements MoonAgeAlgorithm
      * @return float UT ユリウス日
      * @throws \Exception
      */
-    private function jstToJulianDate(int $year, int $month, int $day, float $hour, float $min, float $sec): float
+    protected function jstToJulianDate($year, $month, $day, $hour, $min, $sec): float
     {
         $jstMidnight = new DateTimeImmutable(
             sprintf('%04d-%02d-%02d 00:00:00', $year, $month, $day),

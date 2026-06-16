@@ -78,6 +78,26 @@ $this->invokeSetProperty(FooCalculator::class, 'instance', null);
 
 - メソッド内 static 変数（`static $instance;`）でシングルトンを管理している場合は外部からリセット不可のため、リセットしないでシングルトン動作のみを確認する
 
+### CoversNothing の使い方
+
+- `#[CoversNothing]` は **クラスレベルにのみ付与する**（PHPUnit 12 でメソッドレベルは廃止）
+- カバレッジ対象外のテストメソッドが必要な場合は、そのメソッドを **`{TestedClass}CoversNothingTest.php`** という専用クラスに切り出し、クラスレベルで `#[CoversNothing]` を付与する
+- `InvokeTrait` など trait への `#[CoversNothing]` は PHPUnit が処理しないため付与しない
+
+```php
+// 良い例: クラスレベルで付与した専用クラスに切り出す
+#[CoversNothing]
+class FooCoversNothingTest extends TestCase { ... }
+
+// 悪い例: メソッドレベルへの付与（PHPUnit 12 でエラー）
+#[CoversClass(Foo::class)]
+class FooTest extends TestCase
+{
+    #[CoversNothing]  // NG
+    public function test_something(): void { ... }
+}
+```
+
 ### カバレッジ
 - **C0（命令網羅）カバレッジ 100%** を各コンポーネントのテストで達成する
 - 新設 Trait は専用テストで C0（命令網羅）カバレッジ 100% を達成する

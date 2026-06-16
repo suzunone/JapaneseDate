@@ -12,20 +12,20 @@ if (!function_exists('apcu_fetch')) {
      */
     function apcu_fetch(string $key, bool &$success = false)
     {
-        $success = isset($GLOBALS['_test_apcu_store'][$key]);
+        $success = array_key_exists($key, $GLOBALS['_test_apcu_store']);
 
         return $success ? $GLOBALS['_test_apcu_store'][$key] : false;
     }
 }
 
-if (!function_exists('apcu_add')) {
+if (!function_exists('apcu_store')) {
     /**
      * @param string $key
      * @param mixed $value
      * @param int $ttl
      * @return bool
      */
-    function apcu_add(string $key, $value, int $ttl = 0): bool
+    function apcu_store(string $key, $value, int $ttl = 0): bool
     {
         unset($ttl);
 

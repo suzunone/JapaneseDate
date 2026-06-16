@@ -48,22 +48,22 @@ class Vsop87Astronomy implements SunAlgorithm
     /**
      * 1日の時間数（float）。
      */
-    private const DAY_TO_HOUR_FLOAT = 24.0;
+    protected const DAY_TO_HOUR_FLOAT = 24.0;
 
     /**
      * 1日の分数（float）。
      */
-    private const DAY_TO_MINUTE_FLOAT = 1440.0;
+    protected const DAY_TO_MINUTE_FLOAT = 1440.0;
 
     /**
      * 1日の秒数（float）。
      */
-    private const DAY_TO_SECOND_FLOAT = 86400.0;
+    protected const DAY_TO_SECOND_FLOAT = 86400.0;
 
     /**
      * JST（UTC+9）補正値（日単位）。9/24 = 0.375。
      */
-    private const JD_TIME_ZONE_ADJUSTMENT = 0.375;
+    protected const JD_TIME_ZONE_ADJUSTMENT = 0.375;
 
     /**
      * 地球日心黄経 L0 系列の VSOP87 係数。
@@ -390,7 +390,7 @@ class Vsop87Astronomy implements SunAlgorithm
      * @param float $angle 正規化前の角度（度）
      * @return float 正規化後の角度（0 ≤ angle < 360）
      */
-    private function normalizeAngle(float $angle): float
+    protected function normalizeAngle($angle): float
     {
         return $angle - 360.0 * floor($angle / 360.0);
     }

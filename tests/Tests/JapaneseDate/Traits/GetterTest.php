@@ -22,6 +22,7 @@ namespace Tests\JapaneseDate\Traits;
 use JapaneseDate\Components\Astronomy;
 use JapaneseDate\Components\SimpleSolarTerm;
 use JapaneseDate\DateTime;
+use JapaneseDate\DateTimeImmutable;
 use JapaneseDate\Elements\SolarTermDate;
 use JapaneseDate\Traits\Getter;
 use PHPUnit\Framework\Attributes\CoversMethod;
@@ -490,6 +491,18 @@ class GetterTest extends TestCase
         $DateTime = new DateTime('2026-02-03');
         $this->assertSame(DateTime::MISC_SEASONAL_NODE_SETSUBUN, $DateTime->miscSeasonalNode);
         $this->assertSame(DateTime::MISC_SEASONAL_NODE_SETSUBUN, $DateTime->misc_seasonal_node);
+    }
+    /**
+     * DateTimeImmutable で入梅を雑節IDとして取得できることを確認する。
+     */
+    public function test_get_miscSeasonalNode_acceptsDateTimeImmutable(): void
+    {
+        DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_VSOP87);
+        DateTime::useMoonAlgorithm(DateTime::MOON_ALGORITHM_ELP2000);
+
+        $dateTime = new DateTimeImmutable('2024-06-10');
+
+        $this->assertSame(DateTimeImmutable::MISC_SEASONAL_NODE_NYUBAI, $dateTime->miscSeasonalNode);
     }
     /**
      * 雑節名をキャメルケース・スネークケース両方で取得できることを確認する。

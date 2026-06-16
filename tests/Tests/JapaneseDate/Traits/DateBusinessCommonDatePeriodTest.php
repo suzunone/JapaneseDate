@@ -1,9 +1,5 @@
 <?php
 
-/**
- * DatePeriod の営業日機能テスト
- */
-
 namespace Tests\JapaneseDate\Traits;
 
 use JapaneseDate\Components\BusinessCalendar;
@@ -13,16 +9,29 @@ use JapaneseDate\Traits\DateBusinessCommon;
 use PHPUnit\Framework\Attributes\CoversTrait;
 use PHPUnit\Framework\TestCase;
 
+
 /**
+ * DateBusinessCommon トレイトを DatePeriod クラス経由で検証するテスト。
  *
- */
-/**
+ * onlyBusinessDays / withoutBusinessDays などの期間フィルタメソッドが
+ * DateBusiness 設定・グローバル設定・インスタンス設定と正しく連動することを確認する。
  *
+ * @category    Tests
+ * @package     JapaneseDate
+ * @subpackage  Tests\Traits
+ * @author      Suzunone <suzunone.eleven@gmail.com>
+ * @copyright   JapaneseDate
+ * @license     BSD-2
+ * @link        https://github.com/suzunone/JapaneseDate
+ * @see         https://github.com/suzunone/JapaneseDate
+ * @since       Release 1.0.0 から利用可能
  * @covers \JapaneseDate\Traits\DateBusinessCommon
  */
 class DateBusinessCommonDatePeriodTest extends TestCase
 {
     /**
+     * onlyBusinessDays() が期間内の土日を除外して平日のみを返すことを確認する。
+     *
      * @return void
      */
     public function test_onlyBusinessDays_excludes_weekends(): void
@@ -46,6 +55,8 @@ class DateBusinessCommonDatePeriodTest extends TestCase
         $this->assertCount(5, $dates);
     }
     /**
+     * onlyBusinessDays() が期間内の祝日を除外して営業日のみを返すことを確認する。
+     *
      * @return void
      */
     public function test_onlyBusinessDays_excludes_holidays(): void
@@ -66,6 +77,8 @@ class DateBusinessCommonDatePeriodTest extends TestCase
         $this->assertContains('2026-01-05', $dates);    // 月
     }
     /**
+     * onlyBusinessDays() に DateBusiness 設定を渡したとき臨時休業日が除外されることを確認する。
+     *
      * @return void
      * @throws \Exception
      */
@@ -91,6 +104,8 @@ class DateBusinessCommonDatePeriodTest extends TestCase
         $this->assertCount(4, $dates);
     }
     /**
+     * setBusinessConfig() で設定したインスタンス設定を onlyBusinessDays() が自動的に参照することを確認する。
+     *
      * @return void
      * @throws \Exception
      */
@@ -113,6 +128,8 @@ class DateBusinessCommonDatePeriodTest extends TestCase
         $this->assertCount(4, $dates);
     }
     /**
+     * withoutBusinessDays() が期間内の営業日を除外して休日・週末のみを返すことを確認する。
+     *
      * @return void
      */
     public function test_withoutBusinessDays_returns_holidays_and_weekends(): void
@@ -136,6 +153,8 @@ class DateBusinessCommonDatePeriodTest extends TestCase
         $this->assertCount(2, $dates);
     }
     /**
+     * withoutBusinessDays() に DateBusiness 設定を渡したとき臨時休業日も休業日として含まれることを確認する。
+     *
      * @return void
      * @throws \Exception
      */
@@ -159,6 +178,8 @@ class DateBusinessCommonDatePeriodTest extends TestCase
         $this->assertCount(3, $dates);
     }
     /**
+     * setBusinessConfig() / getBusinessConfig() が DatePeriod インスタンスに設定を正しく保持・削除することを確認する。
+     *
      * @return void
      */
     public function test_BusinessCalendar_trait_on_DatePeriod(): void
@@ -174,6 +195,8 @@ class DateBusinessCommonDatePeriodTest extends TestCase
         $this->assertNull($period->getBusinessConfig());
     }
     /**
+     * onlyBusinessDays() が開始と終了が同じ休業日の期間で空のコレクションを返すことを確認する。
+     *
      * @return void
      */
     public function test_onlyBusinessDays_empty_period(): void
@@ -190,6 +213,8 @@ class DateBusinessCommonDatePeriodTest extends TestCase
         $this->assertCount(0, $dates);
     }
     /**
+     * setBusinessConfig() で設定したインスタンス設定を withoutBusinessDays() が自動的に参照することを確認する。
+     *
      * @return void
      * @throws \Exception
      */
@@ -212,6 +237,8 @@ class DateBusinessCommonDatePeriodTest extends TestCase
         $this->assertCount(1, $dates);
     }
     /**
+     * 各テスト実行前に BusinessCalendar のグローバル設定をリセットして、テスト間の干渉を防ぐ。
+     *
      * @return void
      */
     protected function setUp(): void
@@ -219,6 +246,8 @@ class DateBusinessCommonDatePeriodTest extends TestCase
         BusinessCalendar::resetAll();
     }
     /**
+     * 各テスト実行後に BusinessCalendar のグローバル設定をリセットして、後続テストへの副作用を除去する。
+     *
      * @return void
      */
     protected function tearDown(): void

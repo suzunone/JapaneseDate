@@ -468,6 +468,11 @@ class DatePeriodTest extends TestCase
         $this->assertInstanceOf(DatePeriod::class, $period);
         $this->assertIsArray($dates);
     }
+    /**
+     * @return void
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     */
     public function test_eachSolarTerm_usesVsop87AlgorithmWhenSelected(): void
     {
         try {
@@ -479,7 +484,7 @@ class DatePeriodTest extends TestCase
             );
 
             $dates = iterator_to_array($period);
-            $formattedDates = array_map(function ($d) {
+            $formattedDates = array_map(static function ($d) {
                 return $d->format('Y-m-d');
             }, $dates);
 
@@ -618,6 +623,25 @@ class DatePeriodTest extends TestCase
         $this->assertArrayHasKey(DateTime::ERA_SHOWA, $split);
         $this->assertArrayHasKey(DateTime::ERA_HEISEI, $split);
         $this->assertArrayHasKey(DateTime::ERA_REIWA, $split);
+    }
+    /**
+     * splitByEra: 明治開始前の期間も欠落せず元号なし区間として返る。
+     */
+    public function test_splitByEra_keeps_period_before_meiji_start(): void
+    {
+        $period = DatePeriod::create('1860-01-01', '1 day', '1868-02-01');
+        $split = $period->splitByEra();
+
+        $this->assertArrayHasKey(0, $split);
+        $this->assertArrayHasKey(DateTime::ERA_MEIJI, $split);
+
+        $noEraPeriod = $split[0];
+        $this->assertEquals('1860-01-01', $noEraPeriod->getStartDate()->format('Y-m-d'));
+        $this->assertEquals('1868-01-24', $noEraPeriod->getEndDate()->format('Y-m-d'));
+
+        $meijiPeriod = $split[DateTime::ERA_MEIJI];
+        $this->assertEquals('1868-01-25', $meijiPeriod->getStartDate()->format('Y-m-d'));
+        $this->assertEquals('1868-02-01', $meijiPeriod->getEndDate()->format('Y-m-d'));
     }
     /**
      * eachJapaneseFiscalYear: 指定した年度分の年度開始日（4月1日）が取得できる。

@@ -22,7 +22,9 @@ use JapaneseDate\Components\BusinessCalendar;
 use JapaneseDate\DateBusiness;
 use JapaneseDate\DateTime;
 use JapaneseDate\DateTimeImmutable;
+use JapaneseDate\Exceptions\InfiniteLoopException;
 use JapaneseDate\Traits\Business;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\CoversMethod;
 use PHPUnit\Framework\Attributes\CoversTrait;
 use PHPUnit\Framework\TestCase;
@@ -32,6 +34,7 @@ use PHPUnit\Framework\TestCase;
  *
  * DateTime / DateTimeImmutable 両クラスで動作することを確認します。
  * @covers \JapaneseDate\Traits\Business
+ * @covers \JapaneseDate\Exceptions\InfiniteLoopException
  * @covers \JapaneseDate\Traits\Business::isBusinessDay
  * @covers \JapaneseDate\Traits\Business::getBusinessDayLabel
  * @covers \JapaneseDate\Traits\Business::nextBusinessDay
@@ -244,6 +247,61 @@ class BusinessTraitTest extends TestCase
     // =========================================================================
     // subBusinessDays
     // =========================================================================
+    // =========================================================================
+    // InfiniteLoopException （無限ループ防止ガード）
+    // =========================================================================
+    /**
+     * nextBusinessDay: マクロが常に false を返す設定で InfiniteLoopException がスローされる。
+     */
+    public function test_nextBusinessDay_throws_InfiniteLoopException(): void
+    {
+        $dt = new DateTime('2026-05-25');
+        $dt->setBusinessMacro(function () {
+            return false;
+        });
+
+        $this->expectException(InfiniteLoopException::class);
+        $dt->nextBusinessDay();
+    }
+    /**
+     * previousBusinessDay: マクロが常に false を返す設定で InfiniteLoopException がスローされる。
+     */
+    public function test_previousBusinessDay_throws_InfiniteLoopException(): void
+    {
+        $dt = new DateTime('2026-05-25');
+        $dt->setBusinessMacro(function () {
+            return false;
+        });
+
+        $this->expectException(InfiniteLoopException::class);
+        $dt->previousBusinessDay();
+    }
+    /**
+     * addBusinessDays: マクロが常に false を返す設定で InfiniteLoopException がスローされる。
+     */
+    public function test_addBusinessDays_throws_InfiniteLoopException(): void
+    {
+        $dt = new DateTime('2026-05-25');
+        $dt->setBusinessMacro(function () {
+            return false;
+        });
+
+        $this->expectException(InfiniteLoopException::class);
+        $dt->addBusinessDays(1);
+    }
+    /**
+     * subBusinessDays: マクロが常に false を返す設定で InfiniteLoopException がスローされる。
+     */
+    public function test_subBusinessDays_throws_InfiniteLoopException(): void
+    {
+        $dt = new DateTime('2026-05-25');
+        $dt->setBusinessMacro(function () {
+            return false;
+        });
+
+        $this->expectException(InfiniteLoopException::class);
+        $dt->subBusinessDays(1);
+    }
     /**
      * @return void
      */

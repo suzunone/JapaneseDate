@@ -53,7 +53,7 @@ use JapaneseDate\DateTimeImmutable;
  * @property-read int $heavenly_stem その日が属する十干を整数で取得する。値は、 十干を表す整数 (0〜9) です。
  * @property-read string $six_weekday_text その日が属する六曜の名前を取得する。値は、 六曜の名前を表す文字列、または 六曜でない場合は空文字列になります。
  * @property-read int $six_weekday その日が属する六曜を整数で取得する。値は、 六曜を表す整数、または 六曜でない場合は 0 になります。
- * @property-read int $weekday_text その日が属する曜日の名前を取得する。値は、 曜日の名前を表す文字列、または 曜日でない場合は空文字列になります。
+ * @property-read string $weekday_text その日が属する曜日の名前を取得する。値は、 曜日の名前を表す文字列、または 曜日でない場合は空文字列になります。
  * @property-read string $month_text その日が属する月の名前を取得する。値は、 月の名前を表す文字列、または 月でない場合は空文字列になります。
  * @property-read string $holiday_text その日が祝日である場合、祝日の名前を取得する。値は、 祝日の名前を表す文字列、または 祝日でない場合は空文字列になります。
  * @property-read int $holiday その日が祝日である場合、祝日の番号を取得する。値は、 祝日の番号を表す整数、または 祝日でない場合は 0 になります。
