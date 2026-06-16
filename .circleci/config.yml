@@ -19,6 +19,9 @@ commands:
     parameters:
       php-version:
         type: string
+      with-coverage:
+        type: boolean
+        default: true
     steps:
       - checkout
       # 先にキャッシュを戻す
@@ -39,15 +42,25 @@ commands:
           paths:
             - ~/.composer/cache
           key: v1-dependencies-{{ checksum "composer.json" }}
-      - run:
-          name: Install xdebug
-          command: |
-            sudo pecl install xdebug
-      - run:
-          name: Run tests
-          command: |
-            export XDEBUG_MODE=coverage
-            vendor/bin/phpunit tests --exclude-group long-running
+      - when:
+          condition: << parameters.with-coverage >>
+          steps:
+            - run:
+                name: Install xdebug
+                command: |
+                  sudo pecl install xdebug
+            - run:
+                name: Run tests with coverage
+                command: |
+                  export XDEBUG_MODE=coverage
+                  vendor/bin/phpunit tests --exclude-group long-running
+      - unless:
+          condition: << parameters.with-coverage >>
+          steps:
+            - run:
+                name: Run tests without coverage
+                command: |
+                  vendor/bin/phpunit tests --exclude-group long-running
 
 jobs:
   test72:
@@ -58,6 +71,7 @@ jobs:
     steps:
       - run-tests:
           php-version: "7.2"
+          with-coverage: false
   test80:
     executor:
       name: php-executor
@@ -133,4 +147,3 @@ workflows:
       - test85:
           context:
             - dockerhub
-
