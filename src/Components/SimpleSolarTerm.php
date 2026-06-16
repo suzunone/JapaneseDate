@@ -45,7 +45,7 @@ class SimpleSolarTerm
      * @throws Exception
      * @throws SolarTermException
      */
-    public function getSolarTerm($year, $solar_term): SolarTermDate
+    public function getSolarTerm(int $year, int $solar_term): SolarTermDate
     {
         switch ($solar_term) {
             case DateTime::SOLAR_TERM_SYUNBUN:
@@ -108,7 +108,7 @@ class SimpleSolarTerm
      * @return SolarTermDate
      * @throws SolarTermException
      */
-    public function syunbun($year): SolarTermDate
+    public function syunbun(int $year): SolarTermDate
     {
         if ($year === 2352) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_SYUNBUN, 21);
@@ -191,7 +191,7 @@ class SimpleSolarTerm
      * @return SolarTermDate
      * @throws SolarTermException
      */
-    public function seimei($year): SolarTermDate
+    public function seimei(int $year): SolarTermDate
     {
         if ($year === 2302) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_SEIMEI, 6);
@@ -284,7 +284,7 @@ class SimpleSolarTerm
      * @return SolarTermDate
      * @throws SolarTermException
      */
-    public function kokuu($year): SolarTermDate
+    public function kokuu(int $year): SolarTermDate
     {
         if ($year === 2334) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_KOKUU, 21);
@@ -379,7 +379,7 @@ class SimpleSolarTerm
      * @return SolarTermDate
      * @throws SolarTermException
      */
-    public function rikka($year): SolarTermDate
+    public function rikka(int $year): SolarTermDate
     {
         if ($year === 2320) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_RIKKA, 6);
@@ -473,7 +473,7 @@ class SimpleSolarTerm
      * @return SolarTermDate
      * @throws SolarTermException
      */
-    public function syouman($year): SolarTermDate
+    public function syouman(int $year): SolarTermDate
     {
         if ($year === 2318) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_SYOUMAN, 22);
@@ -570,7 +570,7 @@ class SimpleSolarTerm
      * @return SolarTermDate
      * @throws SolarTermException
      */
-    public function bousyu($year): SolarTermDate
+    public function bousyu(int $year): SolarTermDate
     {
         if ($year === 2332) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_BOUSYU, 6);
@@ -675,7 +675,7 @@ class SimpleSolarTerm
      * @return SolarTermDate
      * @throws SolarTermException
      */
-    public function geshi($year): SolarTermDate
+    public function geshi(int $year): SolarTermDate
     {
         if ($year === 2321) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_GESHI, 22);
@@ -773,7 +773,7 @@ class SimpleSolarTerm
      * @return SolarTermDate
      * @throws SolarTermException
      */
-    public function syousyo($year): SolarTermDate
+    public function syousyo(int $year): SolarTermDate
     {
         if ($year === 2318) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_SYOUSYO, 8);
@@ -871,7 +871,7 @@ class SimpleSolarTerm
      * @return SolarTermDate
      * @throws SolarTermException
      */
-    public function taisyo($year): SolarTermDate
+    public function taisyo(int $year): SolarTermDate
     {
         if ($year === 2344) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_TAISYO, 23);
@@ -965,7 +965,7 @@ class SimpleSolarTerm
      * @return SolarTermDate
      * @throws SolarTermException
      */
-    public function rissyuu($year): SolarTermDate
+    public function rissyuu(int $year): SolarTermDate
     {
         if ($year === 2308) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_RISSYUU, 8);
@@ -1059,7 +1059,7 @@ class SimpleSolarTerm
      * @return SolarTermDate
      * @throws SolarTermException
      */
-    public function syosyo($year): SolarTermDate
+    public function syosyo(int $year): SolarTermDate
     {
         if ($year === 2326) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_SYOSYO, 24);
@@ -1155,7 +1155,7 @@ class SimpleSolarTerm
      * @return SolarTermDate
      * @throws SolarTermException
      */
-    public function hakuro($year): SolarTermDate
+    public function hakuro(int $year): SolarTermDate
     {
         if ($year === 2332) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_HAKURO, 8);
@@ -1253,7 +1253,7 @@ class SimpleSolarTerm
      * @return SolarTermDate
      * @throws SolarTermException
      */
-    public function syuubun($year): SolarTermDate
+    public function syuubun(int $year): SolarTermDate
     {
         if ($year === 2355) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_SYUUBUN, 24);
@@ -1342,7 +1342,7 @@ class SimpleSolarTerm
      * @return SolarTermDate
      * @throws SolarTermException
      */
-    public function kanro($year): SolarTermDate
+    public function kanro(int $year): SolarTermDate
     {
         if ($year === 2362) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_KANRO, 9);
@@ -1434,7 +1434,7 @@ class SimpleSolarTerm
      * @return SolarTermDate
      * @throws SolarTermException
      */
-    public function soukou($year): SolarTermDate
+    public function soukou(int $year): SolarTermDate
     {
         if ($year === 2386) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_SOUKOU, 24);
@@ -1532,7 +1532,7 @@ class SimpleSolarTerm
      * @return SolarTermDate
      * @throws SolarTermException
      */
-    public function rittou($year): SolarTermDate
+    public function rittou(int $year): SolarTermDate
     {
         if ($year === 2328) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_RITTOU, 8);
@@ -1621,7 +1621,7 @@ class SimpleSolarTerm
      * @return SolarTermDate
      * @throws SolarTermException
      */
-    public function syousetsu($year): SolarTermDate
+    public function syousetsu(int $year): SolarTermDate
     {
         if ($year === 2320) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_SYOUSETSU, 23);
@@ -1713,7 +1713,7 @@ class SimpleSolarTerm
      * @return SolarTermDate
      * @throws SolarTermException
      */
-    public function taisetsu($year): SolarTermDate
+    public function taisetsu(int $year): SolarTermDate
     {
         if ($year === 1649) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_TAISETSU, 7);
@@ -1796,7 +1796,7 @@ class SimpleSolarTerm
      * @return SolarTermDate
      * @throws SolarTermException
      */
-    public function touji($year): SolarTermDate
+    public function touji(int $year): SolarTermDate
     {
         if ($year === 2367) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_TOUJI, 23);
@@ -1878,7 +1878,7 @@ class SimpleSolarTerm
      * @return SolarTermDate
      * @throws SolarTermException
      */
-    public function syoukan($year): SolarTermDate
+    public function syoukan(int $year): SolarTermDate
     {
         if ($year === 2332) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_SYOUKAN, 7);
@@ -1897,7 +1897,7 @@ class SimpleSolarTerm
             return new SolarTermDate($year, DateTime::SOLAR_TERM_SYOUKAN, 6);
         }
 
-        if ($year >= 1601 && $year <= 1604) {
+        if ($year >= 1600 && $year <= 1604) {
             $days = [6, 5, 5, 6, ];
         } elseif ($year >= 1605 && $year <= 1640) {
             $days = [6, 5, 5, 5, ];
@@ -1955,7 +1955,7 @@ class SimpleSolarTerm
             $days = [7, 6, 6, 6, ];
         } elseif ($year >= 2329 && $year <= 2368) {
             $days = [6, 6, 6, 6, ];
-        } elseif ($year >= 2369 && $year <= 2400) {
+        } elseif ($year >= 2369 && $year <= 2399) {
             $days = [6, 5, 6, 6, ];
         } else {
             throw new SolarTermException('Input year is outside the supported temporal scope.');
@@ -1971,7 +1971,7 @@ class SimpleSolarTerm
      * @return SolarTermDate
      * @throws SolarTermException
      */
-    public function daikan($year): SolarTermDate
+    public function daikan(int $year): SolarTermDate
     {
         if ($year === 2362) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_DAIKAN, 21);
@@ -1984,7 +1984,7 @@ class SimpleSolarTerm
             return new SolarTermDate($year, DateTime::SOLAR_TERM_DAIKAN, 21);
         }
 
-        if ($year >= 1601 && $year <= 1640) {
+        if ($year >= 1600 && $year <= 1640) {
             $days = [20, 20, 20, 20, ];
         } elseif ($year >= 1641 && $year <= 1672) {
             $days = [20, 19, 20, 20, ];
@@ -2042,7 +2042,7 @@ class SimpleSolarTerm
             $days = [21, 20, 21, 21, ];
         } elseif ($year >= 2361 && $year <= 2396) {
             $days = [21, 20, 20, 21, ];
-        } elseif ($year >= 2397 && $year <= 2400) {
+        } elseif ($year >= 2397 && $year <= 2399) {
             $days = [21, 20, 20, 20, ];
         } else {
             throw new SolarTermException('Input year is outside the supported temporal scope.');
@@ -2058,23 +2058,12 @@ class SimpleSolarTerm
      * @return SolarTermDate
      * @throws SolarTermException
      */
-    public function rissyun($year): SolarTermDate
+    public function rissyun(int $year): SolarTermDate
     {
         if ($year === 2157) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_RISSYUN, 4);
         }
-        if ($year === 2601) {
-            return new SolarTermDate($year, DateTime::SOLAR_TERM_RISSYUN, 5);
-        }
-        if ($year === 2465) {
-            return new SolarTermDate($year, DateTime::SOLAR_TERM_RISSYUN, 4);
-        }
-        if ($year === 2737) {
-            return new SolarTermDate($year, DateTime::SOLAR_TERM_RISSYUN, 5);
-        }
-
-
-        if ($year >= 1601 && $year <= 1612) {
+        if ($year >= 1600 && $year <= 1612) {
             $days = [4, 4, 4, 4, ];
         } elseif ($year >= 1613 && $year <= 1644) {
             $days = [4, 3, 4, 4, ];
@@ -2134,34 +2123,8 @@ class SimpleSolarTerm
             $days = [5, 4, 4, 5, ];
         } elseif ($year >= 2361 && $year <= 2396) {
             $days = [5, 4, 4, 4, ];
-        } elseif ($year >= 2397 && $year <= 2432) {
+        } elseif ($year >= 2397 && $year <= 2399) {
             $days = [5, 4, 4, 4, ];
-        } elseif ($year >= 2433 && $year <= 2464) {
-            $days = [4, 4, 4, 4, ];
-        } elseif ($year >= 2465 && $year <= 2496) {
-            $days = [4, 3, 4, 4, ];
-        } elseif ($year >= 2497 && $year <= 2500) {
-            $days = [4, 3, 4, 4, ];
-        } elseif ($year >= 2501 && $year <= 2528) {
-            $days = [5, 4, 4, 5, ];
-        } elseif ($year >= 2529 && $year <= 2568) {
-            $days = [5, 4, 4, 4, ];
-        } elseif ($year >= 2569 && $year <= 2600) {
-            $days = [4, 4, 4, 4, ];
-        } elseif ($year >= 2601 && $year <= 2636) {
-            $days = [5, 4, 5, 5, ];
-        } elseif ($year >= 2637 && $year <= 2668) {
-            $days = [5, 4, 4, 5, ];
-        } elseif ($year >= 2669 && $year <= 2700) {
-            $days = [5, 4, 4, 4, ];
-        } elseif ($year >= 2701 && $year <= 2704) {
-            $days = [6, 5, 5, 5, ];
-        } elseif ($year >= 2705 && $year <= 2736) {
-            $days = [5, 5, 5, 5, ];
-        } elseif ($year >= 2737 && $year <= 2768) {
-            $days = [5, 4, 5, 5, ];
-        } elseif ($year >= 2769 && $year <= 2800) {
-            $days = [5, 4, 4, 5, ];
         } else {
             throw new SolarTermException('Input year is outside the supported temporal scope.');
         }
@@ -2176,7 +2139,7 @@ class SimpleSolarTerm
      * @return SolarTermDate
      * @throws SolarTermException
      */
-    public function usui($year): SolarTermDate
+    public function usui(int $year): SolarTermDate
     {
         if ($year === 2302) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_USUI, 20);
@@ -2189,7 +2152,7 @@ class SimpleSolarTerm
             return new SolarTermDate($year, DateTime::SOLAR_TERM_USUI, 19);
         }
 
-        if ($year >= 1601 && $year <= 1624) {
+        if ($year >= 1600 && $year <= 1624) {
             $days = [19, 18, 19, 19, ];
         } elseif ($year >= 1625 && $year <= 1656) {
             $days = [19, 18, 18, 19, ];
@@ -2243,7 +2206,7 @@ class SimpleSolarTerm
             $days = [20, 19, 19, 20, ];
         } elseif ($year >= 2337 && $year <= 2368) {
             $days = [20, 19, 19, 19, ];
-        } elseif ($year >= 2369 && $year <= 2400) {
+        } elseif ($year >= 2369 && $year <= 2399) {
             $days = [19, 19, 19, 19, ];
         } else {
             throw new SolarTermException('Input year is outside the supported temporal scope.');
@@ -2259,7 +2222,7 @@ class SimpleSolarTerm
      * @return SolarTermDate
      * @throws SolarTermException
      */
-    public function keichitsu($year): SolarTermDate
+    public function keichitsu(int $year): SolarTermDate
     {
         if ($year === 2187) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_KEICHITSU, 6);

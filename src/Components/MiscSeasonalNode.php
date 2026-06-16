@@ -85,10 +85,10 @@ class MiscSeasonalNode
      *
      * 雑節でない日は {@see DateTime::MISC_SEASONAL_NODE_NONE}（= 0）を返します。
      *
-     * @param \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable $date 判定対象の日付
+     * @param DateTime|DateTimeImmutable $date 判定対象の日付
      * @return int 雑節定数（{@see DateTime::MISC_SEASONAL_NODE_NONE} ～ {@see DateTime::MISC_SEASONAL_NODE_NIHYAKUNIJUUNICHI}）
      */
-    public function getMiscSeasonalNodeKey($date): int
+    public function getMiscSeasonalNodeKey(DateTime|DateTimeImmutable $date): int
     {
         if ($this->isSetsubun($date)) {
             return DateTime::MISC_SEASONAL_NODE_SETSUBUN;
@@ -127,10 +127,10 @@ class MiscSeasonalNode
      * 節分は季節の分かれ目（立春・立夏・立秋・立冬）の前日を指しますが、
      * 現代では立春の前日のみを指すことが一般的です。
      *
-     * @param \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable $date 判定対象の日付
+     * @param DateTime|DateTimeImmutable $date 判定対象の日付
      * @return bool 節分であれば true
      */
-    public function isSetsubun($date): bool
+    public function isSetsubun(DateTime|DateTimeImmutable $date): bool
     {
         try {
             $risshun = $this->resolveSingleSolarTerm('rissyun', $date->year);
@@ -139,7 +139,7 @@ class MiscSeasonalNode
 
             return $date->format('Y-m-d') === $setsubun->format('Y-m-d');
             // @codeCoverageIgnoreStart
-        } catch (Throwable $exception) {
+        } catch (Throwable) {
             return false;
         }
         // @codeCoverageIgnoreEnd
@@ -154,7 +154,7 @@ class MiscSeasonalNode
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function resolveSingleSolarTerm($term, $year): SolarTermDate
+    protected function resolveSingleSolarTerm(string $term, int $year): SolarTermDate
     {
         if (Astronomy::solarAlgorithm() === Astronomy::SOLAR_VSOP87) {
             return $this->callSolarTermMethod(new SolarTerm(), $term, $year);
@@ -162,7 +162,7 @@ class MiscSeasonalNode
 
         try {
             return $this->callSolarTermMethod(new SimpleSolarTerm(), $term, $year);
-        } catch (Throwable $exception) {
+        } catch (Throwable) {
             return $this->callSolarTermMethod(new SolarTerm(), $term, $year);
         }
     }
@@ -177,22 +177,16 @@ class MiscSeasonalNode
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    private function callSolarTermMethod($obj, string $term, int $year): SolarTermDate
+    protected function callSolarTermMethod(SolarTerm|SimpleSolarTerm $obj, string $term, int $year): SolarTermDate
     {
-        switch ($term) {
-            case 'rissyun':
-                return $obj->rissyun($year);
-            case 'syunbun':
-                return $obj->syunbun($year);
-            case 'syuubun':
-                return $obj->syuubun($year);
-            case 'rikka':
-                return $obj->rikka($year);
-            case 'rissyuu':
-                return $obj->rissyuu($year);
-            case 'rittou':
-                return $obj->rittou($year);
-        }
+        return match ($term) {
+            'rissyun' => $obj->rissyun($year),
+            'syunbun' => $obj->syunbun($year),
+            'syuubun' => $obj->syuubun($year),
+            'rikka' => $obj->rikka($year),
+            'rissyuu' => $obj->rissyuu($year),
+            'rittou' => $obj->rittou($year),
+        };
     }
 
     /**
@@ -204,7 +198,7 @@ class MiscSeasonalNode
      * @return NativeDateTimeImmutable 節気日の DateTimeImmutable
      * @throws \Exception
      */
-    protected function solarTermToNativeDate($termDate): NativeDateTimeImmutable
+    protected function solarTermToNativeDate(SolarTermDate $termDate): NativeDateTimeImmutable
     {
         return new NativeDateTimeImmutable(
             sprintf('%04d-%02d-%02d', $termDate->year, $termDate->month, $termDate->day),
@@ -218,10 +212,10 @@ class MiscSeasonalNode
      * 春彼岸と秋彼岸の両方を判定します。
      * 彼岸は中日（春分または秋分）の前後3日を含む計7日間の期間です。
      *
-     * @param \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable $date 判定対象の日付
+     * @param DateTime|DateTimeImmutable $date 判定対象の日付
      * @return bool 彼岸期間内であれば true
      */
-    public function isHigan($date): bool
+    public function isHigan(DateTime|DateTimeImmutable $date): bool
     {
         $higanTerms = ['syunbun', 'syuubun'];
         $dateTs = $date->startOfDay()->timestamp;
@@ -235,7 +229,7 @@ class MiscSeasonalNode
                         return true;
                     }
                     // @codeCoverageIgnoreStart
-                } catch (Throwable $exception) {
+                } catch (Throwable) {
                     continue;
                 }
                 // @codeCoverageIgnoreEnd
@@ -251,7 +245,7 @@ class MiscSeasonalNode
      * @param SolarTermDate $termDate 節気データ
      * @return DateTime 節気日の DateTime
      */
-    protected function solarTermToDateTime($termDate): DateTime
+    protected function solarTermToDateTime(SolarTermDate $termDate): DateTime
     {
         return DateTime::create($termDate->year, $termDate->month, $termDate->day);
     }
@@ -265,10 +259,10 @@ class MiscSeasonalNode
      * 十干の戊の日の判定には、ユリウス日（JD）を用います:
      * `cal_to_jd(CAL_GREGORIAN, $month, $day, $year) % 10 === 4` のとき戊の日。
      *
-     * @param \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable $date 判定対象の日付
+     * @param DateTime|DateTimeImmutable $date 判定対象の日付
      * @return bool 社日であれば true
      */
-    public function isShanichi($date): bool
+    public function isShanichi(DateTime|DateTimeImmutable $date): bool
     {
         $jd = cal_to_jd(CAL_GREGORIAN, $date->month, $date->day, $date->year);
         if ($jd % 10 !== 4) {
@@ -288,7 +282,7 @@ class MiscSeasonalNode
                     return true;
                 }
                 // @codeCoverageIgnoreStart
-            } catch (Throwable $exception) {
+            } catch (Throwable) {
                 continue;
             }
             // @codeCoverageIgnoreEnd
@@ -303,10 +297,10 @@ class MiscSeasonalNode
      * 立春を1日目として数えると、88日目（立春の翌87日後）が八十八夜です。
      * 農業の種まきの目安とされ、茶摘みの時期としても知られています。
      *
-     * @param \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable $date 判定対象の日付
+     * @param DateTime|DateTimeImmutable $date 判定対象の日付
      * @return bool 八十八夜であれば true
      */
-    public function isHachijuhachiya($date): bool
+    public function isHachijuhachiya(DateTime|DateTimeImmutable $date): bool
     {
         try {
             $risshun = $this->resolveSingleSolarTerm('rissyun', $date->year);
@@ -314,7 +308,7 @@ class MiscSeasonalNode
 
             return $date->format('Y-m-d') === $target;
             // @codeCoverageIgnoreStart
-        } catch (Throwable $exception) {
+        } catch (Throwable) {
             return false;
         }
         // @codeCoverageIgnoreEnd
@@ -326,10 +320,10 @@ class MiscSeasonalNode
      * 入梅は太陽の黄経が80°に達する日で、梅雨入りの目安とされます。
      * 芒種（黄経75°）の数日後にあたり、年によって変動します。
      *
-     * @param \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable $date 判定対象の日付
+     * @param DateTime|DateTimeImmutable $date 判定対象の日付
      * @return bool 入梅であれば true
      */
-    public function isNyubai($date): bool
+    public function isNyubai(DateTime|DateTimeImmutable $date): bool
     {
         return $this->isSolarLongitudeDay($date, 80.0);
     }
@@ -342,11 +336,11 @@ class MiscSeasonalNode
      * UTC ($date-1) 15:00 時点での黄経が $targetLon 未満で、
      * UTC $date 15:00 時点での黄経が $targetLon 以上であれば true を返します。
      *
-     * @param DateTime $date 判定対象の日付
+     * @param DateTime|DateTimeImmutable $date 判定対象の日付
      * @param float $targetLon 目標の太陽黄経（度）
      * @return bool 指定黄経に達する日であれば true
      */
-    protected function isSolarLongitudeDay($date, $targetLon): bool
+    protected function isSolarLongitudeDay(DateTime|DateTimeImmutable $date, float $targetLon): bool
     {
         try {
             $astronomy = Astronomy::factory();
@@ -361,7 +355,7 @@ class MiscSeasonalNode
 
             return $lon1 < $targetLon && $lon2 >= $targetLon;
             // @codeCoverageIgnoreStart
-        } catch (Throwable $exception) {
+        } catch (Throwable) {
             return false;
         }
         // @codeCoverageIgnoreEnd
@@ -372,7 +366,7 @@ class MiscSeasonalNode
      *
      * @return static
      */
-    public static function factory()
+    public static function factory(): static
     {
         static $instance;
         if (!$instance) {
@@ -392,7 +386,7 @@ class MiscSeasonalNode
      * @param int $day 日
      * @return array{0: int, 1: int, 2: int} [年, 月, 日]
      */
-    protected function addOneDay($year, $month, $day): array
+    protected function addOneDay(int $year, int $month, int $day): array
     {
         $jd = cal_to_jd(CAL_GREGORIAN, $month, $day, $year);
         $cal = cal_from_jd($jd + 1, CAL_GREGORIAN);
@@ -406,10 +400,10 @@ class MiscSeasonalNode
      * 半夏生は太陽の黄経が100°に達する日で、夏至（黄経90°）の約10〜11日後にあたります。
      * 農家の農作業の目安とされ、関西地方ではタコを食べる習慣があります。
      *
-     * @param \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable $date 判定対象の日付
+     * @param DateTime|DateTimeImmutable $date 判定対象の日付
      * @return bool 半夏生であれば true
      */
-    public function isHangesho($date): bool
+    public function isHangesho(DateTime|DateTimeImmutable $date): bool
     {
         return $this->isSolarLongitudeDay($date, 100.0);
     }
@@ -426,10 +420,10 @@ class MiscSeasonalNode
      * - 夏土用: 117° ≤ lon < 135°（立秋）
      * - 秋土用: 207° ≤ lon < 225°（立冬）
      *
-     * @param \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable $date 判定対象の日付
+     * @param DateTime|DateTimeImmutable $date 判定対象の日付
      * @return bool 土用期間内であれば true
      */
-    public function isDoyo($date): bool
+    public function isDoyo(DateTime|DateTimeImmutable $date): bool
     {
         // 土用入りの境界は太陽黄経が 27°/117°/207°/297° を跨ぐ瞬間で決まり、
         // 境界アルゴリズム（デフォルト VSOP87）の太陽黄経で判定する。
@@ -448,7 +442,7 @@ class MiscSeasonalNode
             }
 
             // @codeCoverageIgnoreStart
-        } catch (Throwable $exception) {
+        } catch (Throwable) {
             // 節気取得に失敗した場合は除外せず、後続の黄経判定に委ねる
         }
         // @codeCoverageIgnoreEnd
@@ -462,16 +456,14 @@ class MiscSeasonalNode
             $nextDay = $this->addOneDay($date->year, $date->month, $date->day);
             $lon2 = $astronomy->longitudeSun($nextDay[0], $nextDay[1], $nextDay[2], 0, 0, 0);
 
-            $inDoyoBand = static function (float $lon): bool {
-                return ($lon >= 297.0 && $lon < 315.0)
-                    || ($lon >= 27.0 && $lon < 45.0)
-                    || ($lon >= 117.0 && $lon < 135.0)
-                    || ($lon >= 207.0 && $lon < 225.0);
-            };
+            $inDoyoBand = static fn (float $lon): bool => ($lon >= 297.0 && $lon < 315.0)
+                || ($lon >= 27.0 && $lon < 45.0)
+                || ($lon >= 117.0 && $lon < 135.0)
+                || ($lon >= 207.0 && $lon < 225.0);
 
             return $inDoyoBand($lon2);
             // @codeCoverageIgnoreStart
-        } catch (Throwable $exception) {
+        } catch (Throwable) {
             return false;
             // @codeCoverageIgnoreEnd
         }
@@ -483,10 +475,10 @@ class MiscSeasonalNode
      * 立春を1日目として数えると、210日目（立春の翌209日後）が二百十日です。
      * 台風の多い時期として農家が警戒する日とされています（9月1日頃）。
      *
-     * @param \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable $date 判定対象の日付
+     * @param DateTime|DateTimeImmutable $date 判定対象の日付
      * @return bool 二百十日であれば true
      */
-    public function isNihyakutoka($date): bool
+    public function isNihyakutoka(DateTime|DateTimeImmutable $date): bool
     {
         try {
             $risshun = $this->resolveSingleSolarTerm('rissyun', $date->year);
@@ -494,7 +486,7 @@ class MiscSeasonalNode
 
             return $date->format('Y-m-d') === $target;
             // @codeCoverageIgnoreStart
-        } catch (Throwable $exception) {
+        } catch (Throwable) {
             return false;
         }
         // @codeCoverageIgnoreEnd
@@ -506,10 +498,10 @@ class MiscSeasonalNode
      * 立春を1日目として数えると、220日目（立春の翌219日後）が二百二十日です。
      * 二百十日に続く台風警戒日で、9月11日頃にあたります。
      *
-     * @param \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable $date 判定対象の日付
+     * @param DateTime|DateTimeImmutable $date 判定対象の日付
      * @return bool 二百二十日であれば true
      */
-    public function isNihyakunijuunichi($date): bool
+    public function isNihyakunijuunichi(DateTime|DateTimeImmutable $date): bool
     {
         try {
             $risshun = $this->resolveSingleSolarTerm('rissyun', $date->year);
@@ -517,7 +509,7 @@ class MiscSeasonalNode
 
             return $date->format('Y-m-d') === $target;
             // @codeCoverageIgnoreStart
-        } catch (Throwable $exception) {
+        } catch (Throwable) {
             return false;
         }
         // @codeCoverageIgnoreEnd
@@ -529,7 +521,7 @@ class MiscSeasonalNode
      * @param int $key 雑節定数（{@see DateTime::MISC_SEASONAL_NODE_*}）
      * @return string 雑節名（例: 「節分」「土用」）、または雑節でない場合は空文字列
      */
-    public function viewMiscSeasonalNode($key): string
+    public function viewMiscSeasonalNode(int $key): string
     {
         return self::MISC_SEASONAL_NODE_NAMES[$key] ?? '';
     }

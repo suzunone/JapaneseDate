@@ -21,6 +21,7 @@ namespace JapaneseDate\Components;
 
 use Closure;
 use JapaneseDate\CacheMode;
+use RuntimeException;
 
 /**
  * 暦計算結果をメモリ・APCu・ファイル・独自処理でキャッシュするコンポーネント。
@@ -55,24 +56,24 @@ class Cache extends CacheMode
      *
      * @var int
      */
-    protected static $mode = 1;
+    protected static int $mode = 1;
 
     /**
      * @var ?Closure
      */
-    protected static $cache_closure;
+    protected static ?Closure $cache_closure = null;
 
     /**
      * @var string|null
      */
-    protected static $cache_file_path;
+    protected static ?string $cache_file_path = null;
 
     /**
      * キャッシュデータ
      *
      * @var array
      */
-    protected static $cache = [];
+    protected static array $cache = [];
 
     /**
      * 永続キャッシュ
@@ -81,7 +82,7 @@ class Cache extends CacheMode
      * @param Closure $function
      * @return mixed
      */
-    public static function forever($cache_name, $function)
+    public static function forever(string $cache_name, Closure $function): mixed
     {
         if (static::$mode === static::MODE_NONE) {
             return $function();
@@ -89,7 +90,7 @@ class Cache extends CacheMode
 
         $cache = &static::$cache;
 
-        if (isset($cache[$cache_name])) {
+        if (array_key_exists($cache_name, $cache)) {
             return $cache[$cache_name];
         }
 
@@ -102,7 +103,7 @@ class Cache extends CacheMode
         }
 
         if (static::$mode === static::MODE_APC ||
-            (static::$mode === static::MODE_AUTO && function_exists('apcu_add'))) {
+            (static::$mode === static::MODE_AUTO && function_exists('apcu_fetch') && function_exists('apcu_store'))) {
             // APC モード
             return $cache[$cache_name] = static::apcForever($cache_name, $function);
         }
@@ -121,21 +122,21 @@ class Cache extends CacheMode
      * @param Closure $function
      * @return mixed
      */
-    protected static function apcForever($cache_name, $function)
+    protected static function apcForever(string $cache_name, Closure $function): mixed
     {
-        if (!(function_exists('apcu_fetch') && function_exists('apcu_add'))) {
+        if (!(function_exists('apcu_fetch') && function_exists('apcu_store'))) {
             return $function();
         }
 
         $success = false;
         $res = apcu_fetch($cache_name, $success);
-        if ($success && $res) {
+        if ($success) {
             return $res;
         }
 
         $res = $function();
 
-        apcu_add($cache_name, $res);
+        apcu_store($cache_name, $res);
 
         return $res;
     }
@@ -147,9 +148,23 @@ class Cache extends CacheMode
      * @param Closure $function
      * @return mixed
      */
-    protected static function fileForever($cache_name, $function)
+    protected static function fileForever(string $cache_name, Closure $function): mixed
     {
-        $cache_name_path = realpath(static::$cache_file_path) . DIRECTORY_SEPARATOR . sha1($cache_name);
+        $cacheDirectory = static::$cache_file_path;
+        if ($cacheDirectory === null) {
+            return $function();
+        }
+
+        if (!is_dir($cacheDirectory) && !mkdir($cacheDirectory, 0775, true) && !is_dir($cacheDirectory)) {
+            throw new RuntimeException('キャッシュディレクトリを作成できません: ' . $cacheDirectory);
+        }
+
+        $realPath = realpath($cacheDirectory);
+        if ($realPath === false) {
+            throw new RuntimeException('キャッシュディレクトリを解決できません: ' . $cacheDirectory);
+        }
+
+        $cache_name_path = $realPath . DIRECTORY_SEPARATOR . sha1($cache_name);
 
         if (is_file($cache_name_path)) {
             /** @noinspection UnserializeExploitsInspection */
@@ -167,7 +182,7 @@ class Cache extends CacheMode
      *
      * @param int $mode
      */
-    public static function setMode($mode): void
+    public static function setMode(int $mode): void
     {
         static::$mode = $mode;
     }
@@ -177,7 +192,7 @@ class Cache extends CacheMode
      *
      * @param string $cache_file_path
      */
-    public static function setCacheFilePath($cache_file_path): void
+    public static function setCacheFilePath(string $cache_file_path): void
     {
         static::$mode = static::MODE_FILE;
         static::$cache_file_path = $cache_file_path;
@@ -188,7 +203,7 @@ class Cache extends CacheMode
      *
      * @param Closure $function
      */
-    public static function setCacheClosure($function): void
+    public static function setCacheClosure(Closure $function): void
     {
         static::$mode = static::MODE_ORIGINAL;
         static::$cache_closure = $function;

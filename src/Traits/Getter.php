@@ -53,7 +53,7 @@ use JapaneseDate\DateTimeImmutable;
  * @property-read int $heavenly_stem その日が属する十干を整数で取得する。値は、 十干を表す整数 (0〜9) です。
  * @property-read string $six_weekday_text その日が属する六曜の名前を取得する。値は、 六曜の名前を表す文字列、または 六曜でない場合は空文字列になります。
  * @property-read int $six_weekday その日が属する六曜を整数で取得する。値は、 六曜を表す整数、または 六曜でない場合は 0 になります。
- * @property-read int $weekday_text その日が属する曜日の名前を取得する。値は、 曜日の名前を表す文字列、または 曜日でない場合は空文字列になります。
+ * @property-read string $weekday_text その日が属する曜日の名前を取得する。値は、 曜日の名前を表す文字列、または 曜日でない場合は空文字列になります。
  * @property-read string $month_text その日が属する月の名前を取得する。値は、 月の名前を表す文字列、または 月でない場合は空文字列になります。
  * @property-read string $holiday_text その日が祝日である場合、祝日の名前を取得する。値は、 祝日の名前を表す文字列、または 祝日でない場合は空文字列になります。
  * @property-read int $holiday その日が祝日である場合、祝日の番号を取得する。値は、 祝日の番号を表す整数、または 祝日でない場合は 0 になります。
@@ -242,7 +242,7 @@ trait Getter
      * @param int $calendar サポートされるカレンダー
      * @return      array カレンダーの情報を含む配列を返します。この配列には、 年、月、日、週、曜日名、月名、"月/日/年" 形式の文字列 などが含まれます。
      */
-    public function getCalendar($calendar = CAL_GREGORIAN): array
+    public function getCalendar(int $calendar = CAL_GREGORIAN): array
     {
         return cal_from_jd(unixtojd($this->timestamp), $calendar);
     }
@@ -264,318 +264,121 @@ trait Getter
     #[\ReturnTypeWillChange]
     public function __get($name)
     {
-        switch ($name) {
-            case 'solar_seasonal_festival':
-            case 'solarSeasonalFestival':
-                return $this->getSolarSeasonalFestival();
-            case 'solar_seasonal_festival_name':
-            case 'solarSeasonalFestivalName':
-                return $this->viewSolarSeasonalFestivalName();
-            case 'solar_seasonal_festival_alias':
-            case 'solarSeasonalFestivalAlias':
-                return $this->viewSolarSeasonalFestivalAlias();
-            case 'lunar_seasonal_festival':
-            case 'lunarSeasonalFestival':
-                return $this->getLunarSeasonalFestival();
-            case 'lunar_seasonal_festival_name':
-            case 'lunarSeasonalFestivalName':
-                return $this->viewLunarSeasonalFestivalName();
-            case 'lunar_seasonal_festival_alias':
-            case 'lunarSeasonalFestivalAlias':
-                return $this->viewLunarSeasonalFestivalAlias();
-            case 'misc_seasonal_node':
-            case 'miscSeasonalNode':
-                return $this->getMiscSeasonalNode();
-            case 'misc_seasonal_node_text':
-            case 'miscSeasonalNodeText':
-                return $this->viewMiscSeasonalNode();
-            case 'solar_term_text':
-            case 'solarTermText':
-                return $this->getSolarTerm();
-            case 'solar_term':
-            case 'solarTerm':
-                return $this->getSolarTermKey();
-            case 'is_solar_term':
-            case 'isSolarTerm':
-                return $this->isSolarTerm();
-            case 'syunbun':
-                return $this->getSyunbun();
-            case 'next_syunbun':
-            case 'nextSyunbun':
-                return $this->getNextSyunbun();
-            case 'before_syunbun':
-            case 'beforeSyunbun':
-                return $this->getBeforeSyunbun();
-            case 'seimei':
-                return $this->getSeimei();
-            case 'next_seimei':
-            case 'nextSeimei':
-                return $this->getNextSeimei();
-            case 'before_seimei':
-            case 'beforeSeimei':
-                return $this->getBeforeSeimei();
-            case 'kokuu':
-                return $this->getKokuu();
-            case 'next_kokuu':
-            case 'nextKokuu':
-                return $this->getNextKokuu();
-            case 'before_kokuu':
-            case 'beforeKokuu':
-                return $this->getBeforeKokuu();
-            case 'rikka':
-                return $this->getRikka();
-            case 'next_rikka':
-            case 'nextRikka':
-                return $this->getNextRikka();
-            case 'before_rikka':
-            case 'beforeRikka':
-                return $this->getBeforeRikka();
-            case 'syouman':
-                return $this->getSyouman();
-            case 'next_syouman':
-            case 'nextSyouman':
-                return $this->getNextSyouman();
-            case 'before_syouman':
-            case 'beforeSyouman':
-                return $this->getBeforeSyouman();
-            case 'bousyu':
-                return $this->getBousyu();
-            case 'next_bousyu':
-            case 'nextBousyu':
-                return $this->getNextBousyu();
-            case 'before_bousyu':
-            case 'beforeBousyu':
-                return $this->getBeforeBousyu();
-            case 'geshi':
-                return $this->getGeshi();
-            case 'next_geshi':
-            case 'nextGeshi':
-                return $this->getNextGeshi();
-            case 'before_geshi':
-            case 'beforeGeshi':
-                return $this->getBeforeGeshi();
-            case 'syousyo':
-                return $this->getSyousyo();
-            case 'next_syousyo':
-            case 'nextSyousyo':
-                return $this->getNextSyousyo();
-            case 'before_syousyo':
-            case 'beforeSyousyo':
-                return $this->getBeforeSyousyo();
-            case 'taisyo':
-                return $this->getTaisyo();
-            case 'next_taisyo':
-            case 'nextTaisyo':
-                return $this->getNextTaisyo();
-            case 'before_taisyo':
-            case 'beforeTaisyo':
-                return $this->getBeforeTaisyo();
-            case 'rissyuu':
-                return $this->getRissyuu();
-            case 'next_rissyuu':
-            case 'nextRissyuu':
-                return $this->getNextRissyuu();
-            case 'before_rissyuu':
-            case 'beforeRissyuu':
-                return $this->getBeforeRissyuu();
-            case 'syosyo':
-                return $this->getSyosyo();
-            case 'next_syosyo':
-            case 'nextSyosyo':
-                return $this->getNextSyosyo();
-            case 'before_syosyo':
-            case 'beforeSyosyo':
-                return $this->getBeforeSyosyo();
-            case 'hakuro':
-                return $this->getHakuro();
-            case 'next_hakuro':
-            case 'nextHakuro':
-                return $this->getNextHakuro();
-            case 'before_hakuro':
-            case 'beforeHakuro':
-                return $this->getBeforeHakuro();
-            case 'syuubun':
-                return $this->getSyuubun();
-            case 'next_syuubun':
-            case 'nextSyuubun':
-                return $this->getNextSyuubun();
-            case 'before_syuubun':
-            case 'beforeSyuubun':
-                return $this->getBeforeSyuubun();
-            case 'kanro':
-                return $this->getKanro();
-            case 'next_kanro':
-            case 'nextKanro':
-                return $this->getNextKanro();
-            case 'before_kanro':
-            case 'beforeKanro':
-                return $this->getBeforeKanro();
-            case 'soukou':
-                return $this->getSoukou();
-            case 'next_soukou':
-            case 'nextSoukou':
-                return $this->getNextSoukou();
-            case 'before_soukou':
-            case 'beforeSoukou':
-                return $this->getBeforeSoukou();
-            case 'rittou':
-                return $this->getRittou();
-            case 'next_rittou':
-            case 'nextRittou':
-                return $this->getNextRittou();
-            case 'before_rittou':
-            case 'beforeRittou':
-                return $this->getBeforeRittou();
-            case 'syousetsu':
-                return $this->getSyousetsu();
-            case 'next_syousetsu':
-            case 'nextSyousetsu':
-                return $this->getNextSyousetsu();
-            case 'before_syousetsu':
-            case 'beforeSyousetsu':
-                return $this->getBeforeSyousetsu();
-            case 'taisetsu':
-                return $this->getTaisetsu();
-            case 'next_taisetsu':
-            case 'nextTaisetsu':
-                return $this->getNextTaisetsu();
-            case 'before_taisetsu':
-            case 'beforeTaisetsu':
-                return $this->getBeforeTaisetsu();
-            case 'touji':
-                return $this->getTouji();
-            case 'next_touji':
-            case 'nextTouji':
-                return $this->getNextTouji();
-            case 'before_touji':
-            case 'beforeTouji':
-                return $this->getBeforeTouji();
-            case 'syoukan':
-                return $this->getSyoukan();
-            case 'next_syoukan':
-            case 'nextSyoukan':
-                return $this->getNextSyoukan();
-            case 'before_syoukan':
-            case 'beforeSyoukan':
-                return $this->getBeforeSyoukan();
-            case 'daikan':
-                return $this->getDaikan();
-            case 'next_daikan':
-            case 'nextDaikan':
-                return $this->getNextDaikan();
-            case 'before_daikan':
-            case 'beforeDaikan':
-                return $this->getBeforeDaikan();
-            case 'rissyun':
-                return $this->getRissyun();
-            case 'next_rissyun':
-            case 'nextRissyun':
-                return $this->getNextRissyun();
-            case 'before_rissyun':
-            case 'beforeRissyun':
-                return $this->getBeforeRissyun();
-            case 'usui':
-                return $this->getUsui();
-            case 'next_usui':
-            case 'nextUsui':
-                return $this->getNextUsui();
-            case 'before_usui':
-            case 'beforeUsui':
-                return $this->getBeforeUsui();
-            case 'keichitsu':
-                return $this->getKeichitsu();
-            case 'next_keichitsu':
-            case 'nextKeichitsu':
-                return $this->getNextKeichitsu();
-            case 'before_keichitsu':
-            case 'beforeKeichitsu':
-                return $this->getBeforeKeichitsu();
-            case 'era_name_text':
-            case 'eraNameText':
-                return $this->viewEraName();
-            case 'era_name':
-            case 'eraName':
-                return $this->getEraName();
-            case 'era_year':
-            case 'eraYear':
-                return $this->getEraYear();
-            case 'oriental_zodiac_text':
-            case 'orientalZodiacText':
-                return $this->viewOrientalZodiac();
-            case 'oriental_zodiac':
-            case 'orientalZodiac':
-                return $this->getOrientalZodiac();
-            case 'heavenly_stem_text':
-            case 'heavenlyStemText':
-                return $this->viewHeavenlyStem();
-            case 'heavenly_stem':
-            case 'heavenlyStem':
-                return $this->getHeavenlyStem();
-            case 'six_weekday_text':
-            case 'sixWeekdayText':
-                return $this->viewSixWeekday();
-            case 'six_weekday':
-            case 'sixWeekday':
-                return $this->getSixWeekday();
-            case 'weekday_text':
-            case 'weekdayText':
-                return $this->viewWeekday();
-            case 'month_text':
-            case 'monthText':
-                return $this->viewMonth();
-            case 'holiday_text':
-            case 'holidayText':
-                return $this->viewHoliday();
-            case 'holiday':
-                return $this->getHoliday();
-            case 'is_holiday':
-            case 'isHoliday':
-                return $this->getHoliday() !== self::NO_HOLIDAY;
-            case 'lunar_month_text':
-            case 'lunarMonthText':
-                return $this->viewLunarMonth();
-            case 'lunar_month':
-            case 'lunarMonth':
-                return $this->getLunarMonth();
-            case 'lunar_year':
-            case 'lunarYear':
-                return $this->getLunarYear();
-            case 'lunar_day':
-            case 'lunarDay':
-                return $this->getLunarDay();
-            case 'is_leap_month':
-            case 'isLeapMonth':
-                return $this->isLeapMonth();
-            case 'moon_age':
-            case 'moonAge':
-                return $this->getMoonAge();
-            case 'moon_phase_angle':
-            case 'moonPhaseAngle':
-                return $this->getMoonPhaseAngle();
-            case 'moon_phase':
-            case 'moonPhase':
-                return $this->getMoonPhase();
-            case 'moon_phase_text':
-            case 'moonPhaseText':
-                return $this->viewMoonPhase();
-            case 'seventy_two_kou':
-            case 'seventyTwoKou':
-                return $this->getSeventyTwoKou();
-            case 'seventy_two_kou_text':
-            case 'seventyTwoKouText':
-                return $this->getSeventyTwoKouText();
-            case 'seventy_two_kou_reading':
-            case 'seventyTwoKouReading':
-                return $this->getSeventyTwoKouReading();
-            case 'seventy_two_kou_type':
-            case 'seventyTwoKouType':
-                return $this->getSeventyTwoKouType();
-            case 'historical_eras':
-            case 'historicalEras':
-                return $this->historicalEras();
-            default:
-                return parent::__get($name);
-        }
+        /** @noinspection PhpMultipleClassDeclarationsInspection */
+        return match ($name) {
+            'solar_seasonal_festival', 'solarSeasonalFestival' => $this->getSolarSeasonalFestival(),
+            'solar_seasonal_festival_name', 'solarSeasonalFestivalName' => $this->viewSolarSeasonalFestivalName(),
+            'solar_seasonal_festival_alias', 'solarSeasonalFestivalAlias' => $this->viewSolarSeasonalFestivalAlias(),
+            'lunar_seasonal_festival', 'lunarSeasonalFestival' => $this->getLunarSeasonalFestival(),
+            'lunar_seasonal_festival_name', 'lunarSeasonalFestivalName' => $this->viewLunarSeasonalFestivalName(),
+            'lunar_seasonal_festival_alias', 'lunarSeasonalFestivalAlias' => $this->viewLunarSeasonalFestivalAlias(),
+            'misc_seasonal_node', 'miscSeasonalNode' => $this->getMiscSeasonalNode(),
+            'misc_seasonal_node_text', 'miscSeasonalNodeText' => $this->viewMiscSeasonalNode(),
+            'solar_term_text', 'solarTermText' => $this->getSolarTerm(),
+            'solar_term', 'solarTerm' => $this->getSolarTermKey(),
+            'is_solar_term', 'isSolarTerm' => $this->isSolarTerm(),
+            'syunbun' => $this->getSyunbun(),
+            'next_syunbun', 'nextSyunbun' => $this->getNextSyunbun(),
+            'before_syunbun', 'beforeSyunbun' => $this->getBeforeSyunbun(),
+            'seimei' => $this->getSeimei(),
+            'next_seimei', 'nextSeimei' => $this->getNextSeimei(),
+            'before_seimei', 'beforeSeimei' => $this->getBeforeSeimei(),
+            'kokuu' => $this->getKokuu(),
+            'next_kokuu', 'nextKokuu' => $this->getNextKokuu(),
+            'before_kokuu', 'beforeKokuu' => $this->getBeforeKokuu(),
+            'rikka' => $this->getRikka(),
+            'next_rikka', 'nextRikka' => $this->getNextRikka(),
+            'before_rikka', 'beforeRikka' => $this->getBeforeRikka(),
+            'syouman' => $this->getSyouman(),
+            'next_syouman', 'nextSyouman' => $this->getNextSyouman(),
+            'before_syouman', 'beforeSyouman' => $this->getBeforeSyouman(),
+            'bousyu' => $this->getBousyu(),
+            'next_bousyu', 'nextBousyu' => $this->getNextBousyu(),
+            'before_bousyu', 'beforeBousyu' => $this->getBeforeBousyu(),
+            'geshi' => $this->getGeshi(),
+            'next_geshi', 'nextGeshi' => $this->getNextGeshi(),
+            'before_geshi', 'beforeGeshi' => $this->getBeforeGeshi(),
+            'syousyo' => $this->getSyousyo(),
+            'next_syousyo', 'nextSyousyo' => $this->getNextSyousyo(),
+            'before_syousyo', 'beforeSyousyo' => $this->getBeforeSyousyo(),
+            'taisyo' => $this->getTaisyo(),
+            'next_taisyo', 'nextTaisyo' => $this->getNextTaisyo(),
+            'before_taisyo', 'beforeTaisyo' => $this->getBeforeTaisyo(),
+            'rissyuu' => $this->getRissyuu(),
+            'next_rissyuu', 'nextRissyuu' => $this->getNextRissyuu(),
+            'before_rissyuu', 'beforeRissyuu' => $this->getBeforeRissyuu(),
+            'syosyo' => $this->getSyosyo(),
+            'next_syosyo', 'nextSyosyo' => $this->getNextSyosyo(),
+            'before_syosyo', 'beforeSyosyo' => $this->getBeforeSyosyo(),
+            'hakuro' => $this->getHakuro(),
+            'next_hakuro', 'nextHakuro' => $this->getNextHakuro(),
+            'before_hakuro', 'beforeHakuro' => $this->getBeforeHakuro(),
+            'syuubun' => $this->getSyuubun(),
+            'next_syuubun', 'nextSyuubun' => $this->getNextSyuubun(),
+            'before_syuubun', 'beforeSyuubun' => $this->getBeforeSyuubun(),
+            'kanro' => $this->getKanro(),
+            'next_kanro', 'nextKanro' => $this->getNextKanro(),
+            'before_kanro', 'beforeKanro' => $this->getBeforeKanro(),
+            'soukou' => $this->getSoukou(),
+            'next_soukou', 'nextSoukou' => $this->getNextSoukou(),
+            'before_soukou', 'beforeSoukou' => $this->getBeforeSoukou(),
+            'rittou' => $this->getRittou(),
+            'next_rittou', 'nextRittou' => $this->getNextRittou(),
+            'before_rittou', 'beforeRittou' => $this->getBeforeRittou(),
+            'syousetsu' => $this->getSyousetsu(),
+            'next_syousetsu', 'nextSyousetsu' => $this->getNextSyousetsu(),
+            'before_syousetsu', 'beforeSyousetsu' => $this->getBeforeSyousetsu(),
+            'taisetsu' => $this->getTaisetsu(),
+            'next_taisetsu', 'nextTaisetsu' => $this->getNextTaisetsu(),
+            'before_taisetsu', 'beforeTaisetsu' => $this->getBeforeTaisetsu(),
+            'touji' => $this->getTouji(),
+            'next_touji', 'nextTouji' => $this->getNextTouji(),
+            'before_touji', 'beforeTouji' => $this->getBeforeTouji(),
+            'syoukan' => $this->getSyoukan(),
+            'next_syoukan', 'nextSyoukan' => $this->getNextSyoukan(),
+            'before_syoukan', 'beforeSyoukan' => $this->getBeforeSyoukan(),
+            'daikan' => $this->getDaikan(),
+            'next_daikan', 'nextDaikan' => $this->getNextDaikan(),
+            'before_daikan', 'beforeDaikan' => $this->getBeforeDaikan(),
+            'rissyun' => $this->getRissyun(),
+            'next_rissyun', 'nextRissyun' => $this->getNextRissyun(),
+            'before_rissyun', 'beforeRissyun' => $this->getBeforeRissyun(),
+            'usui' => $this->getUsui(),
+            'next_usui', 'nextUsui' => $this->getNextUsui(),
+            'before_usui', 'beforeUsui' => $this->getBeforeUsui(),
+            'keichitsu' => $this->getKeichitsu(),
+            'next_keichitsu', 'nextKeichitsu' => $this->getNextKeichitsu(),
+            'before_keichitsu', 'beforeKeichitsu' => $this->getBeforeKeichitsu(),
+            'era_name_text', 'eraNameText' => $this->viewEraName(),
+            'era_name', 'eraName' => $this->getEraName(),
+            'era_year', 'eraYear' => $this->getEraYear(),
+            'oriental_zodiac_text', 'orientalZodiacText' => $this->viewOrientalZodiac(),
+            'oriental_zodiac', 'orientalZodiac' => $this->getOrientalZodiac(),
+            'heavenly_stem_text', 'heavenlyStemText' => $this->viewHeavenlyStem(),
+            'heavenly_stem', 'heavenlyStem' => $this->getHeavenlyStem(),
+            'six_weekday_text', 'sixWeekdayText' => $this->viewSixWeekday(),
+            'six_weekday', 'sixWeekday' => $this->getSixWeekday(),
+            'weekday_text', 'weekdayText' => $this->viewWeekday(),
+            'month_text', 'monthText' => $this->viewMonth(),
+            'holiday_text', 'holidayText' => $this->viewHoliday(),
+            'holiday' => $this->getHoliday(),
+            'is_holiday', 'isHoliday' => $this->getHoliday() !== self::NO_HOLIDAY,
+            'lunar_month_text', 'lunarMonthText' => $this->viewLunarMonth(),
+            'lunar_month', 'lunarMonth' => $this->getLunarMonth(),
+            'lunar_year', 'lunarYear' => $this->getLunarYear(),
+            'lunar_day', 'lunarDay' => $this->getLunarDay(),
+            'is_leap_month', 'isLeapMonth' => $this->isLeapMonth(),
+            'moon_age', 'moonAge' => $this->getMoonAge(),
+            'moon_phase_angle', 'moonPhaseAngle' => $this->getMoonPhaseAngle(),
+            'moon_phase', 'moonPhase' => $this->getMoonPhase(),
+            'moon_phase_text', 'moonPhaseText' => $this->viewMoonPhase(),
+            'seventy_two_kou', 'seventyTwoKou' => $this->getSeventyTwoKou(),
+            'seventy_two_kou_text', 'seventyTwoKouText' => $this->getSeventyTwoKouText(),
+            'seventy_two_kou_reading', 'seventyTwoKouReading' => $this->getSeventyTwoKouReading(),
+            'seventy_two_kou_type', 'seventyTwoKouType' => $this->getSeventyTwoKouType(),
+            'historical_eras', 'historicalEras' => $this->historicalEras(),
+            default => parent::__get($name),
+        };
         // @codeCoverageIgnoreStart
     }
     // @codeCoverageIgnoreEnd

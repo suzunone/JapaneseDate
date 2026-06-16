@@ -10,11 +10,22 @@ use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
 
+
 /**
+ * SolarTermDate クラスのテスト。
  *
- */
-/**
+ * コンストラクタによるプロパティ設定・中気/節気フラグ・月マッピング・太陽黄経の計算、
+ * および __get / __set / __isset マジックメソッドの振る舞いを確認する。
  *
+ * @category    Tests
+ * @package     JapaneseDate
+ * @subpackage  Tests\Elements
+ * @author      Suzunone <suzunone.eleven@gmail.com>
+ * @copyright   JapaneseDate
+ * @license     BSD-2
+ * @link        https://github.com/suzunone/JapaneseDate
+ * @see         https://github.com/suzunone/JapaneseDate
+ * @since       Release 1.0.0 から利用可能
  * @covers \JapaneseDate\Elements\SolarTermDate
  */
 class SolarTermDateTest extends TestCase
@@ -134,7 +145,7 @@ class SolarTermDateTest extends TestCase
      * @return void
      * @dataProvider solarTermMonthProvider
      */
-    public function test_construct_month_mapping($solar_term, $expected_month): void
+    public function test_construct_month_mapping(int $solar_term, int $expected_month): void
     {
         $obj = new SolarTermDate(2000, $solar_term, 1);
         $this->assertSame($expected_month, $obj->month);

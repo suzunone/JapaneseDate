@@ -127,10 +127,8 @@ class SeventyTwoKouCalculatorTest extends TestCase
     /**
      * getKouNumber() が DateTime に対して正しい候番号を返すことを確認する。
      * @dataProvider provideKouNumbers
-     * @param string $dateStr
-     * @param int $expectedKou
      */
-    public function test_getKouNumber_with_DateTime($dateStr, $expectedKou): void
+    public function test_getKouNumber_with_DateTime(string $dateStr, int $expectedKou): void
     {
         $calc = SeventyTwoKouCalculator::factory();
         $dt = new DateTime($dateStr);
@@ -142,10 +140,8 @@ class SeventyTwoKouCalculatorTest extends TestCase
     /**
      * getKouNumber() が DateTimeImmutable に対しても正しい候番号を返すことを確認する。
      * @dataProvider provideKouNumbers
-     * @param string $dateStr
-     * @param int $expectedKou
      */
-    public function test_getKouNumber_with_DateTimeImmutable($dateStr, $expectedKou): void
+    public function test_getKouNumber_with_DateTimeImmutable(string $dateStr, int $expectedKou): void
     {
         $calc = SeventyTwoKouCalculator::factory();
         $dt = new DateTimeImmutable($dateStr);
@@ -155,12 +151,8 @@ class SeventyTwoKouCalculatorTest extends TestCase
      * getKouText() が正しい名称を返すことを確認する。
      * @noinspection PhpUnusedParameterInspection
      * @dataProvider provideKouAttributes
-     * @param int $kouNumber
-     * @param string $expectedText
-     * @param string $_
-     * @param string $__
      */
-    public function test_getKouText($kouNumber, $expectedText, $_, $__): void
+    public function test_getKouText(int $kouNumber, string $expectedText, string $_, string $__): void
     {
         $calc = SeventyTwoKouCalculator::factory();
         $this->assertSame($expectedText, $calc->getKouText($kouNumber));
@@ -169,12 +161,8 @@ class SeventyTwoKouCalculatorTest extends TestCase
      * getKouReading() が正しい読みを返すことを確認する。
      * @noinspection PhpUnusedParameterInspection
      * @dataProvider provideKouAttributes
-     * @param int $kouNumber
-     * @param string $_
-     * @param string $expectedReading
-     * @param string $__
      */
-    public function test_getKouReading($kouNumber, $_, $expectedReading, $__): void
+    public function test_getKouReading(int $kouNumber, string $_, string $expectedReading, string $__): void
     {
         $calc = SeventyTwoKouCalculator::factory();
         $this->assertSame($expectedReading, $calc->getKouReading($kouNumber));
@@ -183,12 +171,8 @@ class SeventyTwoKouCalculatorTest extends TestCase
      * getKouType() が正しい候種別を返すことを確認する。
      * @noinspection PhpUnusedParameterInspection
      * @dataProvider provideKouAttributes
-     * @param int $kouNumber
-     * @param string $_
-     * @param string $__
-     * @param string $expectedType
      */
-    public function test_getKouType($kouNumber, $_, $__, $expectedType): void
+    public function test_getKouType(int $kouNumber, string $_, string $__, string $expectedType): void
     {
         $calc = SeventyTwoKouCalculator::factory();
         $this->assertSame($expectedType, $calc->getKouType($kouNumber));

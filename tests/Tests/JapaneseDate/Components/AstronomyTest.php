@@ -18,10 +18,13 @@ namespace Tests\JapaneseDate\Components;
 use InvalidArgumentException;
 use JapaneseDate\Components\Astronomy;
 use JapaneseDate\Components\Contracts\MoonAlgorithm;
+use JapaneseDate\Components\Contracts\SunAlgorithm;
 use JapaneseDate\Components\ELP2000;
+use JapaneseDate\Components\ELP2000Reduced;
 use JapaneseDate\Components\LegacyAstronomy;
 use JapaneseDate\Components\MeeusMoon;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\CoversMethod;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\PreserveGlobalState;
 use PHPUnit\Framework\Attributes\RunInSeparateProcess;
@@ -35,6 +38,8 @@ use Tests\JapaneseDate\InvokeTrait;
  * 各計算の許容誤差:
  *   longitudeSun / longitudeMoon : ±2° (近似アルゴリズムの精度限界)
  * @covers \JapaneseDate\Components\Astronomy
+ * @covers \JapaneseDate\Components\Astronomy::longitudeMoonFast
+ * @covers \JapaneseDate\Components\Astronomy::moonPhaseAngleFast
  */
 class AstronomyTest extends TestCase
 {
@@ -168,10 +173,7 @@ class AstronomyTest extends TestCase
     public function test_longitudeMoonUsesElp2000WhenMoonAlgorithmSelected(): void
     {
         $stub = new class () implements MoonAlgorithm {
-            /**
-             * @var bool
-             */
-            public $called = false;
+            public bool $called = false;
 
             /**
              * @noinspection PhpUnused — MoonAlgorithm インターフェース実装メソッド
@@ -183,7 +185,7 @@ class AstronomyTest extends TestCase
              * @param float $sec
              * @return float
              */
-            public function longitudeMoon($year, $month, $day, $hour, $min, $sec): float
+            public function longitudeMoon(int $year, int $month, int $day, float $hour, float $min, float $sec): float
             {
                 $this->called = true;
 
@@ -219,7 +221,7 @@ class AstronomyTest extends TestCase
      * @throws \ReflectionException
      * @dataProvider normalizeAngleProvider
      */
-    public function test_normalizeAngle($input, $expected): void
+    public function test_normalizeAngle(float $input, float $expected): void
     {
         $ast = new Astronomy();
         $result = $this->invokeExecuteMethod($ast, 'normalizeAngle', [$input]);
@@ -742,7 +744,7 @@ class AstronomyTest extends TestCase
      * @throws \ReflectionException
      * @dataProvider boundaryMoonAlgorithmProvider
      */
-    public function test_factoryForBoundary_respectsBoundaryMoonAlgorithm($algorithm, $expectedClass): void
+    public function test_factoryForBoundary_respectsBoundaryMoonAlgorithm(string $algorithm, string $expectedClass): void
     {
         Astronomy::useBoundaryMoonAlgorithm($algorithm);
         $instance = Astronomy::factoryForBoundary();
@@ -773,6 +775,173 @@ class AstronomyTest extends TestCase
         $this->assertNotSame($normal, $boundary);
         $this->assertSame(Astronomy::SOLAR_LEGACY . ':' . Astronomy::MOON_LEGACY, $normal->algorithmName());
         $this->assertSame(Astronomy::SOLAR_VSOP87 . ':' . Astronomy::MOON_ELP2000, $boundary->algorithmName());
+    }
+    // ==================== longitudeMoonFast ====================
+    /**
+     * ELP2000 実装が注入された Astronomy で longitudeMoonFast() を呼ぶと
+     * ELP2000Reduced 経由で float の黄経値が返ること。
+     *
+     * @return void
+     * @throws \Exception
+     */
+    public function test_longitudeMoonFast_withElp2000_returnsFloat(): void
+    {
+        try {
+            Astronomy::useMoonAlgorithm(Astronomy::MOON_ELP2000);
+            $ast = Astronomy::factory();
+            $result = $ast->longitudeMoonFast(2025, 3, 29, 19, 58, 0.0);
+            $this->assertIsFloat($result);
+            $this->assertGreaterThanOrEqual(0.0, $result);
+            $this->assertLessThan(360.0, $result);
+        } finally {
+            Astronomy::useMoonAlgorithm(Astronomy::MOON_LEGACY);
+        }
+    }
+    /**
+     * Legacy 実装が注入された Astronomy で longitudeMoonFast() を呼ぶと
+     * longitudeMoon() に委譲されて同じ値が返ること。
+     *
+     * @return void
+     * @throws \Exception
+     */
+    public function test_longitudeMoonFast_withNonElp2000_delegatesToLongitudeMoon(): void
+    {
+        // Legacy はデフォルト
+        $ast = Astronomy::factory();
+        $fast = $ast->longitudeMoonFast(2025, 3, 29, 19, 58, 0.0);
+        $full = $ast->longitudeMoon(2025, 3, 29, 19, 58, 0.0);
+        $this->assertSame($full, $fast);
+    }
+    /**
+     * ELP2000 実装使用時、初回呼び出しで reducedMoonImpl が遅延生成され
+     * ELP2000Reduced インスタンスになること。
+     *
+     * @return void
+     * @throws \ReflectionException
+     * @throws \Exception
+     */
+    public function test_longitudeMoonFast_createsReducedMoonImplLazily(): void
+    {
+        try {
+            Astronomy::useMoonAlgorithm(Astronomy::MOON_ELP2000);
+            $ast = Astronomy::factory();
+
+            // 呼び出し前は null
+            $before = $this->invokeGetProperty($ast, 'reducedMoonImpl');
+            $this->assertNull($before);
+
+            $ast->longitudeMoonFast(2025, 3, 29, 19, 58, 0.0);
+
+            // 呼び出し後は ELP2000Reduced インスタンス
+            $after = $this->invokeGetProperty($ast, 'reducedMoonImpl');
+            $this->assertInstanceOf(ELP2000Reduced::class, $after);
+        } finally {
+            Astronomy::useMoonAlgorithm(Astronomy::MOON_LEGACY);
+        }
+    }
+    /**
+     * 同一入力に対して longitudeMoonFast() を2回呼んでも同値が返ること（oneTimeCache の動作確認）。
+     *
+     * @return void
+     * @throws \Exception
+     */
+    public function test_longitudeMoonFast_returnsSameValueOnRepeatedCall(): void
+    {
+        try {
+            Astronomy::useMoonAlgorithm(Astronomy::MOON_ELP2000);
+            $ast = Astronomy::factory();
+            $first  = $ast->longitudeMoonFast(2025, 3, 29, 19, 58, 0.0);
+            $second = $ast->longitudeMoonFast(2025, 3, 29, 19, 58, 0.0);
+            $this->assertSame($first, $second);
+        } finally {
+            Astronomy::useMoonAlgorithm(Astronomy::MOON_LEGACY);
+        }
+    }
+    // ==================== moonPhaseAngleFast ====================
+    /**
+     * moonPhaseAngleFast() は高速月黄経と太陽黄経の差を [0, 360) に正規化して返すこと。
+     *
+     * @return void
+     * @throws \Exception
+     */
+    public function test_moonPhaseAngleFast_normalizesDifferenceBetweenFastMoonAndSunLongitude(): void
+    {
+        $sun = new class () implements SunAlgorithm {
+            /**
+             * @noinspection PhpUnusedParameterInspection — インターフェイス実装の固定値スタブ
+             * @param int $year
+             * @param int $month
+             * @param float $day
+             * @param float $hour
+             * @param float $min
+             * @param float $sec
+             * @return float
+             */
+            public function longitudeSun(int $year, int $month, float $day, float $hour, float $min, float $sec): float
+            {
+                return 350.0;
+            }
+
+            /**
+             * @return string
+             */
+            public function sunAlgorithmName(): string
+            {
+                return 'stub_sun';
+            }
+        };
+
+        $moon = new class () implements MoonAlgorithm {
+            /**
+             * @noinspection PhpUnusedParameterInspection — インターフェイス実装の固定値スタブ
+             * @param int $year
+             * @param int $month
+             * @param int $day
+             * @param float $hour
+             * @param float $min
+             * @param float $sec
+             * @return float
+             */
+            public function longitudeMoon(int $year, int $month, int $day, float $hour, float $min, float $sec): float
+            {
+                return 10.0;
+            }
+
+            /**
+             * @return string
+             */
+            public function moonAlgorithmName(): string
+            {
+                return 'stub_moon';
+            }
+        };
+
+        $ast = new Astronomy($sun, $moon);
+
+        $result = $ast->moonPhaseAngleFast(2025, 3, 29, 19.0, 58.0, 0.0);
+
+        $this->assertSame(20.0, $result);
+    }
+    /**
+     * ELP2000 実装が注入された Astronomy でも moonPhaseAngleFast() は範囲内の float を返すこと。
+     *
+     * @return void
+     * @throws \Exception
+     */
+    public function test_moonPhaseAngleFast_withElp2000_returnsFloatInRange(): void
+    {
+        try {
+            Astronomy::useMoonAlgorithm(Astronomy::MOON_ELP2000);
+            $ast = Astronomy::factory();
+
+            $result = $ast->moonPhaseAngleFast(2025, 3, 29, 19.0, 58.0, 0.0);
+
+            $this->assertIsFloat($result);
+            $this->assertGreaterThanOrEqual(0.0, $result);
+            $this->assertLessThan(360.0, $result);
+        } finally {
+            Astronomy::useMoonAlgorithm(Astronomy::MOON_LEGACY);
+        }
     }
     /**
      * @return void

@@ -91,9 +91,7 @@ class DatePeriodTest extends TestCase
         $dates = iterator_to_array($period);
         $this->assertCount(4, $dates);
 
-        $formattedDates = array_map(static function ($d) {
-            return $d->format('Y-m-d');
-        }, $dates);
+        $formattedDates = array_map(static fn ($d) => $d->format('Y-m-d'), $dates);
         $this->assertContains('2026-05-03', $formattedDates);
         $this->assertContains('2026-05-04', $formattedDates);
         $this->assertContains('2026-05-05', $formattedDates);
@@ -123,9 +121,7 @@ class DatePeriodTest extends TestCase
         // 05-03〜06 が祝日なので、10日中6日が残る
         $this->assertCount(6, $dates);
 
-        $formattedDates = array_map(static function ($d) {
-            return $d->format('Y-m-d');
-        }, $dates);
+        $formattedDates = array_map(static fn ($d) => $d->format('Y-m-d'), $dates);
         $this->assertNotContains('2026-05-03', $formattedDates);
         $this->assertNotContains('2026-05-04', $formattedDates);
         $this->assertNotContains('2026-05-05', $formattedDates);
@@ -143,9 +139,7 @@ class DatePeriodTest extends TestCase
         $dates = iterator_to_array($period);
         // 10日間のうち土日（05-02, 05-03, 05-09, 05-10）の4日を除いた6日
         $this->assertCount(6, $dates);
-        $formattedDates = array_map(static function ($d) {
-            return $d->format('Y-m-d');
-        }, $dates);
+        $formattedDates = array_map(static fn ($d) => $d->format('Y-m-d'), $dates);
         $this->assertNotContains('2026-05-02', $formattedDates);
         $this->assertNotContains('2026-05-09', $formattedDates);
     }
@@ -427,9 +421,7 @@ class DatePeriodTest extends TestCase
         $dates = iterator_to_array($period);
         $this->assertCount(6, $dates);
 
-        $formattedDates = array_map(static function ($d) {
-            return $d->format('Y-m-d');
-        }, $dates);
+        $formattedDates = array_map(static fn ($d) => $d->format('Y-m-d'), $dates);
         $this->assertContains('2026-01-05', $formattedDates); // 小寒
         $this->assertContains('2026-01-20', $formattedDates); // 大寒
         $this->assertContains('2026-02-04', $formattedDates); // 立春
@@ -468,6 +460,11 @@ class DatePeriodTest extends TestCase
         $this->assertInstanceOf(DatePeriod::class, $period);
         $this->assertIsArray($dates);
     }
+    /**
+     * @return void
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     */
     public function test_eachSolarTerm_usesVsop87AlgorithmWhenSelected(): void
     {
         try {
@@ -479,9 +476,7 @@ class DatePeriodTest extends TestCase
             );
 
             $dates = iterator_to_array($period);
-            $formattedDates = array_map(function ($d) {
-                return $d->format('Y-m-d');
-            }, $dates);
+            $formattedDates = array_map(static fn ($d) => $d->format('Y-m-d'), $dates);
 
             $this->assertContains('2026-03-20', $formattedDates);
         } finally {
@@ -618,6 +613,25 @@ class DatePeriodTest extends TestCase
         $this->assertArrayHasKey(DateTime::ERA_SHOWA, $split);
         $this->assertArrayHasKey(DateTime::ERA_HEISEI, $split);
         $this->assertArrayHasKey(DateTime::ERA_REIWA, $split);
+    }
+    /**
+     * splitByEra: 明治開始前の期間も欠落せず元号なし区間として返る。
+     */
+    public function test_splitByEra_keeps_period_before_meiji_start(): void
+    {
+        $period = DatePeriod::create('1860-01-01', '1 day', '1868-02-01');
+        $split = $period->splitByEra();
+
+        $this->assertArrayHasKey(0, $split);
+        $this->assertArrayHasKey(DateTime::ERA_MEIJI, $split);
+
+        $noEraPeriod = $split[0];
+        $this->assertEquals('1860-01-01', $noEraPeriod->getStartDate()->format('Y-m-d'));
+        $this->assertEquals('1868-01-24', $noEraPeriod->getEndDate()->format('Y-m-d'));
+
+        $meijiPeriod = $split[DateTime::ERA_MEIJI];
+        $this->assertEquals('1868-01-25', $meijiPeriod->getStartDate()->format('Y-m-d'));
+        $this->assertEquals('1868-02-01', $meijiPeriod->getEndDate()->format('Y-m-d'));
     }
     /**
      * eachJapaneseFiscalYear: 指定した年度分の年度開始日（4月1日）が取得できる。

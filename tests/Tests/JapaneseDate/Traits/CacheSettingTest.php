@@ -18,6 +18,15 @@ use Tests\JapaneseDate\InvokeTrait;
 
 /**
  * CacheSetting Trait 経由で Cache コンポーネントの設定を変更できることを検証する。
+ * @category    Test
+ * @package     JapaneseDate
+ * @subpackage  Tests
+ * @author      Suzunone<suzunone.eleven@gmail.com>
+ * @copyright   JapaneseDate
+ * @license     BSD-2
+ * @link        https://github.com/suzunone/JapaneseDate
+ * @see         https://github.com/suzunone/JapaneseDate
+ * @since       2018-05-16
  * @covers \JapaneseDate\Traits\CacheSetting
  * @covers \JapaneseDate\Traits\CacheSetting::setCacheMode
  * @covers \JapaneseDate\Traits\CacheSetting::setCacheFilePath
@@ -64,7 +73,7 @@ class CacheSettingTest extends TestCase
      */
     public function test_setCacheClosure(): void
     {
-        $closure = static function (string $key, Closure $fn) {
+        $closure = static function (string $key, Closure $fn): mixed {
             return $fn();
         };
         DateTime::setCacheClosure($closure);

@@ -34,10 +34,7 @@ use PHPUnit\Framework\TestCase;
  */
 class ConfigTest extends TestCase
 {
-    /**
-     * @var string
-     */
-    private $tmpDir;
+    private string $tmpDir;
     /**
      * 指定年の旧暦データを取得し、ユリウス通日が補完されることを確認する。
      * @runInSeparateProcess

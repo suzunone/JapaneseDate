@@ -145,9 +145,7 @@ class DateBusinessTest extends TestCase
     public function test_addOpenFilter_and_getOpenFilters(): void
     {
         $db = new DateBusiness();
-        $filter = function (DateTimeInterface $d) {
-            return $d->format('d') === '10';
-        };
+        $filter = fn (DateTimeInterface $d) => $d->format('d') === '10';
         $db->addOpenFilter($filter);
         $this->assertCount(1, $db->getOpenFilters());
         $this->assertSame($filter, $db->getOpenFilters()[0]);
@@ -158,9 +156,7 @@ class DateBusinessTest extends TestCase
     public function test_addClosingFilter_and_getClosingFilters(): void
     {
         $db = new DateBusiness();
-        $filter = function (DateTimeInterface $d) {
-            return $d->format('md') === '1231';
-        };
+        $filter = fn (DateTimeInterface $d) => $d->format('md') === '1231';
         $db->addClosingFilter($filter, '大晦日');
         $filters = $db->getClosingFilters();
         $this->assertCount(1, $filters);
@@ -173,9 +169,7 @@ class DateBusinessTest extends TestCase
     public function test_addClosingFilter_null_label(): void
     {
         $db = new DateBusiness();
-        $filter = function (DateTimeInterface $d) {
-            return false;
-        };
+        $filter = fn (DateTimeInterface $d) => false;
         $db->addClosingFilter($filter);
         $this->assertNull($db->getClosingFilters()[0]['label']);
     }
@@ -186,9 +180,7 @@ class DateBusinessTest extends TestCase
     {
         $db = new DateBusiness();
         $this->assertNull($db->getMacro());
-        $macro = function (DateTimeInterface $d) {
-            return true;
-        };
+        $macro = fn (DateTimeInterface $d) => true;
         $db->setMacro($macro);
         $this->assertSame($macro, $db->getMacro());
         $db->setMacro(null);
@@ -207,15 +199,9 @@ class DateBusinessTest extends TestCase
             ->addOpenDate('2026-12-30')
             ->addOpenNthWeekday(6, 2)
             ->addClosingNthWeekday(3, 3)
-            ->addOpenFilter(function ($d) {
-                return true;
-            })
-            ->addClosingFilter(function ($d) {
-                return false;
-            })
-            ->setMacro(function ($d) {
-                return true;
-            });
+            ->addOpenFilter(fn ($d) => true)
+            ->addClosingFilter(fn ($d) => false)
+            ->setMacro(fn ($d) => true);
 
         $db->reset();
 
@@ -248,12 +234,8 @@ class DateBusinessTest extends TestCase
             ->removeOpenDate('2026-01-01')
             ->addClosingDate('2026-08-15')
             ->removeClosingDate('2026-08-15')
-            ->addOpenFilter(function ($d) {
-                return true;
-            })
-            ->addClosingFilter(function ($d) {
-                return false;
-            })
+            ->addOpenFilter(fn ($d) => true)
+            ->addClosingFilter(fn ($d) => false)
             ->setMacro(null)
             ->reset();
 

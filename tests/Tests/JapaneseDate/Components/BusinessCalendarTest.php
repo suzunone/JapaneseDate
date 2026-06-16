@@ -250,9 +250,7 @@ class BusinessCalendarTest extends TestCase
         $config = (new DateBusiness())
             ->setClosingWeekdays([0, 6])
             ->addClosingDate('2026-05-25', '臨時休業')
-            ->addOpenFilter(function (DateTimeInterface $d) {
-                return $d->format('Ymd') === '20260525';
-            });
+            ->addOpenFilter(fn (DateTimeInterface $d) => $d->format('Ymd') === '20260525');
 
         $dt = DateTime::factory('2026-05-25');
         $this->assertTrue(BusinessCalendar::isBusinessDay($dt, $config));
@@ -267,12 +265,8 @@ class BusinessCalendarTest extends TestCase
     {
         $config = (new DateBusiness())
             ->setClosingWeekdays([0, 6])
-            ->addOpenFilter(function (DateTimeInterface $d) {
-                return $d->format('Ymd') === '20260525';
-            })
-            ->addClosingFilter(function (DateTimeInterface $d) {
-                return $d->format('Ymd') === '20260525';
-            }, '最高優先休業');
+            ->addOpenFilter(fn (DateTimeInterface $d) => $d->format('Ymd') === '20260525')
+            ->addClosingFilter(fn (DateTimeInterface $d) => $d->format('Ymd') === '20260525', '最高優先休業');
 
         $dt = DateTime::factory('2026-05-25');
         $this->assertFalse(BusinessCalendar::isBusinessDay($dt, $config));
@@ -289,9 +283,7 @@ class BusinessCalendarTest extends TestCase
         $config = (new DateBusiness())
             ->setClosingWeekdays([0, 6])
             ->addClosingDate('2026-05-30')
-            ->setMacro(function (DateTimeInterface $d) {
-                return true;
-            }); // 常に営業
+            ->setMacro(fn (DateTimeInterface $d) => true); // 常に営業
 
         $saturday = DateTime::factory('2026-05-30'); // 土曜
         $this->assertTrue(BusinessCalendar::isBusinessDay($saturday, $config));
@@ -305,9 +297,7 @@ class BusinessCalendarTest extends TestCase
     public function test_macro_false_overrides_all(): void
     {
         $config = (new DateBusiness())
-            ->setMacro(function (DateTimeInterface $d) {
-                return false;
-            }); // 常に休業
+            ->setMacro(fn (DateTimeInterface $d) => false); // 常に休業
 
         $monday = DateTime::factory('2026-05-25');
         $this->assertFalse(BusinessCalendar::isBusinessDay($monday, $config));
@@ -373,9 +363,7 @@ class BusinessCalendarTest extends TestCase
     {
         $config = (new DateBusiness())
             ->setClosingWeekdays([0, 6])
-            ->addClosingFilter(function (DateTimeInterface $d) {
-                return $d->format('Ymd') === '20260814';
-            }, '夏期休暇フィルタ');
+            ->addClosingFilter(fn (DateTimeInterface $d) => $d->format('Ymd') === '20260814', '夏期休暇フィルタ');
 
         $dt = DateTime::factory('2026-08-14'); // 金曜
         $this->assertSame('夏期休暇フィルタ', BusinessCalendar::getClosingLabel($dt, $config));
@@ -388,9 +376,7 @@ class BusinessCalendarTest extends TestCase
     public function test_getClosingLabel_macro_returns_null(): void
     {
         $config = (new DateBusiness())
-            ->setMacro(function (DateTimeInterface $d) {
-                return false;
-            });
+            ->setMacro(fn (DateTimeInterface $d) => false);
 
         $dt = DateTime::factory('2026-05-25');
         $this->assertNull(BusinessCalendar::getClosingLabel($dt, $config));
@@ -509,8 +495,7 @@ class FalseTimezoneDate extends DateTimeImmutable
     /**
      * @return \DateTimeZone|false
      */
-    #[\ReturnTypeWillChange]
-    public function getTimezone()
+    public function getTimezone(): DateTimeZone|false
     {
         return false;
     }

@@ -79,16 +79,21 @@ class Moon
     protected const STANDARD_PHASES = [0.0, 0.25, 0.5, 0.75];
 
     /**
-     * 月相計算に使用する Astronomy インスタンス。
-     * @var \JapaneseDate\Components\Astronomy
+     * 朔望月の秒数（Newton スナップの補正レート計算に使用）。
+     * 29.53058868 × 86400 ≈ 2551443 秒。
      */
-    protected $astronomy;
+    protected const SYNODIC_MONTH_SECONDS = 2551443;
+
+    /**
+     * 月相計算に使用する Astronomy インスタンス。
+     */
+    protected Astronomy $astronomy;
 
     /**
      * 新月から新月の平均期間
      * @var float synmonth
      */
-    protected $synmonth = 29.53058868;
+    protected float $synmonth = 29.53058868;
 
     /**
      * @param Astronomy|null $astronomy 月相計算に使用する Astronomy インスタンス（null の場合は factory() を使用）
@@ -122,7 +127,7 @@ class Moon
      * @throws Exception
      * @throws \JapaneseDate\Exceptions\ErrorException 8 相以外の位相が指定された場合
      */
-    public function moonPhase($date, $phase, $is_next = false): Carbon
+    public function moonPhase(DateTimeInterface $date, float $phase, bool $is_next = false): Carbon
     {
         if (!in_array($phase, self::SUPPORTED_PHASES, true)) {
             throw new ErrorException(
@@ -154,21 +159,39 @@ class Moon
      * @return Carbon
      * @throws \DateInvalidTimeZoneException
      * @throws Exception 探索に失敗し、かつ 8 相以外の位相が指定された場合
+     * @throws \Exception
+     * @throws \Exception
+     * @throws \Exception
      */
-    protected function moonPhaseByAstronomy($date, $phase, $is_next): Carbon
+    protected function moonPhaseByAstronomy(DateTimeInterface $date, float $phase, bool $is_next): Carbon
     {
         $targetAngle = $this->normalizeAngle($phase * 360.0);
         $direction = $is_next ? -1 : 1;
         $step = 21600;
         $start = $date->getTimestamp();
+
+        // 注入された月実装が厳密に ELP2000 の場合のみ縮約版高速探索を使用する。
+        // ELP2000 サブクラス・Legacy・Meeus 系はいずれも既存の phaseDeltaAt() 経路を維持する。
+        $useReducedSearch = ($this->astronomy->moonAlgorithmName() === Astronomy::MOON_ELP2000);
+
         $previousTimestamp = $start;
-        $previousDelta = $this->phaseDeltaAt($previousTimestamp, $targetAngle);
+        $previousDelta = $useReducedSearch
+            ? $this->phaseDeltaAtFast($previousTimestamp, $targetAngle)
+            : $this->phaseDeltaAt($previousTimestamp, $targetAngle);
 
         for ($i = 1; $i <= 160; $i++) {
             $currentTimestamp = $start + $direction * $step * $i;
-            $currentDelta = $this->phaseDeltaAt($currentTimestamp, $targetAngle);
+            $currentDelta = $useReducedSearch
+                ? $this->phaseDeltaAtFast($currentTimestamp, $targetAngle)
+                : $this->phaseDeltaAt($currentTimestamp, $targetAngle);
 
             if ($previousDelta === 0.0) {
+                if ($useReducedSearch) {
+                    return Carbon::createFromTimestampUTC(
+                        $this->snapToFullPrecision($previousTimestamp, $targetAngle)
+                    );
+                }
+
                 return Carbon::createFromTimestampUTC($previousTimestamp);
             }
 
@@ -177,6 +200,15 @@ class Moon
                 // 逆符号の交差は 180° 反対側（満月時等）の偽検出なのでスキップする。
                 $isAscending = $previousDelta < $currentDelta;
                 if ($direction === 1 ? $isAscending : !$isAscending) {
+                    if ($useReducedSearch) {
+                        return Carbon::createFromTimestampUTC(
+                            $this->snapToFullPrecision(
+                                $this->bisectPhaseTimestampFast($previousTimestamp, $currentTimestamp, $targetAngle),
+                                $targetAngle
+                            )
+                        );
+                    }
+
                     return Carbon::createFromTimestampUTC(
                         $this->bisectPhaseTimestamp($previousTimestamp, $currentTimestamp, $targetAngle)
                     );
@@ -203,7 +235,7 @@ class Moon
      * @param float $angle
      * @return float
      */
-    protected function normalizeAngle($angle): float
+    protected function normalizeAngle(float $angle): float
     {
         $angle = fmod($angle, 360.0);
 
@@ -219,7 +251,7 @@ class Moon
      * @throws \DateInvalidTimeZoneException
      * @throws Exception
      */
-    protected function phaseDeltaAt($timestamp, $targetAngle): float
+    protected function phaseDeltaAt(int $timestamp, float $targetAngle): float
     {
         $jst = $timestamp + 32400; // UTC → JST（moonPhaseAngle は JST 入力を期待）
         $year = (int) gmdate('Y', $jst);
@@ -234,6 +266,118 @@ class Moon
     }
 
     /**
+     * 縮約 ELP2000 高速版の位相差計算（朔探索ループ専用）。
+     *
+     * {@see phaseDeltaAt()} と同一のロジックで変換・正規化を行うが、
+     * 月黄経に {@see Astronomy::moonPhaseAngleFast()} を使用することで評価項数を削減する。
+     * 縮約版が実際に適用されるのは注入された月実装が厳密に {@see ELP2000} の場合のみ。
+     *
+     * **朔探索ループの符号反転検出および粗い二分探索専用。最終出力への使用は禁止。**
+     *
+     * @param int $timestamp UTC タイムスタンプ
+     * @param float $targetAngle 目標位相角（度）
+     * @return float 位相差（-180°〜180°）
+     * @throws \Exception
+     */
+    protected function phaseDeltaAtFast(int $timestamp, float $targetAngle): float
+    {
+        $jst = $timestamp + 32400; // UTC → JST（moonPhaseAngle は JST 入力を期待）
+        $year = (int) gmdate('Y', $jst);
+        $month = (int) gmdate('n', $jst);
+        $day = (int) gmdate('j', $jst);
+        $hour = (int) gmdate('G', $jst);
+        $min = (int) gmdate('i', $jst);
+        $sec = (int) gmdate('s', $jst);
+        $angle = $this->astronomy->moonPhaseAngleFast($year, $month, $day, $hour, $min, $sec);
+
+        return $this->normalizeAngle($angle - $targetAngle + 180.0) - 180.0;
+    }
+
+    /**
+     * 縮約 ELP2000 を使った高速版の符号反転区間二分探索。
+     *
+     * {@see bisectPhaseTimestamp()} と同一の二分探索ロジックだが、
+     * {@see phaseDeltaAtFast()} を使用することで計算を高速化する。
+     * 返す候補時刻は縮約 ELP2000 精度の近似値であり、最終出力には
+     * {@see snapToFullPrecision()} による補正が必要。
+     *
+     * @param int $timestamp1 区間の一端
+     * @param int $timestamp2 区間の他端
+     * @param float $targetAngle 目標位相角（度）
+     * @return int 符号反転点に最も近い UTC タイムスタンプ（秒単位、縮約精度）
+     * @throws \Exception
+     */
+    protected function bisectPhaseTimestampFast(int $timestamp1, int $timestamp2, float $targetAngle): int
+    {
+        $left = min($timestamp1, $timestamp2);
+        $right = max($timestamp1, $timestamp2);
+        $leftDelta = $this->phaseDeltaAtFast($left, $targetAngle);
+
+        while ($right - $left > 1) {
+            $middle = intdiv($left + $right, 2);
+            $middleDelta = $this->phaseDeltaAtFast($middle, $targetAngle);
+
+            if ($leftDelta * $middleDelta <= 0.0) {
+                $right = $middle;
+
+                continue;
+            }
+
+            $left = $middle;
+            $leftDelta = $middleDelta;
+        }
+
+        return $right;
+    }
+
+    /**
+     * 縮約 ELP2000 で求めた近似時刻にフル精度 ELP2000 Newton 補正を適用する。
+     *
+     * 縮約黄経（|c| >= 1e-4 の項のみ）と完全黄経との差（最大数秒相当）を
+     * フル精度 {@see phaseDeltaAt()} の Newton ステップで解消し、
+     * フル精度のみで収束した場合と同等の位相時刻を返す。
+     *
+     * 補正レートは朔望月（{@see SYNODIC_MONTH_SECONDS} 秒）あたり 360° の位相変化。
+     * 通常 1〜2 回の反復で 1 秒以内の精度に収束する。
+     *
+     * @param int $approxTimestamp 縮約版二分探索で求めた UTC タイムスタンプ近似値
+     * @param float $targetAngle 目標位相角（度）
+     * @return int フル精度補正後の UTC タイムスタンプ
+     * @throws \DateInvalidTimeZoneException
+     * @throws Exception
+     */
+    protected function snapToFullPrecision(int $approxTimestamp, float $targetAngle): int
+    {
+        $ts = $approxTimestamp;
+        $lastTs = null;
+        for ($i = 0; $i < 3; $i++) {
+            $delta = $this->phaseDeltaAt($ts, $targetAngle);
+            if (abs($delta) < 1.0e-8) {
+                break;
+            }
+            $correction = (int) round(-$delta * self::SYNODIC_MONTH_SECONDS / 360.0);
+            if ($correction === 0) {
+                // 補正量が 0 に丸められた場合でも、負側（目標角直前）に留まっているなら
+                // 1 秒進めて正側（目標角直後）に出る。次の探索が同一の朔を繰り返さないようにする。
+                if ($delta < 0.0) {
+                    $ts++;
+                }
+                break;
+            }
+            $nextTs = $ts + $correction;
+            // Newton ステップが直前と同じ点へ戻ろうとする場合（±1 秒振動）は
+            // 整数秒精度の限界に達しているため、二分探索結果（approxTimestamp）を返す。
+            if ($nextTs === $lastTs) {
+                return $approxTimestamp;
+            }
+            $lastTs = $ts;
+            $ts = $nextTs;
+        }
+
+        return $ts;
+    }
+
+    /**
      * 位相角の符号反転区間を二分探索して位相時刻を求める。
      *
      * @param int $timestamp1
@@ -243,7 +387,7 @@ class Moon
      * @throws \DateInvalidTimeZoneException
      * @throws Exception
      */
-    protected function bisectPhaseTimestamp($timestamp1, $timestamp2, $targetAngle): int
+    protected function bisectPhaseTimestamp(int $timestamp1, int $timestamp2, float $targetAngle): int
     {
         $left = min($timestamp1, $timestamp2);
         $right = max($timestamp1, $timestamp2);
@@ -282,7 +426,7 @@ class Moon
      * @param bool $is_next true の場合は基準日時以前、false の場合は以後を探す
      * @return Carbon
      */
-    protected function moonPhaseByLegacy($date, $phase, $is_next): Carbon
+    protected function moonPhaseByLegacy(DateTimeInterface $date, float $phase, bool $is_next): Carbon
     {
         if (!in_array($phase, self::STANDARD_PHASES, true)) {
             return $this->moonPhaseByLegacyMidpoint($date, $phase, $is_next);
@@ -319,7 +463,19 @@ class Moon
             $k1 = $k2;
         }
 
-        return new Carbon($this->truePhase($is_next ? $k1 : $k2, $phase));
+        $phaseTimeK1 = $this->truePhase($k1, $phase);
+
+        if ($is_next) {
+            if ($phaseTimeK1 <= $timestamp) {
+                return new Carbon($phaseTimeK1);
+            }
+            return new Carbon($this->truePhase($k1 - 1, $phase));
+        }
+
+        if ($phaseTimeK1 > $timestamp) {
+            return new Carbon($phaseTimeK1);
+        }
+        return new Carbon($this->truePhase($k2, $phase));
     }
 
     /**
@@ -338,7 +494,7 @@ class Moon
      * @param bool $is_next true の場合は基準日時以前、false の場合は以後を探す
      * @return Carbon
      */
-    protected function moonPhaseByLegacyMidpoint($date, $phase, $is_next): Carbon
+    protected function moonPhaseByLegacyMidpoint(DateTimeInterface $date, float $phase, bool $is_next): Carbon
     {
         $lowerPhase = floor($phase * 4) / 4;
         $upperPhase = $lowerPhase + 0.25;
@@ -360,7 +516,7 @@ class Moon
      * @param int $timestamp
      * @return float
      */
-    protected function uts2Julian($timestamp): float
+    protected function uts2Julian(int $timestamp): float
     {
         return $timestamp / 86400 + 2440587.5;
     }
@@ -376,7 +532,7 @@ class Moon
      * @param float $k
      * @return float
      */
-    protected function meanPhase($date, $k): float
+    protected function meanPhase(float $date, float $k): float
     {
         // Time in Julian centuries from 1900 January 0.5
         $jt = ($date - 2415020.0) / 36525;
@@ -401,7 +557,7 @@ class Moon
      * @param float $phase 標準 4 位相のいずれか
      * @return float|null 対応する UTC タイムスタンプ。標準 4 位相以外は null
      */
-    protected function truePhase($k, $phase): ?float
+    protected function truePhase(float $k, float $phase): ?float
     {
         // Add phase to new moon time
         $k += $phase;
@@ -478,7 +634,7 @@ class Moon
      * @param float $julian
      * @return float
      */
-    protected function julian2Uts($julian): float
+    protected function julian2Uts(float $julian): float
     {
         return ($julian - 2440587.5) * 86400;
     }

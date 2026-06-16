@@ -9,11 +9,22 @@ use PHPUnit\Framework\Attributes\CoversTrait;
 use PHPUnit\Framework\TestCase;
 use Tests\JapaneseDate\InvokeTrait;
 
+
 /**
+ * OneTimeCacheTrait のテスト。
  *
- */
-/**
+ * oneTimeCache() がキャッシュミス時にクロージャを実行し、ヒット時には再計算しないこと、
+ * キーごとに独立してキャッシュされること、null 値もキャッシュされることを確認する。
  *
+ * @category    Tests
+ * @package     JapaneseDate
+ * @subpackage  Tests\Components\Traits
+ * @author      Suzunone <suzunone.eleven@gmail.com>
+ * @copyright   JapaneseDate
+ * @license     BSD-2
+ * @link        https://github.com/suzunone/JapaneseDate
+ * @see         https://github.com/suzunone/JapaneseDate
+ * @since       Release 1.0.0 から利用可能
  * @covers \JapaneseDate\Components\Traits\OneTimeCacheTrait
  */
 class OneTimeCacheTraitTest extends TestCase
@@ -41,9 +52,8 @@ class OneTimeCacheTraitTest extends TestCase
     }
     /**
      * OneTimeCacheTrait を組み込んだ無名クラスのインスタンスを作成する。
-     * @return object
      */
-    private function makeInstance()
+    private function makeInstance(): object
     {
         return new class () {
             use OneTimeCacheTrait;
@@ -75,12 +85,8 @@ class OneTimeCacheTraitTest extends TestCase
     {
         $instance = $this->makeInstance();
 
-        $result1 = $this->invokeExecuteMethod($instance, 'oneTimeCache', ['key_a', function () {
-            return 'value_a';
-        }]);
-        $result2 = $this->invokeExecuteMethod($instance, 'oneTimeCache', ['key_b', function () {
-            return 'value_b';
-        }]);
+        $result1 = $this->invokeExecuteMethod($instance, 'oneTimeCache', ['key_a', fn () => 'value_a']);
+        $result2 = $this->invokeExecuteMethod($instance, 'oneTimeCache', ['key_b', fn () => 'value_b']);
 
         $this->assertSame('value_a', $result1);
         $this->assertSame('value_b', $result2);

@@ -22,6 +22,7 @@ namespace Tests\JapaneseDate\Traits;
 use JapaneseDate\Components\Astronomy;
 use JapaneseDate\Components\SimpleSolarTerm;
 use JapaneseDate\DateTime;
+use JapaneseDate\DateTimeImmutable;
 use JapaneseDate\Elements\SolarTermDate;
 use JapaneseDate\Traits\Getter;
 use PHPUnit\Framework\Attributes\CoversMethod;
@@ -185,10 +186,8 @@ class GetterTest extends TestCase
     /**
      * toArray が Carbon の基本情報に日本暦情報を追加して返すことを確認する。
      * @dataProvider toArrayExternalCalendarDataProvider
-     * @param string $date
-     * @param mixed[] $expected
      */
-    public function test_toArray($date, $expected): void
+    public function test_toArray(string $date, array $expected): void
     {
         $DateTime = new DateTime($date);
         $result = $DateTime->toArray();
@@ -230,10 +229,8 @@ class GetterTest extends TestCase
     /**
      * 二十四節気の日付プロパティが期待する日時を返すことを確認する。
      * @dataProvider solarTermDateGetterDataProvider
-     * @param string $property
-     * @param string $expected
      */
-    public function test_get_solar_term_date_property($property, $expected): void
+    public function test_get_solar_term_date_property(string $property, string $expected): void
     {
         $DateTime = new DateTime('2018-01-01 12:34:56');
         $this->assertSame($expected, $DateTime->{$property}->format('Y-m-d H:i:s'));
@@ -492,6 +489,18 @@ class GetterTest extends TestCase
         $this->assertSame(DateTime::MISC_SEASONAL_NODE_SETSUBUN, $DateTime->misc_seasonal_node);
     }
     /**
+     * DateTimeImmutable で入梅を雑節IDとして取得できることを確認する。
+     */
+    public function test_get_miscSeasonalNode_acceptsDateTimeImmutable(): void
+    {
+        DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_VSOP87);
+        DateTime::useMoonAlgorithm(DateTime::MOON_ALGORITHM_ELP2000);
+
+        $dateTime = new DateTimeImmutable('2024-06-10');
+
+        $this->assertSame(DateTimeImmutable::MISC_SEASONAL_NODE_NYUBAI, $dateTime->miscSeasonalNode);
+    }
+    /**
      * 雑節名をキャメルケース・スネークケース両方で取得できることを確認する。
      */
     public function test_get_miscSeasonalNodeText(): void
@@ -582,12 +591,8 @@ class GetterTest extends TestCase
     {
         $DateTime = new DateTime('645-08-01T00:00:00+09:00');
         $this->assertSame(
-            array_map(static function ($e) {
-                return $e->name;
-            }, $DateTime->historicalEras),
-            array_map(static function ($e) {
-                return $e->name;
-            }, $DateTime->historical_eras)
+            array_map(static fn ($e) => $e->name, $DateTime->historicalEras),
+            array_map(static fn ($e) => $e->name, $DateTime->historical_eras)
         );
     }
     /**

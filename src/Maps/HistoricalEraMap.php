@@ -55,7 +55,7 @@ class HistoricalEraMap extends Map
      *
      * @var array<int, array<string, string>>
      */
-    protected $map = [
+    protected array $map = [
         ['start' => '645-07-29T00:00:00+09:00', 'end' => '650-03-22T00:00:00+09:00', 'name' => '大化', 'kana' => 'タイカ', 'court' => Datetime::COURT_MAIN],
         ['start' => '650-03-22T00:00:00+09:00', 'end' => '655-02-11T00:00:00+09:00', 'name' => '白雉', 'kana' => 'ハクチ', 'court' => Datetime::COURT_MAIN],
         ['start' => '686-08-14T00:00:00+09:00', 'end' => '687-02-17T00:00:00+09:00', 'name' => '朱鳥', 'kana' => 'シュチョウ', 'court' => Datetime::COURT_MAIN],
@@ -303,6 +303,6 @@ class HistoricalEraMap extends Map
         ['start' => '1912-07-30T00:00:00+09:00', 'end' => '1926-12-25T00:00:00+09:00', 'name' => '大正', 'kana' => 'タイショウ', 'court' => Datetime::COURT_MAIN],
         ['start' => '1926-12-25T00:00:00+09:00', 'end' => '1989-01-08T00:00:00+09:00', 'name' => '昭和', 'kana' => 'ショウワ', 'court' => Datetime::COURT_MAIN],
         ['start' => '1989-01-08T00:00:00+09:00', 'end' => '2019-05-01T00:00:00+09:00', 'name' => '平成', 'kana' => 'ヘイセイ', 'court' => Datetime::COURT_MAIN],
-        ['start' => '2019-05-01T00:00:00+09:00', 'end' => '2099-12-31T00:00:00+09:00', 'name' => '令和', 'kana' => 'レイワ'] // 令和の終了日は便宜上の一時的な値としてマッピング
+        ['start' => '2019-05-01T00:00:00+09:00', 'end' => '9999-12-31T23:59:59+09:00', 'name' => '令和', 'kana' => 'レイワ'] // 令和の終了日は便宜上の一時的な値としてマッピング
     ];
 }

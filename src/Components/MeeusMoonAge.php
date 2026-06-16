@@ -38,7 +38,7 @@ class MeeusMoonAge implements MoonAgeAlgorithm
     /**
      * 朔望月（新月から新月までの平均日数）。
      */
-    private const SYNODIC_MONTH = 29.530589;
+    protected const SYNODIC_MONTH = 29.530589;
 
     /**
      * 既知の新月時刻（UT JD、USNO 2000-01-06 18:14 UTC）。
@@ -46,13 +46,12 @@ class MeeusMoonAge implements MoonAgeAlgorithm
      * 収束計算の初期値をこの基準点と平均朔望月から推定し、対象日時の
      * 直近の新月に近い値から始めることで反復回数を削減する。
      */
-    private const REFERENCE_NEW_MOON_JD = 2451550.259722;
+    protected const REFERENCE_NEW_MOON_JD = 2451550.259722;
 
     /**
      * 太陽・月の黄経計算に使用する Astronomy インスタンス。
-     * @var \JapaneseDate\Components\Astronomy
      */
-    private $astronomy;
+    protected Astronomy $astronomy;
 
     /**
      * @param Astronomy $astronomy 黄経計算に使用する Astronomy インスタンス
@@ -81,7 +80,7 @@ class MeeusMoonAge implements MoonAgeAlgorithm
      * @throws \JapaneseDate\Exceptions\MoonAgeConvergenceException 朔の時刻が 30 反復以内に収束しなかった場合
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
-    public function moonAge($year, $month, $day, $hour, $min, $sec): float
+    public function moonAge(int $year, int $month, int $day, float $hour, float $min, float $sec): float
     {
         if (!is_finite($hour) || !is_finite($min) || !is_finite($sec)) {
             throw new InvalidArgumentException('Hour/min/sec must be finite numbers.');
@@ -126,7 +125,7 @@ class MeeusMoonAge implements MoonAgeAlgorithm
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      * @throws \Exception
      */
-    private function convergeNewMoon(float $approxJd): float
+    protected function convergeNewMoon(float $approxJd): float
     {
         $tm = $approxJd;
 

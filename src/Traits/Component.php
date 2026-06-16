@@ -44,40 +44,40 @@ trait Component
     /**
      * @var JisEra
      */
-    protected $jisEra;
+    protected JisEra $jisEra;
 
     /**
      * @var JapaneseDate
      */
-    protected $JapaneseDate;
+    protected JapaneseDate $JapaneseDate;
 
     /**
      * @var LunarCalendar
      */
-    protected $LunarCalendar;
+    protected LunarCalendar $LunarCalendar;
 
     /**
      * @var SexagenaryCycle
      */
-    protected $SexagenaryCycle;
+    protected SexagenaryCycle $SexagenaryCycle;
 
     /**
      * @var MiscSeasonalNode
      */
-    protected $MiscSeasonalNode;
+    protected MiscSeasonalNode $MiscSeasonalNode;
 
     /**
      * @var SeasonalFestival
      */
-    protected $SeasonalFestival;
+    protected SeasonalFestival $SeasonalFestival;
 
     /**
      * @var SeventyTwoKouCalculator
      */
-    protected $SeventyTwoKouCalculator;
+    protected SeventyTwoKouCalculator $SeventyTwoKouCalculator;
 
     /**
      * @var array
      */
-    protected $lunar_calendar = [];
+    protected array $lunar_calendar = [];
 }

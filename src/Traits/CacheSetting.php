@@ -86,7 +86,7 @@ trait CacheSetting
      * @see \JapaneseDate\CacheMode::MODE_ORIGINAL 独自キャッシュロジック（{@see setCacheClosure()} と組み合わせて使用）
      * @see \JapaneseDate\CacheMode::MODE_NONE   キャッシュ無効
      */
-    public static function setCacheMode($mode): void
+    public static function setCacheMode(int $mode): void
     {
         Cache::setMode($mode);
     }
@@ -111,7 +111,7 @@ trait CacheSetting
      * @param string $cache_file_path キャッシュファイルを保存するディレクトリの絶対パス
      * @see \JapaneseDate\CacheMode::MODE_FILE ファイルキャッシュモード
      */
-    public static function setCacheFilePath($cache_file_path): void
+    public static function setCacheFilePath(string $cache_file_path): void
     {
         Cache::setCacheFilePath($cache_file_path);
     }
@@ -154,7 +154,7 @@ trait CacheSetting
      *   キャッシュヒット時はキャッシュ済みデータを、ミス時は計算実行結果を返す必要があります。
      * @see \JapaneseDate\CacheMode::MODE_ORIGINAL 独自キャッシュモード
      */
-    public static function setCacheClosure($function): void
+    public static function setCacheClosure(Closure $function): void
     {
         Cache::setCacheClosure($function);
     }

@@ -16,11 +16,22 @@ use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Tests\JapaneseDate\Components\Traits\SolarTermDataProviderTrait;
 
+
 /**
+ * SolarTerm クラスおよび GetSolarTerm トレイトのテスト。
  *
- */
-/**
+ * 天文計算による二十四節気日付取得が国立天文台暦要項の期待値と一致すること、
+ * findSolarTerm() の境界時刻選択・例外処理・VSOP87 アルゴリズム切り替えを確認する。
  *
+ * @category    Tests
+ * @package     JapaneseDate
+ * @subpackage  Tests\Components
+ * @author      Suzunone <suzunone.eleven@gmail.com>
+ * @copyright   JapaneseDate
+ * @license     BSD-2
+ * @link        https://github.com/suzunone/JapaneseDate
+ * @see         https://github.com/suzunone/JapaneseDate
+ * @since       Release 1.0.0 から利用可能
  * @covers \JapaneseDate\Components\SolarTerm
  * @covers \JapaneseDate\Components\Traits\GetSolarTerm
  * @covers \JapaneseDate\Components\SolarTerm::__construct
@@ -106,12 +117,8 @@ class SolarTermTest extends TestCase
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      * @dataProvider naoRekiYokoSolarTermDataProvider
-     * @param int $year
-     * @param int $solarTerm
-     * @param int $month
-     * @param int $day
      */
-    public function test_getSolarTermMatchesNaoRekiYoko($year, $solarTerm, $month, $day): void
+    public function test_getSolarTermMatchesNaoRekiYoko(int $year, int $solarTerm, int $month, int $day): void
     {
         $solarTermDate = (new SolarTerm())->getSolarTerm($year, $solarTerm);
         self::assertSolarTermDate($year, $solarTerm, $month, $day, $solarTermDate);
@@ -137,13 +144,8 @@ class SolarTermTest extends TestCase
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      * @dataProvider solarTermMethodDataProvider
-     * @param string $method
-     * @param int $year
-     * @param int $solarTerm
-     * @param int $month
-     * @param int $day
      */
-    public function test_eachSolarTermMethodMatchesNaoRekiYoko2000($method, $year, $solarTerm, $month, $day): void
+    public function test_eachSolarTermMethodMatchesNaoRekiYoko2000(string $method, int $year, int $solarTerm, int $month, int $day): void
     {
         $solarTermDate = (new SolarTerm())->{$method}($year);
         self::assertSolarTermDate($year, $solarTerm, $month, $day, $solarTermDate);
@@ -154,10 +156,8 @@ class SolarTermTest extends TestCase
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      * @dataProvider naoRekiYokoYearDataProvider
-     * @param int $year
-     * @param mixed[] $expected
      */
-    public function test_getSolarTermsMatchesNaoRekiYoko($year, $expected): void
+    public function test_getSolarTermsMatchesNaoRekiYoko(int $year, array $expected): void
     {
         $solarTerms = (new SolarTerm())->getSolarTerms($year);
         $this->assertSame(array_keys($expected), array_keys($solarTerms));
@@ -178,12 +178,9 @@ class SolarTermTest extends TestCase
         try {
             $astronomy = new class () extends Astronomy {
                 /** @var int[] */
-                public $hours = [];
+                public array $hours = [];
 
-                /**
-                 * @var int
-                 */
-                private $calls = 0;
+                private int $calls = 0;
 
                 /**
                  * @param int $year
@@ -194,7 +191,7 @@ class SolarTermTest extends TestCase
                  * @param float $sec
                  * @return float
                  */
-                public function longitudeSun($year, $month, $day, $hour, $min, $sec): float
+                public function longitudeSun(int $year, int $month, float $day, float $hour, float $min, float $sec): float
                 {
                     $this->hours[] = (int) $hour;
 
@@ -227,7 +224,7 @@ class SolarTermTest extends TestCase
              * @param float $sec
              * @return float
              */
-            public function longitudeSun($year, $month, $day, $hour, $min, $sec): float
+            public function longitudeSun(int $year, int $month, float $day, float $hour, float $min, float $sec): float
             {
                 return 10.0;
             }
@@ -243,10 +240,7 @@ class SolarTermTest extends TestCase
     public function test_findSolarTermReturnsFalseWhenNextLongitudeIsOutsideSolarTermTable(): void
     {
         $astronomy = new class () extends Astronomy {
-            /**
-             * @var int
-             */
-            private $calls = 0;
+            private int $calls = 0;
 
             /**
              * @param int $year
@@ -257,7 +251,7 @@ class SolarTermTest extends TestCase
              * @param float $sec
              * @return float
              */
-            public function longitudeSun($year, $month, $day, $hour, $min, $sec): float
+            public function longitudeSun(int $year, int $month, float $day, float $hour, float $min, float $sec): float
             {
                 return $this->calls++ === 0 ? 350.0 : 360.0;
             }
@@ -266,20 +260,17 @@ class SolarTermTest extends TestCase
         $this->assertFalse((new SolarTerm($astronomy))->findSolarTerm(2000, 3, 21));
     }
     /**
-     * 旧来範囲外では0時境界を使って二十四節気を検出することを確認する。
+     * legacy 太陽計算では対応表の範囲外でも6時境界を使って二十四節気を検出することを確認する。
      *
      * @throws \JapaneseDate\Exceptions\Exception
      */
-    public function test_findSolarTermUsesMidnightBoundaryOutsideLegacyTableRange(): void
+    public function test_findSolarTermUsesLegacyBoundaryOutsideSimpleTableRange(): void
     {
         $astronomy = new class () extends Astronomy {
             /** @var int[] */
-            public $hours = [];
+            public array $hours = [];
 
-            /**
-             * @var int
-             */
-            private $calls = 0;
+            private int $calls = 0;
 
             /**
              * @param int $year
@@ -290,7 +281,7 @@ class SolarTermTest extends TestCase
              * @param float $sec
              * @return float
              */
-            public function longitudeSun($year, $month, $day, $hour, $min, $sec): float
+            public function longitudeSun(int $year, int $month, float $day, float $hour, float $min, float $sec): float
             {
                 $this->hours[] = (int) $hour;
 
@@ -298,12 +289,14 @@ class SolarTermTest extends TestCase
             }
         };
 
-        $solarTerm = (new SolarTerm($astronomy))->findSolarTerm(1599, 3, 20);
+        $solarTerm = (new SolarTerm($astronomy))->findSolarTerm(2400, 3, 20);
 
         $this->assertSame(DateTime::SOLAR_TERM_SEIMEI, $solarTerm);
-        $this->assertSame([0, 0], $astronomy->hours);
+        $this->assertSame([6, 6], $astronomy->hours);
     }
     /**
+     * VSOP87 アルゴリズム使用時、findSolarTerm() が 0 時境界を用いて二十四節気を検出することを確認する。
+     *
      * @return void
      * @throws \JapaneseDate\Exceptions\Exception
      */
@@ -311,12 +304,9 @@ class SolarTermTest extends TestCase
     {
         $astronomy = new class () extends Astronomy {
             /** @var int[] */
-            public $hours = [];
+            public array $hours = [];
 
-            /**
-             * @var int
-             */
-            private $calls = 0;
+            private int $calls = 0;
 
             /** @noinspection PhpUnused */
             /**
@@ -336,7 +326,7 @@ class SolarTermTest extends TestCase
              * @param float $sec
              * @return float
              */
-            public function longitudeSun($year, $month, $day, $hour, $min, $sec): float
+            public function longitudeSun(int $year, int $month, float $day, float $hour, float $min, float $sec): float
             {
                 $this->hours[] = (int) $hour;
 
@@ -375,6 +365,8 @@ class SolarTermTest extends TestCase
         }
     }
     /**
+     * VSOP87 アルゴリズムで取得した二十四節気一覧が暦要項の期待値と一致することを確認する。
+     *
      * @param $year
      * @param $expected
      * @return void
@@ -526,7 +518,7 @@ class SolarTermTest extends TestCase
                 DateTime::SOLAR_TERM_SYOUSETSU => [11, 22],
                 DateTime::SOLAR_TERM_TAISETSU => [12, 7],
                 DateTime::SOLAR_TERM_TOUJI => [12, 22],
-            ])
+            ]),
         );
     }
     /**
@@ -559,7 +551,7 @@ class SolarTermTest extends TestCase
              * @param float $sec
              * @return float
              */
-            public function longitudeSun($year, $month, $day, $hour, $min, $sec): float
+            public function longitudeSun(int $year, int $month, float $day, float $hour, float $min, float $sec): float
             {
                 return 10.0;
             }

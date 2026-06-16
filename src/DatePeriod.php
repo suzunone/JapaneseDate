@@ -143,6 +143,7 @@ class DatePeriod extends CarbonPeriod
     // =========================================================================
     // 祝日・休日フィルタ
     // =========================================================================
+
     /**
      * 開始日から終了日までを二十四節気の切り替わりをステップとする
      * {@see DatePeriod} を生成して返します。
@@ -165,13 +166,13 @@ class DatePeriod extends CarbonPeriod
      * }
      * ```
      *
-     * @param \JapaneseDate\DateTime $start イテレート開始の基準日
-     * @param \JapaneseDate\DateTime $end イテレート終了日（この日を含む）
+     * @param DateTime $start イテレート開始の基準日
+     * @param DateTime $end イテレート終了日（この日を含む）
      * @return static 節気区切りの {@see DatePeriod}
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
-    public static function eachSolarTerm($start, $end)
+    public static function eachSolarTerm(DateTime $start, DateTime $end): static
     {
         $dates = static::collectSolarTermDates($start, $end);
         if (empty($dates)) {
@@ -186,13 +187,13 @@ class DatePeriod extends CarbonPeriod
      *
      * 対象期間を年単位で走査し、各節気の日付が期間内に含まれるかを判定します。
      *
-     * @param \JapaneseDate\DateTime $start 検索開始日
-     * @param \JapaneseDate\DateTime $end 検索終了日
+     * @param DateTime $start 検索開始日
+     * @param DateTime $end 検索終了日
      * @return DateTime[] 節気日の配列（昇順）
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
-    protected static function collectSolarTermDates($start, $end): array
+    protected static function collectSolarTermDates(DateTime $start, DateTime $end): array
     {
         $dates = [];
         $startTs = $start->startOfDay()->timestamp;
@@ -202,7 +203,7 @@ class DatePeriod extends CarbonPeriod
             try {
                 $terms = static::resolveSolarTerms($year);
                 // @codeCoverageIgnoreStart
-            } catch (Throwable $exception) {
+            } catch (Throwable) {
                 continue;
             }
             // @codeCoverageIgnoreEnd
@@ -224,9 +225,7 @@ class DatePeriod extends CarbonPeriod
             }
         }
 
-        usort($dates, static function ($a, $b) {
-            return $a->timestamp <=> $b->timestamp;
-        });
+        usort($dates, static fn ($a, $b) => $a->timestamp <=> $b->timestamp);
 
         return $dates;
     }
@@ -242,7 +241,7 @@ class DatePeriod extends CarbonPeriod
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected static function resolveSolarTerms($year): array
+    protected static function resolveSolarTerms(int $year): array
     {
         if (Astronomy::solarAlgorithm() === Astronomy::SOLAR_VSOP87) {
             return (new SolarTerm())->getSolarTerms($year);
@@ -250,7 +249,7 @@ class DatePeriod extends CarbonPeriod
 
         try {
             return (new SimpleSolarTerm())->getSolarTerms($year);
-        } catch (Throwable $exception) {
+        } catch (Throwable) {
             return (new SolarTerm())->getSolarTerms($year);
         }
     }
@@ -264,14 +263,12 @@ class DatePeriod extends CarbonPeriod
      * @param DateTime[] $dates 日付の配列
      * @return static 配列の日付を順次返す {@see DatePeriod}
      */
-    protected static function createFromDatesArray($dates)
+    protected static function createFromDatesArray(array $dates): static
     {
         // CarbonPeriod の filters を利用して配列から生成する
         // @codeCoverageIgnoreStart
         if (empty($dates)) {
-            return static::create('now', '1 day', 'now')->addFilter(static function () {
-                return false;
-            });
+            return static::create('now', '1 day', 'now')->addFilter(static fn () => false);
         }
         // @codeCoverageIgnoreEnd
 
@@ -293,6 +290,7 @@ class DatePeriod extends CarbonPeriod
     // =========================================================================
     // 五十日（ごとおび）フィルタ
     // =========================================================================
+
     /**
      * 開始日から指定した月数分の旧暦月（朔日〜晦日）を 1 ステップとする
      * {@see DatePeriod} を生成して返します。
@@ -312,7 +310,7 @@ class DatePeriod extends CarbonPeriod
      * }
      * ```
      *
-     * @param \JapaneseDate\DateTime $start イテレート開始日（この日を含む旧暦月の朔日から開始）
+     * @param DateTime $start イテレート開始日（この日を含む旧暦月の朔日から開始）
      * @param int $months イテレートする旧暦月数
      * @return static 旧暦月朔日区切りの {@see DatePeriod}
      * @throws \DateInvalidTimeZoneException
@@ -320,7 +318,7 @@ class DatePeriod extends CarbonPeriod
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
-    public static function eachLunarMonth($start, $months)
+    public static function eachLunarMonth(DateTime $start, int $months): static
     {
         $dates = static::collectLunarNewMoonDates($start, $months);
         if (empty($dates)) {
@@ -333,12 +331,13 @@ class DatePeriod extends CarbonPeriod
     // =========================================================================
     // 六曜フィルタ
     // =========================================================================
+
     /**
      * 指定した開始日から、指定月数分の旧暦朔日（新月）の日付を収集して返します。
      *
      * Moon コンポーネントを使用して天文学的な新月の瞬間を計算します。
      *
-     * @param \JapaneseDate\DateTime $start 検索開始日
+     * @param DateTime $start 検索開始日
      * @param int $months 収集する月数
      * @return DateTime[] 新月日の配列
      * @throws \DateInvalidTimeZoneException
@@ -346,7 +345,7 @@ class DatePeriod extends CarbonPeriod
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
-    protected static function collectLunarNewMoonDates($start, $months): array
+    protected static function collectLunarNewMoonDates(DateTime $start, int $months): array
     {
         $moon = new Moon();
         $dates = [];
@@ -398,7 +397,7 @@ class DatePeriod extends CarbonPeriod
      * @return static 和暦年度開始日区切りの {@see DatePeriod}
      * @throws \JapaneseDate\Exceptions\Exception
      */
-    public static function eachJapaneseFiscalYear($startFiscalYear, $endFiscalYear)
+    public static function eachJapaneseFiscalYear(int $startFiscalYear, int $endFiscalYear): static
     {
         $dates = [];
         for ($year = $startFiscalYear; $year <= $endFiscalYear; $year++) {
@@ -436,7 +435,7 @@ class DatePeriod extends CarbonPeriod
      *
      * @return static 祝日のみを抽出するフィルタを追加した {@see DatePeriod}
      */
-    public function onlyHolidays()
+    public function onlyHolidays(): static
     {
         return $this->addFilter(static function ($date): bool {
             return DateTime::factory($date)->is_holiday;
@@ -459,7 +458,7 @@ class DatePeriod extends CarbonPeriod
      *
      * @return static 土日・祝日を除外するフィルタを追加した {@see DatePeriod}
      */
-    public function onlyWeekdays()
+    public function onlyWeekdays(): static
     {
         return $this->withoutWeekends()->withoutHolidays();
     }
@@ -485,7 +484,7 @@ class DatePeriod extends CarbonPeriod
      *
      * @return static 祝日を除外するフィルタを追加した {@see DatePeriod}
      */
-    public function withoutHolidays()
+    public function withoutHolidays(): static
     {
         return $this->addFilter(static function ($date): bool {
             $jd = DateTime::factory($date);
@@ -507,7 +506,7 @@ class DatePeriod extends CarbonPeriod
      *
      * @return static 土日を除外するフィルタを追加した {@see DatePeriod}
      */
-    public function withoutWeekends()
+    public function withoutWeekends(): static
     {
         return $this->addFilter(static function ($date): bool {
             return $date->dayOfWeek !== 0 && $date->dayOfWeek !== 6;
@@ -542,7 +541,7 @@ class DatePeriod extends CarbonPeriod
      * @param string $adjust 土日祝の調整方法（'none', 'prev', 'next'）
      * @return static 五十日フィルタを追加した {@see DatePeriod}
      */
-    public function onlyGotobi($adjust = 'none')
+    public function onlyGotobi(string $adjust = 'none'): static
     {
         return $this->addFilter(static function ($date) use ($adjust): bool {
             $jd = DateTime::factory($date);
@@ -606,7 +605,7 @@ class DatePeriod extends CarbonPeriod
      * @param int ...$sixWeekdays 抽出する六曜定数（{@see DateTime::SIX_WEEKDAY_TAIAN} など）
      * @return static 六曜フィルタを追加した {@see DatePeriod}
      */
-    public function onlySixWeekday(...$sixWeekdays)
+    public function onlySixWeekday(int ...$sixWeekdays): static
     {
         return $this->addFilter(static function ($date) use ($sixWeekdays): bool {
             $jd = DateTime::factory($date);
@@ -638,7 +637,7 @@ class DatePeriod extends CarbonPeriod
      * @param int ...$sixWeekdays 除外する六曜定数（{@see DateTime::SIX_WEEKDAY_BUTSUMETSU} など）
      * @return static 六曜除外フィルタを追加した {@see DatePeriod}
      */
-    public function withoutSixWeekday(...$sixWeekdays)
+    public function withoutSixWeekday(int ...$sixWeekdays): static
     {
         return $this->addFilter(static function ($date) use ($sixWeekdays): bool {
             $jd = DateTime::factory($date);
@@ -668,7 +667,7 @@ class DatePeriod extends CarbonPeriod
      *
      * @return static 土用フィルタを追加した {@see DatePeriod}
      */
-    public function onlyDoyo()
+    public function onlyDoyo(): static
     {
         return $this->addFilter(static function ($date): bool {
             $jd = DateTime::factory($date);
@@ -683,10 +682,10 @@ class DatePeriod extends CarbonPeriod
      *
      * 内部では {@see MiscSeasonalNode::isDoyo} に委譲します。
      *
-     * @param \JapaneseDate\DateTime $date 判定対象の日付
+     * @param DateTime $date 判定対象の日付
      * @return bool 土用期間内であれば true
      */
-    protected static function isInDoyo($date): bool
+    protected static function isInDoyo(DateTime $date): bool
     {
         return MiscSeasonalNode::factory()->isDoyo($date);
     }
@@ -706,7 +705,7 @@ class DatePeriod extends CarbonPeriod
      *
      * @return static 彼岸フィルタを追加した {@see DatePeriod}
      */
-    public function onlyHigan()
+    public function onlyHigan(): static
     {
         return $this->addFilter(static function ($date): bool {
             $jd = DateTime::factory($date);
@@ -721,10 +720,10 @@ class DatePeriod extends CarbonPeriod
      *
      * 内部では {@see MiscSeasonalNode::isHigan} に委譲します。
      *
-     * @param \JapaneseDate\DateTime $date 判定対象の日付
+     * @param DateTime $date 判定対象の日付
      * @return bool 彼岸期間内であれば true
      */
-    protected static function isInHigan($date): bool
+    protected static function isInHigan(DateTime $date): bool
     {
         return MiscSeasonalNode::factory()->isHigan($date);
     }
@@ -763,6 +762,20 @@ class DatePeriod extends CarbonPeriod
         $result = [];
         $eraKeys = array_keys(static::ERA_START_DATES);
         sort($eraKeys);
+
+        $firstEraKey = $eraKeys[0];
+        $firstEraStart = DateTime::parse(static::ERA_START_DATES[$firstEraKey]);
+        if ($startDate->lt($firstEraStart)) {
+            $subEnd = $endDate->lt($firstEraStart) ? $endDate : $firstEraStart->copy()->subDay();
+
+            if ($startDate->lte($subEnd)) {
+                $result[0] = static::create(
+                    $startDate->format('Y-m-d'),
+                    $this->getDateInterval(),
+                    $subEnd->format('Y-m-d')
+                );
+            }
+        }
 
         foreach ($eraKeys as $eraKey) {
             $eraStart = DateTime::parse(static::ERA_START_DATES[$eraKey]);
@@ -803,7 +816,7 @@ class DatePeriod extends CarbonPeriod
      * @param DateBusiness|null $config 判定に使用する設定（省略時はインスタンス/グローバル設定）
      * @return static 営業日のみに絞り込まれた新しい DatePeriod インスタンス
      */
-    public function onlyBusinessDays($config = null)
+    public function onlyBusinessDays(?DateBusiness $config = null): static
     {
         $effectiveConfig = $config ?? $this->businessConfig;
 
@@ -822,7 +835,7 @@ class DatePeriod extends CarbonPeriod
      * @param DateBusiness|null $config 判定に使用する設定（省略時はインスタンス/グローバル設定）
      * @return static 休業日のみに絞り込まれた新しい DatePeriod インスタンス
      */
-    public function withoutBusinessDays($config = null)
+    public function withoutBusinessDays(?DateBusiness $config = null): static
     {
         $effectiveConfig = $config ?? $this->businessConfig;
 

@@ -2,10 +2,6 @@
 
 /** @noinspection PhpUnhandledExceptionInspection */
 
-/**
- * DateInterval の営業日機能テスト
- */
-
 namespace Tests\JapaneseDate\Traits;
 
 use JapaneseDate\Components\BusinessCalendar;
@@ -16,18 +12,32 @@ use JapaneseDate\Traits\DateBusinessCommon;
 use PHPUnit\Framework\Attributes\CoversTrait;
 use PHPUnit\Framework\TestCase;
 
+
 /**
+ * DateBusinessCommon トレイトを DateInterval クラス経由で検証するテスト。
  *
- */
-/**
+ * addBusinessDaysTo / subBusinessDaysFrom / countBusinessDaysBetween などの
+ * 営業日加減算・集計メソッドが DateBusiness 設定・インスタンス設定と正しく連動することを確認する。
  *
+ * @category    Tests
+ * @package     JapaneseDate
+ * @subpackage  Tests\Traits
+ * @author      Suzunone <suzunone.eleven@gmail.com>
+ * @copyright   JapaneseDate
+ * @license     BSD-2
+ * @link        https://github.com/suzunone/JapaneseDate
+ * @see         https://github.com/suzunone/JapaneseDate
+ * @since       Release 1.0.0 から利用可能
  * @covers \JapaneseDate\Traits\DateBusinessCommon
  */
 class DateBusinessCommonDateIntervalTest extends TestCase
 {
     /**
+     * addBusinessDaysTo() が基準日から指定営業日数後の日付を返すことを確認する。
+     *
      * @return void
      * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\InfiniteLoopException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     public function test_addBusinessDaysTo_basic(): void
@@ -39,8 +49,11 @@ class DateBusinessCommonDateIntervalTest extends TestCase
         $this->assertSame('2026-06-03', $result->format('Y-m-d'));
     }
     /**
+     * addBusinessDaysTo() に DateBusiness 設定を渡したとき臨時休業日を除外して加算することを確認する。
+     *
      * @return void
      * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\InfiniteLoopException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     public function test_addBusinessDaysTo_with_config(): void
@@ -56,8 +69,11 @@ class DateBusinessCommonDateIntervalTest extends TestCase
         $this->assertSame('2026-06-04', $result->format('Y-m-d'));
     }
     /**
+     * addBusinessDaysTo() に 0 を渡したとき基準日をそのまま返すことを確認する。
+     *
      * @return void
      * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\InfiniteLoopException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     public function test_addBusinessDaysTo_zero(): void
@@ -68,8 +84,11 @@ class DateBusinessCommonDateIntervalTest extends TestCase
         $this->assertSame('2026-05-29', $result->format('Y-m-d'));
     }
     /**
+     * addBusinessDaysTo() が設定引数未指定のときインスタンス設定を自動参照することを確認する。
+     *
      * @return void
      * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\InfiniteLoopException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     public function test_addBusinessDaysTo_uses_instance_config(): void
@@ -85,8 +104,11 @@ class DateBusinessCommonDateIntervalTest extends TestCase
         $this->assertSame('2026-06-04', $result->format('Y-m-d'));
     }
     /**
+     * subBusinessDaysFrom() が基準日から指定営業日数前の日付を返すことを確認する。
+     *
      * @return void
      * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\InfiniteLoopException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     public function test_subBusinessDaysFrom_basic(): void
@@ -98,8 +120,11 @@ class DateBusinessCommonDateIntervalTest extends TestCase
         $this->assertSame('2026-05-29', $result->format('Y-m-d'));
     }
     /**
+     * subBusinessDaysFrom() に DateBusiness 設定を渡したとき臨時休業日を除外して遡ることを確認する。
+     *
      * @return void
      * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\InfiniteLoopException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     public function test_subBusinessDaysFrom_with_config(): void
@@ -115,8 +140,11 @@ class DateBusinessCommonDateIntervalTest extends TestCase
         $this->assertSame('2026-05-29', $result->format('Y-m-d'));
     }
     /**
+     * subBusinessDaysFrom() に 0 を渡したとき基準日をそのまま返すことを確認する。
+     *
      * @return void
      * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\InfiniteLoopException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     public function test_subBusinessDaysFrom_zero(): void
@@ -127,6 +155,8 @@ class DateBusinessCommonDateIntervalTest extends TestCase
         $this->assertSame('2026-06-03', $result->format('Y-m-d'));
     }
     /**
+     * countBusinessDaysBetween() が開始日から終了日までの営業日数を正しく返すことを確認する。
+     *
      * @return void
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
@@ -142,6 +172,8 @@ class DateBusinessCommonDateIntervalTest extends TestCase
         $this->assertSame(5, $count);
     }
     /**
+     * countBusinessDaysBetween() が週をまたぐ期間で土日を除いた営業日数を返すことを確認する。
+     *
      * @return void
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
@@ -157,6 +189,8 @@ class DateBusinessCommonDateIntervalTest extends TestCase
         $this->assertSame(6, $count);
     }
     /**
+     * countBusinessDaysBetween() が期間内の祝日を除いた営業日数を返すことを確認する。
+     *
      * @return void
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
@@ -173,6 +207,8 @@ class DateBusinessCommonDateIntervalTest extends TestCase
         $this->assertSame(2, $count);
     }
     /**
+     * countBusinessDaysBetween() が同じ営業日を開始・終了に渡したとき 1 を返すことを確認する。
+     *
      * @return void
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
@@ -185,6 +221,8 @@ class DateBusinessCommonDateIntervalTest extends TestCase
         $this->assertSame(1, $count);
     }
     /**
+     * countBusinessDaysBetween() が同じ休業日を開始・終了に渡したとき 0 を返すことを確認する。
+     *
      * @return void
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
@@ -197,6 +235,8 @@ class DateBusinessCommonDateIntervalTest extends TestCase
         $this->assertSame(0, $count);
     }
     /**
+     * countBusinessDaysBetween() に DateBusiness 設定を渡したとき臨時休業日を除いた営業日数を返すことを確認する。
+     *
      * @return void
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
@@ -216,6 +256,8 @@ class DateBusinessCommonDateIntervalTest extends TestCase
         $this->assertSame(4, $count);
     }
     /**
+     * setBusinessConfig() / getBusinessConfig() が DateInterval インスタンスに設定を正しく保持・削除することを確認する。
+     *
      * @return void
      */
     public function test_BusinessCalendar_trait_on_DateInterval(): void
@@ -231,6 +273,8 @@ class DateBusinessCommonDateIntervalTest extends TestCase
         $this->assertNull($interval->getBusinessConfig());
     }
     /**
+     * 各テスト実行前に BusinessCalendar のグローバル設定をリセットして、テスト間の干渉を防ぐ。
+     *
      * @return void
      */
     protected function setUp(): void
@@ -238,6 +282,8 @@ class DateBusinessCommonDateIntervalTest extends TestCase
         BusinessCalendar::resetAll();
     }
     /**
+     * 各テスト実行後に BusinessCalendar のグローバル設定をリセットして、後続テストへの副作用を除去する。
+     *
      * @return void
      */
     protected function tearDown(): void

@@ -520,11 +520,8 @@ class LunarTest extends TestCase
     /**
      * DateTime で月相の日本語名を取得できることを確認する。
      * @dataProvider principalMoonPhaseTextProvider
-     * @param string $date
-     * @param int $expectedPhase
-     * @param string $expectedText
      */
-    public function test_viewMoonPhase($date, $expectedPhase, $expectedText): void
+    public function test_viewMoonPhase(string $date, int $expectedPhase, string $expectedText): void
     {
         $DateTime = DateTime::factory($date);
         $this->assertSame($expectedPhase, $DateTime->moon_phase);
@@ -534,13 +531,8 @@ class LunarTest extends TestCase
     /**
      * 月相名は主要な月相点の近傍でのみ取得できることを確認する。
      * @dataProvider moonPhaseTextAlgorithmProvider
-     * @param string $solarAlgorithm
-     * @param string $moonAlgorithm
-     * @param string $date
-     * @param int|null $expectedPhase
-     * @param string $expectedText
      */
-    public function test_viewMoonPhaseTextOnlyAroundPrincipalPhase($solarAlgorithm, $moonAlgorithm, $date, $expectedPhase, $expectedText): void
+    public function test_viewMoonPhaseTextOnlyAroundPrincipalPhase(string $solarAlgorithm, string $moonAlgorithm, string $date, ?int $expectedPhase, string $expectedText): void
     {
         try {
             DateTime::useSolarAlgorithm($solarAlgorithm);
@@ -558,13 +550,8 @@ class LunarTest extends TestCase
     /**
      * 月相名がない通常日は配列出力の月相番号が null になることを確認する。
      * @dataProvider moonPhaseArrayAlgorithmProvider
-     * @param string $solarAlgorithm
-     * @param string $moonAlgorithm
-     * @param string $date
-     * @param int|null $expectedPhase
-     * @param string $expectedText
      */
-    public function test_toArrayContainsMoonPhaseOnlyAroundPrincipalPhase($solarAlgorithm, $moonAlgorithm, $date, $expectedPhase, $expectedText): void
+    public function test_toArrayContainsMoonPhaseOnlyAroundPrincipalPhase(string $solarAlgorithm, string $moonAlgorithm, string $date, ?int $expectedPhase, string $expectedText): void
     {
         try {
             DateTime::useSolarAlgorithm($solarAlgorithm);
@@ -590,11 +577,8 @@ class LunarTest extends TestCase
     /**
      * DateTimeImmutable で月相を取得できることを確認する。
      * @dataProvider principalMoonPhaseTextProvider
-     * @param string $date
-     * @param int $expectedPhase
-     * @param string $expectedText
      */
-    public function test_getMoonPhase_immutable($date, $expectedPhase, $expectedText): void
+    public function test_getMoonPhase_immutable(string $date, int $expectedPhase, string $expectedText): void
     {
         $DateTime = new DateTimeImmutable($date);
         $this->assertSame($expectedPhase, $DateTime->moon_phase);

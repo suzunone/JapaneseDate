@@ -31,7 +31,7 @@ interface MoonAlgorithm
      * @param float $sec 秒
      * @return float 月の視黄経（度、0〜360）
      */
-    public function longitudeMoon($year, $month, $day, $hour, $min, $sec): float;
+    public function longitudeMoon(int $year, int $month, int $day, float $hour, float $min, float $sec): float;
 
     /**
      * このアルゴリズムの識別子を返す。
