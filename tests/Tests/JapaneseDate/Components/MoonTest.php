@@ -786,7 +786,9 @@ class MoonTest extends TestCase
     {
         $moon = new Moon();
         // 下弦 2023-02-13 16:01 UTC (k2=1522, phase=0.75)
-        $result = $moon->moonPhase(new DateTime('2023-01-15 00:00:00', new DateTimeZone('UTC')), 0.75);
+        // 基準日を 2023-01-16 にすることで Dec 2022 サイクルの下弦 (Jan 15 02:13 UTC) を
+        // 過去に追いやり、次の下弦 (Feb 13) が確実に返るようにする。
+        $result = $moon->moonPhase(new DateTime('2023-01-16 00:00:00', new DateTimeZone('UTC')), 0.75);
         $this->assertEqualsWithDelta(
             1676304060,
             $result->getTimestamp(),
@@ -896,8 +898,10 @@ class MoonTest extends TestCase
     public function test_moonPhase_fullMoon_jul2011_matchesNaoj(): void
     {
         $moon = new Moon();
+        // is_next=true は「基準日時以前の直近の望」を返す。
+        // 基準日を 2011-07-16 とすることで、Jul 15 望 ≤ Jul 16 が成立し k1 サイクルが選ばれる。
         $expected = new DateTime('2011-07-15 15:40:00', new DateTimeZone('Asia/Tokyo'));
-        $result = $moon->moonPhase(new DateTime('2011-07-09 09:00:00', new DateTimeZone('Asia/Tokyo')), 0.5, true);
+        $result = $moon->moonPhase(new DateTime('2011-07-16 00:00:00', new DateTimeZone('Asia/Tokyo')), 0.5, true);
 
         $this->assertEqualsWithDelta(
             $expected->getTimestamp(),
@@ -916,8 +920,10 @@ class MoonTest extends TestCase
     public function test_moonPhase_lastQuarter_jul2011_matchesNaoj(): void
     {
         $moon = new Moon();
+        // is_next=true は「基準日時以前の直近の下弦」を返す。
+        // 基準日を 2011-07-25 とすることで、Jul 23 下弦 ≤ Jul 25 が成立し k1 サイクルが選ばれる。
         $expected = new DateTime('2011-07-23 14:02:00', new DateTimeZone('Asia/Tokyo'));
-        $result = $moon->moonPhase(new DateTime('2011-07-09 09:00:00', new DateTimeZone('Asia/Tokyo')), 0.75, true);
+        $result = $moon->moonPhase(new DateTime('2011-07-25 00:00:00', new DateTimeZone('Asia/Tokyo')), 0.75, true);
 
         $this->assertEqualsWithDelta(
             $expected->getTimestamp(),
@@ -1203,11 +1209,12 @@ class MoonTest extends TestCase
             ($naojLastQuarter->getTimestamp() + $naojNextNewMoon->getTimestamp()) / 2
         );
 
-        // 基準日は 2011-07-09 09:00 JST (既存 NAOJ テストと同じ)。
+        // 基準日を 2011-07-24 とする（Jul 23 下弦の翌日）。
         // is_next=true で 0.875 を探すと、moonPhaseByLegacyMidpoint が
-        // 「前の朔望月 (2011-07-01 新月) の下弦 (2011-07-23) → 直後の新月 (2011-07-31) → 中点」を計算する。
+        // 「前の朔望月 (Jul 23 下弦) → 直後の新月 (Jul 31) → 中点」を計算する。
+        // Jul 23 ≤ Jul 24 が成立するため k1 サイクルが下弦として選ばれる。
         $result = $moon->moonPhase(
-            new DateTime('2011-07-09 09:00:00', new DateTimeZone('Asia/Tokyo')),
+            new DateTime('2011-07-24 00:00:00', new DateTimeZone('Asia/Tokyo')),
             0.875,
             true
         );
@@ -1823,9 +1830,6 @@ class MoonTest extends TestCase
      * ELP2000 高速化後の makeLunarCalendar() が正しい構造を返すことを検証する。
      *
      * @return void
-     * @throws \DateInvalidTimeZoneException
-     * @throws \JapaneseDate\Exceptions\ErrorException
-     * @throws \JapaneseDate\Exceptions\Exception
      * @throws \ReflectionException
      */
     public function test_makeLunarCalendar_elp2000_returnsValidStructure(): void
@@ -1864,9 +1868,6 @@ class MoonTest extends TestCase
      * 国立天文台 2024 年 朔弦望（日本標準時）より 2024-01-11 JST を検証する。
      *
      * @return void
-     * @throws \DateInvalidTimeZoneException
-     * @throws \JapaneseDate\Exceptions\ErrorException
-     * @throws \JapaneseDate\Exceptions\Exception
      * @throws \ReflectionException
      */
     public function test_makeLunarCalendar_elp2000_newMoonDatesMatchNaoj(): void
@@ -1901,6 +1902,35 @@ class MoonTest extends TestCase
             Astronomy::useMoonAlgorithm($moonBackup);
             $this->invokeSetProperty(Astronomy::class, 'instances', []);
         }
+    }
+
+    // ==================== moonPhaseByLegacy is_next 方向修正テスト ====================
+
+    /**
+     * is_next=true かつ基準日が下弦より前の場合、前サイクルの下弦を返すことを確認する。
+     *
+     * 修正前: truePhase(k1, 0.75) が未来の下弦を返してしまい、is_next=true なのに
+     *         基準日時以後の値が返っていた。
+     * 修正後: truePhase(k1, 0.75) > $timestamp の場合は truePhase(k1-1, 0.75) を返す。
+     *
+     * 2023-01-21 が新月、下弦は約 2023-02-13。
+     * 基準日 2023-01-25（新月4日後・下弦前）で is_next=true を呼ぶと
+     * 前サイクルの下弦（2022-12-30 付近）が返ることを確認する。
+     *
+     * @return void
+     * @throws \ReflectionException
+     */
+    public function test_moonPhaseByLegacy_lastQuarter_isNextTrue_beforeLastQuarter_returnsPreviousCycle(): void
+    {
+        $moon = new Moon();
+        $base = new DateTime('2023-01-25 12:00:00', new DateTimeZone('UTC'));
+        /** @var \Carbon\Carbon $result */
+        $result = $this->invokeExecuteMethod($moon, 'moonPhaseByLegacy', [$base, 0.75, true]);
+        $this->assertLessThan(
+            $base->getTimestamp(),
+            $result->getTimestamp(),
+            'is_next=true の下弦は基準日時より前でなければならない'
+        );
     }
 }
 

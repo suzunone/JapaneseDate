@@ -36,7 +36,12 @@ class Elp2000MoonAge implements MoonAgeAlgorithm
     /**
      * 朔望月（新月から新月までの平均日数）。
      */
-    private const SYNODIC_MONTH = 29.530589;
+    protected const SYNODIC_MONTH = 29.530589;
+
+    /**
+     * UNIX エポック（1970-01-01 00:00:00 UTC）のユリウス日。
+     */
+    protected const UNIX_EPOCH_JD = 2440587.5;
 
     /**
      * 既知の新月時刻（TDB ユリウス日、2000-01-06 18:14 UTC 付近）。
@@ -44,12 +49,12 @@ class Elp2000MoonAge implements MoonAgeAlgorithm
      * 収束計算の初期値をこの基準点と平均朔望月から推定し、対象日時の
      * 直近の新月に近い値から始めることで反復回数を削減します。
      */
-    private const REFERENCE_NEW_MOON_JD = 2451550.1;
+    protected const REFERENCE_NEW_MOON_JD = 2451550.1;
 
     /**
      * 太陽・月の黄経計算および暦変換に使用する Astronomy インスタンス。
      */
-    private Astronomy $astronomy;
+    protected Astronomy $astronomy;
 
     /**
      * @param Astronomy $astronomy 黄経計算・暦変換に使用する Astronomy インスタンス
@@ -88,7 +93,7 @@ class Elp2000MoonAge implements MoonAgeAlgorithm
             new DateTimeZone('Asia/Tokyo')
         );
         $julian_date_0 = (int) $jst->format('U') / Astronomy::DAY_TO_SECOND_FLOAT
-            + 2440587.5
+            + self::UNIX_EPOCH_JD
             + (($sec - (int) $sec) / Astronomy::DAY_TO_SECOND_FLOAT);
 
         // 既知の新月を基準に、対象日時に最も近い新月のおおよその時刻を推定し、
@@ -117,6 +122,28 @@ class Elp2000MoonAge implements MoonAgeAlgorithm
     }
 
     /**
+     * ユリウス日を JST の年月日時分秒に分解する。
+     *
+     * @param float $julianDate ユリウス日
+     * @return array{0: int, 1: int, 2: int, 3: int, 4: int, 5: float} [year, month, day, hour, min, sec]
+     */
+    protected function jdToJstComponents(float $julianDate): array
+    {
+        $timestamp = (int) floor(($julianDate - self::UNIX_EPOCH_JD) * Astronomy::DAY_TO_SECOND_FLOAT);
+        $fractionalSecond = ($julianDate - self::UNIX_EPOCH_JD) * Astronomy::DAY_TO_SECOND_FLOAT - $timestamp;
+        $jst = (new DateTimeImmutable("@$timestamp"))->setTimezone(new DateTimeZone('Asia/Tokyo'));
+
+        return [
+            (int) $jst->format('Y'),
+            (int) $jst->format('n'),
+            (int) $jst->format('j'),
+            (int) $jst->format('G'),
+            (int) $jst->format('i'),
+            (int) $jst->format('s') + $fractionalSecond,
+        ];
+    }
+
+    /**
      * 与えられた近似ユリウス日を起点として朔の時刻を収束計算し、朔のユリウス日を返す。
      *
      * @param float $approxJd 収束計算の開始点（おおよその朔のユリウス日）
@@ -126,7 +153,7 @@ class Elp2000MoonAge implements MoonAgeAlgorithm
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      * @throws \Exception
      */
-    private function findNewMoonJd(float $approxJd, float $julianDate0): float
+    protected function findNewMoonJd(float $approxJd, float $julianDate0): float
     {
         $tm1 = floor($approxJd);
         $tm2 = $approxJd - $tm1;
@@ -135,18 +162,7 @@ class Elp2000MoonAge implements MoonAgeAlgorithm
         $delta_t2 = 1;
 
         while (abs($delta_t1 + $delta_t2) > Astronomy::DAYS_PER_SEC) {
-            $julian_date = $tm1 + $tm2;
-            $timestamp = (int) floor(($julian_date - 2440587.5) * Astronomy::DAY_TO_SECOND_FLOAT);
-            $fractionalSecond = ($julian_date - 2440587.5) * Astronomy::DAY_TO_SECOND_FLOAT - $timestamp;
-            $jst = (new DateTimeImmutable("@$timestamp"))->setTimezone(new DateTimeZone('Asia/Tokyo'));
-            $year = (int) $jst->format('Y');
-            $month = (int) $jst->format('n');
-            $day = (int) $jst->format('j');
-            /** @noinspection CallableParameterUseCaseInTypeContextInspection */
-            $hour = (int) $jst->format('G');
-            /** @noinspection CallableParameterUseCaseInTypeContextInspection */
-            $min = (int) $jst->format('i');
-            $sec = (int) $jst->format('s') + $fractionalSecond;
+            [$year, $month, $day, $hour, $min, $sec] = $this->jdToJstComponents($tm1 + $tm2);
             $longitude_sun = $this->astronomy->longitudeSun($year, $month, $day, $hour, $min, $sec);
             $longitude_moon = $this->astronomy->longitudeMoonFast($year, $month, $day, $hour, $min, $sec);
 
@@ -187,16 +203,7 @@ class Elp2000MoonAge implements MoonAgeAlgorithm
         $snapDeltaT2 = 0;
         $snapMaxIter = 5;
         while (abs($snapDeltaT1 + $snapDeltaT2) > Astronomy::DAYS_PER_SEC && $snapMaxIter-- > 0) {
-            $julian_date = $tm1 + $tm2;
-            $timestamp = (int) floor(($julian_date - 2440587.5) * Astronomy::DAY_TO_SECOND_FLOAT);
-            $fractionalSecond = ($julian_date - 2440587.5) * Astronomy::DAY_TO_SECOND_FLOAT - $timestamp;
-            $jst = (new DateTimeImmutable("@$timestamp"))->setTimezone(new DateTimeZone('Asia/Tokyo'));
-            $snapYear  = (int) $jst->format('Y');
-            $snapMonth = (int) $jst->format('n');
-            $snapDay   = (int) $jst->format('j');
-            $snapHour  = (int) $jst->format('G');
-            $snapMin   = (int) $jst->format('i');
-            $snapSec   = (int) $jst->format('s') + $fractionalSecond;
+            [$snapYear, $snapMonth, $snapDay, $snapHour, $snapMin, $snapSec] = $this->jdToJstComponents($tm1 + $tm2);
 
             $lonSun  = $this->astronomy->longitudeSun($snapYear, $snapMonth, $snapDay, $snapHour, $snapMin, $snapSec);
             $lonMoon = $this->astronomy->longitudeMoon($snapYear, $snapMonth, $snapDay, $snapHour, $snapMin, $snapSec);

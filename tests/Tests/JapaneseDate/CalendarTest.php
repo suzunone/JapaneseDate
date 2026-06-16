@@ -58,6 +58,8 @@ class CalendarTest extends TestCase
     use InvokeTrait;
 
     /**
+     * コンストラクタに渡した日時とタイムゾーンが内部プロパティに保持されることを確認する。
+     *
      * @return void
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
@@ -86,6 +88,8 @@ class CalendarTest extends TestCase
     }
 
     /**
+     * getDatesOfMonth() が対象月の 1 日から月末までの DateTime 配列を返すことを確認する。
+     *
      * @return void
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
@@ -110,6 +114,8 @@ class CalendarTest extends TestCase
     }
 
     /**
+     * getWorkingDayByLimit() が開始日から指定件数分の営業日をバイパス日を除外して返すことを確認する。
+     *
      * @return array|null
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
@@ -166,6 +172,8 @@ class CalendarTest extends TestCase
     }
 
     /**
+     * getWorkingDayByLimit() が DateTime::add() 失敗時に NativeDateTimeException へ変換して投げることを確認する。
+     *
      * @return void
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      * @throws \ReflectionException
@@ -183,6 +191,8 @@ class CalendarTest extends TestCase
     }
 
     /**
+     * getWorkingDay() が getWorkingDayByLimit() に処理を委譲して同じ結果を返すことを確認する。
+     *
      * @param array $res
      */
     #[Depends('test_getWorkingDayByLimit')]
@@ -207,6 +217,8 @@ class CalendarTest extends TestCase
     }
 
     /**
+     * getWorkingDayBySpan() が開始日から終了日までの全日付を DateTime 配列で返すことを確認する。
+     *
      * @return void
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
@@ -223,6 +235,8 @@ class CalendarTest extends TestCase
     }
 
     /**
+     * getCompareFormat() が日付を Ymd 形式の整数値に変換することを確認する。
+     *
      * @return void
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
@@ -247,6 +261,8 @@ class CalendarTest extends TestCase
     }
 
     /**
+     * isWorkingDay() が特定日・祝日・曜日のバイパス設定を反映して営業日判定を返すことを確認する。
+     *
      * @return void
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
@@ -326,6 +342,8 @@ class CalendarTest extends TestCase
     }
 
     /**
+     * addBypassWeekDay() が指定した曜日番号をバイパス一覧に登録することを確認する。
+     *
      * @return Calendar
      */
     public function test_addBypassWeekDay(): Calendar
@@ -356,6 +374,8 @@ class CalendarTest extends TestCase
     }
 
     /**
+     * addBypassDay() が指定した日付を Ymd 整数キーでバイパス一覧に登録することを確認する。
+     *
      * @return Calendar
      */
     public function test_addBypassDay(): Calendar
@@ -398,6 +418,8 @@ class CalendarTest extends TestCase
     }
 
     /**
+     * setBypassHoliday() が真偽値を受け取り祝日バイパスフラグを切り替えることを確認する。
+     *
      * @return void
      * @throws \ReflectionException
      */
@@ -423,6 +445,8 @@ class CalendarTest extends TestCase
     }
 
     /**
+     * removeBypassDay() が登録済みの日付を削除し、未登録日の削除が件数に影響しないことを確認する。
+     *
      * @param \JapaneseDate\Calendar $Calendar
      */
     #[Depends('test_addBypassDay')]
@@ -457,6 +481,8 @@ class CalendarTest extends TestCase
     }
 
     /**
+     * resetBypassDay() が登録されている全日付バイパスを一括削除することを確認する。
+     *
      * @param \JapaneseDate\Calendar $Calendar
      */
     #[Depends('test_addBypassDay')]
@@ -470,6 +496,8 @@ class CalendarTest extends TestCase
     }
 
     /**
+     * removeBypassWeekDay() が登録済みの曜日を削除し、未登録曜日の削除が件数に影響しないことを確認する。
+     *
      * @param \JapaneseDate\Calendar $Calendar
      * @noinspection PhpUnused
      */
@@ -493,6 +521,8 @@ class CalendarTest extends TestCase
     }
 
     /**
+     * resetBypassWeekDay() が登録されている全曜日バイパスを一括削除することを確認する。
+     *
      * @param \JapaneseDate\Calendar $Calendar
      */
     #[Depends('test_addBypassWeekDay')]
@@ -588,6 +618,8 @@ class CalendarTest extends TestCase
 class ThrowingDateTime extends DateTime
 {
     /**
+     * 常に RuntimeException を投げることで DateTime::add() の失敗を再現する。
+     *
      * @param mixed $unit
      * @param mixed $value
      * @param mixed $overflow

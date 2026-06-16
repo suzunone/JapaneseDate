@@ -2,9 +2,6 @@
 
 /** @noinspection PhpUnhandledExceptionInspection */
 
-/**
- * Calendar の営業日カレンダー機能テスト
- */
 
 namespace Tests\JapaneseDate\Traits;
 
@@ -19,12 +16,24 @@ use PHPUnit\Framework\Attributes\CoversTrait;
 use PHPUnit\Framework\TestCase;
 use Tests\JapaneseDate\InvokeTrait;
 
-/**
- *
- */
+
 
 /**
+ * DateBusinessCommon トレイトを Calendar クラス経由で検証するテスト。
  *
+ * isBusinessDayByConfig / getBusinessDaysBySpan / getBusinessDaysByLimit などの
+ * 営業日判定・取得メソッドが DateBusiness 設定・グローバル設定・各種フィルタと
+ * 正しく連動することを確認する。
+ *
+ * @category    Tests
+ * @package     JapaneseDate
+ * @subpackage  Tests\Traits
+ * @author      Suzunone <suzunone.eleven@gmail.com>
+ * @copyright   JapaneseDate
+ * @license     BSD-2
+ * @link        https://github.com/suzunone/JapaneseDate
+ * @see         https://github.com/suzunone/JapaneseDate
+ * @since       Release 1.0.0 から利用可能
  */
 #[CoversTrait(DateBusinessCommon::class)]
 class DateBusinessCommonCalendarTest extends TestCase
@@ -32,6 +41,8 @@ class DateBusinessCommonCalendarTest extends TestCase
     use InvokeTrait;
 
     /**
+     * isBusinessDayByConfig() が平日を営業日と判定することを確認する。
+     *
      * @return void
      */
     public function test_isBusinessDayByConfig_weekday(): void
@@ -41,6 +52,8 @@ class DateBusinessCommonCalendarTest extends TestCase
     }
 
     /**
+     * isBusinessDayByConfig() が土曜日を休業日と判定することを確認する。
+     *
      * @return void
      */
     public function test_isBusinessDayByConfig_saturday(): void
@@ -50,6 +63,8 @@ class DateBusinessCommonCalendarTest extends TestCase
     }
 
     /**
+     * isBusinessDayByConfig() に明示的な日付を渡したとき、その日付で営業日判定することを確認する。
+     *
      * @return void
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
@@ -62,6 +77,8 @@ class DateBusinessCommonCalendarTest extends TestCase
     }
 
     /**
+     * isBusinessDayByConfig() が setBusinessConfig() で設定したインスタンス設定を反映して判定することを確認する。
+     *
      * @return void
      * @throws \Exception
      */
@@ -76,6 +93,8 @@ class DateBusinessCommonCalendarTest extends TestCase
     }
 
     /**
+     * getBusinessDaysBySpan() が指定期間内の営業日（平日）のみを返し、土日を除外することを確認する。
+     *
      * @return void
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
@@ -97,6 +116,8 @@ class DateBusinessCommonCalendarTest extends TestCase
     }
 
     /**
+     * getBusinessDaysBySpan() が臨時休業日を除外して営業日を返すことを確認する。
+     *
      * @return void
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
@@ -114,6 +135,8 @@ class DateBusinessCommonCalendarTest extends TestCase
     }
 
     /**
+     * getBusinessDaysByLimit() が開始日から指定件数の営業日を順番に返すことを確認する。
+     *
      * @return void
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
@@ -128,6 +151,8 @@ class DateBusinessCommonCalendarTest extends TestCase
     }
 
     /**
+     * getBusinessDaysByLimit() が土日をスキップして翌週月曜を次の営業日として返すことを確認する。
+     *
      * @return void
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
@@ -142,6 +167,8 @@ class DateBusinessCommonCalendarTest extends TestCase
     }
 
     /**
+     * getBusinessDaysByLimit() が臨時休業日を除外して指定件数の営業日を返すことを確認する。
+     *
      * @return void
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
@@ -162,6 +189,8 @@ class DateBusinessCommonCalendarTest extends TestCase
     }
 
     /**
+     * setBusinessConfig() / getBusinessConfig() が Calendar インスタンスに設定を正しく保持・削除することを確認する。
+     *
      * @return void
      */
     public function test_BusinessCalendar_trait_on_Calendar(): void
@@ -178,6 +207,8 @@ class DateBusinessCommonCalendarTest extends TestCase
     }
 
     /**
+     * setClosingDay() で登録した日付が休業日と判定されることを確認する。
+     *
      * @return void
      * @throws \Exception
      */
@@ -189,6 +220,8 @@ class DateBusinessCommonCalendarTest extends TestCase
     }
 
     /**
+     * setOpenDay() で登録した土曜日が営業日として扱われることを確認する。
+     *
      * @return void
      * @throws \Exception
      */
@@ -200,6 +233,8 @@ class DateBusinessCommonCalendarTest extends TestCase
     }
 
     /**
+     * getBusinessDaysBySpan() がグローバル設定の臨時休業日を除外して営業日を返すことを確認する。
+     *
      * @return void
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
@@ -219,6 +254,8 @@ class DateBusinessCommonCalendarTest extends TestCase
     }
 
     /**
+     * getBusinessDaysByLimit() に 0 を渡したとき空配列を返すことを確認する。
+     *
      * @return void
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
@@ -230,6 +267,8 @@ class DateBusinessCommonCalendarTest extends TestCase
     }
 
     /**
+     * getBusinessDaysByLimit() が DateTime::add() 失敗時に NativeDateTimeException を投げることを確認する。
+     *
      * @return void
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      * @throws \ReflectionException
@@ -246,6 +285,8 @@ class DateBusinessCommonCalendarTest extends TestCase
     }
 
     /**
+     * setClosingWeekdays() で指定した曜日が休業日と判定されることを確認する。
+     *
      * @return void
      */
     public function test_setClosingWeekdays_on_calendar(): void
@@ -257,6 +298,8 @@ class DateBusinessCommonCalendarTest extends TestCase
     }
 
     /**
+     * DateBusiness::setBypassHoliday(false) を設定したとき祝日が営業日として扱われることを確認する。
+     *
      * @return void
      */
     public function test_setBypassHoliday_on_calendar_false(): void
@@ -272,6 +315,8 @@ class DateBusinessCommonCalendarTest extends TestCase
     // --- DateBusinessCommon ショートカット（Calendar 固有ルート） ---
 
     /**
+     * setOpenNthWeekday() で指定した第 N 曜日が営業日として扱われることを確認する。
+     *
      * @return void
      */
     public function test_setOpenNthWeekday_on_calendar(): void
@@ -283,6 +328,8 @@ class DateBusinessCommonCalendarTest extends TestCase
     }
 
     /**
+     * setClosingNthWeekday() で指定した第 N 曜日が休業日として扱われることを確認する。
+     *
      * @return void
      */
     public function test_setClosingNthWeekday_on_calendar(): void
@@ -294,6 +341,8 @@ class DateBusinessCommonCalendarTest extends TestCase
     }
 
     /**
+     * addOpenFilter() で登録したコールバックが営業日として上書き判定されることを確認する。
+     *
      * @return void
      */
     public function test_addOpenFilter_on_calendar(): void
@@ -305,6 +354,8 @@ class DateBusinessCommonCalendarTest extends TestCase
     }
 
     /**
+     * addClosingFilter() で登録したコールバックが休業日として上書き判定されることを確認する。
+     *
      * @return void
      */
     public function test_addClosingFilter_on_calendar(): void
@@ -316,6 +367,8 @@ class DateBusinessCommonCalendarTest extends TestCase
     }
 
     /**
+     * setBusinessMacro() で登録したマクロが営業日判定の最優先ロジックとして機能することを確認する。
+     *
      * @return void
      */
     public function test_setBusinessMacro_on_calendar(): void
@@ -327,6 +380,8 @@ class DateBusinessCommonCalendarTest extends TestCase
     }
 
     /**
+     * checkIsBusinessDay() が渡した日付の営業日判定結果を返すことを確認する。
+     *
      * @return void
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
@@ -340,6 +395,8 @@ class DateBusinessCommonCalendarTest extends TestCase
     }
 
     /**
+     * checkGetBusinessDayLabel() が休業日ラベルを返し、営業日のときは null を返すことを確認する。
+     *
      * @return void
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
@@ -357,6 +414,8 @@ class DateBusinessCommonCalendarTest extends TestCase
     }
 
     /**
+     * checkIsBusinessDay() に引数を渡さないとき、$target が null となり false を返すことを確認する。
+     *
      * @return void
      */
     public function test_checkIsBusinessDay_null_target_returns_false(): void
@@ -367,6 +426,8 @@ class DateBusinessCommonCalendarTest extends TestCase
     }
 
     /**
+     * checkGetBusinessDayLabel() に引数を渡さないとき、$target が null となり null を返すことを確認する。
+     *
      * @return void
      */
     public function test_checkGetBusinessDayLabel_null_target_returns_null(): void
@@ -380,6 +441,8 @@ class DateBusinessCommonCalendarTest extends TestCase
     // Calendar は DateTimeInterface を実装していないため、引数なしで呼ぶと $target === null になる
 
     /**
+     * Calendar クラスに定義された曜日定数が正しい整数値を持つことを確認する。
+     *
      * @return void
      */
     public function test_weekday_constants(): void
@@ -394,6 +457,8 @@ class DateBusinessCommonCalendarTest extends TestCase
     }
 
     /**
+     * 各テスト実行前に BusinessCalendar のグローバル設定をリセットして、テスト間の干渉を防ぐ。
+     *
      * @return void
      */
     protected function setUp(): void
@@ -404,6 +469,8 @@ class DateBusinessCommonCalendarTest extends TestCase
     // --- Calendar 定数 ---
 
     /**
+     * 各テスト実行後に BusinessCalendar のグローバル設定をリセットして、後続テストへの副作用を除去する。
+     *
      * @return void
      */
     protected function tearDown(): void
@@ -418,6 +485,8 @@ class DateBusinessCommonCalendarTest extends TestCase
 class ThrowingDateTimeForBusinessLimit extends DateTime
 {
     /**
+     * 常に RuntimeException を投げることで DateTime::add() の失敗を再現する。
+     *
      * @param mixed $interval
      * @param mixed $value
      * @param mixed $overflow

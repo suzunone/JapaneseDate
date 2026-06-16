@@ -16,12 +16,22 @@ use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Tests\JapaneseDate\Components\Traits\SolarTermDataProviderTrait;
 
-/**
- *
- */
 
 /**
+ * SolarTerm クラスおよび GetSolarTerm トレイトのテスト。
  *
+ * 天文計算による二十四節気日付取得が国立天文台暦要項の期待値と一致すること、
+ * findSolarTerm() の境界時刻選択・例外処理・VSOP87 アルゴリズム切り替えを確認する。
+ *
+ * @category    Tests
+ * @package     JapaneseDate
+ * @subpackage  Tests\Components
+ * @author      Suzunone <suzunone.eleven@gmail.com>
+ * @copyright   JapaneseDate
+ * @license     BSD-2
+ * @link        https://github.com/suzunone/JapaneseDate
+ * @see         https://github.com/suzunone/JapaneseDate
+ * @since       Release 1.0.0 から利用可能
  */
 #[CoversClass(SolarTerm::class)]
 #[CoversTrait(GetSolarTerm::class)]
@@ -269,11 +279,11 @@ class SolarTermTest extends TestCase
     }
 
     /**
-     * 旧来範囲外では0時境界を使って二十四節気を検出することを確認する。
+     * legacy 太陽計算では対応表の範囲外でも6時境界を使って二十四節気を検出することを確認する。
      *
      * @throws \JapaneseDate\Exceptions\Exception
      */
-    public function test_findSolarTermUsesMidnightBoundaryOutsideLegacyTableRange(): void
+    public function test_findSolarTermUsesLegacyBoundaryOutsideSimpleTableRange(): void
     {
         $astronomy = new class () extends Astronomy {
             /** @var int[] */
@@ -298,13 +308,15 @@ class SolarTermTest extends TestCase
             }
         };
 
-        $solarTerm = (new SolarTerm($astronomy))->findSolarTerm(1599, 3, 20);
+        $solarTerm = (new SolarTerm($astronomy))->findSolarTerm(2400, 3, 20);
 
         $this->assertSame(DateTime::SOLAR_TERM_SEIMEI, $solarTerm);
-        $this->assertSame([0, 0], $astronomy->hours);
+        $this->assertSame([6, 6], $astronomy->hours);
     }
 
     /**
+     * VSOP87 アルゴリズム使用時、findSolarTerm() が 0 時境界を用いて二十四節気を検出することを確認する。
+     *
      * @return void
      * @throws \JapaneseDate\Exceptions\Exception
      */
@@ -375,6 +387,8 @@ class SolarTermTest extends TestCase
     }
 
     /**
+     * VSOP87 アルゴリズムで取得した二十四節気一覧が暦要項の期待値と一致することを確認する。
+     *
      * @param $year
      * @param $expected
      * @return void

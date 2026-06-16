@@ -10,12 +10,21 @@ use PHPUnit\Framework\Attributes\CoversTrait;
 use PHPUnit\Framework\TestCase;
 use Tests\JapaneseDate\InvokeTrait;
 
-/**
- *
- */
 
 /**
+ * MoonAgeConvergenceTrait のテスト。
  *
+ * applyConvergenceStep() が tm2 の正負に応じて繰り上げ補正を正しく適用することを確認する。
+ *
+ * @category    Tests
+ * @package     JapaneseDate
+ * @subpackage  Tests\Components\Traits
+ * @author      Suzunone <suzunone.eleven@gmail.com>
+ * @copyright   JapaneseDate
+ * @license     BSD-2
+ * @link        https://github.com/suzunone/JapaneseDate
+ * @see         https://github.com/suzunone/JapaneseDate
+ * @since       Release 1.0.0 から利用可能
  */
 #[CoversTrait(MoonAgeConvergenceTrait::class)]
 #[CoversMethod(MoonAgeConvergenceTrait::class, 'applyConvergenceStep')]
@@ -26,6 +35,8 @@ class MoonAgeConvergenceTraitTest extends TestCase
     private const SYNODIC_MONTH = 29.530589;
 
     /**
+     * MoonAgeConvergenceTrait を組み込んだ無名クラスのインスタンスを作成する。
+     *
      * @return object
      */
     private function makeInstance(): object

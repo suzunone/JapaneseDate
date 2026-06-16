@@ -159,6 +159,9 @@ class Moon
      * @return Carbon
      * @throws \DateInvalidTimeZoneException
      * @throws Exception 探索に失敗し、かつ 8 相以外の位相が指定された場合
+     * @throws \Exception
+     * @throws \Exception
+     * @throws \Exception
      */
     protected function moonPhaseByAstronomy(DateTimeInterface $date, float $phase, bool $is_next): Carbon
     {
@@ -274,12 +277,11 @@ class Moon
      * @param int $timestamp UTC タイムスタンプ
      * @param float $targetAngle 目標位相角（度）
      * @return float 位相差（-180°〜180°）
-     * @throws \DateInvalidTimeZoneException
-     * @throws Exception
+     * @throws \Exception
      */
     protected function phaseDeltaAtFast(int $timestamp, float $targetAngle): float
     {
-        $jst = $timestamp + 32400;
+        $jst = $timestamp + 32400; // UTC → JST（moonPhaseAngle は JST 入力を期待）
         $year = (int) gmdate('Y', $jst);
         $month = (int) gmdate('n', $jst);
         $day = (int) gmdate('j', $jst);
@@ -303,8 +305,7 @@ class Moon
      * @param int $timestamp2 区間の他端
      * @param float $targetAngle 目標位相角（度）
      * @return int 符号反転点に最も近い UTC タイムスタンプ（秒単位、縮約精度）
-     * @throws \DateInvalidTimeZoneException
-     * @throws Exception
+     * @throws \Exception
      */
     protected function bisectPhaseTimestampFast(int $timestamp1, int $timestamp2, float $targetAngle): int
     {
@@ -462,7 +463,19 @@ class Moon
             $k1 = $k2;
         }
 
-        return new Carbon($this->truePhase($is_next ? $k1 : $k2, $phase));
+        $phaseTimeK1 = $this->truePhase($k1, $phase);
+
+        if ($is_next) {
+            if ($phaseTimeK1 <= $timestamp) {
+                return new Carbon($phaseTimeK1);
+            }
+            return new Carbon($this->truePhase($k1 - 1, $phase));
+        }
+
+        if ($phaseTimeK1 > $timestamp) {
+            return new Carbon($phaseTimeK1);
+        }
+        return new Carbon($this->truePhase($k2, $phase));
     }
 
     /**
