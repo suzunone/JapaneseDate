@@ -26,14 +26,13 @@ use RuntimeException;
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
  * @since       Release 1.0.0 から利用可能
+ * @covers \JapaneseDate\Elements\SolarTermDate
  */
-#[CoversClass(SolarTermDate::class)]
 class SolarTermDateTest extends TestCase
 {
     // -------------------------------------------------------------------------
     // コンストラクタ
     // -------------------------------------------------------------------------
-
     /**
      * 二十四節気番号と月の対応表を返す
      *
@@ -68,7 +67,6 @@ class SolarTermDateTest extends TestCase
             [23, 3],  // 啓蟄
         ];
     }
-
     /**
      * 中気にあたる二十四節気では is_chuki が true になることを確認する
      *
@@ -81,7 +79,6 @@ class SolarTermDateTest extends TestCase
         $this->assertTrue($obj->is_chuki);
         $this->assertFalse($obj->is_sekki);
     }
-
     /**
      * 節気にあたる二十四節気では is_sekki が true になることを確認する
      *
@@ -94,7 +91,6 @@ class SolarTermDateTest extends TestCase
         $this->assertTrue($obj->is_sekki);
         $this->assertFalse($obj->is_chuki);
     }
-
     /**
      * 年が保持されることを確認する
      *
@@ -105,7 +101,6 @@ class SolarTermDateTest extends TestCase
         $obj = new SolarTermDate(2024, 0, 20);
         $this->assertSame(2024, $obj->year);
     }
-
     /**
      * 日が保持されることを確認する
      *
@@ -116,7 +111,6 @@ class SolarTermDateTest extends TestCase
         $obj = new SolarTermDate(2024, 0, 20);
         $this->assertSame(20, $obj->day);
     }
-
     /**
      * 二十四節気番号が保持されることを確認する
      *
@@ -127,11 +121,9 @@ class SolarTermDateTest extends TestCase
         $obj = new SolarTermDate(2024, 0, 20);
         $this->assertSame(0, $obj->solar_term);
     }
-
     // -------------------------------------------------------------------------
     // 二十四節気と月の対応
     // -------------------------------------------------------------------------
-
     /**
      * 二十四節気番号から太陽黄経が算出されることを確認する
      *
@@ -145,25 +137,22 @@ class SolarTermDateTest extends TestCase
         $obj2 = new SolarTermDate(2024, 6, 21);
         $this->assertEquals(90, $obj2->solar_longitude);
     }
-
     /**
      * 二十四節気番号から対応する月が設定されることを確認する
      *
      * @param int $solar_term
      * @param int $expected_month
      * @return void
+     * @dataProvider solarTermMonthProvider
      */
-    #[DataProvider('solarTermMonthProvider')]
     public function test_construct_month_mapping(int $solar_term, int $expected_month): void
     {
         $obj = new SolarTermDate(2000, $solar_term, 1);
         $this->assertSame($expected_month, $obj->month);
     }
-
     // -------------------------------------------------------------------------
     // マジックメソッド __get
     // -------------------------------------------------------------------------
-
     /**
      * 保持している属性値をプロパティとして取得できることを確認する
      *
@@ -180,7 +169,6 @@ class SolarTermDateTest extends TestCase
         $this->assertTrue($obj->is_chuki);
         $this->assertFalse($obj->is_sekki);
     }
-
     /**
      * 二十四節気名を取得できることを確認する
      *
@@ -192,7 +180,6 @@ class SolarTermDateTest extends TestCase
         // noinspection PhpUndefinedFieldInspection
         $this->assertSame(JapaneseDate::SOLAR_TERM[0], $obj->solarTermText);
     }
-
     /**
      * 二十四節気の日付を DateTime として取得できることを確認する
      *
@@ -208,7 +195,6 @@ class SolarTermDateTest extends TestCase
         $this->assertSame(3, (int) $dt->format('n'));
         $this->assertSame(20, (int) $dt->format('j'));
     }
-
     /**
      * 未定義キーを取得した場合は null になることを確認する
      *
@@ -220,11 +206,9 @@ class SolarTermDateTest extends TestCase
         // noinspection PhpUndefinedFieldInspection
         $this->assertNull($obj->nonExistentKey);
     }
-
     // -------------------------------------------------------------------------
     // マジックメソッド __set
     // -------------------------------------------------------------------------
-
     /**
      * プロパティ変更を禁止していることを確認する
      *
@@ -238,11 +222,9 @@ class SolarTermDateTest extends TestCase
         /** @var \stdClass $obj */
         $obj->year = 2025;
     }
-
     // -------------------------------------------------------------------------
     // マジックメソッド __isset
     // -------------------------------------------------------------------------
-
     /**
      * 保持している属性キーは isset で true になることを確認する
      *
@@ -259,7 +241,6 @@ class SolarTermDateTest extends TestCase
         $this->assertTrue(isset($obj->is_chuki));
         $this->assertTrue(isset($obj->is_sekki));
     }
-
     /**
      * 二十四節気名は isset で true になることを確認する
      *
@@ -270,7 +251,6 @@ class SolarTermDateTest extends TestCase
         $obj = new SolarTermDate(2024, 0, 20);
         $this->assertTrue(isset($obj->solarTermText));
     }
-
     /**
      * dateTime は isset で true になることを確認する
      *
@@ -281,7 +261,6 @@ class SolarTermDateTest extends TestCase
         $obj = new SolarTermDate(2024, 0, 20);
         $this->assertTrue(isset($obj->dateTime));
     }
-
     /**
      * 未定義キーは isset で false になることを確認する
      *

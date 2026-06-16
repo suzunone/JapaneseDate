@@ -34,13 +34,12 @@ use Tests\JapaneseDate\InvokeTrait;
  * @package     JapaneseDate
  * @subpackage  Components
  * @author      Suzunone<suzunone.eleven@gmail.com>
+ * @covers \JapaneseDate\Components\LegacyMoonAge
+ * @covers \JapaneseDate\Components\LegacyMoonAge::moonAge
  */
-#[CoversClass(LegacyMoonAge::class)]
-#[CoversMethod(LegacyMoonAge::class, 'moonAge')]
 class LegacyMoonAgeTest extends TestCase
 {
     use InvokeTrait;
-
     /**
      * 月齢の期待値（丸め値）を返すデータセット
      *
@@ -75,7 +74,6 @@ class LegacyMoonAgeTest extends TestCase
             '2017 4月初旬の月齢5' => [2017, 4, 2, 0, 0, 0, 5],
         ];
     }
-
     /**
      * @param int $year
      * @param int $month
@@ -87,20 +85,12 @@ class LegacyMoonAgeTest extends TestCase
      * @return void
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     * @dataProvider moonAgeProvider
      */
-    #[DataProvider('moonAgeProvider')]
-    public function test_moonAge(
-        int $year,
-        int $month,
-        int $day,
-        float $hour,
-        float $min,
-        float $sec,
-        int $expectedRounded
-    ): void {
+    public function test_moonAge(int $year, int $month, int $day, float $hour, float $min, float $sec, int $expectedRounded): void
+    {
         $moonAge = new LegacyMoonAge(new Astronomy());
         $result = $moonAge->moonAge($year, $month, $day, $hour, $min, $sec);
-
         $this->assertEquals(
             $expectedRounded,
             round($result),
@@ -116,7 +106,6 @@ class LegacyMoonAgeTest extends TestCase
             )
         );
     }
-
     /**
      * 月齢は常に [0, 30) の範囲の値を返す
      */
@@ -136,7 +125,6 @@ class LegacyMoonAgeTest extends TestCase
             $this->assertLessThan(30.0, $result, "$y-$m-$d で月齢が30以上になった");
         }
     }
-
     /**
      * 春分直前（2023-03-21 12:00 JST）の月齢が負にならず [0, 30) に収まることを確認する。
      *
@@ -154,7 +142,6 @@ class LegacyMoonAgeTest extends TestCase
         $this->assertGreaterThanOrEqual(0.0, $result, '2023-03-21 12:00 JST の月齢が負になった');
         $this->assertLessThan(30.0, $result, '2023-03-21 12:00 JST の月齢が 30 以上になった');
     }
-
     /**
      * @return void
      * @throws \ReflectionException
@@ -168,7 +155,6 @@ class LegacyMoonAgeTest extends TestCase
 
         $this->assertEqualsWithDelta(2451545.0, $result, 1e-12);
     }
-
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -184,7 +170,6 @@ class LegacyMoonAgeTest extends TestCase
             0.47
         );
     }
-
     /**
      * 30日超過後の再収束ループで、春分付近補正と引き込み範囲補正を通過する。
      */
@@ -207,7 +192,6 @@ class LegacyMoonAgeTest extends TestCase
         $this->assertGreaterThanOrEqual(0.0, $result);
         $this->assertLessThan(30.0, $result);
     }
-
     /**
      * 第2収束ループで tm が julian_date_0 を超えた場合（res < 0）に
      * SYNODIC_MONTH を加算して月齢を正規化することを確認する。
@@ -236,7 +220,6 @@ class LegacyMoonAgeTest extends TestCase
         $this->assertGreaterThanOrEqual(0.0, $result, '月齢が負になった');
         $this->assertLessThan(30.0, $result, '月齢が30以上になった');
     }
-
     /**
      * 太陽・月の黄経をあらかじめ用意した数列で順に返す Astronomy を生成する。
      *
@@ -253,7 +236,10 @@ class LegacyMoonAgeTest extends TestCase
             /**
              * @param array<int, array{0: float, 1: float}> $sequence
              */
-            public function __construct(private readonly array $sequence)
+            public function __construct(/**
+             * @readonly
+             */
+            private array $sequence)
             {
                 parent::__construct();
             }

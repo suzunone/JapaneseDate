@@ -36,13 +36,12 @@ use Tests\JapaneseDate\InvokeTrait;
  * @package     JapaneseDate
  * @subpackage  Components
  * @author      Suzunone<suzunone.eleven@gmail.com>
+ * @covers \JapaneseDate\Components\Elp2000MoonAge
+ * @covers \JapaneseDate\Components\Elp2000MoonAge::moonAge
  */
-#[CoversClass(Elp2000MoonAge::class)]
-#[CoversMethod(Elp2000MoonAge::class, 'moonAge')]
 class Elp2000MoonAgeTest extends TestCase
 {
     use InvokeTrait;
-
     /**
      * 月齢の期待値（丸め値）を返すデータセット
      *
@@ -69,7 +68,6 @@ class Elp2000MoonAgeTest extends TestCase
             '2015朔望月加算補正ケース' => [2015, 1, 19, 0, 0, 0, 28],
         ];
     }
-
     /**
      * @param int $year
      * @param int $month
@@ -81,20 +79,12 @@ class Elp2000MoonAgeTest extends TestCase
      * @return void
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     * @dataProvider moonAgeProvider
      */
-    #[DataProvider('moonAgeProvider')]
-    public function test_moonAge(
-        int $year,
-        int $month,
-        int $day,
-        float $hour,
-        float $min,
-        float $sec,
-        int $expectedRounded
-    ): void {
+    public function test_moonAge(int $year, int $month, int $day, float $hour, float $min, float $sec, int $expectedRounded): void
+    {
         $moonAge = new Elp2000MoonAge($this->makeElp2000Astronomy());
         $result = $moonAge->moonAge($year, $month, $day, $hour, $min, $sec);
-
         $this->assertEquals(
             $expectedRounded,
             (int) round($result) % 30,
@@ -110,7 +100,6 @@ class Elp2000MoonAgeTest extends TestCase
             )
         );
     }
-
     /**
      * ELP2000 を月黄経アルゴリズムとして注入した Astronomy を生成する
      *
@@ -120,7 +109,6 @@ class Elp2000MoonAgeTest extends TestCase
     {
         return new Astronomy(new Vsop87Astronomy(), new ELP2000());
     }
-
     /**
      * 月齢は常に [0, 30) の範囲の値を返す
      *
@@ -141,7 +129,6 @@ class Elp2000MoonAgeTest extends TestCase
             $this->assertLessThan(30.0, $result, "$y-$m-$d で月齢が30以上になった");
         }
     }
-
     /**
      * 黄経差の収束ループにおいて「春分付近の朔」補正分岐
      * （太陽黄経 0〜20°かつ月黄経 300°以上で ΔΛ ＝ 360 － ΔΛ と補正する分岐）
@@ -160,7 +147,6 @@ class Elp2000MoonAgeTest extends TestCase
         $this->assertGreaterThanOrEqual(0.0, $result);
         $this->assertLessThan(30.0, $result);
     }
-
     /**
      * フル精度スナップにおいて「春分付近の朔」補正分岐を確実に通過する。
      */
@@ -178,7 +164,6 @@ class Elp2000MoonAgeTest extends TestCase
         $this->assertGreaterThanOrEqual(0.0, $result);
         $this->assertLessThan(30.0, $result);
     }
-
     /**
      * 黄経差の収束ループにおいて「ΔΛ が引き込み範囲（±40°）を逸脱した場合」の
      * 補正分岐、および収束後の月齢が30以上になった場合の補正分岐
@@ -200,7 +185,6 @@ class Elp2000MoonAgeTest extends TestCase
         $this->assertGreaterThanOrEqual(0.0, $result);
         $this->assertLessThan(30.0, $result);
     }
-
     /**
      * 直前の朔への再収束後も未来時刻となった場合、朔望月を加算して負値を補正する。
      */
@@ -218,7 +202,6 @@ class Elp2000MoonAgeTest extends TestCase
         $this->assertGreaterThanOrEqual(0.0, $result);
         $this->assertLessThan(30.0, $result);
     }
-
     /**
      * 太陽・月の黄経をあらかじめ用意した数列で順に返す Astronomy を生成する。
      *
@@ -240,8 +223,14 @@ class Elp2000MoonAgeTest extends TestCase
              * @param null|float $normalizedAngle
              */
             public function __construct(
-                private readonly array $sequence,
-                private readonly ?float $normalizedAngle
+                /**
+                 * @readonly
+                 */
+                private array $sequence,
+                /**
+                 * @readonly
+                 */
+                private ?float $normalizedAngle
             ) {
                 parent::__construct();
             }
@@ -310,7 +299,6 @@ class Elp2000MoonAgeTest extends TestCase
             }
         };
     }
-
     /**
      * NASA SVS の 2014-01-01 00:00 UTC（09:00 JST）の月齢と比較する。
      *

@@ -28,8 +28,8 @@ use PHPUnit\Framework\TestCase;
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
  * @since       Release 1.0.0 から利用可能
+ * @covers \JapaneseDate\Traits\DateBusinessCommon
  */
-#[CoversTrait(DateBusinessCommon::class)]
 class DateBusinessCommonDateIntervalTest extends TestCase
 {
     /**
@@ -48,7 +48,6 @@ class DateBusinessCommonDateIntervalTest extends TestCase
         // 金の翌日から3営業日: 月・火・水 = 2026-06-03
         $this->assertSame('2026-06-03', $result->format('Y-m-d'));
     }
-
     /**
      * addBusinessDaysTo() に DateBusiness 設定を渡したとき臨時休業日を除外して加算することを確認する。
      *
@@ -69,7 +68,6 @@ class DateBusinessCommonDateIntervalTest extends TestCase
         // 月が休み → 火・水・木 = 2026-06-04
         $this->assertSame('2026-06-04', $result->format('Y-m-d'));
     }
-
     /**
      * addBusinessDaysTo() に 0 を渡したとき基準日をそのまま返すことを確認する。
      *
@@ -85,7 +83,6 @@ class DateBusinessCommonDateIntervalTest extends TestCase
         $result = $interval->addBusinessDaysTo($base, 0);
         $this->assertSame('2026-05-29', $result->format('Y-m-d'));
     }
-
     /**
      * addBusinessDaysTo() が設定引数未指定のときインスタンス設定を自動参照することを確認する。
      *
@@ -106,7 +103,6 @@ class DateBusinessCommonDateIntervalTest extends TestCase
         $result = $interval->addBusinessDaysTo($base, 3); // 設定なし = インスタンス設定を使用
         $this->assertSame('2026-06-04', $result->format('Y-m-d'));
     }
-
     /**
      * subBusinessDaysFrom() が基準日から指定営業日数前の日付を返すことを確認する。
      *
@@ -123,7 +119,6 @@ class DateBusinessCommonDateIntervalTest extends TestCase
         // 水曜から3営業日前: 火・月・金 = 2026-05-29
         $this->assertSame('2026-05-29', $result->format('Y-m-d'));
     }
-
     /**
      * subBusinessDaysFrom() に DateBusiness 設定を渡したとき臨時休業日を除外して遡ることを確認する。
      *
@@ -144,7 +139,6 @@ class DateBusinessCommonDateIntervalTest extends TestCase
         // 月が休み → 水・火・金 = 2026-05-29
         $this->assertSame('2026-05-29', $result->format('Y-m-d'));
     }
-
     /**
      * subBusinessDaysFrom() に 0 を渡したとき基準日をそのまま返すことを確認する。
      *
@@ -160,7 +154,6 @@ class DateBusinessCommonDateIntervalTest extends TestCase
         $result = $interval->subBusinessDaysFrom($base, 0);
         $this->assertSame('2026-06-03', $result->format('Y-m-d'));
     }
-
     /**
      * countBusinessDaysBetween() が開始日から終了日までの営業日数を正しく返すことを確認する。
      *
@@ -178,7 +171,6 @@ class DateBusinessCommonDateIntervalTest extends TestCase
         $count = $interval->countBusinessDaysBetween($start, $end);
         $this->assertSame(5, $count);
     }
-
     /**
      * countBusinessDaysBetween() が週をまたぐ期間で土日を除いた営業日数を返すことを確認する。
      *
@@ -196,7 +188,6 @@ class DateBusinessCommonDateIntervalTest extends TestCase
         $count = $interval->countBusinessDaysBetween($start, $end);
         $this->assertSame(6, $count);
     }
-
     /**
      * countBusinessDaysBetween() が期間内の祝日を除いた営業日数を返すことを確認する。
      *
@@ -215,7 +206,6 @@ class DateBusinessCommonDateIntervalTest extends TestCase
         $count = $interval->countBusinessDaysBetween($start, $end);
         $this->assertSame(2, $count);
     }
-
     /**
      * countBusinessDaysBetween() が同じ営業日を開始・終了に渡したとき 1 を返すことを確認する。
      *
@@ -230,7 +220,6 @@ class DateBusinessCommonDateIntervalTest extends TestCase
         $count = $interval->countBusinessDaysBetween($date, $date);
         $this->assertSame(1, $count);
     }
-
     /**
      * countBusinessDaysBetween() が同じ休業日を開始・終了に渡したとき 0 を返すことを確認する。
      *
@@ -245,7 +234,6 @@ class DateBusinessCommonDateIntervalTest extends TestCase
         $count = $interval->countBusinessDaysBetween($date, $date);
         $this->assertSame(0, $count);
     }
-
     /**
      * countBusinessDaysBetween() に DateBusiness 設定を渡したとき臨時休業日を除いた営業日数を返すことを確認する。
      *
@@ -267,7 +255,6 @@ class DateBusinessCommonDateIntervalTest extends TestCase
         $count = $interval->countBusinessDaysBetween($start, $end, $config);
         $this->assertSame(4, $count);
     }
-
     /**
      * setBusinessConfig() / getBusinessConfig() が DateInterval インスタンスに設定を正しく保持・削除することを確認する。
      *
@@ -285,7 +272,6 @@ class DateBusinessCommonDateIntervalTest extends TestCase
         $interval->setBusinessConfig(null);
         $this->assertNull($interval->getBusinessConfig());
     }
-
     /**
      * 各テスト実行前に BusinessCalendar のグローバル設定をリセットして、テスト間の干渉を防ぐ。
      *
@@ -295,7 +281,6 @@ class DateBusinessCommonDateIntervalTest extends TestCase
     {
         BusinessCalendar::resetAll();
     }
-
     /**
      * 各テスト実行後に BusinessCalendar のグローバル設定をリセットして、後続テストへの副作用を除去する。
      *

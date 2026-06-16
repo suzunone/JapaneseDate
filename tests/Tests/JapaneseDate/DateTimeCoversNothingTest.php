@@ -35,13 +35,12 @@ use PHPUnit\Framework\TestCase;
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
  * @since       2026-06-16
+ * @coversNothing
+ * @group long-running
  */
-#[CoversNothing]
-#[Group('long-running')]
 class DateTimeCoversNothingTest extends TestCase
 {
     use InvokeTrait;
-
     /**
      * 年始の getter 計測対象を返す
      *
@@ -98,7 +97,6 @@ class DateTimeCoversNothingTest extends TestCase
 
         return $data;
     }
-
     /**
      * 年始の toArray で使用する getter を個別に取得できることを確認する
      *
@@ -106,13 +104,12 @@ class DateTimeCoversNothingTest extends TestCase
      * @param string $getter 計測対象 getter
      * @return void
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     * @dataProvider newYearGetterDataProvider
      */
-    #[DataProvider('newYearGetterDataProvider')]
     public function test_new_year_getter(string $date, string $getter): void
     {
         $moonAlgorithm = DateTime::moonAlgorithm();
         DateTime::useMoonAlgorithm(DateTime::MOON_ALGORITHM_ELP2000);
-
         try {
             $DateTime = new DateTime($date);
 
