@@ -9,11 +9,22 @@ use PHPUnit\Framework\Attributes\CoversTrait;
 use PHPUnit\Framework\TestCase;
 use Tests\JapaneseDate\InvokeTrait;
 
+
 /**
+ * OneTimeCacheTrait のテスト。
  *
- */
-/**
+ * oneTimeCache() がキャッシュミス時にクロージャを実行し、ヒット時には再計算しないこと、
+ * キーごとに独立してキャッシュされること、null 値もキャッシュされることを確認する。
  *
+ * @category    Tests
+ * @package     JapaneseDate
+ * @subpackage  Tests\Components\Traits
+ * @author      Suzunone <suzunone.eleven@gmail.com>
+ * @copyright   JapaneseDate
+ * @license     BSD-2
+ * @link        https://github.com/suzunone/JapaneseDate
+ * @see         https://github.com/suzunone/JapaneseDate
+ * @since       Release 1.0.0 から利用可能
  * @covers \JapaneseDate\Components\Traits\OneTimeCacheTrait
  */
 class OneTimeCacheTraitTest extends TestCase

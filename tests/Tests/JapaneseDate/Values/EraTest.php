@@ -167,6 +167,25 @@ class EraTest extends TestCase
         $this->assertNotSame($first, $second);
         $this->assertSame($first->format('Y-m-d'), $second->format('Y-m-d'));
     }
+    /**
+     * 未定義プロパティを取得すると TypeError ではなく明示的な例外を送出すること。
+     */
+    public function test_get_throws_error_exception_for_undefined_property(): void
+    {
+        $current = new DateTime('645-08-01T00:00:00+09:00');
+        $era = new Era(
+            '大化',
+            'タイカ',
+            DateTime::COURT_MAIN,
+            '645-07-29T00:00:00+09:00',
+            '650-03-22T00:00:00+09:00',
+            $current
+        );
+
+        $this->expectException(ErrorException::class);
+        /** @noinspection PhpUndefinedFieldInspection */
+        $era->unknownDate;
+    }
     // =========================================================================
     // __set
     // =========================================================================

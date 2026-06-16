@@ -28,6 +28,10 @@ git merge v7.X
 git restore --source MERGE_HEAD -- src
 git restore --source MERGE_HEAD -- tests
 git restore --source MERGE_HEAD -- docs
+git add src
+git add tests
+git add docs
+
 ```
 
 ## 上記以外は一つずつコンフリクトを解消する

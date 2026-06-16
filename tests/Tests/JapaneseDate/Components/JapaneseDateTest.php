@@ -111,7 +111,7 @@ class JapaneseDateTest extends TestCase
             '2151' => [2151, '0321'],
             '2399 SimpleSolarTerm end' => [2399, '0321'],
             '2400 fallback to SolarTerm' => [2400, '0320'],
-            '2500 fallback to SolarTerm' => [2500, '0321'],
+            '2500 fallback to SolarTerm' => [2500, '0320'],
         ];
     }
     /**
@@ -133,7 +133,7 @@ class JapaneseDateTest extends TestCase
             '2150' => [2150, '0923'],
             '2151' => [2151, '0923'],
             '2399 SimpleSolarTerm end' => [2399, '0923'],
-            '2400 fallback to SolarTerm' => [2400, '0923'],
+            '2400 fallback to SolarTerm' => [2400, '0922'],
             '2500 fallback to SolarTerm' => [2500, '0923'],
         ];
     }
@@ -426,6 +426,11 @@ class JapaneseDateTest extends TestCase
         $this->assertEquals(
             '日',
             $JapaneseDate->viewWeekday(7)
+        );
+
+        $this->assertEquals(
+            '日',
+            $JapaneseDate->viewWeekday(14)
         );
     }
     /**

@@ -138,6 +138,31 @@ class FalseTimezoneDate extends DateTimeImmutable
 }
 ```
 
+## `CarbonInterval::instance()` と `->days` プロパティ
+
+PHP の `DateInterval->days` は `diff()` で生成したインスタンスにのみ設定される。
+`CarbonInterval::instance($diff)` でラップすると Carbon 2 では `->days` が `false` に戻る。
+
+Carbon 3 では内部で保持し直すため気づきにくいが、Carbon 2 へのダウングレード後に
+`assertSame(N, $interval->days)` 系のアサーションが失敗する。
+
+テストでは `->days` の代わりに `->d`（日コンポーネント）を使う。
+1ヶ月未満の間隔であれば `->d` と総日数は一致する。
+
+```php
+// Carbon 2 で失敗するアサーション
+$this->assertSame(2, $interval->days);   // days = false になる
+
+// 修正後
+$this->assertEquals(2, $interval->d);   // d は正しく設定される
+```
+
+対象箇所を探す場合は以下で検索する。
+
+```bash
+rg -n '->days' tests --glob '*.php'
+```
+
 ## doctum でのドキュメント生成エラー対応
 
 Carbon の vendor ファイル（例: `CarbonPeriod.php`）に `...$arguments` バリアディックパラメータの `@param` タグが欠落しているメソッドが存在し、doctum 実行時に以下のようなエラーが発生する場合がある。

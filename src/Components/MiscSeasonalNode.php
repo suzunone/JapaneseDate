@@ -177,7 +177,7 @@ class MiscSeasonalNode
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    private function callSolarTermMethod(SolarTerm|SimpleSolarTerm $obj, string $term, int $year): SolarTermDate
+    protected function callSolarTermMethod(SolarTerm|SimpleSolarTerm $obj, string $term, int $year): SolarTermDate
     {
         return match ($term) {
             'rissyun' => $obj->rissyun($year),
@@ -336,11 +336,11 @@ class MiscSeasonalNode
      * UTC ($date-1) 15:00 時点での黄経が $targetLon 未満で、
      * UTC $date 15:00 時点での黄経が $targetLon 以上であれば true を返します。
      *
-     * @param DateTime $date 判定対象の日付
+     * @param DateTime|DateTimeImmutable $date 判定対象の日付
      * @param float $targetLon 目標の太陽黄経（度）
      * @return bool 指定黄経に達する日であれば true
      */
-    protected function isSolarLongitudeDay(DateTime $date, float $targetLon): bool
+    protected function isSolarLongitudeDay(DateTime|DateTimeImmutable $date, float $targetLon): bool
     {
         try {
             $astronomy = Astronomy::factory();

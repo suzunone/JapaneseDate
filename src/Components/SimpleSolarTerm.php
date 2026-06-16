@@ -1897,7 +1897,7 @@ class SimpleSolarTerm
             return new SolarTermDate($year, DateTime::SOLAR_TERM_SYOUKAN, 6);
         }
 
-        if ($year >= 1601 && $year <= 1604) {
+        if ($year >= 1600 && $year <= 1604) {
             $days = [6, 5, 5, 6, ];
         } elseif ($year >= 1605 && $year <= 1640) {
             $days = [6, 5, 5, 5, ];
@@ -1955,7 +1955,7 @@ class SimpleSolarTerm
             $days = [7, 6, 6, 6, ];
         } elseif ($year >= 2329 && $year <= 2368) {
             $days = [6, 6, 6, 6, ];
-        } elseif ($year >= 2369 && $year <= 2400) {
+        } elseif ($year >= 2369 && $year <= 2399) {
             $days = [6, 5, 6, 6, ];
         } else {
             throw new SolarTermException('Input year is outside the supported temporal scope.');
@@ -1984,7 +1984,7 @@ class SimpleSolarTerm
             return new SolarTermDate($year, DateTime::SOLAR_TERM_DAIKAN, 21);
         }
 
-        if ($year >= 1601 && $year <= 1640) {
+        if ($year >= 1600 && $year <= 1640) {
             $days = [20, 20, 20, 20, ];
         } elseif ($year >= 1641 && $year <= 1672) {
             $days = [20, 19, 20, 20, ];
@@ -2042,7 +2042,7 @@ class SimpleSolarTerm
             $days = [21, 20, 21, 21, ];
         } elseif ($year >= 2361 && $year <= 2396) {
             $days = [21, 20, 20, 21, ];
-        } elseif ($year >= 2397 && $year <= 2400) {
+        } elseif ($year >= 2397 && $year <= 2399) {
             $days = [21, 20, 20, 20, ];
         } else {
             throw new SolarTermException('Input year is outside the supported temporal scope.');
@@ -2063,18 +2063,7 @@ class SimpleSolarTerm
         if ($year === 2157) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_RISSYUN, 4);
         }
-        if ($year === 2601) {
-            return new SolarTermDate($year, DateTime::SOLAR_TERM_RISSYUN, 5);
-        }
-        if ($year === 2465) {
-            return new SolarTermDate($year, DateTime::SOLAR_TERM_RISSYUN, 4);
-        }
-        if ($year === 2737) {
-            return new SolarTermDate($year, DateTime::SOLAR_TERM_RISSYUN, 5);
-        }
-
-
-        if ($year >= 1601 && $year <= 1612) {
+        if ($year >= 1600 && $year <= 1612) {
             $days = [4, 4, 4, 4, ];
         } elseif ($year >= 1613 && $year <= 1644) {
             $days = [4, 3, 4, 4, ];
@@ -2134,34 +2123,8 @@ class SimpleSolarTerm
             $days = [5, 4, 4, 5, ];
         } elseif ($year >= 2361 && $year <= 2396) {
             $days = [5, 4, 4, 4, ];
-        } elseif ($year >= 2397 && $year <= 2432) {
+        } elseif ($year >= 2397 && $year <= 2399) {
             $days = [5, 4, 4, 4, ];
-        } elseif ($year >= 2433 && $year <= 2464) {
-            $days = [4, 4, 4, 4, ];
-        } elseif ($year >= 2465 && $year <= 2496) {
-            $days = [4, 3, 4, 4, ];
-        } elseif ($year >= 2497 && $year <= 2500) {
-            $days = [4, 3, 4, 4, ];
-        } elseif ($year >= 2501 && $year <= 2528) {
-            $days = [5, 4, 4, 5, ];
-        } elseif ($year >= 2529 && $year <= 2568) {
-            $days = [5, 4, 4, 4, ];
-        } elseif ($year >= 2569 && $year <= 2600) {
-            $days = [4, 4, 4, 4, ];
-        } elseif ($year >= 2601 && $year <= 2636) {
-            $days = [5, 4, 5, 5, ];
-        } elseif ($year >= 2637 && $year <= 2668) {
-            $days = [5, 4, 4, 5, ];
-        } elseif ($year >= 2669 && $year <= 2700) {
-            $days = [5, 4, 4, 4, ];
-        } elseif ($year >= 2701 && $year <= 2704) {
-            $days = [6, 5, 5, 5, ];
-        } elseif ($year >= 2705 && $year <= 2736) {
-            $days = [5, 5, 5, 5, ];
-        } elseif ($year >= 2737 && $year <= 2768) {
-            $days = [5, 4, 5, 5, ];
-        } elseif ($year >= 2769 && $year <= 2800) {
-            $days = [5, 4, 4, 5, ];
         } else {
             throw new SolarTermException('Input year is outside the supported temporal scope.');
         }
@@ -2189,7 +2152,7 @@ class SimpleSolarTerm
             return new SolarTermDate($year, DateTime::SOLAR_TERM_USUI, 19);
         }
 
-        if ($year >= 1601 && $year <= 1624) {
+        if ($year >= 1600 && $year <= 1624) {
             $days = [19, 18, 19, 19, ];
         } elseif ($year >= 1625 && $year <= 1656) {
             $days = [19, 18, 18, 19, ];
@@ -2243,7 +2206,7 @@ class SimpleSolarTerm
             $days = [20, 19, 19, 20, ];
         } elseif ($year >= 2337 && $year <= 2368) {
             $days = [20, 19, 19, 19, ];
-        } elseif ($year >= 2369 && $year <= 2400) {
+        } elseif ($year >= 2369 && $year <= 2399) {
             $days = [19, 19, 19, 19, ];
         } else {
             throw new SolarTermException('Input year is outside the supported temporal scope.');

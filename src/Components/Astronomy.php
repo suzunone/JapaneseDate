@@ -120,12 +120,18 @@ class Astronomy
     /**
      * 注入された太陽黄経計算アルゴリズム実装。
      */
-    private SunAlgorithm $sunAlgorithmImpl;
+    protected SunAlgorithm $sunAlgorithmImpl;
 
     /**
      * 注入された月黄経計算アルゴリズム実装。
      */
-    private MoonAlgorithm $moonAlgorithmImpl;
+    protected MoonAlgorithm $moonAlgorithmImpl;
+
+    /**
+     * 朔探索ループ専用の縮約 ELP2000 実装。
+     * moonAlgorithmImpl が厳密に ELP2000 クラスの場合のみ遅延生成される。
+     */
+    protected ?ELP2000Reduced $reducedMoonImpl = null;
 
     /**
      * 太陽・月の計算実装を注入して初期化する。
@@ -330,6 +336,33 @@ class Astronomy
     }
 
     /**
+     * 高速版月位相角計算（朔探索ループ専用）。
+     *
+     * 月黄経に {@see longitudeMoonFast()} を使用することで計算を高速化する。
+     * 縮約版が適用されるのは注入された月実装が厳密に {@see ELP2000} の場合のみ。
+     * それ以外のアルゴリズムは {@see longitudeMoon()} へフォールバックするため、
+     * このメソッドはいずれのアルゴリズムに対しても安全に呼び出せる。
+     *
+     * **朔探索ループの符号反転検出および粗い二分探索専用。最終出力への使用は禁止。**
+     *
+     * @param int $year グレゴリオ暦の年
+     * @param int $month グレゴリオ暦の月
+     * @param int $day グレゴリオ暦の日
+     * @param float $hour 時（日本標準時）
+     * @param float $min 分
+     * @param float $sec 秒
+     * @return float 月の位相角近似値（0°=新月, 90°=上弦, 180°=満月, 270°=下弦）
+     * @throws \Exception
+     */
+    public function moonPhaseAngleFast(int $year, int $month, int $day, float $hour, float $min, float $sec): float
+    {
+        $longitude_moon = $this->longitudeMoonFast($year, $month, $day, $hour, $min, $sec);
+        $longitude_sun = $this->longitudeSun($year, $month, $day, $hour, $min, $sec);
+
+        return $this->normalizeAngle($longitude_moon - $longitude_sun);
+    }
+
+    /**
      * 月の黄経計算（視黄経）
      *
      * 注入された `MoonAlgorithm` 実装に委譲し、結果をキャッシュします。
@@ -350,6 +383,43 @@ class Astronomy
         $key = __METHOD__ . '-' . $this->moonAlgorithmName() . '-' . $year . '-' . $month . '-' . $day . '-' . $hour . '-' . $min . '-' . $sec;
 
         return $this->oneTimeCache($key, fn () => $this->moonAlgorithmImpl->longitudeMoon($year, $month, $day, $hour, $min, $sec));
+    }
+
+    /**
+     * 朔探索ループ専用の高速月黄経近似計算。
+     *
+     * 注入された月実装のクラスが厳密に ELP2000（サブクラス不可）の場合は、
+     * 縮約黄経級数（|c| >= 1e-4 の項のみ、20,560 項中 4,755 項）で評価した近似値を返す。
+     * それ以外（Legacy / Meeus / ELP2000 サブクラス）は {@see longitudeMoon()} に委譲する。
+     *
+     * oneTimeCache のキーに 'elp2000_reduced' を含めることで
+     * フル精度キャッシュとの衝突を防ぐ。
+     *
+     * **このメソッドは朔探索収束ループ内専用。最終出力への使用は禁止。**
+     *
+     * @param int $year グレゴリオ暦の年
+     * @param int $month グレゴリオ暦の月
+     * @param int $day グレゴリオ暦の日
+     * @param float $hour 時（日本標準時）
+     * @param float $min 分
+     * @param float $sec 秒
+     * @return float 月の黄経近似値（度、0〜360）
+     * @throws \Exception
+     */
+    public function longitudeMoonFast(int $year, int $month, int $day, float $hour, float $min, float $sec): float
+    {
+        // instanceof ではなく get_class() で厳密一致させる。
+        // ELP2000 サブクラスは級数を上書きしている可能性があり、
+        // ELP2000Reduced（縮約版）との互換性が保証できないため。
+        if (get_class($this->moonAlgorithmImpl) !== ELP2000::class) {
+            return $this->longitudeMoon($year, $month, $day, $hour, $min, $sec);
+        }
+        if ($this->reducedMoonImpl === null) {
+            $this->reducedMoonImpl = new ELP2000Reduced();
+        }
+        $key = __METHOD__ . '-elp2000_reduced-' . $year . '-' . $month . '-' . $day . '-' . $hour . '-' . $min . '-' . $sec;
+
+        return $this->oneTimeCache($key, fn () => $this->reducedMoonImpl->longitudeMoon($year, $month, $day, $hour, $min, $sec));
     }
 
     /**

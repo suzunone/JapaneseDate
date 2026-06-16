@@ -135,6 +135,28 @@ class CacheTest extends TestCase
         $this->assertSame(1, $callCount);
     }
     /**
+     * メモリキャッシュが null を保存済みの値として扱うことを確認する。
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
+     */
+    public function test_forever_cache_hit_with_null_value(): void
+    {
+        Cache::setCacheClosure(static function (string $key, $fn) {
+            unset($key);
+
+            return $fn();
+        });
+        $callCount = 0;
+        $fn = function () use (&$callCount) {
+            $callCount++;
+
+            return null;
+        };
+        $this->assertNull(Cache::forever('null_key', $fn));
+        $this->assertNull(Cache::forever('null_key', $fn));
+        $this->assertSame(1, $callCount);
+    }
+    /**
      * ORIGINAL モードでは設定済みの独自キャッシュ用クロージャを使うことを確認する。
      * @runInSeparateProcess
      * @preserveGlobalState disabled
@@ -206,6 +228,31 @@ class CacheTest extends TestCase
         }
     }
     /**
+     * ファイルキャッシュの保存先ディレクトリが未作成でも、そのディレクトリ配下に保存されることを確認する。
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
+     */
+    public function test_forever_mode_file_creates_missing_directory(): void
+    {
+        $dir = sys_get_temp_dir() . '/jpdate_test_' . uniqid('', true);
+        try {
+            Cache::setCacheFilePath($dir);
+
+            $result = Cache::forever('missing_dir_file_key', static function () {
+                return 'file_value';
+            });
+
+            $this->assertSame('file_value', $result);
+            $this->assertDirectoryExists($dir);
+            $this->assertFileExists($dir . DIRECTORY_SEPARATOR . sha1('missing_dir_file_key'));
+        } finally {
+            if (is_dir($dir)) {
+                array_map('unlink', glob($dir . '/*') ?: []);
+                rmdir($dir);
+            }
+        }
+    }
+    /**
      * ファイルキャッシュに値がある場合、保存済みの値を返してコールバックを実行しないことを確認する。
      * @runInSeparateProcess
      * @preserveGlobalState disabled
@@ -271,5 +318,16 @@ class CacheTest extends TestCase
         });
         $this->assertSame('fallback_value', $result);
         $this->assertSame(1, $callCount);
+    }
+    /**
+     * cache_file_path が null の場合、fileForever はコールバックをそのまま実行して返すことを確認する。
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
+     */
+    public function test_fileForever_with_null_cache_path_calls_function_directly(): void
+    {
+        $this->invokeSetProperty(Cache::class, 'cache_file_path', null);
+        $result = $this->invokeExecuteMethod(Cache::class, 'fileForever', ['key', static fn () => 'direct_value']);
+        $this->assertSame('direct_value', $result);
     }
 }

@@ -86,7 +86,7 @@ class SexagenaryCycle
      */
     public function getOrientalZodiacKey(int $year): int
     {
-        return ($year + 9) % 12;
+        return (($year + 9) % 12 + 12) % 12;
     }
 
     /**
@@ -108,7 +108,7 @@ class SexagenaryCycle
      */
     public function getHeavenlyStemKey(int $year): int
     {
-        return ($year + 6) % 10;
+        return (($year + 6) % 10 + 10) % 10;
     }
 
     /**

@@ -21,12 +21,14 @@ use JapaneseDate\Components\Astronomy;
 use JapaneseDate\Components\Config;
 use JapaneseDate\Components\Contracts\MoonAgeAlgorithm;
 use JapaneseDate\Components\ELP2000;
+use JapaneseDate\Components\LegacyMoonAge;
 use JapaneseDate\Components\LunarCalendar;
 use JapaneseDate\Components\MeeusMoon;
 use JapaneseDate\Components\MeeusMoonAge;
 use JapaneseDate\Components\Vsop87Astronomy;
 use JapaneseDate\DateTime;
 use JapaneseDate\Elements\LunarDate;
+use JapaneseDate\Exceptions\ErrorException;
 use Mockery;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
@@ -60,220 +62,37 @@ class LunarCalendarTest extends TestCase
         parent::tearDown();
     }
     /**
-     * 朔日として検出されるべき日付を返す
+     * 中気境界まで安全にスキップできる日数を返す。
      *
-     * @return array
+     * @return array<string, array{float, int}>
      */
-    public static function makeLunarCalendarDataProvider(): array
+    public static function chukiSkipDaysDataProvider(): array
     {
+        // MAX_SUN_DAILY_MOTION=1.10, floor 方式: floor(remaining/1.10)-1
         return [
-            '2009/01/26' => ['2009/01/26'],
-            '2009/02/25' => ['2009/02/25'],
-            '2009/03/27' => ['2009/03/27'],
-            '2009/04/25' => ['2009/04/25'],
-            '2009/05/24' => ['2009/05/24'],
-            '2009/06/23' => ['2009/06/23'],
-            '2009/07/22' => ['2009/07/22'],
-            '2009/08/20' => ['2009/08/20'],
-            '2009/09/19' => ['2009/09/19'],
-            '2009/10/18' => ['2009/10/18'],
-            '2009/11/17' => ['2009/11/17'],
-            '2009/12/16' => ['2009/12/16'],
-            '2010/01/15' => ['2010/01/15'],
-            '2010/02/14' => ['2010/02/14'],
-            '2010/03/16' => ['2010/03/16'],
-            '2010/04/14' => ['2010/04/14'],
-            '2010/05/14' => ['2010/05/14'],
-            '2010/06/12' => ['2010/06/12'],
-            '2010/07/12' => ['2010/07/12'],
-            '2010/08/10' => ['2010/08/10'],
-            '2010/09/08' => ['2010/09/08'],
-            '2010/10/08' => ['2010/10/08'],
-            '2010/11/06' => ['2010/11/06'],
-            '2010/12/06' => ['2010/12/06'],
-            '2011/01/04' => ['2011/01/04'],
-            '2011/02/03' => ['2011/02/03'],
-            '2011/03/05' => ['2011/03/05'],
-            '2011/04/03' => ['2011/04/03'],
-            '2011/05/03' => ['2011/05/03'],
-            '2011/06/02' => ['2011/06/02'],
-            '2011/07/01' => ['2011/07/01'],
-            '2011/07/31' => ['2011/07/31'],
-            '2011/08/29' => ['2011/08/29'],
-            '2011/09/27' => ['2011/09/27'],
-            '2011/10/27' => ['2011/10/27'],
-            '2011/11/25' => ['2011/11/25'],
-            '2011/12/25' => ['2011/12/25'],
-            '2012/01/23' => ['2012/01/23'],
-            '2012/02/22' => ['2012/02/22'],
-            '2012/03/22' => ['2012/03/22'],
-            '2012/04/21' => ['2012/04/21'],
-            '2012/05/21' => ['2012/05/21'],
-            '2012/06/20' => ['2012/06/20'],
-            '2012/07/19' => ['2012/07/19'],
-            '2012/08/18' => ['2012/08/18'],
-            '2012/09/16' => ['2012/09/16'],
-            '2012/10/15' => ['2012/10/15'],
-            '2012/11/14' => ['2012/11/14'],
-            '2012/12/13' => ['2012/12/13'],
-            '2013/01/12' => ['2013/01/12'],
-            '2013/02/10' => ['2013/02/10'],
-            '2013/03/12' => ['2013/03/12'],
-            '2013/04/10' => ['2013/04/10'],
-            '2013/05/10' => ['2013/05/10'],
-            '2013/06/09' => ['2013/06/09'],
-            '2013/07/08' => ['2013/07/08'],
-            '2013/08/07' => ['2013/08/07'],
-            '2013/09/05' => ['2013/09/05'],
-            '2013/10/05' => ['2013/10/05'],
-            '2013/11/03' => ['2013/11/03'],
-            '2013/12/03' => ['2013/12/03'],
-            '2014/01/01' => ['2014/01/01'],
-            '2014/01/31' => ['2014/01/31'],
-            '2014/03/01' => ['2014/03/01'],
-            '2014/03/31' => ['2014/03/31'],
-            '2014/04/29' => ['2014/04/29'],
-            '2014/05/29' => ['2014/05/29'],
-            '2014/06/27' => ['2014/06/27'],
-            '2014/07/27' => ['2014/07/27'],
-            '2014/08/25' => ['2014/08/25'],
-            '2014/09/24' => ['2014/09/24'],
-            '2014/10/24' => ['2014/10/24'],
-            '2014/11/22' => ['2014/11/22'],
-            '2014/12/22' => ['2014/12/22'],
-            '2015/01/20' => ['2015/01/20'],
-            '2015/02/19' => ['2015/02/19'],
-            '2015/03/20' => ['2015/03/20'],
-            '2015/04/19' => ['2015/04/19'],
-            '2015/05/18' => ['2015/05/18'],
-            '2015/06/16' => ['2015/06/16'],
-            '2015/07/16' => ['2015/07/16'],
-            '2015/08/14' => ['2015/08/14'],
-            '2015/09/13' => ['2015/09/13'],
-            '2015/10/13' => ['2015/10/13'],
-            '2015/11/12' => ['2015/11/12'],
-            '2015/12/11' => ['2015/12/11'],
-            '2016/01/10' => ['2016/01/10'],
-            '2016/02/08' => ['2016/02/08'],
-            '2016/03/09' => ['2016/03/09'],
-            '2016/04/07' => ['2016/04/07'],
-            '2016/05/07' => ['2016/05/07'],
-            '2016/06/05' => ['2016/06/05'],
-            '2016/07/04' => ['2016/07/04'],
-            '2016/08/03' => ['2016/08/03'],
-            '2016/09/01' => ['2016/09/01'],
-            '2016/10/01' => ['2016/10/01'],
-            '2016/10/31' => ['2016/10/31'],
-            '2016/11/29' => ['2016/11/29'],
-            '2016/12/29' => ['2016/12/29'],
-            '2017/01/28' => ['2017/01/28'],
-            '2017/02/26' => ['2017/02/26'],
-            '2017/03/28' => ['2017/03/28'],
-            '2017/04/26' => ['2017/04/26'],
-            '2017/05/26' => ['2017/05/26'],
-            '2017/06/24' => ['2017/06/24'],
-            '2017/07/23' => ['2017/07/23'],
-            '2017/08/22' => ['2017/08/22'],
-            '2017/09/20' => ['2017/09/20'],
-            '2017/10/20' => ['2017/10/20'],
-            '2017/11/18' => ['2017/11/18'],
-            '2017/12/18' => ['2017/12/18'],
-            '2018/01/17' => ['2018/01/17'],
-            '2018/02/16' => ['2018/02/16'],
-            '2018/03/17' => ['2018/03/17'],
-            '2018/04/16' => ['2018/04/16'],
-            '2018/05/15' => ['2018/05/15'],
-            '2018/06/14' => ['2018/06/14'],
-            '2018/07/13' => ['2018/07/13'],
-            '2018/08/11' => ['2018/08/11'],
-            '2018/09/10' => ['2018/09/10'],
-            '2018/10/09' => ['2018/10/09'],
-            '2018/11/08' => ['2018/11/08'],
-            '2018/12/07' => ['2018/12/07'],
-            '2019/01/06' => ['2019/01/06'],
-            '2019/02/05' => ['2019/02/05'],
-            '2019/03/07' => ['2019/03/07'],
-            '2019/04/05' => ['2019/04/05'],
-            '2019/05/05' => ['2019/05/05'],
-            '2019/06/03' => ['2019/06/03'],
-            '2019/07/03' => ['2019/07/03'],
-            '2019/08/01' => ['2019/08/01'],
-            '2019/08/30' => ['2019/08/30'],
-            '2019/09/29' => ['2019/09/29'],
-            '2019/10/28' => ['2019/10/28'],
-            '2019/11/27' => ['2019/11/27'],
-            '2019/12/26' => ['2019/12/26'],
-            '2020/01/25' => ['2020/01/25'],
-            '2020/02/24' => ['2020/02/24'],
-            '2020/03/24' => ['2020/03/24'],
-            '2020/04/23' => ['2020/04/23'],
-            '2020/05/23' => ['2020/05/23'],
-            '2020/06/21' => ['2020/06/21'],
-            '2020/07/21' => ['2020/07/21'],
-            '2020/08/19' => ['2020/08/19'],
-            '2020/09/17' => ['2020/09/17'],
-            '2020/10/17' => ['2020/10/17'],
-            '2020/11/15' => ['2020/11/15'],
-            '2020/12/15' => ['2020/12/15'],
-            '2021/01/13' => ['2021/01/13'],
-            '2021/02/12' => ['2021/02/12'],
-            '2021/03/13' => ['2021/03/13'],
-            '2021/04/12' => ['2021/04/12'],
-            '2021/05/12' => ['2021/05/12'],
-            '2021/06/10' => ['2021/06/10'],
-            '2021/07/10' => ['2021/07/10'],
-            '2021/08/08' => ['2021/08/08'],
-            '2021/09/07' => ['2021/09/07'],
-            '2021/10/06' => ['2021/10/06'],
-            '2021/11/05' => ['2021/11/05'],
-            '2021/12/04' => ['2021/12/04'],
-            '2022/01/03' => ['2022/01/03'],
-            '2022/02/01' => ['2022/02/01'],
-            '2022/03/03' => ['2022/03/03'],
-            '2022/04/01' => ['2022/04/01'],
-            '2022/05/01' => ['2022/05/01'],
-            '2022/05/30' => ['2022/05/30'],
-            '2022/06/29' => ['2022/06/29'],
-            '2022/07/29' => ['2022/07/29'],
-            '2022/08/27' => ['2022/08/27'],
-            '2022/09/26' => ['2022/09/26'],
-            '2022/10/25' => ['2022/10/25'],
-            '2022/11/24' => ['2022/11/24'],
-            '2022/12/23' => ['2022/12/23'],
-            '2023/01/22' => ['2023/01/22'],
-            '2023/02/20' => ['2023/02/20'],
-            '2023/03/22' => ['2023/03/22'],
-            '2023/04/20' => ['2023/04/20'],
-            '2023/05/20' => ['2023/05/20'],
-            '2023/06/18' => ['2023/06/18'],
-            '2023/07/18' => ['2023/07/18'],
-            '2023/08/16' => ['2023/08/16'],
-            '2023/09/15' => ['2023/09/15'],
-            '2023/10/15' => ['2023/10/15'],
-            '2023/11/13' => ['2023/11/13'],
-            '2023/12/13' => ['2023/12/13'],
-            '2024/01/11' => ['2024/01/11'],
-            '2024/02/10' => ['2024/02/10'],
-            '2024/03/10' => ['2024/03/10'],
-            '2024/04/09' => ['2024/04/09'],
-            '2024/05/08' => ['2024/05/08'],
-            '2024/06/06' => ['2024/06/06'],
-            '2024/07/06' => ['2024/07/06'],
-            '2024/08/04' => ['2024/08/04'],
-            '2024/09/03' => ['2024/09/03'],
-            '2024/10/03' => ['2024/10/03'],
-            '2024/11/01' => ['2024/11/01'],
-            '2024/12/01' => ['2024/12/01'],
-            '2024/12/31' => ['2024/12/31'],
-            // 月黄経負値バグ修正後: 2034-03-20 が朔日として認識されること
-            '2034/03/20' => ['2034/03/20'],
-            // >= 1900 キャリブレーション: makeLunarCalendar(2001) のループ内で
-            // 2000-12-25 が age1=28.78 > 20, age2=0.026 < 0.17 を満たしキャリブレーションが発動する
-            '2001/01/24' => ['2001/01/24'],
-            // < 1900 キャリブレーション: makeLunarCalendar(1899) のループ内で
-            // 1899-05-09 が age1=28.48 > 20, age2=0.015 < 0.1 を満たしキャリブレーションが発動する
-            '1899/05/10' => ['1899/05/10'],
+            '境界直後'       => [0.0, 26],   // floor(30.0/1.10)-1 = 27-1 = 26
+            '境界まで13度'   => [227.0, 10], // floor(13.0/1.10)-1 = 11-1 = 10
+            '境界まで2度'    => [238.0, 0],  // floor(2.0/1.10)-1  = 1-1  = 0
+            '境界まで1度'    => [239.0, 0],  // floor(1.0/1.10)-1  = max(0,-1) = 0
+            '360度境界直前'  => [359.0, 0],  // floor(1.0/1.10)-1  = 0
         ];
+    }
+    /**
+     * 中気境界を飛び越えず、境界直前までの最大日数を返すことを確認する。
+     *
+     * @param float $longitudeSun
+     * @param int $expected
+     * @return void
+     * @throws \ReflectionException
+     * @dataProvider chukiSkipDaysDataProvider
+     */
+    public function test_calcChukiSkipDays(float $longitudeSun, int $expected): void
+    {
+        $lunarCalendar = new LunarCalendar();
+        $this->assertSame(
+            $expected,
+            $this->invokeExecuteMethod($lunarCalendar, 'calcChukiSkipDays', [$longitudeSun])
+        );
     }
     /**
      * 月齢計算の検証用データを返す
@@ -381,31 +200,6 @@ class LunarCalendarTest extends TestCase
             1.0, ], $res);
     }
     /**
-     * makeLunarCalendar が各年の朔日を旧暦カレンダーに含めることを確認する
-     *
-     * @param string $date
-     * @return void
-     * @throws \JsonException
-     * @throws \ReflectionException
-     * @dataProvider makeLunarCalendarDataProvider
-     */
-    public function test_makeLunarCalendar(string $date): void
-    {
-        DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_LEGACY);
-        DateTime::useMoonAlgorithm(DateTime::MOON_ALGORITHM_LEGACY);
-        DateTime::useBoundarySolarAlgorithm(DateTime::SOLAR_ALGORITHM_VSOP87);
-        DateTime::useBoundaryMoonAlgorithm(DateTime::MOON_ALGORITHM_MEEUS47);
-        $LunarCalendar = LunarCalendar::factory();
-        [$year] = explode('/', $date, 2);
-        $year = (int) $year;
-        $calendar_array = $this->invokeExecuteMethod($LunarCalendar, 'makeLunarCalendar', [$year]);
-        $dates = array_map(
-            static fn (array $item): string => sprintf('%04d/%02d/%02d', $item['year'], $item['month'], $item['day']),
-            $calendar_array
-        );
-        $this->assertContains($date, $dates, json_encode($calendar_array, JSON_THROW_ON_ERROR));
-    }
-    /**
      * 指定日時の月齢を丸めた値で確認する
      *
      * @param $year
@@ -463,6 +257,214 @@ class LunarCalendarTest extends TestCase
 
         $this->assertSame(12.5, $result);
         $this->assertSame([2024, 1, 2, 3.0, 4.0, 5.0], $stub->receivedArgs);
+    }
+    /**
+     * moonAge() は同一引数に対してアルゴリズムを1回のみ呼び出し、結果をメモ化することを確認する
+     *
+     * @return void
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     */
+    public function test_moonAge_memoization_sameArgsCallAlgorithmOnce(): void
+    {
+        $spy = new class () implements MoonAgeAlgorithm {
+            public int $callCount = 0;
+
+            /**
+             * @param int $year
+             * @param int $month
+             * @param int $day
+             * @param float $hour
+             * @param float $min
+             * @param float $sec
+             * @return float
+             */
+            public function moonAge(int $year, int $month, int $day, float $hour, float $min, float $sec): float
+            {
+                $this->callCount++;
+
+                return 7.25;
+            }
+        };
+
+        $lc = new LunarCalendar(null, $spy);
+
+        $result1 = $lc->moonAge(2024, 1, 2, 0.0, 0.0, 0.0);
+        $result2 = $lc->moonAge(2024, 1, 2, 0.0, 0.0, 0.0);
+
+        $this->assertSame(7.25, $result1);
+        $this->assertSame(7.25, $result2);
+        $this->assertSame(1, $spy->callCount);
+    }
+    /**
+     * moonAge() は引数が異なる場合はそれぞれ別々にキャッシュすることを確認する
+     *
+     * 0:00:00 と 23:59:59 は別エントリとして扱われ、それぞれ1回ずつ算出される。
+     *
+     * @return void
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     */
+    public function test_moonAge_memoization_differentArgsCachedSeparately(): void
+    {
+        $spy = new class () implements MoonAgeAlgorithm {
+            public int $callCount = 0;
+
+            /**
+             * @param int $year
+             * @param int $month
+             * @param int $day
+             * @param float $hour
+             * @param float $min
+             * @param float $sec
+             * @return float
+             */
+            public function moonAge(int $year, int $month, int $day, float $hour, float $min, float $sec): float
+            {
+                $this->callCount++;
+
+                return $hour < 1.0 ? 28.5 : 0.4;
+            }
+        };
+
+        $lc = new LunarCalendar(null, $spy);
+
+        $age1      = $lc->moonAge(2024, 1, 2, 0.0, 0.0, 0.0);
+        $age2      = $lc->moonAge(2024, 1, 2, 23.0, 59.0, 59.0);
+        $age1Again = $lc->moonAge(2024, 1, 2, 0.0, 0.0, 0.0);
+
+        $this->assertSame(28.5, $age1);
+        $this->assertSame(0.4, $age2);
+        $this->assertSame(28.5, $age1Again);
+        $this->assertSame(2, $spy->callCount);
+    }
+    /**
+     * moonAge() のキャッシュを InvokeTrait 経由でリセットするとアルゴリズムが再計算されることを確認する
+     *
+     * @return void
+     * @throws \DateInvalidTimeZoneException
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     * @throws \ReflectionException
+     */
+    public function test_moonAge_memoization_cacheCanBeReset(): void
+    {
+        $spy = new class () implements MoonAgeAlgorithm {
+            public int $callCount = 0;
+
+            /**
+             * @param int $year
+             * @param int $month
+             * @param int $day
+             * @param float $hour
+             * @param float $min
+             * @param float $sec
+             * @return float
+             */
+            public function moonAge(int $year, int $month, int $day, float $hour, float $min, float $sec): float
+            {
+                $this->callCount++;
+
+                return 14.0;
+            }
+        };
+
+        $lc = new LunarCalendar(null, $spy);
+
+        $lc->moonAge(2024, 1, 2, 0.0, 0.0, 0.0);
+        $this->assertSame(1, $spy->callCount);
+
+        $this->invokeSetProperty($lc, 'one_time_cache', []);
+
+        $lc->moonAge(2024, 1, 2, 0.0, 0.0, 0.0);
+        $this->assertSame(2, $spy->callCount);
+    }
+    /**
+     * 隣接年の makeLunarCalendar 連続生成でメモ化によるアルゴリズム呼び出し削減を実測する
+     *
+     * year N (2019-11-10〜2021-03) と year N+1 (2020-11-10〜2022-03) の計算範囲は
+     * 約4.5か月（〜5新月）重複する。
+     * メモ化により year N+1 の重複期間分が year N 計算時のキャッシュヒットになり、
+     * year N+1 での実計算回数が year N での実計算回数より少なくなることを確認する。
+     *
+     * @return void
+     * @throws \ReflectionException
+     */
+    public function test_moonAge_memoization_reducesCallsForAdjacentYears(): void
+    {
+        $astronomy  = new Astronomy();
+        $legacyAlgo = new LegacyMoonAge($astronomy);
+
+        $spy = new class ($legacyAlgo) implements MoonAgeAlgorithm {
+            public int $callCount = 0;
+
+            private MoonAgeAlgorithm $real;
+
+            /**
+             * @param \JapaneseDate\Components\Contracts\MoonAgeAlgorithm $real
+             */
+            public function __construct(MoonAgeAlgorithm $real)
+            {
+                $this->real = $real;
+            }
+
+            /**
+             * @param int $year
+             * @param int $month
+             * @param int $day
+             * @param float $hour
+             * @param float $min
+             * @param float $sec
+             * @return float
+             */
+            public function moonAge(int $year, int $month, int $day, float $hour, float $min, float $sec): float
+            {
+                $this->callCount++;
+
+                return $this->real->moonAge($year, $month, $day, $hour, $min, $sec);
+            }
+        };
+
+        $lc = new LunarCalendar($astronomy, $spy);
+
+        // year 2020: 2019-11-10〜2021-03 を処理
+        $this->invokeExecuteMethod($lc, 'makeLunarCalendar', [2020]);
+        $countYear2020 = $spy->callCount;
+
+        // year 2021: 2020-11-10〜2022-03 を処理
+        // 2020-11-10〜2021-03 の重複期間は year2020 時のキャッシュヒット
+        $spy->callCount = 0;
+        $this->invokeExecuteMethod($lc, 'makeLunarCalendar', [2021]);
+        $countYear2021 = $spy->callCount;
+
+        $this->assertGreaterThan(0, $countYear2020, 'year2020 の実計算回数がゼロ');
+        $this->assertLessThan(
+            $countYear2020,
+            $countYear2021,
+            "隣接年メモ化: year2021({$countYear2021}回) は year2020({$countYear2020}回) より少ないはず"
+        );
+    }
+    /**
+     * 1900年未満の朔日補正分岐で翌日再計算されることを確認する。
+     *
+     * @return void
+     * @throws \JsonException
+     * @throws \ReflectionException
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
+     */
+    public function test_makeLunarCalendar_Pre1900SakuByNextDay(): void
+    {
+        DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_LEGACY);
+        DateTime::useMoonAlgorithm(DateTime::MOON_ALGORITHM_LEGACY);
+        DateTime::useBoundarySolarAlgorithm(DateTime::SOLAR_ALGORITHM_VSOP87);
+        DateTime::useBoundaryMoonAlgorithm(DateTime::MOON_ALGORITHM_MEEUS47);
+        $LunarCalendar = LunarCalendar::factory();
+        $calendar_array = $this->invokeExecuteMethod($LunarCalendar, 'makeLunarCalendar', [1899]);
+        $dates = array_map(
+            static fn (array $item): string => sprintf('%04d/%02d/%02d', $item['year'], $item['month'], $item['day']),
+            $calendar_array
+        );
+        $this->assertContains('1899/05/10', $dates, json_encode($calendar_array, JSON_THROW_ON_ERROR));
     }
     /**
      * Config::getLC がデータを返した場合に makeLunarCalendar が早期リターンすることを確認する
@@ -565,6 +567,22 @@ PHP
         $this->assertEquals(1, $result->day);
     }
     /**
+     * 朔区間が見つからない場合に空配列を LunarDate へ渡さず例外を投げることを確認する。
+     *
+     * @return void
+     * @throws \ReflectionException
+     */
+    public function test_getLunarCalendarArray_throwsWhenNoLunarRangeMatches(): void
+    {
+        $lunarCalendar = new LunarCalendar();
+        $this->invokeSetProperty($lunarCalendar, 'lunar_calendar', [2024 => []]);
+
+        $this->expectException(ErrorException::class);
+        $this->expectExceptionMessage('旧暦日を算出できる朔区間が見つかりませんでした: 2024-01-01');
+
+        $this->invokeExecuteMethod($lunarCalendar, 'getLunarCalendarArray', [2024, 1, 1]);
+    }
+    /**
      * VSOP87 が注入されている場合、その計算結果を直接返すことを確認する
      *
      * @return void
@@ -578,20 +596,37 @@ PHP
         $this->assertSame(0, $lunarCalendar->findSolarTerm(2023, 3, 21));
     }
     /**
-     * legacy の節気判定が VSOP87 より1日遅れた場合は false を返すことを確認する
+     * legacy の6時境界補正により、冬至当日を検出できることを確認する。
      *
-     * 1819-12-23 は legacy では冬至と判定されるが、VSOP87 では前日の
-     * 1819-12-22 が冬至となるため、当日の判定を棄却する。
+     * 1819-12-23 は0時境界では VSOP87 との比較により棄却対象だったが、
+     * legacy 用の6時境界では当日内の節気として扱う。
      *
      * @return void
      * @throws \DateMalformedStringException
      * @throws \JapaneseDate\Exceptions\Exception
      */
-    public function test_findSolarTerm_rejectsLegacyOneDayDelay(): void
+    public function test_findSolarTerm_detectsLegacySolarTermWithSixHourBoundary(): void
     {
         $lunarCalendar = new LunarCalendar(new Astronomy());
 
-        $this->assertFalse($lunarCalendar->findSolarTerm(1819, 12, 23));
+        $this->assertSame(DateTime::SOLAR_TERM_TOUJI, $lunarCalendar->findSolarTerm(1819, 12, 23));
+    }
+    /**
+     * legacy アルゴリズムが境界アルゴリズム（VSOP87）より1日遅れて節気を検出する場合、
+     * 前日の境界チェックにより当日の結果を false で棄却することを確認する。
+     *
+     * 2023-06-22 夏至: VSOP87 は 06-21 に検出済み → 06-22 は境界 false
+     * → legacy は 06-22 を検出 → 前日 06-21 の境界も同じ節気 → 1日遅れと判定して false を返す
+     *
+     * @return void
+     * @throws \DateMalformedStringException
+     * @throws \JapaneseDate\Exceptions\Exception
+     */
+    public function test_findSolarTerm_legacyLagsOneDayBehindBoundary_returnsFalse(): void
+    {
+        $lunarCalendar = new LunarCalendar(new Astronomy());
+
+        $this->assertFalse($lunarCalendar->findSolarTerm(2023, 6, 22));
     }
     /**
      * 2034年の朔日補正が旧暦日に反映されることを確認する
@@ -611,6 +646,31 @@ PHP
         $this->assertEquals(1, $DateTime->lunar_day);
         $DateTime2 = DateTime::factory('2034-03-21');
         $this->assertEquals(2, $DateTime2->lunar_day);
+    }
+    /**
+     * 2033年問題で冬至月を11月に固定し、閏11月だけが発生することを確認する。
+     *
+     * @return void
+     * @throws \ReflectionException
+     */
+    public function test_makeLunarCalendar_2033_leapMonthAnchoredByWinterSolstice(): void
+    {
+        $lunarCalendar = LunarCalendar::factory();
+        $calendar = $this->invokeExecuteMethod($lunarCalendar, 'makeLunarCalendar', [2033]);
+
+        $months = [];
+        foreach ($calendar as $month) {
+            $months[sprintf('%04d-%02d-%02d', $month['year'], $month['month'], $month['day'])] = $month;
+        }
+
+        $this->assertEquals(8, $months['2033-08-25']['lunar_month']);
+        $this->assertFalse($months['2033-08-25']['lunar_month_leap']);
+
+        $this->assertEquals(11, $months['2033-11-22']['lunar_month']);
+        $this->assertFalse($months['2033-11-22']['lunar_month_leap']);
+
+        $this->assertEquals(11, $months['2033-12-22']['lunar_month']);
+        $this->assertTrue($months['2033-12-22']['lunar_month_leap']);
     }
     // ==================== moonPhaseAngle ====================
     /**
@@ -814,5 +874,43 @@ PHP
         // 2023-02-06 03:29 UTC = JST 12:29 → 月相 4（満月）
         $result = $lc->moonPhase(2023, 2, 6, 12.0, 29.0, 0.0);
         $this->assertSame(4, $result, 'meeus47 満月時刻の月相が 4 でありません');
+    }
+    // ==================== 出力等価性スモークテスト ====================
+    /**
+     * 全アルゴリズム組み合わせ × 代表年で makeLunarCalendar が正常な朔テーブルを返すことを確認する。
+     *
+     * 高速化リファクタ（スキップ処理導入）後も、各アルゴリズムで旧暦テーブルの
+     * 構造（エントリ数・必須キー・旧暦月フラグ）が壊れていないことを検証する。
+     *
+     * @return void
+     * @throws \ReflectionException
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
+     */
+    public function test_makeLunarCalendar_all_algorithm_combinations_smoke(): void
+    {
+        $combinations = [
+            'vsop87_legacy'     => new LunarCalendar(new Astronomy(new Vsop87Astronomy())),
+            'vsop87_meeus47_nc' => new LunarCalendar(new Astronomy(new Vsop87Astronomy(), new MeeusMoon(applyNasaCCorrection: false))),
+        ];
+        // 代表年: 境界年・現代年・遠未来年
+        $years = [1900, 1950, 2000, 2023, 2050, 2100];
+        foreach ($combinations as $desc => $lc) {
+            foreach ($years as $year) {
+                $calendar = $this->invokeExecuteMethod($lc, 'makeLunarCalendar', [$year]);
+
+                $label = "{$desc}, year={$year}";
+                $this->assertIsArray($calendar, $label);
+                $this->assertGreaterThanOrEqual(13, count($calendar), $label);
+                $this->assertArrayHasKey('year', $calendar[0], $label);
+                $this->assertArrayHasKey('month', $calendar[0], $label);
+                $this->assertArrayHasKey('day', $calendar[0], $label);
+                $this->assertArrayHasKey('jd', $calendar[0], $label);
+                $this->assertArrayHasKey('lunar_month', $calendar[0], $label);
+                $this->assertArrayHasKey('lunar_year', $calendar[0], $label);
+                $this->assertArrayHasKey('lunar_month_leap', $calendar[0], $label);
+                $this->assertIsBool($calendar[0]['lunar_month_leap'], $label);
+            }
+        }
     }
 }

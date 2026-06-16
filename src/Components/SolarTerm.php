@@ -44,14 +44,10 @@ class SolarTerm
     ];
 
     /**
-     * The legacy solar longitude formula runs about six hours late against NAOJ 2000
-     * Reki Yoko values within the old table's practical range.
+     * The legacy solar longitude formula runs about six hours late against NAOJ
+     * Reki Yoko values and the generated SimpleSolarTerm table.
      */
     protected const DAY_BOUNDARY_HOUR = 6;
-
-    protected const LEGACY_TABLE_START_YEAR = 1600;
-
-    protected const LEGACY_TABLE_END_YEAR = 2399;
 
     /**
      * @param \JapaneseDate\Components\Astronomy|null $astronomy
@@ -110,7 +106,7 @@ class SolarTerm
     {
         $astronomy = $this->astronomy ?? Astronomy::factory();
         $start = new DateTimeImmutable(
-            sprintf('%04d-%02d-%02d %02d:00:00', $year, $month, $day, $this->dayBoundaryHour($year, $astronomy)),
+            sprintf('%04d-%02d-%02d %02d:00:00', $year, $month, $day, $this->dayBoundaryHour($astronomy)),
             new DateTimeZone('Asia/Tokyo')
         );
         $end = $start->modify('+1 day');
@@ -125,21 +121,16 @@ class SolarTerm
     }
 
     /**
-     * @param int $year
      * @param \JapaneseDate\Components\Astronomy $astronomy
      * @return int
      */
-    protected function dayBoundaryHour(int $year, Astronomy $astronomy): int
+    protected function dayBoundaryHour(Astronomy $astronomy): int
     {
         if ($astronomy->sunAlgorithmName() === Astronomy::SOLAR_VSOP87) {
             return 0;
         }
 
-        if ($year >= self::LEGACY_TABLE_START_YEAR && $year <= self::LEGACY_TABLE_END_YEAR) {
-            return self::DAY_BOUNDARY_HOUR;
-        }
-
-        return 0;
+        return self::DAY_BOUNDARY_HOUR;
     }
 
     /**

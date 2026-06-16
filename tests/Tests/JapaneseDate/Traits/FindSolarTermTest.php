@@ -148,6 +148,7 @@ class FindSolarTermTest extends TestCase
         $result = $this->invokeExecuteMethod($dateTime, 'get' . $methodSuffix, []);
         $this->assertInstanceOf(DateTime::class, $result);
         $this->assertSame(self::expectedDate($term, '07:08:09'), $result->format('Y-m-d H:i:s'));
+        $this->assertSame('2024-08-01 07:08:09', $dateTime->format('Y-m-d H:i:s'));
         $this->assertSame('Asia/Tokyo', $result->getTimezone()->getName());
     }
     /**
@@ -174,6 +175,7 @@ class FindSolarTermTest extends TestCase
         $result = $this->invokeExecuteMethod($dateTime, 'getNext' . $methodSuffix, []);
         $this->assertInstanceOf(DateTime::class, $result);
         $this->assertSame($expected, $result->format('Y-m-d H:i:s'));
+        $this->assertSame($input, $dateTime->format('Y-m-d H:i:s'));
         $this->assertSame('Asia/Tokyo', $result->getTimezone()->getName());
     }
     /**
@@ -199,7 +201,37 @@ class FindSolarTermTest extends TestCase
         $result = $this->invokeExecuteMethod($dateTime, 'getBefore' . $methodSuffix, []);
         $this->assertInstanceOf(DateTime::class, $result);
         $this->assertSame($expected, $result->format('Y-m-d H:i:s'));
+        $this->assertSame($input, $dateTime->format('Y-m-d H:i:s'));
         $this->assertSame('Asia/Tokyo', $result->getTimezone()->getName());
+    }
+    /**
+     * DateTime でプロパティ経由の二十四節気日取得が元のインスタンスを書き換えないことを確認する。
+     */
+    public function test_getSolarTermPropertyDoesNotMutateDateTime(): void
+    {
+        $dateTime = new DateTime('2024-08-15 07:08:09', new DateTimeZone('Asia/Tokyo'));
+
+        $result = $dateTime->syunbun;
+
+        $this->assertInstanceOf(DateTime::class, $result);
+        $this->assertSame('2024-03-20 07:08:09', $result->format('Y-m-d H:i:s'));
+        $this->assertSame('2024-08-15 07:08:09', $dateTime->format('Y-m-d H:i:s'));
+    }
+    /**
+     * DateTime で次の二十四節気日を繰り返し取得しても判定年が累積しないことを確認する。
+     */
+    public function test_getNextSolarTermPropertyDoesNotAccumulateDateTimeMutation(): void
+    {
+        $dateTime = new DateTime('2024-08-15 07:08:09', new DateTimeZone('Asia/Tokyo'));
+
+        $first = $dateTime->next_touji;
+        $second = $dateTime->next_touji;
+        $third = $dateTime->next_touji;
+
+        $this->assertSame('2024-12-21 07:08:09', $first->format('Y-m-d H:i:s'));
+        $this->assertSame('2024-12-21 07:08:09', $second->format('Y-m-d H:i:s'));
+        $this->assertSame('2024-12-21 07:08:09', $third->format('Y-m-d H:i:s'));
+        $this->assertSame('2024-08-15 07:08:09', $dateTime->format('Y-m-d H:i:s'));
     }
     /**
      * DateTimeImmutable で前の二十四節気日が境界条件どおりに見つかることを確認する。
@@ -225,6 +257,18 @@ class FindSolarTermTest extends TestCase
         $result = $this->invokeExecuteMethod($dateTime, 'get' . $methodSuffix, []);
         $this->assertSame(self::expectedDate($term, '01:02:03'), $result->format('Y-m-d H:i:s'));
     }
+    /**
+     * 天文計算版の SolarTerm から指定年の二十四節気日付を取得する。
+     */
+    private static function astronomicalSolarTerm(string $method, int $year): SolarTermDate
+    {
+        return (new SolarTerm())->{$method}($year);
+    }
+    /**
+     * @return void
+     * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     * @throws \ReflectionException
+     */
     public function test_getSolarTermUsesVsop87AlgorithmWhenSelected(): void
     {
         try {
@@ -240,13 +284,6 @@ class FindSolarTermTest extends TestCase
             Astronomy::useSolarAlgorithm(Astronomy::SOLAR_LEGACY);
             Astronomy::useMoonAlgorithm(Astronomy::MOON_LEGACY);
         }
-    }
-    /**
-     * 天文計算版の SolarTerm から指定年の二十四節気日付を取得する。
-     */
-    private static function astronomicalSolarTerm(string $method, int $year): SolarTermDate
-    {
-        return (new SolarTerm())->{$method}($year);
     }
     /**
      * 簡易テーブルの範囲外では天文計算にフォールバックして次の二十四節気日を取得することを確認する。

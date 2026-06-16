@@ -153,6 +153,14 @@ class AlgorithmTest extends TestCase
      */
     public function test_publicConstantsAreExposed(): void
     {
+        $this->assertSame('legacy', DateTime::SOLAR_ALGORITHM_LEGACY);
+        $this->assertSame('legacy', DateTimeImmutable::SOLAR_ALGORITHM_LEGACY);
+        $this->assertSame('vsop87', DateTime::SOLAR_ALGORITHM_VSOP87);
+        $this->assertSame('vsop87', DateTimeImmutable::SOLAR_ALGORITHM_VSOP87);
+        $this->assertSame('legacy', DateTime::MOON_ALGORITHM_LEGACY);
+        $this->assertSame('legacy', DateTimeImmutable::MOON_ALGORITHM_LEGACY);
+        $this->assertSame('elp2000', DateTime::MOON_ALGORITHM_ELP2000);
+        $this->assertSame('elp2000', DateTimeImmutable::MOON_ALGORITHM_ELP2000);
         $this->assertSame('meeus47', DateTime::MOON_ALGORITHM_MEEUS47);
         $this->assertSame('meeus47', DateTimeImmutable::MOON_ALGORITHM_MEEUS47);
         $this->assertSame('meeus47_no_c', DateTime::MOON_ALGORITHM_MEEUS47_NO_C);

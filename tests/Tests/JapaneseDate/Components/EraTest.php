@@ -55,6 +55,8 @@ class EraTest extends TestCase
     public static function eraKeyProvider(): array
     {
         return [
+            '明治開始前' => ['1868-01-24T23:59:59+09:00', 0],
+            '明治開始日' => ['1868-01-25T00:00:00+09:00', DateTime::ERA_MEIJI],
             '明治（1912-07-29 JST 直前）' => ['1912-07-29T23:59:59+09:00', DateTime::ERA_MEIJI],
             '大正開始日（1912-07-30 JST）' => ['1912-07-30T00:00:00+09:00', DateTime::ERA_TAISHO],
             '大正（1926-12-24 JST）' => ['1926-12-24T23:59:59+09:00', DateTime::ERA_TAISHO],
@@ -84,6 +86,7 @@ class EraTest extends TestCase
             '平成31年（2019年）' => [2019, DateTime::ERA_HEISEI, 31],
             '令和元年（2019年）' => [2019, DateTime::ERA_REIWA, 1],
             '令和8年（2026年）' => [2026, DateTime::ERA_REIWA, 8],
+            '元号なし' => [1867, 0, 0],
         ];
     }
     // =========================================================================
@@ -204,6 +207,17 @@ class EraTest extends TestCase
         $era = new JisEra();
         $this->assertSame('', $era->getEraNameString(9999));
     }
+    /**
+     * 明治開始前の日付では元号名・元号年が未該当として返ること。
+     */
+    public function test_before_meiji_start_returns_no_era_values(): void
+    {
+        $dt = new DateTime('1868-01-24T23:59:59+09:00');
+
+        $this->assertSame(0, $dt->eraName);
+        $this->assertSame('', $dt->eraNameText);
+        $this->assertSame(0, $dt->eraYear);
+    }
     // =========================================================================
     // parseJisDate()
     // =========================================================================
@@ -214,7 +228,25 @@ class EraTest extends TestCase
     public function test_parseJisDate(string $input, int|float|null $expected): void
     {
         $era = new JisEra();
-        $this->assertSame($expected, $era->parseJisDate($input));
+        $this->assertSame($expected, $era->parseJisDate($input, new DateTimeZone('Asia/Tokyo')));
+    }
+    /**
+     * parseJisDate() がデフォルトタイムゾーンで和暦・JIS元号形式を解釈すること。
+     */
+    public function test_parseJisDate_uses_default_timezone_for_japanese_formats(): void
+    {
+        $defaultTimezone = date_default_timezone_get();
+        date_default_timezone_set('America/New_York');
+
+        try {
+            $era = new JisEra();
+            $timestamp = $era->parseJisDate('R7-05-01');
+            $date = DateTimeImmutable::createFromTimestamp($timestamp, new DateTimeZone('America/New_York'));
+
+            $this->assertSame('2025-05-01 00:00:00 -04:00', $date->format('Y-m-d H:i:s P'));
+        } finally {
+            date_default_timezone_set($defaultTimezone);
+        }
     }
     /**
      * @return void
