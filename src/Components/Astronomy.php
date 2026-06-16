@@ -120,18 +120,18 @@ class Astronomy
     /**
      * 注入された太陽黄経計算アルゴリズム実装。
      */
-    private SunAlgorithm $sunAlgorithmImpl;
+    protected SunAlgorithm $sunAlgorithmImpl;
 
     /**
      * 注入された月黄経計算アルゴリズム実装。
      */
-    private MoonAlgorithm $moonAlgorithmImpl;
+    protected MoonAlgorithm $moonAlgorithmImpl;
 
     /**
      * 朔探索ループ専用の縮約 ELP2000 実装。
      * moonAlgorithmImpl が厳密に ELP2000 クラスの場合のみ遅延生成される。
      */
-    private ?ELP2000Reduced $reducedMoonImpl = null;
+    protected ?ELP2000Reduced $reducedMoonImpl = null;
 
     /**
      * 太陽・月の計算実装を注入して初期化する。
@@ -408,6 +408,9 @@ class Astronomy
      */
     public function longitudeMoonFast(int $year, int $month, int $day, float $hour, float $min, float $sec): float
     {
+        // instanceof ではなく get_class() で厳密一致させる。
+        // ELP2000 サブクラスは級数を上書きしている可能性があり、
+        // ELP2000Reduced（縮約版）との互換性が保証できないため。
         if (get_class($this->moonAlgorithmImpl) !== ELP2000::class) {
             return $this->longitudeMoon($year, $month, $day, $hour, $min, $sec);
         }

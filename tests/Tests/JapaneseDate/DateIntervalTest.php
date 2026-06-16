@@ -19,11 +19,13 @@
 namespace Tests\JapaneseDate;
 
 use Carbon\CarbonInterval;
+use DateTimeZone;
 use InvalidArgumentException;
 use JapaneseDate\Components\Astronomy;
 use JapaneseDate\DateBusiness;
 use JapaneseDate\DateInterval;
 use JapaneseDate\DateTime;
+use JapaneseDate\Exceptions\InfiniteLoopException;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\CoversMethod;
 use PHPUnit\Framework\TestCase;
@@ -40,6 +42,7 @@ use PHPUnit\Framework\TestCase;
  * @since       2026-05-29
  */
 #[CoversClass(DateInterval::class)]
+#[CoversClass(InfiniteLoopException::class)]
 #[CoversMethod(DateInterval::class, 'addBusinessDaysToDate')]
 #[CoversMethod(DateInterval::class, 'subBusinessDaysToDate')]
 #[CoversMethod(DateInterval::class, 'isBusinessDay')]
@@ -58,8 +61,11 @@ use PHPUnit\Framework\TestCase;
 #[CoversMethod(DateInterval::class, 'subBusinessDaysFrom')]
 #[CoversMethod(DateInterval::class, 'countBusinessDaysBetween')]
 #[CoversMethod(DateInterval::class, 'resolveSolarTerm')]
+#[CoversMethod(DateInterval::class, 'assertSolarTermMethodExists')]
 class DateIntervalTest extends TestCase
 {
+    use InvokeTrait;
+
     // =========================================================================
     // クラス基本テスト
     // =========================================================================
@@ -193,6 +199,7 @@ class DateIntervalTest extends TestCase
         $interval = DateInterval::untilNextHoliday($from);
 
         $this->assertEquals(2, $interval->d);
+        $this->assertSame(2, $interval->days);
     }
 
     /**
@@ -240,6 +247,7 @@ class DateIntervalTest extends TestCase
 
         $interval = DateInterval::untilNextSixWeek($date, DateTime::SIX_WEEKDAY_TAIAN);
         $this->assertEquals(6, $interval->d);
+        $this->assertSame(6, $interval->days);
     }
 
     /**
@@ -375,6 +383,7 @@ class DateIntervalTest extends TestCase
         // 節気の間隔は 14〜16 日程度なので、次の節気は 30 日以内
         $this->assertLessThanOrEqual(30, $interval->d);
         $this->assertGreaterThanOrEqual(0, $interval->d);
+        $this->assertIsInt($interval->days);
     }
 
     /**
@@ -389,6 +398,17 @@ class DateIntervalTest extends TestCase
         $this->assertGreaterThan(0, $interval->d);
         // 夏至は 6 月なので 20〜55 日後
         $this->assertLessThanOrEqual(55, $interval->d);
+    }
+
+    /**
+     * untilNextSolarTerm: 不明な節気名を指定した場合は 15 日フォールバックせず例外を投げる。
+     */
+    public function test_untilNextSolarTerm_invalidSpecificTerm(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('不明な節気メソッド名です: nonexistent_term');
+
+        DateInterval::untilNextSolarTerm(DateTime::parse('2026-05-01'), 'nonexistent_term');
     }
 
     /**
@@ -423,6 +443,21 @@ class DateIntervalTest extends TestCase
         $this->assertGreaterThan(20, $diff->days);
         $this->assertLessThan(45, $diff->days);
         $this->assertTrue($result->lt($from));
+    }
+
+    /**
+     * findPrevSolarTermDate: 特定の節気を指定して直前の日付を取得できる。
+     */
+    public function test_findPrevSolarTermDate_specificTerm(): void
+    {
+        $result = $this->invokeExecuteMethod(
+            DateInterval::class,
+            'findPrevSolarTermDate',
+            [DateTime::parse('2026-07-01'), 'geshi']
+        );
+
+        $this->assertInstanceOf(DateTime::class, $result);
+        $this->assertSame('2026-06-21', $result->format('Y-m-d'));
     }
 
     /**
@@ -584,5 +619,89 @@ class DateIntervalTest extends TestCase
         $count = $interval->countBusinessDaysBetween($start, $end, $config);
 
         $this->assertSame(1, $count);
+    }
+
+    /**
+     * countBusinessDaysBetween() が end 側のタイムゾーンで終了日を正規化することを確認する。
+     */
+    public function test_countBusinessDaysBetween_uses_end_timezone(): void
+    {
+        $interval = new DateInterval('P1D');
+        $start = DateTime::factory('2026-05-25 00:00:00', new DateTimeZone('UTC'));
+        $end = DateTime::factory('2026-05-26 00:00:00', new DateTimeZone('Asia/Tokyo'));
+
+        $count = $interval->countBusinessDaysBetween($start, $end);
+
+        $this->assertSame(1, $count);
+    }
+
+    // -----------------------------------------------------------------------
+    // InfiniteLoopException（無限ループ防止ガード）
+    // -----------------------------------------------------------------------
+
+    /**
+     * addBusinessDaysToDate: isBusinessDay を常に false にすると InfiniteLoopException がスローされる。
+     */
+    public function test_addBusinessDaysToDate_throws_InfiniteLoopException(): void
+    {
+        $stub = new class extends DateInterval {
+            /**
+             * @param \JapaneseDate\DateTime $date
+             * @return bool
+             */
+            public static function isBusinessDay(DateTime $date): bool
+            {
+                return false;
+            }
+        };
+
+        $this->expectException(InfiniteLoopException::class);
+        $stub::addBusinessDaysToDate(DateTime::parse('2026-05-01'), 1);
+    }
+
+    /**
+     * subBusinessDaysToDate: isBusinessDay を常に false にすると InfiniteLoopException がスローされる。
+     */
+    public function test_subBusinessDaysToDate_throws_InfiniteLoopException(): void
+    {
+        $stub = new class extends DateInterval {
+            /**
+             * @param \JapaneseDate\DateTime $date
+             * @return bool
+             */
+            public static function isBusinessDay(DateTime $date): bool
+            {
+                return false;
+            }
+        };
+
+        $this->expectException(InfiniteLoopException::class);
+        $stub::subBusinessDaysToDate(DateTime::parse('2026-05-01'), 1);
+    }
+
+    /**
+     * addBusinessDaysTo: マクロが常に false を返す設定で InfiniteLoopException がスローされる。
+     */
+    public function test_addBusinessDaysTo_throws_InfiniteLoopException(): void
+    {
+        $interval = new DateInterval('P1D');
+        $config = (new DateBusiness())->setMacro(fn() => false);
+        $base = DateTime::factory('2026-05-25');
+
+        $this->expectException(InfiniteLoopException::class);
+        $interval->addBusinessDaysTo($base, 1, $config);
+    }
+
+    /**
+     * subBusinessDaysFrom: マクロが常に false を返す設定で InfiniteLoopException がスローされる。
+     */
+    public function test_subBusinessDaysFrom_throws_InfiniteLoopException(): void
+    {
+        $interval = new DateInterval('P1D');
+        $config = (new DateBusiness())->setMacro(fn() => false);
+        $base = DateTime::factory('2026-05-25');
+
+        $this->expectException(InfiniteLoopException::class);
+        $interval->subBusinessDaysFrom($base, 1, $config);
     }
 }

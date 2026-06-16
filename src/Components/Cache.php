@@ -21,6 +21,7 @@ namespace JapaneseDate\Components;
 
 use Closure;
 use JapaneseDate\CacheMode;
+use RuntimeException;
 
 /**
  * 暦計算結果をメモリ・APCu・ファイル・独自処理でキャッシュするコンポーネント。
@@ -89,7 +90,7 @@ class Cache extends CacheMode
 
         $cache = &static::$cache;
 
-        if (isset($cache[$cache_name])) {
+        if (array_key_exists($cache_name, $cache)) {
             return $cache[$cache_name];
         }
 
@@ -102,7 +103,7 @@ class Cache extends CacheMode
         }
 
         if (static::$mode === static::MODE_APC ||
-            (static::$mode === static::MODE_AUTO && function_exists('apcu_add'))) {
+            (static::$mode === static::MODE_AUTO && function_exists('apcu_fetch') && function_exists('apcu_store'))) {
             // APC モード
             return $cache[$cache_name] = static::apcForever($cache_name, $function);
         }
@@ -123,19 +124,19 @@ class Cache extends CacheMode
      */
     protected static function apcForever(string $cache_name, Closure $function): mixed
     {
-        if (!(function_exists('apcu_fetch') && function_exists('apcu_add'))) {
+        if (!(function_exists('apcu_fetch') && function_exists('apcu_store'))) {
             return $function();
         }
 
         $success = false;
         $res = apcu_fetch($cache_name, $success);
-        if ($success && $res) {
+        if ($success) {
             return $res;
         }
 
         $res = $function();
 
-        apcu_add($cache_name, $res);
+        apcu_store($cache_name, $res);
 
         return $res;
     }
@@ -149,7 +150,21 @@ class Cache extends CacheMode
      */
     protected static function fileForever(string $cache_name, Closure $function): mixed
     {
-        $cache_name_path = realpath(static::$cache_file_path) . DIRECTORY_SEPARATOR . sha1($cache_name);
+        $cacheDirectory = static::$cache_file_path;
+        if ($cacheDirectory === null) {
+            return $function();
+        }
+
+        if (!is_dir($cacheDirectory) && !mkdir($cacheDirectory, 0775, true) && !is_dir($cacheDirectory)) {
+            throw new RuntimeException('キャッシュディレクトリを作成できません: ' . $cacheDirectory);
+        }
+
+        $realPath = realpath($cacheDirectory);
+        if ($realPath === false) {
+            throw new RuntimeException('キャッシュディレクトリを解決できません: ' . $cacheDirectory);
+        }
+
+        $cache_name_path = $realPath . DIRECTORY_SEPARATOR . sha1($cache_name);
 
         if (is_file($cache_name_path)) {
             /** @noinspection UnserializeExploitsInspection */

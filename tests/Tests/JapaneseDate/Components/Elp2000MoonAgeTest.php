@@ -300,6 +300,10 @@ class Elp2000MoonAgeTest extends TestCase
                 return $this->longitudeMoon($year, $month, $day, $hour, $min, $sec);
             }
 
+            /**
+             * @param float $angle
+             * @return float
+             */
             public function normalizeAngle(float $angle): float
             {
                 return $this->normalizedAngle ?? parent::normalizeAngle($angle);

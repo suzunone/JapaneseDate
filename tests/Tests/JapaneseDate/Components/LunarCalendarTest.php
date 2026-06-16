@@ -28,6 +28,7 @@ use JapaneseDate\Components\MeeusMoonAge;
 use JapaneseDate\Components\Vsop87Astronomy;
 use JapaneseDate\DateTime;
 use JapaneseDate\Elements\LunarDate;
+use JapaneseDate\Exceptions\ErrorException;
 use Mockery;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
@@ -291,6 +292,15 @@ class LunarCalendarTest extends TestCase
         $spy = new class () implements MoonAgeAlgorithm {
             public int $callCount = 0;
 
+            /**
+             * @param int $year
+             * @param int $month
+             * @param int $day
+             * @param float $hour
+             * @param float $min
+             * @param float $sec
+             * @return float
+             */
             public function moonAge(int $year, int $month, int $day, float $hour, float $min, float $sec): float
             {
                 $this->callCount++;
@@ -323,6 +333,15 @@ class LunarCalendarTest extends TestCase
         $spy = new class () implements MoonAgeAlgorithm {
             public int $callCount = 0;
 
+            /**
+             * @param int $year
+             * @param int $month
+             * @param int $day
+             * @param float $hour
+             * @param float $min
+             * @param float $sec
+             * @return float
+             */
             public function moonAge(int $year, int $month, int $day, float $hour, float $min, float $sec): float
             {
                 $this->callCount++;
@@ -356,6 +375,15 @@ class LunarCalendarTest extends TestCase
         $spy = new class () implements MoonAgeAlgorithm {
             public int $callCount = 0;
 
+            /**
+             * @param int $year
+             * @param int $month
+             * @param int $day
+             * @param float $hour
+             * @param float $min
+             * @param float $sec
+             * @return float
+             */
             public function moonAge(int $year, int $month, int $day, float $hour, float $min, float $sec): float
             {
                 $this->callCount++;
@@ -396,11 +424,23 @@ class LunarCalendarTest extends TestCase
 
             private MoonAgeAlgorithm $real;
 
+            /**
+             * @param \JapaneseDate\Components\Contracts\MoonAgeAlgorithm $real
+             */
             public function __construct(MoonAgeAlgorithm $real)
             {
                 $this->real = $real;
             }
 
+            /**
+             * @param int $year
+             * @param int $month
+             * @param int $day
+             * @param float $hour
+             * @param float $min
+             * @param float $sec
+             * @return float
+             */
             public function moonAge(int $year, int $month, int $day, float $hour, float $min, float $sec): float
             {
                 $this->callCount++;
@@ -569,6 +609,23 @@ PHP
     }
 
     /**
+     * 朔区間が見つからない場合に空配列を LunarDate へ渡さず例外を投げることを確認する。
+     *
+     * @return void
+     * @throws \ReflectionException
+     */
+    public function test_getLunarCalendarArray_throwsWhenNoLunarRangeMatches(): void
+    {
+        $lunarCalendar = new LunarCalendar();
+        $this->invokeSetProperty($lunarCalendar, 'lunar_calendar', [2024 => []]);
+
+        $this->expectException(ErrorException::class);
+        $this->expectExceptionMessage('旧暦日を算出できる朔区間が見つかりませんでした: 2024-01-01');
+
+        $this->invokeExecuteMethod($lunarCalendar, 'getLunarCalendarArray', [2024, 1, 1]);
+    }
+
+    /**
      * VSOP87 が注入されている場合、その計算結果を直接返すことを確認する
      *
      * @return void
@@ -583,20 +640,38 @@ PHP
     }
 
     /**
-     * legacy の節気判定が VSOP87 より1日遅れた場合は false を返すことを確認する
+     * legacy の6時境界補正により、冬至当日を検出できることを確認する。
      *
-     * 1819-12-23 は legacy では冬至と判定されるが、VSOP87 では前日の
-     * 1819-12-22 が冬至となるため、当日の判定を棄却する。
+     * 1819-12-23 は0時境界では VSOP87 との比較により棄却対象だったが、
+     * legacy 用の6時境界では当日内の節気として扱う。
      *
      * @return void
      * @throws \DateMalformedStringException
      * @throws \JapaneseDate\Exceptions\Exception
      */
-    public function test_findSolarTerm_rejectsLegacyOneDayDelay(): void
+    public function test_findSolarTerm_detectsLegacySolarTermWithSixHourBoundary(): void
     {
         $lunarCalendar = new LunarCalendar(new Astronomy());
 
-        $this->assertFalse($lunarCalendar->findSolarTerm(1819, 12, 23));
+        $this->assertSame(DateTime::SOLAR_TERM_TOUJI, $lunarCalendar->findSolarTerm(1819, 12, 23));
+    }
+
+    /**
+     * legacy アルゴリズムが境界アルゴリズム（VSOP87）より1日遅れて節気を検出する場合、
+     * 前日の境界チェックにより当日の結果を false で棄却することを確認する。
+     *
+     * 2023-06-22 夏至: VSOP87 は 06-21 に検出済み → 06-22 は境界 false
+     * → legacy は 06-22 を検出 → 前日 06-21 の境界も同じ節気 → 1日遅れと判定して false を返す
+     *
+     * @return void
+     * @throws \DateMalformedStringException
+     * @throws \JapaneseDate\Exceptions\Exception
+     */
+    public function test_findSolarTerm_legacyLagsOneDayBehindBoundary_returnsFalse(): void
+    {
+        $lunarCalendar = new LunarCalendar(new Astronomy());
+
+        $this->assertFalse($lunarCalendar->findSolarTerm(2023, 6, 22));
     }
 
     /**
@@ -618,6 +693,32 @@ PHP
 
         $DateTime2 = DateTime::factory('2034-03-21');
         $this->assertEquals(2, $DateTime2->lunar_day);
+    }
+
+    /**
+     * 2033年問題で冬至月を11月に固定し、閏11月だけが発生することを確認する。
+     *
+     * @return void
+     * @throws \ReflectionException
+     */
+    public function test_makeLunarCalendar_2033_leapMonthAnchoredByWinterSolstice(): void
+    {
+        $lunarCalendar = LunarCalendar::factory();
+        $calendar = $this->invokeExecuteMethod($lunarCalendar, 'makeLunarCalendar', [2033]);
+
+        $months = [];
+        foreach ($calendar as $month) {
+            $months[sprintf('%04d-%02d-%02d', $month['year'], $month['month'], $month['day'])] = $month;
+        }
+
+        $this->assertEquals(8, $months['2033-08-25']['lunar_month']);
+        $this->assertFalse($months['2033-08-25']['lunar_month_leap']);
+
+        $this->assertEquals(11, $months['2033-11-22']['lunar_month']);
+        $this->assertFalse($months['2033-11-22']['lunar_month_leap']);
+
+        $this->assertEquals(11, $months['2033-12-22']['lunar_month']);
+        $this->assertTrue($months['2033-12-22']['lunar_month_leap']);
     }
 
     // ==================== moonPhaseAngle ====================

@@ -39,6 +39,7 @@ class MoonAgeConvergenceTraitTest extends TestCase
      *
      * @param float $correctionDays 時刻補正量（日）
      * @return void
+     * @throws \ReflectionException
      */
     #[DataProvider('negativeCorrectionProvider')]
     public function test_negativeCorrectionContinuesIteration(float $correctionDays): void
@@ -69,6 +70,7 @@ class MoonAgeConvergenceTraitTest extends TestCase
      *
      * @param float $correctionDays 時刻補正量（日）
      * @return void
+     * @throws \ReflectionException
      */
     #[DataProvider('positiveCorrectionProvider')]
     public function test_positiveCorrectionContinuesIteration(float $correctionDays): void
@@ -88,6 +90,7 @@ class MoonAgeConvergenceTraitTest extends TestCase
      *
      * @param float $correctionDays 時刻補正量（日）
      * @return array{0: float, 1: float, 2: float, 3: float, 4: bool}
+     * @throws \ReflectionException
      */
     private function applyStepForCorrection(float $correctionDays): array
     {

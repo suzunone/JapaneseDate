@@ -101,6 +101,19 @@ class HistoricalEraTest extends TestCase
     }
 
     /**
+     * 2099年12月31日以降も令和の元号情報が欠落しないこと。
+     */
+    public function test_findByDate_returns_reiwa_after_temporary_end_boundary(): void
+    {
+        $dt = new DateTime('2100-01-01T00:00:00+09:00');
+        $component = new HistoricalEra();
+        $result = $component->findByDate($dt);
+
+        $this->assertCount(1, $result);
+        $this->assertSame('令和', $result[0]->name);
+    }
+
+    /**
      * 南北朝時代（1350年）の日付を指定すると北朝・南朝の2件が返ること。
      */
     public function test_findByDate_returns_both_courts_during_nanbokucho(): void

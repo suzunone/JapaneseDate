@@ -41,19 +41,19 @@ class LegacyMoonAge implements MoonAgeAlgorithm
     /**
      * Unix エポック（1970-01-01 00:00:00 UTC）のユリウス日。
      */
-    private const UNIX_EPOCH_JD = 2440587.5;
+    protected const UNIX_EPOCH_JD = 2440587.5;
 
     /**
      * 従来の月齢収束式と修正後のLegacy黄経基準を接続する内部座標差（日）。
      *
      * 標準UT JDを使いつつ、従来の収束式が前提とする内部座標を維持する。
      */
-    private const LEGACY_JD_OFFSET = 1.25;
+    protected const LEGACY_JD_OFFSET = 1.25;
 
     /**
      * 太陽・月の黄経計算および暦変換に使用する Astronomy インスタンス。
      */
-    private Astronomy $astronomy;
+    protected Astronomy $astronomy;
 
     /**
      * @param Astronomy $astronomy 黄経計算・暦変換に使用する Astronomy インスタンス
@@ -138,6 +138,9 @@ class LegacyMoonAge implements MoonAgeAlgorithm
 
         // 時刻引数を合成
         $res = $julian_date_0 - ($tm2 + $tm1);
+        if ($res < 0) {
+            $res += self::SYNODIC_MONTH;
+        }
         if ($res > 30) {
             // 春分特例等で2朔以上前の朔に収束した場合、1朔望月後を起点に直近の朔へ再収束する。
             // 再収束は近傍から始まるため counter=1 固有補正（δΛ < 0 の正規化）を適用しない。
@@ -175,6 +178,9 @@ class LegacyMoonAge implements MoonAgeAlgorithm
                 $counter++;
             }
             $res = $julian_date_0 - ($tm2 + $tm1);
+            if ($res < 0) {
+                $res += self::SYNODIC_MONTH;
+            }
         }
 
         return $res;
@@ -192,7 +198,7 @@ class LegacyMoonAge implements MoonAgeAlgorithm
      * @return float UT ユリウス日
      * @throws \Exception
      */
-    private function jstToJulianDate(int $year, int $month, int $day, float $hour, float $min, float $sec): float
+    protected function jstToJulianDate(int $year, int $month, int $day, float $hour, float $min, float $sec): float
     {
         $jstMidnight = new DateTimeImmutable(
             sprintf('%04d-%02d-%02d 00:00:00', $year, $month, $day),

@@ -157,6 +157,7 @@ class FindSolarTermTest extends TestCase
 
         $this->assertInstanceOf(DateTime::class, $result);
         $this->assertSame(self::expectedDate($term, '07:08:09'), $result->format('Y-m-d H:i:s'));
+        $this->assertSame('2024-08-01 07:08:09', $dateTime->format('Y-m-d H:i:s'));
         $this->assertSame('Asia/Tokyo', $result->getTimezone()->getName());
     }
 
@@ -194,6 +195,7 @@ class FindSolarTermTest extends TestCase
 
         $this->assertInstanceOf(DateTime::class, $result);
         $this->assertSame($expected, $result->format('Y-m-d H:i:s'));
+        $this->assertSame($input, $dateTime->format('Y-m-d H:i:s'));
         $this->assertSame('Asia/Tokyo', $result->getTimezone()->getName());
     }
 
@@ -231,7 +233,39 @@ class FindSolarTermTest extends TestCase
 
         $this->assertInstanceOf(DateTime::class, $result);
         $this->assertSame($expected, $result->format('Y-m-d H:i:s'));
+        $this->assertSame($input, $dateTime->format('Y-m-d H:i:s'));
         $this->assertSame('Asia/Tokyo', $result->getTimezone()->getName());
+    }
+
+    /**
+     * DateTime でプロパティ経由の二十四節気日取得が元のインスタンスを書き換えないことを確認する。
+     */
+    public function test_getSolarTermPropertyDoesNotMutateDateTime(): void
+    {
+        $dateTime = new DateTime('2024-08-15 07:08:09', new DateTimeZone('Asia/Tokyo'));
+
+        $result = $dateTime->syunbun;
+
+        $this->assertInstanceOf(DateTime::class, $result);
+        $this->assertSame('2024-03-20 07:08:09', $result->format('Y-m-d H:i:s'));
+        $this->assertSame('2024-08-15 07:08:09', $dateTime->format('Y-m-d H:i:s'));
+    }
+
+    /**
+     * DateTime で次の二十四節気日を繰り返し取得しても判定年が累積しないことを確認する。
+     */
+    public function test_getNextSolarTermPropertyDoesNotAccumulateDateTimeMutation(): void
+    {
+        $dateTime = new DateTime('2024-08-15 07:08:09', new DateTimeZone('Asia/Tokyo'));
+
+        $first = $dateTime->next_touji;
+        $second = $dateTime->next_touji;
+        $third = $dateTime->next_touji;
+
+        $this->assertSame('2024-12-21 07:08:09', $first->format('Y-m-d H:i:s'));
+        $this->assertSame('2024-12-21 07:08:09', $second->format('Y-m-d H:i:s'));
+        $this->assertSame('2024-12-21 07:08:09', $third->format('Y-m-d H:i:s'));
+        $this->assertSame('2024-08-15 07:08:09', $dateTime->format('Y-m-d H:i:s'));
     }
 
     /**
