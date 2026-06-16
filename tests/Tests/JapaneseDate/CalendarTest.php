@@ -593,7 +593,7 @@ class ThrowingDateTime extends DateTime
      * @noinspection PhpParameterNameChangedDuringInheritanceInspection
      */
     #[\ReturnTypeWillChange]
-    public function add(mixed $unit, mixed $value = 1, mixed $overflow = null, mixed $anchorDay = null): static
+    public function add($unit, $value = 1, $overflow = null, $anchorDay = null)
     {
         // Calendar 側で NativeDateTimeException に変換される例外を発生させる
         throw new \RuntimeException('DateTime add failed.');

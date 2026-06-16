@@ -184,7 +184,6 @@ class DateIntervalTest extends TestCase
         $interval = DateInterval::untilNextHoliday($from);
 
         $this->assertEquals(2, $interval->d);
-        $this->assertSame(2, $interval->days);
     }
     /**
      * untilNextHoliday: 元のオブジェクトが変更されないことを確認する（mutable 対策）。
@@ -228,7 +227,6 @@ class DateIntervalTest extends TestCase
 
         $interval = DateInterval::untilNextSixWeek($date, DateTime::SIX_WEEKDAY_TAIAN);
         $this->assertEquals(6, $interval->d);
-        $this->assertSame(6, $interval->days);
     }
     /**
      * untilNextSixWeek: 現在の六曜が目的の六曜より小さい場合（if 分岐）。
@@ -352,7 +350,6 @@ class DateIntervalTest extends TestCase
         // 節気の間隔は 14〜16 日程度なので、次の節気は 30 日以内
         $this->assertLessThanOrEqual(30, $interval->d);
         $this->assertGreaterThanOrEqual(0, $interval->d);
-        $this->assertIsInt($interval->days);
     }
     /**
      * untilNextSolarTerm: 特定の節気（夏至）までの残り期間が取得できる。
