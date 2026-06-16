@@ -2,13 +2,12 @@
 
 **Namespace:** `Carbon`
 
-class **CarbonPeriod** extends DatePeriodBase implements [Countable](https://www.php.net/class.countable), [JsonSerializable](https://www.php.net/class.jsonserializable), UnitValue
+class **CarbonPeriod** implements [Iterator](https://www.php.net/class.iterator), [Countable](https://www.php.net/class.countable), [JsonSerializable](https://www.php.net/class.jsonserializable)
 
 Substitution of DatePeriod with some modifications and many more features.
 
 ## Traits
 
-- LocalFactory
 - IntervalRounding
 - Mixin
 - Options
@@ -21,23 +20,34 @@ Substitution of DatePeriod with some modifications and many more features.
 | public | `RECURRENCES_FILTER` | Built-in filter for limit by recurrences. |
 | public | `END_DATE_FILTER` | Built-in filter for limit to an end. |
 | public | `END_ITERATION` | Special value which can be returned by filters to end iteration. Also a filter. |
+| public | `EXCLUDE_START_DATE` | Exclude start date from iteration. |
 | public | `EXCLUDE_END_DATE` | Exclude end date from iteration. |
 | public | `IMMUTABLE` | Yield CarbonImmutable instances. |
 | public | `NEXT_MAX_ATTEMPTS` | Number of maximum attempts before giving up on finding next valid date. |
 | public | `END_MAX_ATTEMPTS` | Number of maximum attempts before giving up on finding end date. |
 | protected | `DEFAULT_DATE_CLASS` | Default date class of iteration items. |
 
+## Properties
+
+| Modifier | Type | Name | Description |
+|---|---|---|---|
+| public _(read-only)_ | int\|float | `$recurrences` | number of recurrences (if end not set). |
+| public _(read-only)_ | bool | `$include_start_date` | rather the start date is included in the iteration. |
+| public _(read-only)_ | bool | `$include_end_date` | rather the end date is included in the iteration (if recurrences not set). |
+| public _(read-only)_ | CarbonInterface | `$start` | Period start date. |
+| public _(read-only)_ | CarbonInterface | `$current` | Current date from the iteration. |
+| public _(read-only)_ | CarbonInterface | `$end` | Period end date. |
+| public _(read-only)_ | [CarbonInterval](../Carbon/CarbonInterval.md) | `$interval` | Underlying date interval instance. Always present, one day by default. |
+
 ## Methods
 
 | Return | Method | Description |
 |---|---|---|
-| Generator | [getIterator()](#getiterator) |  |
 | CarbonPeriod\|null | [make()](#make) | Make a CarbonPeriod instance from given variable if possible. |
 | CarbonPeriod | [instance()](#instance) | Create a new instance from a DatePeriod or CarbonPeriod object. |
 | CarbonPeriod | [create()](#create) | Create a new instance. |
 | CarbonPeriod | [createFromArray()](#createfromarray) | Create a new instance from an array of parameters. |
 | CarbonPeriod | [createFromIso()](#createfromiso) | Create CarbonPeriod from ISO 8601 string. |
-| CarbonPeriod | [createFromISO8601String()](#createfromiso8601string) |  |
 | void | [macro()](#macro) | Register a custom macro. |
 | void | [mixin()](#mixin) | Register macros from a mixin object. |
 | bool | [hasMacro()](#hasmacro) | Check if macro is registered. |
@@ -47,7 +57,6 @@ Substitution of DatePeriod with some modifications and many more features.
 | CarbonPeriod | [setDateClass()](#setdateclass) | Set the iteration item class. |
 | string | [getDateClass()](#getdateclass) | Returns iteration item date class. |
 | CarbonPeriod | [setDateInterval()](#setdateinterval) | Change the period date interval. |
-| CarbonPeriod | [resetDateInterval()](#resetdateinterval) | Reset the date interval to the default value. |
 | CarbonPeriod | [invertDateInterval()](#invertdateinterval) | Invert the period date interval. |
 | CarbonPeriod | [setDates()](#setdates) | Set start and end date. |
 | CarbonPeriod | [setOptions()](#setoptions) | Change the period options. |
@@ -84,31 +93,31 @@ Substitution of DatePeriod with some modifications and many more features.
 | string | [toIso8601String()](#toiso8601string) | Format the date period as ISO 8601. |
 | string | [toString()](#tostring) | Convert the date period into a string. |
 | string | [spec()](#spec) | Format the date period as ISO 8601. |
-| object | [cast()](#cast) | Cast the current instance into the given class. |
+| DatePeriod | [cast()](#cast) | Cast the current instance into the given class. |
 | DatePeriod | [toDatePeriod()](#todateperiod) | Return native DatePeriod PHP object matching the current instance. |
 | bool | [isUnfilteredAndEndLess()](#isunfilteredandendless) | Return `true` if the period has no custom filter and is guaranteed to be endless. |
-| array | [toArray()](#toarray) | Convert the date period into an array without changing current iteration state. |
+| CarbonInterface[] | [toArray()](#toarray) | Convert the date period into an array without changing current iteration state. |
 | int | [count()](#count) | Count dates in the date period. |
 | CarbonInterface\|null | [first()](#first) | Return the first date in the date period. |
 | CarbonInterface\|null | [last()](#last) | Return the last date in the date period. |
 | CarbonPeriod | [setTimezone()](#settimezone) | Set the instance&#039;s timezone from a string or object and apply it to start/end. |
 | CarbonPeriod | [shiftTimezone()](#shifttimezone) | Set the instance&#039;s timezone from a string or object and add/subtract the offset difference to start/end. |
-| CarbonInterface | [calculateEnd()](#calculateend) | Returns the end is set, else calculated from start and recurrences. |
+| CarbonInterface | [calculateEnd()](#calculateend) | Returns the end is set, else calculated from start an recurrences. |
 | bool | [overlaps()](#overlaps) | Returns true if the current period overlaps the given one (if 1 parameter passed) or the period between 2 dates (if 2 parameters passed). |
-| void | [forEach()](#foreach) | Execute a given function on each date of the period. |
+|  | [forEach()](#foreach) | Execute a given function on each date of the period. |
 | Generator | [map()](#map) | Execute a given function on each date of the period and yield the result of this function. |
 | bool | [eq()](#eq) | Determines if the instance is equal to another. |
 | bool | [equalTo()](#equalto) | Determines if the instance is equal to another. |
 | bool | [ne()](#ne) | Determines if the instance is not equal to another. |
 | bool | [notEqualTo()](#notequalto) | Determines if the instance is not equal to another. |
-| bool | [startsBefore()](#startsbefore) | Determines if the start date is before another given date. |
+| bool | [startsBefore()](#startsbefore) | Determines if the start date is before an other given date. |
 | bool | [startsBeforeOrAt()](#startsbeforeorat) | Determines if the start date is before or the same as a given date. |
-| bool | [startsAfter()](#startsafter) | Determines if the start date is after another given date. |
+| bool | [startsAfter()](#startsafter) | Determines if the start date is after an other given date. |
 | bool | [startsAfterOrAt()](#startsafterorat) | Determines if the start date is after or the same as a given date. |
 | bool | [startsAt()](#startsat) | Determines if the start date is the same as a given date. |
-| bool | [endsBefore()](#endsbefore) | Determines if the end date is before another given date. |
+| bool | [endsBefore()](#endsbefore) | Determines if the end date is before an other given date. |
 | bool | [endsBeforeOrAt()](#endsbeforeorat) | Determines if the end date is before or the same as a given date. |
-| bool | [endsAfter()](#endsafter) | Determines if the end date is after another given date. |
+| bool | [endsAfter()](#endsafter) | Determines if the end date is after an other given date. |
 | bool | [endsAfterOrAt()](#endsafterorat) | Determines if the end date is after or the same as a given date. |
 | bool | [endsAt()](#endsat) | Determines if the end date is the same as a given date. |
 | bool | [isStarted()](#isstarted) | Return true if start date is now or later. |
@@ -120,28 +129,28 @@ Substitution of DatePeriod with some modifications and many more features.
 | CarbonPeriod | [round()](#round) | Round the current instance second with given precision if specified (else period interval is used). |
 | CarbonPeriod | [floor()](#floor) | Round the current instance second with given precision if specified (else period interval is used). |
 | CarbonPeriod | [ceil()](#ceil) | Ceil the current instance second with given precision if specified (else period interval is used). |
-| array | [jsonSerialize()](#jsonserialize) | Specify data which should be serialized to JSON. |
+| CarbonInterface[] | [jsonSerialize()](#jsonserialize) | Specify data which should be serialized to JSON. |
 | bool | [contains()](#contains) | Return true if the given date is between start and end. |
 | bool | [follows()](#follows) | Return true if the current period follows a given other period (with no overlap). |
 | bool | [isFollowedBy()](#isfollowedby) | Return true if the given other period follows the current one (with no overlap). |
 | bool | [isConsecutiveWith()](#isconsecutivewith) | Return true if the given period either follows or is followed by the current one. |
-| CarbonInterface | [start()](#start) | Create instance specifying start date or modify the start date if called on an instance. |
+| static | [start()](#start) | Create instance specifying start date or modify the start date if called on an instance. |
 | static | [since()](#since) | . |
 | static | [sinceNow()](#sincenow) | Create instance with start date set to now or set the start date to now if called on an instance. |
-| CarbonInterface | [end()](#end) | Create instance specifying end date or modify the end date if called on an instance. |
+| static | [end()](#end) | Create instance specifying end date or modify the end date if called on an instance. |
 | static | [until()](#until) | . |
 | static | [untilNow()](#untilnow) | Create instance with end date set to now or set the end date to now if called on an instance. |
 | static | [dates()](#dates) | Create instance with start and end dates or modify the start and end dates if called on an instance. |
 | static | [between()](#between) | Create instance with start and end dates or modify the start and end dates if called on an instance. |
 | static | [recurrences()](#recurrences) | Create instance with maximum number of recurrences or modify the number of recurrences if called on an instance. |
 | static | [times()](#times) | . |
-| static|int|null | [options()](#options) | Create instance with options or modify the options if called on an instance. |
+| static | [options()](#options) | Create instance with options or modify the options if called on an instance. |
 | static | [toggle()](#toggle) | Create instance with options toggled on or off, or toggle options if called on an instance. |
 | static | [filter()](#filter) | Create instance with filter added to the stack or append a filter if called on an instance. |
 | static | [push()](#push) | . |
 | static | [prepend()](#prepend) | Create instance with filter prepended to the stack or prepend a filter if called on an instance. |
-| static|array | [filters()](#filters) | Create instance with filters stack or replace the whole filters stack if called on an instance. |
-| CarbonInterval | [interval()](#interval) | Create instance with given date interval or modify the interval if called on an instance. |
+| static | [filters()](#filters) | Create instance with filters stack or replace the whole filters stack if called on an instance. |
+| static | [interval()](#interval) | Create instance with given date interval or modify the interval if called on an instance. |
 | static | [each()](#each) | Create instance with given date interval or modify the interval if called on an instance. |
 | static | [every()](#every) | Create instance with given date interval or modify the interval if called on an instance. |
 | static | [step()](#step) | Create instance with given date interval or modify the interval if called on an instance. |
@@ -249,15 +258,6 @@ Substitution of DatePeriod with some modifications and many more features.
 
 ## Method Details
 
-### getIterator
-
-```php
-public Generator getIterator()
-```
-
-**Returns:** [Generator](https://www.php.net/class.generator)
----
-
 ### make
 
 ```php
@@ -287,7 +287,7 @@ Create a new instance from a DatePeriod or CarbonPeriod object.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| mixed | `$period` | —  |  |
+| [CarbonPeriod](../Carbon/CarbonPeriod.md)\|[DatePeriod](https://www.php.net/class.dateperiod) | `$period` | —  |  |
 
 **Returns:** [CarbonPeriod](../Carbon/CarbonPeriod.md)
 ---
@@ -344,22 +344,6 @@ Create CarbonPeriod from ISO 8601 string.
 **Returns:** [CarbonPeriod](../Carbon/CarbonPeriod.md)
 ---
 
-### createFromISO8601String
-
-```php
-static public CarbonPeriod createFromISO8601String($iso, $options = null)
-```
-
-**Parameters:**
-
-| Type | Name | Default | Description |
-|---|---|---|---|
-| string | `$iso` | —  |  |
-| int\|null | `$options` | `null` |  |
-
-**Returns:** [CarbonPeriod](../Carbon/CarbonPeriod.md)
----
-
 ### macro
 
 ```php
@@ -368,14 +352,12 @@ static public void macro($name, $macro)
 
 Register a custom macro.
 
-Pass null macro to remove it.
-
 **Parameters:**
 
 | Type | Name | Default | Description |
 |---|---|---|---|
 | string | `$name` | —  |  |
-| callable\|null | `$macro` | —  |  |
+| object\|callable | `$macro` | —  |  |
 
 **Returns:** void
 ---
@@ -485,7 +467,7 @@ Returns iteration item date class.
 ### setDateInterval
 
 ```php
-public CarbonPeriod setDateInterval($interval, $unit = null)
+public CarbonPeriod setDateInterval($interval)
 ```
 
 Change the period date interval.
@@ -494,27 +476,12 @@ Change the period date interval.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| mixed | `$interval` | —  |  |
-| Unit\|string\|null | `$unit` | `null` | the unit of $interval if it's a number |
+| [DateInterval](https://www.php.net/class.dateinterval)\|string | `$interval` | —  |  |
 
 **Returns:** [CarbonPeriod](../Carbon/CarbonPeriod.md)
 **Throws:**
 
 - InvalidIntervalException
----
-
-### resetDateInterval
-
-```php
-public CarbonPeriod resetDateInterval()
-```
-
-Reset the date interval to the default value.
-
-Difference with simply setting interval to 1-day is that P1D will not appear when calling toIso8601String()
-and also next adding to the interval won't include the default 1-day.
-
-**Returns:** [CarbonPeriod](../Carbon/CarbonPeriod.md)
 ---
 
 ### invertDateInterval
@@ -540,8 +507,8 @@ Set start and end date.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| mixed | `$start` | —  |  |
-| mixed | `$end` | —  |  |
+| [DateTime](https://www.php.net/class.datetime)\|[DateTimeInterface](https://www.php.net/class.datetimeinterface)\|string | `$start` | —  |  |
+| [DateTime](https://www.php.net/class.datetime)\|[DateTimeInterface](https://www.php.net/class.datetimeinterface)\|string\|null | `$end` | —  |  |
 
 **Returns:** [CarbonPeriod](../Carbon/CarbonPeriod.md)
 ---
@@ -561,6 +528,9 @@ Change the period options.
 | int\|null | `$options` | —  |  |
 
 **Returns:** [CarbonPeriod](../Carbon/CarbonPeriod.md)
+**Throws:**
+
+- [InvalidArgumentException](https://www.php.net/class.invalidargumentexception)
 ---
 
 ### getOptions
@@ -765,8 +735,8 @@ Add a filter to the stack.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| callable\|string | `$callback` | —  |  |
-| string\|null | `$name` | `null` |  |
+| callable | `$callback` | —  |  |
+| string | `$name` | `null` |  |
 
 **Returns:** [CarbonPeriod](../Carbon/CarbonPeriod.md)
 ---
@@ -783,8 +753,8 @@ Prepend a filter to the stack.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| callable\|string | `$callback` | —  |  |
-| string\|null | `$name` | `null` |  |
+| callable | `$callback` | —  |  |
+| string | `$name` | `null` |  |
 
 **Returns:** [CarbonPeriod](../Carbon/CarbonPeriod.md)
 ---
@@ -894,7 +864,7 @@ Change the period start date.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| mixed | `$date` | —  |  |
+| [DateTime](https://www.php.net/class.datetime)\|[DateTimeInterface](https://www.php.net/class.datetimeinterface)\|string | `$date` | —  |  |
 | bool\|null | `$inclusive` | `null` |  |
 
 **Returns:** [CarbonPeriod](../Carbon/CarbonPeriod.md)
@@ -915,7 +885,7 @@ Change the period end date.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| mixed | `$date` | —  |  |
+| [DateTime](https://www.php.net/class.datetime)\|[DateTimeInterface](https://www.php.net/class.datetimeinterface)\|string\|null | `$date` | —  |  |
 | bool\|null | `$inclusive` | `null` |  |
 
 **Returns:** [CarbonPeriod](../Carbon/CarbonPeriod.md)
@@ -1045,7 +1015,7 @@ Format the date period as ISO 8601.
 ### cast
 
 ```php
-public object cast($className)
+public DatePeriod cast($className)
 ```
 
 Cast the current instance into the given class.
@@ -1056,7 +1026,7 @@ Cast the current instance into the given class.
 |---|---|---|---|
 | string | `$className` | —  | The $className::instance() method will be called to cast the current object. |
 
-**Returns:** object
+**Returns:** [DatePeriod](https://www.php.net/class.dateperiod)
 ---
 
 ### toDatePeriod
@@ -1088,12 +1058,12 @@ a way we can't predict without actually iterating the period.
 ### toArray
 
 ```php
-public array toArray()
+public CarbonInterface[] toArray()
 ```
 
 Convert the date period into an array without changing current iteration state.
 
-**Returns:** array
+**Returns:** CarbonInterface[]
 ---
 
 ### count
@@ -1141,7 +1111,7 @@ Set the instance's timezone from a string or object and apply it to start/end.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| [DateTimeZone](https://www.php.net/class.datetimezone)\|string\|int | `$timezone` | —  |  |
+| [DateTimeZone](https://www.php.net/class.datetimezone)\|string | `$timezone` | —  |  |
 
 **Returns:** [CarbonPeriod](../Carbon/CarbonPeriod.md)
 ---
@@ -1158,7 +1128,7 @@ Set the instance's timezone from a string or object and add/subtract the offset 
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| [DateTimeZone](https://www.php.net/class.datetimezone)\|string\|int | `$timezone` | —  |  |
+| [DateTimeZone](https://www.php.net/class.datetimezone)\|string | `$timezone` | —  |  |
 
 **Returns:** [CarbonPeriod](../Carbon/CarbonPeriod.md)
 ---
@@ -1169,7 +1139,7 @@ Set the instance's timezone from a string or object and add/subtract the offset 
 public CarbonInterface calculateEnd($rounding = null)
 ```
 
-Returns the end is set, else calculated from start and recurrences.
+Returns the end is set, else calculated from start an recurrences.
 
 **Parameters:**
 
@@ -1193,8 +1163,8 @@ or the period between 2 dates (if 2 parameters passed).
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| mixed | `$rangeOrRangeStart` | —  |  |
-| mixed | `$rangeEnd` | `null` |  |
+| [CarbonPeriod](../Carbon/CarbonPeriod.md)\|[DateTimeInterface](https://www.php.net/class.datetimeinterface)\|[Carbon](../Carbon/Carbon.md)\|[CarbonImmutable](../Carbon/CarbonImmutable.md)\|string | `$rangeOrRangeStart` | —  |  |
+| [DateTimeInterface](https://www.php.net/class.datetimeinterface)\|[Carbon](../Carbon/Carbon.md)\|[CarbonImmutable](../Carbon/CarbonImmutable.md)\|string\|null | `$rangeEnd` | `null` |  |
 
 **Returns:** bool
 ---
@@ -1202,7 +1172,7 @@ or the period between 2 dates (if 2 parameters passed).
 ### forEach
 
 ```php
-public void forEach($callback)
+public  forEach($callback)
 ```
 
 Execute a given function on each date of the period.
@@ -1213,7 +1183,6 @@ Execute a given function on each date of the period.
 |---|---|---|---|
 | callable | `$callback` | —  |  |
 
-**Returns:** void
 ---
 
 ### map
@@ -1321,7 +1290,7 @@ Warning: if options differ, instances will never be equal.
 public bool startsBefore($date = null)
 ```
 
-Determines if the start date is before another given date.
+Determines if the start date is before an other given date.
 
 (Rather start/end are included by options is ignored.)
 
@@ -1359,7 +1328,7 @@ Determines if the start date is before or the same as a given date.
 public bool startsAfter($date = null)
 ```
 
-Determines if the start date is after another given date.
+Determines if the start date is after an other given date.
 
 (Rather start/end are included by options is ignored.)
 
@@ -1416,7 +1385,7 @@ Determines if the start date is the same as a given date.
 public bool endsBefore($date = null)
 ```
 
-Determines if the end date is before another given date.
+Determines if the end date is before an other given date.
 
 (Rather start/end are included by options is ignored.)
 
@@ -1454,7 +1423,7 @@ Determines if the end date is before or the same as a given date.
 public bool endsAfter($date = null)
 ```
 
-Determines if the end date is after another given date.
+Determines if the end date is after an other given date.
 
 (Rather start/end are included by options is ignored.)
 
@@ -1557,8 +1526,8 @@ Round the current instance at the given unit with given precision if specified a
 | Type | Name | Default | Description |
 |---|---|---|---|
 | string | `$unit` | —  |  |
-| [DateInterval](https://www.php.net/class.dateinterval)\|float\|int\|string\|null | `$precision` | `1` |  |
-| callable\|string | `$function` | `&#039;round&#039;` |  |
+| float\|int\|string\|[DateInterval](https://www.php.net/class.dateinterval)\|null | `$precision` | `1` |  |
+| string | `$function` | `&#039;round&#039;` |  |
 
 **Returns:** [CarbonPeriod](../Carbon/CarbonPeriod.md)
 ---
@@ -1576,7 +1545,7 @@ Truncate the current instance at the given unit with given precision if specifie
 | Type | Name | Default | Description |
 |---|---|---|---|
 | string | `$unit` | —  |  |
-| [DateInterval](https://www.php.net/class.dateinterval)\|float\|int\|string\|null | `$precision` | `1` |  |
+| float\|int\|string\|[DateInterval](https://www.php.net/class.dateinterval)\|null | `$precision` | `1` |  |
 
 **Returns:** [CarbonPeriod](../Carbon/CarbonPeriod.md)
 ---
@@ -1594,7 +1563,7 @@ Ceil the current instance at the given unit with given precision if specified.
 | Type | Name | Default | Description |
 |---|---|---|---|
 | string | `$unit` | —  |  |
-| [DateInterval](https://www.php.net/class.dateinterval)\|float\|int\|string\|null | `$precision` | `1` |  |
+| float\|int\|string\|[DateInterval](https://www.php.net/class.dateinterval)\|null | `$precision` | `1` |  |
 
 **Returns:** [CarbonPeriod](../Carbon/CarbonPeriod.md)
 ---
@@ -1611,8 +1580,8 @@ Round the current instance second with given precision if specified (else period
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| [DateInterval](https://www.php.net/class.dateinterval)\|float\|int\|string\|null | `$precision` | `null` |  |
-| callable\|string | `$function` | `&#039;round&#039;` |  |
+| float\|int\|string\|[DateInterval](https://www.php.net/class.dateinterval)\|null | `$precision` | `null` |  |
+| string | `$function` | `&#039;round&#039;` |  |
 
 **Returns:** [CarbonPeriod](../Carbon/CarbonPeriod.md)
 ---
@@ -1629,7 +1598,7 @@ Round the current instance second with given precision if specified (else period
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| [DateInterval](https://www.php.net/class.dateinterval)\|float\|int\|string\|null | `$precision` | `null` |  |
+| float\|int\|string\|[DateInterval](https://www.php.net/class.dateinterval)\|null | `$precision` | `null` |  |
 
 **Returns:** [CarbonPeriod](../Carbon/CarbonPeriod.md)
 ---
@@ -1646,7 +1615,7 @@ Ceil the current instance second with given precision if specified (else period 
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| [DateInterval](https://www.php.net/class.dateinterval)\|float\|int\|string\|null | `$precision` | `null` |  |
+| float\|int\|string\|[DateInterval](https://www.php.net/class.dateinterval)\|null | `$precision` | `null` |  |
 
 **Returns:** [CarbonPeriod](../Carbon/CarbonPeriod.md)
 ---
@@ -1654,12 +1623,12 @@ Ceil the current instance second with given precision if specified (else period 
 ### jsonSerialize
 
 ```php
-public array jsonSerialize()
+public CarbonInterface[] jsonSerialize()
 ```
 
 Specify data which should be serialized to JSON.
 
-**Returns:** array
+**Returns:** CarbonInterface[]
 ---
 
 ### contains
@@ -1674,7 +1643,7 @@ Return true if the given date is between start and end.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| mixed | `$date` | `null` |  |
+| [Carbon](../Carbon/Carbon.md)\|[CarbonPeriod](../Carbon/CarbonPeriod.md)\|[CarbonInterval](../Carbon/CarbonInterval.md)\|[DateInterval](https://www.php.net/class.dateinterval)\|[DatePeriod](https://www.php.net/class.dateperiod)\|[DateTimeInterface](https://www.php.net/class.datetimeinterface)\|string\|null | `$date` | `null` |  |
 
 **Returns:** bool
 ---
@@ -1694,8 +1663,8 @@ Note than in this example, follows() would be false if 2019-08-01 or 2019-07-31 
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| mixed | `$period` | —  |  |
-| mixed | ...`$arguments` | —  |  |
+| [CarbonPeriod](../Carbon/CarbonPeriod.md)\|[DatePeriod](https://www.php.net/class.dateperiod)\|string | `$period` | —  |  |
+|  | ...`$arguments` | —  |  |
 
 **Returns:** bool
 ---
@@ -1715,8 +1684,8 @@ Note than in this example, isFollowedBy() would be false if 2019-08-01 or 2019-0
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| mixed | `$period` | —  |  |
-| mixed | ...`$arguments` | —  |  |
+| [CarbonPeriod](../Carbon/CarbonPeriod.md)\|[DatePeriod](https://www.php.net/class.dateperiod)\|string | `$period` | —  |  |
+|  | ...`$arguments` | —  |  |
 
 **Returns:** bool
 ---
@@ -1733,8 +1702,8 @@ Return true if the given period either follows or is followed by the current one
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| mixed | `$period` | —  |  |
-| mixed | ...`$arguments` | —  |  |
+| [CarbonPeriod](../Carbon/CarbonPeriod.md)\|[DatePeriod](https://www.php.net/class.dateperiod)\|string | `$period` | —  |  |
+|  | ...`$arguments` | —  |  |
 
 **Returns:** bool
 **See also:**
@@ -1746,7 +1715,7 @@ Return true if the given period either follows or is followed by the current one
 ### start
 
 ```php
-static public CarbonInterface start($date = &#039;null&#039;, $inclusive = &#039;null&#039;)
+static public static start($date, $inclusive = &#039;null&#039;)
 ```
 
 Create instance specifying start date or modify the start date if called on an instance.
@@ -1755,16 +1724,16 @@ Create instance specifying start date or modify the start date if called on an i
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| mixed | `$date` | `&#039;null&#039;` |  |
+| mixed | `$date` | —  |  |
 | mixed | `$inclusive` | `&#039;null&#039;` |  |
 
-**Returns:** CarbonInterface
+**Returns:** static
 ---
 
 ### since
 
 ```php
-static public static since($date = &#039;null&#039;, $inclusive = &#039;null&#039;) Alias for start()
+static public static since($date, $inclusive = &#039;null&#039;) Alias for start()
 ```
 
 .
@@ -1773,7 +1742,7 @@ static public static since($date = &#039;null&#039;, $inclusive = &#039;null&#03
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| mixed | `$date` | `&#039;null&#039;` |  |
+| mixed | `$date` | —  |  |
 | mixed | `$inclusive` | `&#039;null&#039;) Alias for start(` |  |
 
 **Returns:** static
@@ -1799,7 +1768,7 @@ Create instance with start date set to now or set the start date to now if calle
 ### end
 
 ```php
-static public CarbonInterface end($date = &#039;null&#039;, $inclusive = &#039;null&#039;)
+static public static end($date = &#039;null&#039;, $inclusive = &#039;null&#039;)
 ```
 
 Create instance specifying end date or modify the end date if called on an instance.
@@ -1811,7 +1780,7 @@ Create instance specifying end date or modify the end date if called on an insta
 | mixed | `$date` | `&#039;null&#039;` |  |
 | mixed | `$inclusive` | `&#039;null&#039;` |  |
 
-**Returns:** CarbonInterface
+**Returns:** static
 ---
 
 ### until
@@ -1922,7 +1891,7 @@ static public static times($recurrences = &#039;null&#039;) Alias for recurrence
 ### options
 
 ```php
-static public static|int|null options($options = &#039;null&#039;)
+static public static options($options = &#039;null&#039;)
 ```
 
 Create instance with options or modify the options if called on an instance.
@@ -1933,7 +1902,7 @@ Create instance with options or modify the options if called on an instance.
 |---|---|---|---|
 | mixed | `$options` | `&#039;null&#039;` |  |
 
-**Returns:** static|int|null
+**Returns:** static
 ---
 
 ### toggle
@@ -2011,7 +1980,7 @@ Create instance with filter prepended to the stack or prepend a filter if called
 ### filters
 
 ```php
-static public static|array filters($filters = &#039;[]&#039;)
+static public static filters($filters = &#039;[]&#039;)
 ```
 
 Create instance with filters stack or replace the whole filters stack if called on an instance.
@@ -2022,13 +1991,13 @@ Create instance with filters stack or replace the whole filters stack if called 
 |---|---|---|---|
 | array | `$filters` | `&#039;[]&#039;` |  |
 
-**Returns:** static|array
+**Returns:** static
 ---
 
 ### interval
 
 ```php
-static public CarbonInterval interval($interval = &#039;null&#039;)
+static public static interval($interval)
 ```
 
 Create instance with given date interval or modify the interval if called on an instance.
@@ -2037,9 +2006,9 @@ Create instance with given date interval or modify the interval if called on an 
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| mixed | `$interval` | `&#039;null&#039;` |  |
+| mixed | `$interval` | —  |  |
 
-**Returns:** CarbonInterval
+**Returns:** static
 ---
 
 ### each

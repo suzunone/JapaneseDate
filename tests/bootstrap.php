@@ -12,9 +12,9 @@ if (
                 PHPUnit\Event\Facade::instance(),
                 PHPUnit\Event\Facade::emitter(),
                 PHPUnit\TestRunner\TestResult\PassedTests::instance(),
-                PHPUnit\Runner\CodeCoverage::instance(),
-            ),
-        ),
+                PHPUnit\Runner\CodeCoverage::instance()
+            )
+        )
     );
 }
 

@@ -29,7 +29,7 @@ trait GetSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    public function getSolarTerms(int $year): array
+    public function getSolarTerms($year): array
     {
         return [
             DateTime::SOLAR_TERM_SYUNBUN => $this->syunbun($year),

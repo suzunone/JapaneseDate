@@ -591,7 +591,7 @@ class DateIntervalTest extends TestCase
              * @param \JapaneseDate\DateTime $date
              * @return bool
              */
-            public static function isBusinessDay(DateTime $date): bool
+            public static function isBusinessDay($date): bool
             {
                 return false;
             }
@@ -610,7 +610,7 @@ class DateIntervalTest extends TestCase
              * @param \JapaneseDate\DateTime $date
              * @return bool
              */
-            public static function isBusinessDay(DateTime $date): bool
+            public static function isBusinessDay($date): bool
             {
                 return false;
             }
@@ -625,7 +625,9 @@ class DateIntervalTest extends TestCase
     public function test_addBusinessDaysTo_throws_InfiniteLoopException(): void
     {
         $interval = new DateInterval('P1D');
-        $config = (new DateBusiness())->setMacro(fn() => false);
+        $config = (new DateBusiness())->setMacro(function () {
+            return false;
+        });
         $base = DateTime::factory('2026-05-25');
 
         $this->expectException(InfiniteLoopException::class);
@@ -637,7 +639,9 @@ class DateIntervalTest extends TestCase
     public function test_subBusinessDaysFrom_throws_InfiniteLoopException(): void
     {
         $interval = new DateInterval('P1D');
-        $config = (new DateBusiness())->setMacro(fn() => false);
+        $config = (new DateBusiness())->setMacro(function () {
+            return false;
+        });
         $base = DateTime::factory('2026-05-25');
 
         $this->expectException(InfiniteLoopException::class);

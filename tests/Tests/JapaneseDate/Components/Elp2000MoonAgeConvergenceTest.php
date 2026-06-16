@@ -76,7 +76,7 @@ class Elp2000MoonAgeConvergenceTest extends TestCase
      * @dataProvider prematureConvergenceProvider
      * @group convergence-bug
      */
-    public function test_moonAgeConvergesWithinSixtySeconds(string $jstDateTime): void
+    public function test_moonAgeConvergesWithinSixtySeconds($jstDateTime): void
     {
         $astronomy = $this->makeAstronomy();
         $date = new DateTimeImmutable($jstDateTime, new DateTimeZone('Asia/Tokyo'));

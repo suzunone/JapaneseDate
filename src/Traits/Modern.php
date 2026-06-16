@@ -434,7 +434,7 @@ trait Modern
      * @param int|null $era_key 元号定数（省略時は {@see getEraName()} で自動判定）
      * @return int 元号年（1始まりの正整数）。元号なしの場合は 0。
      */
-    protected function getEraYear(?int $era_key = null): int
+    protected function getEraYear($era_key = null): int
     {
         $era_key = $era_key ?? $this->getEraName();
 

@@ -161,8 +161,10 @@ class EraTest extends TestCase
     /**
      * DateTime インスタンスで getEraKey() が正しい元号定数を返すこと。
      * @dataProvider eraKeyProvider
+     * @param string $dateStr
+     * @param int $expectedEra
      */
-    public function test_getEraKey_with_DateTime(string $dateStr, int $expectedEra): void
+    public function test_getEraKey_with_DateTime($dateStr, $expectedEra): void
     {
         $dt = new DateTime($dateStr);
         $era = new JisEra();
@@ -171,8 +173,10 @@ class EraTest extends TestCase
     /**
      * DateTimeImmutable インスタンスでも getEraKey() が正しい元号定数を返すこと。
      * @dataProvider eraKeyProvider
+     * @param string $dateStr
+     * @param int $expectedEra
      */
-    public function test_getEraKey_with_DateTimeImmutable(string $dateStr, int $expectedEra): void
+    public function test_getEraKey_with_DateTimeImmutable($dateStr, $expectedEra): void
     {
         $dt = new DateTimeImmutable($dateStr);
         $era = new JisEra();
@@ -184,8 +188,11 @@ class EraTest extends TestCase
     /**
      * getEraYear() が正しい元号年を返すこと。
      * @dataProvider eraYearProvider
+     * @param int $gregorianYear
+     * @param int $eraKey
+     * @param int $expectedYear
      */
-    public function test_getEraYear(int $gregorianYear, int $eraKey, int $expectedYear): void
+    public function test_getEraYear($gregorianYear, $eraKey, $expectedYear): void
     {
         $era = new JisEra();
         $this->assertSame($expectedYear, $era->getEraYear($gregorianYear, $eraKey));
@@ -193,8 +200,10 @@ class EraTest extends TestCase
     /**
      * getEraNameString() が正しい元号名を返すこと。
      * @dataProvider eraNameProvider
+     * @param int $eraKey
+     * @param string $expectedName
      */
-    public function test_getEraNameString(int $eraKey, string $expectedName): void
+    public function test_getEraNameString($eraKey, $expectedName): void
     {
         $era = new JisEra();
         $this->assertSame($expectedName, $era->getEraNameString($eraKey));
@@ -224,8 +233,10 @@ class EraTest extends TestCase
     /**
      * parseJisDate() が各書式を正しく Unix タイムスタンプへ変換すること。
      * @dataProvider parseJisDateProvider
+     * @param string $input
+     * @param int|float|null $expected
      */
-    public function test_parseJisDate(string $input, int|float|null $expected): void
+    public function test_parseJisDate($input, $expected): void
     {
         $era = new JisEra();
         $this->assertSame($expected, $era->parseJisDate($input, new DateTimeZone('Asia/Tokyo')));

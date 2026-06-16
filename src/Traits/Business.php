@@ -65,7 +65,7 @@ trait Business
      * @return static この日または翌以降の直近営業日を表すインスタンス
      * @throws \JapaneseDate\Exceptions\InfiniteLoopException
      */
-    public function shiftToClosestBusinessDayAfter(): static
+    public function shiftToClosestBusinessDayAfter()
     {
         if ($this->isBusinessDay()) {
             return clone $this;
@@ -94,7 +94,7 @@ trait Business
      * @return static 次の営業日を表すインスタンス
      * @throws InfiniteLoopException 営業日が {@see BusinessCalendar::BUSINESS_DAY_SEARCH_LIMIT} 日以内に見つからない場合
      */
-    public function nextBusinessDay(): static
+    public function nextBusinessDay()
     {
         $dt = clone $this;
         $dt = $dt->addDay();
@@ -119,7 +119,7 @@ trait Business
      * @return static この日または前以前の直近営業日を表すインスタンス
      * @throws \JapaneseDate\Exceptions\InfiniteLoopException
      */
-    public function shiftToClosestBusinessDayBefore(): static
+    public function shiftToClosestBusinessDayBefore()
     {
         if ($this->isBusinessDay()) {
             return clone $this;
@@ -136,7 +136,7 @@ trait Business
      * @return static 前の営業日を表すインスタンス
      * @throws InfiniteLoopException 営業日が {@see BusinessCalendar::BUSINESS_DAY_SEARCH_LIMIT} 日以内に見つからない場合
      */
-    public function previousBusinessDay(): static
+    public function previousBusinessDay()
     {
         $dt = clone $this;
         $dt = $dt->subDay();
@@ -160,7 +160,7 @@ trait Business
      * @return static N営業日後を表すインスタンス
      * @throws InfiniteLoopException 連続して {@see BusinessCalendar::BUSINESS_DAY_SEARCH_LIMIT} 日以上営業日が見つからない場合
      */
-    public function addBusinessDays(int $days): static
+    public function addBusinessDays($days)
     {
         $dt = clone $this;
         $count = 0;
@@ -187,7 +187,7 @@ trait Business
      * @return static N営業日前を表すインスタンス
      * @throws InfiniteLoopException 連続して {@see BusinessCalendar::BUSINESS_DAY_SEARCH_LIMIT} 日以上営業日が見つからない場合
      */
-    public function subBusinessDays(int $days): static
+    public function subBusinessDays($days)
     {
         $dt = clone $this;
         $count = 0;

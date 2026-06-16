@@ -54,7 +54,7 @@ class HistoricalEra
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      * @throws \Exception
      */
-    public function findByDate(DateTime|DateTimeImmutable $date): array
+    public function findByDate($date): array
     {
         $entries = HistoricalEraMap::findByDate($date);
         $eras = [];

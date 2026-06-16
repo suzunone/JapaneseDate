@@ -31,7 +31,7 @@ trait Algorithm
      * @return void
      * @throws \InvalidArgumentException 未対応の太陽アルゴリズムが指定された場合
      */
-    public static function useSolarAlgorithm(string $algorithm): void
+    public static function useSolarAlgorithm($algorithm): void
     {
         Astronomy::useSolarAlgorithm($algorithm);
     }
@@ -53,7 +53,7 @@ trait Algorithm
      * @return void
      * @throws \InvalidArgumentException 未対応の月アルゴリズムが指定された場合
      */
-    public static function useMoonAlgorithm(string $algorithm): void
+    public static function useMoonAlgorithm($algorithm): void
     {
         Astronomy::useMoonAlgorithm($algorithm);
     }
@@ -75,7 +75,7 @@ trait Algorithm
      * @return void
      * @throws \InvalidArgumentException 未対応の太陽アルゴリズムが指定された場合
      */
-    public static function useBoundarySolarAlgorithm(string $algorithm): void
+    public static function useBoundarySolarAlgorithm($algorithm): void
     {
         Astronomy::useBoundarySolarAlgorithm($algorithm);
     }
@@ -97,7 +97,7 @@ trait Algorithm
      * @return void
      * @throws \InvalidArgumentException 未対応の月アルゴリズムが指定された場合
      */
-    public static function useBoundaryMoonAlgorithm(string $algorithm): void
+    public static function useBoundaryMoonAlgorithm($algorithm): void
     {
         Astronomy::useBoundaryMoonAlgorithm($algorithm);
     }

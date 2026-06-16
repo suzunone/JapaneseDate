@@ -30,7 +30,10 @@ class DateTimeFixtureTest extends TestCase
         DateTime::MOON_PHASE_IZAYOI,
         DateTime::MOON_PHASE_ARIAKE,
     ];
-    private string $originalTimezone;
+    /**
+     * @var string
+     */
+    private $originalTimezone;
     /**
      * @return \Generator
      */
@@ -51,7 +54,7 @@ class DateTimeFixtureTest extends TestCase
      * @return void
      * @dataProvider dataProvider
      */
-    public function testDateTime(string $date_text, array $expected): void
+    public function testDateTime($date_text, $expected): void
     {
         try {
             $algorithms = [
@@ -112,14 +115,14 @@ class DateTimeFixtureTest extends TestCase
                     $expectedComparable['moon_phase_angle'],
                     $actual['timezone'],
                     $actual['moon_age'],
-                    $actual['moon_phase_angle'],
+                    $actual['moon_phase_angle']
                 );
                 if ($ignoreIntermediatePhaseDate) {
                     unset(
                         $expectedComparable['moon_phase'],
                         $expectedComparable['moon_phase_text'],
                         $actual['moon_phase'],
-                        $actual['moon_phase_text'],
+                        $actual['moon_phase_text']
                     );
                 }
                 $this->assertSame($expectedComparable, $actual);

@@ -173,7 +173,10 @@ class AstronomyTest extends TestCase
     public function test_longitudeMoonUsesElp2000WhenMoonAlgorithmSelected(): void
     {
         $stub = new class () implements MoonAlgorithm {
-            public bool $called = false;
+            /**
+             * @var bool
+             */
+            public $called = false;
 
             /**
              * @noinspection PhpUnused — MoonAlgorithm インターフェース実装メソッド
@@ -185,7 +188,7 @@ class AstronomyTest extends TestCase
              * @param float $sec
              * @return float
              */
-            public function longitudeMoon(int $year, int $month, int $day, float $hour, float $min, float $sec): float
+            public function longitudeMoon($year, $month, $day, $hour, $min, $sec): float
             {
                 $this->called = true;
 
@@ -221,7 +224,7 @@ class AstronomyTest extends TestCase
      * @throws \ReflectionException
      * @dataProvider normalizeAngleProvider
      */
-    public function test_normalizeAngle(float $input, float $expected): void
+    public function test_normalizeAngle($input, $expected): void
     {
         $ast = new Astronomy();
         $result = $this->invokeExecuteMethod($ast, 'normalizeAngle', [$input]);
@@ -744,7 +747,7 @@ class AstronomyTest extends TestCase
      * @throws \ReflectionException
      * @dataProvider boundaryMoonAlgorithmProvider
      */
-    public function test_factoryForBoundary_respectsBoundaryMoonAlgorithm(string $algorithm, string $expectedClass): void
+    public function test_factoryForBoundary_respectsBoundaryMoonAlgorithm($algorithm, $expectedClass): void
     {
         Astronomy::useBoundaryMoonAlgorithm($algorithm);
         $instance = Astronomy::factoryForBoundary();
@@ -877,7 +880,7 @@ class AstronomyTest extends TestCase
              * @param float $sec
              * @return float
              */
-            public function longitudeSun(int $year, int $month, float $day, float $hour, float $min, float $sec): float
+            public function longitudeSun($year, $month, $day, $hour, $min, $sec): float
             {
                 return 350.0;
             }
@@ -902,7 +905,7 @@ class AstronomyTest extends TestCase
              * @param float $sec
              * @return float
              */
-            public function longitudeMoon(int $year, int $month, int $day, float $hour, float $min, float $sec): float
+            public function longitudeMoon($year, $month, $day, $hour, $min, $sec): float
             {
                 return 10.0;
             }

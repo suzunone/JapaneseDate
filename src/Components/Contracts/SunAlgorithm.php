@@ -31,7 +31,7 @@ interface SunAlgorithm
      * @param float $sec 秒
      * @return float 太陽の視黄経（度、0〜360）
      */
-    public function longitudeSun(int $year, int $month, float $day, float $hour, float $min, float $sec): float;
+    public function longitudeSun($year, $month, $day, $hour, $min, $sec): float;
 
     /**
      * このアルゴリズムの識別子を返す。

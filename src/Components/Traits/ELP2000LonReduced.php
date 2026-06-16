@@ -26,8 +26,12 @@ trait ELP2000LonReduced
      *
      * {@see \JapaneseDate\Components\Traits\ELP2000Sub::mainProblemLonFloat()} の縮約版。
      * |係数| >= 1e-4（角秒）の項のみ残し、元の 1023 項中 640 項（62.6%）を評価する。
+     * @param float $d
+     * @param float $lp
+     * @param float $l
+     * @param float $f
      */
-    protected function mainProblemLonFloat(float $d, float $lp, float $l, float $f): float
+    protected function mainProblemLonFloat($d, $lp, $l, $f): float
     {
         $a = 0.0;
         $a += 0.0001 * sin(6 * $d + $lp + -1 * $l + 2 * $f);
@@ -678,8 +682,13 @@ trait ELP2000LonReduced
      *
      * {@see \JapaneseDate\Components\Traits\ELP2000Sub::tidesLon3Float()} の縮約版。
      * |係数| >= 1e-4（角秒）の項のみ残し、元の 347 項中 147 項（42.4%）を評価する。
+     * @param float $t
+     * @param float $d
+     * @param float $lp
+     * @param float $l
+     * @param float $f
      */
-    protected function tidesLon3Float(float $t, float $d, float $lp, float $l, float $f): float
+    protected function tidesLon3Float($t, $d, $lp, $l, $f): float
     {
         $a = 0.0;
         $a += 0.0001 * sin((0.000018500490071139895 + 2 * $d + -1 * $lp + 2 * $l + -1 * $f + 1 * (3.810344430588308 + 8399.709113522267 * $t)));
@@ -837,8 +846,13 @@ trait ELP2000LonReduced
      *
      * {@see \JapaneseDate\Components\Traits\ELP2000Sub::tidesLon6Float()} の縮約版。
      * |係数| >= 1e-4（角秒）の項のみ残し、元の 14 項中 4 項（28.6%）を評価する。
+     * @param float $t
+     * @param float $d
+     * @param float $lp
+     * @param float $l
+     * @param float $f
      */
-    protected function tidesLon6Float(float $t, float $d, float $lp, float $l, float $f): float
+    protected function tidesLon6Float($t, $d, $lp, $l, $f): float
     {
         $a = 0.0;
         $a += 0.00015 * $t * sin((3.141592653589793 + $f + 1 * (3.810344430588308 + 8399.709113522267 * $t)));
@@ -853,8 +867,13 @@ trait ELP2000LonReduced
      *
      * {@see \JapaneseDate\Components\Traits\ELP2000Sub::tidesLon21Float()} の縮約版。
      * |係数| >= 1e-4（角秒）の項のみ残し、元の 3 項中 1 項（33.3%）を評価する。
+     * @param float $t
+     * @param float $d
+     * @param float $lp
+     * @param float $l
+     * @param float $f
      */
-    protected function tidesLon21Float(float $t, float $d, float $lp, float $l, float $f): float
+    protected function tidesLon21Float($t, $d, $lp, $l, $f): float
     {
         $a = 0.0;
         $a += 0.00082 * sin((3.3673797902679174 + $d + $lp + -1 * $f));
@@ -866,8 +885,13 @@ trait ELP2000LonReduced
      *
      * {@see \JapaneseDate\Components\Traits\ELP2000Sub::tidesLon24Float()} の縮約版。
      * |係数| >= 1e-4（角秒）の項のみ残し、元の 6 項中 2 項（33.3%）を評価する。
+     * @param float $t
+     * @param float $d
+     * @param float $lp
+     * @param float $l
+     * @param float $f
      */
-    protected function tidesLon24Float(float $t, float $d, float $lp, float $l, float $f): float
+    protected function tidesLon24Float($t, $d, $lp, $l, $f): float
     {
         $a = 0.0;
         $a += 0.00021 * $t * sin((2 * $d + -1 * $l));
@@ -880,8 +904,13 @@ trait ELP2000LonReduced
      *
      * {@see \JapaneseDate\Components\Traits\ELP2000Sub::tidesLon27Float()} の縮約版。
      * |係数| >= 1e-4（角秒）の項のみ残し、元の 20 項中 7 項（35%）を評価する。
+     * @param float $t
+     * @param float $d
+     * @param float $lp
+     * @param float $l
+     * @param float $f
      */
-    protected function tidesLon27Float(float $t, float $d, float $lp, float $l, float $f): float
+    protected function tidesLon27Float($t, $d, $lp, $l, $f): float
     {
         $a = 0.0;
         $a += 0.00014 * sin((3.1415294726708707 + 2 * $d + -1 * $l));
@@ -899,8 +928,13 @@ trait ELP2000LonReduced
      *
      * {@see \JapaneseDate\Components\Traits\ELP2000Sub::tidesLon30Float()} の縮約版。
      * |係数| >= 1e-4（角秒）の項のみ残し、元の 11 項中 3 項（27.3%）を評価する。
+     * @param float $t
+     * @param float $d
+     * @param float $lp
+     * @param float $l
+     * @param float $f
      */
-    protected function tidesLon30Float(float $t, float $d, float $lp, float $l, float $f): float
+    protected function tidesLon30Float($t, $d, $lp, $l, $f): float
     {
         $a = 0.0;
         $a += 0.00013 * sin((1.7453292519943297e-7 + $d));
@@ -914,8 +948,13 @@ trait ELP2000LonReduced
      *
      * {@see \JapaneseDate\Components\Traits\ELP2000Sub::tidesLon33Float()} の縮約版。
      * |係数| >= 1e-4（角秒）の項のみ残し、元の 28 項中 12 項（42.9%）を評価する。
+     * @param float $t
+     * @param float $d
+     * @param float $lp
+     * @param float $l
+     * @param float $f
      */
-    protected function tidesLon33Float(float $t, float $d, float $lp, float $l, float $f): float
+    protected function tidesLon33Float($t, $d, $lp, $l, $f): float
     {
         $a = 0.0;
         $a += 0.00011 * $t * $t * sin((3.141592653589793 + 2 * $d + -1 * $lp + $l));
@@ -938,8 +977,21 @@ trait ELP2000LonReduced
      *
      * {@see \JapaneseDate\Components\Traits\ELP2000Sub::planetaryLon9Float()} の縮約版。
      * |係数| >= 1e-4（角秒）の項のみ残し、元の 14328 項中 3489 項（24.4%）を評価する。
+     * @param float $t
+     * @param float $d
+     * @param float $lp
+     * @param float $l
+     * @param float $f
+     * @param float $p1
+     * @param float $p2
+     * @param float $p3
+     * @param float $p4
+     * @param float $p5
+     * @param float $p6
+     * @param float $p7
+     * @param float $p8
      */
-    protected function planetaryLon9Float(float $t, float $d, float $lp, float $l, float $f, float $p1, float $p2, float $p3, float $p4, float $p5, float $p6, float $p7, float $p8): float
+    protected function planetaryLon9Float($t, $d, $lp, $l, $f, $p1, $p2, $p3, $p4, $p5, $p6, $p7, $p8): float
     {
         $a = 0.0;
         $a += 0.0001 * sin((3.6425998873502774 + 7 * $p1 + -5 * $p3 + -2 * $d));
@@ -4439,8 +4491,21 @@ trait ELP2000LonReduced
      *
      * {@see \JapaneseDate\Components\Traits\ELP2000Sub::planetaryLon12Float()} の縮約版。
      * |係数| >= 1e-4（角秒）の項のみ残し、元の 4384 項中 269 項（6.1%）を評価する。
+     * @param float $t
+     * @param float $d
+     * @param float $lp
+     * @param float $l
+     * @param float $f
+     * @param float $p1
+     * @param float $p2
+     * @param float $p3
+     * @param float $p4
+     * @param float $p5
+     * @param float $p6
+     * @param float $p7
+     * @param float $p8
      */
-    protected function planetaryLon12Float(float $t, float $d, float $lp, float $l, float $f, float $p1, float $p2, float $p3, float $p4, float $p5, float $p6, float $p7, float $p8): float
+    protected function planetaryLon12Float($t, $d, $lp, $l, $f, $p1, $p2, $p3, $p4, $p5, $p6, $p7, $p8): float
     {
         $a = 0.0;
         $a += 0.0001 * $t * sin((0.21894387521397987 + 18 * $p2 + -15 * $p3 + -2 * $d));
@@ -4720,8 +4785,21 @@ trait ELP2000LonReduced
      *
      * {@see \JapaneseDate\Components\Traits\ELP2000Sub::planetaryLon15Float()} の縮約版。
      * |係数| >= 1e-4（角秒）の項のみ残し、元の 170 項中 67 項（39.4%）を評価する。
+     * @param float $t
+     * @param float $d
+     * @param float $lp
+     * @param float $l
+     * @param float $f
+     * @param float $p1
+     * @param float $p2
+     * @param float $p3
+     * @param float $p4
+     * @param float $p5
+     * @param float $p6
+     * @param float $p7
+     * @param float $p8
      */
-    protected function planetaryLon15Float(float $t, float $d, float $lp, float $l, float $f, float $p1, float $p2, float $p3, float $p4, float $p5, float $p6, float $p7, float $p8): float
+    protected function planetaryLon15Float($t, $d, $lp, $l, $f, $p1, $p2, $p3, $p4, $p5, $p6, $p7, $p8): float
     {
         $a = 0.0;
         $a += 0.0001 * sin((1.660489320653661 + $p3 + -1 * $d + $lp + -1 * $f));
@@ -4799,8 +4877,21 @@ trait ELP2000LonReduced
      *
      * {@see \JapaneseDate\Components\Traits\ELP2000Sub::planetaryLon18Float()} の縮約版。
      * |係数| >= 1e-4（角秒）の項のみ残し、元の 226 項中 114 項（50.4%）を評価する。
+     * @param float $t
+     * @param float $d
+     * @param float $lp
+     * @param float $l
+     * @param float $f
+     * @param float $p1
+     * @param float $p2
+     * @param float $p3
+     * @param float $p4
+     * @param float $p5
+     * @param float $p6
+     * @param float $p7
+     * @param float $p8
      */
-    protected function planetaryLon18Float(float $t, float $d, float $lp, float $l, float $f, float $p1, float $p2, float $p3, float $p4, float $p5, float $p6, float $p7, float $p8): float
+    protected function planetaryLon18Float($t, $d, $lp, $l, $f, $p1, $p2, $p3, $p4, $p5, $p6, $p7, $p8): float
     {
         $a = 0.0;
         $a += 0.0001 * $t * sin((3.141592653589793 + 6 * $d + -1 * $lp + -3 * $l));

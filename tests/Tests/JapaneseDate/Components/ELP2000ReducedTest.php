@@ -57,7 +57,7 @@ class ELP2000ReducedTest extends TestCase
      * @param string $jd TDB ユリウス日
      * @dataProvider newMoonJdProvider
      */
-    public function test_longitudePrecise_isWithinToleranceOfFull(string $jd): void
+    public function test_longitudePrecise_isWithinToleranceOfFull($jd): void
     {
         $full    = new ELP2000();
         $reduced = new ELP2000Reduced();
@@ -82,7 +82,7 @@ class ELP2000ReducedTest extends TestCase
      * @param string $jd TDB ユリウス日
      * @dataProvider newMoonJdProvider
      */
-    public function test_longitudePrecise_returnsNonNegativeAndLessThan360(string $jd): void
+    public function test_longitudePrecise_returnsNonNegativeAndLessThan360($jd): void
     {
         $reduced = new ELP2000Reduced();
         $lon = (float) $reduced->preciseLongitude($jd);

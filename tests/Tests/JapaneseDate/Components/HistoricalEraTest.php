@@ -118,7 +118,9 @@ class HistoricalEraTest extends TestCase
 
         $this->assertGreaterThanOrEqual(2, count($result));
 
-        $courts = array_map(static fn (Era $e) => $e->court, $result);
+        $courts = array_map(static function (Era $e) {
+            return $e->court;
+        }, $result);
         $this->assertContains(DateTime::COURT_NORTH, $courts, '北朝の元号が含まれること');
         $this->assertContains(DateTime::COURT_SOUTH, $courts, '南朝の元号が含まれること');
     }
@@ -152,7 +154,9 @@ class HistoricalEraTest extends TestCase
         $result = $component->findByDate($dt);
 
         $this->assertGreaterThanOrEqual(2, count($result));
-        $courts = array_map(static fn (Era $e) => $e->court, $result);
+        $courts = array_map(static function (Era $e) {
+            return $e->court;
+        }, $result);
         $this->assertContains(DateTime::COURT_NORTH, $courts);
         $this->assertContains(DateTime::COURT_SOUTH, $courts);
     }

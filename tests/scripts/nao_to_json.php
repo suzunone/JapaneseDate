@@ -13,7 +13,7 @@ const SAVE_DIR = __DIR__ . '/../fixtures/';
  * @param string $url ターゲットURL
  * @return string|false HTML文字列（失敗時はfalse）
  */
-function fetchHtmlWithCache(string $url): string|bool
+function fetchHtmlWithCache(string $url)
 {
     // 1. 保存先ディレクトリのパスを整形・作成
     $base_dir = rtrim(SAVE_DIR, '/\\');
@@ -75,7 +75,7 @@ function fetchHtmlWithCache(string $url): string|bool
  * @param string $filepath フルパス
  * @return string|false ファイル内容（ファイルが存在しない場合はfalse）
  */
-function fallbackToLocal(string $filepath): string|bool
+function fallbackToLocal(string $filepath)
 {
     if (file_exists($filepath)) {
         echo "Notice: 読み込み失敗のため、ローカルキャッシュ ($filepath) からデータを復元します。\n";
@@ -92,11 +92,11 @@ function fallbackToLocal(string $filepath): string|bool
  * @return string|false
  * @throws \JsonException
  */
-function holiday(string $url): string|bool
+function holiday(string $url)
 {
     $contents = fetchHtmlWithCache($url);
     if ($contents === false) {
-        return json_encode([], JSON_THROW_ON_ERROR);
+        return json_encode([], 0);
     }
 
     // 1. まず通常のUTF-8に変換する
@@ -138,8 +138,8 @@ function holiday(string $url): string|bool
 
     // JSON形式に変換して出力（またはreturn）
     try {
-        return json_encode($holidays, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR);
-    } catch (JsonException) {
+        return json_encode($holidays, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+    } catch (JsonException $exception) {
         return false;
     }
 }
@@ -149,11 +149,11 @@ function holiday(string $url): string|bool
  * @return string|false
  * @throws \JsonException
  */
-function season(string $url): string|bool
+function season(string $url)
 {
     $contents = fetchHtmlWithCache($url);
     if ($contents === false) {
-        return json_encode([], JSON_THROW_ON_ERROR);
+        return json_encode([], 0);
     }
 
     // PHP 8.2+ 対応の文字化け対策（UTF-8変換 + メタタグ挿入）
@@ -204,8 +204,8 @@ function season(string $url): string|bool
     }
 
     try {
-        return json_encode($seasons, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR);
-    } catch (JsonException) {
+        return json_encode($seasons, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+    } catch (JsonException $exception) {
         return false;
     }
 }
@@ -215,11 +215,11 @@ function season(string $url): string|bool
  * @return string|false
  * @throws \JsonException
  */
-function moon(string $url): string|bool
+function moon(string $url)
 {
     $contents = fetchHtmlWithCache($url);
     if ($contents === false) {
-        return json_encode([], JSON_THROW_ON_ERROR);
+        return json_encode([], 0);
     }
 
     // PHP 8.2+ 対応の文字化け対策（UTF-8変換 + メタタグ挿入）
@@ -258,8 +258,8 @@ function moon(string $url): string|bool
     }
 
     try {
-        return json_encode($moons, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR);
-    } catch (JsonException) {
+        return json_encode($moons, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+    } catch (JsonException $exception) {
         return false;
     }
 }

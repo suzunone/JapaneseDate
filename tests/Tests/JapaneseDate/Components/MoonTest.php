@@ -336,7 +336,7 @@ class MoonTest extends TestCase
      * @throws \JapaneseDate\Exceptions\Exception
      * @dataProvider eightPhasesProvider
      */
-    public function test_moonPhase_acceptsAllEightPhases(float $phase): void
+    public function test_moonPhase_acceptsAllEightPhases($phase): void
     {
         $moon = new Moon();
         // 8 相のいずれを指定しても ErrorException が発生せず Carbon が返ることを確認する
@@ -365,7 +365,7 @@ class MoonTest extends TestCase
      * @throws \JapaneseDate\Exceptions\Exception
      * @dataProvider invalidPhaseProvider
      */
-    public function test_moonPhase_throwsForUnsupportedPhase(float $phase): void
+    public function test_moonPhase_throwsForUnsupportedPhase($phase): void
     {
         $moon = new Moon();
         $this->expectException(ErrorException::class);
@@ -490,7 +490,10 @@ class MoonTest extends TestCase
         $elp2000Astronomy = new Astronomy(null, new ELP2000());
 
         $moon = new class ($elp2000Astronomy) extends Moon {
-            public bool $legacyTruePhaseCalled = false;
+            /**
+             * @var bool
+             */
+            public $legacyTruePhaseCalled = false;
 
             /**
              * @noinspection PhpUnused — Moon::moonPhase() 内部から委譲呼び出しされる
@@ -498,7 +501,7 @@ class MoonTest extends TestCase
              * @param float $phase
              * @return float|null
              */
-            protected function truePhase(float $k, float $phase): ?float
+            protected function truePhase($k, $phase): ?float
             {
                 $this->legacyTruePhaseCalled = true;
 
@@ -539,7 +542,7 @@ class MoonTest extends TestCase
              * @param float $targetAngle
              * @return float
              */
-            protected function phaseDeltaAt(int $timestamp, float $targetAngle): float
+            protected function phaseDeltaAt($timestamp, $targetAngle): float
             {
                 return 0.0;
             }
@@ -558,7 +561,10 @@ class MoonTest extends TestCase
     public function test_moonPhaseByAstronomyFallsBackWhenNoCrossingIsFound(): void
     {
         $moon = new class () extends Moon {
-            public bool $fallbackCalled = false;
+            /**
+             * @var bool
+             */
+            public $fallbackCalled = false;
 
             /**
              * @noinspection PhpUnused — moonPhaseByAstronomy() 内部から委譲呼び出しされる
@@ -566,7 +572,7 @@ class MoonTest extends TestCase
              * @param float $targetAngle
              * @return float
              */
-            protected function phaseDeltaAt(int $timestamp, float $targetAngle): float
+            protected function phaseDeltaAt($timestamp, $targetAngle): float
             {
                 return 1.0;
             }
@@ -578,7 +584,7 @@ class MoonTest extends TestCase
              * @param bool $is_next
              * @return \Carbon\Carbon
              */
-            protected function moonPhaseByLegacy(DateTimeInterface $date, float $phase, bool $is_next): Carbon
+            protected function moonPhaseByLegacy($date, $phase, $is_next): Carbon
             {
                 $this->fallbackCalled = true;
 
@@ -606,7 +612,7 @@ class MoonTest extends TestCase
              * @param float $targetAngle
              * @return float
              */
-            protected function phaseDeltaAt(int $timestamp, float $targetAngle): float
+            protected function phaseDeltaAt($timestamp, $targetAngle): float
             {
                 return 1.0;
             }
@@ -633,7 +639,7 @@ class MoonTest extends TestCase
      * @throws \JapaneseDate\Exceptions\Exception
      * @dataProvider elp2000NewMoonProvider
      */
-    public function test_moonPhaseByElp2000MatchesNaojNewMoonTime(string $searchDate, string $expectedNewMoon, int $deltaSeconds): void
+    public function test_moonPhaseByElp2000MatchesNaojNewMoonTime($searchDate, $expectedNewMoon, $deltaSeconds): void
     {
         try {
             Astronomy::useSolarAlgorithm(Astronomy::SOLAR_VSOP87);
@@ -1155,7 +1161,7 @@ class MoonTest extends TestCase
      */
     public function test_meeus47_routes_to_moonPhaseByAstronomy(): void
     {
-        $spy = new MoonRouteSpy(new Astronomy(null, new MeeusMoon(applyNasaCCorrection: true)));
+        $spy = new MoonRouteSpy(new Astronomy(null, new MeeusMoon(true)));
         foreach ([0.0, 0.25, 0.5, 0.75] as $phase) {
             $spy->reset();
             $spy->moonPhase(new DateTimeImmutable('2024-01-01'), $phase);
@@ -1171,7 +1177,7 @@ class MoonTest extends TestCase
      */
     public function test_meeus47_no_c_routes_to_moonPhaseByAstronomy(): void
     {
-        $spy = new MoonRouteSpy(new Astronomy(null, new MeeusMoon(applyNasaCCorrection: false)));
+        $spy = new MoonRouteSpy(new Astronomy(null, new MeeusMoon(false)));
         foreach ([0.0, 0.25, 0.5, 0.75] as $phase) {
             $spy->reset();
             $spy->moonPhase(new DateTimeImmutable('2024-01-01'), $phase);
@@ -1214,7 +1220,10 @@ class MoonTest extends TestCase
     public function test_elp2000_phaseDeltaAtFast_calledDuringRoughSearch(): void
     {
         $spy = new class(new Astronomy(null, new ELP2000())) extends Moon {
-            public int $fastDeltaCalls = 0;
+            /**
+             * @var int
+             */
+            public $fastDeltaCalls = 0;
 
             /**
              * @noinspection PhpUnused — moonPhaseByAstronomy() 内部から委譲呼び出しされる
@@ -1224,7 +1233,7 @@ class MoonTest extends TestCase
              * @throws \DateInvalidTimeZoneException
              * @throws \JapaneseDate\Exceptions\Exception
              */
-            protected function phaseDeltaAtFast(int $timestamp, float $targetAngle): float
+            protected function phaseDeltaAtFast($timestamp, $targetAngle): float
             {
                 $this->fastDeltaCalls++;
 
@@ -1247,7 +1256,10 @@ class MoonTest extends TestCase
     public function test_elp2000_snapToFullPrecision_callsFullPrecisionDelta(): void
     {
         $spy = new class(new Astronomy(null, new ELP2000())) extends Moon {
-            public int $fullDeltaCalls = 0;
+            /**
+             * @var int
+             */
+            public $fullDeltaCalls = 0;
 
             /**
              * @noinspection PhpUnused — snapToFullPrecision() 内部から委譲呼び出しされる
@@ -1257,7 +1269,7 @@ class MoonTest extends TestCase
              * @throws \DateInvalidTimeZoneException
              * @throws \JapaneseDate\Exceptions\Exception
              */
-            protected function phaseDeltaAt(int $timestamp, float $targetAngle): float
+            protected function phaseDeltaAt($timestamp, $targetAngle): float
             {
                 $this->fullDeltaCalls++;
 
@@ -1284,7 +1296,7 @@ class MoonTest extends TestCase
              * @param float $targetAngle
              * @return float
              */
-            protected function phaseDeltaAtFast(int $timestamp, float $targetAngle): float
+            protected function phaseDeltaAtFast($timestamp, $targetAngle): float
             {
                 return 0.0;
             }
@@ -1295,7 +1307,7 @@ class MoonTest extends TestCase
              * @param float $targetAngle
              * @return int
              */
-            protected function snapToFullPrecision(int $approxTimestamp, float $targetAngle): int
+            protected function snapToFullPrecision($approxTimestamp, $targetAngle): int
             {
                 return $approxTimestamp + 123;
             }
@@ -1322,7 +1334,7 @@ class MoonTest extends TestCase
              * @param float $targetAngle
              * @return float
              */
-            protected function phaseDeltaAt(int $timestamp, float $targetAngle): float
+            protected function phaseDeltaAt($timestamp, $targetAngle): float
             {
                 return 0.0;
             }
@@ -1347,7 +1359,10 @@ class MoonTest extends TestCase
         try {
             Astronomy::useMoonAlgorithm(Astronomy::MOON_LEGACY);
             $spy = new class(Astronomy::factory()) extends Moon {
-                public int $fastDeltaCalls = 0;
+                /**
+                 * @var int
+                 */
+                public $fastDeltaCalls = 0;
 
                 /**
                  * @noinspection PhpUnused — moonPhaseByAstronomy() 内部から委譲呼び出しされる
@@ -1357,7 +1372,7 @@ class MoonTest extends TestCase
                  * @throws \DateInvalidTimeZoneException
                  * @throws \JapaneseDate\Exceptions\Exception
                  */
-                protected function phaseDeltaAtFast(int $timestamp, float $targetAngle): float
+                protected function phaseDeltaAtFast($timestamp, $targetAngle): float
                 {
                     $this->fastDeltaCalls++;
 
@@ -1383,8 +1398,11 @@ class MoonTest extends TestCase
      */
     public function test_meeus47_doesNotUseFastDeltaPath(): void
     {
-        $spy = new class(new Astronomy(null, new MeeusMoon(applyNasaCCorrection: true))) extends Moon {
-            public int $fastDeltaCalls = 0;
+        $spy = new class(new Astronomy(null, new MeeusMoon(true))) extends Moon {
+            /**
+             * @var int
+             */
+            public $fastDeltaCalls = 0;
 
             /**
              * @noinspection PhpUnused — moonPhaseByAstronomy() 内部から委譲呼び出しされる
@@ -1394,7 +1412,7 @@ class MoonTest extends TestCase
              * @throws \DateInvalidTimeZoneException
              * @throws \JapaneseDate\Exceptions\Exception
              */
-            protected function phaseDeltaAtFast(int $timestamp, float $targetAngle): float
+            protected function phaseDeltaAtFast($timestamp, $targetAngle): float
             {
                 $this->fastDeltaCalls++;
 
@@ -1475,7 +1493,7 @@ class MoonTest extends TestCase
      * @throws \JapaneseDate\Exceptions\Exception
      * @dataProvider elp2000FastVsFullProvider
      */
-    public function test_elp2000_fastResult_matchesFullPrecisionWithinOneSecond(string $searchDate, float $phase, bool $isNext): void
+    public function test_elp2000_fastResult_matchesFullPrecisionWithinOneSecond($searchDate, $phase, $isNext): void
     {
         $astronomy = new Astronomy(null, new ELP2000());
         $date = new DateTime($searchDate, new DateTimeZone('UTC'));
@@ -1522,7 +1540,7 @@ class MoonTest extends TestCase
      * @throws \JapaneseDate\Exceptions\Exception
      * @dataProvider elp2000EightPhasesProvider
      */
-    public function test_elp2000_allEightPhases_returnCarbon(float $phase): void
+    public function test_elp2000_allEightPhases_returnCarbon($phase): void
     {
         $moon = new Moon(new Astronomy(null, new ELP2000()));
         $date = new DateTime('2023-01-22 00:00:00', new DateTimeZone('UTC'));
@@ -1663,7 +1681,7 @@ class MoonTest extends TestCase
      * @throws \JapaneseDate\Exceptions\Exception
      * @dataProvider elp2000MultipleYearsProvider
      */
-    public function test_elp2000_multipleYears_newMoonMatchesNaoj(string $searchDate, string $expectedNewMoon, string $timezone, int $deltaSeconds): void
+    public function test_elp2000_multipleYears_newMoonMatchesNaoj($searchDate, $expectedNewMoon, $timezone, $deltaSeconds): void
     {
         $moon = new Moon(new Astronomy(new Vsop87Astronomy(), new ELP2000()));
         $date = new DateTime($searchDate, new DateTimeZone('UTC'));
@@ -1825,7 +1843,7 @@ class FullPrecisionElp2000Moon extends Moon
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\Exception
      */
-    protected function phaseDeltaAtFast(int $timestamp, float $targetAngle): float
+    protected function phaseDeltaAtFast($timestamp, $targetAngle): float
     {
         return $this->phaseDeltaAt($timestamp, $targetAngle);
     }
@@ -1839,7 +1857,7 @@ class FullPrecisionElp2000Moon extends Moon
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\Exception
      */
-    protected function bisectPhaseTimestampFast(int $timestamp1, int $timestamp2, float $targetAngle): int
+    protected function bisectPhaseTimestampFast($timestamp1, $timestamp2, $targetAngle): int
     {
         return $this->bisectPhaseTimestamp($timestamp1, $timestamp2, $targetAngle);
     }
@@ -1850,7 +1868,7 @@ class FullPrecisionElp2000Moon extends Moon
      * @param float $targetAngle
      * @return int
      */
-    protected function snapToFullPrecision(int $approxTimestamp, float $targetAngle): int
+    protected function snapToFullPrecision($approxTimestamp, $targetAngle): int
     {
         return $approxTimestamp;
     }
@@ -1861,9 +1879,15 @@ class FullPrecisionElp2000Moon extends Moon
  */
 class MoonRouteSpy extends Moon
 {
-    public int $byAstronomyCount = 0;
+    /**
+     * @var int
+     */
+    public $byAstronomyCount = 0;
 
-    public int $byLegacyCount = 0;
+    /**
+     * @var int
+     */
+    public $byLegacyCount = 0;
 
     /**
      * @return void
@@ -1881,7 +1905,7 @@ class MoonRouteSpy extends Moon
      * @param bool $is_next
      * @return \Carbon\Carbon
      */
-    protected function moonPhaseByAstronomy(DateTimeInterface $date, float $phase, bool $is_next): Carbon
+    protected function moonPhaseByAstronomy($date, $phase, $is_next): Carbon
     {
         $this->byAstronomyCount++;
 
@@ -1895,7 +1919,7 @@ class MoonRouteSpy extends Moon
      * @param bool $is_next
      * @return \Carbon\Carbon
      */
-    protected function moonPhaseByLegacy(DateTimeInterface $date, float $phase, bool $is_next): Carbon
+    protected function moonPhaseByLegacy($date, $phase, $is_next): Carbon
     {
         $this->byLegacyCount++;
 
