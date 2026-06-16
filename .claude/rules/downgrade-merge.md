@@ -53,3 +53,9 @@ composer rector
 
 ### v6.X系
 .claude/rules/v7-to-v6-merge.md
+
+
+## doc生成
+```bash
+composer doc
+```
