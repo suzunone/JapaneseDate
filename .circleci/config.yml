@@ -22,6 +22,9 @@ commands:
       with-coverage:
         type: boolean
         default: true
+      with-bcmath-compat:
+        type: boolean
+        default: false
     steps:
       - checkout
       # 先にキャッシュを戻す
@@ -37,6 +40,13 @@ commands:
           name: Install dependencies
           command: |
             composer install -vvv
+      - when:
+          condition: << parameters.with-bcmath-compat >>
+          steps:
+            - run:
+                name: Install bcmath polyfill
+                command: |
+                  composer require phpseclib/bcmath_compat --no-interaction
       # 後からキャッシュを保存する
       - save_cache:
           paths:
@@ -72,6 +82,7 @@ jobs:
       - run-tests:
           php-version: "7.2"
           with-coverage: false
+          with-bcmath-compat: true
   test80:
     executor:
       name: php-executor
