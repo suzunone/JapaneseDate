@@ -34,13 +34,29 @@ use JapaneseDate\DateTimeImmutable;
 class Era
 {
     /**
+     * @var string
+     */
+    public $name;
+    /**
+     * @var string
+     */
+    public $kana;
+    /**
+     * @var string
+     */
+    public $court;
+    /**
+     * @var DateTime|DateTimeImmutable
+     */
+    protected $currentDate;
+    /**
      * 元号の開始日。
      *
      * 外部から取得される際は {@see __get()} により clone が返されます。
      *
      * @var DateTime|DateTimeImmutable
      */
-    protected DateTime|DateTimeImmutable $startDate;
+    protected $startDate;
 
     /**
      * 元号の終了日。
@@ -49,7 +65,7 @@ class Era
      *
      * @var DateTime|DateTimeImmutable
      */
-    protected DateTime|DateTimeImmutable $endDate;
+    protected $endDate;
 
     /**
      * 元号情報を生成します。
@@ -69,20 +85,24 @@ class Era
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
-    public function __construct(/**
-     * @readonly
-     */
-    public string $name, /**
-     * @readonly
-     */
-    public string $kana, /**
-     * @readonly
-     */
-    public string $court, string $start, string $end, /**
-     * @readonly
-     */
-    protected DateTime|DateTimeImmutable $currentDate)
+    public function __construct(string $name, string $kana, string $court, string $start, string $end, $currentDate)
     {
+        /**
+         * @readonly
+         */
+        $this->name = $name;
+        /**
+         * @readonly
+         */
+        $this->kana = $kana;
+        /**
+         * @readonly
+         */
+        $this->court = $court;
+        /**
+         * @readonly
+         */
+        $this->currentDate = $currentDate;
         if ($currentDate instanceof DateTimeImmutable) {
             $this->startDate = DateTimeImmutable::factory($start);
             $this->endDate = DateTimeImmutable::factory($end);
@@ -102,7 +122,7 @@ class Era
      * @return DateTime|DateTimeImmutable 元号の開始日または終了日。
      * @throws ErrorException 未定義プロパティを取得しようとした場合。
      */
-    public function __get(string $name): DateTime|DateTimeImmutable
+    public function __get(string $name)
     {
         if ($name !== 'startDate' && $name !== 'endDate') {
             throw new ErrorException('Undefined property ' . $name);
@@ -119,7 +139,7 @@ class Era
      *
      * @throws ErrorException
      */
-    public function __set(string $name, mixed $value): void
+    public function __set(string $name, $value): void
     {
         throw new ErrorException('Cannot modify readonly property ' . $name);
     }

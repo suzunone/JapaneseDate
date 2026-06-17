@@ -131,7 +131,7 @@ class LegacyAstronomyTest extends TestCase
      * @return void
      * @dataProvider jy2LongitudeSunProvider
      */
-    public function test_jy2LongitudeSun(float $julianYear, float $expectedDeg, float $delta): void
+    public function test_jy2LongitudeSun($julianYear, $expectedDeg, $delta): void
     {
         $legacy = new LegacyAstronomy();
         $result = $legacy->jy2LongitudeSun($julianYear);
@@ -147,7 +147,7 @@ class LegacyAstronomyTest extends TestCase
      * @return void
      * @dataProvider jY2LongitudeMoonProvider
      */
-    public function test_jY2LongitudeMoonReturnsNormalizedAngle(float $julianYear): void
+    public function test_jY2LongitudeMoonReturnsNormalizedAngle($julianYear): void
     {
         $legacy = new LegacyAstronomy();
         $result = $legacy->jY2LongitudeMoon($julianYear);
@@ -168,7 +168,7 @@ class LegacyAstronomyTest extends TestCase
      * @throws \Exception
      * @dataProvider longitudeSunProvider
      */
-    public function test_longitudeSun(int $year, int $month, int $day, float $hour, float $min, float $sec, float $expectedDeg, float $delta): void
+    public function test_longitudeSun($year, $month, $day, $hour, $min, $sec, $expectedDeg, $delta): void
     {
         $legacy = new LegacyAstronomy();
         $result = $legacy->longitudeSun($year, $month, $day, $hour, $min, $sec);
@@ -189,7 +189,7 @@ class LegacyAstronomyTest extends TestCase
      * @throws \Exception
      * @dataProvider longitudeMoonProvider
      */
-    public function test_longitudeMoonReturnsNormalizedAngle(int $year, int $month, int $day, float $hour, float $min, float $sec): void
+    public function test_longitudeMoonReturnsNormalizedAngle($year, $month, $day, $hour, $min, $sec): void
     {
         $legacy = new LegacyAstronomy();
         $result = $legacy->longitudeMoon($year, $month, $day, $hour, $min, $sec);

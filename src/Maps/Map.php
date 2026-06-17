@@ -48,7 +48,7 @@ abstract class Map
      *
      * @var array<class-string, array<int, array<string, string>>>
      */
-    protected static array $cache = [];
+    protected static $cache = [];
 
     /**
      * サブクラスで定義するマッピングデータ配列。
@@ -58,7 +58,7 @@ abstract class Map
      *
      * @var array<int, array<string, string>>
      */
-    protected array $map = [];
+    protected $map = [];
 
     /**
      * 指定された日付が `start`〜`end` の範囲に収まるマッピング要素をすべて返す。
@@ -72,7 +72,7 @@ abstract class Map
      * @throws \Exception
      * @throws \Exception
      */
-    public static function findByDate(DateTime|DateTimeImmutable $date): array
+    public static function findByDate($date): array
     {
         $timestamp = $date->getTimestamp();
         $results = [];

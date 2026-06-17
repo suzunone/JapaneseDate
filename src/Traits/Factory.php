@@ -183,7 +183,7 @@ trait Factory
      * @throws \DateInvalidTimeZoneException タイムゾーンの解析に失敗した場合
      * @throws NativeDateTimeException 日時文字列の解析に失敗した場合
      */
-    public static function factory(int|float|string|DateTimeInterface|null $date_time = null, DateTimeZone|null $time_zone = null): static
+    public static function factory($date_time = null, $time_zone = null)
     {
         if ($date_time === null) {
             return new static(null, $time_zone);
@@ -237,12 +237,12 @@ trait Factory
      * @throws Exception
      * @throws \DateInvalidTimeZoneException
      */
-    protected static function newFromTimestamp(float $timestamp, ?DateTimeZone $tz): static
+    protected static function newFromTimestamp($timestamp, $tz)
     {
         $displayTz = $tz ?? new DateTimeZone(date_default_timezone_get());
         $seconds = (int) floor($timestamp);
-        $micro = (int) round(($timestamp - $seconds) * 1_000_000);
-        if ($micro >= 1_000_000) {
+        $micro = (int) round(($timestamp - $seconds) * 1000000);
+        if ($micro >= 1000000) {
             $seconds++;
             $micro = 0;
         }
@@ -264,7 +264,7 @@ trait Factory
      * @return int|float|null              Unix タイムスタンプ（マイクロ秒がある場合は float）、解析失敗時は null
      * @throws \DateInvalidTimeZoneException タイムゾーンの解析に失敗した場合
      */
-    protected static function parseJisDate(string $date_str, ?DateTimeZone $timezone = null): int|float|null
+    protected static function parseJisDate($date_str, $timezone = null)
     {
         return (new JisEra())->parseJisDate($date_str, $timezone);
     }
@@ -281,7 +281,7 @@ trait Factory
      * @param  DateTimeZone|string|int|null $timezone タイムゾーン（省略可）
      * @return static|null                            生成されたインスタンス。解析失敗時は null
      */
-    public static function createFromFormat($format, $time, $timezone = null): ?static
+    public static function createFromFormat($format, $time, $timezone = null): ?self
     {
         /** @noinspection PhpMultipleClassDeclarationsInspection */
         $instance = parent::createFromFormat($format, $time, $timezone);

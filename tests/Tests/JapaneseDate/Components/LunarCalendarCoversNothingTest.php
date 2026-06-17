@@ -261,7 +261,7 @@ class LunarCalendarCoversNothingTest extends TestCase
      * @throws \ReflectionException
      * @dataProvider makeLunarCalendarDataProvider
      */
-    public function test_makeLunarCalendar(string $date): void
+    public function test_makeLunarCalendar($date): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_LEGACY);
         DateTime::useMoonAlgorithm(DateTime::MOON_ALGORITHM_LEGACY);
@@ -272,10 +272,12 @@ class LunarCalendarCoversNothingTest extends TestCase
         $year = (int) $year;
         $calendar_array = $this->invokeExecuteMethod($LunarCalendar, 'makeLunarCalendar', [$year]);
         $dates = array_map(
-            static fn (array $item): string => sprintf('%04d/%02d/%02d', $item['year'], $item['month'], $item['day']),
+            static function (array $item): string {
+                return sprintf('%04d/%02d/%02d', $item['year'], $item['month'], $item['day']);
+            },
             $calendar_array
         );
-        $this->assertContains($date, $dates, json_encode($calendar_array, JSON_THROW_ON_ERROR));
+        $this->assertContains($date, $dates, json_encode($calendar_array, 0));
     }
     /**
      * 2033年の各朔日に対して旧暦月番号と閏月フラグを検証するデータプロバイダ
@@ -299,7 +301,7 @@ class LunarCalendarCoversNothingTest extends TestCase
      * @throws \ReflectionException
      * @dataProvider makeLunarCalendar2033LeapMonthProvider
      */
-    public function test_makeLunarCalendar_2033_leapMonth(string $date, int $expectedLunarMonth, bool $expectedIsLeap): void
+    public function test_makeLunarCalendar_2033_leapMonth($date, $expectedLunarMonth, $expectedIsLeap): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_LEGACY);
         DateTime::useMoonAlgorithm(DateTime::MOON_ALGORITHM_LEGACY);
@@ -311,7 +313,9 @@ class LunarCalendarCoversNothingTest extends TestCase
         [$y, $m, $d] = array_map('intval', explode('/', $date));
         $entry = current(array_filter(
             $calendar_array,
-            fn ($item) => $item['year'] === $y && $item['month'] === $m && $item['day'] === $d
+            function ($item) use ($y, $m, $d) {
+                return $item['year'] === $y && $item['month'] === $m && $item['day'] === $d;
+            }
         ));
         $this->assertNotFalse($entry, "{$date} が朔日テーブルに存在しない");
         $this->assertSame($expectedLunarMonth, (int) $entry['lunar_month']);
@@ -335,7 +339,9 @@ class LunarCalendarCoversNothingTest extends TestCase
 
         $leapMonths = array_values(array_filter(
             $calendar_array,
-            fn ($item) => $item['lunar_month_leap'] === true
+            function ($item) {
+                return $item['lunar_month_leap'] === true;
+            }
         ));
 
         $this->assertCount(1, $leapMonths, '2033年の閏月がちょうど1つでない');
@@ -361,7 +367,9 @@ class LunarCalendarCoversNothingTest extends TestCase
         $LunarCalendar = LunarCalendar::factory();
         $calendar_array = $this->invokeExecuteMethod($LunarCalendar, 'makeLunarCalendar', [2020]);
         $dates = array_map(
-            static fn (array $item): string => sprintf('%04d/%02d/%02d', $item['year'], $item['month'], $item['day']),
+            static function (array $item): string {
+                return sprintf('%04d/%02d/%02d', $item['year'], $item['month'], $item['day']);
+            },
             $calendar_array
         );
         // 2020年の国立天文台データで確認された朔日 (VSOP87 でも Legacy でも一致する)
@@ -429,7 +437,7 @@ class LunarCalendarCoversNothingTest extends TestCase
      * @runInSeparateProcess
      * @preserveGlobalState disabled
      */
-    public function test_lunarDate_2022_new_year_all_algorithm_combinations(string $solarAlgorithm, string $moonAlgorithm, string $date, int $year, int $month, int $day): void
+    public function test_lunarDate_2022_new_year_all_algorithm_combinations($solarAlgorithm, $moonAlgorithm, $date, $year, $month, $day): void
     {
         try {
             Astronomy::useSolarAlgorithm($solarAlgorithm);

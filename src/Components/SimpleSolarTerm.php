@@ -117,7 +117,7 @@ class SimpleSolarTerm
      * @throws Exception
      * @throws SolarTermException
      */
-    public function getSolarTerm(int $year, int $solar_term): SolarTermDate
+    public function getSolarTerm($year, $solar_term): SolarTermDate
     {
         switch ($solar_term) {
             case DateTime::SOLAR_TERM_SYUNBUN:
@@ -180,7 +180,7 @@ class SimpleSolarTerm
      * @return SolarTermDate
      * @throws SolarTermException
      */
-    public function syunbun(int $year): SolarTermDate
+    public function syunbun($year): SolarTermDate
     {
         if (isset(self::SYUNBUN_EXCEPTIONS[$year])) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_SYUNBUN, self::SYUNBUN_EXCEPTIONS[$year]);
@@ -260,7 +260,7 @@ class SimpleSolarTerm
      * @return SolarTermDate
      * @throws SolarTermException
      */
-    public function seimei(int $year): SolarTermDate
+    public function seimei($year): SolarTermDate
     {
         if (isset(self::SEIMEI_EXCEPTIONS[$year])) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_SEIMEI, self::SEIMEI_EXCEPTIONS[$year]);
@@ -340,7 +340,7 @@ class SimpleSolarTerm
      * @return SolarTermDate
      * @throws SolarTermException
      */
-    public function kokuu(int $year): SolarTermDate
+    public function kokuu($year): SolarTermDate
     {
         if (isset(self::KOKUU_EXCEPTIONS[$year])) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_KOKUU, self::KOKUU_EXCEPTIONS[$year]);
@@ -422,7 +422,7 @@ class SimpleSolarTerm
      * @return SolarTermDate
      * @throws SolarTermException
      */
-    public function rikka(int $year): SolarTermDate
+    public function rikka($year): SolarTermDate
     {
         if (isset(self::RIKKA_EXCEPTIONS[$year])) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_RIKKA, self::RIKKA_EXCEPTIONS[$year]);
@@ -506,7 +506,7 @@ class SimpleSolarTerm
      * @return SolarTermDate
      * @throws SolarTermException
      */
-    public function syouman(int $year): SolarTermDate
+    public function syouman($year): SolarTermDate
     {
         if (isset(self::SYOUMAN_EXCEPTIONS[$year])) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_SYOUMAN, self::SYOUMAN_EXCEPTIONS[$year]);
@@ -590,7 +590,7 @@ class SimpleSolarTerm
      * @return SolarTermDate
      * @throws SolarTermException
      */
-    public function bousyu(int $year): SolarTermDate
+    public function bousyu($year): SolarTermDate
     {
         if (isset(self::BOUSYU_EXCEPTIONS[$year])) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_BOUSYU, self::BOUSYU_EXCEPTIONS[$year]);
@@ -676,7 +676,7 @@ class SimpleSolarTerm
      * @return SolarTermDate
      * @throws SolarTermException
      */
-    public function geshi(int $year): SolarTermDate
+    public function geshi($year): SolarTermDate
     {
         if (isset(self::GESHI_EXCEPTIONS[$year])) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_GESHI, self::GESHI_EXCEPTIONS[$year]);
@@ -764,7 +764,7 @@ class SimpleSolarTerm
      * @return SolarTermDate
      * @throws SolarTermException
      */
-    public function syousyo(int $year): SolarTermDate
+    public function syousyo($year): SolarTermDate
     {
         if (isset(self::SYOUSYO_EXCEPTIONS[$year])) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_SYOUSYO, self::SYOUSYO_EXCEPTIONS[$year]);
@@ -852,7 +852,7 @@ class SimpleSolarTerm
      * @return SolarTermDate
      * @throws SolarTermException
      */
-    public function taisyo(int $year): SolarTermDate
+    public function taisyo($year): SolarTermDate
     {
         if (isset(self::TAISYO_EXCEPTIONS[$year])) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_TAISYO, self::TAISYO_EXCEPTIONS[$year]);
@@ -936,7 +936,7 @@ class SimpleSolarTerm
      * @return SolarTermDate
      * @throws SolarTermException
      */
-    public function rissyuu(int $year): SolarTermDate
+    public function rissyuu($year): SolarTermDate
     {
         if (isset(self::RISSYUU_EXCEPTIONS[$year])) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_RISSYUU, self::RISSYUU_EXCEPTIONS[$year]);
@@ -1020,7 +1020,7 @@ class SimpleSolarTerm
      * @return SolarTermDate
      * @throws SolarTermException
      */
-    public function syosyo(int $year): SolarTermDate
+    public function syosyo($year): SolarTermDate
     {
         if (isset(self::SYOSYO_EXCEPTIONS[$year])) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_SYOSYO, self::SYOSYO_EXCEPTIONS[$year]);
@@ -1106,7 +1106,7 @@ class SimpleSolarTerm
      * @return SolarTermDate
      * @throws SolarTermException
      */
-    public function hakuro(int $year): SolarTermDate
+    public function hakuro($year): SolarTermDate
     {
         if (isset(self::HAKURO_EXCEPTIONS[$year])) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_HAKURO, self::HAKURO_EXCEPTIONS[$year]);
@@ -1188,7 +1188,7 @@ class SimpleSolarTerm
      * @return SolarTermDate
      * @throws SolarTermException
      */
-    public function syuubun(int $year): SolarTermDate
+    public function syuubun($year): SolarTermDate
     {
         if (isset(self::SYUUBUN_EXCEPTIONS[$year])) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_SYUUBUN, self::SYUUBUN_EXCEPTIONS[$year]);
@@ -1270,7 +1270,7 @@ class SimpleSolarTerm
      * @return SolarTermDate
      * @throws SolarTermException
      */
-    public function kanro(int $year): SolarTermDate
+    public function kanro($year): SolarTermDate
     {
         if (isset(self::KANRO_EXCEPTIONS[$year])) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_KANRO, self::KANRO_EXCEPTIONS[$year]);
@@ -1352,7 +1352,7 @@ class SimpleSolarTerm
      * @return SolarTermDate
      * @throws SolarTermException
      */
-    public function soukou(int $year): SolarTermDate
+    public function soukou($year): SolarTermDate
     {
         if (isset(self::SOUKOU_EXCEPTIONS[$year])) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_SOUKOU, self::SOUKOU_EXCEPTIONS[$year]);
@@ -1434,7 +1434,7 @@ class SimpleSolarTerm
      * @return SolarTermDate
      * @throws SolarTermException
      */
-    public function rittou(int $year): SolarTermDate
+    public function rittou($year): SolarTermDate
     {
         if (isset(self::RITTOU_EXCEPTIONS[$year])) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_RITTOU, self::RITTOU_EXCEPTIONS[$year]);
@@ -1510,7 +1510,7 @@ class SimpleSolarTerm
      * @return SolarTermDate
      * @throws SolarTermException
      */
-    public function syousetsu(int $year): SolarTermDate
+    public function syousetsu($year): SolarTermDate
     {
         if (isset(self::SYOUSETSU_EXCEPTIONS[$year])) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_SYOUSETSU, self::SYOUSETSU_EXCEPTIONS[$year]);
@@ -1592,7 +1592,7 @@ class SimpleSolarTerm
      * @return SolarTermDate
      * @throws SolarTermException
      */
-    public function taisetsu(int $year): SolarTermDate
+    public function taisetsu($year): SolarTermDate
     {
         if (isset(self::TAISETSU_EXCEPTIONS[$year])) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_TAISETSU, self::TAISETSU_EXCEPTIONS[$year]);
@@ -1672,7 +1672,7 @@ class SimpleSolarTerm
      * @return SolarTermDate
      * @throws SolarTermException
      */
-    public function touji(int $year): SolarTermDate
+    public function touji($year): SolarTermDate
     {
         if (isset(self::TOUJI_EXCEPTIONS[$year])) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_TOUJI, self::TOUJI_EXCEPTIONS[$year]);
@@ -1750,7 +1750,7 @@ class SimpleSolarTerm
      * @return SolarTermDate
      * @throws SolarTermException
      */
-    public function syoukan(int $year): SolarTermDate
+    public function syoukan($year): SolarTermDate
     {
         if (isset(self::SYOUKAN_EXCEPTIONS[$year])) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_SYOUKAN, self::SYOUKAN_EXCEPTIONS[$year]);
@@ -1830,7 +1830,7 @@ class SimpleSolarTerm
      * @return SolarTermDate
      * @throws SolarTermException
      */
-    public function daikan(int $year): SolarTermDate
+    public function daikan($year): SolarTermDate
     {
         if (isset(self::DAIKAN_EXCEPTIONS[$year])) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_DAIKAN, self::DAIKAN_EXCEPTIONS[$year]);
@@ -1910,7 +1910,7 @@ class SimpleSolarTerm
      * @return SolarTermDate
      * @throws SolarTermException
      */
-    public function rissyun(int $year): SolarTermDate
+    public function rissyun($year): SolarTermDate
     {
         if (isset(self::RISSYUN_EXCEPTIONS[$year])) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_RISSYUN, self::RISSYUN_EXCEPTIONS[$year]);
@@ -1992,7 +1992,7 @@ class SimpleSolarTerm
      * @return SolarTermDate
      * @throws SolarTermException
      */
-    public function usui(int $year): SolarTermDate
+    public function usui($year): SolarTermDate
     {
         if (isset(self::USUI_EXCEPTIONS[$year])) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_USUI, self::USUI_EXCEPTIONS[$year]);
@@ -2068,7 +2068,7 @@ class SimpleSolarTerm
      * @return SolarTermDate
      * @throws SolarTermException
      */
-    public function keichitsu(int $year): SolarTermDate
+    public function keichitsu($year): SolarTermDate
     {
         if (isset(self::KEICHITSU_EXCEPTIONS[$year])) {
             return new SolarTermDate($year, DateTime::SOLAR_TERM_KEICHITSU, self::KEICHITSU_EXCEPTIONS[$year]);

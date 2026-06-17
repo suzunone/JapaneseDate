@@ -191,7 +191,7 @@ class CalendarTest extends TestCase
      * @param array $res
      * @depends test_getWorkingDayByLimit
      */
-    public function test_getWorkingDay(array $res = []): void
+    public function test_getWorkingDay($res = []): void
     {
         $faker = FakerFactory::create();
         $lim = $faker->numberBetween(1, 1000);
@@ -434,7 +434,7 @@ class CalendarTest extends TestCase
      * @param \JapaneseDate\Calendar $Calendar
      * @depends test_addBypassDay
      */
-    public function test_removeBypassDay(Calendar $Calendar): void
+    public function test_removeBypassDay($Calendar): void
     {
         // Depends で受け取った Calendar を他テストへ影響させないよう複製する
         $Calendar = clone $Calendar;
@@ -464,7 +464,7 @@ class CalendarTest extends TestCase
      * @param \JapaneseDate\Calendar $Calendar
      * @depends test_addBypassDay
      */
-    public function test_resetBypassDay(Calendar $Calendar): void
+    public function test_resetBypassDay($Calendar): void
     {
         // 前段のテストで登録された日付バイパスをまとめて削除できることを確認する
         $this->assertCount(2, $this->invokeGetProperty($Calendar, 'bypass_day_arr'));
@@ -478,7 +478,7 @@ class CalendarTest extends TestCase
      * @noinspection PhpUnused
      * @depends test_addBypassWeekDay
      */
-    public function test_removeBypassWeekDay(Calendar $Calendar): void
+    public function test_removeBypassWeekDay($Calendar): void
     {
         // Depends で受け取った Calendar を他テストへ影響させないよう複製する
         $Calendar = clone $Calendar;
@@ -498,7 +498,7 @@ class CalendarTest extends TestCase
      * @param \JapaneseDate\Calendar $Calendar
      * @depends test_addBypassWeekDay
      */
-    public function test_resetBypassWeekDay(Calendar $Calendar): void
+    public function test_resetBypassWeekDay($Calendar): void
     {
         $this->invokeGetProperty($Calendar, 'bypass_week_day_arr');
         // 前段のテストで登録された曜日バイパスをまとめて削除できることを確認する

@@ -50,7 +50,7 @@ class SimpleSolarTermCoversNothingTest extends TestCase
      * @throws \JapaneseDate\Exceptions\SolarTermException
      * @dataProvider allSolarTermsDataProvider
      */
-    public function test_solarTermMatchesVsop87(int $year, int $solarTerm): void
+    public function test_solarTermMatchesVsop87($year, $solarTerm): void
     {
         $simpleDate = (new SimpleSolarTerm())->getSolarTerm($year, $solarTerm);
         $vsop87Date = (new SolarTerm(new Astronomy(new Vsop87Astronomy())))
@@ -65,8 +65,8 @@ class SimpleSolarTermCoversNothingTest extends TestCase
                 $simpleDate->month,
                 $simpleDate->day,
                 $vsop87Date->month,
-                $vsop87Date->day,
-            ),
+                $vsop87Date->day
+            )
         );
     }
 }

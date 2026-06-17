@@ -66,14 +66,14 @@ class DateBusiness
      *
      * @var array<int, bool>
      */
-    protected array $closingWeekdays = [];
+    protected $closingWeekdays = [];
 
     /**
      * 祝日を休業日とするかどうか
      *
      * @var bool
      */
-    protected bool $bypassHoliday = true;
+    protected $bypassHoliday = true;
 
     /**
      * 第XX曜日を営業日に指定する設定リスト
@@ -82,7 +82,7 @@ class DateBusiness
      *
      * @var array<string, bool>
      */
-    protected array $openNthWeekdays = [];
+    protected $openNthWeekdays = [];
 
     /**
      * 第XX曜日を休業日に指定する設定リスト
@@ -91,7 +91,7 @@ class DateBusiness
      *
      * @var array<string, string|null>
      */
-    protected array $closingNthWeekdays = [];
+    protected $closingNthWeekdays = [];
 
     /**
      * 特定日を営業日に指定する設定リスト
@@ -100,7 +100,7 @@ class DateBusiness
      *
      * @var array<string, bool>
      */
-    protected array $openDates = [];
+    protected $openDates = [];
 
     /**
      * 特定日を休業日に指定する設定リスト
@@ -109,7 +109,7 @@ class DateBusiness
      *
      * @var array<string, string|null>
      */
-    protected array $closingDates = [];
+    protected $closingDates = [];
 
     /**
      * 営業指定フィルタのリスト
@@ -119,7 +119,7 @@ class DateBusiness
      *
      * @var array<int, callable>
      */
-    protected array $openFilters = [];
+    protected $openFilters = [];
 
     /**
      * 休業指定フィルタのリスト
@@ -129,7 +129,7 @@ class DateBusiness
      *
      * @var array<int, array{filter: callable, label: string|null}>
      */
-    protected array $closingFilters = [];
+    protected $closingFilters = [];
 
     /**
      * 判定ロジックを完全に上書きするマクロ
@@ -148,7 +148,7 @@ class DateBusiness
      * @param int $weekday 曜日（0=日曜〜6=土曜）
      * @return static メソッドチェーン用に自身を返します
      */
-    public function addClosingWeekday(int $weekday): static
+    public function addClosingWeekday($weekday)
     {
         $this->closingWeekdays[$weekday] = true;
 
@@ -161,7 +161,7 @@ class DateBusiness
      * @param int $weekday 曜日（0=日曜〜6=土曜）
      * @return static メソッドチェーン用に自身を返します
      */
-    public function removeClosingWeekday(int $weekday): static
+    public function removeClosingWeekday($weekday)
     {
         unset($this->closingWeekdays[$weekday]);
 
@@ -182,7 +182,7 @@ class DateBusiness
      * @param int $nth 第何曜日か（1〜5）
      * @return static メソッドチェーン用に自身を返します
      */
-    public function addOpenNthWeekday(int $weekday, int $nth): static
+    public function addOpenNthWeekday($weekday, $nth)
     {
         $this->openNthWeekdays[$weekday . '_' . $nth] = true;
 
@@ -196,7 +196,7 @@ class DateBusiness
      * @param int $nth 第何曜日か（1〜5）
      * @return static メソッドチェーン用に自身を返します
      */
-    public function removeOpenNthWeekday(int $weekday, int $nth): static
+    public function removeOpenNthWeekday($weekday, $nth)
     {
         unset($this->openNthWeekdays[$weekday . '_' . $nth]);
 
@@ -218,7 +218,7 @@ class DateBusiness
      * @param string|null $label 休業ラベル（例: '定休日'）
      * @return static メソッドチェーン用に自身を返します
      */
-    public function addClosingNthWeekday(int $weekday, int $nth, ?string $label = null): static
+    public function addClosingNthWeekday($weekday, $nth, $label = null)
     {
         $this->closingNthWeekdays[$weekday . '_' . $nth] = $label;
 
@@ -232,7 +232,7 @@ class DateBusiness
      * @param int $nth 第何曜日か（1〜5）
      * @return static メソッドチェーン用に自身を返します
      */
-    public function removeClosingNthWeekday(int $weekday, int $nth): static
+    public function removeClosingNthWeekday($weekday, $nth)
     {
         unset($this->closingNthWeekdays[$weekday . '_' . $nth]);
 
@@ -253,7 +253,7 @@ class DateBusiness
      * @return static メソッドチェーン用に自身を返します
      * @throws \Exception
      */
-    public function addOpenDate(string|DateTimeInterface $date): static
+    public function addOpenDate($date)
     {
         $key = $this->toDateKey($date);
         $this->openDates[$key] = true;
@@ -268,7 +268,7 @@ class DateBusiness
      * @return string
      * @throws \Exception
      */
-    protected function toDateKey(string|DateTimeInterface $date): string
+    protected function toDateKey($date): string
     {
         if ($date instanceof DateTimeInterface) {
             return $date->format('Ymd');
@@ -284,7 +284,7 @@ class DateBusiness
      * @return static メソッドチェーン用に自身を返します
      * @throws \Exception
      */
-    public function removeOpenDate(string|DateTimeInterface $date): static
+    public function removeOpenDate($date)
     {
         unset($this->openDates[$this->toDateKey($date)]);
 
@@ -308,7 +308,7 @@ class DateBusiness
      * @return static メソッドチェーン用に自身を返します
      * @throws \Exception
      */
-    public function addClosingDate(string|DateTimeInterface $date, ?string $label = null): static
+    public function addClosingDate($date, $label = null)
     {
         $key = $this->toDateKey($date);
         $this->closingDates[$key] = $label;
@@ -323,7 +323,7 @@ class DateBusiness
      * @return static メソッドチェーン用に自身を返します
      * @throws \Exception
      */
-    public function removeClosingDate(string|DateTimeInterface $date): static
+    public function removeClosingDate($date)
     {
         unset($this->closingDates[$this->toDateKey($date)]);
 
@@ -346,7 +346,7 @@ class DateBusiness
      * @param callable $filter `fn(\DateTimeInterface $date): bool` 形式のコールバック
      * @return static メソッドチェーン用に自身を返します
      */
-    public function addOpenFilter(callable $filter): static
+    public function addOpenFilter($filter)
     {
         $this->openFilters[] = $filter;
 
@@ -374,7 +374,7 @@ class DateBusiness
      * @param string|null $label 休業理由のラベル（例: '月末休業'）
      * @return static メソッドチェーン用に自身を返します
      */
-    public function addClosingFilter(callable $filter, ?string $label = null): static
+    public function addClosingFilter($filter, $label = null)
     {
         $this->closingFilters[] = ['filter' => $filter, 'label' => $label];
 
@@ -386,7 +386,7 @@ class DateBusiness
      *
      * @return static メソッドチェーン用に自身を返します
      */
-    public function reset(): static
+    public function reset()
     {
         $this->closingWeekdays = [];
         $this->bypassHoliday = true;
@@ -425,7 +425,7 @@ class DateBusiness
      * @param array<int> $weekdays 休業曜日の配列（例: [0, 6] で日・土）
      * @return static メソッドチェーン用に自身を返します
      */
-    public function setClosingWeekdays(array $weekdays): static
+    public function setClosingWeekdays($weekdays)
     {
         $this->closingWeekdays = [];
         foreach ($weekdays as $wd) {
@@ -455,7 +455,7 @@ class DateBusiness
      * @param bool $bypass true の場合、祝日を休業日とする
      * @return static メソッドチェーン用に自身を返します
      */
-    public function setBypassHoliday(bool $bypass): static
+    public function setBypassHoliday($bypass)
     {
         $this->bypassHoliday = $bypass;
 
@@ -549,7 +549,7 @@ class DateBusiness
      * @param callable|null $macro `fn(\DateTimeInterface $date): bool` 形式のコールバック、または null
      * @return static メソッドチェーン用に自身を返します
      */
-    public function setMacro(?callable $macro): static
+    public function setMacro($macro)
     {
         $this->macro = $macro;
 

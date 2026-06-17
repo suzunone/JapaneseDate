@@ -37,7 +37,10 @@ class MeeusMoonAgeTest extends TestCase
     public function test_convergence_failure_throws_exception(): void
     {
         $stubMoon = new class () implements MoonAlgorithm {
-            public int $callCount = 0;
+            /**
+             * @var int
+             */
+            public $callCount = 0;
 
             /**
              * @return string
@@ -57,12 +60,12 @@ class MeeusMoonAgeTest extends TestCase
              * @return float
              */
             public function longitudeMoon(
-                int $year,
-                int $month,
-                int $day,
-                float $hour,
-                float $min,
-                float $sec
+                $year,
+                $month,
+                $day,
+                $hour,
+                $min,
+                $sec
             ): float {
                 $this->callCount++;
 
@@ -89,12 +92,12 @@ class MeeusMoonAgeTest extends TestCase
              * @return float
              */
             public function longitudeSun(
-                int $year,
-                int $month,
-                float $day,
-                float $hour,
-                float $min,
-                float $sec
+                $year,
+                $month,
+                $day,
+                $hour,
+                $min,
+                $sec
             ): float {
                 return 0.0;
             }
@@ -303,7 +306,7 @@ class MeeusMoonAgeTest extends TestCase
      */
     public function test_moonAge_no_c_mode_converges(): void
     {
-        $ast = new Astronomy(new Vsop87Astronomy(), new MeeusMoon(applyNasaCCorrection: false));
+        $ast = new Astronomy(new Vsop87Astronomy(), new MeeusMoon(false));
         $moonAge = new MeeusMoonAge($ast);
 
         // no_c モード: 新月翌日 02:00 JST → 月齢は小さく正値
@@ -321,11 +324,11 @@ class MeeusMoonAgeTest extends TestCase
      * @group long-running
      * @dataProvider cCorrectionModeProvider
      */
-    public function test_convergence_across_all_new_moons(bool $applyC): void
+    public function test_convergence_across_all_new_moons($applyC): void
     {
         $ast = new RecordingAstronomy(
             new Vsop87Astronomy(),
-            new MeeusMoon(applyNasaCCorrection: $applyC)
+            new MeeusMoon($applyC)
         );
         $moonAge = new MeeusMoonAge($ast);
         $referenceNewMoonJd = 2451550.259722;
@@ -370,7 +373,7 @@ class MeeusMoonAgeTest extends TestCase
             $cMinPart = ($cHour - (int) $cHour) * 60.0;
             $cSecPart = ($cMinPart - (int) $cMinPart) * 60.0;
 
-            $cleanAst = new Astronomy(new Vsop87Astronomy(), new MeeusMoon(applyNasaCCorrection: $applyC));
+            $cleanAst = new Astronomy(new Vsop87Astronomy(), new MeeusMoon($applyC));
             $lonMoon = $cleanAst->longitudeMoon($cy, $cm, $cd, (int) $cHour, (int) $cMinPart, $cSecPart);
             $lonSun = $cleanAst->longitudeSun($cy, $cm, $cd, (int) $cHour, (int) $cMinPart, $cSecPart);
             $delta = fmod($lonMoon - $lonSun + 540.0, 360.0) - 180.0;
@@ -407,10 +410,10 @@ class MeeusMoonAgeTest extends TestCase
 class RecordingAstronomy extends Astronomy
 {
     /** @var list<array{year:int,month:int,day:int,hour:float,min:float,sec:float}> */
-    public array $longitudeMoonCalls = [];
+    public $longitudeMoonCalls = [];
 
     /** @var list<array{year:int,month:int,day:float,hour:float,min:float,sec:float}> */
-    public array $longitudeSunCalls = [];
+    public $longitudeSunCalls = [];
 
     /**
      * @param int $year
@@ -424,12 +427,12 @@ class RecordingAstronomy extends Astronomy
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
     public function longitudeMoon(
-        int $year,
-        int $month,
-        int $day,
-        float $hour,
-        float $min,
-        float $sec
+        $year,
+        $month,
+        $day,
+        $hour,
+        $min,
+        $sec
     ): float {
         $this->longitudeMoonCalls[] = compact('year', 'month', 'day', 'hour', 'min', 'sec');
 
@@ -447,12 +450,12 @@ class RecordingAstronomy extends Astronomy
      * @throws \Exception
      */
     public function longitudeSun(
-        int $year,
-        int $month,
-        float $day,
-        float $hour,
-        float $min,
-        float $sec
+        $year,
+        $month,
+        $day,
+        $hour,
+        $min,
+        $sec
     ): float {
         $this->longitudeSunCalls[] = compact('year', 'month', 'day', 'hour', 'min', 'sec');
 

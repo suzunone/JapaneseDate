@@ -39,7 +39,7 @@ class MoonAgeConvergenceTraitTest extends TestCase
      * @throws \ReflectionException
      * @dataProvider negativeCorrectionProvider
      */
-    public function test_negativeCorrectionContinuesIteration(float $correctionDays): void
+    public function test_negativeCorrectionContinuesIteration($correctionDays): void
     {
         [, , $deltaT1, $deltaT2] = $this->applyStepForCorrection($correctionDays);
         $whileExpression = abs($deltaT1 + $deltaT2);
@@ -67,7 +67,7 @@ class MoonAgeConvergenceTraitTest extends TestCase
      * @throws \ReflectionException
      * @dataProvider positiveCorrectionProvider
      */
-    public function test_positiveCorrectionContinuesIteration(float $correctionDays): void
+    public function test_positiveCorrectionContinuesIteration($correctionDays): void
     {
         [, , $deltaT1, $deltaT2] = $this->applyStepForCorrection($correctionDays);
         $whileExpression = abs($deltaT1 + $deltaT2);

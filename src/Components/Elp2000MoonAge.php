@@ -53,8 +53,9 @@ class Elp2000MoonAge implements MoonAgeAlgorithm
 
     /**
      * 太陽・月の黄経計算および暦変換に使用する Astronomy インスタンス。
+     * @var \JapaneseDate\Components\Astronomy
      */
-    protected Astronomy $astronomy;
+    protected $astronomy;
 
     /**
      * @param Astronomy $astronomy 黄経計算・暦変換に使用する Astronomy インスタンス
@@ -85,7 +86,7 @@ class Elp2000MoonAge implements MoonAgeAlgorithm
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      * @throws \Exception
      */
-    public function moonAge(int $year, int $month, int $day, float $hour, float $min, float $sec): float
+    public function moonAge($year, $month, $day, $hour, $min, $sec): float
     {
         $jst = new DateTimeImmutable(
             sprintf('%04d-%02d-%02d %02d:%02d:%02d', $year, $month, $day, (int) $hour, (int) $min, (int) $sec),
@@ -126,7 +127,7 @@ class Elp2000MoonAge implements MoonAgeAlgorithm
      * @param float $julianDate ユリウス日
      * @return array{0: int, 1: int, 2: int, 3: int, 4: int, 5: float} [year, month, day, hour, min, sec]
      */
-    protected function jdToJstComponents(float $julianDate): array
+    protected function jdToJstComponents($julianDate): array
     {
         $timestamp = (int) floor(($julianDate - self::UNIX_EPOCH_JD) * Astronomy::DAY_TO_SECOND_FLOAT);
         $fractionalSecond = ($julianDate - self::UNIX_EPOCH_JD) * Astronomy::DAY_TO_SECOND_FLOAT - $timestamp;
@@ -152,7 +153,7 @@ class Elp2000MoonAge implements MoonAgeAlgorithm
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      * @throws \Exception
      */
-    protected function findNewMoonJd(float $approxJd, float $julianDate0): float
+    protected function findNewMoonJd($approxJd, $julianDate0): float
     {
         $tm1 = floor($approxJd);
         $tm2 = $approxJd - $tm1;

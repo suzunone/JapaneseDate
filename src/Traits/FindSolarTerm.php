@@ -36,7 +36,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getSyunbun(): DateTime|DateTimeImmutable
+    protected function getSyunbun()
     {
         return $this->getSolarTermDate('syunbun', $this->year);
     }
@@ -50,7 +50,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getSolarTermDate(string $method, int $year): DateTime|DateTimeImmutable
+    protected function getSolarTermDate($method, $year)
     {
         $SolarTermDate = $this->findSolarTerm($method, $year);
 
@@ -69,7 +69,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function findSolarTerm(string $method, int $year): SolarTermDate
+    protected function findSolarTerm($method, $year): SolarTermDate
     {
         if (Astronomy::solarAlgorithm() === Astronomy::SOLAR_VSOP87) {
             return static::callSolarTermMethod(new SolarTerm(), $method, $year);
@@ -79,7 +79,7 @@ trait FindSolarTerm
             $SolarTerm = new SimpleSolarTerm();
 
             return static::callSolarTermMethod($SolarTerm, $method, $year);
-        } catch (Throwable) {
+        } catch (Throwable $exception) {
             $SolarTerm = new SolarTerm();
 
             return static::callSolarTermMethod($SolarTerm, $method, $year);
@@ -96,34 +96,58 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected static function callSolarTermMethod(SimpleSolarTerm|SolarTerm $SolarTerm, string $method, int $year): SolarTermDate
+    protected static function callSolarTermMethod($SolarTerm, $method, $year): SolarTermDate
     {
-        return match ($method) {
-            'syunbun' => $SolarTerm->syunbun($year),
-            'seimei' => $SolarTerm->seimei($year),
-            'kokuu' => $SolarTerm->kokuu($year),
-            'rikka' => $SolarTerm->rikka($year),
-            'syouman' => $SolarTerm->syouman($year),
-            'bousyu' => $SolarTerm->bousyu($year),
-            'geshi' => $SolarTerm->geshi($year),
-            'syousyo' => $SolarTerm->syousyo($year),
-            'taisyo' => $SolarTerm->taisyo($year),
-            'rissyuu' => $SolarTerm->rissyuu($year),
-            'syosyo' => $SolarTerm->syosyo($year),
-            'hakuro' => $SolarTerm->hakuro($year),
-            'syuubun' => $SolarTerm->syuubun($year),
-            'kanro' => $SolarTerm->kanro($year),
-            'soukou' => $SolarTerm->soukou($year),
-            'rittou' => $SolarTerm->rittou($year),
-            'syousetsu' => $SolarTerm->syousetsu($year),
-            'taisetsu' => $SolarTerm->taisetsu($year),
-            'touji' => $SolarTerm->touji($year),
-            'syoukan' => $SolarTerm->syoukan($year),
-            'daikan' => $SolarTerm->daikan($year),
-            'rissyun' => $SolarTerm->rissyun($year),
-            'usui' => $SolarTerm->usui($year),
-            'keichitsu' => $SolarTerm->keichitsu($year),
-        };
+        switch ($method) {
+            case 'syunbun':
+                return $SolarTerm->syunbun($year);
+            case 'seimei':
+                return $SolarTerm->seimei($year);
+            case 'kokuu':
+                return $SolarTerm->kokuu($year);
+            case 'rikka':
+                return $SolarTerm->rikka($year);
+            case 'syouman':
+                return $SolarTerm->syouman($year);
+            case 'bousyu':
+                return $SolarTerm->bousyu($year);
+            case 'geshi':
+                return $SolarTerm->geshi($year);
+            case 'syousyo':
+                return $SolarTerm->syousyo($year);
+            case 'taisyo':
+                return $SolarTerm->taisyo($year);
+            case 'rissyuu':
+                return $SolarTerm->rissyuu($year);
+            case 'syosyo':
+                return $SolarTerm->syosyo($year);
+            case 'hakuro':
+                return $SolarTerm->hakuro($year);
+            case 'syuubun':
+                return $SolarTerm->syuubun($year);
+            case 'kanro':
+                return $SolarTerm->kanro($year);
+            case 'soukou':
+                return $SolarTerm->soukou($year);
+            case 'rittou':
+                return $SolarTerm->rittou($year);
+            case 'syousetsu':
+                return $SolarTerm->syousetsu($year);
+            case 'taisetsu':
+                return $SolarTerm->taisetsu($year);
+            case 'touji':
+                return $SolarTerm->touji($year);
+            case 'syoukan':
+                return $SolarTerm->syoukan($year);
+            case 'daikan':
+                return $SolarTerm->daikan($year);
+            case 'rissyun':
+                return $SolarTerm->rissyun($year);
+            case 'usui':
+                return $SolarTerm->usui($year);
+            case 'keichitsu':
+                return $SolarTerm->keichitsu($year);
+        }
     }
 
     /**
@@ -132,7 +156,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getNextSyunbun(): DateTime|DateTimeImmutable
+    protected function getNextSyunbun()
     {
         return $this->getNextSolarTermDate('syunbun');
     }
@@ -147,7 +171,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getNextSolarTermDate(string $method): DateTime|DateTimeImmutable
+    protected function getNextSolarTermDate($method)
     {
         $year = $this->year;
         $SolarTermDate = $this->findSolarTerm($method, $year);
@@ -165,7 +189,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getBeforeSyunbun(): DateTime|DateTimeImmutable
+    protected function getBeforeSyunbun()
     {
         return $this->getBeforeSolarTermDate('syunbun');
     }
@@ -180,7 +204,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getBeforeSolarTermDate(string $method): DateTime|DateTimeImmutable
+    protected function getBeforeSolarTermDate($method)
     {
         $year = $this->year;
         $SolarTermDate = $this->findSolarTerm($method, $year);
@@ -198,7 +222,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getSeimei(): DateTime|DateTimeImmutable
+    protected function getSeimei()
     {
         return $this->getSolarTermDate('seimei', $this->year);
     }
@@ -209,7 +233,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getNextSeimei(): DateTime|DateTimeImmutable
+    protected function getNextSeimei()
     {
         return $this->getNextSolarTermDate('seimei');
     }
@@ -220,7 +244,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getBeforeSeimei(): DateTime|DateTimeImmutable
+    protected function getBeforeSeimei()
     {
         return $this->getBeforeSolarTermDate('seimei');
     }
@@ -231,7 +255,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getKokuu(): DateTime|DateTimeImmutable
+    protected function getKokuu()
     {
         return $this->getSolarTermDate('kokuu', $this->year);
     }
@@ -242,7 +266,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getNextKokuu(): DateTime|DateTimeImmutable
+    protected function getNextKokuu()
     {
         return $this->getNextSolarTermDate('kokuu');
     }
@@ -253,7 +277,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getBeforeKokuu(): DateTime|DateTimeImmutable
+    protected function getBeforeKokuu()
     {
         return $this->getBeforeSolarTermDate('kokuu');
     }
@@ -264,7 +288,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getRikka(): DateTime|DateTimeImmutable
+    protected function getRikka()
     {
         return $this->getSolarTermDate('rikka', $this->year);
     }
@@ -275,7 +299,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getNextRikka(): DateTime|DateTimeImmutable
+    protected function getNextRikka()
     {
         return $this->getNextSolarTermDate('rikka');
     }
@@ -286,7 +310,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getBeforeRikka(): DateTime|DateTimeImmutable
+    protected function getBeforeRikka()
     {
         return $this->getBeforeSolarTermDate('rikka');
     }
@@ -297,7 +321,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getSyouman(): DateTime|DateTimeImmutable
+    protected function getSyouman()
     {
         return $this->getSolarTermDate('syouman', $this->year);
     }
@@ -308,7 +332,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getNextSyouman(): DateTime|DateTimeImmutable
+    protected function getNextSyouman()
     {
         return $this->getNextSolarTermDate('syouman');
     }
@@ -319,7 +343,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getBeforeSyouman(): DateTime|DateTimeImmutable
+    protected function getBeforeSyouman()
     {
         return $this->getBeforeSolarTermDate('syouman');
     }
@@ -330,7 +354,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getBousyu(): DateTime|DateTimeImmutable
+    protected function getBousyu()
     {
         return $this->getSolarTermDate('bousyu', $this->year);
     }
@@ -341,7 +365,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getNextBousyu(): DateTime|DateTimeImmutable
+    protected function getNextBousyu()
     {
         return $this->getNextSolarTermDate('bousyu');
     }
@@ -352,7 +376,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getBeforeBousyu(): DateTime|DateTimeImmutable
+    protected function getBeforeBousyu()
     {
         return $this->getBeforeSolarTermDate('bousyu');
     }
@@ -363,7 +387,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getGeshi(): DateTime|DateTimeImmutable
+    protected function getGeshi()
     {
         return $this->getSolarTermDate('geshi', $this->year);
     }
@@ -374,7 +398,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getNextGeshi(): DateTime|DateTimeImmutable
+    protected function getNextGeshi()
     {
         return $this->getNextSolarTermDate('geshi');
     }
@@ -385,7 +409,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getBeforeGeshi(): DateTime|DateTimeImmutable
+    protected function getBeforeGeshi()
     {
         return $this->getBeforeSolarTermDate('geshi');
     }
@@ -396,7 +420,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getSyousyo(): DateTime|DateTimeImmutable
+    protected function getSyousyo()
     {
         return $this->getSolarTermDate('syousyo', $this->year);
     }
@@ -407,7 +431,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getNextSyousyo(): DateTime|DateTimeImmutable
+    protected function getNextSyousyo()
     {
         return $this->getNextSolarTermDate('syousyo');
     }
@@ -418,7 +442,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getBeforeSyousyo(): DateTime|DateTimeImmutable
+    protected function getBeforeSyousyo()
     {
         return $this->getBeforeSolarTermDate('syousyo');
     }
@@ -429,7 +453,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getTaisyo(): DateTime|DateTimeImmutable
+    protected function getTaisyo()
     {
         return $this->getSolarTermDate('taisyo', $this->year);
     }
@@ -440,7 +464,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getNextTaisyo(): DateTime|DateTimeImmutable
+    protected function getNextTaisyo()
     {
         return $this->getNextSolarTermDate('taisyo');
     }
@@ -451,7 +475,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getBeforeTaisyo(): DateTime|DateTimeImmutable
+    protected function getBeforeTaisyo()
     {
         return $this->getBeforeSolarTermDate('taisyo');
     }
@@ -462,7 +486,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getRissyuu(): DateTime|DateTimeImmutable
+    protected function getRissyuu()
     {
         return $this->getSolarTermDate('rissyuu', $this->year);
     }
@@ -473,7 +497,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getNextRissyuu(): DateTime|DateTimeImmutable
+    protected function getNextRissyuu()
     {
         return $this->getNextSolarTermDate('rissyuu');
     }
@@ -484,7 +508,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getBeforeRissyuu(): DateTime|DateTimeImmutable
+    protected function getBeforeRissyuu()
     {
         return $this->getBeforeSolarTermDate('rissyuu');
     }
@@ -495,7 +519,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getSyosyo(): DateTime|DateTimeImmutable
+    protected function getSyosyo()
     {
         return $this->getSolarTermDate('syosyo', $this->year);
     }
@@ -506,7 +530,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getNextSyosyo(): DateTime|DateTimeImmutable
+    protected function getNextSyosyo()
     {
         return $this->getNextSolarTermDate('syosyo');
     }
@@ -517,7 +541,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getBeforeSyosyo(): DateTime|DateTimeImmutable
+    protected function getBeforeSyosyo()
     {
         return $this->getBeforeSolarTermDate('syosyo');
     }
@@ -528,7 +552,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getHakuro(): DateTime|DateTimeImmutable
+    protected function getHakuro()
     {
         return $this->getSolarTermDate('hakuro', $this->year);
     }
@@ -539,7 +563,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getNextHakuro(): DateTime|DateTimeImmutable
+    protected function getNextHakuro()
     {
         return $this->getNextSolarTermDate('hakuro');
     }
@@ -550,7 +574,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getBeforeHakuro(): DateTime|DateTimeImmutable
+    protected function getBeforeHakuro()
     {
         return $this->getBeforeSolarTermDate('hakuro');
     }
@@ -561,7 +585,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getSyuubun(): DateTime|DateTimeImmutable
+    protected function getSyuubun()
     {
         return $this->getSolarTermDate('syuubun', $this->year);
     }
@@ -572,7 +596,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getNextSyuubun(): DateTime|DateTimeImmutable
+    protected function getNextSyuubun()
     {
         return $this->getNextSolarTermDate('syuubun');
     }
@@ -583,7 +607,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getBeforeSyuubun(): DateTime|DateTimeImmutable
+    protected function getBeforeSyuubun()
     {
         return $this->getBeforeSolarTermDate('syuubun');
     }
@@ -594,7 +618,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getKanro(): DateTime|DateTimeImmutable
+    protected function getKanro()
     {
         return $this->getSolarTermDate('kanro', $this->year);
     }
@@ -605,7 +629,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getNextKanro(): DateTime|DateTimeImmutable
+    protected function getNextKanro()
     {
         return $this->getNextSolarTermDate('kanro');
     }
@@ -616,7 +640,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getBeforeKanro(): DateTime|DateTimeImmutable
+    protected function getBeforeKanro()
     {
         return $this->getBeforeSolarTermDate('kanro');
     }
@@ -627,7 +651,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getSoukou(): DateTime|DateTimeImmutable
+    protected function getSoukou()
     {
         return $this->getSolarTermDate('soukou', $this->year);
     }
@@ -638,7 +662,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getNextSoukou(): DateTime|DateTimeImmutable
+    protected function getNextSoukou()
     {
         return $this->getNextSolarTermDate('soukou');
     }
@@ -649,7 +673,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getBeforeSoukou(): DateTime|DateTimeImmutable
+    protected function getBeforeSoukou()
     {
         return $this->getBeforeSolarTermDate('soukou');
     }
@@ -660,7 +684,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getRittou(): DateTime|DateTimeImmutable
+    protected function getRittou()
     {
         return $this->getSolarTermDate('rittou', $this->year);
     }
@@ -671,7 +695,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getNextRittou(): DateTime|DateTimeImmutable
+    protected function getNextRittou()
     {
         return $this->getNextSolarTermDate('rittou');
     }
@@ -682,7 +706,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getBeforeRittou(): DateTime|DateTimeImmutable
+    protected function getBeforeRittou()
     {
         return $this->getBeforeSolarTermDate('rittou');
     }
@@ -693,7 +717,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getSyousetsu(): DateTime|DateTimeImmutable
+    protected function getSyousetsu()
     {
         return $this->getSolarTermDate('syousetsu', $this->year);
     }
@@ -704,7 +728,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getNextSyousetsu(): DateTime|DateTimeImmutable
+    protected function getNextSyousetsu()
     {
         return $this->getNextSolarTermDate('syousetsu');
     }
@@ -715,7 +739,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getBeforeSyousetsu(): DateTime|DateTimeImmutable
+    protected function getBeforeSyousetsu()
     {
         return $this->getBeforeSolarTermDate('syousetsu');
     }
@@ -726,7 +750,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getTaisetsu(): DateTime|DateTimeImmutable
+    protected function getTaisetsu()
     {
         return $this->getSolarTermDate('taisetsu', $this->year);
     }
@@ -737,7 +761,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getNextTaisetsu(): DateTime|DateTimeImmutable
+    protected function getNextTaisetsu()
     {
         return $this->getNextSolarTermDate('taisetsu');
     }
@@ -748,7 +772,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getBeforeTaisetsu(): DateTime|DateTimeImmutable
+    protected function getBeforeTaisetsu()
     {
         return $this->getBeforeSolarTermDate('taisetsu');
     }
@@ -759,7 +783,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getTouji(): DateTime|DateTimeImmutable
+    protected function getTouji()
     {
         return $this->getSolarTermDate('touji', $this->year);
     }
@@ -770,7 +794,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getNextTouji(): DateTime|DateTimeImmutable
+    protected function getNextTouji()
     {
         return $this->getNextSolarTermDate('touji');
     }
@@ -781,7 +805,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getBeforeTouji(): DateTime|DateTimeImmutable
+    protected function getBeforeTouji()
     {
         return $this->getBeforeSolarTermDate('touji');
     }
@@ -792,7 +816,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getSyoukan(): DateTime|DateTimeImmutable
+    protected function getSyoukan()
     {
         return $this->getSolarTermDate('syoukan', $this->year);
     }
@@ -803,7 +827,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getNextSyoukan(): DateTime|DateTimeImmutable
+    protected function getNextSyoukan()
     {
         return $this->getNextSolarTermDate('syoukan');
     }
@@ -814,7 +838,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getBeforeSyoukan(): DateTime|DateTimeImmutable
+    protected function getBeforeSyoukan()
     {
         return $this->getBeforeSolarTermDate('syoukan');
     }
@@ -825,7 +849,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getDaikan(): DateTime|DateTimeImmutable
+    protected function getDaikan()
     {
         return $this->getSolarTermDate('daikan', $this->year);
     }
@@ -836,7 +860,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getNextDaikan(): DateTime|DateTimeImmutable
+    protected function getNextDaikan()
     {
         return $this->getNextSolarTermDate('daikan');
     }
@@ -847,7 +871,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getBeforeDaikan(): DateTime|DateTimeImmutable
+    protected function getBeforeDaikan()
     {
         return $this->getBeforeSolarTermDate('daikan');
     }
@@ -858,7 +882,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getRissyun(): DateTime|DateTimeImmutable
+    protected function getRissyun()
     {
         return $this->getSolarTermDate('rissyun', $this->year);
     }
@@ -869,7 +893,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getNextRissyun(): DateTime|DateTimeImmutable
+    protected function getNextRissyun()
     {
         return $this->getNextSolarTermDate('rissyun');
     }
@@ -880,7 +904,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getBeforeRissyun(): DateTime|DateTimeImmutable
+    protected function getBeforeRissyun()
     {
         return $this->getBeforeSolarTermDate('rissyun');
     }
@@ -891,7 +915,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getUsui(): DateTime|DateTimeImmutable
+    protected function getUsui()
     {
         return $this->getSolarTermDate('usui', $this->year);
     }
@@ -902,7 +926,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getNextUsui(): DateTime|DateTimeImmutable
+    protected function getNextUsui()
     {
         return $this->getNextSolarTermDate('usui');
     }
@@ -913,7 +937,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getBeforeUsui(): DateTime|DateTimeImmutable
+    protected function getBeforeUsui()
     {
         return $this->getBeforeSolarTermDate('usui');
     }
@@ -924,7 +948,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getKeichitsu(): DateTime|DateTimeImmutable
+    protected function getKeichitsu()
     {
         return $this->getSolarTermDate('keichitsu', $this->year);
     }
@@ -935,7 +959,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getNextKeichitsu(): DateTime|DateTimeImmutable
+    protected function getNextKeichitsu()
     {
         return $this->getNextSolarTermDate('keichitsu');
     }
@@ -946,7 +970,7 @@ trait FindSolarTerm
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getBeforeKeichitsu(): DateTime|DateTimeImmutable
+    protected function getBeforeKeichitsu()
     {
         return $this->getBeforeSolarTermDate('keichitsu');
     }

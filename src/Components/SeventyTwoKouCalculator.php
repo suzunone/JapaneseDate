@@ -177,7 +177,7 @@ class SeventyTwoKouCalculator
      *
      * @var self|null
      */
-    protected static ?self $instance = null;
+    protected static $instance;
 
     /**
      * SimpleSolarTerm / SolarTerm で取得した節気日付のキャッシュ。
@@ -185,14 +185,14 @@ class SeventyTwoKouCalculator
      *
      * @var array<string, int>
      */
-    protected array $solarTermCache = [];
+    protected $solarTermCache = [];
 
     /**
      * シングルトンファクトリメソッド。
      *
      * @return static
      */
-    public static function factory(): static
+    public static function factory()
     {
         if (static::$instance === null) {
             static::$instance = new static();
@@ -211,7 +211,7 @@ class SeventyTwoKouCalculator
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    public function getKouNumber(DateTime|DateTimeImmutable $date): int
+    public function getKouNumber($date): int
     {
         [$kouIndex, $kouType] = $this->findKouIndexAndType($date);
 
@@ -227,7 +227,7 @@ class SeventyTwoKouCalculator
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    public function findKouIndexAndType(DateTime|DateTimeImmutable $date): array
+    public function findKouIndexAndType($date): array
     {
         $dateTs = $this->normalizeDayTs($date->year, $date->month, $date->day);
 
@@ -269,7 +269,7 @@ class SeventyTwoKouCalculator
      * @param int $day 日
      * @return int Unix タイムスタンプ
      */
-    protected function normalizeDayTs(int $year, int $month, int $day): int
+    protected function normalizeDayTs($year, $month, $day): int
     {
         return mktime(0, 0, 0, $month, $day, $year);
     }
@@ -282,7 +282,7 @@ class SeventyTwoKouCalculator
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function collectSortedTerms(int $year): array
+    protected function collectSortedTerms($year): array
     {
         $terms = [];
         foreach ([$year - 1, $year, $year + 1] as $y) {
@@ -292,7 +292,9 @@ class SeventyTwoKouCalculator
             }
         }
 
-        usort($terms, static fn (array $a, array $b): int => $a['ts'] <=> $b['ts']);
+        usort($terms, static function (array $a, array $b): int {
+            return $a['ts'] <=> $b['ts'];
+        });
 
         return array_values($terms);
     }
@@ -307,7 +309,7 @@ class SeventyTwoKouCalculator
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function getSolarTermTimestamp(int $solarTermConst, int $year): int
+    protected function getSolarTermTimestamp($solarTermConst, $year): int
     {
         $cacheKey = $year . '_' . $solarTermConst;
         if (isset($this->solarTermCache[$cacheKey])) {
@@ -331,7 +333,7 @@ class SeventyTwoKouCalculator
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function fetchSolarTermDate(int $solarTermConst, int $year): SolarTermDate
+    protected function fetchSolarTermDate($solarTermConst, $year): SolarTermDate
     {
         if (Astronomy::solarAlgorithm() === Astronomy::SOLAR_VSOP87) {
             return (new SolarTerm())->getSolarTerm($year, $solarTermConst);
@@ -341,7 +343,7 @@ class SeventyTwoKouCalculator
             $calc = new SimpleSolarTerm();
 
             return $calc->getSolarTerm($year, $solarTermConst);
-        } catch (Throwable) {
+        } catch (Throwable $exception) {
             $calc = new SolarTerm();
 
             return $calc->getSolarTerm($year, $solarTermConst);
@@ -358,7 +360,7 @@ class SeventyTwoKouCalculator
      * @param int $endTs 次節気開始日（0時0分0秒）の Unix タイムスタンプ
      * @return array{0: int, 1: int, 2: int} [初候start, 次候start, 末候start]
      */
-    protected function calcKouBoundaries(int $startTs, int $endTs): array
+    protected function calcKouBoundaries($startTs, $endTs): array
     {
         $totalDays = intdiv($endTs - $startTs, 86400);
 
@@ -377,7 +379,7 @@ class SeventyTwoKouCalculator
      * @param int $kouNumber 七十二候番号（1〜72）
      * @return string 七十二候名称
      */
-    public function getKouText(int $kouNumber): string
+    public function getKouText($kouNumber): string
     {
         return self::KOU_DATA[$kouNumber][0] ?? '';
     }
@@ -390,7 +392,7 @@ class SeventyTwoKouCalculator
      * @param int $kouNumber 七十二候番号（1〜72）
      * @return string 七十二候の読み
      */
-    public function getKouReading(int $kouNumber): string
+    public function getKouReading($kouNumber): string
     {
         return self::KOU_DATA[$kouNumber][1] ?? '';
     }
@@ -403,7 +405,7 @@ class SeventyTwoKouCalculator
      * @param int $kouNumber 七十二候番号（1〜72）
      * @return string 候種別（"初候" / "次候" / "末候"）
      */
-    public function getKouType(int $kouNumber): string
+    public function getKouType($kouNumber): string
     {
         $zeroBasedType = ($kouNumber - 1) % 3;
 
@@ -418,7 +420,7 @@ class SeventyTwoKouCalculator
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    public function getNextKouStartTimestamp(DateTime|DateTimeImmutable $date): int
+    public function getNextKouStartTimestamp($date): int
     {
         [, $kouType, $currentTermTs, $nextTermTs] = $this->findKouIndexAndType($date);
 
@@ -441,7 +443,7 @@ class SeventyTwoKouCalculator
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    public function getPreviousKouStartTimestamp(DateTime|DateTimeImmutable $date): int
+    public function getPreviousKouStartTimestamp($date): int
     {
         [$kouIndex, $kouType, $currentTermTs, $nextTermTs] = $this->findKouIndexAndType($date);
 
@@ -468,7 +470,7 @@ class SeventyTwoKouCalculator
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected function findPreviousSolarTermInfo(DateTime|DateTimeImmutable $date, int $kouIndex): array
+    protected function findPreviousSolarTermInfo($date, $kouIndex): array
     {
         $terms = $this->collectSortedTerms($date->year);
 

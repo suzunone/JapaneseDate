@@ -68,7 +68,7 @@ class SexagenaryCycle
      *
      * @return static
      */
-    public static function factory(): static
+    public static function factory()
     {
         static $instance;
         if (!$instance) {
@@ -84,7 +84,7 @@ class SexagenaryCycle
      * @param int $year 西暦年
      * @return int 0〜11 の整数 (ORIENTAL_ZODIAC 配列のインデックス)
      */
-    public function getOrientalZodiacKey(int $year): int
+    public function getOrientalZodiacKey($year): int
     {
         return (($year + 9) % 12 + 12) % 12;
     }
@@ -95,7 +95,7 @@ class SexagenaryCycle
      * @param int $key 0〜11
      * @return string
      */
-    public function viewOrientalZodiac(int $key): string
+    public function viewOrientalZodiac($key): string
     {
         return self::ORIENTAL_ZODIAC[$key] ?? '';
     }
@@ -106,7 +106,7 @@ class SexagenaryCycle
      * @param int $year 西暦年
      * @return int 0〜9 の整数 (HEAVENLY_STEMS 配列のインデックス)
      */
-    public function getHeavenlyStemKey(int $year): int
+    public function getHeavenlyStemKey($year): int
     {
         return (($year + 6) % 10 + 10) % 10;
     }
@@ -117,7 +117,7 @@ class SexagenaryCycle
      * @param int $key 0〜9
      * @return string
      */
-    public function viewHeavenlyStem(int $key): string
+    public function viewHeavenlyStem($key): string
     {
         return self::HEAVENLY_STEMS[$key] ?? '';
     }

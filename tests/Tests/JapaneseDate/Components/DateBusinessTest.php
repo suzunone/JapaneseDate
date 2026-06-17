@@ -84,13 +84,17 @@ class DateBusinessTest extends TestCase
      * @param string $scenario
      * @dataProvider closingWeekdayDataProvider
      */
-    public function test_closingWeekdays(string $scenario): void
+    public function test_closingWeekdays($scenario): void
     {
         $db = new DateBusiness();
-        match ($scenario) {
-            'set' => $db->setClosingWeekdays([0, 6]),
-            'add_remove' => $db->addClosingWeekday(6),
-        };
+        switch ($scenario) {
+            case 'set':
+                $db->setClosingWeekdays([0, 6]);
+                break;
+            case 'add_remove':
+                $db->addClosingWeekday(6);
+                break;
+        }
         $this->assertArrayHasKey(6, $db->getClosingWeekdays());
         if ($scenario === 'set') {
             $this->assertArrayHasKey(0, $db->getClosingWeekdays());
@@ -119,13 +123,17 @@ class DateBusinessTest extends TestCase
      * @param string $scenario
      * @dataProvider nthWeekdayDataProvider
      */
-    public function test_nthWeekdays(string $scenario): void
+    public function test_nthWeekdays($scenario): void
     {
         $db = new DateBusiness();
-        match ($scenario) {
-            'open' => $db->addOpenNthWeekday(6, 2),
-            'closing' => $db->addClosingNthWeekday(3, 3, '定休日'),
-        };
+        switch ($scenario) {
+            case 'open':
+                $db->addOpenNthWeekday(6, 2);
+                break;
+            case 'closing':
+                $db->addClosingNthWeekday(3, 3, '定休日');
+                break;
+        }
         if ($scenario === 'open') {
             $this->assertArrayHasKey('6_2', $db->getOpenNthWeekdays());
             $db->removeOpenNthWeekday(6, 2);
@@ -146,18 +154,29 @@ class DateBusinessTest extends TestCase
      * @throws \Exception
      * @dataProvider dateConfigDataProvider
      */
-    public function test_dateConfigs(string $scenario, string $inputType): void
+    public function test_dateConfigs($scenario, $inputType): void
     {
         $db = new DateBusiness();
-        $date = match ($scenario) {
-            'open' => $inputType === 'datetime' ? new DateTime('2026-12-30') : '2026-12-30',
-            'closing', 'closing_null_label' => $inputType === 'datetime' ? new DateTime('2026-08-15') : '2026-08-15',
-        };
-        match ($scenario) {
-            'open' => $db->addOpenDate($date),
-            'closing' => $db->addClosingDate($date, '夏期休暇'),
-            'closing_null_label' => $db->addClosingDate($date),
-        };
+        switch ($scenario) {
+            case 'open':
+                $date = $inputType === 'datetime' ? new DateTime('2026-12-30') : '2026-12-30';
+                break;
+            case 'closing':
+            case 'closing_null_label':
+                $date = $inputType === 'datetime' ? new DateTime('2026-08-15') : '2026-08-15';
+                break;
+        }
+        switch ($scenario) {
+            case 'open':
+                $db->addOpenDate($date);
+                break;
+            case 'closing':
+                $db->addClosingDate($date, '夏期休暇');
+                break;
+            case 'closing_null_label':
+                $db->addClosingDate($date);
+                break;
+        }
         if ($scenario === 'open') {
             $this->assertArrayHasKey('20261230', $db->getOpenDates());
             if ($inputType === 'string') {
@@ -180,19 +199,37 @@ class DateBusinessTest extends TestCase
      * @param string $scenario
      * @dataProvider filterDataProvider
      */
-    public function test_filters(string $scenario): void
+    public function test_filters($scenario): void
     {
         $db = new DateBusiness();
-        $filter = match ($scenario) {
-            'open' => fn (DateTimeInterface $d) => $d->format('d') === '10',
-            'closing_label' => fn (DateTimeInterface $d) => $d->format('md') === '1231',
-            'closing_null_label' => fn (DateTimeInterface $d) => false,
-        };
-        match ($scenario) {
-            'open' => $db->addOpenFilter($filter),
-            'closing_label' => $db->addClosingFilter($filter, '大晦日'),
-            'closing_null_label' => $db->addClosingFilter($filter),
-        };
+        switch ($scenario) {
+            case 'open':
+                $filter = function (DateTimeInterface $d) {
+                    return $d->format('d') === '10';
+                };
+                break;
+            case 'closing_label':
+                $filter = function (DateTimeInterface $d) {
+                    return $d->format('md') === '1231';
+                };
+                break;
+            case 'closing_null_label':
+                $filter = function (DateTimeInterface $d) {
+                    return false;
+                };
+                break;
+        }
+        switch ($scenario) {
+            case 'open':
+                $db->addOpenFilter($filter);
+                break;
+            case 'closing_label':
+                $db->addClosingFilter($filter, '大晦日');
+                break;
+            case 'closing_null_label':
+                $db->addClosingFilter($filter);
+                break;
+        }
         if ($scenario === 'open') {
             $this->assertCount(1, $db->getOpenFilters());
             $this->assertSame($filter, $db->getOpenFilters()[0]);
@@ -211,7 +248,9 @@ class DateBusinessTest extends TestCase
     {
         $db = new DateBusiness();
         $this->assertNull($db->getMacro());
-        $macro = fn (DateTimeInterface $d) => true;
+        $macro = function (DateTimeInterface $d) {
+            return true;
+        };
         $db->setMacro($macro);
         $this->assertSame($macro, $db->getMacro());
         $db->setMacro(null);
@@ -231,9 +270,15 @@ class DateBusinessTest extends TestCase
             ->addOpenDate('2026-12-30')
             ->addOpenNthWeekday(6, 2)
             ->addClosingNthWeekday(3, 3)
-            ->addOpenFilter(fn ($d) => true)
-            ->addClosingFilter(fn ($d) => false)
-            ->setMacro(fn ($d) => true);
+            ->addOpenFilter(function ($d) {
+                return true;
+            })
+            ->addClosingFilter(function ($d) {
+                return false;
+            })
+            ->setMacro(function ($d) {
+                return true;
+            });
 
         $db->reset();
 
@@ -267,8 +312,12 @@ class DateBusinessTest extends TestCase
             ->removeOpenDate('2026-01-01')
             ->addClosingDate('2026-08-15')
             ->removeClosingDate('2026-08-15')
-            ->addOpenFilter(fn ($d) => true)
-            ->addClosingFilter(fn ($d) => false)
+            ->addOpenFilter(function ($d) {
+                return true;
+            })
+            ->addClosingFilter(function ($d) {
+                return false;
+            })
             ->setMacro(null)
             ->reset();
 

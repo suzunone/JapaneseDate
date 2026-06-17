@@ -165,16 +165,23 @@ class BusinessCalendarTest extends TestCase
     /**
      * resolveConfig がインスタンス設定、グローバル設定、デフォルト設定の優先順で設定を解決することを確認する。
      * @dataProvider resolveConfigDataProvider
+     * @param string $scenario
      */
-    public function test_resolveConfig(string $scenario): void
+    public function test_resolveConfig($scenario): void
     {
         $globalConfig = (new DateBusiness())->setBypassHoliday(false);
         $instanceConfig = (new DateBusiness())->setBypassHoliday(true);
-        $expected = match ($scenario) {
-            'instance' => $instanceConfig,
-            'global' => $globalConfig,
-            'default' => BusinessCalendar::getDefaultConfig(),
-        };
+        switch ($scenario) {
+            case 'instance':
+                $expected = $instanceConfig;
+                break;
+            case 'global':
+                $expected = $globalConfig;
+                break;
+            case 'default':
+                $expected = BusinessCalendar::getDefaultConfig();
+                break;
+        }
         if ($scenario !== 'default') {
             BusinessCalendar::setGlobalConfig($globalConfig);
         }
@@ -191,12 +198,16 @@ class BusinessCalendarTest extends TestCase
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      * @dataProvider businessDayDataProvider
      */
-    public function test_isBusinessDay(string $date, bool $expected, string $configType): void
+    public function test_isBusinessDay($date, $expected, $configType): void
     {
-        $config = match ($configType) {
-            'default' => null,
-            'ignore_holiday' => (new DateBusiness())->setClosingWeekdays([0, 6])->setBypassHoliday(false),
-        };
+        switch ($configType) {
+            case 'default':
+                $config = null;
+                break;
+            case 'ignore_holiday':
+                $config = (new DateBusiness())->setClosingWeekdays([0, 6])->setBypassHoliday(false);
+                break;
+        }
         $this->assertSame($expected, BusinessCalendar::isBusinessDay(DateTime::factory($date), $config));
     }
     /**
@@ -209,7 +220,7 @@ class BusinessCalendarTest extends TestCase
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      * @dataProvider businessDayPriorityDataProvider
      */
-    public function test_isBusinessDay_priority(string $scenario, string $date, bool $expected): void
+    public function test_isBusinessDay_priority($scenario, $date, $expected): void
     {
         $config = $this->createPriorityConfig($scenario);
         $this->assertSame($expected, BusinessCalendar::isBusinessDay(DateTime::factory($date), $config));
@@ -223,12 +234,20 @@ class BusinessCalendarTest extends TestCase
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      * @dataProvider closingLabelNullDataProvider
      */
-    public function test_getClosingLabel_returns_null(string $scenario, string $date): void
+    public function test_getClosingLabel_returns_null($scenario, $date): void
     {
-        $config = match ($scenario) {
-            'business_day', 'weekday_closing', 'holiday' => null,
-            'macro_false' => (new DateBusiness())->setMacro(fn (DateTimeInterface $d) => false),
-        };
+        switch ($scenario) {
+            case 'business_day':
+            case 'weekday_closing':
+            case 'holiday':
+                $config = null;
+                break;
+            case 'macro_false':
+                $config = (new DateBusiness())->setMacro(function (DateTimeInterface $d) {
+                    return false;
+                });
+                break;
+        }
         $this->assertNull(BusinessCalendar::getClosingLabel(DateTime::factory($date), $config));
     }
     /**
@@ -241,23 +260,33 @@ class BusinessCalendarTest extends TestCase
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      * @dataProvider closingLabelDataProvider
      */
-    public function test_getClosingLabel(string $scenario, string $date, string $expected): void
+    public function test_getClosingLabel($scenario, $date, $expected): void
     {
-        $config = match ($scenario) {
-            'closing_date' => (new DateBusiness())
-                ->setClosingWeekdays([0, 6])
-                ->addClosingDate('2026-08-14', '夏期休暇'),
-            'closing_nth_weekday' => (new DateBusiness())
-                ->setClosingWeekdays([0])
-                ->addClosingNthWeekday(3, 3, '第3水曜定休'),
-            'closing_filter' => (new DateBusiness())
-                ->setClosingWeekdays([0, 6])
-                ->addClosingFilter(fn (DateTimeInterface $d) => $d->format('Ymd') === '20260814', '夏期休暇フィルタ'),
-            'bypass_holiday_false' => (new DateBusiness())
-                ->setClosingWeekdays([0, 6])
-                ->setBypassHoliday(false)
-                ->addClosingDate('2026-05-25', '臨時休業'),
-        };
+        switch ($scenario) {
+            case 'closing_date':
+                $config = (new DateBusiness())
+                    ->setClosingWeekdays([0, 6])
+                    ->addClosingDate('2026-08-14', '夏期休暇');
+                break;
+            case 'closing_nth_weekday':
+                $config = (new DateBusiness())
+                    ->setClosingWeekdays([0])
+                    ->addClosingNthWeekday(3, 3, '第3水曜定休');
+                break;
+            case 'closing_filter':
+                $config = (new DateBusiness())
+                    ->setClosingWeekdays([0, 6])
+                    ->addClosingFilter(function (DateTimeInterface $d) {
+                        return $d->format('Ymd') === '20260814';
+                    }, '夏期休暇フィルタ');
+                break;
+            case 'bypass_holiday_false':
+                $config = (new DateBusiness())
+                    ->setClosingWeekdays([0, 6])
+                    ->setBypassHoliday(false)
+                    ->addClosingDate('2026-05-25', '臨時休業');
+                break;
+        }
         $this->assertSame($expected, BusinessCalendar::getClosingLabel(DateTime::factory($date), $config));
     }
     /**
@@ -346,36 +375,54 @@ class BusinessCalendarTest extends TestCase
      */
     private function createPriorityConfig(string $scenario): DateBusiness
     {
-        return match ($scenario) {
-            'open_nth_weekday' => (new DateBusiness())
-                ->setClosingWeekdays([0, 6])
-                ->addOpenNthWeekday(6, 2),
-            'closing_nth_weekday' => (new DateBusiness())
-                ->setClosingWeekdays([0, 6])
-                ->addOpenNthWeekday(6, 2)
-                ->addClosingNthWeekday(6, 2, '特別定休'),
-            'open_date' => (new DateBusiness())
-                ->setClosingWeekdays([0, 6])
-                ->addOpenDate('2026-06-13'),
-            'closing_date' => (new DateBusiness())
-                ->setClosingWeekdays([0, 6])
-                ->addOpenDate('2026-05-25')
-                ->addClosingDate('2026-05-25', '臨時休業'),
-            'open_filter' => (new DateBusiness())
-                ->setClosingWeekdays([0, 6])
-                ->addClosingDate('2026-05-25', '臨時休業')
-                ->addOpenFilter(fn (DateTimeInterface $d) => $d->format('Ymd') === '20260525'),
-            'closing_filter' => (new DateBusiness())
-                ->setClosingWeekdays([0, 6])
-                ->addOpenFilter(fn (DateTimeInterface $d) => $d->format('Ymd') === '20260525')
-                ->addClosingFilter(fn (DateTimeInterface $d) => $d->format('Ymd') === '20260525', '最高優先休業'),
-            'macro_true' => (new DateBusiness())
-                ->setClosingWeekdays([0, 6])
-                ->addClosingDate('2026-05-30')
-                ->setMacro(fn (DateTimeInterface $d) => true),
-            'macro_false' => (new DateBusiness())
-                ->setMacro(fn (DateTimeInterface $d) => false),
-        };
+        switch ($scenario) {
+            case 'open_nth_weekday':
+                return (new DateBusiness())
+                    ->setClosingWeekdays([0, 6])
+                    ->addOpenNthWeekday(6, 2);
+            case 'closing_nth_weekday':
+                return (new DateBusiness())
+                    ->setClosingWeekdays([0, 6])
+                    ->addOpenNthWeekday(6, 2)
+                    ->addClosingNthWeekday(6, 2, '特別定休');
+            case 'open_date':
+                return (new DateBusiness())
+                    ->setClosingWeekdays([0, 6])
+                    ->addOpenDate('2026-06-13');
+            case 'closing_date':
+                return (new DateBusiness())
+                    ->setClosingWeekdays([0, 6])
+                    ->addOpenDate('2026-05-25')
+                    ->addClosingDate('2026-05-25', '臨時休業');
+            case 'open_filter':
+                return (new DateBusiness())
+                    ->setClosingWeekdays([0, 6])
+                    ->addClosingDate('2026-05-25', '臨時休業')
+                    ->addOpenFilter(function (DateTimeInterface $d) {
+                        return $d->format('Ymd') === '20260525';
+                    });
+            case 'closing_filter':
+                return (new DateBusiness())
+                    ->setClosingWeekdays([0, 6])
+                    ->addOpenFilter(function (DateTimeInterface $d) {
+                        return $d->format('Ymd') === '20260525';
+                    })
+                    ->addClosingFilter(function (DateTimeInterface $d) {
+                        return $d->format('Ymd') === '20260525';
+                    }, '最高優先休業');
+            case 'macro_true':
+                return (new DateBusiness())
+                    ->setClosingWeekdays([0, 6])
+                    ->addClosingDate('2026-05-30')
+                    ->setMacro(function (DateTimeInterface $d) {
+                        return true;
+                    });
+            case 'macro_false':
+                return (new DateBusiness())
+                    ->setMacro(function (DateTimeInterface $d) {
+                        return false;
+                    });
+        }
     }
 }
 
@@ -388,7 +435,8 @@ class FalseTimezoneDate extends DateTimeImmutable
     /**
      * @return \DateTimeZone|false
      */
-    public function getTimezone(): DateTimeZone|false
+    #[\ReturnTypeWillChange]
+    public function getTimezone()
     {
         return false;
     }
