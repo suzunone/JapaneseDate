@@ -41,29 +41,32 @@ use PHPUnit\Framework\TestCase;
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
  * @since       1.0.0 リリースから利用可能
- * @covers \JapaneseDate\Traits\Component
- * @covers \JapaneseDate\Traits\DateTimeImport
- * @covers \JapaneseDate\DateTime
  */
+#[CoversTrait(Component::class)]
+#[CoversTrait(DateTimeImport::class)]
+#[CoversClass(DateTime::class)]
 class DateTimeTest extends TestCase
 {
     use InvokeTrait;
+
     /**
      * ロケール設定が DateTime と Carbon の両方に反映されることを確認する
      *
      * @return void
-     * @runInSeparateProcess
-     * @preserveGlobalState disabled
      */
+    #[RunInSeparateProcess]
+    #[PreserveGlobalState(false)]
     public function test_setLocale(): void
     {
         DateTime::setLocale('de');
         $this->assertEquals('de', DateTime::getLocale());
         $this->assertEquals('de', Carbon::getLocale());
+
         DateTime::setLocale('en');
         $this->assertEquals('en', DateTime::getLocale());
         $this->assertEquals('en', Carbon::getLocale());
     }
+
     /**
      * create が DateTime インスタンスを生成することを確認する
      *
@@ -75,6 +78,7 @@ class DateTimeTest extends TestCase
 
         $this->assertInstanceOf(DateTime::class, $date1);
     }
+
     /**
      * 六曜定数の値が期待どおりであることを確認する
      *
@@ -89,36 +93,44 @@ class DateTimeTest extends TestCase
         $this->assertSame(4, DateTime::SIX_WEEKDAY_SENBU);
         $this->assertSame(5, DateTime::SIX_WEEKDAY_BUTSUMETSU);
     }
+
     /**
      * テスト用の現在日時が DateTime と Carbon の生成系メソッドに反映されることを確認する
      *
      * @return void
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
-     * @runInSeparateProcess
-     * @preserveGlobalState disabled
      */
+    #[RunInSeparateProcess]
+    #[PreserveGlobalState(false)]
     public function test_setTestNow(): void
     {
         // テスト用日時を作成する
         $knownDate = DateTime::create(2001, 5, 21, 12);
         DateTime::setTestNow($knownDate);
+
         $this->assertEquals('2001-05-21 12:00:00', DateTime::getTestNow());
         $this->assertEquals('2001-05-21 12:00:00', Carbon::getTestNow());
+
         $this->assertEquals('2001-05-21 12:00:00', DateTime::now());
         $this->assertEquals('2001-05-21 12:00:00', Carbon::now());
+
         $this->assertEquals('2001-05-21 12:00:00', DateTime::factory());
         $this->assertEquals('2001-05-21 12:00:00', (new DateTime()));
         $this->assertEquals('2001-05-21 12:00:00', DateTime::factory()->format('Y-m-d H:i:s'));
         $this->assertEquals('2001-05-21 12:00:00', (new DateTime())->format('Y-m-d H:i:s'));
+
         $this->assertEquals('2001-05-21 12:00:00', DateTime::parse('now'));
         $this->assertEquals('1 month ago', DateTime::create(2001, 4, 21, 12)->diffForHumans());
+
         $this->assertTrue(DateTime::hasTestNow());
         $this->assertTrue(Carbon::hasTestNow());
+
         DateTime::setTestNow();
         $this->assertFalse(DateTime::hasTestNow());
         $this->assertFalse(Carbon::hasTestNow());
     }
+
     /**
      * コンストラクタが日時オブジェクト由来の文字列と日時文字列を解釈できることを確認する
      *
@@ -141,38 +153,44 @@ class DateTimeTest extends TestCase
         $DateTime = new DateTime($test_date_time);
         $this->assertEquals($test_date_time, $DateTime->format('Y-m-d H:i:s'));
     }
+
     /**
      * factory が複数形式の入力から日時を生成できることを確認する
      *
      * @return void
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
-     * @runInSeparateProcess
-     * @preserveGlobalState disabled
      */
+    #[RunInSeparateProcess]
+    #[PreserveGlobalState(false)]
     public function test_factory(): void
     {
         $FakerGenerator = new FakerGenerator();
         $FakerGenerator->addProvider(FakerDateTime::class);
+
         // 日付オブジェクト
         $test_date_time = $FakerGenerator->dateTime();
         $DateTime = DateTime::factory($test_date_time);
         $this->assertEquals($test_date_time->format('Y-m-d H:i:s'), $DateTime->format('Y-m-d H:i:s'));
         $this->assertEquals($test_date_time->getTimestamp(), $DateTime->getTimestamp());
+
         // タイムスタンプ
         $test_unix_time = $FakerGenerator->unixTime('+3 year');
         $DateTime = DateTime::factory($test_unix_time);
         $this->assertEquals($test_unix_time, $DateTime->timestamp);
+
         // 日付文字列
         $test_date_time = $FakerGenerator->dateTime();
         $test_date_time = $test_date_time->format('Y-m-d H:i:s');
         $DateTime = DateTime::factory($test_date_time);
         $this->assertEquals($test_date_time, $DateTime->format('Y-m-d H:i:s'));
+
         $test_date_time = $FakerGenerator->dateTime();
         $test_date_time = $test_date_time->format('YmdHis');
         $DateTime = DateTime::factory($test_date_time);
         $this->assertEquals($test_date_time, $DateTime->format('YmdHis'));
     }
+
     /**
      * ユリウス日から算出したグレゴリオ暦情報を取得できることを確認する
      *
@@ -198,6 +216,7 @@ class DateTimeTest extends TestCase
             $DateTime->getCalendar()
         );
     }
+
     /**
      * 不正な日時文字列では例外が発生することを確認する
      *
@@ -209,6 +228,7 @@ class DateTimeTest extends TestCase
         $this->expectException(NativeDateTimeException::class);
         new DateTime('あああああ');
     }
+
     /**
      * マイクロタイムスタンプテスト
      * @return void
@@ -218,6 +238,7 @@ class DateTimeTest extends TestCase
         $date = new DateTime('2024-06-01 12:34:56.789000');
         $this->assertEquals('2024-06-01 12:34:56.789000', $date->format('Y-m-d H:i:s.u'));
     }
+
     /**
      * マイクロタイムスタンプテスト
      * @return void
@@ -229,4 +250,5 @@ class DateTimeTest extends TestCase
         $date = DateTime::factory('2024-06-01 12:34:56.789000');
         $this->assertEquals('2024-06-01 12:34:56.789000', $date->format('Y-m-d H:i:s.u'));
     }
+
 }

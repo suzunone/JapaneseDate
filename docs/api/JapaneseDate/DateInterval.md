@@ -158,6 +158,8 @@ $interval = DateInterval::untilNextSolarTerm(DateTime::now());
 | int\|float | [CarbonInterval::getMicrosecondsPerMillisecond](../Carbon/CarbonInterval.md#getmicrosecondspermillisecond) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Returns current config for microseconds per second. |
 | CarbonInterval | [CarbonInterval::create](../Carbon/CarbonInterval.md#create) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Create a new CarbonInterval instance from specific values. |
 | CarbonInterval | [CarbonInterval::createFromFormat](../Carbon/CarbonInterval.md#createfromformat) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Parse a string into a new CarbonInterval object according to the specified format. |
+| CarbonInterval | [CarbonInterval::monthWithAnchorDay](../Carbon/CarbonInterval.md#monthwithanchorday) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ |  |
+| CarbonInterval | [CarbonInterval::monthNoOverflow](../Carbon/CarbonInterval.md#monthnooverflow) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ |  |
 | array\|int\|string\|DateInterval\|mixed\|null | [CarbonInterval::original](../Carbon/CarbonInterval.md#original) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Return the original source used to create the current interval. |
 | CarbonInterface\|null | [CarbonInterval::start](../Carbon/CarbonInterval.md#start) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Return the start date if interval was created from a difference between 2 dates. |
 | CarbonInterface\|null | [CarbonInterval::end](../Carbon/CarbonInterval.md#end) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Return the end date if interval was created from a difference between 2 dates. |
@@ -193,7 +195,7 @@ $interval = DateInterval::untilNextSolarTerm(DateTime::now());
 | CarbonInterval | [CarbonInterval::sub](../Carbon/CarbonInterval.md#sub) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Subtract the passed interval to the current instance. |
 | CarbonInterval | [CarbonInterval::subtract](../Carbon/CarbonInterval.md#subtract) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Subtract the passed interval to the current instance. |
 | CarbonInterval | [CarbonInterval::plus](../Carbon/CarbonInterval.md#plus) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Add given parameters to the current interval. |
-| CarbonInterval | [CarbonInterval::minus](../Carbon/CarbonInterval.md#minus) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Add given parameters to the current interval. |
+| CarbonInterval | [CarbonInterval::minus](../Carbon/CarbonInterval.md#minus) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Subtract given parameters to the current interval. |
 | CarbonInterval | [CarbonInterval::times](../Carbon/CarbonInterval.md#times) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Multiply current instance given number of times. times() is naive, it multiplies each unit (so day can be greater than 31, hour can be greater than 23, etc.) and the result is rounded separately for each unit. |
 | CarbonInterval | [CarbonInterval::shares](../Carbon/CarbonInterval.md#shares) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Divide current instance by a given divider. shares() is naive, it divides each unit separately and the result is rounded for each unit. So 5 hours and 20 minutes shared by 3 becomes 2 hours and 7 minutes. |
 | CarbonInterval | [CarbonInterval::multiply](../Carbon/CarbonInterval.md#multiply) _(from [CarbonInterval](../Carbon/CarbonInterval.md))_ | Multiply and cascade current instance by a given factor. |
@@ -698,7 +700,7 @@ echo $result->format('Y-m-d');
 ### isBusinessDay
 
 ```php
-static public bool isBusinessDay($date)
+static public bool isBusinessDay($DateTime)
 ```
 
 指定した日時が営業日かどうかを判定します。
@@ -710,7 +712,7 @@ static public bool isBusinessDay($date)
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| [DateTime](../JapaneseDate/DateTime.md) | `$date` | —  | 判定対象の日付 |
+| [DateTime](../JapaneseDate/DateTime.md) | `$DateTime` | —  |  |
 
 **Returns:** bool — 営業日であれば true、非営業日であれば false
 ---

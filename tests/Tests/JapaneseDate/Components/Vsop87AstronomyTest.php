@@ -26,11 +26,12 @@ use Tests\JapaneseDate\InvokeTrait;
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
  * @since       Release 1.0.0 から利用可能
- * @covers \JapaneseDate\Components\Vsop87Astronomy
  */
+#[CoversClass(Vsop87Astronomy::class)]
 class Vsop87AstronomyTest extends TestCase
 {
     use InvokeTrait;
+
     /**
      * NASA/JPL Horizons observer table, Sun (10) from Earth geocenter (500@399).
      *
@@ -53,6 +54,7 @@ class Vsop87AstronomyTest extends TestCase
             '2024 winter solstice season' => [2024, 12, 21, 9.0, 269.6036200],
         ];
     }
+
     /**
      * sunAlgorithmName() が VSOP87 識別子を返し、SunAlgorithm インターフェースを実装していることを確認する。
      *
@@ -66,6 +68,7 @@ class Vsop87AstronomyTest extends TestCase
         $this->assertInstanceOf(SunAlgorithm::class, $vsop87);
         $this->assertNotInstanceOf(Astronomy::class, $vsop87);
     }
+
     /**
      * approximateDeltaTSeconds() が 2050 年に対して 2050-2150 分岐の多項式を使うことを確認する。
      *
@@ -82,6 +85,7 @@ class Vsop87AstronomyTest extends TestCase
 
         $this->assertEqualsWithDelta(93.08, $deltaT, 0.01);
     }
+
     /**
      * longitudeSun() の計算値が NASA/JPL Horizons の視太陽黄経と 0.0005° 以内で一致することを確認する。
      *
@@ -91,13 +95,20 @@ class Vsop87AstronomyTest extends TestCase
      * @param float $hour
      * @param float $expectedLongitude
      * @return void
-     * @dataProvider jplHorizonsApparentSolarLongitudeProvider
      */
-    public function test_longitudeSunMatchesJplHorizonsApparentSolarLongitude(int $year, int $month, int $day, float $hour, float $expectedLongitude): void
-    {
+    #[DataProvider('jplHorizonsApparentSolarLongitudeProvider')]
+    public function test_longitudeSunMatchesJplHorizonsApparentSolarLongitude(
+        int $year,
+        int $month,
+        int $day,
+        float $hour,
+        float $expectedLongitude
+    ): void {
         $actualLongitude = (new Vsop87Astronomy())->longitudeSun($year, $month, $day, $hour, 0.0, 0.0);
+
         $this->assertEqualsWithDelta($expectedLongitude, $actualLongitude, 0.0005);
     }
+
     /**
      * longitudeSun() が常に [0, 360) の正規化された角度を返すことを確認する。
      *
@@ -107,11 +118,17 @@ class Vsop87AstronomyTest extends TestCase
      * @param float $hour
      * @param float $expectedLongitude
      * @return void
-     * @dataProvider jplHorizonsApparentSolarLongitudeProvider
      */
-    public function test_longitudeSunAlwaysReturnsNormalizedAngle(int $year, int $month, int $day, float $hour, float $expectedLongitude): void
-    {
+    #[DataProvider('jplHorizonsApparentSolarLongitudeProvider')]
+    public function test_longitudeSunAlwaysReturnsNormalizedAngle(
+        int $year,
+        int $month,
+        int $day,
+        float $hour,
+        float $expectedLongitude
+    ): void {
         $longitude = (new Vsop87Astronomy())->longitudeSun($year, $month, $day, $hour, 0.0, 0.0);
+
         $this->assertGreaterThanOrEqual(0.0, $longitude);
         $this->assertLessThan(360.0, $longitude);
     }

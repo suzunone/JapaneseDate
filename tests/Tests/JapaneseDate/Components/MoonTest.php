@@ -40,14 +40,18 @@ use Tests\JapaneseDate\InvokeTrait;
  *
  * 精度: 新月・四分月は ±3 分以内 (USNO / 国立天文台データと照合済み)
  * 天文データ出典: 国立天文台 / USNO
- * @covers \JapaneseDate\Components\Moon
  */
+#[CoversClass(Moon::class)]
 class MoonTest extends TestCase
 {
     use InvokeTrait;
+
     // ==================== uts2Julian / julian2Uts 変換精度テスト ====================
+
     /**
-     * @return array[]
+     * ELP2000 経路の新月計算を国立天文台データと照合するケースを返す。
+     *
+     * @return array<string, array{string, string, int}>
      */
     public static function elp2000NewMoonProvider(): array
     {
@@ -61,75 +65,158 @@ class MoonTest extends TestCase
             '2023 January new moon' => ['2023-01-20 00:00:00', '2023-01-22 05:53:00', 300],
         ];
     }
+
     /**
-     * @return void
+     * Unix タイムスタンプとユリウス日の相互変換を確認するケースを返す。
+     *
+     * @return array<string, array{string, int|float, float}>
+     */
+    public static function julianConversionDataProvider(): array
+    {
+        return [
+            'Unix エポックをユリウス日へ変換' => ['uts2Julian', 0, 2440587.5],
+            'J2000.0 をユリウス日へ変換' => ['uts2Julian', 946728000, 2451545.0],
+            '既知日付をユリウス日へ変換' => ['uts2Julian', 1674259200, 2459965.5],
+            'Unix エポックのユリウス日を UTC 秒へ変換' => ['julian2Uts', 2440587.5, 0.0],
+            'J2000.0 のユリウス日を UTC 秒へ変換' => ['julian2Uts', 2451545.0, 946728000.0],
+            '既知ユリウス日を UTC 秒へ変換' => ['julian2Uts', 2459965.5, 1674259200.0],
+        ];
+    }
+
+    /**
+     * truePhase が主要 4 位相で補正値を返すことを確認するケースを返す。
+     *
+     * @return array<string, array{float}>
+     */
+    public static function truePhaseReturnDataProvider(): array
+    {
+        return [
+            '新月補正' => [0.0],
+            '満月補正' => [0.5],
+            '上弦補正' => [0.25],
+            '下弦補正' => [0.75],
+        ];
+    }
+
+    /**
+     * truePhase の実データ精度を USNO データと照合するケースを返す。
+     *
+     * @return array<string, array{float, float, int, string}>
+     */
+    public static function truePhaseAccuracyDataProvider(): array
+    {
+        return [
+            '2023-01-21 新月' => [1522.0, 0.0, 1674334380, '2023-01-21 新月'],
+            '2022-12-23 新月' => [1521.0, 0.0, 1671790620, '2022-12-23 新月'],
+            '2023-01-28 上弦' => [1522.0, 0.25, 1674919140, '2023-01-28 上弦'],
+            '2023-02-05 満月' => [1522.0, 0.5, 1675621740, '2023-02-05 満月'],
+            '2023-02-13 下弦' => [1522.0, 0.75, 1676304060, '2023-02-13 下弦'],
+        ];
+    }
+
+    /**
+     * moonPhase が主要位相・探索方向・近接判定で Carbon を返すことを確認するケースを返す。
+     *
+     * @return array<string, array{string, float, bool}>
+     */
+    public static function moonPhaseReturnDataProvider(): array
+    {
+        return [
+            '指定日以後の新月' => ['2023-01-15 00:00:00', 0.0, false],
+            '指定日以後の満月' => ['2023-01-15 00:00:00', 0.5, false],
+            '指定日以後の上弦' => ['2023-01-15 00:00:00', 0.25, false],
+            '指定日以後の下弦' => ['2023-01-15 00:00:00', 0.75, false],
+            '指定日前の新月' => ['2023-01-15 00:00:00', 0.0, true],
+            '新月時刻付近の近接判定' => ['2023-01-21 20:53:00', 0.0, false],
+        ];
+    }
+
+    /**
+     * moonPhase の実データ精度を USNO データと照合するケースを返す。
+     *
+     * @return array<string, array{string, float, bool, int, string}>
+     */
+    public static function moonPhaseAccuracyDataProvider(): array
+    {
+        return [
+            '2023-01-21 新月' => ['2023-01-15 00:00:00', 0.0, false, 1674334380, '2023-01-21 新月'],
+            '2023-01-28 上弦' => ['2023-01-15 00:00:00', 0.25, false, 1674919140, '2023-01-28 上弦'],
+            '2023-02-05 満月' => ['2023-01-15 00:00:00', 0.5, false, 1675621740, '2023-02-05 満月'],
+            '2023-02-13 下弦' => ['2023-01-16 00:00:00', 0.75, false, 1676304060, '2023-02-13 下弦'],
+            '2022-12-23 直前新月' => ['2023-01-15 00:00:00', 0.0, true, 1671790620, '2022-12-23 新月 (is_next=true)'],
+            '2023-01-21 新月当日' => ['2023-01-21 20:53:00', 0.0, false, 1674334380, '2023-01-21 新月当日'],
+        ];
+    }
+
+    /**
+     * 2011 年 7 月の moonPhase を国立天文台データと照合するケースを返す。
+     *
+     * @return array<string, array{string, float, bool, string, string}>
+     */
+    public static function naoj2011MoonPhaseDataProvider(): array
+    {
+        return [
+            '2011-07-01 朔' => ['2011-07-09 09:00:00', 0.0, true, '2011-07-01 17:54:00', '2011-07-01 朔'],
+            '2011-07-08 上弦' => ['2011-07-09 09:00:00', 0.25, true, '2011-07-08 15:29:00', '2011-07-08 上弦'],
+            '2011-07-15 望' => ['2011-07-16 00:00:00', 0.5, true, '2011-07-15 15:40:00', '2011-07-15 望'],
+            '2011-07-23 下弦' => ['2011-07-25 00:00:00', 0.75, true, '2011-07-23 14:02:00', '2011-07-23 下弦'],
+        ];
+    }
+
+    /**
+     * 中間 4 位相が隣接する標準位相の中点として返ることを確認するケースを返す。
+     *
+     * @return array<string, array{float, float, float, string, bool}>
+     */
+    public static function legacyMidpointDataProvider(): array
+    {
+        return [
+            '三日月は新月と上弦の中点' => [0.125, 0.0, 0.25, '新月と上弦の中点', false],
+            '十三夜は上弦と満月の中点' => [0.375, 0.25, 0.5, '上弦と満月の中点', false],
+            '十六夜は満月と下弦の中点' => [0.625, 0.5, 0.75, '満月と下弦の中点', false],
+            '有明は下弦と次の新月の中点' => [0.875, 0.75, 0.0, '下弦と次の新月の中点', false],
+            'is_next=true の三日月は前の新月と直後の上弦の中点' => [0.125, 0.0, 0.25, '前の新月と直後の上弦の中点', true],
+        ];
+    }
+
+    /**
+     * moonPhaseByLegacyMidpoint の直接呼び出しで通常経路と位相回り込み経路を確認するケースを返す。
+     *
+     * @return array<string, array{float}>
+     */
+    public static function legacyMidpointDirectCallDataProvider(): array
+    {
+        return [
+            'upperPhase が 1.0 未満の三日月' => [0.125],
+            'upperPhase が 1.0 を超えて回り込む有明' => [0.875],
+        ];
+    }
+
+    /**
+     * Unix タイムスタンプとユリウス日の相互変換が定義済み基準値と一致することを確認する。
+     *
+     * @param string $conversion
+     * @param int|float $input
+     * @param float $expected
      * @throws \ReflectionException
      */
-    public function test_uts2Julian_unix_epoch(): void
+    #[DataProvider('julianConversionDataProvider')]
+    public function test_julianConversions(string $conversion, int|float $input, float $expected): void
     {
         $moon = new Moon();
-        // Unix エポック (1970-01-01 00:00:00 UTC) のユリウス日は 2440587.5 と定義されている
-        $result = $this->invokeExecuteMethod($moon, 'uts2Julian', [0]);
-        $this->assertSame(2440587.5, $result);
+        $result = match ($conversion) {
+            'uts2Julian' => $this->invokeExecuteMethod($moon, 'uts2Julian', [$input]),
+            'julian2Uts' => $this->invokeExecuteMethod($moon, 'julian2Uts', [$input]),
+        };
+
+        $this->assertSame($expected, $result);
     }
-    /**
-     * @return void
-     * @throws \ReflectionException
-     */
-    public function test_uts2Julian_j2000(): void
-    {
-        $moon = new Moon();
-        // J2000.0 基準点: 2000-01-01 12:00:00 UTC = Unix 946728000 → ユリウス日 2451545.0
-        $result = $this->invokeExecuteMethod($moon, 'uts2Julian', [946728000]);
-        $this->assertSame(2451545.0, $result);
-    }
-    /**
-     * @return void
-     * @throws \ReflectionException
-     */
-    public function test_uts2Julian_known_date(): void
-    {
-        $moon = new Moon();
-        // 2023-01-21 00:00:00 UTC = Unix 1674259200 → ユリウス日 2459965.5
-        $result = $this->invokeExecuteMethod($moon, 'uts2Julian', [1674259200]);
-        $this->assertSame(2459965.5, $result);
-    }
-    /**
-     * @return void
-     * @throws \ReflectionException
-     */
-    public function test_julian2Uts_unix_epoch(): void
-    {
-        $moon = new Moon();
-        // ユリウス日 2440587.5 (Unix エポック) → 0.0
-        $result = $this->invokeExecuteMethod($moon, 'julian2Uts', [2440587.5]);
-        $this->assertSame(0.0, $result);
-    }
-    /**
-     * @return void
-     * @throws \ReflectionException
-     */
-    public function test_julian2Uts_j2000(): void
-    {
-        $moon = new Moon();
-        // ユリウス日 2451545.0 (J2000.0) → 946728000.0
-        $result = $this->invokeExecuteMethod($moon, 'julian2Uts', [2451545.0]);
-        $this->assertSame(946728000.0, $result);
-    }
-    /**
-     * @return void
-     * @throws \ReflectionException
-     */
-    public function test_julian2Uts_known_date(): void
-    {
-        $moon = new Moon();
-        // ユリウス日 2459965.5 → 1674259200.0 (2023-01-21 00:00:00 UTC)
-        $result = $this->invokeExecuteMethod($moon, 'julian2Uts', [2459965.5]);
-        $this->assertSame(1674259200.0, $result);
-    }
+
     // ==================== meanPhase ====================
+
     /**
-     * @return void
+     * Unix タイムスタンプをユリウス日へ変換して戻すと元の値へ戻ることを確認する。
+     *
      * @throws \ReflectionException
      */
     public function test_julian2Uts_roundtrip(): void
@@ -141,10 +228,14 @@ class MoonTest extends TestCase
         $result = $this->invokeExecuteMethod($moon, 'julian2Uts', [$julian]);
         $this->assertEqualsWithDelta((float) $timestamp, $result, 0.001);
     }
+
     // ==================== truePhase 分岐テスト ====================
+
     // phase < 0.01 → 新月補正
+
     /**
-     * @return void
+     * meanPhase がユリウス日として妥当な浮動小数点数を返すことを確認する。
+     *
      * @throws \ReflectionException
      */
     public function test_meanPhase_returnsFloat(): void
@@ -155,54 +246,23 @@ class MoonTest extends TestCase
         $this->assertIsFloat($result);
         $this->assertGreaterThan(2415020.0, $result);
     }
+
     // abs(phase - 0.5) < 0.01 → 満月補正
+
     /**
-     * @return void
+     * truePhase が主要 4 位相の補正結果を浮動小数点数として返すことを確認する。
+     *
+     * @param float $phase
      * @throws \ReflectionException
      */
-    public function test_truePhase_newMoon_returnsFloat(): void
+    #[DataProvider('truePhaseReturnDataProvider')]
+    public function test_truePhase_returnsFloat(float $phase): void
     {
         $moon = new Moon();
-        // 新月に対応する真の位相補正が実行されることを確認する
-        $result = $this->invokeExecuteMethod($moon, 'truePhase', [1236.85, 0.0]);
+        $result = $this->invokeExecuteMethod($moon, 'truePhase', [1236.85, $phase]);
         $this->assertIsFloat($result);
     }
-    // abs(phase - 0.25) < 0.01, phase < 0.5 → 上弦補正
-    /**
-     * @return void
-     * @throws \ReflectionException
-     */
-    public function test_truePhase_fullMoon_returnsFloat(): void
-    {
-        $moon = new Moon();
-        // 満月に対応する真の位相補正が実行されることを確認する
-        $result = $this->invokeExecuteMethod($moon, 'truePhase', [1236.85, 0.5]);
-        $this->assertIsFloat($result);
-    }
-    // abs(phase - 0.75) < 0.01, phase >= 0.5 → 下弦補正
-    /**
-     * @return void
-     * @throws \ReflectionException
-     */
-    public function test_truePhase_firstQuarter_returnsFloat(): void
-    {
-        $moon = new Moon();
-        // 上弦に対応する真の位相補正が実行されることを確認する
-        $result = $this->invokeExecuteMethod($moon, 'truePhase', [1236.85, 0.25]);
-        $this->assertIsFloat($result);
-    }
-    // いずれにも該当しない場合 → null
-    /**
-     * @return void
-     * @throws \ReflectionException
-     */
-    public function test_truePhase_lastQuarter_returnsFloat(): void
-    {
-        $moon = new Moon();
-        // 下弦に対応する真の位相補正が実行されることを確認する
-        $result = $this->invokeExecuteMethod($moon, 'truePhase', [1236.85, 0.75]);
-        $this->assertIsFloat($result);
-    }
+
     // ==================== truePhase 実データ精度テスト ====================
     //
     // truePhase(k, phase) の戻り値 ≈ 実際の天文イベントの UTC タイムスタンプ
@@ -210,8 +270,10 @@ class MoonTest extends TestCase
     //
     // k=1522 = 2023年1月の朔望月インデックス (2023-01-21 新月)
     // k=1521 = 2022年12月の朔望月インデックス (2022-12-23 新月)
+
     /**
-     * @return void
+     * 対応していない位相では truePhase が補正値を返さないことを確認する。
+     *
      * @throws \ReflectionException
      */
     public function test_truePhase_invalidPhase_returnsNull(): void
@@ -221,82 +283,36 @@ class MoonTest extends TestCase
         $result = $this->invokeExecuteMethod($moon, 'truePhase', [1236.85, 0.3]);
         $this->assertNull($result);
     }
+
     /**
-     * @return void
+     * truePhase の主要 4 位相が実データに対して ±5 分以内で一致することを確認する。
+     *
+     * @param float $k
+     * @param float $phase
+     * @param int $expected
+     * @param string $label
      * @throws \ReflectionException
      */
-    public function test_truePhase_newMoon_jan2023(): void
+    #[DataProvider('truePhaseAccuracyDataProvider')]
+    public function test_truePhase_accuracy(float $k, float $phase, int $expected, string $label): void
     {
         $moon = new Moon();
-        // 新月: 2023-01-21 20:53 UTC (USNO データ)
-        // UTC タイムスタンプ: 1674334380
-        $expected = 1674334380;
-        $result = $this->invokeExecuteMethod($moon, 'truePhase', [1522.0, 0.0]);
+        $result = $this->invokeExecuteMethod($moon, 'truePhase', [$k, $phase]);
         $this->assertEqualsWithDelta(
             $expected,
             $result,
             300,
-            '2023-01-21 新月の計算誤差が ±5 分を超えています (USNO 基準)'
+            $label . 'の計算誤差が ±5 分を超えています (USNO 基準)'
         );
     }
-    /**
-     * @return void
-     * @throws \ReflectionException
-     */
-    public function test_truePhase_newMoon_dec2022(): void
-    {
-        $moon = new Moon();
-        // 新月: 2022-12-23 10:17 UTC (USNO データ)
-        // UTC タイムスタンプ: 1671790620
-        $expected = 1671790620;
-        $result = $this->invokeExecuteMethod($moon, 'truePhase', [1521.0, 0.0]);
-        $this->assertEqualsWithDelta(
-            $expected,
-            $result,
-            300,
-            '2022-12-23 新月の計算誤差が ±5 分を超えています (USNO 基準)'
-        );
-    }
-    /**
-     * @return void
-     * @throws \ReflectionException
-     */
-    public function test_truePhase_firstQuarter_jan2023(): void
-    {
-        $moon = new Moon();
-        // 上弦: 2023-01-28 15:19 UTC (USNO データ)
-        // UTC タイムスタンプ: 1674919140
-        $expected = 1674919140;
-        $result = $this->invokeExecuteMethod($moon, 'truePhase', [1522.0, 0.25]);
-        $this->assertEqualsWithDelta(
-            $expected,
-            $result,
-            300,
-            '2023-01-28 上弦の計算誤差が ±5 分を超えています (USNO 基準)'
-        );
-    }
-    /**
-     * @return void
-     * @throws \ReflectionException
-     */
-    public function test_truePhase_fullMoon_feb2023(): void
-    {
-        $moon = new Moon();
-        // 満月: 2023-02-05 18:29 UTC (USNO データ)
-        // UTC タイムスタンプ: 1675621740
-        $expected = 1675621740;
-        $result = $this->invokeExecuteMethod($moon, 'truePhase', [1522.0, 0.5]);
-        $this->assertEqualsWithDelta(
-            $expected,
-            $result,
-            300,
-            '2023-02-05 満月の計算誤差が ±5 分を超えています (USNO 基準)'
-        );
-    }
+
     // ==================== moonPhase 分岐テスト ====================
+
     // is_next=false → k2 (次の朔望月の新月基準)
+
     /**
-     * @return void
+     * 無効な位相を指定した場合に ErrorException が発生することを確認する。
+     *
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
@@ -312,8 +328,11 @@ class MoonTest extends TestCase
 
         $moon->moonPhase(new DateTime('2023-01-15 00:00:00', new DateTimeZone('UTC')), 0.1);
     }
+
     /**
-     * @return array[]
+     * moonPhase が受け付ける 8 位相のケースを返す。
+     *
+     * @return array<string, array{float}>
      */
     public static function eightPhasesProvider(): array
     {
@@ -328,14 +347,16 @@ class MoonTest extends TestCase
             'dawn moon (0.875)' => [0.875],
         ];
     }
+
     /**
-     * @param float $phase
-     * @return void
+     * moonPhase が 8 位相すべてを受け付け、Carbon を返すことを確認する。
+     *
+     * @param float $phase 位相
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
-     * @dataProvider eightPhasesProvider
      */
+    #[DataProvider('eightPhasesProvider')]
     public function test_moonPhase_acceptsAllEightPhases(float $phase): void
     {
         $moon = new Moon();
@@ -344,8 +365,11 @@ class MoonTest extends TestCase
         /** @noinspection UnnecessaryAssertionInspection PhpConditionAlreadyCheckedInspection — moonPhase() の実行時戻り値型を確認する */
         $this->assertInstanceOf(Carbon::class, $result);
     }
+
     /**
-     * @return array[]
+     * moonPhase が拒否する未対応位相のケースを返す。
+     *
+     * @return array<string, array{float}>
      */
     public static function invalidPhaseProvider(): array
     {
@@ -357,130 +381,47 @@ class MoonTest extends TestCase
             '-0.125 (negative)' => [-0.125],
         ];
     }
+
     /**
-     * @param float $phase
-     * @return void
+     * 未対応位相では moonPhase が ErrorException を投げることを確認する。
+     *
+     * @param float $phase 位相
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
-     * @dataProvider invalidPhaseProvider
      */
+    #[DataProvider('invalidPhaseProvider')]
     public function test_moonPhase_throwsForUnsupportedPhase(float $phase): void
     {
         $moon = new Moon();
+
         $this->expectException(ErrorException::class);
+
         $moon->moonPhase(new DateTime('2023-01-15 00:00:00', new DateTimeZone('UTC')), $phase);
     }
+
     /**
-     * @return void
-     * @throws \ReflectionException
-     */
-    public function test_truePhase_lastQuarter_feb2023(): void
-    {
-        $moon = new Moon();
-        // 下弦: 2023-02-13 16:01 UTC (USNO データ)
-        // UTC タイムスタンプ: 1676304060
-        $expected = 1676304060;
-        $result = $this->invokeExecuteMethod($moon, 'truePhase', [1522.0, 0.75]);
-        $this->assertEqualsWithDelta(
-            $expected,
-            $result,
-            300,
-            '2023-02-13 下弦の計算誤差が ±5 分を超えています (USNO 基準)'
-        );
-    }
-    // is_next=false, phase=0.5 → 満月
-    /**
-     * @return void
+     * moonPhase が主要位相・探索方向・新月近接判定で Carbon を返すことを確認する。
+     *
+     * @param string $date 探索基準日時（UTC）
+     * @param float $phase 位相
+     * @param bool $isNext is_next フラグ
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
      */
-    public function test_moonPhase_newMoon_isNextFalse(): void
+    #[DataProvider('moonPhaseReturnDataProvider')]
+    public function test_moonPhase_returnsCarbon(string $date, float $phase, bool $isNext): void
     {
         $moon = new Moon();
-        // 指定日以後の新月が Carbon インスタンスで返ることを確認する
-        $result = $moon->moonPhase(new DateTime('2023-01-15 00:00:00', new DateTimeZone('UTC')), 0.0);
+        $result = $moon->moonPhase(new DateTime($date, new DateTimeZone('UTC')), $phase, $isNext);
         /** @noinspection UnnecessaryAssertionInspection PhpConditionAlreadyCheckedInspection — moonPhase() の実行時戻り値型を確認する */
         $this->assertInstanceOf(Carbon::class, $result);
     }
-    // is_next=false, phase=0.25 → 上弦 (phase < 0.5 の分岐)
+
     /**
-     * @return void
-     * @throws \DateInvalidTimeZoneException
-     * @throws \JapaneseDate\Exceptions\ErrorException
-     * @throws \JapaneseDate\Exceptions\Exception
-     */
-    public function test_moonPhase_fullMoon(): void
-    {
-        $moon = new Moon();
-        // 指定日以後の満月が Carbon インスタンスで返ることを確認する
-        $result = $moon->moonPhase(new DateTime('2023-01-15 00:00:00', new DateTimeZone('UTC')), 0.5);
-        /** @noinspection UnnecessaryAssertionInspection PhpConditionAlreadyCheckedInspection — moonPhase() の実行時戻り値型を確認する */
-        $this->assertInstanceOf(Carbon::class, $result);
-    }
-    // is_next=false, phase=0.75 → 下弦 (phase >= 0.5 の分岐)
-    /**
-     * @return void
-     * @throws \DateInvalidTimeZoneException
-     * @throws \JapaneseDate\Exceptions\ErrorException
-     * @throws \JapaneseDate\Exceptions\Exception
-     */
-    public function test_moonPhase_firstQuarter(): void
-    {
-        $moon = new Moon();
-        // 指定日以後の上弦が Carbon インスタンスで返ることを確認する
-        $result = $moon->moonPhase(new DateTime('2023-01-15 00:00:00', new DateTimeZone('UTC')), 0.25);
-        /** @noinspection UnnecessaryAssertionInspection PhpConditionAlreadyCheckedInspection — moonPhase() の実行時戻り値型を確認する */
-        $this->assertInstanceOf(Carbon::class, $result);
-    }
-    // is_next=true → k1 (前の朔望月の新月基準)
-    /**
-     * @return void
-     * @throws \DateInvalidTimeZoneException
-     * @throws \JapaneseDate\Exceptions\ErrorException
-     * @throws \JapaneseDate\Exceptions\Exception
-     */
-    public function test_moonPhase_lastQuarter(): void
-    {
-        $moon = new Moon();
-        // 指定日以後の下弦が Carbon インスタンスで返ることを確認する
-        $result = $moon->moonPhase(new DateTime('2023-01-15 00:00:00', new DateTimeZone('UTC')), 0.75);
-        /** @noinspection UnnecessaryAssertionInspection PhpConditionAlreadyCheckedInspection — moonPhase() の実行時戻り値型を確認する */
-        $this->assertInstanceOf(Carbon::class, $result);
-    }
-    // abs($nt2 - $julian) < 0.75 の分岐 (新月当日に近い日時でトリガー)
-    /**
-     * @return void
-     * @throws \DateInvalidTimeZoneException
-     * @throws \JapaneseDate\Exceptions\ErrorException
-     * @throws \JapaneseDate\Exceptions\Exception
-     */
-    public function test_moonPhase_isNextTrue(): void
-    {
-        $moon = new Moon();
-        // is_next=true の場合は指定日前の新月が Carbon インスタンスで返ることを確認する
-        $result = $moon->moonPhase(new DateTime('2023-01-15 00:00:00', new DateTimeZone('UTC')), 0.0, true);
-        /** @noinspection UnnecessaryAssertionInspection PhpConditionAlreadyCheckedInspection — moonPhase() の実行時戻り値型を確認する */
-        $this->assertInstanceOf(Carbon::class, $result);
-    }
-    /**
-     * @return void
-     * @throws \DateInvalidTimeZoneException
-     * @throws \JapaneseDate\Exceptions\ErrorException
-     * @throws \JapaneseDate\Exceptions\Exception
-     */
-    public function test_moonPhase_nearNewMoon_triggersClosenessCheck(): void
-    {
-        $moon = new Moon();
-        // 2023-01-21 20:53 UTC は実際の新月時刻 → 平均新月との差が 0.75 ユリウス日未満になる
-        $date = new DateTime('2023-01-21 20:53:00', new DateTimeZone('UTC'));
-        $result = $moon->moonPhase($date, 0.0);
-        /** @noinspection UnnecessaryAssertionInspection PhpConditionAlreadyCheckedInspection — moonPhase() の実行時戻り値型を確認する */
-        $this->assertInstanceOf(Carbon::class, $result);
-    }
-    /**
-     * @return void
+     * ELP2000 選択時に moonPhase が旧 truePhase 経路へフォールバックしないことを確認する。
+     *
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
@@ -510,8 +451,10 @@ class MoonTest extends TestCase
 
         $this->assertFalse($moon->legacyTruePhaseCalled);
     }
+
     /**
-     * @return void
+     * Legacy 経路の moonPhaseByLegacy が Carbon インスタンスを返すことを確認する。
+     *
      * @throws \ReflectionException
      */
     public function test_moonPhaseByLegacyReturnsCarbon(): void
@@ -526,8 +469,10 @@ class MoonTest extends TestCase
 
         $this->assertInstanceOf(Carbon::class, $result);
     }
+
     /**
-     * @return void
+     * 天文学計算経路で探索開始時刻が目標位相と一致する場合に、その時刻の Carbon が返ることを確認する。
+     *
      * @throws \ReflectionException
      */
     public function test_moonPhaseByAstronomyReturnsPreviousTimestampWhenDeltaIsZero(): void
@@ -551,8 +496,10 @@ class MoonTest extends TestCase
         $this->assertInstanceOf(Carbon::class, $result);
         $this->assertSame($date->getTimestamp(), $result->getTimestamp());
     }
+
     /**
-     * @return void
+     * 天文学計算経路で位相交差が見つからない場合に Legacy 経路へフォールバックすることを確認する。
+     *
      * @throws \ReflectionException
      */
     public function test_moonPhaseByAstronomyFallsBackWhenNoCrossingIsFound(): void
@@ -593,8 +540,10 @@ class MoonTest extends TestCase
         $this->assertTrue($moon->fallbackCalled);
         $this->assertSame($date->getTimestamp(), $result->getTimestamp());
     }
+
     /**
-     * @return void
+     * 標準位相以外の探索で位相交差が見つからない場合に例外を投げることを確認する。
+     *
      * @throws \ReflectionException
      */
     public function test_moonPhaseByAstronomyThrowsWhenCustomPhaseIsNotFound(): void
@@ -623,18 +572,23 @@ class MoonTest extends TestCase
             [new DateTime('2023-01-15 00:00:00', new DateTimeZone('UTC')), 0.1, false]
         );
     }
+
     /**
-     * @param string $searchDate
-     * @param string $expectedNewMoon
-     * @param int $deltaSeconds
-     * @return void
+     * ELP2000 経路の新月計算が国立天文台データと一致することを確認する。
+     *
+     * @param string $searchDate 探索基準日時（UTC）
+     * @param string $expectedNewMoon 期待する新月時刻（Asia/Tokyo）
+     * @param int $deltaSeconds 許容秒数
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
-     * @dataProvider elp2000NewMoonProvider
      */
-    public function test_moonPhaseByElp2000MatchesNaojNewMoonTime(string $searchDate, string $expectedNewMoon, int $deltaSeconds): void
-    {
+    #[DataProvider('elp2000NewMoonProvider')]
+    public function test_moonPhaseByElp2000MatchesNaojNewMoonTime(
+        string $searchDate,
+        string $expectedNewMoon,
+        int $deltaSeconds
+    ): void {
         try {
             Astronomy::useSolarAlgorithm(Astronomy::SOLAR_VSOP87);
             Astronomy::useMoonAlgorithm(Astronomy::MOON_ELP2000);
@@ -651,6 +605,7 @@ class MoonTest extends TestCase
             Astronomy::useMoonAlgorithm(Astronomy::MOON_LEGACY);
         }
     }
+
     // ==================== moonPhase 実データ精度テスト ====================
     //
     // moonPhase() は truePhase() を呼ぶため、同じ精度が適用される
@@ -660,118 +615,37 @@ class MoonTest extends TestCase
     //   ループ終了時 k1=1521 (2022-12-23 新月), k2=1522 (2023-01-21 新月)
     //   is_next=false → truePhase(k2=1522, phase)
     //   is_next=true  → truePhase(k1=1521, phase)
+
     /**
-     * @return void
+     * moonPhase が USNO 実データに対して ±5 分以内で一致することを確認する。
+     *
+     * @param string $searchDate 探索基準日時（UTC）
+     * @param float $phase 位相
+     * @param bool $isNext is_next フラグ
+     * @param int $expected 期待タイムスタンプ
+     * @param string $label エラーメッセージ用イベント名
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
      */
-    public function test_moonPhase_newMoon_jan2023_accuracy(): void
-    {
+    #[DataProvider('moonPhaseAccuracyDataProvider')]
+    public function test_moonPhase_accuracy(
+        string $searchDate,
+        float $phase,
+        bool $isNext,
+        int $expected,
+        string $label
+    ): void {
         $moon = new Moon();
-        // 新月 2023-01-21 20:53 UTC (k2=1522)
-        $result = $moon->moonPhase(new DateTime('2023-01-15 00:00:00', new DateTimeZone('UTC')), 0.0);
+        $result = $moon->moonPhase(new DateTime($searchDate, new DateTimeZone('UTC')), $phase, $isNext);
         $this->assertEqualsWithDelta(
-            1674334380,
+            $expected,
             $result->getTimestamp(),
             300,
-            '2023-01-21 新月の moonPhase 誤差が ±5 分を超えています (USNO 基準)'
+            $label . 'の moonPhase 誤差が ±5 分を超えています (USNO 基準)'
         );
     }
-    /**
-     * @return void
-     * @throws \DateInvalidTimeZoneException
-     * @throws \JapaneseDate\Exceptions\ErrorException
-     * @throws \JapaneseDate\Exceptions\Exception
-     */
-    public function test_moonPhase_firstQuarter_jan2023_accuracy(): void
-    {
-        $moon = new Moon();
-        // 上弦 2023-01-28 15:19 UTC (k2=1522, phase=0.25)
-        $result = $moon->moonPhase(new DateTime('2023-01-15 00:00:00', new DateTimeZone('UTC')), 0.25);
-        $this->assertEqualsWithDelta(
-            1674919140,
-            $result->getTimestamp(),
-            300,
-            '2023-01-28 上弦の moonPhase 誤差が ±5 分を超えています (USNO 基準)'
-        );
-    }
-    /**
-     * @return void
-     * @throws \DateInvalidTimeZoneException
-     * @throws \JapaneseDate\Exceptions\ErrorException
-     * @throws \JapaneseDate\Exceptions\Exception
-     */
-    public function test_moonPhase_fullMoon_feb2023_accuracy(): void
-    {
-        $moon = new Moon();
-        // 満月 2023-02-05 18:29 UTC (k2=1522, phase=0.5)
-        $result = $moon->moonPhase(new DateTime('2023-01-15 00:00:00', new DateTimeZone('UTC')), 0.5);
-        $this->assertEqualsWithDelta(
-            1675621740,
-            $result->getTimestamp(),
-            300,
-            '2023-02-05 満月の moonPhase 誤差が ±5 分を超えています (USNO 基準)'
-        );
-    }
-    /**
-     * @return void
-     * @throws \DateInvalidTimeZoneException
-     * @throws \JapaneseDate\Exceptions\ErrorException
-     * @throws \JapaneseDate\Exceptions\Exception
-     */
-    public function test_moonPhase_lastQuarter_feb2023_accuracy(): void
-    {
-        $moon = new Moon();
-        // 下弦 2023-02-13 16:01 UTC (k2=1522, phase=0.75)
-        // 基準日を 2023-01-16 にすることで Dec 2022 サイクルの下弦 (Jan 15 02:13 UTC) を
-        // 過去に追いやり、次の下弦 (Feb 13) が確実に返るようにする。
-        $result = $moon->moonPhase(new DateTime('2023-01-16 00:00:00', new DateTimeZone('UTC')), 0.75);
-        $this->assertEqualsWithDelta(
-            1676304060,
-            $result->getTimestamp(),
-            300,
-            '2023-02-13 下弦の moonPhase 誤差が ±5 分を超えています (USNO 基準)'
-        );
-    }
-    /**
-     * @return void
-     * @throws \DateInvalidTimeZoneException
-     * @throws \JapaneseDate\Exceptions\ErrorException
-     * @throws \JapaneseDate\Exceptions\Exception
-     */
-    public function test_moonPhase_previousNewMoon_dec2022_accuracy(): void
-    {
-        $moon = new Moon();
-        // 新月 2022-12-23 10:17 UTC (k1=1521, is_next=true)
-        $result = $moon->moonPhase(new DateTime('2023-01-15 00:00:00', new DateTimeZone('UTC')), 0.0, true);
-        $this->assertEqualsWithDelta(
-            1671790620,
-            $result->getTimestamp(),
-            300,
-            '2022-12-23 新月 (is_next=true) の moonPhase 誤差が ±5 分を超えています (USNO 基準)'
-        );
-    }
-    /**
-     * @return void
-     * @throws \DateInvalidTimeZoneException
-     * @throws \JapaneseDate\Exceptions\ErrorException
-     * @throws \JapaneseDate\Exceptions\Exception
-     */
-    public function test_moonPhase_nearNewMoon_jan2023_accuracy(): void
-    {
-        $moon = new Moon();
-        // 新月当日 (近接判定分岐) も同じ結果を返す
-        // 新月 2023-01-21 20:53 UTC, タイムスタンプ = 1674334380
-        $date = new DateTime('2023-01-21 20:53:00', new DateTimeZone('UTC'));
-        $result = $moon->moonPhase($date, 0.0);
-        $this->assertEqualsWithDelta(
-            1674334380,
-            $result->getTimestamp(),
-            300,
-            '2023-01-21 新月当日の moonPhase 誤差が ±5 分を超えています (USNO 基準)'
-        );
-    }
+
     // ==================== 国立天文台(NAOJ) 実測値による検証 (2011年7月) ====================
     //
     // 出典: 国立天文台 暦要項 平成23年(2011) 朔弦望（日本標準時 JST = UTC+9）
@@ -783,244 +657,100 @@ class MoonTest extends TestCase
     //
     // truePhase() のオフセットバグ (+32400-60) が混入していた場合、ここでの照合結果は
     // 実測値から約9時間ズレるため検出できる。
+
     /**
-     * @return void
+     * 2011 年 7 月の主要 4 位相が国立天文台データと ±5 分以内で一致することを確認する。
+     *
+     * @param string $searchDate 探索基準日時（Asia/Tokyo）
+     * @param float $phase 位相
+     * @param bool $isNext is_next フラグ
+     * @param string $expectedDate 期待日時（Asia/Tokyo）
+     * @param string $label エラーメッセージ用イベント名
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
      */
-    public function test_moonPhase_newMoon_jul2011_matchesNaoj(): void
-    {
+    #[DataProvider('naoj2011MoonPhaseDataProvider')]
+    public function test_moonPhase_jul2011_matchesNaoj(
+        string $searchDate,
+        float $phase,
+        bool $isNext,
+        string $expectedDate,
+        string $label
+    ): void {
         $moon = new Moon();
-        $expected = new DateTime('2011-07-01 17:54:00', new DateTimeZone('Asia/Tokyo'));
-        $result = $moon->moonPhase(new DateTime('2011-07-09 09:00:00', new DateTimeZone('Asia/Tokyo')), 0.0, true);
+        $expected = new DateTime($expectedDate, new DateTimeZone('Asia/Tokyo'));
+        $result = $moon->moonPhase(new DateTime($searchDate, new DateTimeZone('Asia/Tokyo')), $phase, $isNext);
 
         $this->assertEqualsWithDelta(
             $expected->getTimestamp(),
             $result->getTimestamp(),
             300,
-            '2011-07-01 朔の moonPhase 誤差が ±5 分を超えています (国立天文台 基準)'
+            $label . 'の moonPhase 誤差が ±5 分を超えています (国立天文台 基準)'
         );
     }
-    /**
-     * @return void
-     * @throws \DateInvalidTimeZoneException
-     * @throws \JapaneseDate\Exceptions\ErrorException
-     * @throws \JapaneseDate\Exceptions\Exception
-     */
-    public function test_moonPhase_firstQuarter_jul2011_matchesNaoj(): void
-    {
-        $moon = new Moon();
-        $expected = new DateTime('2011-07-08 15:29:00', new DateTimeZone('Asia/Tokyo'));
-        $result = $moon->moonPhase(new DateTime('2011-07-09 09:00:00', new DateTimeZone('Asia/Tokyo')), 0.25, true);
 
-        $this->assertEqualsWithDelta(
-            $expected->getTimestamp(),
-            $result->getTimestamp(),
-            300,
-            '2011-07-08 上弦の moonPhase 誤差が ±5 分を超えています (国立天文台 基準)'
-        );
-    }
-    /**
-     * @return void
-     * @throws \DateInvalidTimeZoneException
-     * @throws \JapaneseDate\Exceptions\ErrorException
-     * @throws \JapaneseDate\Exceptions\Exception
-     */
-    public function test_moonPhase_fullMoon_jul2011_matchesNaoj(): void
-    {
-        $moon = new Moon();
-        // is_next=true は「基準日時以前の直近の望」を返す。
-        // 基準日を 2011-07-16 とすることで、Jul 15 望 ≤ Jul 16 が成立し k1 サイクルが選ばれる。
-        $expected = new DateTime('2011-07-15 15:40:00', new DateTimeZone('Asia/Tokyo'));
-        $result = $moon->moonPhase(new DateTime('2011-07-16 00:00:00', new DateTimeZone('Asia/Tokyo')), 0.5, true);
-
-        $this->assertEqualsWithDelta(
-            $expected->getTimestamp(),
-            $result->getTimestamp(),
-            300,
-            '2011-07-15 望の moonPhase 誤差が ±5 分を超えています (国立天文台 基準)'
-        );
-    }
-    /**
-     * @return void
-     * @throws \DateInvalidTimeZoneException
-     * @throws \JapaneseDate\Exceptions\ErrorException
-     * @throws \JapaneseDate\Exceptions\Exception
-     */
-    public function test_moonPhase_lastQuarter_jul2011_matchesNaoj(): void
-    {
-        $moon = new Moon();
-        // is_next=true は「基準日時以前の直近の下弦」を返す。
-        // 基準日を 2011-07-25 とすることで、Jul 23 下弦 ≤ Jul 25 が成立し k1 サイクルが選ばれる。
-        $expected = new DateTime('2011-07-23 14:02:00', new DateTimeZone('Asia/Tokyo'));
-        $result = $moon->moonPhase(new DateTime('2011-07-25 00:00:00', new DateTimeZone('Asia/Tokyo')), 0.75, true);
-
-        $this->assertEqualsWithDelta(
-            $expected->getTimestamp(),
-            $result->getTimestamp(),
-            300,
-            '2011-07-23 下弦の moonPhase 誤差が ±5 分を超えています (国立天文台 基準)'
-        );
-    }
     // ==================== 中間 4 位相 (三日月・十三夜・十六夜・有明) のテスト ====================
     //
     // 中間 4 位相は Legacy 補正式が存在しないため、隣接する 2 つの標準位相時刻の
     // 中点として近似される (moonPhaseByLegacyMidpoint)。
     // 以下のテストでは「moonPhase が返した時刻」が「隣接 2 位相の Legacy 計算時刻の中点」と
     // 一致することを確認する。
+
     /**
-     * @return void
+     * 中間位相が隣接する標準 2 位相の中点として返ることを確認する。
+     *
+     * @param float $targetPhase 検証対象の中間位相
+     * @param float $lowerPhase 中点計算に使う前側の標準位相
+     * @param float $upperPhase 中点計算に使う後側の標準位相
+     * @param string $label エラーメッセージ用の中点説明
+     * @param bool $isNext is_next フラグ
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
      */
-    public function test_moonPhase_crescent_jan2023_isMidpointOfNewMoonAndFirstQuarter(): void
-    {
+    #[DataProvider('legacyMidpointDataProvider')]
+    public function test_moonPhase_intermediatePhase_isMidpoint(
+        float $targetPhase,
+        float $lowerPhase,
+        float $upperPhase,
+        string $label,
+        bool $isNext
+    ): void {
         $moon = new Moon();
         $base = new DateTime('2023-01-15 00:00:00', new DateTimeZone('UTC'));
 
-        $newMoon = $moon->moonPhase($base, 0.0);
-        $firstQuarter = $moon->moonPhase($newMoon, 0.25);
-        $expectedMidpoint = (int) round(($newMoon->getTimestamp() + $firstQuarter->getTimestamp()) / 2);
+        $lower = $moon->moonPhase($base, $lowerPhase, $isNext);
+        $upper = $moon->moonPhase($lower, $upperPhase);
+        $expectedMidpoint = (int) round(($lower->getTimestamp() + $upper->getTimestamp()) / 2);
 
-        $result = $moon->moonPhase($base, 0.125);
+        $result = $moon->moonPhase($base, $targetPhase, $isNext);
 
         $this->assertEqualsWithDelta(
             $expectedMidpoint,
             $result->getTimestamp(),
             1,
-            '2023-01 三日月の moonPhase が「新月と上弦の中点」と一致しません'
+            '2023-01 の moonPhase が「' . $label . '」と一致しません'
         );
     }
+
     /**
-     * @return void
-     * @throws \DateInvalidTimeZoneException
-     * @throws \JapaneseDate\Exceptions\ErrorException
-     * @throws \JapaneseDate\Exceptions\Exception
-     */
-    public function test_moonPhase_thirteenNight_jan2023_isMidpointOfFirstQuarterAndFullMoon(): void
-    {
-        $moon = new Moon();
-        $base = new DateTime('2023-01-15 00:00:00', new DateTimeZone('UTC'));
-
-        $firstQuarter = $moon->moonPhase($base, 0.25);
-        $fullMoon = $moon->moonPhase($firstQuarter, 0.5);
-        $expectedMidpoint = (int) round(($firstQuarter->getTimestamp() + $fullMoon->getTimestamp()) / 2);
-
-        $result = $moon->moonPhase($base, 0.375);
-
-        $this->assertEqualsWithDelta(
-            $expectedMidpoint,
-            $result->getTimestamp(),
-            1,
-            '2023-01 十三夜の moonPhase が「上弦と満月の中点」と一致しません'
-        );
-    }
-    /**
-     * @return void
-     * @throws \DateInvalidTimeZoneException
-     * @throws \JapaneseDate\Exceptions\ErrorException
-     * @throws \JapaneseDate\Exceptions\Exception
-     */
-    public function test_moonPhase_sixteenNight_jan2023_isMidpointOfFullMoonAndLastQuarter(): void
-    {
-        $moon = new Moon();
-        $base = new DateTime('2023-01-15 00:00:00', new DateTimeZone('UTC'));
-
-        $fullMoon = $moon->moonPhase($base, 0.5);
-        $lastQuarter = $moon->moonPhase($fullMoon, 0.75);
-        $expectedMidpoint = (int) round(($fullMoon->getTimestamp() + $lastQuarter->getTimestamp()) / 2);
-
-        $result = $moon->moonPhase($base, 0.625);
-
-        $this->assertEqualsWithDelta(
-            $expectedMidpoint,
-            $result->getTimestamp(),
-            1,
-            '2023-01 十六夜の moonPhase が「満月と下弦の中点」と一致しません'
-        );
-    }
-    /**
-     * @return void
-     * @throws \DateInvalidTimeZoneException
-     * @throws \JapaneseDate\Exceptions\ErrorException
-     * @throws \JapaneseDate\Exceptions\Exception
-     */
-    public function test_moonPhase_dawnMoon_jan2023_isMidpointOfLastQuarterAndNextNewMoon(): void
-    {
-        $moon = new Moon();
-        $base = new DateTime('2023-01-15 00:00:00', new DateTimeZone('UTC'));
-
-        // 有明: 下弦 → 次の新月（upperPhase が 1.0 を超えて 0.0 に回り込むケース）
-        $lastQuarter = $moon->moonPhase($base, 0.75);
-        $nextNewMoon = $moon->moonPhase($lastQuarter, 0.0);
-        $expectedMidpoint = (int) round(($lastQuarter->getTimestamp() + $nextNewMoon->getTimestamp()) / 2);
-
-        $result = $moon->moonPhase($base, 0.875);
-
-        $this->assertEqualsWithDelta(
-            $expectedMidpoint,
-            $result->getTimestamp(),
-            1,
-            '2023-01 有明の moonPhase が「下弦と次の新月の中点」と一致しません'
-        );
-    }
-    /**
-     * @return void
-     * @throws \DateInvalidTimeZoneException
-     * @throws \JapaneseDate\Exceptions\ErrorException
-     * @throws \JapaneseDate\Exceptions\Exception
-     */
-    public function test_moonPhase_intermediatePhases_isNextTrue_useSamePeriod(): void
-    {
-        $moon = new Moon();
-        $base = new DateTime('2023-01-15 00:00:00', new DateTimeZone('UTC'));
-
-        // is_next=true: 基準日時より前の三日月を探す（前の朔望月の新月-上弦の中点）
-        $previousNewMoon = $moon->moonPhase($base, 0.0, true);
-        $followingFirstQuarter = $moon->moonPhase($previousNewMoon, 0.25);
-        $expectedMidpoint = (int) round(
-            ($previousNewMoon->getTimestamp() + $followingFirstQuarter->getTimestamp()) / 2
-        );
-
-        $result = $moon->moonPhase($base, 0.125, true);
-
-        $this->assertEqualsWithDelta(
-            $expectedMidpoint,
-            $result->getTimestamp(),
-            1,
-            'is_next=true 時の三日月が「前の新月と直後の上弦の中点」と一致しません'
-        );
-    }
-    /**
-     * @return void
+     * moonPhaseByLegacyMidpoint を直接呼び出し、通常経路と位相回り込み経路で Carbon が返ることを確認する。
+     *
+     * @param float $phase 中間位相
      * @throws \ReflectionException
      */
-    public function test_moonPhaseByLegacyMidpoint_directCall_crescent(): void
+    #[DataProvider('legacyMidpointDirectCallDataProvider')]
+    public function test_moonPhaseByLegacyMidpoint_directCall(float $phase): void
     {
         $moon = new Moon();
         $date = new DateTime('2023-01-15 00:00:00', new DateTimeZone('UTC'));
 
-        // upperPhase < 1.0 のパス（lowerPhase=0.0, upperPhase=0.25）
-        $result = $this->invokeExecuteMethod($moon, 'moonPhaseByLegacyMidpoint', [$date, 0.125, false]);
+        $result = $this->invokeExecuteMethod($moon, 'moonPhaseByLegacyMidpoint', [$date, $phase, false]);
 
         $this->assertInstanceOf(Carbon::class, $result);
     }
-    /**
-     * @return void
-     * @throws \ReflectionException
-     */
-    public function test_moonPhaseByLegacyMidpoint_directCall_dawnMoon_wrapsAround(): void
-    {
-        $moon = new Moon();
-        $date = new DateTime('2023-01-15 00:00:00', new DateTimeZone('UTC'));
 
-        // upperPhase >= 1.0 のパス（lowerPhase=0.75, upperPhase=0.0 に回り込む）
-        $result = $this->invokeExecuteMethod($moon, 'moonPhaseByLegacyMidpoint', [$date, 0.875, false]);
-
-        $this->assertInstanceOf(Carbon::class, $result);
-    }
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -1084,6 +814,7 @@ class MoonTest extends TestCase
             Astronomy::useMoonAlgorithm($moonBackup);
         }
     }
+
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -1113,6 +844,7 @@ class MoonTest extends TestCase
             '2011-07 三日月の moonPhase 誤差が ±10 分を超えています (NAOJ 4 位相中点 基準)'
         );
     }
+
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -1146,7 +878,9 @@ class MoonTest extends TestCase
             '2011-07 有明の moonPhase 誤差が ±10 分を超えています (NAOJ 4 位相中点 基準)'
         );
     }
+
     // ==================== meeus47 ルート確認 ====================
+
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -1163,6 +897,7 @@ class MoonTest extends TestCase
             $this->assertSame(0, $spy->byLegacyCount, "meeus47 phase=$phase → not byLegacy");
         }
     }
+
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -1179,6 +914,7 @@ class MoonTest extends TestCase
             $this->assertSame(0, $spy->byLegacyCount, "meeus47_no_c phase=$phase → not byLegacy");
         }
     }
+
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -1202,7 +938,9 @@ class MoonTest extends TestCase
             $this->invokeSetProperty(Astronomy::class, 'instances', []);
         }
     }
+
     // ==================== ELP2000 高速化: 経路検証テスト ====================
+
     /**
      * ELP2000 選択時に粗探索で phaseDeltaAtFast() が呼ばれることを検証する。
      *
@@ -1236,6 +974,7 @@ class MoonTest extends TestCase
 
         $this->assertGreaterThan(0, $spy->fastDeltaCalls, 'ELP2000 選択時は粗探索で phaseDeltaAtFast が呼ばれる必要があります');
     }
+
     /**
      * ELP2000 選択時に最終補正で phaseDeltaAt()（フル精度）が呼ばれることを検証する。
      *
@@ -1269,6 +1008,7 @@ class MoonTest extends TestCase
 
         $this->assertGreaterThan(0, $spy->fullDeltaCalls, 'ELP2000 選択時は最終補正で phaseDeltaAt（フル精度）が呼ばれる必要があります');
     }
+
     /**
      * ELP2000 高速探索で開始時刻が目標位相と一致する場合に、フル精度補正した時刻が返ることを検証する。
      *
@@ -1307,6 +1047,7 @@ class MoonTest extends TestCase
         $this->assertInstanceOf(Carbon::class, $result);
         $this->assertSame($date->getTimestamp() + 123, $result->getTimestamp());
     }
+
     /**
      * フル精度補正が十分小さい誤差で即収束する場合に、補正ループを終了することを検証する。
      *
@@ -1333,6 +1074,7 @@ class MoonTest extends TestCase
 
         $this->assertSame($timestamp, $result);
     }
+
     /**
      * Legacy アルゴリズムでは phaseDeltaAtFast() が呼ばれないことを検証する。
      *
@@ -1373,6 +1115,7 @@ class MoonTest extends TestCase
             $this->invokeSetProperty(Astronomy::class, 'instances', []);
         }
     }
+
     /**
      * Meeus47 では phaseDeltaAtFast() が呼ばれないことを検証する。
      *
@@ -1406,6 +1149,7 @@ class MoonTest extends TestCase
 
         $this->assertSame(0, $spy->fastDeltaCalls, 'Meeus47 では phaseDeltaAtFast が呼ばれないはずです');
     }
+
     /**
      * ELP2000 サブクラスでは reducedMoonImpl が生成されないことを検証する。
      *
@@ -1426,6 +1170,7 @@ class MoonTest extends TestCase
         $reducedImpl = $this->invokeGetProperty($astronomy, 'reducedMoonImpl');
         $this->assertNull($reducedImpl, 'ELP2000 サブクラスでは縮約版が生成されないはずです');
     }
+
     /**
      * 標準 ELP2000 では位相探索後に reducedMoonImpl が生成されることを検証する。
      *
@@ -1445,9 +1190,13 @@ class MoonTest extends TestCase
         $reducedImpl = $this->invokeGetProperty($astronomy, 'reducedMoonImpl');
         $this->assertNotNull($reducedImpl, '標準 ELP2000 では位相探索後に縮約版が生成されるはずです');
     }
+
     // ==================== ELP2000 高速化: フル精度との比較テスト ====================
+
     /**
-     * @return array[]
+     * ELP2000 高速探索結果をフル精度結果と比較するケースを返す。
+     *
+     * @return array<string, array{string, float, bool}>
      */
     public static function elp2000FastVsFullProvider(): array
     {
@@ -1463,6 +1212,7 @@ class MoonTest extends TestCase
             '2015 August new moon near midnight' => ['2015-08-01 00:00:00', 0.0, false],
         ];
     }
+
     /**
      * ELP2000 高速探索結果がフル精度結果と 1 秒以内で一致することを検証する。
      *
@@ -1473,16 +1223,22 @@ class MoonTest extends TestCase
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
-     * @dataProvider elp2000FastVsFullProvider
      */
-    public function test_elp2000_fastResult_matchesFullPrecisionWithinOneSecond(string $searchDate, float $phase, bool $isNext): void
-    {
+    #[DataProvider('elp2000FastVsFullProvider')]
+    public function test_elp2000_fastResult_matchesFullPrecisionWithinOneSecond(
+        string $searchDate,
+        float $phase,
+        bool $isNext
+    ): void {
         $astronomy = new Astronomy(null, new ELP2000());
         $date = new DateTime($searchDate, new DateTimeZone('UTC'));
+
         $fastMoon = new Moon($astronomy);
         $fullPrecisionMoon = new FullPrecisionElp2000Moon($astronomy);
+
         $fastResult = $fastMoon->moonPhase($date, $phase, $isNext);
         $fullResult = $fullPrecisionMoon->moonPhase($date, $phase, $isNext);
+
         $this->assertEqualsWithDelta(
             $fullResult->getTimestamp(),
             $fastResult->getTimestamp(),
@@ -1495,9 +1251,13 @@ class MoonTest extends TestCase
             )
         );
     }
+
     // ==================== ELP2000 高速化: 8 位相テスト ====================
+
     /**
-     * @return array[]
+     * ELP2000 経路で確認する 8 位相のケースを返す。
+     *
+     * @return array<string, array{float}>
      */
     public static function elp2000EightPhasesProvider(): array
     {
@@ -1512,6 +1272,7 @@ class MoonTest extends TestCase
             'dawn moon (0.875)' => [0.875],
         ];
     }
+
     /**
      * ELP2000 選択時に 8 位相すべてで Carbon インスタンスが返ることを検証する。
      *
@@ -1520,15 +1281,18 @@ class MoonTest extends TestCase
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
-     * @dataProvider elp2000EightPhasesProvider
      */
+    #[DataProvider('elp2000EightPhasesProvider')]
     public function test_elp2000_allEightPhases_returnCarbon(float $phase): void
     {
         $moon = new Moon(new Astronomy(null, new ELP2000()));
         $date = new DateTime('2023-01-22 00:00:00', new DateTimeZone('UTC'));
+
         $result = $moon->moonPhase($date, $phase);
+
         $this->assertInstanceOf(Carbon::class, $result);
     }
+
     /**
      * ELP2000 選択時に前方向・後方向の両方で Carbon インスタンスが返ることを検証する。
      *
@@ -1553,7 +1317,9 @@ class MoonTest extends TestCase
             '前方向探索の朔は後方向探索の朔より後の時刻でなければなりません'
         );
     }
+
     // ==================== ELP2000 高速化: 境界テスト ====================
+
     /**
      * 0°/360° 境界を跨ぐ新月（春分付近）が正しく検出されることを検証する。
      *
@@ -1584,6 +1350,7 @@ class MoonTest extends TestCase
             '春分前後の新月 (0°/360° 境界) の ELP2000 探索精度が ±5 分を超えています'
         );
     }
+
     /**
      * 新月探索時に満月付近（180°）の偽交差を拾わないことを検証する。
      *
@@ -1620,9 +1387,13 @@ class MoonTest extends TestCase
             '返り値が満月付近（偽検出）になっています'
         );
     }
+
     // ==================== ELP2000 高速化: 複数年・年境界テスト ====================
+
     /**
-     * @return array[]
+     * 複数年の ELP2000 新月計算を国立天文台データと照合するケースを返す。
+     *
+     * @return array<string, array{string, string, string, int}>
      */
     public static function elp2000MultipleYearsProvider(): array
     {
@@ -1648,6 +1419,7 @@ class MoonTest extends TestCase
             ],
         ];
     }
+
     /**
      * 複数年で ELP2000 高速探索が国立天文台データと一致することを検証する。
      *
@@ -1661,13 +1433,19 @@ class MoonTest extends TestCase
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
-     * @dataProvider elp2000MultipleYearsProvider
      */
-    public function test_elp2000_multipleYears_newMoonMatchesNaoj(string $searchDate, string $expectedNewMoon, string $timezone, int $deltaSeconds): void
-    {
+    #[DataProvider('elp2000MultipleYearsProvider')]
+    public function test_elp2000_multipleYears_newMoonMatchesNaoj(
+        string $searchDate,
+        string $expectedNewMoon,
+        string $timezone,
+        int $deltaSeconds
+    ): void {
         $moon = new Moon(new Astronomy(new Vsop87Astronomy(), new ELP2000()));
         $date = new DateTime($searchDate, new DateTimeZone('UTC'));
+
         $result = $moon->moonPhase($date, 0.0);
+
         $this->assertEqualsWithDelta(
             (new DateTime($expectedNewMoon, new DateTimeZone($timezone)))->getTimestamp(),
             $result->getTimestamp(),
@@ -1675,6 +1453,7 @@ class MoonTest extends TestCase
             sprintf('ELP2000 高速探索: %s 起点での新月精度が ±%d 秒を超えています', $searchDate, $deltaSeconds)
         );
     }
+
     /**
      * 年境界（12月〜1月）付近で ELP2000 高速探索が正しく動作することを検証する。
      *
@@ -1702,7 +1481,9 @@ class MoonTest extends TestCase
             '年境界付近の ELP2000 高速探索が期待値と ±5 分以上ずれています'
         );
     }
+
     // ==================== LunarCalendar 統合テスト ====================
+
     /**
      * ELP2000 高速化後の makeLunarCalendar() が正しい構造を返すことを検証する。
      *
@@ -1738,6 +1519,7 @@ class MoonTest extends TestCase
             $this->invokeSetProperty(Astronomy::class, 'instances', []);
         }
     }
+
     /**
      * ELP2000 高速化後の makeLunarCalendar() 朔日が NAOJ データと一致することを検証する。
      *
@@ -1779,7 +1561,9 @@ class MoonTest extends TestCase
             $this->invokeSetProperty(Astronomy::class, 'instances', []);
         }
     }
+
     // ==================== moonPhaseByLegacy is_next 方向修正テスト ====================
+
     /**
      * is_next=true かつ基準日が下弦より前の場合、前サイクルの下弦を返すことを確認する。
      *

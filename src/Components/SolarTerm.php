@@ -52,10 +52,7 @@ class SolarTerm
     /**
      * @param \JapaneseDate\Components\Astronomy|null $astronomy
      */
-    public function __construct(/**
-     * @readonly
-     */
-    protected ?Astronomy $astronomy = null)
+    public function __construct(protected readonly ?Astronomy $astronomy = null)
     {
     }
 

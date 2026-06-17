@@ -261,8 +261,7 @@ trait Getter
      * @throws \JapaneseDate\Exceptions\SolarTermException
      * @throws \JsonException
      */
-    #[\ReturnTypeWillChange]
-    public function __get($name)
+    public function __get(string $name): mixed
     {
         /** @noinspection PhpMultipleClassDeclarationsInspection */
         return match ($name) {

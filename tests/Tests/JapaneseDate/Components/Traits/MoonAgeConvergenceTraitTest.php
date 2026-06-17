@@ -25,13 +25,15 @@ use Tests\JapaneseDate\InvokeTrait;
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
  * @since       Release 1.0.0 から利用可能
- * @covers \JapaneseDate\Components\Traits\MoonAgeConvergenceTrait
- * @covers \JapaneseDate\Components\Traits\MoonAgeConvergenceTrait::applyConvergenceStep
  */
+#[CoversTrait(MoonAgeConvergenceTrait::class)]
+#[CoversMethod(MoonAgeConvergenceTrait::class, 'applyConvergenceStep')]
 class MoonAgeConvergenceTraitTest extends TestCase
 {
     use InvokeTrait;
+
     private const SYNODIC_MONTH = 29.530589;
+
     /**
      * MoonAgeConvergenceTrait を組み込んだ無名クラスのインスタンスを作成する。
      *
@@ -43,6 +45,7 @@ class MoonAgeConvergenceTraitTest extends TestCase
             use MoonAgeConvergenceTrait;
         };
     }
+
     /**
      * 標準ケース: tm2 が 0 以上の場合、減算のみで補正が完了する。
      *
@@ -77,6 +80,7 @@ class MoonAgeConvergenceTraitTest extends TestCase
         $this->assertEqualsWithDelta($expectedDeltaT2, $delta_t2, 1e-10);
         $this->assertFalse($shouldBreak);
     }
+
     /**
      * tm2 < 0 になる場合、tm2++ / tm1-- で繰り上げ補正される。
      */

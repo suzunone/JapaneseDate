@@ -19,9 +19,9 @@ use PHPUnit\Framework\TestCase;
  *   USNO Astronomical Applications Department "Dates of Primary Phases of the Moon"
  *   https://aa.usno.navy.mil/data/MoonPhases
  *   （2023〜2026 年の新月 UTC 時刻から変換）
- * @covers \JapaneseDate\Components\ELP2000Reduced
- * @covers \JapaneseDate\Components\ELP2000Reduced::moonAlgorithmName
  */
+#[CoversClass(ELP2000Reduced::class)]
+#[CoversMethod(ELP2000Reduced::class, 'moonAlgorithmName')]
 class ELP2000ReducedTest extends TestCase
 {
     /**
@@ -40,6 +40,7 @@ class ELP2000ReducedTest extends TestCase
             '2026 Mar new moon (JD 2461118.557639)' => ['2461118.557639'],
         ];
     }
+
     /**
      * moonAlgorithmName() が 'elp2000_reduced' を返すこと。
      */
@@ -48,6 +49,7 @@ class ELP2000ReducedTest extends TestCase
         $reduced = new ELP2000Reduced();
         $this->assertSame('elp2000_reduced', $reduced->moonAlgorithmName());
     }
+
     /**
      * 縮約版の preciseLongitude() がフル精度版と最短角距離 0.005° 以内で一致すること。
      *
@@ -55,19 +57,22 @@ class ELP2000ReducedTest extends TestCase
      * 0.005°（18秒角）の許容値を十分下回ることを確認する。
      *
      * @param string $jd TDB ユリウス日
-     * @dataProvider newMoonJdProvider
      */
+    #[DataProvider('newMoonJdProvider')]
     public function test_longitudePrecise_isWithinToleranceOfFull(string $jd): void
     {
         $full    = new ELP2000();
         $reduced = new ELP2000Reduced();
+
         $fullLon    = (float) $full->preciseLongitude($jd);
         $reducedLon = (float) $reduced->preciseLongitude($jd);
+
         // 最短角距離で比較（359.9° と 0.1° が 359.8° 差と誤判定されないよう）
         $diff = fmod(abs($fullLon - $reducedLon), 360.0);
         if ($diff > 180.0) {
             $diff = 360.0 - $diff;
         }
+
         $this->assertLessThan(0.005, $diff, sprintf(
             'JD %s: フル=%.6f°、縮約=%.6f°、差=%.6f°',
             $jd,
@@ -76,16 +81,18 @@ class ELP2000ReducedTest extends TestCase
             $diff
         ));
     }
+
     /**
      * preciseLongitude() の出力が 0〜360° の範囲内であること。
      *
      * @param string $jd TDB ユリウス日
-     * @dataProvider newMoonJdProvider
      */
+    #[DataProvider('newMoonJdProvider')]
     public function test_longitudePrecise_returnsNonNegativeAndLessThan360(string $jd): void
     {
         $reduced = new ELP2000Reduced();
         $lon = (float) $reduced->preciseLongitude($jd);
+
         $this->assertGreaterThanOrEqual(0.0, $lon, "JD {$jd}: 黄経が負値");
         $this->assertLessThan(360.0, $lon, "JD {$jd}: 黄経が 360° 以上");
     }

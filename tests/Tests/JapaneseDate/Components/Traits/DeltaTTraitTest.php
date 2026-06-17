@@ -24,13 +24,14 @@ use Tests\JapaneseDate\InvokeTrait;
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
  * @since       Release 1.0.0 から利用可能
- * @covers \JapaneseDate\Components\Traits\DeltaTTrait
- * @covers \JapaneseDate\Components\Traits\DeltaTTrait::deltaTPolynomialForDecimalYear
- * @covers \JapaneseDate\Components\Traits\DeltaTTrait::approximateDeltaTSeconds
  */
+#[CoversTrait(DeltaTTrait::class)]
+#[CoversMethod(DeltaTTrait::class, 'deltaTPolynomialForDecimalYear')]
+#[CoversMethod(DeltaTTrait::class, 'approximateDeltaTSeconds')]
 class DeltaTTraitTest extends TestCase
 {
     use InvokeTrait;
+
     /**
      * 各時代区分の境界年における ΔT 期待値（秒）を返すデータプロバイダ。
      *
@@ -58,6 +59,7 @@ class DeltaTTraitTest extends TestCase
             '2150年1月（2150年以降分岐）' => [2150, 1, 328.5680],
         ];
     }
+
     /**
      * approximateDeltaTSeconds() が各時代区分の境界年で期待する ΔT 秒数を返すことを確認する。
      *
@@ -66,13 +68,14 @@ class DeltaTTraitTest extends TestCase
      * @param float $expected
      * @return void
      * @throws \ReflectionException
-     * @dataProvider dataProvider_approximateDeltaTSeconds
      */
+    #[DataProvider('dataProvider_approximateDeltaTSeconds')]
     public function test_approximateDeltaTSeconds(int $year, int $month, float $expected): void
     {
         $instance = new class () {
             use DeltaTTrait;
         };
+
         $result = $this->invokeExecuteMethod($instance, 'approximateDeltaTSeconds', [$year, $month]);
         $this->assertEqualsWithDelta($expected, $result, 0.001);
     }

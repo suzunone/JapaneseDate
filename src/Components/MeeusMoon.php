@@ -241,10 +241,7 @@ class MeeusMoon implements MoonAlgorithm
      *                                    保証するものではない。
      *                                    false は NASA 多項式のみを使用する Chapter 47 標準モード。
      */
-    public function __construct(/**
-     * @readonly
-     */
-    protected bool $applyNasaCCorrection = true)
+    public function __construct(protected readonly bool $applyNasaCCorrection = true)
     {
     }
 

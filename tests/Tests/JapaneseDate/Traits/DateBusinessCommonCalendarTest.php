@@ -34,11 +34,12 @@ use Tests\JapaneseDate\InvokeTrait;
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
  * @since       Release 1.0.0 から利用可能
- * @covers \JapaneseDate\Traits\DateBusinessCommon
  */
+#[CoversTrait(DateBusinessCommon::class)]
 class DateBusinessCommonCalendarTest extends TestCase
 {
     use InvokeTrait;
+
     /**
      * isBusinessDayByConfig() が平日を営業日と判定することを確認する。
      *
@@ -49,6 +50,7 @@ class DateBusinessCommonCalendarTest extends TestCase
         $calendar = new Calendar('2026-05-25'); // 月曜
         $this->assertTrue($calendar->isBusinessDayByConfig());
     }
+
     /**
      * isBusinessDayByConfig() が土曜日を休業日と判定することを確認する。
      *
@@ -59,6 +61,7 @@ class DateBusinessCommonCalendarTest extends TestCase
         $calendar = new Calendar('2026-05-30'); // 土曜
         $this->assertFalse($calendar->isBusinessDayByConfig());
     }
+
     /**
      * isBusinessDayByConfig() に明示的な日付を渡したとき、その日付で営業日判定することを確認する。
      *
@@ -72,6 +75,7 @@ class DateBusinessCommonCalendarTest extends TestCase
         $saturday = DateTime::factory('2026-05-30');
         $this->assertFalse($calendar->isBusinessDayByConfig($saturday));
     }
+
     /**
      * isBusinessDayByConfig() が setBusinessConfig() で設定したインスタンス設定を反映して判定することを確認する。
      *
@@ -87,6 +91,7 @@ class DateBusinessCommonCalendarTest extends TestCase
         $calendar->setBusinessConfig($config);
         $this->assertFalse($calendar->isBusinessDayByConfig());
     }
+
     /**
      * getBusinessDaysBySpan() が指定期間内の営業日（平日）のみを返し、土日を除外することを確認する。
      *
@@ -109,6 +114,7 @@ class DateBusinessCommonCalendarTest extends TestCase
         $this->assertNotContains('2026-05-31', $dates); // 日
         $this->assertCount(5, $dates);
     }
+
     /**
      * getBusinessDaysBySpan() が臨時休業日を除外して営業日を返すことを確認する。
      *
@@ -127,6 +133,7 @@ class DateBusinessCommonCalendarTest extends TestCase
         $result = $calendar->getBusinessDaysBySpan('2026-05-29');
         $this->assertCount(4, $result);
     }
+
     /**
      * getBusinessDaysByLimit() が開始日から指定件数の営業日を順番に返すことを確認する。
      *
@@ -142,6 +149,7 @@ class DateBusinessCommonCalendarTest extends TestCase
         $this->assertSame('2026-05-25', $result[0]->format('Y-m-d'));
         $this->assertSame('2026-05-29', $result[4]->format('Y-m-d'));
     }
+
     /**
      * getBusinessDaysByLimit() が土日をスキップして翌週月曜を次の営業日として返すことを確認する。
      *
@@ -157,6 +165,7 @@ class DateBusinessCommonCalendarTest extends TestCase
         $this->assertSame('2026-05-29', $dates[0]); // 金曜
         $this->assertSame('2026-06-01', $dates[1]); // 月曜（土日スキップ）
     }
+
     /**
      * getBusinessDaysByLimit() が臨時休業日を除外して指定件数の営業日を返すことを確認する。
      *
@@ -178,6 +187,7 @@ class DateBusinessCommonCalendarTest extends TestCase
         $this->assertContains('2026-05-28', $dates);
         $this->assertContains('2026-05-29', $dates);
     }
+
     /**
      * setBusinessConfig() / getBusinessConfig() が Calendar インスタンスに設定を正しく保持・削除することを確認する。
      *
@@ -195,6 +205,7 @@ class DateBusinessCommonCalendarTest extends TestCase
         $calendar->setBusinessConfig(null);
         $this->assertNull($calendar->getBusinessConfig());
     }
+
     /**
      * setClosingDay() で登録した日付が休業日と判定されることを確認する。
      *
@@ -207,6 +218,7 @@ class DateBusinessCommonCalendarTest extends TestCase
         $calendar->setClosingDay('2026-08-14', '夏期休暇');
         $this->assertFalse($calendar->isBusinessDayByConfig());
     }
+
     /**
      * setOpenDay() で登録した土曜日が営業日として扱われることを確認する。
      *
@@ -219,6 +231,7 @@ class DateBusinessCommonCalendarTest extends TestCase
         $calendar->setOpenDay('2026-05-30');
         $this->assertTrue($calendar->isBusinessDayByConfig());
     }
+
     /**
      * getBusinessDaysBySpan() がグローバル設定の臨時休業日を除外して営業日を返すことを確認する。
      *
@@ -239,6 +252,7 @@ class DateBusinessCommonCalendarTest extends TestCase
         $this->assertNotContains('2026-05-27', $dates);
         $this->assertCount(4, $dates);
     }
+
     /**
      * getBusinessDaysByLimit() に 0 を渡したとき空配列を返すことを確認する。
      *
@@ -251,6 +265,7 @@ class DateBusinessCommonCalendarTest extends TestCase
         $result = $calendar->getBusinessDaysByLimit(0);
         $this->assertCount(0, $result);
     }
+
     /**
      * getBusinessDaysByLimit() が DateTime::add() 失敗時に NativeDateTimeException を投げることを確認する。
      *
@@ -268,6 +283,7 @@ class DateBusinessCommonCalendarTest extends TestCase
         $this->expectException(NativeDateTimeException::class);
         $calendar->getBusinessDaysByLimit(1);
     }
+
     /**
      * setClosingWeekdays() で指定した曜日が休業日と判定されることを確認する。
      *
@@ -280,6 +296,7 @@ class DateBusinessCommonCalendarTest extends TestCase
         $calendar->setClosingWeekdays([1]);
         $this->assertFalse($calendar->isBusinessDayByConfig());
     }
+
     /**
      * DateBusiness::setBypassHoliday(false) を設定したとき祝日が営業日として扱われることを確認する。
      *
@@ -294,7 +311,9 @@ class DateBusinessCommonCalendarTest extends TestCase
         $calendar->setBusinessConfig($config);
         $this->assertTrue($calendar->isBusinessDayByConfig());
     }
+
     // --- DateBusinessCommon ショートカット（Calendar 固有ルート） ---
+
     /**
      * setOpenNthWeekday() で指定した第 N 曜日が営業日として扱われることを確認する。
      *
@@ -307,6 +326,7 @@ class DateBusinessCommonCalendarTest extends TestCase
         $calendar->setOpenNthWeekday(6, 2);
         $this->assertTrue($calendar->isBusinessDayByConfig());
     }
+
     /**
      * setClosingNthWeekday() で指定した第 N 曜日が休業日として扱われることを確認する。
      *
@@ -319,6 +339,7 @@ class DateBusinessCommonCalendarTest extends TestCase
         $calendar->setClosingNthWeekday(3, 3, '第3水曜定休');
         $this->assertFalse($calendar->isBusinessDayByConfig());
     }
+
     /**
      * addOpenFilter() で登録したコールバックが営業日として上書き判定されることを確認する。
      *
@@ -331,6 +352,7 @@ class DateBusinessCommonCalendarTest extends TestCase
         $calendar->addOpenFilter(fn (DateTimeInterface $d) => $d->format('Ymd') === '20260530');
         $this->assertTrue($calendar->isBusinessDayByConfig());
     }
+
     /**
      * addClosingFilter() で登録したコールバックが休業日として上書き判定されることを確認する。
      *
@@ -343,6 +365,7 @@ class DateBusinessCommonCalendarTest extends TestCase
         $calendar->addClosingFilter(fn (DateTimeInterface $d) => $d->format('Ymd') === '20260525', '特別休業');
         $this->assertFalse($calendar->isBusinessDayByConfig());
     }
+
     /**
      * setBusinessMacro() で登録したマクロが営業日判定の最優先ロジックとして機能することを確認する。
      *
@@ -355,6 +378,7 @@ class DateBusinessCommonCalendarTest extends TestCase
         $calendar->setBusinessMacro(fn (DateTimeInterface $d) => true);
         $this->assertTrue($calendar->isBusinessDayByConfig());
     }
+
     /**
      * checkIsBusinessDay() が渡した日付の営業日判定結果を返すことを確認する。
      *
@@ -369,6 +393,7 @@ class DateBusinessCommonCalendarTest extends TestCase
         $this->assertFalse($calendar->checkIsBusinessDay($saturday));
         $this->assertTrue($calendar->checkIsBusinessDay(DateTime::factory('2026-05-25')));
     }
+
     /**
      * checkGetBusinessDayLabel() が休業日ラベルを返し、営業日のときは null を返すことを確認する。
      *
@@ -387,6 +412,7 @@ class DateBusinessCommonCalendarTest extends TestCase
         $this->assertSame('夏期休暇', $calendar->checkGetBusinessDayLabel($target));
         $this->assertNull($calendar->checkGetBusinessDayLabel(DateTime::factory('2026-05-25')));
     }
+
     /**
      * checkIsBusinessDay() に引数を渡さないとき、$target が null となり false を返すことを確認する。
      *
@@ -398,6 +424,7 @@ class DateBusinessCommonCalendarTest extends TestCase
         // 引数なし + Calendar は DateTimeInterface でない → $target === null → false
         $this->assertFalse($calendar->checkIsBusinessDay());
     }
+
     /**
      * checkGetBusinessDayLabel() に引数を渡さないとき、$target が null となり null を返すことを確認する。
      *
@@ -409,8 +436,10 @@ class DateBusinessCommonCalendarTest extends TestCase
         // 引数なし + Calendar は DateTimeInterface でない → $target === null → null
         $this->assertNull($calendar->checkGetBusinessDayLabel());
     }
+
     // --- checkIsBusinessDay / checkGetBusinessDayLabel の null target ブランチ ---
     // Calendar は DateTimeInterface を実装していないため、引数なしで呼ぶと $target === null になる
+
     /**
      * Calendar クラスに定義された曜日定数が正しい整数値を持つことを確認する。
      *
@@ -426,6 +455,7 @@ class DateBusinessCommonCalendarTest extends TestCase
         $this->assertSame(5, Calendar::FRIDAY);
         $this->assertSame(6, Calendar::SATURDAY);
     }
+
     /**
      * 各テスト実行前に BusinessCalendar のグローバル設定をリセットして、テスト間の干渉を防ぐ。
      *
@@ -435,7 +465,9 @@ class DateBusinessCommonCalendarTest extends TestCase
     {
         BusinessCalendar::resetAll();
     }
+
     // --- Calendar 定数 ---
+
     /**
      * 各テスト実行後に BusinessCalendar のグローバル設定をリセットして、後続テストへの副作用を除去する。
      *
@@ -464,7 +496,7 @@ class ThrowingDateTimeForBusinessLimit extends DateTime
      * @noinspection PhpUnused
      */
     #[\ReturnTypeWillChange]
-    public function add($interval, $value = 1, $overflow = null, $anchorDay = null)
+    public function add(mixed $interval, mixed $value = 1, mixed $overflow = null, mixed $anchorDay = null): static
     {
         throw new \RuntimeException('DateTime add failed.');
     }

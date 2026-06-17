@@ -40,20 +40,22 @@ use Tests\JapaneseDate\InvokeTrait;
  * @author      Suzunone<suzunone.eleven@gmail.com>
  * @link        https://github.com/suzunone/JapaneseDate
  * @since       8.4.0
- * @covers \JapaneseDate\Traits\SeventyTwoKou
- * @covers \JapaneseDate\Traits\SeventyTwoKou::getSeventyTwoKou
- * @covers \JapaneseDate\Traits\SeventyTwoKou::getSeventyTwoKouText
- * @covers \JapaneseDate\Traits\SeventyTwoKou::getSeventyTwoKouReading
- * @covers \JapaneseDate\Traits\SeventyTwoKou::getSeventyTwoKouType
- * @covers \JapaneseDate\Traits\SeventyTwoKou::nextSeventyTwoKou
- * @covers \JapaneseDate\Traits\SeventyTwoKou::previousSeventyTwoKou
  */
+#[CoversTrait(SeventyTwoKou::class)]
+#[CoversMethod(SeventyTwoKou::class, 'getSeventyTwoKou')]
+#[CoversMethod(SeventyTwoKou::class, 'getSeventyTwoKouText')]
+#[CoversMethod(SeventyTwoKou::class, 'getSeventyTwoKouReading')]
+#[CoversMethod(SeventyTwoKou::class, 'getSeventyTwoKouType')]
+#[CoversMethod(SeventyTwoKou::class, 'nextSeventyTwoKou')]
+#[CoversMethod(SeventyTwoKou::class, 'previousSeventyTwoKou')]
 class SeventyTwoKouTraitTest extends TestCase
 {
     use InvokeTrait;
+
     // =========================================================================
     // Data Providers
     // =========================================================================
+
     /**
      * @return array<string, array{0: string, 1: int, 2: string, 3: string, 4: string}>
      */
@@ -68,71 +70,112 @@ class SeventyTwoKouTraitTest extends TestCase
             '大寒末候' => ['2026-01-30', 72, '鶏始めてとやにつく', 'にわとり はじめてとやにつく', '末候'],
         ];
     }
+
     // =========================================================================
     // getSeventyTwoKou() — protected: InvokeTrait 経由
     // =========================================================================
+
     /**
      * getSeventyTwoKou() が正しい候番号を返すことを確認する（DateTime）。
-     * @dataProvider provideKouData
      */
-    public function test_getSeventyTwoKou_via_DateTime(string $dateStr, int $expectedKou, string $_, string $__, string $___): void
-    {
+    #[DataProvider('provideKouData')]
+    public function test_getSeventyTwoKou_via_DateTime(
+        string $dateStr,
+        int $expectedKou,
+        string $_,
+        string $__,
+        string $___
+    ): void {
         $dt = new DateTime($dateStr);
         $kou = $this->invokeExecuteMethod($dt, 'getSeventyTwoKou', []);
+
         $this->assertSame($expectedKou, $kou);
     }
+
     /**
      * getSeventyTwoKou() が正しい候番号を返すことを確認する（DateTimeImmutable）。
-     * @dataProvider provideKouData
      */
-    public function test_getSeventyTwoKou_via_DateTimeImmutable(string $dateStr, int $expectedKou, string $_, string $__, string $___): void
-    {
+    #[DataProvider('provideKouData')]
+    public function test_getSeventyTwoKou_via_DateTimeImmutable(
+        string $dateStr,
+        int $expectedKou,
+        string $_,
+        string $__,
+        string $___
+    ): void {
         $dt = new DateTimeImmutable($dateStr);
         $kou = $this->invokeExecuteMethod($dt, 'getSeventyTwoKou', []);
+
         $this->assertSame($expectedKou, $kou);
     }
+
     // =========================================================================
     // getSeventyTwoKouText() — protected: InvokeTrait 経由
     // =========================================================================
+
     /**
      * getSeventyTwoKouText() が正しい名称を返すことを確認する。
-     * @dataProvider provideKouData
      */
-    public function test_getSeventyTwoKouText(string $dateStr, int $_, string $expectedText, string $__, string $___): void
-    {
+    #[DataProvider('provideKouData')]
+    public function test_getSeventyTwoKouText(
+        string $dateStr,
+        int $_,
+        string $expectedText,
+        string $__,
+        string $___
+    ): void {
         $dt = new DateTime($dateStr);
         $text = $this->invokeExecuteMethod($dt, 'getSeventyTwoKouText', []);
+
         $this->assertSame($expectedText, $text);
     }
+
     // =========================================================================
     // getSeventyTwoKouReading() — protected: InvokeTrait 経由
     // =========================================================================
+
     /**
      * getSeventyTwoKouReading() が正しい読みを返すことを確認する。
-     * @dataProvider provideKouData
      */
-    public function test_getSeventyTwoKouReading(string $dateStr, int $_, string $__, string $expectedReading, string $___): void
-    {
+    #[DataProvider('provideKouData')]
+    public function test_getSeventyTwoKouReading(
+        string $dateStr,
+        int $_,
+        string $__,
+        string $expectedReading,
+        string $___
+    ): void {
         $dt = new DateTime($dateStr);
         $reading = $this->invokeExecuteMethod($dt, 'getSeventyTwoKouReading', []);
+
         $this->assertSame($expectedReading, $reading);
     }
+
     // =========================================================================
     // getSeventyTwoKouType() — protected: InvokeTrait 経由
     // =========================================================================
+
     /**
      * getSeventyTwoKouType() が正しい候種別を返すことを確認する。
-     * @dataProvider provideKouData
      */
-    public function test_getSeventyTwoKouType(string $dateStr, int $_, string $__, string $___, string $expectedType): void
-    {
+    #[DataProvider('provideKouData')]
+    public function test_getSeventyTwoKouType(
+        string $dateStr,
+        int $_,
+        string $__,
+        string $___,
+        string $expectedType
+    ): void {
         $dt = new DateTime($dateStr);
         $type = $this->invokeExecuteMethod($dt, 'getSeventyTwoKouType', []);
+
         $this->assertSame($expectedType, $type);
     }
+
     // =========================================================================
     // nextSeventyTwoKou() — public
     // =========================================================================
+
     /**
      * nextSeventyTwoKou() が初候→次候の開始日へ移動することを確認する（DateTime）。
      */
@@ -144,6 +187,7 @@ class SeventyTwoKouTraitTest extends TestCase
         $this->assertSame('2025-02-08', $next->format('Y-m-d'));
         $this->assertSame(2, $this->invokeExecuteMethod($next, 'getSeventyTwoKou', []));
     }
+
     /**
      * nextSeventyTwoKou() が末候→次節気の初候へ移動することを確認する（DateTime）。
      */
@@ -154,6 +198,7 @@ class SeventyTwoKouTraitTest extends TestCase
 
         $this->assertSame(4, $this->invokeExecuteMethod($next, 'getSeventyTwoKou', []));
     }
+
     /**
      * nextSeventyTwoKou() が元のインスタンスを変更せず新インスタンスを返すことを確認する（DateTimeImmutable）。
      */
@@ -166,6 +211,7 @@ class SeventyTwoKouTraitTest extends TestCase
         $this->assertSame('2025-02-04', $dt->format('Y-m-d'), '元インスタンスは変更されない');
         $this->assertSame(2, $this->invokeExecuteMethod($next, 'getSeventyTwoKou', []));
     }
+
     /**
      * nextSeventyTwoKou() が年末年始をまたいで翌年の立春初候へ移動することを確認する。
      */
@@ -176,9 +222,11 @@ class SeventyTwoKouTraitTest extends TestCase
 
         $this->assertSame(1, $this->invokeExecuteMethod($next, 'getSeventyTwoKou', []));
     }
+
     // =========================================================================
     // previousSeventyTwoKou() — public
     // =========================================================================
+
     /**
      * previousSeventyTwoKou() が次候→初候の開始日へ移動することを確認する（DateTime）。
      */
@@ -190,6 +238,7 @@ class SeventyTwoKouTraitTest extends TestCase
         $this->assertSame('2025-02-03', $prev->format('Y-m-d'));
         $this->assertSame(1, $this->invokeExecuteMethod($prev, 'getSeventyTwoKou', []));
     }
+
     /**
      * previousSeventyTwoKou() が初候→前節気の末候へ移動することを確認する（DateTime）。
      */
@@ -200,6 +249,7 @@ class SeventyTwoKouTraitTest extends TestCase
 
         $this->assertSame(72, $this->invokeExecuteMethod($prev, 'getSeventyTwoKou', []));
     }
+
     /**
      * previousSeventyTwoKou() が元のインスタンスを変更せず新インスタンスを返すことを確認する（DateTimeImmutable）。
      */
@@ -212,6 +262,7 @@ class SeventyTwoKouTraitTest extends TestCase
         $this->assertSame('2025-02-09', $dt->format('Y-m-d'), '元インスタンスは変更されない');
         $this->assertSame(1, $this->invokeExecuteMethod($prev, 'getSeventyTwoKou', []));
     }
+
     /**
      * previousSeventyTwoKou() が年末年始をまたいで前年の大寒末候へ移動することを確認する。
      */
