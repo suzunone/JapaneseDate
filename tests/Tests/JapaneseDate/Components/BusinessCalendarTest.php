@@ -27,9 +27,9 @@ use PHPUnit\Framework\TestCase;
  * @license     BSD-2
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
+ * @covers \JapaneseDate\Components\BusinessCalendar
+ * @covers \JapaneseDate\DateBusiness
  */
-#[CoversClass(BusinessCalendar::class)]
-#[CoversClass(DateBusiness::class)]
 class BusinessCalendarTest extends TestCase
 {
     /**
@@ -45,7 +45,6 @@ class BusinessCalendarTest extends TestCase
             'どちらもなければデフォルト設定' => ['default'],
         ];
     }
-
     /**
      * 営業日判定が平日・週末・祝日・祝日無視設定を正しく扱うことを確認するケースを返す。
      *
@@ -61,7 +60,6 @@ class BusinessCalendarTest extends TestCase
             '祝日無視設定では祝日も営業日' => ['2026-01-01', true, 'ignore_holiday'],
         ];
     }
-
     /**
      * 営業日判定の優先度ルールが期待どおりに上書きされることを確認するケースを返す。
      *
@@ -81,7 +79,6 @@ class BusinessCalendarTest extends TestCase
             'false を返すマクロはすべて休業日にする' => ['macro_false', '2026-05-25', false],
         ];
     }
-
     /**
      * 休業ラベルが存在しないケースで null を返すことを確認するケースを返す。
      *
@@ -96,7 +93,6 @@ class BusinessCalendarTest extends TestCase
             '祝日' => ['holiday', '2026-01-01'],
         ];
     }
-
     /**
      * 休業ラベルが休業設定種別ごとに取得できることを確認するケースを返す。
      *
@@ -111,7 +107,6 @@ class BusinessCalendarTest extends TestCase
             '祝日チェック無効時の特定日休業' => ['bypass_holiday_false', '2026-05-25', '臨時休業'],
         ];
     }
-
     /**
      * デフォルト設定が土日・祝日を休業日として扱うことを確認する。
      */
@@ -122,7 +117,6 @@ class BusinessCalendarTest extends TestCase
         $this->assertArrayHasKey(6, $config->getClosingWeekdays()); // 土曜
         $this->assertTrue($config->isBypassHoliday());
     }
-
     /**
      * 初期状態ではグローバル設定が登録されていないことを確認する。
      */
@@ -130,7 +124,6 @@ class BusinessCalendarTest extends TestCase
     {
         $this->assertNull(BusinessCalendar::getGlobalConfig());
     }
-
     /**
      * setGlobalConfig で登録した設定を getGlobalConfig で同一インスタンスとして取得できることを確認する。
      */
@@ -140,7 +133,6 @@ class BusinessCalendarTest extends TestCase
         BusinessCalendar::setGlobalConfig($config);
         $this->assertSame($config, BusinessCalendar::getGlobalConfig());
     }
-
     /**
      * setGlobalConfig に null を渡すとグローバル設定がリセットされることを確認する。
      */
@@ -151,7 +143,6 @@ class BusinessCalendarTest extends TestCase
         BusinessCalendar::setGlobalConfig(null);
         $this->assertNull(BusinessCalendar::getGlobalConfig());
     }
-
     /**
      * setDefaultConfig で登録した設定をデフォルト設定として取得できることを確認する。
      */
@@ -161,7 +152,6 @@ class BusinessCalendarTest extends TestCase
         BusinessCalendar::setDefaultConfig($config);
         $this->assertSame($config, BusinessCalendar::getDefaultConfig());
     }
-
     /**
      * setDefaultConfig に null を渡すと、次回取得時にデフォルト設定が遅延初期化されることを確認する。
      */
@@ -172,30 +162,25 @@ class BusinessCalendarTest extends TestCase
         $this->assertArrayHasKey(0, $config->getClosingWeekdays());
         $this->assertArrayHasKey(6, $config->getClosingWeekdays());
     }
-
     /**
      * resolveConfig がインスタンス設定、グローバル設定、デフォルト設定の優先順で設定を解決することを確認する。
+     * @dataProvider resolveConfigDataProvider
      */
-    #[DataProvider('resolveConfigDataProvider')]
     public function test_resolveConfig(string $scenario): void
     {
         $globalConfig = (new DateBusiness())->setBypassHoliday(false);
         $instanceConfig = (new DateBusiness())->setBypassHoliday(true);
-
         $expected = match ($scenario) {
             'instance' => $instanceConfig,
             'global' => $globalConfig,
             'default' => BusinessCalendar::getDefaultConfig(),
         };
-
         if ($scenario !== 'default') {
             BusinessCalendar::setGlobalConfig($globalConfig);
         }
-
         $resolved = BusinessCalendar::resolveConfig($scenario === 'instance' ? $instanceConfig : null);
         $this->assertSame($expected, $resolved);
     }
-
     /**
      * isBusinessDay が基本的な平日・週末・祝日判定と祝日無視設定を正しく反映することを確認する。
      *
@@ -204,18 +189,16 @@ class BusinessCalendarTest extends TestCase
      * @param string $configType
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     * @dataProvider businessDayDataProvider
      */
-    #[DataProvider('businessDayDataProvider')]
     public function test_isBusinessDay(string $date, bool $expected, string $configType): void
     {
         $config = match ($configType) {
             'default' => null,
             'ignore_holiday' => (new DateBusiness())->setClosingWeekdays([0, 6])->setBypassHoliday(false),
         };
-
         $this->assertSame($expected, BusinessCalendar::isBusinessDay(DateTime::factory($date), $config));
     }
-
     /**
      * 営業日判定の各優先度ルールが期待どおりに上書きされることを確認する。
      *
@@ -224,15 +207,13 @@ class BusinessCalendarTest extends TestCase
      * @param bool $expected
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     * @dataProvider businessDayPriorityDataProvider
      */
-    #[DataProvider('businessDayPriorityDataProvider')]
     public function test_isBusinessDay_priority(string $scenario, string $date, bool $expected): void
     {
         $config = $this->createPriorityConfig($scenario);
-
         $this->assertSame($expected, BusinessCalendar::isBusinessDay(DateTime::factory($date), $config));
     }
-
     /**
      * getClosingLabel がラベルのない休業理由や営業日では null を返すことを確認する。
      *
@@ -240,18 +221,16 @@ class BusinessCalendarTest extends TestCase
      * @param string $date
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     * @dataProvider closingLabelNullDataProvider
      */
-    #[DataProvider('closingLabelNullDataProvider')]
     public function test_getClosingLabel_returns_null(string $scenario, string $date): void
     {
         $config = match ($scenario) {
             'business_day', 'weekday_closing', 'holiday' => null,
             'macro_false' => (new DateBusiness())->setMacro(fn (DateTimeInterface $d) => false),
         };
-
         $this->assertNull(BusinessCalendar::getClosingLabel(DateTime::factory($date), $config));
     }
-
     /**
      * getClosingLabel が特定日・第 N 曜日・フィルタ由来の休業ラベルを返すことを確認する。
      *
@@ -260,8 +239,8 @@ class BusinessCalendarTest extends TestCase
      * @param string $expected
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     * @dataProvider closingLabelDataProvider
      */
-    #[DataProvider('closingLabelDataProvider')]
     public function test_getClosingLabel(string $scenario, string $date, string $expected): void
     {
         $config = match ($scenario) {
@@ -279,10 +258,8 @@ class BusinessCalendarTest extends TestCase
                 ->setBypassHoliday(false)
                 ->addClosingDate('2026-05-25', '臨時休業'),
         };
-
         $this->assertSame($expected, BusinessCalendar::getClosingLabel(DateTime::factory($date), $config));
     }
-
     /**
      * インスタンス設定がない場合、営業日判定と休業ラベル取得にグローバル設定が使われることを確認する。
      *
@@ -301,7 +278,6 @@ class BusinessCalendarTest extends TestCase
         $this->assertFalse(BusinessCalendar::isBusinessDay($dt));
         $this->assertSame('グローバル休業', BusinessCalendar::getClosingLabel($dt));
     }
-
     /**
      * resetAll がグローバル設定とデフォルト設定をリセットすることを確認する。
      */
@@ -317,7 +293,6 @@ class BusinessCalendarTest extends TestCase
         $newDefault = BusinessCalendar::getDefaultConfig();
         $this->assertNotSame($config, $newDefault);
     }
-
     /**
      * JapaneseDate\DateTime 以外の DateTimeInterface でも曜日ベースの営業日判定ができることを確認する。
      */
@@ -331,7 +306,6 @@ class BusinessCalendarTest extends TestCase
         $dt = new \DateTime('2026-05-30'); // 土曜
         $this->assertFalse(BusinessCalendar::isBusinessDay($dt, $config));
     }
-
     /**
      * getHoliday() の catch ブランチ:
      * getTimezone() が false を返す DateTimeInterface を渡すと
@@ -350,7 +324,6 @@ class BusinessCalendarTest extends TestCase
         // 祝日判定も catch により NO_HOLIDAY → 営業日
         $this->assertTrue(BusinessCalendar::isBusinessDay($badDate, $config));
     }
-
     /**
      * 各テストの開始前にグローバル設定とデフォルト設定を初期状態へ戻す。
      */
@@ -358,7 +331,6 @@ class BusinessCalendarTest extends TestCase
     {
         BusinessCalendar::resetAll();
     }
-
     /**
      * テスト間でグローバル設定とデフォルト設定が共有されないようにリセットする。
      */
@@ -366,7 +338,6 @@ class BusinessCalendarTest extends TestCase
     {
         BusinessCalendar::resetAll();
     }
-
     /**
      * 営業日判定の優先度検証用設定を生成する。
      *

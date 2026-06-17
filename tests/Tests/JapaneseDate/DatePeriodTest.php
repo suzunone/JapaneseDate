@@ -38,29 +38,29 @@ use PHPUnit\Framework\TestCase;
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
  * @since       2026-05-29
+ * @covers \JapaneseDate\DatePeriod
+ * @covers \JapaneseDate\DatePeriod::onlyHolidays
+ * @covers \JapaneseDate\DatePeriod::withoutHolidays
+ * @covers \JapaneseDate\DatePeriod::withoutWeekends
+ * @covers \JapaneseDate\DatePeriod::onlyWeekdays
+ * @covers \JapaneseDate\DatePeriod::onlyGotobi
+ * @covers \JapaneseDate\DatePeriod::onlySixWeekday
+ * @covers \JapaneseDate\DatePeriod::withoutSixWeekday
+ * @covers \JapaneseDate\DatePeriod::onlyDoyo
+ * @covers \JapaneseDate\DatePeriod::onlyHigan
+ * @covers \JapaneseDate\DatePeriod::eachSolarTerm
+ * @covers \JapaneseDate\DatePeriod::eachLunarMonth
+ * @covers \JapaneseDate\DatePeriod::splitByEra
+ * @covers \JapaneseDate\DatePeriod::eachJapaneseFiscalYear
+ * @covers \JapaneseDate\DatePeriod::collectSolarTermDates
+ * @covers \JapaneseDate\DatePeriod::collectLunarNewMoonDates
+ * @covers \JapaneseDate\DatePeriod::resolveSolarTerms
+ * @covers \JapaneseDate\DatePeriod::createFromDatesArray
+ * @covers \JapaneseDate\DatePeriod::isInDoyo
+ * @covers \JapaneseDate\DatePeriod::isInHigan
+ * @covers \JapaneseDate\DatePeriod::onlyBusinessDays
+ * @covers \JapaneseDate\DatePeriod::withoutBusinessDays
  */
-#[CoversClass(DatePeriod::class)]
-#[CoversMethod(DatePeriod::class, 'onlyHolidays')]
-#[CoversMethod(DatePeriod::class, 'withoutHolidays')]
-#[CoversMethod(DatePeriod::class, 'withoutWeekends')]
-#[CoversMethod(DatePeriod::class, 'onlyWeekdays')]
-#[CoversMethod(DatePeriod::class, 'onlyGotobi')]
-#[CoversMethod(DatePeriod::class, 'onlySixWeekday')]
-#[CoversMethod(DatePeriod::class, 'withoutSixWeekday')]
-#[CoversMethod(DatePeriod::class, 'onlyDoyo')]
-#[CoversMethod(DatePeriod::class, 'onlyHigan')]
-#[CoversMethod(DatePeriod::class, 'eachSolarTerm')]
-#[CoversMethod(DatePeriod::class, 'eachLunarMonth')]
-#[CoversMethod(DatePeriod::class, 'splitByEra')]
-#[CoversMethod(DatePeriod::class, 'eachJapaneseFiscalYear')]
-#[CoversMethod(DatePeriod::class, 'collectSolarTermDates')]
-#[CoversMethod(DatePeriod::class, 'collectLunarNewMoonDates')]
-#[CoversMethod(DatePeriod::class, 'resolveSolarTerms')]
-#[CoversMethod(DatePeriod::class, 'createFromDatesArray')]
-#[CoversMethod(DatePeriod::class, 'isInDoyo')]
-#[CoversMethod(DatePeriod::class, 'isInHigan')]
-#[CoversMethod(DatePeriod::class, 'onlyBusinessDays')]
-#[CoversMethod(DatePeriod::class, 'withoutBusinessDays')]
 class DatePeriodTest extends TestCase
 {
     /**
@@ -77,7 +77,6 @@ class DatePeriodTest extends TestCase
             'next: 後ろ倒し調整後の日付が営業日' => ['next', false],
         ];
     }
-
     /**
      * 六曜フィルタが指定した六曜の抽出・除外を行うことを確認するケースを返す。
      *
@@ -95,7 +94,6 @@ class DatePeriodTest extends TestCase
             ],
         ];
     }
-
     /**
      * 雑節フィルタが期間内・期間外・フォールバック年で期待する結果になることを確認するケースを返す。
      *
@@ -112,7 +110,6 @@ class DatePeriodTest extends TestCase
             '彼岸: 期間外' => ['higan', '2026-05-01', '2026-05-10', 'empty', null],
         ];
     }
-
     /**
      * 旧暦月イテレータの月数指定で期待する件数になることを確認するケースを返す。
      *
@@ -125,7 +122,6 @@ class DatePeriodTest extends TestCase
             '0ヶ月' => [0, 0],
         ];
     }
-
     /**
      * 日本の年度イテレータが年度範囲ごとに期待する開始日を返すことを確認するケースを返す。
      *
@@ -139,11 +135,9 @@ class DatePeriodTest extends TestCase
             '終了年度が開始年度より前' => [2026, 2024, 0, null],
         ];
     }
-
     // =========================================================================
     // クラス基本テスト
     // =========================================================================
-
     /**
      * DatePeriod が CarbonPeriod を継承していることを確認する。
      */
@@ -153,11 +147,9 @@ class DatePeriodTest extends TestCase
         $this->assertInstanceOf(CarbonPeriod::class, $period);
         $this->assertInstanceOf(DatePeriod::class, $period);
     }
-
     // =========================================================================
     // 祝日・休日フィルタテスト
     // =========================================================================
-
     /**
      * onlyHolidays: 2026年5月のゴールデンウィーク期間から祝日のみが抽出される。
      *
@@ -178,7 +170,6 @@ class DatePeriodTest extends TestCase
         $this->assertContains('2026-05-05', $formattedDates);
         $this->assertContains('2026-05-06', $formattedDates);
     }
-
     /**
      * onlyHolidays: 祝日がない期間では空のイテレータを返す。
      */
@@ -191,7 +182,6 @@ class DatePeriodTest extends TestCase
         $dates = iterator_to_array($period);
         $this->assertEmpty($dates);
     }
-
     /**
      * withoutHolidays: 祝日がフィルタリングされ、非祝日のみが残る。
      */
@@ -210,7 +200,6 @@ class DatePeriodTest extends TestCase
         $this->assertNotContains('2026-05-05', $formattedDates);
         $this->assertNotContains('2026-05-06', $formattedDates);
     }
-
     /**
      * withoutWeekends: 土日が除外され、平日のみが残る。
      */
@@ -227,7 +216,6 @@ class DatePeriodTest extends TestCase
         $this->assertNotContains('2026-05-02', $formattedDates);
         $this->assertNotContains('2026-05-09', $formattedDates);
     }
-
     /**
      * onlyWeekdays: 土日と祝日を除いた純粋な平日のみが抽出される。
      */
@@ -246,23 +234,19 @@ class DatePeriodTest extends TestCase
         // 2026年5月は31日間、土日と祝日を除く
         $this->assertGreaterThan(0, count($dates));
     }
-
     // =========================================================================
     // 五十日（ごとおび）フィルタテスト
     // =========================================================================
-
     /**
      * onlyGotobi: adjust 指定ごとに五十日または調整後の営業日が抽出されることを確認する。
+     * @dataProvider gotobiAdjustDataProvider
      */
-    #[DataProvider('gotobiAdjustDataProvider')]
     public function test_onlyGotobi(string $adjust, bool $mustBeGotobi): void
     {
         $period = DatePeriod::create('2026-05-01', '1 day', '2026-05-31')
             ->onlyGotobi($adjust);
-
         $dates = iterator_to_array($period);
         $this->assertIsArray($dates);
-
         foreach ($dates as $d) {
             $jd = DateTime::factory($d);
             if ($mustBeGotobi) {
@@ -275,15 +259,13 @@ class DatePeriodTest extends TestCase
             $this->assertNotContains($d->dayOfWeek, [0, 6]);
         }
     }
-
     // =========================================================================
     // 六曜フィルタテスト
     // =========================================================================
-
     /**
      * onlySixWeekday / withoutSixWeekday: 指定した六曜の抽出・除外ができることを確認する。
+     * @dataProvider sixWeekdayFilterDataProvider
      */
-    #[DataProvider('sixWeekdayFilterDataProvider')]
     public function test_sixWeekdayFilter(string $filter, array $sixWeekdays): void
     {
         $period = match ($filter) {
@@ -292,10 +274,8 @@ class DatePeriodTest extends TestCase
             'without' => DatePeriod::create('2026-05-01', '1 day', '2026-05-31')
                 ->withoutSixWeekday(...$sixWeekdays),
         };
-
         $dates = iterator_to_array($period);
         $this->assertGreaterThan(0, count($dates));
-
         foreach ($dates as $d) {
             $jd = DateTime::factory($d);
             if ($filter === 'only') {
@@ -305,28 +285,19 @@ class DatePeriodTest extends TestCase
             }
         }
     }
-
     // =========================================================================
     // 雑節フィルタテスト
     // =========================================================================
-
     /**
      * onlyDoyo / onlyHigan: 雑節期間の抽出、期間外の空結果、フォールバック年の動作を確認する。
+     * @dataProvider seasonalFilterDataProvider
      */
-    #[DataProvider('seasonalFilterDataProvider')]
-    public function test_seasonalFilter(
-        string $filter,
-        string $start,
-        string $end,
-        string $expectation,
-        ?int $expectedCount
-    ): void
+    public function test_seasonalFilter(string $filter, string $start, string $end, string $expectation, ?int $expectedCount): void
     {
         $period = match ($filter) {
             'doyo' => DatePeriod::create($start, '1 day', $end)->onlyDoyo(),
             'higan' => DatePeriod::create($start, '1 day', $end)->onlyHigan(),
         };
-
         $dates = iterator_to_array($period);
         match ($expectation) {
             'count' => $this->assertCount((int) $expectedCount, $dates),
@@ -334,11 +305,9 @@ class DatePeriodTest extends TestCase
             'empty' => $this->assertEmpty($dates),
         };
     }
-
     // =========================================================================
     // 二十四節気区切りイテレータテスト
     // =========================================================================
-
     /**
      * eachSolarTerm: 2026年1月〜3月の間に含まれる節気が正しく取得できる。
      *
@@ -359,7 +328,6 @@ class DatePeriodTest extends TestCase
         $this->assertContains('2026-01-20', $formattedDates); // 大寒
         $this->assertContains('2026-02-04', $formattedDates); // 立春
     }
-
     /**
      * eachSolarTerm: 期間内に節気がない場合は空の期間を返す。
      */
@@ -375,7 +343,6 @@ class DatePeriodTest extends TestCase
         $dates = iterator_to_array($period);
         $this->assertEmpty($dates);
     }
-
     /**
      * eachSolarTerm: SimpleSolarTerm が対応しない年でも SolarTerm 経由で動作する。
      *
@@ -395,7 +362,6 @@ class DatePeriodTest extends TestCase
         $this->assertInstanceOf(DatePeriod::class, $period);
         $this->assertIsArray($dates);
     }
-
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -420,7 +386,6 @@ class DatePeriodTest extends TestCase
             Astronomy::useMoonAlgorithm(Astronomy::MOON_LEGACY);
         }
     }
-
     /**
      * eachSolarTerm: 返されるイテレータが DatePeriod のインスタンスである。
      */
@@ -433,23 +398,19 @@ class DatePeriodTest extends TestCase
 
         $this->assertInstanceOf(DatePeriod::class, $period);
     }
-
     // =========================================================================
     // 旧暦月ごとのイテレータテスト
     // =========================================================================
-
     /**
      * eachLunarMonth: 指定した月数分の新月日が取得できる。
+     * @dataProvider lunarMonthCountDataProvider
      */
-    #[DataProvider('lunarMonthCountDataProvider')]
     public function test_eachLunarMonth_count(int $months, int $expectedCount): void
     {
         $period = DatePeriod::eachLunarMonth(DateTime::parse('2026-01-01'), $months);
         $dates = iterator_to_array($period);
-
         $this->assertCount($expectedCount, $dates);
     }
-
     /**
      * eachLunarMonth: 取得した日付が旧暦の朔日（旧暦1日）であることを確認する。
      */
@@ -464,7 +425,6 @@ class DatePeriodTest extends TestCase
             $this->assertLessThanOrEqual(2.0, $jd->lunar_day, '旧暦1日前後であること');
         }
     }
-
     /**
      * eachLunarMonth: 開始日直前に新月がある場合（内部の if 分岐）でも正しく動作する。
      *
@@ -484,7 +444,6 @@ class DatePeriodTest extends TestCase
             $dates[0]->timestamp
         );
     }
-
     /**
      * eachLunarMonth: 連続する新月の間隔が朔望月の範囲（28〜31日）内にある。
      */
@@ -499,11 +458,9 @@ class DatePeriodTest extends TestCase
             $this->assertLessThanOrEqual(31, $diff->days);
         }
     }
-
     // =========================================================================
     // 元号関連テスト
     // =========================================================================
-
     /**
      * splitByEra: 昭和〜平成をまたぐ期間が正しく2つに分割される。
      */
@@ -524,7 +481,6 @@ class DatePeriodTest extends TestCase
         $this->assertEquals('1989-01-08', $heiseiPeriod->getStartDate()->format('Y-m-d'));
         $this->assertEquals('1990-12-31', $heiseiPeriod->getEndDate()->format('Y-m-d'));
     }
-
     /**
      * splitByEra: 単一元号内の期間は1つのサブ期間になる。
      */
@@ -536,7 +492,6 @@ class DatePeriodTest extends TestCase
         $this->assertCount(1, $split);
         $this->assertArrayHasKey(DateTime::ERA_REIWA, $split);
     }
-
     /**
      * splitByEra: 明治〜大正〜昭和〜平成〜令和の全元号にまたがる長期間が正しく分割される。
      */
@@ -552,7 +507,6 @@ class DatePeriodTest extends TestCase
         $this->assertArrayHasKey(DateTime::ERA_HEISEI, $split);
         $this->assertArrayHasKey(DateTime::ERA_REIWA, $split);
     }
-
     /**
      * splitByEra: 明治開始前の期間も欠落せず元号なし区間として返る。
      */
@@ -572,21 +526,14 @@ class DatePeriodTest extends TestCase
         $this->assertEquals('1868-01-25', $meijiPeriod->getStartDate()->format('Y-m-d'));
         $this->assertEquals('1868-02-01', $meijiPeriod->getEndDate()->format('Y-m-d'));
     }
-
     /**
      * eachJapaneseFiscalYear: 年度範囲ごとの件数と年度開始日（4月1日）を確認する。
+     * @dataProvider japaneseFiscalYearDataProvider
      */
-    #[DataProvider('japaneseFiscalYearDataProvider')]
-    public function test_eachJapaneseFiscalYear(
-        int $startFiscalYear,
-        int $endFiscalYear,
-        int $expectedCount,
-        ?string $expectedFirstDate
-    ): void
+    public function test_eachJapaneseFiscalYear(int $startFiscalYear, int $endFiscalYear, int $expectedCount, ?string $expectedFirstDate): void
     {
         $period = DatePeriod::eachJapaneseFiscalYear($startFiscalYear, $endFiscalYear);
         $dates = iterator_to_array($period);
-
         $this->assertCount($expectedCount, $dates);
         foreach ($dates as $d) {
             $this->assertEquals('04-01', $d->format('m-d'), "年度開始日が4月1日ではない: {$d->format('Y-m-d')}");
@@ -595,7 +542,6 @@ class DatePeriodTest extends TestCase
             $this->assertEquals($expectedFirstDate, $dates[0]->format('Y-m-d'));
         }
     }
-
     /**
      * eachJapaneseFiscalYear: 年度の元号年表示が正しいことを確認する。
      */
@@ -610,11 +556,9 @@ class DatePeriodTest extends TestCase
         $this->assertEquals('令和', $jd->eraNameText);
         $this->assertEquals(6, $jd->eraYear);
     }
-
     // =========================================================================
     // フィルタ組み合わせテスト
     // =========================================================================
-
     /**
      * 祝日フィルタと六曜フィルタを組み合わせられる。
      */
@@ -632,7 +576,6 @@ class DatePeriodTest extends TestCase
             $this->assertEquals(DateTime::SIX_WEEKDAY_TAIAN, $jd->six_weekday);
         }
     }
-
     /**
      * 平日フィルタと六曜フィルタを組み合わせられる。
      */
@@ -651,11 +594,9 @@ class DatePeriodTest extends TestCase
             $this->assertNotEquals(DateTime::SIX_WEEKDAY_BUTSUMETSU, $jd->six_weekday);
         }
     }
-
     // =========================================================================
     // onlyBusinessDays / withoutBusinessDays
     // =========================================================================
-
     /**
      * onlyBusinessDays() が週末を除いた営業日のみを返すことを確認する。
      */
@@ -673,7 +614,6 @@ class DatePeriodTest extends TestCase
             $this->assertNotContains($dow, [6, 7], $d->format('Y-m-d') . ' は週末であるべきでない');
         }
     }
-
     /**
      * onlyBusinessDays() に $config を渡したとき、その設定で営業日を判定することを確認する。
      */
@@ -686,7 +626,6 @@ class DatePeriodTest extends TestCase
         $dates = iterator_to_array($period);
         $this->assertCount(5, $dates); // 月〜金の5日
     }
-
     /**
      * withoutBusinessDays() が営業日を除いた休業日のみを返すことを確認する。
      */
@@ -704,7 +643,6 @@ class DatePeriodTest extends TestCase
             $this->assertContains($dow, [6, 7], $d->format('Y-m-d') . ' は週末であるべき');
         }
     }
-
     /**
      * withoutBusinessDays() に $config を渡したとき、その設定で判定することを確認する。
      */

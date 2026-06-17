@@ -20,24 +20,23 @@ use Tests\JapaneseDate\InvokeTrait;
  *
  * 引数は簡易的な float 値を使用（メソッド内部に条件分岐はなく、
  * 任意の引数で全コードパスが実行される）。
+ * @covers \JapaneseDate\Components\Traits\ELP2000LonReduced
+ * @covers \JapaneseDate\Components\Traits\ELP2000LonReduced::mainProblemLonFloat
+ * @covers \JapaneseDate\Components\Traits\ELP2000LonReduced::tidesLon3Float
+ * @covers \JapaneseDate\Components\Traits\ELP2000LonReduced::tidesLon6Float
+ * @covers \JapaneseDate\Components\Traits\ELP2000LonReduced::tidesLon21Float
+ * @covers \JapaneseDate\Components\Traits\ELP2000LonReduced::tidesLon24Float
+ * @covers \JapaneseDate\Components\Traits\ELP2000LonReduced::tidesLon27Float
+ * @covers \JapaneseDate\Components\Traits\ELP2000LonReduced::tidesLon30Float
+ * @covers \JapaneseDate\Components\Traits\ELP2000LonReduced::tidesLon33Float
+ * @covers \JapaneseDate\Components\Traits\ELP2000LonReduced::planetaryLon9Float
+ * @covers \JapaneseDate\Components\Traits\ELP2000LonReduced::planetaryLon12Float
+ * @covers \JapaneseDate\Components\Traits\ELP2000LonReduced::planetaryLon15Float
+ * @covers \JapaneseDate\Components\Traits\ELP2000LonReduced::planetaryLon18Float
  */
-#[CoversTrait(ELP2000LonReduced::class)]
-#[CoversMethod(ELP2000LonReduced::class, 'mainProblemLonFloat')]
-#[CoversMethod(ELP2000LonReduced::class, 'tidesLon3Float')]
-#[CoversMethod(ELP2000LonReduced::class, 'tidesLon6Float')]
-#[CoversMethod(ELP2000LonReduced::class, 'tidesLon21Float')]
-#[CoversMethod(ELP2000LonReduced::class, 'tidesLon24Float')]
-#[CoversMethod(ELP2000LonReduced::class, 'tidesLon27Float')]
-#[CoversMethod(ELP2000LonReduced::class, 'tidesLon30Float')]
-#[CoversMethod(ELP2000LonReduced::class, 'tidesLon33Float')]
-#[CoversMethod(ELP2000LonReduced::class, 'planetaryLon9Float')]
-#[CoversMethod(ELP2000LonReduced::class, 'planetaryLon12Float')]
-#[CoversMethod(ELP2000LonReduced::class, 'planetaryLon15Float')]
-#[CoversMethod(ELP2000LonReduced::class, 'planetaryLon18Float')]
 class ELP2000LonReducedTraitTest extends TestCase
 {
     use InvokeTrait;
-
     /**
      * longitudeMoon() を1回呼んで全 12 LON メソッドが実行され float を返すこと。
      * computeLongitudeSeries() が全 LON メソッドを呼び出すことを利用する。
@@ -53,7 +52,6 @@ class ELP2000LonReducedTraitTest extends TestCase
         $this->assertGreaterThanOrEqual(0.0, $lon);
         $this->assertLessThan(360.0, $lon);
     }
-
     /**
      * mainProblemLonFloat() が float を返すこと（直接呼び出し）。
      *
@@ -65,7 +63,6 @@ class ELP2000LonReducedTraitTest extends TestCase
         $result = $this->invokeExecuteMethod($reduced, 'mainProblemLonFloat', [1.0, 0.5, 2.0, 1.5]);
         $this->assertIsFloat($result);
     }
-
     /**
      * tidesLon3Float() が float を返すこと（直接呼び出し）。
      *
@@ -77,7 +74,6 @@ class ELP2000LonReducedTraitTest extends TestCase
         $result = $this->invokeExecuteMethod($reduced, 'tidesLon3Float', [0.1, 1.0, 0.5, 2.0, 1.5]);
         $this->assertIsFloat($result);
     }
-
     /**
      * tidesLon6Float() が float を返すこと（直接呼び出し）。
      *
@@ -89,7 +85,6 @@ class ELP2000LonReducedTraitTest extends TestCase
         $result = $this->invokeExecuteMethod($reduced, 'tidesLon6Float', [0.1, 1.0, 0.5, 2.0, 1.5]);
         $this->assertIsFloat($result);
     }
-
     /**
      * tidesLon21Float() が float を返すこと（直接呼び出し）。
      *
@@ -101,7 +96,6 @@ class ELP2000LonReducedTraitTest extends TestCase
         $result = $this->invokeExecuteMethod($reduced, 'tidesLon21Float', [0.1, 1.0, 0.5, 2.0, 1.5]);
         $this->assertIsFloat($result);
     }
-
     /**
      * tidesLon24Float() が float を返すこと（直接呼び出し）。
      *
@@ -113,7 +107,6 @@ class ELP2000LonReducedTraitTest extends TestCase
         $result = $this->invokeExecuteMethod($reduced, 'tidesLon24Float', [0.1, 1.0, 0.5, 2.0, 1.5]);
         $this->assertIsFloat($result);
     }
-
     /**
      * tidesLon27Float() が float を返すこと（直接呼び出し）。
      *
@@ -125,7 +118,6 @@ class ELP2000LonReducedTraitTest extends TestCase
         $result = $this->invokeExecuteMethod($reduced, 'tidesLon27Float', [0.1, 1.0, 0.5, 2.0, 1.5]);
         $this->assertIsFloat($result);
     }
-
     /**
      * tidesLon30Float() が float を返すこと（直接呼び出し）。
      *
@@ -137,7 +129,6 @@ class ELP2000LonReducedTraitTest extends TestCase
         $result = $this->invokeExecuteMethod($reduced, 'tidesLon30Float', [0.1, 1.0, 0.5, 2.0, 1.5]);
         $this->assertIsFloat($result);
     }
-
     /**
      * tidesLon33Float() が float を返すこと（直接呼び出し）。
      *
@@ -149,7 +140,6 @@ class ELP2000LonReducedTraitTest extends TestCase
         $result = $this->invokeExecuteMethod($reduced, 'tidesLon33Float', [0.1, 1.0, 0.5, 2.0, 1.5]);
         $this->assertIsFloat($result);
     }
-
     /**
      * planetaryLon9Float() が float を返すこと（直接呼び出し）。
      *
@@ -165,7 +155,6 @@ class ELP2000LonReducedTraitTest extends TestCase
         );
         $this->assertIsFloat($result);
     }
-
     /**
      * planetaryLon12Float() が float を返すこと（直接呼び出し）。
      *
@@ -181,7 +170,6 @@ class ELP2000LonReducedTraitTest extends TestCase
         );
         $this->assertIsFloat($result);
     }
-
     /**
      * planetaryLon15Float() が float を返すこと（直接呼び出し）。
      *
@@ -197,7 +185,6 @@ class ELP2000LonReducedTraitTest extends TestCase
         );
         $this->assertIsFloat($result);
     }
-
     /**
      * planetaryLon18Float() が float を返すこと（直接呼び出し）。
      *

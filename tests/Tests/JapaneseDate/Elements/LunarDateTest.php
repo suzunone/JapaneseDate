@@ -33,8 +33,8 @@ use PHPUnit\Framework\TestCase;
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
  * @since       Class available since Release 1.0.0
+ * @covers \JapaneseDate\Elements\LunarDate
  */
-#[CoversClass(LunarDate::class)]
 class LunarDateTest extends TestCase
 {
     /**
@@ -53,7 +53,6 @@ class LunarDateTest extends TestCase
         $LunarDate = $LunarCalendar->getLunarDate(DateTime::factory('2020-03-01'));
         $this->assertInstanceOf(LunarDate::class, $LunarDate);
     }
-
     /**
      * @return void
      * @throws \JapaneseDate\Exceptions\ErrorException
@@ -66,7 +65,6 @@ class LunarDateTest extends TestCase
         // DAY_KEY (index 3) を含まない配列で例外が発生することを確認
         new LunarDate([LunarDate::YEAR_KEY => 2020, LunarDate::IS_LEAP_MONTH_FLAG_KEY => false, LunarDate::MONTH_KEY => 3], false);
     }
-
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -93,7 +91,6 @@ class LunarDateTest extends TestCase
         $LunarDate = $LunarCalendar->getLunarDate(DateTime::factory('2020-03-20'));
         $this->assertEquals(0, $LunarDate->solar_term);
     }
-
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -114,7 +111,6 @@ class LunarDateTest extends TestCase
         // noinspection PhpUndefinedFieldInspection
         $LunarDate->aaaaaaaaaaaa;
     }
-
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -132,7 +128,6 @@ class LunarDateTest extends TestCase
         $this->assertTrue(isset($LunarDate->solar_term));
         $this->assertFalse(isset($LunarDate->solar_termaaa));
     }
-
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException

@@ -15,27 +15,22 @@ use PHPUnit\Framework\TestCase;
  * Only dataProvider and testDateTime methods are allowed to be added.
  * - Exclude this test by default due to its heavy load.
  * - Use paratest whenever executing this test.
+ * @coversNothing
+ * @large
+ * @group long-running
  */
-#[CoversNothing]
-#[Large]
-#[Group('long-running')]
 class DateTimeFixtureTest extends TestCase
 {
     private const MOON_AGE_CYCLE_DAYS = 29.53058868;
-
     private const MOON_AGE_DELTA_DAYS = 0.47;
-
     private const MOON_PHASE_ANGLE_DELTA_DEGREES = 9.0;
-
     private const INTERMEDIATE_MOON_PHASES = [
         DateTime::MOON_PHASE_MIKAZUKI,
         DateTime::MOON_PHASE_JUUSANYA,
         DateTime::MOON_PHASE_IZAYOI,
         DateTime::MOON_PHASE_ARIAKE,
     ];
-
     private string $originalTimezone;
-
     /**
      * @return \Generator
      */
@@ -50,13 +45,12 @@ class DateTimeFixtureTest extends TestCase
             }
         }
     }
-
     /**
      * @param string $date_text
      * @param array $expected
      * @return void
+     * @dataProvider dataProvider
      */
-    #[DataProvider('dataProvider')]
     public function testDateTime(string $date_text, array $expected): void
     {
         try {
@@ -137,7 +131,6 @@ class DateTimeFixtureTest extends TestCase
             DateTime::useBoundaryMoonAlgorithm(DateTime::MOON_ALGORITHM_MEEUS47);
         }
     }
-
     /**
      * @return void
      */
@@ -146,7 +139,6 @@ class DateTimeFixtureTest extends TestCase
         $this->originalTimezone = date_default_timezone_get();
         date_default_timezone_set('Asia/Tokyo');
     }
-
     /**
      * @return void
      */

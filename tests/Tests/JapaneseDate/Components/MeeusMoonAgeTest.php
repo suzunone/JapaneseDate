@@ -23,14 +23,12 @@ use Tests\JapaneseDate\InvokeTrait;
  *
  * Meeus AA2 Chapter 47 に基づく月齢計算の収束処理、例外スロー、
  * 既存 fixture との整合性を検証する。
+ * @covers \JapaneseDate\Components\MeeusMoonAge
  */
-#[CoversClass(MeeusMoonAge::class)]
 class MeeusMoonAgeTest extends TestCase
 {
     use InvokeTrait;
-
     // ==================== 収束失敗 → 例外テスト ====================
-
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -125,9 +123,7 @@ class MeeusMoonAgeTest extends TestCase
             '少なくとも初回探索の 30 反復は実行されている'
         );
     }
-
     // ==================== 不正入力テスト ====================
-
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -140,7 +136,6 @@ class MeeusMoonAgeTest extends TestCase
         $ast = new Astronomy(null, new MeeusMoon());
         (new MeeusMoonAge($ast))->moonAge(2000, 1, 6, NAN, 0, 0);
     }
-
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -153,7 +148,6 @@ class MeeusMoonAgeTest extends TestCase
         $ast = new Astronomy(null, new MeeusMoon());
         (new MeeusMoonAge($ast))->moonAge(2000, 1, 6, 0, INF, 0);
     }
-
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -166,7 +160,6 @@ class MeeusMoonAgeTest extends TestCase
         $ast = new Astronomy(null, new MeeusMoon());
         (new MeeusMoonAge($ast))->moonAge(2000, 1, 6, 0, 0, -INF);
     }
-
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -181,9 +174,7 @@ class MeeusMoonAgeTest extends TestCase
         $ast = new Astronomy(null, new MeeusMoon());
         (new MeeusMoonAge($ast))->moonAge(2000, 1, 6, 1.0e15, 0, 0);
     }
-
     // ==================== 通常収束パス ====================
-
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -201,7 +192,6 @@ class MeeusMoonAgeTest extends TestCase
         $this->assertGreaterThan(0.0, $age, '2024-01-12 朔の翌日 02:00 JST → 月齢が正値であること');
         $this->assertLessThan(1.0, $age, '2024-01-12 朔の翌日 02:00 JST → 月齢が1日未満であること');
     }
-
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -218,7 +208,6 @@ class MeeusMoonAgeTest extends TestCase
         $this->assertGreaterThan(13.0, $age);
         $this->assertLessThan(17.0, $age);
     }
-
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -235,7 +224,6 @@ class MeeusMoonAgeTest extends TestCase
         $this->assertGreaterThan(27.0, $age);
         $this->assertLessThan(29.6, $age);
     }
-
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -251,7 +239,6 @@ class MeeusMoonAgeTest extends TestCase
         $age = $moonAge->moonAge(2024, 1, 12, 20, 57, 0);
         $this->assertEqualsWithDelta(1.0, $age, 0.1, '朔の 24h 後の月齢');
     }
-
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -272,9 +259,7 @@ class MeeusMoonAgeTest extends TestCase
             '2025-04-05 11:15:00 の月齢が国立天文台の朔時刻基準から1分以上ずれています'
         );
     }
-
     // ==================== 春分付近（黄経 0° 折り返し）テスト ====================
-
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -292,9 +277,7 @@ class MeeusMoonAgeTest extends TestCase
         $this->assertGreaterThan(0.0, $age, '春分付近の朔12時間後 → 月齢が正値であること');
         $this->assertLessThan(1.0, $age, '春分付近の朔12時間後 → 月齢が1日未満であること');
     }
-
     // ==================== 直前朔再探索テスト（未来朔 → 再探索） ====================
-
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -311,9 +294,7 @@ class MeeusMoonAgeTest extends TestCase
         $this->assertGreaterThan(27.0, $age);
         $this->assertLessThan(30.0, $age);
     }
-
     // ==================== no_c モードでの基本動作 ====================
-
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -330,18 +311,16 @@ class MeeusMoonAgeTest extends TestCase
         $this->assertGreaterThan(0.0, $age, 'no_c モード: 朔翌日 02:00 JST → 月齢が正値であること');
         $this->assertLessThan(1.0, $age, 'no_c モード: 朔翌日 02:00 JST → 月齢が1日未満であること');
     }
-
     // ==================== 全朔走査（long-running グループ） ====================
-
     /**
      * @param bool $applyC
      * @return void
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\MoonAgeConvergenceException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     * @group long-running
+     * @dataProvider cCorrectionModeProvider
      */
-    #[Group('long-running')]
-    #[DataProvider('cCorrectionModeProvider')]
     public function test_convergence_across_all_new_moons(bool $applyC): void
     {
         $ast = new RecordingAstronomy(
@@ -349,20 +328,16 @@ class MeeusMoonAgeTest extends TestCase
             new MeeusMoon(applyNasaCCorrection: $applyC)
         );
         $moonAge = new MeeusMoonAge($ast);
-
         $referenceNewMoonJd = 2451550.259722;
         $synodic = 29.530589;
-
         $rangeStartJd = MeeusMoon::gregorianToJd(1900, 1, 1);
         $rangeEndJd = MeeusMoon::gregorianToJd(2150, 12, 31);
         $startN = (int) ceil(($rangeStartJd - $referenceNewMoonJd) / $synodic);
         $endN = (int) floor(($rangeEndJd - $referenceNewMoonJd) / $synodic);
         $expectedSamples = $endN - $startN + 1;
-
         $maxCallCount = 0;
         $convergedJds = [];
         $residualsDeg = [];
-
         for ($n = $startN; $n <= $endN; $n++) {
             $approxJd = $referenceNewMoonJd + $n * $synodic;
             if ($approxJd < $rangeStartJd || $approxJd > $rangeEndJd) {
@@ -401,9 +376,7 @@ class MeeusMoonAgeTest extends TestCase
             $delta = fmod($lonMoon - $lonSun + 540.0, 360.0) - 180.0;
             $residualsDeg[] = abs($delta);
         }
-
         $this->assertCount($expectedSamples, $convergedJds);
-
         sort($convergedJds);
         $convergedJdCount = count($convergedJds);
         for ($i = 1; $i < $convergedJdCount; $i++) {
@@ -411,11 +384,9 @@ class MeeusMoonAgeTest extends TestCase
             $this->assertGreaterThan(29.18, $interval);
             $this->assertLessThan(29.93, $interval);
         }
-
         $this->assertLessThan(0.001, max($residualsDeg));
         $this->assertLessThan(60, $maxCallCount);
     }
-
     /**
      * @return array
      */

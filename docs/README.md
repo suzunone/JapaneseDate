@@ -132,7 +132,7 @@ echo JapaneseDateTime::parse('first day of December 2018')->addWeeks(2);    // 2
 
 ``` .php
 
-echo JapaneseDateTime::parse(time());    // 2026-06-17 11:35:54
+echo JapaneseDateTime::parse(time());    // 2026-06-17 11:40:49
 echo JapaneseDateTime::parse(new DateTime('now'));    // PHP Fatal error:  Uncaught TypeError: DateTime::__construct() expects parameter 1 to be string, object given
 ```
 
@@ -143,9 +143,9 @@ echo JapaneseDateTime::parse(new DateTime('now'));    // PHP Fatal error:  Uncau
 そういった場合は、`JapaneseDate\DateTime::factory()`を使用します。
 
 ``` .php
-echo JapaneseDateTime::factory(time());    // 2026-06-17 20:35:54
+echo JapaneseDateTime::factory(time());    // 2026-06-17 20:40:49
 
-echo JapaneseDateTime::factory(new DateTime('now'));    // 2026-06-17 20:35:54
+echo JapaneseDateTime::factory(new DateTime('now'));    // 2026-06-17 20:40:49
 
 // もちろんこういったコードも動作します
 echo JapaneseDateTime::factory('first day of December 2018')->addWeeks(2);    // 2018-12-15 00:00:00
@@ -188,7 +188,7 @@ echo JapaneseDateTime::factory(20180404050505);    // 2061-07-19 16:48:25
 
 ``` .php
 $now = JapaneseDateTime::now();
-echo $now;                               // 2026-06-17 20:35:54
+echo $now;                               // 2026-06-17 20:40:49
 $today = JapaneseDateTime::today();
 echo $today;                             // 2026-06-17 00:00:00
 $tomorrow = JapaneseDateTime::tomorrow('Europe/London');
@@ -487,10 +487,10 @@ var_export($dt->quarter);                                      // 1
 
 // UTCからの秒の差をintで返します（+/-符号を含む）
 var_export(JapaneseDateTime::createFromTimestampUTC(0)->offset);         // 0
-var_export(JapaneseDateTime::createFromTimestamp(0)->offset);            // 0
+var_export(JapaneseDateTime::createFromTimestamp(0)->offset);            // 32400
 
 // UTCからの時差の整数を返します（+/-符号を含む）
-var_export(JapaneseDateTime::createFromTimestamp(0)->offsetHours);       // 0
+var_export(JapaneseDateTime::createFromTimestamp(0)->offsetHours);       // 9
 
 // 夏時間が有効かどうかを返します
 var_export(JapaneseDateTime::createFromDate(2012, 1, 1)->dst);           // false
@@ -887,8 +887,8 @@ JapaneseDateTime::setCacheMode(CacheMode::MODE_NONE);
 静的に処理されるため、同一Request内では、次にsetCacheModeするまでは同一のキャッシュモードが使用されることに注意してください。
 
 キャッシュモードの切り替えは、`JapaneseDateTime::setCacheMode`での切り替え以外に、
-[JapaneseDateTime::setCacheFilePath](https://github.com/suzunone/JapaneseDate/blob/master/docs/api/JapaneseDate/DateTime.md)を使用してキャッシュファイルのパスを指定したり、
-[JapaneseDateTime::setCacheClosure](https://github.com/suzunone/JapaneseDate/blob/master/docs/api/JapaneseDate/DateTime.md)をして、独自のキャッシュロジックを登録することでも切り替えることができます。
+[JapaneseDateTime::setCacheFilePath](https://github.com/suzunone/JapaneseDate/blob/v7.X/docs/api/JapaneseDate/DateTime.md)を使用してキャッシュファイルのパスを指定したり、
+[JapaneseDateTime::setCacheClosure](https://github.com/suzunone/JapaneseDate/blob/v7.X/docs/api/JapaneseDate/DateTime.md)をして、独自のキャッシュロジックを登録することでも切り替えることができます。
 
 
 DateInterval
@@ -924,14 +924,14 @@ echo $result->format('Y-m-d');  // 2026-05-01
 
 // 次の祝日までの残り期間を DateInterval として取得する
 $interval = DateInterval::untilNextHoliday(JapaneseDateTime::parse('2026-05-01'));
-echo $interval->days . '日後が次の祝日';  // 2日後が次の祝日
+echo $interval->days . '日後が次の祝日';  // 日後が次の祝日
 
 // 次の大安までの残り期間を取得する
 $interval = DateInterval::untilNextSixWeek(
     JapaneseDateTime::parse('2026-05-01'),
     JapaneseDateTime::SIX_WEEKDAY_TAIAN
 );
-echo $interval->days . '日後が次の大安';  // 6日後が次の大安
+echo $interval->days . '日後が次の大安';  // 日後が次の大安
 
 // 令和の継続期間を取得する
 $interval = DateInterval::eraSpan(JapaneseDateTime::ERA_REIWA, JapaneseDateTime::parse('2026-05-01'));
@@ -947,7 +947,7 @@ echo round($interval->toLunarMonthCount(), 1) . '朔望月';  // 2朔望月
 
 // 次の新月までの残り日数を取得する
 $interval = DateInterval::untilNextNewMoon(JapaneseDateTime::parse('2026-05-01'));
-echo $interval->days . '日後が次の新月';  // 16日後が次の新月
+echo $interval->days . '日後が次の新月';  // 日後が次の新月
 ```
 
 `DateInterval` クラスで使用できる主なメソッド:

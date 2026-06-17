@@ -14,15 +14,13 @@ use Tests\JapaneseDate\InvokeTrait;
 
 /**
  * 月齢収束ステップが呼び出し側の継続判定へ返す値を検証する。
+ * @covers \JapaneseDate\Components\Traits\MoonAgeConvergenceTrait
+ * @covers \JapaneseDate\Components\Traits\MoonAgeConvergenceTrait::applyConvergenceStep
  */
-#[CoversTrait(MoonAgeConvergenceTrait::class)]
-#[CoversMethod(MoonAgeConvergenceTrait::class, 'applyConvergenceStep')]
 class MoonAgeConvergenceTraitTest extends TestCase
 {
     use InvokeTrait;
-
     private const SYNODIC_MONTH = 29.530589;
-
     /**
      * @return array<string, array{0: float}>
      */
@@ -33,27 +31,24 @@ class MoonAgeConvergenceTraitTest extends TestCase
             'minus two days' => [-2.0],
         ];
     }
-
     /**
      * 負の補正量でも、修正後の while 式（abs の位置変更）が継続条件を満たすことを確認する。
      *
      * @param float $correctionDays 時刻補正量（日）
      * @return void
      * @throws \ReflectionException
+     * @dataProvider negativeCorrectionProvider
      */
-    #[DataProvider('negativeCorrectionProvider')]
     public function test_negativeCorrectionContinuesIteration(float $correctionDays): void
     {
         [, , $deltaT1, $deltaT2] = $this->applyStepForCorrection($correctionDays);
         $whileExpression = abs($deltaT1 + $deltaT2);
-
         $this->assertGreaterThan(
             Astronomy::DAYS_PER_SEC,
             $whileExpression,
             '負側補正でも while 式が継続条件（> DAYS_PER_SEC）を満たすことを確認する'
         );
     }
-
     /**
      * @return array<string, array{0: float}>
      */
@@ -64,27 +59,24 @@ class MoonAgeConvergenceTraitTest extends TestCase
             'plus two days' => [2.0],
         ];
     }
-
     /**
      * 正の補正量では、修正後の while 式が反復継続条件を満たすことを確認する。
      *
      * @param float $correctionDays 時刻補正量（日）
      * @return void
      * @throws \ReflectionException
+     * @dataProvider positiveCorrectionProvider
      */
-    #[DataProvider('positiveCorrectionProvider')]
     public function test_positiveCorrectionContinuesIteration(float $correctionDays): void
     {
         [, , $deltaT1, $deltaT2] = $this->applyStepForCorrection($correctionDays);
         $whileExpression = abs($deltaT1 + $deltaT2);
-
         $this->assertGreaterThan(
             Astronomy::DAYS_PER_SEC,
             $whileExpression,
             '正側補正で while 式が継続条件（> DAYS_PER_SEC）を満たすことを確認する'
         );
     }
-
     /**
      * 指定した日数の補正量になる黄経差で収束ステップを実行する。
      *

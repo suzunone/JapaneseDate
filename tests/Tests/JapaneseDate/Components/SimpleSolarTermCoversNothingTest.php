@@ -17,18 +17,15 @@ use PHPUnit\Framework\TestCase;
  *
  * SimpleSolarTerm の対応範囲に含まれる全二十四節気を走査し、
  * VSOP87 による天文計算結果との日付差分を検出する。
+ * @coversNothing
+ * @group long-running
+ * @large
  */
-#[CoversNothing]
-#[Group('long-running')]
-#[Large]
 class SimpleSolarTermCoversNothingTest extends TestCase
 {
     private const START_YEAR = 1600;
-
     private const END_YEAR = 2399;
-
     private const SOLAR_TERM_COUNT = 24;
-
     /**
      * 対応範囲内の全二十四節気を個別のテストケースとして返す。
      *
@@ -44,7 +41,6 @@ class SimpleSolarTermCoversNothingTest extends TestCase
             }
         }
     }
-
     /**
      * SimpleSolarTerm の日付が VSOP87 による天文計算結果と一致することを確認する。
      *
@@ -52,14 +48,13 @@ class SimpleSolarTermCoversNothingTest extends TestCase
      * @param int $solarTerm 二十四節気コード
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
+     * @dataProvider allSolarTermsDataProvider
      */
-    #[DataProvider('allSolarTermsDataProvider')]
     public function test_solarTermMatchesVsop87(int $year, int $solarTerm): void
     {
         $simpleDate = (new SimpleSolarTerm())->getSolarTerm($year, $solarTerm);
         $vsop87Date = (new SolarTerm(new Astronomy(new Vsop87Astronomy())))
             ->getSolarTerm($year, $solarTerm);
-
         $this->assertSame(
             [$vsop87Date->month, $vsop87Date->day],
             [$simpleDate->month, $simpleDate->day],

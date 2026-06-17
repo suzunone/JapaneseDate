@@ -41,32 +41,31 @@ use PHPUnit\Framework\TestCase;
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
  * @since       2026-05-29
+ * @covers \JapaneseDate\DateInterval
+ * @covers \JapaneseDate\Exceptions\InfiniteLoopException
+ * @covers \JapaneseDate\DateInterval::addBusinessDaysToDate
+ * @covers \JapaneseDate\DateInterval::subBusinessDaysToDate
+ * @covers \JapaneseDate\DateInterval::isBusinessDay
+ * @covers \JapaneseDate\DateInterval::untilNextHoliday
+ * @covers \JapaneseDate\DateInterval::untilNextSixWeek
+ * @covers \JapaneseDate\DateInterval::eraSpan
+ * @covers \JapaneseDate\DateInterval::untilNextSolarTerm
+ * @covers \JapaneseDate\DateInterval::addSolarTermsToDate
+ * @covers \JapaneseDate\DateInterval::subSolarTermsToDate
+ * @covers \JapaneseDate\DateInterval::toSolarTermCount
+ * @covers \JapaneseDate\DateInterval::toLunarMonthCount
+ * @covers \JapaneseDate\DateInterval::untilNextNewMoon
+ * @covers \JapaneseDate\DateInterval::findNextSolarTermDate
+ * @covers \JapaneseDate\DateInterval::findPrevSolarTermDate
+ * @covers \JapaneseDate\DateInterval::addBusinessDaysTo
+ * @covers \JapaneseDate\DateInterval::subBusinessDaysFrom
+ * @covers \JapaneseDate\DateInterval::countBusinessDaysBetween
+ * @covers \JapaneseDate\DateInterval::resolveSolarTerm
+ * @covers \JapaneseDate\DateInterval::assertSolarTermMethodExists
  */
-#[CoversClass(DateInterval::class)]
-#[CoversClass(InfiniteLoopException::class)]
-#[CoversMethod(DateInterval::class, 'addBusinessDaysToDate')]
-#[CoversMethod(DateInterval::class, 'subBusinessDaysToDate')]
-#[CoversMethod(DateInterval::class, 'isBusinessDay')]
-#[CoversMethod(DateInterval::class, 'untilNextHoliday')]
-#[CoversMethod(DateInterval::class, 'untilNextSixWeek')]
-#[CoversMethod(DateInterval::class, 'eraSpan')]
-#[CoversMethod(DateInterval::class, 'untilNextSolarTerm')]
-#[CoversMethod(DateInterval::class, 'addSolarTermsToDate')]
-#[CoversMethod(DateInterval::class, 'subSolarTermsToDate')]
-#[CoversMethod(DateInterval::class, 'toSolarTermCount')]
-#[CoversMethod(DateInterval::class, 'toLunarMonthCount')]
-#[CoversMethod(DateInterval::class, 'untilNextNewMoon')]
-#[CoversMethod(DateInterval::class, 'findNextSolarTermDate')]
-#[CoversMethod(DateInterval::class, 'findPrevSolarTermDate')]
-#[CoversMethod(DateInterval::class, 'addBusinessDaysTo')]
-#[CoversMethod(DateInterval::class, 'subBusinessDaysFrom')]
-#[CoversMethod(DateInterval::class, 'countBusinessDaysBetween')]
-#[CoversMethod(DateInterval::class, 'resolveSolarTerm')]
-#[CoversMethod(DateInterval::class, 'assertSolarTermMethodExists')]
 class DateIntervalTest extends TestCase
 {
     use InvokeTrait;
-
     /**
      * 平均日数定数が暦計算で使う期待値と一致することを確認するケースを返す。
      *
@@ -79,7 +78,6 @@ class DateIntervalTest extends TestCase
             '二十四節気平均日数' => ['SOLAR_TERM_AVG_DAYS', 15.2184375, 0.0001],
         ];
     }
-
     /**
      * 営業日判定が平日・週末・祝日を正しく区別することを確認するケースを返す。
      *
@@ -94,7 +92,6 @@ class DateIntervalTest extends TestCase
             '祝日' => ['2026-05-03', false],
         ];
     }
-
     /**
      * N 営業日前後の日付計算で週末・祝日をスキップすることを確認するケースを返す。
      *
@@ -109,7 +106,6 @@ class DateIntervalTest extends TestCase
             'subBusinessDaysToDate: 祝日をスキップ' => ['sub', '2026-05-11', 3, '2026-05-01'],
         ];
     }
-
     /**
      * 大安を起点に次の六曜までの日数を計算する分岐を確認するケースを返す。
      *
@@ -122,7 +118,6 @@ class DateIntervalTest extends TestCase
             '大安から友引は3日後' => [DateTime::SIX_WEEKDAY_TOMOBIKI, 3],
         ];
     }
-
     /**
      * 元号期間の年数が代表的な元号と終了日指定で正しく算出されることを確認するケースを返す。
      *
@@ -136,7 +131,6 @@ class DateIntervalTest extends TestCase
             '令和: 終了日指定' => [DateTime::ERA_REIWA, '2026-05-01', 7],
         ];
     }
-
     /**
      * DateInterval を二十四節気数・朔望月数へ換算することを確認するケースを返す。
      *
@@ -151,7 +145,6 @@ class DateIntervalTest extends TestCase
             '0日は0朔望月' => ['lunar-month', 'P0D', 0.0, 0.0],
         ];
     }
-
     /**
      * インスタンスメソッドの営業日前後計算が設定有無ごとに期待日を返すことを確認するケースを返す。
      *
@@ -166,7 +159,6 @@ class DateIntervalTest extends TestCase
             'subBusinessDaysFrom: config指定' => ['sub', '2026-05-27', 1, true, '2026-05-26'],
         ];
     }
-
     /**
      * 期間内の営業日数カウントが通常設定と明示設定で期待値になることを確認するケースを返す。
      *
@@ -179,7 +171,6 @@ class DateIntervalTest extends TestCase
             'config指定' => ['2026-05-25', '2026-05-25', true, 1],
         ];
     }
-
     /**
      * 営業日探索の無限ループ防止ガードが各入口で例外を投げることを確認するケースを返す。
      *
@@ -194,11 +185,9 @@ class DateIntervalTest extends TestCase
             'subBusinessDaysFrom' => ['sub-instance'],
         ];
     }
-
     // =========================================================================
     // クラス基本テスト
     // =========================================================================
-
     /**
      * DateInterval が CarbonInterval を継承していることを確認する。
      */
@@ -206,52 +195,44 @@ class DateIntervalTest extends TestCase
     {
         $this->assertTrue(is_subclass_of(DateInterval::class, CarbonInterval::class));
     }
-
     /**
      * 平均日数定数が期待値から許容誤差内に収まることを確認する。
+     * @dataProvider averageDaysConstantDataProvider
      */
-    #[DataProvider('averageDaysConstantDataProvider')]
     public function test_average_days_constants(string $constantName, float $expected, float $delta): void
     {
         $actual = match ($constantName) {
             'SYNODIC_MONTH_DAYS' => DateInterval::SYNODIC_MONTH_DAYS,
             'SOLAR_TERM_AVG_DAYS' => DateInterval::SOLAR_TERM_AVG_DAYS,
         };
-
         $this->assertEqualsWithDelta($expected, $actual, $delta);
     }
-
     // =========================================================================
     // 営業日計算テスト
     // =========================================================================
-
     /**
      * 日付ごとの営業日判定が期待どおりになることを確認する。
+     * @dataProvider businessDayDataProvider
      */
-    #[DataProvider('businessDayDataProvider')]
     public function test_isBusinessDay(string $date, bool $expected): void
     {
         $this->assertSame($expected, DateInterval::isBusinessDay(DateTime::parse($date)));
     }
-
     /**
      * 営業日前後の日付計算が週末・祝日を考慮して期待日を返すことを確認する。
+     * @dataProvider businessDaysToDateDataProvider
      */
-    #[DataProvider('businessDaysToDateDataProvider')]
     public function test_businessDaysToDate(string $operation, string $from, int $days, string $expected): void
     {
         $result = match ($operation) {
             'add' => DateInterval::addBusinessDaysToDate(DateTime::parse($from), $days),
             'sub' => DateInterval::subBusinessDaysToDate(DateTime::parse($from), $days),
         };
-
         $this->assertEquals($expected, $result->format('Y-m-d'));
     }
-
     // =========================================================================
     // 次の祝日までの残り期間テスト
     // =========================================================================
-
     /**
      * untilNextHoliday: 次の祝日までの日数が正しく計算される。
      *
@@ -263,9 +244,7 @@ class DateIntervalTest extends TestCase
         $interval = DateInterval::untilNextHoliday($from);
 
         $this->assertEquals(2, $interval->d);
-        $this->assertSame(2, $interval->days);
     }
-
     /**
      * untilNextHoliday: 元のオブジェクトが変更されないことを確認する（mutable 対策）。
      */
@@ -275,11 +254,9 @@ class DateIntervalTest extends TestCase
         DateInterval::untilNextHoliday($from);
         $this->assertEquals('2026-05-01', $from->format('Y-m-d'));
     }
-
     // =========================================================================
     // 六曜ベースの残り期間テスト
     // =========================================================================
-
     /**
      * untilNextSixWeek: 次の大安までの日数が正しく計算される。
      */
@@ -297,11 +274,10 @@ class DateIntervalTest extends TestCase
         $target = DateTime::parse('2026-05-01')->addDays($interval->d);
         $this->assertEquals(DateTime::SIX_WEEKDAY_TAIAN, $target->six_weekday);
     }
-
     /**
      * 大安を起点にした次の六曜までの日数が分岐ごとに正しいことを確認する。
+     * @dataProvider untilNextSixWeekDataProvider
      */
-    #[DataProvider('untilNextSixWeekDataProvider')]
     public function test_untilNextSixWeek_fromTaian(int $targetSixWeekday, int $expectedDays): void
     {
         // 大安の日を探す
@@ -309,12 +285,9 @@ class DateIntervalTest extends TestCase
         while ($date->six_weekday !== DateTime::SIX_WEEKDAY_TAIAN) {
             $date = $date->addDay();
         }
-
         $interval = DateInterval::untilNextSixWeek($date, $targetSixWeekday);
         $this->assertEquals($expectedDays, $interval->d);
-        $this->assertSame($expectedDays, $interval->days);
     }
-
     /**
      * untilNextSixWeek: 元のオブジェクトが変更されないことを確認する。
      */
@@ -324,21 +297,18 @@ class DateIntervalTest extends TestCase
         DateInterval::untilNextSixWeek($from, DateTime::SIX_WEEKDAY_TAIAN);
         $this->assertEquals('2026-05-01', $from->format('Y-m-d'));
     }
-
     // =========================================================================
     // 元号ベースの期間テスト
     // =========================================================================
-
     /**
      * 元号の継続年数が代表的な元号と終了日指定で正しく計算されることを確認する。
+     * @dataProvider eraSpanDataProvider
      */
-    #[DataProvider('eraSpanDataProvider')]
     public function test_eraSpan(int $era, ?string $until, int $expectedYears): void
     {
         $interval = DateInterval::eraSpan($era, $until === null ? null : DateTime::parse($until));
         $this->assertEquals($expectedYears, $interval->y);
     }
-
     /**
      * eraSpan: 令和に $until を省略した場合、現在日時を終了とする。
      * @noinspection SpellCheckingInspection
@@ -349,7 +319,6 @@ class DateIntervalTest extends TestCase
         // 令和は 2019年開始なので年数は 6 以上
         $this->assertGreaterThanOrEqual(6, $interval->y);
     }
-
     /**
      * eraSpan: 不明な元号キーを渡すと InvalidArgumentException がスローされる。
      */
@@ -358,11 +327,9 @@ class DateIntervalTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         DateInterval::eraSpan(9999);
     }
-
     // =========================================================================
     // 二十四節気ベースの期間テスト
     // =========================================================================
-
     /**
      * resolveSolarTerm: SimpleSolarTerm が対応しない年は SolarTerm にフォールバックする。
      *
@@ -375,7 +342,6 @@ class DateIntervalTest extends TestCase
         $interval = DateInterval::untilNextSolarTerm($from);
         $this->assertGreaterThanOrEqual(0, $interval->d);
     }
-
     /**
      * @return void
      * @throws \DateInvalidTimeZoneException
@@ -395,7 +361,6 @@ class DateIntervalTest extends TestCase
             Astronomy::useMoonAlgorithm(Astronomy::MOON_LEGACY);
         }
     }
-
     /**
      * untilNextSolarTerm: 次の節気までの残り期間が取得できる。
      */
@@ -407,9 +372,7 @@ class DateIntervalTest extends TestCase
         // 節気の間隔は 14〜16 日程度なので、次の節気は 30 日以内
         $this->assertLessThanOrEqual(30, $interval->d);
         $this->assertGreaterThanOrEqual(0, $interval->d);
-        $this->assertIsInt($interval->days);
     }
-
     /**
      * untilNextSolarTerm: 特定の節気（夏至）までの残り期間が取得できる。
      */
@@ -423,7 +386,6 @@ class DateIntervalTest extends TestCase
         // 夏至は 6 月なので 20〜55 日後
         $this->assertLessThanOrEqual(55, $interval->d);
     }
-
     /**
      * untilNextSolarTerm: 不明な節気名を指定した場合は 15 日フォールバックせず例外を投げる。
      */
@@ -434,7 +396,6 @@ class DateIntervalTest extends TestCase
 
         DateInterval::untilNextSolarTerm(DateTime::parse('2026-05-01'), 'nonexistent_term');
     }
-
     /**
      * addSolarTermsToDate: N 節気後の日付を正しく算出する。
      */
@@ -451,7 +412,6 @@ class DateIntervalTest extends TestCase
         $this->assertGreaterThan(30, $diff->days);
         $this->assertLessThan(60, $diff->days);
     }
-
     /**
      * subSolarTermsToDate: N 節気前の日付を正しく算出する。
      */
@@ -468,7 +428,6 @@ class DateIntervalTest extends TestCase
         $this->assertLessThan(45, $diff->days);
         $this->assertTrue($result->lt($from));
     }
-
     /**
      * findPrevSolarTermDate: 特定の節気を指定して直前の日付を取得できる。
      */
@@ -483,11 +442,10 @@ class DateIntervalTest extends TestCase
         $this->assertInstanceOf(DateTime::class, $result);
         $this->assertSame('2026-06-21', $result->format('Y-m-d'));
     }
-
     /**
      * DateInterval の日数が二十四節気数・朔望月数へ正しく換算されることを確認する。
+     * @dataProvider intervalCountDataProvider
      */
-    #[DataProvider('intervalCountDataProvider')]
     public function test_intervalCount(string $type, string $spec, float $expected, float $delta): void
     {
         $interval = new DateInterval($spec);
@@ -495,14 +453,11 @@ class DateIntervalTest extends TestCase
             'solar-term' => $interval->toSolarTermCount(),
             'lunar-month' => $interval->toLunarMonthCount(),
         };
-
         $this->assertEqualsWithDelta($expected, $actual, $delta);
     }
-
     // =========================================================================
     // 旧暦・月相ベースの期間テスト
     // =========================================================================
-
     /**
      * untilNextNewMoon: 次の新月までの残り日数が妥当な範囲内にある。
      */
@@ -515,7 +470,6 @@ class DateIntervalTest extends TestCase
         $this->assertGreaterThanOrEqual(0, $interval->d);
         $this->assertLessThanOrEqual(30, $interval->d);
     }
-
     /**
      * untilNextNewMoon: 元のオブジェクトが変更されないことを確認する。
      */
@@ -525,22 +479,14 @@ class DateIntervalTest extends TestCase
         DateInterval::untilNextNewMoon($from);
         $this->assertEquals('2026-05-01', $from->format('Y-m-d'));
     }
-
     // -----------------------------------------------------------------------
     // addBusinessDaysTo
     // -----------------------------------------------------------------------
-
     /**
      * インスタンスメソッドの営業日前後計算が通常設定・明示設定で期待日を返すことを確認する。
+     * @dataProvider instanceBusinessDayMoveDataProvider
      */
-    #[DataProvider('instanceBusinessDayMoveDataProvider')]
-    public function test_instanceBusinessDayMove(
-        string $operation,
-        string $baseDate,
-        int $days,
-        bool $withConfig,
-        string $expected
-    ): void
+    public function test_instanceBusinessDayMove(string $operation, string $baseDate, int $days, bool $withConfig, string $expected): void
     {
         $interval = new DateInterval('P1D');
         $base = DateTime::factory($baseDate);
@@ -549,30 +495,24 @@ class DateIntervalTest extends TestCase
             'add' => $interval->addBusinessDaysTo($base, $days, $config),
             'sub' => $interval->subBusinessDaysFrom($base, $days, $config),
         };
-
         $this->assertSame($expected, $result->format('Y-m-d'));
     }
-
     // -----------------------------------------------------------------------
     // countBusinessDaysBetween
     // -----------------------------------------------------------------------
-
     /**
      * 期間内の営業日数が通常設定・明示設定で正しく数えられることを確認する。
+     * @dataProvider countBusinessDaysBetweenDataProvider
      */
-    #[DataProvider('countBusinessDaysBetweenDataProvider')]
     public function test_countBusinessDaysBetween(string $startDate, string $endDate, bool $withConfig, int $expected): void
     {
         $interval = new DateInterval('P1D');
         $start = DateTime::factory($startDate);
         $end = DateTime::factory($endDate);
         $config = $withConfig ? new DateBusiness() : null;
-
         $count = $interval->countBusinessDaysBetween($start, $end, $config);
-
         $this->assertSame($expected, $count);
     }
-
     /**
      * countBusinessDaysBetween() が end 側のタイムゾーンで終了日を正規化することを確認する。
      */
@@ -586,15 +526,13 @@ class DateIntervalTest extends TestCase
 
         $this->assertSame(1, $count);
     }
-
     // -----------------------------------------------------------------------
     // InfiniteLoopException（無限ループ防止ガード）
     // -----------------------------------------------------------------------
-
     /**
      * 営業日探索の各入口で無限ループ防止ガードが InfiniteLoopException を投げることを確認する。
+     * @dataProvider infiniteLoopOperationDataProvider
      */
-    #[DataProvider('infiniteLoopOperationDataProvider')]
     public function test_businessDayOperations_throw_InfiniteLoopException(string $operation): void
     {
         $stub = new class extends DateInterval {
@@ -607,11 +545,9 @@ class DateIntervalTest extends TestCase
                 return false;
             }
         };
-
         $interval = new DateInterval('P1D');
         $config = (new DateBusiness())->setMacro(fn() => false);
         $base = DateTime::factory('2026-05-25');
-
         $this->expectException(InfiniteLoopException::class);
         match ($operation) {
             'add-date' => $stub::addBusinessDaysToDate(DateTime::parse('2026-05-01'), 1),

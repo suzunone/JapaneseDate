@@ -36,10 +36,10 @@ use PHPUnit\Framework\TestCase;
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
  * @since       1.0.0 リリースから利用可能
+ * @covers \JapaneseDate\Traits\Modifier
+ * @covers \JapaneseDate\Traits\Modifier::nextHoliday
+ * @covers \JapaneseDate\Traits\Modifier::nextSixWeek
  */
-#[CoversTrait(Modifier::class)]
-#[CoversMethod(Modifier::class, 'nextHoliday')]
-#[CoversMethod(Modifier::class, 'nextSixWeek')]
 class ModifierTest extends TestCase
 {
     /**
@@ -70,7 +70,6 @@ class ModifierTest extends TestCase
             ],
         ];
     }
-
     /**
      * DateTime では次の祝日へ自身を変更して返すことを確認する。
      *
@@ -86,7 +85,6 @@ class ModifierTest extends TestCase
         $this->assertEquals('春分の日', $dateTime->holiday_text);
         $this->assertSame($res, $dateTime);
     }
-
     /**
      * DateTimeImmutable では次の祝日を新しいインスタンスとして返すことを確認する。
      *
@@ -102,7 +100,6 @@ class ModifierTest extends TestCase
         $this->assertEquals('', $dateTimeImmutable->holiday_text);
         $this->assertNotSame($res, $dateTimeImmutable);
     }
-
     /**
      * DateTime では指定した六曜の日へ自身を変更して返すことを確認する。
      *
@@ -110,15 +107,14 @@ class ModifierTest extends TestCase
      * @param int $six_weekday
      * @param string $expected
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     * @dataProvider dataProviderNextSixWeek
      */
-    #[DataProvider('dataProviderNextSixWeek')]
     public function test_nextSixWeek(string $start, int $six_weekday, string $expected): void
     {
         $dateTime = new DateTime($start);
         $this->assertEquals($six_weekday, $dateTime->nextSixWeek($six_weekday)->six_weekday);
         $this->assertEquals($expected, $dateTime->format('Y-m-d'));
     }
-
     /**
      * DateTimeImmutable では指定した六曜の日を新しいインスタンスとして返すことを確認する。
      *
@@ -126,8 +122,8 @@ class ModifierTest extends TestCase
      * @param int $six_weekday
      * @param string $expected
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
+     * @dataProvider dataProviderNextSixWeek
      */
-    #[DataProvider('dataProviderNextSixWeek')]
     public function test_nextSixWeek_immutable(string $start, int $six_weekday, string $expected): void
     {
         $dateTime = new DateTimeImmutable($start);

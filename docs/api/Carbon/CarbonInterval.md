@@ -2,7 +2,7 @@
 
 **Namespace:** `Carbon`
 
-class **CarbonInterval** extends [DateInterval](https://www.php.net/class.dateinterval) implements CarbonConverterInterface, UnitValue
+class **CarbonInterval** extends [DateInterval](https://www.php.net/class.dateinterval) implements CarbonConverterInterface
 
 A simple API extension for DateInterval.
 
@@ -11,7 +11,6 @@ Weeks are calculated based on the total days of the current instance.
 
 ## Traits
 
-- LocalFactory
 - IntervalRounding
 - IntervalStep
 - MagicParameter
@@ -23,9 +22,6 @@ Weeks are calculated based on the total days of the current instance.
 
 | Modifier | Name | Description |
 |---|---|---|
-| public | `NO_LIMIT` | Unlimited parts for forHumans() method. |
-| public | `POSITIVE` |  |
-| public | `NEGATIVE` |  |
 | public | `PERIOD_PREFIX` | Interval spec period designators |
 | public | `PERIOD_YEARS` |  |
 | public | `PERIOD_MONTHS` |  |
@@ -34,34 +30,33 @@ Weeks are calculated based on the total days of the current instance.
 | public | `PERIOD_HOURS` |  |
 | public | `PERIOD_MINUTES` |  |
 | public | `PERIOD_SECONDS` |  |
-| public | `SPECIAL_TRANSLATIONS` |  |
 
 ## Properties
 
 | Modifier | Type | Name | Description |
 |---|---|---|---|
-| public | int | `$years` | Year component of the current interval. (For P2Y6M, the value will be 2) |
-| public | int | `$months` | Month component of the current interval. (For P1Y6M10D, the value will be 6) |
-| public | int | `$weeks` | Week component of the current interval calculated from the days. (For P1Y6M17D, the value will be 2) |
-| public | int | `$dayz` | Day component of the current interval (weeks * 7 + days). (For P6M17DT20H, the value will be 17) |
-| public | int | `$hours` | Hour component of the current interval. (For P7DT20H5M, the value will be 20) |
-| public | int | `$minutes` | Minute component of the current interval. (For PT20H5M30S, the value will be 5) |
-| public | int | `$seconds` | Second component of the current interval. (CarbonInterval::minutes(2)->seconds(34)->microseconds(567_890)->seconds = 34) |
-| public | int | `$milliseconds` | Milliseconds component of the current interval. (CarbonInterval::seconds(34)->microseconds(567_890)->milliseconds = 567) |
-| public | int | `$microseconds` | Microseconds component of the current interval. (CarbonInterval::seconds(34)->microseconds(567_890)->microseconds = 567_890) |
+| public | int | `$years` | Total years of the current interval. |
+| public | int | `$months` | Total months of the current interval. |
+| public | int | `$weeks` | Total weeks of the current interval calculated from the days. |
+| public | int | `$dayz` | Total days of the current interval (weeks * 7 + days). |
+| public | int | `$hours` | Total hours of the current interval. |
+| public | int | `$minutes` | Total minutes of the current interval. |
+| public | int | `$seconds` | Total seconds of the current interval. |
+| public | int | `$microseconds` | Total microseconds of the current interval. |
+| public | int | `$milliseconds` | Total milliseconds of the current interval. |
 | public | int | `$microExcludeMilli` | Remaining microseconds without the milliseconds. |
 | public | int | `$dayzExcludeWeeks` | Total days remaining in the final week of the current instance (days % 7). |
 | public | int | `$daysExcludeWeeks` | alias of dayzExcludeWeeks |
-| public _(read-only)_ | float | `$totalYears` | Number of years equivalent to the interval. (For P1Y6M, the value will be 1.5) |
-| public _(read-only)_ | float | `$totalMonths` | Number of months equivalent to the interval. (For P1Y6M10D, the value will be ~12.357) |
-| public _(read-only)_ | float | `$totalWeeks` | Number of weeks equivalent to the interval. (For P6M17DT20H, the value will be ~26.548) |
-| public _(read-only)_ | float | `$totalDays` | Number of days equivalent to the interval. (For P17DT20H, the value will be ~17.833) |
+| public _(read-only)_ | float | `$totalYears` | Number of years equivalent to the interval. |
+| public _(read-only)_ | float | `$totalMonths` | Number of months equivalent to the interval. |
+| public _(read-only)_ | float | `$totalWeeks` | Number of weeks equivalent to the interval. |
+| public _(read-only)_ | float | `$totalDays` | Number of days equivalent to the interval. |
 | public _(read-only)_ | float | `$totalDayz` | Alias for totalDays. |
-| public _(read-only)_ | float | `$totalHours` | Number of hours equivalent to the interval. (For P1DT20H5M, the value will be ~44.083) |
-| public _(read-only)_ | float | `$totalMinutes` | Number of minutes equivalent to the interval. (For PT20H5M30S, the value will be 1205.5) |
-| public _(read-only)_ | float | `$totalSeconds` | Number of seconds equivalent to the interval. (CarbonInterval::minutes(2)->seconds(34)->microseconds(567_890)->totalSeconds = 154.567_890) |
-| public _(read-only)_ | float | `$totalMilliseconds` | Number of milliseconds equivalent to the interval. (CarbonInterval::seconds(34)->microseconds(567_890)->totalMilliseconds = 34567.890) |
-| public _(read-only)_ | float | `$totalMicroseconds` | Number of microseconds equivalent to the interval. (CarbonInterval::seconds(34)->microseconds(567_890)->totalMicroseconds = 34567890) |
+| public _(read-only)_ | float | `$totalHours` | Number of hours equivalent to the interval. |
+| public _(read-only)_ | float | `$totalMinutes` | Number of minutes equivalent to the interval. |
+| public _(read-only)_ | float | `$totalSeconds` | Number of seconds equivalent to the interval. |
+| public _(read-only)_ | float | `$totalMilliseconds` | Number of milliseconds equivalent to the interval. |
+| public _(read-only)_ | float | `$totalMicroseconds` | Number of microseconds equivalent to the interval. |
 | public _(read-only)_ | string | `$locale` | locale of the current instance |
 
 ## Methods
@@ -69,7 +64,7 @@ Weeks are calculated based on the total days of the current instance.
 | Return | Method | Description |
 |---|---|---|
 | CarbonInterval | [setTimezone()](#settimezone) | Set the instance&#039;s timezone from a string or object. |
-| CarbonInterval | [shiftTimezone()](#shifttimezone) | Set the instance&#039;s timezone from a string or object and add/subtract the offset difference. |
+| CarbonInterval | [shiftTimezone()](#shifttimezone) |  |
 | array | [getCascadeFactors()](#getcascadefactors) | Mapping of units and factors for cascading. |
 |  | [setCascadeFactors()](#setcascadefactors) | Set default cascading factors for -&gt;cascade() method. |
 | void | [enableFloatSetters()](#enablefloatsetters) | This option allow you to opt-in for the Carbon 3 behavior where float values will no longer be cast to integer (so truncated). |
@@ -83,53 +78,42 @@ Weeks are calculated based on the total days of the current instance.
 | int\|float | [getMicrosecondsPerMillisecond()](#getmicrosecondspermillisecond) | Returns current config for microseconds per second. |
 | CarbonInterval | [create()](#create) | Create a new CarbonInterval instance from specific values. |
 | CarbonInterval | [createFromFormat()](#createfromformat) | Parse a string into a new CarbonInterval object according to the specified format. |
-| CarbonInterval | [monthWithAnchorDay()](#monthwithanchorday) |  |
-| CarbonInterval | [monthNoOverflow()](#monthnooverflow) |  |
-| array\|int\|string\|DateInterval\|mixed\|null | [original()](#original) | Return the original source used to create the current interval. |
-| CarbonInterface\|null | [start()](#start) | Return the start date if interval was created from a difference between 2 dates. |
-| CarbonInterface\|null | [end()](#end) | Return the end date if interval was created from a difference between 2 dates. |
-| CarbonInterval | [optimize()](#optimize) | Get rid of the original input, start date and end date that may be kept in memory. |
 | CarbonInterval | [copy()](#copy) | Get a copy of the instance. |
 | CarbonInterval | [clone()](#clone) | Get a copy of the instance. |
 | CarbonInterval | [fromString()](#fromstring) | Creates a CarbonInterval from string. |
 | CarbonInterval | [parseFromLocale()](#parsefromlocale) | Creates a CarbonInterval from string using a different locale. |
-| CarbonInterval | [diff()](#diff) | Create an interval from the difference between 2 dates. |
-| CarbonInterval | [abs()](#abs) | Invert the interval if it&#039;s inverted. |
-| CarbonInterval | [absolute()](#absolute) |  |
-| mixed | [cast()](#cast) | Cast the current instance into the given class. |
+| DateInterval | [cast()](#cast) | Cast the current instance into the given class. |
 | CarbonInterval | [instance()](#instance) | Create a CarbonInterval instance from a DateInterval one.  Can not instance DateInterval objects created from DateTime::diff() as you can&#039;t externally set the $days field. |
 | CarbonInterval\|null | [make()](#make) | Make a CarbonInterval instance from given variable if possible. |
 | CarbonInterval | [createFromDateString()](#createfromdatestring) | Sets up a DateInterval from the relative parts of the string. |
-| int\|float\|string\|null | [get()](#get) | Get a part of the CarbonInterval object. |
-| CarbonInterval | [set()](#set) | Set a part of the CarbonInterval object. |
+| int\|float\|string | [get()](#get) | Get a part of the CarbonInterval object. |
+| $this | [set()](#set) | Set a part of the CarbonInterval object. |
 | CarbonInterval | [weeksAndDays()](#weeksanddays) | Allow setting of weeks and days to be cumulative. |
 | bool | [isEmpty()](#isempty) | Returns true if the interval is empty for each unit. |
 | void | [macro()](#macro) | Register a custom macro. |
 | void | [mixin()](#mixin) | Register macros from a mixin object. |
 | bool | [hasMacro()](#hasmacro) | Check if macro is registered. |
-| array | [toArray()](#toarray) | Returns interval values as an array where key are the unit names and values the counts. |
-| array | [getNonZeroValues()](#getnonzerovalues) | Returns interval non-zero values as an array where key are the unit names and values the counts. |
-| array | [getValuesSequence()](#getvaluessequence) | Returns interval values as an array where key are the unit names and values the counts from the biggest non-zero one the the smallest non-zero one. |
+| int[] | [toArray()](#toarray) | Returns interval values as an array where key are the unit names and values the counts. |
+| int[] | [getNonZeroValues()](#getnonzerovalues) | Returns interval non-zero values as an array where key are the unit names and values the counts. |
+| int[] | [getValuesSequence()](#getvaluessequence) | Returns interval values as an array where key are the unit names and values the counts from the biggest non-zero one the the smallest non-zero one. |
 | string | [forHumans()](#forhumans) | Get the current interval in a human readable format in the current locale. |
-| string | [format()](#format) |  |
 | DateInterval | [toDateInterval()](#todateinterval) | Return native DateInterval PHP object matching the current instance. |
 | CarbonPeriod | [toPeriod()](#toperiod) | Convert the interval to a CarbonPeriod. |
-| CarbonPeriod | [stepBy()](#stepby) | Decompose the current interval into |
-| CarbonInterval | [invert()](#invert) | Invert the interval. |
-| CarbonInterval | [add()](#add) | Add the passed interval to the current instance. |
-| CarbonInterval | [sub()](#sub) | Subtract the passed interval to the current instance. |
-| CarbonInterval | [subtract()](#subtract) | Subtract the passed interval to the current instance. |
+| $this | [invert()](#invert) | Invert the interval. |
+| $this | [add()](#add) | Add the passed interval to the current instance. |
+| $this | [sub()](#sub) | Subtract the passed interval to the current instance. |
+| $this | [subtract()](#subtract) | Subtract the passed interval to the current instance. |
 | CarbonInterval | [plus()](#plus) | Add given parameters to the current interval. |
-| CarbonInterval | [minus()](#minus) | Subtract given parameters to the current interval. |
-| CarbonInterval | [times()](#times) | Multiply current instance given number of times. times() is naive, it multiplies each unit (so day can be greater than 31, hour can be greater than 23, etc.) and the result is rounded separately for each unit. |
-| CarbonInterval | [shares()](#shares) | Divide current instance by a given divider. shares() is naive, it divides each unit separately and the result is rounded for each unit. So 5 hours and 20 minutes shared by 3 becomes 2 hours and 7 minutes. |
-| CarbonInterval | [multiply()](#multiply) | Multiply and cascade current instance by a given factor. |
-| CarbonInterval | [divide()](#divide) | Divide and cascade current instance by a given divider. |
+| CarbonInterval | [minus()](#minus) | Add given parameters to the current interval. |
+| $this | [times()](#times) | Multiply current instance given number of times. times() is naive, it multiplies each unit (so day can be greater than 31, hour can be greater than 23, etc.) and the result is rounded separately for each unit. |
+| $this | [shares()](#shares) | Divide current instance by a given divider. shares() is naive, it divides each unit separately and the result is rounded for each unit. So 5 hours and 20 minutes shared by 3 becomes 2 hours and 7 minutes. |
+| $this | [multiply()](#multiply) | Multiply and cascade current instance by a given factor. |
+| $this | [divide()](#divide) | Divide and cascade current instance by a given divider. |
 | string | [getDateIntervalSpec()](#getdateintervalspec) | Get the interval_spec string of a date interval. |
 | string | [spec()](#spec) | Get the interval_spec string. |
 | int | [compareDateIntervals()](#comparedateintervals) | Comparing 2 date intervals. |
 | int | [compare()](#compare) | Comparing with passed interval. |
-| CarbonInterval | [cascade()](#cascade) | Convert overflowed values into bigger units. |
+| $this | [cascade()](#cascade) | Convert overflowed values into bigger units. |
 | bool | [hasNegativeValues()](#hasnegativevalues) |  |
 | bool | [hasPositiveValues()](#haspositivevalues) |  |
 | float | [total()](#total) | Get amount of given unit equivalent to the interval. |
@@ -149,12 +133,12 @@ Weeks are calculated based on the total days of the current instance.
 | bool | [betweenIncluded()](#betweenincluded) | Determines if the instance is between two others, bounds excluded. |
 | bool | [betweenExcluded()](#betweenexcluded) | Determines if the instance is between two others, bounds excluded. |
 | bool | [isBetween()](#isbetween) | Determines if the instance is between two others |
-| CarbonInterval | [roundUnit()](#roundunit) | Round the current instance at the given unit with given precision if specified and the given function. |
-| CarbonInterval | [floorUnit()](#floorunit) | Truncate the current instance at the given unit with given precision if specified. |
-| CarbonInterval | [ceilUnit()](#ceilunit) | Ceil the current instance at the given unit with given precision if specified. |
-| CarbonInterval | [round()](#round) | Round the current instance second with given precision if specified. |
-| CarbonInterval | [floor()](#floor) | Round the current instance second with given precision if specified. |
-| CarbonInterval | [ceil()](#ceil) | Ceil the current instance second with given precision if specified. |
+| $this | [roundUnit()](#roundunit) | Round the current instance at the given unit with given precision if specified and the given function. |
+| $this | [floorUnit()](#floorunit) | Truncate the current instance at the given unit with given precision if specified. |
+| $this | [ceilUnit()](#ceilunit) | Ceil the current instance at the given unit with given precision if specified. |
+| $this | [round()](#round) | Round the current instance second with given precision if specified. |
+| $this | [floor()](#floor) | Round the current instance second with given precision if specified. |
+| $this | [ceil()](#ceil) | Ceil the current instance second with given precision if specified. |
 | CarbonInterval | [years()](#years) | Create instance specifying a number of years or modify the number of years if called on an instance. |
 | CarbonInterval | [year()](#year) |  |
 | CarbonInterval | [months()](#months) | Create instance specifying a number of months or modify the number of months if called on an instance. |
@@ -280,7 +264,7 @@ Weeks are calculated based on the total days of the current instance.
 ### setTimezone
 
 ```php
-public CarbonInterval setTimezone($timezone)
+public CarbonInterval setTimezone($tzName)
 ```
 
 Set the instance's timezone from a string or object.
@@ -289,7 +273,7 @@ Set the instance's timezone from a string or object.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| [DateTimeZone](https://www.php.net/class.datetimezone)\|string\|int | `$timezone` | —  |  |
+| [DateTimeZone](https://www.php.net/class.datetimezone)\|string | `$tzName` | —  |  |
 
 **Returns:** [CarbonInterval](../Carbon/CarbonInterval.md)
 ---
@@ -297,16 +281,14 @@ Set the instance's timezone from a string or object.
 ### shiftTimezone
 
 ```php
-public CarbonInterval shiftTimezone($timezone)
+public CarbonInterval shiftTimezone($tzName)
 ```
-
-Set the instance's timezone from a string or object and add/subtract the offset difference.
 
 **Parameters:**
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| [DateTimeZone](https://www.php.net/class.datetimezone)\|string\|int | `$timezone` | —  |  |
+| [DateTimeZone](https://www.php.net/class.datetimezone)\|string | `$tzName` | —  |  |
 
 **Returns:** [CarbonInterval](../Carbon/CarbonInterval.md)
 ---
@@ -468,7 +450,7 @@ Returns current config for microseconds per second.
 ### create
 
 ```php
-static public CarbonInterval create($years = null, $months = null, $weeks = null, $days = null, $hours = null, $minutes = null, $seconds = null, $microseconds = null)
+static public CarbonInterval create($years = 1, $months = null, $weeks = null, $days = null, $hours = null, $minutes = null, $seconds = null, $microseconds = null)
 ```
 
 Create a new CarbonInterval instance from specific values.
@@ -481,7 +463,7 @@ syntax as it allows you to do CarbonInterval::create(1)->fn() rather than
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int | `$years` | `null` |  |
+| int | `$years` | `1` |  |
 | int | `$months` | `null` |  |
 | int | `$weeks` | `null` |  |
 | int | `$days` | `null` |  |
@@ -515,74 +497,6 @@ Parse a string into a new CarbonInterval object according to the specified forma
 **Throws:**
 
 - ParseErrorException
----
-
-### monthWithAnchorDay
-
-```php
-static public CarbonInterval monthWithAnchorDay($day)
-```
-
-**Parameters:**
-
-| Type | Name | Default | Description |
-|---|---|---|---|
-| int | `$day` | —  |  |
-
-**Returns:** [CarbonInterval](../Carbon/CarbonInterval.md)
----
-
-### monthNoOverflow
-
-```php
-static public CarbonInterval monthNoOverflow()
-```
-
-**Returns:** [CarbonInterval](../Carbon/CarbonInterval.md)
----
-
-### original
-
-```php
-public array\|int\|string\|DateInterval\|mixed\|null original()
-```
-
-Return the original source used to create the current interval.
-
-**Returns:** array\|int\|string\|[DateInterval](https://www.php.net/class.dateinterval)\|mixed\|null
----
-
-### start
-
-```php
-public CarbonInterface\|null start()
-```
-
-Return the start date if interval was created from a difference between 2 dates.
-
-**Returns:** CarbonInterface\|null
----
-
-### end
-
-```php
-public CarbonInterface\|null end()
-```
-
-Return the end date if interval was created from a difference between 2 dates.
-
-**Returns:** CarbonInterface\|null
----
-
-### optimize
-
-```php
-public CarbonInterval optimize()
-```
-
-Get rid of the original input, start date and end date that may be kept in memory.
-
-**Returns:** [CarbonInterval](../Carbon/CarbonInterval.md)
 ---
 
 ### copy
@@ -641,9 +555,6 @@ Special cases:
 | string | `$intervalDefinition` | —  |  |
 
 **Returns:** [CarbonInterval](../Carbon/CarbonInterval.md)
-**Throws:**
-
-- InvalidIntervalException
 ---
 
 ### parseFromLocale
@@ -664,62 +575,10 @@ Creates a CarbonInterval from string using a different locale.
 **Returns:** [CarbonInterval](../Carbon/CarbonInterval.md)
 ---
 
-### diff
-
-```php
-static public CarbonInterval diff($start, $end = null, $absolute = false, $skip = [])
-```
-
-Create an interval from the difference between 2 dates.
-
-**Parameters:**
-
-| Type | Name | Default | Description |
-|---|---|---|---|
-| [Carbon](../Carbon/Carbon.md)\|[DateTimeInterface](https://www.php.net/class.datetimeinterface)\|mixed | `$start` | —  |  |
-| [Carbon](../Carbon/Carbon.md)\|[DateTimeInterface](https://www.php.net/class.datetimeinterface)\|mixed | `$end` | `null` |  |
-| bool | `$absolute` | `false` |  |
-| array | `$skip` | `[]` |  |
-
-**Returns:** [CarbonInterval](../Carbon/CarbonInterval.md)
----
-
-### abs
-
-```php
-public CarbonInterval abs($absolute = false)
-```
-
-Invert the interval if it's inverted.
-
-**Parameters:**
-
-| Type | Name | Default | Description |
-|---|---|---|---|
-| bool | `$absolute` | `false` | do nothing if set to false |
-
-**Returns:** [CarbonInterval](../Carbon/CarbonInterval.md)
----
-
-### absolute
-
-```php
-public CarbonInterval absolute($absolute = true)
-```
-
-**Parameters:**
-
-| Type | Name | Default | Description |
-|---|---|---|---|
-| bool | `$absolute` | `true` | do nothing if set to false |
-
-**Returns:** [CarbonInterval](../Carbon/CarbonInterval.md)
----
-
 ### cast
 
 ```php
-public mixed cast($className)
+public DateInterval cast($className)
 ```
 
 Cast the current instance into the given class.
@@ -728,9 +587,9 @@ Cast the current instance into the given class.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| string | `$className` | —  |  |
+| string | `$className` | —  | The $className::instance() method will be called to cast the current object. |
 
-**Returns:** mixed
+**Returns:** [DateInterval](https://www.php.net/class.dateinterval)
 ---
 
 ### instance
@@ -771,8 +630,8 @@ and recurrences). Throw an exception for invalid format, but otherwise return nu
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| mixed\|int\|[DateInterval](https://www.php.net/class.dateinterval)\|string\|[Closure](https://www.php.net/class.closure)\|Unit\|null | `$interval` | —  | interval or number of the given $unit |
-| Unit\|string\|null | `$unit` | `null` | if specified, $interval must be an integer |
+| mixed\|int\|[DateInterval](https://www.php.net/class.dateinterval)\|string\|[Closure](https://www.php.net/class.closure)\|null | `$interval` | —  | interval or number of the given $unit |
+| string\|null | `$unit` | `null` | if specified, $interval must be an integer |
 | bool | `$skipCopy` | `false` | set to true to return the passed object
 (without copying it) if it's already of the
 current class |
@@ -783,7 +642,7 @@ current class |
 ### createFromDateString
 
 ```php
-static public CarbonInterval createFromDateString($datetime)
+static public CarbonInterval createFromDateString($time)
 ```
 
 Sets up a DateInterval from the relative parts of the string.
@@ -792,7 +651,7 @@ Sets up a DateInterval from the relative parts of the string.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| string | `$datetime` | —  |  |
+| string | `$time` | —  |  |
 
 **Returns:** [CarbonInterval](../Carbon/CarbonInterval.md)
 ---
@@ -800,7 +659,7 @@ Sets up a DateInterval from the relative parts of the string.
 ### get
 
 ```php
-public int\|float\|string\|null get($name)
+public int\|float\|string get($name)
 ```
 
 Get a part of the CarbonInterval object.
@@ -809,15 +668,18 @@ Get a part of the CarbonInterval object.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| Unit\|string | `$name` | —  |  |
+| string | `$name` | —  |  |
 
-**Returns:** int\|float\|string\|null
+**Returns:** int\|float\|string
+**Throws:**
+
+- UnknownGetterException
 ---
 
 ### set
 
 ```php
-public CarbonInterval set($name, $value = null)
+public $this set($name, $value = null)
 ```
 
 Set a part of the CarbonInterval object.
@@ -826,10 +688,10 @@ Set a part of the CarbonInterval object.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| Unit\|string\|array | `$name` | —  |  |
+| string\|array | `$name` | —  |  |
 | int | `$value` | `null` |  |
 
-**Returns:** [CarbonInterval](../Carbon/CarbonInterval.md)
+**Returns:** $this
 **Throws:**
 
 - UnknownSetterException
@@ -872,14 +734,12 @@ static public void macro($name, $macro)
 
 Register a custom macro.
 
-Pass null macro to remove it.
-
 **Parameters:**
 
 | Type | Name | Default | Description |
 |---|---|---|---|
 | string | `$name` | —  |  |
-| callable\|null | `$macro` | —  |  |
+| object\|callable | `$macro` | —  |  |
 
 **Returns:** void
 ---
@@ -924,41 +784,41 @@ Check if macro is registered.
 ### toArray
 
 ```php
-public array toArray()
+public int[] toArray()
 ```
 
 Returns interval values as an array where key are the unit names and values the counts.
 
-**Returns:** array
+**Returns:** int[]
 ---
 
 ### getNonZeroValues
 
 ```php
-public array getNonZeroValues()
+public int[] getNonZeroValues()
 ```
 
 Returns interval non-zero values as an array where key are the unit names and values the counts.
 
-**Returns:** array
+**Returns:** int[]
 ---
 
 ### getValuesSequence
 
 ```php
-public array getValuesSequence()
+public int[] getValuesSequence()
 ```
 
 Returns interval values as an array where key are the unit names and values the counts
 from the biggest non-zero one the the smallest non-zero one.
 
-**Returns:** array
+**Returns:** int[]
 ---
 
 ### forHumans
 
 ```php
-public string forHumans($syntax = null, $short = false, $parts = self::NO_LIMIT, $options = null)
+public string forHumans($syntax = null, $short = false, $parts = -1, $options = null)
 ```
 
 Get the current interval in a human readable format in the current locale.
@@ -967,58 +827,38 @@ Get the current interval in a human readable format in the current locale.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int\|array | `$syntax` | `null` | if array passed, parameters will be extracted from it, the array may contain:
-⦿ 'syntax' entry (see below)
-⦿ 'short' entry (see below)
-⦿ 'parts' entry (see below)
-⦿ 'options' entry (see below)
-⦿ 'skip' entry, list of units to skip (array of strings or a single string,
+| int\|array | `$syntax` | `null` | if array passed, parameters will be extracted from it, the array may contains:
+- 'syntax' entry (see below)
+- 'short' entry (see below)
+- 'parts' entry (see below)
+- 'options' entry (see below)
+- 'skip' entry, list of units to skip (array of strings or a single string,
 ` it can be the unit name (singular or plural) or its shortcut
 ` (y, m, w, d, h, min, s, ms, µs).
-⦿ 'aUnit' entry, prefer "an hour" over "1 hour" if true
-⦿ 'altNumbers' entry, use alternative numbers if available
-` (from the current language if true is passed, from the given language(s)
-` if array or string is passed)
-⦿ 'join' entry determines how to join multiple parts of the string
+- 'aUnit' entry, prefer "an hour" over "1 hour" if true
+- 'join' entry determines how to join multiple parts of the string
 `  - if $join is a string, it's used as a joiner glue
 `  - if $join is a callable/closure, it get the list of string and should return a string
 `  - if $join is an array, the first item will be the default glue, and the second item
 `    will be used instead of the glue for the last item
 `  - if $join is true, it will be guessed from the locale ('list' translation file entry)
 `  - if $join is missing, a space will be used as glue
-⦿ 'minimumUnit' entry determines the smallest unit of time to display can be long or
+- 'minimumUnit' entry determines the smallest unit of time to display can be long or
 `  short form of the units, e.g. 'hour' or 'h' (default value: s)
-⦿ 'locale' language in which the diff should be output (has no effect if 'translator' key is set)
-⦿ 'translator' a custom translator to use to translator the output.
-if int passed, it adds modifiers:
+if int passed, it add modifiers:
 Possible values:
 - CarbonInterface::DIFF_ABSOLUTE          no modifiers
 - CarbonInterface::DIFF_RELATIVE_TO_NOW   add ago/from now modifier
 - CarbonInterface::DIFF_RELATIVE_TO_OTHER add before/after modifier
 Default value: CarbonInterface::DIFF_ABSOLUTE |
 | bool | `$short` | `false` | displays short format of time units |
-| int | `$parts` | `self::NO_LIMIT` | maximum number of parts to display (default value: -1: no limits) |
+| int | `$parts` | `-1` | maximum number of parts to display (default value: -1: no limits) |
 | int | `$options` | `null` | human diff options |
 
 **Returns:** string
 **Throws:**
 
 - [Exception](https://www.php.net/class.exception)
----
-
-### format
-
-```php
-public string format($format)
-```
-
-**Parameters:**
-
-| Type | Name | Default | Description |
-|---|---|---|---|
-| string | `$format` | —  |  |
-
-**Returns:** string
 ---
 
 ### toDateInterval
@@ -1049,28 +889,10 @@ Convert the interval to a CarbonPeriod.
 **Returns:** [CarbonPeriod](../Carbon/CarbonPeriod.md)
 ---
 
-### stepBy
-
-```php
-public CarbonPeriod stepBy($interval, $unit = null)
-```
-
-Decompose the current interval into
-
-**Parameters:**
-
-| Type | Name | Default | Description |
-|---|---|---|---|
-| mixed\|int\|[DateInterval](https://www.php.net/class.dateinterval)\|string\|[Closure](https://www.php.net/class.closure)\|Unit\|null | `$interval` | —  | interval or number of the given $unit |
-| Unit\|string\|null | `$unit` | `null` | if specified, $interval must be an integer |
-
-**Returns:** [CarbonPeriod](../Carbon/CarbonPeriod.md)
----
-
 ### invert
 
 ```php
-public CarbonInterval invert($inverted = null)
+public $this invert($inverted = null)
 ```
 
 Invert the interval.
@@ -1082,13 +904,13 @@ Invert the interval.
 | bool\|int | `$inverted` | `null` | if a parameter is passed, the passed value cast as 1 or 0 is used
 as the new value of the ->invert property. |
 
-**Returns:** [CarbonInterval](../Carbon/CarbonInterval.md)
+**Returns:** $this
 ---
 
 ### add
 
 ```php
-public CarbonInterval add($unit, $value = 1)
+public $this add($unit, $value = 1)
 ```
 
 Add the passed interval to the current instance.
@@ -1097,34 +919,16 @@ Add the passed interval to the current instance.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| Unit\|string\|[DateInterval](https://www.php.net/class.dateinterval) | `$unit` | —  |  |
+| string\|[DateInterval](https://www.php.net/class.dateinterval) | `$unit` | —  |  |
 | int\|float | `$value` | `1` |  |
 
-**Returns:** [CarbonInterval](../Carbon/CarbonInterval.md)
+**Returns:** $this
 ---
 
 ### sub
 
 ```php
-public CarbonInterval sub($unit, $value = 1)
-```
-
-Subtract the passed interval to the current instance.
-
-**Parameters:**
-
-| Type | Name | Default | Description |
-|---|---|---|---|
-| Unit\|string\|[DateInterval](https://www.php.net/class.dateinterval) | `$unit` | —  |  |
-| int\|float | `$value` | `1` |  |
-
-**Returns:** [CarbonInterval](../Carbon/CarbonInterval.md)
----
-
-### subtract
-
-```php
-public CarbonInterval subtract($unit, $value = 1)
+public $this sub($unit, $value = 1)
 ```
 
 Subtract the passed interval to the current instance.
@@ -1136,7 +940,25 @@ Subtract the passed interval to the current instance.
 | string\|[DateInterval](https://www.php.net/class.dateinterval) | `$unit` | —  |  |
 | int\|float | `$value` | `1` |  |
 
-**Returns:** [CarbonInterval](../Carbon/CarbonInterval.md)
+**Returns:** $this
+---
+
+### subtract
+
+```php
+public $this subtract($unit, $value = 1)
+```
+
+Subtract the passed interval to the current instance.
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| string\|[DateInterval](https://www.php.net/class.dateinterval) | `$unit` | —  |  |
+| int\|float | `$value` | `1` |  |
+
+**Returns:** $this
 ---
 
 ### plus
@@ -1169,7 +991,7 @@ Add given parameters to the current interval.
 public CarbonInterval minus($years = 0, $months = 0, $weeks = 0, $days = 0, $hours = 0, $minutes = 0, $seconds = 0, $microseconds = 0)
 ```
 
-Subtract given parameters to the current interval.
+Add given parameters to the current interval.
 
 **Parameters:**
 
@@ -1190,7 +1012,7 @@ Subtract given parameters to the current interval.
 ### times
 
 ```php
-public CarbonInterval times($factor)
+public $this times($factor)
 ```
 
 Multiply current instance given number of times. times() is naive, it multiplies each unit
@@ -1207,7 +1029,7 @@ For a precise and cascaded calculation,
 |---|---|---|---|
 | float\|int | `$factor` | —  |  |
 
-**Returns:** [CarbonInterval](../Carbon/CarbonInterval.md)
+**Returns:** $this
 **See also:**
 
 - multiply()
@@ -1216,7 +1038,7 @@ For a precise and cascaded calculation,
 ### shares
 
 ```php
-public CarbonInterval shares($divider)
+public $this shares($divider)
 ```
 
 Divide current instance by a given divider. shares() is naive, it divides each unit separately
@@ -1233,7 +1055,7 @@ For a precise and cascaded calculation,
 |---|---|---|---|
 | float\|int | `$divider` | —  |  |
 
-**Returns:** [CarbonInterval](../Carbon/CarbonInterval.md)
+**Returns:** $this
 **See also:**
 
 - divide()
@@ -1242,7 +1064,7 @@ For a precise and cascaded calculation,
 ### multiply
 
 ```php
-public CarbonInterval multiply($factor)
+public $this multiply($factor)
 ```
 
 Multiply and cascade current instance by a given factor.
@@ -1253,13 +1075,13 @@ Multiply and cascade current instance by a given factor.
 |---|---|---|---|
 | float\|int | `$factor` | —  |  |
 
-**Returns:** [CarbonInterval](../Carbon/CarbonInterval.md)
+**Returns:** $this
 ---
 
 ### divide
 
 ```php
-public CarbonInterval divide($divider)
+public $this divide($divider)
 ```
 
 Divide and cascade current instance by a given divider.
@@ -1270,13 +1092,13 @@ Divide and cascade current instance by a given divider.
 |---|---|---|---|
 | float\|int | `$divider` | —  |  |
 
-**Returns:** [CarbonInterval](../Carbon/CarbonInterval.md)
+**Returns:** $this
 ---
 
 ### getDateIntervalSpec
 
 ```php
-static public string getDateIntervalSpec($interval, $microseconds = false, $skip = [], $withNegatives = false)
+static public string getDateIntervalSpec($interval, $microseconds = false, $skip = [])
 ```
 
 Get the interval_spec string of a date interval.
@@ -1288,7 +1110,6 @@ Get the interval_spec string of a date interval.
 | [DateInterval](https://www.php.net/class.dateinterval) | `$interval` | —  |  |
 | bool | `$microseconds` | `false` |  |
 | array | `$skip` | `[]` |  |
-| bool | `$withNegatives` | `false` |  |
 
 **Returns:** string
 ---
@@ -1296,7 +1117,7 @@ Get the interval_spec string of a date interval.
 ### spec
 
 ```php
-public string spec($microseconds = false, $withNegatives = false)
+public string spec($microseconds = false)
 ```
 
 Get the interval_spec string.
@@ -1306,7 +1127,6 @@ Get the interval_spec string.
 | Type | Name | Default | Description |
 |---|---|---|---|
 | bool | `$microseconds` | `false` |  |
-| bool | `$withNegatives` | `false` |  |
 
 **Returns:** string
 ---
@@ -1326,7 +1146,7 @@ Comparing 2 date intervals.
 | [DateInterval](https://www.php.net/class.dateinterval) | `$first` | —  |  |
 | [DateInterval](https://www.php.net/class.dateinterval) | `$second` | —  |  |
 
-**Returns:** int — 0, 1 or -1
+**Returns:** int
 ---
 
 ### compare
@@ -1343,18 +1163,18 @@ Comparing with passed interval.
 |---|---|---|---|
 | [DateInterval](https://www.php.net/class.dateinterval) | `$interval` | —  |  |
 
-**Returns:** int — 0, 1 or -1
+**Returns:** int
 ---
 
 ### cascade
 
 ```php
-public CarbonInterval cascade()
+public $this cascade()
 ```
 
 Convert overflowed values into bigger units.
 
-**Returns:** [CarbonInterval](../Carbon/CarbonInterval.md)
+**Returns:** $this
 ---
 
 ### hasNegativeValues
@@ -1698,7 +1518,7 @@ Determines if the instance is between two others
 ### roundUnit
 
 ```php
-public CarbonInterval roundUnit($unit, $precision = 1, $function = &#039;round&#039;)
+public $this roundUnit($unit, $precision = 1, $function = &#039;round&#039;)
 ```
 
 Round the current instance at the given unit with given precision if specified and the given function.
@@ -1708,10 +1528,10 @@ Round the current instance at the given unit with given precision if specified a
 | Type | Name | Default | Description |
 |---|---|---|---|
 | string | `$unit` | —  |  |
-| [DateInterval](https://www.php.net/class.dateinterval)\|string\|int\|float | `$precision` | `1` |  |
+| float\|int\|string\|[DateInterval](https://www.php.net/class.dateinterval)\|null | `$precision` | `1` |  |
 | string | `$function` | `&#039;round&#039;` |  |
 
-**Returns:** [CarbonInterval](../Carbon/CarbonInterval.md)
+**Returns:** $this
 **Throws:**
 
 - [Exception](https://www.php.net/class.exception)
@@ -1720,7 +1540,7 @@ Round the current instance at the given unit with given precision if specified a
 ### floorUnit
 
 ```php
-public CarbonInterval floorUnit($unit, $precision = 1)
+public $this floorUnit($unit, $precision = 1)
 ```
 
 Truncate the current instance at the given unit with given precision if specified.
@@ -1732,7 +1552,7 @@ Truncate the current instance at the given unit with given precision if specifie
 | string | `$unit` | —  |  |
 | float\|int\|string\|[DateInterval](https://www.php.net/class.dateinterval)\|null | `$precision` | `1` |  |
 
-**Returns:** [CarbonInterval](../Carbon/CarbonInterval.md)
+**Returns:** $this
 **Throws:**
 
 - [Exception](https://www.php.net/class.exception)
@@ -1741,7 +1561,7 @@ Truncate the current instance at the given unit with given precision if specifie
 ### ceilUnit
 
 ```php
-public CarbonInterval ceilUnit($unit, $precision = 1)
+public $this ceilUnit($unit, $precision = 1)
 ```
 
 Ceil the current instance at the given unit with given precision if specified.
@@ -1753,7 +1573,7 @@ Ceil the current instance at the given unit with given precision if specified.
 | string | `$unit` | —  |  |
 | float\|int\|string\|[DateInterval](https://www.php.net/class.dateinterval)\|null | `$precision` | `1` |  |
 
-**Returns:** [CarbonInterval](../Carbon/CarbonInterval.md)
+**Returns:** $this
 **Throws:**
 
 - [Exception](https://www.php.net/class.exception)
@@ -1762,7 +1582,7 @@ Ceil the current instance at the given unit with given precision if specified.
 ### round
 
 ```php
-public CarbonInterval round($precision = 1, $function = &#039;round&#039;)
+public $this round($precision = 1, $function = &#039;round&#039;)
 ```
 
 Round the current instance second with given precision if specified.
@@ -1774,7 +1594,7 @@ Round the current instance second with given precision if specified.
 | float\|int\|string\|[DateInterval](https://www.php.net/class.dateinterval)\|null | `$precision` | `1` |  |
 | string | `$function` | `&#039;round&#039;` |  |
 
-**Returns:** [CarbonInterval](../Carbon/CarbonInterval.md)
+**Returns:** $this
 **Throws:**
 
 - [Exception](https://www.php.net/class.exception)
@@ -1783,7 +1603,7 @@ Round the current instance second with given precision if specified.
 ### floor
 
 ```php
-public CarbonInterval floor($precision = 1)
+public $this floor($precision = 1)
 ```
 
 Round the current instance second with given precision if specified.
@@ -1792,9 +1612,9 @@ Round the current instance second with given precision if specified.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| [DateInterval](https://www.php.net/class.dateinterval)\|string\|float\|int | `$precision` | `1` |  |
+| float\|int\|string\|[DateInterval](https://www.php.net/class.dateinterval)\|null | `$precision` | `1` |  |
 
-**Returns:** [CarbonInterval](../Carbon/CarbonInterval.md)
+**Returns:** $this
 **Throws:**
 
 - [Exception](https://www.php.net/class.exception)
@@ -1803,7 +1623,7 @@ Round the current instance second with given precision if specified.
 ### ceil
 
 ```php
-public CarbonInterval ceil($precision = 1)
+public $this ceil($precision = 1)
 ```
 
 Ceil the current instance second with given precision if specified.
@@ -1812,9 +1632,9 @@ Ceil the current instance second with given precision if specified.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| [DateInterval](https://www.php.net/class.dateinterval)\|string\|float\|int | `$precision` | `1` |  |
+| float\|int\|string\|[DateInterval](https://www.php.net/class.dateinterval)\|null | `$precision` | `1` |  |
 
-**Returns:** [CarbonInterval](../Carbon/CarbonInterval.md)
+**Returns:** $this
 **Throws:**
 
 - [Exception](https://www.php.net/class.exception)

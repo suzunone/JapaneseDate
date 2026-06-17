@@ -28,12 +28,11 @@ use Tests\JapaneseDate\InvokeTrait;
  * @link        https://github.com/suzunone/JapaneseDate
  * @see         https://github.com/suzunone/JapaneseDate
  * @since       Release 1.0.0 から利用可能
+ * @coversNothing
  */
-#[CoversNothing]
 class LunarCalendarCoversNothingTest extends TestCase
 {
     use InvokeTrait;
-
     /**
      * 朔日として検出されるべき日付を返す
      *
@@ -253,7 +252,6 @@ class LunarCalendarCoversNothingTest extends TestCase
             '1899/05/10' => ['1899/05/10'],
         ];
     }
-
     /**
      * makeLunarCalendar が各年の朔日を旧暦カレンダーに含めることを確認する
      *
@@ -261,29 +259,24 @@ class LunarCalendarCoversNothingTest extends TestCase
      * @return void
      * @throws \JsonException
      * @throws \ReflectionException
+     * @dataProvider makeLunarCalendarDataProvider
      */
-    #[DataProvider('makeLunarCalendarDataProvider')]
     public function test_makeLunarCalendar(string $date): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_LEGACY);
         DateTime::useMoonAlgorithm(DateTime::MOON_ALGORITHM_LEGACY);
         DateTime::useBoundarySolarAlgorithm(DateTime::SOLAR_ALGORITHM_VSOP87);
         DateTime::useBoundaryMoonAlgorithm(DateTime::MOON_ALGORITHM_MEEUS47);
-
         $LunarCalendar = LunarCalendar::factory();
-
         [$year] = explode('/', $date, 2);
         $year = (int) $year;
-
         $calendar_array = $this->invokeExecuteMethod($LunarCalendar, 'makeLunarCalendar', [$year]);
         $dates = array_map(
             static fn (array $item): string => sprintf('%04d/%02d/%02d', $item['year'], $item['month'], $item['day']),
             $calendar_array
         );
-
         $this->assertContains($date, $dates, json_encode($calendar_array, JSON_THROW_ON_ERROR));
     }
-
     /**
      * 2033年の各朔日に対して旧暦月番号と閏月フラグを検証するデータプロバイダ
      *
@@ -296,7 +289,6 @@ class LunarCalendarCoversNothingTest extends TestCase
             '2033年閏11月の朔'   => ['2033/12/22', 11, true],
         ];
     }
-
     /**
      * 2033年の旧暦月番号と閏月フラグが正しく算出されることを確認する。
      *
@@ -305,33 +297,26 @@ class LunarCalendarCoversNothingTest extends TestCase
      * @param bool   $expectedIsLeap    期待する閏月フラグ
      * @return void
      * @throws \ReflectionException
+     * @dataProvider makeLunarCalendar2033LeapMonthProvider
      */
-    #[DataProvider('makeLunarCalendar2033LeapMonthProvider')]
-    public function test_makeLunarCalendar_2033_leapMonth(
-        string $date,
-        int $expectedLunarMonth,
-        bool $expectedIsLeap
-    ): void {
+    public function test_makeLunarCalendar_2033_leapMonth(string $date, int $expectedLunarMonth, bool $expectedIsLeap): void
+    {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_LEGACY);
         DateTime::useMoonAlgorithm(DateTime::MOON_ALGORITHM_LEGACY);
         DateTime::useBoundarySolarAlgorithm(DateTime::SOLAR_ALGORITHM_VSOP87);
         DateTime::useBoundaryMoonAlgorithm(DateTime::MOON_ALGORITHM_MEEUS47);
-
         $LunarCalendar = LunarCalendar::factory();
         [$year] = explode('/', $date, 2);
         $calendar_array = $this->invokeExecuteMethod($LunarCalendar, 'makeLunarCalendar', [(int) $year]);
-
         [$y, $m, $d] = array_map('intval', explode('/', $date));
         $entry = current(array_filter(
             $calendar_array,
             fn ($item) => $item['year'] === $y && $item['month'] === $m && $item['day'] === $d
         ));
-
         $this->assertNotFalse($entry, "{$date} が朔日テーブルに存在しない");
         $this->assertSame($expectedLunarMonth, (int) $entry['lunar_month']);
         $this->assertSame($expectedIsLeap, $entry['lunar_month_leap']);
     }
-
     /**
      * 2033年の旧暦カレンダーに閏月がちょうど1つ存在し、それが閏11月であることを確認する。
      *
@@ -356,7 +341,6 @@ class LunarCalendarCoversNothingTest extends TestCase
         $this->assertCount(1, $leapMonths, '2033年の閏月がちょうど1つでない');
         $this->assertSame(11, (int) $leapMonths[0]['lunar_month'], '2033年の閏月が11月でない');
     }
-
     /**
      * VSOP87 ソーラー + Legacy ムーンで2020年の主要な朔日が正しく検出されることを確認する。
      *
@@ -365,29 +349,26 @@ class LunarCalendarCoversNothingTest extends TestCase
      *
      * @return void
      * @throws \ReflectionException
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
      */
-    #[RunInSeparateProcess]
-    #[PreserveGlobalState(false)]
     public function test_makeLunarCalendar_vsop87_solar_legacy_moon_saku_dates(): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_VSOP87);
         DateTime::useMoonAlgorithm(DateTime::MOON_ALGORITHM_LEGACY);
         DateTime::useBoundarySolarAlgorithm(DateTime::SOLAR_ALGORITHM_VSOP87);
         DateTime::useBoundaryMoonAlgorithm(DateTime::MOON_ALGORITHM_MEEUS47);
-
         $LunarCalendar = LunarCalendar::factory();
         $calendar_array = $this->invokeExecuteMethod($LunarCalendar, 'makeLunarCalendar', [2020]);
         $dates = array_map(
             static fn (array $item): string => sprintf('%04d/%02d/%02d', $item['year'], $item['month'], $item['day']),
             $calendar_array
         );
-
         // 2020年の国立天文台データで確認された朔日 (VSOP87 でも Legacy でも一致する)
         foreach (['2020/01/25', '2020/06/21', '2020/12/15'] as $expectedDate) {
             $this->assertContains($expectedDate, $dates, "VSOP87 solar + Legacy moon で {$expectedDate} が検出されませんでした");
         }
     }
-
     /**
      * 2022年正月の旧暦日を全太陽・月アルゴリズムで検証するデータを返す。
      *
@@ -428,7 +409,6 @@ class LunarCalendarCoversNothingTest extends TestCase
 
         return $data;
     }
-
     /**
      * 全太陽・月アルゴリズムで2022年正月の旧暦日が霜月29日・30日になることを確認する。
      *
@@ -445,18 +425,12 @@ class LunarCalendarCoversNothingTest extends TestCase
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      * @throws \JsonException
+     * @dataProvider lunarDate2022NewYearAlgorithmProvider
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
      */
-    #[DataProvider('lunarDate2022NewYearAlgorithmProvider')]
-    #[RunInSeparateProcess]
-    #[PreserveGlobalState(false)]
-    public function test_lunarDate_2022_new_year_all_algorithm_combinations(
-        string $solarAlgorithm,
-        string $moonAlgorithm,
-        string $date,
-        int $year,
-        int $month,
-        int $day
-    ): void {
+    public function test_lunarDate_2022_new_year_all_algorithm_combinations(string $solarAlgorithm, string $moonAlgorithm, string $date, int $year, int $month, int $day): void
+    {
         try {
             Astronomy::useSolarAlgorithm($solarAlgorithm);
             Astronomy::useMoonAlgorithm($moonAlgorithm);
