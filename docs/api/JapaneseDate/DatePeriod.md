@@ -69,7 +69,6 @@ foreach ($period as $date) {
 
 ## Traits
 
-- LocalFactory
 - IntervalRounding
 - Mixin
 - Options
@@ -84,11 +83,24 @@ foreach ($period as $date) {
 | public | `RECURRENCES_FILTER` | Built-in filter for limit by recurrences. |
 | public | `END_DATE_FILTER` | Built-in filter for limit to an end. |
 | public | `END_ITERATION` | Special value which can be returned by filters to end iteration. Also a filter. |
+| public | `EXCLUDE_START_DATE` | Exclude start date from iteration. |
 | public | `EXCLUDE_END_DATE` | Exclude end date from iteration. |
 | public | `IMMUTABLE` | Yield CarbonImmutable instances. |
 | public | `NEXT_MAX_ATTEMPTS` | Number of maximum attempts before giving up on finding next valid date. |
 | public | `END_MAX_ATTEMPTS` | Number of maximum attempts before giving up on finding end date. |
 | protected | `DEFAULT_DATE_CLASS` | Default date class of iteration items. |
+
+## Properties
+
+| Modifier | Type | Name | Description |
+|---|---|---|---|
+| public _(read-only)_ | int\|float | `$recurrences` _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | number of recurrences (if end not set). |
+| public _(read-only)_ | bool | `$include_start_date` _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | rather the start date is included in the iteration. |
+| public _(read-only)_ | bool | `$include_end_date` _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | rather the end date is included in the iteration (if recurrences not set). |
+| public _(read-only)_ | CarbonInterface | `$start` _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Period start date. |
+| public _(read-only)_ | CarbonInterface | `$current` _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Current date from the iteration. |
+| public _(read-only)_ | CarbonInterface | `$end` _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Period end date. |
+| public _(read-only)_ | [CarbonInterval](../Carbon/CarbonInterval.md) | `$interval` _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Underlying date interval instance. Always present, one day by default. |
 
 ## Methods
 
@@ -122,13 +134,11 @@ foreach ($period as $date) {
 | array | [splitByEra()](#splitbyera) | 期間（DatePeriod）を元号の切り替わりタイミングで複数のサブ期間に分割します。 |
 | DatePeriod | [onlyBusinessDays()](#onlybusinessdays) | 期間内の営業日のみを含む新しい DatePeriod を返します。 |
 | DatePeriod | [withoutBusinessDays()](#withoutbusinessdays) | 期間内から営業日を除いた（休業日のみの）新しい DatePeriod を返します。 |
-| Generator | [CarbonPeriod::getIterator](../Carbon/CarbonPeriod.md#getiterator) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ |  |
 | CarbonPeriod\|null | [CarbonPeriod::make](../Carbon/CarbonPeriod.md#make) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Make a CarbonPeriod instance from given variable if possible. |
 | CarbonPeriod | [CarbonPeriod::instance](../Carbon/CarbonPeriod.md#instance) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Create a new instance from a DatePeriod or CarbonPeriod object. |
 | CarbonPeriod | [CarbonPeriod::create](../Carbon/CarbonPeriod.md#create) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Create a new instance. |
 | CarbonPeriod | [CarbonPeriod::createFromArray](../Carbon/CarbonPeriod.md#createfromarray) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Create a new instance from an array of parameters. |
 | CarbonPeriod | [CarbonPeriod::createFromIso](../Carbon/CarbonPeriod.md#createfromiso) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Create CarbonPeriod from ISO 8601 string. |
-| CarbonPeriod | [CarbonPeriod::createFromISO8601String](../Carbon/CarbonPeriod.md#createfromiso8601string) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ |  |
 | void | [CarbonPeriod::macro](../Carbon/CarbonPeriod.md#macro) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Register a custom macro. |
 | void | [CarbonPeriod::mixin](../Carbon/CarbonPeriod.md#mixin) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Register macros from a mixin object. |
 | bool | [CarbonPeriod::hasMacro](../Carbon/CarbonPeriod.md#hasmacro) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Check if macro is registered. |
@@ -138,7 +148,6 @@ foreach ($period as $date) {
 | CarbonPeriod | [CarbonPeriod::setDateClass](../Carbon/CarbonPeriod.md#setdateclass) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Set the iteration item class. |
 | string | [CarbonPeriod::getDateClass](../Carbon/CarbonPeriod.md#getdateclass) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Returns iteration item date class. |
 | CarbonPeriod | [CarbonPeriod::setDateInterval](../Carbon/CarbonPeriod.md#setdateinterval) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Change the period date interval. |
-| CarbonPeriod | [CarbonPeriod::resetDateInterval](../Carbon/CarbonPeriod.md#resetdateinterval) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Reset the date interval to the default value. |
 | CarbonPeriod | [CarbonPeriod::invertDateInterval](../Carbon/CarbonPeriod.md#invertdateinterval) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Invert the period date interval. |
 | CarbonPeriod | [CarbonPeriod::setDates](../Carbon/CarbonPeriod.md#setdates) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Set start and end date. |
 | CarbonPeriod | [CarbonPeriod::setOptions](../Carbon/CarbonPeriod.md#setoptions) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Change the period options. |
@@ -175,31 +184,31 @@ foreach ($period as $date) {
 | string | [CarbonPeriod::toIso8601String](../Carbon/CarbonPeriod.md#toiso8601string) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Format the date period as ISO 8601. |
 | string | [CarbonPeriod::toString](../Carbon/CarbonPeriod.md#tostring) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Convert the date period into a string. |
 | string | [CarbonPeriod::spec](../Carbon/CarbonPeriod.md#spec) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Format the date period as ISO 8601. |
-| object | [CarbonPeriod::cast](../Carbon/CarbonPeriod.md#cast) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Cast the current instance into the given class. |
+| DatePeriod | [CarbonPeriod::cast](../Carbon/CarbonPeriod.md#cast) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Cast the current instance into the given class. |
 | DatePeriod | [CarbonPeriod::toDatePeriod](../Carbon/CarbonPeriod.md#todateperiod) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Return native DatePeriod PHP object matching the current instance. |
 | bool | [CarbonPeriod::isUnfilteredAndEndLess](../Carbon/CarbonPeriod.md#isunfilteredandendless) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Return `true` if the period has no custom filter and is guaranteed to be endless. |
-| array | [CarbonPeriod::toArray](../Carbon/CarbonPeriod.md#toarray) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Convert the date period into an array without changing current iteration state. |
+| CarbonInterface[] | [CarbonPeriod::toArray](../Carbon/CarbonPeriod.md#toarray) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Convert the date period into an array without changing current iteration state. |
 | int | [CarbonPeriod::count](../Carbon/CarbonPeriod.md#count) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Count dates in the date period. |
 | CarbonInterface\|null | [CarbonPeriod::first](../Carbon/CarbonPeriod.md#first) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Return the first date in the date period. |
 | CarbonInterface\|null | [CarbonPeriod::last](../Carbon/CarbonPeriod.md#last) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Return the last date in the date period. |
 | CarbonPeriod | [CarbonPeriod::setTimezone](../Carbon/CarbonPeriod.md#settimezone) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Set the instance&#039;s timezone from a string or object and apply it to start/end. |
 | CarbonPeriod | [CarbonPeriod::shiftTimezone](../Carbon/CarbonPeriod.md#shifttimezone) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Set the instance&#039;s timezone from a string or object and add/subtract the offset difference to start/end. |
-| CarbonInterface | [CarbonPeriod::calculateEnd](../Carbon/CarbonPeriod.md#calculateend) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Returns the end is set, else calculated from start and recurrences. |
+| CarbonInterface | [CarbonPeriod::calculateEnd](../Carbon/CarbonPeriod.md#calculateend) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Returns the end is set, else calculated from start an recurrences. |
 | bool | [CarbonPeriod::overlaps](../Carbon/CarbonPeriod.md#overlaps) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Returns true if the current period overlaps the given one (if 1 parameter passed) or the period between 2 dates (if 2 parameters passed). |
-| void | [CarbonPeriod::forEach](../Carbon/CarbonPeriod.md#foreach) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Execute a given function on each date of the period. |
+|  | [CarbonPeriod::forEach](../Carbon/CarbonPeriod.md#foreach) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Execute a given function on each date of the period. |
 | Generator | [CarbonPeriod::map](../Carbon/CarbonPeriod.md#map) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Execute a given function on each date of the period and yield the result of this function. |
 | bool | [CarbonPeriod::eq](../Carbon/CarbonPeriod.md#eq) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Determines if the instance is equal to another. |
 | bool | [CarbonPeriod::equalTo](../Carbon/CarbonPeriod.md#equalto) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Determines if the instance is equal to another. |
 | bool | [CarbonPeriod::ne](../Carbon/CarbonPeriod.md#ne) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Determines if the instance is not equal to another. |
 | bool | [CarbonPeriod::notEqualTo](../Carbon/CarbonPeriod.md#notequalto) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Determines if the instance is not equal to another. |
-| bool | [CarbonPeriod::startsBefore](../Carbon/CarbonPeriod.md#startsbefore) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Determines if the start date is before another given date. |
+| bool | [CarbonPeriod::startsBefore](../Carbon/CarbonPeriod.md#startsbefore) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Determines if the start date is before an other given date. |
 | bool | [CarbonPeriod::startsBeforeOrAt](../Carbon/CarbonPeriod.md#startsbeforeorat) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Determines if the start date is before or the same as a given date. |
-| bool | [CarbonPeriod::startsAfter](../Carbon/CarbonPeriod.md#startsafter) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Determines if the start date is after another given date. |
+| bool | [CarbonPeriod::startsAfter](../Carbon/CarbonPeriod.md#startsafter) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Determines if the start date is after an other given date. |
 | bool | [CarbonPeriod::startsAfterOrAt](../Carbon/CarbonPeriod.md#startsafterorat) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Determines if the start date is after or the same as a given date. |
 | bool | [CarbonPeriod::startsAt](../Carbon/CarbonPeriod.md#startsat) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Determines if the start date is the same as a given date. |
-| bool | [CarbonPeriod::endsBefore](../Carbon/CarbonPeriod.md#endsbefore) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Determines if the end date is before another given date. |
+| bool | [CarbonPeriod::endsBefore](../Carbon/CarbonPeriod.md#endsbefore) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Determines if the end date is before an other given date. |
 | bool | [CarbonPeriod::endsBeforeOrAt](../Carbon/CarbonPeriod.md#endsbeforeorat) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Determines if the end date is before or the same as a given date. |
-| bool | [CarbonPeriod::endsAfter](../Carbon/CarbonPeriod.md#endsafter) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Determines if the end date is after another given date. |
+| bool | [CarbonPeriod::endsAfter](../Carbon/CarbonPeriod.md#endsafter) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Determines if the end date is after an other given date. |
 | bool | [CarbonPeriod::endsAfterOrAt](../Carbon/CarbonPeriod.md#endsafterorat) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Determines if the end date is after or the same as a given date. |
 | bool | [CarbonPeriod::endsAt](../Carbon/CarbonPeriod.md#endsat) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Determines if the end date is the same as a given date. |
 | bool | [CarbonPeriod::isStarted](../Carbon/CarbonPeriod.md#isstarted) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Return true if start date is now or later. |
@@ -211,28 +220,28 @@ foreach ($period as $date) {
 | CarbonPeriod | [CarbonPeriod::round](../Carbon/CarbonPeriod.md#round) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Round the current instance second with given precision if specified (else period interval is used). |
 | CarbonPeriod | [CarbonPeriod::floor](../Carbon/CarbonPeriod.md#floor) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Round the current instance second with given precision if specified (else period interval is used). |
 | CarbonPeriod | [CarbonPeriod::ceil](../Carbon/CarbonPeriod.md#ceil) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Ceil the current instance second with given precision if specified (else period interval is used). |
-| array | [CarbonPeriod::jsonSerialize](../Carbon/CarbonPeriod.md#jsonserialize) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Specify data which should be serialized to JSON. |
+| CarbonInterface[] | [CarbonPeriod::jsonSerialize](../Carbon/CarbonPeriod.md#jsonserialize) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Specify data which should be serialized to JSON. |
 | bool | [CarbonPeriod::contains](../Carbon/CarbonPeriod.md#contains) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Return true if the given date is between start and end. |
 | bool | [CarbonPeriod::follows](../Carbon/CarbonPeriod.md#follows) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Return true if the current period follows a given other period (with no overlap). |
 | bool | [CarbonPeriod::isFollowedBy](../Carbon/CarbonPeriod.md#isfollowedby) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Return true if the given other period follows the current one (with no overlap). |
 | bool | [CarbonPeriod::isConsecutiveWith](../Carbon/CarbonPeriod.md#isconsecutivewith) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Return true if the given period either follows or is followed by the current one. |
-| CarbonInterface | [CarbonPeriod::start](../Carbon/CarbonPeriod.md#start) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Create instance specifying start date or modify the start date if called on an instance. |
+| static | [CarbonPeriod::start](../Carbon/CarbonPeriod.md#start) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Create instance specifying start date or modify the start date if called on an instance. |
 | static | [CarbonPeriod::since](../Carbon/CarbonPeriod.md#since) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | . |
 | static | [CarbonPeriod::sinceNow](../Carbon/CarbonPeriod.md#sincenow) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Create instance with start date set to now or set the start date to now if called on an instance. |
-| CarbonInterface | [CarbonPeriod::end](../Carbon/CarbonPeriod.md#end) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Create instance specifying end date or modify the end date if called on an instance. |
+| static | [CarbonPeriod::end](../Carbon/CarbonPeriod.md#end) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Create instance specifying end date or modify the end date if called on an instance. |
 | static | [CarbonPeriod::until](../Carbon/CarbonPeriod.md#until) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | . |
 | static | [CarbonPeriod::untilNow](../Carbon/CarbonPeriod.md#untilnow) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Create instance with end date set to now or set the end date to now if called on an instance. |
 | static | [CarbonPeriod::dates](../Carbon/CarbonPeriod.md#dates) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Create instance with start and end dates or modify the start and end dates if called on an instance. |
 | static | [CarbonPeriod::between](../Carbon/CarbonPeriod.md#between) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Create instance with start and end dates or modify the start and end dates if called on an instance. |
 | static | [CarbonPeriod::recurrences](../Carbon/CarbonPeriod.md#recurrences) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Create instance with maximum number of recurrences or modify the number of recurrences if called on an instance. |
 | static | [CarbonPeriod::times](../Carbon/CarbonPeriod.md#times) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | . |
-| static|int|null | [CarbonPeriod::options](../Carbon/CarbonPeriod.md#options) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Create instance with options or modify the options if called on an instance. |
+| static | [CarbonPeriod::options](../Carbon/CarbonPeriod.md#options) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Create instance with options or modify the options if called on an instance. |
 | static | [CarbonPeriod::toggle](../Carbon/CarbonPeriod.md#toggle) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Create instance with options toggled on or off, or toggle options if called on an instance. |
 | static | [CarbonPeriod::filter](../Carbon/CarbonPeriod.md#filter) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Create instance with filter added to the stack or append a filter if called on an instance. |
 | static | [CarbonPeriod::push](../Carbon/CarbonPeriod.md#push) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | . |
 | static | [CarbonPeriod::prepend](../Carbon/CarbonPeriod.md#prepend) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Create instance with filter prepended to the stack or prepend a filter if called on an instance. |
-| static|array | [CarbonPeriod::filters](../Carbon/CarbonPeriod.md#filters) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Create instance with filters stack or replace the whole filters stack if called on an instance. |
-| CarbonInterval | [CarbonPeriod::interval](../Carbon/CarbonPeriod.md#interval) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Create instance with given date interval or modify the interval if called on an instance. |
+| static | [CarbonPeriod::filters](../Carbon/CarbonPeriod.md#filters) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Create instance with filters stack or replace the whole filters stack if called on an instance. |
+| static | [CarbonPeriod::interval](../Carbon/CarbonPeriod.md#interval) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Create instance with given date interval or modify the interval if called on an instance. |
 | static | [CarbonPeriod::each](../Carbon/CarbonPeriod.md#each) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Create instance with given date interval or modify the interval if called on an instance. |
 | static | [CarbonPeriod::every](../Carbon/CarbonPeriod.md#every) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Create instance with given date interval or modify the interval if called on an instance. |
 | static | [CarbonPeriod::step](../Carbon/CarbonPeriod.md#step) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Create instance with given date interval or modify the interval if called on an instance. |

@@ -345,10 +345,6 @@ echo $nextHoliday->format('Y-m-d') . ' ' . $nextHoliday->holidayText;
 
 | Modifier | Type | Name | Description |
 |---|---|---|---|
-| public | string | `$localeDayOfWeek` _(from [Carbon](../Carbon/Carbon.md))_ | the day of week in current locale |
-| public | string | `$shortLocaleDayOfWeek` _(from [Carbon](../Carbon/Carbon.md))_ | the abbreviated day of week in current locale |
-| public | string | `$localeMonth` _(from [Carbon](../Carbon/Carbon.md))_ | the month in current locale |
-| public | string | `$shortLocaleMonth` _(from [Carbon](../Carbon/Carbon.md))_ | the abbreviated month in current locale |
 | public | int | `$year` _(from [Carbon](../Carbon/Carbon.md))_ |  |
 | public | int | `$yearIso` _(from [Carbon](../Carbon/Carbon.md))_ |  |
 | public | int | `$month` _(from [Carbon](../Carbon/Carbon.md))_ |  |
@@ -358,7 +354,6 @@ echo $nextHoliday->format('Y-m-d') . ' ' . $nextHoliday->holidayText;
 | public | int | `$second` _(from [Carbon](../Carbon/Carbon.md))_ |  |
 | public | int | `$micro` _(from [Carbon](../Carbon/Carbon.md))_ |  |
 | public | int | `$microsecond` _(from [Carbon](../Carbon/Carbon.md))_ |  |
-| public | int | `$dayOfWeekIso` _(from [Carbon](../Carbon/Carbon.md))_ | 1 (for Monday) through 7 (for Sunday) |
 | public | int\|float\|string | `$timestamp` _(from [Carbon](../Carbon/Carbon.md))_ | seconds since the Unix Epoch |
 | public | string | `$englishDayOfWeek` _(from [Carbon](../Carbon/Carbon.md))_ | the day of week in English |
 | public | string | `$shortEnglishDayOfWeek` _(from [Carbon](../Carbon/Carbon.md))_ | the abbreviated day of week in English |
@@ -371,90 +366,17 @@ echo $nextHoliday->format('Y-m-d') . ' ' . $nextHoliday->holidayText;
 | public | int | `$isoWeek` _(from [Carbon](../Carbon/Carbon.md))_ | 1 through 53 |
 | public | int | `$weekYear` _(from [Carbon](../Carbon/Carbon.md))_ | year according to week format |
 | public | int | `$isoWeekYear` _(from [Carbon](../Carbon/Carbon.md))_ | year according to ISO week format |
+| public | int | `$dayOfYear` _(from [Carbon](../Carbon/Carbon.md))_ | 1 through 366 |
 | public | int | `$age` _(from [Carbon](../Carbon/Carbon.md))_ | does a diffInYears() with default parameters |
 | public | int | `$offset` _(from [Carbon](../Carbon/Carbon.md))_ | the timezone offset in seconds from UTC |
 | public | int | `$offsetMinutes` _(from [Carbon](../Carbon/Carbon.md))_ | the timezone offset in minutes from UTC |
 | public | int | `$offsetHours` _(from [Carbon](../Carbon/Carbon.md))_ | the timezone offset in hours from UTC |
 | public | CarbonTimeZone | `$timezone` _(from [Carbon](../Carbon/Carbon.md))_ | the current timezone |
 | public | CarbonTimeZone | `$tz` _(from [Carbon](../Carbon/Carbon.md))_ | alias of $timezone |
-| public | int | `$centuryOfMillennium` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the century starting from the beginning of the current millennium |
-| public | int | `$dayOfCentury` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the day starting from the beginning of the current century |
-| public | int | `$dayOfDecade` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the day starting from the beginning of the current decade |
-| public | int | `$dayOfMillennium` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the day starting from the beginning of the current millennium |
-| public | int | `$dayOfMonth` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the day starting from the beginning of the current month |
-| public | int | `$dayOfQuarter` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the day starting from the beginning of the current quarter |
-| public | int | `$dayOfWeek` _(from [Carbon](../Carbon/Carbon.md))_ | 0 (for Sunday) through 6 (for Saturday) |
-| public | int | `$dayOfYear` _(from [Carbon](../Carbon/Carbon.md))_ | 1 through 366 |
-| public | int | `$decadeOfCentury` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the decade starting from the beginning of the current century |
-| public | int | `$decadeOfMillennium` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the decade starting from the beginning of the current millennium |
-| public | int | `$hourOfCentury` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the hour starting from the beginning of the current century |
-| public | int | `$hourOfDay` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the hour starting from the beginning of the current day |
-| public | int | `$hourOfDecade` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the hour starting from the beginning of the current decade |
-| public | int | `$hourOfMillennium` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the hour starting from the beginning of the current millennium |
-| public | int | `$hourOfMonth` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the hour starting from the beginning of the current month |
-| public | int | `$hourOfQuarter` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the hour starting from the beginning of the current quarter |
-| public | int | `$hourOfWeek` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the hour starting from the beginning of the current week |
-| public | int | `$hourOfYear` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the hour starting from the beginning of the current year |
-| public | int | `$microsecondOfCentury` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the microsecond starting from the beginning of the current century |
-| public | int | `$microsecondOfDay` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the microsecond starting from the beginning of the current day |
-| public | int | `$microsecondOfDecade` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the microsecond starting from the beginning of the current decade |
-| public | int | `$microsecondOfHour` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the microsecond starting from the beginning of the current hour |
-| public | int | `$microsecondOfMillennium` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the microsecond starting from the beginning of the current millennium |
-| public | int | `$microsecondOfMillisecond` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the microsecond starting from the beginning of the current millisecond |
-| public | int | `$microsecondOfMinute` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the microsecond starting from the beginning of the current minute |
-| public | int | `$microsecondOfMonth` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the microsecond starting from the beginning of the current month |
-| public | int | `$microsecondOfQuarter` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the microsecond starting from the beginning of the current quarter |
-| public | int | `$microsecondOfSecond` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the microsecond starting from the beginning of the current second |
-| public | int | `$microsecondOfWeek` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the microsecond starting from the beginning of the current week |
-| public | int | `$microsecondOfYear` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the microsecond starting from the beginning of the current year |
-| public | int | `$millisecondOfCentury` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the millisecond starting from the beginning of the current century |
-| public | int | `$millisecondOfDay` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the millisecond starting from the beginning of the current day |
-| public | int | `$millisecondOfDecade` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the millisecond starting from the beginning of the current decade |
-| public | int | `$millisecondOfHour` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the millisecond starting from the beginning of the current hour |
-| public | int | `$millisecondOfMillennium` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the millisecond starting from the beginning of the current millennium |
-| public | int | `$millisecondOfMinute` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the millisecond starting from the beginning of the current minute |
-| public | int | `$millisecondOfMonth` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the millisecond starting from the beginning of the current month |
-| public | int | `$millisecondOfQuarter` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the millisecond starting from the beginning of the current quarter |
-| public | int | `$millisecondOfSecond` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the millisecond starting from the beginning of the current second |
-| public | int | `$millisecondOfWeek` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the millisecond starting from the beginning of the current week |
-| public | int | `$millisecondOfYear` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the millisecond starting from the beginning of the current year |
-| public | int | `$minuteOfCentury` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the minute starting from the beginning of the current century |
-| public | int | `$minuteOfDay` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the minute starting from the beginning of the current day |
-| public | int | `$minuteOfDecade` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the minute starting from the beginning of the current decade |
-| public | int | `$minuteOfHour` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the minute starting from the beginning of the current hour |
-| public | int | `$minuteOfMillennium` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the minute starting from the beginning of the current millennium |
-| public | int | `$minuteOfMonth` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the minute starting from the beginning of the current month |
-| public | int | `$minuteOfQuarter` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the minute starting from the beginning of the current quarter |
-| public | int | `$minuteOfWeek` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the minute starting from the beginning of the current week |
-| public | int | `$minuteOfYear` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the minute starting from the beginning of the current year |
-| public | int | `$monthOfCentury` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the month starting from the beginning of the current century |
-| public | int | `$monthOfDecade` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the month starting from the beginning of the current decade |
-| public | int | `$monthOfMillennium` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the month starting from the beginning of the current millennium |
-| public | int | `$monthOfQuarter` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the month starting from the beginning of the current quarter |
-| public | int | `$monthOfYear` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the month starting from the beginning of the current year |
-| public | int | `$quarterOfCentury` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the quarter starting from the beginning of the current century |
-| public | int | `$quarterOfDecade` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the quarter starting from the beginning of the current decade |
-| public | int | `$quarterOfMillennium` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the quarter starting from the beginning of the current millennium |
-| public | int | `$quarterOfYear` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the quarter starting from the beginning of the current year |
-| public | int | `$secondOfCentury` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the second starting from the beginning of the current century |
-| public | int | `$secondOfDay` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the second starting from the beginning of the current day |
-| public | int | `$secondOfDecade` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the second starting from the beginning of the current decade |
-| public | int | `$secondOfHour` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the second starting from the beginning of the current hour |
-| public | int | `$secondOfMillennium` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the second starting from the beginning of the current millennium |
-| public | int | `$secondOfMinute` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the second starting from the beginning of the current minute |
-| public | int | `$secondOfMonth` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the second starting from the beginning of the current month |
-| public | int | `$secondOfQuarter` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the second starting from the beginning of the current quarter |
-| public | int | `$secondOfWeek` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the second starting from the beginning of the current week |
-| public | int | `$secondOfYear` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the second starting from the beginning of the current year |
-| public | int | `$weekOfCentury` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the week starting from the beginning of the current century |
-| public | int | `$weekOfDecade` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the week starting from the beginning of the current decade |
-| public | int | `$weekOfMillennium` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the week starting from the beginning of the current millennium |
-| public | int | `$weekOfMonth` _(from [Carbon](../Carbon/Carbon.md))_ | 1 through 5 |
-| public | int | `$weekOfQuarter` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the week starting from the beginning of the current quarter |
-| public | int | `$weekOfYear` _(from [Carbon](../Carbon/Carbon.md))_ | ISO-8601 week number of year, weeks starting on Monday |
-| public | int | `$yearOfCentury` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the year starting from the beginning of the current century |
-| public | int | `$yearOfDecade` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the year starting from the beginning of the current decade |
-| public | int | `$yearOfMillennium` _(from [Carbon](../Carbon/Carbon.md))_ | The value of the year starting from the beginning of the current millennium |
+| public _(read-only)_ | int | `$dayOfWeek` _(from [Carbon](../Carbon/Carbon.md))_ | 0 (for Sunday) through 6 (for Saturday) |
+| public _(read-only)_ | int | `$dayOfWeekIso` _(from [Carbon](../Carbon/Carbon.md))_ | 1 (for Monday) through 7 (for Sunday) |
+| public _(read-only)_ | int | `$weekOfYear` _(from [Carbon](../Carbon/Carbon.md))_ | ISO-8601 week number of year, weeks starting on Monday |
+| public _(read-only)_ | int | `$daysInMonth` _(from [Carbon](../Carbon/Carbon.md))_ | number of days in the given month |
 | public _(read-only)_ | string | `$latinMeridiem` _(from [Carbon](../Carbon/Carbon.md))_ | "am"/"pm" (Ante meridiem or Post meridiem latin lowercase mark) |
 | public _(read-only)_ | string | `$latinUpperMeridiem` _(from [Carbon](../Carbon/Carbon.md))_ | "AM"/"PM" (Ante meridiem or Post meridiem latin uppercase mark) |
 | public _(read-only)_ | string | `$timezoneAbbreviatedName` _(from [Carbon](../Carbon/Carbon.md))_ | the current timezone abbreviated name |
@@ -467,10 +389,13 @@ echo $nextHoliday->format('Y-m-d') . ' ' . $nextHoliday->holidayText;
 | public _(read-only)_ | string | `$meridiem` _(from [Carbon](../Carbon/Carbon.md))_ | lowercase meridiem mark translated according to Carbon locale, in latin if no translation available for current language |
 | public _(read-only)_ | string | `$upperMeridiem` _(from [Carbon](../Carbon/Carbon.md))_ | uppercase meridiem mark translated according to Carbon locale, in latin if no translation available for current language |
 | public _(read-only)_ | int | `$noZeroHour` _(from [Carbon](../Carbon/Carbon.md))_ | current hour from 1 to 24 |
+| public _(read-only)_ | int | `$weeksInYear` _(from [Carbon](../Carbon/Carbon.md))_ | 51 through 53 |
 | public _(read-only)_ | int | `$isoWeeksInYear` _(from [Carbon](../Carbon/Carbon.md))_ | 51 through 53 |
+| public _(read-only)_ | int | `$weekOfMonth` _(from [Carbon](../Carbon/Carbon.md))_ | 1 through 5 |
 | public _(read-only)_ | int | `$weekNumberInMonth` _(from [Carbon](../Carbon/Carbon.md))_ | 1 through 5 |
 | public _(read-only)_ | int | `$firstWeekDay` _(from [Carbon](../Carbon/Carbon.md))_ | 0 through 6 |
 | public _(read-only)_ | int | `$lastWeekDay` _(from [Carbon](../Carbon/Carbon.md))_ | 0 through 6 |
+| public _(read-only)_ | int | `$daysInYear` _(from [Carbon](../Carbon/Carbon.md))_ | 365 or 366 |
 | public _(read-only)_ | int | `$quarter` _(from [Carbon](../Carbon/Carbon.md))_ | the quarter of this instance, 1 - 4 |
 | public _(read-only)_ | int | `$decade` _(from [Carbon](../Carbon/Carbon.md))_ | the decade of this instance |
 | public _(read-only)_ | int | `$century` _(from [Carbon](../Carbon/Carbon.md))_ | the century of this instance |
@@ -481,91 +406,13 @@ echo $nextHoliday->format('Y-m-d') . ' ' . $nextHoliday->holidayText;
 | public _(read-only)_ | string | `$timezoneName` _(from [Carbon](../Carbon/Carbon.md))_ | the current timezone name |
 | public _(read-only)_ | string | `$tzName` _(from [Carbon](../Carbon/Carbon.md))_ | alias of $timezoneName |
 | public _(read-only)_ | string | `$locale` _(from [Carbon](../Carbon/Carbon.md))_ | locale of the current instance |
-| public _(read-only)_ | int | `$centuriesInMillennium` _(from [Carbon](../Carbon/Carbon.md))_ | The number of centuries contained in the current millennium |
-| public _(read-only)_ | int | `$daysInCentury` _(from [Carbon](../Carbon/Carbon.md))_ | The number of days contained in the current century |
-| public _(read-only)_ | int | `$daysInDecade` _(from [Carbon](../Carbon/Carbon.md))_ | The number of days contained in the current decade |
-| public _(read-only)_ | int | `$daysInMillennium` _(from [Carbon](../Carbon/Carbon.md))_ | The number of days contained in the current millennium |
-| public _(read-only)_ | int | `$daysInMonth` _(from [Carbon](../Carbon/Carbon.md))_ | number of days in the given month |
-| public _(read-only)_ | int | `$daysInQuarter` _(from [Carbon](../Carbon/Carbon.md))_ | The number of days contained in the current quarter |
-| public _(read-only)_ | int | `$daysInWeek` _(from [Carbon](../Carbon/Carbon.md))_ | The number of days contained in the current week |
-| public _(read-only)_ | int | `$daysInYear` _(from [Carbon](../Carbon/Carbon.md))_ | 365 or 366 |
-| public _(read-only)_ | int | `$decadesInCentury` _(from [Carbon](../Carbon/Carbon.md))_ | The number of decades contained in the current century |
-| public _(read-only)_ | int | `$decadesInMillennium` _(from [Carbon](../Carbon/Carbon.md))_ | The number of decades contained in the current millennium |
-| public _(read-only)_ | int | `$hoursInCentury` _(from [Carbon](../Carbon/Carbon.md))_ | The number of hours contained in the current century |
-| public _(read-only)_ | int | `$hoursInDay` _(from [Carbon](../Carbon/Carbon.md))_ | The number of hours contained in the current day |
-| public _(read-only)_ | int | `$hoursInDecade` _(from [Carbon](../Carbon/Carbon.md))_ | The number of hours contained in the current decade |
-| public _(read-only)_ | int | `$hoursInMillennium` _(from [Carbon](../Carbon/Carbon.md))_ | The number of hours contained in the current millennium |
-| public _(read-only)_ | int | `$hoursInMonth` _(from [Carbon](../Carbon/Carbon.md))_ | The number of hours contained in the current month |
-| public _(read-only)_ | int | `$hoursInQuarter` _(from [Carbon](../Carbon/Carbon.md))_ | The number of hours contained in the current quarter |
-| public _(read-only)_ | int | `$hoursInWeek` _(from [Carbon](../Carbon/Carbon.md))_ | The number of hours contained in the current week |
-| public _(read-only)_ | int | `$hoursInYear` _(from [Carbon](../Carbon/Carbon.md))_ | The number of hours contained in the current year |
-| public _(read-only)_ | int | `$microsecondsInCentury` _(from [Carbon](../Carbon/Carbon.md))_ | The number of microseconds contained in the current century |
-| public _(read-only)_ | int | `$microsecondsInDay` _(from [Carbon](../Carbon/Carbon.md))_ | The number of microseconds contained in the current day |
-| public _(read-only)_ | int | `$microsecondsInDecade` _(from [Carbon](../Carbon/Carbon.md))_ | The number of microseconds contained in the current decade |
-| public _(read-only)_ | int | `$microsecondsInHour` _(from [Carbon](../Carbon/Carbon.md))_ | The number of microseconds contained in the current hour |
-| public _(read-only)_ | int | `$microsecondsInMillennium` _(from [Carbon](../Carbon/Carbon.md))_ | The number of microseconds contained in the current millennium |
-| public _(read-only)_ | int | `$microsecondsInMillisecond` _(from [Carbon](../Carbon/Carbon.md))_ | The number of microseconds contained in the current millisecond |
-| public _(read-only)_ | int | `$microsecondsInMinute` _(from [Carbon](../Carbon/Carbon.md))_ | The number of microseconds contained in the current minute |
-| public _(read-only)_ | int | `$microsecondsInMonth` _(from [Carbon](../Carbon/Carbon.md))_ | The number of microseconds contained in the current month |
-| public _(read-only)_ | int | `$microsecondsInQuarter` _(from [Carbon](../Carbon/Carbon.md))_ | The number of microseconds contained in the current quarter |
-| public _(read-only)_ | int | `$microsecondsInSecond` _(from [Carbon](../Carbon/Carbon.md))_ | The number of microseconds contained in the current second |
-| public _(read-only)_ | int | `$microsecondsInWeek` _(from [Carbon](../Carbon/Carbon.md))_ | The number of microseconds contained in the current week |
-| public _(read-only)_ | int | `$microsecondsInYear` _(from [Carbon](../Carbon/Carbon.md))_ | The number of microseconds contained in the current year |
-| public _(read-only)_ | int | `$millisecondsInCentury` _(from [Carbon](../Carbon/Carbon.md))_ | The number of milliseconds contained in the current century |
-| public _(read-only)_ | int | `$millisecondsInDay` _(from [Carbon](../Carbon/Carbon.md))_ | The number of milliseconds contained in the current day |
-| public _(read-only)_ | int | `$millisecondsInDecade` _(from [Carbon](../Carbon/Carbon.md))_ | The number of milliseconds contained in the current decade |
-| public _(read-only)_ | int | `$millisecondsInHour` _(from [Carbon](../Carbon/Carbon.md))_ | The number of milliseconds contained in the current hour |
-| public _(read-only)_ | int | `$millisecondsInMillennium` _(from [Carbon](../Carbon/Carbon.md))_ | The number of milliseconds contained in the current millennium |
-| public _(read-only)_ | int | `$millisecondsInMinute` _(from [Carbon](../Carbon/Carbon.md))_ | The number of milliseconds contained in the current minute |
-| public _(read-only)_ | int | `$millisecondsInMonth` _(from [Carbon](../Carbon/Carbon.md))_ | The number of milliseconds contained in the current month |
-| public _(read-only)_ | int | `$millisecondsInQuarter` _(from [Carbon](../Carbon/Carbon.md))_ | The number of milliseconds contained in the current quarter |
-| public _(read-only)_ | int | `$millisecondsInSecond` _(from [Carbon](../Carbon/Carbon.md))_ | The number of milliseconds contained in the current second |
-| public _(read-only)_ | int | `$millisecondsInWeek` _(from [Carbon](../Carbon/Carbon.md))_ | The number of milliseconds contained in the current week |
-| public _(read-only)_ | int | `$millisecondsInYear` _(from [Carbon](../Carbon/Carbon.md))_ | The number of milliseconds contained in the current year |
-| public _(read-only)_ | int | `$minutesInCentury` _(from [Carbon](../Carbon/Carbon.md))_ | The number of minutes contained in the current century |
-| public _(read-only)_ | int | `$minutesInDay` _(from [Carbon](../Carbon/Carbon.md))_ | The number of minutes contained in the current day |
-| public _(read-only)_ | int | `$minutesInDecade` _(from [Carbon](../Carbon/Carbon.md))_ | The number of minutes contained in the current decade |
-| public _(read-only)_ | int | `$minutesInHour` _(from [Carbon](../Carbon/Carbon.md))_ | The number of minutes contained in the current hour |
-| public _(read-only)_ | int | `$minutesInMillennium` _(from [Carbon](../Carbon/Carbon.md))_ | The number of minutes contained in the current millennium |
-| public _(read-only)_ | int | `$minutesInMonth` _(from [Carbon](../Carbon/Carbon.md))_ | The number of minutes contained in the current month |
-| public _(read-only)_ | int | `$minutesInQuarter` _(from [Carbon](../Carbon/Carbon.md))_ | The number of minutes contained in the current quarter |
-| public _(read-only)_ | int | `$minutesInWeek` _(from [Carbon](../Carbon/Carbon.md))_ | The number of minutes contained in the current week |
-| public _(read-only)_ | int | `$minutesInYear` _(from [Carbon](../Carbon/Carbon.md))_ | The number of minutes contained in the current year |
-| public _(read-only)_ | int | `$monthsInCentury` _(from [Carbon](../Carbon/Carbon.md))_ | The number of months contained in the current century |
-| public _(read-only)_ | int | `$monthsInDecade` _(from [Carbon](../Carbon/Carbon.md))_ | The number of months contained in the current decade |
-| public _(read-only)_ | int | `$monthsInMillennium` _(from [Carbon](../Carbon/Carbon.md))_ | The number of months contained in the current millennium |
-| public _(read-only)_ | int | `$monthsInQuarter` _(from [Carbon](../Carbon/Carbon.md))_ | The number of months contained in the current quarter |
-| public _(read-only)_ | int | `$monthsInYear` _(from [Carbon](../Carbon/Carbon.md))_ | The number of months contained in the current year |
-| public _(read-only)_ | int | `$quartersInCentury` _(from [Carbon](../Carbon/Carbon.md))_ | The number of quarters contained in the current century |
-| public _(read-only)_ | int | `$quartersInDecade` _(from [Carbon](../Carbon/Carbon.md))_ | The number of quarters contained in the current decade |
-| public _(read-only)_ | int | `$quartersInMillennium` _(from [Carbon](../Carbon/Carbon.md))_ | The number of quarters contained in the current millennium |
-| public _(read-only)_ | int | `$quartersInYear` _(from [Carbon](../Carbon/Carbon.md))_ | The number of quarters contained in the current year |
-| public _(read-only)_ | int | `$secondsInCentury` _(from [Carbon](../Carbon/Carbon.md))_ | The number of seconds contained in the current century |
-| public _(read-only)_ | int | `$secondsInDay` _(from [Carbon](../Carbon/Carbon.md))_ | The number of seconds contained in the current day |
-| public _(read-only)_ | int | `$secondsInDecade` _(from [Carbon](../Carbon/Carbon.md))_ | The number of seconds contained in the current decade |
-| public _(read-only)_ | int | `$secondsInHour` _(from [Carbon](../Carbon/Carbon.md))_ | The number of seconds contained in the current hour |
-| public _(read-only)_ | int | `$secondsInMillennium` _(from [Carbon](../Carbon/Carbon.md))_ | The number of seconds contained in the current millennium |
-| public _(read-only)_ | int | `$secondsInMinute` _(from [Carbon](../Carbon/Carbon.md))_ | The number of seconds contained in the current minute |
-| public _(read-only)_ | int | `$secondsInMonth` _(from [Carbon](../Carbon/Carbon.md))_ | The number of seconds contained in the current month |
-| public _(read-only)_ | int | `$secondsInQuarter` _(from [Carbon](../Carbon/Carbon.md))_ | The number of seconds contained in the current quarter |
-| public _(read-only)_ | int | `$secondsInWeek` _(from [Carbon](../Carbon/Carbon.md))_ | The number of seconds contained in the current week |
-| public _(read-only)_ | int | `$secondsInYear` _(from [Carbon](../Carbon/Carbon.md))_ | The number of seconds contained in the current year |
-| public _(read-only)_ | int | `$weeksInCentury` _(from [Carbon](../Carbon/Carbon.md))_ | The number of weeks contained in the current century |
-| public _(read-only)_ | int | `$weeksInDecade` _(from [Carbon](../Carbon/Carbon.md))_ | The number of weeks contained in the current decade |
-| public _(read-only)_ | int | `$weeksInMillennium` _(from [Carbon](../Carbon/Carbon.md))_ | The number of weeks contained in the current millennium |
-| public _(read-only)_ | int | `$weeksInMonth` _(from [Carbon](../Carbon/Carbon.md))_ | The number of weeks contained in the current month |
-| public _(read-only)_ | int | `$weeksInQuarter` _(from [Carbon](../Carbon/Carbon.md))_ | The number of weeks contained in the current quarter |
-| public _(read-only)_ | int | `$weeksInYear` _(from [Carbon](../Carbon/Carbon.md))_ | 51 through 53 |
-| public _(read-only)_ | int | `$yearsInCentury` _(from [Carbon](../Carbon/Carbon.md))_ | The number of years contained in the current century |
-| public _(read-only)_ | int | `$yearsInDecade` _(from [Carbon](../Carbon/Carbon.md))_ | The number of years contained in the current decade |
-| public _(read-only)_ | int | `$yearsInMillennium` _(from [Carbon](../Carbon/Carbon.md))_ | The number of years contained in the current millennium |
 
 ## Methods
 
 | Return | Method | Description |
 |---|---|---|
-| Factory | [factory()](#factory) | 多様な型の引数から {\JapaneseDate\DateTime} / {\JapaneseDate\DateTimeImmutable} インスタンスを生成するユニバーサルファクトリメソッドです。 |
 | Factory\|null | [createFromFormat()](#createfromformat) | フォーマット指定文字列から日時インスタンスを生成します。 |
+| Factory | [factory()](#factory) | 多様な型の引数から {\JapaneseDate\DateTime} / {\JapaneseDate\DateTimeImmutable} インスタンスを生成するユニバーサルファクトリメソッドです。 |
 | void | [setCacheMode()](#setcachemode) | 旧暦・祝日計算に使用するキャッシュモードを設定します。 |
 | void | [setCacheFilePath()](#setcachefilepath) | ファイルキャッシュの保存先ディレクトリを設定します。 |
 | void | [setCacheClosure()](#setcacheclosure) | 独自キャッシュロジックを実装したクロージャを登録します。 |
@@ -621,9 +468,6 @@ echo $nextHoliday->format('Y-m-d') . ' ' . $nextHoliday->holidayText;
 | bool | [Carbon::isCurrentYear](../Carbon/Carbon.md#iscurrentyear) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same year as the current moment. |
 | bool | [Carbon::isNextYear](../Carbon/Carbon.md#isnextyear) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same year as the current moment next year. |
 | bool | [Carbon::isLastYear](../Carbon/Carbon.md#islastyear) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same year as the current moment last year. |
-| bool | [Carbon::isCurrentMonth](../Carbon/Carbon.md#iscurrentmonth) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same month as the current moment. |
-| bool | [Carbon::isNextMonth](../Carbon/Carbon.md#isnextmonth) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same month as the current moment next month. |
-| bool | [Carbon::isLastMonth](../Carbon/Carbon.md#islastmonth) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same month as the current moment last month. |
 | bool | [Carbon::isSameWeek](../Carbon/Carbon.md#issameweek) _(from [Carbon](../Carbon/Carbon.md))_ | . |
 | bool | [Carbon::isCurrentWeek](../Carbon/Carbon.md#iscurrentweek) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same week as the current moment. |
 | bool | [Carbon::isNextWeek](../Carbon/Carbon.md#isnextweek) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same week as the current moment next week. |
@@ -644,14 +488,6 @@ echo $nextHoliday->format('Y-m-d') . ' ' . $nextHoliday->holidayText;
 | bool | [Carbon::isCurrentSecond](../Carbon/Carbon.md#iscurrentsecond) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same second as the current moment. |
 | bool | [Carbon::isNextSecond](../Carbon/Carbon.md#isnextsecond) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same second as the current moment next second. |
 | bool | [Carbon::isLastSecond](../Carbon/Carbon.md#islastsecond) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same second as the current moment last second. |
-| bool | [Carbon::isSameMilli](../Carbon/Carbon.md#issamemilli) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| bool | [Carbon::isCurrentMilli](../Carbon/Carbon.md#iscurrentmilli) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same millisecond as the current moment. |
-| bool | [Carbon::isNextMilli](../Carbon/Carbon.md#isnextmilli) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same millisecond as the current moment next millisecond. |
-| bool | [Carbon::isLastMilli](../Carbon/Carbon.md#islastmilli) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same millisecond as the current moment last millisecond. |
-| bool | [Carbon::isSameMillisecond](../Carbon/Carbon.md#issamemillisecond) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| bool | [Carbon::isCurrentMillisecond](../Carbon/Carbon.md#iscurrentmillisecond) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same millisecond as the current moment. |
-| bool | [Carbon::isNextMillisecond](../Carbon/Carbon.md#isnextmillisecond) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same millisecond as the current moment next millisecond. |
-| bool | [Carbon::isLastMillisecond](../Carbon/Carbon.md#islastmillisecond) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same millisecond as the current moment last millisecond. |
 | bool | [Carbon::isSameMicro](../Carbon/Carbon.md#issamemicro) _(from [Carbon](../Carbon/Carbon.md))_ | . |
 | bool | [Carbon::isCurrentMicro](../Carbon/Carbon.md#iscurrentmicro) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same microsecond as the current moment. |
 | bool | [Carbon::isNextMicro](../Carbon/Carbon.md#isnextmicro) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same microsecond as the current moment next microsecond. |
@@ -660,6 +496,12 @@ echo $nextHoliday->format('Y-m-d') . ' ' . $nextHoliday->holidayText;
 | bool | [Carbon::isCurrentMicrosecond](../Carbon/Carbon.md#iscurrentmicrosecond) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same microsecond as the current moment. |
 | bool | [Carbon::isNextMicrosecond](../Carbon/Carbon.md#isnextmicrosecond) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same microsecond as the current moment next microsecond. |
 | bool | [Carbon::isLastMicrosecond](../Carbon/Carbon.md#islastmicrosecond) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same microsecond as the current moment last microsecond. |
+| bool | [Carbon::isCurrentMonth](../Carbon/Carbon.md#iscurrentmonth) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same month as the current moment. |
+| bool | [Carbon::isNextMonth](../Carbon/Carbon.md#isnextmonth) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same month as the current moment next month. |
+| bool | [Carbon::isLastMonth](../Carbon/Carbon.md#islastmonth) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same month as the current moment last month. |
+| bool | [Carbon::isCurrentQuarter](../Carbon/Carbon.md#iscurrentquarter) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same quarter as the current moment. |
+| bool | [Carbon::isNextQuarter](../Carbon/Carbon.md#isnextquarter) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same quarter as the current moment next quarter. |
+| bool | [Carbon::isLastQuarter](../Carbon/Carbon.md#islastquarter) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same quarter as the current moment last quarter. |
 | bool | [Carbon::isSameDecade](../Carbon/Carbon.md#issamedecade) _(from [Carbon](../Carbon/Carbon.md))_ | . |
 | bool | [Carbon::isCurrentDecade](../Carbon/Carbon.md#iscurrentdecade) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same decade as the current moment. |
 | bool | [Carbon::isNextDecade](../Carbon/Carbon.md#isnextdecade) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same decade as the current moment next decade. |
@@ -672,9 +514,6 @@ echo $nextHoliday->format('Y-m-d') . ' ' . $nextHoliday->holidayText;
 | bool | [Carbon::isCurrentMillennium](../Carbon/Carbon.md#iscurrentmillennium) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same millennium as the current moment. |
 | bool | [Carbon::isNextMillennium](../Carbon/Carbon.md#isnextmillennium) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same millennium as the current moment next millennium. |
 | bool | [Carbon::isLastMillennium](../Carbon/Carbon.md#islastmillennium) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same millennium as the current moment last millennium. |
-| bool | [Carbon::isCurrentQuarter](../Carbon/Carbon.md#iscurrentquarter) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same quarter as the current moment. |
-| bool | [Carbon::isNextQuarter](../Carbon/Carbon.md#isnextquarter) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same quarter as the current moment next quarter. |
-| bool | [Carbon::isLastQuarter](../Carbon/Carbon.md#islastquarter) _(from [Carbon](../Carbon/Carbon.md))_ | Checks if the instance is in the same quarter as the current moment last quarter. |
 | $this | [Carbon::years](../Carbon/Carbon.md#years) _(from [Carbon](../Carbon/Carbon.md))_ | Set current instance year to the given value. |
 | $this | [Carbon::year](../Carbon/Carbon.md#year) _(from [Carbon](../Carbon/Carbon.md))_ | Set current instance year to the given value. |
 | $this | [Carbon::setYears](../Carbon/Carbon.md#setyears) _(from [Carbon](../Carbon/Carbon.md))_ | Set current instance year to the given value. |
@@ -714,7 +553,7 @@ echo $nextHoliday->format('Y-m-d') . ' ' . $nextHoliday->holidayText;
 | $this | [Carbon::microseconds](../Carbon/Carbon.md#microseconds) _(from [Carbon](../Carbon/Carbon.md))_ | Set current instance microsecond to the given value. |
 | $this | [Carbon::microsecond](../Carbon/Carbon.md#microsecond) _(from [Carbon](../Carbon/Carbon.md))_ | Set current instance microsecond to the given value. |
 | $this | [Carbon::setMicroseconds](../Carbon/Carbon.md#setmicroseconds) _(from [Carbon](../Carbon/Carbon.md))_ | Set current instance microsecond to the given value. |
-| self | [Carbon::setMicrosecond](../Carbon/Carbon.md#setmicrosecond) _(from [Carbon](../Carbon/Carbon.md))_ | Set current instance microsecond to the given value. |
+| $this | [Carbon::setMicrosecond](../Carbon/Carbon.md#setmicrosecond) _(from [Carbon](../Carbon/Carbon.md))_ | Set current instance microsecond to the given value. |
 | $this | [Carbon::addYears](../Carbon/Carbon.md#addyears) _(from [Carbon](../Carbon/Carbon.md))_ | . |
 | $this | [Carbon::addYear](../Carbon/Carbon.md#addyear) _(from [Carbon](../Carbon/Carbon.md))_ | . |
 | $this | [Carbon::subYears](../Carbon/Carbon.md#subyears) _(from [Carbon](../Carbon/Carbon.md))_ | . |
@@ -875,96 +714,81 @@ echo $nextHoliday->format('Y-m-d') . ' ' . $nextHoliday->holidayText;
 | $this | [Carbon::addWeekday](../Carbon/Carbon.md#addweekday) _(from [Carbon](../Carbon/Carbon.md))_ | . |
 | $this | [Carbon::subWeekdays](../Carbon/Carbon.md#subweekdays) _(from [Carbon](../Carbon/Carbon.md))_ | . |
 | $this | [Carbon::subWeekday](../Carbon/Carbon.md#subweekday) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [Carbon::addUTCMicros](../Carbon/Carbon.md#addutcmicros) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [Carbon::addUTCMicro](../Carbon/Carbon.md#addutcmicro) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [Carbon::subUTCMicros](../Carbon/Carbon.md#subutcmicros) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [Carbon::subUTCMicro](../Carbon/Carbon.md#subutcmicro) _(from [Carbon](../Carbon/Carbon.md))_ | . |
+| $this | [Carbon::addRealMicros](../Carbon/Carbon.md#addrealmicros) _(from [Carbon](../Carbon/Carbon.md))_ | . |
+| $this | [Carbon::addRealMicro](../Carbon/Carbon.md#addrealmicro) _(from [Carbon](../Carbon/Carbon.md))_ | . |
+| $this | [Carbon::subRealMicros](../Carbon/Carbon.md#subrealmicros) _(from [Carbon](../Carbon/Carbon.md))_ | . |
+| $this | [Carbon::subRealMicro](../Carbon/Carbon.md#subrealmicro) _(from [Carbon](../Carbon/Carbon.md))_ | . |
 | CarbonPeriod | [Carbon::microsUntil](../Carbon/Carbon.md#microsuntil) _(from [Carbon](../Carbon/Carbon.md))_ | for each microsecond or every X microseconds if a factor is given. |
-| float | [Carbon::diffInUTCMicros](../Carbon/Carbon.md#diffinutcmicros) _(from [Carbon](../Carbon/Carbon.md))_ | Convert current and given date in UTC timezone and return a floating number of microseconds. |
-| $this | [Carbon::addUTCMicroseconds](../Carbon/Carbon.md#addutcmicroseconds) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [Carbon::addUTCMicrosecond](../Carbon/Carbon.md#addutcmicrosecond) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [Carbon::subUTCMicroseconds](../Carbon/Carbon.md#subutcmicroseconds) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [Carbon::subUTCMicrosecond](../Carbon/Carbon.md#subutcmicrosecond) _(from [Carbon](../Carbon/Carbon.md))_ | . |
+| $this | [Carbon::addRealMicroseconds](../Carbon/Carbon.md#addrealmicroseconds) _(from [Carbon](../Carbon/Carbon.md))_ | . |
+| $this | [Carbon::addRealMicrosecond](../Carbon/Carbon.md#addrealmicrosecond) _(from [Carbon](../Carbon/Carbon.md))_ | . |
+| $this | [Carbon::subRealMicroseconds](../Carbon/Carbon.md#subrealmicroseconds) _(from [Carbon](../Carbon/Carbon.md))_ | . |
+| $this | [Carbon::subRealMicrosecond](../Carbon/Carbon.md#subrealmicrosecond) _(from [Carbon](../Carbon/Carbon.md))_ | . |
 | CarbonPeriod | [Carbon::microsecondsUntil](../Carbon/Carbon.md#microsecondsuntil) _(from [Carbon](../Carbon/Carbon.md))_ | for each microsecond or every X microseconds if a factor is given. |
-| float | [Carbon::diffInUTCMicroseconds](../Carbon/Carbon.md#diffinutcmicroseconds) _(from [Carbon](../Carbon/Carbon.md))_ | Convert current and given date in UTC timezone and return a floating number of microseconds. |
-| $this | [Carbon::addUTCMillis](../Carbon/Carbon.md#addutcmillis) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [Carbon::addUTCMilli](../Carbon/Carbon.md#addutcmilli) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [Carbon::subUTCMillis](../Carbon/Carbon.md#subutcmillis) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [Carbon::subUTCMilli](../Carbon/Carbon.md#subutcmilli) _(from [Carbon](../Carbon/Carbon.md))_ | . |
+| $this | [Carbon::addRealMillis](../Carbon/Carbon.md#addrealmillis) _(from [Carbon](../Carbon/Carbon.md))_ | . |
+| $this | [Carbon::addRealMilli](../Carbon/Carbon.md#addrealmilli) _(from [Carbon](../Carbon/Carbon.md))_ | . |
+| $this | [Carbon::subRealMillis](../Carbon/Carbon.md#subrealmillis) _(from [Carbon](../Carbon/Carbon.md))_ | . |
+| $this | [Carbon::subRealMilli](../Carbon/Carbon.md#subrealmilli) _(from [Carbon](../Carbon/Carbon.md))_ | . |
 | CarbonPeriod | [Carbon::millisUntil](../Carbon/Carbon.md#millisuntil) _(from [Carbon](../Carbon/Carbon.md))_ | for each millisecond or every X milliseconds if a factor is given. |
-| float | [Carbon::diffInUTCMillis](../Carbon/Carbon.md#diffinutcmillis) _(from [Carbon](../Carbon/Carbon.md))_ | Convert current and given date in UTC timezone and return a floating number of milliseconds. |
-| $this | [Carbon::addUTCMilliseconds](../Carbon/Carbon.md#addutcmilliseconds) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [Carbon::addUTCMillisecond](../Carbon/Carbon.md#addutcmillisecond) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [Carbon::subUTCMilliseconds](../Carbon/Carbon.md#subutcmilliseconds) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [Carbon::subUTCMillisecond](../Carbon/Carbon.md#subutcmillisecond) _(from [Carbon](../Carbon/Carbon.md))_ | . |
+| $this | [Carbon::addRealMilliseconds](../Carbon/Carbon.md#addrealmilliseconds) _(from [Carbon](../Carbon/Carbon.md))_ | . |
+| $this | [Carbon::addRealMillisecond](../Carbon/Carbon.md#addrealmillisecond) _(from [Carbon](../Carbon/Carbon.md))_ | . |
+| $this | [Carbon::subRealMilliseconds](../Carbon/Carbon.md#subrealmilliseconds) _(from [Carbon](../Carbon/Carbon.md))_ | . |
+| $this | [Carbon::subRealMillisecond](../Carbon/Carbon.md#subrealmillisecond) _(from [Carbon](../Carbon/Carbon.md))_ | . |
 | CarbonPeriod | [Carbon::millisecondsUntil](../Carbon/Carbon.md#millisecondsuntil) _(from [Carbon](../Carbon/Carbon.md))_ | for each millisecond or every X milliseconds if a factor is given. |
-| float | [Carbon::diffInUTCMilliseconds](../Carbon/Carbon.md#diffinutcmilliseconds) _(from [Carbon](../Carbon/Carbon.md))_ | Convert current and given date in UTC timezone and return a floating number of milliseconds. |
-| $this | [Carbon::addUTCSeconds](../Carbon/Carbon.md#addutcseconds) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [Carbon::addUTCSecond](../Carbon/Carbon.md#addutcsecond) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [Carbon::subUTCSeconds](../Carbon/Carbon.md#subutcseconds) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [Carbon::subUTCSecond](../Carbon/Carbon.md#subutcsecond) _(from [Carbon](../Carbon/Carbon.md))_ | . |
+| $this | [Carbon::addRealSeconds](../Carbon/Carbon.md#addrealseconds) _(from [Carbon](../Carbon/Carbon.md))_ | . |
+| $this | [Carbon::addRealSecond](../Carbon/Carbon.md#addrealsecond) _(from [Carbon](../Carbon/Carbon.md))_ | . |
+| $this | [Carbon::subRealSeconds](../Carbon/Carbon.md#subrealseconds) _(from [Carbon](../Carbon/Carbon.md))_ | . |
+| $this | [Carbon::subRealSecond](../Carbon/Carbon.md#subrealsecond) _(from [Carbon](../Carbon/Carbon.md))_ | . |
 | CarbonPeriod | [Carbon::secondsUntil](../Carbon/Carbon.md#secondsuntil) _(from [Carbon](../Carbon/Carbon.md))_ | for each second or every X seconds if a factor is given. |
-| float | [Carbon::diffInUTCSeconds](../Carbon/Carbon.md#diffinutcseconds) _(from [Carbon](../Carbon/Carbon.md))_ | Convert current and given date in UTC timezone and return a floating number of seconds. |
-| $this | [Carbon::addUTCMinutes](../Carbon/Carbon.md#addutcminutes) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [Carbon::addUTCMinute](../Carbon/Carbon.md#addutcminute) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [Carbon::subUTCMinutes](../Carbon/Carbon.md#subutcminutes) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [Carbon::subUTCMinute](../Carbon/Carbon.md#subutcminute) _(from [Carbon](../Carbon/Carbon.md))_ | . |
+| $this | [Carbon::addRealMinutes](../Carbon/Carbon.md#addrealminutes) _(from [Carbon](../Carbon/Carbon.md))_ | . |
+| $this | [Carbon::addRealMinute](../Carbon/Carbon.md#addrealminute) _(from [Carbon](../Carbon/Carbon.md))_ | . |
+| $this | [Carbon::subRealMinutes](../Carbon/Carbon.md#subrealminutes) _(from [Carbon](../Carbon/Carbon.md))_ | . |
+| $this | [Carbon::subRealMinute](../Carbon/Carbon.md#subrealminute) _(from [Carbon](../Carbon/Carbon.md))_ | . |
 | CarbonPeriod | [Carbon::minutesUntil](../Carbon/Carbon.md#minutesuntil) _(from [Carbon](../Carbon/Carbon.md))_ | for each minute or every X minutes if a factor is given. |
-| float | [Carbon::diffInUTCMinutes](../Carbon/Carbon.md#diffinutcminutes) _(from [Carbon](../Carbon/Carbon.md))_ | Convert current and given date in UTC timezone and return a floating number of minutes. |
-| $this | [Carbon::addUTCHours](../Carbon/Carbon.md#addutchours) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [Carbon::addUTCHour](../Carbon/Carbon.md#addutchour) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [Carbon::subUTCHours](../Carbon/Carbon.md#subutchours) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [Carbon::subUTCHour](../Carbon/Carbon.md#subutchour) _(from [Carbon](../Carbon/Carbon.md))_ | . |
+| $this | [Carbon::addRealHours](../Carbon/Carbon.md#addrealhours) _(from [Carbon](../Carbon/Carbon.md))_ | . |
+| $this | [Carbon::addRealHour](../Carbon/Carbon.md#addrealhour) _(from [Carbon](../Carbon/Carbon.md))_ | . |
+| $this | [Carbon::subRealHours](../Carbon/Carbon.md#subrealhours) _(from [Carbon](../Carbon/Carbon.md))_ | . |
+| $this | [Carbon::subRealHour](../Carbon/Carbon.md#subrealhour) _(from [Carbon](../Carbon/Carbon.md))_ | . |
 | CarbonPeriod | [Carbon::hoursUntil](../Carbon/Carbon.md#hoursuntil) _(from [Carbon](../Carbon/Carbon.md))_ | for each hour or every X hours if a factor is given. |
-| float | [Carbon::diffInUTCHours](../Carbon/Carbon.md#diffinutchours) _(from [Carbon](../Carbon/Carbon.md))_ | Convert current and given date in UTC timezone and return a floating number of hours. |
-| $this | [Carbon::addUTCDays](../Carbon/Carbon.md#addutcdays) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [Carbon::addUTCDay](../Carbon/Carbon.md#addutcday) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [Carbon::subUTCDays](../Carbon/Carbon.md#subutcdays) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [Carbon::subUTCDay](../Carbon/Carbon.md#subutcday) _(from [Carbon](../Carbon/Carbon.md))_ | . |
+| $this | [Carbon::addRealDays](../Carbon/Carbon.md#addrealdays) _(from [Carbon](../Carbon/Carbon.md))_ | . |
+| $this | [Carbon::addRealDay](../Carbon/Carbon.md#addrealday) _(from [Carbon](../Carbon/Carbon.md))_ | . |
+| $this | [Carbon::subRealDays](../Carbon/Carbon.md#subrealdays) _(from [Carbon](../Carbon/Carbon.md))_ | . |
+| $this | [Carbon::subRealDay](../Carbon/Carbon.md#subrealday) _(from [Carbon](../Carbon/Carbon.md))_ | . |
 | CarbonPeriod | [Carbon::daysUntil](../Carbon/Carbon.md#daysuntil) _(from [Carbon](../Carbon/Carbon.md))_ | for each day or every X days if a factor is given. |
-| float | [Carbon::diffInUTCDays](../Carbon/Carbon.md#diffinutcdays) _(from [Carbon](../Carbon/Carbon.md))_ | Convert current and given date in UTC timezone and return a floating number of days. |
-| $this | [Carbon::addUTCWeeks](../Carbon/Carbon.md#addutcweeks) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [Carbon::addUTCWeek](../Carbon/Carbon.md#addutcweek) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [Carbon::subUTCWeeks](../Carbon/Carbon.md#subutcweeks) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [Carbon::subUTCWeek](../Carbon/Carbon.md#subutcweek) _(from [Carbon](../Carbon/Carbon.md))_ | . |
+| $this | [Carbon::addRealWeeks](../Carbon/Carbon.md#addrealweeks) _(from [Carbon](../Carbon/Carbon.md))_ | . |
+| $this | [Carbon::addRealWeek](../Carbon/Carbon.md#addrealweek) _(from [Carbon](../Carbon/Carbon.md))_ | . |
+| $this | [Carbon::subRealWeeks](../Carbon/Carbon.md#subrealweeks) _(from [Carbon](../Carbon/Carbon.md))_ | . |
+| $this | [Carbon::subRealWeek](../Carbon/Carbon.md#subrealweek) _(from [Carbon](../Carbon/Carbon.md))_ | . |
 | CarbonPeriod | [Carbon::weeksUntil](../Carbon/Carbon.md#weeksuntil) _(from [Carbon](../Carbon/Carbon.md))_ | for each week or every X weeks if a factor is given. |
-| float | [Carbon::diffInUTCWeeks](../Carbon/Carbon.md#diffinutcweeks) _(from [Carbon](../Carbon/Carbon.md))_ | Convert current and given date in UTC timezone and return a floating number of weeks. |
-| $this | [Carbon::addUTCMonths](../Carbon/Carbon.md#addutcmonths) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [Carbon::addUTCMonth](../Carbon/Carbon.md#addutcmonth) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [Carbon::subUTCMonths](../Carbon/Carbon.md#subutcmonths) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [Carbon::subUTCMonth](../Carbon/Carbon.md#subutcmonth) _(from [Carbon](../Carbon/Carbon.md))_ | . |
+| $this | [Carbon::addRealMonths](../Carbon/Carbon.md#addrealmonths) _(from [Carbon](../Carbon/Carbon.md))_ | . |
+| $this | [Carbon::addRealMonth](../Carbon/Carbon.md#addrealmonth) _(from [Carbon](../Carbon/Carbon.md))_ | . |
+| $this | [Carbon::subRealMonths](../Carbon/Carbon.md#subrealmonths) _(from [Carbon](../Carbon/Carbon.md))_ | . |
+| $this | [Carbon::subRealMonth](../Carbon/Carbon.md#subrealmonth) _(from [Carbon](../Carbon/Carbon.md))_ | . |
 | CarbonPeriod | [Carbon::monthsUntil](../Carbon/Carbon.md#monthsuntil) _(from [Carbon](../Carbon/Carbon.md))_ | for each month or every X months if a factor is given. |
-| float | [Carbon::diffInUTCMonths](../Carbon/Carbon.md#diffinutcmonths) _(from [Carbon](../Carbon/Carbon.md))_ | Convert current and given date in UTC timezone and return a floating number of months. |
-| $this | [Carbon::addUTCQuarters](../Carbon/Carbon.md#addutcquarters) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [Carbon::addUTCQuarter](../Carbon/Carbon.md#addutcquarter) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [Carbon::subUTCQuarters](../Carbon/Carbon.md#subutcquarters) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [Carbon::subUTCQuarter](../Carbon/Carbon.md#subutcquarter) _(from [Carbon](../Carbon/Carbon.md))_ | . |
+| $this | [Carbon::addRealQuarters](../Carbon/Carbon.md#addrealquarters) _(from [Carbon](../Carbon/Carbon.md))_ | . |
+| $this | [Carbon::addRealQuarter](../Carbon/Carbon.md#addrealquarter) _(from [Carbon](../Carbon/Carbon.md))_ | . |
+| $this | [Carbon::subRealQuarters](../Carbon/Carbon.md#subrealquarters) _(from [Carbon](../Carbon/Carbon.md))_ | . |
+| $this | [Carbon::subRealQuarter](../Carbon/Carbon.md#subrealquarter) _(from [Carbon](../Carbon/Carbon.md))_ | . |
 | CarbonPeriod | [Carbon::quartersUntil](../Carbon/Carbon.md#quartersuntil) _(from [Carbon](../Carbon/Carbon.md))_ | for each quarter or every X quarters if a factor is given. |
-| float | [Carbon::diffInUTCQuarters](../Carbon/Carbon.md#diffinutcquarters) _(from [Carbon](../Carbon/Carbon.md))_ | Convert current and given date in UTC timezone and return a floating number of quarters. |
-| $this | [Carbon::addUTCYears](../Carbon/Carbon.md#addutcyears) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [Carbon::addUTCYear](../Carbon/Carbon.md#addutcyear) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [Carbon::subUTCYears](../Carbon/Carbon.md#subutcyears) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [Carbon::subUTCYear](../Carbon/Carbon.md#subutcyear) _(from [Carbon](../Carbon/Carbon.md))_ | . |
+| $this | [Carbon::addRealYears](../Carbon/Carbon.md#addrealyears) _(from [Carbon](../Carbon/Carbon.md))_ | . |
+| $this | [Carbon::addRealYear](../Carbon/Carbon.md#addrealyear) _(from [Carbon](../Carbon/Carbon.md))_ | . |
+| $this | [Carbon::subRealYears](../Carbon/Carbon.md#subrealyears) _(from [Carbon](../Carbon/Carbon.md))_ | . |
+| $this | [Carbon::subRealYear](../Carbon/Carbon.md#subrealyear) _(from [Carbon](../Carbon/Carbon.md))_ | . |
 | CarbonPeriod | [Carbon::yearsUntil](../Carbon/Carbon.md#yearsuntil) _(from [Carbon](../Carbon/Carbon.md))_ | for each year or every X years if a factor is given. |
-| float | [Carbon::diffInUTCYears](../Carbon/Carbon.md#diffinutcyears) _(from [Carbon](../Carbon/Carbon.md))_ | Convert current and given date in UTC timezone and return a floating number of years. |
-| $this | [Carbon::addUTCDecades](../Carbon/Carbon.md#addutcdecades) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [Carbon::addUTCDecade](../Carbon/Carbon.md#addutcdecade) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [Carbon::subUTCDecades](../Carbon/Carbon.md#subutcdecades) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [Carbon::subUTCDecade](../Carbon/Carbon.md#subutcdecade) _(from [Carbon](../Carbon/Carbon.md))_ | . |
+| $this | [Carbon::addRealDecades](../Carbon/Carbon.md#addrealdecades) _(from [Carbon](../Carbon/Carbon.md))_ | . |
+| $this | [Carbon::addRealDecade](../Carbon/Carbon.md#addrealdecade) _(from [Carbon](../Carbon/Carbon.md))_ | . |
+| $this | [Carbon::subRealDecades](../Carbon/Carbon.md#subrealdecades) _(from [Carbon](../Carbon/Carbon.md))_ | . |
+| $this | [Carbon::subRealDecade](../Carbon/Carbon.md#subrealdecade) _(from [Carbon](../Carbon/Carbon.md))_ | . |
 | CarbonPeriod | [Carbon::decadesUntil](../Carbon/Carbon.md#decadesuntil) _(from [Carbon](../Carbon/Carbon.md))_ | for each decade or every X decades if a factor is given. |
-| float | [Carbon::diffInUTCDecades](../Carbon/Carbon.md#diffinutcdecades) _(from [Carbon](../Carbon/Carbon.md))_ | Convert current and given date in UTC timezone and return a floating number of decades. |
-| $this | [Carbon::addUTCCenturies](../Carbon/Carbon.md#addutccenturies) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [Carbon::addUTCCentury](../Carbon/Carbon.md#addutccentury) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [Carbon::subUTCCenturies](../Carbon/Carbon.md#subutccenturies) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [Carbon::subUTCCentury](../Carbon/Carbon.md#subutccentury) _(from [Carbon](../Carbon/Carbon.md))_ | . |
+| $this | [Carbon::addRealCenturies](../Carbon/Carbon.md#addrealcenturies) _(from [Carbon](../Carbon/Carbon.md))_ | . |
+| $this | [Carbon::addRealCentury](../Carbon/Carbon.md#addrealcentury) _(from [Carbon](../Carbon/Carbon.md))_ | . |
+| $this | [Carbon::subRealCenturies](../Carbon/Carbon.md#subrealcenturies) _(from [Carbon](../Carbon/Carbon.md))_ | . |
+| $this | [Carbon::subRealCentury](../Carbon/Carbon.md#subrealcentury) _(from [Carbon](../Carbon/Carbon.md))_ | . |
 | CarbonPeriod | [Carbon::centuriesUntil](../Carbon/Carbon.md#centuriesuntil) _(from [Carbon](../Carbon/Carbon.md))_ | for each century or every X centuries if a factor is given. |
-| float | [Carbon::diffInUTCCenturies](../Carbon/Carbon.md#diffinutccenturies) _(from [Carbon](../Carbon/Carbon.md))_ | Convert current and given date in UTC timezone and return a floating number of centuries. |
-| $this | [Carbon::addUTCMillennia](../Carbon/Carbon.md#addutcmillennia) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [Carbon::addUTCMillennium](../Carbon/Carbon.md#addutcmillennium) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [Carbon::subUTCMillennia](../Carbon/Carbon.md#subutcmillennia) _(from [Carbon](../Carbon/Carbon.md))_ | . |
-| $this | [Carbon::subUTCMillennium](../Carbon/Carbon.md#subutcmillennium) _(from [Carbon](../Carbon/Carbon.md))_ | . |
+| $this | [Carbon::addRealMillennia](../Carbon/Carbon.md#addrealmillennia) _(from [Carbon](../Carbon/Carbon.md))_ | . |
+| $this | [Carbon::addRealMillennium](../Carbon/Carbon.md#addrealmillennium) _(from [Carbon](../Carbon/Carbon.md))_ | . |
+| $this | [Carbon::subRealMillennia](../Carbon/Carbon.md#subrealmillennia) _(from [Carbon](../Carbon/Carbon.md))_ | . |
+| $this | [Carbon::subRealMillennium](../Carbon/Carbon.md#subrealmillennium) _(from [Carbon](../Carbon/Carbon.md))_ | . |
 | CarbonPeriod | [Carbon::millenniaUntil](../Carbon/Carbon.md#millenniauntil) _(from [Carbon](../Carbon/Carbon.md))_ | for each millennium or every X millennia if a factor is given. |
-| float | [Carbon::diffInUTCMillennia](../Carbon/Carbon.md#diffinutcmillennia) _(from [Carbon](../Carbon/Carbon.md))_ | Convert current and given date in UTC timezone and return a floating number of millennia. |
 | $this | [Carbon::roundYear](../Carbon/Carbon.md#roundyear) _(from [Carbon](../Carbon/Carbon.md))_ | Round the current instance year with given precision using the given function. |
 | $this | [Carbon::roundYears](../Carbon/Carbon.md#roundyears) _(from [Carbon](../Carbon/Carbon.md))_ | Round the current instance year with given precision using the given function. |
 | $this | [Carbon::floorYear](../Carbon/Carbon.md#flooryear) _(from [Carbon](../Carbon/Carbon.md))_ | Truncate the current instance year with given precision. |
@@ -1045,164 +869,34 @@ echo $nextHoliday->format('Y-m-d') . ' ' . $nextHoliday->holidayText;
 | string | [Carbon::longRelativeToNowDiffForHumans](../Carbon/Carbon.md#longrelativetonowdiffforhumans) _(from [Carbon](../Carbon/Carbon.md))_ |  |
 | string | [Carbon::shortRelativeToOtherDiffForHumans](../Carbon/Carbon.md#shortrelativetootherdiffforhumans) _(from [Carbon](../Carbon/Carbon.md))_ |  |
 | string | [Carbon::longRelativeToOtherDiffForHumans](../Carbon/Carbon.md#longrelativetootherdiffforhumans) _(from [Carbon](../Carbon/Carbon.md))_ |  |
-| int | [Carbon::centuriesInMillennium](../Carbon/Carbon.md#centuriesinmillennium) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of centuries contained in the current millennium |
-| int|static | [Carbon::centuryOfMillennium](../Carbon/Carbon.md#centuryofmillennium) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the century starting from the beginning of the current millennium when called with no parameters, change the current century when called with an integer value |
-| int|static | [Carbon::dayOfCentury](../Carbon/Carbon.md#dayofcentury) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the day starting from the beginning of the current century when called with no parameters, change the current day when called with an integer value |
-| int|static | [Carbon::dayOfDecade](../Carbon/Carbon.md#dayofdecade) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the day starting from the beginning of the current decade when called with no parameters, change the current day when called with an integer value |
-| int|static | [Carbon::dayOfMillennium](../Carbon/Carbon.md#dayofmillennium) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the day starting from the beginning of the current millennium when called with no parameters, change the current day when called with an integer value |
-| int|static | [Carbon::dayOfMonth](../Carbon/Carbon.md#dayofmonth) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the day starting from the beginning of the current month when called with no parameters, change the current day when called with an integer value |
-| int|static | [Carbon::dayOfQuarter](../Carbon/Carbon.md#dayofquarter) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the day starting from the beginning of the current quarter when called with no parameters, change the current day when called with an integer value |
-| int|static | [Carbon::dayOfWeek](../Carbon/Carbon.md#dayofweek) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the day starting from the beginning of the current week when called with no parameters, change the current day when called with an integer value |
-| int | [Carbon::daysInCentury](../Carbon/Carbon.md#daysincentury) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of days contained in the current century |
-| int | [Carbon::daysInDecade](../Carbon/Carbon.md#daysindecade) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of days contained in the current decade |
-| int | [Carbon::daysInMillennium](../Carbon/Carbon.md#daysinmillennium) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of days contained in the current millennium |
-| int | [Carbon::daysInMonth](../Carbon/Carbon.md#daysinmonth) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of days contained in the current month |
-| int | [Carbon::daysInQuarter](../Carbon/Carbon.md#daysinquarter) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of days contained in the current quarter |
-| int | [Carbon::daysInWeek](../Carbon/Carbon.md#daysinweek) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of days contained in the current week |
-| int | [Carbon::daysInYear](../Carbon/Carbon.md#daysinyear) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of days contained in the current year |
-| int|static | [Carbon::decadeOfCentury](../Carbon/Carbon.md#decadeofcentury) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the decade starting from the beginning of the current century when called with no parameters, change the current decade when called with an integer value |
-| int|static | [Carbon::decadeOfMillennium](../Carbon/Carbon.md#decadeofmillennium) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the decade starting from the beginning of the current millennium when called with no parameters, change the current decade when called with an integer value |
-| int | [Carbon::decadesInCentury](../Carbon/Carbon.md#decadesincentury) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of decades contained in the current century |
-| int | [Carbon::decadesInMillennium](../Carbon/Carbon.md#decadesinmillennium) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of decades contained in the current millennium |
-| int|static | [Carbon::hourOfCentury](../Carbon/Carbon.md#hourofcentury) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the hour starting from the beginning of the current century when called with no parameters, change the current hour when called with an integer value |
-| int|static | [Carbon::hourOfDay](../Carbon/Carbon.md#hourofday) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the hour starting from the beginning of the current day when called with no parameters, change the current hour when called with an integer value |
-| int|static | [Carbon::hourOfDecade](../Carbon/Carbon.md#hourofdecade) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the hour starting from the beginning of the current decade when called with no parameters, change the current hour when called with an integer value |
-| int|static | [Carbon::hourOfMillennium](../Carbon/Carbon.md#hourofmillennium) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the hour starting from the beginning of the current millennium when called with no parameters, change the current hour when called with an integer value |
-| int|static | [Carbon::hourOfMonth](../Carbon/Carbon.md#hourofmonth) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the hour starting from the beginning of the current month when called with no parameters, change the current hour when called with an integer value |
-| int|static | [Carbon::hourOfQuarter](../Carbon/Carbon.md#hourofquarter) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the hour starting from the beginning of the current quarter when called with no parameters, change the current hour when called with an integer value |
-| int|static | [Carbon::hourOfWeek](../Carbon/Carbon.md#hourofweek) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the hour starting from the beginning of the current week when called with no parameters, change the current hour when called with an integer value |
-| int|static | [Carbon::hourOfYear](../Carbon/Carbon.md#hourofyear) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the hour starting from the beginning of the current year when called with no parameters, change the current hour when called with an integer value |
-| int | [Carbon::hoursInCentury](../Carbon/Carbon.md#hoursincentury) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of hours contained in the current century |
-| int | [Carbon::hoursInDay](../Carbon/Carbon.md#hoursinday) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of hours contained in the current day |
-| int | [Carbon::hoursInDecade](../Carbon/Carbon.md#hoursindecade) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of hours contained in the current decade |
-| int | [Carbon::hoursInMillennium](../Carbon/Carbon.md#hoursinmillennium) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of hours contained in the current millennium |
-| int | [Carbon::hoursInMonth](../Carbon/Carbon.md#hoursinmonth) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of hours contained in the current month |
-| int | [Carbon::hoursInQuarter](../Carbon/Carbon.md#hoursinquarter) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of hours contained in the current quarter |
-| int | [Carbon::hoursInWeek](../Carbon/Carbon.md#hoursinweek) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of hours contained in the current week |
-| int | [Carbon::hoursInYear](../Carbon/Carbon.md#hoursinyear) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of hours contained in the current year |
-| int|static | [Carbon::microsecondOfCentury](../Carbon/Carbon.md#microsecondofcentury) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the microsecond starting from the beginning of the current century when called with no parameters, change the current microsecond when called with an integer value |
-| int|static | [Carbon::microsecondOfDay](../Carbon/Carbon.md#microsecondofday) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the microsecond starting from the beginning of the current day when called with no parameters, change the current microsecond when called with an integer value |
-| int|static | [Carbon::microsecondOfDecade](../Carbon/Carbon.md#microsecondofdecade) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the microsecond starting from the beginning of the current decade when called with no parameters, change the current microsecond when called with an integer value |
-| int|static | [Carbon::microsecondOfHour](../Carbon/Carbon.md#microsecondofhour) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the microsecond starting from the beginning of the current hour when called with no parameters, change the current microsecond when called with an integer value |
-| int|static | [Carbon::microsecondOfMillennium](../Carbon/Carbon.md#microsecondofmillennium) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the microsecond starting from the beginning of the current millennium when called with no parameters, change the current microsecond when called with an integer value |
-| int|static | [Carbon::microsecondOfMillisecond](../Carbon/Carbon.md#microsecondofmillisecond) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the microsecond starting from the beginning of the current millisecond when called with no parameters, change the current microsecond when called with an integer value |
-| int|static | [Carbon::microsecondOfMinute](../Carbon/Carbon.md#microsecondofminute) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the microsecond starting from the beginning of the current minute when called with no parameters, change the current microsecond when called with an integer value |
-| int|static | [Carbon::microsecondOfMonth](../Carbon/Carbon.md#microsecondofmonth) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the microsecond starting from the beginning of the current month when called with no parameters, change the current microsecond when called with an integer value |
-| int|static | [Carbon::microsecondOfQuarter](../Carbon/Carbon.md#microsecondofquarter) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the microsecond starting from the beginning of the current quarter when called with no parameters, change the current microsecond when called with an integer value |
-| int|static | [Carbon::microsecondOfSecond](../Carbon/Carbon.md#microsecondofsecond) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the microsecond starting from the beginning of the current second when called with no parameters, change the current microsecond when called with an integer value |
-| int|static | [Carbon::microsecondOfWeek](../Carbon/Carbon.md#microsecondofweek) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the microsecond starting from the beginning of the current week when called with no parameters, change the current microsecond when called with an integer value |
-| int|static | [Carbon::microsecondOfYear](../Carbon/Carbon.md#microsecondofyear) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the microsecond starting from the beginning of the current year when called with no parameters, change the current microsecond when called with an integer value |
-| int | [Carbon::microsecondsInCentury](../Carbon/Carbon.md#microsecondsincentury) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of microseconds contained in the current century |
-| int | [Carbon::microsecondsInDay](../Carbon/Carbon.md#microsecondsinday) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of microseconds contained in the current day |
-| int | [Carbon::microsecondsInDecade](../Carbon/Carbon.md#microsecondsindecade) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of microseconds contained in the current decade |
-| int | [Carbon::microsecondsInHour](../Carbon/Carbon.md#microsecondsinhour) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of microseconds contained in the current hour |
-| int | [Carbon::microsecondsInMillennium](../Carbon/Carbon.md#microsecondsinmillennium) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of microseconds contained in the current millennium |
-| int | [Carbon::microsecondsInMillisecond](../Carbon/Carbon.md#microsecondsinmillisecond) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of microseconds contained in the current millisecond |
-| int | [Carbon::microsecondsInMinute](../Carbon/Carbon.md#microsecondsinminute) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of microseconds contained in the current minute |
-| int | [Carbon::microsecondsInMonth](../Carbon/Carbon.md#microsecondsinmonth) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of microseconds contained in the current month |
-| int | [Carbon::microsecondsInQuarter](../Carbon/Carbon.md#microsecondsinquarter) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of microseconds contained in the current quarter |
-| int | [Carbon::microsecondsInSecond](../Carbon/Carbon.md#microsecondsinsecond) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of microseconds contained in the current second |
-| int | [Carbon::microsecondsInWeek](../Carbon/Carbon.md#microsecondsinweek) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of microseconds contained in the current week |
-| int | [Carbon::microsecondsInYear](../Carbon/Carbon.md#microsecondsinyear) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of microseconds contained in the current year |
-| int|static | [Carbon::millisecondOfCentury](../Carbon/Carbon.md#millisecondofcentury) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the millisecond starting from the beginning of the current century when called with no parameters, change the current millisecond when called with an integer value |
-| int|static | [Carbon::millisecondOfDay](../Carbon/Carbon.md#millisecondofday) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the millisecond starting from the beginning of the current day when called with no parameters, change the current millisecond when called with an integer value |
-| int|static | [Carbon::millisecondOfDecade](../Carbon/Carbon.md#millisecondofdecade) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the millisecond starting from the beginning of the current decade when called with no parameters, change the current millisecond when called with an integer value |
-| int|static | [Carbon::millisecondOfHour](../Carbon/Carbon.md#millisecondofhour) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the millisecond starting from the beginning of the current hour when called with no parameters, change the current millisecond when called with an integer value |
-| int|static | [Carbon::millisecondOfMillennium](../Carbon/Carbon.md#millisecondofmillennium) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the millisecond starting from the beginning of the current millennium when called with no parameters, change the current millisecond when called with an integer value |
-| int|static | [Carbon::millisecondOfMinute](../Carbon/Carbon.md#millisecondofminute) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the millisecond starting from the beginning of the current minute when called with no parameters, change the current millisecond when called with an integer value |
-| int|static | [Carbon::millisecondOfMonth](../Carbon/Carbon.md#millisecondofmonth) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the millisecond starting from the beginning of the current month when called with no parameters, change the current millisecond when called with an integer value |
-| int|static | [Carbon::millisecondOfQuarter](../Carbon/Carbon.md#millisecondofquarter) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the millisecond starting from the beginning of the current quarter when called with no parameters, change the current millisecond when called with an integer value |
-| int|static | [Carbon::millisecondOfSecond](../Carbon/Carbon.md#millisecondofsecond) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the millisecond starting from the beginning of the current second when called with no parameters, change the current millisecond when called with an integer value |
-| int|static | [Carbon::millisecondOfWeek](../Carbon/Carbon.md#millisecondofweek) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the millisecond starting from the beginning of the current week when called with no parameters, change the current millisecond when called with an integer value |
-| int|static | [Carbon::millisecondOfYear](../Carbon/Carbon.md#millisecondofyear) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the millisecond starting from the beginning of the current year when called with no parameters, change the current millisecond when called with an integer value |
-| int | [Carbon::millisecondsInCentury](../Carbon/Carbon.md#millisecondsincentury) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of milliseconds contained in the current century |
-| int | [Carbon::millisecondsInDay](../Carbon/Carbon.md#millisecondsinday) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of milliseconds contained in the current day |
-| int | [Carbon::millisecondsInDecade](../Carbon/Carbon.md#millisecondsindecade) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of milliseconds contained in the current decade |
-| int | [Carbon::millisecondsInHour](../Carbon/Carbon.md#millisecondsinhour) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of milliseconds contained in the current hour |
-| int | [Carbon::millisecondsInMillennium](../Carbon/Carbon.md#millisecondsinmillennium) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of milliseconds contained in the current millennium |
-| int | [Carbon::millisecondsInMinute](../Carbon/Carbon.md#millisecondsinminute) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of milliseconds contained in the current minute |
-| int | [Carbon::millisecondsInMonth](../Carbon/Carbon.md#millisecondsinmonth) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of milliseconds contained in the current month |
-| int | [Carbon::millisecondsInQuarter](../Carbon/Carbon.md#millisecondsinquarter) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of milliseconds contained in the current quarter |
-| int | [Carbon::millisecondsInSecond](../Carbon/Carbon.md#millisecondsinsecond) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of milliseconds contained in the current second |
-| int | [Carbon::millisecondsInWeek](../Carbon/Carbon.md#millisecondsinweek) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of milliseconds contained in the current week |
-| int | [Carbon::millisecondsInYear](../Carbon/Carbon.md#millisecondsinyear) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of milliseconds contained in the current year |
-| int|static | [Carbon::minuteOfCentury](../Carbon/Carbon.md#minuteofcentury) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the minute starting from the beginning of the current century when called with no parameters, change the current minute when called with an integer value |
-| int|static | [Carbon::minuteOfDay](../Carbon/Carbon.md#minuteofday) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the minute starting from the beginning of the current day when called with no parameters, change the current minute when called with an integer value |
-| int|static | [Carbon::minuteOfDecade](../Carbon/Carbon.md#minuteofdecade) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the minute starting from the beginning of the current decade when called with no parameters, change the current minute when called with an integer value |
-| int|static | [Carbon::minuteOfHour](../Carbon/Carbon.md#minuteofhour) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the minute starting from the beginning of the current hour when called with no parameters, change the current minute when called with an integer value |
-| int|static | [Carbon::minuteOfMillennium](../Carbon/Carbon.md#minuteofmillennium) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the minute starting from the beginning of the current millennium when called with no parameters, change the current minute when called with an integer value |
-| int|static | [Carbon::minuteOfMonth](../Carbon/Carbon.md#minuteofmonth) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the minute starting from the beginning of the current month when called with no parameters, change the current minute when called with an integer value |
-| int|static | [Carbon::minuteOfQuarter](../Carbon/Carbon.md#minuteofquarter) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the minute starting from the beginning of the current quarter when called with no parameters, change the current minute when called with an integer value |
-| int|static | [Carbon::minuteOfWeek](../Carbon/Carbon.md#minuteofweek) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the minute starting from the beginning of the current week when called with no parameters, change the current minute when called with an integer value |
-| int|static | [Carbon::minuteOfYear](../Carbon/Carbon.md#minuteofyear) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the minute starting from the beginning of the current year when called with no parameters, change the current minute when called with an integer value |
-| int | [Carbon::minutesInCentury](../Carbon/Carbon.md#minutesincentury) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of minutes contained in the current century |
-| int | [Carbon::minutesInDay](../Carbon/Carbon.md#minutesinday) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of minutes contained in the current day |
-| int | [Carbon::minutesInDecade](../Carbon/Carbon.md#minutesindecade) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of minutes contained in the current decade |
-| int | [Carbon::minutesInHour](../Carbon/Carbon.md#minutesinhour) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of minutes contained in the current hour |
-| int | [Carbon::minutesInMillennium](../Carbon/Carbon.md#minutesinmillennium) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of minutes contained in the current millennium |
-| int | [Carbon::minutesInMonth](../Carbon/Carbon.md#minutesinmonth) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of minutes contained in the current month |
-| int | [Carbon::minutesInQuarter](../Carbon/Carbon.md#minutesinquarter) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of minutes contained in the current quarter |
-| int | [Carbon::minutesInWeek](../Carbon/Carbon.md#minutesinweek) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of minutes contained in the current week |
-| int | [Carbon::minutesInYear](../Carbon/Carbon.md#minutesinyear) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of minutes contained in the current year |
-| int|static | [Carbon::monthOfCentury](../Carbon/Carbon.md#monthofcentury) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the month starting from the beginning of the current century when called with no parameters, change the current month when called with an integer value |
-| int|static | [Carbon::monthOfDecade](../Carbon/Carbon.md#monthofdecade) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the month starting from the beginning of the current decade when called with no parameters, change the current month when called with an integer value |
-| int|static | [Carbon::monthOfMillennium](../Carbon/Carbon.md#monthofmillennium) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the month starting from the beginning of the current millennium when called with no parameters, change the current month when called with an integer value |
-| int|static | [Carbon::monthOfQuarter](../Carbon/Carbon.md#monthofquarter) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the month starting from the beginning of the current quarter when called with no parameters, change the current month when called with an integer value |
-| int|static | [Carbon::monthOfYear](../Carbon/Carbon.md#monthofyear) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the month starting from the beginning of the current year when called with no parameters, change the current month when called with an integer value |
-| int | [Carbon::monthsInCentury](../Carbon/Carbon.md#monthsincentury) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of months contained in the current century |
-| int | [Carbon::monthsInDecade](../Carbon/Carbon.md#monthsindecade) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of months contained in the current decade |
-| int | [Carbon::monthsInMillennium](../Carbon/Carbon.md#monthsinmillennium) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of months contained in the current millennium |
-| int | [Carbon::monthsInQuarter](../Carbon/Carbon.md#monthsinquarter) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of months contained in the current quarter |
-| int | [Carbon::monthsInYear](../Carbon/Carbon.md#monthsinyear) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of months contained in the current year |
-| int|static | [Carbon::quarterOfCentury](../Carbon/Carbon.md#quarterofcentury) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the quarter starting from the beginning of the current century when called with no parameters, change the current quarter when called with an integer value |
-| int|static | [Carbon::quarterOfDecade](../Carbon/Carbon.md#quarterofdecade) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the quarter starting from the beginning of the current decade when called with no parameters, change the current quarter when called with an integer value |
-| int|static | [Carbon::quarterOfMillennium](../Carbon/Carbon.md#quarterofmillennium) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the quarter starting from the beginning of the current millennium when called with no parameters, change the current quarter when called with an integer value |
-| int|static | [Carbon::quarterOfYear](../Carbon/Carbon.md#quarterofyear) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the quarter starting from the beginning of the current year when called with no parameters, change the current quarter when called with an integer value |
-| int | [Carbon::quartersInCentury](../Carbon/Carbon.md#quartersincentury) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of quarters contained in the current century |
-| int | [Carbon::quartersInDecade](../Carbon/Carbon.md#quartersindecade) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of quarters contained in the current decade |
-| int | [Carbon::quartersInMillennium](../Carbon/Carbon.md#quartersinmillennium) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of quarters contained in the current millennium |
-| int | [Carbon::quartersInYear](../Carbon/Carbon.md#quartersinyear) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of quarters contained in the current year |
-| int|static | [Carbon::secondOfCentury](../Carbon/Carbon.md#secondofcentury) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the second starting from the beginning of the current century when called with no parameters, change the current second when called with an integer value |
-| int|static | [Carbon::secondOfDay](../Carbon/Carbon.md#secondofday) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the second starting from the beginning of the current day when called with no parameters, change the current second when called with an integer value |
-| int|static | [Carbon::secondOfDecade](../Carbon/Carbon.md#secondofdecade) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the second starting from the beginning of the current decade when called with no parameters, change the current second when called with an integer value |
-| int|static | [Carbon::secondOfHour](../Carbon/Carbon.md#secondofhour) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the second starting from the beginning of the current hour when called with no parameters, change the current second when called with an integer value |
-| int|static | [Carbon::secondOfMillennium](../Carbon/Carbon.md#secondofmillennium) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the second starting from the beginning of the current millennium when called with no parameters, change the current second when called with an integer value |
-| int|static | [Carbon::secondOfMinute](../Carbon/Carbon.md#secondofminute) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the second starting from the beginning of the current minute when called with no parameters, change the current second when called with an integer value |
-| int|static | [Carbon::secondOfMonth](../Carbon/Carbon.md#secondofmonth) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the second starting from the beginning of the current month when called with no parameters, change the current second when called with an integer value |
-| int|static | [Carbon::secondOfQuarter](../Carbon/Carbon.md#secondofquarter) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the second starting from the beginning of the current quarter when called with no parameters, change the current second when called with an integer value |
-| int|static | [Carbon::secondOfWeek](../Carbon/Carbon.md#secondofweek) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the second starting from the beginning of the current week when called with no parameters, change the current second when called with an integer value |
-| int|static | [Carbon::secondOfYear](../Carbon/Carbon.md#secondofyear) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the second starting from the beginning of the current year when called with no parameters, change the current second when called with an integer value |
-| int | [Carbon::secondsInCentury](../Carbon/Carbon.md#secondsincentury) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of seconds contained in the current century |
-| int | [Carbon::secondsInDay](../Carbon/Carbon.md#secondsinday) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of seconds contained in the current day |
-| int | [Carbon::secondsInDecade](../Carbon/Carbon.md#secondsindecade) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of seconds contained in the current decade |
-| int | [Carbon::secondsInHour](../Carbon/Carbon.md#secondsinhour) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of seconds contained in the current hour |
-| int | [Carbon::secondsInMillennium](../Carbon/Carbon.md#secondsinmillennium) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of seconds contained in the current millennium |
-| int | [Carbon::secondsInMinute](../Carbon/Carbon.md#secondsinminute) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of seconds contained in the current minute |
-| int | [Carbon::secondsInMonth](../Carbon/Carbon.md#secondsinmonth) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of seconds contained in the current month |
-| int | [Carbon::secondsInQuarter](../Carbon/Carbon.md#secondsinquarter) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of seconds contained in the current quarter |
-| int | [Carbon::secondsInWeek](../Carbon/Carbon.md#secondsinweek) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of seconds contained in the current week |
-| int | [Carbon::secondsInYear](../Carbon/Carbon.md#secondsinyear) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of seconds contained in the current year |
-| int|static | [Carbon::weekOfCentury](../Carbon/Carbon.md#weekofcentury) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the week starting from the beginning of the current century when called with no parameters, change the current week when called with an integer value |
-| int|static | [Carbon::weekOfDecade](../Carbon/Carbon.md#weekofdecade) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the week starting from the beginning of the current decade when called with no parameters, change the current week when called with an integer value |
-| int|static | [Carbon::weekOfMillennium](../Carbon/Carbon.md#weekofmillennium) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the week starting from the beginning of the current millennium when called with no parameters, change the current week when called with an integer value |
-| int|static | [Carbon::weekOfMonth](../Carbon/Carbon.md#weekofmonth) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the week starting from the beginning of the current month when called with no parameters, change the current week when called with an integer value |
-| int|static | [Carbon::weekOfQuarter](../Carbon/Carbon.md#weekofquarter) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the week starting from the beginning of the current quarter when called with no parameters, change the current week when called with an integer value |
-| int|static | [Carbon::weekOfYear](../Carbon/Carbon.md#weekofyear) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the week starting from the beginning of the current year when called with no parameters, change the current week when called with an integer value |
-| int | [Carbon::weeksInCentury](../Carbon/Carbon.md#weeksincentury) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of weeks contained in the current century |
-| int | [Carbon::weeksInDecade](../Carbon/Carbon.md#weeksindecade) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of weeks contained in the current decade |
-| int | [Carbon::weeksInMillennium](../Carbon/Carbon.md#weeksinmillennium) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of weeks contained in the current millennium |
-| int | [Carbon::weeksInMonth](../Carbon/Carbon.md#weeksinmonth) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of weeks contained in the current month |
-| int | [Carbon::weeksInQuarter](../Carbon/Carbon.md#weeksinquarter) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of weeks contained in the current quarter |
-| int|static | [Carbon::yearOfCentury](../Carbon/Carbon.md#yearofcentury) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the year starting from the beginning of the current century when called with no parameters, change the current year when called with an integer value |
-| int|static | [Carbon::yearOfDecade](../Carbon/Carbon.md#yearofdecade) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the year starting from the beginning of the current decade when called with no parameters, change the current year when called with an integer value |
-| int|static | [Carbon::yearOfMillennium](../Carbon/Carbon.md#yearofmillennium) _(from [Carbon](../Carbon/Carbon.md))_ | Return the value of the year starting from the beginning of the current millennium when called with no parameters, change the current year when called with an integer value |
-| int | [Carbon::yearsInCentury](../Carbon/Carbon.md#yearsincentury) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of years contained in the current century |
-| int | [Carbon::yearsInDecade](../Carbon/Carbon.md#yearsindecade) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of years contained in the current decade |
-| int | [Carbon::yearsInMillennium](../Carbon/Carbon.md#yearsinmillennium) _(from [Carbon](../Carbon/Carbon.md))_ | Return the number of years contained in the current millennium |
+| static | [Carbon::__set_state](../Carbon/Carbon.md#__set_state) _(from [Carbon](../Carbon/Carbon.md))_ | https://php.net/manual/en/datetime.set-state.php |
 
 ---
 
 ## Method Details
+
+### createFromFormat
+
+```php
+static public Factory\|null createFromFormat($format, $time, $timezone = null)
+```
+
+フォーマット指定文字列から日時インスタンスを生成します。
+
+Carbon の `createFromFormat()` はコンストラクタを経由しないため、
+JapaneseDate 固有のコンポーネントが未初期化のまま返されることがあります。
+このオーバーライドにより、返却されたインスタンスのコンポーネントを確実に初期化します。
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| string | `$format` | —  | 日時フォーマット文字列 |
+| string | `$time` | —  | パース対象の日時文字列 |
+| [DateTimeZone](https://www.php.net/class.datetimezone)\|string\|int\|null | `$timezone` | `null` | タイムゾーン（省略可） |
+
+**Returns:** Factory\|null — 生成されたインスタンス。解析失敗時は null
+---
 
 ### factory
 
@@ -1284,29 +978,6 @@ $dt = DateTime::factory('2026-05-01 12:34:56', new \DateTimeZone('Asia/Tokyo'));
 
 - DateInvalidTimeZoneException
 - [NativeDateTimeException](../JapaneseDate/Exceptions/NativeDateTimeException.md)
----
-
-### createFromFormat
-
-```php
-static public Factory\|null createFromFormat($format, $time, $timezone = null)
-```
-
-フォーマット指定文字列から日時インスタンスを生成します。
-
-Carbon の `createFromFormat()` はコンストラクタを経由しないため、
-JapaneseDate 固有のコンポーネントが未初期化のまま返されることがあります。
-このオーバーライドにより、返却されたインスタンスのコンポーネントを確実に初期化します。
-
-**Parameters:**
-
-| Type | Name | Default | Description |
-|---|---|---|---|
-| string | `$format` | —  | 日時フォーマット文字列 |
-| string | `$time` | —  | パース対象の日時文字列 |
-| [DateTimeZone](https://www.php.net/class.datetimezone)\|string\|int\|null | `$timezone` | `null` | タイムゾーン（省略可） |
-
-**Returns:** Factory\|null — 生成されたインスタンス。解析失敗時は null
 ---
 
 ### setCacheMode

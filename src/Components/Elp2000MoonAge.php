@@ -84,7 +84,6 @@ class Elp2000MoonAge implements MoonAgeAlgorithm
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      * @throws \Exception
-     * @throws \Exception
      */
     public function moonAge(int $year, int $month, int $day, float $hour, float $min, float $sec): float
     {
@@ -115,7 +114,7 @@ class Elp2000MoonAge implements MoonAgeAlgorithm
             $res += self::SYNODIC_MONTH;
         }
         if ($res > 30) {
-            $res -= 30;
+            $res -= self::SYNODIC_MONTH;
         }
 
         return $res;

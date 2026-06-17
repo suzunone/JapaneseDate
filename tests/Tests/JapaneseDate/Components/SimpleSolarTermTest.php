@@ -220,14 +220,29 @@ class SimpleSolarTermTest extends TestCase
                 throw new LogicException($method . ' table ranges were not found.');
             }
 
+            $overrides = self::simpleSolarTermYearOverrideDataProvider();
+
             foreach ($rangeMatches as $rangeMatch) {
-                $year = intdiv((int) $rangeMatch[1] + (int) $rangeMatch[2], 2);
+                $rangeStart = (int) $rangeMatch[1];
+                $rangeEnd = (int) $rangeMatch[2];
                 $days = array_map(
                     'intval',
                     preg_split('/\D+/', trim($rangeMatch[3], " \t\n\r\0\x0B,"))
                 );
 
-                $cases[$method . ' ' . $rangeMatch[1] . '-' . $rangeMatch[2]] = [
+                // 例外年は例外マップで処理されてレンジコードに到達しないため、
+                // 中間点が例外年の場合はレンジ内の非例外年を選ぶ。
+                $year = intdiv($rangeStart + $rangeEnd, 2);
+                if (isset($overrides[$method . ' ' . $year])) {
+                    for ($candidate = $rangeStart; $candidate <= $rangeEnd; $candidate++) {
+                        if (!isset($overrides[$method . ' ' . $candidate])) {
+                            $year = $candidate;
+                            break;
+                        }
+                    }
+                }
+
+                $cases[$method . ' ' . $rangeStart . '-' . $rangeEnd] = [
                     $method,
                     $year,
                     self::SOLAR_TERM_METHODS[$method],
@@ -245,30 +260,30 @@ class SimpleSolarTermTest extends TestCase
     {
         $cases = [];
         $overrides = [
-            'syunbun' => [DateTime::SOLAR_TERM_SYUNBUN, [2352 => 21, 2385 => 21]],
-            'seimei' => [DateTime::SOLAR_TERM_SEIMEI, [2302 => 6, 2335 => 6, 2368 => 5, 1724 => 4, 2141 => 5]],
-            'kokuu' => [DateTime::SOLAR_TERM_KOKUU, [2334 => 21, 2367 => 21, 1735 => 20, 2082 => 20, 2272 => 20]],
-            'rikka' => [DateTime::SOLAR_TERM_RIKKA, [2320 => 6, 2382 => 6, 1762 => 5, 2163 => 6]],
-            'syouman' => [DateTime::SOLAR_TERM_SYOUMAN, [2318 => 22, 2351 => 22, 2380 => 21, 2136 => 21, 2227 => 22]],
-            'bousyu' => [DateTime::SOLAR_TERM_BOUSYU, [2332 => 6, 2361 => 6, 2270 => 6, 1608 => 5, 1728 => 5, 2150 => 6, 2241 => 6]],
-            'geshi' => [DateTime::SOLAR_TERM_GESHI, [2321 => 22, 2383 => 22, 2263 => 22, 2296 => 20]],
-            'syousyo' => [DateTime::SOLAR_TERM_SYOUSYO, [2318 => 8, 2347 => 8, 2260 => 7, 2111 => 8]],
-            'taisyo' => [DateTime::SOLAR_TERM_TAISYO, [2344 => 23, 1719 => 23, 2166 => 23, 2286 => 23]],
-            'rissyuu' => [DateTime::SOLAR_TERM_RISSYUU, [2308 => 8, 2370 => 8, 1799 => 7, 2130 => 8]],
-            'syosyo' => [DateTime::SOLAR_TERM_SYOSYO, [2326 => 24, 2384 => 23, 2206 => 24, 2235 => 24]],
-            'hakuro' => [DateTime::SOLAR_TERM_HAKURO, [2332 => 8, 2361 => 8, 2398 => 7, 1964 => 8, 2117 => 8, 2270 => 8]],
-            'syuubun' => [DateTime::SOLAR_TERM_SYUUBUN, [2355 => 24, 2384 => 23, 1917 => 23]],
-            'kanro' => [DateTime::SOLAR_TERM_KANRO, [2362 => 9, 2399 => 8, 2205 => 9, 2300 => 9]],
-            'soukou' => [DateTime::SOLAR_TERM_SOUKOU, [2386 => 24, 1998 => 24, 2159 => 24, 2196 => 22, 2225 => 24, 2258 => 24]],
-            'rittou' => [DateTime::SOLAR_TERM_RITTOU, [2328 => 8, 2361 => 8, 2398 => 7, 2229 => 8, 2299 => 7]],
-            'syousetsu' => [DateTime::SOLAR_TERM_SYOUSETSU, [2320 => 23, 2353 => 23, 2386 => 23, 2118 => 23]],
-            'taisetsu' => [DateTime::SOLAR_TERM_TAISETSU, [1649 => 7, 1752 => 7]],
-            'touji' => [DateTime::SOLAR_TERM_TOUJI, [2367 => 23, 1646 => 22]],
-            'syoukan' => [DateTime::SOLAR_TERM_SYOUKAN, [2332 => 7, 1607 => 6, 1710 => 6, 1850 => 6, 2229 => 6]],
-            'daikan' => [DateTime::SOLAR_TERM_DAIKAN, [2362 => 21, 1604 => 21, 1950 => 21]],
-            'rissyun' => [DateTime::SOLAR_TERM_RISSYUN, [2157 => 4]],
-            'usui' => [DateTime::SOLAR_TERM_USUI, [2302 => 20, 2030 => 19, 2133 => 19]],
-            'keichitsu' => [DateTime::SOLAR_TERM_KEICHITSU, [2187 => 6, 2220 => 6, 2253 => 6, 2286 => 6]],
+            'syunbun' => [DateTime::SOLAR_TERM_SYUNBUN, [2352 => 20, 2385 => 20]],
+            'seimei' => [DateTime::SOLAR_TERM_SEIMEI, [1724 => 5, 2141 => 4, 2302 => 5, 2335 => 5, 2368 => 4]],
+            'kokuu' => [DateTime::SOLAR_TERM_KOKUU, [1735 => 21, 2082 => 19, 2272 => 19, 2334 => 20, 2367 => 20]],
+            'rikka' => [DateTime::SOLAR_TERM_RIKKA, [1762 => 6, 2163 => 5, 2320 => 5, 2349 => 5, 2382 => 5]],
+            'syouman' => [DateTime::SOLAR_TERM_SYOUMAN, [2136 => 20, 2227 => 21, 2318 => 21, 2351 => 21, 2380 => 20]],
+            'bousyu' => [DateTime::SOLAR_TERM_BOUSYU, [1608 => 6, 1728 => 6, 2150 => 5, 2241 => 5, 2270 => 5, 2332 => 5, 2361 => 5, 2390 => 5]],
+            'geshi' => [DateTime::SOLAR_TERM_GESHI, [2263 => 21, 2292 => 20, 2296 => 20, 2321 => 21, 2383 => 21]],
+            'syousyo' => [DateTime::SOLAR_TERM_SYOUSYO, [2111 => 7, 2198 => 6, 2260 => 6, 2318 => 7, 2347 => 7]],
+            'taisyo' => [DateTime::SOLAR_TERM_TAISYO, [1719 => 24, 2166 => 23, 2286 => 22, 2344 => 22]],
+            'rissyuu' => [DateTime::SOLAR_TERM_RISSYUU, [1799 => 8, 2130 => 7, 2308 => 7, 2370 => 7, 2399 => 7]],
+            'syosyo' => [DateTime::SOLAR_TERM_SYOSYO, [2206 => 23, 2235 => 23, 2326 => 23, 2384 => 22]],
+            'hakuro' => [DateTime::SOLAR_TERM_HAKURO, [1964 => 7, 2117 => 7, 2270 => 7, 2332 => 7, 2361 => 7, 2394 => 7, 2398 => 7]],
+            'syuubun' => [DateTime::SOLAR_TERM_SYUUBUN, [1917 => 24, 2355 => 23, 2384 => 22]],
+            'kanro' => [DateTime::SOLAR_TERM_KANRO, [2205 => 8, 2300 => 8, 2362 => 8, 2395 => 8, 2399 => 8]],
+            'soukou' => [DateTime::SOLAR_TERM_SOUKOU, [1998 => 23, 2159 => 23, 2192 => 22, 2196 => 22, 2225 => 23, 2258 => 23, 2386 => 23]],
+            'rittou' => [DateTime::SOLAR_TERM_RITTOU, [2229 => 7, 2295 => 7, 2299 => 7, 2328 => 7, 2361 => 7, 2394 => 7, 2398 => 7]],
+            'syousetsu' => [DateTime::SOLAR_TERM_SYOUSETSU, [2118 => 22, 2320 => 22, 2353 => 22, 2386 => 22]],
+            'taisetsu' => [DateTime::SOLAR_TERM_TAISETSU, [1649 => 6, 1752 => 6]],
+            'touji' => [DateTime::SOLAR_TERM_TOUJI, [1646 => 21, 2367 => 22]],
+            'syoukan' => [DateTime::SOLAR_TERM_SYOUKAN, [1607 => 5, 1710 => 5, 1850 => 5, 2229 => 5, 2332 => 6]],
+            'daikan' => [DateTime::SOLAR_TERM_DAIKAN, [1600 => 21, 1604 => 20, 1950 => 21, 2362 => 20]],
+            'rissyun' => [DateTime::SOLAR_TERM_RISSYUN, [2157 => 3]],
+            'usui' => [DateTime::SOLAR_TERM_USUI, [2030 => 19, 2133 => 18, 2302 => 19]],
+            'keichitsu' => [DateTime::SOLAR_TERM_KEICHITSU, [2187 => 5, 2220 => 5, 2253 => 5, 2286 => 5]],
         ];
 
         foreach ($overrides as $method => [$solarTerm, $years]) {
