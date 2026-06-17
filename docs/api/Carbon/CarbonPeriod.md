@@ -38,6 +38,7 @@ Substitution of DatePeriod with some modifications and many more features.
 | CarbonPeriod | [createFromArray()](#createfromarray) | Create a new instance from an array of parameters. |
 | CarbonPeriod | [createFromIso()](#createfromiso) | Create CarbonPeriod from ISO 8601 string. |
 | CarbonPeriod | [createFromISO8601String()](#createfromiso8601string) |  |
+| CarbonPeriod | [monthly()](#monthly) |  |
 | void | [macro()](#macro) | Register a custom macro. |
 | void | [mixin()](#mixin) | Register macros from a mixin object. |
 | bool | [hasMacro()](#hasmacro) | Check if macro is registered. |
@@ -355,6 +356,26 @@ static public CarbonPeriod createFromISO8601String($iso, $options = null)
 | Type | Name | Default | Description |
 |---|---|---|---|
 | string | `$iso` | —  |  |
+| int\|null | `$options` | `null` |  |
+
+**Returns:** [CarbonPeriod](../Carbon/CarbonPeriod.md)
+---
+
+### monthly
+
+```php
+static public CarbonPeriod monthly($start = null, $end = null, $recurrences = null, $anchorDay = null, $mode = OverflowMode::AnchorDay, $options = null)
+```
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| [DateTimeInterface](https://www.php.net/class.datetimeinterface)\|string\|int\|null | `$start` | `null` |  |
+| [DateTimeInterface](https://www.php.net/class.datetimeinterface)\|string\|int\|null | `$end` | `null` |  |
+| int\|null | `$recurrences` | `null` |  |
+| int\|null | `$anchorDay` | `null` |  |
+| OverflowMode | `$mode` | `OverflowMode::AnchorDay` |  |
 | int\|null | `$options` | `null` |  |
 
 **Returns:** [CarbonPeriod](../Carbon/CarbonPeriod.md)

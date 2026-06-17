@@ -202,12 +202,12 @@ class DateInterval extends CarbonInterval
      */
     public static function addBusinessDaysToDate(DateTime $from, int $n): DateTime
     {
-        $date = DateTime::factory($from);
+        $Date = DateTime::factory($from);
         $count = 0;
         $consecutiveNonBusinessDays = 0;
         while ($count < $n) {
-            $date = $date->addDay();
-            if (static::isBusinessDay($date)) {
+            $Date = $Date->addDay();
+            if (static::isBusinessDay($Date)) {
                 $count++;
                 $consecutiveNonBusinessDays = 0;
             } elseif (++$consecutiveNonBusinessDays >= BusinessCalendar::BUSINESS_DAY_SEARCH_LIMIT) {
@@ -217,7 +217,7 @@ class DateInterval extends CarbonInterval
             }
         }
 
-        return $date;
+        return $Date;
     }
 
     /**
@@ -226,16 +226,16 @@ class DateInterval extends CarbonInterval
      * 土曜（dayOfWeek === 6）、日曜（dayOfWeek === 0）、および国民の祝日・休日は
      * 非営業日とみなします。
      *
-     * @param DateTime $date 判定対象の日付
+     * @param \JapaneseDate\DateTime $DateTime
      * @return bool 営業日であれば true、非営業日であれば false
      */
-    public static function isBusinessDay(DateTime $date): bool
+    public static function isBusinessDay(DateTime $DateTime): bool
     {
-        if ($date->dayOfWeek === 0 || $date->dayOfWeek === 6) {
+        if ($DateTime->dayOfWeek === 0 || $DateTime->dayOfWeek === 6) {
             return false;
         }
 
-        return !$date->is_holiday;
+        return !$DateTime->is_holiday;
     }
 
     /**
@@ -262,12 +262,12 @@ class DateInterval extends CarbonInterval
      */
     public static function subBusinessDaysToDate(DateTime $from, int $n): DateTime
     {
-        $date = DateTime::factory($from);
+        $Date = DateTime::factory($from);
         $count = 0;
         $consecutiveNonBusinessDays = 0;
         while ($count < $n) {
-            $date = $date->subDay();
-            if (static::isBusinessDay($date)) {
+            $Date = $Date->subDay();
+            if (static::isBusinessDay($Date)) {
                 $count++;
                 $consecutiveNonBusinessDays = 0;
             } elseif (++$consecutiveNonBusinessDays >= BusinessCalendar::BUSINESS_DAY_SEARCH_LIMIT) {
@@ -277,7 +277,7 @@ class DateInterval extends CarbonInterval
             }
         }
 
-        return $date;
+        return $Date;
     }
 
     // =========================================================================
@@ -305,11 +305,11 @@ class DateInterval extends CarbonInterval
      */
     public static function untilNextHoliday(DateTime $from): static
     {
-        $base = DateTime::factory($from);
-        $nextHoliday = $base->copy()->nextHoliday()->startOfDay();
-        $diff = $base->diff($nextHoliday);
+        $BaseDateTime = DateTime::factory($from);
+        $NextHolidayDateTime = $BaseDateTime->copy()->nextHoliday()->startOfDay();
+        $DiffDateInterval = $BaseDateTime->diff($NextHolidayDateTime);
 
-        return static::instance($diff);
+        return static::instance($DiffDateInterval);
     }
 
     // =========================================================================
@@ -340,8 +340,8 @@ class DateInterval extends CarbonInterval
      */
     public static function untilNextSixWeek(DateTime $from, int $sixWeekday): static
     {
-        $base = DateTime::factory($from);
-        $current = $base->sixWeekday;
+        $BaseDateTime = DateTime::factory($from);
+        $current = $BaseDateTime->sixWeekday;
         if ($current < $sixWeekday) {
             $daysToAdd = $sixWeekday - $current;
         } else {
@@ -352,10 +352,10 @@ class DateInterval extends CarbonInterval
             }
         }
 
-        $target = $base->copy()->addDays($daysToAdd)->startOfDay();
-        $diff = $base->diff($target);
+        $TargetDateTime = $BaseDateTime->copy()->addDays($daysToAdd)->startOfDay();
+        $DiffDateInterval = $BaseDateTime->diff($TargetDateTime);
 
-        return static::instance($diff);
+        return static::instance($DiffDateInterval);
     }
 
     // =========================================================================
@@ -391,15 +391,15 @@ class DateInterval extends CarbonInterval
             throw new InvalidArgumentException('不明な元号キーです: ' . $eraKey);
         }
 
-        $start = DateTime::parse(static::ERA_START_DATES[$eraKey]);
+        $StartDateTime = DateTime::parse(static::ERA_START_DATES[$eraKey]);
         $endStr = static::ERA_END_DATES[$eraKey];
         if ($endStr === null) {
-            $end = $until ?? DateTime::now();
+            $EndDateTime = $until ?? DateTime::now();
         } else {
-            $end = DateTime::parse($endStr);
+            $EndDateTime = DateTime::parse($endStr);
         }
 
-        return static::instance($start->diff($end));
+        return static::instance($StartDateTime->diff($EndDateTime));
     }
 
     // =========================================================================
@@ -459,22 +459,22 @@ class DateInterval extends CarbonInterval
 
         $methods = $termMethod !== null ? [$termMethod] : array_keys(static::SOLAR_TERM_METHODS);
         $fromTimestamp = $from->timestamp;
-        $best = null;
+        $BestDateTime = null;
 
         foreach ([$from->year, $from->year + 1] as $year) {
             foreach ($methods as $method) {
                 try {
-                    $st = static::resolveSolarTerm($method, $year);
-                    $candidate = DateTime::createFromFormat('Y-m-d', sprintf('%04d-%02d-%02d', $st->year, $st->month, $st->day));
+                    $SolarTermDate = static::resolveSolarTerm($method, $year);
+                    $CandidateDateTime = DateTime::createFromFormat('Y-m-d', sprintf('%04d-%02d-%02d', $SolarTermDate->year, $SolarTermDate->month, $SolarTermDate->day));
                     // @codeCoverageIgnoreStart
-                    if ($candidate === false) {
+                    if ($CandidateDateTime === false) {
                         continue;
                     }
                     // @codeCoverageIgnoreEnd
-                    $candidate = $candidate->startOfDay();
-                    if ($candidate->timestamp > $fromTimestamp
-                        && ($best === null || $candidate->timestamp < $best->timestamp)) {
-                        $best = $candidate;
+                    $CandidateDateTime = $CandidateDateTime->startOfDay();
+                    if ($CandidateDateTime->timestamp > $fromTimestamp
+                        && ($BestDateTime === null || $CandidateDateTime->timestamp < $BestDateTime->timestamp)) {
+                        $BestDateTime = $CandidateDateTime;
                     }
                     // @codeCoverageIgnoreStart
                 } catch (Throwable) {
@@ -485,7 +485,7 @@ class DateInterval extends CarbonInterval
         }
 
         // @codeCoverageIgnoreStart
-        return $best ?? DateTime::factory($from)->addDays(15);
+        return $BestDateTime ?? DateTime::factory($from)->addDays(15);
     }
 
     /**
@@ -518,40 +518,40 @@ class DateInterval extends CarbonInterval
     /**
      * 二十四節気計算クラスのメソッドを明示分岐で呼び出します。
      *
-     * @param SimpleSolarTerm|SolarTerm $solarTerm 二十四節気計算クラス
+     * @param SimpleSolarTerm|SolarTerm $SolarTerm 二十四節気計算クラス
      * @param string $method 節気メソッド名
      * @param int $year 計算対象年
      * @return SolarTermDate 二十四節気の日付
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected static function callSolarTermMethod(SimpleSolarTerm|SolarTerm $solarTerm, string $method, int $year): SolarTermDate
+    protected static function callSolarTermMethod(SimpleSolarTerm|SolarTerm $SolarTerm, string $method, int $year): SolarTermDate
     {
         return match ($method) {
-            'syunbun' => $solarTerm->syunbun($year),
-            'seimei' => $solarTerm->seimei($year),
-            'kokuu' => $solarTerm->kokuu($year),
-            'rikka' => $solarTerm->rikka($year),
-            'syouman' => $solarTerm->syouman($year),
-            'bousyu' => $solarTerm->bousyu($year),
-            'geshi' => $solarTerm->geshi($year),
-            'syousyo' => $solarTerm->syousyo($year),
-            'taisyo' => $solarTerm->taisyo($year),
-            'rissyuu' => $solarTerm->rissyuu($year),
-            'syosyo' => $solarTerm->syosyo($year),
-            'hakuro' => $solarTerm->hakuro($year),
-            'syuubun' => $solarTerm->syuubun($year),
-            'kanro' => $solarTerm->kanro($year),
-            'soukou' => $solarTerm->soukou($year),
-            'rittou' => $solarTerm->rittou($year),
-            'syousetsu' => $solarTerm->syousetsu($year),
-            'taisetsu' => $solarTerm->taisetsu($year),
-            'touji' => $solarTerm->touji($year),
-            'syoukan' => $solarTerm->syoukan($year),
-            'daikan' => $solarTerm->daikan($year),
-            'rissyun' => $solarTerm->rissyun($year),
-            'usui' => $solarTerm->usui($year),
-            'keichitsu' => $solarTerm->keichitsu($year),
+            'syunbun' => $SolarTerm->syunbun($year),
+            'seimei' => $SolarTerm->seimei($year),
+            'kokuu' => $SolarTerm->kokuu($year),
+            'rikka' => $SolarTerm->rikka($year),
+            'syouman' => $SolarTerm->syouman($year),
+            'bousyu' => $SolarTerm->bousyu($year),
+            'geshi' => $SolarTerm->geshi($year),
+            'syousyo' => $SolarTerm->syousyo($year),
+            'taisyo' => $SolarTerm->taisyo($year),
+            'rissyuu' => $SolarTerm->rissyuu($year),
+            'syosyo' => $SolarTerm->syosyo($year),
+            'hakuro' => $SolarTerm->hakuro($year),
+            'syuubun' => $SolarTerm->syuubun($year),
+            'kanro' => $SolarTerm->kanro($year),
+            'soukou' => $SolarTerm->soukou($year),
+            'rittou' => $SolarTerm->rittou($year),
+            'syousetsu' => $SolarTerm->syousetsu($year),
+            'taisetsu' => $SolarTerm->taisetsu($year),
+            'touji' => $SolarTerm->touji($year),
+            'syoukan' => $SolarTerm->syoukan($year),
+            'daikan' => $SolarTerm->daikan($year),
+            'rissyun' => $SolarTerm->rissyun($year),
+            'usui' => $SolarTerm->usui($year),
+            'keichitsu' => $SolarTerm->keichitsu($year),
         };
     }
 
@@ -577,12 +577,12 @@ class DateInterval extends CarbonInterval
      */
     public static function addSolarTermsToDate(DateTime $from, int $n): DateTime
     {
-        $date = DateTime::factory($from);
+        $Date = DateTime::factory($from);
         for ($i = 0; $i < $n; $i++) {
-            $date = static::findNextSolarTermDate($date);
+            $Date = static::findNextSolarTermDate($Date);
         }
 
-        return $date;
+        return $Date;
     }
 
     // =========================================================================
@@ -611,12 +611,12 @@ class DateInterval extends CarbonInterval
      */
     public static function subSolarTermsToDate(DateTime $from, int $n): DateTime
     {
-        $date = DateTime::factory($from);
+        $Date = DateTime::factory($from);
         for ($i = 0; $i < $n; $i++) {
-            $date = static::findPrevSolarTermDate($date);
+            $Date = static::findPrevSolarTermDate($Date);
         }
 
-        return $date;
+        return $Date;
     }
 
     /**
@@ -640,22 +640,22 @@ class DateInterval extends CarbonInterval
 
         $methods = $termMethod !== null ? [$termMethod] : array_keys(static::SOLAR_TERM_METHODS);
         $fromTimestamp = $from->timestamp;
-        $best = null;
+        $BestDateTime = null;
 
         foreach ([$from->year, $from->year - 1] as $year) {
             foreach ($methods as $method) {
                 try {
-                    $st = static::resolveSolarTerm($method, $year);
-                    $candidate = DateTime::createFromFormat('Y-m-d', sprintf('%04d-%02d-%02d', $st->year, $st->month, $st->day));
+                    $SolarTermDate = static::resolveSolarTerm($method, $year);
+                    $CandidateDateTime = DateTime::createFromFormat('Y-m-d', sprintf('%04d-%02d-%02d', $SolarTermDate->year, $SolarTermDate->month, $SolarTermDate->day));
                     // @codeCoverageIgnoreStart
-                    if ($candidate === false) {
+                    if ($CandidateDateTime === false) {
                         continue;
                     }
                     // @codeCoverageIgnoreEnd
-                    $candidate = $candidate->startOfDay();
-                    if ($candidate->timestamp < $fromTimestamp
-                        && ($best === null || $candidate->timestamp > $best->timestamp)) {
-                        $best = $candidate;
+                    $CandidateDateTime = $CandidateDateTime->startOfDay();
+                    if ($CandidateDateTime->timestamp < $fromTimestamp
+                        && ($BestDateTime === null || $CandidateDateTime->timestamp > $BestDateTime->timestamp)) {
+                        $BestDateTime = $CandidateDateTime;
                     }
                     // @codeCoverageIgnoreStart
                 } catch (Throwable) {
@@ -666,7 +666,7 @@ class DateInterval extends CarbonInterval
         }
 
         // @codeCoverageIgnoreStart
-        return $best ?? DateTime::factory($from)->subDays(15);
+        return $BestDateTime ?? DateTime::factory($from)->subDays(15);
     }
 
     /**
@@ -708,12 +708,12 @@ class DateInterval extends CarbonInterval
      */
     public static function untilNextNewMoon(DateTime $from): static
     {
-        $moon = new Moon();
-        $nextNewMoon = $moon->moonPhase(DateTime::factory($from), 0.0)->setTimezone('Asia/Tokyo');
-        $target = DateTime::factory($nextNewMoon)->startOfDay();
-        $diff = $from->diff($target);
+        $Moon = new Moon();
+        $NextNewMoonDateTime = $Moon->moonPhase(DateTime::factory($from), 0.0)->setTimezone('Asia/Tokyo');
+        $TargetDateTime = DateTime::factory($NextNewMoonDateTime)->startOfDay();
+        $DiffDateInterval = $from->diff($TargetDateTime);
 
-        return static::instance($diff);
+        return static::instance($DiffDateInterval);
     }
 
     /**
@@ -776,13 +776,13 @@ class DateInterval extends CarbonInterval
      */
     public function addBusinessDaysTo(DateTime $baseDate, int $businessDays, ?DateBusiness $config = null): DateTime
     {
-        $effectiveConfig = $config ?? $this->businessConfig;
-        $dt = clone $baseDate;
+        $EffectiveDateBusiness = $config ?? $this->businessConfig;
+        $DateTime = clone $baseDate;
         $count = 0;
         $consecutiveNonBusinessDays = 0;
         while ($count < $businessDays) {
-            $dt->addDay();
-            if (BusinessCalendar::isBusinessDay($dt, $effectiveConfig)) {
+            $DateTime->addDay();
+            if (BusinessCalendar::isBusinessDay($DateTime, $EffectiveDateBusiness)) {
                 $count++;
                 $consecutiveNonBusinessDays = 0;
             } elseif (++$consecutiveNonBusinessDays >= BusinessCalendar::BUSINESS_DAY_SEARCH_LIMIT) {
@@ -792,7 +792,7 @@ class DateInterval extends CarbonInterval
             }
         }
 
-        return $dt;
+        return $DateTime;
     }
 
     /**
@@ -806,13 +806,13 @@ class DateInterval extends CarbonInterval
      */
     public function subBusinessDaysFrom(DateTime $baseDate, int $businessDays, ?DateBusiness $config = null): DateTime
     {
-        $effectiveConfig = $config ?? $this->businessConfig;
-        $dt = clone $baseDate;
+        $EffectiveDateBusiness = $config ?? $this->businessConfig;
+        $DateTime = clone $baseDate;
         $count = 0;
         $consecutiveNonBusinessDays = 0;
         while ($count < $businessDays) {
-            $dt->subDay();
-            if (BusinessCalendar::isBusinessDay($dt, $effectiveConfig)) {
+            $DateTime->subDay();
+            if (BusinessCalendar::isBusinessDay($DateTime, $EffectiveDateBusiness)) {
                 $count++;
                 $consecutiveNonBusinessDays = 0;
             } elseif (++$consecutiveNonBusinessDays >= BusinessCalendar::BUSINESS_DAY_SEARCH_LIMIT) {
@@ -822,7 +822,7 @@ class DateInterval extends CarbonInterval
             }
         }
 
-        return $dt;
+        return $DateTime;
     }
 
     /**
@@ -837,15 +837,15 @@ class DateInterval extends CarbonInterval
      */
     public function countBusinessDaysBetween(\DateTimeInterface $start, \DateTimeInterface $end, ?DateBusiness $config = null): int
     {
-        $effectiveConfig = $config ?? $this->businessConfig;
-        $dt = DateTime::factory($start->format('Y-m-d'), $start->getTimezone());
-        $endDate = DateTime::factory($end->format('Y-m-d'), $end->getTimezone());
+        $EffectiveDateBusiness = $config ?? $this->businessConfig;
+        $DateTime = DateTime::factory($start->format('Y-m-d'), $start->getTimezone());
+        $EndDateTime = DateTime::factory($end->format('Y-m-d'), $end->getTimezone());
         $count = 0;
-        while ($dt->getTimestamp() <= $endDate->getTimestamp()) {
-            if (BusinessCalendar::isBusinessDay($dt, $effectiveConfig)) {
+        while ($DateTime->getTimestamp() <= $EndDateTime->getTimestamp()) {
+            if (BusinessCalendar::isBusinessDay($DateTime, $EffectiveDateBusiness)) {
                 $count++;
             }
-            $dt->addDay();
+            $DateTime->addDay();
         }
 
         return $count;

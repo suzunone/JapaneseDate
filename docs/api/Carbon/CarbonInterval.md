@@ -83,6 +83,8 @@ Weeks are calculated based on the total days of the current instance.
 | int\|float | [getMicrosecondsPerMillisecond()](#getmicrosecondspermillisecond) | Returns current config for microseconds per second. |
 | CarbonInterval | [create()](#create) | Create a new CarbonInterval instance from specific values. |
 | CarbonInterval | [createFromFormat()](#createfromformat) | Parse a string into a new CarbonInterval object according to the specified format. |
+| CarbonInterval | [monthWithAnchorDay()](#monthwithanchorday) |  |
+| CarbonInterval | [monthNoOverflow()](#monthnooverflow) |  |
 | array\|int\|string\|DateInterval\|mixed\|null | [original()](#original) | Return the original source used to create the current interval. |
 | CarbonInterface\|null | [start()](#start) | Return the start date if interval was created from a difference between 2 dates. |
 | CarbonInterface\|null | [end()](#end) | Return the end date if interval was created from a difference between 2 dates. |
@@ -118,7 +120,7 @@ Weeks are calculated based on the total days of the current instance.
 | CarbonInterval | [sub()](#sub) | Subtract the passed interval to the current instance. |
 | CarbonInterval | [subtract()](#subtract) | Subtract the passed interval to the current instance. |
 | CarbonInterval | [plus()](#plus) | Add given parameters to the current interval. |
-| CarbonInterval | [minus()](#minus) | Add given parameters to the current interval. |
+| CarbonInterval | [minus()](#minus) | Subtract given parameters to the current interval. |
 | CarbonInterval | [times()](#times) | Multiply current instance given number of times. times() is naive, it multiplies each unit (so day can be greater than 31, hour can be greater than 23, etc.) and the result is rounded separately for each unit. |
 | CarbonInterval | [shares()](#shares) | Divide current instance by a given divider. shares() is naive, it divides each unit separately and the result is rounded for each unit. So 5 hours and 20 minutes shared by 3 becomes 2 hours and 7 minutes. |
 | CarbonInterval | [multiply()](#multiply) | Multiply and cascade current instance by a given factor. |
@@ -513,6 +515,30 @@ Parse a string into a new CarbonInterval object according to the specified forma
 **Throws:**
 
 - ParseErrorException
+---
+
+### monthWithAnchorDay
+
+```php
+static public CarbonInterval monthWithAnchorDay($day)
+```
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| int | `$day` | —  |  |
+
+**Returns:** [CarbonInterval](../Carbon/CarbonInterval.md)
+---
+
+### monthNoOverflow
+
+```php
+static public CarbonInterval monthNoOverflow()
+```
+
+**Returns:** [CarbonInterval](../Carbon/CarbonInterval.md)
 ---
 
 ### original
@@ -1071,7 +1097,7 @@ Add the passed interval to the current instance.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| string\|[DateInterval](https://www.php.net/class.dateinterval) | `$unit` | —  |  |
+| Unit\|string\|[DateInterval](https://www.php.net/class.dateinterval) | `$unit` | —  |  |
 | int\|float | `$value` | `1` |  |
 
 **Returns:** [CarbonInterval](../Carbon/CarbonInterval.md)
@@ -1089,7 +1115,7 @@ Subtract the passed interval to the current instance.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| string\|[DateInterval](https://www.php.net/class.dateinterval) | `$unit` | —  |  |
+| Unit\|string\|[DateInterval](https://www.php.net/class.dateinterval) | `$unit` | —  |  |
 | int\|float | `$value` | `1` |  |
 
 **Returns:** [CarbonInterval](../Carbon/CarbonInterval.md)
@@ -1143,7 +1169,7 @@ Add given parameters to the current interval.
 public CarbonInterval minus($years = 0, $months = 0, $weeks = 0, $days = 0, $hours = 0, $minutes = 0, $seconds = 0, $microseconds = 0)
 ```
 
-Add given parameters to the current interval.
+Subtract given parameters to the current interval.
 
 **Parameters:**
 
@@ -1250,7 +1276,7 @@ Divide and cascade current instance by a given divider.
 ### getDateIntervalSpec
 
 ```php
-static public string getDateIntervalSpec($interval, $microseconds = false, $skip = [])
+static public string getDateIntervalSpec($interval, $microseconds = false, $skip = [], $withNegatives = false)
 ```
 
 Get the interval_spec string of a date interval.
@@ -1262,6 +1288,7 @@ Get the interval_spec string of a date interval.
 | [DateInterval](https://www.php.net/class.dateinterval) | `$interval` | —  |  |
 | bool | `$microseconds` | `false` |  |
 | array | `$skip` | `[]` |  |
+| bool | `$withNegatives` | `false` |  |
 
 **Returns:** string
 ---
@@ -1269,7 +1296,7 @@ Get the interval_spec string of a date interval.
 ### spec
 
 ```php
-public string spec($microseconds = false)
+public string spec($microseconds = false, $withNegatives = false)
 ```
 
 Get the interval_spec string.
@@ -1279,6 +1306,7 @@ Get the interval_spec string.
 | Type | Name | Default | Description |
 |---|---|---|---|
 | bool | `$microseconds` | `false` |  |
+| bool | `$withNegatives` | `false` |  |
 
 **Returns:** string
 ---

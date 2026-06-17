@@ -10,6 +10,7 @@ use DateTime;
 use DateTimeInterface;
 use JapaneseDate\DateBusiness;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -26,31 +27,91 @@ use PHPUnit\Framework\TestCase;
 class DateBusinessTest extends TestCase
 {
     /**
-     * @return void
+     * 曜日休業設定の一括設定・追加・削除を確認するケースを返す。
+     *
+     * @return array<string, array{string}>
      */
-    public function test_setClosingWeekdays_and_getClosingWeekdays(): void
+    public static function closingWeekdayDataProvider(): array
     {
-        $db = new DateBusiness();
-        $db->setClosingWeekdays([0, 6]);
-        $this->assertArrayHasKey(0, $db->getClosingWeekdays());
-        $this->assertArrayHasKey(6, $db->getClosingWeekdays());
-        $this->assertArrayNotHasKey(1, $db->getClosingWeekdays());
+        return [
+            '一括設定' => ['set'],
+            '追加と削除' => ['add_remove'],
+        ];
     }
 
     /**
-     * @return void
+     * 第 N 曜日の営業・休業設定を追加削除できることを確認するケースを返す。
+     *
+     * @return array<string, array{string}>
      */
-    public function test_addClosingWeekday_and_removeClosingWeekday(): void
+    public static function nthWeekdayDataProvider(): array
+    {
+        return [
+            '営業指定' => ['open'],
+            '休業指定' => ['closing'],
+        ];
+    }
+
+    /**
+     * 特定日の営業・休業設定を日付入力種別ごとに確認するケースを返す。
+     *
+     * @return array<string, array{string, string}>
+     */
+    public static function dateConfigDataProvider(): array
+    {
+        return [
+            '営業日指定を文字列で追加削除' => ['open', 'string'],
+            '営業日指定を DateTimeInterface で追加' => ['open', 'datetime'],
+            '休業日指定を文字列で追加削除' => ['closing', 'string'],
+            '休業日指定を DateTimeInterface で追加' => ['closing', 'datetime'],
+            '休業日指定のラベル省略' => ['closing_null_label', 'string'],
+        ];
+    }
+
+    /**
+     * 営業・休業フィルタの登録内容とラベルを確認するケースを返す。
+     *
+     * @return array<string, array{string}>
+     */
+    public static function filterDataProvider(): array
+    {
+        return [
+            '営業フィルタ' => ['open'],
+            '休業フィルタのラベルあり' => ['closing_label'],
+            '休業フィルタのラベルなし' => ['closing_null_label'],
+        ];
+    }
+
+    /**
+     * 曜日休業設定が一括設定・追加・削除で期待どおり保持されることを確認する。
+     *
+     * @param string $scenario
+     */
+    #[DataProvider('closingWeekdayDataProvider')]
+    public function test_closingWeekdays(string $scenario): void
     {
         $db = new DateBusiness();
-        $db->addClosingWeekday(6);
+
+        match ($scenario) {
+            'set' => $db->setClosingWeekdays([0, 6]),
+            'add_remove' => $db->addClosingWeekday(6),
+        };
+
         $this->assertArrayHasKey(6, $db->getClosingWeekdays());
+
+        if ($scenario === 'set') {
+            $this->assertArrayHasKey(0, $db->getClosingWeekdays());
+            $this->assertArrayNotHasKey(1, $db->getClosingWeekdays());
+
+            return;
+        }
+
         $db->removeClosingWeekday(6);
         $this->assertArrayNotHasKey(6, $db->getClosingWeekdays());
     }
 
     /**
-     * @return void
+     * 祝日判定を行うかどうかのフラグを変更・取得できることを確認する。
      */
     public function test_setBypassHoliday_and_isBypassHoliday(): void
     {
@@ -63,24 +124,28 @@ class DateBusinessTest extends TestCase
     }
 
     /**
-     * @return void
+     * 第 N 曜日の営業・休業設定を追加し、必要に応じてラベルを保持してから削除できることを確認する。
+     *
+     * @param string $scenario
      */
-    public function test_addOpenNthWeekday_and_removeOpenNthWeekday(): void
+    #[DataProvider('nthWeekdayDataProvider')]
+    public function test_nthWeekdays(string $scenario): void
     {
         $db = new DateBusiness();
-        $db->addOpenNthWeekday(6, 2);
-        $this->assertArrayHasKey('6_2', $db->getOpenNthWeekdays());
-        $db->removeOpenNthWeekday(6, 2);
-        $this->assertArrayNotHasKey('6_2', $db->getOpenNthWeekdays());
-    }
 
-    /**
-     * @return void
-     */
-    public function test_addClosingNthWeekday_and_removeClosingNthWeekday(): void
-    {
-        $db = new DateBusiness();
-        $db->addClosingNthWeekday(3, 3, '定休日');
+        match ($scenario) {
+            'open' => $db->addOpenNthWeekday(6, 2),
+            'closing' => $db->addClosingNthWeekday(3, 3, '定休日'),
+        };
+
+        if ($scenario === 'open') {
+            $this->assertArrayHasKey('6_2', $db->getOpenNthWeekdays());
+            $db->removeOpenNthWeekday(6, 2);
+            $this->assertArrayNotHasKey('6_2', $db->getOpenNthWeekdays());
+
+            return;
+        }
+
         $this->assertArrayHasKey('3_3', $db->getClosingNthWeekdays());
         $this->assertSame('定休日', $db->getClosingNthWeekdays()['3_3']);
         $db->removeClosingNthWeekday(3, 3);
@@ -88,106 +153,82 @@ class DateBusinessTest extends TestCase
     }
 
     /**
-     * @return void
+     * 特定日の営業・休業設定が文字列日付と DateTimeInterface の両方で保持されることを確認する。
+     *
+     * @param string $scenario
+     * @param string $inputType
      * @throws \Exception
      */
-    public function test_addOpenDate_and_removeOpenDate(): void
+    #[DataProvider('dateConfigDataProvider')]
+    public function test_dateConfigs(string $scenario, string $inputType): void
     {
         $db = new DateBusiness();
-        $db->addOpenDate('2026-12-30');
-        $this->assertArrayHasKey('20261230', $db->getOpenDates());
-        $db->removeOpenDate('2026-12-30');
-        $this->assertArrayNotHasKey('20261230', $db->getOpenDates());
-    }
+        $date = match ($scenario) {
+            'open' => $inputType === 'datetime' ? new DateTime('2026-12-30') : '2026-12-30',
+            'closing', 'closing_null_label' => $inputType === 'datetime' ? new DateTime('2026-08-15') : '2026-08-15',
+        };
 
-    /**
-     * @return void
-     * @throws \Exception
-     */
-    public function test_addOpenDate_with_DateTimeInterface(): void
-    {
-        $db = new DateBusiness();
-        $dt = new DateTime('2026-12-30');
-        $db->addOpenDate($dt);
-        $this->assertArrayHasKey('20261230', $db->getOpenDates());
-    }
+        match ($scenario) {
+            'open' => $db->addOpenDate($date),
+            'closing' => $db->addClosingDate($date, '夏期休暇'),
+            'closing_null_label' => $db->addClosingDate($date),
+        };
 
-    /**
-     * @return void
-     * @throws \Exception
-     */
-    public function test_addClosingDate_and_removeClosingDate(): void
-    {
-        $db = new DateBusiness();
-        $db->addClosingDate('2026-08-15', '夏期休暇');
+        if ($scenario === 'open') {
+            $this->assertArrayHasKey('20261230', $db->getOpenDates());
+            if ($inputType === 'string') {
+                $db->removeOpenDate('2026-12-30');
+                $this->assertArrayNotHasKey('20261230', $db->getOpenDates());
+            }
+
+            return;
+        }
+
         $this->assertArrayHasKey('20260815', $db->getClosingDates());
-        $this->assertSame('夏期休暇', $db->getClosingDates()['20260815']);
-        $db->removeClosingDate('2026-08-15');
-        $this->assertArrayNotHasKey('20260815', $db->getClosingDates());
+        $this->assertSame($scenario === 'closing' ? '夏期休暇' : null, $db->getClosingDates()['20260815']);
+
+        if ($scenario === 'closing' && $inputType === 'string') {
+            $db->removeClosingDate('2026-08-15');
+            $this->assertArrayNotHasKey('20260815', $db->getClosingDates());
+        }
     }
 
     /**
-     * @return void
-     * @throws \Exception
+     * 営業フィルタと休業フィルタが callable とラベルを期待どおり保持することを確認する。
+     *
+     * @param string $scenario
      */
-    public function test_addClosingDate_with_DateTimeInterface(): void
+    #[DataProvider('filterDataProvider')]
+    public function test_filters(string $scenario): void
     {
         $db = new DateBusiness();
-        $dt = new DateTime('2026-08-15');
-        $db->addClosingDate($dt, '夏期休暇');
-        $this->assertArrayHasKey('20260815', $db->getClosingDates());
-    }
+        $filter = match ($scenario) {
+            'open' => fn (DateTimeInterface $d) => $d->format('d') === '10',
+            'closing_label' => fn (DateTimeInterface $d) => $d->format('md') === '1231',
+            'closing_null_label' => fn (DateTimeInterface $d) => false,
+        };
 
-    /**
-     * @return void
-     * @throws \Exception
-     */
-    public function test_addClosingDate_null_label(): void
-    {
-        $db = new DateBusiness();
-        $db->addClosingDate('2026-08-15');
-        $this->assertNull($db->getClosingDates()['20260815']);
-    }
+        match ($scenario) {
+            'open' => $db->addOpenFilter($filter),
+            'closing_label' => $db->addClosingFilter($filter, '大晦日'),
+            'closing_null_label' => $db->addClosingFilter($filter),
+        };
 
-    /**
-     * @return void
-     */
-    public function test_addOpenFilter_and_getOpenFilters(): void
-    {
-        $db = new DateBusiness();
-        $filter = fn (DateTimeInterface $d) => $d->format('d') === '10';
-        $db->addOpenFilter($filter);
-        $this->assertCount(1, $db->getOpenFilters());
-        $this->assertSame($filter, $db->getOpenFilters()[0]);
-    }
+        if ($scenario === 'open') {
+            $this->assertCount(1, $db->getOpenFilters());
+            $this->assertSame($filter, $db->getOpenFilters()[0]);
 
-    /**
-     * @return void
-     */
-    public function test_addClosingFilter_and_getClosingFilters(): void
-    {
-        $db = new DateBusiness();
-        $filter = fn (DateTimeInterface $d) => $d->format('md') === '1231';
-        $db->addClosingFilter($filter, '大晦日');
+            return;
+        }
+
         $filters = $db->getClosingFilters();
         $this->assertCount(1, $filters);
         $this->assertSame($filter, $filters[0]['filter']);
-        $this->assertSame('大晦日', $filters[0]['label']);
+        $this->assertSame($scenario === 'closing_label' ? '大晦日' : null, $filters[0]['label']);
     }
 
     /**
-     * @return void
-     */
-    public function test_addClosingFilter_null_label(): void
-    {
-        $db = new DateBusiness();
-        $filter = fn (DateTimeInterface $d) => false;
-        $db->addClosingFilter($filter);
-        $this->assertNull($db->getClosingFilters()[0]['label']);
-    }
-
-    /**
-     * @return void
+     * 営業日判定マクロを設定・取得・解除できることを確認する。
      */
     public function test_setMacro_and_getMacro(): void
     {
@@ -201,7 +242,8 @@ class DateBusinessTest extends TestCase
     }
 
     /**
-     * @return void
+     * reset がすべての営業日設定を初期状態へ戻すことを確認する。
+     *
      * @throws \Exception
      */
     public function test_reset(): void
@@ -231,7 +273,8 @@ class DateBusinessTest extends TestCase
     }
 
     /**
-     * @return void
+     * すべての変更メソッドが fluent interface として同一インスタンスを返すことを確認する。
+     *
      * @throws \Exception
      */
     public function test_fluent_interface_returns_static(): void

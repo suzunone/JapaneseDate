@@ -161,7 +161,6 @@ class Moon
      * @throws Exception 探索に失敗し、かつ 8 相以外の位相が指定された場合
      * @throws \Exception
      * @throws \Exception
-     * @throws \Exception
      */
     protected function moonPhaseByAstronomy(DateTimeInterface $date, float $phase, bool $is_next): Carbon
     {

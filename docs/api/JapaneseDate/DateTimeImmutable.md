@@ -1213,6 +1213,8 @@ echo $nextHoliday->format('Y-m-d') . ' ' . $nextHoliday->holidayText;
 | int | [CarbonImmutable::yearsInCentury](../Carbon/CarbonImmutable.md#yearsincentury) _(from [CarbonImmutable](../Carbon/CarbonImmutable.md))_ | Return the number of years contained in the current century |
 | int | [CarbonImmutable::yearsInDecade](../Carbon/CarbonImmutable.md#yearsindecade) _(from [CarbonImmutable](../Carbon/CarbonImmutable.md))_ | Return the number of years contained in the current decade |
 | int | [CarbonImmutable::yearsInMillennium](../Carbon/CarbonImmutable.md#yearsinmillennium) _(from [CarbonImmutable](../Carbon/CarbonImmutable.md))_ | Return the number of years contained in the current millennium |
+| void | [CarbonImmutable::plus](../Carbon/CarbonImmutable.md#plus) _(from [CarbonImmutable](../Carbon/CarbonImmutable.md))_ | Add given amount of time to the current date. |
+| void | [CarbonImmutable::minus](../Carbon/CarbonImmutable.md#minus) _(from [CarbonImmutable](../Carbon/CarbonImmutable.md))_ | Subtract given amount of time to the current date. |
 
 ---
 
