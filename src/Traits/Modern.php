@@ -383,7 +383,7 @@ trait Modern
      */
     protected function viewEraName(): string
     {
-        return $this->jisEra->getEraNameString($this->getEraName());
+        return $this->JisEra->getEraNameString($this->getEraName());
     }
 
     /**
@@ -410,7 +410,7 @@ trait Modern
      */
     protected function getEraName(): int
     {
-        return $this->jisEra->getEraKey($this);
+        return $this->JisEra->getEraKey($this);
     }
 
     /**
@@ -438,6 +438,6 @@ trait Modern
     {
         $era_key = $era_key ?? $this->getEraName();
 
-        return $this->jisEra->getEraYear($this->year, $era_key);
+        return $this->JisEra->getEraYear($this->year, $era_key);
     }
 }
