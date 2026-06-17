@@ -830,6 +830,8 @@ A simple API extension for DateTimeImmutable.
 | int | [yearsInCentury()](#yearsincentury) | Return the number of years contained in the current century |
 | int | [yearsInDecade()](#yearsindecade) | Return the number of years contained in the current decade |
 | int | [yearsInMillennium()](#yearsinmillennium) | Return the number of years contained in the current millennium |
+| void | [plus()](#plus) | Add given amount of time to the current date. |
+| void | [minus()](#minus) | Subtract given amount of time to the current date. |
 
 ---
 
@@ -2394,7 +2396,7 @@ Set current instance microsecond to the given value.
 ### addYears
 
 ```php
-public CarbonImmutable addYears($value = &#039;1&#039;) Add years (the $value count passed in) to the instance (using date interval)
+public CarbonImmutable addYears($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Add years (the $value count passed in) to the instance (using date interval)
 ```
 
 .
@@ -2403,7 +2405,8 @@ public CarbonImmutable addYears($value = &#039;1&#039;) Add years (the $value co
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Add years (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Add years (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** [CarbonImmutable](../Carbon/CarbonImmutable.md)
 ---
@@ -2428,7 +2431,7 @@ public CarbonImmutable addYear($dd one year to the instance (using date interval
 ### subYears
 
 ```php
-public CarbonImmutable subYears($value = &#039;1&#039;) Sub years (the $value count passed in) to the instance (using date interval)
+public CarbonImmutable subYears($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Sub years (the $value count passed in) to the instance (using date interval)
 ```
 
 .
@@ -2437,7 +2440,8 @@ public CarbonImmutable subYears($value = &#039;1&#039;) Sub years (the $value co
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Sub years (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Sub years (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** [CarbonImmutable](../Carbon/CarbonImmutable.md)
 ---
@@ -2530,7 +2534,7 @@ with overflow explicitly allowed.
 ### addYearsWithoutOverflow
 
 ```php
-public CarbonImmutable addYearsWithoutOverflow($value = &#039;1&#039;) Add years (the $value count passed in) to the instance (using date interval)
+public CarbonImmutable addYearsWithoutOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Add years (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -2539,7 +2543,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Add years (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Add years (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** [CarbonImmutable](../Carbon/CarbonImmutable.md)
 ---
@@ -2564,7 +2569,7 @@ with overflow explicitly forbidden.
 ### subYearsWithoutOverflow
 
 ```php
-public CarbonImmutable subYearsWithoutOverflow($value = &#039;1&#039;) Sub years (the $value count passed in) to the instance (using date interval)
+public CarbonImmutable subYearsWithoutOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Sub years (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -2573,7 +2578,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Sub years (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Sub years (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** [CarbonImmutable](../Carbon/CarbonImmutable.md)
 ---
@@ -2598,7 +2604,7 @@ with overflow explicitly forbidden.
 ### addYearsWithNoOverflow
 
 ```php
-public CarbonImmutable addYearsWithNoOverflow($value = &#039;1&#039;) Add years (the $value count passed in) to the instance (using date interval)
+public CarbonImmutable addYearsWithNoOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Add years (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -2607,7 +2613,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Add years (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Add years (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** [CarbonImmutable](../Carbon/CarbonImmutable.md)
 ---
@@ -2632,7 +2639,7 @@ with overflow explicitly forbidden.
 ### subYearsWithNoOverflow
 
 ```php
-public CarbonImmutable subYearsWithNoOverflow($value = &#039;1&#039;) Sub years (the $value count passed in) to the instance (using date interval)
+public CarbonImmutable subYearsWithNoOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Sub years (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -2641,7 +2648,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Sub years (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Sub years (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** [CarbonImmutable](../Carbon/CarbonImmutable.md)
 ---
@@ -2666,7 +2674,7 @@ with overflow explicitly forbidden.
 ### addYearsNoOverflow
 
 ```php
-public CarbonImmutable addYearsNoOverflow($value = &#039;1&#039;) Add years (the $value count passed in) to the instance (using date interval)
+public CarbonImmutable addYearsNoOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Add years (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -2675,7 +2683,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Add years (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Add years (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** [CarbonImmutable](../Carbon/CarbonImmutable.md)
 ---
@@ -2700,7 +2709,7 @@ with overflow explicitly forbidden.
 ### subYearsNoOverflow
 
 ```php
-public CarbonImmutable subYearsNoOverflow($value = &#039;1&#039;) Sub years (the $value count passed in) to the instance (using date interval)
+public CarbonImmutable subYearsNoOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Sub years (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -2709,7 +2718,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Sub years (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Sub years (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** [CarbonImmutable](../Carbon/CarbonImmutable.md)
 ---
@@ -2734,7 +2744,7 @@ with overflow explicitly forbidden.
 ### addMonths
 
 ```php
-public CarbonImmutable addMonths($value = &#039;1&#039;) Add months (the $value count passed in) to the instance (using date interval)
+public CarbonImmutable addMonths($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Add months (the $value count passed in) to the instance (using date interval)
 ```
 
 .
@@ -2743,7 +2753,8 @@ public CarbonImmutable addMonths($value = &#039;1&#039;) Add months (the $value 
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Add months (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Add months (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** [CarbonImmutable](../Carbon/CarbonImmutable.md)
 ---
@@ -2768,7 +2779,7 @@ public CarbonImmutable addMonth($dd one month to the instance (using date interv
 ### subMonths
 
 ```php
-public CarbonImmutable subMonths($value = &#039;1&#039;) Sub months (the $value count passed in) to the instance (using date interval)
+public CarbonImmutable subMonths($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Sub months (the $value count passed in) to the instance (using date interval)
 ```
 
 .
@@ -2777,7 +2788,8 @@ public CarbonImmutable subMonths($value = &#039;1&#039;) Sub months (the $value 
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Sub months (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Sub months (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** [CarbonImmutable](../Carbon/CarbonImmutable.md)
 ---
@@ -2870,7 +2882,7 @@ with overflow explicitly allowed.
 ### addMonthsWithoutOverflow
 
 ```php
-public CarbonImmutable addMonthsWithoutOverflow($value = &#039;1&#039;) Add months (the $value count passed in) to the instance (using date interval)
+public CarbonImmutable addMonthsWithoutOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Add months (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -2879,7 +2891,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Add months (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Add months (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** [CarbonImmutable](../Carbon/CarbonImmutable.md)
 ---
@@ -2904,7 +2917,7 @@ with overflow explicitly forbidden.
 ### subMonthsWithoutOverflow
 
 ```php
-public CarbonImmutable subMonthsWithoutOverflow($value = &#039;1&#039;) Sub months (the $value count passed in) to the instance (using date interval)
+public CarbonImmutable subMonthsWithoutOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Sub months (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -2913,7 +2926,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Sub months (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Sub months (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** [CarbonImmutable](../Carbon/CarbonImmutable.md)
 ---
@@ -2938,7 +2952,7 @@ with overflow explicitly forbidden.
 ### addMonthsWithNoOverflow
 
 ```php
-public CarbonImmutable addMonthsWithNoOverflow($value = &#039;1&#039;) Add months (the $value count passed in) to the instance (using date interval)
+public CarbonImmutable addMonthsWithNoOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Add months (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -2947,7 +2961,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Add months (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Add months (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** [CarbonImmutable](../Carbon/CarbonImmutable.md)
 ---
@@ -2972,7 +2987,7 @@ with overflow explicitly forbidden.
 ### subMonthsWithNoOverflow
 
 ```php
-public CarbonImmutable subMonthsWithNoOverflow($value = &#039;1&#039;) Sub months (the $value count passed in) to the instance (using date interval)
+public CarbonImmutable subMonthsWithNoOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Sub months (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -2981,7 +2996,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Sub months (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Sub months (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** [CarbonImmutable](../Carbon/CarbonImmutable.md)
 ---
@@ -3006,7 +3022,7 @@ with overflow explicitly forbidden.
 ### addMonthsNoOverflow
 
 ```php
-public CarbonImmutable addMonthsNoOverflow($value = &#039;1&#039;) Add months (the $value count passed in) to the instance (using date interval)
+public CarbonImmutable addMonthsNoOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Add months (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -3015,7 +3031,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Add months (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Add months (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** [CarbonImmutable](../Carbon/CarbonImmutable.md)
 ---
@@ -3040,7 +3057,7 @@ with overflow explicitly forbidden.
 ### subMonthsNoOverflow
 
 ```php
-public CarbonImmutable subMonthsNoOverflow($value = &#039;1&#039;) Sub months (the $value count passed in) to the instance (using date interval)
+public CarbonImmutable subMonthsNoOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Sub months (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -3049,7 +3066,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Sub months (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Sub months (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** [CarbonImmutable](../Carbon/CarbonImmutable.md)
 ---
@@ -3618,7 +3636,7 @@ public CarbonImmutable subMicrosecond($ub one microsecond to the instance (using
 ### addMillennia
 
 ```php
-public CarbonImmutable addMillennia($value = &#039;1&#039;) Add millennia (the $value count passed in) to the instance (using date interval)
+public CarbonImmutable addMillennia($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Add millennia (the $value count passed in) to the instance (using date interval)
 ```
 
 .
@@ -3627,7 +3645,8 @@ public CarbonImmutable addMillennia($value = &#039;1&#039;) Add millennia (the $
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Add millennia (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Add millennia (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** [CarbonImmutable](../Carbon/CarbonImmutable.md)
 ---
@@ -3652,7 +3671,7 @@ public CarbonImmutable addMillennium($dd one millennium to the instance (using d
 ### subMillennia
 
 ```php
-public CarbonImmutable subMillennia($value = &#039;1&#039;) Sub millennia (the $value count passed in) to the instance (using date interval)
+public CarbonImmutable subMillennia($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Sub millennia (the $value count passed in) to the instance (using date interval)
 ```
 
 .
@@ -3661,7 +3680,8 @@ public CarbonImmutable subMillennia($value = &#039;1&#039;) Sub millennia (the $
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Sub millennia (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Sub millennia (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** [CarbonImmutable](../Carbon/CarbonImmutable.md)
 ---
@@ -3754,7 +3774,7 @@ with overflow explicitly allowed.
 ### addMillenniaWithoutOverflow
 
 ```php
-public CarbonImmutable addMillenniaWithoutOverflow($value = &#039;1&#039;) Add millennia (the $value count passed in) to the instance (using date interval)
+public CarbonImmutable addMillenniaWithoutOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Add millennia (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -3763,7 +3783,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Add millennia (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Add millennia (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** [CarbonImmutable](../Carbon/CarbonImmutable.md)
 ---
@@ -3788,7 +3809,7 @@ with overflow explicitly forbidden.
 ### subMillenniaWithoutOverflow
 
 ```php
-public CarbonImmutable subMillenniaWithoutOverflow($value = &#039;1&#039;) Sub millennia (the $value count passed in) to the instance (using date interval)
+public CarbonImmutable subMillenniaWithoutOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Sub millennia (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -3797,7 +3818,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Sub millennia (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Sub millennia (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** [CarbonImmutable](../Carbon/CarbonImmutable.md)
 ---
@@ -3822,7 +3844,7 @@ with overflow explicitly forbidden.
 ### addMillenniaWithNoOverflow
 
 ```php
-public CarbonImmutable addMillenniaWithNoOverflow($value = &#039;1&#039;) Add millennia (the $value count passed in) to the instance (using date interval)
+public CarbonImmutable addMillenniaWithNoOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Add millennia (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -3831,7 +3853,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Add millennia (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Add millennia (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** [CarbonImmutable](../Carbon/CarbonImmutable.md)
 ---
@@ -3856,7 +3879,7 @@ with overflow explicitly forbidden.
 ### subMillenniaWithNoOverflow
 
 ```php
-public CarbonImmutable subMillenniaWithNoOverflow($value = &#039;1&#039;) Sub millennia (the $value count passed in) to the instance (using date interval)
+public CarbonImmutable subMillenniaWithNoOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Sub millennia (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -3865,7 +3888,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Sub millennia (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Sub millennia (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** [CarbonImmutable](../Carbon/CarbonImmutable.md)
 ---
@@ -3890,7 +3914,7 @@ with overflow explicitly forbidden.
 ### addMillenniaNoOverflow
 
 ```php
-public CarbonImmutable addMillenniaNoOverflow($value = &#039;1&#039;) Add millennia (the $value count passed in) to the instance (using date interval)
+public CarbonImmutable addMillenniaNoOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Add millennia (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -3899,7 +3923,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Add millennia (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Add millennia (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** [CarbonImmutable](../Carbon/CarbonImmutable.md)
 ---
@@ -3924,7 +3949,7 @@ with overflow explicitly forbidden.
 ### subMillenniaNoOverflow
 
 ```php
-public CarbonImmutable subMillenniaNoOverflow($value = &#039;1&#039;) Sub millennia (the $value count passed in) to the instance (using date interval)
+public CarbonImmutable subMillenniaNoOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Sub millennia (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -3933,7 +3958,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Sub millennia (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Sub millennia (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** [CarbonImmutable](../Carbon/CarbonImmutable.md)
 ---
@@ -3958,7 +3984,7 @@ with overflow explicitly forbidden.
 ### addCenturies
 
 ```php
-public CarbonImmutable addCenturies($value = &#039;1&#039;) Add centuries (the $value count passed in) to the instance (using date interval)
+public CarbonImmutable addCenturies($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Add centuries (the $value count passed in) to the instance (using date interval)
 ```
 
 .
@@ -3967,7 +3993,8 @@ public CarbonImmutable addCenturies($value = &#039;1&#039;) Add centuries (the $
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Add centuries (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Add centuries (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** [CarbonImmutable](../Carbon/CarbonImmutable.md)
 ---
@@ -3992,7 +4019,7 @@ public CarbonImmutable addCentury($dd one century to the instance (using date in
 ### subCenturies
 
 ```php
-public CarbonImmutable subCenturies($value = &#039;1&#039;) Sub centuries (the $value count passed in) to the instance (using date interval)
+public CarbonImmutable subCenturies($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Sub centuries (the $value count passed in) to the instance (using date interval)
 ```
 
 .
@@ -4001,7 +4028,8 @@ public CarbonImmutable subCenturies($value = &#039;1&#039;) Sub centuries (the $
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Sub centuries (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Sub centuries (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** [CarbonImmutable](../Carbon/CarbonImmutable.md)
 ---
@@ -4094,7 +4122,7 @@ with overflow explicitly allowed.
 ### addCenturiesWithoutOverflow
 
 ```php
-public CarbonImmutable addCenturiesWithoutOverflow($value = &#039;1&#039;) Add centuries (the $value count passed in) to the instance (using date interval)
+public CarbonImmutable addCenturiesWithoutOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Add centuries (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -4103,7 +4131,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Add centuries (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Add centuries (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** [CarbonImmutable](../Carbon/CarbonImmutable.md)
 ---
@@ -4128,7 +4157,7 @@ with overflow explicitly forbidden.
 ### subCenturiesWithoutOverflow
 
 ```php
-public CarbonImmutable subCenturiesWithoutOverflow($value = &#039;1&#039;) Sub centuries (the $value count passed in) to the instance (using date interval)
+public CarbonImmutable subCenturiesWithoutOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Sub centuries (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -4137,7 +4166,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Sub centuries (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Sub centuries (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** [CarbonImmutable](../Carbon/CarbonImmutable.md)
 ---
@@ -4162,7 +4192,7 @@ with overflow explicitly forbidden.
 ### addCenturiesWithNoOverflow
 
 ```php
-public CarbonImmutable addCenturiesWithNoOverflow($value = &#039;1&#039;) Add centuries (the $value count passed in) to the instance (using date interval)
+public CarbonImmutable addCenturiesWithNoOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Add centuries (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -4171,7 +4201,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Add centuries (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Add centuries (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** [CarbonImmutable](../Carbon/CarbonImmutable.md)
 ---
@@ -4196,7 +4227,7 @@ with overflow explicitly forbidden.
 ### subCenturiesWithNoOverflow
 
 ```php
-public CarbonImmutable subCenturiesWithNoOverflow($value = &#039;1&#039;) Sub centuries (the $value count passed in) to the instance (using date interval)
+public CarbonImmutable subCenturiesWithNoOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Sub centuries (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -4205,7 +4236,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Sub centuries (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Sub centuries (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** [CarbonImmutable](../Carbon/CarbonImmutable.md)
 ---
@@ -4230,7 +4262,7 @@ with overflow explicitly forbidden.
 ### addCenturiesNoOverflow
 
 ```php
-public CarbonImmutable addCenturiesNoOverflow($value = &#039;1&#039;) Add centuries (the $value count passed in) to the instance (using date interval)
+public CarbonImmutable addCenturiesNoOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Add centuries (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -4239,7 +4271,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Add centuries (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Add centuries (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** [CarbonImmutable](../Carbon/CarbonImmutable.md)
 ---
@@ -4264,7 +4297,7 @@ with overflow explicitly forbidden.
 ### subCenturiesNoOverflow
 
 ```php
-public CarbonImmutable subCenturiesNoOverflow($value = &#039;1&#039;) Sub centuries (the $value count passed in) to the instance (using date interval)
+public CarbonImmutable subCenturiesNoOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Sub centuries (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -4273,7 +4306,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Sub centuries (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Sub centuries (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** [CarbonImmutable](../Carbon/CarbonImmutable.md)
 ---
@@ -4298,7 +4332,7 @@ with overflow explicitly forbidden.
 ### addDecades
 
 ```php
-public CarbonImmutable addDecades($value = &#039;1&#039;) Add decades (the $value count passed in) to the instance (using date interval)
+public CarbonImmutable addDecades($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Add decades (the $value count passed in) to the instance (using date interval)
 ```
 
 .
@@ -4307,7 +4341,8 @@ public CarbonImmutable addDecades($value = &#039;1&#039;) Add decades (the $valu
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Add decades (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Add decades (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** [CarbonImmutable](../Carbon/CarbonImmutable.md)
 ---
@@ -4332,7 +4367,7 @@ public CarbonImmutable addDecade($dd one decade to the instance (using date inte
 ### subDecades
 
 ```php
-public CarbonImmutable subDecades($value = &#039;1&#039;) Sub decades (the $value count passed in) to the instance (using date interval)
+public CarbonImmutable subDecades($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Sub decades (the $value count passed in) to the instance (using date interval)
 ```
 
 .
@@ -4341,7 +4376,8 @@ public CarbonImmutable subDecades($value = &#039;1&#039;) Sub decades (the $valu
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Sub decades (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Sub decades (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** [CarbonImmutable](../Carbon/CarbonImmutable.md)
 ---
@@ -4434,7 +4470,7 @@ with overflow explicitly allowed.
 ### addDecadesWithoutOverflow
 
 ```php
-public CarbonImmutable addDecadesWithoutOverflow($value = &#039;1&#039;) Add decades (the $value count passed in) to the instance (using date interval)
+public CarbonImmutable addDecadesWithoutOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Add decades (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -4443,7 +4479,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Add decades (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Add decades (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** [CarbonImmutable](../Carbon/CarbonImmutable.md)
 ---
@@ -4468,7 +4505,7 @@ with overflow explicitly forbidden.
 ### subDecadesWithoutOverflow
 
 ```php
-public CarbonImmutable subDecadesWithoutOverflow($value = &#039;1&#039;) Sub decades (the $value count passed in) to the instance (using date interval)
+public CarbonImmutable subDecadesWithoutOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Sub decades (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -4477,7 +4514,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Sub decades (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Sub decades (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** [CarbonImmutable](../Carbon/CarbonImmutable.md)
 ---
@@ -4502,7 +4540,7 @@ with overflow explicitly forbidden.
 ### addDecadesWithNoOverflow
 
 ```php
-public CarbonImmutable addDecadesWithNoOverflow($value = &#039;1&#039;) Add decades (the $value count passed in) to the instance (using date interval)
+public CarbonImmutable addDecadesWithNoOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Add decades (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -4511,7 +4549,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Add decades (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Add decades (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** [CarbonImmutable](../Carbon/CarbonImmutable.md)
 ---
@@ -4536,7 +4575,7 @@ with overflow explicitly forbidden.
 ### subDecadesWithNoOverflow
 
 ```php
-public CarbonImmutable subDecadesWithNoOverflow($value = &#039;1&#039;) Sub decades (the $value count passed in) to the instance (using date interval)
+public CarbonImmutable subDecadesWithNoOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Sub decades (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -4545,7 +4584,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Sub decades (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Sub decades (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** [CarbonImmutable](../Carbon/CarbonImmutable.md)
 ---
@@ -4570,7 +4610,7 @@ with overflow explicitly forbidden.
 ### addDecadesNoOverflow
 
 ```php
-public CarbonImmutable addDecadesNoOverflow($value = &#039;1&#039;) Add decades (the $value count passed in) to the instance (using date interval)
+public CarbonImmutable addDecadesNoOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Add decades (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -4579,7 +4619,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Add decades (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Add decades (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** [CarbonImmutable](../Carbon/CarbonImmutable.md)
 ---
@@ -4604,7 +4645,7 @@ with overflow explicitly forbidden.
 ### subDecadesNoOverflow
 
 ```php
-public CarbonImmutable subDecadesNoOverflow($value = &#039;1&#039;) Sub decades (the $value count passed in) to the instance (using date interval)
+public CarbonImmutable subDecadesNoOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Sub decades (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -4613,7 +4654,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Sub decades (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Sub decades (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** [CarbonImmutable](../Carbon/CarbonImmutable.md)
 ---
@@ -4638,7 +4680,7 @@ with overflow explicitly forbidden.
 ### addQuarters
 
 ```php
-public CarbonImmutable addQuarters($value = &#039;1&#039;) Add quarters (the $value count passed in) to the instance (using date interval)
+public CarbonImmutable addQuarters($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Add quarters (the $value count passed in) to the instance (using date interval)
 ```
 
 .
@@ -4647,7 +4689,8 @@ public CarbonImmutable addQuarters($value = &#039;1&#039;) Add quarters (the $va
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Add quarters (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Add quarters (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** [CarbonImmutable](../Carbon/CarbonImmutable.md)
 ---
@@ -4672,7 +4715,7 @@ public CarbonImmutable addQuarter($dd one quarter to the instance (using date in
 ### subQuarters
 
 ```php
-public CarbonImmutable subQuarters($value = &#039;1&#039;) Sub quarters (the $value count passed in) to the instance (using date interval)
+public CarbonImmutable subQuarters($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Sub quarters (the $value count passed in) to the instance (using date interval)
 ```
 
 .
@@ -4681,7 +4724,8 @@ public CarbonImmutable subQuarters($value = &#039;1&#039;) Sub quarters (the $va
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Sub quarters (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Sub quarters (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** [CarbonImmutable](../Carbon/CarbonImmutable.md)
 ---
@@ -4774,7 +4818,7 @@ with overflow explicitly allowed.
 ### addQuartersWithoutOverflow
 
 ```php
-public CarbonImmutable addQuartersWithoutOverflow($value = &#039;1&#039;) Add quarters (the $value count passed in) to the instance (using date interval)
+public CarbonImmutable addQuartersWithoutOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Add quarters (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -4783,7 +4827,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Add quarters (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Add quarters (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** [CarbonImmutable](../Carbon/CarbonImmutable.md)
 ---
@@ -4808,7 +4853,7 @@ with overflow explicitly forbidden.
 ### subQuartersWithoutOverflow
 
 ```php
-public CarbonImmutable subQuartersWithoutOverflow($value = &#039;1&#039;) Sub quarters (the $value count passed in) to the instance (using date interval)
+public CarbonImmutable subQuartersWithoutOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Sub quarters (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -4817,7 +4862,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Sub quarters (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Sub quarters (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** [CarbonImmutable](../Carbon/CarbonImmutable.md)
 ---
@@ -4842,7 +4888,7 @@ with overflow explicitly forbidden.
 ### addQuartersWithNoOverflow
 
 ```php
-public CarbonImmutable addQuartersWithNoOverflow($value = &#039;1&#039;) Add quarters (the $value count passed in) to the instance (using date interval)
+public CarbonImmutable addQuartersWithNoOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Add quarters (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -4851,7 +4897,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Add quarters (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Add quarters (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** [CarbonImmutable](../Carbon/CarbonImmutable.md)
 ---
@@ -4876,7 +4923,7 @@ with overflow explicitly forbidden.
 ### subQuartersWithNoOverflow
 
 ```php
-public CarbonImmutable subQuartersWithNoOverflow($value = &#039;1&#039;) Sub quarters (the $value count passed in) to the instance (using date interval)
+public CarbonImmutable subQuartersWithNoOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Sub quarters (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -4885,7 +4932,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Sub quarters (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Sub quarters (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** [CarbonImmutable](../Carbon/CarbonImmutable.md)
 ---
@@ -4910,7 +4958,7 @@ with overflow explicitly forbidden.
 ### addQuartersNoOverflow
 
 ```php
-public CarbonImmutable addQuartersNoOverflow($value = &#039;1&#039;) Add quarters (the $value count passed in) to the instance (using date interval)
+public CarbonImmutable addQuartersNoOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Add quarters (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -4919,7 +4967,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Add quarters (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Add quarters (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** [CarbonImmutable](../Carbon/CarbonImmutable.md)
 ---
@@ -4944,7 +4993,7 @@ with overflow explicitly forbidden.
 ### subQuartersNoOverflow
 
 ```php
-public CarbonImmutable subQuartersNoOverflow($value = &#039;1&#039;) Sub quarters (the $value count passed in) to the instance (using date interval)
+public CarbonImmutable subQuartersNoOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Sub quarters (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -4953,7 +5002,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Sub quarters (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Sub quarters (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** [CarbonImmutable](../Carbon/CarbonImmutable.md)
 ---
@@ -10223,8 +10273,60 @@ public int yearsInMillennium()
 
 Return the number of years contained in the current millennium
 
+**Returns:** int
+---
+
+### plus
+
+```php
+static public void plus($years = &#039;0&#039;, $months = &#039;0&#039;, $weeks = &#039;0&#039;, $days = &#039;0&#039;, $hours = &#039;0&#039;, $minutes = &#039;0&#039;, $seconds = &#039;0&#039;, $microseconds = &#039;0&#039;, $overflow = &#039;null&#039;, $anchorDay = &#039;null&#039;)
+```
+
+Add given amount of time to the current date.
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| int | `$years` | `&#039;0&#039;` |  |
+| int | `$months` | `&#039;0&#039;` |  |
+| int|float | `$weeks` | `&#039;0&#039;` |  |
+| int|float | `$days` | `&#039;0&#039;` |  |
+| int|float | `$hours` | `&#039;0&#039;` |  |
+| int|float | `$minutes` | `&#039;0&#039;` |  |
+| int|float | `$seconds` | `&#039;0&#039;` |  |
+| int|float | `$microseconds` | `&#039;0&#039;` |  |
+| OverflowMode|bool|null | `$overflow` | `&#039;null&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;` |  |
+
+**Returns:** void
+---
+
+### minus
+
+```php
+static public void minus($years = &#039;0&#039;, $months = &#039;0&#039;, $weeks = &#039;0&#039;, $days = &#039;0&#039;, $hours = &#039;0&#039;, $minutes = &#039;0&#039;, $seconds = &#039;0&#039;, $microseconds = &#039;0&#039;, $overflow = &#039;null&#039;, $anchorDay = &#039;null&#039;)
+```
+
+Subtract given amount of time to the current date.
+
 </autodoc>
 
-**Returns:** int
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| int | `$years` | `&#039;0&#039;` |  |
+| int | `$months` | `&#039;0&#039;` |  |
+| int|float | `$weeks` | `&#039;0&#039;` |  |
+| int|float | `$days` | `&#039;0&#039;` |  |
+| int|float | `$hours` | `&#039;0&#039;` |  |
+| int|float | `$minutes` | `&#039;0&#039;` |  |
+| int|float | `$seconds` | `&#039;0&#039;` |  |
+| int|float | `$microseconds` | `&#039;0&#039;` |  |
+| OverflowMode|bool|null | `$overflow` | `&#039;null&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;` |  |
+
+**Returns:** void
 ---
 

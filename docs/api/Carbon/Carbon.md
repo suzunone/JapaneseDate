@@ -829,6 +829,8 @@ A simple API extension for DateTime.
 | int | [yearsInCentury()](#yearsincentury) | Return the number of years contained in the current century |
 | int | [yearsInDecade()](#yearsindecade) | Return the number of years contained in the current decade |
 | int | [yearsInMillennium()](#yearsinmillennium) | Return the number of years contained in the current millennium |
+| void | [plus()](#plus) | Add given amount of time to the current date. |
+| void | [minus()](#minus) | Subtract given amount of time to the current date. |
 
 ---
 
@@ -2382,7 +2384,7 @@ Set current instance microsecond to the given value.
 ### addYears
 
 ```php
-public $this addYears($value = &#039;1&#039;) Add years (the $value count passed in) to the instance (using date interval)
+public $this addYears($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Add years (the $value count passed in) to the instance (using date interval)
 ```
 
 .
@@ -2391,7 +2393,8 @@ public $this addYears($value = &#039;1&#039;) Add years (the $value count passed
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Add years (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Add years (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** $this
 ---
@@ -2416,7 +2419,7 @@ public $this addYear($dd one year to the instance (using date interval)
 ### subYears
 
 ```php
-public $this subYears($value = &#039;1&#039;) Sub years (the $value count passed in) to the instance (using date interval)
+public $this subYears($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Sub years (the $value count passed in) to the instance (using date interval)
 ```
 
 .
@@ -2425,7 +2428,8 @@ public $this subYears($value = &#039;1&#039;) Sub years (the $value count passed
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Sub years (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Sub years (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** $this
 ---
@@ -2518,7 +2522,7 @@ with overflow explicitly allowed.
 ### addYearsWithoutOverflow
 
 ```php
-public $this addYearsWithoutOverflow($value = &#039;1&#039;) Add years (the $value count passed in) to the instance (using date interval)
+public $this addYearsWithoutOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Add years (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -2527,7 +2531,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Add years (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Add years (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** $this
 ---
@@ -2552,7 +2557,7 @@ with overflow explicitly forbidden.
 ### subYearsWithoutOverflow
 
 ```php
-public $this subYearsWithoutOverflow($value = &#039;1&#039;) Sub years (the $value count passed in) to the instance (using date interval)
+public $this subYearsWithoutOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Sub years (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -2561,7 +2566,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Sub years (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Sub years (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** $this
 ---
@@ -2586,7 +2592,7 @@ with overflow explicitly forbidden.
 ### addYearsWithNoOverflow
 
 ```php
-public $this addYearsWithNoOverflow($value = &#039;1&#039;) Add years (the $value count passed in) to the instance (using date interval)
+public $this addYearsWithNoOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Add years (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -2595,7 +2601,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Add years (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Add years (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** $this
 ---
@@ -2620,7 +2627,7 @@ with overflow explicitly forbidden.
 ### subYearsWithNoOverflow
 
 ```php
-public $this subYearsWithNoOverflow($value = &#039;1&#039;) Sub years (the $value count passed in) to the instance (using date interval)
+public $this subYearsWithNoOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Sub years (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -2629,7 +2636,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Sub years (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Sub years (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** $this
 ---
@@ -2654,7 +2662,7 @@ with overflow explicitly forbidden.
 ### addYearsNoOverflow
 
 ```php
-public $this addYearsNoOverflow($value = &#039;1&#039;) Add years (the $value count passed in) to the instance (using date interval)
+public $this addYearsNoOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Add years (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -2663,7 +2671,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Add years (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Add years (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** $this
 ---
@@ -2688,7 +2697,7 @@ with overflow explicitly forbidden.
 ### subYearsNoOverflow
 
 ```php
-public $this subYearsNoOverflow($value = &#039;1&#039;) Sub years (the $value count passed in) to the instance (using date interval)
+public $this subYearsNoOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Sub years (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -2697,7 +2706,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Sub years (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Sub years (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** $this
 ---
@@ -2722,7 +2732,7 @@ with overflow explicitly forbidden.
 ### addMonths
 
 ```php
-public $this addMonths($value = &#039;1&#039;) Add months (the $value count passed in) to the instance (using date interval)
+public $this addMonths($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Add months (the $value count passed in) to the instance (using date interval)
 ```
 
 .
@@ -2731,7 +2741,8 @@ public $this addMonths($value = &#039;1&#039;) Add months (the $value count pass
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Add months (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Add months (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** $this
 ---
@@ -2756,7 +2767,7 @@ public $this addMonth($dd one month to the instance (using date interval)
 ### subMonths
 
 ```php
-public $this subMonths($value = &#039;1&#039;) Sub months (the $value count passed in) to the instance (using date interval)
+public $this subMonths($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Sub months (the $value count passed in) to the instance (using date interval)
 ```
 
 .
@@ -2765,7 +2776,8 @@ public $this subMonths($value = &#039;1&#039;) Sub months (the $value count pass
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Sub months (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Sub months (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** $this
 ---
@@ -2858,7 +2870,7 @@ with overflow explicitly allowed.
 ### addMonthsWithoutOverflow
 
 ```php
-public $this addMonthsWithoutOverflow($value = &#039;1&#039;) Add months (the $value count passed in) to the instance (using date interval)
+public $this addMonthsWithoutOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Add months (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -2867,7 +2879,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Add months (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Add months (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** $this
 ---
@@ -2892,7 +2905,7 @@ with overflow explicitly forbidden.
 ### subMonthsWithoutOverflow
 
 ```php
-public $this subMonthsWithoutOverflow($value = &#039;1&#039;) Sub months (the $value count passed in) to the instance (using date interval)
+public $this subMonthsWithoutOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Sub months (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -2901,7 +2914,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Sub months (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Sub months (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** $this
 ---
@@ -2926,7 +2940,7 @@ with overflow explicitly forbidden.
 ### addMonthsWithNoOverflow
 
 ```php
-public $this addMonthsWithNoOverflow($value = &#039;1&#039;) Add months (the $value count passed in) to the instance (using date interval)
+public $this addMonthsWithNoOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Add months (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -2935,7 +2949,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Add months (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Add months (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** $this
 ---
@@ -2960,7 +2975,7 @@ with overflow explicitly forbidden.
 ### subMonthsWithNoOverflow
 
 ```php
-public $this subMonthsWithNoOverflow($value = &#039;1&#039;) Sub months (the $value count passed in) to the instance (using date interval)
+public $this subMonthsWithNoOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Sub months (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -2969,7 +2984,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Sub months (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Sub months (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** $this
 ---
@@ -2994,7 +3010,7 @@ with overflow explicitly forbidden.
 ### addMonthsNoOverflow
 
 ```php
-public $this addMonthsNoOverflow($value = &#039;1&#039;) Add months (the $value count passed in) to the instance (using date interval)
+public $this addMonthsNoOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Add months (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -3003,7 +3019,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Add months (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Add months (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** $this
 ---
@@ -3028,7 +3045,7 @@ with overflow explicitly forbidden.
 ### subMonthsNoOverflow
 
 ```php
-public $this subMonthsNoOverflow($value = &#039;1&#039;) Sub months (the $value count passed in) to the instance (using date interval)
+public $this subMonthsNoOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Sub months (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -3037,7 +3054,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Sub months (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Sub months (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** $this
 ---
@@ -3606,7 +3624,7 @@ public $this subMicrosecond($ub one microsecond to the instance (using date inte
 ### addMillennia
 
 ```php
-public $this addMillennia($value = &#039;1&#039;) Add millennia (the $value count passed in) to the instance (using date interval)
+public $this addMillennia($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Add millennia (the $value count passed in) to the instance (using date interval)
 ```
 
 .
@@ -3615,7 +3633,8 @@ public $this addMillennia($value = &#039;1&#039;) Add millennia (the $value coun
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Add millennia (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Add millennia (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** $this
 ---
@@ -3640,7 +3659,7 @@ public $this addMillennium($dd one millennium to the instance (using date interv
 ### subMillennia
 
 ```php
-public $this subMillennia($value = &#039;1&#039;) Sub millennia (the $value count passed in) to the instance (using date interval)
+public $this subMillennia($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Sub millennia (the $value count passed in) to the instance (using date interval)
 ```
 
 .
@@ -3649,7 +3668,8 @@ public $this subMillennia($value = &#039;1&#039;) Sub millennia (the $value coun
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Sub millennia (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Sub millennia (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** $this
 ---
@@ -3742,7 +3762,7 @@ with overflow explicitly allowed.
 ### addMillenniaWithoutOverflow
 
 ```php
-public $this addMillenniaWithoutOverflow($value = &#039;1&#039;) Add millennia (the $value count passed in) to the instance (using date interval)
+public $this addMillenniaWithoutOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Add millennia (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -3751,7 +3771,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Add millennia (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Add millennia (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** $this
 ---
@@ -3776,7 +3797,7 @@ with overflow explicitly forbidden.
 ### subMillenniaWithoutOverflow
 
 ```php
-public $this subMillenniaWithoutOverflow($value = &#039;1&#039;) Sub millennia (the $value count passed in) to the instance (using date interval)
+public $this subMillenniaWithoutOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Sub millennia (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -3785,7 +3806,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Sub millennia (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Sub millennia (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** $this
 ---
@@ -3810,7 +3832,7 @@ with overflow explicitly forbidden.
 ### addMillenniaWithNoOverflow
 
 ```php
-public $this addMillenniaWithNoOverflow($value = &#039;1&#039;) Add millennia (the $value count passed in) to the instance (using date interval)
+public $this addMillenniaWithNoOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Add millennia (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -3819,7 +3841,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Add millennia (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Add millennia (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** $this
 ---
@@ -3844,7 +3867,7 @@ with overflow explicitly forbidden.
 ### subMillenniaWithNoOverflow
 
 ```php
-public $this subMillenniaWithNoOverflow($value = &#039;1&#039;) Sub millennia (the $value count passed in) to the instance (using date interval)
+public $this subMillenniaWithNoOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Sub millennia (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -3853,7 +3876,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Sub millennia (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Sub millennia (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** $this
 ---
@@ -3878,7 +3902,7 @@ with overflow explicitly forbidden.
 ### addMillenniaNoOverflow
 
 ```php
-public $this addMillenniaNoOverflow($value = &#039;1&#039;) Add millennia (the $value count passed in) to the instance (using date interval)
+public $this addMillenniaNoOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Add millennia (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -3887,7 +3911,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Add millennia (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Add millennia (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** $this
 ---
@@ -3912,7 +3937,7 @@ with overflow explicitly forbidden.
 ### subMillenniaNoOverflow
 
 ```php
-public $this subMillenniaNoOverflow($value = &#039;1&#039;) Sub millennia (the $value count passed in) to the instance (using date interval)
+public $this subMillenniaNoOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Sub millennia (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -3921,7 +3946,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Sub millennia (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Sub millennia (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** $this
 ---
@@ -3946,7 +3972,7 @@ with overflow explicitly forbidden.
 ### addCenturies
 
 ```php
-public $this addCenturies($value = &#039;1&#039;) Add centuries (the $value count passed in) to the instance (using date interval)
+public $this addCenturies($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Add centuries (the $value count passed in) to the instance (using date interval)
 ```
 
 .
@@ -3955,7 +3981,8 @@ public $this addCenturies($value = &#039;1&#039;) Add centuries (the $value coun
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Add centuries (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Add centuries (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** $this
 ---
@@ -3980,7 +4007,7 @@ public $this addCentury($dd one century to the instance (using date interval)
 ### subCenturies
 
 ```php
-public $this subCenturies($value = &#039;1&#039;) Sub centuries (the $value count passed in) to the instance (using date interval)
+public $this subCenturies($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Sub centuries (the $value count passed in) to the instance (using date interval)
 ```
 
 .
@@ -3989,7 +4016,8 @@ public $this subCenturies($value = &#039;1&#039;) Sub centuries (the $value coun
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Sub centuries (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Sub centuries (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** $this
 ---
@@ -4082,7 +4110,7 @@ with overflow explicitly allowed.
 ### addCenturiesWithoutOverflow
 
 ```php
-public $this addCenturiesWithoutOverflow($value = &#039;1&#039;) Add centuries (the $value count passed in) to the instance (using date interval)
+public $this addCenturiesWithoutOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Add centuries (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -4091,7 +4119,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Add centuries (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Add centuries (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** $this
 ---
@@ -4116,7 +4145,7 @@ with overflow explicitly forbidden.
 ### subCenturiesWithoutOverflow
 
 ```php
-public $this subCenturiesWithoutOverflow($value = &#039;1&#039;) Sub centuries (the $value count passed in) to the instance (using date interval)
+public $this subCenturiesWithoutOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Sub centuries (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -4125,7 +4154,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Sub centuries (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Sub centuries (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** $this
 ---
@@ -4150,7 +4180,7 @@ with overflow explicitly forbidden.
 ### addCenturiesWithNoOverflow
 
 ```php
-public $this addCenturiesWithNoOverflow($value = &#039;1&#039;) Add centuries (the $value count passed in) to the instance (using date interval)
+public $this addCenturiesWithNoOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Add centuries (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -4159,7 +4189,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Add centuries (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Add centuries (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** $this
 ---
@@ -4184,7 +4215,7 @@ with overflow explicitly forbidden.
 ### subCenturiesWithNoOverflow
 
 ```php
-public $this subCenturiesWithNoOverflow($value = &#039;1&#039;) Sub centuries (the $value count passed in) to the instance (using date interval)
+public $this subCenturiesWithNoOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Sub centuries (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -4193,7 +4224,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Sub centuries (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Sub centuries (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** $this
 ---
@@ -4218,7 +4250,7 @@ with overflow explicitly forbidden.
 ### addCenturiesNoOverflow
 
 ```php
-public $this addCenturiesNoOverflow($value = &#039;1&#039;) Add centuries (the $value count passed in) to the instance (using date interval)
+public $this addCenturiesNoOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Add centuries (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -4227,7 +4259,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Add centuries (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Add centuries (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** $this
 ---
@@ -4252,7 +4285,7 @@ with overflow explicitly forbidden.
 ### subCenturiesNoOverflow
 
 ```php
-public $this subCenturiesNoOverflow($value = &#039;1&#039;) Sub centuries (the $value count passed in) to the instance (using date interval)
+public $this subCenturiesNoOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Sub centuries (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -4261,7 +4294,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Sub centuries (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Sub centuries (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** $this
 ---
@@ -4286,7 +4320,7 @@ with overflow explicitly forbidden.
 ### addDecades
 
 ```php
-public $this addDecades($value = &#039;1&#039;) Add decades (the $value count passed in) to the instance (using date interval)
+public $this addDecades($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Add decades (the $value count passed in) to the instance (using date interval)
 ```
 
 .
@@ -4295,7 +4329,8 @@ public $this addDecades($value = &#039;1&#039;) Add decades (the $value count pa
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Add decades (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Add decades (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** $this
 ---
@@ -4320,7 +4355,7 @@ public $this addDecade($dd one decade to the instance (using date interval)
 ### subDecades
 
 ```php
-public $this subDecades($value = &#039;1&#039;) Sub decades (the $value count passed in) to the instance (using date interval)
+public $this subDecades($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Sub decades (the $value count passed in) to the instance (using date interval)
 ```
 
 .
@@ -4329,7 +4364,8 @@ public $this subDecades($value = &#039;1&#039;) Sub decades (the $value count pa
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Sub decades (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Sub decades (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** $this
 ---
@@ -4422,7 +4458,7 @@ with overflow explicitly allowed.
 ### addDecadesWithoutOverflow
 
 ```php
-public $this addDecadesWithoutOverflow($value = &#039;1&#039;) Add decades (the $value count passed in) to the instance (using date interval)
+public $this addDecadesWithoutOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Add decades (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -4431,7 +4467,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Add decades (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Add decades (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** $this
 ---
@@ -4456,7 +4493,7 @@ with overflow explicitly forbidden.
 ### subDecadesWithoutOverflow
 
 ```php
-public $this subDecadesWithoutOverflow($value = &#039;1&#039;) Sub decades (the $value count passed in) to the instance (using date interval)
+public $this subDecadesWithoutOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Sub decades (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -4465,7 +4502,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Sub decades (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Sub decades (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** $this
 ---
@@ -4490,7 +4528,7 @@ with overflow explicitly forbidden.
 ### addDecadesWithNoOverflow
 
 ```php
-public $this addDecadesWithNoOverflow($value = &#039;1&#039;) Add decades (the $value count passed in) to the instance (using date interval)
+public $this addDecadesWithNoOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Add decades (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -4499,7 +4537,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Add decades (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Add decades (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** $this
 ---
@@ -4524,7 +4563,7 @@ with overflow explicitly forbidden.
 ### subDecadesWithNoOverflow
 
 ```php
-public $this subDecadesWithNoOverflow($value = &#039;1&#039;) Sub decades (the $value count passed in) to the instance (using date interval)
+public $this subDecadesWithNoOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Sub decades (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -4533,7 +4572,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Sub decades (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Sub decades (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** $this
 ---
@@ -4558,7 +4598,7 @@ with overflow explicitly forbidden.
 ### addDecadesNoOverflow
 
 ```php
-public $this addDecadesNoOverflow($value = &#039;1&#039;) Add decades (the $value count passed in) to the instance (using date interval)
+public $this addDecadesNoOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Add decades (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -4567,7 +4607,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Add decades (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Add decades (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** $this
 ---
@@ -4592,7 +4633,7 @@ with overflow explicitly forbidden.
 ### subDecadesNoOverflow
 
 ```php
-public $this subDecadesNoOverflow($value = &#039;1&#039;) Sub decades (the $value count passed in) to the instance (using date interval)
+public $this subDecadesNoOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Sub decades (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -4601,7 +4642,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Sub decades (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Sub decades (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** $this
 ---
@@ -4626,7 +4668,7 @@ with overflow explicitly forbidden.
 ### addQuarters
 
 ```php
-public $this addQuarters($value = &#039;1&#039;) Add quarters (the $value count passed in) to the instance (using date interval)
+public $this addQuarters($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Add quarters (the $value count passed in) to the instance (using date interval)
 ```
 
 .
@@ -4635,7 +4677,8 @@ public $this addQuarters($value = &#039;1&#039;) Add quarters (the $value count 
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Add quarters (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Add quarters (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** $this
 ---
@@ -4660,7 +4703,7 @@ public $this addQuarter($dd one quarter to the instance (using date interval)
 ### subQuarters
 
 ```php
-public $this subQuarters($value = &#039;1&#039;) Sub quarters (the $value count passed in) to the instance (using date interval)
+public $this subQuarters($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Sub quarters (the $value count passed in) to the instance (using date interval)
 ```
 
 .
@@ -4669,7 +4712,8 @@ public $this subQuarters($value = &#039;1&#039;) Sub quarters (the $value count 
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Sub quarters (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Sub quarters (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** $this
 ---
@@ -4762,7 +4806,7 @@ with overflow explicitly allowed.
 ### addQuartersWithoutOverflow
 
 ```php
-public $this addQuartersWithoutOverflow($value = &#039;1&#039;) Add quarters (the $value count passed in) to the instance (using date interval)
+public $this addQuartersWithoutOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Add quarters (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -4771,7 +4815,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Add quarters (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Add quarters (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** $this
 ---
@@ -4796,7 +4841,7 @@ with overflow explicitly forbidden.
 ### subQuartersWithoutOverflow
 
 ```php
-public $this subQuartersWithoutOverflow($value = &#039;1&#039;) Sub quarters (the $value count passed in) to the instance (using date interval)
+public $this subQuartersWithoutOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Sub quarters (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -4805,7 +4850,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Sub quarters (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Sub quarters (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** $this
 ---
@@ -4830,7 +4876,7 @@ with overflow explicitly forbidden.
 ### addQuartersWithNoOverflow
 
 ```php
-public $this addQuartersWithNoOverflow($value = &#039;1&#039;) Add quarters (the $value count passed in) to the instance (using date interval)
+public $this addQuartersWithNoOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Add quarters (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -4839,7 +4885,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Add quarters (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Add quarters (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** $this
 ---
@@ -4864,7 +4911,7 @@ with overflow explicitly forbidden.
 ### subQuartersWithNoOverflow
 
 ```php
-public $this subQuartersWithNoOverflow($value = &#039;1&#039;) Sub quarters (the $value count passed in) to the instance (using date interval)
+public $this subQuartersWithNoOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Sub quarters (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -4873,7 +4920,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Sub quarters (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Sub quarters (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** $this
 ---
@@ -4898,7 +4946,7 @@ with overflow explicitly forbidden.
 ### addQuartersNoOverflow
 
 ```php
-public $this addQuartersNoOverflow($value = &#039;1&#039;) Add quarters (the $value count passed in) to the instance (using date interval)
+public $this addQuartersNoOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Add quarters (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -4907,7 +4955,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Add quarters (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Add quarters (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** $this
 ---
@@ -4932,7 +4981,7 @@ with overflow explicitly forbidden.
 ### subQuartersNoOverflow
 
 ```php
-public $this subQuartersNoOverflow($value = &#039;1&#039;) Sub quarters (the $value count passed in) to the instance (using date interval)
+public $this subQuartersNoOverflow($value = &#039;1&#039;, $anchorDay = &#039;null&#039;) Sub quarters (the $value count passed in) to the instance (using date interval)
 ```
 
 with overflow explicitly forbidden.
@@ -4941,7 +4990,8 @@ with overflow explicitly forbidden.
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int|float | `$value` | `&#039;1&#039;) Sub quarters (the $value count passed in) to the instance (using date interval` |  |
+| int|float | `$value` | `&#039;1&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;) Sub quarters (the $value count passed in) to the instance (using date interval` |  |
 
 **Returns:** $this
 ---
@@ -10211,8 +10261,60 @@ public int yearsInMillennium()
 
 Return the number of years contained in the current millennium
 
+**Returns:** int
+---
+
+### plus
+
+```php
+static public void plus($years = &#039;0&#039;, $months = &#039;0&#039;, $weeks = &#039;0&#039;, $days = &#039;0&#039;, $hours = &#039;0&#039;, $minutes = &#039;0&#039;, $seconds = &#039;0&#039;, $microseconds = &#039;0&#039;, $overflow = &#039;null&#039;, $anchorDay = &#039;null&#039;)
+```
+
+Add given amount of time to the current date.
+
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| int | `$years` | `&#039;0&#039;` |  |
+| int | `$months` | `&#039;0&#039;` |  |
+| int|float | `$weeks` | `&#039;0&#039;` |  |
+| int|float | `$days` | `&#039;0&#039;` |  |
+| int|float | `$hours` | `&#039;0&#039;` |  |
+| int|float | `$minutes` | `&#039;0&#039;` |  |
+| int|float | `$seconds` | `&#039;0&#039;` |  |
+| int|float | `$microseconds` | `&#039;0&#039;` |  |
+| OverflowMode|bool|null | `$overflow` | `&#039;null&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;` |  |
+
+**Returns:** void
+---
+
+### minus
+
+```php
+static public void minus($years = &#039;0&#039;, $months = &#039;0&#039;, $weeks = &#039;0&#039;, $days = &#039;0&#039;, $hours = &#039;0&#039;, $minutes = &#039;0&#039;, $seconds = &#039;0&#039;, $microseconds = &#039;0&#039;, $overflow = &#039;null&#039;, $anchorDay = &#039;null&#039;)
+```
+
+Subtract given amount of time to the current date.
+
 </autodoc>
 
-**Returns:** int
+**Parameters:**
+
+| Type | Name | Default | Description |
+|---|---|---|---|
+| int | `$years` | `&#039;0&#039;` |  |
+| int | `$months` | `&#039;0&#039;` |  |
+| int|float | `$weeks` | `&#039;0&#039;` |  |
+| int|float | `$days` | `&#039;0&#039;` |  |
+| int|float | `$hours` | `&#039;0&#039;` |  |
+| int|float | `$minutes` | `&#039;0&#039;` |  |
+| int|float | `$seconds` | `&#039;0&#039;` |  |
+| int|float | `$microseconds` | `&#039;0&#039;` |  |
+| OverflowMode|bool|null | `$overflow` | `&#039;null&#039;` |  |
+| ?int | `$anchorDay` | `&#039;null&#039;` |  |
+
+**Returns:** void
 ---
 

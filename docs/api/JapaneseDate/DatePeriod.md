@@ -129,6 +129,7 @@ foreach ($period as $date) {
 | CarbonPeriod | [CarbonPeriod::createFromArray](../Carbon/CarbonPeriod.md#createfromarray) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Create a new instance from an array of parameters. |
 | CarbonPeriod | [CarbonPeriod::createFromIso](../Carbon/CarbonPeriod.md#createfromiso) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Create CarbonPeriod from ISO 8601 string. |
 | CarbonPeriod | [CarbonPeriod::createFromISO8601String](../Carbon/CarbonPeriod.md#createfromiso8601string) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ |  |
+| CarbonPeriod | [CarbonPeriod::monthly](../Carbon/CarbonPeriod.md#monthly) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ |  |
 | void | [CarbonPeriod::macro](../Carbon/CarbonPeriod.md#macro) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Register a custom macro. |
 | void | [CarbonPeriod::mixin](../Carbon/CarbonPeriod.md#mixin) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Register macros from a mixin object. |
 | bool | [CarbonPeriod::hasMacro](../Carbon/CarbonPeriod.md#hasmacro) _(from [CarbonPeriod](../Carbon/CarbonPeriod.md))_ | Check if macro is registered. |
