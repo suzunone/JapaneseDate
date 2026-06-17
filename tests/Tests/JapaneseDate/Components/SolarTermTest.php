@@ -225,6 +225,41 @@ class SolarTermTest extends TestCase
     }
 
     /**
+     * SimpleSolarTerm 範囲外で legacy 太陽計算の6時境界が日付を変える清明の回帰ケースを返す。
+     *
+     * @return array<string, array{0: int, 1: int}>
+     */
+    public static function legacyBoundarySensitiveSeimeiProvider(): array
+    {
+        return [
+            '2401 清明' => [2401, 4],
+            '2500 清明' => [2500, 4],
+        ];
+    }
+
+    /**
+     * SimpleSolarTerm 範囲外の legacy 太陽計算でも、6時境界により清明が翌日ではなく当日に検出されることを確認する。
+     *
+     * @throws \JapaneseDate\Exceptions\Exception
+     * @throws \JapaneseDate\Exceptions\SolarTermException
+     */
+    #[DataProvider('legacyBoundarySensitiveSeimeiProvider')]
+    public function test_legacySeimeiUsesSixHourBoundaryForBoundarySensitiveYears(int $year, int $day): void
+    {
+        $solarTerm = new SolarTerm(new Astronomy());
+
+        self::assertSolarTermDate(
+            $year,
+            DateTime::SOLAR_TERM_SEIMEI,
+            4,
+            $day,
+            $solarTerm->seimei($year)
+        );
+        $this->assertSame(DateTime::SOLAR_TERM_SEIMEI, $solarTerm->findSolarTerm($year, 4, $day));
+        $this->assertFalse($solarTerm->findSolarTerm($year, 4, $day + 1));
+    }
+
+    /**
      * 太陽黄経の範囲が変化しない場合、二十四節気を検出しないことを確認する。
      *
      * @throws \JapaneseDate\Exceptions\Exception

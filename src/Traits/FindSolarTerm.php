@@ -52,9 +52,9 @@ trait FindSolarTerm
      */
     protected function getSolarTermDate(string $method, int $year): DateTime|DateTimeImmutable
     {
-        $st = $this->findSolarTerm($method, $year);
+        $SolarTermDate = $this->findSolarTerm($method, $year);
 
-        return $this->copy()->setDateTime($st->year, $st->month, $st->day, $this->hour, $this->minute, $this->second);
+        return $this->copy()->setDateTime($SolarTermDate->year, $SolarTermDate->month, $SolarTermDate->day, $this->hour, $this->minute, $this->second);
     }
 
     /**
@@ -89,40 +89,40 @@ trait FindSolarTerm
     /**
      * 二十四節気計算クラスのメソッドを明示分岐で呼び出す。
      *
-     * @param SimpleSolarTerm|SolarTerm $solarTerm 二十四節気計算クラス
+     * @param SimpleSolarTerm|SolarTerm $SolarTerm 二十四節気計算クラス
      * @param string $method 節気メソッド名
      * @param int $year 計算対象年
      * @return SolarTermDate 二十四節気の日付
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected static function callSolarTermMethod(SimpleSolarTerm|SolarTerm $solarTerm, string $method, int $year): SolarTermDate
+    protected static function callSolarTermMethod(SimpleSolarTerm|SolarTerm $SolarTerm, string $method, int $year): SolarTermDate
     {
         return match ($method) {
-            'syunbun' => $solarTerm->syunbun($year),
-            'seimei' => $solarTerm->seimei($year),
-            'kokuu' => $solarTerm->kokuu($year),
-            'rikka' => $solarTerm->rikka($year),
-            'syouman' => $solarTerm->syouman($year),
-            'bousyu' => $solarTerm->bousyu($year),
-            'geshi' => $solarTerm->geshi($year),
-            'syousyo' => $solarTerm->syousyo($year),
-            'taisyo' => $solarTerm->taisyo($year),
-            'rissyuu' => $solarTerm->rissyuu($year),
-            'syosyo' => $solarTerm->syosyo($year),
-            'hakuro' => $solarTerm->hakuro($year),
-            'syuubun' => $solarTerm->syuubun($year),
-            'kanro' => $solarTerm->kanro($year),
-            'soukou' => $solarTerm->soukou($year),
-            'rittou' => $solarTerm->rittou($year),
-            'syousetsu' => $solarTerm->syousetsu($year),
-            'taisetsu' => $solarTerm->taisetsu($year),
-            'touji' => $solarTerm->touji($year),
-            'syoukan' => $solarTerm->syoukan($year),
-            'daikan' => $solarTerm->daikan($year),
-            'rissyun' => $solarTerm->rissyun($year),
-            'usui' => $solarTerm->usui($year),
-            'keichitsu' => $solarTerm->keichitsu($year),
+            'syunbun' => $SolarTerm->syunbun($year),
+            'seimei' => $SolarTerm->seimei($year),
+            'kokuu' => $SolarTerm->kokuu($year),
+            'rikka' => $SolarTerm->rikka($year),
+            'syouman' => $SolarTerm->syouman($year),
+            'bousyu' => $SolarTerm->bousyu($year),
+            'geshi' => $SolarTerm->geshi($year),
+            'syousyo' => $SolarTerm->syousyo($year),
+            'taisyo' => $SolarTerm->taisyo($year),
+            'rissyuu' => $SolarTerm->rissyuu($year),
+            'syosyo' => $SolarTerm->syosyo($year),
+            'hakuro' => $SolarTerm->hakuro($year),
+            'syuubun' => $SolarTerm->syuubun($year),
+            'kanro' => $SolarTerm->kanro($year),
+            'soukou' => $SolarTerm->soukou($year),
+            'rittou' => $SolarTerm->rittou($year),
+            'syousetsu' => $SolarTerm->syousetsu($year),
+            'taisetsu' => $SolarTerm->taisetsu($year),
+            'touji' => $SolarTerm->touji($year),
+            'syoukan' => $SolarTerm->syoukan($year),
+            'daikan' => $SolarTerm->daikan($year),
+            'rissyun' => $SolarTerm->rissyun($year),
+            'usui' => $SolarTerm->usui($year),
+            'keichitsu' => $SolarTerm->keichitsu($year),
         };
     }
 
@@ -150,9 +150,9 @@ trait FindSolarTerm
     protected function getNextSolarTermDate(string $method): DateTime|DateTimeImmutable
     {
         $year = $this->year;
-        $st = $this->findSolarTerm($method, $year);
+        $SolarTermDate = $this->findSolarTerm($method, $year);
 
-        if ($this->month > $st->month || ($this->month === $st->month && $this->day >= $st->day)) {
+        if ($this->month > $SolarTermDate->month || ($this->month === $SolarTermDate->month && $this->day >= $SolarTermDate->day)) {
             ++$year;
         }
 
@@ -183,9 +183,9 @@ trait FindSolarTerm
     protected function getBeforeSolarTermDate(string $method): DateTime|DateTimeImmutable
     {
         $year = $this->year;
-        $st = $this->findSolarTerm($method, $year);
+        $SolarTermDate = $this->findSolarTerm($method, $year);
 
-        if ($this->month < $st->month || ($this->month === $st->month && $this->day <= $st->day)) {
+        if ($this->month < $SolarTermDate->month || ($this->month === $SolarTermDate->month && $this->day <= $SolarTermDate->day)) {
             --$year;
         }
 
