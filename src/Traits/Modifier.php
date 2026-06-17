@@ -38,17 +38,17 @@ trait Modifier
      *
      * @return static
      */
-    public function nextHoliday()
+    public function nextHoliday(): static
     {
         /**
-         * @var  \JapaneseDate\DateTime|static|Modifier|\Carbon\Carbon $date
+         * @var  \JapaneseDate\DateTime|static|Modifier|\Carbon\Carbon $Date
          */
-        $date = $this;
+        $Date = $this;
         do {
-            $date = $date->addDay();
-        } while (!$date->is_holiday);
+            $Date = $Date->addDay();
+        } while (!$Date->is_holiday);
 
-        return $date;
+        return $Date;
     }
 
     /**
@@ -57,7 +57,7 @@ trait Modifier
      * @param int $week_day
      * @return static
      */
-    public function nextSixWeek($week_day)
+    public function nextSixWeek(int $week_day): static
     {
         if ($this->six_weekday === $week_day) {
             return $this;

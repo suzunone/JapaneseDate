@@ -40,7 +40,7 @@ function mkdir(string $path, int $permissions = 0777, bool $recursive = false): 
  * @param string $path
  * @return string|false
  */
-function realpath(string $path)
+function realpath(string $path): string|bool
 {
     if ($GLOBALS['_test_fs_realpath_fail'] ?? false) {
         return false;

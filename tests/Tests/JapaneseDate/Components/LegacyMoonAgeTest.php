@@ -87,7 +87,7 @@ class LegacyMoonAgeTest extends TestCase
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      * @dataProvider moonAgeProvider
      */
-    public function test_moonAge($year, $month, $day, $hour, $min, $sec, $expectedRounded): void
+    public function test_moonAge(int $year, int $month, int $day, float $hour, float $min, float $sec, int $expectedRounded): void
     {
         $moonAge = new LegacyMoonAge(new Astronomy());
         $result = $moonAge->moonAge($year, $month, $day, $hour, $min, $sec);
@@ -229,29 +229,18 @@ class LegacyMoonAgeTest extends TestCase
     private function makeSequencedAstronomy(array $sequence): Astronomy
     {
         return new class ($sequence) extends Astronomy {
-            /**
-             * @var array<int, array{0: float, 1: float}>
-             */
-            private $sequence;
-            /**
-             * @var int
-             */
-            private $sunIndex = 0;
+            private int $sunIndex = 0;
 
-            /**
-             * @var int
-             */
-            private $moonIndex = 0;
+            private int $moonIndex = 0;
 
             /**
              * @param array<int, array{0: float, 1: float}> $sequence
              */
-            public function __construct(array $sequence)
+            public function __construct(/**
+             * @readonly
+             */
+            private array $sequence)
             {
-                /**
-                 * @readonly
-                 */
-                $this->sequence = $sequence;
                 parent::__construct();
             }
 
@@ -264,7 +253,7 @@ class LegacyMoonAgeTest extends TestCase
              * @param float $sec
              * @return float
              */
-            public function longitudeSun($year, $month, $day, $hour, $min, $sec): float
+            public function longitudeSun(int $year, int $month, float $day, float $hour, float $min, float $sec): float
             {
                 $value = $this->sequence[min($this->sunIndex, count($this->sequence) - 1)][0];
                 $this->sunIndex++;
@@ -281,7 +270,7 @@ class LegacyMoonAgeTest extends TestCase
              * @param float $sec
              * @return float
              */
-            public function longitudeMoon($year, $month, $day, $hour, $min, $sec): float
+            public function longitudeMoon(int $year, int $month, int $day, float $hour, float $min, float $sec): float
             {
                 $value = $this->sequence[min($this->moonIndex, count($this->sequence) - 1)][1];
                 $this->moonIndex++;

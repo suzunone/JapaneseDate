@@ -37,5 +37,5 @@ interface MoonAgeAlgorithm
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
-    public function moonAge($year, $month, $day, $hour, $min, $sec): float;
+    public function moonAge(int $year, int $month, int $day, float $hour, float $min, float $sec): float;
 }

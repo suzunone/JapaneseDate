@@ -93,7 +93,7 @@ class Vsop87AstronomyTest extends TestCase
      * @return void
      * @dataProvider jplHorizonsApparentSolarLongitudeProvider
      */
-    public function test_longitudeSunMatchesJplHorizonsApparentSolarLongitude($year, $month, $day, $hour, $expectedLongitude): void
+    public function test_longitudeSunMatchesJplHorizonsApparentSolarLongitude(int $year, int $month, int $day, float $hour, float $expectedLongitude): void
     {
         $actualLongitude = (new Vsop87Astronomy())->longitudeSun($year, $month, $day, $hour, 0.0, 0.0);
         $this->assertEqualsWithDelta($expectedLongitude, $actualLongitude, 0.0005);
@@ -109,7 +109,7 @@ class Vsop87AstronomyTest extends TestCase
      * @return void
      * @dataProvider jplHorizonsApparentSolarLongitudeProvider
      */
-    public function test_longitudeSunAlwaysReturnsNormalizedAngle($year, $month, $day, $hour, $expectedLongitude): void
+    public function test_longitudeSunAlwaysReturnsNormalizedAngle(int $year, int $month, int $day, float $hour, float $expectedLongitude): void
     {
         $longitude = (new Vsop87Astronomy())->longitudeSun($year, $month, $day, $hour, 0.0, 0.0);
         $this->assertGreaterThanOrEqual(0.0, $longitude);

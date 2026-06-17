@@ -52,9 +52,8 @@ class LegacyMoonAge implements MoonAgeAlgorithm
 
     /**
      * 太陽・月の黄経計算および暦変換に使用する Astronomy インスタンス。
-     * @var \JapaneseDate\Components\Astronomy
      */
-    protected $astronomy;
+    protected Astronomy $astronomy;
 
     /**
      * @param Astronomy $astronomy 黄経計算・暦変換に使用する Astronomy インスタンス
@@ -85,7 +84,7 @@ class LegacyMoonAge implements MoonAgeAlgorithm
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      * @throws \Exception
      */
-    public function moonAge($year, $month, $day, $hour, $min, $sec): float
+    public function moonAge(int $year, int $month, int $day, float $hour, float $min, float $sec): float
     {
         $standardJulianDate = $this->jstToJulianDate($year, $month, $day, $hour, $min, $sec);
         $julian_date_0 = $standardJulianDate + self::LEGACY_JD_OFFSET;
@@ -199,7 +198,7 @@ class LegacyMoonAge implements MoonAgeAlgorithm
      * @return float UT ユリウス日
      * @throws \Exception
      */
-    protected function jstToJulianDate($year, $month, $day, $hour, $min, $sec): float
+    protected function jstToJulianDate(int $year, int $month, int $day, float $hour, float $min, float $sec): float
     {
         $jstMidnight = new DateTimeImmutable(
             sprintf('%04d-%02d-%02d 00:00:00', $year, $month, $day),

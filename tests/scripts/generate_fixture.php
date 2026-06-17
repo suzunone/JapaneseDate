@@ -102,8 +102,8 @@ if ($jsonContent === null) {
 }
 
 try {
-    $entries = json_decode($jsonContent, true, 512, 0);
-} catch (JsonException $exception) {
+    $entries = json_decode($jsonContent, true, 512, JSON_THROW_ON_ERROR);
+} catch (JsonException) {
     fwrite(STDERR, "Failed to parse JSON\n");
     exit(1);
 }
@@ -146,8 +146,8 @@ function loadNaojJson(string $path): array
     }
 
     try {
-        $decoded = json_decode((string) file_get_contents($path), true, 512, 0);
-    } catch (JsonException $exception) {
+        $decoded = json_decode((string) file_get_contents($path), true, 512, JSON_THROW_ON_ERROR);
+    } catch (JsonException) {
         return [];
     }
 
@@ -214,12 +214,8 @@ function buildHolidayMap(int $year, array $holidayEntries): array
         return [];
     }
 
-    $weekdayOf = static function (string $ymd): int {
-        return (int) (new DateTimeImmutable($ymd))->format('w');
-    };
-    $addDays = static function (string $ymd, int $days): string {
-        return (new DateTimeImmutable($ymd))->modify("{$days} day")->format('Y-m-d');
-    };
+    $weekdayOf = static fn (string $ymd): int => (int) (new DateTimeImmutable($ymd))->format('w');
+    $addDays = static fn (string $ymd, int $days): string => (new DateTimeImmutable($ymd))->modify("{$days} day")->format('Y-m-d');
 
     // 国民の休日: 前日・翌日がともに祝日で、自身は祝日でも日曜日でもない平日
     $holidays = $base;
@@ -471,8 +467,8 @@ function dateTimeToArray(DateTime $date): array
     set_error_handler(
         static function (int $severity, string $message, string $file): bool {
             return $severity === E_DEPRECATED
-                && strpos($message, 'Using null as an array offset is deprecated') !== false
-                && substr_compare($file, '/src/Components/JapaneseDate.php', -strlen('/src/Components/JapaneseDate.php')) === 0;
+                && str_contains($message, 'Using null as an array offset is deprecated')
+                && str_ends_with($file, '/src/Components/JapaneseDate.php');
         }
     );
 

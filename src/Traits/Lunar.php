@@ -262,7 +262,7 @@ trait Lunar
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      * @throws \JsonException
      */
-    protected function getSolarTermKey()
+    protected function getSolarTermKey(): bool|int
     {
         return $this->getLunarCalendar()->solar_term;
     }

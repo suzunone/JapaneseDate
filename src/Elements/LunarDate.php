@@ -89,7 +89,7 @@ class LunarDate
      *
      * @var array{0: int, 1: int|bool, 2: int, 3: int, 4: int|bool}
      */
-    protected $lunar;
+    protected array $lunar;
 
     /**
      * LunarDate を生成します。
@@ -102,10 +102,10 @@ class LunarDate
      * @throws ErrorException DAY_KEY が配列に存在しない場合
      * @throws \JsonException json_encode に失敗した場合
      */
-    public function __construct(array $lunar, $solar_term)
+    public function __construct(array $lunar, int|bool $solar_term)
     {
         if (!isset($lunar[self::DAY_KEY])) {
-            throw new ErrorException('undefined day key' . json_encode($lunar, 0) . json_encode($solar_term, 0));
+            throw new ErrorException('undefined day key' . json_encode($lunar, JSON_THROW_ON_ERROR) . json_encode($solar_term, JSON_THROW_ON_ERROR));
         }
 
         $lunar[self::SOLAR_TERM_KEY] = $solar_term;
@@ -124,16 +124,10 @@ class LunarDate
      */
     public function __isset($name): bool
     {
-        switch ($name) {
-            case 'year':
-            case 'month':
-            case 'day':
-            case 'is_leap_month':
-            case 'solar_term':
-                return true;
-            default:
-                return false;
-        }
+        return match ($name) {
+            'year', 'month', 'day', 'is_leap_month', 'solar_term' => true,
+            default => false,
+        };
     }
 
     /**
@@ -156,22 +150,16 @@ class LunarDate
      * @throws ErrorException        未定義のプロパティ名が指定された場合
      * @noinspection PhpMissingParamTypeInspection
      */
-    public function __get($name)
+    public function __get($name): bool|string|int
     {
-        switch ($name) {
-            case 'year':
-                return (int)  $this->lunar[self::YEAR_KEY];
-            case 'month':
-                return (int)  $this->lunar[self::MONTH_KEY];
-            case 'day':
-                return (int)  $this->lunar[self::DAY_KEY];
-            case 'is_leap_month':
-                return (bool) $this->lunar[self::IS_LEAP_MONTH_FLAG_KEY];
-            case 'solar_term':
-                return $this->lunar[self::SOLAR_TERM_KEY];
-            default:
-                throw new ErrorException('undefined property:' . $name);
-        }
+        return match ($name) {
+            'year'          => (int)  $this->lunar[self::YEAR_KEY],
+            'month'         => (int)  $this->lunar[self::MONTH_KEY],
+            'day'           => (int)  $this->lunar[self::DAY_KEY],
+            'is_leap_month' => (bool) $this->lunar[self::IS_LEAP_MONTH_FLAG_KEY],
+            'solar_term'    =>        $this->lunar[self::SOLAR_TERM_KEY],
+            default         => throw new ErrorException('undefined property:' . $name),
+        };
     }
 
     /**

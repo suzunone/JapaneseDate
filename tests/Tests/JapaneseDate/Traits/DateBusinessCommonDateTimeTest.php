@@ -380,9 +380,7 @@ class DateBusinessCommonDateTimeTest extends TestCase
     public function test_addOpenFilter_on_trait(): void
     {
         $dt = DateTime::factory('2026-05-30'); // 土曜
-        $dt->addOpenFilter(function (DateTimeInterface $d) {
-            return $d->format('Ymd') === '20260530';
-        });
+        $dt->addOpenFilter(fn (DateTimeInterface $d) => $d->format('Ymd') === '20260530');
         $this->assertTrue($dt->isBusinessDay());
     }
     /**
@@ -395,9 +393,7 @@ class DateBusinessCommonDateTimeTest extends TestCase
     public function test_addClosingFilter_on_trait(): void
     {
         $dt = DateTime::factory('2026-05-25'); // 月曜
-        $dt->addClosingFilter(function (DateTimeInterface $d) {
-            return $d->format('Ymd') === '20260525';
-        }, '特別休業');
+        $dt->addClosingFilter(fn (DateTimeInterface $d) => $d->format('Ymd') === '20260525', '特別休業');
         $this->assertFalse($dt->isBusinessDay());
         $this->assertSame('特別休業', $dt->getBusinessDayLabel());
     }
@@ -411,9 +407,7 @@ class DateBusinessCommonDateTimeTest extends TestCase
     public function test_setBusinessMacro_on_trait(): void
     {
         $dt = DateTime::factory('2026-05-30'); // 土曜
-        $dt->setBusinessMacro(function (DateTimeInterface $d) {
-            return true;
-        });
+        $dt->setBusinessMacro(fn (DateTimeInterface $d) => true);
         $this->assertTrue($dt->isBusinessDay());
     }
     /**
@@ -426,9 +420,7 @@ class DateBusinessCommonDateTimeTest extends TestCase
     public function test_setBusinessMacro_null_removes_macro(): void
     {
         $dt = DateTime::factory('2026-05-30'); // 土曜
-        $dt->setBusinessMacro(function (DateTimeInterface $d) {
-            return true;
-        });
+        $dt->setBusinessMacro(fn (DateTimeInterface $d) => true);
         $dt->setBusinessMacro(null);
         $this->assertFalse($dt->isBusinessDay()); // 土曜なので再び休業
     }

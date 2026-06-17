@@ -73,7 +73,7 @@ class CacheSettingTest extends TestCase
      */
     public function test_setCacheClosure(): void
     {
-        $closure = static function (string $key, Closure $fn) {
+        $closure = static function (string $key, Closure $fn): mixed {
             return $fn();
         };
         DateTime::setCacheClosure($closure);

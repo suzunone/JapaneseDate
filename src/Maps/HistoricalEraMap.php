@@ -55,7 +55,7 @@ class HistoricalEraMap extends Map
      *
      * @var array<int, array<string, string>>
      */
-    protected $map = [
+    protected array $map = [
         ['start' => '645-07-29T00:00:00+09:00', 'end' => '650-03-22T00:00:00+09:00', 'name' => '大化', 'kana' => 'タイカ', 'court' => Datetime::COURT_MAIN],
         ['start' => '650-03-22T00:00:00+09:00', 'end' => '655-02-11T00:00:00+09:00', 'name' => '白雉', 'kana' => 'ハクチ', 'court' => Datetime::COURT_MAIN],
         ['start' => '686-08-14T00:00:00+09:00', 'end' => '687-02-17T00:00:00+09:00', 'name' => '朱鳥', 'kana' => 'シュチョウ', 'court' => Datetime::COURT_MAIN],

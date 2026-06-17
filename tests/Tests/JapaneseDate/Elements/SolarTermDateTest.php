@@ -145,7 +145,7 @@ class SolarTermDateTest extends TestCase
      * @return void
      * @dataProvider solarTermMonthProvider
      */
-    public function test_construct_month_mapping($solar_term, $expected_month): void
+    public function test_construct_month_mapping(int $solar_term, int $expected_month): void
     {
         $obj = new SolarTermDate(2000, $solar_term, 1);
         $this->assertSame($expected_month, $obj->month);

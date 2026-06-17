@@ -270,7 +270,7 @@ class Vsop87Astronomy implements SunAlgorithm
      * @param float $sec 秒
      * @return float 太陽の視黄経（度）
      */
-    public function longitudeSun($year, $month, $day, $hour, $min, $sec): float
+    public function longitudeSun(int $year, int $month, float $day, float $hour, float $min, float $sec): float
     {
         $key = __METHOD__ . '-' . $year . '-' . $month . '-' . $day . '-' . $hour . '-' . $min . '-' . $sec;
 
@@ -296,7 +296,7 @@ class Vsop87Astronomy implements SunAlgorithm
      * @param float $sec 秒
      * @return float 天文計算用のユリウス日
      */
-    protected function astronomicalJulianDate($year, $month, $day, $hour, $min, $sec): float
+    protected function astronomicalJulianDate(int $year, int $month, float $day, float $hour, float $min, float $sec): float
     {
         return gregoriantojd($month, (int) floor($day), $year)
             - 0.5
@@ -317,7 +317,7 @@ class Vsop87Astronomy implements SunAlgorithm
      * @param float $julianDate 天文計算用のユリウス日
      * @return float 太陽の視黄経（度）
      */
-    protected function apparentSolarLongitude($julianDate): float
+    protected function apparentSolarLongitude(float $julianDate): float
     {
         $t = ($julianDate - self::J2000) / 365250.0;
         $earthLongitude = rad2deg($this->earthHeliocentricLongitude($t));
@@ -339,7 +339,7 @@ class Vsop87Astronomy implements SunAlgorithm
      * @param float $t J2000.0 からのユリウス千年単位の時間引数
      * @return float 地球の日心黄経（ラジアン）
      */
-    protected function earthHeliocentricLongitude($t): float
+    protected function earthHeliocentricLongitude(float $t): float
     {
         return $this->normalizeRadians(
             $this->vsopSeries(self::L0, $t)
@@ -357,7 +357,7 @@ class Vsop87Astronomy implements SunAlgorithm
      * @param float $angle 正規化前の角度（ラジアン）
      * @return float 正規化後の角度（ラジアン）
      */
-    protected function normalizeRadians($angle): float
+    protected function normalizeRadians(float $angle): float
     {
         $twoPi = 2.0 * M_PI;
 
@@ -374,7 +374,7 @@ class Vsop87Astronomy implements SunAlgorithm
      * @param float $t J2000.0 からのユリウス千年単位の時間引数
      * @return float 系列の評価値（ラジアン）
      */
-    protected function vsopSeries($terms, $t): float
+    protected function vsopSeries(array $terms, float $t): float
     {
         $result = 0.0;
         foreach ($terms as [$a, $b, $c]) {
@@ -390,7 +390,7 @@ class Vsop87Astronomy implements SunAlgorithm
      * @param float $angle 正規化前の角度（度）
      * @return float 正規化後の角度（0 ≤ angle < 360）
      */
-    protected function normalizeAngle($angle): float
+    protected function normalizeAngle(float $angle): float
     {
         return $angle - 360.0 * floor($angle / 360.0);
     }

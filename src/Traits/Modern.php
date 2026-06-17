@@ -383,7 +383,7 @@ trait Modern
      */
     protected function viewEraName(): string
     {
-        return $this->jisEra->getEraNameString($this->getEraName());
+        return $this->JisEra->getEraNameString($this->getEraName());
     }
 
     /**
@@ -410,7 +410,7 @@ trait Modern
      */
     protected function getEraName(): int
     {
-        return $this->jisEra->getEraKey($this);
+        return $this->JisEra->getEraKey($this);
     }
 
     /**
@@ -434,10 +434,10 @@ trait Modern
      * @param int|null $era_key 元号定数（省略時は {@see getEraName()} で自動判定）
      * @return int 元号年（1始まりの正整数）。元号なしの場合は 0。
      */
-    protected function getEraYear($era_key = null): int
+    protected function getEraYear(?int $era_key = null): int
     {
         $era_key = $era_key ?? $this->getEraName();
 
-        return $this->jisEra->getEraYear($this->year, $era_key);
+        return $this->JisEra->getEraYear($this->year, $era_key);
     }
 }

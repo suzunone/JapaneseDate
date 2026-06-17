@@ -1314,7 +1314,7 @@ $dt->setClosingWeekdays([0, 6]); // 日・土を休業に
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int[] | `$weekdays` | —  | 休業曜日の配列（例: [0, 6] で日・土） |
+| array | `$weekdays` | —  | 休業曜日の配列（例: [0, 6] で日・土） |
 
 **Returns:** DateBusinessCommon — メソッドチェーン用に自身を返します
 ---

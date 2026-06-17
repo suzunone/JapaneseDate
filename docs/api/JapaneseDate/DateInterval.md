@@ -452,7 +452,7 @@ $dt->setClosingWeekdays([0, 6]); // 日・土を休業に
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| int[] | `$weekdays` | —  | 休業曜日の配列（例: [0, 6] で日・土） |
+| array | `$weekdays` | —  | 休業曜日の配列（例: [0, 6] で日・土） |
 
 **Returns:** DateBusinessCommon — メソッドチェーン用に自身を返します
 ---
@@ -684,7 +684,7 @@ echo $result->format('Y-m-d');
 ### isBusinessDay
 
 ```php
-static public bool isBusinessDay($date)
+static public bool isBusinessDay($DateTime)
 ```
 
 指定した日時が営業日かどうかを判定します。
@@ -696,7 +696,7 @@ static public bool isBusinessDay($date)
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| [DateTime](../JapaneseDate/DateTime.md) | `$date` | —  | 判定対象の日付 |
+| [DateTime](../JapaneseDate/DateTime.md) | `$DateTime` | —  |  |
 
 **Returns:** bool — 営業日であれば true、非営業日であれば false
 ---

@@ -99,9 +99,7 @@ class DateBusinessCommonCalendarTest extends TestCase
         $calendar = new Calendar('2026-05-25'); // 月曜
         $result = $calendar->getBusinessDaysBySpan('2026-05-31');
 
-        $dates = array_map(static function ($dt) {
-            return $dt->format('Y-m-d');
-        }, $result);
+        $dates = array_map(static fn ($dt) => $dt->format('Y-m-d'), $result);
         $this->assertContains('2026-05-25', $dates);
         $this->assertContains('2026-05-26', $dates);
         $this->assertContains('2026-05-27', $dates);
@@ -155,9 +153,7 @@ class DateBusinessCommonCalendarTest extends TestCase
         $calendar = new Calendar('2026-05-29'); // 金曜
         $result = $calendar->getBusinessDaysByLimit(2);
 
-        $dates = array_map(static function ($dt) {
-            return $dt->format('Y-m-d');
-        }, $result);
+        $dates = array_map(static fn ($dt) => $dt->format('Y-m-d'), $result);
         $this->assertSame('2026-05-29', $dates[0]); // 金曜
         $this->assertSame('2026-06-01', $dates[1]); // 月曜（土日スキップ）
     }
@@ -176,9 +172,7 @@ class DateBusinessCommonCalendarTest extends TestCase
         $calendar->setBusinessConfig($config);
 
         $result = $calendar->getBusinessDaysByLimit(4);
-        $dates = array_map(static function ($dt) {
-            return $dt->format('Y-m-d');
-        }, $result);
+        $dates = array_map(static fn ($dt) => $dt->format('Y-m-d'), $result);
 
         $this->assertNotContains('2026-05-27', $dates); // 臨時休業
         $this->assertContains('2026-05-28', $dates);
@@ -241,9 +235,7 @@ class DateBusinessCommonCalendarTest extends TestCase
 
         $calendar = new Calendar('2026-05-25');
         $result = $calendar->getBusinessDaysBySpan('2026-05-29');
-        $dates = array_map(static function ($dt) {
-            return $dt->format('Y-m-d');
-        }, $result);
+        $dates = array_map(static fn ($dt) => $dt->format('Y-m-d'), $result);
         $this->assertNotContains('2026-05-27', $dates);
         $this->assertCount(4, $dates);
     }
@@ -336,9 +328,7 @@ class DateBusinessCommonCalendarTest extends TestCase
     {
         // 土曜でもフィルタで営業日にする
         $calendar = new Calendar('2026-05-30'); // 土曜
-        $calendar->addOpenFilter(function (DateTimeInterface $d) {
-            return $d->format('Ymd') === '20260530';
-        });
+        $calendar->addOpenFilter(fn (DateTimeInterface $d) => $d->format('Ymd') === '20260530');
         $this->assertTrue($calendar->isBusinessDayByConfig());
     }
     /**
@@ -350,9 +340,7 @@ class DateBusinessCommonCalendarTest extends TestCase
     {
         // 月曜でもフィルタで休業日にする
         $calendar = new Calendar('2026-05-25'); // 月曜
-        $calendar->addClosingFilter(function (DateTimeInterface $d) {
-            return $d->format('Ymd') === '20260525';
-        }, '特別休業');
+        $calendar->addClosingFilter(fn (DateTimeInterface $d) => $d->format('Ymd') === '20260525', '特別休業');
         $this->assertFalse($calendar->isBusinessDayByConfig());
     }
     /**
@@ -364,9 +352,7 @@ class DateBusinessCommonCalendarTest extends TestCase
     {
         // マクロで常に営業日
         $calendar = new Calendar('2026-05-30'); // 土曜
-        $calendar->setBusinessMacro(function (DateTimeInterface $d) {
-            return true;
-        });
+        $calendar->setBusinessMacro(fn (DateTimeInterface $d) => true);
         $this->assertTrue($calendar->isBusinessDayByConfig());
     }
     /**
@@ -472,12 +458,13 @@ class ThrowingDateTimeForBusinessLimit extends DateTime
      * @param mixed $interval
      * @param mixed $value
      * @param mixed $overflow
+     * @param mixed $anchorDay
      * @return static
      * @throws \RuntimeException
      * @noinspection PhpUnused
      */
     #[\ReturnTypeWillChange]
-    public function add($interval, $value = 1, $overflow = null)
+    public function add($interval, $value = 1, $overflow = null, $anchorDay = null)
     {
         throw new \RuntimeException('DateTime add failed.');
     }

@@ -38,9 +38,8 @@ class ELP2000 implements MoonAlgorithm
 
     /**
      * BCMath 計算時の小数桁数です。
-     * @var int
      */
-    protected $scale;
+    protected int $scale;
 
     /**
      * @param int $scale
@@ -62,7 +61,7 @@ class ELP2000 implements MoonAlgorithm
      * @param int $scale 小数桁数
      * @return $this
      */
-    public function setScale($scale): self
+    public function setScale(int $scale): self
     {
         if ($scale < 0) {
             throw new InvalidArgumentException('BCMath scale must be greater than or equal to 0.');
@@ -113,7 +112,7 @@ class ELP2000 implements MoonAlgorithm
      * @return float 月の視黄経（度、0〜360）
      * @throws \Exception
      */
-    public function longitudeMoon($year, $month, $day, $hour, $min, $sec): float
+    public function longitudeMoon(int $year, int $month, int $day, float $hour, float $min, float $sec): float
     {
         $utc = new DateTimeImmutable(
             sprintf('%04d-%02d-%02d %02d:%02d:%02d', $year, $month, $day, (int)$hour, (int)$min, (int)$sec),
@@ -142,7 +141,7 @@ class ELP2000 implements MoonAlgorithm
      * @param int|float|string $julianDate TDB のユリウス日
      * @return numeric-string 月の地心黄経（度、0〜360）
      */
-    public function preciseLongitude($julianDate): string
+    public function preciseLongitude(int|float|string $julianDate): string
     {
         $jd = $this->decimal($julianDate);
         $t = $this->julianCenturiesFromJ2000($jd);
@@ -166,7 +165,7 @@ class ELP2000 implements MoonAlgorithm
      * @param int|float|string $value
      * @return numeric-string
      */
-    protected function decimal($value): string
+    protected function decimal(int|float|string $value): string
     {
         if (is_int($value)) {
             return (string)$value;
@@ -186,10 +185,10 @@ class ELP2000 implements MoonAlgorithm
     /**
      * 科学記法を含む数値文字列を BCMath が受け付ける形式に変換します。
      *
-     * @param string $value
+     * @param numeric-string $value
      * @return numeric-string
      */
-    protected function bcNormalize($value): string
+    protected function bcNormalize(string $value): string
     {
         $value = trim($value);
 
@@ -197,7 +196,7 @@ class ELP2000 implements MoonAlgorithm
             throw new InvalidArgumentException('ELP2000 numeric value must be numeric: ' . $value);
         }
 
-        if (strpos($value, 'e') !== false || strpos($value, 'E') !== false) {
+        if (str_contains($value, 'e') || str_contains($value, 'E')) {
             return sprintf('%.40F', (float)$value);
         }
 
@@ -207,10 +206,10 @@ class ELP2000 implements MoonAlgorithm
     /**
      * J2000.0 からのユリウス世紀を求めます。
      *
-     * @param string $julianDate TDB のユリウス日
+     * @param numeric-string $julianDate TDB のユリウス日
      * @return numeric-string J2000.0 起算のユリウス世紀
      */
-    protected function julianCenturiesFromJ2000($julianDate): string
+    protected function julianCenturiesFromJ2000(string $julianDate): string
     {
         return bcdiv(
             bcsub($julianDate, self::BC_J2000, $this->scale),
@@ -224,10 +223,10 @@ class ELP2000 implements MoonAlgorithm
      *
      * 返り値は ELP2000 内部単位: lon/lat は角秒 (arcsec), r は正規化距離。
      *
-     * @param string $t J2000.0 起算のユリウス世紀
+     * @param numeric-string $t J2000.0 起算のユリウス世紀
      * @return array{0: float, 1: float, 2: float} [lon_arcsec, lat_arcsec, r_normalized]
      */
-    protected function computeSeries($t): array
+    protected function computeSeries(string $t): array
     {
         return [
             $this->computeLongitudeSeries($t),
@@ -245,10 +244,10 @@ class ELP2000 implements MoonAlgorithm
      * computeLongitudeSeries / computeLatitudeSeries / computeDistanceSeries の
      * それぞれで個別に呼び出しても問題ありません。
      *
-     * @param string $t J2000.0 起算のユリウス世紀
+     * @param numeric-string $t J2000.0 起算のユリウス世紀
      * @return array{0: float, 1: float, 2: float, 3: float, 4: float, 5: float, 6: float, 7: float, 8: float, 9: float, 10: float, 11: float, 12: float, 13: float, 14: float, 15: float, 16: float} [ft, fd, flp, fl, ff, fpd, fplp, fpl, fpf, fp1, fp2, fp3, fp4, fp5, fp6, fp7, fp8]
      */
-    protected function seriesArgumentsAsFloats($t): array
+    protected function seriesArgumentsAsFloats(string $t): array
     {
         $args = $this->lunarArguments($t);
         $linArgs = $this->linearLunarArguments($t);
@@ -281,10 +280,10 @@ class ELP2000 implements MoonAlgorithm
      * 黄緯・距離の級数は評価しないため、{@see preciseLongitude} のように
      * 黄経のみを必要とする呼び出しでは {@see computeSeries} より高速です。
      *
-     * @param string $t J2000.0 起算のユリウス世紀
+     * @param numeric-string $t J2000.0 起算のユリウス世紀
      * @return float lon_arcsec（ELP2000 内部単位、角秒）
      */
-    protected function computeLongitudeSeries($t): float
+    protected function computeLongitudeSeries(string $t): float
     {
         [$ft, $fd, $flp, $fl, $ff, $fpd, $fplp, $fpl, $fpf, $fp1, $fp2, $fp3, $fp4, $fp5, $fp6, $fp7, $fp8]
             = $this->seriesArgumentsAsFloats($t);
@@ -315,10 +314,10 @@ class ELP2000 implements MoonAlgorithm
      * 黄経・距離の級数は評価しないため、{@see preciseLatitude} のように
      * 黄緯のみを必要とする呼び出しでは {@see computeSeries} より高速です。
      *
-     * @param string $t J2000.0 起算のユリウス世紀
+     * @param numeric-string $t J2000.0 起算のユリウス世紀
      * @return float lat_arcsec（ELP2000 内部単位、角秒）
      */
-    protected function computeLatitudeSeries($t): float
+    protected function computeLatitudeSeries(string $t): float
     {
         [$ft, $fd, $flp, $fl, $ff, $fpd, $fplp, $fpl, $fpf, $fp1, $fp2, $fp3, $fp4, $fp5, $fp6, $fp7, $fp8]
             = $this->seriesArgumentsAsFloats($t);
@@ -349,10 +348,10 @@ class ELP2000 implements MoonAlgorithm
      * 黄経・黄緯の級数は評価しないため、{@see preciseDistance} のように
      * 距離のみを必要とする呼び出しでは {@see computeSeries} より高速です。
      *
-     * @param string $t J2000.0 起算のユリウス世紀
+     * @param numeric-string $t J2000.0 起算のユリウス世紀
      * @return float r_normalized（ELP2000 内部単位、正規化距離）
      */
-    protected function computeDistanceSeries($t): float
+    protected function computeDistanceSeries(string $t): float
     {
         [$ft, $fd, $flp, $fl, $ff, $fpd, $fplp, $fpl, $fpf, $fp1, $fp2, $fp3, $fp4, $fp5, $fp6, $fp7, $fp8]
             = $this->seriesArgumentsAsFloats($t);
@@ -380,10 +379,10 @@ class ELP2000 implements MoonAlgorithm
     /**
      * 月の基本引数 D, l', l, F を求めます（高次多項式）。
      *
-     * @param string $t J2000.0 起算のユリウス世紀
+     * @param numeric-string $t J2000.0 起算のユリウス世紀
      * @return array{d: numeric-string, lp: numeric-string, l: numeric-string, f: numeric-string}
      */
-    protected function lunarArguments($t): array
+    protected function lunarArguments(string $t): array
     {
         $d = $this->polynomial([
             '-1.5436467606527627e-10', '3.1973462269173895e-8',
@@ -416,10 +415,10 @@ class ELP2000 implements MoonAlgorithm
      * BCMath は科学記法を受け付けないため係数は事前に正規化されます。
      *
      * @param list<numeric-string> $coefficients 高次から低次へ並べた係数
-     * @param string $t
+     * @param numeric-string $t
      * @return numeric-string
      */
-    protected function polynomial($coefficients, $t): string
+    protected function polynomial(array $coefficients, string $t): string
     {
         $result = $this->bcNormalize($coefficients[0]);
 
@@ -433,10 +432,10 @@ class ELP2000 implements MoonAlgorithm
     /**
      * 摂動用の一次近似月引数を求めます。
      *
-     * @param string $t J2000.0 起算のユリウス世紀
+     * @param numeric-string $t J2000.0 起算のユリウス世紀
      * @return array{d: numeric-string, lp: numeric-string, l: numeric-string, f: numeric-string}
      */
-    protected function linearLunarArguments($t): array
+    protected function linearLunarArguments(string $t): array
     {
         return [
             'd' => $this->add('5.198466741027443', $this->mul('7771.377146811758', $t)),
@@ -449,11 +448,11 @@ class ELP2000 implements MoonAlgorithm
     /**
      * BCMath による加算を行います。
      *
-     * @param string $left
-     * @param string $right
+     * @param numeric-string $left
+     * @param numeric-string $right
      * @return numeric-string
      */
-    protected function add($left, $right): string
+    protected function add(string $left, string $right): string
     {
         return bcadd($this->bcNormalize($left), $this->bcNormalize($right), $this->scale);
     }
@@ -461,11 +460,11 @@ class ELP2000 implements MoonAlgorithm
     /**
      * BCMath による乗算を行います。
      *
-     * @param string $left
-     * @param string $right
+     * @param numeric-string $left
+     * @param numeric-string $right
      * @return numeric-string
      */
-    protected function mul($left, $right): string
+    protected function mul(string $left, string $right): string
     {
         return bcmul($this->bcNormalize($left), $this->bcNormalize($right), $this->scale);
     }
@@ -473,10 +472,10 @@ class ELP2000 implements MoonAlgorithm
     /**
      * 惑星平均黄経 p1...p8 を求めます。
      *
-     * @param string $t J2000.0 起算のユリウス世紀
+     * @param numeric-string $t J2000.0 起算のユリウス世紀
      * @return array{p1: numeric-string, p2: numeric-string, p3: numeric-string, p4: numeric-string, p5: numeric-string, p6: numeric-string, p7: numeric-string, p8: numeric-string}
      */
-    protected function planetaryArguments($t): array
+    protected function planetaryArguments(string $t): array
     {
         return [
             'p1' => $this->add('4.4026088424029615', $this->mul('2608.7903141574106', $t)),
@@ -501,7 +500,7 @@ class ELP2000 implements MoonAlgorithm
      * @param float $t J2000.0 起算のユリウス世紀
      * @return float 黄道面黄経（rad）
      */
-    protected function eclipticLonRadFromSeries($lonArcsec, $t): float
+    protected function eclipticLonRadFromSeries(float $lonArcsec, float $t): float
     {
         $rad = 648000.0 / M_PI;
         $ft2 = $t * $t;
@@ -524,7 +523,7 @@ class ELP2000 implements MoonAlgorithm
      * @param int|float|string $julianDate TDB のユリウス日
      * @return array{0: float, 1: float, 2: float} [x, y, z] km
      */
-    public function getPosition($julianDate): array
+    public function getPosition(int|float|string $julianDate): array
     {
         $pos = $this->getPrecisePosition($julianDate);
 
@@ -539,7 +538,7 @@ class ELP2000 implements MoonAlgorithm
      * @param int|float|string $julianDate TDB のユリウス日
      * @return array{0: numeric-string, 1: numeric-string, 2: numeric-string} [x, y, z] km
      */
-    public function getPrecisePosition($julianDate): array
+    public function getPrecisePosition(int|float|string $julianDate): array
     {
         $jd = $this->decimal($julianDate);
         $t = $this->julianCenturiesFromJ2000($jd);
@@ -557,10 +556,10 @@ class ELP2000 implements MoonAlgorithm
      * 移植元 JS: ELP2000_82b.convertToInertialEclipticOfJ2000(r, t)
      *
      * @param array{0: numeric-string, 1: numeric-string, 2: numeric-string} $position [lon_arcsec, lat_arcsec, r_normalized]
-     * @param string $t J2000.0 起算のユリウス世紀
+     * @param numeric-string $t J2000.0 起算のユリウス世紀
      * @return array{0: numeric-string, 1: numeric-string, 2: numeric-string} [x, y, z] km
      */
-    protected function convertToInertialEclipticOfJ2000($position, $t): array
+    protected function convertToInertialEclipticOfJ2000(array $position, string $t): array
     {
         $rad = 648000.0 / M_PI;
         $a0 = 384747.9806448954;
@@ -610,7 +609,7 @@ class ELP2000 implements MoonAlgorithm
      * @param int|float|string $julianDate TDB のユリウス日
      * @return float 月の地心黄経（度）
      */
-    public function longitude($julianDate): float
+    public function longitude(int|float|string $julianDate): float
     {
         return (float)$this->preciseLongitude($julianDate);
     }
@@ -623,7 +622,7 @@ class ELP2000 implements MoonAlgorithm
      * @param int|float|string $julianDate TDB のユリウス日
      * @return float 月の地心黄緯（度）
      */
-    public function latitude($julianDate): float
+    public function latitude(int|float|string $julianDate): float
     {
         return (float)$this->preciseLatitude($julianDate);
     }
@@ -634,7 +633,7 @@ class ELP2000 implements MoonAlgorithm
      * @param int|float|string $julianDate TDB のユリウス日
      * @return numeric-string 月の地心黄緯（度）
      */
-    public function preciseLatitude($julianDate): string
+    public function preciseLatitude(int|float|string $julianDate): string
     {
         $jd = $this->decimal($julianDate);
         $t = $this->julianCenturiesFromJ2000($jd);
@@ -654,7 +653,7 @@ class ELP2000 implements MoonAlgorithm
      * @param int|float|string $julianDate TDB のユリウス日
      * @return float 月までの距離（km）
      */
-    public function distance($julianDate): float
+    public function distance(int|float|string $julianDate): float
     {
         return (float)$this->preciseDistance($julianDate);
     }
@@ -665,7 +664,7 @@ class ELP2000 implements MoonAlgorithm
      * @param int|float|string $julianDate TDB のユリウス日
      * @return numeric-string 月までの距離（km）
      */
-    public function preciseDistance($julianDate): string
+    public function preciseDistance(int|float|string $julianDate): string
     {
         $jd = $this->decimal($julianDate);
         $t = $this->julianCenturiesFromJ2000($jd);

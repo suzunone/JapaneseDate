@@ -161,10 +161,8 @@ class EraTest extends TestCase
     /**
      * DateTime インスタンスで getEraKey() が正しい元号定数を返すこと。
      * @dataProvider eraKeyProvider
-     * @param string $dateStr
-     * @param int $expectedEra
      */
-    public function test_getEraKey_with_DateTime($dateStr, $expectedEra): void
+    public function test_getEraKey_with_DateTime(string $dateStr, int $expectedEra): void
     {
         $dt = new DateTime($dateStr);
         $era = new JisEra();
@@ -173,10 +171,8 @@ class EraTest extends TestCase
     /**
      * DateTimeImmutable インスタンスでも getEraKey() が正しい元号定数を返すこと。
      * @dataProvider eraKeyProvider
-     * @param string $dateStr
-     * @param int $expectedEra
      */
-    public function test_getEraKey_with_DateTimeImmutable($dateStr, $expectedEra): void
+    public function test_getEraKey_with_DateTimeImmutable(string $dateStr, int $expectedEra): void
     {
         $dt = new DateTimeImmutable($dateStr);
         $era = new JisEra();
@@ -188,11 +184,8 @@ class EraTest extends TestCase
     /**
      * getEraYear() が正しい元号年を返すこと。
      * @dataProvider eraYearProvider
-     * @param int $gregorianYear
-     * @param int $eraKey
-     * @param int $expectedYear
      */
-    public function test_getEraYear($gregorianYear, $eraKey, $expectedYear): void
+    public function test_getEraYear(int $gregorianYear, int $eraKey, int $expectedYear): void
     {
         $era = new JisEra();
         $this->assertSame($expectedYear, $era->getEraYear($gregorianYear, $eraKey));
@@ -200,10 +193,8 @@ class EraTest extends TestCase
     /**
      * getEraNameString() が正しい元号名を返すこと。
      * @dataProvider eraNameProvider
-     * @param int $eraKey
-     * @param string $expectedName
      */
-    public function test_getEraNameString($eraKey, $expectedName): void
+    public function test_getEraNameString(int $eraKey, string $expectedName): void
     {
         $era = new JisEra();
         $this->assertSame($expectedName, $era->getEraNameString($eraKey));
@@ -233,31 +224,43 @@ class EraTest extends TestCase
     /**
      * parseJisDate() が各書式を正しく Unix タイムスタンプへ変換すること。
      * @dataProvider parseJisDateProvider
-     * @param string $input
-     * @param int|float|null $expected
      */
-    public function test_parseJisDate($input, $expected): void
+    public function test_parseJisDate(string $input, int|float|null $expected): void
     {
         $era = new JisEra();
         $this->assertSame($expected, $era->parseJisDate($input, new DateTimeZone('Asia/Tokyo')));
     }
     /**
-     * parseJisDate() がデフォルトタイムゾーンで和暦・JIS元号形式を解釈すること。
+     * parseJisDate() がタイムゾーン未指定の元号形式を Asia/Tokyo で解釈すること。
      */
-    public function test_parseJisDate_uses_default_timezone_for_japanese_formats(): void
+    public function test_parseJisDate_uses_jst_for_era_formats(): void
     {
         $defaultTimezone = date_default_timezone_get();
         date_default_timezone_set('America/New_York');
 
         try {
             $era = new JisEra();
-            $timestamp = $era->parseJisDate('R7-05-01');
-            $date = DateTimeImmutable::createFromTimestamp($timestamp, new DateTimeZone('America/New_York'));
+            $alphabetTimestamp = $era->parseJisDate('R7-05-01');
+            $kanjiTimestamp = $era->parseJisDate('令和7年5月1日 12時34分56秒');
+            $alphabetDate = DateTimeImmutable::createFromTimestamp($alphabetTimestamp, new DateTimeZone('America/New_York'));
+            $kanjiDate = DateTimeImmutable::createFromTimestamp($kanjiTimestamp, new DateTimeZone('America/New_York'));
 
-            $this->assertSame('2025-05-01 00:00:00 -04:00', $date->format('Y-m-d H:i:s P'));
+            $this->assertSame('2025-04-30 11:00:00 -04:00', $alphabetDate->format('Y-m-d H:i:s P'));
+            $this->assertSame('2025-04-30 23:34:56 -04:00', $kanjiDate->format('Y-m-d H:i:s P'));
         } finally {
             date_default_timezone_set($defaultTimezone);
         }
+    }
+    /**
+     * parseJisDate() が明示指定された America/New_York で元号形式を解釈すること。
+     */
+    public function test_parseJisDate_uses_explicit_american_timezone_for_era_format(): void
+    {
+        $timezone = new DateTimeZone('America/New_York');
+        $timestamp = (new JisEra())->parseJisDate('令和7年5月1日 12時34分56秒', $timezone);
+        $date = DateTimeImmutable::createFromTimestamp($timestamp, $timezone);
+
+        $this->assertSame('2025-05-01 12:34:56 -04:00', $date->format('Y-m-d H:i:s P'));
     }
     /**
      * @return void

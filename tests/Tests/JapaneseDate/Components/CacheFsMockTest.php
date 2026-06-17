@@ -42,9 +42,7 @@ class CacheFsMockTest extends TestCase
         Cache::setCacheFilePath('/nonexistent/cache/path');
         $this->expectException(RuntimeException::class);
         $this->expectExceptionMessage('キャッシュディレクトリを作成できません');
-        Cache::forever('key', static function () {
-            return 'value';
-        });
+        Cache::forever('key', static fn () => 'value');
     }
     /**
      * realpath が false を返した場合に RuntimeException をスローすることを確認する。
@@ -59,8 +57,6 @@ class CacheFsMockTest extends TestCase
         Cache::setCacheFilePath('/nonexistent/cache/path');
         $this->expectException(RuntimeException::class);
         $this->expectExceptionMessage('キャッシュディレクトリを解決できません');
-        Cache::forever('key', static function () {
-            return 'value';
-        });
+        Cache::forever('key', static fn () => 'value');
     }
 }

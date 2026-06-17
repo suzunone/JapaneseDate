@@ -31,7 +31,7 @@ trait DeltaTTrait
      * @param float $y 小数年
      * @return float ΔT 秒
      */
-    protected function deltaTPolynomialForDecimalYear($y): float
+    protected function deltaTPolynomialForDecimalYear(float $y): float
     {
         if ($y < -500.0) {
             $u = ($y - 1820.0) / 100.0;
@@ -164,7 +164,7 @@ trait DeltaTTrait
      * @param int $month グレゴリオ暦の月
      * @return float ΔT 秒
      */
-    protected function approximateDeltaTSeconds($year, $month): float
+    protected function approximateDeltaTSeconds(int $year, int $month): float
     {
         $y = $year + ($month - 0.5) / 12.0;
 

@@ -57,7 +57,7 @@ trait SeventyTwoKou
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    public function nextSeventyTwoKou()
+    public function nextSeventyTwoKou(): static
     {
         $nextTs = $this->SeventyTwoKouCalculator->getNextKouStartTimestamp($this);
 
@@ -81,7 +81,7 @@ trait SeventyTwoKou
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    public function previousSeventyTwoKou()
+    public function previousSeventyTwoKou(): static
     {
         $prevTs = $this->SeventyTwoKouCalculator->getPreviousKouStartTimestamp($this);
 

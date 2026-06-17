@@ -51,14 +51,14 @@ class JisEra
      *
      * @var static|null
      */
-    protected static $instance;
+    protected static ?self $instance = null;
 
     /**
      * 元号定数と元号名文字列のマップ。
      *
      * @var array<int, string>
      */
-    protected $eraNames = [
+    protected array $eraNames = [
         DateTime::ERA_MEIJI => '明治',
         DateTime::ERA_TAISHO => '大正',
         DateTime::ERA_SHOWA => '昭和',
@@ -72,7 +72,7 @@ class JisEra
      *
      * @var array<int, int>
      */
-    protected $eraStartYears = [
+    protected array $eraStartYears = [
         DateTime::ERA_MEIJI => 1868,
         DateTime::ERA_TAISHO => 1912,
         DateTime::ERA_SHOWA => 1926,
@@ -88,7 +88,7 @@ class JisEra
      *
      * @var array<string, int>
      */
-    protected $eraParseBaseYears = [
+    protected array $eraParseBaseYears = [
         '明治' => 1867,
         '大正' => 1911,
         '昭和' => 1925,
@@ -106,7 +106,7 @@ class JisEra
      *
      * @var array<int, int>
      */
-    protected $eraStartTimestamps = [];
+    protected array $eraStartTimestamps = [];
 
     /**
      * Era コンストラクタ。
@@ -124,8 +124,8 @@ class JisEra
         ];
 
         foreach ($starts as $era => $dateStr) {
-            $dt = new DateTimeImmutable($dateStr);
-            $this->eraStartTimestamps[$era] = $dt->getTimestamp();
+            $DateTimeImmutable = new DateTimeImmutable($dateStr);
+            $this->eraStartTimestamps[$era] = $DateTimeImmutable->getTimestamp();
         }
     }
 
@@ -134,7 +134,7 @@ class JisEra
      *
      * @return static
      */
-    public static function factory()
+    public static function factory(): static
     {
         if (static::$instance === null) {
             static::$instance = new static();
@@ -151,7 +151,7 @@ class JisEra
      * @param DateTimeInterface $date 判定対象の日付
      * @return int 元号定数（{@see DateTime::ERA_MEIJI} ～ {@see DateTime::ERA_REIWA}）。明治開始前は 0。
      */
-    public function getEraKey($date): int
+    public function getEraKey(DateTimeInterface $date): int
     {
         $ts = $date->getTimestamp();
 
@@ -187,7 +187,7 @@ class JisEra
      * @param int $eraKey 元号定数
      * @return int 元号年（1始まりの正整数）。元号なしまたは元号開始年前は 0。
      */
-    public function getEraYear($gregorianYear, $eraKey): int
+    public function getEraYear(int $gregorianYear, int $eraKey): int
     {
         if (!isset($this->eraStartYears[$eraKey]) || $gregorianYear < $this->eraStartYears[$eraKey]) {
             return 0;
@@ -202,7 +202,7 @@ class JisEra
      * @param int $eraKey 元号定数
      * @return string 元号名（「明治」「大正」「昭和」「平成」「令和」のいずれか）。未知のキーは空文字列。
      */
-    public function getEraNameString($eraKey): string
+    public function getEraNameString(int $eraKey): string
     {
         return $this->eraNames[$eraKey] ?? '';
     }
@@ -219,14 +219,15 @@ class JisEra
      * - マイクロ秒サフィックス `.NNNNNN` がある場合、浮動小数点数として返します。
      *
      * @param string $date_str パースする日付文字列
-     * @param \DateTimeZone|null $default_timezone
+     * @param \DateTimeZone|null $default_timezone 使用するタイムゾーン。元号形式で省略した場合は Asia/Tokyo を使用
      * @return int|float|null Unix タイムスタンプ（マイクロ秒がある場合は float）、解析失敗時は null
      * @throws \DateInvalidTimeZoneException
      */
-    public function parseJisDate($date_str, $default_timezone = null)
+    public function parseJisDate(string $date_str, ?DateTimeZone $default_timezone = null): int|float|null
     {
         $date_str = trim($date_str);
-        $timezone = $default_timezone ?? new DateTimeZone(date_default_timezone_get());
+        $DefaultDateTimeZone = $default_timezone ?? new DateTimeZone(date_default_timezone_get());
+        $EraDateTimeZone = $default_timezone ?? new DateTimeZone('Asia/Tokyo');
 
         $microtime = 0.0;
         if (preg_match('/\.(\d{1,6})\s*$/', $date_str, $matches) === 1) {
@@ -234,43 +235,41 @@ class JisEra
             $date_str = preg_replace('/\.\d{1,6}\s*$/', '', $date_str);
         }
 
-        $parseComponents = static function (array $matches): array {
-            return [
-                (int) $matches[1],
-                (int) $matches[2],
-                (int) $matches[3],
-                isset($matches[4]) && $matches[4] !== '' ? (int) $matches[4] : 0,
-                isset($matches[5]) && $matches[5] !== '' ? (int) $matches[5] : 0,
-                isset($matches[6]) && $matches[6] !== '' ? (int) $matches[6] : 0,
-            ];
-        };
+        $parseComponents = static fn (array $matches): array => [
+            (int) $matches[1],
+            (int) $matches[2],
+            (int) $matches[3],
+            isset($matches[4]) && $matches[4] !== '' ? (int) $matches[4] : 0,
+            isset($matches[5]) && $matches[5] !== '' ? (int) $matches[5] : 0,
+            isset($matches[6]) && $matches[6] !== '' ? (int) $matches[6] : 0,
+        ];
 
-        $createTimestamp = static function (int $year, int $month, int $day, int $hour, int $minute, int $second, DateTimeZone $timezone) use ($microtime): ?float {
-            $date = DateTimeImmutable::createFromFormat(
+        $createTimestamp = static function (int $year, int $month, int $day, int $hour, int $minute, int $second, DateTimeZone $DateTimeZone) use ($microtime): float|null {
+            $DateTimeImmutable = DateTimeImmutable::createFromFormat(
                 '!Y-m-d H:i:s',
                 sprintf('%04d-%02d-%02d %02d:%02d:%02d', $year, $month, $day, $hour, $minute, $second),
-                $timezone
+                $DateTimeZone
             );
             $errors = DateTimeImmutable::getLastErrors();
 
-            if ($date === false || ($errors !== false && ($errors['warning_count'] > 0 || $errors['error_count'] > 0))) {
+            if ($DateTimeImmutable === false || ($errors !== false && ($errors['warning_count'] > 0 || $errors['error_count'] > 0))) {
                 return null;
             }
 
-            return (float) $date->getTimestamp() + $microtime;
+            return (float) $DateTimeImmutable->getTimestamp() + $microtime;
         };
 
         if (preg_match('/^(\d{4})[-\/](\d{1,2})[-\/](\d{1,2})(?:[ T](\d{1,2}):(\d{1,2})(?::(\d{1,2}))?)?$/', $date_str, $matches) === 1) {
             [$year, $month, $day, $hour, $minute, $second] = $parseComponents($matches);
 
-            return $createTimestamp($year, $month, $day, $hour, $minute, $second, $timezone);
+            return $createTimestamp($year, $month, $day, $hour, $minute, $second, $DefaultDateTimeZone);
         }
 
         $timePattern = '(?:\s+(\d{1,2})時(\d{1,2})分(?:(\d{1,2})秒)?)?';
         if (preg_match('/^(\d{4})年(\d{1,2})月(\d{1,2})日' . $timePattern . '$/u', $date_str, $matches) === 1) {
             [$year, $month, $day, $hour, $minute, $second] = $parseComponents($matches);
 
-            return $createTimestamp($year, $month, $day, $hour, $minute, $second, $timezone);
+            return $createTimestamp($year, $month, $day, $hour, $minute, $second, $DefaultDateTimeZone);
         }
 
         if (preg_match('/^(明治|大正|昭和|平成|令和)(\d{1,2})年(\d{1,2})月(\d{1,2})日' . $timePattern . '$/u', $date_str, $matches) === 1) {
@@ -281,7 +280,7 @@ class JisEra
                 isset($matches[5]) && $matches[5] !== '' ? (int) $matches[5] : 0,
                 isset($matches[6]) && $matches[6] !== '' ? (int) $matches[6] : 0,
                 isset($matches[7]) && $matches[7] !== '' ? (int) $matches[7] : 0,
-                $timezone
+                $EraDateTimeZone
             );
         }
 
@@ -295,7 +294,7 @@ class JisEra
                 0,
                 0,
                 0,
-                $timezone
+                $EraDateTimeZone
             );
         }
 

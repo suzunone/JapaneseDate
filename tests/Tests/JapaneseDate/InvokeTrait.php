@@ -40,7 +40,7 @@ trait InvokeTrait
      * @return mixed
      * @throws \ReflectionException
      */
-    public function invokeExecuteMethod($instance, $method_name, $options)
+    public function invokeExecuteMethod(object|string $instance, string $method_name, array $options): mixed
     {
         if (is_string($instance)) {
             $instance = new $instance();
@@ -62,7 +62,7 @@ trait InvokeTrait
      * @return mixed
      * @throws \ReflectionException
      */
-    public function invokeGetProperty($instance, $property_name)
+    public function invokeGetProperty(object|string $instance, string $property_name): mixed
     {
         if (is_string($instance)) {
             $instance = new $instance();
@@ -84,7 +84,7 @@ trait InvokeTrait
      * @param mixed $data
      * @throws \ReflectionException
      */
-    public function invokeSetProperty($instance, $property_name, $data): void
+    public function invokeSetProperty(object|string $instance, string $property_name, mixed $data): void
     {
         if (is_string($instance)) {
             $instance = new $instance();

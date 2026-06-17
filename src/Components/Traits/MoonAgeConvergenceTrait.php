@@ -39,12 +39,12 @@ trait MoonAgeConvergenceTrait
      * @return array{0: float, 1: float, 2: float, 3: float, 4: bool} [tm1, tm2, delta_t1, delta_t2, shouldBreak]
      */
     protected function applyConvergenceStep(
-        $delta_rm,
-        $synodicMonth,
-        $tm1,
-        $tm2,
-        $julian_date_0,
-        $counter
+        float $delta_rm,
+        float $synodicMonth,
+        float $tm1,
+        float $tm2,
+        float $julian_date_0,
+        int $counter
     ): array {
         // 時刻引数の補正値 Δt
         $delta_t2 = $delta_rm * $synodicMonth / 360.0;

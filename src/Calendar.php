@@ -148,7 +148,7 @@ class Calendar
      *
      * @var DateTime|DateTimeInterface
      */
-    protected $start_time_stamp;
+    protected DateTime|DateTimeInterface $start_time_stamp;
 
     /**
      * タイムゾーン。
@@ -157,7 +157,7 @@ class Calendar
      *
      * @var DateTimeZone|CarbonTimeZone|false
      */
-    protected $timezone;
+    protected DateTimeZone|false|CarbonTimeZone $timezone;
 
     /**
      * スキップする曜日の連想配列（bypass 系 API 用）。
@@ -166,7 +166,7 @@ class Calendar
      *
      * @var array<int, bool>
      */
-    protected $bypass_week_day_arr = [];
+    protected array $bypass_week_day_arr = [];
 
     /**
      * スキップする日付の連想配列（bypass 系 API 用）。
@@ -175,7 +175,7 @@ class Calendar
      *
      * @var array<int, DateTime>
      */
-    protected $bypass_day_arr = [];
+    protected array $bypass_day_arr = [];
 
     /**
      * 祝日をスキップするかどうか（bypass 系 API 用）。
@@ -184,7 +184,7 @@ class Calendar
      *
      * @var bool
      */
-    protected $is_bypass_holiday = false;
+    protected bool $is_bypass_holiday = false;
 
     /**
      * Calendar コンストラクタ。
@@ -198,7 +198,7 @@ class Calendar
      * @throws \DateInvalidTimeZoneException
      * @throws NativeDateTimeException
      */
-    public function __construct($time = 'now', ?\DateTimeZone $timezone = null)
+    public function __construct(int|float|string|DateTimeInterface $time = 'now', DateTimeZone|null $timezone = null)
     {
         $this->start_time_stamp = $this->createDateTime($time, $timezone);
         $this->timezone = $this->start_time_stamp->getTimezone();
@@ -213,7 +213,7 @@ class Calendar
      * @throws \DateInvalidTimeZoneException
      * @throws NativeDateTimeException
      */
-    protected function createDateTime($date_time, $time_zone = null): DateTimeInterface
+    protected function createDateTime(int|float|string|DateTimeInterface $date_time, DateTimeZone|null $time_zone = null): DateTimeInterface
     {
         return DateTime::factory($date_time, $time_zone);
     }
@@ -231,7 +231,7 @@ class Calendar
      * @param int $val スキップする曜日（0=日曜〜6=土曜）
      * @return $this メソッドチェーン用に自身を返します
      */
-    public function addBypassWeekDay($val): self
+    public function addBypassWeekDay(int $val): self
     {
         $this->bypass_week_day_arr[$val] = true;
 
@@ -278,7 +278,7 @@ class Calendar
      * @param int $val 削除する曜日（0=日曜〜6=土曜）
      * @return $this メソッドチェーン用に自身を返します
      */
-    public function removeBypassWeekDay($val): self
+    public function removeBypassWeekDay(int $val): self
     {
         if (isset($this->bypass_week_day_arr[$val])) {
             unset($this->bypass_week_day_arr[$val]);
@@ -316,7 +316,7 @@ class Calendar
      * @throws \DateInvalidTimeZoneException
      * @throws NativeDateTimeException
      */
-    public function addBypassDay($time): self
+    public function addBypassDay(int|float|string|DateTimeInterface $time): self
     {
         $val = $this->createDateTime($time, $this->timezone);
 
@@ -331,7 +331,7 @@ class Calendar
      * @param DateTimeInterface $dateTime
      * @return int `Ymd` 形式の整数値（例: `20260525`）
      */
-    protected function getCompareFormat($dateTime): int
+    protected function getCompareFormat(DateTimeInterface $dateTime): int
     {
         return (int) $dateTime->format('Ymd');
     }
@@ -346,7 +346,7 @@ class Calendar
      * @throws \DateInvalidTimeZoneException
      * @throws NativeDateTimeException
      */
-    public function removeBypassDay($time): self
+    public function removeBypassDay(int|float|string|DateTimeInterface $time): self
     {
         $val = $this->createDateTime($time, $this->timezone);
         if (isset($this->bypass_day_arr[$this->getCompareFormat($val)])) {
@@ -377,7 +377,7 @@ class Calendar
      * @param bool $bypass `true` で祝日を除外、`false` で祝日を営業日として扱う
      * @return $this メソッドチェーン用に自身を返します
      */
-    public function setBypassHoliday($bypass): self
+    public function setBypassHoliday(bool $bypass): self
     {
         $this->is_bypass_holiday = $bypass;
 
@@ -399,7 +399,7 @@ class Calendar
      * @throws \DateInvalidTimeZoneException
      * @throws NativeDateTimeException
      */
-    public function getWorkingDayBySpan($jdt_end): array
+    public function getWorkingDayBySpan(int|float|string|DateTimeInterface $jdt_end): array
     {
         $jdt_end_datetime = $this->createDateTime($jdt_end);
         $japaneseDateTime = clone $this->start_time_stamp;
@@ -419,19 +419,17 @@ class Calendar
     /**
      * 指定した日付が bypass 系の設定に基づいて営業日かどうかを判定します（bypass 系 API 内部用）。
      *
-     * @param \JapaneseDate\DateTime|\JapaneseDate\DateTimeImmutable $dateTime 判定対象の日付
+     * @param DateTime|DateTimeImmutable $dateTime 判定対象の日付
      * @return bool 営業日であれば true
      */
-    protected function isWorkingDay($dateTime): bool
+    protected function isWorkingDay(DateTime|DateTimeImmutable $dateTime): bool
     {
-        switch (true) {
-            case array_key_exists($dateTime->dayOfWeek, $this->bypass_week_day_arr):
-            case isset($this->bypass_day_arr[$this->getCompareFormat($dateTime)]):
-            case $this->is_bypass_holiday && $dateTime->holiday !== DateTime::NO_HOLIDAY:
-                return false;
-            default:
-                return true;
-        }
+        return match (true) {
+            array_key_exists($dateTime->dayOfWeek, $this->bypass_week_day_arr),
+            isset($this->bypass_day_arr[$this->getCompareFormat($dateTime)]),
+            $this->is_bypass_holiday && $dateTime->holiday !== DateTime::NO_HOLIDAY => false,
+            default => true,
+        };
     }
 
     /**
@@ -443,7 +441,7 @@ class Calendar
      * @return DateTime[]
      * @throws Exceptions\Exception
      */
-    public function getWorkingDay($lim_day): array
+    public function getWorkingDay(int $lim_day): array
     {
         return $this->getWorkingDayByLimit($lim_day);
     }
@@ -458,7 +456,7 @@ class Calendar
      * @return DateTime[]
      * @throws NativeDateTimeException DateInterval の生成に失敗した場合
      */
-    public function getWorkingDayByLimit($lim_day): array
+    public function getWorkingDayByLimit(int $lim_day): array
     {
         $japaneseDateTime = clone $this->start_time_stamp;
 
@@ -494,7 +492,7 @@ class Calendar
      * @param DateTimeInterface|null $date 判定する日付（省略時はコンストラクタで指定した開始日）
      * @return bool 営業日であれば true
      */
-    public function isBusinessDayByConfig($date = null): bool
+    public function isBusinessDayByConfig(?DateTimeInterface $date = null): bool
     {
         $target = $date ?? $this->start_time_stamp;
 
@@ -521,7 +519,7 @@ class Calendar
      * @throws \DateInvalidTimeZoneException
      * @throws NativeDateTimeException
      */
-    public function getBusinessDaysBySpan($jdt_end): array
+    public function getBusinessDaysBySpan(int|float|string|DateTimeInterface $jdt_end): array
     {
         $jdt_end_datetime = $this->createDateTime($jdt_end);
         $japaneseDateTime = clone $this->start_time_stamp;
@@ -561,7 +559,7 @@ class Calendar
      * @return DateTime[]
      * @throws NativeDateTimeException DateInterval の生成に失敗した場合
      */
-    public function getBusinessDaysByLimit($lim_day): array
+    public function getBusinessDaysByLimit(int $lim_day): array
     {
         $japaneseDateTime = clone $this->start_time_stamp;
 

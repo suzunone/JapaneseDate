@@ -177,45 +177,37 @@ class FactoryTest extends TestCase
     {
         $rows = [
             'native DateTimeImmutable' => [
-                static function (string $class): NativeDateTimeImmutable {
-                    return new NativeDateTimeImmutable(
-                        '2024-05-15 10:20:30.123456',
-                        new DateTimeZone('UTC')
-                    );
-                },
+                static fn (string $class): NativeDateTimeImmutable => new NativeDateTimeImmutable(
+                    '2024-05-15 10:20:30.123456',
+                    new DateTimeZone('UTC')
+                ),
                 null,
                 '2024-05-15 10:20:30',
                 'UTC',
                 123456,
             ],
             'native DateTimeImmutable / timezone inherited' => [
-                static function (string $class): NativeDateTimeImmutable {
-                    return new NativeDateTimeImmutable(
-                        '2024-05-15 10:20:30.654321',
-                        new DateTimeZone('Asia/Tokyo')
-                    );
-                },
+                static fn (string $class): NativeDateTimeImmutable => new NativeDateTimeImmutable(
+                    '2024-05-15 10:20:30.654321',
+                    new DateTimeZone('Asia/Tokyo')
+                ),
                 null,
                 '2024-05-15 10:20:30',
                 'Asia/Tokyo',
                 654321,
             ],
             'native DateTimeImmutable / timezone override' => [
-                static function (string $class): NativeDateTimeImmutable {
-                    return new NativeDateTimeImmutable(
-                        '2024-05-15 10:20:30',
-                        new DateTimeZone('UTC')
-                    );
-                },
+                static fn (string $class): NativeDateTimeImmutable => new NativeDateTimeImmutable(
+                    '2024-05-15 10:20:30',
+                    new DateTimeZone('UTC')
+                ),
                 new DateTimeZone('Asia/Tokyo'),
                 '2024-05-15 10:20:30',
                 'Asia/Tokyo',
                 0,
             ],
             'same JapaneseDate class object' => [
-                static function (string $class) {
-                    return new $class('2024-08-01 08:00:00', new DateTimeZone('Asia/Tokyo'));
-                },
+                static fn (string $class): object => new $class('2024-08-01 08:00:00', new DateTimeZone('Asia/Tokyo')),
                 null,
                 '2024-08-01 08:00:00',
                 'Asia/Tokyo',
@@ -247,22 +239,28 @@ class FactoryTest extends TestCase
     public static function japaneseDateStringProvider(): array
     {
         return self::withTargetClasses([
-            '元号漢字表記（令和）' => ['令和7年5月1日', null, '2025-05-01 00:00:00', 'UTC'],
+            '元号漢字表記（令和）' => ['令和7年5月1日', null, '2025-05-01 00:00:00', 'Asia/Tokyo'],
             '元号漢字表記（令和） / timezone' => [
                 '令和7年5月1日',
                 new DateTimeZone('UTC'),
                 '2025-05-01 00:00:00',
                 'UTC',
             ],
+            '元号漢字表記（令和） / America/New_York' => [
+                '令和7年5月1日',
+                new DateTimeZone('America/New_York'),
+                '2025-05-01 00:00:00',
+                'America/New_York',
+            ],
             '元号漢字表記（昭和） / 時刻付き' => [
                 '昭和64年1月7日 12時34分56秒',
                 null,
                 '1989-01-07 12:34:56',
-                'UTC',
+                'Asia/Tokyo',
             ],
             '西暦日本語表記' => ['2026年5月1日 12時34分', null, '2026-05-01 12:34:00', 'UTC'],
-            'JIS元号アルファベット（令和）' => ['R7-05-01', null, '2025-05-01 00:00:00', 'UTC'],
-            'JIS元号アルファベット（平成）' => ['H1/01/08', null, '1989-01-08 00:00:00', 'UTC'],
+            'JIS元号アルファベット（令和）' => ['R7-05-01', null, '2025-05-01 00:00:00', 'Asia/Tokyo'],
+            'JIS元号アルファベット（平成）' => ['H1/01/08', null, '1989-01-08 00:00:00', 'Asia/Tokyo'],
         ]);
     }
     /**
@@ -406,7 +404,7 @@ class FactoryTest extends TestCase
      * @param int|null $expectedMicrosecond
      * @dataProvider factoryInputProvider
      */
-    public function test_factory_creates_expected_result($class, $input, $timezone, $expectedDateTime, $expectedTimezone, $expectedTimestamp, $expectedMicrosecond): void
+    public function test_factory_creates_expected_result(string $class, mixed $input, ?DateTimeZone $timezone, ?string $expectedDateTime, ?string $expectedTimezone, ?int $expectedTimestamp, ?int $expectedMicrosecond): void
     {
         $result = $input === null && $timezone === null
             ? $class::factory()
@@ -436,7 +434,7 @@ class FactoryTest extends TestCase
      * @param int $expectedMicrosecond
      * @dataProvider dateTimeInterfaceInputProvider
      */
-    public function test_factory_DateTimeInterface($class, $sourceFactory, $timezone, $expectedDateTime, $expectedTimezone, $expectedMicrosecond): void
+    public function test_factory_DateTimeInterface(string $class, callable $sourceFactory, ?DateTimeZone $timezone, string $expectedDateTime, string $expectedTimezone, int $expectedMicrosecond): void
     {
         $result = $class::factory($sourceFactory($class), $timezone);
         $this->assertInstanceOf($class, $result);
@@ -449,9 +447,8 @@ class FactoryTest extends TestCase
      *
      * @param class-string $class
      * @dataProvider crossClassInputProvider
-     * @param object $source
      */
-    public function test_factory_accepts_other_JapaneseDate_class($class, $source): void
+    public function test_factory_accepts_other_JapaneseDate_class(string $class, object $source): void
     {
         $result = $class::factory($source);
         $this->assertInstanceOf($class, $result);
@@ -462,12 +459,8 @@ class FactoryTest extends TestCase
      *
      * @param class-string $class
      * @dataProvider japaneseDateStringProvider
-     * @param string $input
-     * @param \DateTimeZone|null $timezone
-     * @param string $expectedDateTime
-     * @param string $expectedTimezone
      */
-    public function test_factory_japanese_date_string($class, $input, $timezone, $expectedDateTime, $expectedTimezone): void
+    public function test_factory_japanese_date_string(string $class, string $input, ?DateTimeZone $timezone, string $expectedDateTime, string $expectedTimezone): void
     {
         $result = $class::factory($input, $timezone);
         $this->assertInstanceOf($class, $result);
@@ -483,7 +476,7 @@ class FactoryTest extends TestCase
      * @param class-string $class
      * @dataProvider targetClassProvider
      */
-    public function test_factory_invalid_japanese_string_falls_through_to_new_static($class): void
+    public function test_factory_invalid_japanese_string_falls_through_to_new_static(string $class): void
     {
         $this->expectException(NativeDateTimeException::class);
         $class::factory('令和7年2月30日');
@@ -491,11 +484,8 @@ class FactoryTest extends TestCase
     /**
      * 境界値と特殊な入力を生成できることを確認する。
      * @dataProvider boundaryInputProvider
-     * @param mixed $input
-     * @param int $expectedTimestamp
-     * @param int|null $expectedMicrosecond
      */
-    public function test_factory_boundary_inputs($input, $expectedTimestamp, $expectedMicrosecond): void
+    public function test_factory_boundary_inputs(mixed $input, int $expectedTimestamp, ?int $expectedMicrosecond): void
     {
         $result = DateTime::factory($input);
         $this->assertInstanceOf(DateTime::class, $result);
@@ -513,8 +503,8 @@ class FactoryTest extends TestCase
         date_default_timezone_set('Asia/Tokyo');
 
         try {
-            $int = DateTime::factory(1000000000);
-            $float = DateTime::factory(1000000000.0);
+            $int = DateTime::factory(1_000_000_000);
+            $float = DateTime::factory(1_000_000_000.0);
 
             $this->assertSame($int->format('Y-m-d H:i:s P'), $float->format('Y-m-d H:i:s P'));
             $this->assertSame('Asia/Tokyo', $int->getTimezone()->getName());
@@ -532,7 +522,7 @@ class FactoryTest extends TestCase
         date_default_timezone_set('Asia/Tokyo');
 
         try {
-            $int = DateTime::factory(1000000000);
+            $int = DateTime::factory(1_000_000_000);
             $string = DateTime::factory('1000000000');
 
             $this->assertSame($int->getTimestamp(), $string->getTimestamp());
@@ -552,7 +542,7 @@ class FactoryTest extends TestCase
      * @throws \DateInvalidTimeZoneException
      * @dataProvider createFromFormatProvider
      */
-    public function test_createFromFormat_returns_correct_class($class, $format, $time, $expectedDateTime, $timezone): void
+    public function test_createFromFormat_returns_correct_class(string $class, string $format, string $time, string $expectedDateTime, ?string $timezone): void
     {
         $tz = $timezone !== null ? new DateTimeZone($timezone) : null;
         $result = $tz !== null
@@ -560,7 +550,7 @@ class FactoryTest extends TestCase
             : $class::createFromFormat($format, $time);
         $this->assertInstanceOf($class, $result);
         // フォーマットに時刻が含まれない場合は日付部分のみ比較
-        $compareFormat = strpos($format, 'H') !== false ? 'Y-m-d H:i:s' : 'Y-m-d';
+        $compareFormat = str_contains($format, 'H') ? 'Y-m-d H:i:s' : 'Y-m-d';
         $this->assertSame($expectedDateTime, $result->format($compareFormat));
         if ($timezone !== null) {
             $this->assertSame($timezone, $result->getTimezone()->getName());
@@ -572,7 +562,7 @@ class FactoryTest extends TestCase
      * @param class-string $class
      * @dataProvider targetClassProvider
      */
-    public function test_createFromFormat_initializes_components($class): void
+    public function test_createFromFormat_initializes_components(string $class): void
     {
         $result = $class::createFromFormat('Y-m-d H:i:s', '2015-01-01 00:00:00');
         $this->assertNotNull($result);
@@ -627,7 +617,7 @@ class FactoryTest extends TestCase
      * @param class-string $class
      * @dataProvider targetClassProvider
      */
-    public function test_createFromFormat_throws_on_invalid_input($class): void
+    public function test_createFromFormat_throws_on_invalid_input(string $class): void
     {
         $this->expectException(InvalidFormatException::class);
         $class::createFromFormat('Y-m-d', 'invalid-date');
@@ -635,10 +625,8 @@ class FactoryTest extends TestCase
     /**
      * JIS日時のパーステスト（ISO形式で比較）
      * @dataProvider jisDateProvider
-     * @param string $input
-     * @param string|null $expectedIso
      */
-    public function testParseJisDateWithMicrotime($input, $expectedIso): void
+    public function testParseJisDateWithMicrotime(string $input, ?string $expectedIso): void
     {
         $resultTimestamp = $this->invokeExecuteMethod(DateTime::class, 'parseJisDate', [$input, new DateTimeZone('Asia/Tokyo')]);
         if ($expectedIso === null) {
@@ -652,9 +640,9 @@ class FactoryTest extends TestCase
         $this->assertSame($expectedIso, $actualIso);
     }
     /**
-     * 和暦・日本語日付パースが PHP のデフォルトタイムゾーンを使用することを確認する。
+     * 元号日付パースが PHP のデフォルトタイムゾーンにかかわらず JST を使用することを確認する。
      */
-    public function test_parseJisDate_uses_default_timezone(): void
+    public function test_parseJisDate_uses_jst_for_era_format(): void
     {
         $defaultTimezone = date_default_timezone_get();
         date_default_timezone_set('America/New_York');
@@ -663,7 +651,7 @@ class FactoryTest extends TestCase
             $timestamp = $this->invokeExecuteMethod(DateTime::class, 'parseJisDate', ['令和7年5月1日 12時34分56秒']);
             $date = Carbon::createFromTimestamp($timestamp, new DateTimeZone('America/New_York'));
 
-            $this->assertSame('2025-05-01T12:34:56.000000-04:00', $date->format('Y-m-d\TH:i:s.uP'));
+            $this->assertSame('2025-04-30T23:34:56.000000-04:00', $date->format('Y-m-d\TH:i:s.uP'));
         } finally {
             date_default_timezone_set($defaultTimezone);
         }

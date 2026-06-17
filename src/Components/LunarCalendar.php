@@ -79,19 +79,16 @@ class LunarCalendar
      *
      * @var array
      */
-    protected $lunar_calendar;
+    protected array $lunar_calendar;
 
-    /**
-     * @var \JapaneseDate\Components\Astronomy
-     */
-    protected $astronomy;
+    protected Astronomy $astronomy;
 
     /**
      * 月齢計算アルゴリズム（Strategy）。
      *
      * @var MoonAgeAlgorithm
      */
-    protected $moonAgeAlgorithm;
+    protected MoonAgeAlgorithm $moonAgeAlgorithm;
 
     /**
      * @param \JapaneseDate\Components\Astronomy|null $astronomy
@@ -109,17 +106,14 @@ class LunarCalendar
      * @param Astronomy $astronomy
      * @return MoonAgeAlgorithm
      */
-    protected static function defaultMoonAgeAlgorithmFor($astronomy): MoonAgeAlgorithm
+    protected static function defaultMoonAgeAlgorithmFor(Astronomy $astronomy): MoonAgeAlgorithm
     {
-        switch ($astronomy->moonAlgorithmName()) {
-            case Astronomy::MOON_ELP2000:
-                return new Elp2000MoonAge($astronomy);
-            case Astronomy::MOON_MEEUS47:
-            case Astronomy::MOON_MEEUS47_NO_C:
-                return new MeeusMoonAge($astronomy);
-            default:
-                return new LegacyMoonAge($astronomy);
-        }
+        return match ($astronomy->moonAlgorithmName()) {
+            Astronomy::MOON_ELP2000 => new Elp2000MoonAge($astronomy),
+            Astronomy::MOON_MEEUS47,
+            Astronomy::MOON_MEEUS47_NO_C => new MeeusMoonAge($astronomy),
+            default => new LegacyMoonAge($astronomy),
+        };
     }
 
     /**
@@ -147,7 +141,7 @@ class LunarCalendar
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      * @throws \JsonException
      */
-    public function getLunarDate($DateTime): LunarDate
+    public function getLunarDate(DateTime|DateTimeImmutable $DateTime): LunarDate
     {
         return new LunarDate(
             $this->getLunarCalendarArray(
@@ -175,7 +169,7 @@ class LunarCalendar
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
-    protected function getLunarCalendarArray($year, $month, $day): array
+    protected function getLunarCalendarArray(int $year, int $month, int $day): array
     {
         $lunar_calendar = $this->getLunarCalendar($year);
 
@@ -221,7 +215,7 @@ class LunarCalendar
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
-    protected function getLunarCalendar($year): array
+    protected function getLunarCalendar(int $year): array
     {
         if (isset($this->lunar_calendar[$year])) {
             return $this->lunar_calendar[$year];
@@ -255,9 +249,8 @@ class LunarCalendar
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      * @throws \Exception
-     * @throws \Exception
      */
-    protected function makeLunarCalendar($year): array
+    protected function makeLunarCalendar(int $year): array
     {
         $res = Config::getLC($year);
         if (count($res)) {
@@ -275,7 +268,7 @@ class LunarCalendar
             // @codeCoverageIgnoreEnd
         }
 
-        $moon = new Moon($this->astronomy());
+        $Moon = new Moon($this->astronomy());
         $end_timestamp = $EndDate->timestamp;
         while ($end_timestamp > $Date->timestamp) {
             if (in_array(
@@ -283,7 +276,7 @@ class LunarCalendar
                 [Astronomy::MOON_ELP2000, Astronomy::MOON_MEEUS47, Astronomy::MOON_MEEUS47_NO_C],
                 true
             )) {
-                $Date = $moon->moonPhase($Date, 0.0)->setTimezone('Asia/Tokyo');
+                $Date = $Moon->moonPhase($Date, 0.0)->setTimezone('Asia/Tokyo');
                 if ($Date->timestamp >= $end_timestamp) {
                     // @codeCoverageIgnoreStart
                     break;
@@ -495,7 +488,7 @@ class LunarCalendar
      * @param float $longitudeSun 現在の太陽黄経（度、0°〜360°）
      * @return int スキップ可能な日数（0 以上）
      */
-    protected function calcChukiSkipDays($longitudeSun): int
+    protected function calcChukiSkipDays(float $longitudeSun): int
     {
         $sector15 = (int) floor($longitudeSun / 15.0);
         $nextBoundary = ((int) floor($sector15 / 2) + 1) * 30.0;
@@ -516,7 +509,7 @@ class LunarCalendar
      * @param float $moonAge 当日 0:00:00 の月齢（0 〜 約29.53 の範囲）
      * @return int スキップ可能な日数（0 以上）
      */
-    protected function calcSakuSkipDays($moonAge): int
+    protected function calcSakuSkipDays(float $moonAge): int
     {
         $remaining = self::SYNODIC_MONTH - $moonAge;
 
@@ -539,11 +532,11 @@ class LunarCalendar
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
      */
-    public function moonPhase($year, $month, $day, $hour, $min, $sec): ?int
+    public function moonPhase(int $year, int $month, int $day, float $hour, float $min, float $sec): ?int
     {
         $phase = $this->astronomy()->moonPhase($year, $month, $day, $hour, $min, $sec);
-        $date = Carbon::create($year, $month, $day, (int) $hour, (int) $min, (int) $sec, 'Asia/Tokyo');
-        if (!$date instanceof Carbon) {
+        $Carbon = Carbon::create($year, $month, $day, (int) $hour, (int) $min, (int) $sec, 'Asia/Tokyo');
+        if (!$Carbon instanceof Carbon) {
             // @codeCoverageIgnoreStart
             return null;
             // @codeCoverageIgnoreEnd
@@ -556,14 +549,14 @@ class LunarCalendar
         $moonAstronomy = in_array($injectedMoonName, [Astronomy::MOON_MEEUS47, Astronomy::MOON_MEEUS47_NO_C], true)
             ? $this->astronomy()          // Meeus 系: 注入済み Astronomy をそのまま使用
             : Astronomy::factoryForBoundary(); // Legacy/ELP2000 系: 境界アルゴリズムで月相を計算
-        $moon = new Moon($moonAstronomy);
-        $next = $moon->moonPhase($date, $phase_time);
-        $previous = $moon->moonPhase($date, $phase_time, true);
+        $Moon = new Moon($moonAstronomy);
+        $NextDateTime = $Moon->moonPhase($Carbon, $phase_time);
+        $PreviousDateTime = $Moon->moonPhase($Carbon, $phase_time, true);
 
-        $nearest_phase = abs($next->timestamp - $date->timestamp) < abs($previous->timestamp - $date->timestamp)
-            ? $next
-            : $previous;
-        if ($nearest_phase->copy()->setTimezone('Asia/Tokyo')->format('Y-m-d') !== $date->format('Y-m-d')) {
+        $NearestPhaseDateTime = abs($NextDateTime->timestamp - $Carbon->timestamp) < abs($PreviousDateTime->timestamp - $Carbon->timestamp)
+            ? $NextDateTime
+            : $PreviousDateTime;
+        if ($NearestPhaseDateTime->copy()->setTimezone('Asia/Tokyo')->format('Y-m-d') !== $Carbon->format('Y-m-d')) {
             return null;
         }
 
@@ -588,7 +581,7 @@ class LunarCalendar
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      */
-    public function moonAge($year, $month, $day, $hour, $min, $sec): float
+    public function moonAge(int $year, int $month, int $day, float $hour, float $min, float $sec): float
     {
         $key = __METHOD__ . ':' . $this->astronomy->algorithmName()
             . ':' . $year . ':' . $month . ':' . $day
@@ -596,9 +589,7 @@ class LunarCalendar
 
         return $this->oneTimeCache(
             $key,
-            function () use ($year, $month, $day, $hour, $min, $sec) {
-                return $this->moonAgeAlgorithm->moonAge($year, $month, $day, $hour, $min, $sec);
-            }
+            fn () => $this->moonAgeAlgorithm->moonAge($year, $month, $day, $hour, $min, $sec)
         );
     }
 
@@ -616,7 +607,7 @@ class LunarCalendar
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \Exception
      */
-    public function findSolarTerm($year, $month, $day)
+    public function findSolarTerm(int $year, int $month, int $day): bool|int
     {
         $astronomy = $this->astronomy();
         $boundaryAstronomy = Astronomy::factoryForBoundary();
@@ -668,7 +659,7 @@ class LunarCalendar
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\Exception
      */
-    public function moonPhaseAngle($year, $month, $day, $hour, $min, $sec): float
+    public function moonPhaseAngle(int $year, int $month, int $day, float $hour, float $min, float $sec): float
     {
         return $this->astronomy()->moonPhaseAngle($year, $month, $day, $hour, $min, $sec);
     }

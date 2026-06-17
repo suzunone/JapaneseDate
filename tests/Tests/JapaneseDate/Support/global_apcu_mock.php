@@ -10,7 +10,7 @@ if (!function_exists('apcu_fetch')) {
      * @param bool $success
      * @return mixed
      */
-    function apcu_fetch(string $key, bool &$success = false)
+    function apcu_fetch(string $key, bool &$success = false): mixed
     {
         $success = array_key_exists($key, $GLOBALS['_test_apcu_store']);
 
@@ -25,7 +25,7 @@ if (!function_exists('apcu_store')) {
      * @param int $ttl
      * @return bool
      */
-    function apcu_store(string $key, $value, int $ttl = 0): bool
+    function apcu_store(string $key, mixed $value, int $ttl = 0): bool
     {
         unset($ttl);
 

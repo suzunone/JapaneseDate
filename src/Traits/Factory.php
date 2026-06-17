@@ -105,7 +105,7 @@ trait Factory
             throw new NativeDateTimeException('Throwing native DateTime class construct exception.', $exception->getCode(), $exception);
         }
 
-        $this->jisEra = JisEra::factory();
+        $this->JisEra = JisEra::factory();
         $this->JapaneseDate = JapaneseDate::factory();
         $this->LunarCalendar = LunarCalendar::factory();
         $this->SexagenaryCycle = SexagenaryCycle::factory();
@@ -183,7 +183,7 @@ trait Factory
      * @throws \DateInvalidTimeZoneException タイムゾーンの解析に失敗した場合
      * @throws NativeDateTimeException 日時文字列の解析に失敗した場合
      */
-    public static function factory($date_time = null, $time_zone = null)
+    public static function factory(int|float|string|DateTimeInterface|null $date_time = null, DateTimeZone|null $time_zone = null): static
     {
         if ($date_time === null) {
             return new static(null, $time_zone);
@@ -209,11 +209,14 @@ trait Factory
             return static::newFromTimestamp((float) $date_time, $time_zone);
         }
 
-        if (is_string($date_time) && preg_match('/[年月日時分秒]|^[MTSHR]\d/u', $date_time) === 1) {
-            $check_time = static::parseJisDate($date_time, $time_zone);
-            if (is_numeric($check_time)) {
-                return static::newFromTimestamp((float) $check_time, $time_zone);
-            }
+        $is_japanese_date = is_string($date_time) && preg_match('/[年月日時分秒]|^[MTSHR]\d/u', $date_time) === 1;
+        $is_era_date = $is_japanese_date && preg_match('/^(?:明治|大正|昭和|平成|令和|[MTSHR]\d)/u', $date_time) === 1;
+        $check_time = $is_japanese_date ? static::parseJisDate($date_time, $time_zone) : null;
+
+        if (is_numeric($check_time)) {
+            $DisplayDateTimeZone = $time_zone ?? ($is_era_date ? new DateTimeZone('Asia/Tokyo') : null);
+
+            return static::newFromTimestamp((float) $check_time, $DisplayDateTimeZone);
         }
 
         return new static($date_time, $time_zone);
@@ -234,12 +237,12 @@ trait Factory
      * @throws Exception
      * @throws \DateInvalidTimeZoneException
      */
-    protected static function newFromTimestamp($timestamp, $tz)
+    protected static function newFromTimestamp(float $timestamp, ?DateTimeZone $tz): static
     {
         $displayTz = $tz ?? new DateTimeZone(date_default_timezone_get());
         $seconds = (int) floor($timestamp);
-        $micro = (int) round(($timestamp - $seconds) * 1000000);
-        if ($micro >= 1000000) {
+        $micro = (int) round(($timestamp - $seconds) * 1_000_000);
+        if ($micro >= 1_000_000) {
             $seconds++;
             $micro = 0;
         }
@@ -257,11 +260,11 @@ trait Factory
      * 「JIS アルファベット元号（R/H/S/T/M）」の両形式です。
      *
      * @param  string           $date_str  パースする日付文字列
-     * @param  DateTimeZone|null $timezone 使用するタイムゾーン。省略時は PHP のデフォルトタイムゾーンを使用
+     * @param  DateTimeZone|null $timezone 使用するタイムゾーン。元号形式で省略した場合は Asia/Tokyo を使用
      * @return int|float|null              Unix タイムスタンプ（マイクロ秒がある場合は float）、解析失敗時は null
      * @throws \DateInvalidTimeZoneException タイムゾーンの解析に失敗した場合
      */
-    protected static function parseJisDate($date_str, $timezone = null)
+    protected static function parseJisDate(string $date_str, ?DateTimeZone $timezone = null): int|float|null
     {
         return (new JisEra())->parseJisDate($date_str, $timezone);
     }
@@ -278,13 +281,13 @@ trait Factory
      * @param  DateTimeZone|string|int|null $timezone タイムゾーン（省略可）
      * @return static|null                            生成されたインスタンス。解析失敗時は null
      */
-    public static function createFromFormat($format, $time, $timezone = null): ?self
+    public static function createFromFormat($format, $time, $timezone = null): ?static
     {
         /** @noinspection PhpMultipleClassDeclarationsInspection */
         $instance = parent::createFromFormat($format, $time, $timezone);
 
         if ($instance !== null && !isset($instance->SeasonalFestival)) {
-            $instance->jisEra = JisEra::factory();
+            $instance->JisEra = JisEra::factory();
             $instance->JapaneseDate = JapaneseDate::factory();
             $instance->LunarCalendar = LunarCalendar::factory();
             $instance->SexagenaryCycle = SexagenaryCycle::factory();

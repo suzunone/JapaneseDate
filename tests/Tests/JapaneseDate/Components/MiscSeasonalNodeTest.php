@@ -262,7 +262,7 @@ class MiscSeasonalNodeTest extends TestCase
      * @return void
      * @dataProvider viewMiscSeasonalNodeProvider
      */
-    public function test_viewMiscSeasonalNode($key, $expected): void
+    public function test_viewMiscSeasonalNode(int $key, string $expected): void
     {
         $node = MiscSeasonalNode::factory();
         $this->assertSame($expected, $node->viewMiscSeasonalNode($key));
@@ -273,7 +273,7 @@ class MiscSeasonalNodeTest extends TestCase
      * @param int $day
      * @dataProvider setsubunProvider
      */
-    public function test_isSetsubun($year, $month, $day): void
+    public function test_isSetsubun(int $year, int $month, int $day): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_VSOP87);
         DateTime::useMoonAlgorithm(DateTime::MOON_ALGORITHM_ELP2000);
@@ -288,7 +288,7 @@ class MiscSeasonalNodeTest extends TestCase
      * @return void
      * @dataProvider setsubunProvider
      */
-    public function test_getMiscSeasonalNodeKey_setsubun($year, $month, $day): void
+    public function test_getMiscSeasonalNodeKey_setsubun(int $year, int $month, int $day): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_VSOP87);
         DateTime::useMoonAlgorithm(DateTime::MOON_ALGORITHM_ELP2000);
@@ -302,7 +302,7 @@ class MiscSeasonalNodeTest extends TestCase
      * @param int $day
      * @dataProvider setsubunProvider
      */
-    public function test_isSetsubun_legacy($year, $month, $day): void
+    public function test_isSetsubun_legacy(int $year, int $month, int $day): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_LEGACY);
         DateTime::useMoonAlgorithm(DateTime::MOON_ALGORITHM_LEGACY);
@@ -317,7 +317,7 @@ class MiscSeasonalNodeTest extends TestCase
      * @return void
      * @dataProvider setsubunProvider
      */
-    public function test_getMiscSeasonalNodeKey_setsubun_legacy($year, $month, $day): void
+    public function test_getMiscSeasonalNodeKey_setsubun_legacy(int $year, int $month, int $day): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_LEGACY);
         DateTime::useMoonAlgorithm(DateTime::MOON_ALGORITHM_LEGACY);
@@ -345,7 +345,7 @@ class MiscSeasonalNodeTest extends TestCase
      * @return void
      * @dataProvider higanSpringCenterProvider
      */
-    public function test_isHigan_springCenter($year, $month, $day): void
+    public function test_isHigan_springCenter(int $year, int $month, int $day): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_VSOP87);
         DateTime::useMoonAlgorithm(DateTime::MOON_ALGORITHM_ELP2000);
@@ -360,7 +360,7 @@ class MiscSeasonalNodeTest extends TestCase
      * @return void
      * @dataProvider higanSpringCenterProvider
      */
-    public function test_isHigan_springCenter_legacy($year, $month, $day): void
+    public function test_isHigan_springCenter_legacy(int $year, int $month, int $day): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_LEGACY);
         DateTime::useMoonAlgorithm(DateTime::MOON_ALGORITHM_LEGACY);
@@ -375,7 +375,7 @@ class MiscSeasonalNodeTest extends TestCase
      * @return void
      * @dataProvider higanAutumnCenterProvider
      */
-    public function test_isHigan_autumnCenter($year, $month, $day): void
+    public function test_isHigan_autumnCenter(int $year, int $month, int $day): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_VSOP87);
         DateTime::useMoonAlgorithm(DateTime::MOON_ALGORITHM_ELP2000);
@@ -390,7 +390,7 @@ class MiscSeasonalNodeTest extends TestCase
      * @return void
      * @dataProvider higanAutumnCenterProvider
      */
-    public function test_isHigan_autumnCenter_legacy($year, $month, $day): void
+    public function test_isHigan_autumnCenter_legacy(int $year, int $month, int $day): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_LEGACY);
         DateTime::useMoonAlgorithm(DateTime::MOON_ALGORITHM_LEGACY);
@@ -498,7 +498,7 @@ class MiscSeasonalNodeTest extends TestCase
      * @return void
      * @dataProvider hachijuhachiyaProvider
      */
-    public function test_isHachijuhachiya($year, $month, $day): void
+    public function test_isHachijuhachiya(int $year, int $month, int $day): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_VSOP87);
         DateTime::useMoonAlgorithm(DateTime::MOON_ALGORITHM_ELP2000);
@@ -513,7 +513,7 @@ class MiscSeasonalNodeTest extends TestCase
      * @return void
      * @dataProvider hachijuhachiyaProvider
      */
-    public function test_isHachijuhachiya_legacy($year, $month, $day): void
+    public function test_isHachijuhachiya_legacy(int $year, int $month, int $day): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_LEGACY);
         DateTime::useMoonAlgorithm(DateTime::MOON_ALGORITHM_LEGACY);
@@ -528,7 +528,7 @@ class MiscSeasonalNodeTest extends TestCase
      * @return void
      * @dataProvider hachijuhachiyaProvider
      */
-    public function test_getMiscSeasonalNodeKey_hachijuhachiya($year, $month, $day): void
+    public function test_getMiscSeasonalNodeKey_hachijuhachiya(int $year, int $month, int $day): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_VSOP87);
         DateTime::useMoonAlgorithm(DateTime::MOON_ALGORITHM_ELP2000);
@@ -543,7 +543,7 @@ class MiscSeasonalNodeTest extends TestCase
      * @return void
      * @dataProvider hachijuhachiyaProvider
      */
-    public function test_getMiscSeasonalNodeKey_hachijuhachiya_legacy($year, $month, $day): void
+    public function test_getMiscSeasonalNodeKey_hachijuhachiya_legacy(int $year, int $month, int $day): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_LEGACY);
         DateTime::useMoonAlgorithm(DateTime::MOON_ALGORITHM_LEGACY);
@@ -570,7 +570,7 @@ class MiscSeasonalNodeTest extends TestCase
      * @return void
      * @dataProvider nyubaiProvider
      */
-    public function test_isNyubai($year, $month, $day): void
+    public function test_isNyubai(int $year, int $month, int $day): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_VSOP87);
         DateTime::useMoonAlgorithm(DateTime::MOON_ALGORITHM_ELP2000);
@@ -596,7 +596,7 @@ class MiscSeasonalNodeTest extends TestCase
      * @return void
      * @dataProvider nyubaiProvider
      */
-    public function test_isNyubai_legacy($year, $month, $day): void
+    public function test_isNyubai_legacy(int $year, int $month, int $day): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_LEGACY);
         DateTime::useMoonAlgorithm(DateTime::MOON_ALGORITHM_LEGACY);
@@ -611,7 +611,7 @@ class MiscSeasonalNodeTest extends TestCase
      * @return void
      * @dataProvider nyubaiProvider
      */
-    public function test_getMiscSeasonalNodeKey_nyubai($year, $month, $day): void
+    public function test_getMiscSeasonalNodeKey_nyubai(int $year, int $month, int $day): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_VSOP87);
         DateTime::useMoonAlgorithm(DateTime::MOON_ALGORITHM_ELP2000);
@@ -626,7 +626,7 @@ class MiscSeasonalNodeTest extends TestCase
      * @return void
      * @dataProvider nyubaiProvider
      */
-    public function test_getMiscSeasonalNodeKey_nyubai_legacy($year, $month, $day): void
+    public function test_getMiscSeasonalNodeKey_nyubai_legacy(int $year, int $month, int $day): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_LEGACY);
         DateTime::useMoonAlgorithm(DateTime::MOON_ALGORITHM_LEGACY);
@@ -652,7 +652,7 @@ class MiscSeasonalNodeTest extends TestCase
      * @return void
      * @dataProvider hangeshoProvider
      */
-    public function test_isHangesho($year, $month, $day): void
+    public function test_isHangesho(int $year, int $month, int $day): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_VSOP87);
         DateTime::useMoonAlgorithm(DateTime::MOON_ALGORITHM_ELP2000);
@@ -678,7 +678,7 @@ class MiscSeasonalNodeTest extends TestCase
      * @return void
      * @dataProvider hangeshoProvider
      */
-    public function test_isHangesho_legacy($year, $month, $day): void
+    public function test_isHangesho_legacy(int $year, int $month, int $day): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_LEGACY);
         DateTime::useMoonAlgorithm(DateTime::MOON_ALGORITHM_LEGACY);
@@ -693,7 +693,7 @@ class MiscSeasonalNodeTest extends TestCase
      * @return void
      * @dataProvider hangeshoProvider
      */
-    public function test_getMiscSeasonalNodeKey_hangesho($year, $month, $day): void
+    public function test_getMiscSeasonalNodeKey_hangesho(int $year, int $month, int $day): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_VSOP87);
         DateTime::useMoonAlgorithm(DateTime::MOON_ALGORITHM_ELP2000);
@@ -708,7 +708,7 @@ class MiscSeasonalNodeTest extends TestCase
      * @return void
      * @dataProvider hangeshoProvider
      */
-    public function test_getMiscSeasonalNodeKey_hangesho_legacy($year, $month, $day): void
+    public function test_getMiscSeasonalNodeKey_hangesho_legacy(int $year, int $month, int $day): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_LEGACY);
         DateTime::useMoonAlgorithm(DateTime::MOON_ALGORITHM_LEGACY);
@@ -731,7 +731,7 @@ class MiscSeasonalNodeTest extends TestCase
      * @return void
      * @dataProvider doyoSummerProvider
      */
-    public function test_isDoyo_summerStart($year, $month, $day): void
+    public function test_isDoyo_summerStart(int $year, int $month, int $day): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_VSOP87);
         DateTime::useMoonAlgorithm(DateTime::MOON_ALGORITHM_ELP2000);
@@ -746,7 +746,7 @@ class MiscSeasonalNodeTest extends TestCase
      * @return void
      * @dataProvider doyoSummerProvider
      */
-    public function test_isDoyo_summerStart_legacy($year, $month, $day): void
+    public function test_isDoyo_summerStart_legacy(int $year, int $month, int $day): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_LEGACY);
         DateTime::useMoonAlgorithm(DateTime::MOON_ALGORITHM_LEGACY);
@@ -761,7 +761,7 @@ class MiscSeasonalNodeTest extends TestCase
      * @return void
      * @dataProvider doyoSummerProvider
      */
-    public function test_getMiscSeasonalNodeKey_doyo($year, $month, $day): void
+    public function test_getMiscSeasonalNodeKey_doyo(int $year, int $month, int $day): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_VSOP87);
         DateTime::useMoonAlgorithm(DateTime::MOON_ALGORITHM_ELP2000);
@@ -776,7 +776,7 @@ class MiscSeasonalNodeTest extends TestCase
      * @return void
      * @dataProvider doyoSummerProvider
      */
-    public function test_getMiscSeasonalNodeKey_doyo_legacy($year, $month, $day): void
+    public function test_getMiscSeasonalNodeKey_doyo_legacy(int $year, int $month, int $day): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_LEGACY);
         DateTime::useMoonAlgorithm(DateTime::MOON_ALGORITHM_LEGACY);
@@ -839,7 +839,7 @@ class MiscSeasonalNodeTest extends TestCase
      * @return void
      * @dataProvider nihyakutokaProvider
      */
-    public function test_isNihyakutoka($year, $month, $day): void
+    public function test_isNihyakutoka(int $year, int $month, int $day): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_VSOP87);
         DateTime::useMoonAlgorithm(DateTime::MOON_ALGORITHM_ELP2000);
@@ -854,7 +854,7 @@ class MiscSeasonalNodeTest extends TestCase
      * @return void
      * @dataProvider nihyakutokaProvider
      */
-    public function test_isNihyakutoka_legacy($year, $month, $day): void
+    public function test_isNihyakutoka_legacy(int $year, int $month, int $day): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_LEGACY);
         DateTime::useMoonAlgorithm(DateTime::MOON_ALGORITHM_LEGACY);
@@ -869,7 +869,7 @@ class MiscSeasonalNodeTest extends TestCase
      * @return void
      * @dataProvider nihyakutokaProvider
      */
-    public function test_getMiscSeasonalNodeKey_nihyakutoka($year, $month, $day): void
+    public function test_getMiscSeasonalNodeKey_nihyakutoka(int $year, int $month, int $day): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_VSOP87);
         DateTime::useMoonAlgorithm(DateTime::MOON_ALGORITHM_ELP2000);
@@ -884,7 +884,7 @@ class MiscSeasonalNodeTest extends TestCase
      * @return void
      * @dataProvider nihyakutokaProvider
      */
-    public function test_getMiscSeasonalNodeKey_nihyakutoka_legacy($year, $month, $day): void
+    public function test_getMiscSeasonalNodeKey_nihyakutoka_legacy(int $year, int $month, int $day): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_LEGACY);
         DateTime::useMoonAlgorithm(DateTime::MOON_ALGORITHM_LEGACY);
@@ -911,7 +911,7 @@ class MiscSeasonalNodeTest extends TestCase
      * @return void
      * @dataProvider nihyakunijuunichiProvider
      */
-    public function test_isNihyakunijuunichi($year, $month, $day): void
+    public function test_isNihyakunijuunichi(int $year, int $month, int $day): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_VSOP87);
         DateTime::useMoonAlgorithm(DateTime::MOON_ALGORITHM_ELP2000);
@@ -926,7 +926,7 @@ class MiscSeasonalNodeTest extends TestCase
      * @return void
      * @dataProvider nihyakunijuunichiProvider
      */
-    public function test_isNihyakunijuunichi_legacy($year, $month, $day): void
+    public function test_isNihyakunijuunichi_legacy(int $year, int $month, int $day): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_LEGACY);
         DateTime::useMoonAlgorithm(DateTime::MOON_ALGORITHM_LEGACY);
@@ -941,7 +941,7 @@ class MiscSeasonalNodeTest extends TestCase
      * @return void
      * @dataProvider nihyakunijuunichiProvider
      */
-    public function test_getMiscSeasonalNodeKey_nihyakunijuunichi($year, $month, $day): void
+    public function test_getMiscSeasonalNodeKey_nihyakunijuunichi(int $year, int $month, int $day): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_VSOP87);
         DateTime::useMoonAlgorithm(DateTime::MOON_ALGORITHM_ELP2000);
@@ -956,7 +956,7 @@ class MiscSeasonalNodeTest extends TestCase
      * @return void
      * @dataProvider nihyakunijuunichiProvider
      */
-    public function test_getMiscSeasonalNodeKey_nihyakunijuunichi_legacy($year, $month, $day): void
+    public function test_getMiscSeasonalNodeKey_nihyakunijuunichi_legacy(int $year, int $month, int $day): void
     {
         DateTime::useSolarAlgorithm(DateTime::SOLAR_ALGORITHM_LEGACY);
         DateTime::useMoonAlgorithm(DateTime::MOON_ALGORITHM_LEGACY);

@@ -54,7 +54,7 @@ class LunarCalendarTest extends TestCase
 {
     use InvokeTrait;
     /**
-     * @return void
+     * Mockery のモック定義をテストごとに閉じ、次のテストへ期待値を持ち越さないようにする。
      */
     protected function tearDown(): void
     {
@@ -86,7 +86,7 @@ class LunarCalendarTest extends TestCase
      * @throws \ReflectionException
      * @dataProvider chukiSkipDaysDataProvider
      */
-    public function test_calcChukiSkipDays($longitudeSun, $expected): void
+    public function test_calcChukiSkipDays(float $longitudeSun, int $expected): void
     {
         $lunarCalendar = new LunarCalendar();
         $this->assertSame(
@@ -95,9 +95,23 @@ class LunarCalendarTest extends TestCase
         );
     }
     /**
-     * 月齢計算の検証用データを返す
+     * getLunarCalendarArray が年境界を含む旧暦年月日を返すことを確認するケースを返す。
      *
-     * @return array
+     * @return array<string, array{int, int, int, array{int, bool, float, float}}>
+     */
+    public static function lunarCalendarArrayDataProvider(): array
+    {
+        return [
+            '2016年旧正月' => [2016, 2, 8, [2016, false, 1.0, 1.0]],
+            '2018年旧暦年末29日' => [2018, 2, 14, [2017, false, 12.0, 29.0]],
+            '2018年旧暦年末30日' => [2018, 2, 15, [2017, false, 12.0, 30.0]],
+            '2018年旧正月' => [2018, 2, 16, [2018, false, 1.0, 1.0]],
+        ];
+    }
+    /**
+     * 月齢計算の検証用データを返す。
+     *
+     * @return array<string, array{int, int, int, int, int, int, int}>
      */
     public static function moonAgeDataProvider(): array
     {
@@ -115,6 +129,54 @@ class LunarCalendarTest extends TestCase
             '2026朔_直前' => [2026, 3, 19, 0, 0, 0, 29],
             // 2034-03-20 19:15 JST が国立天文台の朔
             '2034朔' => [2034, 3, 20, 19, 15, 0, 0],
+        ];
+    }
+    /**
+     * moonPhaseAngle が新月・満月それぞれの位相角範囲を返すことを確認するケースを返す。
+     *
+     * @return array<string, array{int, int, int, float, float, float, string}>
+     */
+    public static function moonPhaseAngleDataProvider(): array
+    {
+        return [
+            '新月' => [2023, 1, 21, 20.0, 53.0, 0.0, 'new'],
+            '満月' => [2023, 2, 5, 18.0, 29.0, 0.0, 'full'],
+        ];
+    }
+    /**
+     * moonPhase が主要な月相点で期待する月相番号を返すことを確認するケースを返す。
+     *
+     * @return array<string, array{int, int, int, float, float, float, int, string}>
+     */
+    public static function principalMoonPhaseDataProvider(): array
+    {
+        return [
+            '新月' => [2023, 1, 22, 5.0, 53.0, 0.0, 0, '新月時刻の月相が 0 (新月) でありません'],
+            '満月' => [2023, 2, 6, 3.0, 29.0, 0.0, 4, '満月時刻の月相が 4 (満月) でありません'],
+        ];
+    }
+    /**
+     * Meeus47 実装で NASA C 補正の有無にかかわらず MeeusMoonAge が選択されることを確認するケースを返す。
+     *
+     * @return array<string, array{bool}>
+     */
+    public static function meeusMoonAgeFactoryDataProvider(): array
+    {
+        return [
+            'NASA C 補正あり' => [true],
+            'NASA C 補正なし' => [false],
+        ];
+    }
+    /**
+     * Meeus47 実装で主要な月相点が期待する月相番号になることを確認するケースを返す。
+     *
+     * @return array<string, array{int, int, int, float, float, float, int, string}>
+     */
+    public static function meeusMoonPhaseDataProvider(): array
+    {
+        return [
+            '新月' => [2023, 1, 22, 14.0, 53.0, 0.0, 0, 'meeus47 新月時刻の月相が 0 でありません'],
+            '満月' => [2023, 2, 6, 12.0, 29.0, 0.0, 4, 'meeus47 満月時刻の月相が 4 でありません'],
         ];
     }
     /**
@@ -152,52 +214,17 @@ class LunarCalendarTest extends TestCase
      * @throws \ReflectionException
      * @runInSeparateProcess
      * @preserveGlobalState disabled
+     * @dataProvider lunarCalendarArrayDataProvider
      */
-    public function test_getLunarCalendarArray(): void
+    public function test_getLunarCalendarArray(int $year, int $month, int $day, array $expected): void
     {
         $LunarCalendar = LunarCalendar::factory();
-        // 2016年
         $res = $this->invokeExecuteMethod(
             $LunarCalendar,
             'getLunarCalendarArray',
-            [2016, 2, 8]
+            [$year, $month, $day]
         );
-        $this->assertSame([
-            2016,
-            false,
-            1.0,
-            1.0, ], $res);
-        // 2018年年の変わり目
-        $res = $this->invokeExecuteMethod(
-            $LunarCalendar,
-            'getLunarCalendarArray',
-            [2018, 2, 14]
-        );
-        $this->assertSame([
-            2017,
-            false,
-            12.0,
-            29.0, ], $res);
-        $res = $this->invokeExecuteMethod(
-            $LunarCalendar,
-            'getLunarCalendarArray',
-            [2018, 2, 15]
-        );
-        $this->assertSame([
-            2017,
-            false,
-            12.0,
-            30.0, ], $res);
-        $res = $this->invokeExecuteMethod(
-            $LunarCalendar,
-            'getLunarCalendarArray',
-            [2018, 2, 16]
-        );
-        $this->assertSame([
-            2018,
-            false,
-            1.0,
-            1.0, ], $res);
+        $this->assertSame($expected, $res);
     }
     /**
      * 指定日時の月齢を丸めた値で確認する
@@ -232,10 +259,7 @@ class LunarCalendarTest extends TestCase
     public function test_moonAge_delegatesToInjectedMoonAgeAlgorithm(): void
     {
         $stub = new class () implements MoonAgeAlgorithm {
-            /**
-             * @var mixed[]|null
-             */
-            public $receivedArgs;
+            public ?array $receivedArgs = null;
 
             /**
              * @param int $year
@@ -246,7 +270,7 @@ class LunarCalendarTest extends TestCase
              * @param float $sec
              * @return float
              */
-            public function moonAge($year, $month, $day, $hour, $min, $sec): float
+            public function moonAge(int $year, int $month, int $day, float $hour, float $min, float $sec): float
             {
                 $this->receivedArgs = [$year, $month, $day, $hour, $min, $sec];
 
@@ -271,10 +295,7 @@ class LunarCalendarTest extends TestCase
     public function test_moonAge_memoization_sameArgsCallAlgorithmOnce(): void
     {
         $spy = new class () implements MoonAgeAlgorithm {
-            /**
-             * @var int
-             */
-            public $callCount = 0;
+            public int $callCount = 0;
 
             /**
              * @param int $year
@@ -285,7 +306,7 @@ class LunarCalendarTest extends TestCase
              * @param float $sec
              * @return float
              */
-            public function moonAge($year, $month, $day, $hour, $min, $sec): float
+            public function moonAge(int $year, int $month, int $day, float $hour, float $min, float $sec): float
             {
                 $this->callCount++;
 
@@ -314,10 +335,7 @@ class LunarCalendarTest extends TestCase
     public function test_moonAge_memoization_differentArgsCachedSeparately(): void
     {
         $spy = new class () implements MoonAgeAlgorithm {
-            /**
-             * @var int
-             */
-            public $callCount = 0;
+            public int $callCount = 0;
 
             /**
              * @param int $year
@@ -328,7 +346,7 @@ class LunarCalendarTest extends TestCase
              * @param float $sec
              * @return float
              */
-            public function moonAge($year, $month, $day, $hour, $min, $sec): float
+            public function moonAge(int $year, int $month, int $day, float $hour, float $min, float $sec): float
             {
                 $this->callCount++;
 
@@ -358,10 +376,7 @@ class LunarCalendarTest extends TestCase
     public function test_moonAge_memoization_cacheCanBeReset(): void
     {
         $spy = new class () implements MoonAgeAlgorithm {
-            /**
-             * @var int
-             */
-            public $callCount = 0;
+            public int $callCount = 0;
 
             /**
              * @param int $year
@@ -372,7 +387,7 @@ class LunarCalendarTest extends TestCase
              * @param float $sec
              * @return float
              */
-            public function moonAge($year, $month, $day, $hour, $min, $sec): float
+            public function moonAge(int $year, int $month, int $day, float $hour, float $min, float $sec): float
             {
                 $this->callCount++;
 
@@ -407,15 +422,9 @@ class LunarCalendarTest extends TestCase
         $legacyAlgo = new LegacyMoonAge($astronomy);
 
         $spy = new class ($legacyAlgo) implements MoonAgeAlgorithm {
-            /**
-             * @var int
-             */
-            public $callCount = 0;
+            public int $callCount = 0;
 
-            /**
-             * @var \JapaneseDate\Components\Contracts\MoonAgeAlgorithm
-             */
-            private $real;
+            private MoonAgeAlgorithm $real;
 
             /**
              * @param \JapaneseDate\Components\Contracts\MoonAgeAlgorithm $real
@@ -434,7 +443,7 @@ class LunarCalendarTest extends TestCase
              * @param float $sec
              * @return float
              */
-            public function moonAge($year, $month, $day, $hour, $min, $sec): float
+            public function moonAge(int $year, int $month, int $day, float $hour, float $min, float $sec): float
             {
                 $this->callCount++;
 
@@ -479,12 +488,10 @@ class LunarCalendarTest extends TestCase
         $LunarCalendar = LunarCalendar::factory();
         $calendar_array = $this->invokeExecuteMethod($LunarCalendar, 'makeLunarCalendar', [1899]);
         $dates = array_map(
-            static function (array $item): string {
-                return sprintf('%04d/%02d/%02d', $item['year'], $item['month'], $item['day']);
-            },
+            static fn (array $item): string => sprintf('%04d/%02d/%02d', $item['year'], $item['month'], $item['day']),
             $calendar_array
         );
-        $this->assertContains('1899/05/10', $dates, json_encode($calendar_array, 0));
+        $this->assertContains('1899/05/10', $dates, json_encode($calendar_array, JSON_THROW_ON_ERROR));
     }
     /**
      * Config::getLC がデータを返した場合に makeLunarCalendar が早期リターンすることを確認する
@@ -547,11 +554,10 @@ PHP
             ->atLeast()
             ->once()
             ->andReturnUsing(
-                static function (int $year, int $month, int $day, float $hour, float $min, float $sec) use ($meeusMoon): float {
-                    return $meeusMoon->longitudeMoon($year, $month, $day, $hour, $min, $sec);
-                }
+                static fn (int $year, int $month, int $day, float $hour, float $min, float $sec): float =>
+                    $meeusMoon->longitudeMoon($year, $month, $day, $hour, $min, $sec)
             );
-        $astronomy = new Astronomy(null, $elp2000Spy);
+        $astronomy = new Astronomy(moonAlgorithm: $elp2000Spy);
         $lunarCalendar = new LunarCalendar($astronomy);
         $this->assertSame(Astronomy::MOON_ELP2000, $astronomy->moonAlgorithmName());
         $calendar_array = $this->invokeExecuteMethod($lunarCalendar, 'makeLunarCalendar', [2023]);
@@ -704,34 +710,25 @@ PHP
      * @return void
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\Exception
+     * @dataProvider moonPhaseAngleDataProvider
      */
-    public function test_moonPhaseAngle_newMoon(): void
+    public function test_moonPhaseAngle(int $year, int $month, int $day, float $hour, float $minute, float $second, string $phase): void
     {
         $lc = LunarCalendar::factory();
-
-        // 新月時刻 (2023-01-21 20:53 UTC) → 位相角は新月区間 (337.5° 〜 22.5°) に入る
-        $result = $lc->moonPhaseAngle(2023, 1, 21, 20.0, 53.0, 0.0);
+        $result = $lc->moonPhaseAngle($year, $month, $day, $hour, $minute, $second);
         $this->assertIsFloat($result);
         $this->assertGreaterThanOrEqual(0.0, $result);
         $this->assertLessThan(360.0, $result);
-        $this->assertTrue(
-            $result < 22.5 || $result >= 337.5,
-            "新月付近の位相角({$result}°)が新月区間外です"
-        );
-    }
-    /**
-     * @return void
-     * @throws \DateInvalidTimeZoneException
-     * @throws \JapaneseDate\Exceptions\Exception
-     */
-    public function test_moonPhaseAngle_fullMoon(): void
-    {
-        $lc = LunarCalendar::factory();
-
-        // 満月時刻 (2023-02-05 18:29 UTC) → 位相角は満月区間 (157.5° 〜 202.5°) に入る
-        $result = $lc->moonPhaseAngle(2023, 2, 5, 18.0, 29.0, 0.0);
-        $this->assertGreaterThan(135.0, $result);
-        $this->assertLessThan(225.0, $result);
+        match ($phase) {
+            'new' => $this->assertTrue(
+                $result < 22.5 || $result >= 337.5,
+                "新月付近の位相角({$result}°)が新月区間外です"
+            ),
+            'full' => $this->assertTrue(
+                $result > 135.0 && $result < 225.0,
+                "満月付近の位相角({$result}°)が満月区間外です"
+            ),
+        };
     }
     // ==================== moonPhase ====================
     /**
@@ -743,30 +740,14 @@ PHP
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
+     * @dataProvider principalMoonPhaseDataProvider
      */
-    public function test_moonPhase_newMoon(): void
+    public function test_moonPhase_principalPhase(int $year, int $month, int $day, float $hour, float $minute, float $second, int $expected, string $message): void
     {
         $lc = LunarCalendar::factory();
-
-        // 新月時刻 → 月相 0 (新月)
-        $result = $lc->moonPhase(2023, 1, 22, 5.0, 53.0, 0.0);
+        $result = $lc->moonPhase($year, $month, $day, $hour, $minute, $second);
         $this->assertIsInt($result);
-        $this->assertSame(0, $result, '新月時刻の月相が 0 (新月) でありません');
-    }
-    /**
-     * @return void
-     * @throws \DateInvalidTimeZoneException
-     * @throws \JapaneseDate\Exceptions\ErrorException
-     * @throws \JapaneseDate\Exceptions\Exception
-     */
-    public function test_moonPhase_fullMoon(): void
-    {
-        $lc = LunarCalendar::factory();
-
-        // 満月時刻 → 月相 4 (満月)
-        $result = $lc->moonPhase(2023, 2, 6, 3.0, 29.0, 0.0);
-        $this->assertIsInt($result);
-        $this->assertSame(4, $result, '満月時刻の月相が 4 (満月) でありません');
+        $this->assertSame($expected, $result, $message);
     }
     /**
      * 直近の月相点が「次の」月相点である場合に、その月相が採用されることを確認する
@@ -788,6 +769,8 @@ PHP
         $this->assertSame(0, $result, '直近の月相点が次の朔である場合に 0 (新月) でありません');
     }
     /**
+     * 主要な月相点から十分離れた日時では moonPhase が null を返すことを確認する。
+     *
      * @return void
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\ErrorException
@@ -801,30 +784,23 @@ PHP
     }
     // ==================== meeus47 統合テスト ====================
     /**
+     * Meeus47 の NASA C 補正有無にかかわらず、月齢計算 Strategy として MeeusMoonAge が生成されることを確認する。
+     *
+     * @param bool $applyNasaCCorrection
      * @return void
      * @throws \ReflectionException
+     * @dataProvider meeusMoonAgeFactoryDataProvider
      */
-    public function test_factory_meeus47_creates_MeeusMoonAge_as_default(): void
+    public function test_factory_meeus47_creates_MeeusMoonAge_as_default(bool $applyNasaCCorrection): void
     {
-        $ast = new Astronomy(null, new MeeusMoon(true));
+        $ast = new Astronomy(null, new MeeusMoon(applyNasaCCorrection: $applyNasaCCorrection));
         $lc = new LunarCalendar($ast);
-
         $moonAge = $this->invokeGetProperty($lc, 'moonAgeAlgorithm');
         $this->assertInstanceOf(MeeusMoonAge::class, $moonAge);
     }
     /**
-     * @return void
-     * @throws \ReflectionException
-     */
-    public function test_factory_meeus47_no_c_creates_MeeusMoonAge_as_default(): void
-    {
-        $ast = new Astronomy(null, new MeeusMoon(false));
-        $lc = new LunarCalendar($ast);
-
-        $moonAge = $this->invokeGetProperty($lc, 'moonAgeAlgorithm');
-        $this->assertInstanceOf(MeeusMoonAge::class, $moonAge);
-    }
-    /**
+     * Meeus47 実装を注入した makeLunarCalendar が旧暦テーブルを生成し、月黄経計算へ委譲することを確認する。
+     *
      * @return void
      * @throws \ReflectionException
      * @runInSeparateProcess
@@ -833,7 +809,7 @@ PHP
     public function test_makeLunarCalendar_with_meeus47_returns_array(): void
     {
         $meeusMoonSpy = Mockery::mock(MeeusMoon::class, [true])->makePartial();
-        $astronomy = new Astronomy(null, $meeusMoonSpy);
+        $astronomy = new Astronomy(moonAlgorithm: $meeusMoonSpy);
         $lunarCalendar = new LunarCalendar($astronomy);
         $this->assertSame(Astronomy::MOON_MEEUS47, $astronomy->moonAlgorithmName());
         $calendar_array = $this->invokeExecuteMethod($lunarCalendar, 'makeLunarCalendar', [2023]);
@@ -847,6 +823,8 @@ PHP
         $meeusMoonSpy->shouldHaveReceived('longitudeMoon')->atLeast()->once();
     }
     /**
+     * 太陽黄経キャリブレーションが月アルゴリズムのグローバル設定を書き換えないことを確認する。
+     *
      * @return void
      * @throws \ReflectionException
      */
@@ -867,34 +845,20 @@ PHP
         }
     }
     /**
+     * Meeus47 実装で主要な月相点が期待する月相番号として判定されることを確認する。
+     *
      * @return void
      * @throws \DateInvalidTimeZoneException
      * @throws \JapaneseDate\Exceptions\ErrorException
      * @throws \JapaneseDate\Exceptions\Exception
+     * @dataProvider meeusMoonPhaseDataProvider
      */
-    public function test_moonPhase_with_meeus47_returns_correct_value(): void
+    public function test_moonPhase_with_meeus47_returns_principal_phase(int $year, int $month, int $day, float $hour, float $minute, float $second, int $expected, string $message): void
     {
-        $ast = new Astronomy(new Vsop87Astronomy(), new MeeusMoon(true));
+        $ast = new Astronomy(new Vsop87Astronomy(), new MeeusMoon(applyNasaCCorrection: true));
         $lc = new LunarCalendar($ast);
-
-        // 2023-01-22 05:53 UTC = JST 14:53 → 月相 0（新月）
-        $result = $lc->moonPhase(2023, 1, 22, 14.0, 53.0, 0.0);
-        $this->assertSame(0, $result, 'meeus47 新月時刻の月相が 0 でありません');
-    }
-    /**
-     * @return void
-     * @throws \DateInvalidTimeZoneException
-     * @throws \JapaneseDate\Exceptions\ErrorException
-     * @throws \JapaneseDate\Exceptions\Exception
-     */
-    public function test_moonPhase_with_meeus47_fullMoon(): void
-    {
-        $ast = new Astronomy(new Vsop87Astronomy(), new MeeusMoon(true));
-        $lc = new LunarCalendar($ast);
-
-        // 2023-02-06 03:29 UTC = JST 12:29 → 月相 4（満月）
-        $result = $lc->moonPhase(2023, 2, 6, 12.0, 29.0, 0.0);
-        $this->assertSame(4, $result, 'meeus47 満月時刻の月相が 4 でありません');
+        $result = $lc->moonPhase($year, $month, $day, $hour, $minute, $second);
+        $this->assertSame($expected, $result, $message);
     }
     // ==================== 出力等価性スモークテスト ====================
     /**
@@ -912,7 +876,7 @@ PHP
     {
         $combinations = [
             'vsop87_legacy'     => new LunarCalendar(new Astronomy(new Vsop87Astronomy())),
-            'vsop87_meeus47_nc' => new LunarCalendar(new Astronomy(new Vsop87Astronomy(), new MeeusMoon(false))),
+            'vsop87_meeus47_nc' => new LunarCalendar(new Astronomy(new Vsop87Astronomy(), new MeeusMoon(applyNasaCCorrection: false))),
         ];
         // 代表年: 境界年・現代年・遠未来年
         $years = [1900, 1950, 2000, 2023, 2050, 2100];

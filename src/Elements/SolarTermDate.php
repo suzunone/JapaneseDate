@@ -84,7 +84,7 @@ class SolarTermDate
      *
      * @var array{is_sekki: bool, is_chuki: bool, year: int, solar_term: int, month: int, day: int, solar_longitude: float}
      */
-    protected $attribute = [
+    protected array $attribute = [
         'is_sekki'        => false,
         'is_chuki'        => false,
         'year'            => 0,
@@ -136,16 +136,13 @@ class SolarTermDate
      * @param  string                        $key プロパティ名
      * @return string|DateTime|null|int|bool|float プロパティ値。未定義キーは null
      */
-    public function __get(string $key)
+    public function __get(string $key): null|string|DateTime|int|bool|float
     {
-        switch ($key) {
-            case 'solarTermText':
-                return $this->attribute[$key] ?? JapaneseDate::SOLAR_TERM[$this->solar_term];
-            case 'dateTime':
-                return $this->attribute[$key] ?? DateTime::create($this->year, $this->month, $this->day);
-            default:
-                return $this->attribute[$key] ?? null;
-        }
+        return $this->attribute[$key] ?? match ($key) {
+            'solarTermText' => JapaneseDate::SOLAR_TERM[$this->solar_term],
+            'dateTime'      => DateTime::create($this->year, $this->month, $this->day),
+            default         => null,
+        };
     }
 
     /**
@@ -159,7 +156,7 @@ class SolarTermDate
      * @return void
      * @throws RuntimeException 常に投げる
      */
-    public function __set(string $key, $value): void
+    public function __set(string $key, mixed $value): void
     {
         throw new RuntimeException('Can not set key:' . $key . ' =  ' . $value);
     }
@@ -175,12 +172,9 @@ class SolarTermDate
      */
     public function __isset(string $key): bool
     {
-        switch ($key) {
-            case 'solarTermText':
-            case 'dateTime':
-                return true;
-            default:
-                return isset($this->attribute[$key]);
-        }
+        return match ($key) {
+            'solarTermText', 'dateTime' => true,
+            default                     => isset($this->attribute[$key]),
+        };
     }
 }

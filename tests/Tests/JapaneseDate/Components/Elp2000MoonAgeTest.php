@@ -54,7 +54,7 @@ class Elp2000MoonAgeTest extends TestCase
             '2023朔 05:53 JST' => [2023, 1, 22, 5, 53, 0, 0],
             // 望 (満月) 付近: 月齢 ≈ 15
             '2023望 03:29 JST' => [2023, 2, 6, 3, 29, 0, 15],
-            // 朔前日付近: NASA SVS の月齢 ≈ 28.4 / $res > 30 補正を通る
+            // 朔前日付近: NASA SVS の月齢 ≈ 28.4
             '2020朔前日' => [2020, 12, 14, 0, 0, 0, 28],
             // 朔当日付近: 月齢 ≈ 0
             '2020朔' => [2020, 12, 15, 1, 17, 0, 0],
@@ -81,7 +81,7 @@ class Elp2000MoonAgeTest extends TestCase
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      * @dataProvider moonAgeProvider
      */
-    public function test_moonAge($year, $month, $day, $hour, $min, $sec, $expectedRounded): void
+    public function test_moonAge(int $year, int $month, int $day, float $hour, float $min, float $sec, int $expectedRounded): void
     {
         $moonAge = new Elp2000MoonAge($this->makeElp2000Astronomy());
         $result = $moonAge->moonAge($year, $month, $day, $hour, $min, $sec);
@@ -167,7 +167,7 @@ class Elp2000MoonAgeTest extends TestCase
     /**
      * 黄経差の収束ループにおいて「ΔΛ が引き込み範囲（±40°）を逸脱した場合」の
      * 補正分岐、および収束後の月齢が30以上になった場合の補正分岐
-     * （$res -= 30）を確実に通過するケースを検証する。
+     * （$res -= self::SYNODIC_MONTH）を確実に通過するケースを検証する。
      */
     public function test_moonAge_passesOutOfCaptureRangeAndOverThirtyCorrectionBranches(): void
     {
@@ -184,6 +184,29 @@ class Elp2000MoonAgeTest extends TestCase
 
         $this->assertGreaterThanOrEqual(0.0, $result);
         $this->assertLessThan(30.0, $result);
+    }
+    /**
+     * 30日を超えた月齢補正は、固定値30日ではなく平均朔望月で折り返す。
+     */
+    public function test_moonAge_subtractsSynodicMonthWhenResultExceedsThirtyDays(): void
+    {
+        $moonAge = new class ($this->makeElp2000Astronomy()) extends Elp2000MoonAge {
+            /**
+             * @param float $approxJd
+             * @param float $julianDate0
+             * @return float
+             */
+            protected function findNewMoonJd(float $approxJd, float $julianDate0): float
+            {
+                return $julianDate0 - 30.25;
+            }
+        };
+
+        $this->assertEqualsWithDelta(
+            30.25 - 29.530589,
+            $moonAge->moonAge(2024, 1, 11, 8, 0, 0),
+            1.0e-9
+        );
     }
     /**
      * 直前の朔への再収束後も未来時刻となった場合、朔望月を加算して負値を補正する。
@@ -214,40 +237,24 @@ class Elp2000MoonAgeTest extends TestCase
     private function makeSequencedAstronomy(array $sequence, ?float $normalizedAngle = null): Astronomy
     {
         return new class ($sequence, $normalizedAngle) extends Astronomy {
-            /**
-             * @var array<int, array{0: float, 1: float}>
-             */
-            private $sequence;
-            /**
-             * @var null|float
-             */
-            private $normalizedAngle;
-            /**
-             * @var int
-             */
-            private $sunIndex = 0;
+            private int $sunIndex = 0;
 
-            /**
-             * @var int
-             */
-            private $moonIndex = 0;
+            private int $moonIndex = 0;
 
             /**
              * @param array<int, array{0: float, 1: float}> $sequence
              * @param null|float $normalizedAngle
              */
             public function __construct(
-                array $sequence,
-                ?float $normalizedAngle
+                /**
+                 * @readonly
+                 */
+                private array $sequence,
+                /**
+                 * @readonly
+                 */
+                private ?float $normalizedAngle
             ) {
-                /**
-                 * @readonly
-                 */
-                $this->sequence = $sequence;
-                /**
-                 * @readonly
-                 */
-                $this->normalizedAngle = $normalizedAngle;
                 parent::__construct();
             }
 
@@ -260,7 +267,7 @@ class Elp2000MoonAgeTest extends TestCase
              * @param float $sec
              * @return float
              */
-            public function longitudeSun($year, $month, $day, $hour, $min, $sec): float
+            public function longitudeSun(int $year, int $month, float $day, float $hour, float $min, float $sec): float
             {
                 $value = $this->sequence[min($this->sunIndex, count($this->sequence) - 1)][0];
                 $this->sunIndex++;
@@ -277,7 +284,7 @@ class Elp2000MoonAgeTest extends TestCase
              * @param float $sec
              * @return float
              */
-            public function longitudeMoon($year, $month, $day, $hour, $min, $sec): float
+            public function longitudeMoon(int $year, int $month, int $day, float $hour, float $min, float $sec): float
             {
                 $value = $this->sequence[min($this->moonIndex, count($this->sequence) - 1)][1];
                 $this->moonIndex++;
@@ -295,12 +302,12 @@ class Elp2000MoonAgeTest extends TestCase
              * @return float
              */
             public function longitudeMoonFast(
-                $year,
-                $month,
-                $day,
-                $hour,
-                $min,
-                $sec
+                int $year,
+                int $month,
+                int $day,
+                float $hour,
+                float $min,
+                float $sec
             ): float {
                 return $this->longitudeMoon($year, $month, $day, $hour, $min, $sec);
             }
@@ -309,7 +316,7 @@ class Elp2000MoonAgeTest extends TestCase
              * @param float $angle
              * @return float
              */
-            public function normalizeAngle($angle): float
+            public function normalizeAngle(float $angle): float
             {
                 return $this->normalizedAngle ?? parent::normalizeAngle($angle);
             }

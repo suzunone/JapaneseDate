@@ -256,9 +256,7 @@ class BusinessTraitTest extends TestCase
     public function test_nextBusinessDay_throws_InfiniteLoopException(): void
     {
         $dt = new DateTime('2026-05-25');
-        $dt->setBusinessMacro(function () {
-            return false;
-        });
+        $dt->setBusinessMacro(fn() => false);
 
         $this->expectException(InfiniteLoopException::class);
         $dt->nextBusinessDay();
@@ -269,9 +267,7 @@ class BusinessTraitTest extends TestCase
     public function test_previousBusinessDay_throws_InfiniteLoopException(): void
     {
         $dt = new DateTime('2026-05-25');
-        $dt->setBusinessMacro(function () {
-            return false;
-        });
+        $dt->setBusinessMacro(fn() => false);
 
         $this->expectException(InfiniteLoopException::class);
         $dt->previousBusinessDay();
@@ -282,9 +278,7 @@ class BusinessTraitTest extends TestCase
     public function test_addBusinessDays_throws_InfiniteLoopException(): void
     {
         $dt = new DateTime('2026-05-25');
-        $dt->setBusinessMacro(function () {
-            return false;
-        });
+        $dt->setBusinessMacro(fn() => false);
 
         $this->expectException(InfiniteLoopException::class);
         $dt->addBusinessDays(1);
@@ -295,9 +289,7 @@ class BusinessTraitTest extends TestCase
     public function test_subBusinessDays_throws_InfiniteLoopException(): void
     {
         $dt = new DateTime('2026-05-25');
-        $dt->setBusinessMacro(function () {
-            return false;
-        });
+        $dt->setBusinessMacro(fn() => false);
 
         $this->expectException(InfiniteLoopException::class);
         $dt->subBusinessDays(1);

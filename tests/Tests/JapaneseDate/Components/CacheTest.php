@@ -327,9 +327,7 @@ class CacheTest extends TestCase
     public function test_fileForever_with_null_cache_path_calls_function_directly(): void
     {
         $this->invokeSetProperty(Cache::class, 'cache_file_path', null);
-        $result = $this->invokeExecuteMethod(Cache::class, 'fileForever', ['key', static function () {
-            return 'direct_value';
-        }]);
+        $result = $this->invokeExecuteMethod(Cache::class, 'fileForever', ['key', static fn () => 'direct_value']);
         $this->assertSame('direct_value', $result);
     }
 }
