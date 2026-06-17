@@ -684,7 +684,7 @@ echo $result->format('Y-m-d');
 ### isBusinessDay
 
 ```php
-static public bool isBusinessDay($date)
+static public bool isBusinessDay($DateTime)
 ```
 
 指定した日時が営業日かどうかを判定します。
@@ -696,7 +696,7 @@ static public bool isBusinessDay($date)
 
 | Type | Name | Default | Description |
 |---|---|---|---|
-| [DateTime](../JapaneseDate/DateTime.md) | `$date` | —  | 判定対象の日付 |
+| [DateTime](../JapaneseDate/DateTime.md) | `$DateTime` | —  |  |
 
 **Returns:** bool — 営業日であれば true、非営業日であれば false
 ---

@@ -247,22 +247,28 @@ class FactoryTest extends TestCase
     public static function japaneseDateStringProvider(): array
     {
         return self::withTargetClasses([
-            '元号漢字表記（令和）' => ['令和7年5月1日', null, '2025-05-01 00:00:00', 'UTC'],
+            '元号漢字表記（令和）' => ['令和7年5月1日', null, '2025-05-01 00:00:00', 'Asia/Tokyo'],
             '元号漢字表記（令和） / timezone' => [
                 '令和7年5月1日',
                 new DateTimeZone('UTC'),
                 '2025-05-01 00:00:00',
                 'UTC',
             ],
+            '元号漢字表記（令和） / America/New_York' => [
+                '令和7年5月1日',
+                new DateTimeZone('America/New_York'),
+                '2025-05-01 00:00:00',
+                'America/New_York',
+            ],
             '元号漢字表記（昭和） / 時刻付き' => [
                 '昭和64年1月7日 12時34分56秒',
                 null,
                 '1989-01-07 12:34:56',
-                'UTC',
+                'Asia/Tokyo',
             ],
             '西暦日本語表記' => ['2026年5月1日 12時34分', null, '2026-05-01 12:34:00', 'UTC'],
-            'JIS元号アルファベット（令和）' => ['R7-05-01', null, '2025-05-01 00:00:00', 'UTC'],
-            'JIS元号アルファベット（平成）' => ['H1/01/08', null, '1989-01-08 00:00:00', 'UTC'],
+            'JIS元号アルファベット（令和）' => ['R7-05-01', null, '2025-05-01 00:00:00', 'Asia/Tokyo'],
+            'JIS元号アルファベット（平成）' => ['H1/01/08', null, '1989-01-08 00:00:00', 'Asia/Tokyo'],
         ]);
     }
     /**
@@ -652,9 +658,9 @@ class FactoryTest extends TestCase
         $this->assertSame($expectedIso, $actualIso);
     }
     /**
-     * 和暦・日本語日付パースが PHP のデフォルトタイムゾーンを使用することを確認する。
+     * 元号日付パースが PHP のデフォルトタイムゾーンにかかわらず JST を使用することを確認する。
      */
-    public function test_parseJisDate_uses_default_timezone(): void
+    public function test_parseJisDate_uses_jst_for_era_format(): void
     {
         $defaultTimezone = date_default_timezone_get();
         date_default_timezone_set('America/New_York');
@@ -663,7 +669,7 @@ class FactoryTest extends TestCase
             $timestamp = $this->invokeExecuteMethod(DateTime::class, 'parseJisDate', ['令和7年5月1日 12時34分56秒']);
             $date = Carbon::createFromTimestamp($timestamp, new DateTimeZone('America/New_York'));
 
-            $this->assertSame('2025-05-01T12:34:56.000000-04:00', $date->format('Y-m-d\TH:i:s.uP'));
+            $this->assertSame('2025-04-30T23:34:56.000000-04:00', $date->format('Y-m-d\TH:i:s.uP'));
         } finally {
             date_default_timezone_set($defaultTimezone);
         }

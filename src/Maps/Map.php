@@ -71,7 +71,6 @@ abstract class Map
      * @return array<int, array<string, string>> 条件に合致したマッピング要素の配列
      * @throws \Exception
      * @throws \Exception
-     * @throws \Exception
      */
     public static function findByDate($date): array
     {

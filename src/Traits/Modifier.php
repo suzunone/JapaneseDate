@@ -41,14 +41,14 @@ trait Modifier
     public function nextHoliday()
     {
         /**
-         * @var  \JapaneseDate\DateTime|static|Modifier|\Carbon\Carbon $date
+         * @var  \JapaneseDate\DateTime|static|Modifier|\Carbon\Carbon $Date
          */
-        $date = $this;
+        $Date = $this;
         do {
-            $date = $date->addDay();
-        } while (!$date->is_holiday);
+            $Date = $Date->addDay();
+        } while (!$Date->is_holiday);
 
-        return $date;
+        return $Date;
     }
 
     /**

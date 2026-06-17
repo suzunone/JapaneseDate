@@ -52,9 +52,9 @@ trait FindSolarTerm
      */
     protected function getSolarTermDate($method, $year)
     {
-        $st = $this->findSolarTerm($method, $year);
+        $SolarTermDate = $this->findSolarTerm($method, $year);
 
-        return $this->copy()->setDateTime($st->year, $st->month, $st->day, $this->hour, $this->minute, $this->second);
+        return $this->copy()->setDateTime($SolarTermDate->year, $SolarTermDate->month, $SolarTermDate->day, $this->hour, $this->minute, $this->second);
     }
 
     /**
@@ -89,64 +89,64 @@ trait FindSolarTerm
     /**
      * 二十四節気計算クラスのメソッドを明示分岐で呼び出す。
      *
-     * @param SimpleSolarTerm|SolarTerm $solarTerm 二十四節気計算クラス
+     * @param SimpleSolarTerm|SolarTerm $SolarTerm 二十四節気計算クラス
      * @param string $method 節気メソッド名
      * @param int $year 計算対象年
      * @return SolarTermDate 二十四節気の日付
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\SolarTermException
      */
-    protected static function callSolarTermMethod($solarTerm, $method, $year): SolarTermDate
+    protected static function callSolarTermMethod($SolarTerm, $method, $year): SolarTermDate
     {
         switch ($method) {
             case 'syunbun':
-                return $solarTerm->syunbun($year);
+                return $SolarTerm->syunbun($year);
             case 'seimei':
-                return $solarTerm->seimei($year);
+                return $SolarTerm->seimei($year);
             case 'kokuu':
-                return $solarTerm->kokuu($year);
+                return $SolarTerm->kokuu($year);
             case 'rikka':
-                return $solarTerm->rikka($year);
+                return $SolarTerm->rikka($year);
             case 'syouman':
-                return $solarTerm->syouman($year);
+                return $SolarTerm->syouman($year);
             case 'bousyu':
-                return $solarTerm->bousyu($year);
+                return $SolarTerm->bousyu($year);
             case 'geshi':
-                return $solarTerm->geshi($year);
+                return $SolarTerm->geshi($year);
             case 'syousyo':
-                return $solarTerm->syousyo($year);
+                return $SolarTerm->syousyo($year);
             case 'taisyo':
-                return $solarTerm->taisyo($year);
+                return $SolarTerm->taisyo($year);
             case 'rissyuu':
-                return $solarTerm->rissyuu($year);
+                return $SolarTerm->rissyuu($year);
             case 'syosyo':
-                return $solarTerm->syosyo($year);
+                return $SolarTerm->syosyo($year);
             case 'hakuro':
-                return $solarTerm->hakuro($year);
+                return $SolarTerm->hakuro($year);
             case 'syuubun':
-                return $solarTerm->syuubun($year);
+                return $SolarTerm->syuubun($year);
             case 'kanro':
-                return $solarTerm->kanro($year);
+                return $SolarTerm->kanro($year);
             case 'soukou':
-                return $solarTerm->soukou($year);
+                return $SolarTerm->soukou($year);
             case 'rittou':
-                return $solarTerm->rittou($year);
+                return $SolarTerm->rittou($year);
             case 'syousetsu':
-                return $solarTerm->syousetsu($year);
+                return $SolarTerm->syousetsu($year);
             case 'taisetsu':
-                return $solarTerm->taisetsu($year);
+                return $SolarTerm->taisetsu($year);
             case 'touji':
-                return $solarTerm->touji($year);
+                return $SolarTerm->touji($year);
             case 'syoukan':
-                return $solarTerm->syoukan($year);
+                return $SolarTerm->syoukan($year);
             case 'daikan':
-                return $solarTerm->daikan($year);
+                return $SolarTerm->daikan($year);
             case 'rissyun':
-                return $solarTerm->rissyun($year);
+                return $SolarTerm->rissyun($year);
             case 'usui':
-                return $solarTerm->usui($year);
+                return $SolarTerm->usui($year);
             case 'keichitsu':
-                return $solarTerm->keichitsu($year);
+                return $SolarTerm->keichitsu($year);
         }
     }
 
@@ -174,9 +174,9 @@ trait FindSolarTerm
     protected function getNextSolarTermDate($method)
     {
         $year = $this->year;
-        $st = $this->findSolarTerm($method, $year);
+        $SolarTermDate = $this->findSolarTerm($method, $year);
 
-        if ($this->month > $st->month || ($this->month === $st->month && $this->day >= $st->day)) {
+        if ($this->month > $SolarTermDate->month || ($this->month === $SolarTermDate->month && $this->day >= $SolarTermDate->day)) {
             ++$year;
         }
 
@@ -207,9 +207,9 @@ trait FindSolarTerm
     protected function getBeforeSolarTermDate($method)
     {
         $year = $this->year;
-        $st = $this->findSolarTerm($method, $year);
+        $SolarTermDate = $this->findSolarTerm($method, $year);
 
-        if ($this->month < $st->month || ($this->month === $st->month && $this->day <= $st->day)) {
+        if ($this->month < $SolarTermDate->month || ($this->month === $SolarTermDate->month && $this->day <= $SolarTermDate->day)) {
             --$year;
         }
 

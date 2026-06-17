@@ -693,9 +693,9 @@ class AstronomyTest extends TestCase
     /**
      * @return void
      */
-    public function test_boundaryMoonAlgorithm_defaultIsELP2000(): void
+    public function test_boundaryMoonAlgorithm_defaultIsMeeus47(): void
     {
-        $this->assertSame(Astronomy::MOON_ELP2000, Astronomy::boundaryMoonAlgorithm());
+        $this->assertSame(Astronomy::MOON_MEEUS47, Astronomy::boundaryMoonAlgorithm());
     }
     /**
      * @return void
@@ -726,10 +726,10 @@ class AstronomyTest extends TestCase
     /**
      * @return void
      */
-    public function test_factoryForBoundary_defaultAlgorithmIsVsop87Elp2000(): void
+    public function test_factoryForBoundary_defaultAlgorithmIsVsop87Meeus47(): void
     {
         $instance = Astronomy::factoryForBoundary();
-        $this->assertSame(Astronomy::SOLAR_VSOP87 . ':' . Astronomy::MOON_ELP2000, $instance->algorithmName());
+        $this->assertSame(Astronomy::SOLAR_VSOP87 . ':' . Astronomy::MOON_MEEUS47, $instance->algorithmName());
     }
     /**
      * @return void
@@ -738,7 +738,7 @@ class AstronomyTest extends TestCase
     {
         Astronomy::useBoundarySolarAlgorithm(Astronomy::SOLAR_LEGACY);
         $instance = Astronomy::factoryForBoundary();
-        $this->assertSame(Astronomy::SOLAR_LEGACY . ':' . Astronomy::MOON_ELP2000, $instance->algorithmName());
+        $this->assertSame(Astronomy::SOLAR_LEGACY . ':' . Astronomy::MOON_MEEUS47, $instance->algorithmName());
     }
     /**
      * @param string $algorithm
@@ -760,9 +760,9 @@ class AstronomyTest extends TestCase
      */
     public function test_factoryForBoundary_sharedCacheWithFactory(): void
     {
-        // 通常アルゴリズムを境界と同じ vsop87:elp2000 に設定すると同一インスタンスが返る
+        // 通常アルゴリズムを境界と同じ vsop87:meeus47 に設定すると同一インスタンスが返る
         Astronomy::useSolarAlgorithm(Astronomy::SOLAR_VSOP87);
-        Astronomy::useMoonAlgorithm(Astronomy::MOON_ELP2000);
+        Astronomy::useMoonAlgorithm(Astronomy::MOON_MEEUS47);
         $fromFactory = Astronomy::factory();
         $fromBoundary = Astronomy::factoryForBoundary();
         $this->assertSame($fromFactory, $fromBoundary);
@@ -772,12 +772,12 @@ class AstronomyTest extends TestCase
      */
     public function test_factoryForBoundary_independentFromNormalAlgorithm(): void
     {
-        // 通常=Legacy, 境界=VSOP87/ELP2000(デフォルト) のとき別インスタンスになる
+        // 通常=Legacy, 境界=VSOP87/Meeus47(デフォルト) のとき別インスタンスになる
         $normal = Astronomy::factory();
         $boundary = Astronomy::factoryForBoundary();
         $this->assertNotSame($normal, $boundary);
         $this->assertSame(Astronomy::SOLAR_LEGACY . ':' . Astronomy::MOON_LEGACY, $normal->algorithmName());
-        $this->assertSame(Astronomy::SOLAR_VSOP87 . ':' . Astronomy::MOON_ELP2000, $boundary->algorithmName());
+        $this->assertSame(Astronomy::SOLAR_VSOP87 . ':' . Astronomy::MOON_MEEUS47, $boundary->algorithmName());
     }
     // ==================== longitudeMoonFast ====================
     /**

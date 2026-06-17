@@ -242,22 +242,36 @@ class EraTest extends TestCase
         $this->assertSame($expected, $era->parseJisDate($input, new DateTimeZone('Asia/Tokyo')));
     }
     /**
-     * parseJisDate() がデフォルトタイムゾーンで和暦・JIS元号形式を解釈すること。
+     * parseJisDate() がタイムゾーン未指定の元号形式を Asia/Tokyo で解釈すること。
      */
-    public function test_parseJisDate_uses_default_timezone_for_japanese_formats(): void
+    public function test_parseJisDate_uses_jst_for_era_formats(): void
     {
         $defaultTimezone = date_default_timezone_get();
         date_default_timezone_set('America/New_York');
 
         try {
             $era = new JisEra();
-            $timestamp = $era->parseJisDate('R7-05-01');
-            $date = DateTimeImmutable::createFromTimestamp($timestamp, new DateTimeZone('America/New_York'));
+            $alphabetTimestamp = $era->parseJisDate('R7-05-01');
+            $kanjiTimestamp = $era->parseJisDate('令和7年5月1日 12時34分56秒');
+            $alphabetDate = DateTimeImmutable::createFromTimestamp($alphabetTimestamp, new DateTimeZone('America/New_York'));
+            $kanjiDate = DateTimeImmutable::createFromTimestamp($kanjiTimestamp, new DateTimeZone('America/New_York'));
 
-            $this->assertSame('2025-05-01 00:00:00 -04:00', $date->format('Y-m-d H:i:s P'));
+            $this->assertSame('2025-04-30 11:00:00 -04:00', $alphabetDate->format('Y-m-d H:i:s P'));
+            $this->assertSame('2025-04-30 23:34:56 -04:00', $kanjiDate->format('Y-m-d H:i:s P'));
         } finally {
             date_default_timezone_set($defaultTimezone);
         }
+    }
+    /**
+     * parseJisDate() が明示指定された America/New_York で元号形式を解釈すること。
+     */
+    public function test_parseJisDate_uses_explicit_american_timezone_for_era_format(): void
+    {
+        $timezone = new DateTimeZone('America/New_York');
+        $timestamp = (new JisEra())->parseJisDate('令和7年5月1日 12時34分56秒', $timezone);
+        $date = DateTimeImmutable::createFromTimestamp($timestamp, $timezone);
+
+        $this->assertSame('2025-05-01 12:34:56 -04:00', $date->format('Y-m-d H:i:s P'));
     }
     /**
      * @return void

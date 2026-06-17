@@ -208,18 +208,18 @@ class DatePeriod extends CarbonPeriod
             // @codeCoverageIgnoreEnd
 
             foreach ($terms as $termDate) {
-                $candidate = DateTime::createFromFormat(
+                $CandidateDateTime = DateTime::createFromFormat(
                     'Y-m-d',
                     sprintf('%04d-%02d-%02d', $termDate->year, $termDate->month, $termDate->day)
                 );
                 // @codeCoverageIgnoreStart
-                if ($candidate === false) {
+                if ($CandidateDateTime === false) {
                     continue;
                 }
                 // @codeCoverageIgnoreEnd
-                $ts = $candidate->startOfDay()->timestamp;
+                $ts = $CandidateDateTime->startOfDay()->timestamp;
                 if ($ts >= $startTs && $ts <= $endTs) {
-                    $dates[] = DateTime::factory($candidate)->startOfDay();
+                    $dates[] = DateTime::factory($CandidateDateTime)->startOfDay();
                 }
             }
         }
@@ -348,28 +348,28 @@ class DatePeriod extends CarbonPeriod
      */
     protected static function collectLunarNewMoonDates($start, $months): array
     {
-        $moon = new Moon();
+        $Moon = new Moon();
         $dates = [];
         $startTs = $start->startOfDay()->timestamp;
 
         // 開始日以降の最初の新月を求める（is_next=false で次の新月を取得）
-        $searchBase = DateTime::factory($start)->subDays(2);
-        $newMoon = $moon->moonPhase($searchBase, 0.0)->setTimezone('Asia/Tokyo');
-        $current = DateTime::factory($newMoon)->startOfDay();
+        $SearchBaseDateTime = DateTime::factory($start)->subDays(2);
+        $NewMoonDateTime = $Moon->moonPhase($SearchBaseDateTime, 0.0)->setTimezone('Asia/Tokyo');
+        $CurrentDateTime = DateTime::factory($NewMoonDateTime)->startOfDay();
 
         // 開始日より前の新月だった場合はさらに次の新月へ進む
-        if ($current->timestamp < $startTs) {
-            $searchFrom = DateTime::factory($newMoon)->addDays(28);
-            $newMoon = $moon->moonPhase($searchFrom, 0.0)->setTimezone('Asia/Tokyo');
-            $current = DateTime::factory($newMoon)->startOfDay();
+        if ($CurrentDateTime->timestamp < $startTs) {
+            $SearchFromDateTime = DateTime::factory($NewMoonDateTime)->addDays(28);
+            $NewMoonDateTime = $Moon->moonPhase($SearchFromDateTime, 0.0)->setTimezone('Asia/Tokyo');
+            $CurrentDateTime = DateTime::factory($NewMoonDateTime)->startOfDay();
         }
 
         for ($i = 0; $i < $months; $i++) {
-            $dates[] = DateTime::factory($current);
+            $dates[] = DateTime::factory($CurrentDateTime);
             // 次の新月を求める（約28日後から検索、is_next=false で次の新月を取得）
-            $searchFrom = DateTime::factory($current)->addDays(28);
-            $newMoon = $moon->moonPhase($searchFrom, 0.0)->setTimezone('Asia/Tokyo');
-            $current = DateTime::factory($newMoon)->startOfDay();
+            $SearchFromDateTime = DateTime::factory($CurrentDateTime)->addDays(28);
+            $NewMoonDateTime = $Moon->moonPhase($SearchFromDateTime, 0.0)->setTimezone('Asia/Tokyo');
+            $CurrentDateTime = DateTime::factory($NewMoonDateTime)->startOfDay();
         }
 
         return $dates;
@@ -406,9 +406,9 @@ class DatePeriod extends CarbonPeriod
         }
 
         if (empty($dates)) {
-            $start = DateTime::parse(sprintf('%04d-04-01', $startFiscalYear));
+            $StartDateTime = DateTime::parse(sprintf('%04d-04-01', $startFiscalYear));
 
-            return static::create($start, '1 day', $start->copy()->subDay());
+            return static::create($StartDateTime, '1 day', $StartDateTime->copy()->subDay());
         }
 
         return static::createFromDatesArray($dates);
@@ -438,8 +438,8 @@ class DatePeriod extends CarbonPeriod
      */
     public function onlyHolidays()
     {
-        return $this->addFilter(static function ($date): bool {
-            return DateTime::factory($date)->is_holiday;
+        return $this->addFilter(static function ($Date): bool {
+            return DateTime::factory($Date)->is_holiday;
         });
     }
 
@@ -487,10 +487,10 @@ class DatePeriod extends CarbonPeriod
      */
     public function withoutHolidays()
     {
-        return $this->addFilter(static function ($date): bool {
-            $jd = DateTime::factory($date);
+        return $this->addFilter(static function ($Date): bool {
+            $Jd = DateTime::factory($Date);
 
-            return !$jd->is_holiday;
+            return !$Jd->is_holiday;
         });
     }
 
@@ -509,8 +509,8 @@ class DatePeriod extends CarbonPeriod
      */
     public function withoutWeekends()
     {
-        return $this->addFilter(static function ($date): bool {
-            return $date->dayOfWeek !== 0 && $date->dayOfWeek !== 6;
+        return $this->addFilter(static function ($Date): bool {
+            return $Date->dayOfWeek !== 0 && $Date->dayOfWeek !== 6;
         });
     }
 
@@ -544,16 +544,16 @@ class DatePeriod extends CarbonPeriod
      */
     public function onlyGotobi($adjust = 'none')
     {
-        return $this->addFilter(static function ($date) use ($adjust): bool {
-            $jd = DateTime::factory($date);
-            $day = $jd->day;
-            $isGotobi = in_array($day, [5, 10, 15, 20, 25], true) || $day === $jd->daysInMonth;
+        return $this->addFilter(static function ($Date) use ($adjust): bool {
+            $Jd = DateTime::factory($Date);
+            $day = $Jd->day;
+            $isGotobi = in_array($day, [5, 10, 15, 20, 25], true) || $day === $Jd->daysInMonth;
 
             if (!$isGotobi) {
                 return false;
             }
 
-            $isBusinessDay = $jd->dayOfWeek !== 0 && $jd->dayOfWeek !== 6 && !$jd->is_holiday;
+            $isBusinessDay = $Jd->dayOfWeek !== 0 && $Jd->dayOfWeek !== 6 && !$Jd->is_holiday;
 
             if ($adjust === 'none') {
                 return $isBusinessDay;
@@ -565,22 +565,22 @@ class DatePeriod extends CarbonPeriod
 
             // 調整あり: 代替日を求めて、その代替日がこの日と一致するかを確認する
             if ($adjust === 'prev') {
-                $candidate = DateTime::factory($jd);
-                while ($candidate->dayOfWeek === 0 || $candidate->dayOfWeek === 6 || $candidate->is_holiday) {
-                    $candidate = $candidate->subDay();
+                $CandidateDateTime = DateTime::factory($Jd);
+                while ($CandidateDateTime->dayOfWeek === 0 || $CandidateDateTime->dayOfWeek === 6 || $CandidateDateTime->is_holiday) {
+                    $CandidateDateTime = $CandidateDateTime->subDay();
                 }
 
                 // 代替日がこの日と同じ月の場合のみ有効とする
-                return $candidate->format('Y-m-d') === $jd->format('Y-m-d');
+                return $CandidateDateTime->format('Y-m-d') === $Jd->format('Y-m-d');
             }
 
             if ($adjust === 'next') {
-                $candidate = DateTime::factory($jd);
-                while ($candidate->dayOfWeek === 0 || $candidate->dayOfWeek === 6 || $candidate->is_holiday) {
-                    $candidate = $candidate->addDay();
+                $CandidateDateTime = DateTime::factory($Jd);
+                while ($CandidateDateTime->dayOfWeek === 0 || $CandidateDateTime->dayOfWeek === 6 || $CandidateDateTime->is_holiday) {
+                    $CandidateDateTime = $CandidateDateTime->addDay();
                 }
 
-                return $candidate->format('Y-m-d') === $jd->format('Y-m-d');
+                return $CandidateDateTime->format('Y-m-d') === $Jd->format('Y-m-d');
             }
 
             return false;
@@ -608,10 +608,10 @@ class DatePeriod extends CarbonPeriod
      */
     public function onlySixWeekday(...$sixWeekdays)
     {
-        return $this->addFilter(static function ($date) use ($sixWeekdays): bool {
-            $jd = DateTime::factory($date);
+        return $this->addFilter(static function ($Date) use ($sixWeekdays): bool {
+            $Jd = DateTime::factory($Date);
 
-            return in_array($jd->six_weekday, $sixWeekdays, true);
+            return in_array($Jd->six_weekday, $sixWeekdays, true);
         });
     }
 
@@ -640,10 +640,10 @@ class DatePeriod extends CarbonPeriod
      */
     public function withoutSixWeekday(...$sixWeekdays)
     {
-        return $this->addFilter(static function ($date) use ($sixWeekdays): bool {
-            $jd = DateTime::factory($date);
+        return $this->addFilter(static function ($Date) use ($sixWeekdays): bool {
+            $Jd = DateTime::factory($Date);
 
-            return !in_array($jd->six_weekday, $sixWeekdays, true);
+            return !in_array($Jd->six_weekday, $sixWeekdays, true);
         });
     }
 
@@ -670,10 +670,10 @@ class DatePeriod extends CarbonPeriod
      */
     public function onlyDoyo()
     {
-        return $this->addFilter(static function ($date): bool {
-            $jd = DateTime::factory($date);
+        return $this->addFilter(static function ($Date): bool {
+            $Jd = DateTime::factory($Date);
 
-            return static::isInDoyo($jd);
+            return static::isInDoyo($Jd);
         });
     }
 
@@ -708,10 +708,10 @@ class DatePeriod extends CarbonPeriod
      */
     public function onlyHigan()
     {
-        return $this->addFilter(static function ($date): bool {
-            $jd = DateTime::factory($date);
+        return $this->addFilter(static function ($Date): bool {
+            $Jd = DateTime::factory($Date);
 
-            return static::isInHigan($jd);
+            return static::isInHigan($Jd);
         });
     }
 
@@ -757,41 +757,41 @@ class DatePeriod extends CarbonPeriod
      */
     public function splitByEra(): array
     {
-        $startDate = DateTime::factory($this->getStartDate());
-        $endDate = DateTime::factory($this->getEndDate());
+        $StartDateTime = DateTime::factory($this->getStartDate());
+        $EndDateTime = DateTime::factory($this->getEndDate());
 
         $result = [];
         $eraKeys = array_keys(static::ERA_START_DATES);
         sort($eraKeys);
 
         $firstEraKey = $eraKeys[0];
-        $firstEraStart = DateTime::parse(static::ERA_START_DATES[$firstEraKey]);
-        if ($startDate->lt($firstEraStart)) {
-            $subEnd = $endDate->lt($firstEraStart) ? $endDate : $firstEraStart->copy()->subDay();
+        $FirstEraStartDateTime = DateTime::parse(static::ERA_START_DATES[$firstEraKey]);
+        if ($StartDateTime->lt($FirstEraStartDateTime)) {
+            $SubEndDateTime = $EndDateTime->lt($FirstEraStartDateTime) ? $EndDateTime : $FirstEraStartDateTime->copy()->subDay();
 
-            if ($startDate->lte($subEnd)) {
+            if ($StartDateTime->lte($SubEndDateTime)) {
                 $result[0] = static::create(
-                    $startDate->format('Y-m-d'),
+                    $StartDateTime->format('Y-m-d'),
                     $this->getDateInterval(),
-                    $subEnd->format('Y-m-d')
+                    $SubEndDateTime->format('Y-m-d')
                 );
             }
         }
 
         foreach ($eraKeys as $eraKey) {
-            $eraStart = DateTime::parse(static::ERA_START_DATES[$eraKey]);
+            $EraStartDateTime = DateTime::parse(static::ERA_START_DATES[$eraKey]);
             $eraEndStr = static::ERA_END_DATES[$eraKey];
-            $eraEnd = $eraEndStr !== null ? DateTime::parse($eraEndStr) : DateTime::now();
+            $EraEndDateTime = $eraEndStr !== null ? DateTime::parse($eraEndStr) : DateTime::now();
 
             // 期間と元号が重なる部分を求める
-            $subStart = $startDate->gt($eraStart) ? $startDate : $eraStart;
-            $subEnd = $endDate->lt($eraEnd) ? $endDate : $eraEnd;
+            $SubStartDateTime = $StartDateTime->gt($EraStartDateTime) ? $StartDateTime : $EraStartDateTime;
+            $SubEndDateTime = $EndDateTime->lt($EraEndDateTime) ? $EndDateTime : $EraEndDateTime;
 
-            if ($subStart->lte($subEnd)) {
+            if ($SubStartDateTime->lte($SubEndDateTime)) {
                 $result[$eraKey] = static::create(
-                    $subStart->format('Y-m-d'),
+                    $SubStartDateTime->format('Y-m-d'),
                     $this->getDateInterval(),
-                    $subEnd->format('Y-m-d')
+                    $SubEndDateTime->format('Y-m-d')
                 );
             }
         }
@@ -819,12 +819,12 @@ class DatePeriod extends CarbonPeriod
      */
     public function onlyBusinessDays($config = null)
     {
-        $effectiveConfig = $config ?? $this->businessConfig;
+        $EffectiveDateBusiness = $config ?? $this->businessConfig;
 
-        return self::filter(static function ($date) use ($effectiveConfig): bool {
-            $dt = $date instanceof DateTime ? $date : DateTime::factory($date->format('Y-m-d'), $date->getTimezone());
+        return self::filter(static function ($Date) use ($EffectiveDateBusiness): bool {
+            $Dt = $Date instanceof DateTime ? $Date : DateTime::factory($Date->format('Y-m-d'), $Date->getTimezone());
 
-            return BusinessCalendar::isBusinessDay($dt, $effectiveConfig);
+            return BusinessCalendar::isBusinessDay($Dt, $EffectiveDateBusiness);
         });
     }
 
@@ -838,12 +838,12 @@ class DatePeriod extends CarbonPeriod
      */
     public function withoutBusinessDays($config = null)
     {
-        $effectiveConfig = $config ?? $this->businessConfig;
+        $EffectiveDateBusiness = $config ?? $this->businessConfig;
 
-        return self::filter(static function ($date) use ($effectiveConfig): bool {
-            $dt = $date instanceof DateTime ? $date : DateTime::factory($date->format('Y-m-d'), $date->getTimezone());
+        return self::filter(static function ($Date) use ($EffectiveDateBusiness): bool {
+            $Dt = $Date instanceof DateTime ? $Date : DateTime::factory($Date->format('Y-m-d'), $Date->getTimezone());
 
-            return !BusinessCalendar::isBusinessDay($dt, $effectiveConfig);
+            return !BusinessCalendar::isBusinessDay($Dt, $EffectiveDateBusiness);
         });
     }
 }

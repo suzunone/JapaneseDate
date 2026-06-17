@@ -44,7 +44,7 @@ trait Component
     /**
      * @var JisEra
      */
-    protected $jisEra;
+    protected $JisEra;
 
     /**
      * @var JapaneseDate

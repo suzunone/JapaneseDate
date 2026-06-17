@@ -81,7 +81,7 @@ class JapaneseDate
      * 干支配列
      * @var array
      */
-    public const ORIENTAL_ZODIAC = ['亥', '子', '丑', '寅', '卯', '辰', '巳', '午', '未', '申', '酉', '戌', ];
+    public const ORIENTAL_ZODIAC = ['亥', '子', '丑', '寅', '卯', '辰', '巳', '午', '未', '申', '酉', '戌',];
 
     /**
      * 二十四節気配列
@@ -191,7 +191,7 @@ class JapaneseDate
      * 指定月の祝日リストを取得する
      *
      * @access      public
-     * @param DateTime|DateTimeImmutable $dateTime |\JapaneseDate\Traits\Modern $DateTime DateTime
+     * @param DateTime|DateTimeImmutable $DateTime |\JapaneseDate\Traits\Modern $DateTime DateTime
      * @return      array
      * @throws \DateInvalidTimeZoneException
      * @throws ErrorException
@@ -200,33 +200,33 @@ class JapaneseDate
      * @throws \JapaneseDate\Exceptions\SolarTermException
      * @throws \JsonException
      */
-    public function getHolidayList($dateTime): array
+    public function getHolidayList($DateTime): array
     {
-        switch ($dateTime->month) {
+        switch ($DateTime->month) {
             case 1:
-                return $this->getJanuaryHoliday($dateTime->year, $dateTime->getTimezone());
+                return $this->getJanuaryHoliday($DateTime->year, $DateTime->getTimezone());
             case 2:
-                return $this->getFebruaryHoliday($dateTime->year, $dateTime->getTimezone());
+                return $this->getFebruaryHoliday($DateTime->year, $DateTime->getTimezone());
             case 3:
-                return $this->getMarchHoliday($dateTime->year, $dateTime->getTimezone());
+                return $this->getMarchHoliday($DateTime->year, $DateTime->getTimezone());
             case 4:
-                return $this->getAprilHoliday($dateTime->year, $dateTime->getTimezone());
+                return $this->getAprilHoliday($DateTime->year, $DateTime->getTimezone());
             case 5:
-                return $this->getMayHoliday($dateTime->year, $dateTime->getTimezone());
+                return $this->getMayHoliday($DateTime->year, $DateTime->getTimezone());
             case 6:
-                return $this->getJuneHoliday($dateTime->year);
+                return $this->getJuneHoliday($DateTime->year);
             case 7:
-                return $this->getJulyHoliday($dateTime->year, $dateTime->getTimezone());
+                return $this->getJulyHoliday($DateTime->year, $DateTime->getTimezone());
             case 8:
-                return $this->getAugustHoliday($dateTime->year, $dateTime->getTimezone());
+                return $this->getAugustHoliday($DateTime->year, $DateTime->getTimezone());
             case 9:
-                return $this->getSeptemberHoliday($dateTime->year, $dateTime->getTimezone());
+                return $this->getSeptemberHoliday($DateTime->year, $DateTime->getTimezone());
             case 10:
-                return $this->getOctoberHoliday($dateTime->year, $dateTime->getTimezone());
+                return $this->getOctoberHoliday($DateTime->year, $DateTime->getTimezone());
             case 11:
-                return $this->getNovemberHoliday($dateTime->year, $dateTime->getTimezone());
+                return $this->getNovemberHoliday($DateTime->year, $DateTime->getTimezone());
             case 12:
-                return $this->getDecemberHoliday($dateTime->year, $dateTime->getTimezone());
+                return $this->getDecemberHoliday($DateTime->year, $DateTime->getTimezone());
             default:
                 throw new ErrorException('undefined month');
         }
@@ -302,25 +302,25 @@ class JapaneseDate
     {
         switch ($weekly) {
             case DateTime::SUNDAY:
-                $map = [7, 1, 2, 3, 4, 5, 6, ];
+                $map = [7, 1, 2, 3, 4, 5, 6,];
                 break;
             case DateTime::MONDAY:
-                $map = [6, 7, 1, 2, 3, 4, 5, ];
+                $map = [6, 7, 1, 2, 3, 4, 5,];
                 break;
             case DateTime::TUESDAY:
-                $map = [5, 6, 7, 1, 2, 3, 4, ];
+                $map = [5, 6, 7, 1, 2, 3, 4,];
                 break;
             case DateTime::WEDNESDAY:
-                $map = [4, 5, 6, 7, 1, 2, 3, ];
+                $map = [4, 5, 6, 7, 1, 2, 3,];
                 break;
             case DateTime::THURSDAY:
-                $map = [3, 4, 5, 6, 7, 1, 2, ];
+                $map = [3, 4, 5, 6, 7, 1, 2,];
                 break;
             case DateTime::FRIDAY:
-                $map = [2, 3, 4, 5, 6, 7, 1, ];
+                $map = [2, 3, 4, 5, 6, 7, 1,];
                 break;
             case DateTime::SATURDAY:
-                $map = [1, 2, 3, 4, 5, 6, 7, ];
+                $map = [1, 2, 3, 4, 5, 6, 7,];
                 break;
             default:
                 throw new ErrorException('undefined weekly ' . $weekly);
@@ -514,11 +514,10 @@ class JapaneseDate
         if ($year >= 1973 && $this->getWeekday(mktime(0, 0, 0, 5, 5, $year), $timezone) === DateTime::SUNDAY) {
             $res[6] = DateTime::COMPENSATING_HOLIDAY;
         }
-        if ($year >= 2007) {
-            // [5/3, 5/4が日曜]なら、振替休日
-            if (($this->getWeekday(mktime(0, 0, 0, 5, 4, $year), $timezone) === DateTime::SUNDAY) || ($this->getWeekday(mktime(0, 0, 0, 5, 3, $year), $timezone) === DateTime::SUNDAY)) {
-                $res[6] = DateTime::COMPENSATING_HOLIDAY;
-            }
+
+        // [5/3, 5/4が日曜]なら、振替休日
+        if ($year >= 2007 && (($this->getWeekday(mktime(0, 0, 0, 5, 4, $year), $timezone) === DateTime::SUNDAY) || ($this->getWeekday(mktime(0, 0, 0, 5, 3, $year), $timezone) === DateTime::SUNDAY))) {
+            $res[6] = DateTime::COMPENSATING_HOLIDAY;
         }
 
         // 2019年、特別な祝日

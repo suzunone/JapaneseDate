@@ -472,12 +472,13 @@ class ThrowingDateTimeForBusinessLimit extends DateTime
      * @param mixed $interval
      * @param mixed $value
      * @param mixed $overflow
+     * @param mixed $anchorDay
      * @return static
      * @throws \RuntimeException
      * @noinspection PhpUnused
      */
     #[\ReturnTypeWillChange]
-    public function add($interval, $value = 1, $overflow = null)
+    public function add($interval, $value = 1, $overflow = null, $anchorDay = null)
     {
         throw new \RuntimeException('DateTime add failed.');
     }

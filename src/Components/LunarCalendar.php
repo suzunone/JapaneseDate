@@ -255,7 +255,6 @@ class LunarCalendar
      * @throws \JapaneseDate\Exceptions\Exception
      * @throws \JapaneseDate\Exceptions\NativeDateTimeException
      * @throws \Exception
-     * @throws \Exception
      */
     protected function makeLunarCalendar($year): array
     {
@@ -275,7 +274,7 @@ class LunarCalendar
             // @codeCoverageIgnoreEnd
         }
 
-        $moon = new Moon($this->astronomy());
+        $Moon = new Moon($this->astronomy());
         $end_timestamp = $EndDate->timestamp;
         while ($end_timestamp > $Date->timestamp) {
             if (in_array(
@@ -283,7 +282,7 @@ class LunarCalendar
                 [Astronomy::MOON_ELP2000, Astronomy::MOON_MEEUS47, Astronomy::MOON_MEEUS47_NO_C],
                 true
             )) {
-                $Date = $moon->moonPhase($Date, 0.0)->setTimezone('Asia/Tokyo');
+                $Date = $Moon->moonPhase($Date, 0.0)->setTimezone('Asia/Tokyo');
                 if ($Date->timestamp >= $end_timestamp) {
                     // @codeCoverageIgnoreStart
                     break;
@@ -542,8 +541,8 @@ class LunarCalendar
     public function moonPhase($year, $month, $day, $hour, $min, $sec): ?int
     {
         $phase = $this->astronomy()->moonPhase($year, $month, $day, $hour, $min, $sec);
-        $date = Carbon::create($year, $month, $day, (int) $hour, (int) $min, (int) $sec, 'Asia/Tokyo');
-        if (!$date instanceof Carbon) {
+        $Carbon = Carbon::create($year, $month, $day, (int) $hour, (int) $min, (int) $sec, 'Asia/Tokyo');
+        if (!$Carbon instanceof Carbon) {
             // @codeCoverageIgnoreStart
             return null;
             // @codeCoverageIgnoreEnd
@@ -556,14 +555,14 @@ class LunarCalendar
         $moonAstronomy = in_array($injectedMoonName, [Astronomy::MOON_MEEUS47, Astronomy::MOON_MEEUS47_NO_C], true)
             ? $this->astronomy()          // Meeus 系: 注入済み Astronomy をそのまま使用
             : Astronomy::factoryForBoundary(); // Legacy/ELP2000 系: 境界アルゴリズムで月相を計算
-        $moon = new Moon($moonAstronomy);
-        $next = $moon->moonPhase($date, $phase_time);
-        $previous = $moon->moonPhase($date, $phase_time, true);
+        $Moon = new Moon($moonAstronomy);
+        $NextDateTime = $Moon->moonPhase($Carbon, $phase_time);
+        $PreviousDateTime = $Moon->moonPhase($Carbon, $phase_time, true);
 
-        $nearest_phase = abs($next->timestamp - $date->timestamp) < abs($previous->timestamp - $date->timestamp)
-            ? $next
-            : $previous;
-        if ($nearest_phase->copy()->setTimezone('Asia/Tokyo')->format('Y-m-d') !== $date->format('Y-m-d')) {
+        $NearestPhaseDateTime = abs($NextDateTime->timestamp - $Carbon->timestamp) < abs($PreviousDateTime->timestamp - $Carbon->timestamp)
+            ? $NextDateTime
+            : $PreviousDateTime;
+        if ($NearestPhaseDateTime->copy()->setTimezone('Asia/Tokyo')->format('Y-m-d') !== $Carbon->format('Y-m-d')) {
             return null;
         }
 

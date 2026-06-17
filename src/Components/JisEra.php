@@ -124,8 +124,8 @@ class JisEra
         ];
 
         foreach ($starts as $era => $dateStr) {
-            $dt = new DateTimeImmutable($dateStr);
-            $this->eraStartTimestamps[$era] = $dt->getTimestamp();
+            $DateTimeImmutable = new DateTimeImmutable($dateStr);
+            $this->eraStartTimestamps[$era] = $DateTimeImmutable->getTimestamp();
         }
     }
 
@@ -219,14 +219,15 @@ class JisEra
      * - マイクロ秒サフィックス `.NNNNNN` がある場合、浮動小数点数として返します。
      *
      * @param string $date_str パースする日付文字列
-     * @param \DateTimeZone|null $default_timezone
+     * @param \DateTimeZone|null $default_timezone 使用するタイムゾーン。元号形式で省略した場合は Asia/Tokyo を使用
      * @return int|float|null Unix タイムスタンプ（マイクロ秒がある場合は float）、解析失敗時は null
      * @throws \DateInvalidTimeZoneException
      */
     public function parseJisDate($date_str, $default_timezone = null)
     {
         $date_str = trim($date_str);
-        $timezone = $default_timezone ?? new DateTimeZone(date_default_timezone_get());
+        $DefaultDateTimeZone = $default_timezone ?? new DateTimeZone(date_default_timezone_get());
+        $EraDateTimeZone = $default_timezone ?? new DateTimeZone('Asia/Tokyo');
 
         $microtime = 0.0;
         if (preg_match('/\.(\d{1,6})\s*$/', $date_str, $matches) === 1) {
@@ -245,32 +246,32 @@ class JisEra
             ];
         };
 
-        $createTimestamp = static function (int $year, int $month, int $day, int $hour, int $minute, int $second, DateTimeZone $timezone) use ($microtime): ?float {
-            $date = DateTimeImmutable::createFromFormat(
+        $createTimestamp = static function (int $year, int $month, int $day, int $hour, int $minute, int $second, DateTimeZone $DateTimeZone) use ($microtime): ?float {
+            $DateTimeImmutable = DateTimeImmutable::createFromFormat(
                 '!Y-m-d H:i:s',
                 sprintf('%04d-%02d-%02d %02d:%02d:%02d', $year, $month, $day, $hour, $minute, $second),
-                $timezone
+                $DateTimeZone
             );
             $errors = DateTimeImmutable::getLastErrors();
 
-            if ($date === false || ($errors !== false && ($errors['warning_count'] > 0 || $errors['error_count'] > 0))) {
+            if ($DateTimeImmutable === false || ($errors !== false && ($errors['warning_count'] > 0 || $errors['error_count'] > 0))) {
                 return null;
             }
 
-            return (float) $date->getTimestamp() + $microtime;
+            return (float) $DateTimeImmutable->getTimestamp() + $microtime;
         };
 
         if (preg_match('/^(\d{4})[-\/](\d{1,2})[-\/](\d{1,2})(?:[ T](\d{1,2}):(\d{1,2})(?::(\d{1,2}))?)?$/', $date_str, $matches) === 1) {
             [$year, $month, $day, $hour, $minute, $second] = $parseComponents($matches);
 
-            return $createTimestamp($year, $month, $day, $hour, $minute, $second, $timezone);
+            return $createTimestamp($year, $month, $day, $hour, $minute, $second, $DefaultDateTimeZone);
         }
 
         $timePattern = '(?:\s+(\d{1,2})時(\d{1,2})分(?:(\d{1,2})秒)?)?';
         if (preg_match('/^(\d{4})年(\d{1,2})月(\d{1,2})日' . $timePattern . '$/u', $date_str, $matches) === 1) {
             [$year, $month, $day, $hour, $minute, $second] = $parseComponents($matches);
 
-            return $createTimestamp($year, $month, $day, $hour, $minute, $second, $timezone);
+            return $createTimestamp($year, $month, $day, $hour, $minute, $second, $DefaultDateTimeZone);
         }
 
         if (preg_match('/^(明治|大正|昭和|平成|令和)(\d{1,2})年(\d{1,2})月(\d{1,2})日' . $timePattern . '$/u', $date_str, $matches) === 1) {
@@ -281,7 +282,7 @@ class JisEra
                 isset($matches[5]) && $matches[5] !== '' ? (int) $matches[5] : 0,
                 isset($matches[6]) && $matches[6] !== '' ? (int) $matches[6] : 0,
                 isset($matches[7]) && $matches[7] !== '' ? (int) $matches[7] : 0,
-                $timezone
+                $EraDateTimeZone
             );
         }
 
@@ -295,7 +296,7 @@ class JisEra
                 0,
                 0,
                 0,
-                $timezone
+                $EraDateTimeZone
             );
         }
 

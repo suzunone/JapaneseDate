@@ -23,7 +23,7 @@ class CacheApcMockTest extends TestCase
      */
     public function test_apc_forever_cache_miss(): void
     {
-        require_once __DIR__ . '/global_apcu_mock.php';
+        require_once dirname(__DIR__) . '/Support/global_apcu_mock.php';
         $GLOBALS['_test_apcu_store'] = [];
         Cache::setMode(CacheMode::MODE_APC);
         $callCount = 0;
@@ -43,7 +43,7 @@ class CacheApcMockTest extends TestCase
      */
     public function test_apc_forever_cache_hit(): void
     {
-        require_once __DIR__ . '/global_apcu_mock.php';
+        require_once dirname(__DIR__) . '/Support/global_apcu_mock.php';
         $GLOBALS['_test_apcu_store'] = ['apcu_hit_key' => 'cached_apcu_value'];
         Cache::setMode(CacheMode::MODE_APC);
         $callCount = 0;
@@ -62,7 +62,7 @@ class CacheApcMockTest extends TestCase
      */
     public function test_apc_forever_cache_hit_with_falsy_value(): void
     {
-        require_once __DIR__ . '/global_apcu_mock.php';
+        require_once dirname(__DIR__) . '/Support/global_apcu_mock.php';
         $GLOBALS['_test_apcu_store'] = [
             'apcu_false_key' => false,
             'apcu_zero_key' => 0,
